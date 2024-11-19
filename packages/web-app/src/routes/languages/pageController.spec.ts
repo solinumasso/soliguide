@@ -18,11 +18,13 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { describe, it, expect, beforeEach, vitest } from 'vitest';
+import { describe, it, expect, beforeEach, vitest, vi } from 'vitest';
 import { get } from 'svelte/store';
 import { SUPPORTED_LANGUAGES, SupportedLanguagesCode } from '@soliguide/common';
 import { posthogService } from '$lib/services/posthogService';
 import { getController } from './pageController';
+
+vi.mock('posthog-js');
 
 describe('Choose language page', () => {
   let state = getController();

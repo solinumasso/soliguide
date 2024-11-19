@@ -18,12 +18,14 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { beforeEach, describe, it, expect } from 'vitest';
+import { beforeEach, describe, it, expect, vi } from 'vitest';
 import { get } from 'svelte/store';
 import { Categories, Themes } from '@soliguide/common';
 import { getCategorySelectorController } from './CategorySelectorController';
 import { CategoryBrowserState, type CategorySelectorController } from './types';
 import { getCategoryService } from '$lib/services/categoryService';
+
+vi.mock('posthog-js');
 
 describe('Category selector widget', () => {
   // skipcq: JS-0119
