@@ -168,6 +168,8 @@ export class SearchCategoryAutocompleteComponent
   private setInitialValue(): void {
     const inputEl =
       this.autocompleteContainerCategories.nativeElement.querySelector("input");
+    inputEl.setAttribute("data-record", "true");
+
     const currentValue = this.getCurrentSearchValue(this.search);
 
     if (inputEl && currentValue) {

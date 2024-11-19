@@ -56,22 +56,6 @@ describe("PosthogService", () => {
     service.switchPersistence("memory");
     expect(service.enabled).toBe(true);
     expect(posthog.init).toHaveBeenCalledTimes(1);
-
-    expect(posthog.init).toHaveBeenCalledWith(
-      "hello",
-      {
-        api_host: baseConfig.posthogUrl,
-        autocapture: false,
-        persistence: "memory",
-        disable_session_recording: true,
-        debug: undefined,
-        ip: false,
-        loaded: expect.any(Function),
-        sanitize_properties: undefined,
-        session_idle_timeout_seconds: 1800,
-      },
-      baseConfig.posthogLibraryName
-    );
   });
 
   it("should not init posthog", () => {

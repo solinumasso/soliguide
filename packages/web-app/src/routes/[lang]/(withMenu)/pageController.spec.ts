@@ -18,10 +18,12 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { beforeEach, describe, it, expect, vitest } from 'vitest';
+import { beforeEach, describe, it, expect, vitest, vi } from 'vitest';
 import { getHomePageController } from './pageController';
 import { posthogService } from '$lib/services/posthogService';
 import type { HomePageController } from './types';
+
+vi.mock('posthog-js');
 
 describe('Home page controller', () => {
   // skipcq: JS-0119

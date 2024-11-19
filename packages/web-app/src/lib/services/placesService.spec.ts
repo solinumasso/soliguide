@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import getSearchService from './placesService';
 import { fakeFetch } from '$lib/client';
 import {
@@ -71,6 +71,8 @@ const invalidParams = {
   type: '',
   options: { page: 1 }
 };
+
+vi.mock('posthog-js');
 
 describe('Search Service', () => {
   const { fetch, feedWith, setError } = fakeFetch();

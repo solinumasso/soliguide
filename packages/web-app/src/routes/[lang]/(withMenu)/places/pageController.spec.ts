@@ -31,6 +31,8 @@ import getSearchService from '$lib/services/placesService';
 import { posthogService } from '$lib/services/posthogService';
 import type { GetSearchResultPageController } from './types';
 
+vi.mock('posthog-js');
+
 describe('ListPageController', () => {
   // skipcq: JS-0119
   let pageState: GetSearchResultPageController;

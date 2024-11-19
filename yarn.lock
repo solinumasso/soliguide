@@ -9010,6 +9010,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@posthog/core@npm:1.3.0":
+  version: 1.3.0
+  resolution: "@posthog/core@npm:1.3.0"
+  checksum: 10c0/950e055988a6bdffb803e78393ed84475be214762f5110836a6c71edee6d2824c474dd67b69d6d225a9207fc4fe080a934cbfd39c53d289c7bb6bb0fd2f1dd18
+  languageName: node
+  linkType: hard
+
 "@pothos/core@npm:^3.38.0":
   version: 3.41.2
   resolution: "@pothos/core@npm:3.41.2"
@@ -10855,7 +10862,7 @@ __metadata:
     lint-staged: "npm:^15.5.1"
     ng-lint-staged: "npm:^12.0.4"
     ng-packagr: "npm:^17.3.0"
-    posthog-js: "npm:1.257.0"
+    posthog-js: "npm:^1.261.0"
     prettier: "npm:^2.8.8"
     rxjs: "npm:^7.8.2"
     ts-jest: "npm:^29.3.2"
@@ -10871,7 +10878,7 @@ __metadata:
     "@angular/platform-browser-dynamic": ^17.3.12
     "@angular/router": ^17.3.12
     "@soliguide/common": "workspace:*"
-    posthog-js: 1.257.0
+    posthog-js: ^1.261.0
     rxjs: ^7.8.1
     zone.js: ~0.14.7
   languageName: unknown
@@ -11233,7 +11240,7 @@ __metadata:
     isomorphic-dompurify: "npm:^2.16.0"
     license-check-and-add: "npm:^4.0.5"
     lint-staged: "npm:^15.5.1"
-    posthog-js: "npm:^1.236.2"
+    posthog-js: "npm:^1.261.0"
     prettier: "npm:^3.1.1"
     prettier-plugin-svelte: "npm:^3.1.2"
     sass: "npm:^1.77.6"
@@ -28982,10 +28989,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"posthog-js@npm:1.257.0":
-  version: 1.257.0
-  resolution: "posthog-js@npm:1.257.0"
+"posthog-js@npm:^1.261.0":
+  version: 1.275.2
+  resolution: "posthog-js@npm:1.275.2"
   dependencies:
+    "@posthog/core": "npm:1.3.0"
     core-js: "npm:^3.38.1"
     fflate: "npm:^0.4.8"
     preact: "npm:^10.19.3"
@@ -28998,27 +29006,7 @@ __metadata:
       optional: true
     rrweb-snapshot:
       optional: true
-  checksum: 10c0/a2471791a6c0ae1fb10ccc36941c111c3e63ca06202d74e727627c887a15c48f1b0d3c177884c49b8fad56148b499ab91e2064baf184e0957af982696096eb59
-  languageName: node
-  linkType: hard
-
-"posthog-js@npm:^1.236.2":
-  version: 1.236.2
-  resolution: "posthog-js@npm:1.236.2"
-  dependencies:
-    core-js: "npm:^3.38.1"
-    fflate: "npm:^0.4.8"
-    preact: "npm:^10.19.3"
-    web-vitals: "npm:^4.2.4"
-  peerDependencies:
-    "@rrweb/types": 2.0.0-alpha.17
-    rrweb-snapshot: 2.0.0-alpha.17
-  peerDependenciesMeta:
-    "@rrweb/types":
-      optional: true
-    rrweb-snapshot:
-      optional: true
-  checksum: 10c0/b425637978876f5f7647f60eb73ee539563f4647f60ac30ece1e201915b66faf2583617161db12aec2a0356c804d39261b4a66673dfc1bb40c7e0bd2dfc18b9d
+  checksum: 10c0/ce6be3d50823d4ad9fffef6c20dd06c9370a414ac3189e530e1c8af5a46636280e29beecb134ed9d32660b3832d5e527c0c443f08f7523174100e1bf75125222
   languageName: node
   linkType: hard
 

@@ -18,11 +18,13 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { beforeEach, describe, it, expect, vitest } from 'vitest';
+import { beforeEach, describe, it, expect, vitest, vi } from 'vitest';
 import { getCategoryBrowserController } from './CategoryBrowserController';
 import { posthogService } from '$lib/services/posthogService';
 import { Categories } from '@soliguide/common';
 import type { CategoryBrowserController } from './types';
+
+vi.mock('posthog-js');
 
 describe('Category browser widget', () => {
   // skipcq: JS-0119
