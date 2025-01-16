@@ -30,6 +30,8 @@ import { fetch } from '$lib/client';
 import { buildCategorySuggestion } from '$lib/models/categorySuggestion';
 import type { Fetcher } from '$lib/client/types';
 import { CategoriesErrors, type CategoryService } from './types';
+import { get } from 'svelte/store';
+import { themeStore } from '$lib/theme';
 
 const apiUrl = env.PUBLIC_API_URL;
 
@@ -74,7 +76,7 @@ const removeSpecialistsFromCategories = (
  *
  * Gets the category service
  */
-export default (
+export const getCategoryService = (
   currentThemeName: Themes,
   fetcher: Fetcher<SearchAutoComplete> = fetch
 ): CategoryService => {
@@ -83,6 +85,10 @@ export default (
   const allCategories = categoriesService.getCategories();
   const categoriesWithoutSpecialists = removeSpecialistsFromCategories(allCategories);
   const parentToChildren = buildParentToChildrenStructure(categoriesWithoutSpecialists);
+
+  const getAllCategories = (): FlatCategoriesTreeNode[] => {
+    return allCategories;
+  };
 
   /**
    * Checks if a category is a specialty
@@ -125,9 +131,13 @@ export default (
   };
 
   return {
+    getAllCategories,
     getRootCategories,
     getChildrenCategories,
     isCategoryRoot,
     getCategorySuggestions
   };
 };
+
+const themeName = get(themeStore.getTheme()).name;
+export const categoryService = getCategoryService(themeName, fetch);

@@ -26,6 +26,7 @@ import {
   SupportedLanguagesCode,
   Themes
 } from '@soliguide/common';
+import { readonly, writable, type Readable } from 'svelte/store';
 import type { ThemeDefinition } from './types';
 
 const themesConfig = [
@@ -89,12 +90,32 @@ const resolveTheme = (hostname: string): ThemeDefinition | null => {
     console.warn('No theme found for hostname', hostname);
     return null;
   }
-
   const theme = themeDefinitions.find((themeItem) => themeItem.name === configTheme);
+
   // Allows the theme to be partially defined
   return { ...defaultTheme, ...theme };
 };
 
-const THEME_CTX_KEY = Symbol('themeContext');
+const getThemeStore = () => {
+  const themeStore = writable({ ...defaultTheme });
+  /**
+   * Resolve theme from current host origin
+   */
+  const init = (hostname: string) => {
+    const theme = resolveTheme(hostname);
+    if (!theme) return;
 
-export { resolveTheme, THEME_CTX_KEY };
+    themeStore.update((oldTheme) => ({ oldTheme, ...theme }));
+  };
+
+  const getTheme = (): Readable<ThemeDefinition> => {
+    return readonly(themeStore);
+  };
+
+  return {
+    init,
+    getTheme
+  };
+};
+
+export { resolveTheme, getThemeStore };

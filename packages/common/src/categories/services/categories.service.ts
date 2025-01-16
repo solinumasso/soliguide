@@ -204,18 +204,18 @@ export class CategoriesService {
   }
 
   private handleCategoriesNodesWithOneDepthChildren(): FlatCategoriesTreeNode[] {
-    const categoriesNodesWithChlidren: FlatCategoriesTreeNode[] =
+    const categoriesNodesWithChildren: FlatCategoriesTreeNode[] =
       this.getCategories().filter((currentNode) => currentNode.children.length);
 
     const categoriesWithChildren: Categories[] =
-      categoriesNodesWithChlidren.map((node) => node.id);
+      categoriesNodesWithChildren.map((node) => node.id);
 
-    return categoriesNodesWithChlidren.map((currentNode) => {
-      currentNode.children = currentNode.children.filter(
+    return categoriesNodesWithChildren.map((currentNode) => ({
+      ...currentNode,
+      children: currentNode.children.filter(
         (node) => !categoriesWithChildren.includes(node.id)
-      );
-      return currentNode;
-    });
+      ),
+    }));
   }
 
   public getOrderRootFlatCategories(): FlatOrderCategoriesTreeNode[] {

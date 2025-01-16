@@ -22,8 +22,8 @@ import { beforeEach, describe, it, expect } from 'vitest';
 import { get } from 'svelte/store';
 import { Categories, Themes } from '@soliguide/common';
 import { getCategorySelectorController } from './CategorySelectorController';
-import getCategoryService from '$lib/services/categoryService';
 import { CategoryBrowserState, type CategorySelectorController } from './types';
+import { getCategoryService } from '$lib/services/categoryService';
 
 describe('Category selector widget', () => {
   // skipcq: JS-0119

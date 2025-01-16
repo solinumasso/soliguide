@@ -24,7 +24,8 @@ import {
   Categories,
   GeoTypes,
   type SoliguideCountries,
-  type SupportedLanguagesCode
+  type SupportedLanguagesCode,
+  type FlatCategoriesTreeNode
 } from '@soliguide/common';
 
 export interface LocationService {
@@ -40,6 +41,7 @@ export interface LocationService {
 }
 
 export interface CategoryService {
+  getAllCategories(): FlatCategoriesTreeNode[];
   getRootCategories(): Categories[];
   getChildrenCategories(categoryId: Categories): Categories[];
   isCategoryRoot(categoryId: Categories): boolean;

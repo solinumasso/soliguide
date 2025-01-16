@@ -20,16 +20,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <script lang="ts">
   import { getContext } from 'svelte';
-  import { THEME_CTX_KEY } from '$lib/theme/index';
   import { ROUTES_CTX_KEY } from '$lib/client/index';
   import { zendeskService } from '$lib/services';
   import { beforeNavigate, goto } from '$app/navigation';
   import { COOKIE_CTX_KEY } from '$lib/client/cookie';
   import { CookieModal } from '$lib/components';
+  import { themeStore } from '$lib/theme';
+  import { get } from 'svelte/store';
   import type { ThemeDefinition } from '$lib/theme/types';
   import type { CookieConsentStore, RoutingStore } from '$lib/client/types';
 
-  const theme: ThemeDefinition = getContext(THEME_CTX_KEY);
+  const theme: ThemeDefinition = get(themeStore.getTheme());
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
   const cookieConsent: CookieConsentStore = getContext(COOKIE_CTX_KEY);
 

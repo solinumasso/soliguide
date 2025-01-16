@@ -23,18 +23,19 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { goto } from '$app/navigation';
   import { Button, Text } from '@soliguide/design-system';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
-  import { THEME_CTX_KEY } from '$lib/theme/index';
+  import { themeStore } from '$lib/theme/index';
   import { markLanguageAsSelected, ROUTES_CTX_KEY } from '$lib/client';
   import { getController } from './pageController';
   import LanguageSelector from './LanguageSelector.svelte';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import type { ThemeDefinition } from '$lib/theme/types';
   import { page } from '$app/stores';
+  import { get } from 'svelte/store';
 
   const pageStore = getController();
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
-  const theme: ThemeDefinition = getContext(THEME_CTX_KEY);
+  const theme: ThemeDefinition = get(themeStore.getTheme());
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
 
   setContext('CAPTURE_FCTN_CTX_KEY', pageStore.captureEvent);
