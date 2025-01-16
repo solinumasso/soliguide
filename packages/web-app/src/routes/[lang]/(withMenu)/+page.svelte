@@ -24,14 +24,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { Text } from '@soliguide/design-system';
   import { ROUTES_CTX_KEY } from '$lib/client';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
-  import { THEME_CTX_KEY } from '$lib/theme';
   import SearchButtonInput from './SearchButtonInput.svelte';
   import { getHomePageController } from './pageController';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import type { ThemeDefinition } from '$lib/theme/types';
+  import { get } from 'svelte/store';
+  import { themeStore } from '$lib/theme';
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
-  const theme: ThemeDefinition = getContext(THEME_CTX_KEY);
+  const theme: ThemeDefinition = get(themeStore.getTheme());
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
 
   const pageStore = getHomePageController();

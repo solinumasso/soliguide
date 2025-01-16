@@ -18,4 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-export { resolveTheme, THEME_CTX_KEY } from './themes';
+import { getThemeStore, resolveTheme } from './themes';
+
+const themeStore = getThemeStore();
+export { themeStore, resolveTheme };

@@ -19,7 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { env } from '$env/dynamic/private';
-import { PlaceType, type ApiPlace, type ApiSearchResults } from '@soliguide/common';
+import { Categories, PlaceType, type ApiPlace, type ApiSearchResults } from '@soliguide/common';
 import { fetch } from '$lib/client';
 import { buildSearchResult } from '$lib/models/searchResult';
 import { buildPlaceDetails } from '$lib/models/placeDetails';
@@ -59,11 +59,15 @@ export default (fetcher = fetch) => {
       headers
     });
 
-    return buildSearchResult(placesResult, {
-      geoType: type,
-      coordinates,
-      distance
-    });
+    return buildSearchResult(
+      placesResult,
+      {
+        geoType: type,
+        coordinates,
+        distance
+      },
+      category as Categories
+    );
   };
 
   /**

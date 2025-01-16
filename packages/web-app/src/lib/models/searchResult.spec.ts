@@ -26,7 +26,14 @@ import {
   sampleItinerary,
   sampleItineraryTransformed
 } from './searchResultData.mock';
-import { GeoTypes, PlaceOpeningStatus, PlaceStatus, type ApiPlace } from '@soliguide/common';
+
+import {
+  Categories,
+  GeoTypes,
+  PlaceOpeningStatus,
+  PlaceStatus,
+  type ApiPlace
+} from '@soliguide/common';
 import type { SearchLocationParams, SearchResultItem } from './types';
 
 const sampleLocationParams: SearchLocationParams = {
@@ -35,13 +42,16 @@ const sampleLocationParams: SearchLocationParams = {
   distance: 50
 };
 
+const category = Categories.FOOD;
+
 describe('Search Result', () => {
   describe('Conversion of one place result', () => {
     it('Data source is correctly mapped', () => {
       vi.setSystemTime(new Date('2024-11-10'));
       const result = buildSearchResult(
         { nbResults: 1, places: [samplePlace] },
-        sampleLocationParams
+        sampleLocationParams,
+        category
       );
       const [resultItem] = result.places;
       expect(resultItem).toStrictEqual(samplePlaceTransformed);
@@ -79,7 +89,8 @@ describe('Search Result', () => {
       it('When the geoType is position and the place status is not permanently closed or draft, and the place has a position, we display it', () => {
         const result = buildSearchResult(
           { nbResults: 1, places: [samplePlace] },
-          { ...sampleLocationParams, geoType: GeoTypes.CITY }
+          { ...sampleLocationParams, geoType: GeoTypes.CITY },
+          category
         );
         const [resultItem] = result.places;
         expect(resultItem.distance).toStrictEqual(-1);
@@ -88,7 +99,8 @@ describe('Search Result', () => {
       it('Otherwise, the distance is not shown', () => {
         const result = buildSearchResult(
           { nbResults: 1, places: [samplePlace] },
-          sampleLocationParams
+          sampleLocationParams,
+          category
         );
         const [resultItem] = result.places;
         expect(resultItem.distance).toStrictEqual(samplePlaceTransformed.distance);
@@ -112,7 +124,8 @@ describe('Search Result', () => {
 
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
-          sampleLocationParams
+          sampleLocationParams,
+          category
         );
         const [resultItem] = result.places;
         expect(resultItem.address).toStrictEqual(modifiedPlaceResult.address);
@@ -137,7 +150,8 @@ describe('Search Result', () => {
 
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
-          sampleLocationParams
+          sampleLocationParams,
+          category
         );
         const [resultItem] = result.places;
         expect(resultItem.address).toStrictEqual(modifiedPlaceResult.address);
@@ -159,7 +173,8 @@ describe('Search Result', () => {
 
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
-          sampleLocationParams
+          sampleLocationParams,
+          category
         );
         const [resultItem] = result.places;
         expect(resultItem.address).toStrictEqual(modifiedPlaceResult.address);
@@ -183,7 +198,8 @@ describe('Search Result', () => {
 
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
-          sampleLocationParams
+          sampleLocationParams,
+          category
         );
         const [resultItem] = result.places;
         expect(resultItem.status).toStrictEqual(modifiedPlaceResult.status);
@@ -215,7 +231,8 @@ describe('Search Result', () => {
 
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
-          sampleLocationParams
+          sampleLocationParams,
+          category
         );
         const [resultItem] = result.places;
         expect(resultItem.status).toStrictEqual(modifiedPlaceResult.status);
@@ -246,7 +263,8 @@ describe('Search Result', () => {
 
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
-          sampleLocationParams
+          sampleLocationParams,
+          category
         );
         const [resultItem] = result.places;
         expect(resultItem.status).toStrictEqual(modifiedPlaceResult.status);
@@ -269,7 +287,8 @@ describe('Search Result', () => {
 
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
-          sampleLocationParams
+          sampleLocationParams,
+          category
         );
         const [resultItem] = result.places;
         expect(resultItem.status).toStrictEqual(modifiedPlaceResult.status);
@@ -302,7 +321,8 @@ describe('Search Result', () => {
 
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
-          sampleLocationParams
+          sampleLocationParams,
+          category
         );
         const [resultItem] = result.places;
         expect(resultItem.status).toStrictEqual(modifiedPlaceResult.status);
@@ -333,7 +353,8 @@ describe('Search Result', () => {
 
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
-          sampleLocationParams
+          sampleLocationParams,
+          category
         );
         const [resultItem] = result.places;
         expect(resultItem.todayInfo).toStrictEqual(modifiedPlaceResult.todayInfo);
@@ -366,7 +387,8 @@ describe('Search Result', () => {
 
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
-          sampleLocationParams
+          sampleLocationParams,
+          category
         );
         const [resultItem] = result.places;
         expect(resultItem.todayInfo).toStrictEqual(modifiedPlaceResult.todayInfo);
@@ -395,7 +417,9 @@ describe('Search Result', () => {
 
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
-          sampleLocationParams
+
+          sampleLocationParams,
+          category
         );
         const [resultItem] = result.places;
         expect(resultItem.todayInfo).toStrictEqual(modifiedPlaceResult.todayInfo);
@@ -423,7 +447,8 @@ describe('Search Result', () => {
 
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
-          sampleLocationParams
+          sampleLocationParams,
+          category
         );
         const [resultItem] = result.places;
         expect(resultItem.todayInfo).toStrictEqual({});
@@ -452,7 +477,8 @@ describe('Search Result', () => {
 
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
-          sampleLocationParams
+          sampleLocationParams,
+          category
         );
         const [resultItem] = result.places;
         expect(resultItem.todayInfo).toStrictEqual({});
@@ -474,7 +500,8 @@ describe('Search Result', () => {
 
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
-          sampleLocationParams
+          sampleLocationParams,
+          category
         );
 
         const [resultItem] = result.places;
@@ -499,7 +526,8 @@ describe('Search Result', () => {
 
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
-          sampleLocationParams
+          sampleLocationParams,
+          category
         );
         const [resultItem] = result.places;
         expect(resultItem.banners.message).toStrictEqual({
@@ -521,7 +549,8 @@ describe('Search Result', () => {
 
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
-          sampleLocationParams
+          sampleLocationParams,
+          category
         );
         const [resultItem] = result.places;
         expect(resultItem.sources).toStrictEqual(modifiedPlaceResult.sources);
@@ -581,7 +610,8 @@ describe('Search Result', () => {
 
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
-          sampleLocationParams
+          sampleLocationParams,
+          category
         );
         const [resultItem] = result.places;
         expect(resultItem.sources).toStrictEqual(modifiedPlaceResult.sources);
@@ -594,7 +624,8 @@ describe('Search Result', () => {
       const result = buildSearchResultWithParcours(
         { nbResults: 0, places: [] },
         { nbResults: 1, places: [sampleItinerary] },
-        sampleLocationParams
+        sampleLocationParams,
+        category
       );
       expect(result.places.length).toBe(2);
     });
@@ -604,7 +635,8 @@ describe('Search Result', () => {
       const result = buildSearchResultWithParcours(
         { nbResults: 0, places: [] },
         { nbResults: 1, places: [sampleItinerary] },
-        sampleLocationParams
+        sampleLocationParams,
+        category
       );
       expect(result.places[0].todayInfo).toStrictEqual(sampleItineraryTransformed[0].todayInfo);
       expect(result.places[1].todayInfo).toStrictEqual(sampleItineraryTransformed[1].todayInfo);
@@ -614,7 +646,8 @@ describe('Search Result', () => {
       const result = buildSearchResultWithParcours(
         { nbResults: 0, places: [] },
         { nbResults: 1, places: [sampleItinerary] },
-        sampleLocationParams
+        sampleLocationParams,
+        category
       );
       expect(result.places[0].address).toStrictEqual(sampleItineraryTransformed[0].address);
       expect(result.places[1].address).toStrictEqual(sampleItineraryTransformed[1].address);
@@ -626,7 +659,8 @@ describe('Search Result', () => {
       const result = buildSearchResultWithParcours(
         { nbResults: 1, places: [samplePlace] },
         { nbResults: 1, places: [sampleItinerary] },
-        sampleLocationParams
+        sampleLocationParams,
+        category
       );
       expect(result.places.length).toBe(3);
     });
@@ -635,7 +669,8 @@ describe('Search Result', () => {
       const result = buildSearchResultWithParcours(
         { nbResults: 1, places: [samplePlace] },
         { nbResults: 1, places: [sampleItinerary] },
-        sampleLocationParams
+        sampleLocationParams,
+        category
       );
       const [place1, place2, place3] = result.places;
       expect(place2.distance).toBeGreaterThanOrEqual(place1.distance);

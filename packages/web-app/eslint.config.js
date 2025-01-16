@@ -55,6 +55,7 @@ export default tseslint.config(
       'max-statements': 'off', // Maximum number of statements in function, default = 10
       'max-lines-per-function': 'off', // no // default limit = 50
       'max-lines': 'off', // default limit = 300
+      'max-params': 'off', // default max 3 params
       'arrow-body-style': 'off', // Force shorthand syntax in arrow functions : (a) => ({ data: a })
       'init-declarations': 'off', // Need this because of svelte prop syntax (export let toto;)
       'no-implicit-coercion': ['error', { boolean: false }], // We keep using `!!a` for booleans

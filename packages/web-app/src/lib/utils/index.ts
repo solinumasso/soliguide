@@ -18,10 +18,4 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { fetch } from '$lib/client';
-import getLocationService from './locationService';
-import getSearchService from './placesService';
-
-export { zendeskService } from './zendeskService';
-export const locationService = getLocationService(fetch);
-export const searchService = getSearchService(fetch);
+export { sortServicesByRelevance } from './prioritizeServices';

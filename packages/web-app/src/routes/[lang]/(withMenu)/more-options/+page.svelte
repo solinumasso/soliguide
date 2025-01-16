@@ -33,14 +33,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { Text, BasicCard, ListItem } from '@soliguide/design-system';
   import { getPageController } from './pageController';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
-  import { THEME_CTX_KEY } from '$lib/theme';
   import { ROUTES_CTX_KEY } from '$lib/client/index';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import type { ThemeDefinition } from '$lib/theme/types';
   import { goto } from '$app/navigation';
+  import { themeStore } from '$lib/theme';
+  import { get } from 'svelte/store';
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
-  const theme: ThemeDefinition = getContext(THEME_CTX_KEY);
+  const theme: ThemeDefinition = get(themeStore.getTheme());
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
 
   const links = {

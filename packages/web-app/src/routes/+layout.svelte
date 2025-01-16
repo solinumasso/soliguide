@@ -23,24 +23,24 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { page } from '$app/stores';
   import { beforeNavigate, afterNavigate } from '$app/navigation';
   import { browser } from '$app/environment';
-
   import { setContext } from 'svelte';
-  import { derived } from 'svelte/store';
+  import { derived, get } from 'svelte/store';
   import ZendeskIntegration from './ZendeskIntegration.svelte';
   import { posthogService } from '$lib/services/posthogService';
-
   import {
     ThemeContext,
     getDesignSystemLocale,
     changeDesignSystemLocale
   } from '@soliguide/design-system';
   import '../assets/styles/main.scss';
-  import { THEME_CTX_KEY, resolveTheme } from '$lib/theme';
   import { I18N_CTX_KEY, getI18nStore } from '$lib/client/i18n';
   import { ROUTES_CTX_KEY, getRoutes, isLanguageSelected, getZDCookieConsent } from '$lib/client';
   import { cookieConsent, COOKIE_CTX_KEY } from '$lib/client/cookie';
+  import { themeStore } from '$lib/theme';
 
-  const theme = resolveTheme($page.url.origin);
+  themeStore.init($page.url.origin);
+  const theme = get(themeStore.getTheme());
+
   const i18nStore = getI18nStore(theme?.defaultLanguage, theme?.supportedLanguages);
 
   // Derived store for keeping routes synced with language choosed by user
@@ -65,7 +65,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   setContext(I18N_CTX_KEY, i18nStore);
   setContext(ROUTES_CTX_KEY, routesStore);
-  setContext(THEME_CTX_KEY, theme);
   setContext(COOKIE_CTX_KEY, cookieConsent);
 
   if (browser) {

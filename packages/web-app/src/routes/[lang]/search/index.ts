@@ -18,7 +18,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { locationService, categoryService } from '$lib/services';
+import { locationService } from '$lib/services';
+import { categoryService } from '$lib/services/categoryService';
 import { getSearchPageController } from './pageController';
 
 // expose controller instance with default services

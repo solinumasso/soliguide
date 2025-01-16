@@ -27,12 +27,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { ListItem, Text } from '@soliguide/design-system';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import PlaceDetailsSection from './PlaceDetailsSection.svelte';
-  import { THEME_CTX_KEY } from '$lib/theme';
+  import { themeStore } from '$lib/theme';
   import { parsePhoneNumber } from '@soliguide/common';
   import { getPlaceDetailsPageController } from '../pageController';
   import type { Phone as PhoneType } from '$lib/models/types';
   import type { I18nStore } from '$lib/client/types';
   import type { ThemeDefinition } from '$lib/theme/types';
+  import { get } from 'svelte/store';
 
   export let phones: PhoneType[];
   export let website: string;
@@ -41,7 +42,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let email: string;
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
-  const theme: ThemeDefinition = getContext(THEME_CTX_KEY);
+  const theme: ThemeDefinition = get(themeStore.getTheme());
 
   const placeController = getPlaceDetailsPageController();
   const currentCountry = theme.country;

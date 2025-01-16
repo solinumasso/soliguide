@@ -19,18 +19,17 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <script lang="ts">
-  import { createEventDispatcher, getContext } from 'svelte';
+  import { createEventDispatcher } from 'svelte';
+
   import { getCategorySelectorController } from './CategorySelectorController';
-  import getCategoryService from '$lib/services/categoryService';
-  import { THEME_CTX_KEY } from '$lib/theme';
   import CategoryButton from './CategoryButton.svelte';
   import CategoryBrowser from './CategoryBrowser.svelte';
-  import type { ThemeDefinition } from '$lib/theme/types';
-  import type { Categories } from '@soliguide/common';
   import { CategoryBrowserState } from './types';
+  import type { Categories } from '@soliguide/common';
+  import { categoryService } from '$lib/services/categoryService';
 
-  const theme: ThemeDefinition = getContext(THEME_CTX_KEY);
-  const pageStore = getCategorySelectorController(getCategoryService(theme.name));
+  const pageStore = getCategorySelectorController(categoryService);
+
   const dispatch = createEventDispatcher();
 
   pageStore.init();

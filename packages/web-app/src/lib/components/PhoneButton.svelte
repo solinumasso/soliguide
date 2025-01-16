@@ -20,22 +20,22 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <script lang="ts">
   import { createEventDispatcher, getContext } from 'svelte';
+  import type { Phone } from '$lib/models/types';
   import PhoneIcon from 'svelte-google-materialdesign-icons/Phone.svelte';
-  import { writable } from 'svelte/store';
+  import { get, writable } from 'svelte/store';
   import { Button, ButtonLink } from '@soliguide/design-system';
   import { parsePhoneNumber } from '@soliguide/common';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
-  import { THEME_CTX_KEY } from '$lib/theme';
-  import type { Phone } from '$lib/models/types';
-  import type { ThemeDefinition } from '$lib/theme/types';
   import type { I18nStore } from '$lib/client/types';
+  import type { ThemeDefinition } from '$lib/theme/types';
+  import { themeStore } from '$lib/theme';
 
   export let phones: Phone[] = [];
 
   export let type: 'primaryFill' | 'neutralOutlined' = 'primaryFill';
 
-  const theme: ThemeDefinition = getContext(THEME_CTX_KEY);
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
+  const theme: ThemeDefinition = get(themeStore.getTheme());
 
   const dispatch = createEventDispatcher();
 
