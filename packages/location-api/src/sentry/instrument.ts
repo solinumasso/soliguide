@@ -26,9 +26,7 @@ import {
   httpIntegration,
   init,
   nestIntegration,
-  sessionTimingIntegration,
-} from "@sentry/node";
-import { nodeProfilingIntegration } from "@sentry/profiling-node";
+} from "@sentry/nestjs";
 
 function getEnvPath(): string {
   const isTypescript = __filename.endsWith(".ts"); // ts local / js prod
@@ -53,12 +51,6 @@ if (!!process.env.LOCATION_API_SENTRY_DSN) {
     environment: process.env.ENV,
     tracesSampleRate: 1.0,
     profilesSampleRate: 1.0,
-    integrations: [
-      nodeProfilingIntegration(),
-      httpIntegration(),
-      fastifyIntegration(),
-      nestIntegration(),
-      sessionTimingIntegration(),
-    ],
+    integrations: [httpIntegration(), fastifyIntegration(), nestIntegration()],
   });
 }

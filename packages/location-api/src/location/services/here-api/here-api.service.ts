@@ -30,7 +30,7 @@ import {
 import { alpha2ToAlpha3, alpha3ToAlpha2 } from "i18n-iso-countries";
 import { DepartmentsAndRegionsService } from "../departments-regions.service";
 import { ConfigService } from "@nestjs/config";
-import { AxiosResponse } from "axios";
+import type { AxiosResponse } from "axios";
 import { firstValueFrom, map } from "rxjs";
 
 import { HereApiAddress } from "../../interfaces";
