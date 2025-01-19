@@ -373,16 +373,6 @@
   ],
   "es": [
     {
-      "isNational": true,
-      "name": "Epifania del Senyor",
-      "departments": [],
-      "startDate": "2025-01-06",
-      "endDate": "2025-01-06",
-      "translations": {
-        "ca": "Epifania del Senyor"
-      }
-    },
-    {
       "isNational": false,
       "name": "Verge de la Candelaria",
       "departments": [],
@@ -975,16 +965,6 @@
     }
   ],
   "ad": [
-    {
-      "isNational": true,
-      "name": "Reis",
-      "departments": [],
-      "startDate": "2025-01-06",
-      "endDate": "2025-01-06",
-      "translations": {
-        "ca": "Reis"
-      }
-    },
     {
       "isNational": true,
       "name": "Carnaval",

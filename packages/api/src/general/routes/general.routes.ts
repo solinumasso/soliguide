@@ -19,7 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import express from "express";
-import { caching } from "cache-manager";
+import { createCache } from "cache-manager";
 
 import { ExpressRequest, ExpressResponse } from "../../_models";
 import { contactEmailDto } from "../dto/contactEmail.dto";
@@ -29,10 +29,7 @@ import { getFilteredData } from "../../middleware";
 
 const router = express.Router();
 
-const memoryCache = caching("memory", {
-  max: 100,
-  ttl: 24 * 60 * 60,
-});
+const memoryCache = createCache({ ttl: 24 * 60 * 60 });
 
 router.get("/", (_req: ExpressRequest, res: ExpressResponse) => {
   res.json("Soliguide API");
@@ -42,13 +39,11 @@ router.get(
   "/sitemap.xml",
   async (req: ExpressRequest, res: ExpressResponse) => {
     try {
-      let xml = await (await memoryCache).get("sitemap");
-
+      let xml = await memoryCache.get("sitemap");
       if (!xml) {
         xml = await generateSitemap(req.log);
-        await (await memoryCache).set("sitemap", xml);
+        await memoryCache.set("sitemap", xml);
       }
-
       res.set("Content-Type", "text/xml");
       return res.send(xml);
     } catch (error) {
