@@ -190,4 +190,34 @@ export class PairingService {
       `;
     }
   }
+
+  public async deletePairing(soliguide_id: number) {
+    const connection = this.postgresService.getConnection();
+
+    if (soliguide_id) {
+      await connection.begin(async (psql) => {
+        await psql`
+          update
+            dagster_structure.sources as src
+          set
+            is_origin = ${false}
+          from
+            dagster_structure.ids as ids
+          where
+            ids.id = src.id
+          and
+            ids.soliguide_id = ${soliguide_id};
+        `;
+
+        await psql`
+          update
+            dagster_structure.ids
+          set
+            soliguide_id = null
+          where
+            soliguide_id = ${soliguide_id};
+        `;
+      });
+    }
+  }
 }

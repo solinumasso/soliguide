@@ -135,4 +135,25 @@ router.post(
   }
 );
 
+router.delete(
+  "/pairing/pair/:soliguide_id",
+  checkRights([UserStatus.ADMIN_SOLIGUIDE, UserStatus.ADMIN_TERRITORY]),
+  async (req: ExpressRequest, res: ExpressResponse) => {
+    const soliguideId = req.params.soliguide_id;
+
+    try {
+      const result = await axios.delete(
+        `${CONFIG.SOLIGARE_URL}pairing/pair/${soliguideId}`
+      );
+
+      return res.status(result.status).json(result.data);
+    } catch (error) {
+      if (error?.response) {
+        return res.status(error.response.status).json(error.response.data);
+      }
+      return res.status(500).json("Something went wrong");
+    }
+  }
+);
+
 export default router;
