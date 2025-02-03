@@ -71,6 +71,14 @@ jobs:
     name: Deploy to Qovery
     if: ${{ github.event.label.name == '🚀 qovery' }}
     uses: ./.github/workflows/_deploy-to-test-qovery.yml
+    with:
+      deploy_api: ${{ contains(needs.affected_packages.outputs.to_deploy, 'api') }}
+      deploy_design-system: ${{ contains(needs.affected_packages.outputs.to_deploy, 'design-system') }}
+      deploy_frontend: ${{ contains(needs.affected_packages.outputs.to_deploy, 'frontend') }}
+      deploy_location-api: ${{ contains(needs.affected_packages.outputs.to_deploy, 'location-api') }}
+      deploy_soligare: ${{ contains(needs.affected_packages.outputs.to_deploy, 'soligare') }}
+      deploy_web-app: ${{ contains(needs.affected_packages.outputs.to_deploy, 'web-app') }}
+      deploy_widget: ${{ contains(needs.affected_packages.outputs.to_deploy, 'widget') }}
     needs:
       - affected_packages
     secrets: inherit
