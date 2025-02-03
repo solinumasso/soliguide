@@ -36,6 +36,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { I18N_CTX_KEY, getI18nStore } from '$lib/client/i18n';
   import { ROUTES_CTX_KEY, getRoutes, isLanguageSelected, getZDCookieConsent } from '$lib/client';
   import { cookieConsent, COOKIE_CTX_KEY } from '$lib/client/cookie';
+  import { GTM } from '$lib/components';
   import { themeStore } from '$lib/theme';
 
   themeStore.init($page.url.origin);
@@ -78,6 +79,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <link rel="canonical" href={$page.url.href} />
 </svelte:head>
 
+<GTM />
 <ThemeContext>
   <ZendeskIntegration>
     <main>
