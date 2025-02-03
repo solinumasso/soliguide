@@ -23,3 +23,4 @@ export { default as PhoneButton } from './PhoneButton.svelte';
 export { default as CategoryIcon } from './CategoryIcon.svelte';
 export { TodayInfo } from './TodayInfo';
 export { default as CookieModal } from './CookieModal.svelte';
+export { default as GTM } from './GTM.svelte';

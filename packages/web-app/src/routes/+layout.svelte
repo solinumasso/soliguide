@@ -39,6 +39,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { I18N_CTX_KEY, getI18nStore } from '$lib/client/i18n.js';
   import { ROUTES_CTX_KEY, getRoutes, isLanguageSelected, getZDCookieConsent } from '$lib/client';
   import { cookieConsent, COOKIE_CTX_KEY } from '$lib/client/cookie.js';
+  import { GTM } from '$lib/components';
 
   /** @typedef {import('@soliguide/common').SupportedLanguagesCode} SupportedLanguagesCode */
 
@@ -84,6 +85,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <link rel="canonical" href={$page.url.href} />
 </svelte:head>
 
+<GTM />
 <ThemeContext>
   <ZendeskIntegration>
     <main>
