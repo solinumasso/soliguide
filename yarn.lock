@@ -11116,6 +11116,7 @@ __metadata:
     prettier: "npm:^3.1.1"
     prettier-plugin-svelte: "npm:^3.1.2"
     sass: "npm:^1.77.6"
+    silktide-consent-manager: "https://github.com/solinumasso/silktide-consent-manager.git#feat-add-package.json"
     svelte: "npm:^4.2.7"
     svelte-check: "npm:^3.6.0"
     svelte-circle-flags: "npm:^1.1.2"
@@ -29973,6 +29974,13 @@ __metadata:
     "@sigstore/tuf": "npm:^2.3.4"
     "@sigstore/verify": "npm:^1.2.1"
   checksum: 10c0/8906b1074130d430d707e46f15c66eb6996891dc0d068705f1884fb1251a4a367f437267d44102cdebcee34f1768b3f30131a2ec8fb7aac74ba250903a459aa7
+  languageName: node
+  linkType: hard
+
+"silktide-consent-manager@https://github.com/solinumasso/silktide-consent-manager.git#feat-add-package.json":
+  version: 0.0.0
+  resolution: "silktide-consent-manager@https://github.com/solinumasso/silktide-consent-manager.git#commit=f3449b2a984efd3a01b427b4eb6fa6d04e1ca155"
+  checksum: 10c0/e1f297369494f0bc9a2c5a0e0b8f94091941389c62b0d7150a49e968e533ed6f737106cebe1f7eeade5c21c2b7d4ff0f66abcf012042b35e8d77cf61dee554d7
   languageName: node
   linkType: hard
 
