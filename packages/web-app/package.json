@@ -73,6 +73,7 @@
     "i18next-browser-languagedetector": "^8.0.0",
     "isomorphic-dompurify": "^2.16.0",
     "posthog-js": "^1.194.0",
+    "silktide-consent-manager": "https://github.com/solinumasso/silktide-consent-manager.git#feat-add-package.json",
     "svelte-circle-flags": "^1.1.2",
     "svelte-google-materialdesign-icons": "^1.0.5",
     "svelte-i18next": "^2.2.2",
