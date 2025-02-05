@@ -62,7 +62,9 @@ jobs:
       tag: ${{ steps.compute_tag.outputs.tag }}
     needs:
       - docker_meta
+    permissions: {}
     steps:
+      # FIXME
       # If we're deploying a tag we use it, otherwise we compute the tag with _docker-meta.yml
       - id: compute_tag
         run: |

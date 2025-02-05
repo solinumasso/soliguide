@@ -30,12 +30,6 @@ on:
       dockerfile:
         type: string
         required: true
-      tag:
-        type: string
-        required: true
-      labels:
-        type: string
-        required: true
       tag_suffix1:
         type: string
         default: -build
@@ -66,20 +60,44 @@ on:
         value: ${{ jobs.build_container.outputs.tags_production }}
 
 jobs:
+  docker_meta:
+    uses: ./.github/workflows/_docker-meta.yml
+    if: ${{ inputs.build_production }}
+    with:
+      image_name: ${{ inputs.registry }}/${{ inputs.image_name }}
+
+  docker_meta1:
+    uses: ./.github/workflows/_docker-meta.yml
+    with:
+      image_name: ${{ inputs.registry }}/${{ inputs.image_name }}
+      suffix: ${{ inputs.tag_suffix1 }}
+
+  docker_meta2:
+    uses: ./.github/workflows/_docker-meta.yml
+    if: ${{ inputs.build_target2 }}
+    with:
+      image_name: ${{ inputs.registry }}/${{ inputs.image_name }}
+      suffix: ${{ inputs.tag_suffix2 }}
+
   build_container:
     name: Build container image ${{ inputs.image_name }}
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
+    needs:
+      - docker_meta
+      - docker_meta1
+      - docker_meta2
     outputs:
-      tags1: ${{ env.IMAGE_TAGS1 }}
-      tags2: ${{ env.IMAGE_TAGS2 }}
-      tags_production: ${{ env.IMAGE_TAGS }}
+      tags1: ${{ toJSON(fromJSON(needs.docker_meta1.outputs.json).tags) }}
+      tags2: ${{ needs.docker_meta2.outputs.json && toJSON(fromJSON(needs.docker_meta2.outputs.json).tags) || toJSON('[]') }}
+      tags_production: ${{ needs.docker_meta.outputs.json && toJSON(fromJSON(needs.docker_meta.outputs.json).tags) || toJSON('[]') }}
     env:
-      IMAGE_TAGS: ${{ inputs.registry }}/${{ inputs.image_name }}:${{ inputs.tag }}
-      IMAGE_TAGS1: ${{ inputs.registry }}/${{ inputs.image_name }}:${{ inputs.tag }}${{ inputs.tag_suffix1 }}
-      IMAGE_TAGS2: ${{ inputs.registry }}/${{ inputs.image_name }}:${{ inputs.tag }}${{ inputs.tag_suffix2 }}
+      TARGET1_IMAGE: ${{ fromJSON(needs.docker_meta1.outputs.json).tags[0] }}
+      TARGET2_IMAGE: ${{ needs.docker_meta2.outputs.json && fromJSON(needs.docker_meta2.outputs.json).tags[0] || '' }}
+      PRODUCTION_IMAGE: ${{ needs.docker_meta.outputs.json && fromJSON(needs.docker_meta.outputs.json).tags[0] || '' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -94,7 +112,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build ${{ env.IMAGE_TAGS1 }}
+      - name: Build ${{ inputs.image_name }} target1
         uses: docker/build-push-action@v6
         with:
           context: .
@@ -102,15 +120,16 @@ jobs:
           push: true
           target: ${{ inputs.target1 }}
           build-args: ${{ inputs.build_args }}
-          tags: ${{ env.IMAGE_TAGS1 }}
-          labels: ${{ inputs.labels }}
+          tags: ${{ needs.docker_meta1.outputs.tags }}
+          labels: ${{ needs.docker_meta1.outputs.labels }}
+          # annotations: ${{ needs.docker_meta1.outputs.annotations }}
           cache-from: |
-            type=registry,ref=${{ env.IMAGE_TAGS1 }}-cache
+            type=registry,ref=${{ env.TARGET1_IMAGE }}-cache
             type=registry,ref=${{ inputs.registry }}/${{ inputs.image_name }}:main${{ inputs.tag_suffix1 }}-cache
           cache-to: |
-            type=registry,mode=max,ref=${{ env.IMAGE_TAGS1 }}-cache
+            type=registry,mode=max,ref=${{ env.TARGET1_IMAGE }}-cache
 
-      - name: Build ${{ env.IMAGE_TAGS2 }}
+      - name: Build ${{ inputs.image_name }} target2
         if: ${{ inputs.build_target2 }}
         uses: docker/build-push-action@v6
         with:
@@ -119,15 +138,16 @@ jobs:
           push: true
           target: ${{ inputs.target2 }}
           build-args: ${{ inputs.build_args }}
-          tags: ${{ env.IMAGE_TAGS2 }}
-          labels: ${{ inputs.labels }}
+          tags: ${{ needs.docker_meta2.outputs.tags }}
+          labels: ${{ needs.docker_meta2.outputs.labels }}
+          # annotations: ${{ needs.docker_meta2.outputs.annotations }}
           cache-from: |
-            type=registry,ref=${{ env.IMAGE_TAGS2 }}-cache
+            type=registry,ref=${{ env.TARGET2_IMAGE }}-cache
             type=registry,ref=${{ inputs.registry }}/${{ inputs.image_name }}:main${{ inputs.tag_suffix2 }}-cache
           cache-to: |
-            type=registry,mode=max,ref=${{ env.IMAGE_TAGS2 }}-cache
+            type=registry,mode=max,ref=${{ env.TARGET2_IMAGE }}-cache
 
-      - name: Build ${{ env.IMAGE_TAGS }}
+      - name: Build ${{ inputs.image_name }} target production
         if: ${{ inputs.build_production }}
         uses: docker/build-push-action@v6
         with:
@@ -136,12 +156,13 @@ jobs:
           push: true
           target: deploy
           build-args: ${{ inputs.build_args }}
-          tags: ${{ env.IMAGE_TAGS }}
-          labels: ${{ inputs.labels }}
+          tags: ${{ needs.docker_meta.outputs.tags }}
+          labels: ${{ needs.docker_meta.outputs.labels }}
+          # annotations: ${{ needs.docker_meta.outputs.annotations }}
           cache-from: |
-            type=registry,ref=${{ env.IMAGE_TAGS2 }}-cache
-            type=registry,ref=${{ env.IMAGE_TAGS }}-cache
+            type=registry,ref=${{ env.TARGET2_IMAGE }}-cache
+            type=registry,ref=${{ env.PRODUCTION_IMAGE }}-cache
             type=registry,ref=${{ inputs.registry }}/${{ inputs.image_name }}:main${{ inputs.tag_suffix2 }}-cache
             type=registry,ref=${{ inputs.registry }}/${{ inputs.image_name }}:main-cache
           cache-to: |
-            type=registry,mode=max,ref=${{ env.IMAGE_TAGS }}-cache
+            type=registry,mode=max,ref=${{ env.PRODUCTION_IMAGE }}-cache

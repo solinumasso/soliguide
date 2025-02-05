@@ -20,30 +20,63 @@ name: _Extract docker metadata
 
 on:
   workflow_call:
+    inputs:
+      image_name:
+        description: Docker image name
+        type: string
+        default: ""
+      suffix:
+        description: Docker image tag suffix
+        type: string
+        default: ""
     outputs:
       tags:
         value: ${{ jobs.docker_meta.outputs.tags }}
       labels:
         value: ${{ jobs.docker_meta.outputs.labels }}
+      annotations:
+        value: ${{ jobs.docker_meta.outputs.annotations }}
+      json:
+        value: ${{ jobs.docker_meta.outputs.json }}
 
 jobs:
   docker_meta:
-    name: Docker meta
+    name: Docker meta for ${{ inputs.image_name }}${{ inputs.suffix }}
     runs-on: ubuntu-latest
     permissions: {}
     outputs:
-      tags: ${{ steps.meta.outputs.tags }}
+      tags: ${{ startsWith(github.ref, 'refs/pull/') && steps.meta_pr.outputs.tags || steps.meta.outputs.tags }}
+      labels: ${{ startsWith(github.ref, 'refs/pull/') && steps.meta_pr.outputs.labels || steps.meta.outputs.labels }}
+      annotations: ${{ startsWith(github.ref, 'refs/pull/') && steps.meta_pr.outputs.annotations || steps.meta.outputs.annotations }}
+      json: ${{ startsWith(github.ref, 'refs/pull/') && steps.meta_pr.outputs.json || steps.meta.outputs.json }}
     steps:
       - id: meta
         uses: docker/metadata-action@v5
+        if: ${{ !startsWith(github.ref, 'refs/pull/') }}
         with:
+          images: ${{ inputs.image_name }}
           # disbale latest, we've no need for it
           flavor: latest=false
           tags: |
             # No sha, latest etc.
             # branch event
-            type=ref,event=branch
+            type=ref,event=branch,suffix=${{ inputs.suffix }}
             # tag event
-            type=ref,event=tag
+            type=ref,event=tag,suffix=${{ inputs.suffix }}
+      - id: meta_classic
+        uses: docker/metadata-action@v5
+        if: ${{ startsWith(github.ref, 'refs/pull/') }}
+        with:
+          tags: |
             # pull request event
             type=ref,event=pr
+      - id: meta_pr
+        uses: docker/metadata-action@v5
+        if: ${{ startsWith(github.ref, 'refs/pull/') }}
+        with:
+          images: ${{ inputs.image_name }}
+          tags: |
+            # pr-00000
+            type=ref,event=pr,suffix=${{ inputs.suffix }}
+            # pr-00000-<short_sha>
+            type=sha,prefix=${{ steps.meta_classic.outputs.tags }}-,suffix=${{ inputs.suffix }}

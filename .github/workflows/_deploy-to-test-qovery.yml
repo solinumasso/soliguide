@@ -62,8 +62,8 @@ jobs:
       QOVERY_ORGANIZATION_NAME: ${{ vars.QOVERY_ORGANIZATION_NAME }}
       QOVERY_PROJECT_NAME: ${{ vars.QOVERY_PROJECT_NAME }}
       QOVERY_BLUEPRINT_ENVIRONMENT_NAME: ${{ vars.QOVERY_BLUEPRINT_ENVIRONMENT_NAME }}
-      QOVERY_NEW_ENVIRONMENT_NAME: ${{ needs.docker_meta.outputs.tags }}
-      SOLIGUIDE_TAG: ${{ needs.docker_meta.outputs.tags }}
+      QOVERY_NEW_ENVIRONMENT_NAME: ${{ fromJSON(needs.docker_meta.outputs.json).tags[0] }}
+      SOLIGUIDE_TAG: ${{ fromJSON(needs.docker_meta.outputs.json).tags[1] }}
       BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
     permissions:
       contents: read
