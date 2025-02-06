@@ -32,21 +32,15 @@ jobs:
   affected_packages:
     uses: ./.github/workflows/pr-get-affected-packages.yml
 
-  docker_meta:
-    uses: ./.github/workflows/_docker-meta.yml
-
   build-base:
     name: Build base container image
     if: ${{ !startsWith(github.ref, 'refs/pull/') || needs.affected_packages.outputs.to_build != '[]' }}
     uses: ./.github/workflows/_build-container-image.yml
     needs:
-      - docker_meta
       - affected_packages
     with:
       image_name: ${{ github.repository }}/base
       dockerfile: Dockerfile
-      tag: ${{ needs.docker_meta.outputs.tags }}
-      labels: ${{ needs.docker_meta.outputs.labels }}
       tag_suffix1: -base
       target1: base
       tag_suffix2: ""
@@ -59,13 +53,10 @@ jobs:
     with:
       image_name: ${{ github.repository }}/common
       dockerfile: ./packages/common/Dockerfile
-      tag: ${{ needs.docker_meta.outputs.tags }}
-      labels: ${{ needs.docker_meta.outputs.labels }}
       build_args: |
-        BASE_IMAGE=${{ needs.build-base.outputs.tags2 }}
+        BASE_IMAGE=${{ fromJSON(needs.build-base.outputs.tags2)[0] }}
       build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_test, 'common') }}
     needs:
-      - docker_meta
       - affected_packages
       - build-base
 
@@ -76,13 +67,10 @@ jobs:
     with:
       image_name: ${{ github.repository }}/common-angular
       dockerfile: ./packages/common-angular/Dockerfile
-      tag: ${{ needs.docker_meta.outputs.tags }}
-      labels: ${{ needs.docker_meta.outputs.labels }}
       build_args: |
-        COMMON_IMAGE=${{ needs.build-common.outputs.tags1 }}
+        COMMON_IMAGE=${{ fromJSON(needs.build-common.outputs.tags1)[0] }}
       build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_test, 'common-angular') }}
     needs:
-      - docker_meta
       - affected_packages
       - build-common
 
@@ -93,13 +81,10 @@ jobs:
     with:
       image_name: ${{ github.repository }}/design-system
       dockerfile: ./packages/design-system/Dockerfile
-      tag: ${{ needs.docker_meta.outputs.tags }}
-      labels: ${{ needs.docker_meta.outputs.labels }}
       build_args: |
-        BASE_IMAGE=${{ needs.build-base.outputs.tags2 }}
+        BASE_IMAGE=${{ fromJSON(needs.build-base.outputs.tags2)[0] }}
       build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_test, 'design-system') }}
     needs:
-      - docker_meta
       - affected_packages
       - build-base
 
@@ -111,14 +96,11 @@ jobs:
       image_name: ${{ github.repository }}/api
       dockerfile: ./packages/api/Dockerfile
       build_production: true
-      tag: ${{ needs.docker_meta.outputs.tags }}
-      labels: ${{ needs.docker_meta.outputs.labels }}
       build_args: |
-        BASE_IMAGE=${{ needs.build-base.outputs.tags1 }}
-        COMMON_IMAGE=${{ needs.build-common.outputs.tags1 }}
+        BASE_IMAGE=${{ fromJSON(needs.build-base.outputs.tags1)[0] }}
+        COMMON_IMAGE=${{ fromJSON(needs.build-common.outputs.tags1)[0] }}
       build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_test, 'api') }}
     needs:
-      - docker_meta
       - affected_packages
       - build-base
       - build-common
@@ -131,13 +113,10 @@ jobs:
       image_name: ${{ github.repository }}/frontend
       dockerfile: ./packages/frontend/Dockerfile
       build_production: true
-      tag: ${{ needs.docker_meta.outputs.tags }}
-      labels: ${{ needs.docker_meta.outputs.labels }}
       build_args: |
-        COMMON_ANGULAR_IMAGE=${{ needs.build-common-angular.outputs.tags1 }}
+        COMMON_ANGULAR_IMAGE=${{ fromJSON(needs.build-common-angular.outputs.tags1)[0] }}
       build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_test, 'frontend') }}
     needs:
-      - docker_meta
       - affected_packages
       - build-common-angular
 
@@ -149,14 +128,11 @@ jobs:
       image_name: ${{ github.repository }}/location-api
       dockerfile: ./packages/location-api/Dockerfile
       build_production: true
-      tag: ${{ needs.docker_meta.outputs.tags }}
-      labels: ${{ needs.docker_meta.outputs.labels }}
       build_args: |
-        BASE_IMAGE=${{ needs.build-base.outputs.tags1 }}
-        COMMON_IMAGE=${{ needs.build-common.outputs.tags1 }}
+        BASE_IMAGE=${{ fromJSON(needs.build-base.outputs.tags1)[0] }}
+        COMMON_IMAGE=${{ fromJSON(needs.build-common.outputs.tags1)[0] }}
       build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_test, 'location-api') }}
     needs:
-      - docker_meta
       - affected_packages
       - build-base
       - build-common
@@ -168,14 +144,11 @@ jobs:
     with:
       image_name: ${{ github.repository }}/maintenance
       dockerfile: ./packages/maintenance/Dockerfile
-      tag: ${{ needs.docker_meta.outputs.tags }}
       tag_suffix1: -frontend
       target1: frontend
-      labels: ${{ needs.docker_meta.outputs.labels }}
       tag_suffix2: -widget
       target2: widget
     needs:
-      - docker_meta
       - affected_packages
 
   build-soligare:
@@ -186,14 +159,11 @@ jobs:
       image_name: ${{ github.repository }}/soligare
       dockerfile: ./packages/soligare/Dockerfile
       build_production: true
-      tag: ${{ needs.docker_meta.outputs.tags }}
-      labels: ${{ needs.docker_meta.outputs.labels }}
       build_args: |
-        BASE_IMAGE=${{ needs.build-base.outputs.tags1 }}
-        COMMON_IMAGE=${{ needs.build-common.outputs.tags1 }}
+        BASE_IMAGE=${{ fromJSON(needs.build-base.outputs.tags1)[0] }}
+        COMMON_IMAGE=${{ fromJSON(needs.build-common.outputs.tags1)[0] }}
       build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_test, 'soligare') }}
     needs:
-      - docker_meta
       - affected_packages
       - build-base
       - build-common
@@ -206,15 +176,12 @@ jobs:
       image_name: ${{ github.repository }}/web-app
       dockerfile: ./packages/web-app/Dockerfile
       build_production: true
-      tag: ${{ needs.docker_meta.outputs.tags }}
-      labels: ${{ needs.docker_meta.outputs.labels }}
       build_args: |
-        BASE_IMAGE=${{ needs.build-base.outputs.tags1 }}
-        COMMON_IMAGE=${{ needs.build-common.outputs.tags1 }}
-        DESIGN_SYSTEM_IMAGE=${{ needs.build-design-system.outputs.tags1 }}
+        BASE_IMAGE=${{ fromJSON(needs.build-base.outputs.tags1)[0] }}
+        COMMON_IMAGE=${{ fromJSON(needs.build-common.outputs.tags1)[0] }}
+        DESIGN_SYSTEM_IMAGE=${{ fromJSON(needs.build-design-system.outputs.tags1)[0] }}
       build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_test, 'web-app') }}
     needs:
-      - docker_meta
       - affected_packages
       - build-base
       - build-common
@@ -228,13 +195,10 @@ jobs:
       image_name: ${{ github.repository }}/widget
       dockerfile: ./packages/widget/Dockerfile
       build_production: true
-      tag: ${{ needs.docker_meta.outputs.tags }}
-      labels: ${{ needs.docker_meta.outputs.labels }}
       build_args: |
-        COMMON_ANGULAR_IMAGE=${{ needs.build-common-angular.outputs.tags1 }}
+        COMMON_ANGULAR_IMAGE=${{ fromJSON(needs.build-common-angular.outputs.tags1)[0] }}
       build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_test, 'widget') }}
     needs:
-      - docker_meta
       - affected_packages
       - build-common-angular
 
@@ -250,6 +214,7 @@ jobs:
       packages: read
     env:
       MONGODB_URI: mongodb://127.0.0.1:27017/soliguide_test?replicaSet=rs0
+      TEST_API_IMAGE: ${{ fromJSON(needs.build-api.outputs.tags2)[0] }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -268,7 +233,7 @@ jobs:
         run: docker compose up -d minio mongodb typesense
 
       - name: Pull test image
-        run: docker pull ${{ needs.build-api.outputs.tags2 }}
+        run: docker pull "$TEST_API_IMAGE"
 
       - name: Prettier cache
         uses: actions/cache@v4
@@ -283,7 +248,7 @@ jobs:
         run: |
           docker run --pull always \
             -v ./packages/api/node_modules/.cache/prettier:/app/packages/api/node_modules/.cache/prettier \
-            ${{ needs.build-api.outputs.tags2 }} \
+            "$TEST_API_IMAGE" \
             yarn workspace @soliguide/api format
 
       - name: Eslint cache
@@ -299,7 +264,7 @@ jobs:
         run: |
           docker run \
             -v ./packages/api/.eslintcache:/app/packages/api/.eslintcache \
-            ${{ needs.build-api.outputs.tags2 }} \
+            "$TEST_API_IMAGE" \
             yarn workspace @soliguide/api lint
 
       - name: Wait for Mongo to be ready
@@ -319,7 +284,7 @@ jobs:
             -v ./packages/api/coverage:/app/packages/api/coverage/ \
             -e ENV=CI \
             --network host \
-            ${{ needs.build-api.outputs.tags2 }} \
+            "$TEST_API_IMAGE" \
             sh -c 'yarn workspace @soliguide/api migrate-up && yarn workspace @soliguide/api test --coverage'
 
       - name: Upload coverage
@@ -339,7 +304,7 @@ jobs:
     uses: ./.github/workflows/_test-package.yml
     with:
       package: common
-      container_image: ${{ needs.build-common.outputs.tags2 }}
+      container_image: ${{ fromJSON(needs.build-common.outputs.tags2)[0] }}
 
   test-common-angular:
     name: Test common Angular
@@ -350,7 +315,7 @@ jobs:
     uses: ./.github/workflows/_test-package.yml
     with:
       package: common-angular
-      container_image: ${{ needs.build-common-angular.outputs.tags2 }}
+      container_image: ${{ fromJSON(needs.build-common-angular.outputs.tags2)[0] }}
 
   test-design-system:
     name: Test design system
@@ -361,7 +326,7 @@ jobs:
     uses: ./.github/workflows/_test-package.yml
     with:
       package: design-system
-      container_image: ${{ needs.build-design-system.outputs.tags2 }}
+      container_image: ${{ fromJSON(needs.build-design-system.outputs.tags2)[0] }}
 
   test-frontend:
     name: Test frontend
@@ -372,7 +337,7 @@ jobs:
     uses: ./.github/workflows/_test-package.yml
     with:
       package: frontend
-      container_image: ${{ needs.build-frontend.outputs.tags2 }}
+      container_image: ${{ fromJSON(needs.build-frontend.outputs.tags2)[0] }}
 
   test-location-api:
     name: Test location API
@@ -382,7 +347,7 @@ jobs:
       - build-location-api
     runs-on: ubuntu-latest
     container:
-      image: ${{ needs.build-location-api.outputs.tags2 }}
+      image: ${{ fromJSON(needs.build-location-api.outputs.tags2)[0] }}
     permissions:
       packages: read
     defaults:
@@ -437,7 +402,7 @@ jobs:
       - build-maintenance
     runs-on: ubuntu-latest
     container:
-      image: ${{ needs.build-maintenance.outputs.tags1 }}
+      image: ${{ fromJSON(needs.build-maintenance.outputs.tags1)[0] }}
     permissions:
       packages: read
     steps:
@@ -459,7 +424,7 @@ jobs:
       - build-maintenance
     runs-on: ubuntu-latest
     container:
-      image: ${{ needs.build-maintenance.outputs.tags2 }}
+      image: ${{ fromJSON(needs.build-maintenance.outputs.tags2)[0] }}
     permissions:
       packages: read
     steps:
@@ -478,6 +443,8 @@ jobs:
     permissions:
       contents: read
       packages: read
+    env:
+      TEST_SOLIGARE_IMAGE: ${{ fromJSON(needs.build-soligare.outputs.tags2)[0] }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -508,7 +475,7 @@ jobs:
         run: |
           docker run --pull always \
             -v ./packages/soligare/node_modules/.cache/prettier:/app/packages/soligare/node_modules/.cache/prettier \
-            ${{ needs.build-soligare.outputs.tags2 }} \
+            "$TEST_SOLIGARE_IMAGE" \
             yarn workspace @soliguide/soligare format
 
       - name: Eslint cache
@@ -524,7 +491,7 @@ jobs:
         run: |
           docker run \
             -v ./packages/soligare/.eslintcache:/app/packages/soligare/.eslintcache \
-            ${{ needs.build-soligare.outputs.tags2 }} \
+            "$TEST_SOLIGARE_IMAGE" \
             yarn workspace @soliguide/soligare lint
 
       - name: Wait for Postgres to be ready
@@ -546,7 +513,7 @@ jobs:
             -v ./packages/soligare/coverage/:/app/packages/soligare/coverage/ \
             -e POSTGRES_EXTERNAL_URI=${POSTGRES_EXTERNAL_URI} \
             --network soliguide_default \
-            ${{ needs.build-soligare.outputs.tags2 }} \
+            "$TEST_SOLIGARE_IMAGE" \
             yarn workspace @soliguide/soligare test --coverage
         env:
           POSTGRES_EXTERNAL_URI: postgres://postgres:postgres@postgres:5432/postgres
@@ -567,7 +534,7 @@ jobs:
       - build-web-app
     runs-on: ubuntu-latest
     container:
-      image: ${{ needs.build-web-app.outputs.tags2 }}
+      image: ${{ fromJSON(needs.build-web-app.outputs.tags2)[0] }}
     permissions:
       packages: read
     defaults:
@@ -623,7 +590,7 @@ jobs:
     uses: ./.github/workflows/_test-package.yml
     with:
       package: widget
-      container_image: ${{ needs.build-widget.outputs.tags2 }}
+      container_image: ${{ fromJSON(needs.build-widget.outputs.tags2)[0] }}
 
   send-test-coverage:
     name: Send test coverage reports to Deepsource

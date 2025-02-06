@@ -92,6 +92,13 @@ jobs:
           delete-tags: ${{ env.TAGS }}*
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Delete maintenance images
+        uses: dataaxiom/ghcr-cleanup-action@v1
+        with:
+          package: soliguide/maintenance
+          delete-tags: ${{ env.TAGS }}*
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Delete soligare images
         uses: dataaxiom/ghcr-cleanup-action@v1
         with:

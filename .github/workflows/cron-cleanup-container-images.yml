@@ -42,6 +42,7 @@ jobs:
           - soliguide/design-system
           - soliguide/frontend
           - soliguide/location-api
+          - soliguide/maintenance
           - soliguide/soligare
           - soliguide/web-app
           - soliguide/widget
