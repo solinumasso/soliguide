@@ -193,6 +193,19 @@ describe('PairingController', () => {
     });
   });
 
+  describe('/DELETE pairing/pair/:soliguide_id', () => {
+    it('✅ Unpair', async () => {
+      return await app
+        .inject({
+          method: 'DELETE',
+          url: `/pairing/pair/5432`,
+        })
+        .then((results) => {
+          expect(results.statusCode).toEqual(HttpStatus.OK);
+        });
+    });
+  });
+
   describe('/POST pairing/external-structure/:source_id', () => {
     it('✅ Convert External Structure to Soliguide Place', async () => {
       return await app

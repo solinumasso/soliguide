@@ -22,6 +22,7 @@ import {
   Body,
   Controller,
   Get,
+  Delete,
   Param,
   Post,
   HttpCode,
@@ -32,7 +33,7 @@ import { SearchResults, ExternalStructure } from '@soliguide/common';
 
 import { StructureToPairDto, PairBodyDto } from './dto/source';
 
-import { SourceIdDto } from './dto';
+import { SourceIdDto, PairingDto } from './dto';
 
 import { PairingService } from './service';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
@@ -92,6 +93,22 @@ export class PairingController {
       return res.status(HttpStatus.OK).send();
     }
     return res.status(HttpStatus.CREATED).send();
+  }
+
+  @ApiOperation({
+    summary: 'Delete pairing',
+  })
+  @ApiResponse({
+    status: 200,
+  })
+  @Delete('pair/:soliguide_id')
+  public async unpairExternalStructure(
+    @Param() bodyParam: PairingDto,
+    @Res() res: FastifyReply,
+  ) {
+    await this.pairingService.deletePairing(bodyParam.soliguide_id);
+
+    return res.status(HttpStatus.OK).send();
   }
 
   @ApiOperation({
