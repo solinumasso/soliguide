@@ -10737,7 +10737,7 @@ __metadata:
     lint-staged: "npm:^15.2.7"
     ng-lint-staged: "npm:^12.0.4"
     ng-packagr: "npm:^17.3.0"
-    posthog-js: "npm:^1.154.1"
+    posthog-js: "npm:^1.194.0"
     prettier: "npm:^2.8.8"
     rxjs: "npm:^7.8.1"
     ts-jest: "npm:^29.1.4"
@@ -27965,17 +27965,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"posthog-js@npm:^1.154.1":
-  version: 1.154.4
-  resolution: "posthog-js@npm:1.154.4"
-  dependencies:
-    fflate: "npm:^0.4.8"
-    preact: "npm:^10.19.3"
-    web-vitals: "npm:^4.0.1"
-  checksum: 10c0/03a732c94b23ab4922cb6d967d4546a5f57d881ccee158abf19ce0def3bd258290f01f8f544f230b0ac78fc987ee905d59d83a6111647e03a8664de571a748fa
-  languageName: node
-  linkType: hard
-
 "posthog-js@npm:^1.194.0":
   version: 1.194.0
   resolution: "posthog-js@npm:1.194.0"
@@ -32781,13 +32770,6 @@ __metadata:
   dependencies:
     defaults: "npm:^1.0.3"
   checksum: 10c0/5b61ca583a95e2dd85d7078400190efd452e05751a64accb8c06ce4db65d7e0b0cde9917d705e826a2e05cc2548f61efde115ffa374c3e436d04be45c889e5b4
-  languageName: node
-  linkType: hard
-
-"web-vitals@npm:^4.0.1":
-  version: 4.2.2
-  resolution: "web-vitals@npm:4.2.2"
-  checksum: 10c0/0e41d016a80d8f48e00c95f3d8405a4cb8c6a12a83ac6677ce49447c85ca6fb2325f40915ae5460bb59f07d1b7d65b66b8b42ea50135594ae7dc892453775004
   languageName: node
   linkType: hard
 
