@@ -270,18 +270,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular-devkit/architect@npm:0.1802.1":
-  version: 0.1802.1
-  resolution: "@angular-devkit/architect@npm:0.1802.1"
+"@angular-devkit/architect@npm:0.1802.14":
+  version: 0.1802.14
+  resolution: "@angular-devkit/architect@npm:0.1802.14"
   dependencies:
-    "@angular-devkit/core": "npm:18.2.1"
+    "@angular-devkit/core": "npm:18.2.14"
     rxjs: "npm:7.8.1"
   dependenciesMeta:
     esbuild:
       built: true
     puppeteer:
       built: true
-  checksum: 10c0/de187293ea5a5345627d4a161ae5483798e9fe83ab9d1ae511cf85aed767004d24a25fdfcd78b534880afd80c89a161ee897b922ec83e4cd6a92de9047d2bb8f
+  checksum: 10c0/0b649e4ebb4b1fc5c436592dd1a171ffdcf1f665cc53bfcde6c015dbdd72959598c9d7e787108c2282022ea1eb891ce41c826c3fadedf099c433aafa56c568e3
   languageName: node
   linkType: hard
 
@@ -463,9 +463,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular-devkit/core@npm:18.2.1":
-  version: 18.2.1
-  resolution: "@angular-devkit/core@npm:18.2.1"
+"@angular-devkit/core@npm:18.2.14":
+  version: 18.2.14
+  resolution: "@angular-devkit/core@npm:18.2.14"
   dependencies:
     ajv: "npm:8.17.1"
     ajv-formats: "npm:3.0.1"
@@ -483,7 +483,7 @@ __metadata:
   peerDependenciesMeta:
     chokidar:
       optional: true
-  checksum: 10c0/591d60e3856819e3842237e0b60f3ace713078881d90e9c3da09f599e1f8ae38d18c69dae3082b0fc790609769015abef83eb42cc9eb831370e6b8f0e31ff317
+  checksum: 10c0/a4082a9dde58fde19de1fbb240ba50a25b8f825952e85a577b7bc710d8fdd8878d361afc729ab06aac48be00264760c877833fa20207c6cf243c61d65f5fe009
   languageName: node
   linkType: hard
 
@@ -10708,7 +10708,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soliguide/common-angular@workspace:packages/common-angular"
   dependencies:
-    "@angular-devkit/architect": "npm:0.1802.1"
+    "@angular-devkit/architect": "npm:0.1802.14"
     "@angular-devkit/build-angular": "npm:^15.2.11"
     "@angular-eslint/builder": "npm:^15.2.1"
     "@angular-eslint/eslint-plugin": "npm:^15.2.1"
@@ -10859,7 +10859,7 @@ __metadata:
     "@algolia/autocomplete-js": "npm:^1.17.4"
     "@algolia/autocomplete-theme-classic": "npm:^1.17.4"
     "@algolia/client-search": "npm:^4.24.0"
-    "@angular-devkit/architect": "npm:0.1802.1"
+    "@angular-devkit/architect": "npm:0.1802.14"
     "@angular-devkit/build-angular": "npm:^15.2.11"
     "@angular-devkit/core": "npm:^15.2.11"
     "@angular-devkit/schematics": "npm:^15.2.11"
@@ -11134,7 +11134,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soliguide/widget@workspace:packages/widget"
   dependencies:
-    "@angular-devkit/architect": "npm:0.1802.1"
+    "@angular-devkit/architect": "npm:0.1802.14"
     "@angular-devkit/build-angular": "npm:^15.2.11"
     "@angular-devkit/core": "npm:^15.2.11"
     "@angular-devkit/schematics": "npm:^15.2.11"

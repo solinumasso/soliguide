@@ -17,7 +17,7 @@
     "license:remove": "license-check-and-add remove -f license.config.json -r $(date +%Y)"
   },
   "devDependencies": {
-    "@angular-devkit/architect": "0.1802.1",
+    "@angular-devkit/architect": "0.1802.14",
     "@angular-devkit/build-angular": "^15.2.11",
     "@angular-eslint/builder": "^15.2.1",
     "@angular-eslint/eslint-plugin": "^15.2.1",
