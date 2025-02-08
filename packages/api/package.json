@@ -42,7 +42,7 @@
     "apicache": "^1.6.3",
     "axios": "^1.7.2",
     "bcryptjs": "2.4.3",
-    "body-parser": "1.20.2",
+    "body-parser": "1.20.3",
     "bree": "^9.2.3",
     "cabin": "^13.2.8",
     "cache-manager": "^5.7.2",
