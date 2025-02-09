@@ -60,7 +60,7 @@
     "docxtemplater": "^3.50.0",
     "docxtemplater-image-module-free": "^1.1.1",
     "dot-object": "^2.1.5",
-    "dotenv": "16.4.5",
+    "dotenv": "16.4.7",
     "env-schema": "^6.0.0",
     "express": "4.19.2",
     "express-validator": "^7.1.0",
