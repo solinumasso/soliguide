@@ -86,13 +86,7 @@ export const canAddPlace = async (user: UserPopulateType): Promise<boolean> => {
 export const canDeletePlace = async (
   user: Pick<ModelWithId<User>, "_id" | "status" | "territories">,
   place: ApiPlace
-): Promise<boolean> => {
-  if (hasAdminAccessToPlace(user, place)) {
-    return true;
-  }
-
-  return await UserRightsService.canDeletePlace(user._id, place.lieu_id);
-};
+): Promise<boolean> => hasAdminAccessToPlace(user, place);
 
 export const canEditPlace = async (
   user: Pick<UserPopulateType, "_id" | "status" | "territories">,

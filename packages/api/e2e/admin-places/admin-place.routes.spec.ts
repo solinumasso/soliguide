@@ -65,6 +65,11 @@ const CAN_EDIT = [
   TestAccounts.USER_PRO_OWNER_ORGA1_EDITOR_ORGA2,
 ];
 
+const CAN_DELETE = [
+  TestAccounts.USER_ADMIN_SOLIGUIDE,
+  TestAccounts.USER_ADMIN_TERRITORY,
+];
+
 let lieu_id: null | string = null;
 
 // Do not call location-api
@@ -781,7 +786,7 @@ describe.each(Object.values(TestAccounts))(
 
         // Successful test
         const expectedStatus = getExpectedStatus(
-          CAN_CREATE,
+          CAN_DELETE,
           currentAccountTest,
           ExpectedStatus.SUCCESS
         );
@@ -790,7 +795,7 @@ describe.each(Object.values(TestAccounts))(
         if (expectedStatus === 403 && response.status === 403) {
           await addAuth(
             supertest().delete(`/admin/places/${lieu_id}`),
-            CAN_CREATE[0]
+            CAN_DELETE[0]
           );
           return;
         }
@@ -806,7 +811,7 @@ describe.each(Object.values(TestAccounts))(
 
         // Failed test
         const expectedStatus = getExpectedStatus(
-          CAN_CREATE,
+          CAN_DELETE,
           currentAccountTest,
           ExpectedStatus.NOT_FOUND
         );

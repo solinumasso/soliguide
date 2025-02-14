@@ -161,7 +161,7 @@ describe("UserRightsController", () => {
       it("must authorize if the user has rights on the place", async () => {
         expect(
           await UserRightsController.canDeletePlace(userAuth, placeToCheck)
-        ).toBe(true);
+        ).toBe(false);
         expect(
           await UserRightsController.canEditPlace(userAuth, placeToCheck)
         ).toBe(true);
