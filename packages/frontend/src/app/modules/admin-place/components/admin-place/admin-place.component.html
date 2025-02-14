@@ -145,7 +145,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             >
           </li>
 
-          <li *ngIf="!me.admin && me.role === UserRole.OWNER">
+          <li *ngIf="me.admin">
             <button
               (click)="openRemoveModal()"
               class="btn btn-outline-danger"
@@ -158,7 +158,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           <li *ngIf="me.admin">
             <app-duplicate-place [place]="place" />
           </li>
-          <li>
+          <li *ngIf="me.admin">
             <button
               type="button"
               class="btn btn-outline-danger"
