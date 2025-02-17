@@ -22,12 +22,14 @@ import { json, type RequestEvent } from '@sveltejs/kit';
 import getPlaceDetailsService from '$lib/server/services/placesService';
 import { getHeaders } from '$lib/server/services/headers';
 import type { PlaceDetailsParams } from '$lib/services/types';
+import type { Categories } from '@soliguide/common';
 
 /**
  * Get headers from a request event
  */
 export const POST = async (requestEvent: RequestEvent): Promise<Response> => {
   const { identifier, lang } = requestEvent.params;
+  const { categorySearched }: { categorySearched: Categories } = await requestEvent.request.json();
 
   const headers = getHeaders(requestEvent);
 
@@ -37,7 +39,8 @@ export const POST = async (requestEvent: RequestEvent): Promise<Response> => {
       lang,
       identifier
     } as PlaceDetailsParams,
-    headers
+    headers,
+    categorySearched
   );
 
   return json(result, { status: 201 });

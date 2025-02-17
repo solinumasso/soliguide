@@ -50,8 +50,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
 
   export let place: SearchResultItem;
-
   export let id: string;
+  export let category: string;
 
   /**
    * Redirect user to place he clicked on
@@ -65,7 +65,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </script>
 
 <Card>
-  <a {id} class="card-link" href={`${$routes.ROUTE_PLACES}/${place.seoUrl}`}>
+  <a
+    {id}
+    class="card-link"
+    href={`${$routes.ROUTE_PLACES}/${place.seoUrl}?categorySearched=${category}`}
+  >
     <CardHeader
       on:click={() => {
         captureEvent('card-header-click', { placeId: place.id });
