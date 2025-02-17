@@ -36,6 +36,7 @@ import { PlaceDetailsInfoType } from './types';
 describe('Place details Result', () => {
   let modifiedPlace = structuredClone(samplePlace);
   let modifiedPlaceResult = structuredClone(samplePlaceTransformed);
+  const category = Categories.FOOD;
 
   beforeEach(() => {
     modifiedPlace = structuredClone(samplePlace);
@@ -44,7 +45,7 @@ describe('Place details Result', () => {
 
   describe('Conversion of one place result', () => {
     it('Data source is correctly mapped', () => {
-      const resultItem = buildPlaceDetails(samplePlace);
+      const resultItem = buildPlaceDetails(samplePlace, category);
       expect(resultItem).toStrictEqual(samplePlaceTransformed);
     });
 
@@ -59,7 +60,7 @@ describe('Place details Result', () => {
 
         modifiedPlaceResult.status = PlaceOpeningStatus.TEMPORARILY_CLOSED;
 
-        const result = buildPlaceDetails(modifiedPlace);
+        const result = buildPlaceDetails(modifiedPlace, category);
         expect(result.status).toStrictEqual(modifiedPlaceResult.status);
 
         vi.useRealTimers();
@@ -78,7 +79,7 @@ describe('Place details Result', () => {
 
         modifiedPlaceResult.status = PlaceOpeningStatus.CLOSED;
 
-        const result = buildPlaceDetails(modifiedPlace);
+        const result = buildPlaceDetails(modifiedPlace, category);
         expect(result.status).toStrictEqual(modifiedPlaceResult.status);
       });
 
@@ -95,7 +96,7 @@ describe('Place details Result', () => {
 
         modifiedPlaceResult.status = PlaceOpeningStatus.PARTIALLY_OPEN;
 
-        const result = buildPlaceDetails(modifiedPlace);
+        const result = buildPlaceDetails(modifiedPlace, category);
         expect(result.status).toStrictEqual(modifiedPlaceResult.status);
       });
 
@@ -105,7 +106,7 @@ describe('Place details Result', () => {
         modifiedPlace.tempInfos.closure.actif = false;
         modifiedPlaceResult.status = PlaceOpeningStatus.OPEN;
 
-        const result = buildPlaceDetails(modifiedPlace);
+        const result = buildPlaceDetails(modifiedPlace, category);
         expect(result.status).toStrictEqual(modifiedPlaceResult.status);
       });
 
@@ -123,7 +124,7 @@ describe('Place details Result', () => {
 
         modifiedPlaceResult.status = PlaceOpeningStatus.UNKNOWN;
 
-        const result = buildPlaceDetails(modifiedPlace);
+        const result = buildPlaceDetails(modifiedPlace, category);
         expect(result.status).toStrictEqual(modifiedPlaceResult.status);
       });
     });
@@ -140,7 +141,7 @@ describe('Place details Result', () => {
         modifiedPlaceResult.status = PlaceOpeningStatus.OPEN;
         modifiedPlaceResult.todayInfo = { openingHours: [{ start: '0902', end: '1901' }] };
 
-        const result = buildPlaceDetails(modifiedPlace);
+        const result = buildPlaceDetails(modifiedPlace, category);
         expect(result.todayInfo).toStrictEqual(modifiedPlaceResult.todayInfo);
       });
 
@@ -160,7 +161,7 @@ describe('Place details Result', () => {
         modifiedPlaceResult.status = PlaceOpeningStatus.PARTIALLY_OPEN;
         modifiedPlaceResult.todayInfo = { openingHours: [{ end: '2015', start: '1930' }] };
 
-        const result = buildPlaceDetails(modifiedPlace);
+        const result = buildPlaceDetails(modifiedPlace, category);
         expect(result.todayInfo).toStrictEqual(modifiedPlaceResult.todayInfo);
       });
 
@@ -178,7 +179,7 @@ describe('Place details Result', () => {
           }
         };
 
-        const result = buildPlaceDetails(modifiedPlace);
+        const result = buildPlaceDetails(modifiedPlace, category);
         expect(result.todayInfo).toStrictEqual(modifiedPlaceResult.todayInfo);
       });
 
@@ -193,7 +194,7 @@ describe('Place details Result', () => {
         modifiedPlace.tempInfos.closure.actif = false;
         modifiedPlace.status = PlaceStatus.ONLINE;
 
-        const result = buildPlaceDetails(modifiedPlace);
+        const result = buildPlaceDetails(modifiedPlace, category);
         expect(result.todayInfo).toStrictEqual({});
       });
 
@@ -209,7 +210,7 @@ describe('Place details Result', () => {
         modifiedPlace.status = PlaceStatus.ONLINE;
         modifiedPlace.tempInfos.closure.actif = false;
 
-        const result = buildPlaceDetails(modifiedPlace);
+        const result = buildPlaceDetails(modifiedPlace, category);
         expect(result.todayInfo).toStrictEqual({});
       });
     });
@@ -242,7 +243,7 @@ describe('Place details Result', () => {
           { start: '2000', end: '2359' }
         ];
 
-        const result = buildPlaceDetails(modifiedPlace);
+        const result = buildPlaceDetails(modifiedPlace, category);
         expect(result.hours).toStrictEqual(modifiedPlaceResult.hours);
       });
 
@@ -259,14 +260,14 @@ describe('Place details Result', () => {
         modifiedPlaceResult.hours.monday = [];
         modifiedPlaceResult.hours.thursday = [];
 
-        const result = buildPlaceDetails(modifiedPlace);
+        const result = buildPlaceDetails(modifiedPlace, category);
         expect(result.hours).toStrictEqual(modifiedPlaceResult.hours);
       });
     });
 
     describe('Determination of the address', () => {
       it("should be the address when it's not on orientation", () => {
-        const result = buildPlaceDetails(samplePlace);
+        const result = buildPlaceDetails(samplePlace, category);
         expect(result.address).toStrictEqual(samplePlaceTransformed.address);
       });
 
@@ -276,7 +277,7 @@ describe('Place details Result', () => {
 
         modifiedPlaceResult.address = `${modifiedPlace.position.postalCode}, ${modifiedPlace.position.city}`;
 
-        const result = buildPlaceDetails(modifiedPlace);
+        const result = buildPlaceDetails(modifiedPlace, category);
         expect(result.address).toStrictEqual(modifiedPlaceResult.address);
       });
 
@@ -285,7 +286,7 @@ describe('Place details Result', () => {
 
         modifiedPlaceResult.address = `${modifiedPlace.position.address} - ${modifiedPlace.position.additionalInformation}`;
 
-        const result = buildPlaceDetails(modifiedPlace);
+        const result = buildPlaceDetails(modifiedPlace, category);
         expect(result.address).toStrictEqual(modifiedPlaceResult.address);
       });
     });
@@ -314,7 +315,7 @@ describe('Place details Result', () => {
           modifiedPlaceResult.info[STANDARD_INFO_INDEX.publics].type =
             PlaceDetailsInfoType.WELCOME_UNCONDITIONAL;
 
-          const result = buildPlaceDetails(modifiedPlace);
+          const result = buildPlaceDetails(modifiedPlace, category);
           expect(result.info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
             modifiedPlaceResult.info[STANDARD_INFO_INDEX.publics]
           );
@@ -325,7 +326,7 @@ describe('Place details Result', () => {
           modifiedPlaceResult.info[STANDARD_INFO_INDEX.publics].type =
             PlaceDetailsInfoType.WELCOME_UNCONDITIONAL_CUSTOM;
 
-          const result = buildPlaceDetails(modifiedPlace);
+          const result = buildPlaceDetails(modifiedPlace, category);
           expect(result.info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
             modifiedPlaceResult.info[STANDARD_INFO_INDEX.publics]
           );
@@ -336,7 +337,7 @@ describe('Place details Result', () => {
           modifiedPlaceResult.info[STANDARD_INFO_INDEX.publics].type =
             PlaceDetailsInfoType.WELCOME_EXCLUSIVE;
 
-          const result = buildPlaceDetails(modifiedPlace);
+          const result = buildPlaceDetails(modifiedPlace, category);
           expect(result.info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
             modifiedPlaceResult.info[STANDARD_INFO_INDEX.publics]
           );
@@ -356,7 +357,7 @@ describe('Place details Result', () => {
           { key: PUBLICS_LABELS.other[PublicsOther.lgbt].toUpperCase() }
         ];
 
-        const result = buildPlaceDetails(modifiedPlace);
+        const result = buildPlaceDetails(modifiedPlace, category);
         expect(result.info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
           modifiedPlaceResult.info[STANDARD_INFO_INDEX.publics]
         );
@@ -372,7 +373,7 @@ describe('Place details Result', () => {
         it("shouldn't setup age if age is between 0 and 99", () => {
           modifiedPlace.publics.age = { min: 0, max: 99 };
 
-          const result = buildPlaceDetails(modifiedPlace);
+          const result = buildPlaceDetails(modifiedPlace, category);
           expect(result.info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
             modifiedPlaceResult.info[STANDARD_INFO_INDEX.publics]
           );
@@ -384,7 +385,7 @@ describe('Place details Result', () => {
             { key: 'PUBLICS_AGE_TO_XX_MAX', params: { max: '76' } }
           ];
 
-          const result = buildPlaceDetails(modifiedPlace);
+          const result = buildPlaceDetails(modifiedPlace, category);
           expect(result.info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
             modifiedPlaceResult.info[STANDARD_INFO_INDEX.publics]
           );
@@ -396,7 +397,7 @@ describe('Place details Result', () => {
             { key: 'PUBLICS_AGE_FROM_XX', params: { min: '12' } }
           ];
 
-          const result = buildPlaceDetails(modifiedPlace);
+          const result = buildPlaceDetails(modifiedPlace, category);
           expect(result.info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
             modifiedPlaceResult.info[STANDARD_INFO_INDEX.publics]
           );
@@ -408,7 +409,7 @@ describe('Place details Result', () => {
             { key: 'PUBLICS_AGE_MINORS' }
           ];
 
-          const result = buildPlaceDetails(modifiedPlace);
+          const result = buildPlaceDetails(modifiedPlace, category);
           expect(result.info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
             modifiedPlaceResult.info[STANDARD_INFO_INDEX.publics]
           );
@@ -420,7 +421,7 @@ describe('Place details Result', () => {
             { key: 'PUBLICS_AGE_MAJORS' }
           ];
 
-          const result = buildPlaceDetails(modifiedPlace);
+          const result = buildPlaceDetails(modifiedPlace, category);
           expect(result.info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
             modifiedPlaceResult.info[STANDARD_INFO_INDEX.publics]
           );
@@ -432,7 +433,7 @@ describe('Place details Result', () => {
             { key: 'PUBLICS_AGE_RANGE', params: { min: '12', max: '76' } }
           ];
 
-          const result = buildPlaceDetails(modifiedPlace);
+          const result = buildPlaceDetails(modifiedPlace, category);
           expect(result.info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
             modifiedPlaceResult.info[STANDARD_INFO_INDEX.publics]
           );
@@ -447,7 +448,7 @@ describe('Place details Result', () => {
           description: [{ key: 'We have many other specific publics' }]
         };
 
-        const result = buildPlaceDetails(modifiedPlace);
+        const result = buildPlaceDetails(modifiedPlace, category);
         expect(result.info[STANDARD_INFO_INDEX.morePrecisionsPublics]).toStrictEqual(
           modifiedPlaceResult.info[STANDARD_INFO_INDEX.morePrecisionsPublics]
         );
@@ -462,7 +463,7 @@ describe('Place details Result', () => {
           modifiedPlaceResult.info[STANDARD_INFO_INDEX.modalitiesDefault].type =
             PlaceDetailsInfoType.ACCESS_FREE;
 
-          const result = buildPlaceDetails(modifiedPlace);
+          const result = buildPlaceDetails(modifiedPlace, category);
           expect(result.info[STANDARD_INFO_INDEX.modalitiesDefault]).toStrictEqual(
             modifiedPlaceResult.info[STANDARD_INFO_INDEX.modalitiesDefault]
           );
@@ -478,7 +479,7 @@ describe('Place details Result', () => {
             tags: []
           };
 
-          let result = buildPlaceDetails(modifiedPlace);
+          let result = buildPlaceDetails(modifiedPlace, category);
           expect(result.info[STANDARD_INFO_INDEX.modalitiesDefault]).toStrictEqual(
             modifiedPlaceResult.info[STANDARD_INFO_INDEX.modalitiesDefault]
           );
@@ -489,7 +490,7 @@ describe('Place details Result', () => {
             { key: 'test orientation' }
           ];
 
-          result = buildPlaceDetails(modifiedPlace);
+          result = buildPlaceDetails(modifiedPlace, category);
           expect(result.info[STANDARD_INFO_INDEX.modalitiesDefault]).toStrictEqual(
             modifiedPlaceResult.info[STANDARD_INFO_INDEX.modalitiesDefault]
           );
@@ -505,7 +506,7 @@ describe('Place details Result', () => {
             tags: []
           };
 
-          let result = buildPlaceDetails(modifiedPlace);
+          let result = buildPlaceDetails(modifiedPlace, category);
           expect(result.info[STANDARD_INFO_INDEX.modalitiesDefault]).toStrictEqual(
             modifiedPlaceResult.info[STANDARD_INFO_INDEX.modalitiesDefault]
           );
@@ -515,7 +516,7 @@ describe('Place details Result', () => {
             { key: 'test inscription' }
           ];
 
-          result = buildPlaceDetails(modifiedPlace);
+          result = buildPlaceDetails(modifiedPlace, category);
           expect(result.info[STANDARD_INFO_INDEX.modalitiesDefault]).toStrictEqual(
             modifiedPlaceResult.info[STANDARD_INFO_INDEX.modalitiesDefault]
           );
@@ -531,7 +532,7 @@ describe('Place details Result', () => {
             tags: []
           };
 
-          let result = buildPlaceDetails(modifiedPlace);
+          let result = buildPlaceDetails(modifiedPlace, category);
           expect(result.info[STANDARD_INFO_INDEX.modalitiesDefault]).toStrictEqual(
             modifiedPlaceResult.info[STANDARD_INFO_INDEX.modalitiesDefault]
           );
@@ -541,7 +542,7 @@ describe('Place details Result', () => {
             { key: 'test appointment' }
           ];
 
-          result = buildPlaceDetails(modifiedPlace);
+          result = buildPlaceDetails(modifiedPlace, category);
           expect(result.info[STANDARD_INFO_INDEX.modalitiesDefault]).toStrictEqual(
             modifiedPlaceResult.info[STANDARD_INFO_INDEX.modalitiesDefault]
           );
@@ -569,7 +570,7 @@ describe('Place details Result', () => {
             tags: []
           };
 
-          const result = buildPlaceDetails(modifiedPlace);
+          const result = buildPlaceDetails(modifiedPlace, category);
           expect(result.info[STANDARD_INFO_INDEX.modalitiesOrientation]).toStrictEqual(
             modifiedPlaceResult.info[STANDARD_INFO_INDEX.modalitiesOrientation]
           );
@@ -590,7 +591,7 @@ describe('Place details Result', () => {
           tags: []
         };
 
-        const result = buildPlaceDetails(modifiedPlace);
+        const result = buildPlaceDetails(modifiedPlace, category);
         expect(result.info[STANDARD_INFO_INDEX.morePrecisionsModalities]).toStrictEqual(
           modifiedPlaceResult.info[STANDARD_INFO_INDEX.morePrecisionsModalities]
         );
@@ -620,7 +621,7 @@ describe('Place details Result', () => {
             description: []
           };
 
-          const result = buildPlaceDetails(modifiedPlace);
+          const result = buildPlaceDetails(modifiedPlace, category);
           expect(result.info[STANDARD_INFO_INDEX.modalitiesPrice]).toStrictEqual(
             modifiedPlaceResult.info[STANDARD_INFO_INDEX.modalitiesPrice]
           );
@@ -640,7 +641,7 @@ describe('Place details Result', () => {
       it('should be empty if there is no languages', () => {
         modifiedPlace.languages = [];
 
-        const result = buildPlaceDetails(modifiedPlace);
+        const result = buildPlaceDetails(modifiedPlace, category);
         expect(result.info[STANDARD_INFO_INDEX.spokenLanguages]).toBeUndefined();
       });
 
@@ -658,7 +659,7 @@ describe('Place details Result', () => {
           ]
         };
 
-        const result = buildPlaceDetails(modifiedPlace);
+        const result = buildPlaceDetails(modifiedPlace, category);
         expect(result.info[STANDARD_INFO_INDEX.spokenLanguages]).toStrictEqual(
           modifiedPlaceResult.info[STANDARD_INFO_INDEX.spokenLanguages]
         );
@@ -676,7 +677,7 @@ describe('Place details Result', () => {
       modifiedPlaceResult.services[1].category = Categories.DAY_HOSTING;
       modifiedPlaceResult.services[2].category = Categories.ADDICTION;
 
-      const result = buildPlaceDetails(modifiedPlace);
+      const result = buildPlaceDetails(modifiedPlace, category);
       expect(result.services).toStrictEqual(modifiedPlaceResult.services);
     });
 
@@ -694,7 +695,7 @@ describe('Place details Result', () => {
           return service;
         });
 
-        const result = buildPlaceDetails(modifiedPlace);
+        const result = buildPlaceDetails(modifiedPlace, category);
         expect(result.services).toStrictEqual(modifiedPlaceResult.services);
       });
 
@@ -718,7 +719,7 @@ describe('Place details Result', () => {
         // eslint-disable-next-line fp/no-delete
         delete modifiedPlaceResult.services[1].saturation;
 
-        const result = buildPlaceDetails(modifiedPlace);
+        const result = buildPlaceDetails(modifiedPlace, category);
         expect(result.services).toStrictEqual(modifiedPlaceResult.services);
       });
     });
@@ -736,7 +737,7 @@ describe('Place details Result', () => {
         "I can't believe how great of an adventure it is with this second service";
       modifiedPlaceResult.services[2].description = "Oh non it's the last service, goodbye!";
 
-      const result = buildPlaceDetails(modifiedPlace);
+      const result = buildPlaceDetails(modifiedPlace, category);
       expect(result.services).toStrictEqual(modifiedPlaceResult.services);
     });
 
@@ -780,7 +781,7 @@ describe('Place details Result', () => {
           ]
         };
 
-        const result = buildPlaceDetails(modifiedPlace);
+        const result = buildPlaceDetails(modifiedPlace, category);
         expect(result.services[1].hours).toStrictEqual(modifiedPlaceResult.services[1].hours);
       });
 
@@ -795,7 +796,7 @@ describe('Place details Result', () => {
 
         modifiedPlaceResult.services[1].hours = {};
 
-        const result = buildPlaceDetails(modifiedPlace);
+        const result = buildPlaceDetails(modifiedPlace, category);
         expect(result.services[1].hours).toStrictEqual(modifiedPlaceResult.services[1].hours);
       });
     });
@@ -832,7 +833,7 @@ describe('Place details Result', () => {
             modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics].type =
               PlaceDetailsInfoType.WELCOME_UNCONDITIONAL;
 
-            const result = buildPlaceDetails(modifiedPlace);
+            const result = buildPlaceDetails(modifiedPlace, category);
             expect(result.services[1].info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
               modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics]
             );
@@ -843,7 +844,7 @@ describe('Place details Result', () => {
             modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics].type =
               PlaceDetailsInfoType.WELCOME_UNCONDITIONAL_CUSTOM;
 
-            const result = buildPlaceDetails(modifiedPlace);
+            const result = buildPlaceDetails(modifiedPlace, category);
             expect(result.services[1].info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
               modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics]
             );
@@ -854,7 +855,7 @@ describe('Place details Result', () => {
             modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics].type =
               PlaceDetailsInfoType.WELCOME_EXCLUSIVE;
 
-            const result = buildPlaceDetails(modifiedPlace);
+            const result = buildPlaceDetails(modifiedPlace, category);
             expect(result.services[1].info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
               modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics]
             );
@@ -874,7 +875,7 @@ describe('Place details Result', () => {
             { key: PUBLICS_LABELS.other[PublicsOther.lgbt].toUpperCase() }
           ];
 
-          const result = buildPlaceDetails(modifiedPlace);
+          const result = buildPlaceDetails(modifiedPlace, category);
           expect(result.services[1].info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
             modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics]
           );
@@ -890,7 +891,7 @@ describe('Place details Result', () => {
           it("shouldn't setup age if age is between 0 and 99", () => {
             modifiedPlace.services_all[1].publics.age = { min: 0, max: 99 };
 
-            const result = buildPlaceDetails(modifiedPlace);
+            const result = buildPlaceDetails(modifiedPlace, category);
             expect(result.services[1].info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
               modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics]
             );
@@ -902,7 +903,7 @@ describe('Place details Result', () => {
               { key: 'PUBLICS_AGE_TO_XX_MAX', params: { max: '76' } }
             ];
 
-            const result = buildPlaceDetails(modifiedPlace);
+            const result = buildPlaceDetails(modifiedPlace, category);
             expect(result.services[1].info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
               modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics]
             );
@@ -914,7 +915,7 @@ describe('Place details Result', () => {
               { key: 'PUBLICS_AGE_FROM_XX', params: { min: '12' } }
             ];
 
-            const result = buildPlaceDetails(modifiedPlace);
+            const result = buildPlaceDetails(modifiedPlace, category);
             expect(result.services[1].info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
               modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics]
             );
@@ -926,7 +927,7 @@ describe('Place details Result', () => {
               { key: 'PUBLICS_AGE_MINORS' }
             ];
 
-            const result = buildPlaceDetails(modifiedPlace);
+            const result = buildPlaceDetails(modifiedPlace, category);
             expect(result.services[1].info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
               modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics]
             );
@@ -938,7 +939,7 @@ describe('Place details Result', () => {
               { key: 'PUBLICS_AGE_MAJORS' }
             ];
 
-            const result = buildPlaceDetails(modifiedPlace);
+            const result = buildPlaceDetails(modifiedPlace, category);
             expect(result.services[1].info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
               modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics]
             );
@@ -950,7 +951,7 @@ describe('Place details Result', () => {
               { key: 'PUBLICS_AGE_RANGE', params: { min: '12', max: '76' } }
             ];
 
-            const result = buildPlaceDetails(modifiedPlace);
+            const result = buildPlaceDetails(modifiedPlace, category);
             expect(result.services[1].info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
               modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics]
             );
@@ -965,7 +966,7 @@ describe('Place details Result', () => {
             description: [{ key: 'We have many other specific publics' }]
           };
 
-          const result = buildPlaceDetails(modifiedPlace);
+          const result = buildPlaceDetails(modifiedPlace, category);
           expect(result.services[1].info[STANDARD_INFO_INDEX.morePrecisionsPublics]).toStrictEqual(
             modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.morePrecisionsPublics]
           );
@@ -991,7 +992,7 @@ describe('Place details Result', () => {
             modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.modalitiesDefault].type =
               PlaceDetailsInfoType.ACCESS_FREE;
 
-            const result = buildPlaceDetails(modifiedPlace);
+            const result = buildPlaceDetails(modifiedPlace, category);
             expect(result.services[1].info[STANDARD_INFO_INDEX.modalitiesDefault]).toStrictEqual(
               modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.modalitiesDefault]
             );
@@ -1010,7 +1011,7 @@ describe('Place details Result', () => {
               tags: []
             };
 
-            let result = buildPlaceDetails(modifiedPlace);
+            let result = buildPlaceDetails(modifiedPlace, category);
             expect(result.services[1].info[STANDARD_INFO_INDEX.modalitiesDefault]).toStrictEqual(
               modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.modalitiesDefault]
             );
@@ -1021,7 +1022,7 @@ describe('Place details Result', () => {
               STANDARD_INFO_INDEX.modalitiesDefault
             ].description = [{ key: 'test orientation' }];
 
-            result = buildPlaceDetails(modifiedPlace);
+            result = buildPlaceDetails(modifiedPlace, category);
             expect(result.services[1].info[STANDARD_INFO_INDEX.modalitiesDefault]).toStrictEqual(
               modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.modalitiesDefault]
             );
@@ -1040,7 +1041,7 @@ describe('Place details Result', () => {
               tags: []
             };
 
-            let result = buildPlaceDetails(modifiedPlace);
+            let result = buildPlaceDetails(modifiedPlace, category);
             expect(result.services[1].info[STANDARD_INFO_INDEX.modalitiesDefault]).toStrictEqual(
               modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.modalitiesDefault]
             );
@@ -1050,7 +1051,7 @@ describe('Place details Result', () => {
               STANDARD_INFO_INDEX.modalitiesDefault
             ].description = [{ key: 'test inscription' }];
 
-            result = buildPlaceDetails(modifiedPlace);
+            result = buildPlaceDetails(modifiedPlace, category);
             expect(result.services[1].info[STANDARD_INFO_INDEX.modalitiesDefault]).toStrictEqual(
               modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.modalitiesDefault]
             );
@@ -1069,7 +1070,7 @@ describe('Place details Result', () => {
               tags: []
             };
 
-            let result = buildPlaceDetails(modifiedPlace);
+            let result = buildPlaceDetails(modifiedPlace, category);
             expect(result.services[1].info[STANDARD_INFO_INDEX.modalitiesDefault]).toStrictEqual(
               modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.modalitiesDefault]
             );
@@ -1079,7 +1080,7 @@ describe('Place details Result', () => {
               STANDARD_INFO_INDEX.modalitiesDefault
             ].description = [{ key: 'test appointment' }];
 
-            result = buildPlaceDetails(modifiedPlace);
+            result = buildPlaceDetails(modifiedPlace, category);
             expect(result.services[1].info[STANDARD_INFO_INDEX.modalitiesDefault]).toStrictEqual(
               modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.modalitiesDefault]
             );
@@ -1116,7 +1117,7 @@ describe('Place details Result', () => {
               tags: []
             };
 
-            const result = buildPlaceDetails(modifiedPlace);
+            const result = buildPlaceDetails(modifiedPlace, category);
             expect(
               result.services[1].info[STANDARD_INFO_INDEX.modalitiesOrientation]
             ).toStrictEqual(
@@ -1143,7 +1144,7 @@ describe('Place details Result', () => {
             tags: []
           };
 
-          const result = buildPlaceDetails(modifiedPlace);
+          const result = buildPlaceDetails(modifiedPlace, category);
           expect(
             result.services[1].info[STANDARD_INFO_INDEX.morePrecisionsModalities]
           ).toStrictEqual(
@@ -1178,7 +1179,7 @@ describe('Place details Result', () => {
               description: []
             };
 
-            const result = buildPlaceDetails(modifiedPlace);
+            const result = buildPlaceDetails(modifiedPlace, category);
             expect(result.services[1].info[STANDARD_INFO_INDEX.modalitiesPrice]).toStrictEqual(
               modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.modalitiesPrice]
             );

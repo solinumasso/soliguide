@@ -56,6 +56,8 @@ import {
   type Service,
   type TranslatableElement
 } from './types';
+import { categoryService } from '$lib/services/categoryService';
+import { sortServicesByRelevance } from '$lib/utils';
 
 /**
  * Transform all opening hours to a front ready opening hours
@@ -323,8 +325,15 @@ const buildServiceSaturation = (service: CommonNewPlaceService): { saturation?: 
 /**
  * Transform services to front ready info
  */
-const buildServices = (services: CommonNewPlaceService[]): Service[] => {
-  return services.map((service) => ({
+const buildServices = (
+  services: CommonNewPlaceService[],
+  categorySearched: Categories
+): Service[] => {
+  const servicesToProcess = categorySearched
+    ? sortServicesByRelevance(services, categorySearched, categoryService.getAllCategories())
+    : services;
+
+  return servicesToProcess.map((service) => ({
     category: service.category as Categories,
     description: service.description ?? '',
     ...buildServiceHours(service),
@@ -336,7 +345,7 @@ const buildServices = (services: CommonNewPlaceService[]): Service[] => {
 /**
  * Transform a place sent by the API to a front ready place
  */
-const buildPlaceDetails = (placeResult: ApiPlace): PlaceDetails => {
+const buildPlaceDetails = (placeResult: ApiPlace, categorySearched: Categories): PlaceDetails => {
   const status = computePlaceOpeningStatus(placeResult);
 
   const onOrientation = Boolean(placeResult.modalities.orientation.checked);
@@ -358,7 +367,7 @@ const buildPlaceDetails = (placeResult: ApiPlace): PlaceDetails => {
       ...phone,
       countryCode: phone.countryCode as CountryCodes
     })),
-    services: buildServices(placeResult.services_all),
+    services: buildServices(placeResult.services_all, categorySearched),
     sources: buildSources(placeResult.sources),
     status: computePlaceOpeningStatus(placeResult),
     todayInfo: computeTodayInfo(placeResult, status),

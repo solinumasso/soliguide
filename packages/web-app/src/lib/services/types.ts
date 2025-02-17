@@ -70,7 +70,7 @@ export interface PlaceDetailsParams {
 
 export interface PlacesService {
   searchPlaces(params: SearchParams, options: SearchOptions): Promise<SearchResult>;
-  placeDetails(params: PlaceDetailsParams): Promise<PlaceDetails>;
+  placeDetails(params: PlaceDetailsParams, categorySearched: Categories): Promise<PlaceDetails>;
 }
 
 export interface RequestOptionsFrontend {
