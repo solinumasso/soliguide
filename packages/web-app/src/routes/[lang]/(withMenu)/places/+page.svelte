@@ -129,7 +129,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <div class="list">
           {#each $pageStore.searchResult.places as place, index}
             <div>
-              <Card {place} id={place.id?.toString()} />
+              <Card {place} id={place.id?.toString()} category={$pageStore.search.category} />
               {#if index === $pageStore.searchResult.places.length - 1}
                 <IntersectionObserver on:intersect={handleIntersection} />
               {/if}

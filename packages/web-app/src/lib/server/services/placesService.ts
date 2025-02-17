@@ -75,7 +75,8 @@ export default (fetcher = fetch) => {
    */
   const placeDetails = async (
     { identifier, lang }: PlaceDetailsParams,
-    commonHeaders: RequestOptions
+    commonHeaders: RequestOptions,
+    categorySearched: Categories
   ): Promise<PlaceDetails> => {
     const url = `${apiUrl}place/${identifier}/${lang}`;
 
@@ -89,7 +90,7 @@ export default (fetcher = fetch) => {
       headers
     });
 
-    return buildPlaceDetails(placeResult);
+    return buildPlaceDetails(placeResult, categorySearched);
   };
 
   return {

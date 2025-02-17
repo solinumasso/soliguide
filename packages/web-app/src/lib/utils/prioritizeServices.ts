@@ -90,14 +90,20 @@ const sortServicesByRelevance = (
   category: Categories,
   allCategoriesByTheme: FlatCategoriesTreeNode[]
 ): CommonNewPlaceService[] => {
+  if (!Object.values(Categories).includes(category)) {
+    return services;
+  }
+
   return (
     // eslint-disable-next-line fp/no-mutating-methods
     services
-      .map((service, index) => ({
+      .map((service) => ({
         ...service,
-        weight:
-          index +
-          calculateAdditionalWeight(service.category as Categories, category, allCategoriesByTheme)
+        weight: calculateAdditionalWeight(
+          service.category as Categories,
+          category,
+          allCategoriesByTheme
+        )
       }))
       .sort((service1, service2) => service1.weight - service2.weight)
       .map(

@@ -58,7 +58,10 @@ export default (fetcher = fetch) => {
     });
   };
 
-  const placeDetails = ({ lang, identifier }: PlaceDetailsParams): Promise<PlaceDetails> => {
+  const placeDetails = (
+    { lang, identifier }: PlaceDetailsParams,
+    categorySearched: Categories
+  ): Promise<PlaceDetails> => {
     if (!isValidStringEnumValue(SupportedLanguagesCode, lang)) {
       throw Error(`Bad request, lang ${lang} is invalid`);
     }
@@ -69,6 +72,7 @@ export default (fetcher = fetch) => {
     // No need to map data as the backend service already does it
     return fetcher(`/api/${lang}/places/${identifier}`, {
       method: 'POST',
+      body: JSON.stringify({ categorySearched }),
       headers: posthogService.getHeaders() as unknown as Record<string, string>
     });
   };
