@@ -57,11 +57,13 @@ jobs:
   create-qovery-environment:
     name: Create Qovery environment
     runs-on: ubuntu-latest
+    environment: ${{ github.ref == 'refs/heads/develop' && 'develop' || 'pr' }}
     env:
       QOVERY_ORGANIZATION_NAME: ${{ vars.QOVERY_ORGANIZATION_NAME }}
       QOVERY_PROJECT_NAME: ${{ vars.QOVERY_PROJECT_NAME }}
       QOVERY_BLUEPRINT_ENVIRONMENT_NAME: ${{ vars.QOVERY_BLUEPRINT_ENVIRONMENT_NAME }}
-      QOVERY_NEW_ENVIRONMENT_NAME: ${{ fromJSON(needs.docker_meta.outputs.json).tags[0] }}
+      QOVERY_NEW_ENVIRONMENT_NAME: ${{ github.ref == 'refs/heads/develop' && 'demo' || fromJSON(needs.docker_meta.outputs.json).tags[0] }}
+      QOVERY_BASE_DOMAIN_NAME: ${{ github.ref == 'refs/heads/develop' && 'demo' || fromJSON(needs.docker_meta.outputs.json).tags[0] }}
       SOLIGUIDE_TAG: ${{ fromJSON(needs.docker_meta.outputs.json).tags[1] }}
       BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
     permissions:
@@ -78,6 +80,7 @@ jobs:
           echo "Project name: $QOVERY_PROJECT_NAME"
           echo "Blueprint name: $QOVERY_BLUEPRINT_ENVIRONMENT_NAME"
           echo "New environment name: $QOVERY_NEW_ENVIRONMENT_NAME"
+          echo "Base domain name: $QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
       - name: Search for the environment in Qovery
         id: check_presence
         continue-on-error: true
@@ -113,7 +116,7 @@ jobs:
             --project "$QOVERY_PROJECT_NAME" \
             --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
             --container "Posthog Proxy" \
-            --domain "ph.$QOVERY_NEW_ENVIRONMENT_NAME.soliguide.dev"
+            --domain "ph.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
 
           VALIDATION_DOMAIN=$(qovery container domain list \
             --organization "$QOVERY_ORGANIZATION_NAME" \
@@ -134,12 +137,30 @@ jobs:
           api-key: ${{ secrets.GCORE_API_KEY }}
           present: true
           zone: soliguide.dev
-          subdomain: ph.${{ env.QOVERY_NEW_ENVIRONMENT_NAME }}
+          subdomain: ph.${{ env.QOVERY_BASE_DOMAIN_NAME }}
           target: ${{ steps.ph_domain.outputs.validation_domain }}.
           type: CNAME
 
+      - name: Delete RabbitMQ
+        if: github.ref == 'refs/heads/develop'
+        env:
+          QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
+        run: |
+          if [ $(qovery container list \
+            --organization "$QOVERY_ORGANIZATION_NAME" \
+            --project "$QOVERY_PROJECT_NAME" \
+            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+            --json \
+            | jq -r '.[] | .name' | grep -e "^RabbitMQ$") ]; then
+            qovery container delete \
+              --organization "$QOVERY_ORGANIZATION_NAME" \
+              --project "$QOVERY_PROJECT_NAME" \
+              --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+              --container "RabbitMQ"
+          fi
+
       - name: Create the RabbitMQ custom domain in Qovery
-        if: steps.create_environment.outcome == 'success'
+        if: steps.create_environment.outcome == 'success' && github.ref != 'refs/heads/develop'
         id: rabbitmq_domain
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
@@ -149,7 +170,7 @@ jobs:
             --project "$QOVERY_PROJECT_NAME" \
             --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
             --container "RabbitMQ" \
-            --domain "rabbitmq.$QOVERY_NEW_ENVIRONMENT_NAME.soliguide.dev"
+            --domain "rabbitmq.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
 
           VALIDATION_DOMAIN=$(qovery container domain list \
             --organization "$QOVERY_ORGANIZATION_NAME" \
@@ -164,13 +185,13 @@ jobs:
           echo "validation_domain=$VALIDATION_DOMAIN" >> "$GITHUB_OUTPUT"
 
       - name: Create DNS record for the RabbitMQ
-        if: steps.create_environment.outcome == 'success'
+        if: steps.create_environment.outcome == 'success' && github.ref != 'refs/heads/develop'
         uses: solinumasso/gcore-dns-action@v1
         with:
           api-key: ${{ secrets.GCORE_API_KEY }}
           present: true
           zone: soliguide.dev
-          subdomain: rabbitmq.${{ env.QOVERY_NEW_ENVIRONMENT_NAME }}
+          subdomain: rabbitmq.${{ env.QOVERY_BASE_DOMAIN_NAME }}
           target: ${{ steps.rabbitmq_domain.outputs.validation_domain }}.
           type: CNAME
 
@@ -207,6 +228,18 @@ jobs:
             --container "Cron" \
             --tag "$SOLIGUIDE_TAG"
 
+      - name: Override RabbitMQ connection URL
+        if: github.ref == 'refs/heads/develop'
+        env:
+          QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
+        run: |
+          qovery environment env update \
+            --organization "$QOVERY_ORGANIZATION_NAME" \
+            --project "$QOVERY_PROJECT_NAME" \
+            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+            --key AMQP_URL \
+            --value '${{ secrets.AMQP_URL }}'
+
       - name: Create the API custom domain in Qovery
         if: steps.create_environment.outcome == 'success'
         id: api_domain
@@ -218,7 +251,7 @@ jobs:
             --project "$QOVERY_PROJECT_NAME" \
             --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
             --container "API" \
-            --domain "api.$QOVERY_NEW_ENVIRONMENT_NAME.soliguide.dev"
+            --domain "api.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
 
           VALIDATION_DOMAIN=$(qovery container domain list \
             --organization "$QOVERY_ORGANIZATION_NAME" \
@@ -239,7 +272,7 @@ jobs:
           api-key: ${{ secrets.GCORE_API_KEY }}
           present: true
           zone: soliguide.dev
-          subdomain: api.${{ env.QOVERY_NEW_ENVIRONMENT_NAME }}
+          subdomain: api.${{ env.QOVERY_BASE_DOMAIN_NAME }}
           target: ${{ steps.api_domain.outputs.validation_domain }}.
           type: CNAME
 
@@ -266,7 +299,7 @@ jobs:
             --project "$QOVERY_PROJECT_NAME" \
             --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
             --container "Location API" \
-            --domain "location-api.$QOVERY_NEW_ENVIRONMENT_NAME.soliguide.dev"
+            --domain "location-api.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
 
           VALIDATION_DOMAIN=$(qovery container domain list \
             --organization "$QOVERY_ORGANIZATION_NAME" \
@@ -287,7 +320,7 @@ jobs:
           api-key: ${{ secrets.GCORE_API_KEY }}
           present: true
           zone: soliguide.dev
-          subdomain: location-api.${{ env.QOVERY_NEW_ENVIRONMENT_NAME }}
+          subdomain: location-api.${{ env.QOVERY_BASE_DOMAIN_NAME }}
           target: ${{ steps.location-api_domain.outputs.validation_domain }}.
           type: CNAME
 
@@ -314,7 +347,7 @@ jobs:
             --project "$QOVERY_PROJECT_NAME" \
             --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
             --container "Soligare" \
-            --domain "soligare.$QOVERY_NEW_ENVIRONMENT_NAME.soliguide.dev"
+            --domain "soligare.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
 
           VALIDATION_DOMAIN=$(qovery container domain list \
             --organization "$QOVERY_ORGANIZATION_NAME" \
@@ -335,7 +368,7 @@ jobs:
           api-key: ${{ secrets.GCORE_API_KEY }}
           present: true
           zone: soliguide.dev
-          subdomain: soligare.${{ env.QOVERY_NEW_ENVIRONMENT_NAME }}
+          subdomain: soligare.${{ env.QOVERY_BASE_DOMAIN_NAME }}
           target: ${{ steps.soligare_domain.outputs.validation_domain }}.
           type: CNAME
 
@@ -362,7 +395,7 @@ jobs:
             --project "$QOVERY_PROJECT_NAME" \
             --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
             --container "Web App" \
-            --domain "app.$QOVERY_NEW_ENVIRONMENT_NAME.soliguide.dev"
+            --domain "app.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
 
           VALIDATION_DOMAIN=$(qovery container domain list \
             --organization "$QOVERY_ORGANIZATION_NAME" \
@@ -383,7 +416,7 @@ jobs:
           api-key: ${{ secrets.GCORE_API_KEY }}
           present: true
           zone: soliguide.dev
-          subdomain: app.${{ env.QOVERY_NEW_ENVIRONMENT_NAME }}
+          subdomain: app.${{ env.QOVERY_BASE_DOMAIN_NAME }}
           target: ${{ steps.web-app_domain.outputs.validation_domain }}.
           type: CNAME
 
@@ -418,14 +451,14 @@ jobs:
             --project "$QOVERY_PROJECT_NAME" \
             --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
             --container "Frontend Proxy" \
-            --domain "fr.$QOVERY_NEW_ENVIRONMENT_NAME.soliguide.dev"
+            --domain "fr.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
 
           qovery container domain create \
             --organization "$QOVERY_ORGANIZATION_NAME" \
             --project "$QOVERY_PROJECT_NAME" \
             --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
             --container "Frontend Proxy" \
-            --domain "www.fr.$QOVERY_NEW_ENVIRONMENT_NAME.soliguide.dev"
+            --domain "www.fr.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
 
           # soliguia_es
           qovery container domain create \
@@ -433,14 +466,14 @@ jobs:
             --project "$QOVERY_PROJECT_NAME" \
             --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
             --container "Frontend Proxy" \
-            --domain "es.$QOVERY_NEW_ENVIRONMENT_NAME.soliguide.dev"
+            --domain "es.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
 
           qovery container domain create \
             --organization "$QOVERY_ORGANIZATION_NAME" \
             --project "$QOVERY_PROJECT_NAME" \
             --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
             --container "Frontend Proxy" \
-            --domain "www.es.$QOVERY_NEW_ENVIRONMENT_NAME.soliguide.dev"
+            --domain "www.es.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
 
           # soliguia_ad
           qovery container domain create \
@@ -448,14 +481,14 @@ jobs:
             --project "$QOVERY_PROJECT_NAME" \
             --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
             --container "Frontend Proxy" \
-            --domain "ad.$QOVERY_NEW_ENVIRONMENT_NAME.soliguide.dev"
+            --domain "ad.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
 
           qovery container domain create \
             --organization "$QOVERY_ORGANIZATION_NAME" \
             --project "$QOVERY_PROJECT_NAME" \
             --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
             --container "Frontend Proxy" \
-            --domain "www.ad.$QOVERY_NEW_ENVIRONMENT_NAME.soliguide.dev"
+            --domain "www.ad.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
 
           VALIDATION_DOMAIN=$(qovery container domain list \
             --organization "$QOVERY_ORGANIZATION_NAME" \
@@ -476,7 +509,7 @@ jobs:
           api-key: ${{ secrets.GCORE_API_KEY }}
           present: true
           zone: soliguide.dev
-          subdomain: fr.${{ env.QOVERY_NEW_ENVIRONMENT_NAME }}
+          subdomain: fr.${{ env.QOVERY_BASE_DOMAIN_NAME }}
           target: ${{ steps.frontend_domain.outputs.validation_domain }}.
           type: CNAME
 
@@ -487,7 +520,7 @@ jobs:
           api-key: ${{ secrets.GCORE_API_KEY }}
           present: true
           zone: soliguide.dev
-          subdomain: www.fr.${{ env.QOVERY_NEW_ENVIRONMENT_NAME }}
+          subdomain: www.fr.${{ env.QOVERY_BASE_DOMAIN_NAME }}
           target: ${{ steps.frontend_domain.outputs.validation_domain }}.
           type: CNAME
 
@@ -498,7 +531,7 @@ jobs:
           api-key: ${{ secrets.GCORE_API_KEY }}
           present: true
           zone: soliguide.dev
-          subdomain: es.${{ env.QOVERY_NEW_ENVIRONMENT_NAME }}
+          subdomain: es.${{ env.QOVERY_BASE_DOMAIN_NAME }}
           target: ${{ steps.frontend_domain.outputs.validation_domain }}.
           type: CNAME
 
@@ -509,7 +542,7 @@ jobs:
           api-key: ${{ secrets.GCORE_API_KEY }}
           present: true
           zone: soliguide.dev
-          subdomain: www.es.${{ env.QOVERY_NEW_ENVIRONMENT_NAME }}
+          subdomain: www.es.${{ env.QOVERY_BASE_DOMAIN_NAME }}
           target: ${{ steps.frontend_domain.outputs.validation_domain }}.
           type: CNAME
 
@@ -520,7 +553,7 @@ jobs:
           api-key: ${{ secrets.GCORE_API_KEY }}
           present: true
           zone: soliguide.dev
-          subdomain: ad.${{ env.QOVERY_NEW_ENVIRONMENT_NAME }}
+          subdomain: ad.${{ env.QOVERY_BASE_DOMAIN_NAME }}
           target: ${{ steps.frontend_domain.outputs.validation_domain }}.
           type: CNAME
 
@@ -531,7 +564,7 @@ jobs:
           api-key: ${{ secrets.GCORE_API_KEY }}
           present: true
           zone: soliguide.dev
-          subdomain: www.ad.${{ env.QOVERY_NEW_ENVIRONMENT_NAME }}
+          subdomain: www.ad.${{ env.QOVERY_BASE_DOMAIN_NAME }}
           target: ${{ steps.frontend_domain.outputs.validation_domain }}.
           type: CNAME
 
@@ -565,7 +598,7 @@ jobs:
             --project "$QOVERY_PROJECT_NAME" \
             --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
             --container "Widget Proxy" \
-            --domain "widget.$QOVERY_NEW_ENVIRONMENT_NAME.soliguide.dev"
+            --domain "widget.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
 
           VALIDATION_DOMAIN=$(qovery container domain list \
             --organization "$QOVERY_ORGANIZATION_NAME" \
@@ -586,7 +619,7 @@ jobs:
           api-key: ${{ secrets.GCORE_API_KEY }}
           present: true
           zone: soliguide.dev
-          subdomain: widget.${{ env.QOVERY_NEW_ENVIRONMENT_NAME }}
+          subdomain: widget.${{ env.QOVERY_BASE_DOMAIN_NAME }}
           target: ${{ steps.widget_domain.outputs.validation_domain }}.
           type: CNAME
 
