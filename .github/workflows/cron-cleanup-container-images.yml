@@ -54,3 +54,35 @@ jobs:
           delete-untagged: true
           older-than: 31 days
           token: ${{ secrets.GITHUB_TOKEN }}
+
+  delete_branch_container_images:
+    name: Delete 31 days old branch container images
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    strategy:
+      matrix:
+        package:
+          - soliguide/api
+          - soliguide/base
+          - soliguide/common
+          - soliguide/common-angular
+          - soliguide/design-system
+          - soliguide/frontend
+          - soliguide/location-api
+          - soliguide/maintenance
+          - soliguide/soligare
+          - soliguide/web-app
+          - soliguide/widget
+        tags:
+          - develop-*
+          # Not yet built
+          # - main-*
+    steps:
+      - name: Delete untagged images of ${{ matrix.package }}
+        uses: dataaxiom/ghcr-cleanup-action@v1
+        with:
+          package: ${{ matrix.package }}
+          delete-tags: ${{ matrix.tags }}
+          older-than: 31 days
+          token: ${{ secrets.GITHUB_TOKEN }}

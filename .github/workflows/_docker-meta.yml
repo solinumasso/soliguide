@@ -45,38 +45,46 @@ jobs:
     runs-on: ubuntu-latest
     permissions: {}
     outputs:
-      tags: ${{ startsWith(github.ref, 'refs/pull/') && steps.meta_pr.outputs.tags || steps.meta.outputs.tags }}
-      labels: ${{ startsWith(github.ref, 'refs/pull/') && steps.meta_pr.outputs.labels || steps.meta.outputs.labels }}
-      annotations: ${{ startsWith(github.ref, 'refs/pull/') && steps.meta_pr.outputs.annotations || steps.meta.outputs.annotations }}
-      json: ${{ startsWith(github.ref, 'refs/pull/') && steps.meta_pr.outputs.json || steps.meta.outputs.json }}
+      tags: ${{ startsWith(github.ref, 'refs/tags/') && steps.meta_tags.outputs.tags || steps.meta.outputs.tags }}
+      labels: ${{ startsWith(github.ref, 'refs/tags/') && steps.meta_tags.outputs.labels || steps.meta.outputs.labels }}
+      annotations: ${{ startsWith(github.ref, 'refs/tags/') && steps.meta_tags.outputs.annotations || steps.meta.outputs.annotations }}
+      json: ${{ startsWith(github.ref, 'refs/tags/') && steps.meta_tags.outputs.json || steps.meta.outputs.json }}
     steps:
-      - id: meta
+      # For tags we simply use it, no sha needed
+      - id: meta_tags
         uses: docker/metadata-action@v5
-        if: ${{ !startsWith(github.ref, 'refs/pull/') }}
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
         with:
           images: ${{ inputs.image_name }}
+          # disbale latest, we've no need for it
+          flavor: latest=false
+          tags: type=ref,event=tag,suffix=${{ inputs.suffix }}
+      # For branches and pull_request we use both standard tag + tag with sha appended
+      - id: meta_classic
+        name: Compute general tag
+        uses: docker/metadata-action@v5
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+        with:
           # disbale latest, we've no need for it
           flavor: latest=false
           tags: |
             # No sha, latest etc.
             # branch event
-            type=ref,event=branch,suffix=${{ inputs.suffix }}
-            # tag event
-            type=ref,event=tag,suffix=${{ inputs.suffix }}
-      - id: meta_classic
-        uses: docker/metadata-action@v5
-        if: ${{ startsWith(github.ref, 'refs/pull/') }}
-        with:
-          tags: |
+            type=ref,event=branch
             # pull request event
             type=ref,event=pr
-      - id: meta_pr
+      - id: meta
+        name: Assemble general tag + tag with sha
         uses: docker/metadata-action@v5
-        if: ${{ startsWith(github.ref, 'refs/pull/') }}
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
         with:
           images: ${{ inputs.image_name }}
+          # disbale latest, we've no need for it
+          flavor: latest=false
           tags: |
             # pr-00000
             type=ref,event=pr,suffix=${{ inputs.suffix }}
-            # pr-00000-<short_sha>
+            # develop
+            type=ref,event=branch,suffix=${{ inputs.suffix }}
+            # pr-00000-<short_sha> or develop--<short_sha>
             type=sha,prefix=${{ steps.meta_classic.outputs.tags }}-,suffix=${{ inputs.suffix }}
