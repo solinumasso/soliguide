@@ -32,7 +32,7 @@ import mongoose from "mongoose";
 import { OpeningHoursSchema } from "./opening-hours.model";
 import { ModalitiesSchema } from "./modalities.model";
 import { PublicsSchema } from "./publics.model";
- import { CategorySpecificFieldsSchema } from "./category-specific-fields.model";
+import { CategorySpecificFieldsSchema } from "./category-specific-fields.model";
 import { ModelWithId } from "../../_models";
 
 export const ServiceSchema = new mongoose.Schema<
