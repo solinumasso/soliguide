@@ -415,6 +415,10 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
         id: Categories.FACE_MASKS,
         rank: 600,
       },
+      {
+        id: Categories.BARBER,
+        rank: 700,
+      },
     ],
   },
   {
