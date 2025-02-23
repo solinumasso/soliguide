@@ -1,7 +1,7 @@
 /*
  * Soliguide: Useful information for those who need it
  *
- * SPDX-FileCopyrightText: © 2024 Solinum
+ * SPDX-FileCopyrightText: © 2025 Solinum
  *
  * SPDX-License-Identifier: AGPL-3.0-only
  *
@@ -18,15 +18,12 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { ExpressRequest, Origin } from "../../src/_models";
-import { ABSTRACT_ORIGIN_REQUEST } from "./ABSTRACT_ORIGIN_REQUEST.mock";
-
-export const ORIGIN_UNDEFINED_REQUEST = {
-  ...ABSTRACT_ORIGIN_REQUEST,
-  requestInformation: {
-    ...ABSTRACT_ORIGIN_REQUEST.requestInformation,
-    ...{
-      originForLogs: Origin.ORIGIN_UNDEFINED,
-    },
-  },
-} as unknown as ExpressRequest;
+export const CONFIG_MOCK = {
+  SOLIGUIA_AD_URL: "https://soliguia.ad",
+  SOLIGUIA_ES_URL: "https://soliguia.es",
+  SOLIGUIDE_FR_URL: "https://soliguide.fr",
+  WEBAPP_FR_URL: "https://fr.demo.soliguide.fr",
+  WEBAPP_ES_URL: "https://es.demo.soliguia.es",
+  WEBAPP_CA_URL: "https://ca.demo.soliguia.ad",
+  ENV: "test",
+};

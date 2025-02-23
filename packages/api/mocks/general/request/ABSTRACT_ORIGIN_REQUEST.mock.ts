@@ -18,10 +18,24 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-// @index('./*', f => `export * from '${f.path}'`)
-export * from "./ABSTRACT_ORIGIN_REQUEST.mock";
-export * from "./ORIGIN_SOLIGUIDE_REQUEST.mock";
-export * from "./ORIGIN_UNDEFINED_REQUEST.mock";
-export * from "./ORIGIN_MOBILE_APP_REQUEST.mock";
-export * from "./ORIGIN_SOLINUM_ORG_REQUEST.mock";
-export * from "./ORIGIN_WIDGET_SOLIGUIDE_REQUEST.mock";
+import { CONFIG, ExpressRequest } from "../../../src/_models";
+import { RequestInformation } from "../../../src/middleware";
+
+const DEFAULT_REQUEST: ExpressRequest = {
+  headers: {},
+  log: {
+    warn: jest.fn(),
+    error: jest.fn(),
+    info: jest.fn(),
+  },
+  get: jest
+    .fn()
+    .mockImplementation((name) =>
+      name === "origin" ? CONFIG.SOLIGUIDE_FR_URL : null
+    ),
+} as unknown as ExpressRequest;
+
+export const ABSTRACT_ORIGIN_REQUEST = {
+  ...DEFAULT_REQUEST,
+  requestInformation: new RequestInformation(DEFAULT_REQUEST),
+} as unknown as ExpressRequest;

@@ -19,8 +19,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 // @index('./*', f => `export * from '${f.path}'`)
-export * from "./cleanUrl.service";
-export * from "./getThemeFromOrigin.service";
-export * from "./handleLanguageByTheme.service";
-export * from "./handleOrigin.service";
-export * from "./handleReferer.service";
+export * from "./FRONT_URLS.const";
+export * from "./SOLIGUIDE_HOSTNAME_REGEXP.const";
+export * from "./THEMES_MAPPING.const";

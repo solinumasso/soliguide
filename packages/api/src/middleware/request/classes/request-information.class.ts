@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { ExpressRequest, Origin } from "../../../_models";
+import { ExpressRequest, FRONT_URLS_MAPPINGS, Origin } from "../../../_models";
 import {
   SupportedLanguagesCode,
   type CategoriesService,
@@ -46,9 +46,12 @@ export class RequestInformation {
   constructor(req: ExpressRequest) {
     this.referer = handleReferer(req);
     this.origin = handleOrigin(req);
-    this.frontendUrl = this.origin ? `${this.origin}/` : "";
     this.originForLogs = handleOriginForLogs(req, this.origin);
     this.theme = getThemeFromOrigin(this.origin);
+
+    this.frontendUrl = this.theme
+      ? `${FRONT_URLS_MAPPINGS[this.theme]}/`
+      : `${FRONT_URLS_MAPPINGS[Themes.SOLIGUIDE_FR]}/`; // Fallback for urls that are not in the mappings
     this.categoryService = getServiceCategoriesApi(this.theme);
     this.language = handleLanguageByTheme(this.theme);
   }

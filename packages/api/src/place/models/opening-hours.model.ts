@@ -25,7 +25,7 @@ import {
 } from "@soliguide/common";
 import mongoose from "mongoose";
 import { DayOpeningHoursSchema } from "./day-opening-hours";
-import { ModelWithId } from "../../_models/general/ModelWithId.type";
+import { ModelWithId } from "../../_models/mongo";
 
 export const OpeningHoursSchema = new mongoose.Schema<
   ModelWithId<CommonOpeningHours>
