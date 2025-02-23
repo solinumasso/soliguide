@@ -19,10 +19,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { NextFunction } from "express";
-import { CONFIG, ExpressRequest, ExpressResponse, Origin } from "../../_models";
+import { ExpressRequest, ExpressResponse, Origin } from "../../_models";
 
 import { RequestInformation } from "./classes/request-information.class";
-import { isValidOrigin } from "./services";
+
 import { captureException } from "@sentry/node";
 
 export const handleRequest = (
@@ -32,11 +32,7 @@ export const handleRequest = (
 ) => {
   req.requestInformation = new RequestInformation(req);
 
-  if (
-    !req.requestInformation?.origin &&
-    !isValidOrigin(req) &&
-    req.requestInformation.referer !== CONFIG.FRONT_URL
-  ) {
+  if (!req.requestInformation?.origin) {
     const message = {
       CONTENT: Origin.ORIGIN_UNDEFINED,
       REQUEST_BODY: req.body,

@@ -30,7 +30,7 @@ import type {
   PlaceChangesPopulate,
   PlaceChanges,
 } from "../../place-changes/interfaces/PlaceChanges.interface";
-import type { ModelWithId } from "../general";
+import type { ModelWithId } from "../mongo";
 import { RequestInformation } from "../../middleware";
 
 export interface ExpressRequest extends Request {

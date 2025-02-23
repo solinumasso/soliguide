@@ -36,7 +36,7 @@ import type {
   UserRight,
   UserRightOrganizationPopulate,
 } from "../types";
-import { ModelWithId } from "../../general";
+import { ModelWithId } from "../../mongo";
 import { OrganizationPopulate } from "../../organization";
 import { Origin } from "../enums";
 

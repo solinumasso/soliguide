@@ -75,10 +75,6 @@ export const ENV_SCHEMA: JSONSchemaType<Config> = {
       type: "number",
       default: 3001,
     },
-    FRONT_URL: {
-      type: "string",
-      default: "http://localhost:4200/",
-    },
     WEBAPP_FR_URL: {
       type: "string",
       default: "http://localhost:5173/",
@@ -87,13 +83,25 @@ export const ENV_SCHEMA: JSONSchemaType<Config> = {
       type: "string",
       default: "http://localhost:5173/",
     },
-    WEBAPP_CA_URL: {
+    WEBAPP_AD_URL: {
       type: "string",
       default: "http://localhost:5173/",
     },
     WIDGET_URL: {
       type: "string",
       default: "http://localhost:4201/",
+    },
+    SOLIGUIA_AD_URL: {
+      type: "string",
+      default: "http://localhost:4220/",
+    },
+    SOLIGUIA_ES_URL: {
+      type: "string",
+      default: "http://localhost:4210/",
+    },
+    SOLIGUIDE_FR_URL: {
+      type: "string",
+      default: "http://localhost:4200/",
     },
     SOLIGUIDE_LOCATION_API_URL: {
       type: "string",
@@ -103,18 +111,7 @@ export const ENV_SCHEMA: JSONSchemaType<Config> = {
       type: "string",
       default: "http://localhost:3003/",
     },
-    SOLIGUIA_AD_DOMAIN_NAME: {
-      type: "string",
-      default: "http://localhost:4220/",
-    },
-    SOLIGUIA_ES_DOMAIN_NAME: {
-      type: "string",
-      default: "http://localhost:4210/",
-    },
-    SOLIGUIDE_FR_DOMAIN_NAME: {
-      type: "string",
-      default: "http://localhost:4200/",
-    },
+
     JWT_SECRET: {
       type: "string",
     },

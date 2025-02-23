@@ -19,22 +19,29 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { Themes } from "@soliguide/common";
-import { CONFIG } from "../../../_models";
-
-const THEME_MAPPINGS = {
-  [CONFIG.SOLIGUIA_AD_DOMAIN_NAME]: Themes.SOLIGUIA_AD,
-  [CONFIG.SOLIGUIA_ES_DOMAIN_NAME]: Themes.SOLIGUIA_ES,
-  [CONFIG.SOLIGUIDE_FR_DOMAIN_NAME]: Themes.SOLIGUIDE_FR,
-} as const;
+import { THEME_MAPPINGS } from "../../../_models";
+import { cleanUrl } from "./cleanUrl.service";
 
 export const getThemeFromOrigin = (origin: string | null): Themes | null => {
   if (!origin) {
     return null;
   }
-  const cleanOrigin = origin.replace(/^https?:\/\//, "").replace(/\/$/, "");
-  const domain = Object.keys(THEME_MAPPINGS).find((domain) =>
-    cleanOrigin.includes(domain)
-  );
 
-  return domain ? THEME_MAPPINGS[domain] : null;
+  try {
+    const cleanedOrigin = cleanUrl(origin);
+    if (!cleanedOrigin) {
+      return null;
+    }
+
+    const hostname = new URL(cleanedOrigin).hostname;
+    for (const [url, theme] of Object.entries(THEME_MAPPINGS)) {
+      if (new URL(url).hostname === hostname) {
+        return theme;
+      }
+    }
+
+    return null;
+  } catch {
+    return null;
+  }
 };

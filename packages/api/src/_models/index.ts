@@ -23,7 +23,7 @@ export * from "./airtable";
 export * from "./campaign";
 export * from "./config";
 export * from "./express";
-export * from "./general";
+export * from "./mongo";
 export * from "./emailing";
 export * from "./organization";
 export * from "./place";

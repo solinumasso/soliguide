@@ -20,7 +20,7 @@
  */
 import mongoose from "mongoose";
 import { locationAreasSchema } from "./location-areas.model";
-import { SubSchemaId } from "../../../_models/general/SubSchemaId.type";
+import { SubSchemaId } from "../../../_models/mongo/types";
 import { GeoPosition } from "@soliguide/common";
 
 export const LocationLightSchema = new mongoose.Schema<

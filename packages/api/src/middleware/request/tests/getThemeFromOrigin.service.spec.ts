@@ -18,56 +18,25 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { CONFIG } from "../../../_models";
+import { CONFIG } from "../../../_models/config/constants/CONFIG.const";
 import { Themes } from "@soliguide/common";
 import { getThemeFromOrigin } from "../services/getThemeFromOrigin.service";
 
-jest.mock("../../../_models", () => {
-  return {
-    CONFIG: {
-      SOLIGUIA_AD_DOMAIN_NAME: "soliguia.ad",
-      SOLIGUIA_ES_DOMAIN_NAME: "soliguia.es",
-      SOLIGUIDE_FR_DOMAIN_NAME: "soliguide.fr",
-    },
-  };
-});
-
 describe("getThemeFromOrigin", () => {
-  const originalImplementation = jest.requireActual("../../../_models");
-
-  beforeEach(() => {
-    jest.resetModules();
-    jest.mock("../../../_models", () => ({
-      CONFIG: {
-        SOLIGUIA_AD_DOMAIN_NAME: "custom.ad",
-        SOLIGUIA_ES_DOMAIN_NAME: "custom.es",
-        SOLIGUIDE_FR_DOMAIN_NAME: "app.soliguide.fr",
-      },
-    }));
+  it.each([
+    [CONFIG.SOLIGUIA_AD_URL, Themes.SOLIGUIA_AD],
+    [CONFIG.SOLIGUIA_ES_URL, Themes.SOLIGUIA_ES],
+    [CONFIG.SOLIGUIDE_FR_URL, Themes.SOLIGUIDE_FR],
+  ])("should set correct theme for frontend url %s", (url, expectedTheme) => {
+    expect(getThemeFromOrigin(url)).toEqual(expectedTheme);
   });
 
-  afterEach(() => {
-    // Restaurer l'implémentation originale
-    jest.resetModules();
-    jest.mock("../../../_models", () => originalImplementation);
-  });
-
-  it("should set theme to SOLIGUIA_AD when origin is SOLIGUIA_AD domain", () => {
-    expect(getThemeFromOrigin("https://soliguia.ad")).toEqual(
-      Themes.SOLIGUIA_AD
-    );
-  });
-
-  it("should set theme to SOLIGUIA_ES when origin is SOLIGUIA_ES domain", () => {
-    expect(getThemeFromOrigin("https://soliguia.es")).toEqual(
-      Themes.SOLIGUIA_ES
-    );
-  });
-
-  it("should set theme to SOLIGUIDE_FR when origin is SOLIGUIDE_FR domain", () => {
-    expect(getThemeFromOrigin("https://soliguide.fr")).toEqual(
-      Themes.SOLIGUIDE_FR
-    );
+  it.each([
+    [CONFIG.WEBAPP_AD_URL, Themes.SOLIGUIA_AD],
+    [CONFIG.WEBAPP_ES_URL, Themes.SOLIGUIA_ES],
+    [CONFIG.WEBAPP_FR_URL, Themes.SOLIGUIDE_FR],
+  ])("should set correct theme for webapp url %s", (url, expectedTheme) => {
+    expect(getThemeFromOrigin(url)).toEqual(expectedTheme);
   });
 
   it("should set theme to SOLIGUIDE_FR when origin is app.soliguide.fr", () => {
@@ -78,10 +47,10 @@ describe("getThemeFromOrigin", () => {
     ).toEqual(Themes.SOLIGUIDE_FR);
   });
 
-  it("should set theme to SOLIGUIDE_FR when origin is SOLIGUIDE_FR domain", () => {
-    expect(
-      getThemeFromOrigin(`https://${CONFIG.SOLIGUIDE_FR_DOMAIN_NAME}`)
-    ).toEqual(Themes.SOLIGUIDE_FR);
+  it("should set theme to SOLIGUIDE_FR when origin is SOLIGUIDE_FR domain (double https)", () => {
+    expect(getThemeFromOrigin(`https://${CONFIG.SOLIGUIDE_FR_URL}`)).toEqual(
+      Themes.SOLIGUIDE_FR
+    );
   });
 
   it("should set theme to null when origin is not a known domain", () => {
