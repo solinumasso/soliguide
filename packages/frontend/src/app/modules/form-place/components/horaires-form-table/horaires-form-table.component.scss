@@ -58,37 +58,41 @@ input[type="time"].is-invalid {
 
 .hours-form {
   vertical-align: middle;
-}
 
-.hours-form td,
-.hours-form tr {
-  vertical-align: middle;
-  border: none;
-}
+  th > div,
+  td > div {
+    background-color: transparent;
+  }
+  td,
+  tr {
+    vertical-align: middle;
+    border: none;
+  }
 
-.hours-form .spacer {
-  min-height: 50px;
-}
+  tr:nth-child(odd) th,
+  tr:nth-child(odd) td {
+    background-color: #f2f5f9;
+  }
 
-.hours-form tr:nth-child(odd) th,
-.hours-form tr:nth-child(odd) td {
-  background-color: #f2f5f9;
-}
+  tr th {
+    width: 100px;
+  }
 
-.hours-form tr th {
-  width: 100px;
-}
+  tr td:nth-child(2) {
+    width: 40px;
+  }
 
-.hours-form tr td:nth-child(2) {
-  width: 40px;
-}
+  tr:nth-child(odd) td:first-child {
+    border-radius: 5px 5px;
+  }
 
-.hours-form tr:nth-child(odd) td:first-child {
-  border-radius: 5px 5px;
-}
+  tr:nth-child(odd) td:last-child {
+    border-radius: 5px 5px;
+  }
 
-.hours-form tr:nth-child(odd) td:last-child {
-  border-radius: 5px 5px;
+  .spacer {
+    min-height: 50px;
+  }
 }
 
 .input-hours {

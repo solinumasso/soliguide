@@ -46,7 +46,7 @@ import { THEME_CONFIGURATION } from "../../../../models";
 
 @Component({
   selector: "app-home",
-  styleUrls: ["./home.component.css"],
+  styleUrls: ["./home.component.scss"],
   templateUrl: "./home.component.html",
   animations: [smoothCollapse],
 })

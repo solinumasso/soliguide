@@ -230,7 +230,7 @@ export class Place implements Partial<ApiPlace> {
 
       this.languages = place?.languages?.length
         ? place.languages
-        : [THEME_CONFIGURATION.defaultLanguage];
+        : [...THEME_CONFIGURATION.suggestedLanguages];
 
       if (place?.distance) {
         this.distance = place.distance;

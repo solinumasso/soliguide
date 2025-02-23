@@ -20,10 +20,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <!-- Page centrale de la homepage -->
 
-<div id="home_search">
+<div
+  id="home_search"
+  [class]="'home_search_background_' + THEME_CONFIGURATION.country"
+>
   <img
     src="../../../assets/images/homepage/pictos.svg"
-    id="homeImg"
+    id="home_img"
     alt="services pictogram"
   />
   <div class="my-2 text-center">

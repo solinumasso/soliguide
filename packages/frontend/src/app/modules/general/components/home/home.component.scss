@@ -18,6 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 #home_title {
   display: block;
   padding: 0;
@@ -29,7 +30,7 @@
   color: #fff;
 }
 
-#homeImg {
+#home_img {
   max-width: 65%;
   height: auto;
   width: 270px;
@@ -52,8 +53,21 @@
   width: 100%;
   padding-top: 40px;
   text-align: center;
-  background: linear-gradient(rgba(62, 58, 113, 0.75), rgba(62, 58, 113, 0.95)),
-    url("/assets/images/fond.jpg");
+}
+
+// See SoliguideCountries for supported countries
+$countries: "es", "fr", "ad";
+
+@each $country in $countries {
+  .home_search_background_#{$country} {
+    background: linear-gradient(
+        rgba(62, 58, 113, 0.75),
+        rgba(62, 58, 113, 0.95)
+      ),
+      url("/assets/images/homepage/background-home-search-#{$country}.jpg");
+    background-size: cover;
+    width: 100%;
+  }
 }
 
 #home_search_buttons_cont {
@@ -69,6 +83,7 @@
   max-width: 800px;
   margin: 0 auto;
 }
+
 #home_search_buttons::after {
   clear: both;
   content: "";
@@ -82,6 +97,44 @@
   box-shadow: 0 1px 10px 4px rgba(80, 80, 80, 0.12);
   z-index: 1000;
   background-color: #f6f6f6 !important;
+
+  .active button {
+    color: white;
+    background-color: #e65a46 !important;
+  }
+
+  button:hover {
+    text-decoration: none;
+    color: #e65a46;
+    background-color: white !important;
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    min-height: 110px;
+    outline: none;
+    border: none;
+    padding: 14px 3px;
+    transition: all 0.2s;
+    cursor: pointer;
+    border-radius: 6px;
+    color: #3e3a71;
+    background-color: #fcfcfc !important;
+  }
+
+  .category-icon {
+    font-size: 3.2rem;
+    margin: 0;
+  }
+
+  span {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.95rem;
+    line-height: 120%;
+    text-align: center;
+  }
 }
 
 .zone {
@@ -95,45 +148,6 @@
   margin-top: 4px;
   margin-left: 30px;
 }
-
-#home_search_buttons .active button {
-  color: white;
-  background-color: #e65a46 !important;
-}
-
-#home_search_buttons button:hover {
-  text-decoration: none;
-  color: #e65a46;
-  background-color: white !important;
-}
-
-#home_search_buttons button {
-  display: block;
-  width: 100%;
-  min-height: 110px;
-  outline: none;
-  border: none;
-  padding: 14px 3px;
-  transition: all 0.2s;
-  cursor: pointer;
-  border-radius: 6px;
-  color: #3e3a71;
-  background-color: #fcfcfc !important;
-}
-
-#home_search_buttons .category-icon {
-  font-size: 3.2rem;
-  margin: 0;
-}
-
-#home_search_buttons span {
-  display: block;
-  margin-top: 4px;
-  font-size: 0.95rem;
-  line-height: 120%;
-  text-align: center;
-}
-
 .home-shadow {
   box-shadow: 0 2px 10px 1px rgba(100, 100, 100, 0.15);
 }
@@ -144,33 +158,37 @@
   margin: 0 10px;
   display: inline-block;
 }
+.home_section {
+  h5,
+  ul li {
+    padding: 6px 5px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
 
-.home_section h5,
-.home_section ul li {
-  padding: 6px 5px;
-  border-radius: 3px;
-  cursor: pointer;
-}
+  h5 {
+    font-weight: bold;
+  }
 
-.home_section h5 {
-  font-weight: bold;
-}
+  h5:hover,
+  ul li:hover,
+  .active {
+    transition: all 0.1s;
+    color: white;
+    background-color: var(--bs-secondary);
+  }
 
-.home_section h5:hover,
-.home_section ul li:hover,
-.home_section .active {
-  transition: all 0.1s;
-  color: white;
-  background-color: var(--bs-secondary);
-}
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 
-.home_section ul li .category-icon {
-  margin-right: 4px;
-}
-.home_section ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+    li {
+      .category-icon {
+        margin-right: 4px;
+      }
+    }
+  }
 }
 
 #all-cat-icon {

@@ -34,6 +34,7 @@ export interface ThemeConfiguration {
   country: SoliguideCountries;
   defaultCoordinates: readonly number[];
   defaultLanguage: SupportedLanguagesCode;
+  suggestedLanguages: readonly SupportedLanguagesCode[];
   mobileApp?: {
     androidLink: string;
     appleLink: string;
