@@ -50,6 +50,7 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
     country: CountryCodes.FR,
     defaultCoordinates: [2.289949112, 48.85846184], // Paris
     defaultLanguage: SupportedLanguagesCode.FR,
+    suggestedLanguages: [SupportedLanguagesCode.FR],
     mobileApp: {
       androidLink:
         "https://play.google.com/store/apps/details?id=com.soliguide.soliguide&hl=fr",
@@ -96,8 +97,9 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
       sponsor: "poctefa.webp",
     },
     country: CountryCodes.ES,
-    defaultCoordinates: [5.0508246, 44.8687011], // Barcelona
+    defaultCoordinates: [2.176866769, 41.382625579], // Barcelona
     defaultLanguage: SupportedLanguagesCode.CA,
+    suggestedLanguages: [SupportedLanguagesCode.CA, SupportedLanguagesCode.ES],
     helpEnabled: false,
     becomeVolunteerEnabled: false,
     contactFormEnabled: false,
@@ -117,6 +119,11 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
     country: CountryCodes.AD,
     defaultCoordinates: [1.582188, 42.535812], // Andorra
     defaultLanguage: SupportedLanguagesCode.CA,
+    suggestedLanguages: [
+      SupportedLanguagesCode.CA,
+      SupportedLanguagesCode.ES,
+      SupportedLanguagesCode.FR,
+    ],
     helpEnabled: false,
     becomeVolunteerEnabled: false,
     contactFormEnabled: false,

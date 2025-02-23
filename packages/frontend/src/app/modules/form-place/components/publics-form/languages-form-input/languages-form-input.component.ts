@@ -66,7 +66,6 @@ export class LanguagesFormInputComponent implements OnInit, OnDestroy {
         this.languagesArray = this.inputLanguagesService.getLanguagesArray();
       })
     );
-
     this.languagesArray = this.inputLanguagesService.getLanguagesArray();
   }
 
@@ -98,6 +97,7 @@ export class LanguagesFormInputComponent implements OnInit, OnDestroy {
       this.cdr.detectChanges();
     }
   }
+
   public searchLanguage = (
     text$: Observable<string>
   ): Observable<LanguagesArray[]> => {

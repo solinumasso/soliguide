@@ -35,7 +35,7 @@ import { OpeningHours } from "../../../../models";
 @Component({
   selector: "app-form-table-horaires",
   templateUrl: "./horaires-form-table.component.html",
-  styleUrls: ["./horaires-form-table.component.css"],
+  styleUrls: ["./horaires-form-table.component.scss"],
 })
 export class HorairesFormTableComponent {
   @Input() public hours!: OpeningHours;

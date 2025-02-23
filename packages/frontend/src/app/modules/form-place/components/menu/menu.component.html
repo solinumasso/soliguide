@@ -324,7 +324,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   </a>
 </div>
 
-<ng-container *ngIf="currentUserSubject$ | async as me">
+<ng-container *ngIf="isChatEnabled && currentUserSubject$ | async as me">
   <div *ngIf="me?.status !== 'ADMIN_SOLIGUIDE'" id="contact-menu" class="mt-4">
     <div class="row">
       <div class="col-4 m-0 ps-0">
@@ -337,7 +337,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <div class="my-2">
           {{ "TEAM_HERE_TO_HELP" | translate }}
         </div>
-        <div *ngIf="isChatEnabled">
+        <div>
           <button (click)="openChat()" class="btn btn-primary" type="button">
             {{ "CONTACT_US" | translate }} !
           </button>

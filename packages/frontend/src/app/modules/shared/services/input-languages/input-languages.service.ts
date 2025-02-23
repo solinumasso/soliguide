@@ -66,7 +66,7 @@ export class InputLanguagesService {
 
     return this.languagesArray;
   }
-  // Méthode utilitaire pour normaliser les chaînes
+
   private normalizeString(str: string): string {
     return str
       .toLowerCase()
@@ -76,7 +76,6 @@ export class InputLanguagesService {
   }
 
   public searchLanguage(term: string): LanguagesArray[] {
-    // Retourner un tableau vide si le terme est vide ou uniquement des espaces
     if (!term?.trim()) {
       return [];
     }
