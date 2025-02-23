@@ -1,7 +1,7 @@
 /*
  * Soliguide: Useful information for those who need it
  *
- * SPDX-FileCopyrightText: © 2024 Solinum
+ * SPDX-FileCopyrightText: © 2025 Solinum
  *
  * SPDX-License-Identifier: AGPL-3.0-only
  *
@@ -18,24 +18,18 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { CONFIG, ExpressRequest } from "../../src/_models";
-import { RequestInformation } from "../../src/middleware";
+import { CONFIG } from "../CONFIG.const";
 
-const DEFAULT_REQUEST: ExpressRequest = {
-  headers: {},
-  log: {
-    warn: jest.fn(),
-    error: jest.fn(),
-    info: jest.fn(),
-  },
-  get: jest
-    .fn()
-    .mockImplementation((name) =>
-      name === "origin" ? CONFIG.SOLIGUIDE_FR_DOMAIN_NAME : null
-    ),
-} as unknown as ExpressRequest;
+export const FRONT_URLS = [
+  CONFIG.SOLIGUIA_AD_URL,
+  CONFIG.SOLIGUIA_ES_URL,
+  CONFIG.SOLIGUIDE_FR_URL,
+];
 
-export const ABSTRACT_ORIGIN_REQUEST = {
-  ...DEFAULT_REQUEST,
-  requestInformation: new RequestInformation(DEFAULT_REQUEST),
-} as unknown as ExpressRequest;
+export const WEBAPP_URLS = [
+  CONFIG.WEBAPP_FR_URL,
+  CONFIG.WEBAPP_ES_URL,
+  CONFIG.WEBAPP_AD_URL,
+];
+
+export const SOLIGUIDE_URLS = [...FRONT_URLS, ...WEBAPP_URLS];

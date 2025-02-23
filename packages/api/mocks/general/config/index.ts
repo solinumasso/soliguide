@@ -19,6 +19,4 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 // @index('./*', f => `export * from '${f.path}'`)
-export * from "./ModelWithId.type";
-export * from "./SOLIGUIDE_HOSTNAME_REGEXP.const";
-export * from "./SubSchemaId.type";
+export * from './CONFIG.mock'

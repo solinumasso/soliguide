@@ -21,7 +21,7 @@
 import type { ApiOrganization, CommonInvitation } from "@soliguide/common";
 import mongoose from "mongoose";
 import type { User } from "./User.interface";
-import type { ModelWithId } from "../../general";
+import type { ModelWithId } from "../../mongo";
 
 export interface Invitation extends Omit<CommonInvitation, "createdBy"> {
   _id: mongoose.Types.ObjectId;

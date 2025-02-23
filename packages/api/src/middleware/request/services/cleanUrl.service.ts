@@ -1,7 +1,7 @@
 /*
  * Soliguide: Useful information for those who need it
  *
- * SPDX-FileCopyrightText: © 2024 Solinum
+ * SPDX-FileCopyrightText: © 2025 Solinum
  *
  * SPDX-License-Identifier: AGPL-3.0-only
  *
@@ -18,9 +18,23 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-// @index('./*', f => `export * from '${f.path}'`)
-export * from "./cleanUrl.service";
-export * from "./getThemeFromOrigin.service";
-export * from "./handleLanguageByTheme.service";
-export * from "./handleOrigin.service";
-export * from "./handleReferer.service";
+export const cleanUrl = (url?: string): string => {
+  if (!url) {
+    return "";
+  }
+
+  let cleanedUrl = url.trim();
+
+  cleanedUrl = cleanedUrl.replace(/^https?:\/\/(https?:\/\/)/, "$1");
+
+  if (cleanedUrl.startsWith("http://")) {
+    cleanedUrl = cleanedUrl.replace("http://", "https://");
+  } else if (!cleanedUrl.startsWith("https://")) {
+    cleanedUrl = `https://${cleanedUrl}`;
+  }
+
+  return cleanedUrl
+    .replace(/\/+$/, "")
+    .replace(/(https:\/\/)\/+/g, "$1")
+    .replace(/\s+/g, "");
+};

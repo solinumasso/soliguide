@@ -18,9 +18,20 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-// @index('./*', f => `export * from '${f.path}'`)
-export * from "./cleanUrl.service";
-export * from "./getThemeFromOrigin.service";
-export * from "./handleLanguageByTheme.service";
-export * from "./handleOrigin.service";
-export * from "./handleReferer.service";
+import { ExpressRequest, Origin } from "../../../src/_models";
+import { ABSTRACT_ORIGIN_REQUEST } from "./ABSTRACT_ORIGIN_REQUEST.mock";
+
+export const ORIGIN_SOLINUM_ORG_REQUEST = {
+  ...ABSTRACT_ORIGIN_REQUEST,
+  get: jest
+    .fn()
+    .mockImplementation((name) =>
+      name === "origin" ? "https://solinum.org" : null
+    ),
+  requestInformation: {
+    ...ABSTRACT_ORIGIN_REQUEST.requestInformation,
+    ...{
+      originForLogs: Origin.SOLINUM_ORG,
+    },
+  },
+} as unknown as ExpressRequest;

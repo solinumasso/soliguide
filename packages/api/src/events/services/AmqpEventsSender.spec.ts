@@ -45,7 +45,7 @@ describe("Test AmqpEventsSender", () => {
         {
           ...INVITATION,
         } as unknown as InvitationPopulate,
-        CONFIG.FRONT_URL,
+        CONFIG.SOLIGUIDE_FR_URL,
         Themes.SOLIGUIDE_FR
       )
     );

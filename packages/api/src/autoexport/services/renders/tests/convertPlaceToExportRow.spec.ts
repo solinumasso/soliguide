@@ -52,7 +52,7 @@ beforeAll(() => {
 
 describe("convertPlaceToExportRow ", () => {
   const place = structuredClone(ONLINE_PLACE);
-  const frontUrl = CONFIG.FRONT_URL;
+  const frontUrl = CONFIG.SOLIGUIDE_FR_URL;
 
   const searchData: ExportSearchParams = {
     options: { sortBy: "createdAt", sortValue: "-1" },
