@@ -180,7 +180,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     {#if $pageStore.currentStep === Steps.STEP_CATEGORY}
       <CategorySuggestionList
         items={$pageStore.categorySuggestions}
-        on:click={(event) => selectCategory(event.detail)}
+        on:click={(event) => {
+          selectCategory(event.detail);
+          pageStore.captureEvent('category-suggestion-click', {
+            category: event.detail
+          });
+        }}
         loading={$pageStore.loadingCategorySuggestions}
       />
     {/if}
