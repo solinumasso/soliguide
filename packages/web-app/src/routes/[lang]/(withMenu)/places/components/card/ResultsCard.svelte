@@ -56,9 +56,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   /**
    * Redirect user to place he clicked on
    */
-  const gotoPlace = (seoUrl: string) => {
+  const gotoPlace = (seoUrl: string, categorySearched: string) => {
     captureEvent('card-info-click', { placeId: place.id });
-    goto(`${$routes.ROUTE_PLACES}/${seoUrl}`);
+    goto(`${$routes.ROUTE_PLACES}/${seoUrl}?categorySearched=${categorySearched}`);
   };
 
   const isDisabled = place.banners.orientation;
@@ -142,7 +142,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       />
       <Button
         role="link"
-        on:click={() => gotoPlace(place.seoUrl)}
+        on:click={() => gotoPlace(place.seoUrl, category)}
         size="small"
         type="primaryGradientFill"
         >{$i18n.t('PLUS_INFOS')}
