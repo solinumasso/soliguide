@@ -31,17 +31,23 @@ import { generateApiUserRestriction } from "../utils/query/generate-api-user-res
  * @param     {RootQuerySelector<ApiPlace>}   params NoSQL query
  */
 export const countPlacesWithLocationParams = async (
-  params: RootQuerySelector<ApiPlace>
+  params: RootQuerySelector<ApiPlace>,
+  user: UserPopulateType
 ) => {
   const geoNearStage = params.$geoNear ? [{ $geoNear: params.$geoNear }] : [];
   const matchOrganizations = params.organizations
     ? [{ $match: { organizations: params.organizations } }]
     : [];
 
-  const $match = structuredClone(params);
+  let $match = structuredClone(params);
 
   delete $match.$geoNear;
   delete $match.organizations;
+
+  // 13. Restrict data for API USER
+  if (user.status === UserStatus.API_USER) {
+    $match = generateApiUserRestriction($match, user);
+  }
 
   const pipeline = [
     ...geoNearStage,
@@ -190,9 +196,7 @@ export const apiSearchPlacesWithParams = async (
   delete $match["$geoNear"];
 
   // 13. Restrict data for API USER
-  if (user.status === UserStatus.API_USER) {
-    $match = generateApiUserRestriction($match, user);
-  }
+  $match = generateApiUserRestriction($match, user);
 
   const $project: RootQuerySelector<ApiPlace> = {};
 
