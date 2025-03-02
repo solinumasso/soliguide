@@ -1,3 +1,30 @@
+# [4.79.0](https://github.com/solinumasso/soliguide/compare/v4.78.1...v4.79.0) (2025-03-02)
+
+
+### Bug Fixes
+
+* add missing tracking for suggested category [#26](https://github.com/solinumasso/soliguide/issues/26) ([5253cdd](https://github.com/solinumasso/soliguide/commit/5253cddc485ad0eac42347c2ed55dae967955abf))
+* **api:** add romanian for France  [#55](https://github.com/solinumasso/soliguide/issues/55) ([2416a53](https://github.com/solinumasso/soliguide/commit/2416a539eea03aa9a078f5bed434703fbafe673d))
+* **common:** :globe_with_meridians: rename french classes in spanish and catalan ([ee7d9cf](https://github.com/solinumasso/soliguide/commit/ee7d9cf54dfb43ce87bbb5cb08142377a1889555))
+* correct tracking for category [#26](https://github.com/solinumasso/soliguide/issues/26) ([ac815bd](https://github.com/solinumasso/soliguide/commit/ac815bdc79237cdbd4a6380f18041e2162023f8b))
+* **frontend:** fix background images [#224](https://github.com/solinumasso/soliguide/issues/224) ([26f4ead](https://github.com/solinumasso/soliguide/commit/26f4eadd5ed56aad4917ac39831a14db76644285))
+* **web-app:** fix tracking removed from ts migration [#26](https://github.com/solinumasso/soliguide/issues/26) ([e35dd31](https://github.com/solinumasso/soliguide/commit/e35dd314e00fad19f6da9f1ddbd5f1c326879438))
+* **web-app:** remove = in localflorist icon [#310](https://github.com/solinumasso/soliguide/issues/310) ([61242b4](https://github.com/solinumasso/soliguide/commit/61242b433237408182ae7fd7755851668b7cbfbe))
+
+
+### Features
+
+* add  tracking to places [#26](https://github.com/solinumasso/soliguide/issues/26) ([e3cc905](https://github.com/solinumasso/soliguide/commit/e3cc9057683c657cdf2485bab2de7332338f29e3))
+* add change language button to menu [#76](https://github.com/solinumasso/soliguide/issues/76) ([4432f6d](https://github.com/solinumasso/soliguide/commit/4432f6dee64fff4b3bac26be3e2651674ced2636))
+* remove possibility to delete place from orga when not admin [#84](https://github.com/solinumasso/soliguide/issues/84) ([6f7706e](https://github.com/solinumasso/soliguide/commit/6f7706e426aff8294deebfe7c0e38dffb37f24c1))
+* **soligare:** :sparkles: delete pair route [#48](https://github.com/solinumasso/soliguide/issues/48) ([edd43cf](https://github.com/solinumasso/soliguide/commit/edd43cf49aaf884776d37a622e4bad2e87c0d74d))
+* **web-app:** add category in more infos button link [#59](https://github.com/solinumasso/soliguide/issues/59) ([3069bd8](https://github.com/solinumasso/soliguide/commit/3069bd89f300d943ee84e9ff900d0f843fc2b678))
+* **web-app:** convert web-app to TS [#79](https://github.com/solinumasso/soliguide/issues/79) ([781b13c](https://github.com/solinumasso/soliguide/commit/781b13c64e36b8aa4e0826cabe3ff5a43cf8996b))
+* **web-app:** display source on place details [#67](https://github.com/solinumasso/soliguide/issues/67) ([fed9967](https://github.com/solinumasso/soliguide/commit/fed996717964ee24995b1e77c787dc1113ce002c))
+* **web-app:** display source on search card [#65](https://github.com/solinumasso/soliguide/issues/65) ([fb2a029](https://github.com/solinumasso/soliguide/commit/fb2a029d254bf161dabb081ed69d6a07cc9c08d1))
+* **web-app:** prioritize services in place details [#59](https://github.com/solinumasso/soliguide/issues/59) ([f857200](https://github.com/solinumasso/soliguide/commit/f857200b789ae89e4fbca300ca4210fbfcecd582))
+* **web-app:** sort services according to search [#51](https://github.com/solinumasso/soliguide/issues/51) ([3464c75](https://github.com/solinumasso/soliguide/commit/3464c75fa624c97a367d45892e086a37f096364c))
+
 ## [4.78.1](https://github.com/solinumasso/soliguide/compare/v4.78.0...v4.78.1) (2025-01-31)
 
 
