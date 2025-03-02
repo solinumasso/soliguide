@@ -60,7 +60,7 @@ export const convertPlaceToExportRow = (
     hours: parseHours(place.newhours, language),
     latitude: parseString(place.position?.location.coordinates[1]),
     lieu_id: place.lieu_id,
-    linkToSoliguide: `${frontUrl}${language}/fiche/${place.lieu_id}`,
+    linkToSoliguide: `${frontUrl}/${language}/fiche/${place.lieu_id}`,
     longitude: parseString(place.position?.location.coordinates[0]),
     email: parseString(place.entity.mail),
     modalities: translateModalities(translator, language, place.modalities),
