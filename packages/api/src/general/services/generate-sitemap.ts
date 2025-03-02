@@ -52,11 +52,11 @@ export const generateSitemap = async (logger: Logger = defaultLogger) => {
   const frontUrl = CONFIG.SOLIGUIDE_FR_URL;
 
   let url = urlset.ele("url");
-  url.ele("loc", `${frontUrl}${SupportedLanguagesCode.FR}`);
+  url.ele("loc", `${frontUrl}/${SupportedLanguagesCode.FR}`);
   url.ele("priority", 1);
 
   url = urlset.ele("url");
-  url.ele("loc", `${frontUrl}${SupportedLanguagesCode.FR}/contact/`);
+  url.ele("loc", `${frontUrl}/${SupportedLanguagesCode.FR}/contact/`);
   url.ele("priority", 1);
 
   for (const place of sitemapPlaces) {
