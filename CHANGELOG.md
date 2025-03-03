@@ -1,3 +1,16 @@
+# [4.80.0](https://github.com/solinumasso/soliguide/compare/v4.79.0...v4.80.0) (2025-03-03)
+
+
+### Bug Fixes
+
+* **api:** add romanian for France  [#55](https://github.com/solinumasso/soliguide/issues/55) ([a56c629](https://github.com/solinumasso/soliguide/commit/a56c629e57f3b61b1cf50f991e69da3a5f3f7f9e))
+
+
+### Features
+
+* **api:** make lang mandatory in admin-places route  [#327](https://github.com/solinumasso/soliguide/issues/327) ([631e4ba](https://github.com/solinumasso/soliguide/commit/631e4ba8c5b6a16235994e741e4b9bd801234de9))
+* **web-app:** add type for window and activate Tally form [#47](https://github.com/solinumasso/soliguide/issues/47) ([0d26f6a](https://github.com/solinumasso/soliguide/commit/0d26f6a280dc9a4ee2f945732fddbb97e129291c))
+
 # [4.79.0](https://github.com/solinumasso/soliguide/compare/v4.78.1...v4.79.0) (2025-03-02)
 
 
