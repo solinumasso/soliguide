@@ -25,7 +25,7 @@ import {
   HealthCheckService,
   HttpHealthIndicator,
 } from "@nestjs/terminus";
-import { AxiosResponse } from "@nestjs/terminus/dist/health-indicator/http/axios.interfaces";
+import type { AxiosResponse } from "axios";
 
 @Controller("health")
 export class HealthController {
