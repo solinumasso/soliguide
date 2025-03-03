@@ -25,29 +25,29 @@
 
   // Interaction
   --color-interactionHighlightPrimary: #ff4124;
-  --color-interactionHighlightPrimaryHover: #c8260d;
+  --color-interactionHighlightPrimaryHover: #fa6d56;
   --color-interactionHighlightPrimaryPress: #a5230f;
-  --color-interactionHighlightSecondary: #424291;
-  --color-interactionHighlightSecondaryHover: #3b3d74;
-  --color-interactionHighlightSecondaryPress: #1f1f3d;
-  --color-interactionNeutral: #262626;
-  --color-interactionNeutralHover: #1f1f3d;
+  --color-interactionHighlightSecondary: #613677;
+  --color-interactionHighlightSecondaryHover: #463351;
+  --color-interactionHighlightSecondaryPress: #271332;
+  --color-interactionNeutral: #271332;
+  --color-interactionNeutralHover: #463351;
   --color-interactionNeutralPress: #171717;
   --color-interactionOutlined: #ffffff;
   --color-interactionOutlinedHover: #f5f5f5;
   --color-interactionOutlinedPress: #e5e5e5;
   --color-interactionOutlinedSecondary: #ffffff;
-  --color-interactionOutlinedSecondaryHover: #e5e7fd;
-  --color-interactionOutlinedSecondaryPress: #b2c1ef;
-  --color-interactionOutlinedSecondaryActive: #424291;
-  --color-interactionOutlinedSecondaryActiveHover: #3b3d74;
-  --color-interactionOutlinedSecondaryActivePress: #1f1f3d;
+  --color-interactionOutlinedSecondaryHover: #f6edfa;
+  --color-interactionOutlinedSecondaryPress: #dfbceb;
+  --color-interactionOutlinedSecondaryActive: #613677;
+  --color-interactionOutlinedSecondaryActiveHover: #463351;
+  --color-interactionOutlinedSecondaryActivePress: #271332;
   --color-interactionReversed: #ffffff;
   --color-interactionReversedHover: #ffefec;
-  --color-interactionReversedPress: #ffcbc9;
+  --color-interactionReversedPress: #fdb8ad;
   --color-interactionReversedActive: #ff4124;
   --color-interactionReversedActiveHover: #c8260d;
-  --color-interactionReversedActivePress: #a5230f;
+  --color-interactionReversedActivePress: #882314;
   --color-interactionDisable: #e5e5e5;
   // Text
   --color-textDark: #171717;
@@ -55,29 +55,37 @@
   --color-textShy: #737373;
   --color-textInverse: #ffffff;
   --color-textHighlightPrimary: #ff4124;
-  --color-textHighlightSecondary: #424291;
+  --color-textHighlightPrimary2: #c8260d;
+  --color-textHighlightSecondary: #613677;
+  --color-textHighlightSecondary2: #271332;
   --color-textHighlightTertiary: #6a3177;
   --color-textHighlightQuartary: #784034;
   --color-textFocus: #5e5ecd;
-  --color-textSuccess: #059669;
-  --color-textWarning: #ca8a04;
-  --color-textError: #ef4444;
+  --color-textSuccess: #047857;
+  --color-textWarning: #be8204;
+  --color-textError: #d32f2f;
   // Surfaces
   --color-surfaceWhite: #ffffff;
   --color-surfaceWhiteAlphaLight: rgba(255, 255, 255, 0.2);
   --color-surfaceWhiteAlphaStrong: rgba(255, 255, 255, 0.4);
   --color-overlayLight: rgba(38, 38, 38, 0.4);
   --color-overlayStrong: rgba(38, 38, 38, 0.6);
+  --color-overlayVerystrong: rgba(38, 38, 38, 0.7);
   --color-surfacePrimary1: #fff3f3;
   --color-surfacePrimary2: #ffefec;
-  --color-surfacePrimary3: #fa6d56;
-  --color-surfaceSecondary1: #f6f5ff;
-  --color-surfaceSecondary2: #e5e7fd;
-  --color-surfaceSecondary3: #cfd9f6;
-  --color-surfaceSecondary4: #5e5ecd;
-  --color-surfaceSecondaryGradient: linear-gradient(270deg, #424291 0%, #7981db 100%);
-  --color-surfaceTertiary1: #f6edfa;
+  --color-surfacePrimary3: #fdb8ad;
+  --color-surfacePrimary4: #fa6d56;
+  --color-surfacePrimary5: #ed3215;
+  --color-surfaceSecondary1: #f6edfa;
+  --color-surfaceSecondary2: #ecd9f5;
+  --color-surfaceSecondary3: #a165c3;
+  --color-surfaceTertiary1: #f6f5ff;
+  --color-surfaceTertiary2: #e5e7fd;
+  --color-surfaceTertiary3: #cfd9f6;
+  --color-surfaceTertiary4: #5e5ecd;
   --color-surfaceQuartary1: #f5ebe1;
+  --color-surfaceSecondaryGradient: var(--color-gradientSecondary);
+  --color-surfaceTertiaryGradient: linear-gradient(270deg, #424291 0%, #7981db 100%);
   --color-surfaceGray1: #e5e5e5;
   --color-surfaceGray2: #262626;
   --color-surfaceGray3: #f5f5f5;
@@ -91,11 +99,12 @@
   --color-borderNeutral: #e5e5e5;
   --color-borderFocus: #5e5ecd;
   --color-borderCompleted: #171717;
-  --color-borderSuccess: #10b981;
-  --color-borderError: #ef4444;
+  --color-borderSuccess: #059669;
+  --color-borderError: #dc2626;
   // Gradients
   --color-gradientPrimary: linear-gradient(270deg, #ff4124 0%, #fa6d56 100%);
-  --color-gradientSecondary: linear-gradient(270deg, #424291 0%, #7981db 100%);
+  --color-gradientSecondary: linear-gradient(270deg, #613677 0%, #463351 100%);
+  --color-gradientTertiary: linear-gradient(270deg, #504eb4 0%, #3b3d74 100%);
   --color-gradientBackground: radial-gradient(
     104.32% 140.38% at 0% 0%,
     #f6f5ff 0%,
