@@ -18,33 +18,15 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { SOLIGUIDE_HOSTNAME_REGEXP } from "./SOLIGUIDE_HOSTNAME_REGEXP.const";
+import { ExpressRequest, Origin } from "../../../src/_models";
+import { ABSTRACT_ORIGIN_REQUEST } from "./ABSTRACT_ORIGIN_REQUEST.mock";
 
-describe("Soliguide hostname regexp", () => {
-  [
-    "soliguide.fr",
-    "soliguide.dev",
-    "toto.soliguide.fr",
-    "demo.soliguide.dev",
-    "soliguia.soliguide.dev",
-    "soliguia.es",
-    "soliguia.cat",
-    "soliguia.ad.es",
-  ].forEach((hostname) => {
-    it(`✅ ${hostname} should match`, () => {
-      expect(SOLIGUIDE_HOSTNAME_REGEXP.test(hostname)).toEqual(true);
-    });
-  });
-
-  [
-    "google.fr",
-    "soliguide.ro",
-    "toto.soliguide.ro",
-    "soliguide.es",
-    "soliguia.fr",
-  ].forEach((hostname) => {
-    it(`❌ ${hostname} should not match`, () => {
-      expect(SOLIGUIDE_HOSTNAME_REGEXP.test(hostname)).toEqual(false);
-    });
-  });
-});
+export const ORIGIN_UNDEFINED_REQUEST = {
+  ...ABSTRACT_ORIGIN_REQUEST,
+  requestInformation: {
+    ...ABSTRACT_ORIGIN_REQUEST.requestInformation,
+    ...{
+      originForLogs: Origin.ORIGIN_UNDEFINED,
+    },
+  },
+} as unknown as ExpressRequest;

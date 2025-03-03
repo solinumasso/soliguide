@@ -18,15 +18,5 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { ExpressRequest, Origin } from "../../src/_models";
-import { ABSTRACT_ORIGIN_REQUEST } from "./ABSTRACT_ORIGIN_REQUEST.mock";
-
-export const ORIGIN_WIDGET_SOLIGUIDE_REQUEST = {
-  ...ABSTRACT_ORIGIN_REQUEST,
-  requestInformation: {
-    ...ABSTRACT_ORIGIN_REQUEST.requestInformation,
-    ...{
-      originForLogs: Origin.WIDGET_SOLIGUIDE,
-    },
-  },
-} as unknown as ExpressRequest;
+// @index('./*', f => `export * from '${f.path}'`)
+export * from "./CONFIG.mock";
