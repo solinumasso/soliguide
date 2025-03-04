@@ -102,7 +102,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <div class="story-row">
     <Button {...defaultArgs} type="primaryFill">{defaultArgs.label}</Button>
     <Button {...defaultArgs} type="primaryGradientFill">{defaultArgs.label}</Button>
-    <!--    <Button {...defaultArgs} type="primaryOutline">{defaultArgs.label}</Button>-->
+    <!-- <Button {...defaultArgs} type="primaryOutline">{defaultArgs.label}</Button>-->
     <Button {...defaultArgs} type="neutralFill">{defaultArgs.label}</Button>
     <Button {...defaultArgs} type="neutralOutlined">{defaultArgs.label}</Button>
     <Button {...defaultArgs} type="shy">{defaultArgs.label}</Button>
@@ -138,6 +138,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       >{defaultArgs.label}</Button
     >
     <Button {...defaultArgs} type="primaryOutline" isLoading={true} submit shape="square"
+      >{defaultArgs.label}</Button
+    >
+    <Button {...defaultArgs} type="neutralFill" isLoading={true} submit shape="square"
       >{defaultArgs.label}</Button
     >
   </div>
