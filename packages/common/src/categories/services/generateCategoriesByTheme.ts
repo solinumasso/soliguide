@@ -61,50 +61,22 @@ export const generateCategoriesByTheme = (
 ): FlatCategoriesTreeNode[] => {
   const baseCategories = cloneDeep(CATEGORIES);
 
-  if (theme === Themes.SOLIGUIDE_FR) {
-    return mergeCategories(baseCategories, cloneDeep(CATEGORIES_SOLIGUIDE_FR));
-  }
   if (theme === Themes.SOLIGUIA_ES) {
     return getSpanishCategories();
   }
   if (theme === Themes.SOLIGUIA_AD) {
-    return mergeCategories(baseCategories, cloneDeep(CATEGORIES_SOLIGUIA_AD));
+    return getAndorraCategories();
   }
-  // --------------------------------------------------------------
-  // !!! Actually CATEGORIES_SOLIGUIA_ES === CATEGORIES_SOLIGUIA_AD
-  // If changes => add CATEGORIES_SOLIGUIA_AD in merge
-  // --------------------------------------------------------------
-  return mergeCategories(
-    mergeCategories(baseCategories, cloneDeep(CATEGORIES_SOLIGUIDE_FR)),
-    cloneDeep(CATEGORIES_SOLIGUIA_ES)
-  );
+
+  return mergeCategories(baseCategories, cloneDeep(CATEGORIES_SOLIGUIDE_FR));
 };
 
 export const getSpanishCategories = (): FlatCategoriesTreeNode[] => {
-  const CATEGORIES_SOLIGUIA_ES: FlatCategoriesTreeNode[] = [
-    {
-      id: Categories.TRAINING_AND_JOBS,
-      children: [
-        {
-          id: Categories.SPANISH_COURSE,
-          rank: 130,
-        },
-        {
-          id: Categories.CATALAN_COURSE,
-          rank: 170,
-        },
-      ],
-    },
-    {
-      id: Categories.SPANISH_COURSE,
-      children: [],
-    },
-    {
-      id: Categories.CATALAN_COURSE,
-      children: [],
-    },
-  ];
-
   const baseCategories = cloneDeep(CATEGORIES);
   return mergeCategories(baseCategories, cloneDeep(CATEGORIES_SOLIGUIA_ES));
+};
+
+export const getAndorraCategories = (): FlatCategoriesTreeNode[] => {
+  const baseCategories = cloneDeep(CATEGORIES);
+  return mergeCategories(baseCategories, cloneDeep(CATEGORIES_SOLIGUIA_AD));
 };
