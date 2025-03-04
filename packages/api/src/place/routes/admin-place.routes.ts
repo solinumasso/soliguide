@@ -164,6 +164,7 @@ router.get(
   canEditPlace,
   handleLanguage,
   (req: ExpressRequest, res: ExpressResponse) => {
+    // Remove this comment
     return res.status(200).json(req.lieu);
   }
 );
