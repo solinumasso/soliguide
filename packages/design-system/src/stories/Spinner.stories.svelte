@@ -73,6 +73,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <Story name="Spinner variants" parameters={{ controls: { disable: true } }}>
     <Spinner {...defaultArgs} type="primary"></Spinner>
     <Spinner {...defaultArgs} type="primaryWithBackground"></Spinner>
+    <Spinner {...defaultArgs} type="neutral"></Spinner>
+    <Spinner {...defaultArgs} type="neutralWithBackground"></Spinner>
     <Spinner {...defaultArgs} type="reversed"></Spinner>
     <Spinner {...defaultArgs} type="reversedWithBackground"></Spinner>
   </Story>
