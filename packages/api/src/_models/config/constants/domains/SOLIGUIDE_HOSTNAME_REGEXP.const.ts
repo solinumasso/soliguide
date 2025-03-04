@@ -19,4 +19,4 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 export const SOLIGUIDE_HOSTNAME_REGEXP =
-  /^(.+\.)?((soliguide\.(fr|dev))|(soliguia(\.ad|\.es|\.eu|\.cat|\.dev)+))$/;
+  /^(.+\.)?((soliguide\.(fr|dev))|(soliguia(\.(ad|es|eu|cat|dev))+))$/;

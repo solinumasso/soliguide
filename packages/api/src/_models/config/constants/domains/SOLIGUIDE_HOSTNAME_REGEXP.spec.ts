@@ -23,7 +23,6 @@ import { SOLIGUIDE_HOSTNAME_REGEXP } from "./SOLIGUIDE_HOSTNAME_REGEXP.const";
 describe("Soliguide hostname regexp", () => {
   [
     "app.soliguide.fr",
-    "app.soliguide.cat",
     "soliguide.fr",
     "soliguide.dev",
     "toto.soliguide.fr",
@@ -46,6 +45,7 @@ describe("Soliguide hostname regexp", () => {
     "soliguide.ro",
     "toto.soliguide.ro",
     "soliguide.es",
+    "app.soliguide.cat",
     "soliguia.fr",
   ].forEach((hostname) => {
     it(`❌ ${hostname} should not match`, () => {
