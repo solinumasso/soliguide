@@ -126,6 +126,7 @@ export class LocationAutocompleteComponent
   ngAfterViewInit(): void {
     const inputEl =
       this.autocompleteContainer.nativeElement.querySelector("input");
+    inputEl.setAttribute("data-record", "true");
 
     if (inputEl && this.currentAddress) {
       inputEl.value = this.currentAddress;
