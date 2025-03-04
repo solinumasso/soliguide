@@ -123,7 +123,7 @@
 // Types : color sets
 .btn-primary {
   background-color: var(--color-interactionHighlightPrimary);
-  color: var(--color-textInverse);
+  color: var(--color-textHighlightSecondary2);
 
   &:hover {
     background-color: var(--color-interactionHighlightPrimaryHover);
@@ -133,11 +133,12 @@
   &:focus-visible,
   &:focus-visible:hover {
     background-color: var(--color-interactionHighlightPrimaryPress);
+    color: var(--color-textInverse);
   }
 }
 .btn-primary-gradient {
   background: var(--color-gradientPrimary);
-  color: var(--color-textInverse);
+  color: var(--color-textHighlightSecondary2);
 
   &:hover {
     background: var(--color-interactionHighlightPrimaryHover);
@@ -147,6 +148,7 @@
   &:focus-visible,
   &:focus-visible:hover {
     background-color: var(--color-interactionHighlightPrimaryPress);
+    color: var(--color-textInverse);
   }
 }
 .btn-primary-outline {
@@ -239,14 +241,14 @@
   }
 
   &:hover {
-    color: var(--color-interactionHighlightPrimaryHover);
-    background-color: var(--color-interactionReversedHover);
+    color: var(--color-);
+    background-color: var(--color-interactionReversedActiveHover);
   }
 
   &:active,
   &:focus-visible,
   &:focus-visible:hover {
-    color: var(--color-interactionHighlightPrimaryPress);
+    color: (--color-interactionReversedActivePress);
     background-color: var(--color-interactionReversedPress);
   }
 }

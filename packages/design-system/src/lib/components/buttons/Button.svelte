@@ -33,14 +33,23 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let submit = false;
   export let isLoading = false;
 
-  const getSpinnerType = (): SpinnerType =>
-    type === 'neutralOutlined' || type === 'primaryOutline' ? 'primary' : 'reversed';
-
+  const getSpinnerType = (buttonType: ButtonType): SpinnerType => {
+    switch (buttonType) {
+      case 'neutralFill':
+        return 'reversed';
+      case 'neutralOutlined':
+        return 'primary';
+      case 'reversed':
+        return 'reversed';
+      default:
+        return 'neutral';
+    }
+  };
   // Shape is forced for icon buttons
   $: btnShapeIsRounded = iconPosition === 'iconOnly' || shape === 'rounded';
   $: btnClass = `btn ${sizeMapping[size]} ${typeMapping[type]}`;
   // Parameters for loading button
-  $: spinnerType = getSpinnerType();
+  $: spinnerType = getSpinnerType(type);
   $: spinnerSize = spinnerSizeMapping[size];
 </script>
 
