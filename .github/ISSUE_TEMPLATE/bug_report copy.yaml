@@ -1,0 +1,71 @@
+name: "Nouvelle fonctionnalité"
+description: "Toutes les améliorations envisagées"
+title: "✨ Feat - "
+labels: ["Task"]
+projects: ["solinumasso/2"]
+body:
+  - type: checkboxes
+    id: sites
+    attributes:
+      label: "🖥️ Produit(s) concerné(s)"
+      options:
+        - label: "Application mobile"
+          required: false
+        - label: "Backoffice"
+          required: false
+        - label: "Soliguide.fr"
+          required: false
+        - label: "Soliguia"
+          required: false
+        - label: "Intégration de donnée"
+          required: false
+        - label: "Dashboards"
+          required: false
+        - label: "API Soliguide"
+          required: false
+        - label: "Design system"
+          required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: "🔍 Contexte"
+      description: "Situation actuelle, besoin exprimé, rappel de l'irritant"
+      placeholder: "Décrivez ici le problème que cette fonctionnalité vise à résoudre"
+    validations:
+      required: true
+
+  - type: textarea
+    id: objectives
+    attributes:
+      label: "🎯 Objectifs et spécifications"
+      placeholder: "Expliquez l'objectif principal de cette fonctionnalité et détaillez les spécifications techniques ou fonctionnelles"
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: "🔗 Impacts sur les autres produits"
+      placeholder: "Cette nouveauté entraine t-elle des modifications à apporter sur d'autres produits ? Lister l'ensemble des impacts possibles"
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: "💯 Critères d'acceptation / tests à réaliser"
+      placeholder: "- [ ] Premier test\n- [ ] Deuxième test"
+      value: "- [ ] "
+    validations:
+      required: true
+
+  - type: textarea
+    id: metrics
+    attributes:
+      label: "📈 Indicateurs / Mesures d'impact éventuels"
+      description: "Chaque nouveauté devrait être accompagné d'indicateurs permettant de suivre l'intérêt / la prise en main de celle-ci. Lister ci-dessous les stats à créer sur posthog, metabase, ou autre"
+      placeholder: "- [ ] Premier indicateur\n- [ ] Deuxième indicateur"
+      value: "- [ ] "
+    validations:
+      required: false

@@ -1,0 +1,44 @@
+name: "Signaler un bug"
+description: "Problème à corriger / anomalie bloquante pour les utilisateurs"
+title: "🐞 Bug - "
+labels: ["bug"]
+type: "Bug"
+projects: ["solinumasso/2"]
+body:
+  - type: checkboxes
+    id: sites
+    attributes:
+      label: "🖥️ Produit(s) concerné(s)"
+      options:
+        - label: "Application mobile"
+          required: false
+        - label: "Backoffice"
+          required: false
+        - label: "Soliguide.fr"
+          required: false
+        - label: "Soliguia"
+          required: false
+        - label: "Intégration de donnée"
+          required: false
+        - label: "Dashboards"
+          required: false
+        - label: "API Soliguide"
+          required: false
+        - label: "Design system"
+          required: false
+  - type: textarea
+    id: description
+    attributes:
+      label: "🚫 Description du problème: comment as-t-il été trouvé ?"
+      description: "Précisez les étapes pour reproduire directement. \nVous pouvez glisser des captures d'écran directement dans ce champs. \n🧨 **IMPORTANT** : Veillez à masquer toute information personnelle ou confidentielle 🧨 "
+      placeholder: "Ex: L'utilisateur n'arrive pas à consulter une fiche ou réaliser une recherche, le mail de renouvellement de mot de passe n'arrive jamais, etc"
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: "🔮 Comportement attendu"
+      placeholder: "Décrivez ce qui devrait se passer normalement"
+    validations:
+      required: true
