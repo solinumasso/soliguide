@@ -118,15 +118,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       <div class="row">
         <ng-container *ngFor="let categoryRoot of CATEGORIES_ROOT_NODES">
           <div class="col-12 col-md-3 p-2 text-primary">
-            <h5
+            <button
+              type="button"
               (click)="putTextCat(categoryRoot.id)"
-              [class]="search.category === categoryRoot.id ? 'active' : ''"
+              class="btn btn-outline-primary"
+              [ngClass]="search.category === categoryRoot.id ? 'active' : ''"
             >
               <span
                 [class]="'category-icon category-icon-' + categoryRoot.id"
               ></span>
               {{ categoryRoot.id | uppercase | translate }}
-            </h5>
+            </button>
             <ul>
               <li
                 *ngFor="let category of categoryRoot.children"
