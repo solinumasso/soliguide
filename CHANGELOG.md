@@ -1,3 +1,10 @@
+## [4.80.1](https://github.com/solinumasso/soliguide/compare/v4.80.0...v4.80.1) (2025-03-04)
+
+
+### Bug Fixes
+
+* **api:** remake lang param optional in admin-places route [#330](https://github.com/solinumasso/soliguide/issues/330) ([4e8c64a](https://github.com/solinumasso/soliguide/commit/4e8c64a3284ccfee75f87aaba414a6e320e4c507))
+
 # [4.80.0](https://github.com/solinumasso/soliguide/compare/v4.79.0...v4.80.0) (2025-03-03)
 
 
