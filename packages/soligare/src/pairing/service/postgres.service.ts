@@ -20,7 +20,7 @@
  */
 import { Injectable, OnApplicationShutdown } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { captureException, captureMessage } from '@sentry/node';
+import { captureException, captureMessage } from '@sentry/nestjs';
 import postgres from 'postgres';
 
 @Injectable()

@@ -26,12 +26,12 @@ import {
   HttpStatus,
   Logger,
 } from "@nestjs/common";
-import { captureException, WithSentry } from "@sentry/nestjs";
+import { captureException, SentryExceptionCaptured } from "@sentry/nestjs";
 import { FastifyReply, FastifyRequest } from "fastify";
 
 @Catch()
 export class AppSentryGlobalFilter implements ExceptionFilter {
-  @WithSentry()
+  @SentryExceptionCaptured()
   catch(exception: Error, host: ArgumentsHost): void {
     const ctx = host.switchToHttp();
     const request = ctx.getRequest<FastifyRequest>();
