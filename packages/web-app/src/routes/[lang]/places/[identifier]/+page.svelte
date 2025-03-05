@@ -50,7 +50,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   onMount(() => {
     window.TallyConfig = {
-      formId: 'nPGQB',
+      formId: 'nPGQB5',
       popup: {
         width: 340,
         emoji: { text: '👋', animation: 'wave' },

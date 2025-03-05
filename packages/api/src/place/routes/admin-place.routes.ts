@@ -158,7 +158,6 @@ router.get(
  *   name: FormPlace
  *   description: All routes related to add and edit a place
  */
-
 router.get(
   "/:lieu_id/:lang?",
   getPlaceFromUrl,
