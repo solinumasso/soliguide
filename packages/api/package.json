@@ -51,7 +51,7 @@
     "class-validator": "^0.14.1",
     "class-validator-extended": "^4.0.0",
     "compression": "1.7.5",
-    "cookie-parser": "1.4.6",
+    "cookie-parser": "1.4.7",
     "cors": "2.8.5",
     "crypto": "1.0.1",
     "date-fns": "^2.30.0",
