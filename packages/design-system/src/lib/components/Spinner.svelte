@@ -33,6 +33,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   const typeMapping: Record<SpinnerType, string> = {
     primary: 'spinner-primary',
     primaryWithBackground: 'spinner-primary-background',
+    neutral: 'spinner-neutral',
+    neutralWithBackground: 'spinner-neutral-background',
     reversed: 'spinner-reversed',
     reversedWithBackground: 'spinner-reversed-background'
   };
@@ -109,12 +111,24 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     }
   }
 
+  .spinner-neutral::before {
+    border-color: var(--color-textHighlightSecondary2);
+  }
+
+  .spinner-neutral-background {
+    background-color: var(--color-textInverse);
+    box-shadow: var(--shadowXS);
+    &:before {
+      border-color: var(--color-textHighlightSecondary2);
+    }
+  }
+
   .spinner-reversed::before {
     border-color: var(--color-textInverse);
   }
 
   .spinner-reversed-background {
-    background-color: var(--color-textHighlightPrimary);
+    background-color: var(--color-surfacePrimary5);
     box-shadow: var(--shadowXS);
     &:before {
       border-color: var(--color-textInverse);
