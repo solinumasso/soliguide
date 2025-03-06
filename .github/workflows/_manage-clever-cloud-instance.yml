@@ -61,7 +61,7 @@ jobs:
     name: Do Clever Cloud action on instance
     runs-on: ubuntu-latest
     container:
-      image: clevercloud/clever-tools:3.7.0
+      image: clevercloud/clever-tools:3.12.0
       env:
         CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
         CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
