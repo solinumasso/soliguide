@@ -47,7 +47,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <span class="menu-icon active">
               <svelte:component this={item.iconActive} size="20" />
             </span>
-            <Text type="caption2Medium">{item.label}</Text>
+            <Text color="highlightSecondary2" type="caption2Medium">{item.label}</Text>
           </span>
         {:else}
           <a class="menu-item" href={item.route} on:click={() => handleClick(item.label)}>
