@@ -1419,6 +1419,7 @@
   "PLACE_NAME": "Nom de la fiche",
   "PLACE_NAME_LOCATION": "Emplacement de {{ placeName }}",
   "PLACE_NO": "N° de fiche",
+  "PLACE_NOT_AVAILABLE_IN_ORGA": "La fiche ne sera plus liée à l'organisation mais elle sera toujours en ligne.",
   "PLACE_NOT_FOUND_ID_NAME": "Il n'y a pas de lieu a ce nom ou ID sur {{ brandName }}",
   "PLACE_NUMBER": "Numéro de la fiche",
   "PLACE_OVERVIEW": "Aperçu de la fiche",
