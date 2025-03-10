@@ -23,7 +23,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import type { TextColor, TextType } from '$lib/types';
 
   export const meta = {
-    title: 'General/Text',
+    title: 'Structure/Text',
     component: Text,
     argTypes: {
       type: {

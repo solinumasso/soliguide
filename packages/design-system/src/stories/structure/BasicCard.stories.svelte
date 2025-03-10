@@ -19,42 +19,37 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <script lang="ts" context="module">
-  import type { ComponentProps } from 'svelte';
-
-  import PageLoader from '$lib/components/PageLoader.svelte';
-
-  const defaultArgs: ComponentProps<PageLoader> = {
-    loading: false,
-    fullPage: false
-  };
+  import BasicCard from '$lib/components/dataDisplay/BasicCard.svelte';
+  import type { BasicCardType } from '$lib/types';
 
   export const meta = {
-    title: 'General/PageLoader',
-    component: PageLoader,
-    argTypes: {},
-    args: defaultArgs
+    title: 'Structure/BasicCard',
+    component: BasicCard,
+    argTypes: {
+      type: {
+        control: { type: 'radio' },
+        options: ['default', 'primary', 'secondary'] satisfies BasicCardType[]
+      }
+    },
+    args: { type: 'default' }
   };
 </script>
 
 <script lang="ts">
   import { Story, Template } from '@storybook/addon-svelte-csf';
+  import Text from '$lib/components/Text.svelte';
 </script>
 
 <Template let:args>
-  <PageLoader {...args}>
-    <div class="fake-content">This is the content</div>
-  </PageLoader>
+  <BasicCard {...args}>
+    <Text as="p">This is some content</Text>
+    <Text as="p">This is some content</Text>
+    <Text as="p">This is some content</Text>
+    <Text as="p">This is some content</Text>
+    <Text as="p">This is some content</Text>
+    <Text as="p">This is some content</Text>
+    <Text as="p">This is some content</Text>
+  </BasicCard>
 </Template>
 
 <Story name="Default" args={{}} />
-
-<style lang="scss">
-  .fake-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 60px;
-    border: 3px dashed #ccc;
-    border-radius: 20px;
-  }
-</style>
