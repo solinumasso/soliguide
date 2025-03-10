@@ -32,7 +32,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   };
 
   export const meta = {
-    title: 'General/ToggleButton',
+    title: 'Selection controls/ToggleButton',
     component: ToggleButton,
     argTypes: {
       type: {

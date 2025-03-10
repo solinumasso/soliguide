@@ -25,7 +25,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import Modal from '$lib/components/feedback/Modal.svelte';
 
   export const meta = {
-    title: 'Feedback/Modal',
+    title: 'Overlay/Modal',
     component: Modal,
     argTypes: {
       size: {

@@ -19,30 +19,42 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <script lang="ts" context="module">
-  import AppIcon from '$lib/components/AppIcon.svelte';
+  import type { ComponentProps } from 'svelte';
+
+  import PageLoader from '$lib/components/PageLoader.svelte';
+
+  const defaultArgs: ComponentProps<PageLoader> = {
+    loading: false,
+    fullPage: false
+  };
 
   export const meta = {
-    title: 'General/AppIcon',
-    component: AppIcon,
-    argTypes: {
-      type: {
-        control: { type: 'radio' },
-        options: ['primary', 'secondary', 'tertiary', 'quartary']
-      }
-    },
-    args: {
-      type: 'primary'
-    }
+    title: 'Structure/PageLoader',
+    component: PageLoader,
+    argTypes: {},
+    args: defaultArgs
   };
 </script>
 
 <script lang="ts">
   import { Story, Template } from '@storybook/addon-svelte-csf';
-  import Star from 'svelte-google-materialdesign-icons/Star.svelte';
 </script>
 
 <Template let:args>
-  <AppIcon {...args} icon={Star} />
+  <PageLoader {...args}>
+    <div class="fake-content">This is the content</div>
+  </PageLoader>
 </Template>
 
-<Story name="Default" />
+<Story name="Default" args={{}} />
+
+<style lang="scss">
+  .fake-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+    border: 3px dashed #ccc;
+    border-radius: 20px;
+  }
+</style>

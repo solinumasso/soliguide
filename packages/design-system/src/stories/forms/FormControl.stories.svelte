@@ -30,7 +30,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   };
 
   export const meta = {
-    title: 'Form/FormControl',
+    title: 'Forms/FormControl',
     component: FormControl,
     argTypes: {
       for: { table: { disable: true } }

@@ -30,7 +30,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   };
 
   export const meta = {
-    title: 'General/Spinner',
+    title: 'Indicators/Spinner',
     component: Spinner,
     argTypes: {
       type: {
