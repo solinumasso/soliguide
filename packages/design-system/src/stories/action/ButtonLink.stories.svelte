@@ -34,7 +34,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   };
 
   export const meta = {
-    title: 'General/ButtonLink',
+    title: 'Action/ButtonLink',
     component: ButtonLink,
     argTypes: {
       type: {

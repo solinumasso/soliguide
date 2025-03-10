@@ -21,26 +21,19 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <script lang="ts" context="module">
   import type { ComponentProps } from 'svelte';
 
-  import type { InfoIconSize, InfoIconVariant } from '$lib/types';
-  import InfoIcon from '$lib/components/InfoIcon.svelte';
+  import ToggleSwitch from '$lib/components/forms/ToggleSwitch.svelte';
 
-  const defaultArgs: ComponentProps<InfoIcon> = {
-    variant: 'info',
-    size: 'medium',
-    withShadow: true
+  const defaultArgs: ComponentProps<ToggleSwitch> = {
+    size: 'medium'
   };
 
   export const meta = {
-    title: 'General/InfoIcon',
-    component: InfoIcon,
+    title: 'Selection controls/ToggleSwitch',
+    component: ToggleSwitch,
     argTypes: {
-      variant: {
-        control: { type: 'radio' },
-        options: ['info', 'success', 'warning', 'error'] satisfies InfoIconVariant[]
-      },
       size: {
         control: { type: 'radio' },
-        options: ['small', 'medium'] satisfies InfoIconSize[]
+        options: ['small', 'medium']
       }
     },
     args: defaultArgs
@@ -52,31 +45,34 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </script>
 
 <Template let:args>
-  <InfoIcon {...args} />
+  <ToggleSwitch {...args} on:change />
 </Template>
 
 <Story name="Default" />
 
-<Story name="InfoIcon sizes" parameters={{ controls: { disable: true } }}>
+<Story name="Disabled" args={{ disabled: true }}>
+  <ToggleSwitch disabled={true} />
+</Story>
+
+<Story name="ToggleSwitch sizes" parameters={{ controls: { disable: true } }}>
   <div class="story-row">
-    <InfoIcon {...defaultArgs} size="medium" />
-    <InfoIcon {...defaultArgs} size="small" />
+    <ToggleSwitch {...defaultArgs} size="medium" />
+    <ToggleSwitch {...defaultArgs} size="small" />
   </div>
 </Story>
 
-<Story name="InfoIcon shadows or not" parameters={{ controls: { disable: true } }}>
+<Story name="ToggleSwitch states" parameters={{ controls: { disable: true } }}>
   <div class="story-row">
-    <InfoIcon {...defaultArgs} withShadow={true} />
-    <InfoIcon {...defaultArgs} withShadow={false} />
+    <ToggleSwitch {...defaultArgs} size="medium" />
+    <ToggleSwitch {...defaultArgs} size="medium" checked={true} />
+    <ToggleSwitch {...defaultArgs} size="medium" disabled={true} />
+    <ToggleSwitch {...defaultArgs} size="medium" disabled={true} checked={true} />
   </div>
-</Story>
-
-<Story name="InfoIcon variants" parameters={{ controls: { disable: true } }}>
   <div class="story-row">
-    <InfoIcon {...defaultArgs} variant="info" />
-    <InfoIcon {...defaultArgs} variant="success" />
-    <InfoIcon {...defaultArgs} variant="warning" />
-    <InfoIcon {...defaultArgs} variant="error" />
+    <ToggleSwitch {...defaultArgs} size="small" />
+    <ToggleSwitch {...defaultArgs} size="small" checked={true} />
+    <ToggleSwitch {...defaultArgs} size="small" disabled={true} />
+    <ToggleSwitch {...defaultArgs} size="small" disabled={true} checked={true} />
   </div>
 </Story>
 
