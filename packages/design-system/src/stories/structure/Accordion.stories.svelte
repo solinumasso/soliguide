@@ -34,7 +34,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     };
 
   export const meta = {
-    title: 'Data display/Accordion',
+    title: 'Structure/Accordion',
     component: Accordion,
     argTypes: {
       text: {

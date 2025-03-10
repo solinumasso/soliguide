@@ -32,7 +32,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   };
 
   export const meta = {
-    title: 'Data display/Tag',
+    title: 'Indicators/Tag',
     component: Tag,
     argTypes: {
       variant: {

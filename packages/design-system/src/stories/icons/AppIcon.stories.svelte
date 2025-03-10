@@ -19,37 +19,30 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <script lang="ts" context="module">
-  import BasicCard from '$lib/components/dataDisplay/BasicCard.svelte';
-  import type { BasicCardType } from '$lib/types';
+  import AppIcon from '$lib/components/AppIcon.svelte';
 
   export const meta = {
-    title: 'Data display/BasicCard',
-    component: BasicCard,
+    title: 'Icons/AppIcon',
+    component: AppIcon,
     argTypes: {
       type: {
         control: { type: 'radio' },
-        options: ['default', 'primary', 'secondary'] satisfies BasicCardType[]
+        options: ['primary', 'secondary', 'tertiary', 'quartary']
       }
     },
-    args: { type: 'default' }
+    args: {
+      type: 'primary'
+    }
   };
 </script>
 
 <script lang="ts">
   import { Story, Template } from '@storybook/addon-svelte-csf';
-  import Text from '$lib/components/Text.svelte';
+  import Star from 'svelte-google-materialdesign-icons/Star.svelte';
 </script>
 
 <Template let:args>
-  <BasicCard {...args}>
-    <Text as="p">This is some content</Text>
-    <Text as="p">This is some content</Text>
-    <Text as="p">This is some content</Text>
-    <Text as="p">This is some content</Text>
-    <Text as="p">This is some content</Text>
-    <Text as="p">This is some content</Text>
-    <Text as="p">This is some content</Text>
-  </BasicCard>
+  <AppIcon {...args} icon={Star} />
 </Template>
 
-<Story name="Default" args={{}} />
+<Story name="Default" />

@@ -22,7 +22,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { Card, CardHeader, CardBody, CardFooter } from '$lib/components/dataDisplay/Card';
 
   export const meta = {
-    title: 'Data display/Card',
+    title: 'Structure/Card',
     component: Card,
     argTypes: {},
     args: {}
