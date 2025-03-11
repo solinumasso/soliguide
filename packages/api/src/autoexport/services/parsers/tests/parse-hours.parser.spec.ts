@@ -76,13 +76,13 @@ describe("Parse hours, display in string", () => {
 
   it("Parse hours and display closed days", () => {
     expect(parseHours(hours, SupportedLanguagesCode.EN, true)).toEqual(
-      "Monday to Saturday: closed\nSunday: 9h30 to 15h"
+      "Monday At Saturday: closed\nSunday: 9h30 to 15h"
     );
   });
 
   it("Parse hours and display minutes", () => {
     expect(parseHours(hours, SupportedLanguagesCode.EN, true, false)).toEqual(
-      "Monday to Saturday: closed\nSunday: 9h30 to 15h00"
+      "Monday At Saturday: closed\nSunday: 9h30 to 15h00"
     );
   });
 
@@ -152,7 +152,7 @@ describe("Parse hours, display in string", () => {
 
     expect(
       parseHours(hoursBusinessDays, SupportedLanguagesCode.EN, false, true)
-    ).toEqual("Monday to Friday: 9h to 17h\nSunday: 9h30 to 15h");
+    ).toEqual("Monday At Friday: 9h to 17h\nSunday: 9h30 to 15h");
   });
 
   it("A week with opening hours that do not follow each other: open on Monday, closed on Tuesday, open on Wednesday and Thursday", () => {
@@ -212,7 +212,7 @@ describe("Parse hours, display in string", () => {
     expect(
       parseHours(hoursBusinessDays, SupportedLanguagesCode.EN, false, true)
     ).toEqual(
-      "Monday: 9h to 17h\nWednesday to Thursday: 9h to 17h\nSunday: 9h30 to 15h"
+      "Monday: 9h to 17h\nWednesday At Thursday: 9h to 17h\nSunday: 9h30 to 15h"
     );
   });
 
@@ -282,7 +282,7 @@ describe("Parse hours, display in string", () => {
 
     expect(
       parseHours(hoursBusinessDays, SupportedLanguagesCode.EN, false, true)
-    ).toEqual("Monday to Friday: 9h to 17h\nSunday: 9h30 to 15h");
+    ).toEqual("Monday At Friday: 9h to 17h\nSunday: 9h30 to 15h");
   });
 
   it("Several time slots in the same day", () => {
@@ -364,7 +364,7 @@ describe("Parse hours, display in string", () => {
     expect(
       parseHours(hoursBusinessDays, SupportedLanguagesCode.EN, false, true)
     ).toEqual(
-      "Monday: 9h to 12h - 14h to 19h\nTuesday to Friday: 9h to 17h\nSunday: 9h30 to 11h - 13h30 to 15h - 23h30 to 19h"
+      "Monday: 9h to 12h - 14h to 19h\nTuesday At Friday: 9h to 17h\nSunday: 9h30 to 11h - 13h30 to 15h - 23h30 to 19h"
     );
   });
 });
