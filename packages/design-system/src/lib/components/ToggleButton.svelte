@@ -113,10 +113,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     &:hover {
       text-decoration: none;
       cursor: pointer;
+      color: var(--color-textHighlightSecondary2);
     }
     &:focus,
     &:active {
       outline: none;
+      color: var(--color-textHighlightSecondary2);
     }
   }
 
@@ -265,7 +267,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     }
 
     &.btn-active {
-      background: var(--color-surfaceWhiteAlphaLight);
+      background: var(--color-surfaceSecondary2);
       color: var(--color-interactionReversedActive);
       &:hover {
         background: var(--color-interactionReversedHover);

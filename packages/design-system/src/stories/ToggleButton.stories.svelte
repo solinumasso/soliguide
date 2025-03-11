@@ -107,8 +107,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <Story name="ToggleButton Icon" parameters={{ controls: { disable: true } }}>
   <div class="story-row">
     <ToggleButton {...defaultArgs}>{defaultArgs.label}</ToggleButton>
-    <ToggleButton {...defaultArgs} iconOnly={true} icon={Settings}>{defaultArgs.label}</ToggleButton
-    >
+    <ToggleButton {...defaultArgs} iconOnly icon={Settings}>{defaultArgs.label}</ToggleButton>
     <ToggleButton {...defaultArgs} icon={Settings}>{defaultArgs.label}</ToggleButton>
   </div>
 </Story>
