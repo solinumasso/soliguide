@@ -18,9 +18,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-export * from "./PostgresServiceId.interface";
-export * from "./PostgresServiceClose.interface";
-export * from "./PostgresServiceCompare.interface";
-export * from "./PostgresServiceCategory.interface";
-export * from "./PostgresServiceCategorySpecific.interface";
-export * from "./PostgresServiceSaturation.interface";
+export interface PostgresServiceCategorySpecific {
+  index: number;
+  id: string;
+  specific: string;
+  value: string;
+}
