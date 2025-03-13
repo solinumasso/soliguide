@@ -37,24 +37,6 @@ export const isMobileHeader = (req: ExpressRequest): boolean => {
   );
 };
 
-export const isValidOrigin = (req: ExpressRequest): boolean => {
-  if (isMobileHeader(req)) {
-    return true;
-  }
-
-  if (req.user?.status === UserStatus.API_USER) {
-    return true;
-  }
-
-  const requestOrigin = req.requestInformation.origin;
-
-  if (!requestOrigin) {
-    return false;
-  }
-
-  return !SOLIGUIDE_HOSTNAME_REGEXP.test(requestOrigin);
-};
-
 export const handleOrigin = (req: ExpressRequest): string | null => {
   const requestOrigin = req.get("origin");
   const referer = req.get("referer");
@@ -67,6 +49,11 @@ export const handleOrigin = (req: ExpressRequest): string | null => {
       }
 
       const refererUrl = new URL(cleanedReferer);
+
+      if (CONFIG.ENV === "dev") {
+        return CONFIG.SOLIGUIDE_FR_URL;
+      }
+
       if (SOLIGUIDE_HOSTNAME_REGEXP.test(refererUrl.origin)) {
         return refererUrl.origin;
       }
@@ -80,7 +67,7 @@ export const handleOrigin = (req: ExpressRequest): string | null => {
 
 export const handleOriginForLogs = (
   req: ExpressRequest,
-  origin: string | null
+  originFromReq: string | null
 ): Origin => {
   if (isMobileHeader(req)) {
     return Origin.MOBILE_APP;
@@ -90,19 +77,19 @@ export const handleOriginForLogs = (
     return Origin.API;
   }
 
-  if (!origin) {
+  if (!originFromReq) {
     return CONFIG.ENV === "test"
       ? Origin.LOCALHOST_DEV
       : Origin.ORIGIN_UNDEFINED;
   }
 
   try {
-    const cleanedOrigin = cleanUrl(origin);
+    const cleanedOrigin = cleanUrl(originFromReq);
     if (!cleanedOrigin) {
       return Origin.ORIGIN_UNDEFINED;
     }
 
-    const originUrl = new URL(origin);
+    const originUrl = new URL(originFromReq);
     const hostname = originUrl.hostname;
 
     if (hostname === "solinum.org") {
@@ -129,7 +116,7 @@ export const handleOriginForLogs = (
 
     return Origin.ORIGIN_UNDEFINED;
   } catch (error) {
-    req.log.warn(`Failed to parse origin URL ${origin}: ${error}`);
+    req.log.warn(`Failed to parse origin URL ${originFromReq}: ${error}`);
     return Origin.ORIGIN_UNDEFINED;
   }
 };
