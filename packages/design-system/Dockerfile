@@ -43,3 +43,19 @@ COPY \
   ./packages/design-system/eslint.config.js \
   ./packages/design-system/vitest.config.ts \
   /app/packages/design-system/
+
+
+# skipcq: DOK-DL3006
+FROM ${BASE_IMAGE} AS deploy
+
+RUN <<EOF
+set -e
+yarn workspaces focus @soliguide/design-system --production
+yarn cache clean
+EOF
+
+WORKDIR /app/packages/design-system
+USER node
+
+ENTRYPOINT ["sh", "-c"]
+CMD ["yarn workspace @soliguide/design-system storybook"]
