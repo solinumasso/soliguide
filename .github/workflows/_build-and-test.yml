@@ -81,6 +81,7 @@ jobs:
     with:
       image_name: ${{ github.repository }}/design-system
       dockerfile: ./packages/design-system/Dockerfile
+      build_production: true
       build_args: |
         BASE_IMAGE=${{ fromJSON(needs.build-base.outputs.tags2)[0] }}
       build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_test, 'design-system') }}
