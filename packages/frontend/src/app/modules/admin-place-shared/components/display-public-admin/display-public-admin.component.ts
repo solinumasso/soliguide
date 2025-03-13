@@ -20,9 +20,9 @@
  */
 import { Component, OnInit, Input } from "@angular/core";
 
-import { Publics, WelcomedPublics } from "@soliguide/common";
-
-import { PublicsService } from "../../../place/services/publics.service";
+import { Publics, translatePublics, WelcomedPublics } from "@soliguide/common";
+import { CurrentLanguageService } from "../../../general/services/current-language.service";
+import { NgxTranslateI18nextAdapter } from "../../../shared/services/ngx-translate-i18next-adaptater.service";
 
 @Component({
   selector: "app-display-publics-admin",
@@ -33,15 +33,25 @@ export class DisplayPublicAdminComponent implements OnInit {
   @Input() public publics!: Publics;
   @Input() public languages!: string[];
 
-  public publicsText: string;
+  public publicsText: string = "";
 
   public readonly WelcomedPublics = WelcomedPublics;
 
-  constructor(private publicsService: PublicsService) {
+  constructor(
+    private readonly adaptater: NgxTranslateI18nextAdapter,
+    private readonly currentLanguageService: CurrentLanguageService
+  ) {
     this.publicsText = "";
   }
 
   public ngOnInit(): void {
-    this.publicsText = this.publicsService.generatePublics(this.publics);
+    this.publicsText = translatePublics(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      this.adaptater as any,
+      this.currentLanguageService.currentLanguage,
+      this.publics,
+      true,
+      false
+    );
   }
 }
