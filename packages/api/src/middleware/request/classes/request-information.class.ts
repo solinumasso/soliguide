@@ -35,7 +35,7 @@ import { getServiceCategoriesApi } from "../../../categories/functions/get-servi
 
 export class RequestInformation {
   public readonly originForLogs: Origin;
-  public readonly origin: string | null;
+  private readonly _originFromRequest: string | null;
   public readonly frontendUrl: string;
   public readonly referer: string | null = null;
   public readonly theme: Themes | null = null;
@@ -45,9 +45,9 @@ export class RequestInformation {
 
   constructor(req: ExpressRequest) {
     this.referer = handleReferer(req);
-    this.origin = handleOrigin(req);
-    this.originForLogs = handleOriginForLogs(req, this.origin);
-    this.theme = getThemeFromOrigin(this.origin);
+    this._originFromRequest = handleOrigin(req);
+    this.originForLogs = handleOriginForLogs(req, this._originFromRequest);
+    this.theme = getThemeFromOrigin(this._originFromRequest);
 
     this.frontendUrl = this.theme
       ? `${FRONT_URLS_MAPPINGS[this.theme]}/`

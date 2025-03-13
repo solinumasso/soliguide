@@ -95,7 +95,6 @@ describe("handleRequest", () => {
     const res = {} as ExpressResponse;
     const next = () => {};
     handleRequest(req, res, next);
-    expect(req.requestInformation.origin).toEqual("https://soliguide.fr");
     expect(req.requestInformation.frontendUrl).toEqual("https://soliguide.fr/");
 
     CONFIG.ENV = "test";
