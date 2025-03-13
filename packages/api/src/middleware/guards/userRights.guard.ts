@@ -55,10 +55,21 @@ export const canGetContact = async (
   } else if (req.user.status === UserStatus.PRO) {
     userRight = await getUserRightsById({
       _id: new mongoose.Types.ObjectId(req.params.userRightObjectId),
-      role: { $in: USER_ROLES_FOR_EDITION },
-      status: UserRightStatus.VERIFIED,
-      user: req.user._id,
     });
+
+    if (userRight) {
+      const placeRight = await getUserRightsById({
+        organization_id: userRight.organization_id,
+        place_id: userRight.place_id,
+        user: req.user._id,
+        role: { $in: USER_ROLES_FOR_EDITION },
+        status: UserRightStatus.VERIFIED,
+      });
+
+      if (!placeRight) {
+        userRight = null;
+      }
+    }
   }
 
   if (userRight) {
