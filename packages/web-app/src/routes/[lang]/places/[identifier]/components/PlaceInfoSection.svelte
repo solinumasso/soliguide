@@ -35,10 +35,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     type Tag as TagType,
     type TranslatableElement
   } from '$lib/models/types';
+  import type { PlaceDetails } from '$lib/models/types';
+
   import type { I18nStore } from '$lib/client/types';
   import { getTitleAndIcon } from '../functions';
 
   export let info: PlaceDetailsInfo[] = [];
+  export let placeDetails!: PlaceDetails;
 
   export let lastUpdate: string;
 
@@ -59,13 +62,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <PlaceDetailsSection>
   <div class="info-content">
     <div class="details-container">
+      {@html DOMPurify.sanitize(placeDetails.publics)}
       {#each info as { type, description, tags }}
         {@const details = getTitleAndIcon($i18n, type)}
         <div class="detail">
           <div class="icon">
             <svelte:component this={details.icon} size="18" />
           </div>
-          <div class="title-description">
+          <p class="title-description">
+            --
             <Text type="text2Medium" color="dark">{details.title}</Text>
             <TextClamper
               linesNotClamped={3}
@@ -93,7 +98,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 {/each}
               </div>
             {/if}
-          </div>
+          </p>
         </div>
       {/each}
     </div>
