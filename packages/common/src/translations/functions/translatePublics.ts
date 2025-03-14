@@ -31,6 +31,9 @@ import {
 import { capitalize } from "../../general";
 import { i18n } from "i18next";
 
+interface I18nTranslator {
+  t: (key: string, options?: any) => string;
+}
 /**
  * Generates descriptive text for target publics with appropriate prefix
  * @param i18next - i18next translator instance
@@ -40,7 +43,7 @@ import { i18n } from "i18next";
  * @param addDescription- Include header text (default false)
  */
 export const translatePublics = (
-  i18next: i18n,
+  i18next: I18nTranslator,
   lng: SupportedLanguagesCode,
   publics?: Publics,
   formatAsHtml = false,
