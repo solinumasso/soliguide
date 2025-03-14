@@ -31,7 +31,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   };
 
   export const meta = {
-    title: 'Data display/TextClamper',
+    title: 'Structure/TextClamper',
     component: TextClamper,
     argTypes: {
       text: {
