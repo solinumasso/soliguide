@@ -20,7 +20,6 @@
  */
 import { Categories } from "../enums";
 import { ChildCategory, FlatCategoriesTreeNode } from "../interfaces";
-import cloneDeep from "lodash.clonedeep";
 
 export const ROOT_CATEGORIES: ChildCategory[] = [
   {
@@ -414,6 +413,10 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
       {
         id: Categories.FACE_MASKS,
         rank: 600,
+      },
+      {
+        id: Categories.HARIDRESSER,
+        rank: 700,
       },
     ],
   },
@@ -872,4 +875,35 @@ export const CATEGORIES_SOLIGUIA_ES: FlatCategoriesTreeNode[] = [
   },
 ];
 
-export const CATEGORIES_SOLIGUIA_AD = cloneDeep(CATEGORIES_SOLIGUIA_ES);
+export const CATEGORIES_SOLIGUIA_AD: FlatCategoriesTreeNode[] = [
+  {
+    id: Categories.TRAINING_AND_JOBS,
+    children: [
+      {
+        id: Categories.SPANISH_COURSE,
+        rank: 130,
+      },
+      {
+        id: Categories.CATALAN_COURSE,
+        rank: 170,
+      },
+    ],
+  },
+  {
+    id: Categories.SPANISH_COURSE,
+    children: [],
+  },
+  {
+    id: Categories.CATALAN_COURSE,
+    children: [],
+  },
+  {
+    id: Categories.COUNSELING,
+    children: [
+      {
+        id: Categories.LEGAL_PROTECTION,
+        rank: 820,
+      },
+    ],
+  },
+];
