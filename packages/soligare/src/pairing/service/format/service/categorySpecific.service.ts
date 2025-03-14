@@ -21,6 +21,7 @@
 import {
   AvailableEquipmentType,
   BabyParcelAgeType,
+  DietaryAdaptationsType,
   FoodProductType,
   ServiceStyleType,
   CategoriesSpecificFields,
@@ -49,6 +50,7 @@ export class CategorySpecificService {
       babyParcelAgeType: [],
       foodProductType: [],
       serviceStyleType: [],
+      dietaryAdaptationsType: [],
     };
 
     postgresServiceCategorySpecific.forEach(
@@ -78,6 +80,12 @@ export class CategorySpecificService {
             );
             break;
           }
+          case 'dietaryAdaptationsType': {
+            formatCategorySpecificFields.dietaryAdaptationsType?.push(
+              categorySpecific.value as DietaryAdaptationsType,
+            );
+            break;
+          }
           default: {
             Object.assign(formatCategorySpecificFields, {
               [categorySpecific.specific]: categorySpecific.value,
@@ -104,6 +112,7 @@ export class CategorySpecificService {
       'babyParcelAgeType',
       'foodProductType',
       'serviceStyleType',
+      'dietaryAdaptationsType',
     ].forEach((key) => {
       if (
         !checkLength(

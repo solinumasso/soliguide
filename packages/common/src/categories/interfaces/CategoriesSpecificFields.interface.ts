@@ -43,7 +43,7 @@ export interface CategoriesSpecificFields {
   canteensMealType?: CanteensMealType;
   courseType?: FrenchCourseType;
   degreeOfChoiceType?: DegreeOfChoiceType;
-  dietaryAdaptationsType?: DietaryAdaptationsType;
+  dietaryAdaptationsType?: DietaryAdaptationsType[];
   dietaryRegimesType?: DietaryRegimesType;
   domiciliationType?: DomiciliationType;
   foodProductType?: FoodProductType[];
