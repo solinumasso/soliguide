@@ -46,7 +46,7 @@
     "lint-staged": "^15.2.7",
     "ng-lint-staged": "^12.0.4",
     "ng-packagr": "^17.3.0",
-    "posthog-js": "^1.154.1",
+    "posthog-js": "^1.194.0",
     "prettier": "^2.8.8",
     "rxjs": "^7.8.1",
     "ts-jest": "^29.1.4",
