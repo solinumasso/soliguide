@@ -60,7 +60,7 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
     helpEnabled: true,
     aboutSolinumLink: "https://www.solinum.org/activites/",
     socialMedia: {
-      instagram: "https://www.instagram.com/solinum.asso/",
+      instagram: "https://www.instagram.com/soliguide/",
       linkedin: "https://linkedin.com/company/assosolinum",
       facebook: "https://www.facebook.com/soliguide/",
       youtube: "https://youtube.com/channel/UCB4WtxF7wt0Kwk8onHCATKg",
@@ -97,7 +97,7 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
       sponsor: "poctefa.webp",
     },
     country: CountryCodes.ES,
-    defaultCoordinates: [2.176866769, 41.382625579], // Barcelona
+    defaultCoordinates: [2.1752361863470204, 41.38760428878576], // Barcelona
     defaultLanguage: SupportedLanguagesCode.CA,
     suggestedLanguages: [SupportedLanguagesCode.CA, SupportedLanguagesCode.ES],
     helpEnabled: false,
