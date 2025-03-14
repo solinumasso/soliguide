@@ -1,3 +1,10 @@
+# [4.81.0](https://github.com/solinumasso/soliguide/compare/v4.80.1...v4.81.0) (2025-03-14)
+
+
+### Features
+
+* **web-app:** comment tally's activation code [#393](https://github.com/solinumasso/soliguide/issues/393) ([#392](https://github.com/solinumasso/soliguide/issues/392)) ([a045d81](https://github.com/solinumasso/soliguide/commit/a045d81421fafc7ddec0bd20bf46a871284c2944))
+
 ## [4.80.1](https://github.com/solinumasso/soliguide/compare/v4.80.0...v4.80.1) (2025-03-04)
 
 
