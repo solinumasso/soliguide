@@ -18,18 +18,24 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, Input, OnChanges } from "@angular/core";
 
-import { Publics, PublicsOther, WelcomedPublics } from "@soliguide/common";
+import {
+  Publics,
+  PublicsOther,
+  translatePublics,
+  WelcomedPublics,
+} from "@soliguide/common";
 
-import { PublicsService } from "../../services/publics.service";
+import { CurrentLanguageService } from "../../../general/services/current-language.service";
+import { NgxTranslateI18nextAdapter } from "../../../shared/services/ngx-translate-i18next-adaptater.service";
 
 @Component({
   selector: "app-display-publics-inline",
   templateUrl: "./display-publics-inline.component.html",
   styleUrls: ["./display-publics-inline.component.css"],
 })
-export class DisplayPublicsInlineComponent implements OnInit {
+export class DisplayPublicsInlineComponent implements OnChanges {
   @Input() public publics!: Publics;
 
   public publicsText: string;
@@ -37,11 +43,21 @@ export class DisplayPublicsInlineComponent implements OnInit {
   public readonly PublicsOther = PublicsOther;
   public readonly WelcomedPublics = WelcomedPublics;
 
-  constructor(private publicsService: PublicsService) {
+  constructor(
+    private readonly adaptater: NgxTranslateI18nextAdapter,
+    private readonly currentLanguageService: CurrentLanguageService
+  ) {
     this.publicsText = "";
   }
 
-  public ngOnInit(): void {
-    this.publicsText = this.publicsService.generatePublics(this.publics);
+  public ngOnChanges(): void {
+    this.publicsText = translatePublics(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      this.adaptater as any,
+      this.currentLanguageService.currentLanguage,
+      this.publics,
+      true,
+      false
+    );
   }
 }
