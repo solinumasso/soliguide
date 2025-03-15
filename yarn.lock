@@ -5651,25 +5651,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/create-config@npm:^0.4.6":
-  version: 0.4.6
-  resolution: "@eslint/create-config@npm:0.4.6"
+"@eslint/create-config@npm:^1.0.0":
+  version: 1.5.0
+  resolution: "@eslint/create-config@npm:1.5.0"
   dependencies:
-    "@eslint/eslintrc": "npm:^1.0.3"
     cross-spawn: "npm:^7.0.2"
-    debug: "npm:^4.0.1"
     enquirer: "npm:^2.3.5"
-    js-yaml: "npm:^4.1.0"
-    json-stable-stringify-without-jsonify: "npm:^1.0.1"
-    mri: "npm:^1.2.0"
-    semver: "npm:^7.2.1"
   bin:
     create-config: bin/create-config.js
-  checksum: 10c0/76006e767a0d87e75bc4107d3546d1a585def2aba7d0d769b87230919fde6b5de158202b49d609dd2905fb5702f36d26e89a5eadf25145aebf99ff29bee5e9e1
+  checksum: 10c0/8d9cfea5a13a8254d3738a48ba27e47ba3d4964c87680209f1001c4653e4ff756618e34ad7661ba21924bac2aa4ec2162b962da8c37ecdf53d6802e6c0a56eb2
   languageName: node
   linkType: hard
 
-"@eslint/eslintrc@npm:^1.0.3, @eslint/eslintrc@npm:^1.0.5":
+"@eslint/eslintrc@npm:^1.0.5":
   version: 1.4.1
   resolution: "@eslint/eslintrc@npm:1.4.1"
   dependencies:
@@ -10592,7 +10586,7 @@ __metadata:
   resolution: "@soliguide/api@workspace:packages/api"
   dependencies:
     "@aws-sdk/client-s3": "npm:^3.614.0"
-    "@eslint/create-config": "npm:^0.4.6"
+    "@eslint/create-config": "npm:^1.0.0"
     "@google-cloud/translate": "npm:^8.3.0"
     "@sentry/node": "npm:^8.17.0"
     "@sentry/profiling-node": "npm:^8.17.0"
@@ -10763,7 +10757,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soliguide/common@workspace:packages/common"
   dependencies:
-    "@eslint/create-config": "npm:^0.4.6"
+    "@eslint/create-config": "npm:^1.0.0"
     "@types/google-libphonenumber": "npm:^7.4.30"
     "@types/jest": "npm:^29.5.12"
     "@types/lodash.clonedeep": "npm:^4.5.9"
@@ -17042,7 +17036,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:4, debug@npm:4.x, debug@npm:^4, debug@npm:^4.0.0, debug@npm:^4.0.1, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1, debug@npm:^4.3.2, debug@npm:^4.3.3, debug@npm:^4.3.4, debug@npm:^4.3.5, debug@npm:~4.3.6":
+"debug@npm:4, debug@npm:4.x, debug@npm:^4, debug@npm:^4.0.0, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1, debug@npm:^4.3.2, debug@npm:^4.3.3, debug@npm:^4.3.4, debug@npm:^4.3.5, debug@npm:~4.3.6":
   version: 4.3.6
   resolution: "debug@npm:4.3.6"
   dependencies:
@@ -25372,7 +25366,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mri@npm:^1.1.0, mri@npm:^1.2.0":
+"mri@npm:^1.1.0":
   version: 1.2.0
   resolution: "mri@npm:1.2.0"
   checksum: 10c0/a3d32379c2554cf7351db6237ddc18dc9e54e4214953f3da105b97dc3babe0deb3ffe99cf409b38ea47cc29f9430561ba6b53b24ab8f9ce97a4b50409e4a50e7
