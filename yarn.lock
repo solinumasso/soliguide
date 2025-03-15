@@ -10816,7 +10816,7 @@ __metadata:
     "@storybook/svelte": "npm:^8.4.7"
     "@storybook/sveltekit": "npm:^8.4.7"
     "@storybook/test": "npm:^8.4.7"
-    "@sveltejs/adapter-auto": "npm:^3.0.0"
+    "@sveltejs/adapter-auto": "npm:^4.0.0"
     "@sveltejs/kit": "npm:^2.0.0"
     "@sveltejs/package": "npm:^2.0.0"
     "@sveltejs/vite-plugin-svelte": "npm:^3.0.0"
@@ -11093,7 +11093,7 @@ __metadata:
     "@sentry/sveltekit": "npm:^8"
     "@soliguide/common": "workspace:*"
     "@soliguide/design-system": "workspace:*"
-    "@sveltejs/adapter-auto": "npm:^3.0.0"
+    "@sveltejs/adapter-auto": "npm:^4.0.0"
     "@sveltejs/adapter-node": "npm:^5.2.0"
     "@sveltejs/kit": "npm:^2.0.0"
     "@sveltejs/vite-plugin-svelte": "npm:^3.0.0"
@@ -11625,14 +11625,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sveltejs/adapter-auto@npm:^3.0.0":
-  version: 3.2.2
-  resolution: "@sveltejs/adapter-auto@npm:3.2.2"
+"@sveltejs/adapter-auto@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "@sveltejs/adapter-auto@npm:4.0.0"
   dependencies:
     import-meta-resolve: "npm:^4.1.0"
   peerDependencies:
     "@sveltejs/kit": ^2.0.0
-  checksum: 10c0/ec0a4f41cd089467f984433d742d0e87fab6864e3061c76261e60441e3eb780c108e5fa145a11f5166ce0a583b5b5ef86c44d18d426e85e028871e89bdd6cc85
+  checksum: 10c0/4b07459f0336423b4bef7a43e99b274a6d9d5c7d3602b504fb54f3856a380a774c4fbcc78842b8a6b7c872e8348eab3bbe48b78c7750ac8e0047846619d91f58
   languageName: node
   linkType: hard
 
