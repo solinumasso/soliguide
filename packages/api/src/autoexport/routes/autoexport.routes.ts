@@ -78,6 +78,7 @@ router.post(
       res.send(data);
       next();
     } catch (e) {
+      console.log(e);
       req.log.error(e, "EXPORT_FAIL");
       res.status(500).json({ message: "EXPORT_FAIL" });
       return;
