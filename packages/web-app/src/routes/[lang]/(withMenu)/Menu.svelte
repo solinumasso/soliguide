@@ -67,7 +67,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           ariaLabel: $i18n.t('MENU_TALK_ARIA'),
           ariaLabelActive: `${$i18n.t('MENU_TALK_ARIA')} ${$i18n.t('MENU_PAGE_ACTIVE')}`,
           route: $routes.ROUTE_TALK,
-          hasBadge: true
+          hasBadge: true,
+          id: 'chat'
         }
       ]
     : [];
@@ -79,7 +80,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       label: $i18n.t('ACCUEIL'),
       ariaLabel: $i18n.t('ACCUEIL'),
       ariaLabelActive: `${$i18n.t('ACCUEIL')} ${$i18n.t('MENU_PAGE_ACTIVE')}`,
-      route: $routes.ROUTE_HOME
+      route: $routes.ROUTE_HOME,
+      id: 'home'
     },
     {
       icon: IconSearchOff,
@@ -87,7 +89,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       label: $i18n.t('SEARCH'),
       ariaLabel: $i18n.t('MENU_SEARCH_ARIA'),
       ariaLabelActive: `${$i18n.t('MENU_SEARCH_ARIA')} ${$i18n.t('MENU_PAGE_ACTIVE')}`,
-      route: $routes.ROUTE_PLACES
+      route: $routes.ROUTE_PLACES,
+      id: 'search'
     },
     ...talkMenu,
     {
@@ -96,7 +99,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       label: $i18n.t('MENU_MORE_OPTIONS'),
       ariaLabel: $i18n.t('MENU_MORE_OPTIONS_ARIA'),
       ariaLabelActive: `${$i18n.t('MENU_MORE_OPTIONS_ARIA')} ${$i18n.t('MENU_PAGE_ACTIVE')}`,
-      route: $routes.ROUTE_MORE_OPTIONS
+      route: $routes.ROUTE_MORE_OPTIONS,
+      id: 'more-options'
     }
   ];
 
