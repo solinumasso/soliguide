@@ -40,7 +40,6 @@ import { THEME_CONFIGURATION } from "./models";
 import { SearchTrackingComponent } from "./modules/general/components/solidata/search-tracking.component";
 import { SeasonalAnalysisComponent } from "./modules/general/components/solidata/seasonal-analysis.component";
 import { TerritorialAnalysisComponent } from "./modules/general/components/solidata/territorial-analysis.component";
-import { OlympicGamesComponent } from "./modules/general/components/solidata/olympic-games.component";
 import { FoodAccessComponent } from "./modules/general/components/solidata/food-access.component";
 
 export const routes: Routes = [
@@ -133,8 +132,8 @@ export const routes: Routes = [
     canActivate: [LanguageGuard, AuthGuard, ProGuard],
   },
   {
-    path: ":lang/solidata/olympic-games",
-    component: OlympicGamesComponent,
+    path: ":lang/solidata/access-alimentation",
+    component: FoodAccessComponent,
     canActivate: [LanguageGuard, AuthGuard, ProGuard],
   },
   {
