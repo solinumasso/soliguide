@@ -31,7 +31,6 @@ export interface Environment {
   territorialAnalysis?: string;
   seasonalAnalysis?: string;
   searchTracking?: string;
-  olympicGames?: string;
   foodAccess?: string;
   praticalFilesLink?: string;
   becomeTranslatorFormLink?: string;
