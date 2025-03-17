@@ -28,4 +28,5 @@ export interface MenuItem {
   ariaLabelActive: string;
   route: string;
   hasBadge?: boolean;
+  id?: string;
 }
