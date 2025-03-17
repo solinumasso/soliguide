@@ -35,7 +35,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   };
 
   export const meta = {
-    title: 'Data display/InfoBlock',
+    title: 'Communication/InfoBlock',
     component: InfoBlock,
     argTypes: {
       variant: {

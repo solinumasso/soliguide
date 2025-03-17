@@ -23,7 +23,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import type { BadgeType } from '$lib/types';
 
   export const meta = {
-    title: 'Data display/Badge',
+    title: 'Indicators/Badge',
     component: Badge,
     argTypes: {
       type: {
