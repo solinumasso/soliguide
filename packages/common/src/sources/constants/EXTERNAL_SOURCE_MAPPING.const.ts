@@ -30,4 +30,5 @@ export const EXTERNAL_SOURCE_MAPPING: Record<
     licenseLabel: "licence Open Data",
   },
   [PairingSources.CRF]: { label: "Croix-Rouge française" },
+  [PairingSources.ALISOL]: { label: "Alisol (AD2S)" },
 };
