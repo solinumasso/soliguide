@@ -29,6 +29,8 @@ export const checkIfSourceMustBeDisplayed = (
       return isOrigin;
     case PairingSources.CRF:
       return true;
+    case PairingSources.ALISOL:
+      return isOrigin;
     default:
       return false;
   }
