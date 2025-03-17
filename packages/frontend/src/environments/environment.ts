@@ -33,10 +33,8 @@ export const environment: Environment = {
     "https://superset.solinum.org/superset/dashboard/services-closures/?standalone=2",
   searchTracking:
     "https://superset.solinum.org/superset/dashboard/tableau-des-recherches/?standalone=2",
-  olympicGames:
-    "https://superset.solinum.org/superset/dashboard/solidata_jo_2024/?standalone=2",
   foodAccess:
-    "https://superset.solinum.org/superset/dashboard/acces_alimentation/?standalone=2",
+    " https://superset.solinum.org/superset/dashboard/acces_alimentation/?standalone=2",
   praticalFilesLink: "https://fiches.soliguide.fr/hc",
   becomeTranslatorFormLink: "https://airtable.com/shrZHYio1ZdnPl1Et",
   proAccountCreationFormLink:

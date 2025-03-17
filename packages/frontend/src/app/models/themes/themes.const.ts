@@ -74,7 +74,6 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
       territorialAnalysis: environment.territorialAnalysis,
       seasonalAnalysis: environment.seasonalAnalysis,
       searchTracking: environment.searchTracking,
-      olympicGames: environment.olympicGames,
       foodAccess: environment.foodAccess,
     },
     praticalFilesLink: environment.praticalFilesLink,

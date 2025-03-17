@@ -46,7 +46,7 @@ import { SearchModule } from "../search/search.module";
 import { SharedModule } from "../shared/shared.module";
 import { CookiesModalComponent } from "./components/cookies-modal/cookies-modal.component";
 import { ChatService } from "../shared/services";
-import { OlympicGamesComponent } from "./components/solidata/olympic-games.component";
+import { FoodAccessComponent } from "./components/solidata/food-access.component";
 import { SearchTrackingComponent } from "./components/solidata/search-tracking.component";
 import { SeasonalAnalysisComponent } from "./components/solidata/seasonal-analysis.component";
 import { TerritorialAnalysisComponent } from "./components/solidata/territorial-analysis.component";
@@ -65,7 +65,6 @@ import { FoodAccessComponent } from "./components/solidata/food-access.component
     NotFoundComponent,
     CookiesModalComponent,
     DownloadMobileAppComponent,
-    OlympicGamesComponent,
     FoodAccessComponent,
     SearchTrackingComponent,
     SeasonalAnalysisComponent,
