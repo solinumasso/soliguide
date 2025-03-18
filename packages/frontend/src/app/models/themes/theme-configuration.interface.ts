@@ -23,6 +23,14 @@ import type {
   SoliguideCountries,
 } from "@soliguide/common";
 
+export enum SolidataKey {
+  SOLIGUIDE_FOOD_ACCESS = "foodAccess",
+  SOLIGUIDE_TERRITORIAL_ANALYSIS = "territorialAnalysis",
+  SOLIGUIDE_SEASONAL_ANALYSIS = "seasonalAnalysis",
+  SOLIGUIDE_SEARCH_TRACKING = "searchTracking",
+  SOLIGUIDE_OLYMPIC_GAMES = "olympicGames",
+}
+
 export interface ThemeConfiguration {
   brandName: string;
   logos: {
@@ -53,10 +61,11 @@ export interface ThemeConfiguration {
   contactFormEnabled: boolean;
   locationAutocompletePlaceholder: string;
   solidata?: {
-    territorialAnalysis?: string;
-    seasonalAnalysis?: string;
-    searchTracking?: string;
-    foodAccess?: string;
+    [key in SolidataKey]: {
+      label: string;
+      dashboardUrl: string;
+      seoUrl: string;
+    };
   };
   praticalFilesLink?: string;
   becomeTranslatorFormLink?: string;

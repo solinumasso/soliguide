@@ -28,10 +28,6 @@ export interface Environment {
   posthogApiKey?: string;
   sentryDsn?: string;
   territoriesPresent: string;
-  territorialAnalysis?: string;
-  seasonalAnalysis?: string;
-  searchTracking?: string;
-  foodAccess?: string;
   praticalFilesLink?: string;
   becomeTranslatorFormLink?: string;
   proAccountCreationFormLink?: string;
