@@ -71,10 +71,36 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
     locationAutocompletePlaceholder:
       "Gare de l'est, 12 rue des bois, Paris, etc.",
     solidata: {
-      territorialAnalysis: environment.territorialAnalysis,
-      seasonalAnalysis: environment.seasonalAnalysis,
-      searchTracking: environment.searchTracking,
-      foodAccess: environment.foodAccess,
+      territorialAnalysis: {
+        label: "Analyse territoriale",
+        dashboardUrl:
+          "https://superset.solinum.org/superset/dashboard/territorial-analysis/?standalone=2",
+        seoUrl: "territorial-analysis",
+      },
+      seasonalAnalysis: {
+        label: "Analyse saisonnière",
+        dashboardUrl:
+          "https://superset.solinum.org/superset/dashboard/services-closures/?standalone=2",
+        seoUrl: "seasonal-analysis",
+      },
+      searchTracking: {
+        label: "Suivi des recherches",
+        dashboardUrl:
+          "https://superset.solinum.org/superset/dashboard/tableau-des-recherches/?standalone=2",
+        seoUrl: "search-tracking",
+      },
+      foodAccess: {
+        label: "Analyse de l’accès à l’alimentation",
+        dashboardUrl:
+          "https://superset.solinum.org/superset/dashboard/acces_alimentation/?standalone=2",
+        seoUrl: "access-alimentation",
+      },
+      olympicGames: {
+        label: "Anticipation des fermetures pour l'été et les JO 2024 en IDF",
+        dashboardUrl:
+          "https://superset.solinum.org/superset/dashboard/solidata_jo_2024/?standalone=2",
+        seoUrl: "olympic-games",
+      },
     },
     praticalFilesLink: environment.praticalFilesLink,
     becomeTranslatorFormLink: environment.becomeTranslatorFormLink,

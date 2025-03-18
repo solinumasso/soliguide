@@ -45,13 +45,10 @@ import { GeneralService } from "./services/general.services";
 import { SharedModule } from "../shared/shared.module";
 import { CookiesModalComponent } from "./components/cookies-modal/cookies-modal.component";
 import { ChatService } from "../shared/services";
-import { FoodAccessComponent } from "./components/solidata/food-access.component";
-import { SearchTrackingComponent } from "./components/solidata/search-tracking.component";
-import { SeasonalAnalysisComponent } from "./components/solidata/seasonal-analysis.component";
-import { TerritorialAnalysisComponent } from "./components/solidata/territorial-analysis.component";
+
 import { HomeTerritoriesStatsComponent } from "./components/home-territiries-stats/home-territories-stats.component";
-import { FoodAccessComponent } from "./components/solidata/food-access.component";
 import { SearchBarModule } from "../search-bar/search-bar.module";
+import { SolidataComponent } from "./components/solidata/solidata.component";
 
 @NgModule({
   declarations: [
@@ -65,10 +62,7 @@ import { SearchBarModule } from "../search-bar/search-bar.module";
     NotFoundComponent,
     CookiesModalComponent,
     DownloadMobileAppComponent,
-    FoodAccessComponent,
-    SearchTrackingComponent,
-    SeasonalAnalysisComponent,
-    TerritorialAnalysisComponent,
+    SolidataComponent,
     HomeTerritoriesStatsComponent,
   ],
   exports: [
