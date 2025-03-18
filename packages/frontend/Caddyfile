@@ -68,7 +68,7 @@ handle /sitemap.xml {
 map {http.request.orig_uri.path} {category_source} {category_target_path} {
 	~^(.*/search/.*)/(accompagnement-emploi)(.*)$ "${2}" "${1}/job_coaching${3}"
 	~^(.*/search/.*)/(accompagnement-social)(.*)$ "${2}" "${1}/social_accompaniment${3}"
-	~^(.*/search/.*)/(accueil-jour)( .*)$ "${2}" "${1}/day_hosting${3}"
+	~^(.*/search/.*)/(accueil-jour)(.*)$ "${2}" "${1}/day_hosting${3}"
 	~^(.*/search/.*)/(accueil)(.*)$ "${2}" "${1}/welcome${3}"
 	~^(.*/search/.*)/(activites-diverses)(.*)$ "${2}" "${1}/other_activities${3}"
 	~^(.*/search/.*)/(activites-sportives)(.*)$ "${2}" "${1}/sport_activities${3}"
