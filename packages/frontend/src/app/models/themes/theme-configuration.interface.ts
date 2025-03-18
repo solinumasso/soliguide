@@ -53,10 +53,11 @@ export interface ThemeConfiguration {
   contactFormEnabled: boolean;
   locationAutocompletePlaceholder: string;
   solidata?: {
-    territorialAnalysis?: string;
-    seasonalAnalysis?: string;
-    searchTracking?: string;
-    foodAccess?: string;
+    [key: string]: {
+      label: string;
+      dashboardUrl: string;
+      seoUrl: string;
+    };
   };
   praticalFilesLink?: string;
   becomeTranslatorFormLink?: string;
