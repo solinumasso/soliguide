@@ -68,7 +68,7 @@ handle /sitemap.xml {
 map {http.request.orig_uri.path} {category_source} {category_target_path} {
 	~^(.*/search/.*)/(accompagnement-emploi)(.*)$ "${2}" "${1}/job_coaching${3}"
 	~^(.*/search/.*)/(accompagnement-social)(.*)$ "${2}" "${1}/social_accompaniment${3}"
-	~^(.*/search/.*)/(accueil-jour)( .*)$ "${2}" "${1}/day_hosting${3}"
+	~^(.*/search/.*)/(accueil-jour)(.*)$ "${2}" "${1}/day_hosting${3}"
 	~^(.*/search/.*)/(accueil)(.*)$ "${2}" "${1}/welcome${3}"
 	~^(.*/search/.*)/(activites-diverses)(.*)$ "${2}" "${1}/other_activities${3}"
 	~^(.*/search/.*)/(activites-sportives)(.*)$ "${2}" "${1}/sport_activities${3}"
@@ -112,7 +112,7 @@ map {http.request.orig_uri.path} {category_source} {category_target_path} {
 	~^(.*/search/.*)/(hebergement-et-logement)(.*)$ "${2}" "${1}/accomodation_and_housing${3}"
 	~^(.*/search/.*)/(hebergement-long-terme)(.*)$ "${2}" "${1}/long_term_accomodation${3}"
 	~^(.*/search/.*)/(hebergement-urgence)(.*)$ "${2}" "${1}/emergency_accommodation${3}"
-	~^(.*/search/.*)/(hygiene)((?!_and_wellness$).*)$ "${2}" "${1}/hygiene_and_wellness${3}"
+	~^(.*/search/.*)/(hygiene)$ "${2}" "${1}/hygiene_and_wellness"
 	~^(.*/search/.*)/(infirmerie)(.*)$ "${2}" "${1}/infirmary${3}"
 	~^(.*/search/.*)/(insertion-activite-economique)(.*)$ "${2}" "${1}/integration_through_economic_activity${3}"
 	~^(.*/search/.*)/(kinesitherapie)(.*)$ "${2}" "${1}/kinesitherapy${3}"
