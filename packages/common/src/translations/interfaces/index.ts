@@ -19,9 +19,5 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 // @index('./*', f => `export * from '${f.path}'`)
-export * from "./PlaceSummary.interface";
-export * from "./TranslatedField.interface";
-export * from "./TranslatedFieldContent.interface";
-export * from "./TranslatedFieldTranslatorData.interface";
-export * from "./TranslatedPlace.interface";
-export * from "./TranslatedPlaceContent.interface";
+export * from "./I18nTranslator.interface";
+export * from "./place-translations";

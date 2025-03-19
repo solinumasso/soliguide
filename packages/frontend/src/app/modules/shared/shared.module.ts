@@ -54,6 +54,7 @@ import { PrintService, LocationService } from "./services";
 import { TextDirectionDirective } from "./directives";
 import { LocationAutocompleteComponent } from "./components/location-autocomplete/location-autocomplete.component";
 import { DisplaySourcesComponent } from "./components/display-sources/display-sources.component";
+import { NgxTranslateI18nextAdapter } from "./services/ngx-translate-i18next-adaptater.service";
 
 @NgModule({
   declarations: [
@@ -107,7 +108,7 @@ import { DisplaySourcesComponent } from "./components/display-sources/display-so
     NgbModule,
     TranslateModule,
   ],
-  providers: [PrintService, LocationService],
+  providers: [PrintService, LocationService, NgxTranslateI18nextAdapter],
 })
 export class SharedModule {
   constructor(private readonly library: FaIconLibrary) {

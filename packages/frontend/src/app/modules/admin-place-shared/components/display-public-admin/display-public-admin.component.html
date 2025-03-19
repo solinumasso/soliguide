@@ -47,15 +47,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     </div>
   </div>
   <div class="col-md-7 col-12 align-self-center">
-    <div>{{ publicsText | ucFirst }}</div>
-
-    <div class="my-3" *ngIf="publics.description">
+    <p [innerHTML]="publicsText | safeHtml"></p>
+    <p class="my-3" *ngIf="publics.description">
       <b>
         <fa-icon [icon]="['fas', 'info-circle']" class="me-1"></fa-icon>
         {{ "INFO_IMPORTANTE" | translate | ucFirst }}
       </b>
       <i>{{ publics.description }}</i>
-    </div>
+    </p>
   </div>
 </div>
 

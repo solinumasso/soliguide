@@ -18,25 +18,11 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { APP_BASE_HREF } from "@angular/common";
-import { inject, TestBed } from "@angular/core/testing";
+import { TranslatedFieldLanguageStatus } from "../../enums";
 
-import { TranslateModule } from "@ngx-translate/core";
-
-import { PublicsService } from "./publics.service";
-
-describe("PublicsService", () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [TranslateModule.forRoot()],
-      providers: [PublicsService, { provide: APP_BASE_HREF, useValue: "/" }],
-    });
-  });
-
-  it("should be created", inject(
-    [PublicsService],
-    (service: PublicsService) => {
-      expect(service).toBeTruthy();
-    }
-  ));
-});
+export interface TranslatedFieldTranslatorData {
+  content: string;
+  status: TranslatedFieldLanguageStatus;
+  translatorName: string | null;
+  updatedAt: Date;
+}

@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import i18next from 'i18next';
+import i18next, { type i18n, type InitOptions } from 'i18next';
 import { createI18nStore } from 'svelte-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { SUPPORTED_LANGUAGES, SupportedLanguagesCode } from '@soliguide/common';
@@ -66,6 +66,8 @@ const supportedResources = SUPPORTED_LANGUAGES.reduce(
   {} as TranslationResources
 );
 
+// eslint-disable-next-line fp/no-let
+export let i18nInstance: i18n;
 /**
  * Initialize i18n and put it in a store
  */
@@ -73,7 +75,7 @@ export const getI18nStore = (
   defaultLanguage = SupportedLanguagesCode.EN,
   supportedLanguages = SUPPORTED_LANGUAGES
 ): I18nStore => {
-  i18next.use(LanguageDetector).init({
+  const options: InitOptions = {
     resources: supportedResources,
     fallbackLng: defaultLanguage,
     supportedLngs: supportedLanguages,
@@ -84,9 +86,15 @@ export const getI18nStore = (
       order: ['path', 'localStorage'],
       caches: ['localStorage']
     }
-  });
+  };
 
-  i18next.on('languageChanged', (lng) => {
+  // eslint-disable-next-line fp/no-mutation
+  i18nInstance = i18next.use(LanguageDetector);
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  i18nInstance.init(options).then(() => {});
+
+  i18nInstance.on('languageChanged', (lng) => {
     changeDesignSystemLocale(lng);
   });
 

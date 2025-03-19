@@ -41,38 +41,55 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </script>
 
 <div class="info-content">
-  {#each info as { type, description }}
+  {#each info as { type, description, tags, needTranslation, translatedText }}
     {@const details = getTitleAndIcon($i18n, type)}
     <div class="detail">
-      <div class="title">
-        <div class="icon">
-          <svelte:component this={details.icon} size="16" />
-        </div>
-        <Text type="caption1Medium" color="dark">{details.title}</Text>
+      <div class="icon">
+        <svelte:component this={details.icon} size="18" />
       </div>
-      <TextClamper
-        linesNotClamped={3}
-        showMoreLabel={$i18n.t('SEE_MORE')}
-        showLessLabel={$i18n.t('SEE_LESS')}
-      >
-        <Text type="caption1" color="shy">
-          <span class="description">
-            {#if type === PlaceDetailsInfoType.WELCOME_UNCONDITIONAL_CUSTOM || type === PlaceDetailsInfoType.WELCOME_EXCLUSIVE}
-              <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-              {getFormattedDescription(description).toLowerCase()}
-            {:else}
-              <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+
+      {#if !needTranslation && translatedText}
+        <p class="public-description">
+          {@html DOMPurify.sanitize(translatedText)}
+        </p>
+      {:else}
+        <p class="public-description">
+          <b>{details.title}</b>
+          <TextClamper
+            linesNotClamped={3}
+            showMoreLabel={$i18n.t('SEE_MORE')}
+            showLessLabel={$i18n.t('SEE_LESS')}
+          >
+            <p class="public-description">
               {@html DOMPurify.sanitize(getFormattedDescription(description))}
-            {/if}
-          </span>
-        </Text>
-      </TextClamper>
+            </p>
+          </TextClamper>
+        </p>
+      {/if}
     </div>
   {/each}
 </div>
 
 <style lang="scss">
+  .public-description {
+    font-size: 0.7rem;
+    font-style: normal;
+    line-height: 1.2rem;
+    color: var(--color-textShy);
+  }
+  .public-description :global(b) {
+    display: block !important;
+    color: black;
+    font-size: 15px;
+    font-size: 0.85rem;
+  }
   .info-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacingLG);
+  }
+
+  .details-container {
     display: flex;
     flex-direction: column;
     gap: var(--spacingLG);
@@ -80,7 +97,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   .detail {
     display: flex;
-    flex-direction: column;
+    gap: var(--spacingMD);
   }
 
   .title {
