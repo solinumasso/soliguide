@@ -1,3 +1,11 @@
+# [4.82.0](https://github.com/solinumasso/soliguide/compare/v4.81.0...v4.82.0) (2025-03-19)
+
+
+### Features
+
+* add space to restart job  [#416](https://github.com/solinumasso/soliguide/issues/416) ([d82b45e](https://github.com/solinumasso/soliguide/commit/d82b45ef7bc3935697cbbdae237984022e4f2b34))
+* add superset page for food access [#416](https://github.com/solinumasso/soliguide/issues/416) ([cc18c9a](https://github.com/solinumasso/soliguide/commit/cc18c9afcdd02da25fa478adbeebb1a56cac843b))
+
 # [4.81.0](https://github.com/solinumasso/soliguide/compare/v4.80.1...v4.81.0) (2025-03-14)
 
 
