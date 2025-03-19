@@ -543,7 +543,8 @@ export const patchServices = async (
         { ...service.close, tempInfoType: TempInfoType.serviceClosure },
         updatedPlace,
         req.userForLogs as UserForLogs,
-        service
+        service,
+        req.bodyValidated.forceChanges
       );
     } else {
       // When we ourselves manually remove a closure, we remove it
@@ -551,7 +552,10 @@ export const patchServices = async (
     }
   }
 
-  updatedPlace = await updateServices(updatedPlace);
+  updatedPlace = await updateServices(
+    updatedPlace,
+    req.bodyValidated.forceChanges
+  );
 
   // We check whether this place has to be updated as part of the campaign when the campaign is on
   if (isCampaignActiveForPlace(updatedPlace)) {
