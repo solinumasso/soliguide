@@ -18,22 +18,10 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { PlaceSummary } from "./PlaceSummary.interface";
-import { TranslatedPlaceContent } from "./TranslatedPlaceContent.interface";
-
-import { SupportedLanguagesCode } from "../enums";
-import { CommonPositionForTranslation } from "../../place";
-
-export interface TranslatedPlace {
-  updatedAt: Date;
-  createdAt: Date;
-  sourceLanguage: SupportedLanguagesCode;
-  languages: {
-    [lang in SupportedLanguagesCode]?: TranslatedPlaceContent;
-  };
-  translationRate: number;
-  lastUpdate: Date;
-  lieu_id: number;
-  place: PlaceSummary;
-  position: CommonPositionForTranslation;
-}
+// @index('./*', f => `export * from '${f.path}'`)
+export * from "./PlaceSummary.interface";
+export * from "./TranslatedField.interface";
+export * from "./TranslatedFieldContent.interface";
+export * from "./TranslatedFieldTranslatorData.interface";
+export * from "./TranslatedPlace.interface";
+export * from "./TranslatedPlaceContent.interface";

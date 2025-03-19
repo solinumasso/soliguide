@@ -19,25 +19,21 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { PlaceSummary } from "./PlaceSummary.interface";
-import { TranslatedFieldContent } from "./TranslatedFieldContent.interface";
+import { TranslatedPlaceContent } from "./TranslatedPlaceContent.interface";
 
-import { SupportedLanguagesCode, TranslatedFieldStatus } from "../enums";
+import { SupportedLanguagesCode } from "../../enums";
+import { CommonPositionForTranslation } from "../../../place";
 
-import { TranslatedFieldElement } from "../types";
-import { CommonPositionForTranslation } from "../../place";
-
-export interface TranslatedField {
-  _id: string;
+export interface TranslatedPlace {
   updatedAt: Date;
   createdAt: Date;
-  content: string;
-  elementName: TranslatedFieldElement;
   sourceLanguage: SupportedLanguagesCode;
   languages: {
-    [key in SupportedLanguagesCode]?: TranslatedFieldContent;
+    [lang in SupportedLanguagesCode]?: TranslatedPlaceContent;
   };
+  translationRate: number;
+  lastUpdate: Date;
   lieu_id: number;
-  place?: PlaceSummary;
+  place: PlaceSummary;
   position: CommonPositionForTranslation;
-  status: TranslatedFieldStatus;
 }

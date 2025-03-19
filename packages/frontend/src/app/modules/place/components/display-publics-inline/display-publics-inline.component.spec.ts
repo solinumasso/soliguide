@@ -28,6 +28,7 @@ import { ToastrModule } from "ngx-toastr";
 import { DisplayPublicsInlineComponent } from "./display-publics-inline.component";
 
 import { Publics } from "@soliguide/common";
+import { SharedModule } from "../../../shared/shared.module";
 
 describe("DisplayPublicsInlineComponent", () => {
   let component: DisplayPublicsInlineComponent;
@@ -36,7 +37,11 @@ describe("DisplayPublicsInlineComponent", () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [DisplayPublicsInlineComponent],
-      imports: [ToastrModule.forRoot({}), TranslateModule.forRoot({})],
+      imports: [
+        ToastrModule.forRoot({}),
+        TranslateModule.forRoot({}),
+        SharedModule,
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   }));
