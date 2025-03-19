@@ -66,7 +66,7 @@ export const convertPlaceToExportRow = (
     modalities: translateModalities(translator, language, place.modalities),
     name: parseString(place.name),
     phoneNumbers: parsePhones(language, place.entity.phones),
-    publics: translatePublics(translator, language, place.publics),
+    publics: translatePublics(translator, language, place.publics, false, true),
     services: getAllServicesNames(place, language, true),
     category: "",
     tempClosure: "",
@@ -137,7 +137,9 @@ export const convertPlaceToExportRow = (
       docExportRow.publics = translatePublics(
         translator,
         language,
-        service.publics
+        service.publics,
+        false,
+        true
       );
     }
   }

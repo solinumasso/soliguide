@@ -597,10 +597,22 @@ const samplePlaceTransformed: PlaceDetails = {
     ]
   },
   info: [
-    { type: PlaceDetailsInfoType.WELCOME_UNCONDITIONAL, tags: [], description: [] },
-    { type: PlaceDetailsInfoType.ACCESS_FREE, tags: [], description: [] },
-    { type: PlaceDetailsInfoType.LANGUAGES_SPOKEN, tags: [], description: [{ key: 'LANGUE_FR' }] }
+    {
+      type: PlaceDetailsInfoType.WELCOME_UNCONDITIONAL,
+      tags: [],
+      description: [],
+      needTranslation: false,
+      translatedText: '<b>Unconditional welcome</b>'
+    },
+    { type: PlaceDetailsInfoType.ACCESS_FREE, tags: [], description: [], needTranslation: true },
+    {
+      type: PlaceDetailsInfoType.LANGUAGES_SPOKEN,
+      tags: [],
+      description: [{ key: 'LANGUE_FR' }],
+      needTranslation: true
+    }
   ],
+  publics: '<b>Unconditional welcome</b>',
   instagram: '',
   lastUpdate: '2024-06-11T15:27:13.409Z',
   name: 'Soupe Saint-Eustache',

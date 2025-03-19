@@ -123,6 +123,8 @@ export interface PlaceDetailsInfo {
   type: PlaceDetailsInfoType;
   description: TranslatableElement[];
   tags: Tag[];
+  needTranslation?: boolean; // false for values already translated by common
+  translatedText?: string;
 }
 
 export interface Saturation {
@@ -157,6 +159,7 @@ export interface PlaceDetails {
   status: PlaceOpeningStatus;
   todayInfo: TodayInfo;
   website: string;
+  publics: string;
 }
 
 export interface SearchLocationParams {
