@@ -58,6 +58,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           olympicGames: '{{ env "SOLIGUIDE_OLYMPIC_GAMES" }}'.length
             ? '{{ env "SOLIGUIDE_OLYMPIC_GAMES" }}'
             : undefined,
+          foodAccess: '{{ env "SOLIGUIDE_FOOD_ACCESS" }}'.length
+            ? '{{ env "SOLIGUIDE_FOOD_ACCESS" }}'
+            : undefined,
           praticalFilesLink: '{{ env "SOLIGUIDE_PRACTICAL_FILES_LINK" }}'.length
             ? '{{ env "SOLIGUIDE_PRACTICAL_FILES_LINK" }}'
             : undefined,

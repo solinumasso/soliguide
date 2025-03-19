@@ -18,15 +18,26 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import type { Categories, SearchAutoComplete } from '@soliguide/common';
-const buildCategorySuggestion = (
-  searchResult: SearchAutoComplete,
-  isSpecialistFn: (categoryId: Categories) => boolean
-): Categories[] => {
-  return searchResult.categories
-    .filter(({ categoryId }) => categoryId && !isSpecialistFn(categoryId))
-    .map(({ categoryId }) => categoryId as Categories)
-    .filter((categoryId) => Boolean(categoryId));
-};
+import { Component, OnInit } from "@angular/core";
+import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 
-export { buildCategorySuggestion };
+import { THEME_CONFIGURATION } from "../../../../models";
+
+@Component({
+  selector: "app-solidata",
+  templateUrl: "./solidata.component.html",
+  styleUrls: ["./solidata.component.css"],
+})
+export class FoodAccessComponent implements OnInit {
+  public solidataLink?: SafeResourceUrl;
+
+  constructor(private sanitizer: DomSanitizer) {}
+
+  ngOnInit() {
+    this.solidataLink = THEME_CONFIGURATION.solidata?.foodAccess
+      ? this.sanitizer.bypassSecurityTrustResourceUrl(
+          THEME_CONFIGURATION.solidata.foodAccess
+        )
+      : undefined;
+  }
+}
