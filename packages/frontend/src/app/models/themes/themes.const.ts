@@ -75,6 +75,7 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
       seasonalAnalysis: environment.seasonalAnalysis,
       searchTracking: environment.searchTracking,
       olympicGames: environment.olympicGames,
+      foodAccess: environment.foodAccess,
     },
     praticalFilesLink: environment.praticalFilesLink,
     becomeTranslatorFormLink: environment.becomeTranslatorFormLink,
