@@ -57,6 +57,7 @@ export interface ThemeConfiguration {
     seasonalAnalysis?: string;
     searchTracking?: string;
     olympicGames?: string;
+    foodAccess?: string;
   };
   praticalFilesLink?: string;
   becomeTranslatorFormLink?: string;
