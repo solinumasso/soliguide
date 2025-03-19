@@ -51,6 +51,7 @@ import { SearchTrackingComponent } from "./components/solidata/search-tracking.c
 import { SeasonalAnalysisComponent } from "./components/solidata/seasonal-analysis.component";
 import { TerritorialAnalysisComponent } from "./components/solidata/territorial-analysis.component";
 import { HomeTerritoriesStatsComponent } from "./components/home-territiries-stats/home-territories-stats.component";
+import { FoodAccessComponent } from "./components/solidata/food-access.component";
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { HomeTerritoriesStatsComponent } from "./components/home-territiries-sta
     CookiesModalComponent,
     DownloadMobileAppComponent,
     OlympicGamesComponent,
+    FoodAccessComponent,
     SearchTrackingComponent,
     SeasonalAnalysisComponent,
     TerritorialAnalysisComponent,

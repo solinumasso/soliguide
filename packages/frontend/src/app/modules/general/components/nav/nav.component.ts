@@ -77,8 +77,8 @@ export class NavComponent implements OnInit, OnDestroy {
     !!THEME_CONFIGURATION.solidata?.seasonalAnalysis;
   public readonly displaySolidataTerritorialAnalysis =
     !!THEME_CONFIGURATION.solidata?.territorialAnalysis;
-  public readonly displaySolidataOlympicGames =
-    !!THEME_CONFIGURATION.solidata?.olympicGames;
+  public readonly displaySolidataFoodAccess =
+    !!THEME_CONFIGURATION.solidata?.foodAccess;
   public readonly displaySolidataNavButtons =
     THEME_CONFIGURATION.solidata != null;
 
