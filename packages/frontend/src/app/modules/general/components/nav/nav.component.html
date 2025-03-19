@@ -326,12 +326,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               <a
                 routerLinkActive="router-link-active"
                 [routerLinkActiveOptions]="{ exact: true }"
-                [routerLink]="[routePrefix, 'solidata', 'olympic-games']"
-                (click)="captureEvent('click-solidata-olympic-games', {})"
+                [routerLink]="[routePrefix, 'solidata', 'access_alimentation']"
+                (click)="captureEvent('click-solidata-food-access', {})"
                 ngbDropdownItem
-                *ngIf="displaySolidataOlympicGames"
+                *ngIf="displaySolidataFoodAccess"
               >
-                {{ "OLYMPIC_AND_PARALYMPIC_GAMES" | translate }}
+                {{ "SOLIDATA_FOOD_ACCESS" | translate }}
               </a>
             </div>
           </div>
