@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import { buildPlaceDetails } from './placeDetails';
 import { samplePlace, samplePlaceTransformed } from './placeDetailsData.mock';
 import {
@@ -32,11 +32,21 @@ import {
   WelcomedPublics
 } from '@soliguide/common';
 import { PlaceDetailsInfoType } from './types';
+import { getI18nStore, i18nInstance } from '../client/i18n';
 
 describe('Place details Result', () => {
   let modifiedPlace = structuredClone(samplePlace);
   let modifiedPlaceResult = structuredClone(samplePlaceTransformed);
   const category = Categories.FOOD;
+
+  beforeAll(() => {
+    getI18nStore();
+
+    return new Promise((resolve) => {
+      i18nInstance.on('initialized', resolve);
+      setTimeout(resolve, 1000);
+    });
+  });
 
   beforeEach(() => {
     modifiedPlace = structuredClone(samplePlace);
@@ -316,8 +326,8 @@ describe('Place details Result', () => {
             PlaceDetailsInfoType.WELCOME_UNCONDITIONAL;
 
           const result = buildPlaceDetails(modifiedPlace, category);
-          expect(result.info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
-            modifiedPlaceResult.info[STANDARD_INFO_INDEX.publics]
+          expect(result.info[STANDARD_INFO_INDEX.publics].translatedText).toStrictEqual(
+            '<b>Unconditional welcome</b>'
           );
         });
 
@@ -327,8 +337,8 @@ describe('Place details Result', () => {
             PlaceDetailsInfoType.WELCOME_UNCONDITIONAL_CUSTOM;
 
           const result = buildPlaceDetails(modifiedPlace, category);
-          expect(result.info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
-            modifiedPlaceResult.info[STANDARD_INFO_INDEX.publics]
+          expect(result.info[STANDARD_INFO_INDEX.publics].translatedText).toStrictEqual(
+            '<b>Unconditional welcome adapted to </b>.'
           );
         });
 
@@ -338,8 +348,8 @@ describe('Place details Result', () => {
             PlaceDetailsInfoType.WELCOME_EXCLUSIVE;
 
           const result = buildPlaceDetails(modifiedPlace, category);
-          expect(result.info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
-            modifiedPlaceResult.info[STANDARD_INFO_INDEX.publics]
+          expect(result.info[STANDARD_INFO_INDEX.publics].translatedText).toStrictEqual(
+            '<b>Exclusive welcome: </b>.'
           );
         });
       });
@@ -358,8 +368,8 @@ describe('Place details Result', () => {
         ];
 
         const result = buildPlaceDetails(modifiedPlace, category);
-        expect(result.info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
-          modifiedPlaceResult.info[STANDARD_INFO_INDEX.publics]
+        expect(result.info[STANDARD_INFO_INDEX.publics].translatedText).toStrictEqual(
+          '<b>Exclusive welcome: </b>women, victim of violence, lgbt+.'
         );
       });
 
@@ -374,8 +384,8 @@ describe('Place details Result', () => {
           modifiedPlace.publics.age = { min: 0, max: 99 };
 
           const result = buildPlaceDetails(modifiedPlace, category);
-          expect(result.info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
-            modifiedPlaceResult.info[STANDARD_INFO_INDEX.publics]
+          expect(result.info[STANDARD_INFO_INDEX.publics].translatedText).toStrictEqual(
+            '<b>Exclusive welcome: </b>.'
           );
         });
 
@@ -386,8 +396,8 @@ describe('Place details Result', () => {
           ];
 
           const result = buildPlaceDetails(modifiedPlace, category);
-          expect(result.info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
-            modifiedPlaceResult.info[STANDARD_INFO_INDEX.publics]
+          expect(result.info[STANDARD_INFO_INDEX.publics].translatedText).toStrictEqual(
+            '<b>Exclusive welcome: </b>people up to 76 years old.'
           );
         });
 
@@ -398,8 +408,8 @@ describe('Place details Result', () => {
           ];
 
           const result = buildPlaceDetails(modifiedPlace, category);
-          expect(result.info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
-            modifiedPlaceResult.info[STANDARD_INFO_INDEX.publics]
+          expect(result.info[STANDARD_INFO_INDEX.publics].translatedText).toStrictEqual(
+            '<b>Exclusive welcome: </b>people at least 12 years old.'
           );
         });
 
@@ -410,8 +420,8 @@ describe('Place details Result', () => {
           ];
 
           const result = buildPlaceDetails(modifiedPlace, category);
-          expect(result.info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
-            modifiedPlaceResult.info[STANDARD_INFO_INDEX.publics]
+          expect(result.info[STANDARD_INFO_INDEX.publics].translatedText).toStrictEqual(
+            '<b>Exclusive welcome: </b>minors (under 18).'
           );
         });
 
@@ -422,8 +432,8 @@ describe('Place details Result', () => {
           ];
 
           const result = buildPlaceDetails(modifiedPlace, category);
-          expect(result.info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
-            modifiedPlaceResult.info[STANDARD_INFO_INDEX.publics]
+          expect(result.info[STANDARD_INFO_INDEX.publics].translatedText).toStrictEqual(
+            '<b>Exclusive welcome: </b>adults.'
           );
         });
 
@@ -434,8 +444,8 @@ describe('Place details Result', () => {
           ];
 
           const result = buildPlaceDetails(modifiedPlace, category);
-          expect(result.info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
-            modifiedPlaceResult.info[STANDARD_INFO_INDEX.publics]
+          expect(result.info[STANDARD_INFO_INDEX.publics].translatedText).toStrictEqual(
+            '<b>Exclusive welcome: </b>people aged from 12 to 76 years.'
           );
         });
       });
@@ -445,13 +455,14 @@ describe('Place details Result', () => {
         modifiedPlaceResult.info[STANDARD_INFO_INDEX.morePrecisionsPublics] = {
           type: PlaceDetailsInfoType.PUBLICS_MORE_INFO,
           tags: [],
+          needTranslation: false,
           description: [{ key: 'We have many other specific publics' }]
         };
 
         const result = buildPlaceDetails(modifiedPlace, category);
-        expect(result.info[STANDARD_INFO_INDEX.morePrecisionsPublics]).toStrictEqual(
-          modifiedPlaceResult.info[STANDARD_INFO_INDEX.morePrecisionsPublics]
-        );
+        expect(
+          result.info[STANDARD_INFO_INDEX.morePrecisionsPublics].translatedText
+        ).toBeUndefined();
       });
     });
 
@@ -476,7 +487,8 @@ describe('Place details Result', () => {
           modifiedPlaceResult.info[STANDARD_INFO_INDEX.modalitiesDefault] = {
             type: PlaceDetailsInfoType.ACCESS_ORIENTATION,
             description: [],
-            tags: []
+            tags: [],
+            needTranslation: true
           };
 
           let result = buildPlaceDetails(modifiedPlace, category);
@@ -503,7 +515,8 @@ describe('Place details Result', () => {
           modifiedPlaceResult.info[STANDARD_INFO_INDEX.modalitiesDefault] = {
             type: PlaceDetailsInfoType.REGISTRATION,
             description: [],
-            tags: []
+            tags: [],
+            needTranslation: true
           };
 
           let result = buildPlaceDetails(modifiedPlace, category);
@@ -529,7 +542,8 @@ describe('Place details Result', () => {
           modifiedPlaceResult.info[STANDARD_INFO_INDEX.modalitiesDefault] = {
             type: PlaceDetailsInfoType.APPOINTMENT,
             description: [],
-            tags: []
+            tags: [],
+            needTranslation: true
           };
 
           let result = buildPlaceDetails(modifiedPlace, category);
@@ -557,17 +571,20 @@ describe('Place details Result', () => {
           modifiedPlaceResult.info[STANDARD_INFO_INDEX.modalitiesOrientation] = {
             type: PlaceDetailsInfoType.ACCESS_ORIENTATION,
             description: [],
-            tags: []
+            tags: [],
+            needTranslation: true
           };
           modifiedPlaceResult.info[STANDARD_INFO_INDEX.modalitiesInscription] = {
             type: PlaceDetailsInfoType.REGISTRATION,
             description: [],
-            tags: []
+            tags: [],
+            needTranslation: true
           };
           modifiedPlaceResult.info[STANDARD_INFO_INDEX.modalitiesAppointment] = {
             type: PlaceDetailsInfoType.APPOINTMENT,
             description: [],
-            tags: []
+            tags: [],
+            needTranslation: true
           };
 
           const result = buildPlaceDetails(modifiedPlace, category);
@@ -588,7 +605,8 @@ describe('Place details Result', () => {
         modifiedPlaceResult.info[STANDARD_INFO_INDEX.morePrecisionsModalities] = {
           type: PlaceDetailsInfoType.MODALITIES_MORE_INFO,
           description: [{ key: 'some precisions' }],
-          tags: []
+          tags: [],
+          needTranslation: true
         };
 
         const result = buildPlaceDetails(modifiedPlace, category);
@@ -606,19 +624,22 @@ describe('Place details Result', () => {
           modifiedPlaceResult.info[STANDARD_INFO_INDEX.modalitiesPrice] = {
             type: PlaceDetailsInfoType.PRICE,
             tags: [],
-            description: [{ key: 'price precisions' }]
+            description: [{ key: 'price precisions' }],
+            needTranslation: true
           };
 
           modifiedPlaceResult.info[STANDARD_INFO_INDEX.modalitiesAnimals] = {
             type: PlaceDetailsInfoType.ANIMALS,
             tags: [],
-            description: []
+            description: [],
+            needTranslation: true
           };
 
           modifiedPlaceResult.info[STANDARD_INFO_INDEX.modalitiesDisabled] = {
             type: PlaceDetailsInfoType.PMR,
             tags: [],
-            description: []
+            description: [],
+            needTranslation: true
           };
 
           const result = buildPlaceDetails(modifiedPlace, category);
@@ -656,7 +677,8 @@ describe('Place details Result', () => {
             { key: 'LANGUE_FR' },
             { key: 'LANGUE_EN' },
             { key: 'LANGUE_LSF' }
-          ]
+          ],
+          needTranslation: true
         };
 
         const result = buildPlaceDetails(modifiedPlace, category);
@@ -822,7 +844,9 @@ describe('Place details Result', () => {
             {
               type: PlaceDetailsInfoType.WELCOME_UNCONDITIONAL,
               description: [],
-              tags: []
+              tags: [],
+              needTranslation: false,
+              translatedText: '<b>Unconditional welcome</b>'
             }
           ];
         });
@@ -834,9 +858,9 @@ describe('Place details Result', () => {
               PlaceDetailsInfoType.WELCOME_UNCONDITIONAL;
 
             const result = buildPlaceDetails(modifiedPlace, category);
-            expect(result.services[1].info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
-              modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics]
-            );
+            expect(
+              result.services[1].info[STANDARD_INFO_INDEX.publics].translatedText
+            ).toStrictEqual('<b>Unconditional welcome</b>');
           });
 
           it('should be correct for preferential welcome', () => {
@@ -845,9 +869,9 @@ describe('Place details Result', () => {
               PlaceDetailsInfoType.WELCOME_UNCONDITIONAL_CUSTOM;
 
             const result = buildPlaceDetails(modifiedPlace, category);
-            expect(result.services[1].info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
-              modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics]
-            );
+            expect(
+              result.services[1].info[STANDARD_INFO_INDEX.publics].translatedText
+            ).toStrictEqual('<b>Unconditional welcome adapted to </b>.');
           });
 
           it('should be correct for exclusive welcome', () => {
@@ -856,9 +880,9 @@ describe('Place details Result', () => {
               PlaceDetailsInfoType.WELCOME_EXCLUSIVE;
 
             const result = buildPlaceDetails(modifiedPlace, category);
-            expect(result.services[1].info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
-              modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics]
-            );
+            expect(
+              result.services[1].info[STANDARD_INFO_INDEX.publics].translatedText
+            ).toStrictEqual('<b>Exclusive welcome: </b>.');
           });
         });
 
@@ -869,11 +893,8 @@ describe('Place details Result', () => {
 
           modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics].type =
             PlaceDetailsInfoType.WELCOME_EXCLUSIVE;
-          modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics].description = [
-            { key: PUBLICS_LABELS.gender[PublicsGender.women].toUpperCase() },
-            { key: PUBLICS_LABELS.other[PublicsOther.violence].toUpperCase() },
-            { key: PUBLICS_LABELS.other[PublicsOther.lgbt].toUpperCase() }
-          ];
+          modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics].translatedText =
+            '<b>Exclusive welcome: </b>women, victim of violence, lgbt+.';
 
           const result = buildPlaceDetails(modifiedPlace, category);
           expect(result.services[1].info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
@@ -892,9 +913,9 @@ describe('Place details Result', () => {
             modifiedPlace.services_all[1].publics.age = { min: 0, max: 99 };
 
             const result = buildPlaceDetails(modifiedPlace, category);
-            expect(result.services[1].info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
-              modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics]
-            );
+            expect(
+              result.services[1].info[STANDARD_INFO_INDEX.publics].translatedText
+            ).toStrictEqual('<b>Exclusive welcome: </b>.');
           });
 
           it('should setup age with specific key if the min is 0 and max is not 99', () => {
@@ -904,9 +925,9 @@ describe('Place details Result', () => {
             ];
 
             const result = buildPlaceDetails(modifiedPlace, category);
-            expect(result.services[1].info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
-              modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics]
-            );
+            expect(
+              result.services[1].info[STANDARD_INFO_INDEX.publics].translatedText
+            ).toStrictEqual('<b>Exclusive welcome: </b>people up to 76 years old.');
           });
 
           it('should setup age with specific key if the min is not 0 and max is 99', () => {
@@ -916,9 +937,9 @@ describe('Place details Result', () => {
             ];
 
             const result = buildPlaceDetails(modifiedPlace, category);
-            expect(result.services[1].info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
-              modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics]
-            );
+            expect(
+              result.services[1].info[STANDARD_INFO_INDEX.publics].translatedText
+            ).toStrictEqual('<b>Exclusive welcome: </b>people at least 12 years old.');
           });
 
           it('should setup age with specific key if the min is 0 and max is 18', () => {
@@ -928,9 +949,9 @@ describe('Place details Result', () => {
             ];
 
             const result = buildPlaceDetails(modifiedPlace, category);
-            expect(result.services[1].info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
-              modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics]
-            );
+            expect(
+              result.services[1].info[STANDARD_INFO_INDEX.publics].translatedText
+            ).toStrictEqual('<b>Exclusive welcome: </b>minors (under 18).');
           });
 
           it('should setup age with specific key if the min is 18 and max is 99', () => {
@@ -940,9 +961,9 @@ describe('Place details Result', () => {
             ];
 
             const result = buildPlaceDetails(modifiedPlace, category);
-            expect(result.services[1].info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
-              modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics]
-            );
+            expect(
+              result.services[1].info[STANDARD_INFO_INDEX.publics].translatedText
+            ).toStrictEqual('<b>Exclusive welcome: </b>adults.');
           });
 
           it('should setup age with specific key in any other case', () => {
@@ -952,24 +973,19 @@ describe('Place details Result', () => {
             ];
 
             const result = buildPlaceDetails(modifiedPlace, category);
-            expect(result.services[1].info[STANDARD_INFO_INDEX.publics]).toStrictEqual(
-              modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.publics]
-            );
+            expect(
+              result.services[1].info[STANDARD_INFO_INDEX.publics].translatedText
+            ).toStrictEqual('<b>Exclusive welcome: </b>people aged from 12 to 76 years.');
           });
         });
 
         it('should add the precisions for publics if there is some', () => {
           modifiedPlace.services_all[1].publics.description = 'We have many other specific publics';
-          modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.morePrecisionsPublics] = {
-            type: PlaceDetailsInfoType.PUBLICS_MORE_INFO,
-            tags: [],
-            description: [{ key: 'We have many other specific publics' }]
-          };
 
           const result = buildPlaceDetails(modifiedPlace, category);
-          expect(result.services[1].info[STANDARD_INFO_INDEX.morePrecisionsPublics]).toStrictEqual(
-            modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.morePrecisionsPublics]
-          );
+          expect(
+            result.services[1].info[STANDARD_INFO_INDEX.morePrecisionsPublics].description[0].key
+          ).toStrictEqual('We have many other specific publics');
         });
       });
 
@@ -980,7 +996,8 @@ describe('Place details Result', () => {
             {
               type: PlaceDetailsInfoType.ACCESS_FREE,
               description: [],
-              tags: []
+              tags: [],
+              needTranslation: true
             }
           ];
         });
@@ -1008,7 +1025,8 @@ describe('Place details Result', () => {
             modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.modalitiesDefault] = {
               type: PlaceDetailsInfoType.ACCESS_ORIENTATION,
               description: [],
-              tags: []
+              tags: [],
+              needTranslation: true
             };
 
             let result = buildPlaceDetails(modifiedPlace, category);
@@ -1038,7 +1056,8 @@ describe('Place details Result', () => {
             modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.modalitiesDefault] = {
               type: PlaceDetailsInfoType.REGISTRATION,
               description: [],
-              tags: []
+              tags: [],
+              needTranslation: true
             };
 
             let result = buildPlaceDetails(modifiedPlace, category);
@@ -1067,7 +1086,8 @@ describe('Place details Result', () => {
             modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.modalitiesDefault] = {
               type: PlaceDetailsInfoType.APPOINTMENT,
               description: [],
-              tags: []
+              tags: [],
+              needTranslation: true
             };
 
             let result = buildPlaceDetails(modifiedPlace, category);
@@ -1104,17 +1124,20 @@ describe('Place details Result', () => {
             modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.modalitiesOrientation] = {
               type: PlaceDetailsInfoType.ACCESS_ORIENTATION,
               description: [],
-              tags: []
+              tags: [],
+              needTranslation: true
             };
             modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.modalitiesInscription] = {
               type: PlaceDetailsInfoType.REGISTRATION,
               description: [],
-              tags: []
+              tags: [],
+              needTranslation: true
             };
             modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.modalitiesAppointment] = {
               type: PlaceDetailsInfoType.APPOINTMENT,
               description: [],
-              tags: []
+              tags: [],
+              needTranslation: true
             };
 
             const result = buildPlaceDetails(modifiedPlace, category);
@@ -1141,7 +1164,8 @@ describe('Place details Result', () => {
           modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.morePrecisionsModalities] = {
             type: PlaceDetailsInfoType.MODALITIES_MORE_INFO,
             description: [{ key: 'some precisions' }],
-            tags: []
+            tags: [],
+            needTranslation: true
           };
 
           const result = buildPlaceDetails(modifiedPlace, category);
@@ -1164,18 +1188,21 @@ describe('Place details Result', () => {
             modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.modalitiesPrice] = {
               type: PlaceDetailsInfoType.PRICE,
               tags: [],
+              needTranslation: true,
               description: [{ key: 'price precisions' }]
             };
 
             modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.modalitiesAnimals] = {
               type: PlaceDetailsInfoType.ANIMALS,
               tags: [],
+              needTranslation: true,
               description: []
             };
 
             modifiedPlaceResult.services[1].info[STANDARD_INFO_INDEX.modalitiesDisabled] = {
               type: PlaceDetailsInfoType.PMR,
               tags: [],
+              needTranslation: true,
               description: []
             };
 

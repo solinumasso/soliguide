@@ -34,6 +34,7 @@ const defaultState: PlaceDetails = {
   hours: {},
   id: 7,
   info: [],
+  publics: '',
   instagram: '',
   lastUpdate: '',
   name: '',

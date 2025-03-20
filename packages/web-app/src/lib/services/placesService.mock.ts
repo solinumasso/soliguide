@@ -149,6 +149,7 @@ export const placeDetailsMock: PlaceDetails = {
   email: 'lasoupe@saint-eustache.org',
   facebook: '',
   fax: '',
+  publics: '',
   hours: {
     monday: [
       {

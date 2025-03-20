@@ -1,7 +1,7 @@
 /*
  * Soliguide: Useful information for those who need it
  *
- * SPDX-FileCopyrightText: © 2024 Solinum
+ * SPDX-FileCopyrightText: © 2025 Solinum
  *
  * SPDX-License-Identifier: AGPL-3.0-only
  *
@@ -18,22 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { PlaceSummary } from "./PlaceSummary.interface";
-import { TranslatedPlaceContent } from "./TranslatedPlaceContent.interface";
-
-import { SupportedLanguagesCode } from "../enums";
-import { CommonPositionForTranslation } from "../../place";
-
-export interface TranslatedPlace {
-  updatedAt: Date;
-  createdAt: Date;
-  sourceLanguage: SupportedLanguagesCode;
-  languages: {
-    [lang in SupportedLanguagesCode]?: TranslatedPlaceContent;
-  };
-  translationRate: number;
-  lastUpdate: Date;
-  lieu_id: number;
-  place: PlaceSummary;
-  position: CommonPositionForTranslation;
+export interface I18nTranslator {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  t: (key: string, options?: any) => string;
 }

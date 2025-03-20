@@ -41,7 +41,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   themeStore.init($page.url.origin);
   const theme = get(themeStore.getTheme());
 
-  const i18nStore = getI18nStore(theme?.defaultLanguage, theme?.supportedLanguages);
+  export const i18nStore = getI18nStore(theme?.defaultLanguage, theme?.supportedLanguages);
 
   // Derived store for keeping routes synced with language choosed by user
   const routesStore = derived(i18nStore, (i18n) => getRoutes(i18n.language));

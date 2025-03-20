@@ -18,11 +18,24 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { TranslatedFieldLanguageStatus } from "../enums";
+import { CommonPositionForTranslation } from "../../../place";
+import { SupportedLanguagesCode, TranslatedFieldStatus } from "../../enums";
+import { TranslatedFieldElement } from "../../types";
+import { PlaceSummary } from "./PlaceSummary.interface";
+import { TranslatedFieldContent } from "./TranslatedFieldContent.interface";
 
-export interface TranslatedFieldTranslatorData {
-  content: string;
-  status: TranslatedFieldLanguageStatus;
-  translatorName: string | null;
+export interface TranslatedField {
+  _id: string;
   updatedAt: Date;
+  createdAt: Date;
+  content: string;
+  elementName: TranslatedFieldElement;
+  sourceLanguage: SupportedLanguagesCode;
+  languages: {
+    [key in SupportedLanguagesCode]?: TranslatedFieldContent;
+  };
+  lieu_id: number;
+  place?: PlaceSummary;
+  position: CommonPositionForTranslation;
+  status: TranslatedFieldStatus;
 }
