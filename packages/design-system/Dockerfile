@@ -16,7 +16,7 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
-ARG BASE_IMAGE=soliguide/base:local
+ARG BASE_IMAGE=soliguide/base:local  
 
 # skipcq: DOK-DL3006
 FROM ${BASE_IMAGE} AS build
@@ -43,3 +43,12 @@ COPY \
   ./packages/design-system/eslint.config.js \
   ./packages/design-system/vitest.config.ts \
   /app/packages/design-system/
+
+FROM caddy:2.9-alpine AS deploy
+
+COPY --chmod=0544 packages/design-system/docker_cmd.sh /bin/docker_cmd.sh
+COPY packages/design-system/Caddyfile /etc/caddy/
+
+COPY --from=build /app/packages/design-system/storybook-static/ /srv/
+
+CMD ["/bin/docker_cmd.sh"]

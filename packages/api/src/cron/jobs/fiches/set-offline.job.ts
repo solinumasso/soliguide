@@ -49,11 +49,9 @@ import { PlaceModel } from "../../../place/models/place.model";
       updatedByUserAt: { $lt: sixMonthsAgo },
     };
 
-    await PlaceModel.updateMany(
-      request,
-      { $set: { status: PlaceStatus.OFFLINE } },
-      { timestamps: false }
-    );
+    await PlaceModel.updateMany(request, {
+      $set: { status: PlaceStatus.OFFLINE },
+    });
 
     await delay(500);
 

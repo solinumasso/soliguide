@@ -30,9 +30,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   const dispatch = createEventDispatcher();
 
-  const handleClick = (item: string) => {
+  const handleClick = (item: MenuItem) => {
     dispatch('menuClick', {
-      item
+      item: item.id
     });
   };
 </script>
@@ -50,7 +50,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <Text type="caption2Medium">{item.label}</Text>
           </span>
         {:else}
-          <a class="menu-item" href={item.route} on:click={() => handleClick(item.label)}>
+          <a class="menu-item" href={item.route} on:click={() => handleClick(item)}>
             <span class="menu-icon">
               {#if item.hasBadge && showBadge}
                 <span class="icon-badge"><Badge type="focus" /></span>

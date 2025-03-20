@@ -18,10 +18,15 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-// @index('./*', f => `export * from '${f.path}'`)
-export * from "./ABSTRACT_ORIGIN_REQUEST.mock";
-export * from "./ORIGIN_SOLIGUIDE_REQUEST.mock";
-export * from "./ORIGIN_UNDEFINED_REQUEST.mock";
-export * from "./ORIGIN_MOBILE_APP_REQUEST.mock";
-export * from "./ORIGIN_SOLINUM_ORG_REQUEST.mock";
-export * from "./ORIGIN_WIDGET_SOLIGUIDE_REQUEST.mock";
+import { ExpressRequest, Origin } from "../../../src/_models";
+import { ABSTRACT_ORIGIN_REQUEST } from "./ABSTRACT_ORIGIN_REQUEST.mock";
+
+export const ORIGIN_UNDEFINED_REQUEST = {
+  ...ABSTRACT_ORIGIN_REQUEST,
+  requestInformation: {
+    ...ABSTRACT_ORIGIN_REQUEST.requestInformation,
+    ...{
+      originForLogs: Origin.ORIGIN_UNDEFINED,
+    },
+  },
+} as unknown as ExpressRequest;

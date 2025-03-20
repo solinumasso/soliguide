@@ -19,7 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { User } from "../interfaces/User.interface";
-import { ModelWithId } from "./../../general/ModelWithId.type";
+import { ModelWithId } from "../../mongo/types/ModelWithId.type";
 
 export type PopulatedUser = Pick<
   ModelWithId<User>,

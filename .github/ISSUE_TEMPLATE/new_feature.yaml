@@ -1,0 +1,89 @@
+# Soliguide: Useful information for those who need it
+#
+# SPDX-FileCopyrightText: © 2024 Solinum
+#
+# SPDX-License-Identifier: AGPL-3.0-only
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+name: "✨ Nouvelle fonctionnalité"
+description: "Toutes les améliorations envisagées"
+title: "✨ Feat - "
+labels: ["Task"]
+projects: ["solinumasso/2"]
+body:
+  - type: checkboxes
+    id: sites
+    attributes:
+      label: "🖥️ Produit(s) concerné(s)"
+      options:
+        - label: "Application mobile"
+          required: false
+        - label: "Backoffice"
+          required: false
+        - label: "Soliguide.fr"
+          required: false
+        - label: "Soliguia"
+          required: false
+        - label: "Intégration de donnée"
+          required: false
+        - label: "Dashboards"
+          required: false
+        - label: "API Soliguide"
+          required: false
+        - label: "Design system"
+          required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: "🔍 Contexte"
+      description: "Situation actuelle, besoin exprimé, rappel de l'irritant"
+      placeholder: "Décrivez ici le problème que cette fonctionnalité vise à résoudre"
+    validations:
+      required: true
+
+  - type: textarea
+    id: objectives
+    attributes:
+      label: "🎯 Objectifs et spécifications"
+      placeholder: "Expliquez l'objectif principal de cette fonctionnalité et détaillez les spécifications techniques ou fonctionnelles"
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: "🔗 Impacts sur les autres produits"
+      placeholder: "Cette nouveauté entraine t-elle des modifications à apporter sur d'autres produits ? Lister l'ensemble des impacts possibles"
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: "💯 Critères d'acceptation / tests à réaliser"
+      placeholder: "- [ ] Premier test\n- [ ] Deuxième test"
+      value: "- [ ] "
+    validations:
+      required: true
+
+  - type: textarea
+    id: metrics
+    attributes:
+      label: "📈 Indicateurs / Mesures d'impact éventuels"
+      description: "Chaque nouveauté devrait être accompagné d'indicateurs permettant de suivre l'intérêt / la prise en main de celle-ci. Lister ci-dessous les stats à créer sur posthog, metabase, ou autre"
+      placeholder: "- [ ] Premier indicateur\n- [ ] Deuxième indicateur"
+      value: "- [ ] "
+    validations:
+      required: false

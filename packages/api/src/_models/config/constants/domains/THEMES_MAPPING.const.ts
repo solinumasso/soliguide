@@ -1,7 +1,7 @@
 /*
  * Soliguide: Useful information for those who need it
  *
- * SPDX-FileCopyrightText: © 2024 Solinum
+ * SPDX-FileCopyrightText: © 2025 Solinum
  *
  * SPDX-License-Identifier: AGPL-3.0-only
  *
@@ -18,20 +18,20 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { ExpressRequest, Origin } from "../../src/_models";
-import { ABSTRACT_ORIGIN_REQUEST } from "./ABSTRACT_ORIGIN_REQUEST.mock";
+import { Themes } from "@soliguide/common";
+import { CONFIG } from "../CONFIG.const";
 
-export const ORIGIN_SOLINUM_ORG_REQUEST = {
-  ...ABSTRACT_ORIGIN_REQUEST,
-  get: jest
-    .fn()
-    .mockImplementation((name) =>
-      name === "origin" ? "https://solinum.org" : null
-    ),
-  requestInformation: {
-    ...ABSTRACT_ORIGIN_REQUEST.requestInformation,
-    ...{
-      originForLogs: Origin.SOLINUM_ORG,
-    },
-  },
-} as unknown as ExpressRequest;
+export const THEME_MAPPINGS: { [key: string]: Themes } = {
+  [CONFIG.SOLIGUIA_AD_URL]: Themes.SOLIGUIA_AD,
+  [CONFIG.SOLIGUIA_ES_URL]: Themes.SOLIGUIA_ES,
+  [CONFIG.SOLIGUIDE_FR_URL]: Themes.SOLIGUIDE_FR,
+  [CONFIG.WEBAPP_AD_URL]: Themes.SOLIGUIA_AD,
+  [CONFIG.WEBAPP_ES_URL]: Themes.SOLIGUIA_ES,
+  [CONFIG.WEBAPP_FR_URL]: Themes.SOLIGUIDE_FR,
+} as const;
+
+export const FRONT_URLS_MAPPINGS: { [key: string]: string } = {
+  [Themes.SOLIGUIA_AD]: CONFIG.SOLIGUIA_AD_URL,
+  [Themes.SOLIGUIA_ES]: CONFIG.SOLIGUIA_ES_URL,
+  [Themes.SOLIGUIDE_FR]: CONFIG.SOLIGUIDE_FR_URL,
+};

@@ -276,6 +276,54 @@ jobs:
           target: ${{ steps.api_domain.outputs.validation_domain }}.
           type: CNAME
 
+      - name: Update Design system
+        if: inputs.deploy_design-system && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
+        env:
+          QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
+        run: |
+          qovery container update \
+            --organization "$QOVERY_ORGANIZATION_NAME" \
+            --project "$QOVERY_PROJECT_NAME" \
+            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+            --container "Design System" \
+            --tag "$SOLIGUIDE_TAG"
+
+      - name: Create the Design system custom domain in Qovery
+        if: steps.create_environment.outcome == 'success'
+        id: design-system_domain
+        env:
+          QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
+        run: |
+          qovery container domain create \
+            --organization "$QOVERY_ORGANIZATION_NAME" \
+            --project "$QOVERY_PROJECT_NAME" \
+            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+            --container "Design System" \
+            --domain "design-system.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
+
+          VALIDATION_DOMAIN=$(qovery container domain list \
+            --organization "$QOVERY_ORGANIZATION_NAME" \
+            --project "$QOVERY_PROJECT_NAME" \
+            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+            --container "Design System" \
+            --json \
+            | jq -r '.[] | select(.type == "CUSTOM_DOMAIN") | .validation_domain')
+
+          echo "Validation domain: $VALIDATION_DOMAIN"
+
+          echo "validation_domain=$VALIDATION_DOMAIN" >> "$GITHUB_OUTPUT"
+
+      - name: Create DNS record for the Design system
+        if: steps.create_environment.outcome == 'success'
+        uses: solinumasso/gcore-dns-action@v1
+        with:
+          api-key: ${{ secrets.GCORE_API_KEY }}
+          present: true
+          zone: soliguide.dev
+          subdomain: design-system.${{ env.QOVERY_BASE_DOMAIN_NAME }}
+          target: ${{ steps.design-system_domain.outputs.validation_domain }}.
+          type: CNAME
+
       - name: Update Location API
         if: inputs.deploy_location-api && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
         env:

@@ -123,7 +123,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           ><NearMe
             slot="icon"
             on:click={() => {
-              captureEvent('go-to-click', { isDisabled });
+              if (!isDisabled) {
+                captureEvent('go-to-click');
+              }
             }}
           /></ButtonLink
         >

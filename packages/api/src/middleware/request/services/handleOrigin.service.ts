@@ -24,7 +24,10 @@ import {
   SOLIGUIDE_HOSTNAME_REGEXP,
   Origin,
   CONFIG,
+  FRONT_URLS,
+  WEBAPP_URLS,
 } from "../../../_models";
+import { cleanUrl } from "./cleanUrl.service";
 
 export const isMobileHeader = (req: ExpressRequest): boolean => {
   const userAgent = req.headers?.["user-agent"];
@@ -34,35 +37,38 @@ export const isMobileHeader = (req: ExpressRequest): boolean => {
   );
 };
 
-export const isValidOrigin = (req: ExpressRequest): boolean => {
-  // Apps mobiles
-  if (isMobileHeader(req)) {
-    return true;
-  }
-
-  if (req.user?.status === UserStatus.API_USER) {
-    return true;
-  }
-
-  const requestOrigin = req.requestInformation.origin;
-
-  if (!requestOrigin) {
-    return false;
-  }
-
-  return !SOLIGUIDE_HOSTNAME_REGEXP.test(requestOrigin);
-};
-
 export const handleOrigin = (req: ExpressRequest): string | null => {
-  const requestOrigin = req.get("origin") ?? null;
-  return requestOrigin;
+  const requestOrigin = req.get("origin");
+  const referer = req.get("referer");
+
+  if (referer) {
+    try {
+      const cleanedReferer = cleanUrl(referer);
+      if (!cleanedReferer) {
+        return null;
+      }
+
+      const refererUrl = new URL(cleanedReferer);
+
+      if (CONFIG.ENV === "dev") {
+        return CONFIG.SOLIGUIDE_FR_URL;
+      }
+
+      if (SOLIGUIDE_HOSTNAME_REGEXP.test(refererUrl.origin)) {
+        return refererUrl.origin;
+      }
+    } catch {
+      // Do nothing
+    }
+  }
+
+  return cleanUrl(requestOrigin);
 };
 
 export const handleOriginForLogs = (
   req: ExpressRequest,
-  origin: string | null
+  originFromReq: string | null
 ): Origin => {
-  // Apps mobiles
   if (isMobileHeader(req)) {
     return Origin.MOBILE_APP;
   }
@@ -71,38 +77,46 @@ export const handleOriginForLogs = (
     return Origin.API;
   }
 
-  if (origin) {
-    try {
-      const originUrl = new URL(origin);
-      const originHostname = originUrl.hostname;
-
-      if (originHostname === "solinum.org") {
-        return Origin.SOLINUM_ORG;
-      }
-
-      if (originHostname === new URL(CONFIG.WIDGET_URL).hostname) {
-        return Origin.WIDGET_SOLIGUIDE;
-      }
-
-      if (
-        originHostname === new URL(CONFIG.WEBAPP_FR_URL).hostname ||
-        originHostname === new URL(CONFIG.WEBAPP_ES_URL).hostname ||
-        originHostname === new URL(CONFIG.WEBAPP_CA_URL).hostname
-      ) {
-        return Origin.WEBAPP_SOLIGUIDE;
-      }
-
-      if (SOLIGUIDE_HOSTNAME_REGEXP.test(originHostname)) {
-        return Origin.SOLIGUIDE;
-      }
-
-      if (CONFIG.ENV === "dev") {
-        return Origin.LOCALHOST_DEV;
-      }
-      return Origin.ORIGIN_UNDEFINED;
-    } catch (error) {
-      req.log.warn(`Failed to parse orign URL ${origin}: ${error}`);
-    }
+  if (!originFromReq) {
+    return CONFIG.ENV === "test"
+      ? Origin.LOCALHOST_DEV
+      : Origin.ORIGIN_UNDEFINED;
   }
-  return CONFIG.ENV === "test" ? Origin.LOCALHOST_DEV : Origin.ORIGIN_UNDEFINED;
+
+  try {
+    const cleanedOrigin = cleanUrl(originFromReq);
+    if (!cleanedOrigin) {
+      return Origin.ORIGIN_UNDEFINED;
+    }
+
+    const originUrl = new URL(originFromReq);
+    const hostname = originUrl.hostname;
+
+    if (hostname === "solinum.org") {
+      return Origin.SOLINUM_ORG;
+    }
+
+    if (hostname === new URL(CONFIG.WIDGET_URL).hostname) {
+      return Origin.WIDGET_SOLIGUIDE;
+    }
+
+    // Check if it's a webapp
+    if (WEBAPP_URLS.some((url) => new URL(url).hostname === hostname)) {
+      return Origin.WEBAPP_SOLIGUIDE;
+    }
+
+    // Check if it's a front
+    if (FRONT_URLS.some((url) => new URL(url).hostname === hostname)) {
+      return Origin.SOLIGUIDE;
+    }
+
+    if (CONFIG.ENV === "dev") {
+      return Origin.LOCALHOST_DEV;
+    }
+
+    return Origin.ORIGIN_UNDEFINED;
+  } catch (error) {
+    req.log.warn(`Failed to parse origin URL ${originFromReq}: ${error}`);
+    return Origin.ORIGIN_UNDEFINED;
+  }
 };

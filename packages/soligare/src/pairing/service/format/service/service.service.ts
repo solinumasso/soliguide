@@ -22,6 +22,7 @@ import { PostgresServiceId, CommonNewPlaceService } from '@soliguide/common';
 import { PostgresService } from '../../postgres.service';
 import { CloseService } from './close.service';
 import { CategoryService } from './category.service';
+import { CategorySpecificService } from './categorySpecific.service';
 import { CompareService } from './compare.service';
 import { SaturationService } from './saturation.service';
 import { ModalitiesService } from '../modalities';
@@ -44,6 +45,9 @@ export class ServiceService {
     `;
 
     const categoryService = new CategoryService(this.postgresService);
+    const categorySpecificService = new CategorySpecificService(
+      this.postgresService,
+    );
     const closeService = new CloseService(this.postgresService);
     const compareService = new CompareService(this.postgresService);
     const saturationService = new SaturationService(this.postgresService);
@@ -56,6 +60,10 @@ export class ServiceService {
         const category = await categoryService.getCategoryByIdSoliguideFormat(
           service.id,
         );
+        const categorySpecific =
+          await categorySpecificService.getCategorySpecificByIdSoliguideFormat(
+            service.id,
+          );
         const close = await closeService.getCloseByIdSoliguideFormat(
           service.id,
         );
@@ -81,6 +89,7 @@ export class ServiceService {
         const preFormatService: Partial<CommonNewPlaceService> = {
           close: close.close!,
           category: category.category,
+          categorySpecificFields: categorySpecific,
           description: category.description!,
           name: category.name,
           differentHours: compare.differentHours!,

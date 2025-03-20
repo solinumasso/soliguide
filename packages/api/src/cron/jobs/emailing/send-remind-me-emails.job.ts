@@ -38,7 +38,7 @@ import { CONFIG } from "../../../_models";
 (async () => {
   logger.info("[EMAILS] Sending emails");
 
-  const frontUrl = CONFIG.FRONT_URL;
+  const frontUrl = CONFIG.SOLIGUIDE_FR_URL;
 
   try {
     await generateRemindMeEmails(frontUrl);

@@ -21,7 +21,7 @@
 import { ApiOrganization, ApiPlace } from "@soliguide/common";
 import { Invitation, User } from "../users";
 
-import { ModelWithId } from "../general";
+import { ModelWithId } from "../mongo";
 
 export type OrganizationPopulate = ModelWithId<ApiOrganization> &
   Required<{
