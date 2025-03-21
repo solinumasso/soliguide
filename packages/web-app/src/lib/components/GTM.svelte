@@ -23,8 +23,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { browser } from '$app/environment';
 
   const load = () => {
+    console.log('Start load');
+    console.log('env.PUBLIC_GTM_ID', env.PUBLIC_GTM_ID);
+    console.log('browser', browser);
     // Check if we're running in the browser
     if (env.PUBLIC_GTM_ID && browser) {
+      console.log('Start GTM and silktide functions');
+      console.log('Start silktide function');
       // Silktide
       // Initialize the dataLayer
       window.dataLayer = window.dataLayer ?? [];
@@ -55,7 +60,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           showBackground: false
         },
         cookieIcon: {
-          position: 'bottomRight'
+          position: 'bottomLeft'
         },
         cookieTypes: [
           {
@@ -132,11 +137,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           }
         }
       });
+      console.log('End silktide function');
       // End Silktide
 
       /* eslint-disable */
       // Follow the GTM snippet
       (function (w, d, s, l, i) {
+        console.log('start GTM function');
+
         // @ts-ignore
         w[l] = w[l] || [];
         // @ts-ignore
@@ -150,10 +158,20 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
         // @ts-ignore
         f.parentNode.insertBefore(j, f);
+
+        console.log('fin GTM function');
       })(window, document, 'script', 'dataLayer', env.PUBLIC_GTM_ID);
+      console.log('End GTM and silktide functions');
       /* eslint-enable */
     }
+    console.log('End load');
   };
+
+  (() => {
+    console.log('Start external load');
+    load();
+    console.log('End external load');
+  })();
 </script>
 
 <svelte:head>
