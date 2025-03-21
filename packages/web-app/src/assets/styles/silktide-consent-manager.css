@@ -33,17 +33,17 @@
   /* Global */
   --focus: 0 0 0 2px #ffffff, 0 0 0 4px #000000, 0 0 0 6px #ffffff;
   --boxShadow: 4px 8px 16px -12px rgba(23, 23, 23, 0.2);
-  --fontFamily: Roboto, "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+  --fontFamily: Roboto, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
   /* Color Scheme */
   --primaryColor: #613677;
-  --backgroundColor: #FFFFFF;
+  --backgroundColor: #ffffff;
   --textColor: #171717;
   /* Backdrop */
   --backdropBackgroundColor: #00000033;
   --backdropBackgroundBlur: 0px;
   /* Cookie Icon */
-  --cookieIconColor: #FF4124;
-  --cookieIconBackgroundColor: #FFFFFF;
+  --cookieIconColor: #ff4124;
+  --cookieIconBackgroundColor: #ffffff;
   position: fixed;
   bottom: 0;
   right: 0;
@@ -157,7 +157,9 @@
   opacity: 0;
   animation: silktide-slideInDown 350ms ease-out forwards;
   animation-delay: 0.3s;
-  box-shadow: -5px 5px 10px 0px #00000012, 0px 0px 50px 0px #0000001a;
+  box-shadow:
+    -5px 5px 10px 0px #00000012,
+    0px 0px 50px 0px #0000001a;
 }
 
 #silktide-banner:focus {
@@ -240,7 +242,6 @@
   height: 24px;
 }
 
-
 #silktide-banner .actions {
   display: flex;
   gap: 16px;
@@ -277,7 +278,9 @@
   transform: translate(0px, -20px);
   opacity: 0;
   animation: silktide-slideInUp-center 350ms ease-out forwards;
-  box-shadow: -5px 5px 10px 0px #00000012, 0px 0px 50px 0px #0000001a;
+  box-shadow:
+    -5px 5px 10px 0px #00000012,
+    0px 0px 50px 0px #0000001a;
   font-family: var(--fontFamily);
   color: var(--textColor);
   flex-direction: column;
@@ -431,7 +434,9 @@
   position: absolute;
   top: 7px;
   right: 8px;
-  transition: right 150ms ease-out, opacity 150ms ease-out;
+  transition:
+    right 150ms ease-out,
+    opacity 150ms ease-out;
 }
 
 #silktide-modal .switch__off {
@@ -508,9 +513,9 @@
   animation: silktide-fadeIn 0.3s ease-in-out forwards;
 }
 
-#silktide-cookie-icon.bottomRight {
-  left: auto;
-  right: 10px;
+#silktide-cookie-icon.bottomLeft {
+  left: 10px;
+  right: auto;
 }
 
 #silktide-cookie-icon svg {

@@ -22,7 +22,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { env } from '$env/dynamic/public';
   import { browser } from '$app/environment';
 
-  const load = () => {
+  (() => {
     // Check if we're running in the browser
     if (env.PUBLIC_GTM_ID && browser) {
       // Silktide
@@ -55,7 +55,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           showBackground: false
         },
         cookieIcon: {
-          position: 'bottomRight'
+          position: 'bottomLeft'
         },
         cookieTypes: [
           {
@@ -153,15 +153,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       })(window, document, 'script', 'dataLayer', env.PUBLIC_GTM_ID);
       /* eslint-enable */
     }
-  };
+  })();
 </script>
 
 <svelte:head>
-  <script
-    id="silktide-consent-manager"
-    src="/js/silktide-consent-manager.js"
-    on:load={load}
-  ></script>
+  <script id="silktide-consent-manager" src="/js/silktide-consent-manager.js"></script>
 </svelte:head>
 
 {#if env.PUBLIC_GTM_ID}
