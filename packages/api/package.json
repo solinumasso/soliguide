@@ -80,7 +80,7 @@
     "migrate-mongo": "^11.0.0",
     "mongodb": "^6.8.0",
     "mongoose": "^8.5.2",
-    "multer": "1.4.5-lts.1",
+    "multer": "1.4.5-lts.2",
     "multer-s3": "^3.0.1",
     "pino-http": "^10.3.0",
     "pizzip": "^3.1.7",
