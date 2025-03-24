@@ -1683,7 +1683,7 @@
   "SOLIGUIDE_LOGO": "Logotip de Solidguide",
   "SOLIGUIDE_MORE_OPTIONS": "{{brandName}} | Més opcions",
   "SOLIGUIDE_NOT_ALLOW_YOU_TO_LOCATE_A_PLACE_ON_A_DEPARTEMENT_SCALE": "Tingueu en compte que {{ brandName }} no us permet localitzar una estructura a nivell d'un departament.<br /> Podeu localitzar-la a nivell de capital, per exemple.",
-  "SOLIGUIDE_OFFERS_TO_UPDATE_YOUR_INFORMATION": "Tots els 6 mesos, {{ brandName }} us proposa d'actualitzar les vostres informacions. En alguns clics, indiqueu els canvis temporals del lloc i dels serveis proposats (horaris, clausures).",
+  "SOLIGUIDE_OFFERS_TO_UPDATE_YOUR_INFORMATION": "Tots els 6 mesos, {{ brandName }} us proposa d'actualitzar les vostres informacions. En alguns clics, indiqueu els canvis temporals del lloc i dels serveis oferts (horaris, clausures).",
   "SOLIGUIDE_ONLY_ORIENTATION": "Indica que el teu equipament només és accessible per orientació, és a dir, que certa informació (adreça completa de la teva estructura) no serà visible per a tothom. Només els professionals amb compte {{ brandName }} podran conèixer l'adreça precisa del teu equipament.",
   "SOLIGUIDE_PROFILE": "Benvingut al teu perfil de {{ brandName }}!",
   "SOLIGUIDE_TEAM_ANSWER_YOUR_MESSAGES": "L'equip de {{ brandName }} respon als vostres missatges!",
