@@ -61,7 +61,10 @@ export const searchPlaces = async (
     admin
   );
 
-  result.nbResults = await countPlacesWithLocationParams(searchPlacesQuery);
+  result.nbResults = await countPlacesWithLocationParams(
+    searchPlacesQuery,
+    user
+  );
 
   searchPlacesData.options = generateSearchOptions(
     result.nbResults,

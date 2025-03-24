@@ -18,24 +18,5 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { CONFIG, ExpressRequest } from "../../src/_models";
-import { RequestInformation } from "../../src/middleware";
-
-const DEFAULT_REQUEST: ExpressRequest = {
-  headers: {},
-  log: {
-    warn: jest.fn(),
-    error: jest.fn(),
-    info: jest.fn(),
-  },
-  get: jest
-    .fn()
-    .mockImplementation((name) =>
-      name === "origin" ? CONFIG.SOLIGUIDE_FR_DOMAIN_NAME : null
-    ),
-} as unknown as ExpressRequest;
-
-export const ABSTRACT_ORIGIN_REQUEST = {
-  ...DEFAULT_REQUEST,
-  requestInformation: new RequestInformation(DEFAULT_REQUEST),
-} as unknown as ExpressRequest;
+export const SOLIGUIDE_HOSTNAME_REGEXP =
+  /^(.+\.)?((soliguide\.(fr|dev))|(soliguia(\.(ad|es|eu|cat|dev))+))$/;

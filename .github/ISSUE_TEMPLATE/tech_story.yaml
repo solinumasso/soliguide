@@ -1,0 +1,124 @@
+# Soliguide: Useful information for those who need it
+#
+# SPDX-FileCopyrightText: © 2024 Solinum
+#
+# SPDX-License-Identifier: AGPL-3.0-only
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+name: "Tech Story"
+description: "🔧 Dette technique, mise à jour de packages, refactorisation de code"
+title: "🔧 Tech - "
+labels: ["Tech", "Maintenance"]
+projects: ["solinumasso/2"]
+body:
+  - type: dropdown
+    id: type_maintenance
+    attributes:
+      label: "📝 Type de maintenance"
+      description: "Précisez la nature de la tâche technique"
+      options:
+        - "Dette technique"
+        - "Mise à jour de package/dépendance"
+        - "Refactorisation"
+        - "Performance/Optimisation"
+        - "Sécurité"
+        - "Autre (à préciser)"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: sites
+    attributes:
+      label: "🖥️ Produit(s) concerné(s)"
+      options:
+        - label: "Application mobile"
+          required: false
+        - label: "Backoffice"
+          required: false
+        - label: "Soliguide.fr"
+          required: false
+        - label: "Soliguia"
+          required: false
+        - label: "Intégration de donnée"
+          required: false
+        - label: "Dashboards"
+          required: false
+        - label: "API Soliguide"
+          required: false
+        - label: "Design system"
+          required: false
+        - label: "Infrastructure/DevOps"
+          required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: "🔍 Contexte"
+      description: "Situation actuelle, problématique technique rencontrée"
+      placeholder: "Décrivez ici le problème technique ou la dette actuelle (versions obsolètes, patterns à moderniser, etc.)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: technical_details
+    attributes:
+      label: "⚙️ Détails techniques"
+      description: "Précisez les aspects techniques concernés"
+      placeholder: "Décrivez les détails techniques (versions actuelles et cibles des packages, patterns de code à refactoriser, métriques de performance à améliorer, etc.)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: benefits
+    attributes:
+      label: "💎 Bénéfices attendus"
+      description: "Quels sont les bénéfices de cette maintenance?"
+      placeholder: "Ex: Amélioration de la sécurité, réduction du temps de chargement, facilitation de la maintenance future, etc."
+    validations:
+      required: true
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: "⚠️ Risques à évaluer"
+      description: "Quels sont les risques potentiels et comment les atténuer?"
+      placeholder: "Ex: Régressions possibles, incompatibilités, temps d'indisponibilité et stratégies pour les éviter"
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: "🔗 Impacts sur les autres produits"
+      placeholder: "Cette maintenance entraîne-t-elle des modifications à apporter sur d'autres produits ? Lister l'ensemble des impacts possibles"
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: "💯 Critères d'acceptation / tests à réaliser"
+      placeholder: "- [ ] Vérifier que tous les tests passent\n- [ ] Vérifier les performances\n- [ ] Déploiement sans interruption de service"
+      value: "- [ ] "
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: "📋 Notes supplémentaires"
+      description: "Informations complémentaires, documentation, références"
+      placeholder: "Ajoutez toute information utile pour comprendre le contexte technique"
+    validations:
+      required: false

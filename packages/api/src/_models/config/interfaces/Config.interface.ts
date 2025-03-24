@@ -24,16 +24,15 @@ export interface Config {
   // General
   ENV: string;
   PORT: number;
-  FRONT_URL: string;
   WEBAPP_FR_URL: string;
   WEBAPP_ES_URL: string;
-  WEBAPP_CA_URL: string;
+  WEBAPP_AD_URL: string;
+  SOLIGUIA_AD_URL: string;
+  SOLIGUIA_ES_URL: string;
+  SOLIGUIDE_FR_URL: string;
   WIDGET_URL: string;
   SOLIGUIDE_LOCATION_API_URL: string;
   SOLIGARE_URL: string;
-  SOLIGUIA_AD_DOMAIN_NAME: string;
-  SOLIGUIA_ES_DOMAIN_NAME: string;
-  SOLIGUIDE_FR_DOMAIN_NAME: string;
   JWT_SECRET: string;
   CRON_ENABLED: boolean;
   RESTORE_SYNC: boolean;

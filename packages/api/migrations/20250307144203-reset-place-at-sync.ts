@@ -18,15 +18,23 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { ExpressRequest, Origin } from "../../src/_models";
-import { ABSTRACT_ORIGIN_REQUEST } from "./ABSTRACT_ORIGIN_REQUEST.mock";
+import { Db } from "mongodb";
 
-export const ORIGIN_UNDEFINED_REQUEST = {
-  ...ABSTRACT_ORIGIN_REQUEST,
-  requestInformation: {
-    ...ABSTRACT_ORIGIN_REQUEST.requestInformation,
-    ...{
-      originForLogs: Origin.ORIGIN_UNDEFINED,
-    },
-  },
-} as unknown as ExpressRequest;
+import { logger } from "../src/general/logger";
+
+const message = "Reset AT sync for places";
+
+export const up = async (db: Db) => {
+  logger.info(`[MIGRATION] - ${message}`);
+  await db
+    .collection("lieux")
+    .updateMany(
+      { "atSync.excluded": false },
+      { $set: { "atSync.lastSync": null } }
+    );
+};
+
+export const down = () => {
+  logger.info(`[ROLLBACK] - ${message}`);
+  logger.info("NO ROLLBACK POSSIBLE");
+};

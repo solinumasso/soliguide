@@ -60,9 +60,9 @@ const formatOrga = (frontUrl: string, organisations: any[]): string => {
   if (organisations.length) {
     return organisations.reduce((acc: string, value: any, index: number) => {
       return index === 0
-        ? `[${value.name}](${frontUrl}organisations/${value.organization_id})`
+        ? `[${value.name}](${frontUrl}/organisations/${value.organization_id})`
         : acc +
-            ` - [${value.name}](${frontUrl}organisations/${value.organization_id})`;
+            ` - [${value.name}](${frontUrl}/organisations/${value.organization_id})`;
     }, "");
   }
   return "";

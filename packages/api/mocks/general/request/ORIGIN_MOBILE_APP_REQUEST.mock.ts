@@ -18,7 +18,19 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-// @index('./*', f => `export * from '${f.path}'`)
-export * from "./ModelWithId.type";
-export * from "./SOLIGUIDE_HOSTNAME_REGEXP.const";
-export * from "./SubSchemaId.type";
+import { ExpressRequest, Origin } from "../../../src/_models";
+import { ABSTRACT_ORIGIN_REQUEST } from "./ABSTRACT_ORIGIN_REQUEST.mock";
+
+export const ORIGIN_MOBILE_APP_REQUEST = {
+  ...ABSTRACT_ORIGIN_REQUEST,
+  headers: {
+    "user-agent":
+      "Soliguide Webview App ; Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+  },
+  requestInformation: {
+    ...ABSTRACT_ORIGIN_REQUEST.requestInformation,
+    ...{
+      originForLogs: Origin.MOBILE_APP,
+    },
+  },
+} as unknown as ExpressRequest;

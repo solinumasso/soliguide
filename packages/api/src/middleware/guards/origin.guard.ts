@@ -19,7 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { NextFunction } from "express";
-import { CONFIG, ExpressRequest, ExpressResponse, Origin } from "../../_models";
+import { ExpressRequest, ExpressResponse, Origin } from "../../_models";
 import { captureException, getCurrentScope } from "@sentry/node";
 
 export const originGuard = (
@@ -28,16 +28,14 @@ export const originGuard = (
   next: NextFunction
 ) => {
   const userOrigin = req.requestInformation.originForLogs;
-  const userReferer = req.requestInformation.referer;
 
-  if (
-    userOrigin === Origin.ORIGIN_UNDEFINED &&
-    userReferer !== CONFIG.FRONT_URL
-  ) {
+  if (userOrigin === Origin.ORIGIN_UNDEFINED) {
     // Not logged to a valid domain
     const message = {
       CONTENT: userOrigin,
       REQUEST_BODY: req.body,
+      REFERER: req.requestInformation.referer,
+      ORIGIN: req.requestInformation.originForLogs,
       REQUEST_HEADERS: req.headers,
       STATUS: "API_CONNECTION_ATTEMPT",
     };

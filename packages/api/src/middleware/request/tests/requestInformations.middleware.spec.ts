@@ -58,12 +58,19 @@ describe("handleRequest", () => {
 
     CONFIG.ENV = "test";
   });
+
   it("Test x-document-referrer given", () => {
     const req = {
       get: jest.fn().mockImplementation((name) => {
-        if (name === "origin") return "https://soliguide.fr";
-        if (name === "x-document-referrer") return "https://soliguide.fr";
-        if (name === "referer") return "https://soliguide.com";
+        if (name === "origin") {
+          return "https://soliguide.fr";
+        }
+        if (name === "x-document-referrer") {
+          return "https://soliguide.fr";
+        }
+        if (name === "referer") {
+          return "https://soliguide.com";
+        }
         return null;
       }),
     } as unknown as ExpressRequest;
@@ -88,7 +95,6 @@ describe("handleRequest", () => {
     const res = {} as ExpressResponse;
     const next = () => {};
     handleRequest(req, res, next);
-    expect(req.requestInformation.origin).toEqual("https://soliguide.fr");
     expect(req.requestInformation.frontendUrl).toEqual("https://soliguide.fr/");
 
     CONFIG.ENV = "test";

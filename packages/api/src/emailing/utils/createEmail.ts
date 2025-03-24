@@ -90,14 +90,14 @@ const generateBaseCampaignEmail = (
 
   if (invitationToken) {
     // Registration link - signup
-    const link = `${frontUrl}fr/register/${invitationToken}`;
+    const link = `${frontUrl}/fr/register/${invitationToken}`;
     // Link to the campaign
     content = content.replace(/https:\/\/lien_invitation/gm, link);
   }
 
   if (organization_id >= 0) {
     // Registration link- signup
-    const link = `${frontUrl}fr/organisations/${organization_id}`;
+    const link = `${frontUrl}/fr/organisations/${organization_id}`;
     // Link to the campaign
     content = content.replace(/https:\/\/lien_organisation/gm, link);
   }

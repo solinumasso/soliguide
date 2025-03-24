@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { ExpressRequest, Origin } from "../../../_models";
+import { ExpressRequest, FRONT_URLS_MAPPINGS, Origin } from "../../../_models";
 import {
   SupportedLanguagesCode,
   type CategoriesService,
@@ -35,7 +35,7 @@ import { getServiceCategoriesApi } from "../../../categories/functions/get-servi
 
 export class RequestInformation {
   public readonly originForLogs: Origin;
-  public readonly origin: string | null;
+  private readonly _originFromRequest: string | null;
   public readonly frontendUrl: string;
   public readonly referer: string | null = null;
   public readonly theme: Themes | null = null;
@@ -45,10 +45,13 @@ export class RequestInformation {
 
   constructor(req: ExpressRequest) {
     this.referer = handleReferer(req);
-    this.origin = handleOrigin(req);
-    this.frontendUrl = this.origin ? `${this.origin}/` : "";
-    this.originForLogs = handleOriginForLogs(req, this.origin);
-    this.theme = getThemeFromOrigin(this.origin);
+    this._originFromRequest = handleOrigin(req);
+    this.originForLogs = handleOriginForLogs(req, this._originFromRequest);
+    this.theme = getThemeFromOrigin(this._originFromRequest);
+
+    this.frontendUrl = this.theme
+      ? `${FRONT_URLS_MAPPINGS[this.theme]}/`
+      : `${FRONT_URLS_MAPPINGS[Themes.SOLIGUIDE_FR]}/`; // Fallback for urls that are not in the mappings
     this.categoryService = getServiceCategoriesApi(this.theme);
     this.language = handleLanguageByTheme(this.theme);
   }

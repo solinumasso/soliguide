@@ -52,7 +52,7 @@ beforeAll(() => {
 
 describe("convertPlaceToExportRow ", () => {
   const place = structuredClone(ONLINE_PLACE);
-  const frontUrl = CONFIG.FRONT_URL;
+  const frontUrl = CONFIG.SOLIGUIDE_FR_URL;
 
   const searchData: ExportSearchParams = {
     options: { sortBy: "createdAt", sortValue: "-1" },
@@ -137,7 +137,7 @@ describe("convertPlaceToExportRow ", () => {
       hours: "Monday: 9h30 to 12h\nThursday: 9h30 to 12h",
       latitude: "48.8418381",
       lieu_id: 33,
-      linkToSoliguide: "http://localhost:4200/en/fiche/33",
+      linkToSoliguide: "https://soliguide.fr/en/fiche/33",
       longitude: "2.3631959",
       modalities:
         "By appointment only\nOther details: Personnes domiciliées dans les 5e, 6e, 7e, 14e, 15e et 16e arrondissements. ",
@@ -180,7 +180,7 @@ describe("convertPlaceToExportRow ", () => {
       hours: "Monday: 9h30 to 12h\nThursday: 9h30 to 12h",
       latitude: "48.8418381",
       lieu_id: 33,
-      linkToSoliguide: "http://localhost:4200/en/fiche/33",
+      linkToSoliguide: "https://soliguide.fr/en/fiche/33",
       longitude: "2.3631959",
       modalities:
         "By appointment only\nOther details: Personnes domiciliées dans les 5e, 6e, 7e, 14e, 15e et 16e arrondissements. ",

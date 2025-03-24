@@ -38,7 +38,7 @@ import { syncAirtableRecords } from "../../../airtable/controllers/airtable.cont
           airtableEntityType as AirtableEntityType
         );
 
-        const frontUrl = CONFIG.FRONT_URL;
+        const frontUrl = CONFIG.SOLIGUIDE_FR_URL;
 
         await syncAirtableRecords(
           frontUrl,
