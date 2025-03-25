@@ -40,4 +40,7 @@ export const GENDER_DEFAULT_VALUES: PublicsGender[] = Object.values(
 
 export const OTHER_DEFAULT_VALUES: PublicsOther[] = Object.values(
   PublicsOther
-).filter((value: PublicsOther) => value !== PublicsOther.all);
+).filter(
+  (value: PublicsOther) =>
+    value !== PublicsOther.all && value !== PublicsOther.ukraine
+); // Temp fix, delete this after delete Ukraine
