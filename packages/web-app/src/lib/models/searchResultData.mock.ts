@@ -27,7 +27,6 @@ import {
   PlaceClosedHolidays,
   PublicsAdministrative,
   PublicsFamily,
-  PublicsGender,
   PublicsOther,
   ServiceSaturation,
   CountryCodes,
@@ -36,7 +35,11 @@ import {
   FR_TIMEZONES,
   PlaceOpeningStatus,
   SupportedLanguagesCode,
-  type ApiPlace
+  type ApiPlace,
+  OTHER_DEFAULT_VALUES,
+  GENDER_DEFAULT_VALUES,
+  FAMILY_DEFAULT_VALUES,
+  ADMINISTRATIVE_DEFAULT_VALUES
 } from '@soliguide/common';
 import type { SearchResultItem } from './types';
 
@@ -100,32 +103,12 @@ const samplePlace: ApiPlace = Object.freeze({
       name: 'Distribution alimentaire',
       publics: {
         accueil: 0,
-        administrative: [
-          PublicsAdministrative.regular,
-          PublicsAdministrative.asylum,
-          PublicsAdministrative.refugee,
-          PublicsAdministrative.undocumented
-        ],
+        administrative: structuredClone(ADMINISTRATIVE_DEFAULT_VALUES),
         age: { max: 99, min: 0 },
         description: null,
-        familialle: [
-          PublicsFamily.isolated,
-          PublicsFamily.family,
-          PublicsFamily.couple,
-          PublicsFamily.pregnant
-        ],
-        gender: [PublicsGender.men, PublicsGender.women],
-        other: [
-          PublicsOther.violence,
-          PublicsOther.ukraine,
-          PublicsOther.addiction,
-          PublicsOther.handicap,
-          PublicsOther.lgbt,
-          PublicsOther.hiv,
-          PublicsOther.prostitution,
-          PublicsOther.prison,
-          PublicsOther.student
-        ]
+        familialle: structuredClone(FAMILY_DEFAULT_VALUES),
+        gender: structuredClone(GENDER_DEFAULT_VALUES),
+        other: structuredClone(OTHER_DEFAULT_VALUES)
       },
       saturated: { precision: null, status: ServiceSaturation.LOW },
       serviceObjectId: '6181a6db8ac6b179ffb9ff3b',
@@ -162,18 +145,8 @@ const samplePlace: ApiPlace = Object.freeze({
       PublicsFamily.couple,
       PublicsFamily.pregnant
     ],
-    gender: [PublicsGender.men, PublicsGender.women],
-    other: [
-      PublicsOther.violence,
-      PublicsOther.ukraine,
-      PublicsOther.addiction,
-      PublicsOther.handicap,
-      PublicsOther.lgbt,
-      PublicsOther.hiv,
-      PublicsOther.prostitution,
-      PublicsOther.prison,
-      PublicsOther.student
-    ]
+    gender: structuredClone(GENDER_DEFAULT_VALUES),
+    other: structuredClone(OTHER_DEFAULT_VALUES)
   },
   newhours: {
     description: '',
@@ -693,18 +666,8 @@ const sampleItinerary: ApiPlace = Object.freeze({
       PublicsFamily.couple,
       PublicsFamily.pregnant
     ],
-    gender: [PublicsGender.men, PublicsGender.women],
-    other: [
-      PublicsOther.violence,
-      PublicsOther.ukraine,
-      PublicsOther.addiction,
-      PublicsOther.handicap,
-      PublicsOther.lgbt,
-      PublicsOther.hiv,
-      PublicsOther.prostitution,
-      PublicsOther.prison,
-      PublicsOther.student
-    ]
+    gender: structuredClone(GENDER_DEFAULT_VALUES),
+    other: structuredClone(OTHER_DEFAULT_VALUES)
   },
   // eslint-disable-next-line camelcase
   seo_url: 'maraude-balades-des-lucioles-13e-paris-30965',
@@ -980,27 +943,18 @@ const sampleItinerary: ApiPlace = Object.freeze({
       },
       publics: {
         accueil: 0,
-        administrative: [
-          PublicsAdministrative.regular,
-          PublicsAdministrative.asylum,
-          PublicsAdministrative.refugee,
-          PublicsAdministrative.undocumented
-        ],
+        administrative: structuredClone(ADMINISTRATIVE_DEFAULT_VALUES),
+
         age: {
           max: 99,
           min: 0
         },
         description: null,
-        familialle: [
-          PublicsFamily.isolated,
-          PublicsFamily.family,
-          PublicsFamily.couple,
-          PublicsFamily.pregnant
-        ],
-        gender: [PublicsGender.men, PublicsGender.women],
+        familialle: structuredClone(FAMILY_DEFAULT_VALUES),
+
+        gender: structuredClone(GENDER_DEFAULT_VALUES),
         other: [
           PublicsOther.violence,
-          PublicsOther.ukraine,
           PublicsOther.addiction,
           PublicsOther.handicap,
           PublicsOther.lgbt,
@@ -1109,35 +1063,16 @@ const sampleItinerary: ApiPlace = Object.freeze({
       },
       publics: {
         accueil: 0,
-        administrative: [
-          PublicsAdministrative.regular,
-          PublicsAdministrative.asylum,
-          PublicsAdministrative.refugee,
-          PublicsAdministrative.undocumented
-        ],
+        administrative: structuredClone(ADMINISTRATIVE_DEFAULT_VALUES),
+
         age: {
           max: 99,
           min: 0
         },
         description: null,
-        familialle: [
-          PublicsFamily.isolated,
-          PublicsFamily.family,
-          PublicsFamily.couple,
-          PublicsFamily.pregnant
-        ],
-        gender: [PublicsGender.men, PublicsGender.women],
-        other: [
-          PublicsOther.violence,
-          PublicsOther.ukraine,
-          PublicsOther.addiction,
-          PublicsOther.handicap,
-          PublicsOther.lgbt,
-          PublicsOther.hiv,
-          PublicsOther.prostitution,
-          PublicsOther.prison,
-          PublicsOther.student
-        ]
+        familialle: structuredClone(FAMILY_DEFAULT_VALUES),
+        gender: structuredClone(GENDER_DEFAULT_VALUES),
+        other: structuredClone(OTHER_DEFAULT_VALUES)
       },
       saturated: {
         precision: null,
@@ -1235,35 +1170,17 @@ const sampleItinerary: ApiPlace = Object.freeze({
       },
       publics: {
         accueil: 0,
-        administrative: [
-          PublicsAdministrative.regular,
-          PublicsAdministrative.asylum,
-          PublicsAdministrative.refugee,
-          PublicsAdministrative.undocumented
-        ],
+        administrative: structuredClone(ADMINISTRATIVE_DEFAULT_VALUES),
+
         age: {
           max: 99,
           min: 0
         },
         description: null,
-        familialle: [
-          PublicsFamily.isolated,
-          PublicsFamily.family,
-          PublicsFamily.couple,
-          PublicsFamily.pregnant
-        ],
-        gender: [PublicsGender.men, PublicsGender.women],
-        other: [
-          PublicsOther.violence,
-          PublicsOther.ukraine,
-          PublicsOther.addiction,
-          PublicsOther.handicap,
-          PublicsOther.lgbt,
-          PublicsOther.hiv,
-          PublicsOther.prostitution,
-          PublicsOther.prison,
-          PublicsOther.student
-        ]
+        familialle: structuredClone(FAMILY_DEFAULT_VALUES),
+
+        gender: structuredClone(GENDER_DEFAULT_VALUES),
+        other: structuredClone(OTHER_DEFAULT_VALUES)
       },
       saturated: {
         precision: null,
