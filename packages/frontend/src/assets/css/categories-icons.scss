@@ -20,12 +20,9 @@
  */
 @font-face {
   font-family: "categories-icons";
-  font-display: swap;
-  src: url("../fonts/icons/categories-icons.woff2?t=1741127094402")
+  src: url("../fonts/icons/categories-icons.woff2?t=1742920883369")
       format("woff2"),
-    url("../fonts/icons/categories-icons.woff?t=1741127094402") format("woff");
-  font-weight: normal;
-  font-style: normal;
+    url("../fonts/icons/categories-icons.woff?t=1742920883369") format("woff");
 }
 
 [class^="category-icon-"],
@@ -300,56 +297,59 @@
 .category-icon-solidarity_fridge::before {
   content: "\ea58";
 }
-.category-icon-solidarity_store::before {
+.category-icon-solidarity_fridge_outline::before {
   content: "\ea59";
 }
-.category-icon-spanish_course::before {
+.category-icon-solidarity_store::before {
   content: "\ea5a";
 }
-.category-icon-speech_therapy::before {
+.category-icon-spanish_course::before {
   content: "\ea5b";
 }
-.category-icon-sport_activities::before {
+.category-icon-speech_therapy::before {
   content: "\ea5c";
 }
-.category-icon-std_testing::before {
+.category-icon-sport_activities::before {
   content: "\ea5d";
 }
-.category-icon-stomatology::before {
+.category-icon-std_testing::before {
   content: "\ea5e";
 }
-.category-icon-technology::before {
+.category-icon-stomatology::before {
   content: "\ea5f";
 }
-.category-icon-telephone_at_your_disposal::before {
+.category-icon-technology::before {
   content: "\ea60";
 }
-.category-icon-toilets::before {
+.category-icon-telephone_at_your_disposal::before {
   content: "\ea61";
 }
-.category-icon-training_and_jobs::before {
+.category-icon-toilets::before {
   content: "\ea62";
 }
-.category-icon-tutoring::before {
+.category-icon-training_and_jobs::before {
   content: "\ea63";
 }
-.category-icon-urology::before {
+.category-icon-tutoring::before {
   content: "\ea64";
 }
-.category-icon-vaccination::before {
+.category-icon-urology::before {
   content: "\ea65";
 }
-.category-icon-vet_care::before {
+.category-icon-vaccination::before {
   content: "\ea66";
 }
-.category-icon-welcome::before {
+.category-icon-vet_care::before {
   content: "\ea67";
 }
-.category-icon-wellness::before {
+.category-icon-welcome::before {
   content: "\ea68";
 }
-.category-icon-wifi::before {
+.category-icon-wellness::before {
   content: "\ea69";
+}
+.category-icon-wifi::before {
+  content: "\ea6a";
 }
 
 $category-icon-access_to_housing: "\ea01";
@@ -440,20 +440,21 @@ $category-icon-shower: "\ea55";
 $category-icon-social_accompaniment: "\ea56";
 $category-icon-social_grocery_stores: "\ea57";
 $category-icon-solidarity_fridge: "\ea58";
-$category-icon-solidarity_store: "\ea59";
-$category-icon-spanish_course: "\ea5a";
-$category-icon-speech_therapy: "\ea5b";
-$category-icon-sport_activities: "\ea5c";
-$category-icon-std_testing: "\ea5d";
-$category-icon-stomatology: "\ea5e";
-$category-icon-technology: "\ea5f";
-$category-icon-telephone_at_your_disposal: "\ea60";
-$category-icon-toilets: "\ea61";
-$category-icon-training_and_jobs: "\ea62";
-$category-icon-tutoring: "\ea63";
-$category-icon-urology: "\ea64";
-$category-icon-vaccination: "\ea65";
-$category-icon-vet_care: "\ea66";
-$category-icon-welcome: "\ea67";
-$category-icon-wellness: "\ea68";
-$category-icon-wifi: "\ea69";
+$category-icon-solidarity_fridge_outline: "\ea59";
+$category-icon-solidarity_store: "\ea5a";
+$category-icon-spanish_course: "\ea5b";
+$category-icon-speech_therapy: "\ea5c";
+$category-icon-sport_activities: "\ea5d";
+$category-icon-std_testing: "\ea5e";
+$category-icon-stomatology: "\ea5f";
+$category-icon-technology: "\ea60";
+$category-icon-telephone_at_your_disposal: "\ea61";
+$category-icon-toilets: "\ea62";
+$category-icon-training_and_jobs: "\ea63";
+$category-icon-tutoring: "\ea64";
+$category-icon-urology: "\ea65";
+$category-icon-vaccination: "\ea66";
+$category-icon-vet_care: "\ea67";
+$category-icon-welcome: "\ea68";
+$category-icon-wellness: "\ea69";
+$category-icon-wifi: "\ea6a";
