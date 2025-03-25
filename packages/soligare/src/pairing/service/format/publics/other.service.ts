@@ -60,6 +60,7 @@ export class PublicsOtherService {
       publicsOther.push(PublicsOther.student);
     }
     if (postgresPublicsOther[0].ukraine) {
+      // TODO: delete this
       publicsOther.push(PublicsOther.ukraine);
     }
     if (postgresPublicsOther[0].violence) {

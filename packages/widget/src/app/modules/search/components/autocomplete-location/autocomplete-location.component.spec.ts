@@ -29,7 +29,6 @@ import {
   CountryCodes,
   GeoPosition,
   GeoTypes,
-  PublicsOther,
   SupportedLanguagesCode,
   WidgetId,
 } from "@soliguide/common";
@@ -83,7 +82,6 @@ describe("AutocompleteLocationComponent", () => {
         distance: 5,
         geoValue: "paris",
       }),
-      publics: { other: [PublicsOther.ukraine] },
       options: {
         limit: 10,
       },

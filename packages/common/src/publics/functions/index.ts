@@ -19,8 +19,4 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 // @index('./*', f => `export * from '${f.path}'`)
-export * from "./getPosition";
-export * from "./is-draft-and-form-uncomplete";
-export * from "../../publics/functions/publics-values-are-coherent";
-export * from "./computePlaceOpeningStatus";
-export * from "./computeTempIsActive";
+export * from "./publics-values-are-coherent";
