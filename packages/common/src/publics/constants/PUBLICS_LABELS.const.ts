@@ -29,7 +29,7 @@ export const PUBLICS_LABELS: {
   administrative: { [key in PublicsAdministrative]: string };
   familialle: { [key in PublicsFamily]: string };
   gender: { [key in PublicsGender]: string };
-  other: { [key in PublicsOther]: string };
+  other: { [key in PublicsOther]?: string };
 } = {
   gender: {
     all: "PUBLICS_GENDER_ALL",
@@ -59,7 +59,6 @@ export const PUBLICS_LABELS: {
     prison: "PUBLICS_OTHER_PRISON",
     prostitution: "PUBLICS_OTHER_SEX_WORKER",
     student: "PUBLICS_OTHER_STUDENT",
-    ukraine: "PUBLICS_OTHER_UKRAINE",
     violence: "PUBLICS_OTHER_VIOLENCE",
   },
 };

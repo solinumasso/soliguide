@@ -33,7 +33,6 @@ import {
   type GeoPosition,
   GeoTypes,
   type PublicsElement,
-  PublicsOther,
   type SearchModalities,
   WidgetId,
   CountryCodes,
@@ -111,7 +110,6 @@ export class SearchComponent implements OnInit, OnDestroy {
         },
         distance: 5,
       },
-      publics: { other: [PublicsOther.ukraine] },
     });
     this.title = "";
     this.maskLocationSearch = false;

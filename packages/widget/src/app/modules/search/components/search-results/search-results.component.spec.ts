@@ -28,7 +28,6 @@ import {
   Categories,
   CountryCodes,
   GeoTypes,
-  PublicsOther,
   SupportedLanguagesCode,
   WidgetId,
 } from "@soliguide/common";
@@ -82,7 +81,6 @@ describe("SearchResultsComponent", () => {
         label: "Paris",
         slugs: {},
       },
-      publics: { other: [PublicsOther.ukraine] },
       options: {
         limit: 10,
       },
