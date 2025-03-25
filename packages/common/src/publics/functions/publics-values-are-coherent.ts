@@ -25,7 +25,7 @@ import {
   OTHER_DEFAULT_VALUES,
   Publics,
   WelcomedPublics,
-} from "../../publics";
+} from "..";
 
 /**
  * The 'welcomed publics' which are not unconditional must have at least one variatation
@@ -41,12 +41,40 @@ export const publicsValuesAreCoherent = (publics: Publics): boolean => {
     return true;
   }
 
+  const hasCustomGender =
+    !publics.gender.every((item) => GENDER_DEFAULT_VALUES.includes(item)) ||
+    !GENDER_DEFAULT_VALUES.every((item) => publics.gender.includes(item));
+
+  const hasCustomAdministrative =
+    !publics.administrative.every((item) =>
+      ADMINISTRATIVE_DEFAULT_VALUES.includes(item)
+    ) ||
+    !ADMINISTRATIVE_DEFAULT_VALUES.every((item) =>
+      publics.administrative.includes(item)
+    );
+
+  const hasCustomFamilial =
+    !publics.familialle.every((item) => FAMILY_DEFAULT_VALUES.includes(item)) ||
+    !FAMILY_DEFAULT_VALUES.every((item) => publics.familialle.includes(item));
+
+  const hasCustomOther =
+    !publics.other.every((item) => OTHER_DEFAULT_VALUES.includes(item)) ||
+    !OTHER_DEFAULT_VALUES.every((item) => publics.other.includes(item));
+
+  const hasCustomAge = publics.age.min !== 0 || publics.age.max !== 99;
+
+  const hasDescription = !!(
+    publics?.description &&
+    typeof publics.description === "string" &&
+    publics.description.trim().length > 0
+  );
+
   return (
-    publics.gender.length !== GENDER_DEFAULT_VALUES.length ||
-    publics.administrative.length !== ADMINISTRATIVE_DEFAULT_VALUES.length ||
-    publics.familialle.length !== FAMILY_DEFAULT_VALUES.length ||
-    publics.other.length !== OTHER_DEFAULT_VALUES.length ||
-    publics.age.min !== 0 ||
-    publics.age.max !== 99
+    hasCustomGender ||
+    hasCustomAdministrative ||
+    hasCustomFamilial ||
+    hasCustomOther ||
+    hasCustomAge ||
+    hasDescription
   );
 };

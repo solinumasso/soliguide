@@ -30,7 +30,6 @@ import {
   Categories,
   CountryCodes,
   GeoTypes,
-  PublicsOther,
   SupportedLanguagesCode,
   WidgetId,
 } from "@soliguide/common";
@@ -104,7 +103,6 @@ describe("SearchComponent", () => {
       },
       locations: [],
       modalities: undefined,
-      publics: { other: [PublicsOther.ukraine] },
       options: {
         limit: 10,
         page: 1,
