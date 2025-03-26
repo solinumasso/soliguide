@@ -169,11 +169,24 @@ _app.use("/robots.txt", (_req: ExpressRequest, res: ExpressResponse) => {
   res.send("User-agent: *\nDisallow: /");
 });
 
+// First middlewares
 _app.use([
   getCurrentUser, // retrieve current user
   handleRequest, // retrieve request informations like origin, referer, ...
   setUserForLogs, // create a user for Log
-  originGuard, // check if origin is not ORIGIN_UNDEFINED
+]);
+
+// Custom middleware to disable for pictures
+_app.use((req: ExpressRequest, res, next) => {
+  if (req.path.startsWith("/medias/")) {
+    next();
+  } else {
+    originGuard(req, res, next);
+  }
+});
+
+// Auth middlewares
+_app.use([
   handleAdminRight, // check admin right
   handleApiRight, // check api right
 ]);

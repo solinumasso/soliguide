@@ -28,6 +28,7 @@ import {
   WEBAPP_URLS,
 } from "../../../_models";
 import { cleanUrl } from "./cleanUrl.service";
+import { logger } from "../../../general/logger";
 
 export const isMobileHeader = (req: ExpressRequest): boolean => {
   const userAgent = req.headers?.["user-agent"];
@@ -48,6 +49,7 @@ export const handleOrigin = (req: ExpressRequest): string | null => {
         return null;
       }
 
+      console.log({ cleanedReferer });
       const refererUrl = new URL(cleanedReferer);
 
       if (CONFIG.ENV === "dev") {
@@ -57,8 +59,8 @@ export const handleOrigin = (req: ExpressRequest): string | null => {
       if (SOLIGUIDE_HOSTNAME_REGEXP.test(refererUrl.origin)) {
         return refererUrl.origin;
       }
-    } catch {
-      // Do nothing
+    } catch (e) {
+      logger.error({ message: "CANNOT_GET_REFERER", error: e });
     }
   }
 
@@ -96,10 +98,6 @@ export const handleOriginForLogs = (
       return Origin.SOLINUM_ORG;
     }
 
-    if (hostname === new URL(CONFIG.WIDGET_URL).hostname) {
-      return Origin.WIDGET_SOLIGUIDE;
-    }
-
     // Check if it's a webapp
     if (WEBAPP_URLS.some((url) => new URL(url).hostname === hostname)) {
       return Origin.WEBAPP_SOLIGUIDE;
@@ -108,6 +106,10 @@ export const handleOriginForLogs = (
     // Check if it's a front
     if (FRONT_URLS.some((url) => new URL(url).hostname === hostname)) {
       return Origin.SOLIGUIDE;
+    }
+
+    if (hostname === new URL(CONFIG.WIDGET_URL).hostname) {
+      return Origin.WIDGET_SOLIGUIDE;
     }
 
     if (CONFIG.ENV === "dev") {
