@@ -425,10 +425,6 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
     children: [],
   },
   {
-    id: Categories.LEGAL_PROTECTION,
-    children: [],
-  },
-  {
     id: Categories.HAIRDRESSER,
     children: [],
   },

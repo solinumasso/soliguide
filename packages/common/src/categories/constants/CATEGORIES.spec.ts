@@ -88,9 +88,11 @@ describe("Categories", () => {
   describe("All keys of Categories enum should be used", () => {
     Object.entries(Categories).forEach((nodeId) => {
       if (
-        [Categories.CATALAN_COURSE, Categories.SPANISH_COURSE].includes(
-          nodeId[1]
-        )
+        [
+          Categories.CATALAN_COURSE,
+          Categories.SPANISH_COURSE,
+          Categories.LEGAL_PROTECTION,
+        ].includes(nodeId[1])
       ) {
         it(`${nodeId[0]} should not be in the categories tree`, () => {
           expect(
@@ -119,7 +121,7 @@ describe("Categories", () => {
   it("leaves", () => {
     const CATEGORIES_LEAF_NODES =
       getCategoriesService().getCategoriesLeafNodes();
-    expect(CATEGORIES_LEAF_NODES.length).toEqual(90);
+    expect(CATEGORIES_LEAF_NODES.length).toEqual(89);
   });
 
   it("roots", () => {
