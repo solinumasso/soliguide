@@ -24,7 +24,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let size = '48';
   export let color = 'currentColor';
   export let variation: VariationType = 'outlined';
-  export let ariaLabel = 'job coaching';
 </script>
 
 <svg
@@ -33,18 +32,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   width={size}
   height={size}
   fill="none"
-  aria-label={ariaLabel}
   aria-hidden="true"
   viewBox="0 0 48 48"
-  on:click
-  on:keydown
-  on:keyup
-  on:focus
-  on:blur
-  on:mouseenter
-  on:mouseleave
-  on:mouseover
-  on:mouseout
 >
   <g id="job coaching">
     {#if variation === 'outlined'}

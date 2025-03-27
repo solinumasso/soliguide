@@ -22,7 +22,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let size = 16;
   export let role = 'img';
   export let color = '#FF4124';
-  export let ariaLabel = 'home';
 </script>
 
 <svg
@@ -31,18 +30,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   {role}
   width={size}
   height={size}
-  aria-label={ariaLabel}
   fill="none"
   viewBox="0 0 16 16"
-  on:click
-  on:keydown
-  on:keyup
-  on:focus
-  on:blur
-  on:mouseenter
-  on:mouseleave
-  on:mouseover
-  on:mouseout
 >
   <g id="home">
     <path

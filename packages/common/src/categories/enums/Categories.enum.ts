@@ -121,6 +121,6 @@ export enum Categories {
   LONG_TERM_ACCOMODATION = "long_term_accomodation",
   CITIZEN_HOUSING = "citizen_housing",
   ACCESS_TO_HOUSING = "access_to_housing",
-  HARIDRESSER = "hairdresser",
+  HAIRDRESSER = "hairdresser",
   LEGAL_PROTECTION = "legal_protection",
 }

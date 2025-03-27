@@ -119,7 +119,7 @@ describe("Categories", () => {
   it("leaves", () => {
     const CATEGORIES_LEAF_NODES =
       getCategoriesService().getCategoriesLeafNodes();
-    expect(CATEGORIES_LEAF_NODES.length).toEqual(88);
+    expect(CATEGORIES_LEAF_NODES.length).toEqual(90);
   });
 
   it("roots", () => {

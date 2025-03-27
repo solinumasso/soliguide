@@ -131,7 +131,9 @@ import {
   Toilets,
   Vaccines,
   Wifi,
-  Work
+  Work,
+  HairDresser,
+  LegalProtection
 } from './components/icons';
 
 import Divider from './components/layout/Divider.svelte';
@@ -291,5 +293,7 @@ export {
   DEFAULT_DEBOUNCE_DELAY,
   generateId,
   Modal,
-  Link
+  Link,
+  HairDresser,
+  LegalProtection
 };

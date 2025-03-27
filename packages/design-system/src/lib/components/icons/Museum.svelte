@@ -24,7 +24,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let size = '24';
   export let color = 'currentColor';
   export let variation: VariationType = 'outlined';
-  export let ariaLabel = 'museum';
 </script>
 
 <svg
@@ -33,18 +32,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   width={size}
   height={size}
   fill={color}
-  aria-label={ariaLabel}
   aria-hidden="true"
   viewBox="0 0 24 24"
-  on:click
-  on:keydown
-  on:keyup
-  on:focus
-  on:blur
-  on:mouseenter
-  on:mouseleave
-  on:mouseover
-  on:mouseout
 >
   {#if variation === 'outlined'}
     <path d="M22 11V9L12 2 2 9v2h2v9H2v2h20v-2h-2v-9h2zm-4 9H6V9h12v11z" /><path
