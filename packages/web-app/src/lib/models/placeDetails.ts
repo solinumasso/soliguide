@@ -112,7 +112,7 @@ const buildPublics = (publics: Publics): PlaceDetailsInfo[] => {
       tags: [],
       description: [],
       translatedText: description,
-      needTranslation: true
+      needTranslation: false
     },
     ...(publics.description
       ? [
@@ -120,7 +120,7 @@ const buildPublics = (publics: Publics): PlaceDetailsInfo[] => {
             type: PlaceDetailsInfoType.PUBLICS_MORE_INFO,
             tags: [],
             description: [{ key: publics.description }],
-            needTranslation: true
+            needTranslation: false
           }
         ]
       : [])

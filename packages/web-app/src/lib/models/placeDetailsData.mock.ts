@@ -612,7 +612,6 @@ const samplePlaceTransformed: PlaceDetails = {
       needTranslation: true
     }
   ],
-  publics: '<b>Unconditional welcome</b>',
   instagram: '',
   lastUpdate: '2024-06-11T15:27:13.409Z',
   name: 'Soupe Saint-Eustache',

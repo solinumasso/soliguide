@@ -20,14 +20,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <script lang="ts">
   import { I18N_CTX_KEY } from '$lib/client/i18n';
-  import { Text, TextClamper } from '@soliguide/design-system';
+  import { TextClamper } from '@soliguide/design-system';
   import { getContext } from 'svelte';
   import DOMPurify from 'dompurify';
-  import {
-    type PlaceDetailsInfo,
-    PlaceDetailsInfoType,
-    type TranslatableElement
-  } from '$lib/models/types';
+  import { type PlaceDetailsInfo, type TranslatableElement } from '$lib/models/types';
   import type { I18nStore } from '$lib/client/types';
   import { getTitleAndIcon } from '../functions';
 
@@ -41,7 +37,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </script>
 
 <div class="info-content">
-  {#each info as { type, description, tags, needTranslation, translatedText }}
+  {#each info as { type, description, needTranslation, translatedText }}
     {@const details = getTitleAndIcon($i18n, type)}
     <div class="detail">
       <div class="icon">
@@ -50,6 +46,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
       <p class="public-description">
         {#if !needTranslation && translatedText}
+          <!-- eslint-disable-next-line svelte/no-at-html-tags -->
           {@html DOMPurify.sanitize(translatedText)}
         {:else}
           <b>{details.title}</b>
@@ -58,6 +55,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             showMoreLabel={$i18n.t('SEE_MORE')}
             showLessLabel={$i18n.t('SEE_LESS')}
           >
+            <!-- eslint-disable-next-line svelte/no-at-html-tags -->
             {@html DOMPurify.sanitize(getFormattedDescription(description))}
           </TextClamper>
         {/if}
@@ -85,18 +83,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     gap: var(--spacingLG);
   }
 
-  .details-container {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacingLG);
-  }
-
   .detail {
-    display: flex;
-    gap: var(--spacingMD);
-  }
-
-  .title {
     display: flex;
     gap: var(--spacingMD);
   }
@@ -105,20 +92,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     height: 16px;
     width: 16px;
     color: var(--color-textDark);
-  }
-
-  .description {
-    // The HTML doesn't display correctly without this because of the base styles
-    :global(li) {
-      margin-left: var(--spacingMD);
-    }
-
-    :global(ul li) {
-      list-style: initial;
-    }
-
-    :global(ol li) {
-      list-style: decimal;
-    }
   }
 </style>

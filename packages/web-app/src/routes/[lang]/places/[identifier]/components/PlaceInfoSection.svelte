@@ -30,21 +30,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import DOMPurify from 'dompurify';
   import {
     type PlaceDetailsInfo,
-    PlaceDetailsInfoType,
     type Source,
     type Tag as TagType,
     type TranslatableElement
   } from '$lib/models/types';
-  import type { PlaceDetails } from '$lib/models/types';
 
   import type { I18nStore } from '$lib/client/types';
   import { getTitleAndIcon } from '../functions';
 
   export let info: PlaceDetailsInfo[] = [];
-  export let placeDetails!: PlaceDetails;
 
   export let lastUpdate: string;
-
   export let sources: Source[] = [];
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
@@ -71,6 +67,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
           <p class="public-description">
             {#if !needTranslation && translatedText}
+              <!-- eslint-disable-next-line svelte/no-at-html-tags -->
               {@html DOMPurify.sanitize(translatedText)}
             {:else}
               <b>{details.title}</b>
@@ -79,6 +76,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 showMoreLabel={$i18n.t('SEE_MORE')}
                 showLessLabel={$i18n.t('SEE_LESS')}
               >
+                <!-- eslint-disable-next-line svelte/no-at-html-tags -->
                 {@html DOMPurify.sanitize(getFormattedDescription(description))}
               </TextClamper>
               {#if tags.length}
@@ -158,11 +156,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     height: 18px;
     width: 18px;
     color: var(--color-textDark);
-  }
-
-  .title-description {
-    display: flex;
-    flex-direction: column;
   }
 
   .tags {

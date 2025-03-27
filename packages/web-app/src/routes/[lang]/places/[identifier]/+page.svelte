@@ -101,7 +101,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <section class="sections">
     <PlaceInfoSection
       info={$pageStore.placeDetails.info}
-      placeDetails={$pageStore.placeDetails}
       lastUpdate={$pageStore.placeDetails.lastUpdate}
       sources={$pageStore.placeDetails.sources}
     />
