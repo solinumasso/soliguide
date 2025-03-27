@@ -159,7 +159,6 @@ export interface PlaceDetails {
   status: PlaceOpeningStatus;
   todayInfo: TodayInfo;
   website: string;
-  publics: string;
 }
 
 export interface SearchLocationParams {

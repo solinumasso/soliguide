@@ -57,11 +57,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   const getFormattedDescription = (description: TranslatableElement[]): string => {
     return description.map(({ key, params }) => $i18n.t(key, params)).join(', ');
   };
-
-  export const publicsDetails = getTitleAndIcon(
-    $i18n,
-    PlaceDetailsInfoType.WELCOME_UNCONDITIONAL_CUSTOM
-  );
 </script>
 
 <PlaceDetailsSection>
@@ -74,21 +69,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <svelte:component this={details.icon} size="18" />
           </div>
 
-          {#if !needTranslation && translatedText}
-            <p class="public-description">
+          <p class="public-description">
+            {#if !needTranslation && translatedText}
               {@html DOMPurify.sanitize(translatedText)}
-            </p>
-          {:else}
-            <p class="public-description">
+            {:else}
               <b>{details.title}</b>
               <TextClamper
                 linesNotClamped={3}
                 showMoreLabel={$i18n.t('SEE_MORE')}
                 showLessLabel={$i18n.t('SEE_LESS')}
               >
-                <p class="public-description">
-                  {@html DOMPurify.sanitize(getFormattedDescription(description))}
-                </p>
+                {@html DOMPurify.sanitize(getFormattedDescription(description))}
               </TextClamper>
               {#if tags.length}
                 <div class="tags">
@@ -101,8 +92,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                   {/each}
                 </div>
               {/if}
-            </p>
-          {/if}
+            {/if}
+          </p>
         </div>
       {/each}
     </div>

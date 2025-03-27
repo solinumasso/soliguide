@@ -106,26 +106,25 @@ const buildPublics = (publics: Publics): PlaceDetailsInfo[] => {
     false
   );
 
-  const publicsInfo: PlaceDetailsInfo[] = [
+  return [
     {
       type: WELCOME_TO_TITLE_MAPPING[publics.accueil],
       tags: [],
       description: [],
       translatedText: description,
-      needTranslation: false
-    }
-  ];
-
-  if (publics?.description) {
-    // eslint-disable-next-line fp/no-mutating-methods
-    publicsInfo.push({
-      type: PlaceDetailsInfoType.PUBLICS_MORE_INFO,
-      tags: [],
-      description: [{ key: publics?.description }],
       needTranslation: true
-    });
-  }
-  return publicsInfo;
+    },
+    ...(publics.description
+      ? [
+          {
+            type: PlaceDetailsInfoType.PUBLICS_MORE_INFO,
+            tags: [],
+            description: [{ key: publics.description }],
+            needTranslation: true
+          }
+        ]
+      : [])
+  ];
 };
 
 /**
@@ -329,14 +328,7 @@ const buildPlaceDetails = (placeResult: ApiPlace, categorySearched: Categories):
     sources: buildSources(placeResult.sources),
     status: computePlaceOpeningStatus(placeResult),
     todayInfo: computeTodayInfo(placeResult, status),
-    website: placeResult.entity.website ?? '',
-    publics: translatePublics(
-      i18nInstance,
-      i18nInstance.language as unknown as SupportedLanguagesCode,
-      placeResult.publics,
-      true,
-      false
-    )
+    website: placeResult.entity.website ?? ''
   };
 };
 
