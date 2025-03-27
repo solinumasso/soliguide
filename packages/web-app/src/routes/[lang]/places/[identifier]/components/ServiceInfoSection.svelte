@@ -48,24 +48,20 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <svelte:component this={details.icon} size="18" />
       </div>
 
-      {#if !needTranslation && translatedText}
-        <p class="public-description">
+      <p class="public-description">
+        {#if !needTranslation && translatedText}
           {@html DOMPurify.sanitize(translatedText)}
-        </p>
-      {:else}
-        <p class="public-description">
+        {:else}
           <b>{details.title}</b>
           <TextClamper
             linesNotClamped={3}
             showMoreLabel={$i18n.t('SEE_MORE')}
             showLessLabel={$i18n.t('SEE_LESS')}
           >
-            <p class="public-description">
-              {@html DOMPurify.sanitize(getFormattedDescription(description))}
-            </p>
+            {@html DOMPurify.sanitize(getFormattedDescription(description))}
           </TextClamper>
-        </p>
-      {/if}
+        {/if}
+      </p>
     </div>
   {/each}
 </div>
