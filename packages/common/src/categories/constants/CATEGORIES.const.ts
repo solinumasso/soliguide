@@ -415,13 +415,21 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
         rank: 600,
       },
       {
-        id: Categories.HARIDRESSER,
+        id: Categories.HAIRDRESSER,
         rank: 700,
       },
     ],
   },
   {
     id: Categories.SHOWER,
+    children: [],
+  },
+  {
+    id: Categories.LEGAL_PROTECTION,
+    children: [],
+  },
+  {
+    id: Categories.HAIRDRESSER,
     children: [],
   },
   {
