@@ -34,6 +34,7 @@ import { CONFIG, ExpressRequest, ExpressResponse } from "../../_models";
 
 import { checkRights, getFilteredData, logExport } from "../../middleware";
 import { captureMessage } from "@sentry/node";
+import { logger } from "../../general/logger";
 
 export const router = Router();
 
@@ -78,7 +79,7 @@ router.post(
       res.send(data);
       next();
     } catch (e) {
-      console.log(e);
+      logger.error(e);
       req.log.error(e, "EXPORT_FAIL");
       res.status(500).json({ message: "EXPORT_FAIL" });
       return;
