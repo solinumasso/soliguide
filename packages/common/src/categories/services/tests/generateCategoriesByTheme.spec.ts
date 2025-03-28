@@ -105,6 +105,7 @@ describe("Country-specific categories", () => {
     const spanishCouneling = spanishResults.find(
       (category) => category.id === Categories.COUNSELING
     );
+
     const legalProtectionInSpain = spanishCouneling?.children.find(
       (category) => category.id === Categories.LEGAL_PROTECTION
     );
@@ -116,5 +117,25 @@ describe("Country-specific categories", () => {
       (category) => category.id === Categories.LEGAL_PROTECTION
     );
     expect(legalProtectionInFrench.length).toBe(0);
+  });
+
+  it("should include Domiciliation ONLY in France theme", () => {
+    const domiciliationInAndorra = andorraResults.find(
+      (category) => category.id === Categories.DOMICILIATION
+    );
+
+    expect(domiciliationInAndorra).toBeUndefined();
+
+    const domiciliationInSpain = spanishResults.find(
+      (category) => category.id === Categories.DOMICILIATION
+    );
+
+    expect(domiciliationInSpain).toBeUndefined();
+
+    const domiciliationInFrance = frenchResults.find(
+      (category) => category.id === Categories.DOMICILIATION
+    );
+
+    expect(domiciliationInFrance).toBeDefined();
   });
 });

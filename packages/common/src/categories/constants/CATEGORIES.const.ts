@@ -243,18 +243,12 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
         id: Categories.LEGAL_ADVICE,
         rank: 100,
       },
-      {
-        id: Categories.DOMICILIATION,
-        rank: 200,
-      },
+
       {
         id: Categories.SOCIAL_ACCOMPANIMENT,
         rank: 300,
       },
-      {
-        id: Categories.PUBLIC_WRITER,
-        rank: 400,
-      },
+
       {
         id: Categories.DISABILITY_ADVICE,
         rank: 500,
@@ -278,15 +272,7 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
     children: [],
   },
   {
-    id: Categories.DOMICILIATION,
-    children: [],
-  },
-  {
     id: Categories.SOCIAL_ACCOMPANIMENT,
-    children: [],
-  },
-  {
-    id: Categories.PUBLIC_WRITER,
     children: [],
   },
   {
@@ -841,6 +827,20 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
 
 export const CATEGORIES_SOLIGUIDE_FR: FlatCategoriesTreeNode[] = [
   {
+    id: Categories.COUNSELING,
+    children: [
+      {
+        id: Categories.DOMICILIATION,
+        rank: 200,
+      },
+
+      {
+        id: Categories.PUBLIC_WRITER,
+        rank: 400,
+      },
+    ],
+  },
+  {
     id: Categories.TRAINING_AND_JOBS,
     children: [
       {
@@ -851,6 +851,15 @@ export const CATEGORIES_SOLIGUIDE_FR: FlatCategoriesTreeNode[] = [
   },
   {
     id: Categories.FRENCH_COURSE,
+    children: [],
+  },
+  {
+    id: Categories.DOMICILIATION,
+    children: [],
+  },
+
+  {
+    id: Categories.PUBLIC_WRITER,
     children: [],
   },
 ];
