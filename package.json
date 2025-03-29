@@ -26,7 +26,7 @@
     "lerna": "^8.1.8",
     "license-check-and-add": "^4.0.5",
     "lint-staged": "^15.2.7",
-    "nx": "^19.6.4",
+    "nx": "^20.0.0",
     "semantic-release": "^24.0.0",
     "semantic-release-lerna": "^2.6.2"
   },
