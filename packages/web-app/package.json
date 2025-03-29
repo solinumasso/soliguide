@@ -50,7 +50,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-fp": "^2.3.0",
     "eslint-plugin-svelte": "^2.36.0",
-    "globals": "^15.0.0",
+    "globals": "^16.0.0",
     "license-check-and-add": "^4.0.5",
     "lint-staged": "^15.2.7",
     "prettier": "^3.1.1",

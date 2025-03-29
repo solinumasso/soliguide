@@ -10828,7 +10828,7 @@ __metadata:
     eslint-plugin-fp: "npm:^2.3.0"
     eslint-plugin-storybook: "npm:^0.11.1"
     eslint-plugin-svelte: "npm:^2.36.0"
-    globals: "npm:^15.0.0"
+    globals: "npm:^16.0.0"
     i18next: "npm:^23.11.5"
     license-check-and-add: "npm:^4.0.5"
     lint-staged: "npm:^15.2.7"
@@ -11106,7 +11106,7 @@ __metadata:
     eslint-config-prettier: "npm:^9.1.0"
     eslint-plugin-fp: "npm:^2.3.0"
     eslint-plugin-svelte: "npm:^2.36.0"
-    globals: "npm:^15.0.0"
+    globals: "npm:^16.0.0"
     i18next: "npm:^23.11.5"
     i18next-browser-languagedetector: "npm:^8.0.0"
     isomorphic-dompurify: "npm:^2.16.0"
@@ -20492,10 +20492,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:^15.0.0, globals@npm:^15.8.0":
+"globals@npm:^15.8.0":
   version: 15.9.0
   resolution: "globals@npm:15.9.0"
   checksum: 10c0/de4b553e412e7e830998578d51b605c492256fb2a9273eaeec6ec9ee519f1c5aa50de57e3979911607fd7593a4066420e01d8c3d551e7a6a236e96c521aee36c
+  languageName: node
+  linkType: hard
+
+"globals@npm:^16.0.0":
+  version: 16.0.0
+  resolution: "globals@npm:16.0.0"
+  checksum: 10c0/8906d5f01838df64a81d6c2a7b7214312e2216cf65c5ed1546dc9a7d0febddf55ffa906cf04efd5b01eec2534d6f14859a89535d1a68241832810e41ef3fd5bb
   languageName: node
   linkType: hard
 
