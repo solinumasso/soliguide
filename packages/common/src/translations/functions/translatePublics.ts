@@ -146,9 +146,17 @@ export const translatePublics = (
     ALL_PUBLICS.other.length - 1 !== publics.other.length
   ) {
     publics.other.forEach((otherPublic: PublicsOther) => {
-      detailsText = `${detailsText}${i18next
-        .t(PUBLICS_LABELS.other[otherPublic], { lng })
-        .toLowerCase()}, `;
+      const currentPublic = PUBLICS_LABELS.other[otherPublic];
+      if (typeof currentPublic !== "undefined") {
+        const translatedPublic = i18next
+          .t(currentPublic, {
+            lng,
+          })
+          .toLowerCase();
+
+        detailsText = `${detailsText}
+        ${translatedPublic}, `;
+      }
     });
   }
 
