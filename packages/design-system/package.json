@@ -55,7 +55,7 @@
     "@sveltejs/package": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "@types/eslint": "^9.0.0",
-    "@vitejs/plugin-legacy": "^5.4.3",
+    "@vitejs/plugin-legacy": "^6.0.0",
     "@vitest/coverage-v8": "^2.0.0",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^9.1.0",
