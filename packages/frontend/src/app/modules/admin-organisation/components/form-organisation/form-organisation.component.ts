@@ -129,7 +129,7 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
         ],
       ],
       territories: [
-        this.organisation.territories,
+        this.organisation.areas.fr.departments,
         this.me.admin ? [Validators.required] : [],
       ],
       description: [this.organisation.description, []],
@@ -162,6 +162,17 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
       newValue: this.orgaForm.value,
     });
 
+    const areaValue = {
+      ...this.orgaForm.value,
+      areas: {
+        ...this.organisation.areas,
+        fr: {
+          ...this.organisation.areas.fr,
+          departments: this.orgaForm.value.territories,
+        },
+      },
+    };
+
     this.submitted = true;
 
     if (this.orgaForm.invalid) {
@@ -173,7 +184,7 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
 
     this.subscription.add(
       this.organisationService
-        .create(this.organisation._id, this.orgaForm.value)
+        .create(this.organisation._id, areaValue)
         .subscribe({
           next: (organisation: Organisation) => {
             this.submitted = false;
