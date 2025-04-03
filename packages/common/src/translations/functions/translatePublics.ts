@@ -72,12 +72,11 @@ export const translatePublics = (
 
   // GENDER
   if (publics.gender.length !== 2) {
-    detailsText =
-      detailsText +
-      (publics.gender[0] === "men"
+    detailsText = `${detailsText}${
+      publics.gender[0] === "men"
         ? i18next.t("PUBLICS_GENDER_MEN", { lng })
-        : i18next.t("PUBLICS_GENDER_WOMEN", { lng }));
-    detailsText = detailsText + ", ";
+        : i18next.t("PUBLICS_GENDER_WOMEN", { lng })
+    }, `;
   }
 
   // AGE
@@ -87,42 +86,34 @@ export const translatePublics = (
     } else if (publics.age.min === 18 && publics.age.max === 99) {
       detailsText = detailsText + `${i18next.t("PUBLICS_AGE_MAJORS", { lng })}`;
     } else if (publics.age.min !== 0 && publics.age.max === 99) {
-      detailsText =
-        detailsText +
-        i18next.t("PUBLICS_AGE_FROM_XX", {
-          lng,
-          replace: {
-            min: publics.age.min,
-          },
-        });
+      detailsText = `${detailsText}${i18next.t("PUBLICS_AGE_FROM_XX", {
+        lng,
+        replace: {
+          min: publics.age.min,
+        },
+      })}`;
     } else if (publics.age.min === 0 && publics.age.max !== 99) {
-      detailsText =
-        detailsText +
-        i18next.t("PUBLICS_AGE_TO_XX_MAX", {
-          lng,
-          replace: {
-            max: publics.age.max,
-          },
-        });
+      detailsText = `${detailsText}${i18next.t("PUBLICS_AGE_TO_XX_MAX", {
+        lng,
+        replace: {
+          max: publics.age.max,
+        },
+      })}`;
     } else if (publics.age.min === publics.age.max) {
-      detailsText =
-        detailsText +
-        i18next.t("PUBLICS_SPECIFIC_AGE", {
-          lng,
-          replace: {
-            age: publics.age.min,
-          },
-        });
+      detailsText = `${detailsText}${i18next.t("PUBLICS_SPECIFIC_AGE", {
+        lng,
+        replace: {
+          age: publics.age.min,
+        },
+      })}`;
     } else {
-      detailsText =
-        detailsText +
-        i18next.t("PUBLICS_AGE_RANGE", {
-          lng,
-          replace: {
-            max: publics.age.max,
-            min: publics.age.min,
-          },
-        });
+      detailsText = `${detailsText}${i18next.t("PUBLICS_AGE_RANGE", {
+        lng,
+        replace: {
+          max: publics.age.max,
+          min: publics.age.min,
+        },
+      })}`;
     }
     detailsText = detailsText + ", ";
   }
@@ -130,18 +121,20 @@ export const translatePublics = (
   // ADMINISTRATIVE
   if (ALL_PUBLICS.administrative.length - 1 !== publics.administrative.length) {
     publics.administrative.forEach((adminPublic: PublicsAdministrative) => {
-      detailsText =
-        detailsText +
-        `${i18next.t(PUBLICS_LABELS.administrative[adminPublic], { lng })}, `;
+      detailsText = `${detailsText}${i18next.t(
+        PUBLICS_LABELS.administrative[adminPublic],
+        { lng }
+      )}, `;
     });
   }
 
   // FAMILY
   if (ALL_PUBLICS.familialle.length - 1 !== publics.familialle.length) {
     publics.familialle.forEach((family: PublicsFamily) => {
-      detailsText =
-        detailsText +
-        `${i18next.t(PUBLICS_LABELS.familialle[family], { lng })}, `;
+      detailsText = `${detailsText}${i18next.t(
+        PUBLICS_LABELS.familialle[family],
+        { lng }
+      )}, `;
     });
   }
 
@@ -153,11 +146,9 @@ export const translatePublics = (
     ALL_PUBLICS.other.length - 1 !== publics.other.length
   ) {
     publics.other.forEach((otherPublic: PublicsOther) => {
-      detailsText =
-        detailsText +
-        `${i18next
-          .t(PUBLICS_LABELS.other[otherPublic], { lng })
-          .toLowerCase()}, `;
+      detailsText = `${detailsText}${i18next
+        .t(PUBLICS_LABELS.other[otherPublic], { lng })
+        .toLowerCase()}, `;
     });
   }
 
