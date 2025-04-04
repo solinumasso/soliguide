@@ -25,6 +25,7 @@ import { ApiPlace, UserStatus } from "@soliguide/common";
 import { ModelWithId, UserPopulateType } from "../../_models";
 import { RootQuerySelector } from "mongoose";
 import { generateApiUserRestriction } from "../utils/query/generate-api-user-restriction";
+import { cleanPlaceCategorySpecificFields } from "../../place/utils";
 
 /**
  * @summary   Count the amount of place with this geo position
@@ -189,7 +190,7 @@ export const apiSearchPlacesWithParams = async (
   params: RootQuerySelector<ApiPlace>,
   user: UserPopulateType,
   options = DEFAULT_SEARCH_OPTIONS
-) => {
+): Promise<ApiPlace[]> => {
   const $geoNear = params["$geoNear"];
   let $match = structuredClone(params);
 
@@ -224,7 +225,7 @@ export const apiSearchPlacesWithParams = async (
     };
   }
 
-  return await PlaceModel.aggregate([
+  const places = await PlaceModel.aggregate([
     ...($geoNear ? [{ $geoNear }] : []),
     { $match },
     ...($project ? [{ $project }] : []),
@@ -237,6 +238,10 @@ export const apiSearchPlacesWithParams = async (
     ...(options.skip ? [{ $skip: options.skip }] : []),
     ...(options.limit ? [{ $limit: options.limit }] : []),
   ]).allowDiskUse(true);
+
+  return places.map((place: ApiPlace) =>
+    cleanPlaceCategorySpecificFields(place)
+  );
 };
 
 export const searchPlacesIds = async (
