@@ -95,7 +95,11 @@ const getPosthogService = () => {
     }
 
     if (instance) {
-      instance.capture(`web-app-${eventName}`, properties);
+      const eventToSend = ['$pageview', '$pageleave'].includes(eventName)
+        ? eventName
+        : `web-app-${eventName}`;
+
+      instance.capture(eventToSend, properties);
     } else {
       console.error('NO_PH_INSTANCE');
     }
