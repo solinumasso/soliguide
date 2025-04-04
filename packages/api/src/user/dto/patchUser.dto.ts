@@ -65,6 +65,21 @@ export const patchUserDto = [
       }
       return true;
     }),
+
+  body("territories")
+    .optional()
+    .isArray()
+    .withMessage("Territories must be an array")
+    .custom((territories) => {
+      for (const territory of territories) {
+        if (typeof territory !== "string") {
+          throw new Error("INVALID_TERRITORY_FORMAT");
+        }
+      }
+      return true;
+    }),
+
+  body("areas").optional().isObject().withMessage("Areas must be an object"),
 ];
 
 // Users edition from the contact edition form

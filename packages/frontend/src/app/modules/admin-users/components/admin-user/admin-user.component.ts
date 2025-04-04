@@ -165,24 +165,32 @@ export class AdminUserComponent implements OnInit, OnDestroy {
       return;
     }
 
+    const formValue = {
+      ...this.updateForm.value,
+      areas: {
+        ...this.user.areas,
+        fr: {
+          ...this.user.areas.fr,
+          departments: this.updateForm.value.territories,
+        },
+      },
+    };
     this.loading = true;
 
     this.subscription.add(
-      this.usersService
-        .updateUser(this.updateForm.value, this.user._id)
-        .subscribe({
-          next: () => {
-            this.loading = false;
-            this.submitted = false;
-            this.toastr.success(
-              this.translateService.instant("INFORMATION_SUCCESSFULLY_UPDATED")
-            );
-          },
-          error: () => {
-            this.loading = false;
-            this.toastr.error(this.translateService.instant("UPDATE_ERROR"));
-          },
-        })
+      this.usersService.updateUser(formValue, this.user._id).subscribe({
+        next: () => {
+          this.loading = false;
+          this.submitted = false;
+          this.toastr.success(
+            this.translateService.instant("INFORMATION_SUCCESSFULLY_UPDATED")
+          );
+        },
+        error: () => {
+          this.loading = false;
+          this.toastr.error(this.translateService.instant("UPDATE_ERROR"));
+        },
+      })
     );
   };
 }
