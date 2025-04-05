@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-FROM node:20.18 AS base
+FROM node:22.14 AS base
 
 WORKDIR /app
 
