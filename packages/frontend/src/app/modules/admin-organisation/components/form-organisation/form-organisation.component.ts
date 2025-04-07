@@ -71,6 +71,8 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
   public readonly RELATIONS = RELATIONS;
   public readonly THEME_CONFIGURATION = THEME_CONFIGURATION;
 
+  private countryCode: string;
+
   constructor(
     private readonly authService: AuthService,
     private readonly formBuilder: UntypedFormBuilder,
@@ -87,6 +89,7 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
     this.loading = false;
     this.me = null;
     this.organisation = new Organisation();
+    this.countryCode = this.THEME_CONFIGURATION.country;
   }
 
   public ngOnInit(): void {
@@ -129,7 +132,7 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
         ],
       ],
       territories: [
-        this.organisation.areas.fr.departments,
+        this.organisation?.areas?.[this.countryCode]?.departments ?? [],
         this.me.admin ? [Validators.required] : [],
       ],
       description: [this.organisation.description, []],
@@ -148,7 +151,7 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
         this.organisation.relations,
         this.me.admin ? [Validators.required] : [],
       ],
-      country: [THEME_CONFIGURATION.country],
+      country: [this.countryCode],
     });
   };
 
@@ -162,12 +165,12 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
       newValue: this.orgaForm.value,
     });
 
-    const areaValue = {
+    const formValue = {
       ...this.orgaForm.value,
       areas: {
         ...this.organisation.areas,
-        fr: {
-          ...this.organisation.areas.fr,
+        [this.countryCode]: {
+          ...this.organisation.areas[this.countryCode],
           departments: this.orgaForm.value.territories,
         },
       },
@@ -184,7 +187,7 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
 
     this.subscription.add(
       this.organisationService
-        .create(this.organisation._id, areaValue)
+        .create(this.organisation._id, formValue)
         .subscribe({
           next: (organisation: Organisation) => {
             this.submitted = false;
