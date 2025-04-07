@@ -46,10 +46,11 @@ export class SolidataComponent implements OnInit {
       (data) => data.seoUrl === superset
     );
 
-    if (supersetData?.dashboardUrl) {
-      this.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-        supersetData.dashboardUrl
-      );
+    const dashboardUrl = supersetData?.dashboardUrl;
+
+    if (dashboardUrl) {
+      this.iframeUrl =
+        this.sanitizer.bypassSecurityTrustResourceUrl(dashboardUrl);
     } else {
       this.router.navigate([this.currentLanguageService.routePrefix, "404"]);
     }

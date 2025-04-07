@@ -23,12 +23,17 @@ import type {
   SoliguideCountries,
 } from "@soliguide/common";
 
-export type Dashboard =
-  | "territorialAnalysis"
-  | "seasonalAnalysis"
-  | "searchTracking"
-  | "foodAccess"
-  | "olympicGames";
+export enum PrivateDashboards {
+  TerritorialAnalysis = "territorialAnalysis",
+  SeasonalAnalysis = "seasonalAnalysis",
+  FoodAccess = "foodAccess",
+  OlympicGames = "olympicGames",
+}
+
+export enum PublicDashboards {
+  SearchTracking = "searchTracking",
+}
+type Dashboards = PrivateDashboards | PublicDashboards;
 
 export interface SolidataDashboardConfig {
   label: string;
@@ -66,7 +71,7 @@ export interface ThemeConfiguration {
   contactFormEnabled: boolean;
   locationAutocompletePlaceholder: string;
   solidata?: {
-    [key in Dashboard]: SolidataDashboardConfig;
+    [key in Dashboards]: SolidataDashboardConfig;
   };
   praticalFilesLink?: string;
   becomeTranslatorFormLink?: string;
