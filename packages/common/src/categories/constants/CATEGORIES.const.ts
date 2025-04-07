@@ -343,10 +343,7 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
         id: Categories.LONG_TERM_ACCOMODATION,
         rank: 300,
       },
-      {
-        id: Categories.CITIZEN_HOUSING,
-        rank: 400,
-      },
+
       {
         id: Categories.ACCESS_TO_HOUSING,
         rank: 500,
@@ -841,6 +838,15 @@ export const CATEGORIES_SOLIGUIDE_FR: FlatCategoriesTreeNode[] = [
     ],
   },
   {
+    id: Categories.ACCOMODATION_AND_HOUSING,
+    children: [
+      {
+        id: Categories.CITIZEN_HOUSING,
+        rank: 400,
+      },
+    ],
+  },
+  {
     id: Categories.TRAINING_AND_JOBS,
     children: [
       {
@@ -850,6 +856,10 @@ export const CATEGORIES_SOLIGUIDE_FR: FlatCategoriesTreeNode[] = [
     ],
   },
   {
+    id: Categories.CITIZEN_HOUSING,
+    children: [],
+  },
+  {
     id: Categories.FRENCH_COURSE,
     children: [],
   },
@@ -857,7 +867,6 @@ export const CATEGORIES_SOLIGUIDE_FR: FlatCategoriesTreeNode[] = [
     id: Categories.DOMICILIATION,
     children: [],
   },
-
   {
     id: Categories.PUBLIC_WRITER,
     children: [],
