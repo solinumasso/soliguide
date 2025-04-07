@@ -38,6 +38,7 @@ import { NotFoundComponent } from "./modules/general/components/not-found/not-fo
 import { environment } from "../environments/environment";
 import { THEME_CONFIGURATION } from "./models";
 import { SolidataComponent } from "./modules/general/components/solidata/solidata.component";
+import { SolidataGuard } from "./guards/solidata.guard";
 
 export const routes: Routes = [
   // Redirection to /:lang routes
@@ -116,7 +117,7 @@ export const routes: Routes = [
   {
     path: ":lang/solidata/public/:superset",
     component: SolidataComponent,
-    canActivate: [LanguageGuard],
+    canActivate: [LanguageGuard, SolidataGuard],
   },
   {
     path: ":lang/solidata/:superset",
