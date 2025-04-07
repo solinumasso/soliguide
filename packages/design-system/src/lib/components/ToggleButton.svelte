@@ -257,7 +257,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     color: var(--color-interactionNeutral);
     &:hover {
       background: var(--color-interactionReversedHover);
-      color: var(--color-interactionHighlightPrimaryHover);
+      color: var(--color-textHighlightPrimary);
     }
     &:active,
     &:focus-visible,
@@ -267,8 +267,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     }
 
     &.btn-active {
-      background: var(--color-surfaceSecondary2);
-      color: var(--color-interactionReversedActive);
+      background: var(--color-surfaceSecondary1);
+      color: var(--color-textHighlightPrimary);
       &:hover {
         background: var(--color-interactionReversedHover);
         color: var(--color-interactionReversedActiveHover);

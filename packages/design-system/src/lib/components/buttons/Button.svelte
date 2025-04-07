@@ -38,6 +38,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       case 'neutralFill':
         return 'reversed';
       case 'neutralOutlined':
+      case 'primaryOutline':
         return 'primary';
       case 'reversed':
         return 'reversed';

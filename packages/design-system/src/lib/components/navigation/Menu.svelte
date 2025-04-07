@@ -47,7 +47,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <span class="menu-icon active">
               <svelte:component this={item.iconActive} size="20" />
             </span>
-            <Text color="highlightSecondary2" type="caption2Medium">{item.label}</Text>
+            <span class="menu-item-text active">
+              <Text type="caption2Medium">{item.label}</Text>
+            </span>
           </span>
         {:else}
           <a class="menu-item" href={item.route} on:click={() => handleClick(item)}>
@@ -58,7 +60,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               <span class="icon-inactive"><svelte:component this={item.icon} size="20" /></span>
               <span class="icon-active"><svelte:component this={item.iconActive} size="20" /></span>
             </span>
-            <Text type="caption2Medium">{item.label}</Text>
+            <span class="menu-item-text">
+              <Text type="caption2Medium">{item.label}</Text>
+            </span>
           </a>
         {/if}
       </li>
@@ -105,6 +109,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       }
     }
 
+    .menu-item-text {
+      &.active {
+        color: var(--color-textHighlightPrimary2);
+      }
+    }
+
     a {
       text-decoration: none;
       .icon-inactive {
@@ -118,9 +128,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     &:hover:not(.active),
     &:active {
       color: var(--color-textHighlightPrimary);
+
       a {
         .menu-icon {
           background-color: var(--color-surfaceGray3);
+        }
+        .menu-item-text {
+          color: var(--color-textHighlightPrimary2);
         }
 
         @media (pointer: fine) {

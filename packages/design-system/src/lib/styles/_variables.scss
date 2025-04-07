@@ -58,7 +58,7 @@
   --color-textHighlightPrimary2: #c8260d;
   --color-textHighlightSecondary: #613677;
   --color-textHighlightSecondary2: #271332;
-  --color-textHighlightTertiary: #6a3177;
+  --color-textHighlightTertiary: #424291;
   --color-textHighlightQuartary: #784034;
   --color-textFocus: #5e5ecd;
   --color-textSuccess: #047857;
@@ -70,14 +70,14 @@
   --color-surfaceWhiteAlphaStrong: rgba(255, 255, 255, 0.4);
   --color-overlayLight: rgba(38, 38, 38, 0.4);
   --color-overlayStrong: rgba(38, 38, 38, 0.6);
-  --color-overlayVerystrong: rgba(38, 38, 38, 0.7);
+  --color-overlayVeryStrong: rgba(38, 38, 38, 0.7);
   --color-surfacePrimary1: #fff3f3;
   --color-surfacePrimary2: #ffefec;
   --color-surfacePrimary3: #fdb8ad;
   --color-surfacePrimary4: #fa6d56;
   --color-surfacePrimary5: #ed3215;
   --color-surfaceSecondary1: #f6edfa;
-  --color-surfaceSecondary2: #ecd9f5;
+  --color-surfaceSecondary2: #dfbceb;
   --color-surfaceSecondary3: #a165c3;
   --color-surfaceTertiary1: #f6f5ff;
   --color-surfaceTertiary2: #e5e7fd;
@@ -102,7 +102,7 @@
   --color-borderSuccess: #059669;
   --color-borderError: #dc2626;
   // Gradients
-  --color-gradientPrimary: linear-gradient(270deg, #ff4124 0%, #fa6d56 100%);
+  --color-gradientPrimary: linear-gradient(270deg, #fa6d56 0%, #ff4124 100%);
   --color-gradientSecondary: linear-gradient(270deg, #613677 0%, #463351 100%);
   --color-gradientTertiary: linear-gradient(270deg, #504eb4 0%, #3b3d74 100%);
   --color-gradientBackground: radial-gradient(

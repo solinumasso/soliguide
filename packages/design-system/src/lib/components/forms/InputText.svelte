@@ -106,11 +106,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     }
 
     &:hover {
-      background-color: var(--color-interactionOutlinedSecondaryHover);
+      background-color: var(--color-surfaceTertiary2);
     }
 
     &:active {
-      background-color: var(--color-interactionOutlinedSecondaryPress);
+      background-color: var(--color-surfaceTertiary3);
     }
 
     &:focus-within {
@@ -184,7 +184,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       align-items: center;
       justify-content: center;
       gap: var(--spacingXS);
-      color: var(--color-textHighlightSecondary);
+      color: var(--color-textHighlightTertiary);
 
       :global(.input-icon) {
         width: 20px;

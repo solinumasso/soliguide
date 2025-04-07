@@ -63,7 +63,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { Story, Template } from '@storybook/addon-svelte-csf';
   import Settings from 'svelte-google-materialdesign-icons/Settings.svelte';
   import Favorite from 'svelte-google-materialdesign-icons/Favorite.svelte';
-  import Heart from 'svelte-google-materialdesign-icons/Sentiment_very_satisfied.svelte';
+  import FavoriteOutlined from 'svelte-google-materialdesign-icons/Favorite_border.svelte';
 
   let checked = false;
 </script>
@@ -118,7 +118,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       {...defaultArgs}
       iconOnly
       type="primaryShy"
-      icon={checked ? Heart : Favorite}
+      icon={checked ? Favorite : FavoriteOutlined}
       on:change={() => (checked = !checked)}
     >
       {defaultArgs.label}

@@ -57,7 +57,7 @@ export const theme = {
     textHighlightPrimary2: '#c8260d',
     textHighlightSecondary: '#613677',
     textHighlightSecondary2: '#271332',
-    textHighlightTertiary: '#6a3177',
+    textHighlightTertiary: '#424291',
     textHighlightQuartary: '#784034',
     textFocus: '#5e5ecd',
     textSuccess: '#047857',
@@ -76,7 +76,7 @@ export const theme = {
     surfacePrimary4: '#fa6d56',
     surfacePrimary5: '#ed3215',
     surfaceSecondary1: '#f6edfa',
-    surfaceSecondary2: '#ecd9f5',
+    surfaceSecondary2: '#dfbceb',
     surfaceSecondary3: '#a165c3',
     surfaceTertiary1: '#f6f5ff',
     surfaceTertiary2: '#e5e7fd',
@@ -101,7 +101,7 @@ export const theme = {
     borderSuccess: '#059669',
     borderError: '#dc2626',
     // Gradients
-    gradientPrimary: 'linear-gradient(270deg, #ff4124 0%, #fa6d56 100%)',
+    gradientPrimary: 'linear-gradient(270deg, #fa6d56 0%, #ff4124 100%)',
     gradientSecondary: 'linear-gradient(270deg, #613677 0%, #463351 100%)',
     gradientTertiary: 'linear-gradient(270deg, #613677 0%, #463351 100%)',
     gradientBackground:

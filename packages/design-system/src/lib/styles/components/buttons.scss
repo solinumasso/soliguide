@@ -221,17 +221,16 @@
 }
 .btn-shy {
   background-color: transparent;
-  color: var(--color-interactionNeutral);
+  color: var(--color-textHighlightSecondary2);
 
   &:hover {
-    color: var(--color-interactionNeutralHover);
     background-color: var(--color-interactionReversedHover);
   }
 
   &:active,
   &:focus-visible,
   &:focus-visible:hover {
-    color: var(--color-interactionNeutralPress);
+    color: var(--color-textDark);
     background-color: var(--color-interactionReversedPress);
   }
 }
@@ -244,8 +243,8 @@
   }
 
   &:hover {
-    color: var(--color-);
-    background-color: var(--color-interactionReversedActiveHover);
+    color: var(--color-interactionReversedActiveHover);
+    background-color: var(--color-interactionReversedHover);
   }
 
   &:active,
