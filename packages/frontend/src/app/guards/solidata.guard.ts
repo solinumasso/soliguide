@@ -18,30 +18,27 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Component, OnInit } from "@angular/core";
-import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
-import { ActivatedRoute } from "@angular/router";
-import { THEME_CONFIGURATION } from "../../../../models";
+import { Injectable } from "@angular/core";
+import { CanActivate, ActivatedRouteSnapshot, Router } from "@angular/router";
+import { Observable, of } from "rxjs";
+import { THEME_CONFIGURATION } from "../models";
 
-@Component({
-  selector: "app-solidata",
-  templateUrl: "./solidata.component.html",
-  styleUrls: ["./solidata.component.css"],
-})
-export class SolidataComponent implements OnInit {
-  public iframeUrl?: SafeResourceUrl;
+@Injectable({ providedIn: "root" })
+export class SolidataGuard implements CanActivate {
+  constructor(private router: Router) {}
 
-  constructor(private sanitizer: DomSanitizer, private route: ActivatedRoute) {}
-
-  ngOnInit() {
-    const superset = this.route.snapshot.paramMap.get("superset");
+  public canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
+    const superset = route.params["superset"];
 
     const supersetData = Object.values(THEME_CONFIGURATION.solidata || {}).find(
       (data) => data.seoUrl === superset
     );
 
-    this.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-      supersetData.dashboardUrl
-    );
+    if (supersetData?.dashboardUrl) {
+      return of(true);
+    } else {
+      this.router.navigate(["/404"]);
+      return of(false);
+    }
   }
 }
