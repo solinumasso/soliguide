@@ -93,7 +93,7 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
         label: "Analyse de l’accès à l’alimentation",
         dashboardUrl:
           "https://superset.solinum.org/superset/dashboard/acces_alimentation/?standalone=2",
-        seoUrl: "access-alimentation",
+        seoUrl: "access_alimentation",
       },
       olympicGames: {
         label: "Anticipation des fermetures pour l'été et les JO 2024 en IDF",
