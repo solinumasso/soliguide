@@ -154,8 +154,7 @@ export const translatePublics = (
           })
           .toLowerCase();
 
-        detailsText = `${detailsText}
-        ${translatedPublic}, `;
+        detailsText = `${detailsText}${translatedPublic}, `;
       }
     });
   }
