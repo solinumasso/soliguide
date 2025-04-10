@@ -34,6 +34,7 @@ import {
 } from "../../middleware";
 import type { ExpressRequest, ExpressResponse } from "../../_models";
 import { getTranslatedPlace } from "../../translations/controllers/translation.controller";
+import { cleanPlaceCategorySpecificFields } from "../utils";
 
 const router = express.Router();
 
@@ -83,14 +84,17 @@ router.get(
       req.lieu = await getTranslatedPlace(lieu, userLanguage);
     }
 
-    // Remove the place address if on orientation
-    if (
-      req.user.status === UserStatus.API_USER &&
-      req.lieu.modalities.orientation.checked
-    ) {
-      req.lieu.address = null;
-      req.lieu.complementAddress = null;
+    if (req.user.status === UserStatus.API_USER) {
+      // Remove non shareable specific fields
+      req.lieu = cleanPlaceCategorySpecificFields(req.lieu);
+
+      // Remove the place address if on orientation
+      if (req.lieu.modalities.orientation.checked) {
+        req.lieu.address = null;
+        req.lieu.complementAddress = null;
+      }
     }
+
     res.status(200).json(req.lieu);
     next();
   },
