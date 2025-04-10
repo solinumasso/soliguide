@@ -77,7 +77,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     &.highlight {
       border-radius: var(--radiusMiddle);
       border-left: 4px solid var(--color-textHighlightSecondary);
-      background: var(--color-surfaceSecondary2);
+      background: var(--color-surfaceTertiary2);
     }
   }
 
