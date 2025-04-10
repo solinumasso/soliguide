@@ -147,6 +147,7 @@ import { Accordion, AccordionGroup } from './components/dataDisplay/Accordion/in
 import BasicCard from './components/dataDisplay/BasicCard.svelte';
 import TextClamper from './components/dataDisplay/TextClamper.svelte';
 import InfoBlock from './components/dataDisplay/InfoBlock.svelte';
+import Tile from './components/Tile.svelte';
 
 import Modal from './components/feedback/Modal.svelte';
 
@@ -263,6 +264,7 @@ export {
   Straighten,
   TagFaces,
   ThermostatAuto,
+  Tile,
   Toilets,
   Vaccines,
   Wifi,

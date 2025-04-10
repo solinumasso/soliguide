@@ -38,6 +38,7 @@ import type { TextTag, TextType, TextColor } from './Text';
 import type { SpinnerSize, SpinnerType } from './Spinner';
 import type { LinkSize, LinkColor } from './Link';
 import type { VariationType } from './Icons';
+import type { TileVariant } from './Tile';
 
 export type {
   ButtonType,
@@ -73,5 +74,6 @@ export type {
   ListItemShape,
   LinkSize,
   LinkColor,
-  VariationType
+  VariationType,
+  TileVariant
 };
