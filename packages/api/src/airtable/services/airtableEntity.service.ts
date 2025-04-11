@@ -48,21 +48,21 @@ export const updateAirtableId = async (
   entityId: number,
   airtableId: string
 ): Promise<void> => {
-  let model: Model<ApiPlace> | Model<User>;
-
   if (airtableEntityType === AirtableEntityType.PLACE) {
-    model = PlaceModel;
+    await PlaceModel.updateOne(
+      { [getEntityIdName(airtableEntityType)]: entityId },
+      { "atSync.airtableId": airtableId },
+      { timestamps: false }
+    );
   } else if (airtableEntityType === AirtableEntityType.USER) {
-    model = UserModel;
+    await UserModel.updateOne(
+      { [getEntityIdName(airtableEntityType)]: entityId },
+      { "atSync.airtableId": airtableId },
+      { timestamps: false }
+    );
   } else {
     throw new Error("WRONG_ENTITY_TYPE");
   }
-
-  await model.updateOne(
-    { [getEntityIdName(airtableEntityType)]: entityId },
-    { "atSync.airtableId": airtableId },
-    { timestamps: false }
-  );
 };
 
 export const setSynced = async (
@@ -163,7 +163,6 @@ export const setEntityExcludedOrNot = async (
 ): Promise<void> => {
   const airtableEntityType = req.airtableEntityType;
   const airtableEntity = req.airtableEntity;
-  let model: Model<ApiPlace> | Model<User>;
   let excluded = false;
 
   if (airtableEntityType === AirtableEntityType.PLACE) {
@@ -176,20 +175,24 @@ export const setEntityExcludedOrNot = async (
         true
       );
 
-    model = PlaceModel;
+    await PlaceModel.updateOne(
+      {
+        _id: new mongoose.Types.ObjectId(airtableEntity._id),
+      },
+      { "atSync.excluded": excluded }
+    );
   } else if (airtableEntityType === AirtableEntityType.USER) {
     excluded = airtableEntity.status !== UserStatus.PRO;
-    model = UserModel;
+
+    await UserModel.updateOne(
+      {
+        _id: new mongoose.Types.ObjectId(airtableEntity._id),
+      },
+      { "atSync.excluded": excluded }
+    );
   } else {
     throw new Error("WRONG_ENTITY_TYPE");
   }
-
-  await model.updateOne(
-    {
-      _id: new mongoose.Types.ObjectId(airtableEntity._id),
-    },
-    { "atSync.excluded": excluded }
-  );
 };
 
 export const setEntityExcludedOrNotAndNext = async (

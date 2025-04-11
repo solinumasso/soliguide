@@ -6623,12 +6623,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mongodb-js/saslprep@npm:^1.1.5":
-  version: 1.1.8
-  resolution: "@mongodb-js/saslprep@npm:1.1.8"
+"@mongodb-js/saslprep@npm:^1.1.9":
+  version: 1.2.2
+  resolution: "@mongodb-js/saslprep@npm:1.2.2"
   dependencies:
     sparse-bitfield: "npm:^3.0.3"
-  checksum: 10c0/f7672a0843d104ec5825791d90bff77ee8e6e31f273a9863ee4050c53b634c84533ffc415ac4a7e72929119d4acb661d7c7bf6cadc0bcc787a9aee15287a1086
+  checksum: 10c0/6ea882034fe99c6abe033d843dfa0f90fcec105ef538c04ee32aca9d2cda7cc8f2dd45c94c2dbf30f14668524ed076f7072bce857f9ee321ad5b0bc1f930c423
   languageName: node
   linkType: hard
 
@@ -10677,9 +10677,9 @@ __metadata:
     lodash.isempty: "npm:^4.4.0"
     lodash.isequal: "npm:^4.5.0"
     mailgun.js: "npm:^10.2.3"
-    migrate-mongo: "npm:^11.0.0"
-    mongodb: "npm:^6.8.0"
-    mongoose: "npm:^8.5.2"
+    migrate-mongo: "npm:^12.1.3"
+    mongodb: "npm:^6.15.0"
+    mongoose: "npm:^8.13.2"
     multer: "npm:1.4.5-lts.1"
     multer-s3: "npm:^3.0.1"
     nodemon: "npm:^3.1.4"
@@ -15111,10 +15111,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bson@npm:^6.7.0":
-  version: 6.8.0
-  resolution: "bson@npm:6.8.0"
-  checksum: 10c0/0503bb2a4ce2e183bd06151bdb983a623cfde05c76fbb5a34e941c594f3a681b52333d61b37c7933b8733b0ba14607b3599d94b46635d90bb96b1e7cec51aa8f
+"bson@npm:^6.10.3":
+  version: 6.10.3
+  resolution: "bson@npm:6.10.3"
+  checksum: 10c0/15ad7a9b3bf8090add5fea1761b1ba7d75e5256efcfbb8c9ca448ca98e59c3b079c37c36c7aca0cc916236bd2d4684a5525c68f3d76da8a13d55dc230abbdd21
   languageName: node
   linkType: hard
 
@@ -24154,6 +24154,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash.filter@npm:^4.6.0":
+  version: 4.6.0
+  resolution: "lodash.filter@npm:4.6.0"
+  checksum: 10c0/bb65002f3ee02b94400b9d8728a46d3ac9fc3eb7df387b3c642f36eff82d716714283ca674889a29edae3c28ea8a4048e6c7bb90598670ab9c97b5d125bffda2
+  languageName: node
+  linkType: hard
+
+"lodash.find@npm:^4.6.0":
+  version: 4.6.0
+  resolution: "lodash.find@npm:4.6.0"
+  checksum: 10c0/0238f3abc0b87aa441820ab0ab31a81156e1809a66285f454fbea18cbdf4d16572d504dd9e96c22df8a36b81d0272bca9205d09d217d61f9b53fa3358023377f
+  languageName: node
+  linkType: hard
+
 "lodash.get@npm:^4.3.0, lodash.get@npm:^4.4.2":
   version: 4.4.2
   resolution: "lodash.get@npm:4.4.2"
@@ -24231,6 +24245,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash.last@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "lodash.last@npm:3.0.0"
+  checksum: 10c0/f4446478ce1c7f1220663fcb64c27133c52c7acb727e3e58f2964c32f8ea83f4155b667a76e73fa425ca1a4767e9128b81782061edd5d82a1eb8b2ef99fc9a47
+  languageName: node
+  linkType: hard
+
 "lodash.memoize@npm:4.x":
   version: 4.1.2
   resolution: "lodash.memoize@npm:4.1.2"
@@ -24301,6 +24322,13 @@ __metadata:
   version: 4.3.1
   resolution: "lodash.upperfirst@npm:4.3.1"
   checksum: 10c0/435625da4b3ee74e7a1367a780d9107ab0b13ef4359fc074b2a1a40458eb8d91b655af62f6795b7138d493303a98c0285340160341561d6896e4947e077fa975
+  languageName: node
+  linkType: hard
+
+"lodash.values@npm:^4.3.0":
+  version: 4.3.0
+  resolution: "lodash.values@npm:4.3.0"
+  checksum: 10c0/f56b3da5bd3aa0006ad544c8e2e890a35b5aefcb6e3528a4c4f191f091b9edea632dd461de79ee121b5b61881cd96b7f911a309dc04f53af0e927d6a599cf1ee
   languageName: node
   linkType: hard
 
@@ -24868,22 +24896,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"migrate-mongo@npm:^11.0.0":
-  version: 11.0.0
-  resolution: "migrate-mongo@npm:11.0.0"
+"migrate-mongo@npm:^12.1.3":
+  version: 12.1.3
+  resolution: "migrate-mongo@npm:12.1.3"
   dependencies:
     cli-table3: "npm:^0.6.1"
     commander: "npm:^9.1.0"
     date-fns: "npm:^2.28.0"
     fn-args: "npm:^5.0.0"
     fs-extra: "npm:^10.0.1"
-    lodash: "npm:^4.17.21"
+    lodash.filter: "npm:^4.6.0"
+    lodash.find: "npm:^4.6.0"
+    lodash.get: "npm:^4.4.2"
+    lodash.isempty: "npm:^4.4.0"
+    lodash.last: "npm:^3.0.0"
+    lodash.values: "npm:^4.3.0"
     p-each-series: "npm:^2.2.0"
   peerDependencies:
-    mongodb: ^4.4.1 || ^5.0.0 || ^6.0.0
+    mongodb: ^4.4.1 || ^5.0.0 || ^6.0.0  || ^7.0.0
   bin:
     migrate-mongo: bin/migrate-mongo.js
-  checksum: 10c0/c1e413f3377f1f41c251b6d3c18ef4a14b9c194778e5a39323abd72138dc0d9d636882e474e2383dffafdedeaac0a2a2344acc37c5a8655b9ff81f67de05d8ae
+  checksum: 10c0/1fae8977b0b01dd87a5de51048cdaecae181d3c3aa5e7728f75493ca7fa5ed4e9e18e578bb9cdb212d0021e0d262ed046e551fd2aeffa83982a68b5374ca533e
   languageName: node
   linkType: hard
 
@@ -25273,16 +25306,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongodb@npm:6.7.0":
-  version: 6.7.0
-  resolution: "mongodb@npm:6.7.0"
+"mongodb@npm:^6.15.0, mongodb@npm:~6.15.0":
+  version: 6.15.0
+  resolution: "mongodb@npm:6.15.0"
   dependencies:
-    "@mongodb-js/saslprep": "npm:^1.1.5"
-    bson: "npm:^6.7.0"
+    "@mongodb-js/saslprep": "npm:^1.1.9"
+    bson: "npm:^6.10.3"
     mongodb-connection-string-url: "npm:^3.0.0"
   peerDependencies:
     "@aws-sdk/credential-providers": ^3.188.0
-    "@mongodb-js/zstd": ^1.1.0
+    "@mongodb-js/zstd": ^1.1.0 || ^2.0.0
     gcp-metadata: ^5.2.0
     kerberos: ^2.0.1
     mongodb-client-encryption: ">=6.0.0 <7"
@@ -25303,56 +25336,22 @@ __metadata:
       optional: true
     socks:
       optional: true
-  checksum: 10c0/4a8a3781b6c4851dc211df559ac2b82b62f6c1bcc0dcd14c86264891221c081436d03254cb257d0da696efbba9f426919c0e6a9e14398faac4a93db3c1c8d335
+  checksum: 10c0/e5038ef81982e9c06b4da727e97e36c363b27a710e41b8d1cba13142d08063bbb9d0a47832412a94facdacb51e85b368c2a685f4e9e218c12bc8f97fcdb84596
   languageName: node
   linkType: hard
 
-"mongodb@npm:^6.8.0":
-  version: 6.8.0
-  resolution: "mongodb@npm:6.8.0"
+"mongoose@npm:^8.13.2":
+  version: 8.13.2
+  resolution: "mongoose@npm:8.13.2"
   dependencies:
-    "@mongodb-js/saslprep": "npm:^1.1.5"
-    bson: "npm:^6.7.0"
-    mongodb-connection-string-url: "npm:^3.0.0"
-  peerDependencies:
-    "@aws-sdk/credential-providers": ^3.188.0
-    "@mongodb-js/zstd": ^1.1.0
-    gcp-metadata: ^5.2.0
-    kerberos: ^2.0.1
-    mongodb-client-encryption: ">=6.0.0 <7"
-    snappy: ^7.2.2
-    socks: ^2.7.1
-  peerDependenciesMeta:
-    "@aws-sdk/credential-providers":
-      optional: true
-    "@mongodb-js/zstd":
-      optional: true
-    gcp-metadata:
-      optional: true
-    kerberos:
-      optional: true
-    mongodb-client-encryption:
-      optional: true
-    snappy:
-      optional: true
-    socks:
-      optional: true
-  checksum: 10c0/5ea1b78d3d7915b7d8e1047f15247e7d831ff79c537c51656b34b5a223f917ab686b96cdf5eca7495a1f0125f7cc4b1355881645138c995a50c42b8b0665e518
-  languageName: node
-  linkType: hard
-
-"mongoose@npm:^8.5.2":
-  version: 8.5.2
-  resolution: "mongoose@npm:8.5.2"
-  dependencies:
-    bson: "npm:^6.7.0"
+    bson: "npm:^6.10.3"
     kareem: "npm:2.6.3"
-    mongodb: "npm:6.7.0"
+    mongodb: "npm:~6.15.0"
     mpath: "npm:0.9.0"
     mquery: "npm:5.0.0"
     ms: "npm:2.1.3"
     sift: "npm:17.1.3"
-  checksum: 10c0/9c0357751a2620b9bdc48bde437b54ad11c97e9e3cd0f10c0c144f02c4044638c80f21bcfa62a57789864586af9243cf0f3ec003da390a2e7f62ccc6d3ebbc26
+  checksum: 10c0/a454085fbc19147f7d886be10cbe6aa2b35d3ba4f4b09a144a7f71d2a66c7c6148cdfbbec9bb493806a78cf6b199c8ed934df916554e59183c6de3327816f751
   languageName: node
   linkType: hard
 
