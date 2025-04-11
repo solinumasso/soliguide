@@ -17,7 +17,7 @@
     "license:remove": "license-check-and-add remove -f license.config.json -r $(date +%Y)"
   },
   "devDependencies": {
-    "@angular-devkit/architect": "0.1802.1",
+    "@angular-devkit/architect": "0.1902.7",
     "@angular-devkit/build-angular": "^15.2.11",
     "@angular-eslint/builder": "^15.2.1",
     "@angular-eslint/eslint-plugin": "^15.2.1",
@@ -53,7 +53,7 @@
     "ts-node": "^10.9.2",
     "tslib": "^2.6.3",
     "typescript": "^4.9.5",
-    "zone.js": "~0.14.7"
+    "zone.js": "~0.15.0"
   },
   "peerDependencies": {
     "@angular/common": "^15.2.10",
