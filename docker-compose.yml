@@ -35,7 +35,7 @@ services:
       - ./packages/api/uploads:/data
     restart: always
   mongodb:
-    image: mongo:6.0
+    image: mongo:7.0
     command: ["--replSet", "rs0", "--bind_ip_all"]
     security_opt:
       - no-new-privileges:true
