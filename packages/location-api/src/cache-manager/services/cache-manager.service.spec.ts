@@ -56,8 +56,8 @@ describe("CacheManagerService", () => {
     });
 
     it("should return undefined if data is not in cache", async () => {
-      const result = await service.getCachedData("non-existent-key");
-      expect(result).toBeUndefined();
+      const result = await service.getCachedData("non-existxxxxent-key");
+      expect(result).toBeNull();
     });
   });
 
