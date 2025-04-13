@@ -22,10 +22,10 @@ import express from "express";
 import { createCache } from "cache-manager";
 
 import { ExpressRequest, ExpressResponse } from "../../_models";
-import { contactEmailDto } from "../dto/contactEmail.dto";
-import { emailContact } from "../../emailing/senders/send-contact.email";
-import { generateSitemap } from "../services/generate-sitemap";
+import { emailContact } from "../../emailing/senders";
 import { getFilteredData } from "../../middleware";
+import { sitemapDto, contactEmailDto } from "../dto";
+import { generateRegionSitemap } from "../services";
 
 const router = express.Router();
 
@@ -36,12 +36,14 @@ router.get("/", (_req: ExpressRequest, res: ExpressResponse) => {
 });
 
 router.get(
-  "/sitemap.xml",
+  "/sitemap/:country/:regionCode",
+  sitemapDto,
+  getFilteredData,
   async (req: ExpressRequest, res: ExpressResponse) => {
     try {
       let xml = await memoryCache.get("sitemap");
       if (!xml) {
-        xml = await generateSitemap(req.log);
+        xml = await generateRegionSitemap(req.bodyValidated);
         await memoryCache.set("sitemap", xml);
       }
       res.set("Content-Type", "text/xml");

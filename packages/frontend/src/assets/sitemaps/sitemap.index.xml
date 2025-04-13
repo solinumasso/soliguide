@@ -1,0 +1,17 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>{{ env "SOLIGUIDE_FRONTEND_URL" }}/sitemap.fr.xml</loc>
+    <lastmod>{{ now | date "2006-01-02" }}</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>{{ env "SOLIGUIDE_FRONTEND_URL" }}/sitemap.be.xml</loc>
+    <lastmod>{{ now | date "2006-01-02" }}</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>{{ env "SOLIGUIDE_FRONTEND_URL" }}/sitemap.ch.xml</loc>
+    <lastmod>{{ now | date "2006-01-02" }}</lastmod>
+  </sitemap>
+  <!-- Ajoutez d'autres pays selon vos besoins -->
+</sitemapindex>

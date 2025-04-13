@@ -19,6 +19,5 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 // @index('./*', f => `export * from '${f.path}'`)
-export * from "./contactEmail.dto";
-export * from "./searchOptions.dto";
-export * from "./sitemap.dto";
+export * from "./generate-sitemap";
+export * from "./s3";
