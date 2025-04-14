@@ -28,6 +28,8 @@ export interface Invitation extends Omit<CommonInvitation, "createdBy"> {
   createdBy?: mongoose.Types.ObjectId;
   organization: mongoose.Types.ObjectId;
   user: mongoose.Types.ObjectId;
+  createdAt: Date;
+  acceptedAt: Date;
 }
 
 export type InvitationPopulate = Omit<Invitation, "organization" | "user"> &
