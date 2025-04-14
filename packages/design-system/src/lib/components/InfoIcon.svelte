@@ -31,6 +31,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let variant: InfoIconVariant = 'info';
   export let size: InfoIconSize = 'small';
   export let withShadow = true;
+  export let altTag;
 
   const { theme } = getContext<ThemeContext>('theme');
 
@@ -53,7 +54,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </script>
 
 <span class={cls} class:with-shadow={withShadow}>
-  <svelte:component this={icon} variation="filled" size={iconSize} {color} />
+  <svelte:component this={icon} alt={altTag} variation="filled" size={iconSize} {color} />
 </span>
 
 <style lang="scss">
