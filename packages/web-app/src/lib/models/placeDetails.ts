@@ -327,6 +327,16 @@ const buildPlaceDetails = (placeResult: ApiPlace, categorySearched: Categories):
     services: buildServices(placeResult.services_all, categorySearched),
     sources: buildSources(placeResult.sources),
     status: computePlaceOpeningStatus(placeResult),
+    banners: {
+      message: placeResult.tempInfos.message.actif
+        ? {
+            description: placeResult.tempInfos.message.description,
+            end: placeResult.tempInfos.message.dateFin,
+            name: placeResult.tempInfos.message.name,
+            start: placeResult.tempInfos.message.dateDebut
+          }
+        : null
+    },
     todayInfo: computeTodayInfo(placeResult, status),
     website: placeResult.entity.website ?? ''
   };

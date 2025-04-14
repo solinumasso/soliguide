@@ -38,6 +38,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let buttonLabel = '';
   export let buttonLinkLabel = '';
   export let buttonLinkHref = '';
+  export let showMoreLabel = '';
+  export let showLessLabel = '';
 
   const variantMapping: Record<InfoBlockVariant, InfoIconVariant> = {
     info: 'info',
@@ -68,11 +70,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     {/if}
 
     {#if showClampedText}
-      <TextClamper
-        linesNotClamped={2}
-        showMoreLabel={$i18n.t('SEE_MORE')}
-        showLessLabel={$i18n.t('SEE_LESS')}
-      >
+      <TextClamper linesNotClamped={2} {showMoreLabel} {showLessLabel}>
         <Text type="caption1" as="p">{text}</Text>
       </TextClamper>
     {:else}
