@@ -1764,6 +1764,7 @@
   "STRUCTURE_HORS_LIGNE_MESSAGE_LOGGED": "Cette structure n'a pas été mise à jour depuis 6 mois, essayez de la joindre avant d'y orienter quelqu'un, et n'hésitez pas à nous contacter si vous y voyez une information incorrecte.",
   "STRUCTURE_HORS_LIGNE_MESSAGE_NOT_LOGGED": "Cette structure n'a pas été mise à jour depuis 6 mois, essayez de la contacter avant de vous y rendre.",
   "STRUCTURE_HORS_LIGNE_MESSAGE_READER": "Cette structure n'a pas été mise à jour depuis 6 mois, contactez une personne de votre organisation ou envoyez-nous un message via le chat afin que des informations y soient modifiées si nécessaire ou que l'ensemble des informations y soit reconfirmé.",
+  "STRUCTURE_IMPORTANT_INFO_OPEN_DETAILS": "La structure a une information importante à communiquer - ouvrir la fiche détaillée",
   "STRUCTURE_NAME": "Nom de la structure",
   "STRUCTURE_NAME_MANDATORY": "Le nom de la structure est obligatoire (3 caractères minimum)",
   "STRUCTURE_NEED_UPDATE": "Toutes les structures en ligne sur cette organisation ne sont pas complètement à jour.",

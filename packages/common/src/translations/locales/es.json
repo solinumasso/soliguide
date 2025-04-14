@@ -1764,6 +1764,7 @@
   "STRUCTURE_HORS_LIGNE_MESSAGE_LOGGED": "Esta estructura no se ha actualizado durante 6 meses, intente unirse a ella antes de recomendar a alguien y no dude en contactarnos si ve información incorrecta.",
   "STRUCTURE_HORS_LIGNE_MESSAGE_NOT_LOGGED": "Esta estructura no se ha actualizado durante 6 meses, intente contactarlo antes de ir allí.",
   "STRUCTURE_HORS_LIGNE_MESSAGE_READER": "Esta estructura no se ha actualizado desde hace 6 meses, contacta a alguien de tu organización o envíanos un mensaje vía chat para que se pueda modificar la información si es necesario o que se reconfirme toda la información.",
+  "STRUCTURE_IMPORTANT_INFO_OPEN_DETAILS": "La estructura tiene información importante para comunicar: abra el archivo detallado",
   "STRUCTURE_NAME": "Nombre de la estructura",
   "STRUCTURE_NAME_MANDATORY": "El nombre de la estructura es obligatorio (mínimo 3 caracteres)",
   "STRUCTURE_NEED_UPDATE": "No todas las estructuras en línea de esta organización están completamente actualizadas.",
