@@ -27,9 +27,11 @@ import {
   Publics,
   PublicsAdministrative,
   PublicsFamily,
+  PublicsGender,
   WelcomedPublics,
 } from "../../../publics";
 import { SupportedLanguagesCode } from "../../enums";
+import { PublicsOther } from "../../../publics/enums/PublicsOther.enum";
 
 export interface PlacePublicsMock {
   lieu_id: number;
@@ -72,31 +74,34 @@ export const PLACE_PUBLICS_MOCK: PlacePublicsMock[] = [
   },
   {
     expectedResults: {
-      ar: "ترحيب خاص: في وضع عادي.",
-      ca: "Adreçat només a col·lectius específics: en situació regular.",
-      en: "Exclusive welcome: in a regular situation.",
-      es: "Bienvenida exclusiva: en una situación regular.",
-      fa: "استقبال انحصاری: در یک وضعیت منظم.",
-      fr: "Accueil exclusif: en situation régulière.",
-      ka: "Ექსკლუზიური მისალმება: რეგულარულ სიტუაციაში.",
-      ps: "ځانګړې ښه راغلاست: په منظم حالت کې.",
-      ro: "Bun venit exclusiv: în situație obișnuită.",
-      ru: "Эксклюзивное приветствие: в обычной ситуации.",
-      uk: "Ексклюзивний прийом: у штатному стані.",
+      ar: "ترحيب غير مشروط يتكيف مع نساء, اللاجئون, طالبي اللجوء, الناس المعزولون, النساء الحوامل, الطلاب, الناس في الدعارة.",
+      ca: "Acollida incondicional adaptada a dones, refugiats, sol · licitants d'asil, persones aïllades, dona embarassada, estudiants, persones en prostitució.",
+      en: "Unconditional welcome adapted to women, refugees, asylum seekers, isolated people, pregnant women, students, people in prostitution situations.",
+      es: "Acogida incondicional adaptada a mujeres, refugiados, solicitantes de asilo, personas aisladas, mujeres embarazadas, estudiantes, personas que ejercen la prostitución.",
+      fa: "استقبال بی قید و شرط سازگار با زنان, پناهندگان, پناهجویان, افراد منزوی, زنان حامله, دانش آموزان, افراد در فحشا.",
+      fr: "Accueil inconditionnel adapté aux femmes, réfugiés / réfugiées, demandeurs / demandeuses d'asile, personnes isolées, femmes enceintes, étudiants / étudiantes, personnes en situation de prostitution.",
+      ka: "Უპირობო მისალმება ადაპტირებულია ქალები, ლტოლვილები, თავშესაფრის მაძიებლები, იზოლირებული ხალხი, ორსული ქალი, სტუდენტები, პროსტიტუციაში მყოფი ადამიანები.",
+      ps: "غیر مشروط ښه راغلاست سره تطبیق شوی ښځې, کډوال, پناه غوښتونکي, جلا شوي خلک, امیندواره میرمنې, زده کوونکی, په فحشا کې خلک.",
+      ro: "Bun venit neconditionat adaptat la femei, refugiati, solicitanții de azil, oameni izolați, femeile însărcinate, elevi, oameni în prostituție.",
+      ru: "Безоговорочный прием, адаптированный к женщины, беженцы, лица, ищущие убежища, изолированные люди, беременные женщины, студенты, люди, занимающиеся проституцией.",
+      uk: "Беззастережний прийом пристосований до жінки, біженці, особи, які шукають притулку, ізольовані люди, вагітні жінки, студентів, люди, які займаються проституцією.",
     },
     lieu_id: 300,
-    name: "Accueil exclusif en situation régulière. - Service Social de Proximité (SSP) du 18ème ",
+    name: "Accueil inconditionnel adapté aux femmes, réfugiés / réfugiées, demandeurs / demandeuses d'asile, personnes isolées, femmes enceintes, étudiants / étudiantes, personnes en situation de prostitution.",
     publics: {
-      accueil: WelcomedPublics.EXCLUSIVE,
-      administrative: [PublicsAdministrative.regular],
+      accueil: 1,
+      administrative: [
+        PublicsAdministrative.refugee,
+        PublicsAdministrative.asylum,
+      ],
       age: {
         max: 99,
         min: 0,
       },
       description: null,
-      familialle: FAMILY_DEFAULT_VALUES,
-      gender: GENDER_DEFAULT_VALUES,
-      other: [],
+      familialle: [PublicsFamily.isolated, PublicsFamily.pregnant],
+      gender: [PublicsGender.women],
+      other: [PublicsOther.student, PublicsOther.prostitution],
     },
   },
   {

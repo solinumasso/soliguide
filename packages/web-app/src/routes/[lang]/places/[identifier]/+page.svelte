@@ -49,19 +49,25 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   let scrolled = false;
 
   onMount(() => {
-    // window.TallyConfig = {
-    //   formId: 'nPGQB5',
-    //   popup: {
-    //     width: 340,
-    //     emoji: { text: '👋', animation: 'wave' },
-    //     open: { trigger: 'scroll', scrollPercent: 30 },
-    //     layout: 'modal',
-    //     hideTitle: true,
-    //     autoClose: 3000,
-    //     showOnce: true,
-    //     doNotShowAfterSubmit: true
-    //   }
-    //};
+    window.TallyConfig = {
+      formId: 'nrk8d2',
+      popup: {
+        width: 340,
+        emoji: {
+          text: '👋',
+          animation: 'wave'
+        },
+        layout: 'modal',
+        open: {
+          trigger: 'scroll',
+          scrollPercent: 40
+        },
+        autoClose: 3000,
+        showOnce: true,
+        doNotShowAfterSubmit: true,
+        hideTitle: true
+      }
+    };
 
     const handleScroll = () => {
       const scrollY = window.scrollY || window.pageYOffset;

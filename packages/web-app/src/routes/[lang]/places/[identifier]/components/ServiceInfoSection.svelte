@@ -20,14 +20,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <script lang="ts">
   import { I18N_CTX_KEY } from '$lib/client/i18n';
-  import { Text, TextClamper } from '@soliguide/design-system';
+  import { TextClamper } from '@soliguide/design-system';
   import { getContext } from 'svelte';
   import DOMPurify from 'dompurify';
-  import {
-    type PlaceDetailsInfo,
-    PlaceDetailsInfoType,
-    type TranslatableElement
-  } from '$lib/models/types';
+  import { type PlaceDetailsInfo, type TranslatableElement } from '$lib/models/types';
   import type { I18nStore } from '$lib/client/types';
   import { getTitleAndIcon } from '../functions';
 
@@ -41,37 +37,46 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </script>
 
 <div class="info-content">
-  {#each info as { type, description }}
+  {#each info as { type, description, needTranslation, translatedText }}
     {@const details = getTitleAndIcon($i18n, type)}
     <div class="detail">
-      <div class="title">
-        <div class="icon">
-          <svelte:component this={details.icon} size="16" />
-        </div>
-        <Text type="caption1Medium" color="dark">{details.title}</Text>
+      <div class="icon">
+        <svelte:component this={details.icon} size="18" />
       </div>
-      <TextClamper
-        linesNotClamped={3}
-        showMoreLabel={$i18n.t('SEE_MORE')}
-        showLessLabel={$i18n.t('SEE_LESS')}
-      >
-        <Text type="caption1" color="shy">
-          <span class="description">
-            {#if type === PlaceDetailsInfoType.WELCOME_UNCONDITIONAL_CUSTOM || type === PlaceDetailsInfoType.WELCOME_EXCLUSIVE}
-              <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-              {getFormattedDescription(description).toLowerCase()}
-            {:else}
-              <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-              {@html DOMPurify.sanitize(getFormattedDescription(description))}
-            {/if}
-          </span>
-        </Text>
-      </TextClamper>
+
+      <p class="public-description">
+        {#if !needTranslation && translatedText}
+          <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+          {@html DOMPurify.sanitize(translatedText)}
+        {:else}
+          <b>{details.title}</b>
+          <TextClamper
+            linesNotClamped={3}
+            showMoreLabel={$i18n.t('SEE_MORE')}
+            showLessLabel={$i18n.t('SEE_LESS')}
+          >
+            <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+            {@html DOMPurify.sanitize(getFormattedDescription(description))}
+          </TextClamper>
+        {/if}
+      </p>
     </div>
   {/each}
 </div>
 
 <style lang="scss">
+  .public-description {
+    font-size: 0.7rem;
+    font-style: normal;
+    line-height: 1.2rem;
+    color: var(--color-textShy);
+  }
+  .public-description :global(b) {
+    display: block !important;
+    color: black;
+    font-size: 15px;
+    font-size: 0.85rem;
+  }
   .info-content {
     display: flex;
     flex-direction: column;
@@ -80,11 +85,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   .detail {
     display: flex;
-    flex-direction: column;
-  }
-
-  .title {
-    display: flex;
     gap: var(--spacingMD);
   }
 
@@ -92,20 +92,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     height: 16px;
     width: 16px;
     color: var(--color-textDark);
-  }
-
-  .description {
-    // The HTML doesn't display correctly without this because of the base styles
-    :global(li) {
-      margin-left: var(--spacingMD);
-    }
-
-    :global(ul li) {
-      list-style: initial;
-    }
-
-    :global(ol li) {
-      list-style: decimal;
-    }
   }
 </style>

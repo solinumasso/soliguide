@@ -30,18 +30,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import DOMPurify from 'dompurify';
   import {
     type PlaceDetailsInfo,
-    PlaceDetailsInfoType,
     type Source,
     type Tag as TagType,
     type TranslatableElement
   } from '$lib/models/types';
+
   import type { I18nStore } from '$lib/client/types';
   import { getTitleAndIcon } from '../functions';
 
   export let info: PlaceDetailsInfo[] = [];
 
   export let lastUpdate: string;
-
   export let sources: Source[] = [];
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
@@ -59,41 +58,40 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <PlaceDetailsSection>
   <div class="info-content">
     <div class="details-container">
-      {#each info as { type, description, tags }}
+      {#each info as { type, description, tags, needTranslation, translatedText }}
         {@const details = getTitleAndIcon($i18n, type)}
         <div class="detail">
           <div class="icon">
             <svelte:component this={details.icon} size="18" />
           </div>
-          <div class="title-description">
-            <Text type="text2Medium" color="dark">{details.title}</Text>
-            <TextClamper
-              linesNotClamped={3}
-              showMoreLabel={$i18n.t('SEE_MORE')}
-              showLessLabel={$i18n.t('SEE_LESS')}
-            >
-              <Text type="caption1" color="shy">
-                {#if type === PlaceDetailsInfoType.WELCOME_UNCONDITIONAL_CUSTOM || type === PlaceDetailsInfoType.WELCOME_EXCLUSIVE}
-                  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-                  {@html DOMPurify.sanitize(getFormattedDescription(description).toLowerCase())}
-                {:else}
-                  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-                  {@html DOMPurify.sanitize(getFormattedDescription(description))}
-                {/if}
-              </Text>
-            </TextClamper>
-            {#if tags.length}
-              <div class="tags">
-                {#each tags as tag}
-                  <Tag variant="warning">
-                    <Star slot="icon" />
-                    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-                    {@html formatContent(tag)}
-                  </Tag>
-                {/each}
-              </div>
+
+          <p class="public-description">
+            {#if !needTranslation && translatedText}
+              <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+              {@html DOMPurify.sanitize(translatedText)}
+            {:else}
+              <b>{details.title}</b>
+              <TextClamper
+                linesNotClamped={3}
+                showMoreLabel={$i18n.t('SEE_MORE')}
+                showLessLabel={$i18n.t('SEE_LESS')}
+              >
+                <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+                {@html DOMPurify.sanitize(getFormattedDescription(description))}
+              </TextClamper>
+              {#if tags.length}
+                <div class="tags">
+                  {#each tags as tag}
+                    <Tag variant="warning">
+                      <Star slot="icon" />
+                      <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+                      {@html formatContent(tag)}
+                    </Tag>
+                  {/each}
+                </div>
+              {/if}
             {/if}
-          </div>
+          </p>
         </div>
       {/each}
     </div>
@@ -124,6 +122,19 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </PlaceDetailsSection>
 
 <style>
+  .public-description {
+    font-size: 0.8rem;
+    font-style: normal;
+    line-height: 1.2rem;
+    color: var(--color-textShy);
+  }
+  .public-description :global(b) {
+    display: block !important;
+    color: black;
+    font-size: 15px;
+    font-size: 0.9rem;
+  }
+
   .info-content {
     display: flex;
     flex-direction: column;
@@ -145,11 +156,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     height: 18px;
     width: 18px;
     color: var(--color-textDark);
-  }
-
-  .title-description {
-    display: flex;
-    flex-direction: column;
   }
 
   .tags {

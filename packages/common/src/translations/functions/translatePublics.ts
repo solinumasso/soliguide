@@ -18,9 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import type { i18n } from "i18next";
-import { capitalize } from "../../general";
-
+import { SupportedLanguagesCode } from "../enums";
 import {
   ALL_PUBLICS,
   PUBLICS_LABELS,
@@ -28,122 +26,201 @@ import {
   PublicsAdministrative,
   PublicsFamily,
   PublicsOther,
+  WelcomedPublics,
 } from "../../publics";
-import { SupportedLanguagesCode } from "../enums";
+import { capitalize } from "../../general";
+import { i18n } from "i18next";
+import { I18nTranslator } from "../interfaces";
 
+/**
+ * Generates descriptive text for target publics with appropriate prefix
+ * @param i18next - i18next translator instance
+ * @param lng - Language code
+ * @param publics - Publics configuration
+ * @param formatAsHtml - Format result with HTML tags (default false)
+ * @param addDescription- Include header text (default false)
+ */
 export const translatePublics = (
-  i18next: i18n,
+  i18next: I18nTranslator,
   lng: SupportedLanguagesCode,
-  publics?: Publics,
-  stripTags = true
+  publics: Publics,
+  formatAsHtml = false,
+  addDescription = false
 ): string => {
-  let strPublics = "";
+  // Unconditional welcome case
+  if (publics?.accueil === 0) {
+    const unconditionalText = i18next.t("PUBLICS_WELCOME_UNCONDITIONAL", {
+      lng,
+    });
 
-  if (!publics || publics.accueil === 0) {
-    strPublics = i18next.t("PUBLICS_WELCOME_UNCONDITIONAL", { lng });
-    if (stripTags) {
-      strPublics = strPublics.replace(/<[^>]*>?/gm, "");
+    if (formatAsHtml) {
+      return `<b>${unconditionalText}</b>`;
+    } else {
+      return unconditionalText.replace(/<[^>]*>?/gm, "");
     }
-    return strPublics;
   }
 
-  if (publics.accueil === 2) {
-    strPublics += `${i18next.t("PUBLICS_WELCOME_EXCLUSIVE", { lng })}: `;
-  }
+  let headerText = "";
+  let detailsText = "";
 
-  if (publics.accueil === 1) {
-    strPublics += `${i18next.t("PUBLICS_WELCOME_PREFERENTIAL", { lng })} `;
+  // Set header text based on welcome type
+  if (publics.accueil === WelcomedPublics.EXCLUSIVE) {
+    headerText = `${i18next.t("PUBLICS_WELCOME_EXCLUSIVE", { lng })}: `;
+  } else if (publics.accueil === WelcomedPublics.PREFERENTIAL) {
+    headerText = `${i18next.t("PUBLICS_WELCOME_PREFERENTIAL", { lng })} `;
   }
 
   // GENDER
   if (publics.gender.length !== 2) {
-    strPublics +=
+    detailsText = `${detailsText}${
       publics.gender[0] === "men"
         ? i18next.t("PUBLICS_GENDER_MEN", { lng })
-        : i18next.t("PUBLICS_GENDER_WOMEN", { lng });
-    strPublics += ", ";
+        : i18next.t("PUBLICS_GENDER_WOMEN", { lng })
+    }, `;
   }
 
   // AGE
   if (publics.age.min !== 0 || publics.age.max !== 99) {
     if (publics.age.min === 0 && publics.age.max === 18) {
-      strPublics += i18next.t("PUBLICS_AGE_MINORS", { lng }) + "";
+      detailsText = detailsText + `${i18next.t("PUBLICS_AGE_MINORS", { lng })}`;
     } else if (publics.age.min === 18 && publics.age.max === 99) {
-      strPublics += i18next.t("PUBLICS_AGE_MAJORS", { lng }) + "";
+      detailsText = detailsText + `${i18next.t("PUBLICS_AGE_MAJORS", { lng })}`;
     } else if (publics.age.min !== 0 && publics.age.max === 99) {
-      strPublics += i18next.t("PUBLICS_AGE_FROM_XX", {
+      detailsText = `${detailsText}${i18next.t("PUBLICS_AGE_FROM_XX", {
         lng,
         replace: {
           min: publics.age.min,
         },
-      });
+      })}`;
     } else if (publics.age.min === 0 && publics.age.max !== 99) {
-      strPublics += i18next.t("PUBLICS_AGE_TO_XX_MAX", {
+      detailsText = `${detailsText}${i18next.t("PUBLICS_AGE_TO_XX_MAX", {
         lng,
         replace: {
           max: publics.age.max,
         },
-      });
+      })}`;
     } else if (publics.age.min === publics.age.max) {
-      strPublics += i18next.t("PUBLICS_SPECIFIC_AGE", {
+      detailsText = `${detailsText}${i18next.t("PUBLICS_SPECIFIC_AGE", {
         lng,
         replace: {
           age: publics.age.min,
         },
-      });
+      })}`;
     } else {
-      strPublics += i18next.t("PUBLICS_AGE_RANGE", {
+      detailsText = `${detailsText}${i18next.t("PUBLICS_AGE_RANGE", {
         lng,
         replace: {
           max: publics.age.max,
           min: publics.age.min,
         },
-      });
+      })}`;
     }
-    strPublics += ", ";
+    detailsText = detailsText + ", ";
   }
 
   // ADMINISTRATIVE
   if (ALL_PUBLICS.administrative.length - 1 !== publics.administrative.length) {
     publics.administrative.forEach((adminPublic: PublicsAdministrative) => {
-      strPublics +=
-        i18next.t(PUBLICS_LABELS.administrative[adminPublic], { lng }) + ", ";
+      detailsText = `${detailsText}${i18next.t(
+        PUBLICS_LABELS.administrative[adminPublic],
+        { lng }
+      )}, `;
     });
   }
 
+  // FAMILY
   if (ALL_PUBLICS.familialle.length - 1 !== publics.familialle.length) {
     publics.familialle.forEach((family: PublicsFamily) => {
-      strPublics +=
-        i18next.t(PUBLICS_LABELS.familialle[family], { lng }) + ", ";
+      detailsText = `${detailsText}${i18next.t(
+        PUBLICS_LABELS.familialle[family],
+        { lng }
+      )}, `;
     });
   }
 
-  strPublics = strPublics.toLowerCase();
+  detailsText = detailsText.toLowerCase();
 
+  // OTHER
   if (
-    publics.other.length &&
+    publics.other.length > 0 &&
     ALL_PUBLICS.other.length - 1 !== publics.other.length
   ) {
     publics.other.forEach((otherPublic: PublicsOther) => {
-      strPublics +=
-        i18next.t(PUBLICS_LABELS.other[otherPublic], { lng }).toLowerCase() +
-        ", ";
+      detailsText = `${detailsText}${i18next
+        .t(PUBLICS_LABELS.other[otherPublic], { lng })
+        .toLowerCase()}, `;
     });
   }
 
-  if (publics.description) {
-    strPublics = strPublics.slice(0, -2) + ".\n";
-    strPublics += i18next.t("INFO_IMPORTANTE", { lng });
-    strPublics += " " + publics.description + "\n";
+  // Add additional description if it exists
+  if (addDescription && publics.description) {
+    if (formatAsHtml) {
+      detailsText = `${detailsText.slice(0, -2)}.<br><b>${i18next.t(
+        "INFO_IMPORTANTE",
+        { lng }
+      )}</b> ${publics.description}<br>`;
+    } else {
+      detailsText = `${detailsText.slice(0, -2)}.\n${i18next.t(
+        "INFO_IMPORTANTE",
+        { lng }
+      )} ${publics.description}\n`;
+    }
+  } else {
+    detailsText = `${detailsText.slice(0, -2)}.`;
   }
 
-  if (stripTags) {
-    strPublics = strPublics.replace(/<[^>]*>?/gm, "");
+  // Assemble final result
+  let result = "";
+
+  if (formatAsHtml) {
+    if (headerText?.length > 0) {
+      result = `<b>${headerText}</b>${detailsText}`;
+    } else {
+      result = detailsText;
+    }
+  } else {
+    result = `${headerText}${detailsText}`;
+    result = result.replace(/<[^>]*>?/gm, "");
   }
 
-  if (!publics.description) {
-    strPublics = strPublics.slice(0, -2) + ".";
+  return capitalize(result).trim();
+};
+
+/**
+ * Simplified version that returns only the detailed text (without header)
+ */
+export const translatePublicsDetails = (
+  i18next: i18n,
+  lng: SupportedLanguagesCode,
+  publics: Publics,
+  stripTags = true
+): string => translatePublics(i18next, lng, publics, stripTags, false);
+
+/**
+ * Version that returns only the header text
+ */
+export const translatePublicsHeader = (
+  i18next: i18n,
+  lng: SupportedLanguagesCode,
+  publics: Publics,
+  stripTags = true
+): string => {
+  if (!publics || publics.accueil === 0) {
+    const unconditionalText = i18next.t("PUBLICS_WELCOME_UNCONDITIONAL", {
+      lng,
+    });
+    return stripTags
+      ? unconditionalText.replace(/<[^>]*>?/gm, "")
+      : unconditionalText;
   }
 
-  return capitalize(strPublics).trim();
+  if (publics.accueil === WelcomedPublics.EXCLUSIVE) {
+    return i18next.t("PUBLICS_WELCOME_EXCLUSIVE", { lng });
+  }
+
+  if (publics.accueil === WelcomedPublics.PREFERENTIAL) {
+    return i18next.t("PUBLICS_WELCOME_PREFERENTIAL", { lng });
+  }
+
+  return "";
 };

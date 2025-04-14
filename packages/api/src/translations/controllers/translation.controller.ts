@@ -507,7 +507,6 @@ export const generateElementsToTranslate = async (
 
       await getPlaceAndRebuildTranslation(place.lieu_id);
     } catch (e) {
-      console.log(e);
       req.log.error("GENERATE_FIELDS_TRANSLATE_FAIL", e);
     }
   }

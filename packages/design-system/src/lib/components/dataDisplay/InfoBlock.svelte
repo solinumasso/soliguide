@@ -119,7 +119,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   }
 
   .infoblock-info {
-    background-color: var(--color-surfaceSecondary2);
+    background-color: var(--color-surfaceTertiary2);
   }
   .infoblock-success {
     background-color: var(--color-surfaceSuccess2);

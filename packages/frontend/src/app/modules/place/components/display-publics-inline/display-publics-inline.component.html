@@ -18,29 +18,14 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
-<div *ngIf="publics">
-  <b *ngIf="!publics.accueil"
-    ><fa-icon [icon]="['fas', 'users']" class="me-2"></fa-icon>
-    {{ "PUBLICS_WELCOME_UNCONDITIONAL" | translate }}
+<p *ngIf="publics" class="my-1">
+  <fa-icon [icon]="['fas', 'users']" class="me-2"></fa-icon>
+  <span [innerHTML]="publicsText | safeHtml"> </span>
+</p>
+<p class="my-1" *ngIf="publics?.description">
+  <b>
+    <fa-icon [icon]="['fas', 'info-circle']" class="me-2"></fa-icon>
+    {{ "INFO_IMPORTANTE" | translate }}
   </b>
-
-  <div class="my-1" *ngIf="publics.accueil">
-    <b *ngIf="publics.accueil === WelcomedPublics.EXCLUSIVE"
-      ><fa-icon [icon]="['fas', 'users']" class="me-2"></fa-icon>
-      {{ "PUBLICS_WELCOME_EXCLUSIVE" | translate }}
-    </b>
-    <b *ngIf="publics.accueil === WelcomedPublics.PREFERENTIAL"
-      ><fa-icon [icon]="['fas', 'users']" class="me-2"></fa-icon>
-      {{ "PUBLICS_WELCOME_PREFERENTIAL" | translate }}
-    </b>
-    {{ publicsText }}
-  </div>
-
-  <div class="my-1" *ngIf="publics.description">
-    <b>
-      <fa-icon [icon]="['fas', 'info-circle']" class="me-2"></fa-icon>
-      {{ "INFO_IMPORTANTE" | translate }}
-    </b>
-    <i>{{ publics.description }}</i>
-  </div>
-</div>
+  <i>{{ publics.description }}</i>
+</p>

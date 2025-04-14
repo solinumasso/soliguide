@@ -137,12 +137,6 @@ $countries: "es", "fr", "ad";
   }
 }
 
-.zone {
-  padding: 10px 20px;
-  margin-top: 10px;
-  background-color: #f6f6f6;
-}
-
 #arrowup {
   z-index: 40000;
   margin-top: 4px;
@@ -159,21 +153,12 @@ $countries: "es", "fr", "ad";
   display: inline-block;
 }
 .home_section {
-  h5,
-  ul li {
-    padding: 6px 5px;
-    border-radius: 3px;
-    cursor: pointer;
+  button: {
+    width: 100% !important;
   }
-
-  h5 {
-    font-weight: bold;
-  }
-
-  h5:hover,
-  ul li:hover,
   .active {
-    transition: all 0.1s;
+    font-weight: bold;
+
     color: white;
     background-color: var(--bs-secondary);
   }
@@ -189,11 +174,6 @@ $countries: "es", "fr", "ad";
       }
     }
   }
-}
-
-#all-cat-icon {
-  max-width: 6em;
-  margin-top: 7%;
 }
 
 @media (max-width: 1024px) {

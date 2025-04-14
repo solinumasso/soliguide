@@ -23,7 +23,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   const ctx: { size?: string; role?: string } = getContext('iconCtx') ?? {};
   export let size = ctx.size || '24';
   export let role = ctx.role || 'img';
-  export let ariaLabel = 'flag of ar language';
 </script>
 
 <svg
@@ -33,16 +32,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   class={$$props.class}
   {...$$restProps}
   {role}
-  aria-label={ariaLabel}
-  on:click
-  on:keydown
-  on:keyup
-  on:focus
-  on:blur
-  on:mouseenter
-  on:mouseleave
-  on:mouseover
-  on:mouseout
   viewBox="0 0 512 512"
 >
   <mask id="a"><circle cx="256" cy="256" r="256" fill="#fff" /></mask>

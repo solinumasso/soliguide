@@ -19,20 +19,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import {
-  ADMINISTRATIVE_DEFAULT_VALUES,
   CommonNewPlaceService,
   CommonOpeningHours,
   CountryCodes,
-  FAMILY_DEFAULT_VALUES,
-  GENDER_DEFAULT_VALUES,
   Modalities,
-  OTHER_DEFAULT_VALUES,
-  PUBLICS_LABELS,
   Publics,
-  PublicsAdministrative,
-  PublicsFamily,
-  PublicsGender,
-  PublicsOther,
   ServiceSaturation,
   WEEK_DAYS,
   WelcomedPublics,
@@ -44,7 +35,9 @@ import {
   type DayName,
   type Phone as CommonPhone,
   type PlaceTempInfo,
-  Categories
+  Categories,
+  translatePublics,
+  SupportedLanguagesCode
 } from '@soliguide/common';
 import { computeTodayInfo, computeAddress, formatTimeslots, buildSources } from './place';
 import {
@@ -53,11 +46,12 @@ import {
   PlaceDetailsInfoType,
   type PlaceDetailsOpeningHours,
   type Saturation,
-  type Service,
-  type TranslatableElement
+  type Service
 } from './types';
 import { categoryService } from '$lib/services/categoryService';
 import { sortServicesByRelevance } from '$lib/utils';
+import { i18nInstance } from '../client/i18n';
+import { getCurrentLangInStorage } from '../client';
 
 /**
  * Transform all opening hours to a front ready opening hours
@@ -94,44 +88,6 @@ const buildPlaceDetailsHours = (
 };
 
 /**
- * Transform age data to front ready info
- */
-const buildPublicsAge = (min: number, max: number): TranslatableElement[] => {
-  if (min === 0 && max === 99) {
-    return [];
-  } else if (min === 0 && max === 18) {
-    return [{ key: 'PUBLICS_AGE_MINORS' }];
-  } else if (min === 18 && max === 99) {
-    return [{ key: 'PUBLICS_AGE_MAJORS' }];
-  } else if (min === 0) {
-    return [{ key: 'PUBLICS_AGE_TO_XX_MAX', params: { max: max.toString() } }];
-  } else if (max === 99) {
-    return [{ key: 'PUBLICS_AGE_FROM_XX', params: { min: min.toString() } }];
-  }
-
-  return [{ key: 'PUBLICS_AGE_RANGE', params: { min: min.toString(), max: max.toString() } }];
-};
-
-/**
- * Transform specific publics to front ready info
- */
-const buildSpecificPublics = <
-  T extends PublicsGender | PublicsAdministrative | PublicsFamily | PublicsOther
->(
-  publics: T[],
-  publicsFull: T[],
-  publicToDisplay: Record<T, string>
-): TranslatableElement[] => {
-  if (publics.length === publicsFull.length) {
-    return [];
-  }
-
-  return publics.map((singlePublic) => {
-    return { key: publicToDisplay[singlePublic].toUpperCase() };
-  });
-};
-
-/**
  * Transform publics to front ready info
  */
 const buildPublics = (publics: Publics): PlaceDetailsInfo[] => {
@@ -140,34 +96,31 @@ const buildPublics = (publics: Publics): PlaceDetailsInfo[] => {
     [WelcomedPublics.PREFERENTIAL]: PlaceDetailsInfoType.WELCOME_UNCONDITIONAL_CUSTOM,
     [WelcomedPublics.EXCLUSIVE]: PlaceDetailsInfoType.WELCOME_EXCLUSIVE
   };
+  const currentLang = getCurrentLangInStorage();
 
-  const description =
-    publics.accueil === WelcomedPublics.UNCONDITIONAL
-      ? []
-      : [
-          ...buildSpecificPublics(publics.gender, GENDER_DEFAULT_VALUES, PUBLICS_LABELS.gender),
-          ...buildPublicsAge(publics.age.min, publics.age.max),
-          ...buildSpecificPublics(
-            publics.administrative,
-            ADMINISTRATIVE_DEFAULT_VALUES,
-            PUBLICS_LABELS.administrative
-          ),
-          ...buildSpecificPublics(
-            publics.familialle,
-            FAMILY_DEFAULT_VALUES,
-            PUBLICS_LABELS.familialle
-          ),
-          ...buildSpecificPublics(publics.other, OTHER_DEFAULT_VALUES, PUBLICS_LABELS.other)
-        ];
+  const description = translatePublics(
+    i18nInstance,
+    currentLang as unknown as SupportedLanguagesCode,
+    publics,
+    true,
+    false
+  );
 
   return [
-    { type: WELCOME_TO_TITLE_MAPPING[publics.accueil], tags: [], description },
+    {
+      type: WELCOME_TO_TITLE_MAPPING[publics.accueil],
+      tags: [],
+      description: [],
+      translatedText: description,
+      needTranslation: false
+    },
     ...(publics.description
       ? [
           {
             type: PlaceDetailsInfoType.PUBLICS_MORE_INFO,
             tags: [],
-            description: [{ key: publics.description }]
+            description: [{ key: publics.description }],
+            needTranslation: false
           }
         ]
       : [])
@@ -186,7 +139,8 @@ const buildSpecificModalitiesType = (
       {
         type,
         tags: [],
-        description: []
+        description: [],
+        needTranslation: true
       }
     ];
   }
@@ -206,7 +160,8 @@ const buildSpecificModalitiesTypeWithPrecisions = (
       {
         type,
         tags: [],
-        description: modalityType.precisions ? [{ key: modalityType.precisions }] : []
+        description: modalityType.precisions ? [{ key: modalityType.precisions }] : [],
+        needTranslation: true
       }
     ];
   }
@@ -219,7 +174,7 @@ const buildSpecificModalitiesTypeWithPrecisions = (
  */
 const buildModalities = (modalities: Modalities): PlaceDetailsInfo[] => {
   const modalitiesType: PlaceDetailsInfo[] = modalities.inconditionnel
-    ? [{ type: PlaceDetailsInfoType.ACCESS_FREE, tags: [], description: [] }]
+    ? [{ type: PlaceDetailsInfoType.ACCESS_FREE, tags: [], description: [], needTranslation: true }]
     : [
         ...buildSpecificModalitiesTypeWithPrecisions(
           modalities.orientation,
@@ -240,7 +195,8 @@ const buildModalities = (modalities: Modalities): PlaceDetailsInfo[] => {
         {
           type: PlaceDetailsInfoType.MODALITIES_MORE_INFO,
           tags: [],
-          description: [{ key: modalities.other }]
+          description: [{ key: modalities.other }],
+          needTranslation: true
         }
       ]
     : [];
@@ -265,7 +221,8 @@ const buildSpokenLanguages = (language: string[]): PlaceDetailsInfo[] => {
           tags: [],
           description: language.map((lang) => {
             return { key: `LANGUE_${lang.toUpperCase()}` };
-          })
+          }),
+          needTranslation: true
         }
       ]
     : [];
