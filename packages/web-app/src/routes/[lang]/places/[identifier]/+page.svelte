@@ -49,7 +49,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   let scrolled = false;
 
   onMount(() => {
-     window.TallyConfig = {
+    window.TallyConfig = {
       formId: 'nrk8d2',
       popup: {
         width: 340,
@@ -68,7 +68,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         hideTitle: true
       }
     };
- 
     const handleScroll = () => {
       const scrollY = window.scrollY || window.pageYOffset;
       scrolled = scrollY > headerHeight * 1.1;
@@ -90,7 +89,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <svelte:head>
   <title>{$pageStore.placeDetails.name}</title>
   <meta name="description" content={$pageStore.placeDetails.description} />
-  <!-- <script src="https://tally.so/widgets/embed.js"></script> -->
+  <script src="https://tally.so/widgets/embed.js"></script>
 </svelte:head>
 
 <Topbar type="reversedGradient" on:navigate={goBack} />
