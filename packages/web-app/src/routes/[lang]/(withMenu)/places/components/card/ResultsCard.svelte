@@ -30,7 +30,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     CardBody,
     CardFooter,
     Text,
-    ButtonLink
+    ButtonLink,
+    InfoIcon
   } from '@soliguide/design-system';
   import NearMe from 'svelte-google-materialdesign-icons/Near_me.svelte';
   import PinDrop from 'svelte-google-materialdesign-icons/Pin_drop.svelte';
@@ -91,9 +92,21 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             </Text>
           </div>
         {/if}
+
         <div class="card-title">
+          {#if place.banners.message}
+            <a href={`${$routes.ROUTE_PLACES}/${place.seoUrl}?categorySearched=${category}`}
+              ><InfoIcon
+                size="medium"
+                variant="warning"
+                withShadow
+                altTag={$i18n.t('STRUCTURE_IMPORTANT_INFO_OPEN_DETAILS')}
+              ></InfoIcon></a
+            >
+          {/if}
           <Text ellipsis type="title2PrimaryExtraBold">{place.name}</Text>
         </div>
+
         <div class="card-header-infos-container">
           <PlaceStatus status={place.status} />
           <TodayInfo todayInfo={place.todayInfo} />
@@ -155,6 +168,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 <style lang="scss">
   $cardHeaderHeight: 90px;
+  .card-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing3XS);
+  }
 
   .card-link {
     text-decoration: none;
