@@ -144,36 +144,144 @@ const bree = new Bree({
         `set-isOpenToday.job${defaultExtension}`
       ),
     },
+    // {
+    //   interval: "at 1:15 am",
+    //   name: "[GENERAL] Imports categories",
+    //   path: join(
+    //     __dirname,
+    //     "jobs",
+    //     "general",
+    //     `import-categories.job${defaultExtension}`
+    //   ),
+    // },
+    // // ----
+    // // TRANSLATIONS
+    // {
+    //   interval: "every 2 minutes",
+    //   name: "[TRANSLATION] Translates text elements thanks to GTranslate API",
+    //   path: join(
+    //     __dirname,
+    //     "jobs",
+    //     "translations",
+    //     `translate-fields.job${defaultExtension}`
+    //   ),
+    // },
+    // // ----
+    // // AIRTABLE
+    // {
+    //   interval: "every 30 seconds",
+    //   name: "[AIRTABLE] Synchronizes created and updated data",
+    //   path: join(
+    //     __dirname,
+    //     "jobs",
+    //     "airtable",
+    //     `sync-at-soliguide.job${defaultExtension}`
+    //   ),
+    // },
+    // {
+    //   interval: "every 1 hours",
+    //   name: "[AIRTABLE] Synchronizes places opening status",
+    //   path: join(
+    //     __dirname,
+    //     "jobs",
+    //     "airtable",
+    //     `sync-place-opening-closing.job${defaultExtension}`
+    //   ),
+    // },
+    // {
+    //   interval: "at 4:00 am",
+    //   name: "[AIRTABLE] Synchronizes places closing status",
+    //   path: join(
+    //     __dirname,
+    //     "jobs",
+    //     "airtable",
+    //     `sync-place-closed-today.job${defaultExtension}`
+    //   ),
+    // },
+    // // ----
+    // // PLACES
+    // {
+    //   interval: "at 3:00 am",
+    //   name: "[PLACES] Set un-updated places offline",
+    //   path: join(
+    //     __dirname,
+    //     "jobs",
+    //     "fiches",
+    //     `set-offline.job${defaultExtension}`
+    //   ),
+    // },
+    // {
+    //   interval: "at 3:50 am",
+    //   name: "[PLACES] Unset obsolete temporary information on places",
+    //   path: join(
+    //     __dirname,
+    //     "jobs",
+    //     "fiches",
+    //     `unset-obsolete-temp-info.job${defaultExtension}`
+    //   ),
+    // },
+    // {
+    //   interval: "at 3:15 am",
+    //   name: "[PLACES] Set current temporary information on places",
+    //   path: join(
+    //     __dirname,
+    //     "jobs",
+    //     "fiches",
+    //     `set-current-temp-info.job${defaultExtension}`
+    //   ),
+    // },
+    // {
+    //   interval: "at 3:30 am",
+    //   name: "[PLACES] Set isOpenToday on places",
+    //   path: join(
+    //     __dirname,
+    //     "jobs",
+    //     "fiches",
+    //     `set-isOpenToday.job${defaultExtension}`
+    //   ),
+    // },
+    // // ----
+    // // CAMPAIGN
+    // {
+    //   interval: "at 9:00 am",
+    //   name: "[MAILGUN] Send remind me emails",
+    //   path: join(
+    //     __dirname,
+    //     "jobs",
+    //     "emailing",
+    //     `send-remind-me-emails.job${defaultExtension}`
+    //   ),
+    // },
+    // {
+    //   interval: "every 1 minute",
+    //   name: "[MAILGUN] Send Emails",
+    //   path: join(
+    //     __dirname,
+    //     "jobs",
+    //     "emailing",
+    //     `send-campaign-emails.job${defaultExtension}`
+    //   ),
+    // },
+    // {
+    //   interval: "every 1 minute",
+    //   name: "[MAILGUN] Update email status",
+    //   path: join(
+    //     __dirname,
+    //     "jobs",
+    //     "emailing",
+    //     `mailgun-update-emails-status.job${defaultExtension}`
+    //   ),
+    // },
     // ----
-    // CAMPAIGN
-    {
-      interval: "at 9:00 am",
-      name: "[MAILGUN] Send remind me emails",
-      path: join(
-        __dirname,
-        "jobs",
-        "emailing",
-        `send-remind-me-emails.job${defaultExtension}`
-      ),
-    },
+    // INVITATION REMINDER
     {
       interval: "every 1 minute",
-      name: "[MAILGUN] Send Emails",
+      name: "[INVITATIONS] Send invitation reminder emails",
       path: join(
         __dirname,
         "jobs",
         "emailing",
-        `send-campaign-emails.job${defaultExtension}`
-      ),
-    },
-    {
-      interval: "every 1 minute",
-      name: "[MAILGUN] Update email status",
-      path: join(
-        __dirname,
-        "jobs",
-        "emailing",
-        `mailgun-update-emails-status.job${defaultExtension}`
+        `send-invite-reminder-emails.job${defaultExtension}`
       ),
     },
   ],
