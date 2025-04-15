@@ -179,7 +179,7 @@ const bree = new Bree({
     // ----
     // INVITATION REMINDER
     {
-      interval: "every 1 minute",
+      interval: "every 20 seconds",
       name: "[INVITATIONS] Send invitation reminder emails",
       path: join(
         __dirname,
