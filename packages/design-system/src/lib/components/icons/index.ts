@@ -116,4 +116,6 @@ export { default as ThermostatAuto } from './ThermostatAuto.svelte';
 export { default as Toilets } from './Toilets.svelte';
 export { default as Vaccines } from './Vaccines.svelte';
 export { default as Wifi } from './Wifi.svelte';
+export { default as HairDresser } from './Hairdresser.svelte';
+export { default as LegalProtection } from './LegalProtection.svelte';
 export { default as Work } from './Work.svelte';

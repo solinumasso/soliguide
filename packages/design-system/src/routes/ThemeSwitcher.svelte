@@ -24,6 +24,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import Button from '$lib/components/buttons/Button.svelte';
   import type { ThemeContext, ThemeColor, Theme } from '$lib/types/theme';
 
+  // Modify before using cause the ThemeContext doesn't exist anymore
   const { theme: currentTheme, setTheme } = getContext<ThemeContext>('theme');
 
   // Other set of colors
@@ -60,7 +61,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     textShy: '#A1A9B7',
     textInverse: '#ffffff',
     textHighlightPrimary: '#9ADD76',
+    // To determine cause same as default
+    textHighlightPrimary2: '#c8260d',
     textHighlightSecondary: '#AE3A4F',
+    // To determine cause same as default
+    textHighlightSecondary2: '#271332',
     textHighlightTertiary: '#6A3177',
     textHighlightQuartary: '#784034',
     textFocus: '#F5516F',
@@ -73,16 +78,29 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     surfaceWhiteAlphaStrong: 'rgba(255, 255, 255, 0.4)',
     overlayLight: 'rgba(38, 38, 38, 0.4)',
     overlayStrong: 'rgba(38, 38, 38, 0.6)',
+    //To determine cause same as default
+    overlayVeryStrong: 'rgba(38, 38, 38, 0.7)',
     surfacePrimary1: '#FFFFFF',
     surfacePrimary2: '#F2FBEE',
     surfacePrimary3: '#D8F2CA',
+    // To determine cause same as default
+    surfacePrimary4: '#fa6d56',
+    // To determine cause same as default
+    surfacePrimary5: '#ed3215',
     surfaceSecondary1: '#FFFFFF',
     surfaceSecondary2: '#FEEEF1',
     surfaceSecondary3: '#FCC9D2',
-    surfaceSecondary4: '#FAAFBD',
     surfaceSecondaryGradient: 'linear-gradient(270deg, #424291 0%, #7981db 100%)',
     surfaceTertiary1: '#F6EDFA',
-    surfaceQuartary1: '#F5EBE1',
+    // To determine cause same as default
+    surfaceTertiary2: '#e5e7fd',
+    // To determine cause same as default
+    surfaceTertiary3: '#cfd9f6',
+    // To determine cause same as default
+    surfaceTertiary4: '#5e5ecd',
+    // To determine cause same as default
+    surfaceTertiaryGradient: 'linear-gradient(270deg, #504EB4 0%, #3B3D74 100%)',
+    surfaceQuartary1: '#f5ebe1',
     surfaceGray1: '#FFFFFF',
     surfaceGray2: '#F3F4F6',
     surfaceGray3: '#DADEE3',
@@ -101,6 +119,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     // Gradients
     gradientPrimary: 'linear-gradient(270deg, #9ADD76 0%, #fa6d56 100%)',
     gradientSecondary: 'linear-gradient(270deg, #AE3A4F 0%, #7981db 100%)',
+    // To determine
+    gradientTertiary: 'linear-gradient(270deg, #613677 0%, #463351 100%)',
     gradientBackground:
       'radial-gradient(104.32% 140.38% at 0% 0%, #F6F5FF 0%, #F7F3F7 50%, #FFF 100%)',
     // Misc

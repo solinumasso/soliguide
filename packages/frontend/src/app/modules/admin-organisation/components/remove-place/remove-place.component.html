@@ -21,7 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <div class="modal-header bg-danger">
   <span id="modal-title">
     {{ "REMOVE_PLACE" | translate }}
-    <ng-container *ngIf="fromPlace">
+    <ng-container *ngIf="fromPlace && orga?.name">
       {{
         "OF_THE_ORGANIZATION" | translate : { orgaName: orga.name }
       }}</ng-container

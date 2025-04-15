@@ -123,6 +123,8 @@ export interface PlaceDetailsInfo {
   type: PlaceDetailsInfoType;
   description: TranslatableElement[];
   tags: Tag[];
+  needTranslation?: boolean; // false for values already translated by common
+  translatedText?: string;
 }
 
 export interface Saturation {

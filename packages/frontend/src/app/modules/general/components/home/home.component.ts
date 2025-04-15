@@ -88,6 +88,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       getCategoriesService().geCategoriesNodesWithOneDepthChildren();
     this.CATEGORIES_ROOT_NODES =
       getCategoriesService().getOrderRootFlatCategories();
+
+    console.log({ cat: this.CATEGORIES_ROOT_NODES });
   }
 
   public ngOnInit(): void {

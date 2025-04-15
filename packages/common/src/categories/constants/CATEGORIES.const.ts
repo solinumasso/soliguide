@@ -20,7 +20,6 @@
  */
 import { Categories } from "../enums";
 import { ChildCategory, FlatCategoriesTreeNode } from "../interfaces";
-import cloneDeep from "lodash.clonedeep";
 
 export const ROOT_CATEGORIES: ChildCategory[] = [
   {
@@ -244,18 +243,12 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
         id: Categories.LEGAL_ADVICE,
         rank: 100,
       },
-      {
-        id: Categories.DOMICILIATION,
-        rank: 200,
-      },
+
       {
         id: Categories.SOCIAL_ACCOMPANIMENT,
         rank: 300,
       },
-      {
-        id: Categories.PUBLIC_WRITER,
-        rank: 400,
-      },
+
       {
         id: Categories.DISABILITY_ADVICE,
         rank: 500,
@@ -279,15 +272,7 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
     children: [],
   },
   {
-    id: Categories.DOMICILIATION,
-    children: [],
-  },
-  {
     id: Categories.SOCIAL_ACCOMPANIMENT,
-    children: [],
-  },
-  {
-    id: Categories.PUBLIC_WRITER,
     children: [],
   },
   {
@@ -358,10 +343,7 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
         id: Categories.LONG_TERM_ACCOMODATION,
         rank: 300,
       },
-      {
-        id: Categories.CITIZEN_HOUSING,
-        rank: 400,
-      },
+
       {
         id: Categories.ACCESS_TO_HOUSING,
         rank: 500,
@@ -415,10 +397,18 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
         id: Categories.FACE_MASKS,
         rank: 600,
       },
+      {
+        id: Categories.HAIRDRESSER,
+        rank: 700,
+      },
     ],
   },
   {
     id: Categories.SHOWER,
+    children: [],
+  },
+  {
+    id: Categories.HAIRDRESSER,
     children: [],
   },
   {
@@ -834,6 +824,29 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
 
 export const CATEGORIES_SOLIGUIDE_FR: FlatCategoriesTreeNode[] = [
   {
+    id: Categories.COUNSELING,
+    children: [
+      {
+        id: Categories.DOMICILIATION,
+        rank: 200,
+      },
+
+      {
+        id: Categories.PUBLIC_WRITER,
+        rank: 400,
+      },
+    ],
+  },
+  {
+    id: Categories.ACCOMODATION_AND_HOUSING,
+    children: [
+      {
+        id: Categories.CITIZEN_HOUSING,
+        rank: 400,
+      },
+    ],
+  },
+  {
     id: Categories.TRAINING_AND_JOBS,
     children: [
       {
@@ -843,7 +856,19 @@ export const CATEGORIES_SOLIGUIDE_FR: FlatCategoriesTreeNode[] = [
     ],
   },
   {
+    id: Categories.CITIZEN_HOUSING,
+    children: [],
+  },
+  {
     id: Categories.FRENCH_COURSE,
+    children: [],
+  },
+  {
+    id: Categories.DOMICILIATION,
+    children: [],
+  },
+  {
+    id: Categories.PUBLIC_WRITER,
     children: [],
   },
 ];
@@ -872,4 +897,35 @@ export const CATEGORIES_SOLIGUIA_ES: FlatCategoriesTreeNode[] = [
   },
 ];
 
-export const CATEGORIES_SOLIGUIA_AD = cloneDeep(CATEGORIES_SOLIGUIA_ES);
+export const CATEGORIES_SOLIGUIA_AD: FlatCategoriesTreeNode[] = [
+  {
+    id: Categories.TRAINING_AND_JOBS,
+    children: [
+      {
+        id: Categories.SPANISH_COURSE,
+        rank: 130,
+      },
+      {
+        id: Categories.CATALAN_COURSE,
+        rank: 170,
+      },
+    ],
+  },
+  {
+    id: Categories.SPANISH_COURSE,
+    children: [],
+  },
+  {
+    id: Categories.CATALAN_COURSE,
+    children: [],
+  },
+  {
+    id: Categories.COUNSELING,
+    children: [
+      {
+        id: Categories.LEGAL_PROTECTION,
+        rank: 820,
+      },
+    ],
+  },
+];

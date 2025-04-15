@@ -62,7 +62,6 @@ import { SharePlaceComponent } from "./components/share-place/share-place.compon
 import { PlaceRoutingModule } from "./place-routing.module";
 
 import { PlaceService } from "./services/place.service";
-import { PublicsService } from "./services/publics.service";
 
 import { CampaignService } from "../campaign/services/campaign.service";
 
@@ -132,7 +131,7 @@ import { HttpClientModule } from "@angular/common/http";
     DisplaySpecificFieldsComponent,
     DisplayHolidaysComponent,
   ],
-  providers: [CampaignService, PlaceService, PublicsService, HolidaysService],
+  providers: [CampaignService, PlaceService, HolidaysService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 })
 export class PlaceModule {}

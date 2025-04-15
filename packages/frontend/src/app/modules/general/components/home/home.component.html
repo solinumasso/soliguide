@@ -18,8 +18,6 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
-<!-- Page centrale de la homepage -->
-
 <div
   id="home_search"
   [class]="'home_search_background_' + THEME_CONFIGURATION.country"
@@ -68,9 +66,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           >
             <img
               src="../../../assets/images/homepage/homepictos.png"
-              alt="Home "
+              class="p-2"
+              aria-hidden="true"
               title="home pictos"
-              id="all-cat-icon"
             />
             <span>{{ "ALL_CATEGORIES" | translate }}</span>
           </button>
@@ -118,25 +116,30 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       <div class="row">
         <ng-container *ngFor="let categoryRoot of CATEGORIES_ROOT_NODES">
           <div class="col-12 col-md-3 p-2 text-primary">
-            <h5
+            <button
+              type="button"
               (click)="putTextCat(categoryRoot.id)"
-              [class]="search.category === categoryRoot.id ? 'active' : ''"
+              class="p-2 btn text-primary fw-bold text-start"
+              [ngClass]="search.category === categoryRoot.id ? 'active' : ''"
             >
               <span
                 [class]="'category-icon category-icon-' + categoryRoot.id"
               ></span>
               {{ categoryRoot.id | uppercase | translate }}
-            </h5>
+            </button>
             <ul>
-              <li
-                *ngFor="let category of categoryRoot.children"
-                (click)="putTextCat(category.id)"
-                [class]="search.category === category.id ? 'active' : ''"
-              >
-                <span
-                  [class]="'category-icon category-icon-' + category.id"
-                ></span>
-                {{ category.id | uppercase | translate }}
+              <li *ngFor="let category of categoryRoot.children">
+                <button
+                  type="button"
+                  class="btn text-primary text-start p-1 m-0"
+                  (click)="putTextCat(category.id)"
+                  [ngClass]="search.category === category.id ? 'active' : ''"
+                >
+                  <span
+                    [class]="'category-icon category-icon-' + category.id"
+                  ></span>
+                  {{ category.id | uppercase | translate }}
+                </button>
               </li>
             </ul>
           </div>
@@ -154,12 +157,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 >
   <div id="app-dl" class="row align-items-center justify-content-md-center">
     <div class="col-md-8 text-center">
-      <h3>
+      <h2>
         {{
           "SITE_MOBILE"
             | translate : { brandName: THEME_CONFIGURATION.brandName }
         }}
-      </h3>
+      </h2>
 
       <div id="app-icons">
         <a

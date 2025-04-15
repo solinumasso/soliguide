@@ -32,7 +32,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </script>
 
 <div class="form-control" {...$$restProps}>
-  <label class="label text-secondary-text1-regular" for={htmlFor}>
+  <label class="label text-secondary-text2-regular" for={htmlFor}>
     <span class:required>{label}</span>
     {#if helper}
       <span class="helper text-secondary-caption2-regular">{helper}</span>
@@ -44,7 +44,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   {#if errorMessage}
     <div class="error">
       <Dangerous size="10px" class="error-dangerous-icon" variation="filled" />
-      <Text type="caption2">{errorMessage}</Text>
+      <Text type="caption1">{errorMessage}</Text>
     </div>
   {/if}
 </div>

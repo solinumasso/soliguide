@@ -19,9 +19,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import {
+  ApiPlace,
   CommonNewPlaceService,
   CommonOpeningHours,
   CommonPlaceParcours,
+  DegreeOfChoiceType,
+  DietaryRegimesType,
   WEEK_DAYS,
 } from "@soliguide/common";
 
@@ -115,4 +118,33 @@ export const getHoursFromParcours = (
   }
 
   return hours;
+};
+
+export const cleanPlaceCategorySpecificFields = (place: ApiPlace): ApiPlace => {
+  place.services_all = place.services_all.map(
+    (service: CommonNewPlaceService) => {
+      delete service.categorySpecificFields?.nationalOriginProductType;
+      delete service.categorySpecificFields?.organicOriginProductType;
+
+      if (
+        service.categorySpecificFields?.dietaryRegimesType ===
+          DietaryRegimesType.DO_NOT_KNOW ||
+        service.categorySpecificFields?.dietaryRegimesType ===
+          DietaryRegimesType.CANNOT_ADAPT
+      ) {
+        delete service.categorySpecificFields?.dietaryRegimesType;
+      }
+
+      if (
+        service.categorySpecificFields?.degreeOfChoiceType ===
+        DegreeOfChoiceType.NO_CHOICE
+      ) {
+        delete service.categorySpecificFields?.degreeOfChoiceType;
+      }
+
+      return service;
+    }
+  );
+
+  return place;
 };

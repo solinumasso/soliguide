@@ -49,20 +49,25 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   let scrolled = false;
 
   onMount(() => {
-    // window.TallyConfig = {
-    //   formId: 'nPGQB5',
-    //   popup: {
-    //     width: 340,
-    //     emoji: { text: '👋', animation: 'wave' },
-    //     open: { trigger: 'scroll', scrollPercent: 30 },
-    //     layout: 'modal',
-    //     hideTitle: true,
-    //     autoClose: 3000,
-    //     showOnce: true,
-    //     doNotShowAfterSubmit: true
-    //   }
-    //};
-
+    window.TallyConfig = {
+      formId: 'nrk8d2',
+      popup: {
+        width: 340,
+        emoji: {
+          text: '👋',
+          animation: 'wave'
+        },
+        layout: 'modal',
+        open: {
+          trigger: 'scroll',
+          scrollPercent: 40
+        },
+        autoClose: 3000,
+        showOnce: true,
+        doNotShowAfterSubmit: true,
+        hideTitle: true
+      }
+    };
     const handleScroll = () => {
       const scrollY = window.scrollY || window.pageYOffset;
       scrolled = scrollY > headerHeight * 1.1;
@@ -84,7 +89,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <svelte:head>
   <title>{$pageStore.placeDetails.name}</title>
   <meta name="description" content={$pageStore.placeDetails.description} />
-  <!-- <script src="https://tally.so/widgets/embed.js"></script> -->
+  <script src="https://tally.so/widgets/embed.js"></script>
 </svelte:head>
 
 <Topbar type="reversedGradient" on:navigate={goBack} />

@@ -24,7 +24,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let size = '24';
   export let color = 'currentColor';
   export let variation: VariationType = 'outlined';
-  export let ariaLabel = 'home';
 </script>
 
 <svg
@@ -33,18 +32,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   width={size}
   height={size}
   fill={color}
-  aria-label={ariaLabel}
   aria-hidden="true"
   viewBox="0 0 24 24"
-  on:click
-  on:keydown
-  on:keyup
-  on:focus
-  on:blur
-  on:mouseenter
-  on:mouseleave
-  on:mouseover
-  on:mouseout
 >
   {#if variation === 'outlined'}
     <path d="m12 5.69 5 4.5V18h-2v-6H9v6H7v-7.81l5-4.5M12 3 2 12h3v8h6v-6h2v6h6v-8h3L12 3z" />

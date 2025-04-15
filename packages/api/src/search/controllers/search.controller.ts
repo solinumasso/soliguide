@@ -73,11 +73,11 @@ export const searchPlaces = async (
   );
 
   if (user.status === UserStatus.API_USER) {
-    result.places = (await apiSearchPlacesWithParams(
+    result.places = await apiSearchPlacesWithParams(
       searchPlacesQuery,
       user,
       searchPlacesData.options
-    )) as ApiPlace[];
+    );
   } else {
     const serviceToCall = admin
       ? adminSearchPlacesWithParams
