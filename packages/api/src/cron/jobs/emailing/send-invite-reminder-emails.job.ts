@@ -18,62 +18,37 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import "../../../config/database/connection";
-import "../../../organization/models/organization.model";
-import "../../../user/models/invitation.model";
-import "../../../user/models/userRight.model";
-import "../../../place/models/place.model";
-
 import delay from "delay";
+import { logger } from "src/general/logger";
 import { parentPort } from "worker_threads";
-import { logger } from "../../../general/logger";
 import {
+  sendInvitationReminderEventToMq,
   getInvitationsForReminder,
-  send24hrReminderEventToMq,
-  send3DayReminderEventToMq,
-} from "src/user/middlewares/send-inivitation-reminder-event-to-mq.middleware";
-import { Themes } from "@soliguide/common";
-import { error } from "console";
-
-const FRONTEND_URL = process.env.FRONTEND_URL || "https://soliguide.fr/";
-const THEME = process.env.THEME as Themes | null;
+} from "../../../invitations/services/getInvitationsForEmail.service";
 
 (async () => {
-  console.log("[JOB START] Invitation reminder job is running...");
-
   try {
     logger.info("[REMINDERS] Sending 24-hour reminders");
 
     const invitations24hr = await getInvitationsForReminder(24);
-    console.log(
-      `[JOB INFO] Found ${invitations24hr.length} invitations for 24-hour reminder.`
-    );
+    logger.info("[INVITATIONS 24HR] Retrieved invitations:", invitations24hr);
 
     for (const invitation of invitations24hr) {
-      console.log(`[JOB INFO] Sending 24-hour reminder to ${invitation}`);
-      await send24hrReminderEventToMq(invitation, FRONTEND_URL, THEME, logger);
+      await sendInvitationReminderEventToMq(invitation, "24hr", logger);
     }
-    logger.info("[REMINDERS] 24-hour reminders sent");
 
     logger.info("[REMINDERS] Sending 3-day reminders");
 
     const invitations3day = await getInvitationsForReminder(72);
-    console.log(
-      `[JOB INFO] Found ${invitations3day.length} invitations for 3-day reminder.`
-    );
-
     for (const invitation of invitations3day) {
-      console.log(`[JOB INFO] Sending 3-day reminder to ${invitation}`);
-      await send3DayReminderEventToMq(invitation, FRONTEND_URL, THEME, logger);
+      await sendInvitationReminderEventToMq(invitation, "3day", logger);
     }
-    logger.info("[REMINDERS] 3-day reminders sent");
 
-    console.log(
+    logger.info(
       "[JOB SUCCESS] Invitation reminder job completed successfully."
     );
   } catch (e) {
-    console.error("[JOB ERROR] An error occurred:", error);
-    logger.error(e);
+    logger.error("[JOB ERROR] An error occurred:", e.message, e.stack);
     if (parentPort) parentPort.postMessage("Error while running job");
   }
 
