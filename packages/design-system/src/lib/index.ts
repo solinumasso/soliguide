@@ -58,6 +58,7 @@ import {
   ColorLens,
   Computer,
   ConfirmationNumber,
+  ContentCut,
   Cottage,
   Countertops,
   Create,
@@ -74,6 +75,7 @@ import {
   FamilyRestroom,
   Flag,
   Forum,
+  Gavel,
   Hail,
   Healing,
   Home,
@@ -131,9 +133,7 @@ import {
   Toilets,
   Vaccines,
   Wifi,
-  Work,
-  HairDresser,
-  LegalProtection
+  Work
 } from './components/icons';
 
 import Divider from './components/layout/Divider.svelte';
@@ -191,6 +191,7 @@ export {
   ColorLens,
   Computer,
   ConfirmationNumber,
+  ContentCut,
   Cottage,
   Countertops,
   Create,
@@ -207,6 +208,7 @@ export {
   FamilyRestroom,
   Flag,
   Forum,
+  Gavel,
   Hail,
   Healing,
   Home,
@@ -293,7 +295,5 @@ export {
   DEFAULT_DEBOUNCE_DELAY,
   generateId,
   Modal,
-  Link,
-  HairDresser,
-  LegalProtection
+  Link
 };
