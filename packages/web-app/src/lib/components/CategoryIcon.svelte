@@ -93,8 +93,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     JobCoaching,
     Toilets,
     SharedKitchen,
-    HairDresser,
-    LegalProtection,
+    ContentCut,
+    Gavel,
     type types as DSTypes
   } from '@soliguide/design-system';
   import { Categories } from '@soliguide/common';
@@ -168,7 +168,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     [Categories.WELLNESS]: Spa,
     [Categories.TOILETS]: Toilets,
     [Categories.HYGIENE_PRODUCTS]: Sanitizer,
-    [Categories.HAIRDRESSER]: HairDresser,
+    [Categories.HAIRDRESSER]: ContentCut,
     [Categories.FACE_MASKS]: Masks,
 
     // Counseling Categories
@@ -181,7 +181,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     [Categories.ADMINISTRATIVE_ASSISTANCE]: Article,
     [Categories.PARENT_ASSISTANCE]: EscalatorWarning,
     [Categories.BUDGET_ADVICE]: Savings,
-    [Categories.LEGAL_PROTECTION]: LegalProtection,
+    [Categories.LEGAL_PROTECTION]: Gavel,
 
     // Technology Categories
     [Categories.TECHNOLOGY]: Computer,
