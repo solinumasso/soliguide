@@ -62,6 +62,8 @@ export class AdminUserComponent implements OnInit, OnDestroy {
 
   public readonly UserStatus = UserStatus;
 
+  private countryCode: string;
+
   constructor(
     private readonly authService: AuthService,
     private readonly formBuilder: UntypedFormBuilder,
@@ -76,6 +78,7 @@ export class AdminUserComponent implements OnInit, OnDestroy {
     this.loading = false;
     this.submitted = false;
     this.user = new User();
+    this.countryCode = this.THEME_CONFIGURATION.country;
   }
 
   public ngOnInit(): void {
@@ -131,7 +134,7 @@ export class AdminUserComponent implements OnInit, OnDestroy {
       name: [this.user.name, [Validators.required, noWhiteSpace]],
       phone: [this.user.phone, []],
       territories: [
-        this.user.territories,
+        this.user?.areas?.[this.countryCode]?.departments ?? [],
         this.user.status === UserStatus.ADMIN_TERRITORY ||
         this.user.status === UserStatus.API_USER
           ? [Validators.required]
@@ -165,24 +168,33 @@ export class AdminUserComponent implements OnInit, OnDestroy {
       return;
     }
 
+    const formValue = {
+      ...this.updateForm.value,
+      areas: {
+        ...this.user.areas,
+        [this.countryCode]: {
+          ...this.user.areas[this.countryCode],
+          departments: this.updateForm.value.territories,
+        },
+      },
+    };
+
     this.loading = true;
 
     this.subscription.add(
-      this.usersService
-        .updateUser(this.updateForm.value, this.user._id)
-        .subscribe({
-          next: () => {
-            this.loading = false;
-            this.submitted = false;
-            this.toastr.success(
-              this.translateService.instant("INFORMATION_SUCCESSFULLY_UPDATED")
-            );
-          },
-          error: () => {
-            this.loading = false;
-            this.toastr.error(this.translateService.instant("UPDATE_ERROR"));
-          },
-        })
+      this.usersService.updateUser(formValue, this.user._id).subscribe({
+        next: () => {
+          this.loading = false;
+          this.submitted = false;
+          this.toastr.success(
+            this.translateService.instant("INFORMATION_SUCCESSFULLY_UPDATED")
+          );
+        },
+        error: () => {
+          this.loading = false;
+          this.toastr.error(this.translateService.instant("UPDATE_ERROR"));
+        },
+      })
     );
   };
 }
