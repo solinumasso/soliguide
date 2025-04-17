@@ -1,3 +1,114 @@
+# [4.84.0](https://github.com/solinumasso/soliguide/compare/v4.83.0...v4.84.0) (2025-04-15)
+
+
+### Bug Fixes
+
+* allow pros to add pros to place [#109](https://github.com/solinumasso/soliguide/issues/109) ([e6ea13a](https://github.com/solinumasso/soliguide/commit/e6ea13a07cf7c66009b971b3ea9a4354847802c8))
+* **api:** :bug: fix nb results for api user [#322](https://github.com/solinumasso/soliguide/issues/322) ([4c11e96](https://github.com/solinumasso/soliguide/commit/4c11e9696abbf44f6e0fb50a301639d9003f862f))
+* **api:** add hairdresserto api  [#297](https://github.com/solinumasso/soliguide/issues/297) ([5fe95a1](https://github.com/solinumasso/soliguide/commit/5fe95a14821fb894391a69122a9f4992a3e7189d))
+* **api:** fix number of results for api users  [#322](https://github.com/solinumasso/soliguide/issues/322) ([6a38f98](https://github.com/solinumasso/soliguide/commit/6a38f987877fe91f3bda517b590f735c68959d46))
+* **api:** fix offline places diff between AT & soliguide [#345](https://github.com/solinumasso/soliguide/issues/345) ([718c1be](https://github.com/solinumasso/soliguide/commit/718c1becaceddcee9e6fac695977f6489e37709a))
+* **api:** fix origin request for pictures [#62](https://github.com/solinumasso/soliguide/issues/62) ([6b0193f](https://github.com/solinumasso/soliguide/commit/6b0193fadc3cca06012d84d8586f024725089a31))
+* **api:** fix origin request for pictures [#62](https://github.com/solinumasso/soliguide/issues/62) ([79b26ca](https://github.com/solinumasso/soliguide/commit/79b26caec24a9bb7e1c31da980ac5ee0dfa6f13e))
+* **api:** remove non sharable info from categorySpecificFields for API user [#481](https://github.com/solinumasso/soliguide/issues/481) ([b290bef](https://github.com/solinumasso/soliguide/commit/b290befe7f6b83339e2300b7145fa96a2d92314c))
+* **api:** remove non sharable info from categorySpecificFields for API user from get place [#481](https://github.com/solinumasso/soliguide/issues/481) ([bf9ffb1](https://github.com/solinumasso/soliguide/commit/bf9ffb1fd6350180bf4c4e1fe085aae25770fb18))
+* **api:** wrong english word for day to day [#376](https://github.com/solinumasso/soliguide/issues/376) ([1079b82](https://github.com/solinumasso/soliguide/commit/1079b8224c30744ff0455dd337e423424008a118))
+* **common:** add license [#389](https://github.com/solinumasso/soliguide/issues/389) ([fe7a0a8](https://github.com/solinumasso/soliguide/commit/fe7a0a8515c2dd88acd8a6f30223e2a4e4b271b2))
+* **common:** add license [#389](https://github.com/solinumasso/soliguide/issues/389) ([2074489](https://github.com/solinumasso/soliguide/commit/2074489cc51a96274a5600bf275bc2ff5b189d67))
+* **common:** add license [#389](https://github.com/solinumasso/soliguide/issues/389) ([75c5964](https://github.com/solinumasso/soliguide/commit/75c5964decf53fbf8530b6b4ff4b1171d91051c4))
+* **common:** add ticket for tech stories ([0fef0c2](https://github.com/solinumasso/soliguide/commit/0fef0c2bfa49fa7595cb64014b111254e4215f40))
+* **common:** delete domiciliation for spain [#299](https://github.com/solinumasso/soliguide/issues/299) ([dca9745](https://github.com/solinumasso/soliguide/commit/dca97454e406b118b34c6d6dbd90d3e63ba86d83))
+* **common:** delete housing for andorra and spain [#299](https://github.com/solinumasso/soliguide/issues/299) ([92bc915](https://github.com/solinumasso/soliguide/commit/92bc915a6737c21bc65131fbf4df99bf370c0b79))
+* **common:** fix translation of publics [#389](https://github.com/solinumasso/soliguide/issues/389) ([e4e7d7d](https://github.com/solinumasso/soliguide/commit/e4e7d7d1cffb79ea6c4b00b7a7899cd920200274))
+* correct pageView and pageleave capture events [#456](https://github.com/solinumasso/soliguide/issues/456) ([#470](https://github.com/solinumasso/soliguide/issues/470)) ([f742c81](https://github.com/solinumasso/soliguide/commit/f742c81dddabb1ae2aed8a460e277efd70958330))
+* **frontend:** add hairdresser  [#297](https://github.com/solinumasso/soliguide/issues/297) ([36b32cd](https://github.com/solinumasso/soliguide/commit/36b32cdcc27d6ecf0f496319bcc75203ba1349c9))
+* **frontend:** fix frontend deployment [#428](https://github.com/solinumasso/soliguide/issues/428) ([c0ff95f](https://github.com/solinumasso/soliguide/commit/c0ff95fe2dee668ae2f98fb09295c589b8278d60))
+* **frontend:** fix instagram link [#383](https://github.com/solinumasso/soliguide/issues/383) ([0fa1171](https://github.com/solinumasso/soliguide/commit/0fa1171fc2325d726511f1bafcc006d386a57ed1))
+* **frontend:** fix old categoy redirection [#354](https://github.com/solinumasso/soliguide/issues/354) ([545cf59](https://github.com/solinumasso/soliguide/commit/545cf5972974a9c9c132cd91b9b428c06d3f1907))
+* make all tracking info english [#324](https://github.com/solinumasso/soliguide/issues/324) ([a41cb6f](https://github.com/solinumasso/soliguide/commit/a41cb6f27fb5f31b644e034a697c1cb3e64807b3))
+* show delete button in remove place from orga modal [#508](https://github.com/solinumasso/soliguide/issues/508) ([30f9ebf](https://github.com/solinumasso/soliguide/commit/30f9ebfe12a44354686b3eb9980c4435633921f3))
+* **soligare:** :bug: dietary adaptations type is an array [#396](https://github.com/solinumasso/soliguide/issues/396) ([e6d95b7](https://github.com/solinumasso/soliguide/commit/e6d95b7f7cfab167dde320f6b866a43d349ffd67))
+* update dependency body-parser to v1.20.3 ([a42270e](https://github.com/solinumasso/soliguide/commit/a42270e547e8ec6a6435d7e99ca273161841f38a))
+* update dependency cookie-parser to v1.4.7 ([d72e250](https://github.com/solinumasso/soliguide/commit/d72e250b193984ae7491e31895bc119cf64db32d))
+* **web-app:** add tally and fix licenses [#352](https://github.com/solinumasso/soliguide/issues/352) ([2df45c2](https://github.com/solinumasso/soliguide/commit/2df45c275b3761a9c0ccf6779a4d74ac25f278f8))
+* **web-app:** fix linter in web-app [#393](https://github.com/solinumasso/soliguide/issues/393) ([fa4e9c8](https://github.com/solinumasso/soliguide/commit/fa4e9c8fd39898d539d2aa5b7596a9df202b2099))
+
+
+### Features
+
+* add superset page for food access [#416](https://github.com/solinumasso/soliguide/issues/416) ([4aa0ade](https://github.com/solinumasso/soliguide/commit/4aa0ade9d7c4401e0ecb61996c31ac83216ed630))
+* **common:** :sparkles: show source Alisol [#413](https://github.com/solinumasso/soliguide/issues/413) ([b64032e](https://github.com/solinumasso/soliguide/commit/b64032e2f8f39d4e3b3f6ed36b9b2b668604b20a))
+* **common:** add category barber [#277](https://github.com/solinumasso/soliguide/issues/277) ([ac68430](https://github.com/solinumasso/soliguide/commit/ac68430317bba4059f9c54cf160ae8e29da5efdb))
+* **common:** add category barber [#277](https://github.com/solinumasso/soliguide/issues/277) ([625359d](https://github.com/solinumasso/soliguide/commit/625359d9318ac0155508c71abf8147acbb74d860))
+* **common:** add category barber to design system [#277](https://github.com/solinumasso/soliguide/issues/277) ([27dbb66](https://github.com/solinumasso/soliguide/commit/27dbb66a1179054366675f6e872c3e22a0cf7b03))
+* **common:** fix unit tests for common  [#277](https://github.com/solinumasso/soliguide/issues/277) ([234c901](https://github.com/solinumasso/soliguide/commit/234c901c8ec1a6675ee82d9f575b37aa30848f18))
+* **design-system:** add neutral version for spinner [#281](https://github.com/solinumasso/soliguide/issues/281) ([e836683](https://github.com/solinumasso/soliguide/commit/e836683fd74c3c624b3697775e02490b614fb6da))
+* **design-system:** deploy design system on qovery [#386](https://github.com/solinumasso/soliguide/issues/386) ([feb133d](https://github.com/solinumasso/soliguide/commit/feb133d345992f106cb37f213581b4de71f172c7))
+* **design-system:** integrate last colors modifications [#87](https://github.com/solinumasso/soliguide/issues/87) ([7688395](https://github.com/solinumasso/soliguide/commit/76883953346983ce5a79a3f920f7c5c0eefc508c))
+* **design-system:** modify button text colors [#181](https://github.com/solinumasso/soliguide/issues/181) ([8113626](https://github.com/solinumasso/soliguide/commit/8113626fa2e1eb5b6cdbb90052fbda1cde10cbae))
+* **design-system:** modify menu navbar text colo [#282](https://github.com/solinumasso/soliguide/issues/282) ([8469202](https://github.com/solinumasso/soliguide/commit/846920244511aeccd601ced2df5dc03a8aedb4eb))
+* **design-system:** modify text size in form control component [#284](https://github.com/solinumasso/soliguide/issues/284) ([978ccce](https://github.com/solinumasso/soliguide/commit/978ccce3d2ed5df9abae8bd72b188656aa42663e))
+* **design-system:** modify toggle button [#283](https://github.com/solinumasso/soliguide/issues/283) ([10eab4b](https://github.com/solinumasso/soliguide/commit/10eab4bfc61f9c95c094825d88a01d1ec022d77b))
+* **design-system:** reorganize storybook [#285](https://github.com/solinumasso/soliguide/issues/285) ([a5ebe33](https://github.com/solinumasso/soliguide/commit/a5ebe33567e6ea61b4aa9a858ebecac1565cf8cd))
+* **design-system:** update colors variable in the design system and theme [#280](https://github.com/solinumasso/soliguide/issues/280) ([1f497af](https://github.com/solinumasso/soliguide/commit/1f497afb2dbdd611264e35107c2751a0428b925d))
+* **design-system:** update css variables [#280](https://github.com/solinumasso/soliguide/issues/280) ([9a012cd](https://github.com/solinumasso/soliguide/commit/9a012cd54ea4baa268f2e9afc1768ad10988ffe3))
+* **soligare:** :sparkles: handle preview of category specific fields [#317](https://github.com/solinumasso/soliguide/issues/317) ([1d55d38](https://github.com/solinumasso/soliguide/commit/1d55d38ac739de1d2122f7bbcd37d267c39e708d))
+* **web-app:** comment tally's activation code ([00e9401](https://github.com/solinumasso/soliguide/commit/00e94013be9e7c947554b6161bfe87d3ea77d2a0))
+* **web-app:** modify current day color in place details [#502](https://github.com/solinumasso/soliguide/issues/502) ([a3e1534](https://github.com/solinumasso/soliguide/commit/a3e1534cb0d8446669f733cca1df1c7209a118c3))
+
+# [4.83.0](https://github.com/solinumasso/soliguide/compare/v4.82.0...v4.83.0) (2025-03-24)
+
+
+### Bug Fixes
+
+* allow pros to add pros to place [#109](https://github.com/solinumasso/soliguide/issues/109) ([33d33e2](https://github.com/solinumasso/soliguide/commit/33d33e27e0b5516882c001dd6eb88cb67cc20651))
+* **api:** :bug: fix nb results for api user [#322](https://github.com/solinumasso/soliguide/issues/322) ([f580952](https://github.com/solinumasso/soliguide/commit/f5809528a592821ac7e71f3186418435d3692c29))
+* **api:** fix [#62](https://github.com/solinumasso/soliguide/issues/62) ([7366ce5](https://github.com/solinumasso/soliguide/commit/7366ce50ab5333a360a356ba812bbe8a8ed9d336))
+* **api:** fix dump for tests [#62](https://github.com/solinumasso/soliguide/issues/62) ([26a738e](https://github.com/solinumasso/soliguide/commit/26a738e092b8e85e4fc600150ec532055ddd76fa))
+* **api:** fix number of results for api users  [#322](https://github.com/solinumasso/soliguide/issues/322) ([e4d137f](https://github.com/solinumasso/soliguide/commit/e4d137f4a80c4278fd56cda04dd5ddaffca22e35))
+* **api:** fix offline places diff between AT & soliguide [#345](https://github.com/solinumasso/soliguide/issues/345) ([b7be117](https://github.com/solinumasso/soliguide/commit/b7be117e3019391fa6d5f1bdbbb7279f73a79789))
+* **api:** fix origin checker for spain  [#62](https://github.com/solinumasso/soliguide/issues/62) ([f354398](https://github.com/solinumasso/soliguide/commit/f354398ef16a7c3cb43851b3afdb6f669c85dc36))
+* **api:** fix origin checker for spain  [#62](https://github.com/solinumasso/soliguide/issues/62) ([416a369](https://github.com/solinumasso/soliguide/commit/416a3690eed640108d14f54674aea65332a5da21))
+* **api:** fix origin request for pictures [#62](https://github.com/solinumasso/soliguide/issues/62) ([9919caf](https://github.com/solinumasso/soliguide/commit/9919caf01cbd80ecf7d7c2c0971ab55fb93b9a4a))
+* **api:** wrong english word for day to day [#376](https://github.com/solinumasso/soliguide/issues/376) ([e90d2b2](https://github.com/solinumasso/soliguide/commit/e90d2b211394751664d482799f3463b0f0608e62))
+* **common:** add github templates ([5a719da](https://github.com/solinumasso/soliguide/commit/5a719da0fe4928796ebb16f8e5f0cbd4c6fd7d44))
+* **common:** add ticket for tech stories ([42aae83](https://github.com/solinumasso/soliguide/commit/42aae83d11a68acdd89523280253f341bcc4d25e))
+* **frontend:** fix frontend deployment [#428](https://github.com/solinumasso/soliguide/issues/428) ([b0d39a5](https://github.com/solinumasso/soliguide/commit/b0d39a5efea4cae1da8891ed2252c5db70e42c67))
+* **frontend:** fix instagram link [#383](https://github.com/solinumasso/soliguide/issues/383) ([3410694](https://github.com/solinumasso/soliguide/commit/3410694ed196a0583dd2275a2ab9b309e3062038))
+* **frontend:** fix old categoy redirection [#354](https://github.com/solinumasso/soliguide/issues/354) ([d280266](https://github.com/solinumasso/soliguide/commit/d280266b6cc19669605eea5c21d6b32fa0fd5634))
+* license errors [#346](https://github.com/solinumasso/soliguide/issues/346) ([192c07d](https://github.com/solinumasso/soliguide/commit/192c07d1a9e7baec1e94bb69f194019692fa8c17))
+* make all tracking info english [#324](https://github.com/solinumasso/soliguide/issues/324) ([9bb0d61](https://github.com/solinumasso/soliguide/commit/9bb0d6155a0f4c811b7c4fdfa1d5751d669ce6ad))
+* **soligare:** :bug: dietary adaptations type is an array [#396](https://github.com/solinumasso/soliguide/issues/396) ([28f2cc0](https://github.com/solinumasso/soliguide/commit/28f2cc008e7e1a1aee5d3d78c084837ffb067e3c))
+* update dependency body-parser to v1.20.3 ([d632180](https://github.com/solinumasso/soliguide/commit/d6321806c8613834b99cabe56847ff7e848678a6))
+* update dependency compression to v1.7.5 ([cb124e8](https://github.com/solinumasso/soliguide/commit/cb124e8e22fe817b65d2de87f24eac644193967b))
+* update dependency cookie-parser to v1.4.7 ([bffda9d](https://github.com/solinumasso/soliguide/commit/bffda9d21a6bfe59b624dd3edaad6fab8296983b))
+* update dependency dotenv to v16.4.7 ([2b713b6](https://github.com/solinumasso/soliguide/commit/2b713b6649d431c9fe1ce14622262ba394876600))
+
+
+### Features
+
+* add superset page for food access [#416](https://github.com/solinumasso/soliguide/issues/416) ([96f1bbd](https://github.com/solinumasso/soliguide/commit/96f1bbd6657dd74c0505497b90c841fa54363d9a))
+* **common:** :sparkles: show source Alisol [#413](https://github.com/solinumasso/soliguide/issues/413) ([1b019d9](https://github.com/solinumasso/soliguide/commit/1b019d9d7467a4552dc529ad426c217d33639263))
+* **design-system:** deploy design system on qovery [#386](https://github.com/solinumasso/soliguide/issues/386) ([42d910e](https://github.com/solinumasso/soliguide/commit/42d910e17a8c68fcdaa363c2b5c0a444764c16c5))
+* **soligare:** :sparkles: handle preview of category specific fields [#317](https://github.com/solinumasso/soliguide/issues/317) ([066b7f0](https://github.com/solinumasso/soliguide/commit/066b7f03eb71b198335107bc8843bbf89e131f8e))
+* **web-app:** add types for window and activate Tally form [#47](https://github.com/solinumasso/soliguide/issues/47) ([8daaeb2](https://github.com/solinumasso/soliguide/commit/8daaeb2ed95b3642b36f4065e5fe70b854f8e1a9))
+* **web-app:** comment tally's activation code ([0cdaecc](https://github.com/solinumasso/soliguide/commit/0cdaeccd227c1b818d682564a328f069be13d5df))
+
+# [4.82.0](https://github.com/solinumasso/soliguide/compare/v4.81.0...v4.82.0) (2025-03-19)
+
+
+### Features
+
+* add space to restart job  [#416](https://github.com/solinumasso/soliguide/issues/416) ([d82b45e](https://github.com/solinumasso/soliguide/commit/d82b45ef7bc3935697cbbdae237984022e4f2b34))
+* add superset page for food access [#416](https://github.com/solinumasso/soliguide/issues/416) ([cc18c9a](https://github.com/solinumasso/soliguide/commit/cc18c9afcdd02da25fa478adbeebb1a56cac843b))
+
+# [4.81.0](https://github.com/solinumasso/soliguide/compare/v4.80.1...v4.81.0) (2025-03-14)
+
+
+### Features
+
+* **web-app:** comment tally's activation code [#393](https://github.com/solinumasso/soliguide/issues/393) ([#392](https://github.com/solinumasso/soliguide/issues/392)) ([a045d81](https://github.com/solinumasso/soliguide/commit/a045d81421fafc7ddec0bd20bf46a871284c2944))
+
 ## [4.80.1](https://github.com/solinumasso/soliguide/compare/v4.80.0...v4.80.1) (2025-03-04)
 
 

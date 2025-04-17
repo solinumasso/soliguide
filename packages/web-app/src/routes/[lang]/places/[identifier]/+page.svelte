@@ -68,7 +68,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         hideTitle: true
       }
     };
-
     const handleScroll = () => {
       const scrollY = window.scrollY || window.pageYOffset;
       scrolled = scrollY > headerHeight * 1.1;

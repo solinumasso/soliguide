@@ -49,7 +49,6 @@ export const handleOrigin = (req: ExpressRequest): string | null => {
         return null;
       }
 
-      console.log({ cleanedReferer });
       const refererUrl = new URL(cleanedReferer);
 
       if (CONFIG.ENV === "dev") {
