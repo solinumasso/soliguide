@@ -1764,6 +1764,7 @@
   "STRUCTURE_HORS_LIGNE_MESSAGE_LOGGED": "Această structură nu a fost actualizată de 6 luni, încercați să o contactați înainte de a direcționa pe cineva acolo și nu ezitați să ne contactați dacă vedeți informații incorecte.",
   "STRUCTURE_HORS_LIGNE_MESSAGE_NOT_LOGGED": "Această structură nu a fost actualizată de 6 luni, încercați să o contactați înainte de a merge acolo.",
   "STRUCTURE_HORS_LIGNE_MESSAGE_READER": "Această structură nu a fost actualizată de 6 luni, contactați pe cineva din organizația dvs. sau trimiteți-ne un mesaj prin chat pentru ca informațiile să poată fi modificate dacă este necesar sau pentru ca toate informațiile să poată fi reconfirmate.",
+  "STRUCTURE_IMPORTANT_INFO_OPEN_DETAILS": "Structura are informații importante de comunicat - deschideți fișierul detaliat",
   "STRUCTURE_NAME": "Numele structurii",
   "STRUCTURE_NAME_MANDATORY": "Numele structurii este obligatoriu (minimum 3 caractere)",
   "STRUCTURE_NEED_UPDATE": "Nu toate structurile online despre această organizație sunt complet actualizate.",

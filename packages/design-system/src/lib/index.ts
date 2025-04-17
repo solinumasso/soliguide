@@ -58,6 +58,7 @@ import {
   ColorLens,
   Computer,
   ConfirmationNumber,
+  ContentCut,
   Cottage,
   Countertops,
   Create,
@@ -74,6 +75,7 @@ import {
   FamilyRestroom,
   Flag,
   Forum,
+  Gavel,
   Hail,
   Healing,
   Home,
@@ -131,9 +133,7 @@ import {
   Toilets,
   Vaccines,
   Wifi,
-  Work,
-  HairDresser,
-  LegalProtection
+  Work
 } from './components/icons';
 
 import Divider from './components/layout/Divider.svelte';
@@ -147,6 +147,7 @@ import { Accordion, AccordionGroup } from './components/dataDisplay/Accordion/in
 import BasicCard from './components/dataDisplay/BasicCard.svelte';
 import TextClamper from './components/dataDisplay/TextClamper.svelte';
 import InfoBlock from './components/dataDisplay/InfoBlock.svelte';
+import Tile from './components/Tile.svelte';
 
 import Modal from './components/feedback/Modal.svelte';
 
@@ -191,6 +192,7 @@ export {
   ColorLens,
   Computer,
   ConfirmationNumber,
+  ContentCut,
   Cottage,
   Countertops,
   Create,
@@ -207,6 +209,7 @@ export {
   FamilyRestroom,
   Flag,
   Forum,
+  Gavel,
   Hail,
   Healing,
   Home,
@@ -261,6 +264,7 @@ export {
   Straighten,
   TagFaces,
   ThermostatAuto,
+  Tile,
   Toilets,
   Vaccines,
   Wifi,
@@ -293,7 +297,5 @@ export {
   DEFAULT_DEBOUNCE_DELAY,
   generateId,
   Modal,
-  Link,
-  HairDresser,
-  LegalProtection
+  Link
 };

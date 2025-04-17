@@ -19,9 +19,9 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <script lang="ts">
-  import { getContext, setContext } from 'svelte';
+  import { getContext, setContext, type ComponentType } from 'svelte';
   import { goto } from '$app/navigation';
-  import { Text } from '@soliguide/design-system';
+  import { Text, Tile } from '@soliguide/design-system';
   import { ROUTES_CTX_KEY } from '$lib/client';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import SearchButtonInput from './SearchButtonInput.svelte';
@@ -30,6 +30,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import type { ThemeDefinition } from '$lib/theme/types';
   import { get } from 'svelte/store';
   import { themeStore } from '$lib/theme';
+  import { Categories } from '@soliguide/common';
+  import { CategoryIcon } from '$lib/components';
+  import MoreHoriz from 'svelte-google-materialdesign-icons/More_horiz.svelte';
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
   const theme: ThemeDefinition = get(themeStore.getTheme());
@@ -43,6 +46,55 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     pageStore.captureEvent('start-search');
     goto($routes.ROUTE_SEARCH);
   };
+
+  const categoriesToDisplay: {
+    label: string;
+    iconCategory?: Categories;
+    iconComponent: ComponentType;
+    variant: 'primary' | 'secondary' | 'tertiary';
+  }[] = [
+    {
+      label: $i18n.t(Categories.FOOD.toUpperCase()),
+      iconCategory: Categories.FOOD,
+      iconComponent: CategoryIcon,
+      variant: 'primary'
+    },
+    {
+      label: $i18n.t(Categories.TRAINING_AND_JOBS.toUpperCase()),
+      iconCategory: Categories.TRAINING_AND_JOBS,
+      iconComponent: CategoryIcon,
+      variant: 'secondary'
+    },
+    {
+      label: $i18n.t(Categories.COUNSELING.toUpperCase()),
+      iconCategory: Categories.COUNSELING,
+      iconComponent: CategoryIcon,
+      variant: 'tertiary'
+    },
+    {
+      label: $i18n.t(`${Categories.EQUIPMENT.toUpperCase()}_${Categories.CLOTHING.toUpperCase()}`),
+      iconCategory: Categories.EQUIPMENT,
+      iconComponent: CategoryIcon,
+      variant: 'primary'
+    },
+    {
+      label: $i18n.t(Categories.HEALTH.toUpperCase()),
+      iconCategory: Categories.HEALTH,
+      iconComponent: CategoryIcon,
+      variant: 'secondary'
+    },
+    {
+      label: $i18n.t(Categories.HYGIENE_AND_WELLNESS.toUpperCase()),
+      iconCategory: Categories.HYGIENE_AND_WELLNESS,
+      iconComponent: CategoryIcon,
+      variant: 'tertiary'
+    },
+    {
+      label: $i18n.t('MANY_OTHERS'),
+      iconComponent: MoreHoriz,
+      variant: 'primary'
+    }
+  ];
 </script>
 
 <svelte:head>
@@ -68,6 +120,29 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <div class="search-block">
     <Text type="title2PrimaryExtraBold">{$i18n.t('START_A_SEARCH')}</Text>
     <SearchButtonInput on:click={goSearch} />
+  </div>
+  <div class="categories">
+    <span class="categories-text">
+      <Text type="title3PrimaryExtraBold" as="h3"
+        >{$i18n.t('MORE_THAN_50_SOCIAL_EMERGENCY_CATEGORIES')}</Text
+      >
+    </span>
+    <div class="categories-tiles">
+      {#each categoriesToDisplay as { label, variant, iconCategory, iconComponent }}
+        <Tile {label} {variant}>
+          {#if iconCategory}
+            <svelte:component
+              this={iconComponent}
+              categoryId={iconCategory}
+              variation="filled"
+              size={'16'}
+            />
+          {:else}
+            <svelte:component this={iconComponent} size={'16'} />
+          {/if}</Tile
+        >
+      {/each}
+    </div>
   </div>
 </section>
 
@@ -101,5 +176,19 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     flex-direction: column;
     gap: var(--spacingXS);
     margin-bottom: var(--spacing3XL);
+  }
+
+  .categories {
+    .categories-text {
+      text-align: center;
+    }
+
+    .categories-tiles {
+      margin-top: var(--spacing3XL);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacingLG);
+      align-items: center;
+    }
   }
 </style>
