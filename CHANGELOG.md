@@ -1,3 +1,17 @@
+# [4.85.0](https://github.com/solinumasso/soliguide/compare/v4.84.0...v4.85.0) (2025-04-17)
+
+
+### Bug Fixes
+
+* allow change territory [#455](https://github.com/solinumasso/soliguide/issues/455) ([#479](https://github.com/solinumasso/soliguide/issues/479)) ([271e144](https://github.com/solinumasso/soliguide/commit/271e14471f1124757258a46021d617a2f693e97b))
+
+
+### Features
+
+* **web-app:** adding categories in the home page [#56](https://github.com/solinumasso/soliguide/issues/56) ([f72f930](https://github.com/solinumasso/soliguide/commit/f72f930633e56f185317daff813b9ec8a6682e0d))
+* **web-app:** adding hairdresser and legalprotection icons [#529](https://github.com/solinumasso/soliguide/issues/529) ([3949725](https://github.com/solinumasso/soliguide/commit/39497258ca2e2da4d65e5ab7d917ee750439f8cb))
+* **web-app:** modify background color of infoBlock [#424](https://github.com/solinumasso/soliguide/issues/424) ([8f50fb5](https://github.com/solinumasso/soliguide/commit/8f50fb5434aa72721344faf607899fafd6ce8bce))
+
 # [4.84.0](https://github.com/solinumasso/soliguide/compare/v4.83.0...v4.84.0) (2025-04-15)
 
 
