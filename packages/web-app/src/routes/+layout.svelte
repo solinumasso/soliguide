@@ -27,12 +27,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { derived, get } from 'svelte/store';
   import ZendeskIntegration from './ZendeskIntegration.svelte';
   import { posthogService } from '$lib/services/posthogService';
-  import {
-    ThemeContext,
-    getDesignSystemLocale,
-    changeDesignSystemLocale
-  } from '@soliguide/design-system';
-  import '../assets/styles/main.scss';
+  import { getDesignSystemLocale, changeDesignSystemLocale } from '@soliguide/design-system';
+  import '../app.css';
   import { I18N_CTX_KEY, getI18nStore } from '$lib/client/i18n';
   import { ROUTES_CTX_KEY, getRoutes, isLanguageSelected, getZDCookieConsent } from '$lib/client';
   import { cookieConsent, COOKIE_CTX_KEY } from '$lib/client/cookie';
@@ -78,13 +74,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <link rel="canonical" href={$page.url.href} />
 </svelte:head>
 
-<ThemeContext>
-  <ZendeskIntegration>
-    <main>
-      <slot />
-    </main>
-  </ZendeskIntegration>
-</ThemeContext>
+<ZendeskIntegration>
+  <main>
+    <slot />
+  </main>
+</ZendeskIntegration>
 
 <style lang="scss">
   main {
