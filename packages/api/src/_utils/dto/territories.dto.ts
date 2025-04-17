@@ -37,16 +37,5 @@ export const territoriesDto = [
     .customSanitizer((territories: AnyDepartmentCode) => {
       return [...new Set(territories)];
     }),
-
-  body("areas.*.departments")
-    .if(body("areas.*.departments").exists(CHECK_STRING_NULL))
-    .isArray()
-    .custom((departments: AnyDepartmentCode[], { req }) => {
-      return checkRightsForTerritories(departments, req as ExpressRequest);
-    })
-    .customSanitizer((departments: AnyDepartmentCode[]) => {
-      return [...new Set(departments)];
-    }),
-
   ...countryDto,
 ];
