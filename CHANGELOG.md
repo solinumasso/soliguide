@@ -1,3 +1,10 @@
+## [4.85.1](https://github.com/solinumasso/soliguide/compare/v4.85.0...v4.85.1) (2025-04-17)
+
+
+### Bug Fixes
+
+* Revert "allow change territory [#455](https://github.com/solinumasso/soliguide/issues/455) ([#479](https://github.com/solinumasso/soliguide/issues/479))" ([2b7d801](https://github.com/solinumasso/soliguide/commit/2b7d80160d1a8f0803cf53392bd60991bea6552a))
+
 # [4.85.0](https://github.com/solinumasso/soliguide/compare/v4.84.0...v4.85.0) (2025-04-17)
 
 
