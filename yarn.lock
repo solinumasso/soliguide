@@ -9460,7 +9460,6 @@ __metadata:
     prettier: "npm:^2.8.8"
     rxjs: "npm:^7.8.1"
     schema-dts: "npm:^1.1.2"
-    silktide-consent-manager: "https://github.com/solinumasso/silktide-consent-manager.git#feat-add-package.json"
     source-map-explorer: "npm:^2.5.3"
     ts-jest: "npm:^29.1.4"
     ts-node: "npm:10.9.2"
@@ -27948,13 +27947,6 @@ __metadata:
     "@sigstore/tuf": "npm:^2.3.4"
     "@sigstore/verify": "npm:^1.2.1"
   checksum: 10c0/8906b1074130d430d707e46f15c66eb6996891dc0d068705f1884fb1251a4a367f437267d44102cdebcee34f1768b3f30131a2ec8fb7aac74ba250903a459aa7
-  languageName: node
-  linkType: hard
-
-"silktide-consent-manager@https://github.com/solinumasso/silktide-consent-manager.git#feat-add-package.json":
-  version: 0.0.0
-  resolution: "silktide-consent-manager@https://github.com/solinumasso/silktide-consent-manager.git#commit=94ea2e9c4aa49e36f2d79bc037e6705b5add47c4"
-  checksum: 10c0/367b7f3711af718f8cea4856a1469d7676cbf01983f1a25ad38dc3a9304cf5cbf3043809317fae01e90e0f012d9b7b4c6f1ac21fa80a3df689e47d41e924c386
   languageName: node
   linkType: hard
 
