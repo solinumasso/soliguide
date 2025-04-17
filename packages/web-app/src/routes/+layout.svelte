@@ -32,7 +32,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     getDesignSystemLocale,
     changeDesignSystemLocale
   } from '@soliguide/design-system';
-  import '../assets/styles/main.scss';
+  import '../app.css';
   import { I18N_CTX_KEY, getI18nStore } from '$lib/client/i18n';
   import { ROUTES_CTX_KEY, getRoutes, isLanguageSelected, getZDCookieConsent } from '$lib/client';
   import { cookieConsent, COOKIE_CTX_KEY } from '$lib/client/cookie';
