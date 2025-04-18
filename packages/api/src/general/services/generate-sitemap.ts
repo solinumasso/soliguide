@@ -36,10 +36,9 @@ export const generateRegionSitemap = async (siteMapDto: {
   country: SoliguideCountries;
   regionCode: AnyRegionCode;
 }) => {
-  console.log(siteMapDto);
   const { country, regionCode } = siteMapDto;
   logger.info(
-    `[SITEMAP] Generating sitemap for region ${country} ${regionCode}`
+    `[SITEMAP] Generating sitemap for region ${regionCode} in ${country}`
   );
 
   try {
@@ -47,7 +46,6 @@ export const generateRegionSitemap = async (siteMapDto: {
       .create("urlset")
       .att("xmlns", "http://www.sitemaps.org/schemas/sitemap/0.9");
 
-    // Rechercher tous les lieux de cette région directement par le code région
     const sitemapPlaces = await PlaceModel.find({
       placeType: PlaceType.PLACE,
       "position.country": country,
@@ -58,19 +56,12 @@ export const generateRegionSitemap = async (siteMapDto: {
       .lean()
       .exec();
 
-    console.log({
-      placeType: PlaceType.PLACE,
-      "position.country": country,
-      "position.regionCode": regionCode,
-      status: PlaceStatus.ONLINE,
-    });
     logger.info(
       `[SITEMAP] Region ${regionCode} includes ${sitemapPlaces.length} places for sitemap`
     );
 
     const frontUrl = CONFIG.SOLIGUIDE_FR_URL;
 
-    // Ajouter tous les lieux de la région
     for (const place of sitemapPlaces) {
       const url = urlset.ele("url");
       url.ele(

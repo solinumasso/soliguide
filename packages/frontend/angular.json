@@ -29,12 +29,8 @@
               "src/favicon.ico",
               "src/robots.txt",
               "src/assets",
-              {
-                "glob": "**/*",
-                "input": "src/assets/sitemaps",
-                "output": "/"
-              },
               "src/assets/locales",
+              "src/assets/sitemaps",
               "src/head.prod.html.tpl"
             ],
             "styles": [
