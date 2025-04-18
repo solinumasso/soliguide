@@ -74,5 +74,6 @@
       "prettier --cache --ignore-unknown -w",
       "ng-lint-staged lint --fix --"
     ]
-  }
+  },
+  "packageManager": "yarn@4.9.1"
 }
