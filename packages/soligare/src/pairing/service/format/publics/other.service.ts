@@ -59,9 +59,6 @@ export class PublicsOtherService {
     if (postgresPublicsOther[0].student) {
       publicsOther.push(PublicsOther.student);
     }
-    if (postgresPublicsOther[0].ukraine) {
-      publicsOther.push(PublicsOther.ukraine);
-    }
     if (postgresPublicsOther[0].violence) {
       publicsOther.push(PublicsOther.violence);
     }

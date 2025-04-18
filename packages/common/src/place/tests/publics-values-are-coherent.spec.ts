@@ -20,7 +20,7 @@
  */
 import { Publics } from "../../publics/classes/Publics.class";
 import { WelcomedPublics } from "../../publics";
-import { publicsValuesAreCoherent } from "../functions/publics-values-are-coherent";
+import { publicsValuesAreCoherent } from "../../publics/functions/publics-values-are-coherent";
 describe("Check if the 'publics' comply with rules", () => {
   it("Should return true because Welcomed publics = inconditionnal", () => {
     const defaultPublics = new Publics();
