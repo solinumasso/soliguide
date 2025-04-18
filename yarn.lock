@@ -13542,13 +13542,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bson-objectid@npm:^2.0.4":
-  version: 2.0.4
-  resolution: "bson-objectid@npm:2.0.4"
-  checksum: 10c0/9dbe55a8cd5ed5ddae0c971429a34caadcf38bc5b98070302e740be2e3c04ab2280925c8f4cba28c88e13f51018dff7d674c610370847286e27e6d76c8990a3f
-  languageName: node
-  linkType: hard
-
 "bson@npm:^6.10.3":
   version: 6.10.3
   resolution: "bson@npm:6.10.3"
