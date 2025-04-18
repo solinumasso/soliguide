@@ -156,27 +156,27 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "frontend:build"
+            "buildTarget": "frontend:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "frontend:build:production"
+              "buildTarget": "frontend:build:production"
             },
             "development_fr": {
-              "browserTarget": "frontend:build:development_fr"
+              "buildTarget": "frontend:build:development_fr"
             },
             "development_ad": {
-              "browserTarget": "frontend:build:development_ad"
+              "buildTarget": "frontend:build:development_ad"
             },
             "development_es": {
-              "browserTarget": "frontend:build:development_es"
+              "buildTarget": "frontend:build:development_es"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "frontend:build"
+            "buildTarget": "frontend:build"
           }
         },
         "lint": {
