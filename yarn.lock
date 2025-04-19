@@ -716,20 +716,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/cdk@npm:^15.2.9":
-  version: 15.2.9
-  resolution: "@angular/cdk@npm:15.2.9"
+"@angular/cdk@npm:^19.0.0":
+  version: 19.2.10
+  resolution: "@angular/cdk@npm:19.2.10"
   dependencies:
     parse5: "npm:^7.1.2"
     tslib: "npm:^2.3.0"
   peerDependencies:
-    "@angular/common": ^15.0.0 || ^16.0.0
-    "@angular/core": ^15.0.0 || ^16.0.0
+    "@angular/common": ^19.0.0 || ^20.0.0
+    "@angular/core": ^19.0.0 || ^20.0.0
     rxjs: ^6.5.3 || ^7.4.0
-  dependenciesMeta:
-    parse5:
-      optional: true
-  checksum: 10c0/d3336ec074fe0fdca4f43aa93fcc4cae2a5d62b189991887a0b4a449ffa9e80f7b06f29e54088cfbe88923a58873c47f5d4cd9a0cd4c3f4cab1a46879a4ae8ef
+  checksum: 10c0/b229da66ed8706a5b0a85ae439bc71fdd6d6870dde25cfc9b0d62c9271d8da363ada1a3e79b8a17bbc4b706948934034eaff3368701e460b3ae48908cdd3d7ba
   languageName: node
   linkType: hard
 
@@ -9385,7 +9382,7 @@ __metadata:
     "@angular-eslint/schematics": "npm:^15.2.1"
     "@angular-eslint/template-parser": "npm:^15.2.1"
     "@angular/animations": "npm:15.2.10"
-    "@angular/cdk": "npm:^15.2.9"
+    "@angular/cdk": "npm:^19.0.0"
     "@angular/cli": "npm:15.2.11"
     "@angular/common": "npm:^15.2.10"
     "@angular/compiler": "npm:15.2.10"
