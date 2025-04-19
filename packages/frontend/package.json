@@ -31,7 +31,7 @@
     "@algolia/autocomplete-theme-classic": "^1.17.4",
     "@algolia/client-search": "^4.24.0",
     "@angular/animations": "15.2.10",
-    "@angular/cdk": "^15.2.9",
+    "@angular/cdk": "^19.0.0",
     "@angular/common": "^15.2.10",
     "@angular/compiler": "15.2.10",
     "@angular/core": "^15.2.10",
