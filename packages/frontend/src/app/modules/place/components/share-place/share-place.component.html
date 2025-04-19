@@ -58,8 +58,19 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       appCleanStr="share"
     ></textarea>
 
+    <button
+      type="button"
+      shareButton="copy"
+      [sbUrl]="linkDescription"
+      [sbTitle]="'COPIER_PRESSE_PAPIER' | translate"
+      [sbIcon]="faCopy"
+      [sbColor]="'#3C396D'"
+      (sbClick)="clipboard.copy(linkDescription)"
+    >
+      {{ "COPIER_PRESSE_PAPIER" | translate }}
+    </button>
     <ng-template ngFor let-platform [ngForOf]="PLATFORMS_TO_SHARE">
-      <share-button
+      <share-buttons
         class="text-center"
         theme="default"
         [button]="platform"
@@ -70,7 +81,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         [description]="linkDescription"
         [image]="'/images/social.jpg'"
         (click)="clickOnPlatform(platform)"
-      ></share-button>
+      ></share-buttons>
     </ng-template>
   </div>
 </ng-template>

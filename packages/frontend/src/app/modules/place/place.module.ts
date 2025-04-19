@@ -35,8 +35,6 @@ import { NgxJsonLdModule } from "@ngx-lite/json-ld";
 
 import { TranslateModule } from "@ngx-translate/core";
 
-import { ShareButtonModule } from "ngx-sharebuttons/button";
-
 import { SingleContactComponent } from "./components/display-contacts/single-contact/single-contact.component";
 import { DisplayContactsComponent } from "./components/display-contacts/display-contacts.component";
 import { DisplayDocsComponent } from "./components/display-docs/display-docs.component";
@@ -55,8 +53,6 @@ import { DisplayTempBannerComponent } from "./components/display-temp-banner/dis
 import { PlaceComponent } from "./components/place/place.component";
 import { PlaceUpdateCampaignBannerComponent } from "./components/place-update-campaign-banner/place-update-campaign-banner.component";
 
-import { SearchMapComponent } from "./components/search-map/search-map.component";
-
 import { SharePlaceComponent } from "./components/share-place/share-place.component";
 
 import { PlaceRoutingModule } from "./place-routing.module";
@@ -68,11 +64,14 @@ import { CampaignService } from "../campaign/services/campaign.service";
 import { CampaignSharedModule } from "../campaign-shared/campaign-shared.module";
 
 import { SharedModule } from "../shared/shared.module";
-import { FormatInternationalPhoneNumberPipe } from "../shared/pipes";
+
 import { PlaceTransportsComponent } from "./components/place-transports/place-transports.component";
 import { DisplayHolidaysComponent } from "./components/display-holidays/display-holidays.component";
 import { HolidaysService } from "./services/holidays.service";
 import { HttpClientModule } from "@angular/common/http";
+import { ShareButtons } from "ngx-sharebuttons/buttons";
+import { SearchMapComponent } from "./standalone-components/search-map/search-map.component";
+import { FormatInternationalPhoneNumberPipe } from "../shared";
 
 @NgModule({
   declarations: [
@@ -91,7 +90,6 @@ import { HttpClientModule } from "@angular/common/http";
     DisplayTempBannerComponent,
     PlaceComponent,
     PlaceUpdateCampaignBannerComponent,
-    SearchMapComponent,
     SharePlaceComponent,
     SingleContactComponent,
     PlaceTransportsComponent,
@@ -105,8 +103,9 @@ import { HttpClientModule } from "@angular/common/http";
     NgbModule,
     NgxJsonLdModule,
     PlaceRoutingModule,
-    ShareButtonModule,
     SharedModule,
+    ShareButtons,
+    SearchMapComponent,
     HttpClientModule,
     TranslateModule,
     CampaignSharedModule,
@@ -126,7 +125,6 @@ import { HttpClientModule } from "@angular/common/http";
     DisplayServicesComponent,
     DisplayTempBannerComponent,
     PlaceComponent,
-    SearchMapComponent,
     SingleContactComponent,
     DisplaySpecificFieldsComponent,
     DisplayHolidaysComponent,

@@ -43,7 +43,7 @@ import { PlaceModule } from "../place/place.module";
 import { SearchModule } from "../search/search.module";
 
 import { SharedModule } from "../shared/shared.module";
-import { FormatInternationalPhoneNumberPipe } from "../shared/pipes/formatInternationalPhoneNumber.pipe";
+import { FormatInternationalPhoneNumberPipe } from "../shared";
 
 @NgModule({
   declarations: [

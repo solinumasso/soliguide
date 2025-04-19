@@ -48,10 +48,10 @@ import {
   type Categories,
 } from "@soliguide/common";
 import type { PosthogProperties } from "@soliguide/common-angular";
+import { Search } from "../../../search/interfaces";
 
-import type { Search } from "../../interfaces";
-import { SearchService } from "../../services/search.service";
 import { PosthogService } from "../../../analytics/services/posthog.service";
+import { SearchBarService } from "../../services/search-bar.service";
 
 @Component({
   selector: "app-search-category-autocomplete",
@@ -81,7 +81,7 @@ export class SearchCategoryAutocompleteComponent
 
   constructor(
     private readonly translateService: TranslateService,
-    private readonly searchService: SearchService,
+    private readonly searchBarService: SearchBarService,
     private readonly posthogService: PosthogService
   ) {
     this.showSuggestions = false;
@@ -104,7 +104,7 @@ export class SearchCategoryAutocompleteComponent
       }),
       filter((res) => res.length > 0),
       distinctUntilChanged(),
-      switchMap((text) => this.searchService.autoComplete(text)),
+      switchMap((text) => this.searchBarService.autoComplete(text)),
       tap({
         next: () => {
           this.searching = true;

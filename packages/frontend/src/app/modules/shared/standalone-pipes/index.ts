@@ -18,12 +18,5 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Pipe, PipeTransform } from "@angular/core";
-import { parseSpecialPhoneNumber } from "@soliguide/common";
-
-@Pipe({ name: "formatPhoneNumber" })
-export class FormatPhoneNumberPipe implements PipeTransform {
-  public transform(phoneNumber: string): string {
-    return parseSpecialPhoneNumber(phoneNumber);
-  }
-}
+//@index('./*.pipe.ts', f => `export * from '${f.path}'`)
+export * from "./formatInternationalPhoneNumber.pipe";

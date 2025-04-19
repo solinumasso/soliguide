@@ -22,15 +22,12 @@ import {
   AfterViewInit,
   Component,
   Input,
-  OnInit,
   TemplateRef,
   ViewChild,
 } from "@angular/core";
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateService } from "@ngx-translate/core";
-import { ShareService } from "ngx-sharebuttons";
 import { ToastrService } from "ngx-toastr";
-import { of, tap } from "rxjs";
 import { Place, THEME_CONFIGURATION } from "../../../../models";
 import { Clipboard } from "@angular/cdk/clipboard";
 import { CurrentLanguageService } from "../../../general/services/current-language.service";
@@ -38,6 +35,7 @@ import { DEFAULT_MODAL_OPTIONS } from "../../../../shared";
 import { PosthogComponent } from "../../../analytics/components/posthog.component";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { OriginService } from "../../../shared/services/origin.service";
+import { faCopy } from "@fortawesome/free-regular-svg-icons";
 
 @Component({
   selector: "app-share-place",
@@ -46,7 +44,7 @@ import { OriginService } from "../../../shared/services/origin.service";
 })
 export class SharePlaceComponent
   extends PosthogComponent
-  implements OnInit, AfterViewInit
+  implements AfterViewInit
 {
   @Input() public place!: Place;
   @Input() public showAddress = false;
@@ -64,43 +62,23 @@ export class SharePlaceComponent
     "sms",
     "facebook",
     "email",
-    "copyDescriptionButton",
   ] as const;
+
+  public readonly faCopy = faCopy;
 
   constructor(
     private readonly toastrService: ToastrService,
-    private readonly translateService: TranslateService,
     private readonly modalService: NgbModal,
-    private readonly share: ShareService,
-    private readonly clipboard: Clipboard,
     private readonly currentLanguageService: CurrentLanguageService,
     private readonly originService: OriginService,
+    public readonly translateService: TranslateService,
+    public readonly clipboard: Clipboard,
     posthogService: PosthogService
   ) {
     super(posthogService, "share-place");
     this.linkTitle = "";
     this.linkUrl = "";
     this.linkDescription = "";
-  }
-
-  public ngOnInit() {
-    this.share.addButton("copyDescriptionButton", {
-      type: "copyDescriptionButton",
-      text: this.translateService.instant("COPIER_PRESSE_PAPIER"),
-      icon: ["fas", "copy"],
-      color: "#3C396D",
-      params: {},
-
-      func: () =>
-        of({}).pipe(
-          tap(() => {
-            this.clipboard.copy(this.linkDescription);
-            this.toastrService.success(
-              this.translateService.instant("LINK_COPIED_SUCCESSFULLY")
-            );
-          })
-        ),
-    });
   }
 
   public ngAfterViewInit(): void {

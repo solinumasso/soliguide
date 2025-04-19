@@ -42,7 +42,6 @@ import { DownloadMobileAppComponent } from "./components/download-mobile-app/dow
 import { FooterComponent } from "./components/footer/footer.component";
 import { GeneralService } from "./services/general.services";
 
-import { SearchModule } from "../search/search.module";
 import { SharedModule } from "../shared/shared.module";
 import { CookiesModalComponent } from "./components/cookies-modal/cookies-modal.component";
 import { ChatService } from "../shared/services";
@@ -52,6 +51,8 @@ import { SeasonalAnalysisComponent } from "./components/solidata/seasonal-analys
 import { TerritorialAnalysisComponent } from "./components/solidata/territorial-analysis.component";
 import { HomeTerritoriesStatsComponent } from "./components/home-territiries-stats/home-territories-stats.component";
 import { FoodAccessComponent } from "./components/solidata/food-access.component";
+import { SearchBarModule } from "../search-bar/search-bar.module";
+import { SearchModule } from "../search/search.module";
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { FoodAccessComponent } from "./components/solidata/food-access.component
     ReactiveFormsModule,
     RouterModule.forRoot([]),
     SearchModule,
+    SearchBarModule,
     SharedModule,
     TranslateModule,
   ],

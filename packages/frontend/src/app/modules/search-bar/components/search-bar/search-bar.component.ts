@@ -22,8 +22,7 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 import type { LocationAutoCompleteAddress } from "@soliguide/common";
 import type { PosthogProperties } from "@soliguide/common-angular";
-
-import type { Search } from "../../interfaces/search.interface";
+import { Search } from "../../../search/interfaces";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 
 @Component({

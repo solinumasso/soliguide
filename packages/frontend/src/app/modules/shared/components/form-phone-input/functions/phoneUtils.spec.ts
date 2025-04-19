@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { CountryISO } from "@khazii/ngx-intl-tel-input";
+import { CountryISO } from "ngx-intl-tel-input";
 import { setFormPhone } from "./phoneUtils";
 import { THEME_CONFIGURATION } from "../../../../../models";
 

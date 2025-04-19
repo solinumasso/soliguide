@@ -50,7 +50,7 @@
     "date-fns": "^2.30.0",
     "date-fns-timezone": "^0.1.4",
     "date-fns-tz": "^2.0.1",
-    "google-libphonenumber": "^3.2.34",
+    "google-libphonenumber": "^3.2.40",
     "html-entities": "^2.6.0",
     "i18next": "^22.5.1",
     "i18next-fs-backend": "^2.3.1",

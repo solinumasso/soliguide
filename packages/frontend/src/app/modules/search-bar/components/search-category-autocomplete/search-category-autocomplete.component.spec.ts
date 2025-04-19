@@ -26,11 +26,11 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateModule } from "@ngx-translate/core";
 import { ToastrModule } from "ngx-toastr";
-import { Search } from "../../interfaces/search.interface";
 
 import { SearchCategoryAutocompleteComponent } from "./search-category-autocomplete.component";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { CommonPosthogMockService } from "../../../../../../mocks";
+import { Search } from "../../../search/interfaces";
 
 describe("SearchCategoryAutocompleteComponent", () => {
   let component: SearchCategoryAutocompleteComponent;

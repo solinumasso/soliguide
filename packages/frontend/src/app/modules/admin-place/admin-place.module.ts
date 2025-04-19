@@ -53,9 +53,11 @@ import { CampaignSharedModule } from "../campaign-shared/campaign-shared.module"
 import { FicheChangesModule } from "../place-changes/place-changes.module";
 import { ManageCommonModule } from "../manage-common/manage-common.module";
 import { PlaceModule } from "../place/place.module";
-import { SearchModule } from "../search/search.module";
 import { SharedModule } from "../shared/shared.module";
 import { HttpClientJsonpModule } from "@angular/common/http";
+import { LocationAutocompleteComponent } from "../shared/components/location-autocomplete/location-autocomplete.component";
+import { SearchMapComponent } from "../place/standalone-components/search-map/search-map.component";
+import { SearchBarModule } from "../search-bar/search-bar.module";
 
 @NgModule({
   declarations: [
@@ -84,9 +86,11 @@ import { HttpClientJsonpModule } from "@angular/common/http";
     ManageCommonModule,
     NgbModule,
     PlaceModule,
-    SearchModule,
     SharedModule,
     TranslateModule,
+    LocationAutocompleteComponent,
+    SearchMapComponent,
+    SearchBarModule,
   ],
   providers: [ManagePlacesService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
