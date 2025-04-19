@@ -3443,18 +3443,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ckeditor/ckeditor5-angular@npm:^6.0.1":
-  version: 6.0.1
-  resolution: "@ckeditor/ckeditor5-angular@npm:6.0.1"
+"@ckeditor/ckeditor5-angular@npm:^9.0.0":
+  version: 9.1.0
+  resolution: "@ckeditor/ckeditor5-angular@npm:9.1.0"
   dependencies:
-    "@ckeditor/ckeditor5-watchdog": "npm:^37.0.0"
+    "@ckeditor/ckeditor5-integrations-common": "npm:^2.2.2"
     tslib: "npm:^2.3.0"
   peerDependencies:
-    "@angular/common": ">=13.0.0"
-    "@angular/core": ">=13.0.0"
-    "@angular/forms": ">=13.0.0"
+    "@angular/common": ">=16.0.0"
+    "@angular/core": ">=16.0.0"
+    "@angular/forms": ">=16.0.0"
+    ckeditor5: ">=42.0.0 || ^0.0.0-nightly"
     rxjs: ">=6.0.0"
-  checksum: 10c0/f08c81f7a633370d7cd9673e7da9e018f81a16200d1f6145a1568b42bafc0b3745699cafb8fd71fbb3e4e9485a2cabbacd81f66cadf07ac95b43808a8bc71670
+  checksum: 10c0/0baaab11e0e2893857f0effead6954499ef24607c2ef8b3a8b1cd078662f63abba9b84b02b429983bd937f56c66245b39da90606c8ea89f3c189af92946cfa4c
   languageName: node
   linkType: hard
 
@@ -3642,6 +3643,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ckeditor/ckeditor5-integrations-common@npm:^2.2.2":
+  version: 2.2.3
+  resolution: "@ckeditor/ckeditor5-integrations-common@npm:2.2.3"
+  peerDependencies:
+    ckeditor5: ">=42.0.0 || ^0.0.0-nightly"
+  checksum: 10c0/de3f3c513d6d65a972a505568639224ebfa7b18e7887b5344c457e36475ec233d5425495ab88478d977ae3623eca1457e9d720895fe5ea60d4837580ffae07af
+  languageName: node
+  linkType: hard
+
 "@ckeditor/ckeditor5-link@npm:^35.4.0":
   version: 35.4.0
   resolution: "@ckeditor/ckeditor5-link@npm:35.4.0"
@@ -3765,15 +3775,6 @@ __metadata:
   dependencies:
     lodash-es: "npm:^4.17.15"
   checksum: 10c0/5fe4619d5f047e088cb08d509beca85d794fd7790b08d030ba5bad4cb09c3145429a502612ef89fabec476706810d750656241d51f9cc1d5f4fab58a1dfd92c3
-  languageName: node
-  linkType: hard
-
-"@ckeditor/ckeditor5-watchdog@npm:^37.0.0":
-  version: 37.1.0
-  resolution: "@ckeditor/ckeditor5-watchdog@npm:37.1.0"
-  dependencies:
-    lodash-es: "npm:^4.17.15"
-  checksum: 10c0/15e7f42c4afa65f22068a8f6bed34a6b5ec4be1262785960903c83a0d97a9ecc97fead1fd2d93cb71c3631fb04127d5b6f399b0f7d7537199ad01914c61e2a8a
   languageName: node
   linkType: hard
 
@@ -9397,7 +9398,7 @@ __metadata:
     "@angular/platform-browser": "npm:15.2.10"
     "@angular/platform-browser-dynamic": "npm:15.2.10"
     "@angular/router": "npm:15.2.10"
-    "@ckeditor/ckeditor5-angular": "npm:^6.0.1"
+    "@ckeditor/ckeditor5-angular": "npm:^9.0.0"
     "@ckeditor/ckeditor5-build-classic": "npm:^35.4.0"
     "@fortawesome/angular-fontawesome": "npm:0.12.1"
     "@fortawesome/fontawesome-svg-core": "npm:^6.5.2"
