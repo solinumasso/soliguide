@@ -6101,19 +6101,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ng-bootstrap/ng-bootstrap@npm:^14.2.0":
-  version: 14.2.0
-  resolution: "@ng-bootstrap/ng-bootstrap@npm:14.2.0"
+"@ng-bootstrap/ng-bootstrap@npm:^18.0.0":
+  version: 18.0.0
+  resolution: "@ng-bootstrap/ng-bootstrap@npm:18.0.0"
   dependencies:
     tslib: "npm:^2.3.0"
   peerDependencies:
-    "@angular/common": ^15.0.0
-    "@angular/core": ^15.0.0
-    "@angular/forms": ^15.0.0
-    "@angular/localize": ^15.0.0
-    "@popperjs/core": ^2.11.6
+    "@angular/common": ^19.0.0
+    "@angular/core": ^19.0.0
+    "@angular/forms": ^19.0.0
+    "@angular/localize": ^19.0.0
+    "@popperjs/core": ^2.11.8
     rxjs: ^6.5.3 || ^7.4.0
-  checksum: 10c0/f13c8b7957fca6eb6b0fbf0f04e7eeb19c40c1baef2f422b5f823bdbf6d25194a4247c83c63c91a19b68d6994c635481503bafef6d6b3f04c275e9286103503c
+  checksum: 10c0/289b6793116a69422b72d64950315f987db1f3e5b0059655853176cb2970748c9c4b575cc8856fee5acf6446372d52fbfa8fc928c98d5258c7515d3ee4503451
   languageName: node
   linkType: hard
 
@@ -9405,7 +9405,7 @@ __metadata:
     "@fortawesome/free-regular-svg-icons": "npm:^6.5.2"
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.2"
     "@khazii/ngx-intl-tel-input": "npm:^17.0.1"
-    "@ng-bootstrap/ng-bootstrap": "npm:^14.2.0"
+    "@ng-bootstrap/ng-bootstrap": "npm:^18.0.0"
     "@ngx-lite/json-ld": "npm:^14.0.0"
     "@ngx-translate/core": "npm:^14.0.0"
     "@ngx-translate/http-loader": "npm:^7.0.0"
@@ -9674,7 +9674,7 @@ __metadata:
     "@fortawesome/angular-fontawesome": "npm:0.12.1"
     "@fortawesome/fontawesome-svg-core": "npm:^6.5.2"
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.2"
-    "@ng-bootstrap/ng-bootstrap": "npm:^14.2.0"
+    "@ng-bootstrap/ng-bootstrap": "npm:^18.0.0"
     "@ngx-translate/core": "npm:^14.0.0"
     "@ngx-translate/http-loader": "npm:^7.0.0"
     "@popperjs/core": "npm:^2.11.8"
