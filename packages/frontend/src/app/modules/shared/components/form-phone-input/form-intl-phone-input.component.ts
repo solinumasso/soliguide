@@ -33,7 +33,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { CommonModule, JsonPipe, NgIf } from "@angular/common";
+import { CommonModule, NgIf } from "@angular/common";
 
 import { Subscription } from "rxjs";
 import { TranslateModule } from "@ngx-translate/core";
@@ -49,7 +49,7 @@ import {
   SearchCountryField,
   PhoneNumberFormat as NgxIntlPhoneNumberFormat,
   ChangeData,
-} from "@khazii/ngx-intl-tel-input";
+} from "ngx-intl-tel-input";
 
 @Component({
   selector: "app-form-intl-phone-input",
@@ -62,7 +62,6 @@ import {
     FormsModule,
     NgIf,
     ReactiveFormsModule,
-    JsonPipe,
     TranslateModule,
     CommonModule,
   ],

@@ -25,7 +25,7 @@ import {
   TemplateRef,
   ViewChild,
 } from "@angular/core";
-import { NavigationEnd, Router, RouterEvent } from "@angular/router";
+import { NavigationEnd, Router } from "@angular/router";
 
 import { Subscription, filter } from "rxjs";
 import { NgbModalRef, NgbModal } from "@ng-bootstrap/ng-bootstrap";
@@ -104,7 +104,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.subscription.add(
       this.router.events
-        .pipe(filter((e: RouterEvent) => e instanceof NavigationEnd))
+        .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
         .subscribe((event: NavigationEnd) => {
           const splitUrl = event?.url.split("#");
           this.currentUrl = splitUrl[0];

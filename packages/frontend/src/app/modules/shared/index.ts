@@ -18,13 +18,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Pipe, PipeTransform } from "@angular/core";
-import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
-
-@Pipe({ name: "safeUrl" })
-export class SafeUrlPipe implements PipeTransform {
-  constructor(private sanitized: DomSanitizer) {}
-  public transform(value: string): SafeUrl {
-    return this.sanitized.bypassSecurityTrustUrl(value);
-  }
-}
+//@index('./*', f => `export * from '${f.path}'`)
+export * from "./directives";
+export * from "./pipes";
+export * from "./services";
+export * from "./shared.module";
+export * from "./standalone-pipes";

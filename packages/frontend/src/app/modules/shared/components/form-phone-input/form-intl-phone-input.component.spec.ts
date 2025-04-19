@@ -23,7 +23,7 @@ import { CommonModule } from "@angular/common";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormIntlPhoneInputComponent } from "./form-intl-phone-input.component";
 import { CountryCodes } from "@soliguide/common";
-import { CountryISO, NgxIntlTelInputModule } from "@khazii/ngx-intl-tel-input";
+import { CountryISO, NgxIntlTelInputModule } from "ngx-intl-tel-input";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { TranslateModule } from "@ngx-translate/core";
 import { PREFERRED_COUNTRIES } from "./constants";

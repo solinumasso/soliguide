@@ -19,7 +19,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { ToastrModule } from "ngx-toastr";
-import { ShareButtonsModule } from "ngx-sharebuttons/buttons";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { SharePlaceComponent } from "./share-place.component";
@@ -31,6 +30,7 @@ import { SharedModule } from "../../../shared/shared.module";
 import { PLACE_EN_LIGNE_MOCK } from "../../../../../../mocks/PLACE_EN_LIGNE.mock";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { CommonPosthogMockService } from "../../../../../../mocks";
+import { ShareButtons } from "ngx-sharebuttons/buttons";
 
 describe("SharePlaceComponent", () => {
   let component: SharePlaceComponent;
@@ -44,7 +44,7 @@ describe("SharePlaceComponent", () => {
         SharedModule,
         ToastrModule.forRoot({}),
         NgbModule,
-        ShareButtonsModule,
+        ShareButtons,
         HttpClientTestingModule,
       ],
       providers: [

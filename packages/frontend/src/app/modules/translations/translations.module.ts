@@ -58,7 +58,6 @@ import { EditTradFieldComponent } from "./components/edit-trad-field/edit-trad-f
     PlaceModule,
     TranslateModule,
     ReactiveFormsModule,
-    SharedModule,
     NgbModule,
     TranslationsRoutingModule,
   ],

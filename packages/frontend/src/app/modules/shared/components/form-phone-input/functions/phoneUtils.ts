@@ -19,7 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { Phone, phoneUtil } from "@soliguide/common";
-import { ChangeData, CountryISO } from "@khazii/ngx-intl-tel-input";
+import { ChangeData, CountryISO } from "ngx-intl-tel-input";
 import { THEME_CONFIGURATION } from "../../../../../models";
 
 export function getFormPhone(

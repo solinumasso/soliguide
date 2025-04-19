@@ -40,6 +40,7 @@ import { SoligarePairService } from "./services/soligare-pair.service";
 import { AvailableSourceService } from "./services/available-source.service";
 import { SelectAvailableSourceComponent } from "./components/select-sources/select-available-source.component";
 import { SoligarePreviewComponent } from "./components/soligare-preview/soligare-preview.component";
+import { SearchMapComponent } from "../place/standalone-components/search-map/search-map.component";
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { SoligarePreviewComponent } from "./components/soligare-preview/soligare
     SoligareRoutingModule,
     SearchModule,
     SharedModule,
+    SearchMapComponent,
     FontAwesomeModule,
     FormsModule,
     NgbModule,

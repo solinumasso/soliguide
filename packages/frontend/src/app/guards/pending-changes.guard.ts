@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { CanDeactivate } from "@angular/router";
+
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
@@ -27,9 +27,7 @@ export interface ComponentCanDeactivate {
 }
 
 @Injectable({ providedIn: "root" })
-export class PendingChangesGuard
-  implements CanDeactivate<ComponentCanDeactivate>
-{
+export class PendingChangesGuard {
   public canDeactivate(
     component: ComponentCanDeactivate
   ): boolean | Observable<boolean> {

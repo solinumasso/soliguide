@@ -29,10 +29,10 @@ import {
 } from "@angular/core";
 
 import * as L from "leaflet";
-
 import { MarkerOptions } from "../../../../models/search-places";
 
 @Component({
+  standalone: true,
   selector: "app-search-map",
   templateUrl: "./search-map.component.html",
   styleUrls: ["./search-map.component.css"],
