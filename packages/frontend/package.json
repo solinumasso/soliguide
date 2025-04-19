@@ -29,7 +29,7 @@
   "dependencies": {
     "@algolia/autocomplete-js": "^1.17.4",
     "@algolia/autocomplete-theme-classic": "^1.17.4",
-    "@algolia/client-search": "^4.24.0",
+    "@algolia/client-search": "^5.0.0",
     "@angular/animations": "15.2.10",
     "@angular/cdk": "^15.2.9",
     "@angular/common": "^15.2.10",
@@ -57,7 +57,7 @@
     "@sentry/angular": "^8.50.0",
     "@soliguide/common": "workspace:*",
     "@soliguide/common-angular": "workspace:*",
-    "algoliasearch": "^4.23.3",
+    "algoliasearch": "^5.0.0",
     "bootstrap": "5.3.3",
     "date-fns": "^2.30.0",
     "date-fns-tz": "^2.0.1",
