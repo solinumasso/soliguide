@@ -34,7 +34,7 @@
     "@google-cloud/translate": "^8.3.0",
     "@sentry/node": "^8.50.0",
     "@sentry/profiling-node": "^8.50.0",
-    "@sentry/wizard": "^3.38.0",
+    "@sentry/wizard": "^4.0.0",
     "@soliguide/common": "workspace:*",
     "airtable": "^0.12.2",
     "amqp-connection-manager": "^4.1.14",

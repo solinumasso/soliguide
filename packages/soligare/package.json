@@ -34,7 +34,7 @@
     "@nestjs/terminus": "^11.0.0",
     "@sentry/nestjs": "^8.50.0",
     "@sentry/node": "^8.50.0",
-    "@sentry/wizard": "^3.38.0",
+    "@sentry/wizard": "^4.0.0",
     "@soliguide/common": "workspace:*",
     "axios": "^1.7.9",
     "class-transformer": "^0.5.1",
