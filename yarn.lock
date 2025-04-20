@@ -3351,12 +3351,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.10.5, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.20.6, @babel/runtime@npm:^7.21.0, @babel/runtime@npm:^7.22.6, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.8.4":
+"@babel/runtime@npm:^7.10.5, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.21.0, @babel/runtime@npm:^7.22.6, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.8.4":
   version: 7.25.0
   resolution: "@babel/runtime@npm:7.25.0"
   dependencies:
     regenerator-runtime: "npm:^0.14.0"
   checksum: 10c0/bd3faf246170826cef2071a94d7b47b49d532351360ecd17722d03f6713fd93a3eb3dbd9518faa778d5e8ccad7392a7a604e56bd37aaad3f3aa68d619ccd983d
+  languageName: node
+  linkType: hard
+
+"@babel/runtime@npm:^7.26.10":
+  version: 7.27.0
+  resolution: "@babel/runtime@npm:7.27.0"
+  dependencies:
+    regenerator-runtime: "npm:^0.14.0"
+  checksum: 10c0/35091ea9de48bd7fd26fb177693d64f4d195eb58ab2b142b893b7f3fa0f1d7c677604d36499ae0621a3703f35ba0c6a8f6c572cc8f7dc0317213841e493cf663
   languageName: node
   linkType: hard
 
@@ -9180,7 +9189,7 @@ __metadata:
     fastest-levenshtein: "npm:^1.0.16"
     google-libphonenumber: "npm:^3.2.34"
     html-entities: "npm:^2.5.2"
-    i18next: "npm:^22.5.1"
+    i18next: "npm:^25.0.0"
     i18next-fs-backend: "npm:^2.3.1"
     interface-forge: "npm:^2.0.0"
     jest: "npm:29.7.0"
@@ -9301,7 +9310,7 @@ __metadata:
     eslint-plugin-promise: "npm:^7.1.0"
     google-libphonenumber: "npm:^3.2.34"
     html-entities: "npm:^2.5.2"
-    i18next: "npm:^22.5.1"
+    i18next: "npm:^25.0.0"
     i18next-fs-backend: "npm:^2.3.1"
     jest: "npm:^29.7.0"
     license-check-and-add: "npm:^4.0.5"
@@ -9345,7 +9354,7 @@ __metadata:
     eslint-plugin-storybook: "npm:^0.11.1"
     eslint-plugin-svelte: "npm:^2.36.0"
     globals: "npm:^15.0.0"
-    i18next: "npm:^23.11.5"
+    i18next: "npm:^25.0.0"
     license-check-and-add: "npm:^4.0.5"
     lint-staged: "npm:^15.2.7"
     normalize.css: "npm:^8.0.1"
@@ -9622,7 +9631,7 @@ __metadata:
     eslint-plugin-fp: "npm:^2.3.0"
     eslint-plugin-svelte: "npm:^2.36.0"
     globals: "npm:^15.0.0"
-    i18next: "npm:^23.11.5"
+    i18next: "npm:^25.0.0"
     i18next-browser-languagedetector: "npm:^8.0.0"
     isomorphic-dompurify: "npm:^2.16.0"
     license-check-and-add: "npm:^4.0.5"
@@ -19363,21 +19372,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:^22.5.1":
-  version: 22.5.1
-  resolution: "i18next@npm:22.5.1"
+"i18next@npm:^25.0.0":
+  version: 25.0.1
+  resolution: "i18next@npm:25.0.1"
   dependencies:
-    "@babel/runtime": "npm:^7.20.6"
-  checksum: 10c0/a284f8d805ebad77114a830e60d5c59485a7f4d45179761f877249b63035572cff4103e5b4702669dff1a0e03b4e8b6df377bc871935f8215e43fd97e8e9e910
-  languageName: node
-  linkType: hard
-
-"i18next@npm:^23.11.5":
-  version: 23.13.0
-  resolution: "i18next@npm:23.13.0"
-  dependencies:
-    "@babel/runtime": "npm:^7.23.2"
-  checksum: 10c0/359c8ea9fc7c2046b349ccf4c1e836d38a69814b69f9691e63521779871cb1c6cdfc5c9b5897086e2a6d2480f3c10d5a27ef59391d81b973a4c52c66699dd9d2
+    "@babel/runtime": "npm:^7.26.10"
+  peerDependencies:
+    typescript: ^5
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 10c0/2f380658472e6697c2133240c2bbffbacefdc49ef7224f00823816f7dcb7977047ad54bfb3dd49e2bd27cf66cc3fb77aa04141328b2efe83c58c0430fce0cdf7
   languageName: node
   linkType: hard
 

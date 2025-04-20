@@ -80,7 +80,7 @@
     "vitest": "^2.0.0"
   },
   "dependencies": {
-    "i18next": "^23.11.5",
+    "i18next": "^25.0.0",
     "normalize.css": "^8.0.1",
     "svelte-google-materialdesign-icons": "^1.0.5"
   },
