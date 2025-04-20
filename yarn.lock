@@ -9442,7 +9442,7 @@ __metadata:
     file-saver: "npm:2.0.5"
     fuse.js: "npm:^7.0.0"
     google-libphonenumber: "npm:^3.2.34"
-    intl-tel-input: "npm:17.0.21"
+    intl-tel-input: "npm:25.3.1"
     jest: "npm:^29.7.0"
     jest-preset-angular: "npm:^14.1.0"
     jwt-decode: "npm:4.0.0"
@@ -19799,10 +19799,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"intl-tel-input@npm:17.0.21":
-  version: 17.0.21
-  resolution: "intl-tel-input@npm:17.0.21"
-  checksum: 10c0/2c6c0331046f69fcf880812ab766266e568c3e8b44d50eb628e5bb305e73c2cf4b39965a3422efc54557f46cf983b5b91e9d6c9965ec9513c6eb8c47a790b8c3
+"intl-tel-input@npm:25.3.1":
+  version: 25.3.1
+  resolution: "intl-tel-input@npm:25.3.1"
+  checksum: 10c0/99e60a34622b2f7304740683062f37f4505177cc15eb3457391ea71514562f714dcf2ba78d20a72d6441d0fbafc575058fc2d99d32d37b8500a318acd907e6fb
   languageName: node
   linkType: hard
 
