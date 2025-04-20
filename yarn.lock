@@ -9163,7 +9163,7 @@ __metadata:
     crypto: "npm:1.0.1"
     date-fns: "npm:^2.30.0"
     date-fns-tz: "npm:^2.0.1"
-    delay: "npm:5.0.0"
+    delay: "npm:6.0.0"
     docxtemplater: "npm:^3.50.0"
     docxtemplater-image-module-free: "npm:^1.1.1"
     dot-object: "npm:^2.1.5"
@@ -9506,7 +9506,7 @@ __metadata:
     class-transformer: "npm:^0.5.1"
     class-validator: "npm:^0.14.1"
     date-fns: "npm:^2.30.0"
-    delay: "npm:5.0.0"
+    delay: "npm:6.0.0"
     dotenv: "npm:^16.4.7"
     eslint: "npm:^8.57.1"
     eslint-config-prettier: "npm:^9.1.0"
@@ -15574,10 +15574,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"delay@npm:5.0.0":
-  version: 5.0.0
-  resolution: "delay@npm:5.0.0"
-  checksum: 10c0/01cdc4cd0cd35fb622518a3df848e67e09763a38e7cdada2232b6fda9ddda72eddcf74f0e24211200fbe718434f2335f2a2633875a6c96037fefa6de42896ad7
+"delay@npm:6.0.0":
+  version: 6.0.0
+  resolution: "delay@npm:6.0.0"
+  checksum: 10c0/5175e887512d65b2bfe9e1168b5ce7a488de99c1d0af52cb4f799bb13dd7cb0bbbba8a4f5c500a5b03fb42bec8621d6ab59244bd8dfbe9a2bf7b173f25621a10
   languageName: node
   linkType: hard
 
