@@ -6142,15 +6142,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ngx-translate/core@npm:^14.0.0":
-  version: 14.0.0
-  resolution: "@ngx-translate/core@npm:14.0.0"
+"@ngx-translate/core@npm:^16.0.0":
+  version: 16.0.4
+  resolution: "@ngx-translate/core@npm:16.0.4"
   dependencies:
     tslib: "npm:^2.3.0"
   peerDependencies:
-    "@angular/core": ">=13.0.0"
-    rxjs: ^6.5.3 || ^7.4.0
-  checksum: 10c0/6c1cd10a0209c1c3227b7c70cb16257208f7fc4d193632af800ca152d0bd80dfe3a5f5a244022dc48fee70bfc3d332e696d5268bfed1b5c072d1bec4785498fe
+    "@angular/common": ">=16"
+    "@angular/core": ">=16"
+  checksum: 10c0/b84839745d04f9f8a0964cc1eeadb54ff77508675dd1e42f2b9b6dd6ccca91177c7905ac2909de90807cd3883ae1967c293b3313592cb76ba566a6c233313e3b
   languageName: node
   linkType: hard
 
@@ -9407,7 +9407,7 @@ __metadata:
     "@khazii/ngx-intl-tel-input": "npm:^17.0.1"
     "@ng-bootstrap/ng-bootstrap": "npm:^14.2.0"
     "@ngx-lite/json-ld": "npm:^14.0.0"
-    "@ngx-translate/core": "npm:^14.0.0"
+    "@ngx-translate/core": "npm:^16.0.0"
     "@ngx-translate/http-loader": "npm:^7.0.0"
     "@popperjs/core": "npm:^2.11.8"
     "@schematics/angular": "npm:14.2.13"
@@ -9675,7 +9675,7 @@ __metadata:
     "@fortawesome/fontawesome-svg-core": "npm:^6.5.2"
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.2"
     "@ng-bootstrap/ng-bootstrap": "npm:^14.2.0"
-    "@ngx-translate/core": "npm:^14.0.0"
+    "@ngx-translate/core": "npm:^16.0.0"
     "@ngx-translate/http-loader": "npm:^7.0.0"
     "@popperjs/core": "npm:^2.11.8"
     "@soliguide/common": "workspace:*"
