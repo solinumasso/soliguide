@@ -9161,7 +9161,7 @@ __metadata:
     cookie-parser: "npm:1.4.7"
     cors: "npm:2.8.5"
     crypto: "npm:1.0.1"
-    date-fns: "npm:^2.30.0"
+    date-fns: "npm:^4.0.0"
     date-fns-tz: "npm:^2.0.1"
     delay: "npm:5.0.0"
     docxtemplater: "npm:^3.50.0"
@@ -9289,7 +9289,7 @@ __metadata:
     "@types/validator": "npm:^13.12.2"
     "@typescript-eslint/eslint-plugin": "npm:^6.21.0"
     "@typescript-eslint/parser": "npm:^6.21.0"
-    date-fns: "npm:^2.30.0"
+    date-fns: "npm:^4.0.0"
     date-fns-timezone: "npm:^0.1.4"
     date-fns-tz: "npm:^2.0.1"
     eslint: "npm:^8.57.1"
@@ -9431,7 +9431,7 @@ __metadata:
     algoliasearch: "npm:^4.23.3"
     bootstrap: "npm:5.3.3"
     compression-webpack-plugin: "npm:^11.1.0"
-    date-fns: "npm:^2.30.0"
+    date-fns: "npm:^4.0.0"
     date-fns-tz: "npm:^2.0.1"
     deep-diff: "npm:^1.0.2"
     deep-equal: "npm:^2.2.3"
@@ -9505,7 +9505,7 @@ __metadata:
     cache-manager: "npm:6.1.0"
     class-transformer: "npm:^0.5.1"
     class-validator: "npm:^0.14.1"
-    date-fns: "npm:^2.30.0"
+    date-fns: "npm:^4.0.0"
     delay: "npm:5.0.0"
     dotenv: "npm:^16.4.7"
     eslint: "npm:^8.57.1"
@@ -9687,7 +9687,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:^6.21.0"
     "@typescript-eslint/parser": "npm:^6.21.0"
     bootstrap: "npm:5.3.3"
-    date-fns: "npm:^2.30.0"
+    date-fns: "npm:^4.0.0"
     eslint: "npm:^8.57.1"
     eslint-config-prettier: "npm:^9.1.0"
     eslint-plugin-import: "npm:^2.31.0"
@@ -15342,7 +15342,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"date-fns@npm:^2.28.0, date-fns@npm:^2.30.0":
+"date-fns@npm:^2.28.0":
   version: 2.30.0
   resolution: "date-fns@npm:2.30.0"
   dependencies:
@@ -15351,7 +15351,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"date-fns@npm:^4.1.0":
+"date-fns@npm:^4.0.0, date-fns@npm:^4.1.0":
   version: 4.1.0
   resolution: "date-fns@npm:4.1.0"
   checksum: 10c0/b79ff32830e6b7faa009590af6ae0fb8c3fd9ffad46d930548fbb5acf473773b4712ae887e156ba91a7b3dc30591ce0f517d69fd83bd9c38650fdc03b4e0bac8

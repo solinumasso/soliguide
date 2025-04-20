@@ -53,7 +53,7 @@
     "cookie-parser": "1.4.7",
     "cors": "2.8.5",
     "crypto": "1.0.1",
-    "date-fns": "^2.30.0",
+    "date-fns": "^4.0.0",
     "date-fns-tz": "^2.0.1",
     "delay": "5.0.0",
     "docxtemplater": "^3.50.0",

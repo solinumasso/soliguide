@@ -40,7 +40,7 @@
     "@soliguide/common": "workspace:*",
     "@soliguide/common-angular": "workspace:*",
     "bootstrap": "5.3.3",
-    "date-fns": "^2.30.0",
+    "date-fns": "^4.0.0",
     "geojson": "^0.5.0",
     "leaflet": "^1.9.4",
     "ngx-toastr": "16.2.0",
