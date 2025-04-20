@@ -51,7 +51,7 @@
     "@ng-bootstrap/ng-bootstrap": "^14.2.0",
     "@ngx-lite/json-ld": "^14.0.0",
     "@ngx-translate/core": "^14.0.0",
-    "@ngx-translate/http-loader": "^7.0.0",
+    "@ngx-translate/http-loader": "^16.0.0",
     "@popperjs/core": "^2.11.8",
     "@schematics/angular": "14.2.13",
     "@sentry/angular": "^8.50.0",
