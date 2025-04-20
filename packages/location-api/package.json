@@ -52,7 +52,7 @@
     "delay": "5.0.0",
     "dotenv": "^16.4.7",
     "fuse.js": "^7.0.0",
-    "helmet": "^7.2.0",
+    "helmet": "^8.0.0",
     "i18n-iso-countries": "^7.11.3",
     "joi": "^17.13.3",
     "nestjs-pino": "^4.3.0",
