@@ -49,7 +49,7 @@
   "dependencies": {
     "date-fns": "^2.30.0",
     "date-fns-timezone": "^0.1.4",
-    "date-fns-tz": "^2.0.1",
+    "date-fns-tz": "^3.0.0",
     "google-libphonenumber": "^3.2.34",
     "html-entities": "^2.5.2",
     "i18next": "^22.5.1",

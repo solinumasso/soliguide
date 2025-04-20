@@ -9162,7 +9162,7 @@ __metadata:
     cors: "npm:2.8.5"
     crypto: "npm:1.0.1"
     date-fns: "npm:^2.30.0"
-    date-fns-tz: "npm:^2.0.1"
+    date-fns-tz: "npm:^3.0.0"
     delay: "npm:5.0.0"
     docxtemplater: "npm:^3.50.0"
     docxtemplater-image-module-free: "npm:^1.1.1"
@@ -9291,7 +9291,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:^6.21.0"
     date-fns: "npm:^2.30.0"
     date-fns-timezone: "npm:^0.1.4"
-    date-fns-tz: "npm:^2.0.1"
+    date-fns-tz: "npm:^3.0.0"
     eslint: "npm:^8.57.1"
     eslint-config-prettier: "npm:^9.1.0"
     eslint-config-standard-with-typescript: "npm:^43.0.1"
@@ -9432,7 +9432,7 @@ __metadata:
     bootstrap: "npm:5.3.3"
     compression-webpack-plugin: "npm:^11.1.0"
     date-fns: "npm:^2.30.0"
-    date-fns-tz: "npm:^2.0.1"
+    date-fns-tz: "npm:^3.0.0"
     deep-diff: "npm:^1.0.2"
     deep-equal: "npm:^2.2.3"
     eslint: "npm:^8.57.1"
@@ -15326,12 +15326,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"date-fns-tz@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "date-fns-tz@npm:2.0.1"
+"date-fns-tz@npm:^3.0.0":
+  version: 3.2.0
+  resolution: "date-fns-tz@npm:3.2.0"
   peerDependencies:
-    date-fns: 2.x
-  checksum: 10c0/f860dda9e3d38bc99dc325c678cafb94b3a18c12b1fea0e2f4e451396ea6c4cacced683066c669a67ec380f64fdda83aa4c414a207029b647faa2b76b2a5c6e3
+    date-fns: ^3.0.0 || ^4.0.0
+  checksum: 10c0/3f43300a4335d59f3515dc5196c66b4b56ef2af129eb82e4445ce0983e8ef31a5d038bc0406d669946bbbcf52ed953527527aa28b4a810995d6631a54655abcc
   languageName: node
   linkType: hard
 
