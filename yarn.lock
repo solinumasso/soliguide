@@ -9192,7 +9192,7 @@ __metadata:
     lodash.get: "npm:^4.4.2"
     lodash.isempty: "npm:^4.4.0"
     lodash.isequal: "npm:^4.5.0"
-    mailgun.js: "npm:^10.2.3"
+    mailgun.js: "npm:^12.0.0"
     migrate-mongo: "npm:^12.1.3"
     mongodb: "npm:^6.15.0"
     mongoose: "npm:^8.13.2"
@@ -13003,7 +13003,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.6.0, axios@npm:^1.6.2, axios@npm:^1.7.2, axios@npm:^1.7.4, axios@npm:^1.7.9":
+"axios@npm:^1.6.0, axios@npm:^1.6.2, axios@npm:^1.7.4, axios@npm:^1.7.9":
   version: 1.7.9
   resolution: "axios@npm:1.7.9"
   dependencies:
@@ -22708,14 +22708,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mailgun.js@npm:^10.2.3":
-  version: 10.2.3
-  resolution: "mailgun.js@npm:10.2.3"
+"mailgun.js@npm:^12.0.0":
+  version: 12.0.1
+  resolution: "mailgun.js@npm:12.0.1"
   dependencies:
-    axios: "npm:^1.7.2"
+    axios: "npm:^1.7.4"
     base-64: "npm:^1.0.0"
     url-join: "npm:^4.0.1"
-  checksum: 10c0/47418268c8a1fec9e6134ee354a20f2adaa1cb41f31493d35e22e911afc51bb7d4a387c27bfc468959ee4b06ec4e59477df1dab9fab38086935565173fb75a99
+  checksum: 10c0/1dd51c7284733434454d6fca2ba280260da607f2c765d0dcfd2bcb834c2ba80d3af9b4c7343c51148c1e9fdf62763f2b3cc858b201a265838435a9fcfec62ddc
   languageName: node
   linkType: hard
 
