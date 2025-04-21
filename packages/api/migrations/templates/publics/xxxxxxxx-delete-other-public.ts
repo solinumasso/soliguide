@@ -32,8 +32,9 @@ import {
   WelcomedPublics,
 } from "@soliguide/common";
 import { createWriteStream } from "node:fs";
-import { logger } from "@sentry/node";
-import { CONFIG } from "../src/_models";
+
+import { logger } from "../../../src/general/logger";
+import { CONFIG } from "../../../src/_models";
 
 const OTHER_PUBLIC_TO_DELETE = "ukraine";
 const message = `Delete ${OTHER_PUBLIC_TO_DELETE} refugees`;
