@@ -72,5 +72,6 @@ export const ALL_PUBLICS: {
     { name: "PUBLICS_OTHER_SEX_WORKER", value: PublicsOther.prostitution },
     { name: "PUBLICS_OTHER_STUDENT", value: PublicsOther.student },
     { name: "PUBLICS_OTHER_VIOLENCE", value: PublicsOther.violence },
+    { name: "PUBLICS_OTHER_MENTAL_HEALTH", value: PublicsOther.mentalHealth },
   ],
 };

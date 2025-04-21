@@ -20,7 +20,6 @@
  */
 import { Db } from "mongodb";
 
-import { logger } from "../src/general/logger";
 import {
   ApiPlace,
   getPosition,
@@ -32,8 +31,11 @@ import {
 } from "@soliguide/common";
 import { createWriteStream } from "node:fs";
 import { PlaceType } from "@soliguide/common";
+import { logger } from "../../../src/general/logger";
 
-const message = "Delete ukraine refugees";
+const OTHER_PUBLIC_TO_DELETE = "ukraine";
+const message = `Delete ${OTHER_PUBLIC_TO_DELETE} refugees`;
+
 export const up = async (db: Db) => {
   logger.info(`[MIGRATION] - ${message}`);
 
@@ -49,8 +51,12 @@ export const up = async (db: Db) => {
     .find<ApiPlace>(
       {
         $or: [
-          { "publics.other": { $elemMatch: { $eq: "ukraine" } } },
-          { "services_all.publics.other": { $elemMatch: { $eq: "ukraine" } } },
+          { "publics.other": { $elemMatch: { $eq: OTHER_PUBLIC_TO_DELETE } } },
+          {
+            "services_all.publics.other": {
+              $elemMatch: { $eq: OTHER_PUBLIC_TO_DELETE },
+            },
+          },
         ],
       },
       {
@@ -98,14 +104,14 @@ export const up = async (db: Db) => {
     }
 
     place.publics.other = place.publics.other.filter(
-      (item) => item !== PublicsOther.ukraine
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (item) => item !== PublicsOther[OTHER_PUBLIC_TO_DELETE as PublicsOther]
     );
 
     // Fix old corrupted values: other must have at least one value
     if (place.publics.other.length === 0) {
       place.publics.other = structuredClone(OTHER_DEFAULT_VALUES);
     }
-
     if (place.publics.accueil === WelcomedPublics.UNCONDITIONAL) {
       unconditional.push(place.publics);
     } else if (place.publics.accueil === WelcomedPublics.EXCLUSIVE) {
@@ -138,7 +144,7 @@ export const up = async (db: Db) => {
       }
 
       service.publics.other = service.publics.other.filter(
-        (item) => item !== PublicsOther.ukraine
+        (item) => item !== PublicsOther[OTHER_PUBLIC_TO_DELETE as PublicsOther]
       );
 
       // Fix old corrupted values: other must have at least one value
