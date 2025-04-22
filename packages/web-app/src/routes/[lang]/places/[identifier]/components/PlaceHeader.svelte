@@ -19,12 +19,17 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <script lang="ts">
-  import { Text } from '@soliguide/design-system';
+  import { Text, InfoIcon } from '@soliguide/design-system';
   import { PhoneButton, PlaceStatus, TodayInfo } from '$lib/components';
   import GoToButton from './GoToButton.svelte';
   import { getPlaceDetailsPageController } from '../pageController';
-  import type { Phone, TodayInfo as TodayInfoType } from '$lib/models/types';
+  import type { BannerMessage, Phone, TodayInfo as TodayInfoType } from '$lib/models/types';
   import type { PlaceOpeningStatus } from '@soliguide/common';
+  import type { I18nStore } from '$lib/client/types';
+  import { I18N_CTX_KEY } from '$lib/client/i18n';
+  import { getContext } from 'svelte';
+
+  const i18n: I18nStore = getContext(I18N_CTX_KEY);
 
   export let todayInfo: TodayInfoType = {};
 
@@ -38,12 +43,26 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   export let onOrientation: boolean;
 
+  export let tempMessage: BannerMessage | null;
+
   const placeController = getPlaceDetailsPageController();
 </script>
 
 <header class="card-header">
   <div class="details-container">
-    <Text type="title1PrimaryExtraBold">{name}</Text>
+    <div class="name-container">
+      <Text type="title1PrimaryExtraBold">{name}</Text>
+      {#if tempMessage}
+        <a href="#tempMessage"
+          ><InfoIcon
+            altTag={$i18n.t('PLACE_HAVE_IMPORTANT_INFO', { name })}
+            variant="warning"
+            size="medium"
+          ></InfoIcon></a
+        >
+      {/if}
+    </div>
+
     <div class="tag-container">
       <PlaceStatus {status} />
     </div>
@@ -79,6 +98,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     padding: 0 var(--spacingLG) var(--spacingLG);
     background: var(--color-surfaceSecondaryGradient);
     color: var(--color-textInverse);
+  }
+
+  .name-container {
+    display: flex;
+    justify-content: space-between;
   }
 
   .details-container {

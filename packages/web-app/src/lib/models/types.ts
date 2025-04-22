@@ -140,6 +140,10 @@ export interface Service {
   saturation?: Saturation;
 }
 
+export interface Banners {
+  message: BannerMessage | null;
+}
+
 export interface PlaceDetails {
   id: number;
   address: string;
@@ -157,6 +161,7 @@ export interface PlaceDetails {
   services: Service[];
   sources: Source[];
   status: PlaceOpeningStatus;
+  banners: Banners;
   todayInfo: TodayInfo;
   website: string;
 }
