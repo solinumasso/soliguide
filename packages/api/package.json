@@ -83,7 +83,7 @@
     "pino-http": "^10.4.0",
     "pizzip": "^3.1.7",
     "posthog-node": "^4.0.1",
-    "slug": "^9.1.0",
+    "slug": "^10.0.0",
     "striptags": "^3.2.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
