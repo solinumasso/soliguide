@@ -65,7 +65,7 @@
     "vitest": "^2.0.0"
   },
   "dependencies": {
-    "@sentry/sveltekit": "^8.50.0",
+    "@sentry/sveltekit": "^9.0.0",
     "@soliguide/common": "workspace:*",
     "@soliguide/design-system": "workspace:*",
     "date-fns": "^4.1.0",

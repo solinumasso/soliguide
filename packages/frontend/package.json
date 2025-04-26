@@ -54,7 +54,7 @@
     "@ngx-translate/http-loader": "^7.0.0",
     "@popperjs/core": "^2.11.8",
     "@schematics/angular": "14.2.13",
-    "@sentry/angular": "^8.50.0",
+    "@sentry/angular": "^9.0.0",
     "@soliguide/common": "workspace:*",
     "@soliguide/common-angular": "workspace:*",
     "algoliasearch": "^4.23.3",

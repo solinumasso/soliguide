@@ -32,8 +32,8 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.614.0",
     "@google-cloud/translate": "^8.3.0",
-    "@sentry/node": "^8.50.0",
-    "@sentry/profiling-node": "^8.50.0",
+    "@sentry/node": "^9.0.0",
+    "@sentry/profiling-node": "^9.0.0",
     "@sentry/wizard": "^3.38.0",
     "@soliguide/common": "workspace:*",
     "airtable": "^0.12.2",
