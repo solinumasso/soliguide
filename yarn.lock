@@ -9456,7 +9456,7 @@ __metadata:
     ngx-bootstrap: "npm:^12.0.0"
     ngx-countup: "npm:^13.2.0"
     ngx-sharebuttons: "npm:^10.0.0"
-    ngx-toastr: "npm:16.2.0"
+    ngx-toastr: "npm:19.0.0"
     prettier: "npm:^2.8.8"
     rxjs: "npm:^7.8.1"
     schema-dts: "npm:^1.1.2"
@@ -9699,7 +9699,7 @@ __metadata:
     license-check-and-add: "npm:^4.0.5"
     lint-staged: "npm:^15.2.7"
     ng-lint-staged: "npm:^12.0.4"
-    ngx-toastr: "npm:16.2.0"
+    ngx-toastr: "npm:19.0.0"
     prettier: "npm:^2.8.8"
     rxjs: "npm:^7.8.1"
     ts-jest: "npm:^29.1.4"
@@ -23767,16 +23767,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ngx-toastr@npm:16.2.0":
-  version: 16.2.0
-  resolution: "ngx-toastr@npm:16.2.0"
+"ngx-toastr@npm:19.0.0":
+  version: 19.0.0
+  resolution: "ngx-toastr@npm:19.0.0"
   dependencies:
     tslib: "npm:^2.3.0"
   peerDependencies:
-    "@angular/common": ">=14.0.0-0"
-    "@angular/core": ">=14.0.0-0"
-    "@angular/platform-browser": ">=14.0.0-0"
-  checksum: 10c0/e200014616eaf486ac3be419dde42aabd214ee88cced5125070e75d9347bb24bc7ee2f60107c047e31bf5aed99aabb57582381bed440b24edfdef1b1e570429b
+    "@angular/common": ">=16.0.0-0"
+    "@angular/core": ">=16.0.0-0"
+    "@angular/platform-browser": ">=16.0.0-0"
+  checksum: 10c0/af2cd5b41d2b2ab9d9f0e9369fc9a232016b49850c159c84291d822d7871c042772ee8f5cda2824cdd62ada1074c6cdfc0660c0f1f610707924ab3b6a7b170b8
   languageName: node
   linkType: hard
 
