@@ -25,7 +25,7 @@ import { body } from "express-validator";
 import { administrativeDto } from "./administrative.dto";
 import { ageDto } from "./age.dto";
 import { familyDto } from "./family.dto";
-import { forceChangesDto } from "./forceChanges.dto";
+
 import { genderDto } from "./gender.dto";
 import { languagesDto } from "./languages.dto";
 import { otherDto } from "./other.dto";
@@ -77,6 +77,5 @@ export const publicsDto = (path = "") => {
 
     // Check on languages
     ...languagesDto(path),
-    ...forceChangesDto,
   ];
 };

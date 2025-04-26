@@ -18,6 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import { RedisHealthIndicator } from "@liaoliaots/nestjs-redis-health";
 import { Controller, Get } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import {
@@ -26,19 +27,31 @@ import {
   HttpHealthIndicator,
 } from "@nestjs/terminus";
 import type { AxiosResponse } from "axios";
+import Redis from "ioredis";
 
 @Controller("health")
 export class HealthController {
+  private redis: Redis;
+
   constructor(
     private readonly health: HealthCheckService,
     private readonly http: HttpHealthIndicator,
-    private readonly configService: ConfigService
-  ) {}
+    private readonly configService: ConfigService,
+    private readonly redisIndicator: RedisHealthIndicator
+  ) {
+    this.redis = new Redis(this.configService.get<string>("REDIS_URL"));
+  }
 
   @Get()
   @HealthCheck()
   check() {
-    return this.health.check([
+    const checks = [
+      () =>
+        this.redisIndicator.checkHealth("redis", {
+          type: "redis",
+          client: this.redis,
+          timeout: 500,
+        }),
       () =>
         this.http.responseCheck(
           "here-api",
@@ -60,6 +73,8 @@ export class HealthController {
             params: { service: "Geocoding & Search API v7", format: "json" },
           }
         ),
-    ]);
+    ];
+
+    return this.health.check(checks);
   }
 }

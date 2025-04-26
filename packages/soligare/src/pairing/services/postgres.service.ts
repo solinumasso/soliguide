@@ -18,11 +18,12 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Injectable, OnApplicationShutdown } from '@nestjs/common';
+import { Global, Injectable, OnApplicationShutdown } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { captureException, captureMessage } from '@sentry/nestjs';
 import postgres from 'postgres';
 
+@Global()
 @Injectable()
 export class PostgresService implements OnApplicationShutdown {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

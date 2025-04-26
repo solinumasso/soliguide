@@ -24,20 +24,29 @@ import {
   NestFastifyApplication,
   FastifyAdapter,
 } from '@nestjs/platform-fastify';
-import { MockModule } from '../../../test/mock/mock.module';
 import { HealthModule } from '../../health/health.module';
 import {
   dummyPlaceId1,
   dummyPlaceId2,
   dummyPlaceSource1,
 } from '../../../test/mock/constants';
+import { ConfigModule } from '@nestjs/config';
+import { CONFIG_VALIDATOR } from '../../config';
+import { PairingModule } from '../pairing.module';
 
 describe('SourceController', () => {
   let app: NestFastifyApplication;
 
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [MockModule, HealthModule],
+      imports: [
+        PairingModule,
+        ConfigModule.forRoot({
+          isGlobal: true,
+          validationSchema: CONFIG_VALIDATOR,
+        }),
+        HealthModule,
+      ],
     }).compile();
 
     app = module.createNestApplication<NestFastifyApplication>(

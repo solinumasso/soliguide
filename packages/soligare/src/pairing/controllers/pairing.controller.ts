@@ -31,20 +31,20 @@ import {
 } from '@nestjs/common';
 import { SearchResults, ExternalStructure } from '@soliguide/common';
 
-import { StructureToPairDto, PairBodyDto } from './dto/source';
+import { StructureToPairDto, PairBodyDto } from '../dto/source';
 
-import { SourceIdDto, PairingDto } from './dto';
+import { SourceIdDto, PairingDto } from '../dto';
 
-import { PairingService } from './service';
+import { PairingService } from '../services';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { FastifyReply } from 'fastify';
-import { StructureService } from './service/format/structure.service';
+import { StructureService } from '../services/structure.service';
 
 @Controller('pairing')
 export class PairingController {
   constructor(
-    private pairingService: PairingService,
-    private structureService: StructureService,
+    private readonly pairingService: PairingService,
+    private readonly structureService: StructureService,
   ) {}
 
   @ApiOperation({

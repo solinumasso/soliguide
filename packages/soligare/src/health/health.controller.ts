@@ -25,8 +25,8 @@ import { PostgresHealthIndicator } from './postgres-health.service';
 @Controller('health')
 export class HealthController {
   constructor(
-    private health: HealthCheckService,
-    private postgresHealthIndicator: PostgresHealthIndicator,
+    private readonly health: HealthCheckService,
+    private readonly postgresHealthIndicator: PostgresHealthIndicator,
   ) {}
 
   @Get()

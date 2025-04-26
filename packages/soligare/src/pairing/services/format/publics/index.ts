@@ -18,14 +18,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import { SourceController } from './source.controller';
-import { SourceService, PostgresService } from '../service';
-
-@Module({
-  controllers: [SourceController],
-  providers: [PostgresService, SourceService],
-  imports: [ConfigModule],
-})
-export class SourceModule {}
+//@index('./*', f => `export * from '${f.path}'`)
+export * from './administrative.service';
+export * from './family.service';
+export * from './gender.service';
+export * from './other.service';
+export * from './publics.service';

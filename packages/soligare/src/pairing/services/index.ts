@@ -18,8 +18,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-export * from './other.service';
-export * from './family.service';
-export * from './gender.service';
-export * from './administrative.service';
-export * from './publics.service';
+//@index('./*', f => `export * from '${f.path}'`)
+export * from './format';
+export * from './pairing.service';
+export * from './postgres.service';
+export * from './source.service';
+export * from './structure.service';

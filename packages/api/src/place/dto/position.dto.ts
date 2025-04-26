@@ -21,8 +21,6 @@
 import { CountryCodes } from "@soliguide/common";
 import { body } from "express-validator";
 
-import { forceChangesDto } from "./forceChanges.dto";
-
 import { stringDto } from "../../_utils/dto";
 
 export const coordinatesDto = (path = "") => [
@@ -54,5 +52,4 @@ export const positionDto = (path = "") => [
     .if((value: any) => value)
     .isString(),
   ...coordinatesDto(`${path}location.coordinates`),
-  ...forceChangesDto,
 ];
