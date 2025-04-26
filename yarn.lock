@@ -9213,7 +9213,7 @@ __metadata:
     ts-jest: "npm:^29.1.4"
     ts-node: "npm:^10.9.2"
     typescript: "npm:^5.4.5"
-    typesense: "npm:^1.8.2"
+    typesense: "npm:^2.0.0"
     validator: "npm:^13.12.0"
     xlsx: "npm:^0.18.5"
     xmlbuilder: "npm:15.1.1"
@@ -13003,7 +13003,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.6.0, axios@npm:^1.6.2, axios@npm:^1.7.2, axios@npm:^1.7.4, axios@npm:^1.7.9":
+"axios@npm:^1.6.2, axios@npm:^1.7.2, axios@npm:^1.7.4, axios@npm:^1.7.9":
   version: 1.7.9
   resolution: "axios@npm:1.7.9"
   dependencies:
@@ -30116,15 +30116,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typesense@npm:^1.8.2":
-  version: 1.8.2
-  resolution: "typesense@npm:1.8.2"
+"typesense@npm:^2.0.0":
+  version: 2.0.3
+  resolution: "typesense@npm:2.0.3"
   dependencies:
-    axios: "npm:^1.6.0"
+    axios: "npm:^1.7.2"
     loglevel: "npm:^1.8.1"
+    tslib: "npm:^2.6.2"
   peerDependencies:
     "@babel/runtime": ^7.23.2
-  checksum: 10c0/9a553b479ebbd435867dd257035ce6dda78e1e7c2e1c1fb9fc90aef2cf36c67ecdc5e322a8d10ff069bb27efd017d1b29c4496b54581ad453f5eb54af4cd0696
+  checksum: 10c0/029804bfbf642762bcdca800001465d5a8b8678b2c2b29e5ba3e1330aaf722c521575d8e850f2aff80664746454cef0e11f3640a6710e57db0f55d00bb539bbd
   languageName: node
   linkType: hard
 

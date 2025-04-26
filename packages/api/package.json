@@ -87,7 +87,7 @@
     "striptags": "^3.2.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
-    "typesense": "^1.8.2",
+    "typesense": "^2.0.0",
     "validator": "^13.12.0",
     "xlsx": "^0.18.5",
     "xmlbuilder": "15.1.1"
