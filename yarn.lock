@@ -9455,7 +9455,7 @@ __metadata:
     ng-lint-staged: "npm:^12.0.4"
     ngx-bootstrap: "npm:^12.0.0"
     ngx-countup: "npm:^13.2.0"
-    ngx-sharebuttons: "npm:^10.0.0"
+    ngx-sharebuttons: "npm:^17.0.0"
     ngx-toastr: "npm:16.2.0"
     prettier: "npm:^2.8.8"
     rxjs: "npm:^7.8.1"
@@ -23753,17 +23753,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ngx-sharebuttons@npm:^10.0.0":
-  version: 10.0.0
-  resolution: "ngx-sharebuttons@npm:10.0.0"
+"ngx-sharebuttons@npm:^17.0.0":
+  version: 17.0.0
+  resolution: "ngx-sharebuttons@npm:17.0.0"
   dependencies:
-    tslib: "npm:^2.0.0"
+    tslib: "npm:^2.3.0"
   peerDependencies:
-    "@angular/cdk": ">=13.0.0"
-    "@angular/common": ">=13.0.0"
-    "@angular/core": ">=13.0.0"
-    rxjs: ">=6.0.0"
-  checksum: 10c0/5c27e8fc94183af118b6680de33046131e4e5a5ff93e0a93feb29628807f9fefadc408a078fa7c4a11b6ca144a03bf32e6aeebf03d88fa0ba9427b160d41620c
+    "@angular/cdk": ">=19.0.0"
+    "@angular/common": ">=19.0.0"
+    "@angular/core": ">=19.0.0"
+  checksum: 10c0/597fc4f444e3e9325e6ebebc036cdb2f7cd3abd83a28708bd7a5ed72a8217ae576d6e66882cdf83b33b94ac9144201a9c71b3073917228da7c151e519dfedaba
   languageName: node
   linkType: hard
 
