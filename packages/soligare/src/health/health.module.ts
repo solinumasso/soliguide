@@ -21,13 +21,13 @@
 import { Module } from '@nestjs/common';
 import { TerminusModule } from '@nestjs/terminus';
 import { HealthController } from './health.controller';
-import { HttpModule } from '@nestjs/axios';
 import { PostgresHealthIndicator } from './postgres-health.service';
-import { PostgresService } from '../pairing/service';
+import { PairingModule } from '../pairing/pairing.module';
 
 @Module({
-  imports: [TerminusModule, HttpModule],
+  imports: [TerminusModule, PairingModule],
   controllers: [HealthController],
-  providers: [PostgresService, PostgresHealthIndicator],
+  providers: [PostgresHealthIndicator],
+  exports: [PostgresHealthIndicator],
 })
 export class HealthModule {}

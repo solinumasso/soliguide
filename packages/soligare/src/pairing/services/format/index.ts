@@ -18,4 +18,11 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-export * from './source.module';
+//@index('./*', f => `export * from '${f.path}'`)
+export * from './hours';
+export * from './infos';
+export * from './language';
+export * from './modalities';
+export * from './position';
+export * from './publics';
+export * from './service';

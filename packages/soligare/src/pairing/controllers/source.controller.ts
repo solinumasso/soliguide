@@ -29,7 +29,7 @@ import {
   Res,
 } from '@nestjs/common';
 
-import { SourceService } from '../service';
+import { SourceService } from '../services';
 import { TerritoriesDto, SourceIdDto } from '../dto';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { FastifyReply } from 'fastify';
@@ -37,7 +37,7 @@ import { CommonPlaceSource } from '@soliguide/common';
 
 @Controller('source')
 export class SourceController {
-  constructor(private sourceService: SourceService) {}
+  constructor(private readonly sourceService: SourceService) {}
 
   @ApiOperation({
     summary: 'List available source',

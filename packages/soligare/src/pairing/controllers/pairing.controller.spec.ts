@@ -24,16 +24,19 @@ import {
   NestFastifyApplication,
   FastifyAdapter,
 } from '@nestjs/platform-fastify';
-import { PostgresService } from './service';
+import { PostgresService } from '../services';
 import {
   dummyPlaceId1,
   dummyPlaceId2,
   dummyExpectedResultsPairingToPair1,
   dummyExpectedResultsPairingToPair2,
   dummyExpectedResultsFormatSourceIdToSoliguideFormat,
-} from '../../test/mock/constants';
-import { MockModule } from '../../test/mock/mock.module';
-import { HealthModule } from '../health/health.module';
+} from '../../../test/mock/constants';
+
+import { HealthModule } from '../../health/health.module';
+import { PairingModule } from '../pairing.module';
+import { ConfigModule } from '@nestjs/config';
+import { CONFIG_VALIDATOR } from '../../config';
 
 async function refreshDatabase(
   postgresService: PostgresService,
@@ -60,7 +63,14 @@ describe('PairingController', () => {
 
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [MockModule, HealthModule],
+      imports: [
+        PairingModule,
+        ConfigModule.forRoot({
+          isGlobal: true,
+          validationSchema: CONFIG_VALIDATOR,
+        }),
+        HealthModule,
+      ],
     }).compile();
 
     app = module.createNestApplication<NestFastifyApplication>(
@@ -235,7 +245,7 @@ describe('PairingController', () => {
       return await app
         .inject({
           method: 'GET',
-          url: `/pairing/external-structure/1234`,
+          url: '/pairing/external-structure/1234',
         })
         .then((results) => {
           expect(results.statusCode).toEqual(HttpStatus.BAD_REQUEST);

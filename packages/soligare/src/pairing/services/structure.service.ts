@@ -25,15 +25,15 @@ import {
   PostgresStructureId,
   SoliguideCountries,
 } from '@soliguide/common';
-import { PostgresService } from '../postgres.service';
-import { InfosService } from './infos';
-import { LanguageService } from './language';
-import { PositionService } from './position';
-import { ModalitiesService } from './modalities';
-import { PublicsService } from './publics';
-import { HoursService } from './hours';
-import { ServiceService } from './service';
-import { DagsterSchema } from '../../../config/enums';
+import { PostgresService } from './postgres.service';
+import { InfosService } from './format/infos';
+import { LanguageService } from './format/language';
+import { PositionService } from './format/position';
+import { ModalitiesService } from './format/modalities';
+import { PublicsService } from './format/publics';
+import { HoursService } from './format/hours';
+import { ServiceService } from './format/service';
+import { DagsterSchema } from '../../config/enums';
 
 @Injectable()
 export class StructureService {
@@ -84,10 +84,10 @@ export class StructureService {
       name: infos.name,
       description: infos.description,
       entity: infos.entity,
-      languages: languages,
-      position: position,
+      languages,
+      position,
       modalities: modalities,
-      publics: publics,
+      publics,
       newhours: hours,
       services_all: services,
       country: position.country as SoliguideCountries,
