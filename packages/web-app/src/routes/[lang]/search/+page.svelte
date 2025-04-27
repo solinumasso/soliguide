@@ -40,6 +40,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import type { LocationSuggestion } from '$lib/models/locationSuggestion';
   import type { Categories } from '@soliguide/common';
   import { CategoriesErrors, LocationErrors } from '$lib/services/types';
+  import { Label, Input } from 'flowbite-svelte';
 
   setContext('CAPTURE_FCTN_CTX_KEY', pageStore.captureEvent);
 
@@ -106,8 +107,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 <PageLoader loading={$pageStore.loading} fullPage>
   <Topbar type="gradient" title={$i18n.t(topbarTitleKey)} on:navigate={goBack} />
+
   <section>
     <div class="search-fields">
+      <div class="mb-6">
+        <Label for="large-input" class="mb-2 block">Large input</Label>
+        <Input id="large-input" size="lg" placeholder="Large input" />
+      </div>
+
       <FormControl
         errorMessage={$pageStore.locationSuggestionError === LocationErrors.NO_RESULTS
           ? $i18n.t('LOCALISATION_SUGGESTION_NO_RESULTS')

@@ -53,6 +53,7 @@
     "eslint-plugin-svelte": "^2.36.0",
     "flowbite": "^3.1.2",
     "flowbite-svelte": "^0.48.6",
+    "flowbite-svelte-icons": "^2.1.1",
     "globals": "^15.15.0",
     "license-check-and-add": "^4.0.5",
     "lint-staged": "^15.5.1",

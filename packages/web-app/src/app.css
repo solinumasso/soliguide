@@ -25,16 +25,79 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-primary-50: #fff5f2;
-  --color-primary-100: #fff1ee;
-  --color-primary-200: #ffe4de;
-  --color-primary-300: #ffd5cc;
-  --color-primary-400: #ffbcad;
-  --color-primary-500: #fe795d;
-  --color-primary-600: #ef562f;
-  --color-primary-700: #eb4f27;
-  --color-primary-800: #cc4522;
-  --color-primary-900: #a5371b;
+  /* Couleurs primaires et secondaires */
+  --color-primary-50: #ffefec; /* Basé sur surfacePrimary2 */
+  --color-primary-100: #fff3f3; /* Basé sur surfacePrimary1 */
+  --color-primary-200: #fdb8ad; /* Basé sur surfacePrimary3 */
+  --color-primary-300: #fa6d56; /* Basé sur surfacePrimary4 / interactionHighlightPrimaryHover */
+  --color-primary-400: #ff4124; /* Basé sur interactionHighlightPrimary */
+  --color-primary-500: #ed3215; /* Basé sur surfacePrimary5 */
+  --color-primary-600: #c8260d; /* Basé sur textHighlightPrimary2 / interactionReversedActiveHover */
+  --color-primary-700: #a5230f; /* Basé sur interactionHighlightPrimaryPress */
+  --color-primary-800: #882314; /* Basé sur interactionReversedActivePress */
+  --color-primary-900: #784034; /* Basé sur textHighlightQuartary */
+
+  --color-secondary-50: #f6edfa; /* Basé sur surfaceSecondary1 / interactionOutlinedSecondaryHover */
+  --color-secondary-100: #e5e7fd; /* Basé sur surfaceTertiary2 */
+  --color-secondary-200: #dfbceb; /* Basé sur surfaceSecondary2 / interactionOutlinedSecondaryPress */
+  --color-secondary-300: #a165c3; /* Basé sur surfaceSecondary3 */
+  --color-secondary-400: #5e5ecd; /* Basé sur textFocus / borderFocus / surfaceTertiary4 */
+  --color-secondary-500: #424291; /* Basé sur textHighlightTertiary */
+  --color-secondary-600: #613677; /* Basé sur interactionHighlightSecondary */
+  --color-secondary-700: #463351; /* Basé sur interactionHighlightSecondaryHover */
+  --color-secondary-800: #371f44; /* Couleur intermédiaire */
+  --color-secondary-900: #271332; /* Basé sur interactionHighlightSecondaryPress */
+
+  /* Variables de texte */
+  --color-text-dark: #171717; /* textDark */
+  --color-text-neutral: #404040; /* textNeutral */
+  --color-text-shy: #737373; /* textShy */
+  --color-text-inverse: #ffffff; /* textInverse */
+  --color-text-focus: #5e5ecd; /* textFocus */
+  --color-text-success: #047857; /* textSuccess */
+  --color-text-warning: #be8204; /* textWarning */
+  --color-text-error: #d32f2f; /* textError */
+
+  /* Surfaces */
+  --color-surface-white: #ffffff; /* surfaceWhite */
+  --color-surface-white-alpha-light: rgba(255, 255, 255, 0.2); /* surfaceWhiteAlphaLight */
+  --color-surface-white-alpha-strong: rgba(255, 255, 255, 0.4); /* surfaceWhiteAlphaStrong */
+  --color-overlay-light: rgba(38, 38, 38, 0.4); /* overlayLight */
+  --color-overlay-strong: rgba(38, 38, 38, 0.6); /* overlayStrong */
+  --color-overlay-very-strong: rgba(38, 38, 38, 0.7); /* overlayVeryStrong */
+
+  --color-surface-gray-1: #e5e5e5; /* surfaceGray1 */
+  --color-surface-gray-2: #262626; /* surfaceGray2 */
+  --color-surface-gray-3: #f5f5f5; /* surfaceGray3 */
+
+  --color-surface-success-1: #6ee7b7; /* surfaceSuccess1 */
+  --color-surface-success-2: #d1fae5; /* surfaceSuccess2 */
+  --color-surface-error-1: #fca5a5; /* surfaceError1 */
+  --color-surface-error-2: #fee2e2; /* surfaceError2 */
+  --color-surface-warning-1: #fde047; /* surfaceWarning1 */
+  --color-surface-warning-2: #fef9c3; /* surfaceWarning2 */
+
+  /* Borders */
+  --color-border-neutral: #e5e5e5; /* borderNeutral */
+  --color-border-focus: #5e5ecd; /* borderFocus */
+  --color-border-completed: #171717; /* borderCompleted */
+  --color-border-success: #059669; /* borderSuccess */
+  --color-border-error: #dc2626; /* borderError */
+
+  /* Radius */
+  --radius-minimal: 2px; /* radiusMinimal */
+  --radius-middle: 6px; /* radiusMiddle */
+  --radius-rounded: 12px; /* radiusRounded */
+  --radius-full: 999px; /* radiusFull */
+
+  /* Shadow */
+  --shadow-none: 0px 0px 0px 0px #000; /* shadowNone */
+  --shadow-xs: 2px 2px 4px -4px rgba(23, 23, 23, 0.4); /* shadowXS */
+  --shadow-md: 4px 8px 16px -12px rgba(23, 23, 23, 0.2); /* shadowMD */
+  --shadow-lg: 8px 16px 48px -20px rgba(23, 23, 23, 0.4); /* shadowLG */
+  --shadow-xl: 12px 20px 48px -12px rgba(23, 23, 23, 0.4); /* shadowXL */
+  --shadow-2xl: 20px 24px 64px -16px rgba(23, 23, 23, 0.6); /* shadow2XL */
+  --shadow-inner: 0px 4px 16px -8px rgba(23, 23, 23, 0.3) inset; /* shadowInner */
 }
 
 @layer base {
@@ -43,4 +106,5 @@
     cursor: pointer;
   }
 }
+
 @source "../node_modules/flowbite-svelte/dist";
