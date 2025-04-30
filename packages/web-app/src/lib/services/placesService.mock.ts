@@ -23,7 +23,8 @@ import {
   Categories,
   CountryCodes,
   PlaceClosedHolidays,
-  PlaceOpeningStatus
+  PlaceOpeningStatus,
+  PlaceTempInfo
 } from '@soliguide/common';
 import type { PlaceDetailsParams, SearchOptions, SearchParams } from './types';
 
@@ -44,13 +45,6 @@ export const searchResultMock: SearchResult = {
       address: '2 Quai Saint-Bernard, 75005 Paris',
       banners: {
         holidays: PlaceClosedHolidays.UNKNOWN,
-        message: {
-          description:
-            "<p>Le camion Austerlitz sera<strong> déplacé au 49 boulevard de l'Hôpital dans le 13ème arrondissement, du 24 juin 2024 au 25 juillet 2024 inclus. </strong>Réouverture prévue le 26 août 2024 sur le site habituel au jardin Tino Rossi.&nbsp;</p>",
-          end: new Date('2024-07-26T23:59:59.000Z'),
-          name: "Attention : changement d'adresse du 24 juin 2024 au 25 juillet 2024 en raison des Jeux Olympiques",
-          start: new Date('2024-06-24T00:00:00.000Z')
-        },
         orientation: false
       },
       distance: -1,
@@ -61,13 +55,13 @@ export const searchResultMock: SearchResult = {
       services: [Categories.FOOD_DISTRIBUTION],
       sources: [],
       status: PlaceOpeningStatus.OPEN,
-      todayInfo: { openingHours: [] }
+      todayInfo: { openingHours: [] },
+      tempInfo: { hours: null, message: null, closure: null }
     },
     {
       address: "4 Rue de l'Ave Maria, 75004 Paris",
       banners: {
         holidays: PlaceClosedHolidays.UNKNOWN,
-        message: null,
         orientation: false
       },
       distance: -1,
@@ -85,6 +79,7 @@ export const searchResultMock: SearchResult = {
       services: [Categories.FOOD_DISTRIBUTION],
       sources: [],
       status: PlaceOpeningStatus.OPEN,
+      tempInfo: { hours: null, message: null, closure: null },
       todayInfo: {
         openingHours: [
           {
@@ -98,7 +93,6 @@ export const searchResultMock: SearchResult = {
       address: '19 Rue Santeuil, 75005 Paris',
       banners: {
         holidays: PlaceClosedHolidays.UNKNOWN,
-        message: null,
         orientation: false
       },
       distance: -1,
@@ -109,6 +103,7 @@ export const searchResultMock: SearchResult = {
       services: [Categories.FOOD_DISTRIBUTION, Categories.ACTIVITIES],
       sources: [],
       status: PlaceOpeningStatus.TEMPORARILY_CLOSED,
+      tempInfo: { hours: null, message: null, closure: null },
       todayInfo: {
         closingDays: {
           end: '',
@@ -118,7 +113,7 @@ export const searchResultMock: SearchResult = {
     },
     {
       address: '1 Rue Montmartre, 75001 Paris',
-      banners: { message: null, orientation: false, holidays: PlaceClosedHolidays.UNKNOWN },
+      banners: { orientation: false, holidays: PlaceClosedHolidays.UNKNOWN },
       distance: 478.42644975047216,
       id: 154,
       name: 'Soupe Saint-Eustache',
@@ -134,6 +129,7 @@ export const searchResultMock: SearchResult = {
       services: [Categories.ACTIVITIES],
       sources: [],
       status: PlaceOpeningStatus.TEMPORARILY_CLOSED,
+      tempInfo: { hours: null, message: null, closure: null },
       todayInfo: {
         closingDays: { end: '2024-11-30T23:59:59.000Z', start: '2024-04-01T00:00:00.000Z' }
       }
@@ -217,7 +213,8 @@ export const placeDetailsMock: PlaceDetails = {
       }
     ]
   },
-  website: 'http://www.soupesainteustache.fr'
+  website: 'http://www.soupesainteustache.fr',
+  tempInfo: new PlaceTempInfo()
 };
 
 export const fakePlacesService = (error = '') => {

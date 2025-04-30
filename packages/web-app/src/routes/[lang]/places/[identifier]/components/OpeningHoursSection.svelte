@@ -23,12 +23,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { Text } from '@soliguide/design-system';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import PlaceDetailsSection from './PlaceDetailsSection.svelte';
+  import TempInfosBanner from './TempInfosBanner.svelte';
   import { formatTimeRangeToLocale } from '$lib/client';
-  import { PlaceOpeningStatus, type DayName } from '@soliguide/common';
+  import { PlaceOpeningStatus, PlaceTempInfo, type DayName } from '@soliguide/common';
   import type { HoursRange, PlaceDetailsOpeningHours } from '$lib/models/types';
   import type { I18nStore } from '$lib/client/types';
 
   export let status: PlaceOpeningStatus;
+
+  export let tempInfos: PlaceTempInfo;
 
   export let openHours: PlaceDetailsOpeningHours = {};
 
@@ -43,8 +46,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </script>
 
 <PlaceDetailsSection>
-  <section class="opening-hours">
+  <section class="opening-hours" id="openingHoursSection">
     <Text type="title3PrimaryExtraBold">{$i18n.t('OPEN_HOURS_AND_DAYS')}</Text>
+    <TempInfosBanner tempInfo={tempInfos.closure} tempInfoType="closure"></TempInfosBanner>
+    <TempInfosBanner tempInfo={tempInfos.hours} tempInfoType="hours"></TempInfosBanner>
     <ul>
       {#each Object.entries(openHours) as [day, openingHours]}
         <li class="open-hours" class:highlight={day === currentDay}>
@@ -86,6 +91,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     gap: var(--spacingXS);
   }
   .opening-hours {
+    scroll-margin-top: var(--topbar-height);
     display: flex;
     flex-direction: column;
     gap: 1rem;

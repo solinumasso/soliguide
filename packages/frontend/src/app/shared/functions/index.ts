@@ -25,7 +25,6 @@ export * from "./week-days";
 export * from "./dateOperations";
 export * from "./generateCompleteArray";
 export * from "./generateCompleteName";
-export * from "./getInfoColor.service";
 export * from "./getMobileAppLink";
 export * from "./global-constants.class";
 export * from "./initSearchTerrority";

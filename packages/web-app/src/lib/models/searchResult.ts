@@ -29,7 +29,7 @@ import {
   type ApiSearchResults
 } from '@soliguide/common';
 import { sort } from '$lib/ts';
-import { computeTodayInfo, computeAddress, buildSources } from './place';
+import { computeTodayInfo, computeAddress, buildSources, computeTempInfo } from './place';
 import type { SearchLocationParams, SearchResult, SearchResultItem } from './types';
 import { sortServicesByRelevance } from '../utils';
 import { categoryService } from '$lib/services/categoryService';
@@ -67,14 +67,6 @@ const buildSearchResultItem = (
     address: computeAddress(place.position, onOrientation),
     banners: {
       holidays: place.newhours.closedHolidays,
-      message: place.tempInfos.message.actif
-        ? {
-            description: place.tempInfos.message.description,
-            end: place.tempInfos.message.dateFin,
-            name: place.tempInfos.message.name,
-            start: place.tempInfos.message.dateDebut
-          }
-        : null,
       orientation: onOrientation
     },
     distance,
@@ -92,7 +84,8 @@ const buildSearchResultItem = (
       .filter((category) => typeof category !== 'undefined'),
     sources: buildSources(place.sources),
     status,
-    todayInfo: computeTodayInfo(place, status)
+    todayInfo: computeTodayInfo(place, status),
+    tempInfo: computeTempInfo(place.tempInfos)
   };
 };
 

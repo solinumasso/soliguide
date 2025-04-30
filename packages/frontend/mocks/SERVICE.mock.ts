@@ -27,9 +27,10 @@ import {
   PlaceClosedHolidays,
   ServiceSaturation,
   WelcomedPublics,
+  OpeningHours,
 } from "@soliguide/common";
 
-import { OpeningHours, Service } from "../src/app/models/place";
+import { Service } from "../src/app/models/place";
 
 export const SERVICE_MOCK: Service = {
   category: Categories.DAY_HOSTING,
@@ -41,6 +42,7 @@ export const SERVICE_MOCK: Service = {
     infoColor: null,
     name: null,
     hours: null,
+    status: null,
   },
   description: "Un service test",
   differentHours: false,

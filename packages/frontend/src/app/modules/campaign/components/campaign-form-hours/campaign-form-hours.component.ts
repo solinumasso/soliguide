@@ -23,7 +23,11 @@ import { UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { TempInfoType } from "@soliguide/common";
+import {
+  TempInfoType,
+  BasePlaceTempInfo,
+  OpeningHours,
+} from "@soliguide/common";
 
 import { ToastrService } from "ngx-toastr";
 
@@ -36,9 +40,8 @@ import { CurrentLanguageService } from "../../../general/services/current-langua
 
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { TranslateService } from "@ngx-translate/core";
-import { OpeningHours } from "../../../../models/place/classes/opening-hours.class";
+
 import { Place } from "../../../../models/place/classes";
-import { BasePlaceTempInfos } from "../../../../models/place/classes/temp-infos/BaseTempInfos.class";
 
 @Component({
   selector: "app-campaign-form-hours",
@@ -50,7 +53,7 @@ export class CampaignFormHoursComponent
   implements AfterViewInit
 {
   public horairesTempForm!: UntypedFormGroup;
-  public tempHours: BasePlaceTempInfos;
+  public tempHours: BasePlaceTempInfo;
 
   constructor(
     protected override readonly adminTempInfosService: AdminTempInfosService,
@@ -83,13 +86,13 @@ export class CampaignFormHoursComponent
     this.submitted = false;
 
     this.tempInfoType = TempInfoType.hours;
-    this.tempHours = new BasePlaceTempInfos();
+    this.tempHours = new BasePlaceTempInfo();
     this.actualHours = new OpeningHours();
     this.isCampaign = true;
   }
 
   public ngAfterViewInit(): void {
-    this.tempHours = new BasePlaceTempInfos();
+    this.tempHours = new BasePlaceTempInfo();
 
     this.actualHours = this.place.newhours;
 

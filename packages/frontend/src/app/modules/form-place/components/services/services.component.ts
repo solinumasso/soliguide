@@ -27,10 +27,14 @@ import {
   TemplateRef,
 } from "@angular/core";
 import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
-import { CommonPlaceDocument, Modalities, Publics } from "@soliguide/common";
+import {
+  CommonPlaceDocument,
+  Modalities,
+  Publics,
+  OpeningHours,
+} from "@soliguide/common";
 import { ToastrService } from "ngx-toastr";
 import { UploadService } from "../../services/upload.service";
-import { OpeningHours } from "../../../../models/place/classes/opening-hours.class";
 import { Service } from "../../../../models/place/classes";
 import cloneDeep from "lodash.clonedeep";
 import { TranslateService } from "@ngx-translate/core";
