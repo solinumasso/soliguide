@@ -21,8 +21,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <script lang="ts">
   import { getContext, onMount, setContext } from 'svelte';
   import { goto } from '$app/navigation';
-
-  import { Topbar } from '@soliguide/design-system';
+  import type { I18nStore, RoutingStore } from '$lib/client/types';
+  import { I18N_CTX_KEY } from '$lib/client/i18n';
+  import { Topbar, InfoBlock } from '@soliguide/design-system';
   import {
     PlaceInfoSection,
     PlaceDescriptionSection,
@@ -36,10 +37,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { getPlaceDetailsPageController } from './pageController';
   import { ROUTES_CTX_KEY } from '$lib/client/index';
   import type { PageData } from './$types';
-  import type { RoutingStore } from '$lib/client/types';
 
   export let data: PageData;
 
+  const i18n: I18nStore = getContext(I18N_CTX_KEY);
   const pageStore = getPlaceDetailsPageController();
   pageStore.init(data);
 
@@ -84,6 +85,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     pageStore.captureEvent('go-back', { fromPlace: $pageStore.placeDetails.id });
     goto(`${$routes.ROUTE_PLACES}#${$pageStore.placeDetails.id}`);
   };
+
+  $: displayMessage = $pageStore.placeDetails.tempInfo.message.status === 'CURRENT';
 </script>
 
 <svelte:head>
@@ -102,33 +105,54 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     address={$pageStore.placeDetails.address}
     status={$pageStore.placeDetails.status}
     onOrientation={$pageStore.placeDetails.onOrientation}
+    hasTempMessage={displayMessage}
+    tempInfo={$pageStore.placeDetails.tempInfo}
   />
   <section class="sections">
-    <PlaceInfoSection
-      info={$pageStore.placeDetails.info}
-      lastUpdate={$pageStore.placeDetails.lastUpdate}
-      sources={$pageStore.placeDetails.sources}
-    />
-    <PlaceDescriptionSection description={$pageStore.placeDetails.description} />
-    <OpeningHoursSection
-      openHours={$pageStore.placeDetails.hours}
-      currentDay={$pageStore.currentDay}
-      status={$pageStore.placeDetails.status}
-    />
-    <PlaceServices services={$pageStore.placeDetails.services} currentDay={$pageStore.currentDay} />
+    <div>
+      <div class="info-block" id="tempMessage">
+        {#if displayMessage}
+          <InfoBlock
+            variant="warning"
+            withClamp
+            title={$pageStore.placeDetails.tempInfo.message.name}
+            text={$pageStore.placeDetails.tempInfo.message.description || ''}
+            withIcon={true}
+            showMoreLabel={$i18n.t('SEE_MORE')}
+            showLessLabel={$i18n.t('SEE_LESS')}
+          />
+        {/if}
+      </div>
+      <PlaceInfoSection
+        info={$pageStore.placeDetails.info}
+        lastUpdate={$pageStore.placeDetails.lastUpdate}
+        sources={$pageStore.placeDetails.sources}
+      />
+      <PlaceDescriptionSection description={$pageStore.placeDetails.description} />
+      <OpeningHoursSection
+        openHours={$pageStore.placeDetails.hours}
+        currentDay={$pageStore.currentDay}
+        status={$pageStore.placeDetails.status}
+        tempInfos={$pageStore.placeDetails.tempInfo}
+      />
+      <PlaceServices
+        services={$pageStore.placeDetails.services}
+        currentDay={$pageStore.currentDay}
+      />
 
-    <PlaceHowToGoSection
-      address={$pageStore.placeDetails.address}
-      onOrientation={$pageStore.placeDetails.onOrientation}
-    />
+      <PlaceHowToGoSection
+        address={$pageStore.placeDetails.address}
+        onOrientation={$pageStore.placeDetails.onOrientation}
+      />
 
-    <PlaceContact
-      phones={$pageStore.placeDetails.phones}
-      facebook={$pageStore.placeDetails.facebook}
-      instagram={$pageStore.placeDetails.instagram}
-      email={$pageStore.placeDetails.email}
-      website={$pageStore.placeDetails.website}
-    />
+      <PlaceContact
+        phones={$pageStore.placeDetails.phones}
+        facebook={$pageStore.placeDetails.facebook}
+        instagram={$pageStore.placeDetails.instagram}
+        email={$pageStore.placeDetails.email}
+        website={$pageStore.placeDetails.website}
+      />
+    </div>
   </section>
 </div>
 
@@ -157,6 +181,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     display: flex;
     flex-direction: column;
     gap: var(--spacingLG);
+
+    .info-block {
+      background-color: var(--color-surfaceWhite);
+      padding: var(--spacingLG) var(--spacingLG) 0 var(--spacingLG);
+    }
   }
 
   .footer {
@@ -164,5 +193,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     width: 100%;
     height: $footer-height;
     bottom: 0;
+  }
+
+  #tempMessage {
+    scroll-margin-top: var(--topbar-height);
   }
 </style>

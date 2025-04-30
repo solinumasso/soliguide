@@ -21,15 +21,16 @@
 import {
   CommonNewPlaceService,
   getCategoriesSpecificFields,
+  BasePlaceTempInfo,
+  OpeningHours,
 } from "@soliguide/common";
-import { BasePlaceTempInfos } from "./temp-infos";
-import { OpeningHours } from "./opening-hours.class";
+
 import { THEME_CONFIGURATION } from "../../themes";
 
 export class Service extends CommonNewPlaceService {
   public hasSpecialName: boolean;
   public show: boolean;
-  public override close: BasePlaceTempInfos = new BasePlaceTempInfos();
+  public override close: BasePlaceTempInfo = new BasePlaceTempInfo();
 
   public showHoraires: boolean;
   public showPublics: boolean;
@@ -49,7 +50,7 @@ export class Service extends CommonNewPlaceService {
 
     if (service) {
       this.hours = new OpeningHours(service?.hours, isInForm);
-      this.close = new BasePlaceTempInfos(
+      this.close = new BasePlaceTempInfo(
         {
           serviceObjectId: this.serviceObjectId,
           ...service.close,
@@ -57,7 +58,7 @@ export class Service extends CommonNewPlaceService {
         isInForm
       );
     } else {
-      this.close = new BasePlaceTempInfos(
+      this.close = new BasePlaceTempInfo(
         { serviceObjectId: "NEW_SERVICE_OBJECT_ID" },
         isInForm
       );

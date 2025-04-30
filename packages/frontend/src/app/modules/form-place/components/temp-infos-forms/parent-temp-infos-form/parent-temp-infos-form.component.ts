@@ -51,6 +51,8 @@ import {
   type ApiTempInfoResponse,
   type TempInfoContext,
   TempInfoType,
+  BasePlaceTempInfo,
+  type OpeningHours,
 } from "@soliguide/common";
 import type { PosthogProperties } from "@soliguide/common-angular";
 
@@ -66,11 +68,7 @@ import {
 } from "../../../../../shared/validators";
 import { regexp } from "../../../../../shared";
 import { PosthogService } from "../../../../analytics/services/posthog.service";
-import {
-  BasePlaceTempInfos,
-  Place,
-  type OpeningHours,
-} from "../../../../../models/place/classes";
+import { Place } from "../../../../../models/place/classes";
 
 import type { ApiError } from "../../../../../models/api";
 import {
@@ -115,7 +113,7 @@ export class ParentTempInfosFormComponent implements OnInit, OnDestroy {
   public submitted: boolean;
 
   public tempInfoType!: TempInfoType;
-  public tempInfoToEdit: BasePlaceTempInfos;
+  public tempInfoToEdit: BasePlaceTempInfo;
 
   public lastDateValue: string;
 
@@ -146,7 +144,7 @@ export class ParentTempInfosFormComponent implements OnInit, OnDestroy {
     this.lastDateValue = "";
     this.noChanges = null;
     this.place = new Place();
-    this.tempInfoToEdit = new BasePlaceTempInfos();
+    this.tempInfoToEdit = new BasePlaceTempInfo();
     this.editorConfig.placeholder = "";
     this.routePrefix = this.currentLanguageService.routePrefix;
     this.posthogService = posthogService;
@@ -236,7 +234,7 @@ export class ParentTempInfosFormComponent implements OnInit, OnDestroy {
   public initTempInfosForm = (tempInfo?: TempInfo): void => {
     this.submitted = false;
 
-    this.tempInfoToEdit = new BasePlaceTempInfos(tempInfo, true);
+    this.tempInfoToEdit = new BasePlaceTempInfo(tempInfo, true);
 
     // For a creation, we add place data
     if (this.tempInfoType === TempInfoType.hours) {
@@ -408,7 +406,7 @@ export class ParentTempInfosFormComponent implements OnInit, OnDestroy {
         this.adminTempInfosService
           .patchTempInfo(
             this.placeId,
-            this.tempInfosForm.value as BasePlaceTempInfos,
+            this.tempInfosForm.value as BasePlaceTempInfo,
             this.tempInfoType
           )
           .subscribe({
@@ -472,7 +470,7 @@ export class ParentTempInfosFormComponent implements OnInit, OnDestroy {
       this.adminTempInfosService
         .patchTempInfo(
           this.placeId,
-          this.tempInfosForm.value as BasePlaceTempInfos,
+          this.tempInfosForm.value as BasePlaceTempInfo,
           this.tempInfoType
         )
         .subscribe({

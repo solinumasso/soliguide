@@ -29,17 +29,13 @@ import {
   CampaignName,
   CampaignChangesSection,
   AnyDepartmentCode,
+  BasePlaceTempInfo,
+  OpeningHours,
 } from "@soliguide/common";
 
 import { PlaceChangesTypeEdition } from "../enums";
 
-import {
-  BasePlaceTempInfos,
-  Photo,
-  Place,
-  Service,
-  OpeningHours,
-} from "../../place/classes";
+import { Photo, Place, Service } from "../../place/classes";
 import { CAMPAIGN_LIST } from "../../campaign";
 
 export class PlaceChanges implements CommonPlaceChanges {
@@ -127,8 +123,8 @@ export class PlaceChanges implements CommonPlaceChanges {
       this.new = new Place();
       switch (changes.section) {
         case PlaceChangesSection.tempClosure:
-          this.old.tempInfos.closure = new BasePlaceTempInfos(changes.old);
-          this.new.tempInfos.closure = new BasePlaceTempInfos(changes.new);
+          this.old.tempInfos.closure = new BasePlaceTempInfo(changes.old);
+          this.new.tempInfos.closure = new BasePlaceTempInfo(changes.new);
           break;
 
         case PlaceChangesSection.contacts:
@@ -185,13 +181,13 @@ export class PlaceChanges implements CommonPlaceChanges {
           break;
 
         case PlaceChangesSection.tempHours:
-          this.old.tempInfos.hours = new BasePlaceTempInfos(changes.old);
-          this.new.tempInfos.hours = new BasePlaceTempInfos(changes.new);
+          this.old.tempInfos.hours = new BasePlaceTempInfo(changes.old);
+          this.new.tempInfos.hours = new BasePlaceTempInfo(changes.new);
           break;
 
         case PlaceChangesSection.tempMessage:
-          this.old.tempInfos.message = new BasePlaceTempInfos(changes.old);
-          this.new.tempInfos.message = new BasePlaceTempInfos(changes.new);
+          this.old.tempInfos.message = new BasePlaceTempInfo(changes.old);
+          this.new.tempInfos.message = new BasePlaceTempInfo(changes.new);
           break;
 
         default:

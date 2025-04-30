@@ -28,3 +28,4 @@ export { default as PlaceContact } from './PlaceContact.svelte';
 export { default as PlaceServices } from './PlaceServices.svelte';
 export { default as ServiceHours } from './ServiceHours.svelte';
 export { default as ServiceInfoSection } from './ServiceInfoSection.svelte';
+export { default as TempInfosBanner } from './TempInfosBanner.svelte';

@@ -19,7 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { writable } from 'svelte/store';
-import { PlaceOpeningStatus, WEEK_DAYS, type DayName } from '@soliguide/common';
+import { PlaceOpeningStatus, PlaceTempInfo, WEEK_DAYS, type DayName } from '@soliguide/common';
 import type { PlaceDetails, PlaceDetailsOpeningHours } from '$lib/models/types';
 import { posthogService } from '$lib/services/posthogService';
 import type { PageController, PageState } from './types';
@@ -66,7 +66,8 @@ const initialValue: PageState = {
     sources: [],
     status: PlaceOpeningStatus.OPEN,
     todayInfo: {},
-    website: ''
+    website: '',
+    tempInfo: {} as PlaceTempInfo
   },
   error: null,
   currentDay: getCurrentDay()

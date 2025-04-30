@@ -29,8 +29,8 @@ import {
   OpeningHoursContext,
   WEEK_DAYS,
   formatStringTime,
+  OpeningHours,
 } from "@soliguide/common";
-import { OpeningHours } from "../../../../models";
 
 @Component({
   selector: "app-form-table-horaires",

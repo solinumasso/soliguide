@@ -81,7 +81,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   $: tag = as || textDefinition.tag || 'span';
 </script>
 
-<svelte:element this={tag} class={cssClass}><slot /></svelte:element>
+<svelte:element this={tag} class={cssClass}>
+  <slot />
+</svelte:element>
 
 <style lang="scss">
   .ellipsis {

@@ -30,6 +30,7 @@ import {
   PlaceClosedHolidays,
   CommonTimeslot,
   OpeningHoursContext,
+  OpeningHours,
 } from "@soliguide/common";
 
 import { ToastrService } from "ngx-toastr";
@@ -44,7 +45,7 @@ import { User } from "../../../users/classes";
 
 import { CAMPAIGN_LIST } from "../../../../models/campaign/constants";
 import { Place } from "../../../../models/place/classes";
-import { OpeningHours } from "../../../../models";
+
 import cloneDeep from "lodash.clonedeep";
 
 import { TranslateService } from "@ngx-translate/core";

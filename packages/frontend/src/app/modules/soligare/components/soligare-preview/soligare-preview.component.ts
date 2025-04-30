@@ -24,12 +24,11 @@ import { TranslateService } from "@ngx-translate/core";
 import { ToastrService } from "ngx-toastr";
 import { EMPTY, Subscription, switchMap, tap } from "rxjs";
 
-import { PlaceType } from "@soliguide/common";
+import { PlaceType, isOneDayOpen } from "@soliguide/common";
 
 import { SoligareSearchService } from "../../services/soligare-search.service";
 import { CurrentLanguageService } from "../../../general/services/current-language.service";
 import { Place, MarkerOptions } from "../../../../models";
-import { isOneDayOpen } from "../../../../shared/functions/place-hours/placeHours.utils";
 
 @Component({
   selector: "app-soligare-preview",

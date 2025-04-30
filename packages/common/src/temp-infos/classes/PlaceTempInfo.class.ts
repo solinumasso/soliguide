@@ -18,32 +18,25 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {
-  WEEK_DAYS,
-  DayName,
-  CommonOpeningHours,
-  DAYS,
-} from "@soliguide/common";
 
-export const isOneDayOpen = (hours: CommonOpeningHours | null): boolean => {
-  if (hours) {
-    for (const day of WEEK_DAYS) {
-      if (hours[day as DayName].open) {
-        return true;
-      }
-    }
+import { IPlaceTempInfo } from "../interfaces";
+
+import { BasePlaceTempInfo } from "./BasePlaceTempInfo.class";
+
+export class PlaceTempInfo {
+  public closure: BasePlaceTempInfo;
+  public hours: BasePlaceTempInfo;
+  public message: BasePlaceTempInfo;
+
+  constructor(placeTempInfo?: IPlaceTempInfo, isInForm?: boolean) {
+    this.closure = new BasePlaceTempInfo(
+      placeTempInfo?.closure ?? null,
+      isInForm
+    );
+    this.hours = new BasePlaceTempInfo(placeTempInfo?.hours ?? null, isInForm);
+    this.message = new BasePlaceTempInfo(
+      placeTempInfo?.message ?? null,
+      isInForm
+    );
   }
-  return false;
-};
-
-export const is24HoursOpen = (hours?: CommonOpeningHours | null): boolean => {
-  if (!hours) return false;
-
-  for (const day of Object.keys(DAYS)) {
-    const timeslot = hours[day as DayName]?.timeslot[0];
-    if (!timeslot || timeslot.start !== 0 || timeslot.end !== 2359) {
-      return false;
-    }
-  }
-  return true;
-};
+}
