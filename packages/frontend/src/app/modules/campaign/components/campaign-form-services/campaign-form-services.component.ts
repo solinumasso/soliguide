@@ -26,6 +26,7 @@ import {
   CAMPAIGN_DEFAULT_NAME,
   getCategoriesSpecificFields,
   type Categories,
+  BasePlaceTempInfos,
 } from "@soliguide/common";
 import type { PosthogProperties } from "@soliguide/common-angular";
 
@@ -36,7 +37,6 @@ import { AdminTempInfosService } from "../../../form-place/services/admin-temp-i
 import { DateValidatorService } from "../../../shared/services/date-validator.service";
 
 import { CAMPAIGN_LIST } from "../../../../models/campaign/constants";
-import { BasePlaceTempInfos } from "../../../../models/place/classes/temp-infos";
 import type { Place, Service } from "../../../../models/place/classes";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import {

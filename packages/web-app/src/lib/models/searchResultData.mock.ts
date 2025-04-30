@@ -333,7 +333,7 @@ const samplePlace: ApiPlace = Object.freeze({
 
 const samplePlaceTransformed: SearchResultItem = Object.freeze({
   address: '1 Rue Montmartre, 75001 Paris',
-  banners: { message: null, orientation: false, holidays: PlaceClosedHolidays.UNKNOWN },
+  banners: { orientation: false, holidays: PlaceClosedHolidays.UNKNOWN },
   distance: 478.42644975047216,
   id: 154,
   name: 'Soupe Saint-Eustache',
@@ -349,6 +349,7 @@ const samplePlaceTransformed: SearchResultItem = Object.freeze({
   services: [Categories.FOOD_DISTRIBUTION],
   sources: [],
   status: PlaceOpeningStatus.TEMPORARILY_CLOSED,
+  tempInfo: { hours: null, message: null, closure: null },
   todayInfo: {
     closingDays: { end: '2024-11-30T23:59:59.000Z', start: '2024-04-01T00:00:00.000Z' }
   }
@@ -1248,7 +1249,7 @@ const sampleItinerary: ApiPlace = Object.freeze({
 const sampleItineraryTransformed: SearchResultItem[] = [
   {
     address: '58 Bd Saint-Marcel, 75005 Paris - Point de départ de la maraude',
-    banners: { message: null, orientation: false, holidays: PlaceClosedHolidays.UNKNOWN },
+    banners: { orientation: false, holidays: PlaceClosedHolidays.UNKNOWN },
     distance: 403.7915416747283,
     id: 30965,
     name: 'Maraude Balades des Lucioles 13e Paris',
@@ -1264,11 +1265,12 @@ const sampleItineraryTransformed: SearchResultItem[] = [
     services: [Categories.FOOD_DISTRIBUTION, Categories.HYGIENE_PRODUCTS, Categories.CLOTHING],
     sources: [],
     status: PlaceOpeningStatus.OPEN,
+    tempInfo: { hours: null, message: null, closure: null },
     todayInfo: { openingHours: [{ end: '2215', start: '1950' }] }
   },
   {
     address: "Pl. Louis-Armand, 75012 Paris - Point d'arrivée de la maraude",
-    banners: { message: null, orientation: false, holidays: PlaceClosedHolidays.UNKNOWN },
+    banners: { orientation: false, holidays: PlaceClosedHolidays.UNKNOWN },
     distance: 403.7915416747283,
     id: 30965,
     name: 'Maraude Balades des Lucioles 13e Paris',
@@ -1284,6 +1286,7 @@ const sampleItineraryTransformed: SearchResultItem[] = [
     services: [Categories.FOOD_DISTRIBUTION, Categories.HYGIENE_PRODUCTS, Categories.CLOTHING],
     sources: [],
     status: PlaceOpeningStatus.OPEN,
+    tempInfo: { hours: null, message: null, closure: null },
     todayInfo: { openingHours: [{ end: '2215', start: '1950' }] }
   }
 ];
