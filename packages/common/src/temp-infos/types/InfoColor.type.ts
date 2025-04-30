@@ -18,27 +18,4 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { PlaceTempInfo } from "@soliguide/common";
-
-import { BasePlaceTempInfos } from "./BaseTempInfos.class";
-
-export class PlaceTempInfos implements PlaceTempInfo {
-  public closure: BasePlaceTempInfos;
-  public hours: BasePlaceTempInfos;
-  public message: BasePlaceTempInfos;
-
-  constructor(placeTempInfos?: PlaceTempInfo, isInForm?: boolean) {
-    this.closure = new BasePlaceTempInfos(
-      placeTempInfos?.closure ?? null,
-      isInForm
-    );
-    this.hours = new BasePlaceTempInfos(
-      placeTempInfos?.hours ?? null,
-      isInForm
-    );
-    this.message = new BasePlaceTempInfos(
-      placeTempInfos?.message ?? null,
-      isInForm
-    );
-  }
-}
+export type InfoColor = "" | "danger" | "warning";

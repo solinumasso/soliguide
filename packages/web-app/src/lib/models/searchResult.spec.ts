@@ -77,7 +77,6 @@ describe('Search Result', () => {
 
       expect(resultItem.todayInfo).toStrictEqual(samplePlaceTransformed.todayInfo);
       expect(resultItem.banners).toStrictEqual({
-        message: null,
         orientation: samplePlace.modalities.orientation.checked,
         holidays: samplePlace.newhours.closedHolidays
       });
@@ -486,76 +485,6 @@ describe('Search Result', () => {
     });
 
     describe('Banners', () => {
-      it('If tempInfos has no active message, the message banner is null', () => {
-        const modifiedPlace: ApiPlace = {
-          ...samplePlace,
-          tempInfos: {
-            ...samplePlace.tempInfos,
-            message: {
-              ...samplePlace.tempInfos.message,
-              actif: false
-            }
-          }
-        };
-
-        const result = buildSearchResult(
-          { nbResults: 1, places: [modifiedPlace] },
-          sampleLocationParams,
-          category
-        );
-
-        const [resultItem] = result.places;
-        expect(resultItem.banners.message).toBeNull();
-      });
-
-      it('If tempInfos has an active message, the message banner is set', () => {
-        const modifiedPlace: ApiPlace = {
-          ...samplePlace,
-          tempInfos: {
-            ...samplePlace.tempInfos,
-            message: {
-              ...samplePlace.tempInfos.message,
-              actif: true,
-              dateDebut: '2024-09-01T00:00:00.000Z',
-              dateFin: '2025-09-01T00:00:00.000Z',
-              description: 'This is the message message',
-              name: 'information message'
-            }
-          }
-        };
-
-        const result = buildSearchResult(
-          { nbResults: 1, places: [modifiedPlace] },
-          sampleLocationParams,
-          category
-        );
-        const [resultItem] = result.places;
-        expect(resultItem.banners.message).toStrictEqual({
-          start: '2024-09-01T00:00:00.000Z',
-          end: '2025-09-01T00:00:00.000Z',
-          description: 'This is the message message',
-          name: 'information message'
-        });
-      });
-    });
-
-    describe('Determination of the source', () => {
-      it('should be an empty array if there is no sources', () => {
-        const modifiedPlace: ApiPlace = {
-          ...samplePlace,
-          sources: []
-        };
-        const modifiedPlaceResult: SearchResultItem = { ...samplePlaceTransformed, sources: [] };
-
-        const result = buildSearchResult(
-          { nbResults: 1, places: [modifiedPlace] },
-          sampleLocationParams,
-          category
-        );
-        const [resultItem] = result.places;
-        expect(resultItem.sources).toStrictEqual(modifiedPlaceResult.sources);
-      });
-
       it('should be an empty array if there is no sources', () => {
         const modifiedPlace: ApiPlace = {
           ...samplePlace,

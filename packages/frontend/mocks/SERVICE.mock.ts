@@ -41,6 +41,7 @@ export const SERVICE_MOCK: Service = {
     infoColor: null,
     name: null,
     hours: null,
+    status: null,
   },
   description: "Un service test",
   differentHours: false,

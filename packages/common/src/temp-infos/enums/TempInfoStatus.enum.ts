@@ -20,6 +20,7 @@
  */
 export enum TempInfoStatus {
   CURRENT = "CURRENT",
-  FUTURE = "FUTURE",
+  INCOMING = "INCOMING", // under 15 days
+  FUTURE = "FUTURE", // over 15 days
   OBSOLETE = "OBSOLETE",
 }

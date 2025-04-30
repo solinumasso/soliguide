@@ -29,4 +29,9 @@ export { default as fetch, fakeFetch, wrapSveltekitFetch } from './transport';
 export { getGeolocation, isGeolocSupported, getMapLink } from './geo';
 export { formatToDateWithFullMonth } from './date';
 export { getZDCookieConsent, setZDCookieConsent } from './cookie';
-export { formatTimeRangeToLocale, formatDateRangeToLocale, convertHoursToDisplay } from './date';
+export {
+  formatTimeRangeToLocale,
+  formatDateRangeToLocale,
+  formatDateToLocale,
+  convertHoursToDisplay
+} from './date';

@@ -20,11 +20,10 @@
  */
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
-import { TempInfoType } from "@soliguide/common";
+import { TempInfoType, BasePlaceTempInfo } from "@soliguide/common";
 
 import { DateService } from "../../services/date.service";
 
-import { BasePlaceTempInfos } from "../../../../models/place/classes/temp-infos";
 import { PosthogComponent } from "../../../analytics/components/posthog.component";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 
@@ -39,7 +38,7 @@ export class DisplayTempBannerComponent
 {
   @Input() public tempInfoType!: TempInfoType;
 
-  @Input() public tempInfos!: BasePlaceTempInfos;
+  @Input() public tempInfos!: BasePlaceTempInfo;
   @Input() public displayTempHours?: boolean;
   @Input() public admin?: boolean;
   @Input() public displayHoursWhenTempClosed?: boolean;
