@@ -18,5 +18,28 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-export { sortServicesByRelevance } from './prioritizeServices';
-export { isObjectEmpty } from './isObjectEmpty';
+import { WEEK_DAYS, DayName, DAYS } from "src/dates";
+import { CommonOpeningHours } from "../classes/CommonOpeningHours.class";
+
+export const isOneDayOpen = (hours: CommonOpeningHours | null): boolean => {
+  if (hours) {
+    for (const day of WEEK_DAYS) {
+      if (hours[day as DayName].open) {
+        return true;
+      }
+    }
+  }
+  return false;
+};
+
+export const is24HoursOpen = (hours?: CommonOpeningHours | null): boolean => {
+  if (!hours) return false;
+
+  for (const day of Object.keys(DAYS)) {
+    const timeslot = hours[day as DayName]?.timeslot[0];
+    if (!timeslot || timeslot.start !== 0 || timeslot.end !== 2359) {
+      return false;
+    }
+  }
+  return true;
+};

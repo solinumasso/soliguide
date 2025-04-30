@@ -21,6 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <script lang="ts">
   import { Text } from '@soliguide/design-system';
   import { PhoneButton, PlaceStatus, TodayInfo } from '$lib/components';
+  import { isObjectEmpty } from '$lib/utils';
   import GoToButton from './GoToButton.svelte';
   import { getPlaceDetailsPageController } from '../pageController';
   import type { Phone, TodayInfo as TodayInfoType } from '$lib/models/types';
@@ -39,6 +40,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let onOrientation: boolean;
 
   const placeController = getPlaceDetailsPageController();
+
 </script>
 
 <header class="card-header">
@@ -47,9 +49,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <div class="tag-container">
       <PlaceStatus {status} />
     </div>
+    {#if !isObjectEmpty(todayInfo)}
     <div class="today-info-container">
       <TodayInfo {todayInfo} />
     </div>
+    {/if}
   </div>
 
   <div class="actions">

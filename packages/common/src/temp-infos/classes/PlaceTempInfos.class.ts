@@ -18,5 +18,28 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-export { sortServicesByRelevance } from './prioritizeServices';
-export { isObjectEmpty } from './isObjectEmpty';
+
+import { PlaceTempInfo } from "../interfaces";
+
+import { BasePlaceTempInfos } from "./BaseTempInfos.class";
+
+export class PlaceTempInfos {
+  public closure: BasePlaceTempInfos;
+  public hours: BasePlaceTempInfos;
+  public message: BasePlaceTempInfos;
+
+  constructor(placeTempInfos?: PlaceTempInfo, isInForm?: boolean) {
+    this.closure = new BasePlaceTempInfos(
+      placeTempInfos?.closure ?? null,
+      isInForm
+    );
+    this.hours = new BasePlaceTempInfos(
+      placeTempInfos?.hours ?? null,
+      isInForm
+    );
+    this.message = new BasePlaceTempInfos(
+      placeTempInfos?.message ?? null,
+      isInForm
+    );
+  }
+}
