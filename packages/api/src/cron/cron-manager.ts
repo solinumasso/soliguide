@@ -104,16 +104,16 @@ const bree = new Bree({
     },
     // ----
     // PLACES
-    {
-      interval: "at 3:00 am",
-      name: "[PLACES] Set un-updated places offline",
-      path: join(
-        __dirname,
-        "jobs",
-        "fiches",
-        `set-offline.job${defaultExtension}`
-      ),
-    },
+    // {
+    //   interval: "at 3:00 am",
+    //   name: "[PLACES] Set un-updated places offline",
+    //   path: join(
+    //     __dirname,
+    //     "jobs",
+    //     "fiches",
+    //     `set-offline.job${defaultExtension}`
+    //   ),
+    // },
     {
       interval: "at 3:50 am",
       name: "[PLACES] Unset obsolete temporary information on places",
