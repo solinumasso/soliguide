@@ -21,12 +21,16 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-import { ApiPlace, ApiTempInfoResponse, TempInfoType } from "@soliguide/common";
+import {
+  ApiPlace,
+  ApiTempInfoResponse,
+  TempInfoType,
+  BasePlaceTempInfo,
+} from "@soliguide/common";
 
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 
-import { BasePlaceTempInfos } from "../../../models/place/classes/temp-infos";
 import { Place } from "../../../models/place/classes";
 
 import { environment } from "../../../../environments/environment";
@@ -50,7 +54,7 @@ export class AdminTempInfosService {
 
   public patchTempInfo = (
     lieuId: number,
-    tempInfo: BasePlaceTempInfos,
+    tempInfo: BasePlaceTempInfo,
     tempInfoType: TempInfoType
   ): Observable<ApiTempInfoResponse> => {
     return this.http.patch<ApiTempInfoResponse>(
@@ -87,7 +91,7 @@ export class AdminTempInfosService {
   // @deprecated
   public patchServicesClosed = (
     lieuId: number,
-    services: BasePlaceTempInfos[]
+    services: BasePlaceTempInfo[]
   ): Observable<Place> => {
     return this.http
       .patch<ApiPlace>(`${this.endPoint}services/${lieuId}`, services)

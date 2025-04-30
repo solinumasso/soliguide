@@ -37,11 +37,11 @@ import {
   SupportedLanguagesCode,
   computePlaceOpeningStatus,
   SoliguideCountries,
+  PlaceTempInfo,
 } from "@soliguide/common";
 
 import cloneDeep from "lodash.clonedeep";
 
-import { PlaceTempInfos } from "./temp-infos/PlaceTempInfos.class";
 import { CampaignsForPlace } from "./campaigns-for-place.class";
 import { OpeningHours } from "./opening-hours.class";
 import { Photo } from "./photo.class";
@@ -95,7 +95,7 @@ export class Place implements Partial<ApiPlace> {
   public createdBy: string | null;
 
   public stepsDone: PlaceStepsDone;
-  public tempInfos: PlaceTempInfos;
+  public tempInfos: PlaceTempInfo;
   public campaigns: CampaignsForPlace;
   public disabled: boolean; // Frontend variable only: used for definitively closed and drafts
   public priority?: boolean;
@@ -202,7 +202,7 @@ export class Place implements Partial<ApiPlace> {
       isInForm
     );
 
-    this.tempInfos = new PlaceTempInfos(place?.tempInfos, isInForm);
+    this.tempInfos = new PlaceTempInfo(place?.tempInfos, isInForm);
 
     if (place?.services_all) {
       this.services_all = place.services_all.map(

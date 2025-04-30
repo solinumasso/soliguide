@@ -27,7 +27,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </script>
 
 {#if todayInfo.openingHours && todayInfo.openingHours.length > 0}
-  <PlaceOpeningHours openingRange={todayInfo.openingHours} />
+  <PlaceOpeningHours openingRange={todayInfo.openingHours}><slot /></PlaceOpeningHours>
 {:else if todayInfo.closingDays}
-  <PlaceClosingDays closingRange={todayInfo.closingDays} />
+  <PlaceClosingDays closingRange={todayInfo.closingDays}><slot /></PlaceClosingDays>
 {/if}
