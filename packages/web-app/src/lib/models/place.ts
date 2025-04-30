@@ -54,7 +54,7 @@ export const formatTimeslots = (timeslots: CommonTimeslot[] = []): HoursRange[] 
   }));
 
 /**
- * Calculates opening hours: date interval, hour interval or nothing
+ * Calculates opening hours: date interval, hour interval or nothing and closing days
  */
 export const computeTodayInfo = (
   place: ApiPlace,
