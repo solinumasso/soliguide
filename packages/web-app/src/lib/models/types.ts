@@ -22,7 +22,8 @@ import type {
   Categories,
   CountryCodes,
   PlaceClosedHolidays,
-  PlaceOpeningStatus
+  PlaceOpeningStatus,
+  PlaceTempInfos
 } from '@soliguide/common';
 import type { types as DSTypes } from '@soliguide/design-system';
 
@@ -158,6 +159,7 @@ export interface PlaceDetails {
   sources: Source[];
   status: PlaceOpeningStatus;
   todayInfo: TodayInfo;
+  tempInfos: PlaceTempInfos;
   website: string;
 }
 

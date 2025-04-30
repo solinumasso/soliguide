@@ -40,11 +40,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     formatTimeRangeToLocale(hours)
       .map((range) => `${$i18n.t('OPENING_RANGE', { start: range.start, end: range.end })}`)
       .join(' - ');
+      console.log(status)
 </script>
 
 <PlaceDetailsSection>
   <section class="opening-hours">
     <Text type="title3PrimaryExtraBold">{$i18n.t('OPEN_HOURS_AND_DAYS')}</Text>
+    
     <ul>
       {#each Object.entries(openHours) as [day, openingHours]}
         <li class="open-hours" class:highlight={day === currentDay}>

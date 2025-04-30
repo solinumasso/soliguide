@@ -18,5 +18,20 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-export { sortServicesByRelevance } from './prioritizeServices';
-export { isObjectEmpty } from './isObjectEmpty';
+import { CommonOpeningHours } from "./CommonOpeningHours.class";
+import { OpeningHoursContext } from "../enums";
+import { isOneDayOpen, is24HoursOpen } from "../functions";
+
+export class OpeningHours extends CommonOpeningHours {
+  public h24: boolean;
+  public isOpeningHoursSet: boolean;
+
+  constructor(hours?: CommonOpeningHours, isInForm?: boolean) {
+    super(
+      hours,
+      isInForm ? OpeningHoursContext.ADMIN : OpeningHoursContext.PUBLIC
+    );
+    this.isOpeningHoursSet = hours ? isOneDayOpen(hours) : false;
+    this.h24 = is24HoursOpen(hours);
+  }
+}

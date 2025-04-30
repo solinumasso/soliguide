@@ -328,6 +328,7 @@ const buildPlaceDetails = (placeResult: ApiPlace, categorySearched: Categories):
     sources: buildSources(placeResult.sources),
     status: computePlaceOpeningStatus(placeResult),
     todayInfo: computeTodayInfo(placeResult, status),
+    tempInfos: new PlaceTempInfo(placeResult.tempInfos),
     website: placeResult.entity.website ?? ''
   };
 };
