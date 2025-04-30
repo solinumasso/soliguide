@@ -20,7 +20,6 @@
  */
 import { CommonOpeningHours } from "./CommonOpeningHours.class";
 import { OpeningHoursContext } from "../enums";
-
 import { isOneDayOpen, is24HoursOpen } from "../functions";
 
 export class OpeningHours extends CommonOpeningHours {
@@ -32,6 +31,7 @@ export class OpeningHours extends CommonOpeningHours {
       hours,
       isInForm ? OpeningHoursContext.ADMIN : OpeningHoursContext.PUBLIC
     );
+
     this.isOpeningHoursSet = isOneDayOpen(hours);
     this.h24 = is24HoursOpen(hours);
   }
