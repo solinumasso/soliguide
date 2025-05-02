@@ -39,9 +39,6 @@ import { DisplayServiceAdminComponent } from "./components/display-service-admin
 import { DisplayTempInfoAdminComponent } from "./components/display-temp-info-admin/display-temp-info-admin.component";
 
 import { PlaceModule } from "../place/place.module";
-
-import { SearchModule } from "../search/search.module";
-
 import { SharedModule } from "../shared/shared.module";
 import { FormatInternationalPhoneNumberPipe } from "../shared";
 
@@ -73,7 +70,6 @@ import { FormatInternationalPhoneNumberPipe } from "../shared";
     NgbModule,
     PlaceModule,
     RouterModule,
-    SearchModule,
     SharedModule,
     TranslateModule,
     FormatInternationalPhoneNumberPipe,

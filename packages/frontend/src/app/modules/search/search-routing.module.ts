@@ -24,29 +24,20 @@ import { NgModule } from "@angular/core";
 import { SearchComponent } from "./components/search/search.component";
 
 import { LanguageGuard } from "../../guards/language.guard";
-import { THEME_CONFIGURATION } from "../../models";
 
 export const searchRoutes: Routes = [
-  {
-    path: "search/:position",
-    redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/search/:position`,
-  },
-  {
-    path: "search/:position/:category",
-    redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/search/:position/:category`,
-  },
   {
     path: "",
     canActivate: [LanguageGuard],
     component: SearchComponent,
   },
   {
-    path: ":lang/search/:position",
+    path: ":position",
     canActivate: [LanguageGuard],
     component: SearchComponent,
   },
   {
-    path: ":lang/search/:position/:category",
+    path: ":position/:category",
     canActivate: [LanguageGuard],
     component: SearchComponent,
   },

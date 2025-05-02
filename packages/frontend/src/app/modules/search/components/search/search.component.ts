@@ -126,7 +126,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     private readonly posthogService: PosthogService,
     private readonly locationService: LocationService
   ) {
-    console.log("LOOG");
+    console.log("XXXXX");
     this.loading = true;
     this.parcoursLoading = true;
     this.markers = [];

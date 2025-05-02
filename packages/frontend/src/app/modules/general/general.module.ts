@@ -52,7 +52,6 @@ import { TerritorialAnalysisComponent } from "./components/solidata/territorial-
 import { HomeTerritoriesStatsComponent } from "./components/home-territiries-stats/home-territories-stats.component";
 import { FoodAccessComponent } from "./components/solidata/food-access.component";
 import { SearchBarModule } from "../search-bar/search-bar.module";
-import { SearchModule } from "../search/search.module";
 
 @NgModule({
   declarations: [
@@ -90,7 +89,6 @@ import { SearchModule } from "../search/search.module";
     NgbModule,
     ReactiveFormsModule,
     RouterModule.forRoot([]),
-    SearchModule,
     SearchBarModule,
     SharedModule,
     TranslateModule,

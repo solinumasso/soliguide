@@ -56,13 +56,13 @@ export class SharePlaceComponent
   public linkUrl: string;
   public linkDescription: string;
 
-  public readonly PLATFORMS_TO_SHARE = [
+  public PLATFORMS_TO_SHARE = [
     "whatsapp",
     "telegram",
     "sms",
     "facebook",
     "email",
-  ] as const;
+  ];
 
   public readonly faCopy = faCopy;
 
@@ -106,11 +106,11 @@ export class SharePlaceComponent
 
   public printFiche = (): void => {
     this.captureEvent({ name: "click-print-button" });
-
     window.print();
   };
 
   public copyLink = (): void => {
+    this.clipboard.copy(this.linkDescription);
     this.toastrService.success(
       this.translateService.instant("LINK_COPIED_SUCCESSFULLY")
     );
@@ -118,13 +118,11 @@ export class SharePlaceComponent
 
   public open(): void {
     this.modalService.open(this.shareModal, DEFAULT_MODAL_OPTIONS);
-
     this.captureEvent({ name: "click-share-button" });
   }
 
   public close(): void {
     this.captureEvent({ name: "click-close-share-modal-button" });
-
     this.modalService.dismissAll();
   }
 
