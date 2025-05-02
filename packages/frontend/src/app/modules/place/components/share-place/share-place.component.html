@@ -61,27 +61,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <button
       type="button"
       shareButton="copy"
-      [sbUrl]="linkDescription"
-      [sbTitle]="'COPIER_PRESSE_PAPIER' | translate"
-      [sbIcon]="faCopy"
-      [sbColor]="'#3C396D'"
-      (sbClick)="clipboard.copy(linkDescription)"
+      class="btn btn-primary"
+      (click)="copyLink()"
     >
+      <fa-icon [icon]="['fas', 'copy']" aria-hidden="true"></fa-icon>
       {{ "COPIER_PRESSE_PAPIER" | translate }}
     </button>
-    <ng-template ngFor let-platform [ngForOf]="PLATFORMS_TO_SHARE">
-      <share-buttons
-        class="text-center"
-        theme="default"
-        [button]="platform"
-        [show]="10"
-        [showText]="true"
-        [url]="linkUrl"
-        [title]="linkTitle"
-        [description]="linkDescription"
-        [image]="'/images/social.jpg'"
-        (click)="clickOnPlatform(platform)"
-      ></share-buttons>
-    </ng-template>
+
+    <share-buttons
+      [include]="['whatsapp', 'telegram', 'sms', 'facebook', 'email']"
+      [showText]="true"
+    ></share-buttons>
   </div>
 </ng-template>

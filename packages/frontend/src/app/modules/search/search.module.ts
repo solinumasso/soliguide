@@ -52,6 +52,7 @@ import { HttpClientJsonpModule } from "@angular/common/http";
 import { LocationAutocompleteComponent } from "../shared/components/location-autocomplete/location-autocomplete.component";
 import { SearchBarModule } from "../search-bar/search-bar.module";
 import { FormatInternationalPhoneNumberPipe } from "../shared";
+import { SearchMapComponent } from "../place/standalone-components/search-map/search-map.component";
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { FormatInternationalPhoneNumberPipe } from "../shared";
   imports: [
     CommonModule,
     FontAwesomeModule,
+    SearchMapComponent,
     FormatInternationalPhoneNumberPipe,
     FormsModule,
     HttpClientJsonpModule,
