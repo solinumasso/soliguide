@@ -1,7 +1,7 @@
 /*
  * Soliguide: Useful information for those who need it
  *
- * SPDX-FileCopyrightText: © 2024 Solinum
+ * SPDX-FileCopyrightText: © 2025 Solinum
  *
  * SPDX-License-Identifier: AGPL-3.0-only
  *
@@ -18,7 +18,10 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-// @index('./*', f => `export * from '${f.path}'`)
-export * from "./contactEmail.dto";
-export * from "./searchOptions.dto";
-export * from "./sitemap.dto";
+import { FR_REGION_CODES, SOLIGUIDE_COUNTRIES } from "@soliguide/common";
+import { param } from "express-validator";
+
+export const sitemapDto = [
+  param("country").isIn(SOLIGUIDE_COUNTRIES),
+  param("regionCode").isIn(FR_REGION_CODES),
+];

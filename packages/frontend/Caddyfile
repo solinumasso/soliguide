@@ -53,15 +53,6 @@ header {
 	-Server
 }
 
-# Note: Headers for security are already set by the maintenance reverse proxy
-
-handle /sitemap.xml {
-	reverse_proxy {
-		to {$SOLIGUIDE_API_URL}
-		header_up Host {upstream_hostport}
-		header_up X-Forwarded-Http-Host {upstream_hostport}
-	}
-}
 
 # Old categories redirections
 # Using {http.request.orig_uri.path} because {path} matches /index.html
@@ -182,7 +173,7 @@ handle {
 
 	# Set the theme based on the domain
 	map {header.X-Forwarded-Host} {soliguide_theme} {soliguide_language} {soliguide_title} {soliguide_description} {
-		{$SOLIGUIA_AD_DOMAIN} soliguia_ad ca "Soliguia, la guía de la solidaridad en línea" "Soliguia te permite encontrar ayuda alimentaria, asistencia social, asociaciones y numerosos servicios solidarios gratuitos." 
+		{$SOLIGUIA_AD_DOMAIN} soliguia_ad ca "Soliguia, la guía de la solidaridad en línea" "Soliguia te permite encontrar ayuda alimentaria, asistencia social, asociaciones y numerosos servicios solidarios gratuitos."
 		{$SOLIGUIA_ES_DOMAIN} soliguia_es ca "Soliguia, la guía de la solidaridad en línea" "Soliguia te permite encontrar ayuda alimentaria, asistencia social, asociaciones y numerosos servicios solidarios gratuitos."
 		default soliguide_fr fr "Soliguide, le guide de la solidarité en ligne" "Soliguide vous permet de trouver une aide alimentaire, une assistance sociale, des associations et de nombreux services solidaires gratuits."
 	}
