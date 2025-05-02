@@ -35,7 +35,7 @@ export class TempOpenFilterComponent implements OnInit {
 
   public openTodayChecked: boolean;
 
-  @Output() public filtersChange = new EventEmitter<void>();
+  @Output() public readonly filtersChange = new EventEmitter<void>();
 
   constructor() {}
 

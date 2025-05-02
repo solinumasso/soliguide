@@ -50,7 +50,7 @@ export class SearchMapComponent implements AfterViewInit, OnChanges, OnInit {
   public layer!: L.TileLayer;
   public mapId!: string;
 
-  @Output() public newCoordinates = new EventEmitter<{
+  @Output() public readonly newCoordinates = new EventEmitter<{
     lat: number;
     lng: number;
   }>();
@@ -130,11 +130,7 @@ export class SearchMapComponent implements AfterViewInit, OnChanges, OnInit {
 
     if (this.withPopup) {
       marker.bindPopup(
-        "<div id='" +
-          markerOption.options.id +
-          "' class='popup-soli'>" +
-          markerOption.options.title +
-          "</div>"
+        `<div id='${markerOption.options.id}' class='popup-soli'>${markerOption.options.title}</div>`
       );
     }
 
@@ -143,7 +139,7 @@ export class SearchMapComponent implements AfterViewInit, OnChanges, OnInit {
         const popupHtml = e.sourceTarget._popup._content;
         const doc = new DOMParser().parseFromString(popupHtml, "text/html");
         const popupid = doc.getElementsByClassName("popup-soli");
-        const el = document.getElementById("structure-" + popupid[0].id);
+        const el = document.getElementById(`structure-${popupid[0].id}`);
 
         el.scrollIntoView({
           behavior: "smooth",

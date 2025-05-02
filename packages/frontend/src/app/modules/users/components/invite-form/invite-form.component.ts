@@ -42,7 +42,7 @@ export class InviteFormComponent {
   @Input() public role: UserRole;
   @Input() public submitted: boolean;
 
-  @Output() public placesChange = new EventEmitter<string[]>();
+  @Output() public readonly placesChange = new EventEmitter<string[]>();
 
   public allPlaces = true;
   public readonly UserRole = UserRole;

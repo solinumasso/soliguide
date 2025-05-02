@@ -172,7 +172,7 @@ export class SearchCategoryAutocompleteComponent
     };
     this.updateSearchTerm.emit();
     this.showSuggestions = false;
-    this.captureEvent(`autocomplete-search-word`, { keyUsed, word });
+    this.captureEvent("autocomplete-search-word", { keyUsed, word });
   };
 
   public updateSearchWordOnly = (word: string | null) => {

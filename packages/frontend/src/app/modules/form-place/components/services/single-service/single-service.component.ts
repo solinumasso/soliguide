@@ -61,9 +61,9 @@ export class FormSingleServiceFicheComponent implements OnInit {
 
   public isDescriptionValid: boolean;
 
-  @Output() public deletedServiceIndex = new EventEmitter<number>();
-  @Output() public showServiceIndex = new EventEmitter<number>();
-  @Output() public descriptionHasError = new EventEmitter<boolean>();
+  @Output() public readonly deletedServiceIndex = new EventEmitter<number>();
+  @Output() public readonly showServiceIndex = new EventEmitter<number>();
+  @Output() public readonly descriptionHasError = new EventEmitter<boolean>();
 
   constructor(
     private _sanitizer: DomSanitizer,

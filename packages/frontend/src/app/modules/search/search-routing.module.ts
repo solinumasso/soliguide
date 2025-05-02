@@ -47,4 +47,4 @@ export const searchRoutes: Routes = [
   imports: [RouterModule.forChild(searchRoutes)],
   exports: [RouterModule],
 })
-export class SearchRoutingModule {}
+export class SearchRoutingModule {} // skipcq: JS-0327
