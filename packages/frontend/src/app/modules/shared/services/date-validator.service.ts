@@ -22,11 +22,8 @@ import { Injectable } from "@angular/core";
 import { differenceInCalendarDays } from "date-fns";
 
 import { ToastrService } from "ngx-toastr";
-
-import { formatEn } from "../../../shared/bootstrap-util";
-import { getMinDateToday } from "../../../shared/constants/MIN_DATE_TODAY.const";
-
 import { TranslateService } from "@ngx-translate/core";
+import { getMinDateToday, formatEn } from "../../../shared";
 
 @Injectable({
   providedIn: "root",

@@ -42,4 +42,4 @@ export const adminPlaceRoutes: Routes = [
   imports: [RouterModule.forChild(adminPlaceRoutes)],
   exports: [RouterModule],
 })
-export class AdminPlaceRoutingModule {}
+export class AdminPlaceRoutingModule {} // skipcq: JS-0327

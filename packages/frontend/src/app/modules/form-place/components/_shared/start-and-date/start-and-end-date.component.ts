@@ -35,7 +35,8 @@ import { endDateAfterBeginDateValidator } from "../../../../../shared";
 })
 export class FormStartAndEndDateFicheComponent implements OnInit {
   @Input() public object!: BasePlaceTempInfos;
-  @Output() public objectChange = new EventEmitter<BasePlaceTempInfos>();
+  @Output() public readonly objectChange =
+    new EventEmitter<BasePlaceTempInfos>();
 
   @Input() public parentFormGroup!: FormGroup;
 

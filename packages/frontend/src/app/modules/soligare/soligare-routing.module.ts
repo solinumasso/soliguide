@@ -48,4 +48,4 @@ export const soligareRoutes: Routes = [
   imports: [RouterModule.forChild(soligareRoutes)],
   exports: [RouterModule],
 })
-export class SoligareRoutingModule {}
+export class SoligareRoutingModule {} // skipcq: JS-0327

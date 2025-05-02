@@ -53,4 +53,4 @@ export const adminUsersRoutes: Routes = [
   imports: [RouterModule.forChild(adminUsersRoutes)],
   exports: [RouterModule],
 })
-export class AdminUsersRoutingModule {}
+export class AdminUsersRoutingModule {} // skipcq: JS-0327

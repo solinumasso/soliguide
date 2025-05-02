@@ -42,4 +42,4 @@ export const placeRoutes: Routes = [
   imports: [RouterModule.forChild(placeRoutes)],
   exports: [RouterModule],
 })
-export class PlaceRoutingModule {}
+export class PlaceRoutingModule {} // skipcq: JS-0327
