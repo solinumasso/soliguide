@@ -1,3 +1,10 @@
+# [4.86.0](https://github.com/solinumasso/soliguide/compare/v4.85.1...v4.86.0) (2025-05-02)
+
+
+### Features
+
+* temporary suspension of the automatic unpublishing of places [#578](https://github.com/solinumasso/soliguide/issues/578) ([fe4542c](https://github.com/solinumasso/soliguide/commit/fe4542cd5b3b1ae82d062d11776ca6986d8f5ef7))
+
 ## [4.85.1](https://github.com/solinumasso/soliguide/compare/v4.85.0...v4.85.1) (2025-04-17)
 
 
