@@ -41,7 +41,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { getHomePageController } from './pageController';
   import { zendeskService } from '$lib/services';
   import { get } from 'svelte/store';
+  import { BottomNav, BottomNavItem } from 'flowbite-svelte';
+  import { DarkMode } from 'flowbite-svelte';
 
+  let btnClass =
+    'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-xl p-2';
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
   const theme: ThemeDefinition = get(themeStore.getTheme());
@@ -109,6 +113,25 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     pageStore.captureEvent('menu-clicked', { clickedItem });
   };
 </script>
+
+<DarkMode {btnClass} />
+<BottomNav position="absolute" classInner="grid-cols-4" activeUrl="">
+  <BottomNavItem btnName="Home">
+    <IconHomeOn
+      class="group-hover:text-primary-600 dark:group-hover:text-primary-500 mb-1 h-6 w-6 text-gray-500 dark:text-gray-400"
+    /></BottomNavItem
+  >
+  <BottomNavItem btnName="Wallet">
+    <IconHomeOn
+      class="group-hover:text-primary-600 dark:group-hover:text-primary-500 mb-1 h-6 w-6 text-gray-500 dark:text-gray-400"
+    /></BottomNavItem
+  >
+  <BottomNavItem btnName="Profile">
+    <IconHomeOn
+      class="group-hover:text-primary-600 dark:group-hover:text-primary-500 mb-1 h-6 w-6 text-gray-500 dark:text-gray-400"
+    />
+  </BottomNavItem>
+</BottomNav>
 
 <div class="sticky">
   <Menu
