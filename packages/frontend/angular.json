@@ -30,6 +30,7 @@
               "src/robots.txt",
               "src/assets",
               "src/assets/locales",
+              "src/assets/sitemaps",
               "src/head.prod.html.tpl"
             ],
             "styles": [
