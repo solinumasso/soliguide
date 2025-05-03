@@ -10,7 +10,7 @@
     ":semanticCommits",
     ":timezone(Europe/Paris)"
   ],
-  "schedule": "every weekend",
+  "schedule": "every sunday",
   "masterIssueAutoclose": true,
   "prCreation": "not-pending",
   "prHourlyLimit": 0,
@@ -98,13 +98,6 @@
       "groupName": "web-app dependencies",
       "schedule": ["every weekend"],
       "updateTypes": ["minor"]
-    },
-    {
-      "matchManagers": ["docker"],
-      "semanticCommitScope": "docker",
-      "groupName": "Docker",
-      "schedule": ["every weekend"],
-      "updateTypes": ["minor", "patch"]
     },
     {
       "matchManagers": ["github-actions"],
