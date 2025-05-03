@@ -5882,6 +5882,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fortawesome/angular-fontawesome@npm:0.15.0":
+  version: 0.15.0
+  resolution: "@fortawesome/angular-fontawesome@npm:0.15.0"
+  dependencies:
+    "@fortawesome/fontawesome-svg-core": "npm:^6.5.2"
+    tslib: "npm:^2.6.2"
+  peerDependencies:
+    "@angular/core": ^18.0.0
+  checksum: 10c0/9ddc4d167850e3b507bb16edecefb84872cbb464f4dab3e113b1910a57c2ccd28e329b897e7394cbed7f10bb1ed659e9acdb905c5ec19f03f8e7aa4ddce3c247
+  languageName: node
+  linkType: hard
+
 "@fortawesome/fontawesome-common-types@npm:6.6.0":
   version: 6.6.0
   resolution: "@fortawesome/fontawesome-common-types@npm:6.6.0"
@@ -11156,7 +11168,7 @@ __metadata:
     "@angular/platform-browser-dynamic": "npm:15.2.10"
     "@angular/router": "npm:15.2.10"
     "@asymmetrik/ngx-leaflet": "npm:^18.0.1"
-    "@fortawesome/angular-fontawesome": "npm:0.12.1"
+    "@fortawesome/angular-fontawesome": "npm:0.15.0"
     "@fortawesome/fontawesome-svg-core": "npm:^6.5.2"
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.2"
     "@ng-bootstrap/ng-bootstrap": "npm:^14.2.0"
