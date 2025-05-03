@@ -285,6 +285,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@angular-devkit/architect@npm:0.1902.10":
+  version: 0.1902.10
+  resolution: "@angular-devkit/architect@npm:0.1902.10"
+  dependencies:
+    "@angular-devkit/core": "npm:19.2.10"
+    rxjs: "npm:7.8.1"
+  checksum: 10c0/4ce187452618041674ea9b3533183a580a3c0c11c4bc25985801a82b6f02d55e4ab21e25a26f8394deced831accf586225bcd02ed40227f818f2b1636fe00f92
+  languageName: node
+  linkType: hard
+
 "@angular-devkit/build-angular@npm:^15.2.11":
   version: 15.2.11
   resolution: "@angular-devkit/build-angular@npm:15.2.11"
@@ -484,6 +494,25 @@ __metadata:
     chokidar:
       optional: true
   checksum: 10c0/591d60e3856819e3842237e0b60f3ace713078881d90e9c3da09f599e1f8ae38d18c69dae3082b0fc790609769015abef83eb42cc9eb831370e6b8f0e31ff317
+  languageName: node
+  linkType: hard
+
+"@angular-devkit/core@npm:19.2.10":
+  version: 19.2.10
+  resolution: "@angular-devkit/core@npm:19.2.10"
+  dependencies:
+    ajv: "npm:8.17.1"
+    ajv-formats: "npm:3.0.1"
+    jsonc-parser: "npm:3.3.1"
+    picomatch: "npm:4.0.2"
+    rxjs: "npm:7.8.1"
+    source-map: "npm:0.7.4"
+  peerDependencies:
+    chokidar: ^4.0.0
+  peerDependenciesMeta:
+    chokidar:
+      optional: true
+  checksum: 10c0/a095df28d41f920650bfaf3dbd6de712519f6335abf503f2b7315966abcb2df4e625bf2c26765b03296e06bcc21aafb96271da7f0338b26fba277d08158f4904
   languageName: node
   linkType: hard
 
@@ -11134,7 +11163,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soliguide/widget@workspace:packages/widget"
   dependencies:
-    "@angular-devkit/architect": "npm:0.1802.1"
+    "@angular-devkit/architect": "npm:0.1902.10"
     "@angular-devkit/build-angular": "npm:^15.2.11"
     "@angular-devkit/core": "npm:^15.2.11"
     "@angular-devkit/schematics": "npm:^15.2.11"
