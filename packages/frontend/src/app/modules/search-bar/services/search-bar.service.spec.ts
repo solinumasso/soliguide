@@ -18,11 +18,11 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { SearchBarService } from './search-bar.service';
+import { SearchBarService } from "./search-bar.service";
 
-describe('SearchBarService', () => {
+describe("SearchBarService", () => {
   let service: SearchBarService;
 
   beforeEach(() => {
@@ -30,7 +30,7 @@ describe('SearchBarService', () => {
     service = TestBed.inject(SearchBarService);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(service).toBeTruthy();
   });
 });
