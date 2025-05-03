@@ -22,7 +22,7 @@
   "semanticCommitType": "chore",
   "semanticCommitScope": "{{packageFileDir}}",
   "commitBody": "Automated update by Renovate",
-  "baseBranches": ["main"],
+  "baseBranches": ["develop"],
   "major": {
     "enabled": false
   },
@@ -33,77 +33,77 @@
     "enabled": false
   },
   "digest": {
-    "enabled": false
+    "enabled": true
   },
   "packageRules": [
     {
       "matchPaths": ["packages/api/**"],
       "semanticCommitScope": "api",
       "groupName": "api dependencies",
-      "schedule": ["every weekend"],
+      "schedule": ["every sunday"],
       "updateTypes": ["minor"]
     },
     {
       "matchPaths": ["packages/common/**"],
       "semanticCommitScope": "common",
       "groupName": "common dependencies",
-      "schedule": ["every weekend"],
+      "schedule": ["every sunday"],
       "updateTypes": ["minor"]
     },
     {
       "matchPaths": ["packages/common-angular/**"],
       "semanticCommitScope": "common-angular",
       "groupName": "common-angular dependencies",
-      "schedule": ["every weekend"],
+      "schedule": ["every sunday"],
       "updateTypes": ["minor"]
     },
     {
       "matchPaths": ["packages/design-system/**"],
       "semanticCommitScope": "design-system",
       "groupName": "design-system dependencies",
-      "schedule": ["every weekend"],
+      "schedule": ["every sunday"],
       "updateTypes": ["minor"]
     },
     {
       "matchPaths": ["packages/frontend/**"],
       "semanticCommitScope": "frontend",
       "groupName": "frontend dependencies",
-      "schedule": ["every weekend"],
+      "schedule": ["every sunday"],
       "updateTypes": ["minor"]
     },
     {
       "matchPaths": ["packages/location-api/**"],
       "semanticCommitScope": "location-api",
       "groupName": "location-api dependencies",
-      "schedule": ["every weekend"],
+      "schedule": ["every sunday"],
       "updateTypes": ["minor"]
     },
     {
       "matchPaths": ["packages/maintenance/**"],
       "semanticCommitScope": "maintenance",
       "groupName": "maintenance dependencies",
-      "schedule": ["every weekend"],
+      "schedule": ["every sunday"],
       "updateTypes": ["minor"]
     },
     {
       "matchPaths": ["packages/soligare/**"],
       "semanticCommitScope": "soligare",
       "groupName": "soligare dependencies",
-      "schedule": ["every weekend"],
+      "schedule": ["every sunday"],
       "updateTypes": ["minor"]
     },
     {
       "matchPaths": ["packages/web-app/**"],
       "semanticCommitScope": "web-app",
       "groupName": "web-app dependencies",
-      "schedule": ["every weekend"],
+      "schedule": ["every sunday"],
       "updateTypes": ["minor"]
     },
     {
       "matchManagers": ["github-actions"],
       "semanticCommitScope": "github",
       "groupName": "GitHub Actions",
-      "schedule": ["every weekend"],
+      "schedule": ["every sunday"],
       "updateTypes": ["minor", "patch"]
     },
     {
@@ -111,7 +111,7 @@
       "matchPackageNames": ["node"],
       "semanticCommitScope": "node",
       "groupName": "Node.js",
-      "schedule": ["every weekend"],
+      "schedule": ["every sunday"],
       "updateTypes": ["minor", "patch"]
     },
     {
@@ -129,7 +129,7 @@
       ],
       "semanticCommitScope": "monorepo",
       "groupName": "Monorepo core tools",
-      "schedule": ["every weekend"],
+      "schedule": ["every sunday"],
       "updateTypes": ["minor", "patch"]
     },
     {
