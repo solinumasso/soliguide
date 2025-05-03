@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Db } from "mongodb";
+import { AnyBulkWriteOperation, Db } from "mongodb";
 
 import { logger } from "../src/general/logger";
 import {
@@ -75,8 +75,7 @@ export const up = async (db: Db) => {
       migrated: false,
     })) > 0
   ) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const bulkOps: any = [];
+    const bulkOps: AnyBulkWriteOperation[] = [];
 
     const places = await db
       .collection<ApiPlace>("lieux")

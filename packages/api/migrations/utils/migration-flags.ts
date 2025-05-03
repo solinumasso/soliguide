@@ -28,7 +28,7 @@ export const resetMigrationFlag = async (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   query: any
 ): Promise<void> => {
-  logger.info(`[MIGRATION] - Reset migration variable`);
+  logger.info("[MIGRATION] - Reset migration variable");
   await db.collection(collection).updateMany(query, {
     $set: {
       migrated: false,
