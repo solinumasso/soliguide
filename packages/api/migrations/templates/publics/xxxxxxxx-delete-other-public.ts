@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Db } from "mongodb";
+import { AnyBulkWriteOperation, Db } from "mongodb";
 
 import {
   ApiPlace,
@@ -28,9 +28,9 @@ import {
   PublicsOther,
   publicsValuesAreCoherent,
   WelcomedPublics,
+  PlaceType,
 } from "@soliguide/common";
 import { createWriteStream } from "node:fs";
-import { PlaceType } from "@soliguide/common";
 import { logger } from "../../../src/general/logger";
 
 const OTHER_PUBLIC_TO_DELETE = "ukraine";
@@ -42,8 +42,7 @@ export const up = async (db: Db) => {
   const csvStream = createWriteStream("invalid_publics_details.csv");
   csvStream.write("LIEU ID,NOM,DEPARTEMENT,VILLE,CATEGORY\n");
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const bulkOps: any = [];
+  const bulkOps: AnyBulkWriteOperation[] = [];
 
   // Récupération des lieux
   const places: ApiPlace[] = await db
@@ -198,7 +197,7 @@ export const up = async (db: Db) => {
 
   if (invalid.length > 0) {
     logger.info(
-      `Les détails des publics invalides ont été exportés dans invalid_publics_details.csv`
+      "Les détails des publics invalides ont été exportés dans invalid_publics_details.csv"
     );
   }
 };
