@@ -27,7 +27,7 @@ import { SearchFilterParams } from "../../../../models/search-places";
   templateUrl: "./temp-open-filter.component.html",
   styleUrls: [
     "./temp-open-filter.component.css",
-    "../search/search.component.css",
+    "../search/search.component.scss",
   ],
 })
 export class TempOpenFilterComponent implements OnInit {

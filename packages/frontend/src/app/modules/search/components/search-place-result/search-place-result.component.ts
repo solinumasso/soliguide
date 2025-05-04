@@ -54,7 +54,7 @@ import { SoligareSearchService } from "../../../soligare/services/soligare-searc
   templateUrl: "./search-place-result.component.html",
   styleUrls: [
     "./search-place-result.component.css",
-    "../search/search.component.css",
+    "../search/search.component.scss",
   ],
 })
 export class SearchPlaceResultComponent implements OnInit, OnDestroy {

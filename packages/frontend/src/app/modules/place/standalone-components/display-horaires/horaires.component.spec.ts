@@ -29,7 +29,6 @@ describe("DisplayHorairesComponent", () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [DisplayHorairesComponent],
       imports: [TranslateModule.forRoot()],
     }).compileComponents();
   }));
