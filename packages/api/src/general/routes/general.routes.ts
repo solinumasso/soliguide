@@ -33,7 +33,6 @@ const memoryCache = createCache({ ttl: 24 * 60 * 60 });
 
 router.get("/", (_req: ExpressRequest, res: ExpressResponse) => {
   res.setHeader("X-Robots-Tag", "noindex, nofollow");
-
   res.json("Soliguide API");
 });
 
