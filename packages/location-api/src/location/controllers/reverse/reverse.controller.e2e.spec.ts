@@ -76,7 +76,7 @@ describe("E2E - Reverse latitude & longitude to get an address", () => {
             name: "31 Place Pey Berland",
             label: "31 Place Pey Berland, 33000 Bordeaux",
             geoValue: "31-place-pey-berland-33000-bordeaux",
-            coordinates: [-0.577159, 44.8372],
+            coordinates: [-0.577159, 44.83722],
             postalCode: "33000",
             cityCode: "33063",
             city: "Bordeaux",

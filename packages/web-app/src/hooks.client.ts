@@ -33,12 +33,8 @@ Sentry.init({
   ],
   tracesSampleRate: 1.0,
   tracesSampler: () => true,
-
   replaysSessionSampleRate: 1.0,
-  replaysOnErrorSampleRate: 1.0,
-
-  enableTracing: true,
-  autoSessionTracking: true
+  replaysOnErrorSampleRate: 1.0
 });
 
 export const handleError = handleErrorWithSentry();

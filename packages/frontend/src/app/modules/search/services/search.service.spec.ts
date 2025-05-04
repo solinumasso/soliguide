@@ -29,7 +29,6 @@ describe("SearchService", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [],
     });
     service = TestBed.inject(SearchService);
   });

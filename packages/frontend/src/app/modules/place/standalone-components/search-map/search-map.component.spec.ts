@@ -27,9 +27,7 @@ describe("SearchMapComponent", () => {
   let fixture: ComponentFixture<SearchMapComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [SearchMapComponent],
-    }).compileComponents();
+    await TestBed.configureTestingModule({}).compileComponents();
   });
 
   beforeEach(() => {
