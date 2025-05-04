@@ -188,7 +188,9 @@ export const routes: Routes = [
     path: ":lang/fiche",
     canActivate: [LanguageGuard],
     loadChildren: () =>
-      import("./modules/place/place.module").then((mod) => mod.PlaceModule),
+      import("./modules/place-page/place-page.module").then(
+        (mod) => mod.PlacePageModule
+      ),
   },
   {
     path: ":lang/manage-place",

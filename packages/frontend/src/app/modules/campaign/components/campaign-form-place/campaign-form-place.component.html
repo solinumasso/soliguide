@@ -228,7 +228,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <div class="col-12">
           <app-place
             [placePreview]="place"
-            (parentCaptureEvent)="captureEvent($event)"
+            (parentCaptureEvent)="captureEvent($any($event))"
           ></app-place>
         </div>
       </div>

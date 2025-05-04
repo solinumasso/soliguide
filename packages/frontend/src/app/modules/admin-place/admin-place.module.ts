@@ -58,6 +58,7 @@ import { HttpClientJsonpModule } from "@angular/common/http";
 import { LocationAutocompleteComponent } from "../shared/components/location-autocomplete/location-autocomplete.component";
 import { SearchMapComponent } from "../place/standalone-components/search-map/search-map.component";
 import { SearchBarModule } from "../search-bar/search-bar.module";
+import { DisplayHorairesComponent } from "../place/standalone-components/display-horaires/horaires.component";
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { SearchBarModule } from "../search-bar/search-bar.module";
     PlaceModule,
     SharedModule,
     TranslateModule,
+    DisplayHorairesComponent,
     LocationAutocompleteComponent,
     SearchMapComponent,
     SearchBarModule,

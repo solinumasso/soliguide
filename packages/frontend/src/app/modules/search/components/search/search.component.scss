@@ -38,13 +38,6 @@ h1 {
   font-size: 1.3rem;
 }
 
-#filter {
-  padding-right: 20px;
-  padding-left: 40px;
-  font-size: 1rem;
-  color: #9f9f9f;
-}
-
 .search_section {
   z-index: 100;
   position: relative;
@@ -60,21 +53,27 @@ h1 {
 
 #home_search {
   width: 100%;
-  padding-top: 60px;
+  padding-top: 40px;
   text-align: center;
-  background: linear-gradient(rgba(62, 58, 113, 0.85), rgba(62, 58, 113, 0.95)),
-    url("/assets/images/fond.jpg");
+}
+
+// See SoliguideCountries for supported countries
+$countries: "es", "fr", "ad";
+
+@each $country in $countries {
+  .home_search_background_#{$country} {
+    background: linear-gradient(
+        rgba(62, 58, 113, 0.75),
+        rgba(62, 58, 113, 0.95)
+      ),
+      url("/assets/images/homepage/background-home-search-#{$country}.jpg");
+    background-size: cover;
+    width: 100%;
+  }
 }
 
 .sticky-top {
   z-index: 920;
-}
-
-.link-title {
-  cursor: pointer;
-  color: var(--bs-secondary);
-  text-decoration: underline;
-  text-decoration-color: var(--bs-secondary);
 }
 
 .slide-value {

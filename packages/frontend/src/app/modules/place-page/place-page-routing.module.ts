@@ -23,17 +23,9 @@ import { NgModule } from "@angular/core";
 
 import { PlaceComponent } from "./components/place/place.component";
 
-import { LanguageGuard } from "../../guards/language.guard";
-import { THEME_CONFIGURATION } from "../../models";
-
 export const placeRoutes: Routes = [
   {
-    path: "fiche/:lieu_id",
-    redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/fiche/:lieu_id`,
-  },
-  {
-    path: ":lang/fiche/:lieu_id",
-    canActivate: [LanguageGuard],
+    path: ":lieu_id",
     component: PlaceComponent,
   },
 ];
@@ -42,4 +34,4 @@ export const placeRoutes: Routes = [
   imports: [RouterModule.forChild(placeRoutes)],
   exports: [RouterModule],
 })
-export class PlaceRoutingModule {} // skipcq: JS-0327
+export class PlacePageRoutingModule {} // skipcq: JS-0327

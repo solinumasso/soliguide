@@ -105,6 +105,7 @@ import { FormIntlPhoneInputComponent } from "../shared/components/form-phone-inp
 import { FormPhoneInputComponent } from "../shared/components/form-phone/form-phone-input.component";
 import { LocationAutocompleteComponent } from "../shared/components/location-autocomplete/location-autocomplete.component";
 import { SearchMapComponent } from "../place/standalone-components/search-map/search-map.component";
+import { DisplayHorairesComponent } from "../place/standalone-components/display-horaires/horaires.component";
 
 @NgModule({
   declarations: [
@@ -178,6 +179,7 @@ import { SearchMapComponent } from "../place/standalone-components/search-map/se
     FormIntlPhoneInputComponent,
     FormatInternationalPhoneNumberPipe,
     FormPhoneInputComponent,
+    DisplayHorairesComponent,
   ],
 })
 export class FormPlaceModule {}

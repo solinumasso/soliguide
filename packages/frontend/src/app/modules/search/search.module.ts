@@ -44,8 +44,6 @@ import { SearchService } from "./services/search.service";
 
 import { SearchRoutingModule } from "./search-routing.module";
 
-import { PlaceModule } from "../place/place.module";
-
 import { SharedModule } from "../shared/shared.module";
 import { PartnersLogosComponent } from "./components/partners-logos/partners-logos.component";
 import { HttpClientJsonpModule } from "@angular/common/http";
@@ -75,7 +73,6 @@ import { SearchMapComponent } from "../place/standalone-components/search-map/se
     HttpClientJsonpModule,
     LocationAutocompleteComponent,
     NgbModule,
-    PlaceModule,
     ReactiveFormsModule,
     SearchBarModule,
     SearchRoutingModule,
