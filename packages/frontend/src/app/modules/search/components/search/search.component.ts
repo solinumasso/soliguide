@@ -66,7 +66,7 @@ import { PosthogService } from "../../../analytics/services/posthog.service";
   animations: [fadeInOut],
   selector: "app-search",
   templateUrl: "./search.component.html",
-  styleUrls: ["./search.component.css"],
+  styleUrls: ["./search.component.scss"],
 })
 export class SearchComponent implements OnInit, OnDestroy {
   public isMobileView: boolean = window.innerWidth < 768;
@@ -112,6 +112,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   public me!: User | null;
   public hideFilters: boolean;
 
+  public readonly THEME_CONFIGURATION = THEME_CONFIGURATION;
   @ViewChild("appFilters") public appFilters!: SearchFiltersComponent;
 
   constructor(

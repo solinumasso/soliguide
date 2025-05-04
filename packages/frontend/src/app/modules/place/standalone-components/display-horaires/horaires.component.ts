@@ -22,8 +22,14 @@ import { Component, Input, OnInit } from "@angular/core";
 import { OpeningHours } from "../../../../models";
 import { DayName, WEEK_DAYS } from "@soliguide/common";
 import { weekDaysOrdering } from "../../../../shared/functions";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { CommonModule } from "@angular/common";
+import { TranslatePipe } from "@ngx-translate/core";
+import { NgbTooltip } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
+  standalone: true,
+  imports: [FontAwesomeModule, CommonModule, TranslatePipe, NgbTooltip],
   selector: "app-display-horaires",
   styleUrls: ["./horaires.component.css"],
   templateUrl: "./horaires.component.html",

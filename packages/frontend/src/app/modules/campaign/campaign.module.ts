@@ -50,6 +50,7 @@ import { CampaignSharedModule } from "../campaign-shared/campaign-shared.module"
 import { FormPlaceModule } from "../form-place/form-place.module";
 import { PlaceModule } from "../place/place.module";
 import { SharedModule } from "../shared/shared.module";
+import { DisplayHorairesComponent } from "../place/standalone-components/display-horaires/horaires.component";
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { SharedModule } from "../shared/shared.module";
     FormsModule,
     NgbModule,
     PlaceModule,
+    DisplayHorairesComponent,
     ReactiveFormsModule,
     SharedModule,
     TranslateModule,

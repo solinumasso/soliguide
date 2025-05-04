@@ -66,14 +66,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       [canEdit]="canEdit"
       [dateForTest]="dateForTest"
       [me]="me"
-      (parentCaptureEvent)="captureEvent($event)"
+      (parentCaptureEvent)="captureEvent($any($event))"
     ></app-display-place-infos>
 
     <app-place-update-campaign-banner
       *ngIf="!placePreview"
       [canEdit]="canEdit"
       [place]="place"
-      (parentCaptureEvent)="captureEvent($event)"
+      (parentCaptureEvent)="captureEvent($any($event))"
     ></app-place-update-campaign-banner>
 
     <div class="alert alert-warning" *ngIf="displayInfo">
@@ -126,7 +126,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <!-- Modalités -->
             <app-display-modalities-inline
               [modalities]="place.modalities"
-              (parentCaptureEvent)="captureEvent($event)"
+              (parentCaptureEvent)="captureEvent($any($event))"
             ></app-display-modalities-inline>
 
             <!-- Langues -->
@@ -148,9 +148,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               [displayHoursWhenTempClosed]="
                 place.openingTagStatus === PlaceOpeningStatus.TEMPORARILY_CLOSED
               "
-              (displayTempHoursEvent)="toogleDisplayTempHours($event)"
+              (displayTempHoursEvent)="toogleDisplayTempHours($any($event))"
               (displayRegularHoursEvent)="displayRegularHours()"
-              (parentCaptureEvent)="captureEvent($event)"
+              (parentCaptureEvent)="captureEvent($any($event))"
             ></app-display-temp-banner>
             <app-display-horaires
               [hours]="place.parcours[0].hours"
@@ -197,7 +197,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           <app-share-place
             [place]="place"
             [showAddress]="showAddress"
-            (parentCaptureEvent)="captureEvent($event)"
+            (parentCaptureEvent)="captureEvent($any($event))"
           ></app-share-place>
         </div>
 
@@ -208,7 +208,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <app-display-photos
               [photos]="place.photos"
               [name]="place.name"
-              (parentCaptureEvent)="captureEvent($event)"
+              (parentCaptureEvent)="captureEvent($any($event))"
             ></app-display-photos>
           </div>
         </div>
@@ -230,7 +230,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           <h2>{{ "INFOSPRATIQUES" | translate }}</h2>
           <app-display-entity-infos
             [place]="place"
-            (parentCaptureEvent)="captureEvent($event)"
+            (parentCaptureEvent)="captureEvent($any($event))"
           ></app-display-entity-infos>
         </div>
 
@@ -262,8 +262,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             [tempInfoType]="TempInfoType.hours"
             [tempInfos]="place.tempInfos.hours"
             [displayTempHours]="displayTempHours"
-            (displayTempHoursEvent)="toogleDisplayTempHours($event)"
-            (parentCaptureEvent)="captureEvent($event)"
+            (displayTempHoursEvent)="toogleDisplayTempHours($any($event))"
+            (parentCaptureEvent)="captureEvent($any($event))"
           ></app-display-temp-banner>
 
           <app-display-temp-banner
@@ -271,9 +271,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             [tempInfoType]="TempInfoType.closure"
             [tempInfos]="place.tempInfos.closure"
             [displayHoursWhenTempClosed]="isTempClosed"
-            (displayTempHoursEvent)="toogleDisplayTempHours($event)"
+            (displayTempHoursEvent)="toogleDisplayTempHours($any($event))"
             (displayRegularHoursEvent)="displayRegularHours()"
-            (parentCaptureEvent)="captureEvent($event)"
+            (parentCaptureEvent)="captureEvent($any($event))"
           ></app-display-temp-banner>
 
           <app-display-horaires
@@ -307,7 +307,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           <h2>{{ "WAYPOINTS" | translate }}</h2>
           <app-display-parcours-mobile
             [place]="place"
-            (parentCaptureEvent)="captureEvent($event)"
+            (parentCaptureEvent)="captureEvent($any($event))"
           ></app-display-parcours-mobile>
         </div>
         <div class="d-none d-lg-block col-lg-2"></div>
@@ -328,14 +328,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       [place]="place"
       [me]="me"
       [template]="'public'"
-      (parentCaptureEvent)="captureEvent($event)"
+      (parentCaptureEvent)="captureEvent($any($event))"
     ></app-display-contacts>
 
     <app-display-services
       [services]="place.services_all"
       [dateForTest]="dateForTest"
       *ngIf="place.services_all.length"
-      (parentCaptureEvent)="captureEvent($event)"
+      (parentCaptureEvent)="captureEvent($any($event))"
     ></app-display-services>
   </div>
 </div>

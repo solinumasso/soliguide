@@ -41,6 +41,7 @@ import { DisplayTempInfoAdminComponent } from "./components/display-temp-info-ad
 import { PlaceModule } from "../place/place.module";
 import { SharedModule } from "../shared/shared.module";
 import { FormatInternationalPhoneNumberPipe } from "../shared";
+import { DisplayHorairesComponent } from "../place/standalone-components/display-horaires/horaires.component";
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { FormatInternationalPhoneNumberPipe } from "../shared";
     SharedModule,
     TranslateModule,
     FormatInternationalPhoneNumberPipe,
+    DisplayHorairesComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

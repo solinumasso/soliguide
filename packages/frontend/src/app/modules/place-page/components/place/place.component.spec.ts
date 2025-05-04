@@ -33,7 +33,7 @@ import { PlaceComponent } from "./place.component";
 
 import { Place } from "../../../../models/place/classes";
 
-import { PlaceService } from "../../services/place.service";
+import { PlaceService } from "../../../place/services/place.service";
 
 import { SharedModule } from "../../../shared/shared.module";
 

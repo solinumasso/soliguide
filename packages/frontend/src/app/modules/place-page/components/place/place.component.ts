@@ -20,7 +20,7 @@
  */
 import { Component, OnInit, Input, OnDestroy } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
-import { Organization } from "schema-dts";
+import { Organization, WithContext } from "schema-dts";
 import { Subscription } from "rxjs";
 
 import {
@@ -36,7 +36,7 @@ import {
   getPosition,
 } from "@soliguide/common";
 
-import { PlaceService } from "../../services/place.service";
+import { PlaceService } from "../../../place/services/place.service";
 import { CurrentLanguageService } from "../../../general/services/current-language.service";
 import { SeoService } from "../../../shared/services/seo.service";
 
@@ -77,7 +77,7 @@ export class PlaceComponent
 
   public showAddress: boolean;
 
-  public structuredData: Organization;
+  public structuredData: WithContext<Organization> | null = null;
 
   public displayInfo: boolean;
   public displayTempHours: boolean;
@@ -117,7 +117,6 @@ export class PlaceComponent
     posthogService: PosthogService
   ) {
     super(posthogService, "place");
-    this.structuredData = {} as Organization;
     this.marker = [];
 
     this.showAddress = false;
@@ -288,6 +287,7 @@ export class PlaceComponent
     const position = getPosition(this.place);
 
     this.structuredData = {
+      "@context": "https://schema.org",
       "@type": "Organization",
       name: this.place.name,
       description: this.place.descriptionExtract,
