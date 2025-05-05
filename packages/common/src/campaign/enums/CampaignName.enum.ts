@@ -25,6 +25,7 @@ export enum CampaignName {
   MAJ_HIVER_2022 = "MAJ_HIVER_2022",
   MAJ_HIVER_2023 = "MAJ_HIVER_2023",
   END_YEAR_2024 = "END_YEAR_2024",
+  MID_YEAR_2025 = "MID_YEAR_2025",
 }
 
 export enum AllCampaign {
