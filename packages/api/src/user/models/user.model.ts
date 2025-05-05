@@ -84,6 +84,11 @@ const UserSchema = new mongoose.Schema<User>(
         type: CampaignEmailsSchema,
       },
 
+      MID_YEAR_2025: {
+        default: CAMPAIGN_EMAILS_CONTENT_FOR_USERS,
+        type: CampaignEmailsSchema,
+      },
+
       UKRAINE_2022: {
         default: CAMPAIGN_EMAILS_CONTENT_FOR_USERS,
         type: CampaignEmailsSchema,

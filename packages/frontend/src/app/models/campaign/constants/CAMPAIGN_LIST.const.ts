@@ -103,4 +103,15 @@ export const CAMPAIGN_LIST: { [key in CampaignName]: CampaignInfos } = {
     specificServiceMessage: "",
     territories: [...DEPARTMENT_CODES[CountryCodes.FR]],
   },
+  MID_YEAR_2025: {
+    closingFormula: "Bonne fin d'année",
+    dateDebutAffichage: new Date("2024-12-20T00:00:00.000Z"),
+    dateDebutCampagne: new Date("2024-11-04T00:00:00.000Z"),
+    dateFin: new Date("2025-07-31T00:00:00.000Z"),
+    description: "Mise à jour de fin d'année 2024",
+    name: "fin d'année",
+    period: "décembre-janvier",
+    specificServiceMessage: "",
+    territories: [...DEPARTMENT_CODES[CountryCodes.FR]],
+  },
 };
