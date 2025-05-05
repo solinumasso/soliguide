@@ -276,6 +276,44 @@ export const DEFAULT_USER_PROPS: Pick<
       },
       lastEmailStatus: EmailEvents.TO_SEND,
     },
+    MID_YEAR_2025: {
+      CAMPAGNE_COMPTES_PRO: {
+        done: false,
+        ready: false,
+        sendDate: null,
+      },
+      CAMPAGNE_INVITATIONS: {
+        done: false,
+        ready: false,
+        sendDate: null,
+      },
+      RELANCE_CAMPAGNE_COMPTES_PRO: {
+        done: false,
+        ready: false,
+        sendDate: null,
+      },
+      RELANCE_CAMPAGNE_INVITATIONS: {
+        done: false,
+        ready: false,
+        sendDate: null,
+      },
+      RELANCE_DESESPOIR_COMPTES_PRO: {
+        done: false,
+        ready: false,
+        sendDate: null,
+      },
+      RELANCE_DESESPOIR_INVITATIONS: {
+        done: false,
+        ready: false,
+        sendDate: null,
+      },
+      RELANCE_TERMINER_MAJ: {
+        done: false,
+        ready: false,
+        sendDate: null,
+      },
+      lastEmailStatus: EmailEvents.TO_SEND,
+    },
     UKRAINE_2022: {
       _id: undefined,
       CAMPAGNE_COMPTES_PRO: {
