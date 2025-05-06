@@ -46,5 +46,5 @@ export const getGeolocation = (): Promise<GeolocationPosition> =>
   });
 
 export const getMapLink = (address: string): string => {
-  return `https://maps.apple.com/?q=${encodeURIComponent(address)}`;
+  return `https://www.google.com/maps/search/?q=${encodeURIComponent(address)}`;
 };
