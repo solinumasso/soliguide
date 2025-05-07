@@ -1,3 +1,10 @@
+## [4.86.1](https://github.com/solinumasso/soliguide/compare/v4.86.0...v4.86.1) (2025-05-07)
+
+
+### Bug Fixes
+
+* **web-app:** replace apple navigation by google map [#610](https://github.com/solinumasso/soliguide/issues/610) ([f7c63c0](https://github.com/solinumasso/soliguide/commit/f7c63c06a96bc4db3cdb403923384a313cafecc8))
+
 # [4.86.0](https://github.com/solinumasso/soliguide/compare/v4.85.1...v4.86.0) (2025-05-02)
 
 
