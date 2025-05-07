@@ -1,3 +1,10 @@
+## [4.86.2](https://github.com/solinumasso/soliguide/compare/v4.86.1...v4.86.2) (2025-05-07)
+
+
+### Bug Fixes
+
+* **web-app:** use another google map link [#610](https://github.com/solinumasso/soliguide/issues/610) ([6349763](https://github.com/solinumasso/soliguide/commit/63497633a26765b2a7624dd47b9fee0472a375e7))
+
 ## [4.86.1](https://github.com/solinumasso/soliguide/compare/v4.86.0...v4.86.1) (2025-05-07)
 
 
