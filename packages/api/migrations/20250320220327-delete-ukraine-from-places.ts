@@ -23,22 +23,22 @@ import { Db } from "mongodb";
 import { logger } from "../src/general/logger";
 import {
   ApiPlace,
-  getPosition,
+  // getPosition,
   OTHER_DEFAULT_VALUES,
   PlaceStatus,
   PublicsOther,
   publicsValuesAreCoherent,
   WelcomedPublics,
 } from "@soliguide/common";
-import { createWriteStream } from "node:fs";
+// import { createWriteStream } from "node:fs";
 import { PlaceType } from "@soliguide/common";
 
 const message = "Delete ukraine refugees";
 export const up = async (db: Db) => {
   logger.info(`[MIGRATION] - ${message}`);
 
-  const csvStream = createWriteStream("invalid_publics_details.csv");
-  csvStream.write("LIEU ID,NOM,DEPARTEMENT,VILLE,CATEGORY\n");
+  // const csvStream = createWriteStream("invalid_publics_details.csv");
+  // csvStream.write("LIEU ID,NOM,DEPARTEMENT,VILLE,CATEGORY\n");
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const bulkOps: any = [];
@@ -114,21 +114,21 @@ export const up = async (db: Db) => {
       preferentiel.push(place.publics);
     }
 
-    const position = getPosition(place);
-    const departmentCode = position?.departmentCode ?? "";
-    const city = position?.city ?? "";
+    // const position = getPosition(place);
+    // const departmentCode = position?.departmentCode ?? "";
+    // const city = position?.city ?? "";
 
     if (!publicsValuesAreCoherent(place.publics)) {
       invalid.push(place.publics);
 
-      const placeLine = [
-        place.lieu_id,
-        escapeCsvValue(place.name),
-        departmentCode ?? "",
-        city ?? "",
-        "",
-      ].join(",");
-      csvStream.write(placeLine + "\n");
+      // const placeLine = [
+      //   place.lieu_id,
+      //   escapeCsvValue(place.name),
+      //   departmentCode ?? "",
+      //   city ?? "",
+      //   "",
+      // ].join(",");
+      // csvStream.write(placeLine + "\n");
     }
 
     for (const service of place.services_all) {
@@ -149,14 +149,14 @@ export const up = async (db: Db) => {
       if (!publicsValuesAreCoherent(service.publics)) {
         invalid.push(service.publics);
 
-        const serviceLine = [
-          place.lieu_id,
-          escapeCsvValue(place.name),
-          departmentCode ?? "",
-          city ?? "",
-          service.category || "",
-        ].join(",");
-        csvStream.write(serviceLine + "\n");
+        // const serviceLine = [
+        //   place.lieu_id,
+        //   escapeCsvValue(place.name),
+        //   departmentCode ?? "",
+        //   city ?? "",
+        //   service.category || "",
+        // ].join(",");
+        // csvStream.write(serviceLine + "\n");
       }
     }
 
@@ -182,7 +182,7 @@ export const up = async (db: Db) => {
     i++;
   }
 
-  csvStream.end();
+  // csvStream.end();
 
   logger.info("Statistiques:");
   logger.info(`Unconditional: ${unconditional.length}`);
@@ -190,23 +190,22 @@ export const up = async (db: Db) => {
   logger.info(`Preferentiel: ${preferentiel.length}`);
   logger.info(`Total invalides: ${invalid.length}`);
 
-  if (invalid.length > 0) {
-    logger.info(
-      `Les détails des publics invalides ont été exportés dans invalid_publics_details.csv`
-    );
-  }
+  // if (invalid.length > 0) {
+  //   logger.info(
+  //     "Details for invalid publics are in invalid_publics_details.csv"
+  //   );
+  // }
 };
 
-function escapeCsvValue(value: unknown) {
-  if (value === null || value === undefined) return "";
-  const strValue = String(value);
-  if (strValue.includes(",") || strValue.includes('"')) {
-    return `"${strValue.replace(/"/g, '""')}"`;
-  }
-  return strValue;
-}
+// function escapeCsvValue(value: unknown) {
+//   if (value === null || value === undefined) return "";
+//   const strValue = String(value);
+//   if (strValue.includes(",") || strValue.includes('"')) {
+//     return `"${strValue.replace(/"/g, '""')}"`;
+//   }
+//   return strValue;
+// }
 
-export const down = async (db: Db) => {
-  logger.info(`[ROLLBACK] - ${message}`);
-  await db.collection("lieux").findOne();
+export const down = () => {
+  logger.info("NO ROLLBACK POSSIBLE");
 };
