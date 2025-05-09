@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { WEEK_DAYS, DayName, DAYS } from "src/dates";
+import { WEEK_DAYS, DayName, DAYS } from "../../dates";
 import { CommonOpeningHours } from "../classes/CommonOpeningHours.class";
 
 export const isOneDayOpen = (hours: CommonOpeningHours | null): boolean => {

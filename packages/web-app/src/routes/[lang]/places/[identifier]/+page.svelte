@@ -114,6 +114,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       openHours={$pageStore.placeDetails.hours}
       currentDay={$pageStore.currentDay}
       status={$pageStore.placeDetails.status}
+      tempInfos={$pageStore.placeDetails.tempInfos}
     />
     <PlaceServices services={$pageStore.placeDetails.services} currentDay={$pageStore.currentDay} />
 

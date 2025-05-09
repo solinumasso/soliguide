@@ -27,6 +27,7 @@ import {
   EXTERNAL_SOURCE_MAPPING,
   PairingSources,
   PlaceOpeningStatus,
+  //PlaceTempInfos,
   checkIfSourceMustBeDisplayed,
   computeTempIsActive
 } from '@soliguide/common';
@@ -120,3 +121,24 @@ export const buildSources = (sources?: CommonPlaceSource[]): Source[] =>
         return acc;
       }, [])
     : [];
+
+// export const computeTempInfos = (tempInfos: PlaceTempInfos): PlaceTempInfos => {
+//   Object.entries(tempInfos).forEach(([key, value]) => {
+//     if (value.actif && value.dateDebut) {
+//       return {
+//         ...tempInfos,
+//         [key]: {
+//           ...value,
+//           dateDebut: value.dateDebut,
+//           dateFin: value.dateFin ? new Date(value.dateFin).toISOString() : null
+//         }
+//       };
+//     }
+//     return {
+//       ...tempInfos
+//     };
+//   });
+//   return {
+//     ...tempInfos
+//   };
+// };
