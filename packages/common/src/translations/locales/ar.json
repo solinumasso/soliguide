@@ -128,6 +128,8 @@
   "API": "واجهات برمجة التطبيقات",
   "API_PARTNERS": "شركاء واجهة برمجة التطبيقات",
   "API_USER": "مستخدم API",
+  "APPLICABLE_TEMP_INFO_DATES": "ينطبق من {{startDate}} إلى {{endDate}}",
+  "APPLICABLE_TEMP_INFO_START_DATE_ONLY": "ينطبق من {{startDate}}",
   "APPOINTMENT_PRECISIONS": "تفاصيل الموعد",
   "APPROXIMATIVE_OPENING_HOURS": "الأوقات التقريبية",
   "ARE_YOU_SURE_TO_HAVE_NO_CHANGES": "هل أنت متأكد من عدم وجود تغييرات للإبلاغ عنها؟",
