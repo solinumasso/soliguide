@@ -9084,6 +9084,7 @@ __metadata:
     eslint-plugin-svelte: "npm:^2.36.0"
     globals: "npm:^15.15.0"
     i18next: "npm:^23.11.5"
+    isomorphic-dompurify: "npm:^2.16.0"
     license-check-and-add: "npm:^4.0.5"
     lint-staged: "npm:^15.5.1"
     normalize.css: "npm:^8.0.1"
