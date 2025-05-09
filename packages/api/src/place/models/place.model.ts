@@ -87,6 +87,10 @@ const PlaceSchema = new mongoose.Schema(
         default: new PlaceUpdateCampaign(),
         type: PlaceUpdateCampaignSchema,
       },
+      MID_YEAR_2025: {
+        default: new PlaceUpdateCampaign(),
+        type: PlaceUpdateCampaignSchema,
+      },
       UKRAINE_2022: {
         changes: { default: false, type: Boolean },
         date: { default: null, type: Date },

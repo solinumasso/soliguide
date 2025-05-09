@@ -167,6 +167,28 @@ const OrganizationSchema = new mongoose.Schema<ModelWithId<ApiOrganization>>(
           type: Boolean,
         },
       },
+      MID_YEAR_2025: {
+        autonomyRate: { default: 0, type: Number },
+        endDate: {
+          default: null,
+          type: Date,
+        },
+        startDate: {
+          default: null,
+          type: Date,
+        },
+        status: {
+          default: CampaignStatus.TO_DO,
+          enum: CampaignStatus,
+          type: String,
+          uppercase: true,
+        },
+        toUpdate: {
+          default: false,
+          required: true,
+          type: Boolean,
+        },
+      },
       UKRAINE_2022: {
         endDate: {
           default: null,
