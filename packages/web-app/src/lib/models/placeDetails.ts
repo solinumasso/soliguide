@@ -37,7 +37,8 @@ import {
   type PlaceTempInfo,
   Categories,
   translatePublics,
-  SupportedLanguagesCode
+  SupportedLanguagesCode,
+  PlaceTempInfos
 } from '@soliguide/common';
 import { computeTodayInfo, computeAddress, formatTimeslots, buildSources } from './place';
 import {
@@ -328,7 +329,7 @@ const buildPlaceDetails = (placeResult: ApiPlace, categorySearched: Categories):
     sources: buildSources(placeResult.sources),
     status: computePlaceOpeningStatus(placeResult),
     todayInfo: computeTodayInfo(placeResult, status),
-    tempInfos: new PlaceTempInfo(placeResult.tempInfos),
+    tempInfos: new PlaceTempInfos(placeResult.tempInfos),
     website: placeResult.entity.website ?? ''
   };
 };
