@@ -128,6 +128,8 @@
   "API": "API ها",
   "API_PARTNERS": "شرکای API",
   "API_USER": "کاربر API",
+  "APPLICABLE_TEMP_INFO_DATES": "قابل اجرا از {{startDate}} تا {{endDate}}",
+  "APPLICABLE_TEMP_INFO_START_DATE_ONLY": "قابل اجرا از {{startDate}}",
   "APPOINTMENT_PRECISIONS": "جزئیات قرار ملاقات",
   "APPROXIMATIVE_OPENING_HOURS": "زمان های تقریبی",
   "ARE_YOU_SURE_TO_HAVE_NO_CHANGES": "آیا مطمئن هستید که هیچ تغییری برای گزارش ندارید؟",
