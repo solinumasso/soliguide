@@ -294,7 +294,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               <a
                 routerLinkActive="router-link-active"
                 [routerLinkActiveOptions]="{ exact: true }"
-                [routerLink]="[routePrefix, 'solidata', 'search-tracking']"
+                [routerLink]="[
+                  routePrefix,
+                  'solidata',
+                  'public',
+                  'search-tracking'
+                ]"
                 (click)="captureEvent('click-solidata-search-tracking', {})"
                 ngbDropdownItem
                 *ngIf="displaySolidataSearchTracking"
@@ -383,7 +388,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               <a
                 routerLinkActive="router-link-active"
                 [routerLinkActiveOptions]="{ exact: true }"
-                [routerLink]="[routePrefix, 'solidata', 'search-tracking']"
+                [routerLink]="[
+                  routePrefix,
+                  'solidata',
+                  'public',
+                  'search-tracking'
+                ]"
                 (click)="captureEvent('click-solidata-search-tracking', {})"
                 ngbDropdownItem
                 *ngIf="displaySolidataSearchTracking"
