@@ -23,22 +23,27 @@ import { Db } from "mongodb";
 import { logger } from "../src/general/logger";
 import {
   ApiPlace,
-  // getPosition,
+  GENDER_DEFAULT_VALUES,
+  getPosition,
   OTHER_DEFAULT_VALUES,
   PlaceStatus,
+  PlaceType,
   PublicsOther,
   publicsValuesAreCoherent,
   WelcomedPublics,
 } from "@soliguide/common";
-// import { createWriteStream } from "node:fs";
-import { PlaceType } from "@soliguide/common";
+import { createWriteStream } from "node:fs";
+import { CONFIG } from "../src/_models";
 
 const message = "Delete ukraine refugees";
 export const up = async (db: Db) => {
   logger.info(`[MIGRATION] - ${message}`);
 
-  // const csvStream = createWriteStream("invalid_publics_details.csv");
-  // csvStream.write("LIEU ID,NOM,DEPARTEMENT,VILLE,CATEGORY\n");
+  let csvStream;
+  if (CONFIG.ENV !== "local") {
+    csvStream = createWriteStream("invalid_publics_details.csv");
+    csvStream.write("LIEU ID,NOM,DEPARTEMENT,VILLE,CATEGORY\n");
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const bulkOps: any = [];
@@ -106,6 +111,10 @@ export const up = async (db: Db) => {
       place.publics.other = structuredClone(OTHER_DEFAULT_VALUES);
     }
 
+    if (place.publics.gender.length === 0) {
+      place.publics.gender = structuredClone(GENDER_DEFAULT_VALUES);
+    }
+
     if (place.publics.accueil === WelcomedPublics.UNCONDITIONAL) {
       unconditional.push(place.publics);
     } else if (place.publics.accueil === WelcomedPublics.EXCLUSIVE) {
@@ -114,21 +123,25 @@ export const up = async (db: Db) => {
       preferentiel.push(place.publics);
     }
 
-    // const position = getPosition(place);
-    // const departmentCode = position?.departmentCode ?? "";
-    // const city = position?.city ?? "";
+    const position = getPosition(place);
+    const departmentCode = position?.departmentCode ?? "";
+    const city = position?.city ?? "";
 
     if (!publicsValuesAreCoherent(place.publics)) {
       invalid.push(place.publics);
 
-      // const placeLine = [
-      //   place.lieu_id,
-      //   escapeCsvValue(place.name),
-      //   departmentCode ?? "",
-      //   city ?? "",
-      //   "",
-      // ].join(",");
-      // csvStream.write(placeLine + "\n");
+      place.publics.accueil = WelcomedPublics.UNCONDITIONAL;
+      const placeLine = [
+        place.lieu_id,
+        escapeCsvValue(place.name),
+        departmentCode ?? "",
+        city ?? "",
+        "",
+      ].join(",");
+
+      if (csvStream) {
+        csvStream.write(placeLine + "\n");
+      }
     }
 
     for (const service of place.services_all) {
@@ -141,22 +154,35 @@ export const up = async (db: Db) => {
         (item) => item !== PublicsOther.ukraine
       );
 
+      if (service.publics.gender.length === 0) {
+        service.publics.gender = structuredClone(GENDER_DEFAULT_VALUES);
+      }
+
       // Fix old corrupted values: other must have at least one value
       if (service.publics.other.length === 0) {
         service.publics.other = structuredClone(OTHER_DEFAULT_VALUES);
       }
 
       if (!publicsValuesAreCoherent(service.publics)) {
+        service.publics.accueil = WelcomedPublics.UNCONDITIONAL;
+
         invalid.push(service.publics);
 
-        // const serviceLine = [
-        //   place.lieu_id,
-        //   escapeCsvValue(place.name),
-        //   departmentCode ?? "",
-        //   city ?? "",
-        //   service.category || "",
-        // ].join(",");
-        // csvStream.write(serviceLine + "\n");
+        const serviceLine = [
+          place.lieu_id,
+          escapeCsvValue(place.name),
+          departmentCode ?? "",
+          city ?? "",
+          service.category || "",
+        ].join(",");
+
+        if (csvStream) {
+          csvStream.write(serviceLine + "\n");
+        }
+      }
+
+      if (service.publics.other.length === 0) {
+        throw new Error("okpokpo");
       }
     }
 
@@ -182,7 +208,9 @@ export const up = async (db: Db) => {
     i++;
   }
 
-  // csvStream.end();
+  if (csvStream) {
+    csvStream.end();
+  }
 
   logger.info("Statistiques:");
   logger.info(`Unconditional: ${unconditional.length}`);
@@ -190,21 +218,21 @@ export const up = async (db: Db) => {
   logger.info(`Preferentiel: ${preferentiel.length}`);
   logger.info(`Total invalides: ${invalid.length}`);
 
-  // if (invalid.length > 0) {
-  //   logger.info(
-  //     "Details for invalid publics are in invalid_publics_details.csv"
-  //   );
-  // }
+  if (invalid.length > 0) {
+    logger.info(
+      "Details for invalid publics are in invalid_publics_details.csv"
+    );
+  }
 };
 
-// function escapeCsvValue(value: unknown) {
-//   if (value === null || value === undefined) return "";
-//   const strValue = String(value);
-//   if (strValue.includes(",") || strValue.includes('"')) {
-//     return `"${strValue.replace(/"/g, '""')}"`;
-//   }
-//   return strValue;
-// }
+function escapeCsvValue(value: unknown) {
+  if (value === null || value === undefined) return "";
+  const strValue = String(value);
+  if (strValue.includes(",") || strValue.includes('"')) {
+    return `"${strValue.replace(/"/g, '""')}"`;
+  }
+  return strValue;
+}
 
 export const down = () => {
   logger.info("NO ROLLBACK POSSIBLE");
