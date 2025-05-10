@@ -45,12 +45,10 @@ import { OriginService } from "../../../shared/services";
 export class DisplayInvitationComponent implements OnInit, OnDestroy {
   @Input() public invitations: Invitation[];
 
-  // Ligne du tableau des orgas
   @Input() public indexTable: number;
   @Input() public tableName: "users" | "orgas";
 
-  //@Output() public updateOrga;
-  @Output() public updateTable = new EventEmitter<{
+  @Output() public readonly updateTable = new EventEmitter<{
     index: number;
     updatedUser: CommonUser;
   }>();

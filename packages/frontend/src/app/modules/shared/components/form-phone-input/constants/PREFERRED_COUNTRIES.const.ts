@@ -19,7 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { CountryCodes } from "@soliguide/common";
-import { CountryISO } from "@khazii/ngx-intl-tel-input";
+import { CountryISO } from "ngx-intl-tel-input";
 
 export const PREFERRED_COUNTRIES: { [key in CountryCodes]?: CountryISO[] } = {
   [CountryCodes.FR]: [

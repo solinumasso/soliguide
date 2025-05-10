@@ -21,7 +21,6 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { LoggerModule } from "nestjs-pino";
-
 import { LocationModule } from "./location/location.module";
 import { HealthModule } from "./health/health.module";
 import { CONFIG_VALIDATOR } from "./config";
@@ -31,6 +30,7 @@ import { SentryModule } from "@sentry/nestjs/setup";
 import { CacheManagerModule } from "./cache-manager/cache-manager.module";
 import { CacheManagerInterceptor } from "./cache-manager";
 import { APP_INTERCEPTOR } from "@nestjs/core";
+import { AppController } from "./app.controller";
 
 @Module({
   imports: [
@@ -46,6 +46,7 @@ import { APP_INTERCEPTOR } from "@nestjs/core";
     HolidaysModule,
     CacheManagerModule,
   ],
+  controllers: [AppController],
   providers: [
     {
       provide: APP_INTERCEPTOR,

@@ -25,7 +25,6 @@ import { LoggerModule } from 'nestjs-pino';
 import { CONFIG_VALIDATOR } from './config';
 import { PairingModule } from './pairing/pairing.module';
 import { HealthModule } from './health/health.module';
-import { SentryModule } from '@sentry/nestjs/setup';
 
 @Module({
   imports: [
@@ -35,7 +34,6 @@ import { SentryModule } from '@sentry/nestjs/setup';
       isGlobal: true,
       validationSchema: CONFIG_VALIDATOR,
     }),
-    SentryModule.forRoot(),
     LoggerModule.forRoot(),
   ],
 })

@@ -21,7 +21,6 @@
 import { isDraftAndFormUncomplete, PlaceStatus } from "@soliguide/common";
 
 import { body, Meta } from "express-validator";
-import { forceChangesDto } from "./forceChanges.dto";
 
 export const statusDto = [
   body("status")
@@ -34,5 +33,4 @@ export const statusDto = [
       }
       return true;
     }),
-  ...forceChangesDto,
 ];

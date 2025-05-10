@@ -25,6 +25,7 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
+    "skipLibCheck": true,
     "strictFunctionTypes": true,
     "target": "es2022",
     "typeRoots": ["node_modules/@types", "../../node_modules/@types"],

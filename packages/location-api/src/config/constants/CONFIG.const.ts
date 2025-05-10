@@ -31,17 +31,6 @@ export const CONFIG_VALIDATOR = Joi.object({
     .default("https://data.geopf.fr/geocodage"),
   HERE_API_KEY: Joi.string().required(),
   SOLIGUIDE_DOMAINS: Joi.string(),
-  REDIS_HOST: Joi.string().optional(),
-  REDIS_PORT: Joi.number().default(6379).when("REDIS_HOST", {
-    is: Joi.exist(),
-    then: Joi.required(),
-    otherwise: Joi.optional(),
-  }),
-  REDIS_PASSWORD: Joi.string().when("REDIS_HOST", {
-    is: Joi.exist(),
-    then: Joi.required(),
-    otherwise: Joi.optional(),
-  }),
-
+  REDIS_URL: Joi.string().uri().optional(),
   REDIS_TTL: Joi.number().default(THREE_MONTHS_IN_MS),
 });

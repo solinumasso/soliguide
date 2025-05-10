@@ -19,9 +19,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { body } from "express-validator";
-
-import { forceChangesDto } from "./forceChanges.dto";
-
 import { stringDto, checkUrlFieldDto } from "../../_utils/dto";
 
 export const sourceDto = [
@@ -30,5 +27,4 @@ export const sourceDto = [
   body("source.isOrigin").exists().isBoolean(),
   checkUrlFieldDto("source.license"),
   checkUrlFieldDto("source.url"),
-  ...forceChangesDto,
 ];

@@ -28,7 +28,6 @@ import {
 import { body } from "express-validator";
 
 import { isValidDay } from "../../_utils/hours-custom.functions";
-import { forceChangesDto } from "./forceChanges.dto";
 
 export const checkDays = (
   path: string,
@@ -102,6 +101,5 @@ export const hoursDto = (path = "newhours.", placeType = PlaceType.PLACE) => {
     body(path + "closedHolidays")
       .exists()
       .isIn(Object.values(PlaceClosedHolidays)),
-    ...forceChangesDto,
   ];
 };

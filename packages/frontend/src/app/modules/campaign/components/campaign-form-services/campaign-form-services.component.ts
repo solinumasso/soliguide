@@ -52,7 +52,7 @@ import {
 export class CampaignFormServicesComponent implements OnInit {
   @Input() public place!: Place;
 
-  @Output() public updatePlace = new EventEmitter<Place>();
+  @Output() public readonly updatePlace = new EventEmitter<Place>();
 
   public submitted: boolean;
   public noChanges: boolean;

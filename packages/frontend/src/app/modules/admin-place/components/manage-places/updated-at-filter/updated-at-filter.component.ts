@@ -30,7 +30,7 @@ import { UpdatedAtInterval } from "@soliguide/common";
 export class UpdatedAtFilterComponent implements OnInit {
   @Input() public search: AdminSearchPlaces;
   @Input() public loading: boolean;
-  @Output() public launchSearch = new EventEmitter<void>();
+  @Output() public readonly launchSearch = new EventEmitter<void>();
 
   public date: Date | null = null;
 

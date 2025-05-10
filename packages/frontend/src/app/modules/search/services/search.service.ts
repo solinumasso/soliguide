@@ -21,7 +21,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-import { ApiSearchResults, SearchAutoComplete } from "@soliguide/common";
+import { ApiSearchResults } from "@soliguide/common";
 
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
@@ -45,12 +45,6 @@ export class SearchService {
     private readonly currentLanguageService: CurrentLanguageService
   ) {}
 
-  public autoComplete(term: string): Observable<SearchAutoComplete> {
-    return this.http.get<SearchAutoComplete>(
-      `${this.ep}auto-complete/${encodeURI(term)}`
-    );
-  }
-
   public launchSearch(search: Search): Observable<SearchResults> {
     const url = this.ep + this.currentLanguageService.currentLanguage;
 
@@ -60,11 +54,11 @@ export class SearchService {
           nbResults: 0,
           places: [],
         };
-        //
+
         if (!response.nbResults) {
           return result;
         }
-        //
+
         if (response.nbResults > 0) {
           result.nbResults = response.nbResults;
           result.places = response.places.map((item) => new Place(item, false));

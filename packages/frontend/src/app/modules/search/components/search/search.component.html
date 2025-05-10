@@ -19,7 +19,12 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <div class="p-0 m-0" *ngIf="search">
-  <div id="home_search" class="d-print-none">
+  <div
+    id="home_search"
+    [class]="
+      'd-print-none home_search_background_' + THEME_CONFIGURATION.country
+    "
+  >
     <app-search-bar
       (launchSearch)="launchSearchFromSearchBar()"
       (updateSearchTerm)="updateSearchTerm()"

@@ -20,27 +20,26 @@
  */
 import { Injectable } from '@nestjs/common';
 import {
-  HealthIndicator,
   HealthIndicatorResult,
-  HealthCheckError,
+  HealthIndicatorService,
 } from '@nestjs/terminus';
-import { PostgresService } from '../pairing/service';
+import { PostgresService } from '../pairing/services';
 
 @Injectable()
-export class PostgresHealthIndicator extends HealthIndicator {
-  constructor(private readonly postgresService: PostgresService) {
-    super();
-  }
+export class PostgresHealthIndicator {
+  constructor(
+    private readonly postgresService: PostgresService,
+    private readonly healthIndicatorService: HealthIndicatorService,
+  ) {}
 
   async isHealthy(key: string): Promise<HealthIndicatorResult> {
+    const indicator = this.healthIndicatorService.check(key);
+
     try {
       await this.postgresService.checkConnection();
-      return this.getStatus(key, true);
+      return indicator.up();
     } catch (error) {
-      throw new HealthCheckError(
-        'Postgres check failed',
-        this.getStatus(key, false),
-      );
+      return indicator.down('Postgres check failed');
     }
   }
 }

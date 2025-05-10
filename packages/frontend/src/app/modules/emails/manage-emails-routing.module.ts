@@ -48,4 +48,4 @@ export const emailingRoutes: Routes = [
   imports: [RouterModule.forChild(emailingRoutes)],
   exports: [RouterModule],
 })
-export class EmailsRoutingModule {}
+export class EmailsRoutingModule {} // skipcq: JS-0327

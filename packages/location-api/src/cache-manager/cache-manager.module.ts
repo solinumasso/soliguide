@@ -20,19 +20,35 @@
  */
 import { CacheModule } from "@nestjs/cache-manager";
 import { Module } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
 import { CacheManagerService } from "./services/cache-manager.service";
 import { CacheManagerInterceptor } from "./cache-manager.interceptor";
-import { THREE_MONTHS_IN_MS } from "../config";
+import KeyvRedis from "@keyv/redis";
 
 @Module({
   providers: [CacheManagerService, CacheManagerInterceptor],
   exports: [CacheManagerService, CacheManagerInterceptor, CacheModule],
   imports: [
     CacheModule.registerAsync({
+      inject: [ConfigService],
       isGlobal: true,
-      useFactory: async () => {
+      useFactory: async (configService: ConfigService) => {
+        const ttl = configService.get<number>("REDIS_TTL");
+        if (configService.get<number>("REDIS_URL")) {
+          const url = configService.get<string>("REDIS_URL");
+          try {
+            return {
+              stores: [new KeyvRedis(url)],
+              ttl,
+            };
+          } catch (error) {
+            return {
+              ttl,
+            };
+          }
+        }
         return {
-          ttl: THREE_MONTHS_IN_MS,
+          ttl,
         };
       },
     }),

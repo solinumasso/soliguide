@@ -78,7 +78,7 @@ export class ParcoursPositionFormComponent implements OnInit, OnDestroy {
   @ViewChild("invalidParcoursModal", { static: true })
   public invalidParcoursModal: TemplateRef<NgbModalRef>;
 
-  @Output() public changeToLieu = new EventEmitter<void>();
+  @Output() public readonly changeToLieu = new EventEmitter<void>();
 
   constructor(
     private readonly adminPlaceService: AdminPlaceService,

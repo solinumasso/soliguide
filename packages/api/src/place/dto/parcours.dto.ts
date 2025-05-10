@@ -21,12 +21,8 @@
 import { CommonOpeningHours, PlaceType } from "@soliguide/common";
 
 import mongoose from "mongoose";
-
 import { body } from "express-validator";
-
-import { forceChangesDto } from "./forceChanges.dto";
 import { positionDto } from "./position.dto";
-
 import { isValidHoursObject } from "../../_utils/hours-custom.functions";
 
 import { CHECK_STRING_NULL } from "../../config/expressValidator.config";
@@ -48,11 +44,12 @@ export const parcoursDto = [
   body("*.photos")
     .isArray()
     .customSanitizer((photos: any[]) => {
+      if (!photos?.length) {
+        return [];
+      }
       return photos.map((photo) => {
         photo._id = new mongoose.Types.ObjectId(photo._id);
         return photo;
       });
     }),
-
-  ...forceChangesDto,
 ];

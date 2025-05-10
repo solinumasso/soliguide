@@ -44,15 +44,12 @@ import {
   LimitToPipe,
   ReadableParcoursPipe,
   SafeHtmlPipe,
-  SafeUrlPipe,
   UcFirstPipe,
   UserFullNamePipe,
-  FormatPhoneNumberPipe,
   DateProxyPipe,
 } from "./pipes";
 import { PrintService, LocationService } from "./services";
 import { TextDirectionDirective } from "./directives";
-import { LocationAutocompleteComponent } from "./components/location-autocomplete/location-autocomplete.component";
 import { DisplaySourcesComponent } from "./components/display-sources/display-sources.component";
 import { NgxTranslateI18nextAdapter } from "./services/ngx-translate-i18next-adaptater.service";
 
@@ -67,16 +64,13 @@ import { NgxTranslateI18nextAdapter } from "./services/ngx-translate-i18next-ada
     LimitToPipe,
     ReadableParcoursPipe,
     SafeHtmlPipe,
-    SafeUrlPipe,
     SelectTerritoriesComponent,
     SelectCategoryComponent,
     UcFirstPipe,
-    FormatPhoneNumberPipe,
     UserFullNamePipe,
     DisplayTerritoriesComponent,
     DateProxyPipe,
     TextDirectionDirective,
-    LocationAutocompleteComponent,
     DisplaySourcesComponent,
   ],
   exports: [
@@ -84,13 +78,11 @@ import { NgxTranslateI18nextAdapter } from "./services/ngx-translate-i18next-ada
     DateFrDirective,
     DigitOnlyDirective,
     FormatBigNumberPipe,
-    FormatPhoneNumberPipe,
     HtmlToTextPipe,
     KmToMeters,
     LimitToPipe,
     ReadableParcoursPipe,
     SafeHtmlPipe,
-    SafeUrlPipe,
     SelectTerritoriesComponent,
     SelectCategoryComponent,
     UcFirstPipe,
@@ -98,7 +90,6 @@ import { NgxTranslateI18nextAdapter } from "./services/ngx-translate-i18next-ada
     DisplayTerritoriesComponent,
     DateProxyPipe,
     TextDirectionDirective,
-    LocationAutocompleteComponent,
     DisplaySourcesComponent,
   ],
   imports: [

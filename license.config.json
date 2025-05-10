@@ -15,7 +15,7 @@
     "**/*.license"
   ],
   "licenseFormats": {
-    "^CODEOWNERS|^Dockerfile|cc|^.releaserc|^.dockerignore|^.gitignore|^.prettierignore|^.editorconfig|yaml|yml|conf|sh|example|toml": {
+    "^CODEOWNERS|^Dockerfile|Caddyfile$|^Caddyfile|cc|^.releaserc|^.dockerignore|^.gitignore|^.prettierignore|^.editorconfig|yaml|yml|conf|sh|example|toml": {
       "eachLine": {
         "prepend": "# "
       }
@@ -24,7 +24,7 @@
       "prepend": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!--",
       "append": "-->"
     },
-    "md": {
+    "md|tpl": {
       "prepend": "<!--",
       "append": "-->"
     }
