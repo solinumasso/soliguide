@@ -169,7 +169,10 @@ handle @category_redirect_without_query {
 handle {
 	root * /srv/
 	file_server
-	templates
+  templates {
+        mime application/xml text/xml
+    }
+
 
 	# Set the theme based on the domain
 	map {header.X-Forwarded-Host} {soliguide_theme} {soliguide_language} {soliguide_title} {soliguide_description} {
@@ -184,6 +187,7 @@ handle {
 	# Keep static files in caches
 	@static {
 		path *.png *.svg *.ttf *.woff *.woff2 *.eot *.js /*.css
+    not path *.xml
 		# Check that the file exists
 		file
 	}
@@ -198,4 +202,14 @@ handle {
 		try_files {path} /index.html
 		header /index.html Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
 	}
+
+  @sitemaps {
+    path /assets/sitemaps/*.xml
+	}
+
+  handle @sitemaps {
+    templates {
+        mime application/xml text/xml
+    }
+  }
 }
