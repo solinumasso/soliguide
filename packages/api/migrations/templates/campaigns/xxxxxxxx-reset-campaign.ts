@@ -26,8 +26,8 @@ import {
 } from "@soliguide/common";
 
 import { Db, ObjectId } from "mongodb";
-import { logger } from "../../src/general/logger";
-import { CAMPAIGN_EMAILS_CONTENT_FOR_USERS } from "../../src/user/models/default_values";
+import { logger } from "../../../src/general/logger";
+import { CAMPAIGN_EMAILS_CONTENT_FOR_USERS } from "../../../src/user/models/default_values";
 
 const message =
   "Add default value for users, orga and places for summer update 2023";
