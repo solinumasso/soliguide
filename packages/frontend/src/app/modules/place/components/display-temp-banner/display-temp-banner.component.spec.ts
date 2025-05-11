@@ -22,7 +22,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { TranslateModule } from "@ngx-translate/core";
 
-import { TempInfoType } from "@soliguide/common";
+import { TempInfoType, BasePlaceTempInfos } from "@soliguide/common";
 
 import { addDays, subDays } from "date-fns";
 
@@ -30,7 +30,6 @@ import { DisplayTempBannerComponent } from "./display-temp-banner.component";
 
 import { DateService } from "../../services/date.service";
 
-import { BasePlaceTempInfos } from "../../../../models/place/classes/temp-infos";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { CommonPosthogMockService } from "../../../../../../mocks";
 

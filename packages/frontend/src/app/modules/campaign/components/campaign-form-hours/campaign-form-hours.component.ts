@@ -23,7 +23,7 @@ import { UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { TempInfoType } from "@soliguide/common";
+import { TempInfoType, BasePlaceTempInfos } from "@soliguide/common";
 
 import { ToastrService } from "ngx-toastr";
 
@@ -38,7 +38,6 @@ import { PosthogService } from "../../../analytics/services/posthog.service";
 import { TranslateService } from "@ngx-translate/core";
 import { OpeningHours } from "../../../../models/place/classes/opening-hours.class";
 import { Place } from "../../../../models/place/classes";
-import { BasePlaceTempInfos } from "../../../../models/place/classes/temp-infos/BaseTempInfos.class";
 
 @Component({
   selector: "app-campaign-form-hours",
