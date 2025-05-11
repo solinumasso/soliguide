@@ -20,11 +20,10 @@
  */
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
-import { TempInfoType } from "@soliguide/common";
+import { TempInfoType, BasePlaceTempInfos } from "@soliguide/common";
 
 import { DateService } from "../../services/date.service";
 
-import { BasePlaceTempInfos } from "../../../../models/place/classes/temp-infos";
 import { PosthogComponent } from "../../../analytics/components/posthog.component";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 

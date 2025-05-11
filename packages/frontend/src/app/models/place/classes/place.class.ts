@@ -37,11 +37,11 @@ import {
   SupportedLanguagesCode,
   computePlaceOpeningStatus,
   SoliguideCountries,
+  PlaceTempInfos,
 } from "@soliguide/common";
 
 import cloneDeep from "lodash.clonedeep";
 
-import { PlaceTempInfos } from "./temp-infos/PlaceTempInfos.class";
 import { CampaignsForPlace } from "./campaigns-for-place.class";
 import { OpeningHours } from "./opening-hours.class";
 import { Photo } from "./photo.class";

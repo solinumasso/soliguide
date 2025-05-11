@@ -21,7 +21,7 @@
 
 import { PlaceTempInfo } from "../interfaces";
 
-import { BasePlaceTempInfos } from "./BaseTempInfos.class";
+import { BasePlaceTempInfos } from "./BasePlaceTempInfos.class";
 
 export class PlaceTempInfos {
   public closure: BasePlaceTempInfos;

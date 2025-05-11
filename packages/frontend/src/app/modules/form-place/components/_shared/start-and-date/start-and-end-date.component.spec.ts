@@ -23,7 +23,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { FormControl, FormGroup, FormsModule } from "@angular/forms";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ToastrModule } from "ngx-toastr";
-import { BasePlaceTempInfos } from "../../../../../models";
+import { BasePlaceTempInfos } from "@soliguide/common";
 import { endDateAfterBeginDateValidator } from "../../../../../shared/validators";
 
 import { FormStartAndEndDateFicheComponent } from "./start-and-end-date.component";
