@@ -19,7 +19,6 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <script lang="ts">
-  import i18n from '$lib/i18n';
   import Text from '$lib/components/Text.svelte';
   import DOMPurify from 'dompurify';
   import TextClamper from '$lib/components/dataDisplay/TextClamper.svelte';
@@ -39,6 +38,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let buttonLabel = '';
   export let buttonLinkLabel = '';
   export let buttonLinkHref = '';
+  export let showMoreLabel = '';
+  export let showLessLabel = '';
   export let date: string | null = null;
 
   const variantMapping: Record<InfoBlockVariant, InfoIconVariant> = {
@@ -70,15 +71,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     {/if}
     <div>
       {#if showClampedText}
-        <TextClamper
-          linesNotClamped={2}
-          showMoreLabel={$i18n.t('SEE_MORE')}
-          showLessLabel={$i18n.t('SEE_LESS')}
-        >
+        <TextClamper linesNotClamped={2} {showMoreLabel} {showLessLabel}>
           {#if date}
             <Text type="caption1" as="p">{date}</Text>
           {/if}
-          <Text type="caption1" as="p">{text}</Text>
+          <Text type="caption1" as="p">{@html DOMPurify.sanitize(text)}</Text>
         </TextClamper>
       {:else}
         {#if date}

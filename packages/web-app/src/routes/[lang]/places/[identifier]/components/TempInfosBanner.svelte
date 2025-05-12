@@ -17,6 +17,7 @@
     switch (tempInfoType) {
       case 'hours':
         if (tempInfo.infoColor === 'danger') {
+          tempInfo = { ...tempInfo, infoColor: 'warning' };
           return $i18n.t('EXCEPTIONAL_OPENING_HOURS');
         }
         return $i18n.t('EXCEPTIONAL_OPENING_HOURS_TO_COME');
@@ -66,10 +67,3 @@
     date={formatedDates}
   ></InfoBlock>
 {/if}
-
-<!-- <InfoBlock
-  withIcon={true}
-  variant="warning"
-  text="Ici le test de la description"
-  title="Et là le titre"
-></InfoBlock> -->
