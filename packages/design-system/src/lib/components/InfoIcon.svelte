@@ -31,7 +31,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let variant: InfoIconVariant = 'info';
   export let size: InfoIconSize = 'small';
   export let withShadow = true;
-  export let altTag;
+  export let altTag = '';
 
   const { theme } = getContext<ThemeContext>('theme');
 
