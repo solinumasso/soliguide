@@ -27,6 +27,7 @@ import {
   EXTERNAL_SOURCE_MAPPING,
   PairingSources,
   PlaceOpeningStatus,
+  //PlaceTempInfos,
   checkIfSourceMustBeDisplayed,
   computeTempIsActive
 } from '@soliguide/common';
@@ -54,7 +55,7 @@ export const formatTimeslots = (timeslots: CommonTimeslot[] = []): HoursRange[] 
   }));
 
 /**
- * Calculates opening hours: date interval, hour interval or nothing
+ * Calculates opening hours: date interval, hour interval or nothing and closing days
  */
 export const computeTodayInfo = (
   place: ApiPlace,
@@ -120,3 +121,24 @@ export const buildSources = (sources?: CommonPlaceSource[]): Source[] =>
         return acc;
       }, [])
     : [];
+
+// export const computeTempInfos = (tempInfos: PlaceTempInfos): PlaceTempInfos => {
+//   Object.entries(tempInfos).forEach(([key, value]) => {
+//     if (value.actif && value.dateDebut) {
+//       return {
+//         ...tempInfos,
+//         [key]: {
+//           ...value,
+//           dateDebut: value.dateDebut,
+//           dateFin: value.dateFin ? new Date(value.dateFin).toISOString() : null
+//         }
+//       };
+//     }
+//     return {
+//       ...tempInfos
+//     };
+//   });
+//   return {
+//     ...tempInfos
+//   };
+// };

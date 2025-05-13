@@ -51,6 +51,7 @@ import {
   type ApiTempInfoResponse,
   type TempInfoContext,
   TempInfoType,
+  BasePlaceTempInfos,
 } from "@soliguide/common";
 import type { PosthogProperties } from "@soliguide/common-angular";
 
@@ -66,11 +67,7 @@ import {
 } from "../../../../../shared/validators";
 import { regexp } from "../../../../../shared";
 import { PosthogService } from "../../../../analytics/services/posthog.service";
-import {
-  BasePlaceTempInfos,
-  Place,
-  type OpeningHours,
-} from "../../../../../models/place/classes";
+import { Place, type OpeningHours } from "../../../../../models/place/classes";
 
 import type { ApiError } from "../../../../../models/api";
 import {

@@ -18,13 +18,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { TempInfo } from "@soliguide/common";
+import { TempInfo, getInfoColor, InfoColor } from "..";
+import { OpeningHours } from "../../hours";
 import { formatInTimeZone } from "date-fns-tz";
-
-import { InfoColor } from "../../..";
-
-import { getInfoColor } from "../../../../shared/functions/getInfoColor.service";
-import { OpeningHours } from "..";
 
 export class BasePlaceTempInfos {
   public _id?: string;
@@ -76,7 +72,7 @@ export class BasePlaceTempInfos {
         this.hours = tempInfos.hours;
       } else {
         this.hours = new OpeningHours(
-          tempInfos.hours ? tempInfos.hours : null,
+          tempInfos.hours ? tempInfos.hours : undefined,
           isInForm
         );
       }

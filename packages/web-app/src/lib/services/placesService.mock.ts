@@ -217,7 +217,36 @@ export const placeDetailsMock: PlaceDetails = {
       }
     ]
   },
-  website: 'http://www.soupesainteustache.fr'
+  website: 'http://www.soupesainteustache.fr',
+  tempInfos: {
+    closure: {
+      actif: false,
+      dateDebut: null,
+      dateFin: null,
+      description: null,
+      infoColor: null,
+      name: null,
+      hours: null
+    },
+    hours: {
+      actif: false,
+      dateDebut: null,
+      dateFin: null,
+      description: null,
+      hours: null,
+      infoColor: null,
+      name: null
+    },
+    message: {
+      actif: false,
+      dateDebut: null,
+      dateFin: null,
+      description: null,
+      name: null,
+      infoColor: null,
+      hours: null
+    }
+  }
 };
 
 export const fakePlacesService = (error = '') => {

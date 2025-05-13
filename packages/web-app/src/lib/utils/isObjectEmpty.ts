@@ -18,5 +18,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-export { sortServicesByRelevance } from './prioritizeServices';
-export { isObjectEmpty } from './isObjectEmpty';
+export const isObjectEmpty = (obj: object): boolean => {
+  return Object.keys(obj).length === 0;
+};
