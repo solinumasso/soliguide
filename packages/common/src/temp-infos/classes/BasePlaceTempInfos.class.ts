@@ -18,11 +18,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { TempInfo } from "..";
-import { InfoColor } from "..";
+import { TempInfo, getInfoColor, InfoColor } from "..";
 import { OpeningHours } from "../../hours";
 import { formatInTimeZone } from "date-fns-tz";
-import { getInfoColor } from "..";
 
 export class BasePlaceTempInfos {
   public _id?: string;

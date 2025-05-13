@@ -75,13 +75,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           {#if date}
             <Text type="caption1" as="p">{date}</Text>
           {/if}
-          <Text type="caption1" as="p">{@html DOMPurify.sanitize(text)}</Text>
+          <Text type="caption1" as="p">
+            <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+            {@html DOMPurify.sanitize(text)}</Text
+          >
         </TextClamper>
       {:else}
         {#if date}
           <Text type="caption1" as="p">{date}</Text>
         {/if}
         <Text type="caption1" as="p">
+          <!-- eslint-disable-next-line svelte/no-at-html-tags -->
           {@html DOMPurify.sanitize(text)}
         </Text>
       {/if}
