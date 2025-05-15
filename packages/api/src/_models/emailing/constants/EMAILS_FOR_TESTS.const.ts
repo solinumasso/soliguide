@@ -23,7 +23,6 @@ export const EMAILS_FOR_TESTS = [
   "yassine.riffi@fabrique.social.gouv.fr",
   "pierre.blanchais@gmail.com",
   "pierre.blanchais@free.fr",
-  "francois@travais.fr",
   "sophie@solinum.org",
   "younes@solinum.org",
 ];

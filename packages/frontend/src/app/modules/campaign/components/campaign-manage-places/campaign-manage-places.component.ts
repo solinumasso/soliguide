@@ -119,6 +119,7 @@ export class CampaignManagePlacesComponent
   }
 
   public ngOnInit(): void {
+    console.log("places", this.places);
     this.subscription.add(
       this.currentLanguageService.subscribe(
         () => (this.routePrefix = this.currentLanguageService.routePrefix)
