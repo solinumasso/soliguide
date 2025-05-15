@@ -22,11 +22,8 @@ import {
   CAMPAIGN_DEFAULT_NAME,
   PlaceStatus,
   type AnyDepartmentCode,
-  getDepartmentCodeFromPostalCode,
   UserRole,
   type ApiPlace,
-  getPosition,
-  type SoliguideCountries,
   CountryCodes,
 } from "@soliguide/common";
 
@@ -45,20 +42,11 @@ export const getPlaces = (
   isAdmin: boolean
 ) => {
   const places = organization.places.filter((place) => {
-    const position = getPosition(place);
-    if (!position?.postalCode || place?.country !== CountryCodes.FR) {
-      return false;
-    }
-    const targetTerritory = getDepartmentCodeFromPostalCode(
-      position.country as SoliguideCountries,
-      position.postalCode
-    );
-
     return (
       (place.status === PlaceStatus.ONLINE ||
         place.status === PlaceStatus.OFFLINE) &&
       place.campaigns[CAMPAIGN_DEFAULT_NAME].toUpdate &&
-      CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].TERRITORIES.includes(targetTerritory)
+      place?.country !== CountryCodes.FR
     );
   });
 
