@@ -47,7 +47,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <a
           target="_blank"
           class="btn btn-large col-8 btn-secondary mt-3 btn-maj"
-          [routerLink]="[routePrefix, 'campaign', 'fiche', place.lieu_id]"
+          [href]="[routePrefix, 'campaign', 'fiche', place.lieu_id].join('/')"
           (click)="
             captureEvent({
               name: 'click-complete-campaign-update-button-banner'
