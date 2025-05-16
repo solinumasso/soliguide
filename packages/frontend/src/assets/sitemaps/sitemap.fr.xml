@@ -21,7 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>{{ env "SOLIGUIDE_API_URL" }}/sitemap/fr/01</loc>
+    <loc>https://api.soliguide.fr/sitemap/fr/01</loc>
     <lastmod>{{ now | date "2006-01-02" }}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

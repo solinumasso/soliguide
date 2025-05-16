@@ -169,10 +169,7 @@ handle @category_redirect_without_query {
 handle {
 	root * /srv/
 	file_server
-  templates {
-        mime application/xml text/xml
-    }
-
+  templates
 
 	# Set the theme based on the domain
 	map {header.X-Forwarded-Host} {soliguide_theme} {soliguide_language} {soliguide_title} {soliguide_description} {
@@ -203,13 +200,4 @@ handle {
 		header /index.html Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
 	}
 
-  @sitemaps {
-    path /assets/sitemaps/*.xml
-	}
-
-  handle @sitemaps {
-    templates {
-        mime application/xml text/xml
-    }
-  }
 }
