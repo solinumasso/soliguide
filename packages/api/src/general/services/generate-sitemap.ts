@@ -18,57 +18,68 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import type { Logger } from "pino";
 import xmlbuilder from "xmlbuilder";
 
 import {
   PlaceType,
   PlaceStatus,
   SupportedLanguagesCode,
+  AnyRegionCode,
+  SoliguideCountries,
 } from "@soliguide/common";
 
 import { CONFIG } from "../../_models";
-import { logger as defaultLogger } from "../logger";
 import { PlaceModel } from "../../place/models";
+import { logger } from "../logger";
 
-export const generateSitemap = async (logger: Logger = defaultLogger) => {
-  logger.info("[SITEMAP] Generate sitemap start");
-  const urlset = xmlbuilder
-    .create("urlset")
-    .att("xmlns", "http://www.sitemaps.org/schemas/sitemap/0.9");
-
-  const sitemapPlaces = await PlaceModel.find({
-    placeType: PlaceType.PLACE,
-    "position.slugs.city": "paris",
-    status: PlaceStatus.ONLINE,
-  })
-    .select("seo_url updatedAt")
-    .lean()
-    .exec();
-
+export const generateRegionSitemap = async (siteMapDto: {
+  country: SoliguideCountries;
+  regionCode: AnyRegionCode;
+}) => {
+  const { country, regionCode } = siteMapDto;
   logger.info(
-    `sitemap includes ${sitemapPlaces.length} places to add to sitemap.xml`
+    `[SITEMAP] Generating sitemap for region ${regionCode} in ${country}`
   );
-  const frontUrl = CONFIG.SOLIGUIDE_FR_URL;
 
-  let url = urlset.ele("url");
-  url.ele("loc", `${frontUrl}/${SupportedLanguagesCode.FR}`);
-  url.ele("priority", 1);
+  try {
+    const urlset = xmlbuilder
+      .create("urlset")
+      .att("xmlns", "http://www.sitemaps.org/schemas/sitemap/0.9");
 
-  url = urlset.ele("url");
-  url.ele("loc", `${frontUrl}/${SupportedLanguagesCode.FR}/contact/`);
-  url.ele("priority", 1);
+    const sitemapPlaces = await PlaceModel.find({
+      placeType: PlaceType.PLACE,
+      "position.country": country,
+      "position.regionCode": regionCode,
+      status: PlaceStatus.ONLINE,
+    })
+      .select("seo_url updatedAt updatedByUserAt")
+      .lean()
+      .exec();
 
-  for (const place of sitemapPlaces) {
-    url = urlset.ele("url");
-    url.ele(
-      "loc",
-      `${frontUrl}${SupportedLanguagesCode.FR}/fiche/${place.seo_url}/`
+    logger.info(
+      `[SITEMAP] Region ${regionCode} includes ${sitemapPlaces.length} places for sitemap`
     );
-    url.ele("lastmod", place.updatedByUserAt);
-    url.ele("changefreq", "monthly");
-    url.ele("priority", "0.8");
-  }
 
-  return urlset.dec("1.0", "UTF-8").end({ pretty: true });
+    const frontUrl = CONFIG.SOLIGUIDE_FR_URL;
+
+    for (const place of sitemapPlaces) {
+      const url = urlset.ele("url");
+      url.ele(
+        "loc",
+        `${frontUrl}/${SupportedLanguagesCode.FR}/fiche/${place.seo_url}/`
+      );
+      url.ele("lastmod", place.updatedByUserAt || new Date().toISOString());
+      url.ele("changefreq", "monthly");
+      url.ele("priority", "0.8");
+    }
+
+    return urlset
+      .dec({ version: "1.0", encoding: "UTF-8" })
+      .end({ pretty: true });
+  } catch (error) {
+    logger.error(
+      `[SITEMAP] Error generating sitemap for region ${regionCode}: ${error.message}`
+    );
+    return null;
+  }
 };

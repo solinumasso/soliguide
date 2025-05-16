@@ -7,34 +7,136 @@
     ":maintainLockFilesMonthly",
     ":masterIssue",
     ":preserveSemverRanges",
-    ":prHourlyLimit4",
     ":semanticCommits",
-    ":semanticCommitScopeDisabled",
     ":timezone(Europe/Paris)"
   ],
-  "schedule": "every weekend",
-  "separateMinorPatch": true,
+  "schedule": "every sunday",
   "masterIssueAutoclose": true,
+  "prCreation": "not-pending",
+  "prHourlyLimit": 0,
+  "prConcurrentLimit": 0,
+  "rangeStrategy": "pin",
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "📦 Weekly dependency updates",
+  "commitMessageExtra": "from {{currentVersion}} to {{newVersion}}",
+  "semanticCommitType": "chore",
+  "semanticCommitScope": "{{packageFileDir}}",
+  "commitBody": "Automated update by Renovate",
+  "baseBranches": ["develop"],
+  "major": {
+    "enabled": false
+  },
+  "patch": {
+    "enabled": false
+  },
+  "pin": {
+    "enabled": false
+  },
+  "digest": {
+    "enabled": true
+  },
   "packageRules": [
     {
-      "packageNames": [
-        "@fortawesome/angular-fontawesome",
-        "bootstrap",
-        "typescript"
+      "matchPaths": ["packages/api/**"],
+      "semanticCommitScope": "api",
+      "groupName": "api dependencies",
+      "schedule": ["every sunday"],
+      "updateTypes": ["minor"]
+    },
+    {
+      "matchPaths": ["packages/common/**"],
+      "semanticCommitScope": "common",
+      "groupName": "common dependencies",
+      "schedule": ["every sunday"],
+      "updateTypes": ["minor"]
+    },
+    {
+      "matchPaths": ["packages/common-angular/**"],
+      "semanticCommitScope": "common-angular",
+      "groupName": "common-angular dependencies",
+      "schedule": ["every sunday"],
+      "updateTypes": ["minor"]
+    },
+    {
+      "matchPaths": ["packages/design-system/**"],
+      "semanticCommitScope": "design-system",
+      "groupName": "design-system dependencies",
+      "schedule": ["every sunday"],
+      "updateTypes": ["minor"]
+    },
+    {
+      "matchPaths": ["packages/frontend/**"],
+      "semanticCommitScope": "frontend",
+      "groupName": "frontend dependencies",
+      "schedule": ["every sunday"],
+      "updateTypes": ["minor"]
+    },
+    {
+      "matchPaths": ["packages/location-api/**"],
+      "semanticCommitScope": "location-api",
+      "groupName": "location-api dependencies",
+      "schedule": ["every sunday"],
+      "updateTypes": ["minor"]
+    },
+    {
+      "matchPaths": ["packages/maintenance/**"],
+      "semanticCommitScope": "maintenance",
+      "groupName": "maintenance dependencies",
+      "schedule": ["every sunday"],
+      "updateTypes": ["minor"]
+    },
+    {
+      "matchPaths": ["packages/soligare/**"],
+      "semanticCommitScope": "soligare",
+      "groupName": "soligare dependencies",
+      "schedule": ["every sunday"],
+      "updateTypes": ["minor"]
+    },
+    {
+      "matchPaths": ["packages/web-app/**"],
+      "semanticCommitScope": "web-app",
+      "groupName": "web-app dependencies",
+      "schedule": ["every sunday"],
+      "updateTypes": ["minor"]
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "semanticCommitScope": "github",
+      "groupName": "GitHub Actions",
+      "schedule": ["every sunday"],
+      "updateTypes": ["minor", "patch"]
+    },
+    {
+      "matchDepTypes": ["engines"],
+      "matchPackageNames": ["node"],
+      "semanticCommitScope": "node",
+      "groupName": "Node.js",
+      "schedule": ["every sunday"],
+      "updateTypes": ["minor", "patch"]
+    },
+    {
+      "matchDepTypes": ["devDependencies", "resolutions"],
+      "matchPaths": ["package.json"],
+      "matchPackagePatterns": [
+        "^yarn$",
+        "^lerna$",
+        "^nx$",
+        "^@commitlint",
+        "^husky$",
+        "^lint-staged$",
+        "^semantic-release",
+        "^license-check-and-add$"
       ],
-      "enabled": false
+      "semanticCommitScope": "monorepo",
+      "groupName": "Monorepo core tools",
+      "schedule": ["every sunday"],
+      "updateTypes": ["minor", "patch"]
     },
     {
-      "depTypeList": ["dependencies"],
-      "updateTypes": ["minor"],
-      "groupName": "all minor dependencies",
-      "groupSlug": "all-minor"
-    },
-    {
-      "depTypeList": ["devDependencies"],
-      "updateTypes": ["minor"],
-      "groupName": "all minor devDependencies",
-      "groupSlug": "all-minor-dev-tools"
+      "matchCategories": ["security"],
+      "prPriority": 1,
+      "semanticCommitType": "fix",
+      "enabled": true
     }
   ]
 }

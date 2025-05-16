@@ -109,4 +109,4 @@ export const formPlaceRoutes: Routes = [
   imports: [RouterModule.forChild(formPlaceRoutes)],
   exports: [RouterModule],
 })
-export class FormPlaceRoutingModule {}
+export class FormPlaceRoutingModule {} // skipcq: JS-0327

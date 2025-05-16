@@ -44,4 +44,4 @@ export const manageRoutes: Routes = [
   imports: [RouterModule.forChild(manageRoutes)],
   exports: [RouterModule],
 })
-export class TranslationsRoutingModule {}
+export class TranslationsRoutingModule {} // skipcq: JS-0327

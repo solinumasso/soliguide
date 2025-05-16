@@ -50,10 +50,11 @@ export class FormPointPassageComponent implements OnInit {
   public pointPassageForm: UntypedFormGroup;
   public timeslotDisplayed: string;
 
-  @Output() public deletedPointIndex = new EventEmitter<number>();
-  @Output() public hasError = new EventEmitter<boolean>();
-  @Output() public showPointIndex = new EventEmitter<number>();
-  @Output() public passageTimeslotChange = new EventEmitter<CommonTimeslot>();
+  @Output() public readonly deletedPointIndex = new EventEmitter<number>();
+  @Output() public readonly hasError = new EventEmitter<boolean>();
+  @Output() public readonly showPointIndex = new EventEmitter<number>();
+  @Output() public readonly passageTimeslotChange =
+    new EventEmitter<CommonTimeslot>();
 
   constructor(private formBuilder: UntypedFormBuilder) {}
 

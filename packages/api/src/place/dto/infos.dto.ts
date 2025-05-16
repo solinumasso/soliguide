@@ -21,7 +21,7 @@
 import { body } from "express-validator";
 
 import { entityDto } from "./entity.dto";
-import { forceChangesDto } from "./forceChanges.dto";
+
 import { countryDto, stringDto } from "../../_utils/dto";
 
 export const infoDto = (auto = false) => [
@@ -38,5 +38,4 @@ export const infoDto = (auto = false) => [
   stringDto("description", false, 4000, 10),
   ...countryDto,
   ...entityDto,
-  ...forceChangesDto,
 ];

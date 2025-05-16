@@ -234,10 +234,6 @@ export class AdminPlaceComponent implements OnInit, OnDestroy {
     this.modalService.open(this.deletePlaceModal, DEFAULT_MODAL_OPTIONS);
   }
 
-  public openRemoveModal(): void {
-    this.modalService.open(this.removePlaceModal, DEFAULT_MODAL_OPTIONS);
-  }
-
   public changeVisibility = (visibility: PlaceVisibility): void => {
     this.subscription.add(
       this.adminPlaceService.patchVisibility(this.place, visibility).subscribe({

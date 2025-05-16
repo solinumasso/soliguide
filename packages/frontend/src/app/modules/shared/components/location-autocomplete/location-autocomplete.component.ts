@@ -47,7 +47,7 @@ import {
   faCircleNotch,
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
-import { TranslateService } from "@ngx-translate/core";
+import { TranslateModule, TranslateService } from "@ngx-translate/core";
 import { ToastrService } from "ngx-toastr";
 
 import {
@@ -60,9 +60,13 @@ import { Search } from "../../../search/interfaces";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { LocationService } from "../../services";
 import { THEME_CONFIGURATION } from "../../../../models";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { NgIf } from "@angular/common";
 
 @Component({
   selector: "app-location-autocomplete",
+  imports: [NgIf, FontAwesomeModule, TranslateModule],
+  standalone: true,
   templateUrl: "./location-autocomplete.component.html",
   styleUrls: ["./location-autocomplete.component.scss"],
   encapsulation: ViewEncapsulation.None,

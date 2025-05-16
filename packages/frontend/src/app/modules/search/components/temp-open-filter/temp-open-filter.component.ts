@@ -27,7 +27,7 @@ import { SearchFilterParams } from "../../../../models/search-places";
   templateUrl: "./temp-open-filter.component.html",
   styleUrls: [
     "./temp-open-filter.component.css",
-    "../search/search.component.css",
+    "../search/search.component.scss",
   ],
 })
 export class TempOpenFilterComponent implements OnInit {
@@ -35,7 +35,7 @@ export class TempOpenFilterComponent implements OnInit {
 
   public openTodayChecked: boolean;
 
-  @Output() public filtersChange = new EventEmitter<void>();
+  @Output() public readonly filtersChange = new EventEmitter<void>();
 
   constructor() {}
 

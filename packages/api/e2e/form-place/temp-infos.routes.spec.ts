@@ -82,7 +82,7 @@ describe("Testing temporary information", () => {
         tempInfoId =
           response.body.tempInfo != null
             ? response.body.tempInfo[0]?._id
-            : null ?? null;
+            : null;
         return response;
       };
 

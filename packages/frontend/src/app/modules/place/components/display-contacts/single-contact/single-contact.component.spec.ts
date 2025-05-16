@@ -25,7 +25,7 @@ import { SingleContactComponent } from "./single-contact.component";
 import { PosthogService } from "../../../../analytics/services/posthog.service";
 import { CommonPosthogMockService } from "../../../../../../../mocks";
 import { CountryCodes } from "@soliguide/common";
-import { FormatInternationalPhoneNumberPipe } from "../../../../shared/pipes";
+import { FormatInternationalPhoneNumberPipe } from "../../../../shared";
 
 describe("SingleContactComponent", () => {
   let component: SingleContactComponent;

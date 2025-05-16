@@ -110,7 +110,6 @@ import soligare from "./soligare/routes/soligare.routes";
 
 // Jobs
 import { importCategories } from "./place/utils";
-import { generateSitemap } from "./general/services/generate-sitemap";
 import { serve, setup } from "swagger-ui-express";
 
 const _app = express();
@@ -271,7 +270,6 @@ _app.use((req: Request, res: Response) => {
   }
 
   if (CONFIG.ENV === "prod" || CONFIG.ENV === "preprod") {
-    await generateSitemap();
     await importCategories();
   }
 })();

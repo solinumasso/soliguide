@@ -20,14 +20,15 @@
  */
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { SourceModule } from './source';
-import { PairingController } from './pairing.controller';
-import { PairingService, PostgresService } from './service';
-import { StructureService } from './service/format/structure.service';
+import { PairingController } from './controllers/pairing.controller';
+import { PairingService, PostgresService, SourceService } from './services';
+import { StructureService } from './services/structure.service';
+import { SourceController } from './controllers/source.controller';
 
 @Module({
-  controllers: [PairingController],
-  providers: [PostgresService, PairingService, StructureService],
-  imports: [SourceModule, ConfigModule],
+  controllers: [PairingController, SourceController],
+  providers: [PairingService, StructureService, SourceService, PostgresService],
+  imports: [ConfigModule],
+  exports: [PostgresService],
 })
 export class PairingModule {}

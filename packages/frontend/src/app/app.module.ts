@@ -31,8 +31,6 @@ import {
   NO_ERRORS_SCHEMA,
 } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { BrowserModule } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
@@ -53,24 +51,30 @@ import { UsersModule } from "./modules/users/users.module";
 import { AnalyticsModule } from "./modules/analytics/analytics.module";
 
 import { CustomLoaderTranslate, registerLocales } from "./shared";
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
+const disableAnimations =
+  !("animate" in document.documentElement) ||
+  (navigator && /iPhone OS (8|9|10|11|12|13)_/.test(navigator.userAgent));
 
 registerLocales();
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserAnimationsModule,
+    BrowserAnimationsModule.withConfig({ disableAnimations }),
     BrowserModule,
     CommonModule,
     CountUpModule,
     FontAwesomeModule,
     FormsModule,
     GeneralModule,
-    StaticPagesModule,
-    HttpClientModule,
     HttpClientJsonpModule,
+    HttpClientModule,
     NgbModule,
     ReactiveFormsModule,
+    StaticPagesModule,
     SharedModule,
     AnalyticsModule,
     ToastrModule.forRoot({
@@ -88,7 +92,7 @@ registerLocales();
         deps: [HttpClient],
       },
     }),
-    UsersModule,
+    UsersModule, // TODO: migrate to lazy loading router
     AppRoutingModule,
   ],
   providers: [

@@ -19,7 +19,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import {
-  PublicsOther,
   CommonNewPlaceService,
   getCategoriesSpecificFields,
 } from "@soliguide/common";
@@ -35,7 +34,6 @@ export class Service extends CommonNewPlaceService {
   public showHoraires: boolean;
   public showPublics: boolean;
   public showModalities: boolean;
-  public ukraine?: boolean;
   public override hours: OpeningHours = new OpeningHours();
 
   constructor(
@@ -73,7 +71,5 @@ export class Service extends CommonNewPlaceService {
     if (typeof (service as Service)?.show === "boolean") {
       this.show = (service as Service).show;
     }
-
-    this.ukraine = this.publics.other.includes(PublicsOther.ukraine);
   }
 }

@@ -41,6 +41,7 @@ import { FicheChangesRoutingModule } from "./place-changes-routing.module";
 import { TranslateModule } from "@ngx-translate/core";
 import { PlaceHistoryComponent } from "./components/place-history/place-history.component";
 import { DisplayPlaceChangesSectionsComponent } from "./components/display-place-changes-sections/display-place-changes-sections.component";
+import { DisplayHorairesComponent } from "../place/standalone-components/display-horaires/horaires.component";
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { DisplayPlaceChangesSectionsComponent } from "./components/display-place
     SharedModule,
     TranslateModule,
     NgbAccordionModule,
+    DisplayHorairesComponent,
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
