@@ -18,6 +18,14 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-// @index('./*', f => `export * from '${f.path}'`)
-export * from "./displaySource";
-export * from "./getExternalSourceOrigin";
+import { PAIRING_SOURCES } from "../constants";
+import { PairingSources } from "../enums";
+
+export interface ExternalSourceOrigin { name: PairingSources; isOrigin?: boolean }
+
+export const getExternalSourceOrigin = (): ExternalSourceOrigin[] => [
+  { name: PairingSources.CRF },
+  ...PAIRING_SOURCES.filter((source) => source !== PairingSources.CRF).map(
+    (name) => ({ name, isOrigin: true })
+  ),
+];

@@ -18,6 +18,20 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-// @index('./*', f => `export * from '${f.path}'`)
-export * from "./displaySource";
-export * from "./getExternalSourceOrigin";
+@media only screen and (min-width: 500px) {
+  .btn-maj {
+    max-width: 280px;
+  }
+}
+
+@media only screen and (min-width: 767px) {
+  .btn-maj:first-of-type {
+    margin-right: 2rem;
+  }
+}
+
+@media only screen and (min-width: 989px) {
+  .btn-maj:first-of-type {
+    margin-right: 3.5rem;
+  }
+}

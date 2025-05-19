@@ -18,52 +18,16 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
-<div
-  *ngIf="
-    place &&
-    needUpdate &&
-    canEdit &&
-    campaignIsActive &&
-    place.campaigns.runningCampaign.toUpdate
-  "
->
+<div *ngIf="shouldShowExternalBanner">
   <div class="alert alert-warning">
     <div class="my-2 fw-bold text-center">
       {{
-        "SOLIGUIDE_TO_UPDATE_CAMPAIGN_NAME"
+        "EXTERNAL_SOURCE_CAMPAIGN_BANNER"
           | translate
             : {
                 brandName: THEME_CONFIGURATION.brandName
               }
       }}
-      <div class="container-md mx-auto">
-        <button
-          type="button"
-          class="btn btn-large col-8 btn-primary mt-3 btn-maj"
-          (click)="openNoChangeModal()"
-        >
-          {{ "NO_CHANGE" | translate }}
-        </button>
-        <a
-          target="_blank"
-          class="btn btn-large col-8 btn-secondary mt-3 btn-maj"
-          href="{{ routePrefix }}/campaign/fiche/{{ place.lieu_id }}"
-          (click)="
-            captureEvent({
-              name: 'click-complete-campaign-update-button-banner'
-            })
-          "
-        >
-          {{ "TO_UPDATE" | translate }}
-        </a>
-      </div>
     </div>
   </div>
 </div>
-
-<ng-template #noChangeModal let-modal>
-  <app-campaign-no-change-modal
-    [place]="place"
-    (parentCaptureEvent)="captureEvent($event)"
-  ></app-campaign-no-change-modal>
-</ng-template>

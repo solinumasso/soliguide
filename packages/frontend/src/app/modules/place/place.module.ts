@@ -65,6 +65,7 @@ import { ShareButtons } from "ngx-sharebuttons/buttons";
 import { SearchMapComponent } from "./standalone-components/search-map/search-map.component";
 import { FormatInternationalPhoneNumberPipe } from "../shared";
 import { DisplayHorairesComponent } from "./standalone-components/display-horaires/horaires.component";
+import { ExternalSourcePlaceCampaignBannerComponent } from "./components/external-source-place-campaign-banner/external-source-place-campaign-banner.component";
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { DisplayHorairesComponent } from "./standalone-components/display-horair
     DisplaySpecificFieldsComponent,
     DisplayTempBannerComponent,
     PlaceUpdateCampaignBannerComponent,
+    ExternalSourcePlaceCampaignBannerComponent,
     SharePlaceComponent,
     SingleContactComponent,
     PlaceTransportsComponent,
@@ -116,6 +118,7 @@ import { DisplayHorairesComponent } from "./standalone-components/display-horair
     DisplaySpecificFieldsComponent,
     DisplayTempBannerComponent,
     PlaceUpdateCampaignBannerComponent,
+    ExternalSourcePlaceCampaignBannerComponent,
     SharePlaceComponent,
     SingleContactComponent,
     PlaceTransportsComponent,
