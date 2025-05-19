@@ -21,6 +21,7 @@
 import {
   CAMPAIGN_DEFAULT_NAME,
   CampaignStatus,
+  getExternalSourceOrigin,
   PlaceStatus,
   PlaceUpdateCampaign,
 } from "@soliguide/common";
@@ -63,12 +64,37 @@ export const up = async (db: Db) => {
   );
 
   logger.info("[MIGRATION] [RESET] Add 'toUpdate' to places online & offline");
-  await db
-    .collection("lieux")
-    .updateMany(
-      { status: { $in: [PlaceStatus.ONLINE, PlaceStatus.OFFLINE] } },
-      { $set: { [`campaigns.${CAMPAIGN_DEFAULT_NAME}.toUpdate`]: true } }
-    );
+  await db.collection("lieux").updateMany(
+    {
+      status: { $in: [PlaceStatus.ONLINE, PlaceStatus.OFFLINE] },
+      $or: [
+        { sources: { $exists: false } },
+        {
+          sources: {
+            $not: {
+              $elemMatch: getExternalSourceOrigin(),
+            },
+          },
+        },
+      ],
+    },
+    {
+      $set: {
+        [`campaigns.${CAMPAIGN_DEFAULT_NAME}.toUpdate`]: true,
+      },
+    }
+  );
+
+  const excludedCount = await db.collection("lieux").countDocuments({
+    status: { $in: [PlaceStatus.ONLINE, PlaceStatus.OFFLINE] },
+    sources: {
+      $elemMatch: getExternalSourceOrigin(),
+    },
+  });
+
+  logger.info(
+    `[MIGRATION] [SKIPPED] ${excludedCount} external-source places were excluded from 'toUpdate'`
+  );
 
   logger.info(
     `[MIGRATION] [RESET] Reset field 'campaigns.${CAMPAIGN_DEFAULT_NAME}' in organizations`
@@ -107,6 +133,7 @@ export const up = async (db: Db) => {
       },
     }
   );
+
   logger.info(
     `[MIGRATION] [RESET] Reset 'campaigns.${CAMPAIGN_DEFAULT_NAME}' in users`
   );
