@@ -18,13 +18,15 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import { CommonPlaceSource } from "src/place";
 import { PAIRING_SOURCES } from "../constants";
 import { PairingSources } from "../enums";
 
-export interface ExternalSourceOrigin { name: PairingSources; isOrigin?: boolean }
-
-export const getExternalSourceOrigin = (): ExternalSourceOrigin[] => [
-  { name: PairingSources.CRF },
+export const getExternalSourceOrigin = (): Array<Pick<
+  CommonPlaceSource,
+  "name" | "isOrigin"
+>> => [
+  { name: PairingSources.CRF, isOrigin: false },
   ...PAIRING_SOURCES.filter((source) => source !== PairingSources.CRF).map(
     (name) => ({ name, isOrigin: true })
   ),
