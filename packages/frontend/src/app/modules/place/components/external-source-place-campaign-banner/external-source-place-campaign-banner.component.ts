@@ -20,10 +20,10 @@
  */
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 
-import { CAMPAIGN_DEFAULT_NAME, PairingSources } from "@soliguide/common";
+import { PairingSources } from "@soliguide/common";
 
 import { CurrentLanguageService } from "../../../general/services/current-language.service";
-import { CAMPAIGN_LIST, Place, THEME_CONFIGURATION } from "../../../../models";
+import { Place, THEME_CONFIGURATION } from "../../../../models";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { PosthogComponent } from "../../../analytics/components/posthog.component";
 import { Subscription } from "rxjs";
@@ -45,9 +45,6 @@ export class ExternalSourcePlaceCampaignBannerComponent
   @Input() public canEdit!: boolean;
   @Input() public place!: Place;
 
-  public readonly CAMPAIGN_DATE_DEBUT_AFFICHAGE =
-    CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].dateDebutAffichage;
-
   public shouldShowExternalBanner = false;
   public routePrefix: string;
 
@@ -66,17 +63,10 @@ export class ExternalSourcePlaceCampaignBannerComponent
       )
     );
 
-    const hasExternalSource =
-      Array.isArray(this.place.sources) &&
-      this.place.sources.some(
-        (s) => EXTERNAL_SOURCES.includes(s.name) && s.isOrigin === true
-      );
-
-    // Show banner for external sources if last update was before campaign and we're after campaign start
-    this.shouldShowExternalBanner =
-      hasExternalSource &&
-      this.place.updatedByUserAt < this.CAMPAIGN_DATE_DEBUT_AFFICHAGE &&
-      new Date() >= this.CAMPAIGN_DATE_DEBUT_AFFICHAGE;
+    this.shouldShowExternalBanner = this.place.sources.some(
+      (source) =>
+        EXTERNAL_SOURCES.includes(source.name) && source.isOrigin === true
+    );
   }
 
   public ngOnDestroy(): void {

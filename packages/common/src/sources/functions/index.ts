@@ -20,4 +20,3 @@
  */
 // @index('./*', f => `export * from '${f.path}'`)
 export * from "./displaySource";
-export * from "./getExternalSourceOrigin";
