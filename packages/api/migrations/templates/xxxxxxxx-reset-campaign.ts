@@ -28,6 +28,7 @@ import {
 import { Db, ObjectId } from "mongodb";
 import { logger } from "../../src/general/logger";
 import { CAMPAIGN_EMAILS_CONTENT_FOR_USERS } from "../../src/user/models/default_values";
+import { PAIRING_SOURCES, PairingSources } from "@soliguide/common";
 
 const message =
   "Add default value for users, orga and places for summer update 2023";
@@ -62,13 +63,52 @@ export const up = async (db: Db) => {
     }
   );
 
+  const externalSourceOriginFilter = {
+    $or: [
+      { name: PairingSources.CRF },
+      {
+        name: {
+          $in: PAIRING_SOURCES.filter(
+            (source) => source !== PairingSources.CRF
+          ),
+        },
+        isOrigin: true,
+      },
+    ],
+  };
+
   logger.info("[MIGRATION] [RESET] Add 'toUpdate' to places online & offline");
-  await db
-    .collection("lieux")
-    .updateMany(
-      { status: { $in: [PlaceStatus.ONLINE, PlaceStatus.OFFLINE] } },
-      { $set: { [`campaigns.${CAMPAIGN_DEFAULT_NAME}.toUpdate`]: true } }
-    );
+  await db.collection("lieux").updateMany(
+    {
+      status: { $in: [PlaceStatus.ONLINE, PlaceStatus.OFFLINE] },
+      $or: [
+        { sources: { $exists: false } },
+        {
+          sources: {
+            $not: {
+              $elemMatch: externalSourceOriginFilter,
+            },
+          },
+        },
+      ],
+    },
+    {
+      $set: {
+        [`campaigns.${CAMPAIGN_DEFAULT_NAME}.toUpdate`]: true,
+      },
+    }
+  );
+
+  const excludedCount = await db.collection("lieux").countDocuments({
+    status: { $in: [PlaceStatus.ONLINE, PlaceStatus.OFFLINE] },
+    sources: {
+      $elemMatch: externalSourceOriginFilter,
+    },
+  });
+
+  logger.info(
+    `[MIGRATION] [SKIPPED] ${excludedCount} external-source places were excluded from 'toUpdate'`
+  );
 
   logger.info(
     `[MIGRATION] [RESET] Reset field 'campaigns.${CAMPAIGN_DEFAULT_NAME}' in organizations`

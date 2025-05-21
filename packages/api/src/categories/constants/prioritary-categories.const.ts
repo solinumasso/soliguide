@@ -27,7 +27,7 @@ export const PRIORITARY_CATEGORIES: Categories[] = [
   Categories.FOOD_DISTRIBUTION,
   Categories.FOOD_PACKAGES,
   Categories.SOCIAL_GROCERY_STORES,
-  Categories.FOUNTAIN,
+  Categories.CLOTHING,
   Categories.SOLIDARITY_FRIDGE,
   Categories.SHARED_KITCHEN,
   Categories.BABY_PARCEL,

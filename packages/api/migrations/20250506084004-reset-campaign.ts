@@ -21,7 +21,6 @@
 import {
   CAMPAIGN_DEFAULT_NAME,
   CampaignStatus,
-  getExternalSourceOrigin,
   PlaceStatus,
   PlaceUpdateCampaign,
 } from "@soliguide/common";
@@ -29,6 +28,7 @@ import {
 import { Db, ObjectId } from "mongodb";
 import { logger } from "../src/general/logger";
 import { CAMPAIGN_EMAILS_CONTENT_FOR_USERS } from "../src/user/models/default_values";
+import { PAIRING_SOURCES, PairingSources } from "@soliguide/common";
 
 const message =
   "Add default value for users, orga and places for mid year update of 2025";
@@ -63,6 +63,20 @@ export const up = async (db: Db) => {
     }
   );
 
+  const externalSourceOriginFilter = {
+    $or: [
+      { name: PairingSources.CRF },
+      {
+        name: {
+          $in: PAIRING_SOURCES.filter(
+            (source) => source !== PairingSources.CRF
+          ),
+        },
+        isOrigin: true,
+      },
+    ],
+  };
+
   logger.info("[MIGRATION] [RESET] Add 'toUpdate' to places online & offline");
   await db.collection("lieux").updateMany(
     {
@@ -72,7 +86,7 @@ export const up = async (db: Db) => {
         {
           sources: {
             $not: {
-              $elemMatch: getExternalSourceOrigin(),
+              $elemMatch: externalSourceOriginFilter,
             },
           },
         },
@@ -88,7 +102,7 @@ export const up = async (db: Db) => {
   const excludedCount = await db.collection("lieux").countDocuments({
     status: { $in: [PlaceStatus.ONLINE, PlaceStatus.OFFLINE] },
     sources: {
-      $elemMatch: getExternalSourceOrigin(),
+      $elemMatch: externalSourceOriginFilter,
     },
   });
 
