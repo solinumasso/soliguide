@@ -20,14 +20,15 @@
  */
 import { Db } from "mongodb";
 
-import { CAMPAIGN_DEFAULT_NAME, FR_DEPARTMENT_CODES } from "@soliguide/common";
-import { logger } from "../src/general/logger";
+import { logger } from "../../src/general/logger";
 import {
-  CampaignEmailTemplates,
-  PARTNER_CAMPAIGN_EMAIL_TEMPLATE,
-} from "../src/_models";
-import { getSenderData } from "../src/emailing/utils/getSenderData";
-import { Partners } from "../src/partners";
+  CAMPAIGN_DEFAULT_NAME,
+  CountryCodes,
+  DEPARTMENT_CODES,
+} from "@soliguide/common";
+
+import { CAMPAIGN_EMAILS_CONTENT } from "../../src/_models";
+import { getSenderData } from "../../src/emailing/utils/getSenderData";
 
 const message = "Generate campaign mails templates";
 
@@ -41,26 +42,20 @@ export const down = async (db: Db) => {
 export const up = async (db: Db) => {
   logger.info(`[MIGRATION] - ${message}`);
 
-  const emailsTemplates: CampaignEmailTemplates[] = [];
+  const emailsTemplates = [];
 
-  for (const territory of FR_DEPARTMENT_CODES) {
-    Object.keys(PARTNER_CAMPAIGN_EMAIL_TEMPLATE).forEach(
-      (partner: Partners) => {
-        if (PARTNER_CAMPAIGN_EMAIL_TEMPLATE[partner]) {
-          emailsTemplates.push({
-            campaign: CAMPAIGN_DEFAULT_NAME,
-            confirm: false,
-            confirmDate: null,
-            emails: PARTNER_CAMPAIGN_EMAIL_TEMPLATE[partner],
-            senderEmail: getSenderData(territory, "senderEmail"),
-            senderName: getSenderData(territory, "senderName"),
-            territory,
-            partner,
-          });
-        }
-      }
-    );
+  for (const territory of DEPARTMENT_CODES[CountryCodes.FR]) {
+    emailsTemplates.push({
+      campaign: CAMPAIGN_DEFAULT_NAME,
+      confirm: false,
+      confirmDate: null,
+      emails: CAMPAIGN_EMAILS_CONTENT[CAMPAIGN_DEFAULT_NAME],
+      senderEmail: getSenderData(territory, "senderEmail"),
+      senderName: getSenderData(territory, "senderName"),
+      territory,
+    });
   }
+
   if (emailsTemplates.length) {
     await db.collection("emailsTemplates").insertMany(emailsTemplates);
   }
