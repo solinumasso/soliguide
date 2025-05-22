@@ -20,9 +20,9 @@
  */
 import { AllCampaign, CountryCodes, DEPARTMENT_CODES } from "@soliguide/common";
 import { Db } from "mongodb";
-import { logger } from "../src/general/logger";
-import { REMIND_ME_CAMPAIGN_MAILS_CONTENT } from "../src/_models";
-import { getSenderData } from "../src/emailing/utils/getSenderData";
+import { logger } from "../../src/general/logger";
+import { REMIND_ME_CAMPAIGN_MAILS_CONTENT } from "../../src/_models";
+import { getSenderData } from "../../src/emailing/utils/getSenderData";
 
 const message = "Update Remind-Me mails templates";
 
