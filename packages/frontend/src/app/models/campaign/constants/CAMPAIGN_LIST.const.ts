@@ -105,8 +105,8 @@ export const CAMPAIGN_LIST: { [key in CampaignName]: CampaignInfos } = {
   },
   MID_YEAR_2025: {
     closingFormula: "Bonne fin d'année",
-    dateDebutAffichage: new Date("2025-08-01T00:00:00.000Z"),
-    dateDebutCampagne: new Date("2025-06-10T00:00:00.000Z"),
+    dateDebutAffichage: new Date("2025-05-01T00:00:00.000Z"),
+    dateDebutCampagne: new Date("2025-05-10T00:00:00.000Z"),
     dateFin: new Date("2025-07-31T00:00:00.000Z"),
     description: "Mise à jour de mi-année 2025",
     name: "milieu d'année",
