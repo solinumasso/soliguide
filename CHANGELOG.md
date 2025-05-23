@@ -1,3 +1,11 @@
+## [4.87.1](https://github.com/solinumasso/soliguide/compare/v4.87.0...v4.87.1) (2025-05-23)
+
+
+### Bug Fixes
+
+* **api:** add sitemap [#343](https://github.com/solinumasso/soliguide/issues/343) ([e00275c](https://github.com/solinumasso/soliguide/commit/e00275cb1131fed33a01a502e85b0115ba0e92ff))
+* **api:** add sitemap [#343](https://github.com/solinumasso/soliguide/issues/343) ([#636](https://github.com/solinumasso/soliguide/issues/636)) ([e4ae8ef](https://github.com/solinumasso/soliguide/commit/e4ae8ef020716571084aead11a2067f4183fc2c8))
+
 # [4.87.0](https://github.com/solinumasso/soliguide/compare/v4.86.2...v4.87.0) (2025-05-23)
 
 
