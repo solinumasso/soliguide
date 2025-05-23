@@ -40,7 +40,7 @@ export const up = async (db: Db) => {
   logger.info(`[MIGRATION] - ${message}`);
 
   let csvStream;
-  if (CONFIG.ENV === "local") {
+  if (CONFIG.ENV === "local" || CONFIG.ENV === "dev") {
     csvStream = createWriteStream("invalid_publics_details.csv");
     csvStream.write("LIEU ID,NOM,DEPARTEMENT,VILLE,CATEGORY\n");
   }

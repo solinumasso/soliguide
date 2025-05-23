@@ -195,19 +195,8 @@ handle {
 		header Expires 720d
 	}
 
-  @sitemap_fr {
-    path /sitemap.fr.xml
-  }
-  route @sitemap_fr {
-    header Content-Type "application/xml"
-    templates
-    try_files {path} /assets/sitemaps/sitemap.fr.xml
-    file_server
-  }
-
 	route {
 		try_files {path} /index.html
 		header /index.html Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
 	}
-
 }

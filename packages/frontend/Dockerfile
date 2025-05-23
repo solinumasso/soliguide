@@ -56,4 +56,10 @@ COPY --from=build /app/packages/frontend/dist/soliguide/ /srv/
 RUN sed 's/<html lang="fr">/<html lang="{{ placeholder "soliguide_language" }}">/g' < /srv/index.html > /srv/index.html.tmp && \
   mv /srv/index.html.tmp /srv/index.html
 
+# Replace variables in sitemap
+RUN sed -e 's|{{SOLIGUIDE_API_URL}}|'"${SOLIGUIDE_API_URL}"'|g' \
+  -e 's|{{BUILD_DATE}}|'"$(date +%Y-%m-%d)"'|g' \
+  < /srv/assets/sitemaps/sitemap.fr.xml > /srv/assets/sitemaps/sitemap.fr.xml.tmp && \
+  mv /srv/assets/sitemaps/sitemap.fr.xml.tmp /srv/assets/sitemaps/sitemap.fr.xml
+
 CMD ["/bin/docker_cmd.sh"]

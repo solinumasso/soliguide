@@ -177,7 +177,7 @@ _app.use([
 
 // Custom middleware to disable for pictures
 _app.use((req: ExpressRequest, res, next) => {
-  if (req.path.startsWith("/medias/")) {
+  if (req.path.startsWith("/medias/") || req.path.startsWith("/sitemap")) {
     next();
   } else {
     originGuard(req, res, next);
