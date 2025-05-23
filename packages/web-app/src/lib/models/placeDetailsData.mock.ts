@@ -578,6 +578,38 @@ const samplePlaceTransformed: PlaceDetails = {
       isSpecialPhoneNumber: false
     }
   ],
+  tempInfo: {
+    closure: {
+      actif: false,
+      dateDebut: null,
+      dateFin: null,
+      description: null,
+      infoColor: null,
+      name: null,
+      hours: null,
+      status: null
+    },
+    hours: {
+      actif: false,
+      dateDebut: null,
+      dateFin: null,
+      description: null,
+      hours: null,
+      infoColor: null,
+      name: null,
+      status: null
+    },
+    message: {
+      actif: false,
+      dateDebut: null,
+      dateFin: null,
+      description: null,
+      name: null,
+      infoColor: null,
+      hours: null,
+      status: null
+    }
+  },
   services: [
     {
       category: Categories.FOOD_DISTRIBUTION,

@@ -20,6 +20,7 @@
  */
 export enum TempInfoStatus {
   CURRENT = "CURRENT",
+  INCOMING = "INCOMING",
   FUTURE = "FUTURE",
   OBSOLETE = "OBSOLETE",
 }

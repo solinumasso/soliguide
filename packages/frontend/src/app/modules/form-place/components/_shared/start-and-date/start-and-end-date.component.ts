@@ -25,7 +25,7 @@ import {
   MIN_DATE_GENERAL,
   getMinDateToday,
 } from "../../../../../shared/constants";
-import { BasePlaceTempInfos } from "../../../../../models/place/classes/temp-infos";
+import { BasePlaceTempInfos } from "@soliguide/common";
 import { endDateAfterBeginDateValidator } from "../../../../../shared";
 
 @Component({

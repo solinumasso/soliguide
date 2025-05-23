@@ -21,8 +21,8 @@
 import {
   CommonNewPlaceService,
   getCategoriesSpecificFields,
+  BasePlaceTempInfos,
 } from "@soliguide/common";
-import { BasePlaceTempInfos } from "./temp-infos";
 import { OpeningHours } from "./opening-hours.class";
 import { THEME_CONFIGURATION } from "../../themes";
 

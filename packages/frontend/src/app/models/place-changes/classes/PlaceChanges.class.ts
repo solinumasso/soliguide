@@ -29,17 +29,12 @@ import {
   CampaignName,
   CampaignChangesSection,
   AnyDepartmentCode,
+  BasePlaceTempInfos,
 } from "@soliguide/common";
 
 import { PlaceChangesTypeEdition } from "../enums";
 
-import {
-  BasePlaceTempInfos,
-  Photo,
-  Place,
-  Service,
-  OpeningHours,
-} from "../../place/classes";
+import { Photo, Place, Service, OpeningHours } from "../../place/classes";
 import { CAMPAIGN_LIST } from "../../campaign";
 
 export class PlaceChanges implements CommonPlaceChanges {

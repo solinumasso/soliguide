@@ -28,7 +28,11 @@ import { RouterTestingModule } from "@angular/router/testing";
 
 import { TranslateModule } from "@ngx-translate/core";
 
-import { Categories, PlaceUpdateCampaign } from "@soliguide/common";
+import {
+  Categories,
+  PlaceUpdateCampaign,
+  BasePlaceTempInfos,
+} from "@soliguide/common";
 
 import { ToastrModule } from "ngx-toastr";
 
@@ -41,7 +45,6 @@ import {
 } from "../../../../../../mocks";
 
 import { Place, Service } from "../../../../models/place/classes";
-import { BasePlaceTempInfos } from "../../../../models/place/classes/temp-infos";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 
 describe("FormCampaignServicesComponent", () => {

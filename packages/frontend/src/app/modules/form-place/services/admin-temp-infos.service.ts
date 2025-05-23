@@ -21,12 +21,16 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-import { ApiPlace, ApiTempInfoResponse, TempInfoType } from "@soliguide/common";
+import {
+  ApiPlace,
+  ApiTempInfoResponse,
+  TempInfoType,
+  BasePlaceTempInfos,
+} from "@soliguide/common";
 
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 
-import { BasePlaceTempInfos } from "../../../models/place/classes/temp-infos";
 import { Place } from "../../../models/place/classes";
 
 import { environment } from "../../../../environments/environment";

@@ -19,7 +19,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { differenceInCalendarDays } from "date-fns";
-import { InfoColor } from "../../models";
+import { InfoColor } from "../types";
+import { TempInfoStatus } from "../enums";
 
 export const getInfoColor = (
   startDate: Date | null,
@@ -27,13 +28,16 @@ export const getInfoColor = (
 ): {
   actif: boolean;
   infoColor: InfoColor;
+  status: TempInfoStatus | null;
 } => {
   const result: {
     actif: boolean;
     infoColor: InfoColor;
+    status: TempInfoStatus | null;
   } = {
     actif: false,
     infoColor: "",
+    status: null,
   };
 
   if (!startDate) {
@@ -42,6 +46,7 @@ export const getInfoColor = (
 
   // Today
   const now = new Date();
+
   // Difference between the beginning date and today
   const diffStartDateAndNow = differenceInCalendarDays(startDate, now);
   // Difference between the ending date and today
@@ -54,11 +59,23 @@ export const getInfoColor = (
   }
 
   if (result.actif) {
-    result.infoColor =
-      diffStartDateAndNow <= 0
-        ? "danger" // From start day until the end
-        : "warning"; // 15 days before the start date
+    const isCurrent = diffStartDateAndNow <= 0;
+
+    result.infoColor = isCurrent
+      ? "danger" // From start day until the end
+      : "warning"; // 15 days before the start date;
+    result.status = isCurrent
+      ? TempInfoStatus.CURRENT
+      : TempInfoStatus.INCOMING;
+
+    return result;
   }
 
+  if (diffStartDateAndNow > 15 && diffEndDateAndNow >= 0) {
+    result.status = TempInfoStatus.FUTURE;
+    return result;
+  }
+
+  result.status = TempInfoStatus.OBSOLETE;
   return result;
 };

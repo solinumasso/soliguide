@@ -30,14 +30,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     CardBody,
     CardFooter,
     Text,
-    ButtonLink
+    ButtonLink,
+    InfoIcon
   } from '@soliguide/design-system';
   import NearMe from 'svelte-google-materialdesign-icons/Near_me.svelte';
   import PinDrop from 'svelte-google-materialdesign-icons/Pin_drop.svelte';
   import { TodayInfo, PlaceStatus } from '$lib/components';
   import PhoneButton from '$lib/components/PhoneButton.svelte';
   import ResultsCardServices from './ResultsCardServices.svelte';
-  import { kmOrMeters } from '@soliguide/common';
+  import { kmOrMeters, TempInfoStatus } from '@soliguide/common';
   import { getSearchResultPageController } from '../../pageController';
   import { searchService } from '$lib/services';
 
@@ -91,9 +92,32 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             </Text>
           </div>
         {/if}
+
         <div class="card-title">
+          {#if place.tempInfo.message === TempInfoStatus.CURRENT}
+            <a
+              href={`${$routes.ROUTE_PLACES}/${place.seoUrl}?categorySearched=${category}#tempMessage`}
+              ><InfoIcon
+                size="medium"
+                variant="warning"
+                withShadow
+                altTag={$i18n.t('STRUCTURE_IMPORTANT_INFO_OPEN_DETAILS')}
+              ></InfoIcon></a
+            >
+          {:else if place.tempInfo.hours === TempInfoStatus.CURRENT}
+            <a
+              href={`${$routes.ROUTE_PLACES}/${place.seoUrl}?categorySearched=${category}#openingHoursSection`}
+              ><InfoIcon
+                size="medium"
+                variant="warning"
+                withShadow
+                altTag={$i18n.t('TEMPORARY_HOURS_CURRENTLY_ACTIVE')}
+              ></InfoIcon></a
+            >
+          {/if}
           <Text ellipsis type="title2PrimaryExtraBold">{place.name}</Text>
         </div>
+
         <div class="card-header-infos-container">
           <PlaceStatus status={place.status} />
           <TodayInfo todayInfo={place.todayInfo} />
@@ -155,6 +179,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 <style lang="scss">
   $cardHeaderHeight: 90px;
+  .card-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing3XS);
+  }
 
   .card-link {
     text-decoration: none;

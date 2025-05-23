@@ -27,4 +27,3 @@ export * from "./place-position.class";
 export * from "./place-sources.class";
 export * from "./place.class";
 export * from "./service.class";
-export * from "./temp-infos";
