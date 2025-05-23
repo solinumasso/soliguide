@@ -1,3 +1,65 @@
+# [4.87.0](https://github.com/solinumasso/soliguide/compare/v4.86.2...v4.87.0) (2025-05-23)
+
+
+### Bug Fixes
+
+* allow change territory [#455](https://github.com/solinumasso/soliguide/issues/455) ([#479](https://github.com/solinumasso/soliguide/issues/479)) ([6ed8441](https://github.com/solinumasso/soliguide/commit/6ed8441d69cb004d81ad8773689620a43a7dfb50))
+* **api:** add sitemap [#343](https://github.com/solinumasso/soliguide/issues/343) ([7206f9c](https://github.com/solinumasso/soliguide/commit/7206f9c77a91f1e89e76a3743b3da2daa369e96c))
+* **api:** add sitemap [#343](https://github.com/solinumasso/soliguide/issues/343) ([ebd8a2f](https://github.com/solinumasso/soliguide/commit/ebd8a2f9d355704f73777ac1ad434a093ab10042))
+* **api:** add sitemap [#343](https://github.com/solinumasso/soliguide/issues/343) ([a065bbc](https://github.com/solinumasso/soliguide/commit/a065bbcae1556a5b0f20873446cbd142506b3cfe))
+* **api:** add sitemap [#343](https://github.com/solinumasso/soliguide/issues/343) ([4865913](https://github.com/solinumasso/soliguide/commit/48659132792809bc07f88d4e619fb18254eb0afd))
+* **api:** delete ukraine refugeed in other publics [#374](https://github.com/solinumasso/soliguide/issues/374) ([be3b20f](https://github.com/solinumasso/soliguide/commit/be3b20f78f98abb42703475f4ca17c2dd10487a9))
+* **api:** delete ukraine refugeed in other publics [#374](https://github.com/solinumasso/soliguide/issues/374) ([a0f3f02](https://github.com/solinumasso/soliguide/commit/a0f3f0229e9125d78a4298840d7dd301c441a868))
+* **api:** delete ukraine refugeed in other publics [#374](https://github.com/solinumasso/soliguide/issues/374) ([5b80e4b](https://github.com/solinumasso/soliguide/commit/5b80e4b1e3defd0e0834b29c53b77dbb035abd55))
+* **api:** delete ukraine refugeed in other publics [#374](https://github.com/solinumasso/soliguide/issues/374) ([fe32077](https://github.com/solinumasso/soliguide/commit/fe3207764c5fe2c31c61755e1b088bd1691d3bce))
+* **api:** delete ukraine refugeed in other publics [#374](https://github.com/solinumasso/soliguide/issues/374) ([38c2ad5](https://github.com/solinumasso/soliguide/commit/38c2ad5dca1b25f3a00c7407708f617f6342cc9b))
+* **api:** delete ukraine refugeed in other publics [#374](https://github.com/solinumasso/soliguide/issues/374) ([f0077ba](https://github.com/solinumasso/soliguide/commit/f0077bacaf7b3a17aa064f22aeaf3976166d1849))
+* **api:** fix dump [#1](https://github.com/solinumasso/soliguide/issues/1) ([e5eab12](https://github.com/solinumasso/soliguide/commit/e5eab122f88cbd0ec8c889c0c094e0e39dee68e4))
+* **api:** fix forceChanges after express-validator upgrade [#343](https://github.com/solinumasso/soliguide/issues/343) ([2cc4f00](https://github.com/solinumasso/soliguide/commit/2cc4f00ea1cf8c2461b0b0c154699f10111e3481))
+* **api:** fix nofollow noindex [#433](https://github.com/solinumasso/soliguide/issues/433) ([08a5f9b](https://github.com/solinumasso/soliguide/commit/08a5f9bcbb639f58eb717040c6297a02ab5ce924))
+* **api:** fix test db ([4050f9c](https://github.com/solinumasso/soliguide/commit/4050f9cf3b3f6afdb8cbee6dddfc1b0b5e76d3c5))
+* **api:** fix yarn.lock [#433](https://github.com/solinumasso/soliguide/issues/433) ([c51751b](https://github.com/solinumasso/soliguide/commit/c51751b81d5aeb7ef63fcba0a5ee88bbb479b207))
+* **api:** remove export for invalid ukrainian places [#374](https://github.com/solinumasso/soliguide/issues/374) ([83412c8](https://github.com/solinumasso/soliguide/commit/83412c858d028233dafbff7baba6ccaf28d4ec4b))
+* **api:** update dump for tests [#496](https://github.com/solinumasso/soliguide/issues/496) ([85345db](https://github.com/solinumasso/soliguide/commit/85345dbb36bf234dd687fec0417e488e2299f1b7))
+* **common-angular:** add missing license [#410](https://github.com/solinumasso/soliguide/issues/410) ([5212096](https://github.com/solinumasso/soliguide/commit/5212096b67937949e7065b48be4abadfae7d802b))
+* **common-angular:** delete useless file [#433](https://github.com/solinumasso/soliguide/issues/433) ([fdce333](https://github.com/solinumasso/soliguide/commit/fdce333dde7f58454440d01f437e0758125d2a89))
+* **common:** fix renovate [#1](https://github.com/solinumasso/soliguide/issues/1) ([7dec071](https://github.com/solinumasso/soliguide/commit/7dec0714e2d05a6cffa04ef4f06c06853d1b0294))
+* **common:** fix renovate [#433](https://github.com/solinumasso/soliguide/issues/433) ([c5a61fd](https://github.com/solinumasso/soliguide/commit/c5a61fd7412d1181555e27cc543f25f29e3316d3))
+* **frontend:** add licenses [#410](https://github.com/solinumasso/soliguide/issues/410) ([a002ba8](https://github.com/solinumasso/soliguide/commit/a002ba8c88a33c2c47c320dfe630b26363b641a9))
+* **frontend:** add licenses [#410](https://github.com/solinumasso/soliguide/issues/410) ([52af34e](https://github.com/solinumasso/soliguide/commit/52af34e1b4219970d4e782694a4281a72fb96ace))
+* **frontend:** add validator [#433](https://github.com/solinumasso/soliguide/issues/433) ([060aaf3](https://github.com/solinumasso/soliguide/commit/060aaf37ade75f9965217da9e962797e6f70c321))
+* **frontend:** fix import modules [#433](https://github.com/solinumasso/soliguide/issues/433) ([0a8277f](https://github.com/solinumasso/soliguide/commit/0a8277f32cd978f3bf8bb5b257cee105ef8b4102))
+* **frontend:** fix import modules [#433](https://github.com/solinumasso/soliguide/issues/433) ([cccd887](https://github.com/solinumasso/soliguide/commit/cccd887c2588da8940daaf2c7f68c9018b39c837))
+* **frontend:** update deepsource issues  [#433](https://github.com/solinumasso/soliguide/issues/433) ([2ad0896](https://github.com/solinumasso/soliguide/commit/2ad0896d4ec843baeaf07a5530f51fc7c246b63d))
+* **frontend:** update routings [#410](https://github.com/solinumasso/soliguide/issues/410) ([777cabb](https://github.com/solinumasso/soliguide/commit/777cabb7064fb3e44a75541a676051f14160c7c1))
+* **frontend:** update routings [#410](https://github.com/solinumasso/soliguide/issues/410) ([1d5dd2f](https://github.com/solinumasso/soliguide/commit/1d5dd2fa6704bbfc744fcb2405931fcd6889de9a))
+* **location-api:** fix cache unit test & upgrade nest [#509](https://github.com/solinumasso/soliguide/issues/509) ([ec15c3e](https://github.com/solinumasso/soliguide/commit/ec15c3e20a450c8f5bff9ea4442b70b47c9356e3))
+* **location-api:** update holidays [#5199](https://github.com/solinumasso/soliguide/issues/5199) ([800dfcc](https://github.com/solinumasso/soliguide/commit/800dfcc7a6a3550e1aa9845d6fcb26685c309083))
+* make improvements [#446](https://github.com/solinumasso/soliguide/issues/446) ([40e15ae](https://github.com/solinumasso/soliguide/commit/40e15aebe1c8501ac00ee1e9ec7fa97757386f9e))
+* **web-app:** replace apple navigation by google map [#610](https://github.com/solinumasso/soliguide/issues/610) ([1dc0b5f](https://github.com/solinumasso/soliguide/commit/1dc0b5f2b00e90c87b51b339cb0e186c9d57c8af))
+* **web-app:** use another google map link [#610](https://github.com/solinumasso/soliguide/issues/610) ([345d1de](https://github.com/solinumasso/soliguide/commit/345d1dec19d104f042d3f86ed9f4f748109d1b39))
+
+
+### Features
+
+* add banner for external sources [#608](https://github.com/solinumasso/soliguide/issues/608) ([3e7c04c](https://github.com/solinumasso/soliguide/commit/3e7c04cde9950a41dab6b2440fda7a551097761a))
+* add migrations [#608](https://github.com/solinumasso/soliguide/issues/608) ([bddb863](https://github.com/solinumasso/soliguide/commit/bddb863c3b1fb018b0274ee77c4ae7abb60c6628))
+* add solidata guard [#446](https://github.com/solinumasso/soliguide/issues/446) ([105c9a6](https://github.com/solinumasso/soliguide/commit/105c9a63e2b1538f99c424ac5eb7265985b36038))
+* change superset page from olympics to food access [#446](https://github.com/solinumasso/soliguide/issues/446) ([072ab4e](https://github.com/solinumasso/soliguide/commit/072ab4eb4b57d8e5accfe6671d81753c18bb823e))
+* change to new campaign name [#608](https://github.com/solinumasso/soliguide/issues/608) ([cdd416f](https://github.com/solinumasso/soliguide/commit/cdd416f87ffb505b2ccd195ca8ac1dfe2ec8f4e0))
+* delete remove from my orga button from manage place [#508](https://github.com/solinumasso/soliguide/issues/508) ([d657b38](https://github.com/solinumasso/soliguide/commit/d657b38128bf4969e2b5de94f190170968c762ea))
+* edit email templates [#608](https://github.com/solinumasso/soliguide/issues/608) ([24896e2](https://github.com/solinumasso/soliguide/commit/24896e222aab7e20bb6aadc2d1554ee7bb6ead01))
+* make single component for solidata [#446](https://github.com/solinumasso/soliguide/issues/446) ([2b743aa](https://github.com/solinumasso/soliguide/commit/2b743aa1866c8f54112f52f3999c233a88e13b3f))
+* move external sources to migration [#608](https://github.com/solinumasso/soliguide/issues/608) ([4f83805](https://github.com/solinumasso/soliguide/commit/4f83805b0c63c5457cc482aa646da4ba49f2742d))
+* put correct dates [#608](https://github.com/solinumasso/soliguide/issues/608) ([6dcbb9e](https://github.com/solinumasso/soliguide/commit/6dcbb9ef10fbba08bf718bffe1b4192f0bfec4f1))
+* remove asterix from description in service edit [#102](https://github.com/solinumasso/soliguide/issues/102) ([038492b](https://github.com/solinumasso/soliguide/commit/038492b96c3ca2ec200014a95852907dfe8a39e7))
+* temporary suspension of the automatic unpublishing of places [#578](https://github.com/solinumasso/soliguide/issues/578) ([802d51a](https://github.com/solinumasso/soliguide/commit/802d51afa785c52eb41332b99fb2f5f44906d98f))
+
+
+### Reverts
+
+* Revert "fix: allow change territory [#455](https://github.com/solinumasso/soliguide/issues/455) ([#479](https://github.com/solinumasso/soliguide/issues/479))" ([fb3c7ee](https://github.com/solinumasso/soliguide/commit/fb3c7ee4404563d802933f3a2f2730339ea7ee18))
+
 ## [4.86.2](https://github.com/solinumasso/soliguide/compare/v4.86.1...v4.86.2) (2025-05-07)
 
 
