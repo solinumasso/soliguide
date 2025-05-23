@@ -55,8 +55,8 @@ import { PlaceModule } from "../place/place.module";
 import { SharedModule } from "../shared/shared.module";
 
 import { UsersModule } from "../users/users.module";
-import { FormatInternationalPhoneNumberPipe } from "../shared/pipes";
 import { FormPhoneInputComponent } from "../shared/components/form-phone/form-phone-input.component";
+import { FormatInternationalPhoneNumberPipe } from "../shared";
 
 @NgModule({
   declarations: [

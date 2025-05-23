@@ -100,9 +100,12 @@ import { PendingChangesGuard } from "../../guards/pending-changes.guard";
 import { HttpClientJsonpModule } from "@angular/common/http";
 import { AddressInputComponent } from "./components/_shared/address-input/address-input.component";
 
-import { FormatInternationalPhoneNumberPipe } from "../shared/pipes/formatInternationalPhoneNumber.pipe";
+import { FormatInternationalPhoneNumberPipe } from "../shared";
 import { FormIntlPhoneInputComponent } from "../shared/components/form-phone-input/form-intl-phone-input.component";
 import { FormPhoneInputComponent } from "../shared/components/form-phone/form-phone-input.component";
+import { LocationAutocompleteComponent } from "../shared/components/location-autocomplete/location-autocomplete.component";
+import { SearchMapComponent } from "../place/standalone-components/search-map/search-map.component";
+import { DisplayHorairesComponent } from "../place/standalone-components/display-horaires/horaires.component";
 
 @NgModule({
   declarations: [
@@ -158,6 +161,8 @@ import { FormPhoneInputComponent } from "../shared/components/form-phone/form-ph
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   imports: [
     AdminPlaceSharedModule,
+    LocationAutocompleteComponent,
+    SearchMapComponent,
     CKEditorModule,
     CommonModule,
     DragDropModule,
@@ -174,6 +179,7 @@ import { FormPhoneInputComponent } from "../shared/components/form-phone/form-ph
     FormIntlPhoneInputComponent,
     FormatInternationalPhoneNumberPipe,
     FormPhoneInputComponent,
+    DisplayHorairesComponent,
   ],
 })
 export class FormPlaceModule {}

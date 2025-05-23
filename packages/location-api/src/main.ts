@@ -19,9 +19,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import "./sentry/instrument";
-import { captureMessage } from "@sentry/node";
 import { bootstrapApplication } from "./app-bootstrap";
 import { ConfigService } from "@nestjs/config";
+import { captureMessage } from "@sentry/nestjs";
 
 (async () => {
   const app = await bootstrapApplication();

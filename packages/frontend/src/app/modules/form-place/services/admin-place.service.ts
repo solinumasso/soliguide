@@ -59,6 +59,7 @@ export class AdminPlaceService {
     place: Place,
     orgaObjectId: string | null
   ): Observable<Place> => {
+    console.log({ place, orgaObjectId });
     const postUrl = orgaObjectId
       ? `${this.endPoint}infos/${orgaObjectId}`
       : `${this.endPoint}infos`;
@@ -85,6 +86,7 @@ export class AdminPlaceService {
     lieu_id: string | number,
     isInForm = false
   ): Observable<Place> => {
+    console.log({ lieu_id });
     return this.http
       .get<ApiPlace>(
         `${this.endPoint}${lieu_id}/${this.currentLanguageService.currentLanguage}`

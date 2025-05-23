@@ -110,7 +110,6 @@ import soligare from "./soligare/routes/soligare.routes";
 
 // Jobs
 import { importCategories } from "./place/utils";
-import { generateSitemap } from "./general/services/generate-sitemap";
 import { serve, setup } from "swagger-ui-express";
 
 const _app = express();
@@ -178,7 +177,7 @@ _app.use([
 
 // Custom middleware to disable for pictures
 _app.use((req: ExpressRequest, res, next) => {
-  if (req.path.startsWith("/medias/")) {
+  if (req.path.startsWith("/medias/") || req.path.startsWith("/sitemap")) {
     next();
   } else {
     originGuard(req, res, next);
@@ -271,7 +270,6 @@ _app.use((req: Request, res: Response) => {
   }
 
   if (CONFIG.ENV === "prod" || CONFIG.ENV === "preprod") {
-    await generateSitemap();
     await importCategories();
   }
 })();

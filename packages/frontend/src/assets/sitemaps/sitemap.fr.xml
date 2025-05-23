@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2025 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+ <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://api.soliguide.fr/sitemap/fr/01</loc>
+    <lastmod>{{BUILD_DATE}}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SOLIGUIDE_API_URL}}/sitemap/fr/02</loc>
+    <lastmod>{{BUILD_DATE}}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SOLIGUIDE_API_URL}}/sitemap/fr/03</loc>
+    <lastmod>{{BUILD_DATE}}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SOLIGUIDE_API_URL}}/sitemap/fr/04</loc>
+    <lastmod>{{BUILD_DATE}}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SOLIGUIDE_API_URL}}/sitemap/fr/06</loc>
+    <lastmod>{{BUILD_DATE}}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SOLIGUIDE_API_URL}}/sitemap/fr/11</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SOLIGUIDE_API_URL}}/sitemap/fr/24</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SOLIGUIDE_API_URL}}/sitemap/fr/27</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SOLIGUIDE_API_URL}}/sitemap/fr/28</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SOLIGUIDE_API_URL}}/sitemap/fr/32</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SOLIGUIDE_API_URL}}/sitemap/fr/44</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SOLIGUIDE_API_URL}}/sitemap/fr/75</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SOLIGUIDE_API_URL}}/sitemap/fr/76</loc>
+    <lastmod>{{BUILD_DATE}}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SOLIGUIDE_API_URL}}/sitemap/fr/84</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SOLIGUIDE_API_URL}}/sitemap/fr/93</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SOLIGUIDE_API_URL}}/sitemap/fr/52</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SOLIGUIDE_API_URL}}/sitemap/fr/53</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SOLIGUIDE_API_URL}}/sitemap/fr/94</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SOLIGUIDE_API_URL}}/sitemap/fr/PO</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SOLIGUIDE_API_URL}}/sitemap/fr/NC</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SOLIGUIDE_API_URL}}/sitemap/fr/SB</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SOLIGUIDE_API_URL}}/sitemap/fr/SM</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SOLIGUIDE_API_URL}}/sitemap/fr/SP</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SOLIGUIDE_API_URL}}/sitemap/fr/WF</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SOLIGUIDE_API_URL}}/sitemap/fr/TF</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>

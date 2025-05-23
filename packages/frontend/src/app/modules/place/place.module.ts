@@ -35,13 +35,10 @@ import { NgxJsonLdModule } from "@ngx-lite/json-ld";
 
 import { TranslateModule } from "@ngx-translate/core";
 
-import { ShareButtonModule } from "ngx-sharebuttons/button";
-
 import { SingleContactComponent } from "./components/display-contacts/single-contact/single-contact.component";
 import { DisplayContactsComponent } from "./components/display-contacts/display-contacts.component";
 import { DisplayDocsComponent } from "./components/display-docs/display-docs.component";
 import { DisplayEntityInfosComponent } from "./components/display-entity-infos/display-entity-infos.component";
-import { DisplayHorairesComponent } from "./components/display-horaires/horaires.component";
 import { DisplayLanguagesComponent } from "./components/display-languages/display-languages.component";
 import { DisplayModalitiesInlineComponent } from "./components/display-modalities-inline/display-modalities-inline.component";
 import { DisplayParcoursMobileComponent } from "./components/display-parcours-mobile/display-parcours-mobile.component";
@@ -51,35 +48,30 @@ import { DisplayPublicsInlineComponent } from "./components/display-publics-inli
 import { DisplayServicesComponent } from "./components/display-services/display-services.component";
 import { DisplaySpecificFieldsComponent } from "./components/display-specific-fields/display-specific-fields.component";
 import { DisplayTempBannerComponent } from "./components/display-temp-banner/display-temp-banner.component";
-
-import { PlaceComponent } from "./components/place/place.component";
 import { PlaceUpdateCampaignBannerComponent } from "./components/place-update-campaign-banner/place-update-campaign-banner.component";
 
-import { SearchMapComponent } from "./components/search-map/search-map.component";
-
 import { SharePlaceComponent } from "./components/share-place/share-place.component";
-
-import { PlaceRoutingModule } from "./place-routing.module";
-
-import { PlaceService } from "./services/place.service";
-
 import { CampaignService } from "../campaign/services/campaign.service";
 
 import { CampaignSharedModule } from "../campaign-shared/campaign-shared.module";
 
 import { SharedModule } from "../shared/shared.module";
-import { FormatInternationalPhoneNumberPipe } from "../shared/pipes";
+
 import { PlaceTransportsComponent } from "./components/place-transports/place-transports.component";
 import { DisplayHolidaysComponent } from "./components/display-holidays/display-holidays.component";
 import { HolidaysService } from "./services/holidays.service";
 import { HttpClientModule } from "@angular/common/http";
+import { ShareButtons } from "ngx-sharebuttons/buttons";
+import { SearchMapComponent } from "./standalone-components/search-map/search-map.component";
+import { FormatInternationalPhoneNumberPipe } from "../shared";
+import { DisplayHorairesComponent } from "./standalone-components/display-horaires/horaires.component";
+import { ExternalSourcePlaceCampaignBannerComponent } from "./components/external-source-place-campaign-banner/external-source-place-campaign-banner.component";
 
 @NgModule({
   declarations: [
     DisplayContactsComponent,
     DisplayDocsComponent,
     DisplayEntityInfosComponent,
-    DisplayHorairesComponent,
     DisplayLanguagesComponent,
     DisplayModalitiesInlineComponent,
     DisplayParcoursMobileComponent,
@@ -89,9 +81,8 @@ import { HttpClientModule } from "@angular/common/http";
     DisplayServicesComponent,
     DisplaySpecificFieldsComponent,
     DisplayTempBannerComponent,
-    PlaceComponent,
     PlaceUpdateCampaignBannerComponent,
-    SearchMapComponent,
+    ExternalSourcePlaceCampaignBannerComponent,
     SharePlaceComponent,
     SingleContactComponent,
     PlaceTransportsComponent,
@@ -104,19 +95,19 @@ import { HttpClientModule } from "@angular/common/http";
     FormsModule,
     NgbModule,
     NgxJsonLdModule,
-    PlaceRoutingModule,
-    ShareButtonModule,
     SharedModule,
+    ShareButtons,
+    SearchMapComponent,
     HttpClientModule,
     TranslateModule,
     CampaignSharedModule,
     FormatInternationalPhoneNumberPipe,
+    DisplayHorairesComponent,
   ],
   exports: [
     DisplayContactsComponent,
     DisplayDocsComponent,
     DisplayEntityInfosComponent,
-    DisplayHorairesComponent,
     DisplayLanguagesComponent,
     DisplayModalitiesInlineComponent,
     DisplayParcoursMobileComponent,
@@ -124,14 +115,16 @@ import { HttpClientModule } from "@angular/common/http";
     DisplayPlaceInfosComponent,
     DisplayPublicsInlineComponent,
     DisplayServicesComponent,
-    DisplayTempBannerComponent,
-    PlaceComponent,
-    SearchMapComponent,
-    SingleContactComponent,
     DisplaySpecificFieldsComponent,
+    DisplayTempBannerComponent,
+    PlaceUpdateCampaignBannerComponent,
+    ExternalSourcePlaceCampaignBannerComponent,
+    SharePlaceComponent,
+    SingleContactComponent,
+    PlaceTransportsComponent,
     DisplayHolidaysComponent,
   ],
-  providers: [CampaignService, PlaceService, HolidaysService],
+  providers: [CampaignService, HolidaysService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 })
 export class PlaceModule {}

@@ -59,7 +59,6 @@ describe("LocationAutocompleteComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LocationAutocompleteComponent],
       imports: [
         HttpClientTestingModule,
         TranslateModule.forRoot(),

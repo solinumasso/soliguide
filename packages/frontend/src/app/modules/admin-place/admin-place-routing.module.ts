@@ -28,11 +28,6 @@ import { AdminSoliguideGuard } from "../../guards/admin-soliguide.guard";
 
 export const adminPlaceRoutes: Routes = [
   {
-    path: "",
-    redirectTo: "search",
-    pathMatch: "full",
-  },
-  {
     path: "search",
     canActivate: [AdminSoliguideGuard],
     component: ManagePlacesComponent,
@@ -47,4 +42,4 @@ export const adminPlaceRoutes: Routes = [
   imports: [RouterModule.forChild(adminPlaceRoutes)],
   exports: [RouterModule],
 })
-export class AdminPlaceRoutingModule {}
+export class AdminPlaceRoutingModule {} // skipcq: JS-0327

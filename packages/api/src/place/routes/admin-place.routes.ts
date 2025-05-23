@@ -93,6 +93,7 @@ import {
 } from "../controllers";
 
 import { sendPlaceChangesToMq } from "../../place-changes/middlewares/send-place-changes-to-mq.middleware";
+import { forceChangesDto } from "../dto/forceChanges.dto";
 
 const router = express.Router();
 
@@ -217,7 +218,7 @@ router.post(
     }
     next();
   },
-  infoDto(),
+  [...forceChangesDto, ...infoDto()],
   getFilteredData,
   async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
     try {
@@ -268,7 +269,7 @@ router.patch(
   "/infos/:lieu_id",
   getPlaceFromUrl,
   canEditPlace,
-  infoDto(),
+  [...forceChangesDto, ...infoDto()],
   getFilteredData,
   async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
     try {
@@ -297,7 +298,7 @@ router.patch(
   "/position/:lieu_id",
   getPlaceFromUrl,
   canEditPlace,
-  positionDto(),
+  [...forceChangesDto, ...positionDto()],
   getFilteredData,
   async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
     try {
@@ -424,7 +425,7 @@ router.patch(
   "/status/:lieu_id",
   getPlaceFromUrl,
   canEditPlace,
-  statusDto,
+  [...forceChangesDto, ...statusDto],
   getFilteredData,
   async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
     try {
@@ -516,7 +517,7 @@ router.patch(
   "/hours/:lieu_id",
   getPlaceFromUrl,
   canEditPlace,
-  hoursDto(),
+  [...forceChangesDto, ...hoursDto()],
   getFilteredData,
   async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
     try {
@@ -559,7 +560,7 @@ router.patch(
   "/publics/:lieu_id",
   getPlaceFromUrl,
   canEditPlace,
-  publicsDto(""),
+  [...forceChangesDto, ...publicsDto("")],
   getFilteredData,
   async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
     try {
@@ -604,7 +605,7 @@ router.patch(
   "/modalities/:lieu_id",
   getPlaceFromUrl,
   canEditPlace,
-  modalitiesDto(),
+  [...forceChangesDto, ...modalitiesDto("")],
   getFilteredData,
   async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
     try {
@@ -655,6 +656,7 @@ router.patch(
   getPlaceFromUrl,
   canEditPlace,
   servicesDto,
+
   getFilteredData,
   async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
     try {
@@ -919,7 +921,7 @@ router.put(
   "/sources/:lieu_id",
   getPlaceFromUrl,
   canEditPlace,
-  sourceDto,
+  [...forceChangesDto, ...sourceDto],
   getFilteredData,
   async (req: ExpressRequest, res: ExpressResponse) => {
     try {
@@ -947,7 +949,7 @@ router.delete(
   "/sources/:lieu_id",
   getPlaceFromUrl,
   canEditPlace,
-  sourceDto,
+  [...forceChangesDto, ...sourceDto],
   getFilteredData,
   async (req: ExpressRequest, res: ExpressResponse) => {
     try {

@@ -37,11 +37,8 @@ import { NotFoundComponent } from "./modules/general/components/not-found/not-fo
 
 import { environment } from "../environments/environment";
 import { THEME_CONFIGURATION } from "./models";
-import { SearchTrackingComponent } from "./modules/general/components/solidata/search-tracking.component";
-import { SeasonalAnalysisComponent } from "./modules/general/components/solidata/seasonal-analysis.component";
-import { TerritorialAnalysisComponent } from "./modules/general/components/solidata/territorial-analysis.component";
-import { OlympicGamesComponent } from "./modules/general/components/solidata/olympic-games.component";
-import { FoodAccessComponent } from "./modules/general/components/solidata/food-access.component";
+import { SolidataComponent } from "./modules/general/components/solidata/solidata.component";
+import { SolidataGuard } from "./guards/solidata.guard";
 
 export const routes: Routes = [
   // Redirection to /:lang routes
@@ -118,29 +115,14 @@ export const routes: Routes = [
   // Actual routes
   { path: ":lang", component: HomeComponent, canActivate: [LanguageGuard] },
   {
-    path: ":lang/solidata/search-tracking",
-    component: SearchTrackingComponent,
-    canActivate: [LanguageGuard],
+    path: ":lang/solidata/public/:superset",
+    component: SolidataComponent,
+    canActivate: [LanguageGuard, SolidataGuard],
   },
   {
-    path: ":lang/solidata/seasonal-analysis",
-    component: SeasonalAnalysisComponent,
-    canActivate: [LanguageGuard, AuthGuard, ProGuard],
-  },
-  {
-    path: ":lang/solidata/territorial-analysis",
-    component: TerritorialAnalysisComponent,
-    canActivate: [LanguageGuard, AuthGuard, ProGuard],
-  },
-  {
-    path: ":lang/solidata/olympic-games",
-    component: OlympicGamesComponent,
-    canActivate: [LanguageGuard, AuthGuard, ProGuard],
-  },
-  {
-    path: ":lang/solidata/access_alimentation",
-    component: FoodAccessComponent,
-    canActivate: [LanguageGuard, AuthGuard, ProGuard],
+    path: ":lang/solidata/:superset",
+    component: SolidataComponent,
+    canActivate: [LanguageGuard, AuthGuard, ProGuard, SolidataGuard],
   },
   {
     path: ":lang/contact",
@@ -188,7 +170,9 @@ export const routes: Routes = [
     path: ":lang/fiche",
     canActivate: [LanguageGuard],
     loadChildren: () =>
-      import("./modules/place/place.module").then((mod) => mod.PlaceModule),
+      import("./modules/place-page/place-page.module").then(
+        (mod) => mod.PlacePageModule
+      ),
   },
   {
     path: ":lang/manage-place",

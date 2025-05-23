@@ -39,7 +39,7 @@ import { OpeningHours } from "../../../../models";
 })
 export class HorairesFormTableComponent {
   @Input() public hours!: OpeningHours;
-  @Output() public hoursChange = new EventEmitter<OpeningHours>();
+  @Output() public readonly hoursChange = new EventEmitter<OpeningHours>();
 
   @Input() public index: number;
 

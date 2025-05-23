@@ -27,6 +27,5 @@ export interface PostgresPublicsOther {
   prison: boolean;
   prostitution: boolean;
   student: boolean;
-  ukraine: boolean;
   violence: boolean;
 }

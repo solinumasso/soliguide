@@ -35,7 +35,7 @@ export class TransportsController {
     required: true,
     description: "Latitude of a location to favor the closest candidates.",
     type: Number,
-    example: 48.9293029,
+    example: 48.85837,
   })
   @ApiParam({
     name: "longitude",
@@ -46,7 +46,7 @@ export class TransportsController {
   })
   @ApiParam({
     name: "placeId",
-    required: false,
+    required: true,
     description: "This place id is needed to ask the cache",
     type: Number,
     example: 100,
@@ -59,7 +59,7 @@ export class TransportsController {
     status: 400,
     description: "BAD_REQUEST",
   })
-  @Get(":latitude/:longitude/:placeId?")
+  @Get(":latitude/:longitude/:placeId")
   @UseCacheManager(CachePrefix.TRANSPORTS, "placeId")
   async getTransports(
     @Param("latitude", new ParseLatitudePipe()) latitude: number,

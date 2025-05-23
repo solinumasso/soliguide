@@ -58,19 +58,19 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       appCleanStr="share"
     ></textarea>
 
-    <ng-template ngFor let-platform [ngForOf]="PLATFORMS_TO_SHARE">
-      <share-button
-        class="text-center"
-        theme="default"
-        [button]="platform"
-        [show]="10"
-        [showText]="true"
-        [url]="linkUrl"
-        [title]="linkTitle"
-        [description]="linkDescription"
-        [image]="'/images/social.jpg'"
-        (click)="clickOnPlatform(platform)"
-      ></share-button>
-    </ng-template>
+    <button
+      type="button"
+      shareButton="copy"
+      class="btn btn-primary"
+      (click)="copyLink()"
+    >
+      <fa-icon [icon]="['fas', 'copy']" aria-hidden="true"></fa-icon>
+      {{ "COPIER_PRESSE_PAPIER" | translate }}
+    </button>
+
+    <share-buttons
+      [include]="['whatsapp', 'telegram', 'sms', 'facebook', 'email']"
+      [showText]="true"
+    ></share-buttons>
   </div>
 </ng-template>

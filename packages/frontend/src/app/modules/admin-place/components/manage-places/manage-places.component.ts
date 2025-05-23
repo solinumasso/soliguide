@@ -103,10 +103,9 @@ export class ManagePlacesComponent implements OnInit, OnDestroy {
 
   // Filters
   public showFilters: boolean;
-
   public autoExportLoading: boolean;
 
-  // TODO: isolate in a module
+  // TODO: isolate in a component
   @ViewChild("deletePlaceModal", { static: true })
   public deletePlaceModal!: TemplateRef<NgbModalRef>;
 

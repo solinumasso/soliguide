@@ -35,7 +35,7 @@ export class ManageMultipleSelectComponent implements OnInit {
 
   public allOptions: number;
 
-  @Output() public selectedOptions = new EventEmitter<string[]>();
+  @Output() public readonly selectedOptions = new EventEmitter<string[]>();
 
   public ngOnInit(): void {
     this.allOptions = Object.keys(this.optionLabels).length;

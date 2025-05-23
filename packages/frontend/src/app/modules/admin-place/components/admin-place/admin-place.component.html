@@ -146,16 +146,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           </li>
 
           <li *ngIf="me.admin">
-            <button
-              (click)="openRemoveModal()"
-              class="btn btn-outline-danger"
-              type="button"
-            >
-              {{ "REMOVE_PLACE_FROM_MY_ORGANIZATION" | translate }}
-            </button>
-          </li>
-
-          <li *ngIf="me.admin">
             <app-duplicate-place [place]="place" />
           </li>
           <li *ngIf="me.admin">

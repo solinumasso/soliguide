@@ -71,4 +71,4 @@ export const adminOrganisationRoutes: Routes = [
   imports: [RouterModule.forChild(adminOrganisationRoutes)],
   exports: [RouterModule],
 })
-export class AdminOrganisationRoutingModule {}
+export class AdminOrganisationRoutingModule {} // skipcq: JS-0327

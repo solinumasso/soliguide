@@ -151,4 +151,18 @@ export const CAMPAIGN_LIST: CampaignList = {
     ],
     TERRITORIES: [...DEPARTMENT_CODES[CountryCodes.FR]],
   },
+  MID_YEAR_2025: {
+    CAMPAIGN_DISPLAY_START_DATE: new Date("2025-08-01T00:00:00.000Z"),
+    CAMPAIGN_END_DATE: new Date("2025-07-31T00:00:00.000Z"),
+    CAMPAIGN_START_DATE: new Date("2025-06-10T00:00:00.000Z"),
+    DESCRIPTION: "Mise à jour de mi-année 2025",
+    PLACES_TO_UPDATE: null,
+    SECTIONS: [
+      CampaignChangesSection.tempClosure,
+      CampaignChangesSection.services,
+      CampaignChangesSection.tempHours,
+      CampaignChangesSection.tempMessage,
+    ],
+    TERRITORIES: [...DEPARTMENT_CODES[CountryCodes.FR]],
+  },
 };

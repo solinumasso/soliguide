@@ -22,7 +22,6 @@ import type { Modalities } from "@soliguide/common";
 import { body } from "express-validator";
 import mongoose from "mongoose";
 import { booleanDto, stringDto } from "../../_utils/dto";
-import { forceChangesDto } from "./forceChanges.dto";
 
 const checkedAndPrecisionsDto = (path: string) => [
   booleanDto(path + ".checked"),
@@ -78,5 +77,4 @@ export const modalitiesDto = (path = "") => [
     }
     return true;
   }),
-  ...forceChangesDto,
 ];

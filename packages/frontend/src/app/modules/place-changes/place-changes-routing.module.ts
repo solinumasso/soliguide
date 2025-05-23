@@ -51,4 +51,4 @@ export const ficheChangesRoutes: Routes = [
   imports: [RouterModule.forChild(ficheChangesRoutes)],
   exports: [RouterModule],
 })
-export class FicheChangesRoutingModule {}
+export class FicheChangesRoutingModule {} // skipcq: JS-0327

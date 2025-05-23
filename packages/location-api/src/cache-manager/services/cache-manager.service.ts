@@ -18,9 +18,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { CACHE_MANAGER } from "@nestjs/cache-manager";
+import { CACHE_MANAGER, Cache } from "@nestjs/cache-manager";
 import { Inject, Injectable } from "@nestjs/common";
-import { Cache } from "cache-manager";
 import { createHash } from "crypto";
 import { CachePrefix } from "../enums";
 

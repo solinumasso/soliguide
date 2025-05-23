@@ -46,4 +46,4 @@ export const campaignRoutes: Routes = [
   imports: [RouterModule.forChild(campaignRoutes)],
   exports: [RouterModule],
 })
-export class CampaignRoutingModule {}
+export class CampaignRoutingModule {} // skipcq: JS-0327

@@ -58,7 +58,7 @@ export class FormServicesFicheComponent {
 
   @Input() public typeError!: string[];
 
-  @Output() public isDescriptionInvalid = new EventEmitter<boolean>();
+  @Output() public readonly isDescriptionInvalid = new EventEmitter<boolean>();
 
   @ContentChild("formTableHorairesTemplate", { static: false })
   public formTableHorairesTemplateRef!: TemplateRef<HTMLElement>;
