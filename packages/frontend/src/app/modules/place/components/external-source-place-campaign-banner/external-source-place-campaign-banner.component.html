@@ -18,16 +18,14 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
-<div *ngIf="shouldShowExternalBanner">
-  <div class="alert alert-warning">
-    <div class="my-2 fw-bold text-center">
-      {{
-        "EXTERNAL_SOURCE_CAMPAIGN_BANNER"
-          | translate
-            : {
-                brandName: THEME_CONFIGURATION.brandName
-              }
-      }}
-    </div>
+<div class="alert alert-warning" *ngIf="shouldShowExternalBanner">
+  <div class="my-2 fw-bold text-center">
+    {{
+      "EXTERNAL_SOURCE_CAMPAIGN_BANNER"
+        | translate
+          : {
+              brandName: THEME_CONFIGURATION.brandName
+            }
+    }}
   </div>
 </div>
