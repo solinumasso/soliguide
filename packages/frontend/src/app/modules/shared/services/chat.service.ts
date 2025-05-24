@@ -18,7 +18,12 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Inject, Injectable, Renderer2, RendererFactory2 } from "@angular/core";
+import {
+  Inject,
+  Injectable,
+  // Renderer2,
+  // RendererFactory2
+} from "@angular/core";
 import { DOCUMENT } from "@angular/common";
 
 import { User } from "../../users/classes/user.class";
@@ -28,27 +33,28 @@ import { THEME_CONFIGURATION } from "../../../models";
   providedIn: "root",
 })
 export class ChatService {
-  private readonly renderer: Renderer2;
+  // private readonly renderer: Renderer2;
 
   constructor(
-    private readonly rendererFactory: RendererFactory2,
+    // private readonly rendererFactory: RendererFactory2,
     @Inject(DOCUMENT) private readonly document: Document
   ) {
-    this.renderer = this.rendererFactory.createRenderer(null, null);
+    // this.renderer = this.rendererFactory.createRenderer(null, null);
   }
 
   public loadScript(): void {
     if (THEME_CONFIGURATION.chatWebsiteId != null && !this.isScriptLoaded()) {
-      window["ZENDESK_COOKIE_EXPIRE"] = 15778800; // 15778800 = 6 months
-      const script = this.renderer.createElement("script");
-      this.renderer.setAttribute(
-        script,
-        "src",
-        `https://static.zdassets.com/ekr/snippet.js?key=${THEME_CONFIGURATION.chatWebsiteId}`
-      );
-      this.renderer.setAttribute(script, "id", "ze-snippet");
-      const head = this.document.head;
-      this.renderer.appendChild(head, script);
+      console.log("chat should be loaded");
+      // window["ZENDESK_COOKIE_EXPIRE"] = 15778800; // 15778800 = 6 months
+      // const script = this.renderer.createElement("script");
+      // this.renderer.setAttribute(
+      //   script,
+      //   "src",
+      //   `https://static.zdassets.com/ekr/snippet.js?key=${THEME_CONFIGURATION.chatWebsiteId}`
+      // );
+      // this.renderer.setAttribute(script, "id", "ze-snippet");
+      // const head = this.document.head;
+      // this.renderer.appendChild(head, script);
     }
   }
 
