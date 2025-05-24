@@ -20,22 +20,12 @@
  */
 silktideCookieBannerManager.updateCookieBannerConfig({
   background: {
-    showBackground: true,
+    showBackground: false,
   },
   cookieIcon: {
     position: "bottomLeft",
   },
   cookieTypes: [
-    {
-      id: "necessary",
-      name: "Necessary",
-      description:
-        "<p>These cookies are necessary for the website to function properly and cannot be switched off. They help with things like logging in and setting your privacy preferences.</p>",
-      required: true,
-      onAccept: function () {
-        console.log("Add logic for the required Necessary here");
-      },
-    },
     {
       id: "analytics",
       name: "Analytical",
@@ -49,34 +39,115 @@ silktideCookieBannerManager.updateCookieBannerConfig({
         dataLayer.push({
           event: "consent_accepted_analytics",
         });
+        console.log("Posthog cookies accepted");
       },
       onReject: function () {
         gtag("consent", "update", {
           analytics_storage: "denied",
         });
+
+        console.log("Posthog cookies rejected");
+
+        // !(function (t, e) {
+        //   var o, n, p, r;
+        //   e.__SV ||
+        //     ((window.posthog = e),
+        //     (e._i = []),
+        //     (e.init = function (i, s, a) {
+        //       function g(t, e) {
+        //         var o = e.split(".");
+        //         2 == o.length && ((t = t[o[0]]), (e = o[1])),
+        //           (t[e] = function () {
+        //             t.push(
+        //               [e].concat(Array.prototype.slice.call(arguments, 0))
+        //             );
+        //           });
+        //       }
+        //       ((p = t.createElement("script")).type = "text/javascript"),
+        //         (p.crossOrigin = "anonymous"),
+        //         (p.async = !0),
+        //         (p.src =
+        //           s.api_host.replace(
+        //             ".i.posthog.com",
+        //             "-assets.i.posthog.com"
+        //           ) + "/static/array.js"),
+        //         (r =
+        //           t.getElementsByTagName("script")[0]).parentNode.insertBefore(
+        //           p,
+        //           r
+        //         );
+        //       var u = e;
+        //       for (
+        //         void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
+        //           u.people = u.people || [],
+        //           u.toString = function (t) {
+        //             var e = "posthog";
+        //             return (
+        //               "posthog" !== a && (e += "." + a),
+        //               t || (e += " (stub)"),
+        //               e
+        //             );
+        //           },
+        //           u.people.toString = function () {
+        //             return u.toString(1) + ".people (stub)";
+        //           },
+        //           o =
+        //             "init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug getPageViewId".split(
+        //               " "
+        //             ),
+        //           n = 0;
+        //         n < o.length;
+        //         n++
+        //       )
+        //         g(u, o[n]);
+        //       e._i.push([i, s, a]);
+        //     }),
+        //     (e.__SV = 1));
+        // })(document, window.posthog || []);
+        // posthog.init("this.posthogConfig.posthogApiKey", {
+        //   api_host: "https://eu.i.posthog.com",
+        //   persistence: "memory",
+        //   autocapture: false,
+        //   session_idle_timeout_seconds: 1800, // 30 minutes
+        //   session_recording: {
+        //     maskAllInputs: true,
+        //     maskInputFn: function (text, element) {
+        //       if (element && element.dataset.record === "true") {
+        //         return text;
+        //       }
+        //       return "*".repeat(text.trim().length);
+        //     },
+        //   },
+        // });
       },
     },
     {
-      id: "advertising",
-      name: "Advertising",
-      description:
-        "<p>These cookies provide extra features and personalization to improve your experience. They may be set by us or by partners whose services we use.</p>",
+      id: "chat",
+      name: "Chat",
+      description: "<p>These cookies provide the use of the chat.</p>",
+      required: false,
       onAccept: function () {
         gtag("consent", "update", {
-          ad_storage: "granted",
-          ad_user_data: "granted",
-          ad_personalization: "granted",
+          functionality_storage: "granted",
         });
         dataLayer.push({
-          event: "consent_accepted_advertising",
+          event: "consent_accepted_chat",
         });
+        console.log("Chat cookies accepted");
       },
       onReject: function () {
         gtag("consent", "update", {
-          ad_storage: "denied",
-          ad_user_data: "denied",
-          ad_personalization: "denied",
+          functionality_storage: "denied",
         });
+
+        console.log("Chat cookies rejected");
+
+        zE = window.zE;
+
+        try {
+          zE("messenger:set", "cookies", false);
+          zE("messenger", "logoutUser");
+        } catch (e) {}
       },
     },
   ],
