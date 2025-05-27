@@ -768,7 +768,7 @@ export const CAMPAIGN_EMAILS_CONTENT: AllCampaignEmailTemplatesContent = {
       <p>À très vite,</p>
       <p>%NOM_SOLIGUIDE%.</p>
       <p><i>Une question ? un problème ? écrivez-nous à %EMAIL_SOLIGUIDE%</i></p>`,
-      subject: "📅 Vos informations sur Soliguide sont-elles à jour ?",
+      subject: "🌞 Aidez-nous à garder Soliguide à jour pour cet été",
     },
     RELANCE_TERMINER_MAJ: {
       content: `<p>Bonjour,</p>
