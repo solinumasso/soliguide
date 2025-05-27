@@ -34,6 +34,7 @@ const message = "Generate campaign mails templates";
 
 export const down = async (db: Db) => {
   logger.info(`[ROLLBACK] - ${message}`);
+
   await db
     .collection("emailsTemplates")
     .deleteMany({ campaign: CAMPAIGN_DEFAULT_NAME });
@@ -41,6 +42,10 @@ export const down = async (db: Db) => {
 
 export const up = async (db: Db) => {
   logger.info(`[MIGRATION] - ${message}`);
+
+  await db
+    .collection("emailsTemplates")
+    .deleteMany({ campaign: CAMPAIGN_DEFAULT_NAME });
 
   const emailsTemplates = [];
 

@@ -80,7 +80,6 @@ export class InfosComponent implements OnInit, OnDestroy {
     private readonly currentLanguageService: CurrentLanguageService,
     protected readonly translateService: TranslateService
   ) {
-    console.log("XXXPOKPOKPO");
     this.editorConfig.placeholder = this.translateService.instant(
       "STRUCTURE_DESCRIPTION"
     );

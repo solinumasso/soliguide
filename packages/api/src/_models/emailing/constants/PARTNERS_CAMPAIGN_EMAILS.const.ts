@@ -31,17 +31,19 @@ export const PARTNER_CAMPAIGN_EMAIL_TEMPLATE: PartnerCampaignEmailTemplatesConte
         <p>
           Soliguide démarre sa campagne de mise à jour saisonnière et pourra contacter directement les associations départementales afin de les accompagner dans la démarche.
         </p>
-        <p><strong>🎯 Votre mission :</strong><br>
+        <p><strong>🎯 Votre mission :</strong></p>
         <ol>
         <li> Vérifier les informations de votre structure</li>
         <li> Les corriger si besoin</li>
         <li> Indiquer vos périodes de fermeture estivale ou toute autre information utile</li>
+        </ol>
         </p>
         <p>👉 Cliquez ici pour accéder au <strong><a target="_blank" rel="noopener noreferrer" href="https://soliguide.fr/fr/campaign?utm_source=soliguide&utm_medium=$email&utm_campaign=%CAMPAIGN_NAME%&utm_term=%EMAIL_TYPE%&utm_content=changes&utm_user_ic=%USER_ID%">formulaire de mise à jour</a></strong></p>
-        <p><strong>💻 Aide et Support</strong><br>
-        <li> Pour vous aider à remplir le formulaire, on vous invite à notre prochain webinaire ! Pour s’inscrire, c’est par <strong><a target="_blank" rel="noopener noreferrer" href="https://zoom.us/webinar/register/7216898420109/WN_gn7lx7IsTneAkRo5DW2qtQ#/">ici</a></strong>.<br>
-        <li> On vous partage toutes nos ressources et tutos <strong><a target="_blank" rel="noopener noreferrer" href="https://soliguide.fr/fr/aide">ici</a></strong>.</p>
+        <p><strong>💻 Aide et Support</strong></p>
         <ul>
+        <li> Pour vous aider à remplir le formulaire, on vous invite à notre prochain webinaire ! Pour s’inscrire, c’est par <strong><a target="_blank" rel="noopener noreferrer" href="https://zoom.us/webinar/register/7216898420109/WN_gn7lx7IsTneAkRo5DW2qtQ#/">ici</a></strong>.</li>
+        <li> On vous partage toutes nos ressources et tutos <strong><a target="_blank" rel="noopener noreferrer" href="https://soliguide.fr/fr/aide">ici</a></strong>.</li>
+        </ul>
         <p>Un grand merci pour votre votre mobilisation !<br>
         %NOM_SOLIGUIDE%.<br>
         <i>Une question ? un problème ? écrivez-nous à <strong>%EMAIL_SOLIGUIDE%</strong></i></p>
@@ -59,12 +61,14 @@ export const PARTNER_CAMPAIGN_EMAIL_TEMPLATE: PartnerCampaignEmailTemplatesConte
         <li> Vérifier les informations de votre structure</li>
         <li> Les corriger si besoin</li>
         <li> Indiquer vos périodes de fermeture estivale ou toute autre information utile</li>
+        </ol>
         </p>
         <p>👉 Cliquez ici pour accéder au <strong><a target="_blank" rel="noopener noreferrer" href="https://soliguide.fr/fr/campaign?utm_source=soliguide&utm_medium=$email&utm_campaign=%CAMPAIGN_NAME%&utm_term=%EMAIL_TYPE%&utm_content=changes&utm_user_ic=%USER_ID%">formulaire de mise à jour</a></strong></p>
-        <p><strong>💻 Aide et Support</strong><br>
-        <li> Pour vous aider à la prise en main de votre compte, on vous invite à notre prochain webinaire ! Pour s’inscrire, c’est par <strong><a target="_blank" rel="noopener noreferrer" href="https://zoom.us/webinar/register/7216898420109/WN_gn7lx7IsTneAkRo5DW2qtQ#/">ici</a></strong>.<br>
-        <li> Participez aussi à notre prochain webinaire spécial mise à jour saisonnière. Pour s’inscrire, c’est par <strong><a target="_blank" rel="noopener noreferrer" href="https://soliguide.fr/fr/aide">ici</a></strong>.</p>
+        <p><strong>💻 Aide et Support</strong></p>
         <ul>
+        <li> Pour vous aider à la prise en main de votre compte, on vous partage nos ressources et tutos <strong><a target="_blank" rel="noopener noreferrer" href="https://soliguide.fr/fr/aide">ici</a></strong>.</li>
+        <li> Participez aussi à notre prochain webinaire spécial mise à jour saisonnière. Pour s’inscrire, c’est par <strong><a target="_blank" rel="noopener noreferrer" href="https://zoom.us/webinar/register/7216898420109/WN_gn7lx7IsTneAkRo5DW2qtQ#/">ici</a></strong>.</li>
+        </ul>
       <p>À très vite,<br>
       %NOM_SOLIGUIDE%.<br>
       <i>Une question ? un problème ? écrivez-nous à %EMAIL_SOLIGUIDE%</i></p>

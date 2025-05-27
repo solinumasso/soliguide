@@ -98,8 +98,6 @@ export class ParentTempInfosFormComponent implements OnInit, OnDestroy {
 
   public readonly CAMPAIGN_ADJECTIVE =
     CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].adjective;
-  public readonly CAMPAIGN_CLOSING_FORMULA =
-    CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].closingFormula;
   public readonly CAMPAIGN_NAME = CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].name;
   public readonly CAMPAIGN_PERIOD = CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].period;
 
