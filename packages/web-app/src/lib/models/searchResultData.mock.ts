@@ -26,8 +26,6 @@ import {
   ServiceStyleType,
   PlaceClosedHolidays,
   PublicsAdministrative,
-  PublicsFamily,
-  PublicsOther,
   ServiceSaturation,
   CountryCodes,
   FR_DEPARTMENT_CODES,
@@ -133,19 +131,9 @@ const samplePlace: ApiPlace = Object.freeze({
   publics: {
     age: { min: 0, max: 99 },
     accueil: 0,
-    administrative: [
-      PublicsAdministrative.regular,
-      PublicsAdministrative.asylum,
-      PublicsAdministrative.refugee,
-      PublicsAdministrative.undocumented
-    ],
+    administrative: structuredClone(ADMINISTRATIVE_DEFAULT_VALUES),
     description: null,
-    familialle: [
-      PublicsFamily.isolated,
-      PublicsFamily.family,
-      PublicsFamily.couple,
-      PublicsFamily.pregnant
-    ],
+    familialle: structuredClone(FAMILY_DEFAULT_VALUES),
     gender: structuredClone(GENDER_DEFAULT_VALUES),
     other: structuredClone(OTHER_DEFAULT_VALUES)
   },
@@ -651,23 +639,13 @@ const sampleItinerary: ApiPlace = Object.freeze({
   placeType: PlaceType.ITINERARY,
   publics: {
     accueil: 0,
-    administrative: [
-      PublicsAdministrative.regular,
-      PublicsAdministrative.asylum,
-      PublicsAdministrative.refugee,
-      PublicsAdministrative.undocumented
-    ],
+    administrative: structuredClone(ADMINISTRATIVE_DEFAULT_VALUES),
     age: {
       max: 99,
       min: 0
     },
     description: null,
-    familialle: [
-      PublicsFamily.isolated,
-      PublicsFamily.family,
-      PublicsFamily.couple,
-      PublicsFamily.pregnant
-    ],
+    familialle: structuredClone(FAMILY_DEFAULT_VALUES),
     gender: structuredClone(GENDER_DEFAULT_VALUES),
     other: structuredClone(OTHER_DEFAULT_VALUES)
   },
@@ -955,16 +933,7 @@ const sampleItinerary: ApiPlace = Object.freeze({
         familialle: structuredClone(FAMILY_DEFAULT_VALUES),
 
         gender: structuredClone(GENDER_DEFAULT_VALUES),
-        other: [
-          PublicsOther.violence,
-          PublicsOther.addiction,
-          PublicsOther.handicap,
-          PublicsOther.lgbt,
-          PublicsOther.hiv,
-          PublicsOther.prostitution,
-          PublicsOther.prison,
-          PublicsOther.student
-        ]
+        other: structuredClone(OTHER_DEFAULT_VALUES)
       },
       saturated: {
         precision: null,

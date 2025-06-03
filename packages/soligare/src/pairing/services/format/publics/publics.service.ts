@@ -62,6 +62,7 @@ export class PublicsService {
       SELECT *
       FROM ${connection(schema)}.publics
       WHERE id = ${id}
+      LIMIT 1
     `;
 
     const preFormatPublics: Partial<Publics> = {
