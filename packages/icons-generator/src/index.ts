@@ -21,12 +21,11 @@
 import sharp from "sharp";
 import svgtofont, { SvgToFontOptions } from "svgtofont";
 import { resolve, extname, join } from "path";
-import { readdirSync, writeFileSync, existsSync, mkdirSync } from "fs";
-import Potrace from "oslllo-potrace";
-import ora from "ora"; // Pour les spinners de chargement
-import chalk from "chalk"; // Pour les couleurs
+import { readdirSync, existsSync, mkdirSync } from "fs";
+import ora from "ora";
+import chalk from "chalk";
+import { cleanSvgFilenames } from "./svg-cleaner";
 
-const SOURCE_JPG_DIR: string = "./icons/jpg";
 const SOURCE_SVG_DIR: string = "./icons/svg";
 const OUTPUT_PNG_DIR: string = "./icons/png";
 const showBanner = (): void => {
@@ -152,48 +151,6 @@ async function convertSvgToPng(): Promise<void> {
   }
 }
 
-async function createSvgFromJpg(): Promise<void> {
-  const files: string[] = readdirSync(SOURCE_JPG_DIR);
-  const jpgFiles = files.filter((file) => extname(file) === ".jpg");
-
-  const spinner = ora({
-    text: chalk.blue(`🎨 Converting JPG to SVG (0/${jpgFiles.length})...`),
-    spinner: "dots",
-  }).start();
-
-  let completed = 0;
-  let errors = 0;
-
-  for await (const file of jpgFiles) {
-    const source: string = resolve(join(SOURCE_JPG_DIR, file));
-    const destination: string = resolve(
-      join(SOURCE_SVG_DIR, file.replace(".jpg", "") + ".svg")
-    );
-
-    try {
-      const traced: string = await Potrace(source).trace();
-      writeFileSync(destination, traced);
-      completed++;
-      spinner.text = chalk.blue(
-        `🎨 Converting JPG to SVG (${completed}/${jpgFiles.length})...`
-      );
-    } catch (error) {
-      errors++;
-      spinner.warn(chalk.yellow(`⚠️  Error tracing ${file}: ${error}`));
-    }
-  }
-
-  if (errors === 0) {
-    spinner.succeed(
-      chalk.green(`✅ ${completed} SVG files created successfully! 🎉`)
-    );
-  } else {
-    spinner.succeed(
-      chalk.yellow(`⚠️  ${completed} SVG files created with ${errors} errors.`)
-    );
-  }
-}
-
 (async (): Promise<void> => {
   showBanner();
   console.log(chalk.cyan("📋 Checking directories..."));
@@ -212,9 +169,8 @@ async function createSvgFromJpg(): Promise<void> {
 
   console.log(chalk.cyan("🚀 Starting processing..."));
 
-  // Step 1
-  console.log(chalk.bold.magenta("\n📌 Step 1/3: generate SVG from JPG"));
-  await createSvgFromJpg();
+  console.log(chalk.bold.magenta("\n📌 Step 1/3: clean SVG files"));
+  cleanSvgFilenames();
 
   // Step 2
   console.log(chalk.bold.magenta("\n📌 Step 2/3: generate PNG from SVG"));

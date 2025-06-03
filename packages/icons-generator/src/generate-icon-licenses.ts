@@ -26,7 +26,6 @@ import { readdir, writeFile } from "node:fs/promises";
 const paths = {
   svg: path.resolve(process.cwd(), "./icons/svg"),
   png: path.resolve(process.cwd(), "./icons/png"),
-  jpg: path.resolve(process.cwd(), "./icons/jpg"),
 };
 
 const licenseContent = `Soliguide: Useful information for those who need it
@@ -147,9 +146,6 @@ async function main(): Promise<void> {
 
   // Process PNG files
   await generateLicensesForFolder(paths.png, [".png"]);
-
-  // Process JPG files
-  await generateLicensesForFolder(paths.jpg, [".jpg", ".jpeg"]);
 
   // Process font files
   const fontsPath = path.resolve(process.cwd(), "./fonts");
