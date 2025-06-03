@@ -22,11 +22,11 @@ import { Db } from "mongodb";
 
 import { SupportedLanguagesCode } from "@soliguide/common";
 
-import { logger } from "../../src/general/logger";
+import { logger } from "../../../src/general/logger";
 import {
   ApiTranslatedFieldContent,
   ApiTranslatedPlaceContent,
-} from "../../src/translations/classes";
+} from "../../../src/translations/classes";
 
 const newLang = SupportedLanguagesCode.AR;
 

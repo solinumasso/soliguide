@@ -30,39 +30,24 @@ export class PublicsOtherService {
   ): Promise<PublicsOther[]> {
     const connection = this.postgresService.getConnection();
 
-    const postgresPublicsOther = await connection<PostgresPublicsOther[]>`
+    const result = await connection<PostgresPublicsOther[]>`
       SELECT *
       FROM ${connection(schema)}.publics_other
       WHERE id = ${id}
+      LIMIT 1
     `;
 
-    const publicsOther: PublicsOther[] = [];
-
-    if (postgresPublicsOther[0].addiction) {
-      publicsOther.push(PublicsOther.addiction);
-    }
-    if (postgresPublicsOther[0].handicap) {
-      publicsOther.push(PublicsOther.handicap);
-    }
-    if (postgresPublicsOther[0].hiv) {
-      publicsOther.push(PublicsOther.hiv);
-    }
-    if (postgresPublicsOther[0].lgbt) {
-      publicsOther.push(PublicsOther.lgbt);
-    }
-    if (postgresPublicsOther[0].prison) {
-      publicsOther.push(PublicsOther.prison);
-    }
-    if (postgresPublicsOther[0].prostitution) {
-      publicsOther.push(PublicsOther.prostitution);
-    }
-    if (postgresPublicsOther[0].student) {
-      publicsOther.push(PublicsOther.student);
-    }
-    if (postgresPublicsOther[0].violence) {
-      publicsOther.push(PublicsOther.violence);
+    if (!result.length) {
+      return [];
     }
 
-    return publicsOther;
+    const data = result[0];
+
+    return Object.values(PublicsOther).filter(
+      (enumValue) =>
+        enumValue !== PublicsOther.all && // Exclude "all"
+        enumValue in data && // Check if exists
+        data[enumValue as keyof PostgresPublicsOther] === true, // Check if it's true
+    );
   }
 }

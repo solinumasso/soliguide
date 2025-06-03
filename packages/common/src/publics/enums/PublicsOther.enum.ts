@@ -28,6 +28,6 @@ export enum PublicsOther {
   prison = "prison",
   prostitution = "prostitution",
   student = "student",
-  ukraine = "ukraine",
+  mentalHealth = "mentalHealth",
   violence = "violence",
 }
