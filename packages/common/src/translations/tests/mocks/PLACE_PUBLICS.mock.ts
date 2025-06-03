@@ -75,7 +75,7 @@ export const PLACE_PUBLICS_MOCK: PlacePublicsMock[] = [
   {
     expectedResults: {
       ar: "ترحيب غير مشروط يتكيف مع نساء, اللاجئون, طالبي اللجوء, الناس المعزولون, النساء الحوامل, الطلاب, الناس في الدعارة.",
-      ca: "Acollida incondicional adaptada a dones, refugiats, sol · licitants d'asil, persones aïllades, dona embarassada, estudiants, persones en prostitució.",
+      ca: "Acollida incondicional adaptada a dones, refugiats/ades, sol·licitants d'asil, persones aïllades, dones embarassades, estudiants, persones en situació de prostitució.",
       en: "Unconditional welcome adapted to women, refugees, asylum seekers, isolated people, pregnant women, students, people in prostitution situations.",
       es: "Acogida incondicional adaptada a mujeres, refugiados, solicitantes de asilo, personas aisladas, mujeres embarazadas, estudiantes, personas que ejercen la prostitución.",
       fa: "استقبال بی قید و شرط سازگار با زنان, پناهندگان, پناهجویان, افراد منزوی, زنان حامله, دانش آموزان, افراد در فحشا.",

@@ -125,7 +125,7 @@ export const PLACE_MODALITIES_MOCK: PlaceModalitiesMock[] = [
       ar: "الحيوانات المقبولة\nتفاصيل أخرى: Data in french, only for test",
       ca: "S'accepten animals\nAltres detalls: Data in french, only for test",
       en: "Accepted animals\nOther details: Data in french, only for test",
-      es: "Animales aceptados\nOtros detalles: Data in french, only for test",
+      es: "Se aceptan animales\nOtros detalles: Data in french, only for test",
       fa: "حیوانات پذیرفته شده\nجزئیات دیگر: Data in french, only for test",
       fr: "Animaux acceptés\nAutres précisions: Data in french, only for test",
       ka: "Პაროლები უნდა იყოს იგივე\nᲡხვა დეტალები: Data in french, only for test",
