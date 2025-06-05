@@ -1,3 +1,11 @@
+# [4.88.0](https://github.com/solinumasso/soliguide/compare/v4.87.1...v4.88.0) (2025-06-05)
+
+
+### Features
+
+* **web-app:** fix template maj restos [#641](https://github.com/solinumasso/soliguide/issues/641) ([6a88eca](https://github.com/solinumasso/soliguide/commit/6a88eca9f7b96a4aaa4993fed143a256154b9dc6))
+* **web-app:** remove tally form [#644](https://github.com/solinumasso/soliguide/issues/644) ([89b8493](https://github.com/solinumasso/soliguide/commit/89b8493efa3ff417bca8c38a18feeb8456b78981))
+
 ## [4.87.1](https://github.com/solinumasso/soliguide/compare/v4.87.0...v4.87.1) (2025-05-23)
 
 
