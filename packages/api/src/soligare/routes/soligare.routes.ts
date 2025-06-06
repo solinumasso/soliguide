@@ -20,10 +20,11 @@
  */
 
 import express from "express";
-import { checkRights } from "../../middleware";
+import { checkRights, getFilteredData } from "../../middleware";
 import { UserStatus } from "@soliguide/common";
 import { CONFIG, ExpressRequest, ExpressResponse } from "../../_models";
 import axios from "axios";
+import { validateSoligareUuid } from "../dto/soligareUuid.dto";
 
 const router = express.Router();
 
@@ -50,10 +51,12 @@ router.post(
 );
 
 router.get(
-  "/source/details/:source_id",
+  "/source/details/:soliguideUuid",
+  validateSoligareUuid,
+  getFilteredData,
   checkRights([UserStatus.ADMIN_SOLIGUIDE, UserStatus.ADMIN_TERRITORY]),
   async (req: ExpressRequest, res: ExpressResponse) => {
-    const sourceId = req.params.source_id;
+    const sourceId = req.bodyValidated.soliguideUuid;
 
     try {
       const result = await axios.get(
@@ -93,10 +96,12 @@ router.post(
 );
 
 router.get(
-  "/pairing/external-structure/:source_id",
+  "/pairing/external-structure/:soliguideUuid",
+  validateSoligareUuid,
+  getFilteredData,
   checkRights([UserStatus.ADMIN_SOLIGUIDE, UserStatus.ADMIN_TERRITORY]),
   async (req: ExpressRequest, res: ExpressResponse) => {
-    const sourceId = req.params.source_id;
+    const sourceId = req.bodyValidated.soliguideUuid;
 
     try {
       const result = await axios.get(
@@ -136,14 +141,16 @@ router.post(
 );
 
 router.delete(
-  "/pairing/pair/:soliguide_id",
+  "/pairing/pair/:soliguideUuid",
+  validateSoligareUuid,
+  getFilteredData,
   checkRights([UserStatus.ADMIN_SOLIGUIDE, UserStatus.ADMIN_TERRITORY]),
   async (req: ExpressRequest, res: ExpressResponse) => {
-    const soliguideId = req.params.soliguide_id;
+    const soliguideUuid = req.bodyValidated.soliguideUuid;
 
     try {
       const result = await axios.delete(
-        `${CONFIG.SOLIGARE_URL}pairing/pair/${soliguideId}`
+        `${CONFIG.SOLIGARE_URL}pairing/pair/${soliguideUuid}`
       );
 
       return res.status(result.status).json(result.data);
