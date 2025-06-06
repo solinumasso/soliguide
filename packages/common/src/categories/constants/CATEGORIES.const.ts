@@ -912,14 +912,6 @@ export const CATEGORIES_SOLIGUIA_AD: FlatCategoriesTreeNode[] = [
     ],
   },
   {
-    id: Categories.SPANISH_COURSE,
-    children: [],
-  },
-  {
-    id: Categories.CATALAN_COURSE,
-    children: [],
-  },
-  {
     id: Categories.COUNSELING,
     children: [
       {
@@ -927,5 +919,18 @@ export const CATEGORIES_SOLIGUIA_AD: FlatCategoriesTreeNode[] = [
         rank: 820,
       },
     ],
+  },
+  {
+    id: Categories.SPANISH_COURSE,
+    children: [],
+  },
+  {
+    id: Categories.CATALAN_COURSE,
+    children: [],
+  },
+
+  {
+    id: Categories.LEGAL_PROTECTION,
+    children: [],
   },
 ];

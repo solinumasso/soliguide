@@ -138,6 +138,9 @@ _app.use(
   })
 );
 
+const isPublicRoute = (path: string) =>
+  path.startsWith("/medias/") || path.startsWith("/sitemap");
+
 _app.use(compression());
 
 _app.use(
@@ -156,8 +159,10 @@ _app.use(
 
 _app.use(cookieParser());
 
-_app.use((_req: Request, res: Response, next: NextFunction) => {
-  res.header("X-Robots-Tag", "noindex, nofollow");
+_app.use((req: Request, res: Response, next: NextFunction) => {
+  if (!isPublicRoute(req.path)) {
+    res.header("X-Robots-Tag", "noindex, nofollow");
+  }
   next();
 });
 
@@ -165,7 +170,10 @@ _app.use("/", index);
 
 _app.use("/robots.txt", (_req: ExpressRequest, res: ExpressResponse) => {
   res.type("text/plain");
-  res.send("User-agent: *\nDisallow: /");
+  res.send(`User-agent: *
+Disallow: /
+Allow: /medias*
+Allow: /sitemap*`);
 });
 
 // First middlewares
