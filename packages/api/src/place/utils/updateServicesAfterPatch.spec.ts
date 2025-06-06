@@ -57,7 +57,40 @@ describe("updateServicesAfterPatch", () => {
     }
 
     expect(newServices[0].hours).toStrictEqual(MCP_PLACE.newhours);
+    expect(newServices[0].hours.description).toStrictEqual(
+      MCP_PLACE.newhours.description
+    );
     expect(newServices[0].publics).toStrictEqual(MCP_PLACE.publics);
+    expect(newServices[0].publics.description).toStrictEqual(
+      MCP_PLACE.publics.description
+    );
     expect(newServices[0].modalities).toStrictEqual(MCP_PLACE.modalities);
+    expect(newServices[0].modalities.inscription.checked).toStrictEqual(
+      MCP_PLACE.modalities.inscription.checked
+    );
+    expect(newServices[0].modalities.inscription.precisions).toStrictEqual(
+      MCP_PLACE.modalities.inscription.precisions
+    );
+    expect(newServices[0].modalities.orientation.checked).toStrictEqual(
+      MCP_PLACE.modalities.orientation.checked
+    );
+    expect(newServices[0].modalities.orientation.precisions).toStrictEqual(
+      MCP_PLACE.modalities.orientation.precisions
+    );
+    expect(newServices[0].modalities.appointment.checked).toStrictEqual(
+      MCP_PLACE.modalities.appointment.checked
+    );
+    expect(newServices[0].modalities.appointment.precisions).toStrictEqual(
+      MCP_PLACE.modalities.appointment.precisions
+    );
+    expect(newServices[0].modalities.price.checked).toStrictEqual(
+      MCP_PLACE.modalities.price.checked
+    );
+    expect(newServices[0].modalities.price.precisions).toStrictEqual(
+      MCP_PLACE.modalities.price.precisions
+    );
+    expect(newServices[0].modalities.other).toStrictEqual(
+      MCP_PLACE.modalities.other
+    );
   });
 });
