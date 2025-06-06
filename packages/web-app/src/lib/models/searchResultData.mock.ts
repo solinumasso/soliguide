@@ -25,7 +25,6 @@ import {
   Categories,
   ServiceStyleType,
   PlaceClosedHolidays,
-  PublicsAdministrative,
   ServiceSaturation,
   CountryCodes,
   FR_DEPARTMENT_CODES,
