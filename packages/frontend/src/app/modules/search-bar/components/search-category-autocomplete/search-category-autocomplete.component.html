@@ -49,10 +49,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <div id="autocomplete-results" *ngIf="showSuggestions">
   <div
     *ngIf="
-      !searching &&
-      autoCompleteResults.categories.length === 0 &&
-      autoCompleteResults.terms.length === 0 &&
-      !searchValueInput.value
+      !searching && searchSuggestions.length === 0 && !searchValueInput.value
     "
   >
     {{ "SAISIR_LETTRES" | translate }}
@@ -65,15 +62,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     />
   </div>
 
-  <div
-    class="mb-2"
-    *ngIf="!searching && autoCompleteResults.categories.length !== 0"
-  >
+  <div class="mb-2" *ngIf="!searching && searchSuggestions.length !== 0">
     <b>{{ "CATEGORIES" | translate }}</b>
     <ul>
-      <ng-container
-        *ngFor="let category of autoCompleteResults.categories; let i = index"
-      >
+      <ng-container *ngFor="let category of searchSuggestions; let i = index">
         <li
           tabindex="0"
           *ngIf="i < 6"
