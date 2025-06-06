@@ -23,7 +23,7 @@ import { Module } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { CacheManagerService } from "./services/cache-manager.service";
 import { CacheManagerInterceptor } from "./cache-manager.interceptor";
-import KeyvRedis from "@keyv/redis";
+import KeyvRedis, { RedisClientOptions } from "@keyv/redis";
 
 @Module({
   providers: [CacheManagerService, CacheManagerInterceptor],
@@ -34,11 +34,30 @@ import KeyvRedis from "@keyv/redis";
       isGlobal: true,
       useFactory: async (configService: ConfigService) => {
         const ttl = configService.get<number>("REDIS_TTL");
-        if (configService.get<number>("REDIS_URL")) {
-          const url = configService.get<string>("REDIS_URL");
+        const redisUrl = configService.get<string>("REDIS_URL");
+
+        if (redisUrl) {
+          const redisOptions: RedisClientOptions = {
+            url: redisUrl,
+            socket: {
+              connectTimeout: 10000,
+              keepAlive: 30000,
+              reconnectStrategy: (retries: number) => {
+                if (retries > 5) return false;
+                return Math.min(retries * 100, 3000);
+              },
+            },
+            disableOfflineQueue: true,
+            pingInterval: 0,
+          };
+
+          // KeyvRedis avec options Keyv uniquement
+          const keyvRedis = new KeyvRedis(redisOptions, {
+            namespace: "cache",
+          });
           try {
             return {
-              stores: [new KeyvRedis(url)],
+              stores: [keyvRedis],
               ttl,
             };
           } catch (error) {
