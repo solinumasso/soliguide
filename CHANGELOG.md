@@ -1,3 +1,15 @@
+# [4.89.0](https://github.com/solinumasso/soliguide/compare/v4.88.0...v4.89.0) (2025-06-07)
+
+
+### Bug Fixes
+
+* **api:** fix security issue, update soligare dump ([3aac306](https://github.com/solinumasso/soliguide/commit/3aac306cb493feb8093585613e0fa78938d1c38a))
+
+
+### Features
+
+* **web-app:** remove tally form [#644](https://github.com/solinumasso/soliguide/issues/644) ([c28f61d](https://github.com/solinumasso/soliguide/commit/c28f61d38c25db3d74cf3466810f62295339cb7d))
+
 # [4.88.0](https://github.com/solinumasso/soliguide/compare/v4.87.1...v4.88.0) (2025-06-05)
 
 
