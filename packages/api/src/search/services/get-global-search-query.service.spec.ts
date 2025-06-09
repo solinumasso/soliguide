@@ -18,7 +18,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { User } from "../../_models";
+
+import { User } from "../../user/interfaces";
 import { getGlobalSearchQuery } from "./get-global-search-query.service";
 
 describe("getGlobalSearchQuery", () => {

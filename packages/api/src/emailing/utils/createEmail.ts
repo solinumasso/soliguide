@@ -26,19 +26,20 @@ import { findEmailTemplates } from "../services/email-templates.service";
 
 import {
   CONFIG,
-  User,
   CampaignEmails,
   CampaignEmailTemplates,
   CampaignEmailName,
   EmailData,
   ModelWithId,
 } from "../../_models";
+import { UserForCompaigns } from "../../user/types";
+import { User } from "../../user/interfaces";
 
 const generateBaseCampaignEmail = (
   frontUrl: string,
   emailTemplate: CampaignEmailTemplates,
   emailType: CampaignEmailName,
-  user: User,
+  user: Pick<UserForCompaigns, "user_id" | "mail">,
   invitationToken: string,
   organization_id = -1
 ): EmailData => {
@@ -127,7 +128,7 @@ const generateEmail = async (
   emailType: CampaignEmailName,
   organization_id: number,
   territory: AnyDepartmentCode,
-  user: User
+  user: UserForCompaigns
 ): Promise<{ emailData: EmailData; template: CampaignEmailTemplates }> => {
   if (emailType.includes("INVITATION") && !invitationToken) {
     // No invitation given for an invitation email
@@ -163,7 +164,7 @@ export const createEmail = async (
   campaign: CampaignNameAndAll,
   invitationToken: string,
   emailType: CampaignEmailName,
-  organization: mongoose.Types.ObjectId | any,
+  organization: mongoose.Types.ObjectId,
   organization_id: number,
   territory: AnyDepartmentCode,
   user: ModelWithId<User>

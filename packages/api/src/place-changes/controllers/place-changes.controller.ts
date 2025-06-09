@@ -37,8 +37,6 @@ import type {
   ExpressRequest,
   ExpressResponse,
   ModelWithId,
-  UserForLogs,
-  UserPopulateType,
 } from "../../_models";
 import { generateSearchOptions } from "../../search/utils";
 import { BOT_USER_FOR_LOGS } from "../../user/constants";
@@ -54,6 +52,8 @@ import { getNoChanges, getSectionData } from "../utils/place-changes-utils";
 import { getMongoId } from "../../_utils/functions/mongo";
 import type { PlaceChanges } from "../interfaces/PlaceChanges.interface";
 import { updatePlaceUpdatedAtByPlaceId } from "../../place/services/admin-place.service";
+import { UserForSearch } from "../../user/types";
+import { UserForLogs } from "../../user/interfaces";
 
 /**
  * @param  {Object} searchData
@@ -63,7 +63,7 @@ import { updatePlaceUpdatedAtByPlaceId } from "../../place/services/admin-place.
  */
 export const searchPlaceChanges = async (
   searchData: any,
-  user: UserPopulateType,
+  user: UserForSearch,
   light?: boolean
 ): Promise<SearchResults<CommonPlaceChanges>> => {
   const searchObject = { options: {}, query: {} };

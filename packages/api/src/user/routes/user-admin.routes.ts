@@ -27,14 +27,11 @@ import * as UserAdminController from "../controllers/user-admin.controller";
 import { searchUserDto } from "../dto";
 import { validObjectIdDto } from "../../_utils/dto";
 
-import type {
-  ExpressRequest,
-  ExpressResponse,
-  UserPopulateType,
-} from "../../_models";
+import type { ExpressRequest, ExpressResponse } from "../../_models";
 
 import { checkRights, getUserFromUrl, getFilteredData } from "../../middleware";
 import { sendUserChangesToMq } from "../middlewares/send-user-changes-event-to-mq.middleware";
+import { UserPopulateType } from "../interfaces";
 
 const router = express.Router();
 /**

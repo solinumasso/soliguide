@@ -125,7 +125,8 @@ describe("InvitationsService", () => {
       userWhoInvite,
       organization,
       userInvited!, // skipcq: JS-0339
-      UserRole.OWNER
+      UserRole.OWNER,
+      CountryCodes.FR
     );
 
     expect(invitation.user_id).toBe(userInvited!.user_id);

@@ -23,11 +23,7 @@ import type { Logger } from "pino";
 
 import type { Themes } from "@soliguide/common";
 
-import type {
-  ExpressRequest,
-  ExpressResponse,
-  UserPopulateType,
-} from "../../_models";
+import type { ExpressRequest, ExpressResponse } from "../../_models";
 import {
   Exchange,
   AmqpUserEvent,
@@ -35,6 +31,7 @@ import {
   amqpEventsSender,
 } from "../../events";
 import { isCampaignActive } from "../../campaign/controllers";
+import { UserPopulateType } from "../interfaces";
 
 const sendUserEventToMq = async (
   user: UserPopulateType,

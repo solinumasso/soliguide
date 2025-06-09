@@ -20,9 +20,8 @@
  */
 import { SupportedLanguagesCode } from "../../translations";
 import { Categories } from "../../categories";
-import { UserStatus } from "..";
+import { AllUserStatus } from "..";
 import { Phone } from "../../phone";
-import { AnyDepartmentCode } from "../../location";
 import { OperationalAreas } from "../types/OperationalAreas.type";
 
 export interface CommonUser {
@@ -37,14 +36,13 @@ export interface CommonUser {
   updatedAt: Date;
   title: string | null;
   blocked: boolean;
-  status: UserStatus;
+  status: AllUserStatus;
   languages: SupportedLanguagesCode[];
   selectedOrgaIndex: number;
   user_id: number;
   categoriesLimitations?: Categories[];
   devToken: string | null;
   passwordToken?: string | null;
-  territories: AnyDepartmentCode[];
   translator: boolean;
   verifiedAt: Date | null;
   campaigns: any;

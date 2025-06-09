@@ -20,17 +20,14 @@
  */
 import mongoose from "mongoose";
 
-import {
-  ALL_DEPARTMENT_CODES,
-  Categories,
-  UserStatus,
-} from "@soliguide/common";
+import { Categories, UserStatus } from "@soliguide/common";
 
 import { CampaignEmailsSchema } from "./campaignEmails.model";
-import { User } from "../../_models/users";
+
 import { CAMPAIGN_EMAILS_CONTENT_FOR_USERS } from "./default_values";
 import { languagesValidator } from "./validators";
 import { PhoneSchema } from "../../place/models";
+import { User } from "../interfaces";
 
 const UserSchema = new mongoose.Schema<User>(
   {
@@ -157,13 +154,6 @@ const UserSchema = new mongoose.Schema<User>(
       default: UserStatus.SIMPLE_USER,
       enum: UserStatus,
       type: String,
-    },
-
-    // @deprecated
-    territories: {
-      default: [],
-      type: [String],
-      enum: ALL_DEPARTMENT_CODES,
     },
 
     title: { default: null, trim: true, type: String },

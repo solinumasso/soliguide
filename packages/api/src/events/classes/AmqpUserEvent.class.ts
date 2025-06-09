@@ -20,9 +20,11 @@
  */
 import type { Themes } from "@soliguide/common";
 
-import type { ModelWithId, User, UserPopulateType } from "../../_models";
-import { AmqpUser } from "./AmqpUser.class";
+import type { ModelWithId } from "../../_models";
+import { AmqpUser } from ".";
 import { AmqpEvent } from "../interfaces";
+
+import { User, UserPopulateType } from "../../user/interfaces";
 
 export class AmqpUserEvent extends AmqpUser implements AmqpEvent {
   public frontendUrl: string;

@@ -30,13 +30,9 @@ import type {
   UserStatus,
 } from "@soliguide/common";
 
-import type {
-  ModelWithId,
-  User,
-  UserPopulateType,
-  UserRight,
-} from "../../_models";
+import type { ModelWithId } from "../../_models";
 import { AmqpOrganization, AmqpUserRight } from ".";
+import { User, UserPopulateType, UserRight } from "../../user/interfaces";
 
 export class AmqpUser {
   public status: UserStatus;

@@ -28,7 +28,6 @@ import {
   ExpressRequest,
   ExpressResponse,
   OrganizationPopulate,
-  UserPopulateType,
 } from "../../_models";
 
 import { orgaDto, searchOrgasDto } from "../dto";
@@ -60,6 +59,7 @@ import { getPlaceByParams } from "../../place/services/place.service";
 import { getPlacesAndUsersAndSync } from "../../middleware/events/getPlacesAndUsersAndSync.middleware";
 import { getUserByParams } from "../../user/services";
 import { sendUserChangesToMq } from "../../user/middlewares/send-user-changes-event-to-mq.middleware";
+import { UserPopulateType } from "../../user/interfaces";
 
 /**
  * @swagger

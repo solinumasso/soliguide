@@ -27,14 +27,13 @@ import {
   CategoriesService,
   UserStatus,
 } from "@soliguide/common";
-
-import { UserPopulateType } from "../../../_models";
+import { UserForSearch } from "../../../user/types";
 
 export const parseCategories = (
   categoryService: CategoriesService,
   categories: Categories[],
   nosqlQuery: RootQuerySelector<ApiPlace>,
-  user: UserPopulateType,
+  user: UserForSearch,
   admin = false,
   categoriesToExclude: Categories[] = [],
   isUserAdmin = false

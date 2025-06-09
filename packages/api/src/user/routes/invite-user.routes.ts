@@ -23,12 +23,7 @@ import express, { type NextFunction } from "express";
 import { UserStatus, validateUserStatusWithEmail } from "@soliguide/common";
 
 import { emailValidDto, inviteUserDto, signupAfterInvitationDto } from "../dto";
-import {
-  ExpressRequest,
-  ExpressResponse,
-  InvitationPopulate,
-  UserPopulateType,
-} from "../../_models";
+import { ExpressRequest, ExpressResponse } from "../../_models";
 
 import {
   getInvitationFromUrl,
@@ -63,6 +58,7 @@ import {
   sendUserChangesToMq,
   sendUserChangesToMqAndNext,
 } from "../middlewares/send-user-changes-event-to-mq.middleware";
+import { InvitationPopulate, UserPopulateType } from "../interfaces";
 
 const router = express.Router();
 

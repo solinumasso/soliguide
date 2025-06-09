@@ -34,12 +34,9 @@ import { getTranslatedPlace } from "../../translations/controllers/translation.c
 import { getUpcomingTempInfo } from "../../temp-info/services/temp-info.service";
 import type { UpComingTempInfo } from "../types";
 import { searchPlaces } from "../../search/controllers/search.controller";
-import {
-  CONFIG,
-  type ExpressRequest,
-  type UserPopulateType,
-} from "../../_models";
+import { CONFIG, type ExpressRequest } from "../../_models";
 import { captureMessage } from "@sentry/node";
+import { UserPopulateType } from "../../user/interfaces";
 
 export const autoExport = async (
   req: ExpressRequest,

@@ -27,7 +27,8 @@ import {
   UserStatus,
   getAllowedTerritories,
 } from "@soliguide/common";
-import { ExpressRequest, UserPopulateType } from "../../_models";
+import { ExpressRequest } from "../../_models";
+import { UserPopulateType } from "../../user/interfaces";
 
 export const checkRightsForTerritories = (
   territories: AnyDepartmentCode[],

@@ -19,7 +19,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { AnyDepartmentCode } from "../../location";
 import { Phone } from "../../phone";
 import { OperationalAreas } from "../../users";
 import { Relations } from "../types";
@@ -52,8 +51,6 @@ export interface ApiOrganization {
   phone: Phone | null;
   priority: boolean;
   relations: Relations[];
-  // @deprecated: delete when data team is up to date
-  territories: AnyDepartmentCode[];
   verified: {
     date: Date;
     status: boolean;

@@ -18,6 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import {
   ApiPlace,
   AnyDepartmentCode,
@@ -31,9 +32,8 @@ import {
   getAllowedTerritories,
 } from "@soliguide/common";
 
-import { User, UserPopulateType } from "../_models";
-
 import get from "lodash.get";
+import { User, UserPopulateType } from "../user/interfaces";
 
 // Check whether the user is a territory admin or a Soliguide admin
 export const hasAdminAccessToOrga = (

@@ -19,7 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { PopulatedUser } from "../../_models";
+import { PopulatedUser } from "../types";
 
 export const ARRAY_OF_USERS_FIELDS_TO_POPULATE: Array<keyof PopulatedUser> = [
   "_id",

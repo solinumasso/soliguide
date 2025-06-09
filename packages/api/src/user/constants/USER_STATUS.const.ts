@@ -27,3 +27,5 @@ import {
 export const USER_STATUS_FOR_LOGS: AllUserStatus[] = [
   UserStatusNotLogged.NOT_LOGGED as AllUserStatus,
 ].concat(Object.values(UserStatus));
+
+export const USER_STATUS: UserStatus[] = Object.values(UserStatus);

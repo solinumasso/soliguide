@@ -46,7 +46,6 @@ import {
 import type {
   ExpressRequest,
   ExpressResponse,
-  UserForLogs,
 } from "../../_models";
 
 import {
@@ -91,6 +90,7 @@ import {
 import { sendPlaceChangesToMq } from "../../place-changes/middlewares/send-place-changes-to-mq.middleware";
 import { forceChangesDto } from "../dto/forceChanges.dto";
 import { refreshTransportsCache } from "../services/transports.service";
+import { UserForLogs } from "../../user/interfaces";
 
 const router = express.Router();
 

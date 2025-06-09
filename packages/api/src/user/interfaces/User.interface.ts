@@ -19,7 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import {
-  AnyDepartmentCode,
+  AllUserStatus,
   CommonUser,
   SoliguideCountries,
   SupportedLanguagesCode,
@@ -29,15 +29,13 @@ import {
 } from "@soliguide/common";
 import mongoose from "mongoose";
 
-import { ModelWithId } from "../../mongo";
-import { OrganizationPopulate } from "../../organization";
-import { Origin } from "../enums";
-import type {
-  UserCampaignEmails,
+import { InvitationPopulate } from "./Invitation.interface";
+import { ModelWithId, OrganizationPopulate, Origin } from "../../_models";
+import { UserCampaignEmails } from "../types";
+import {
   UserRight,
   UserRightOrganizationPopulate,
-} from "../types";
-import { InvitationPopulate } from "./Invitation.interface";
+} from "./UserRight.interface";
 
 export interface User extends Omit<CommonUser, "_id"> {
   _id?: mongoose.Types.ObjectId;
@@ -55,37 +53,34 @@ export interface User extends Omit<CommonUser, "_id"> {
   invitations: mongoose.Types.ObjectId[];
   organizations: mongoose.Types.ObjectId[];
   passwordToken: string | null;
-  territories: AnyDepartmentCode[];
 }
 
-export type UserPopulateType = ModelWithId<User> &
-  Required<{
-    organizations: OrganizationPopulate[];
-    invitations: InvitationPopulate[];
-    userRights: Array<UserRight | UserRightOrganizationPopulate>;
-    places?: number[];
-    type: UserTypeLogged.LOGGED;
-  }>;
-
+export interface UserPopulateType
+  extends Omit<ModelWithId<User>, "invitations" | "organizations" | "status"> {
+  organizations: OrganizationPopulate[];
+  invitations: InvitationPopulate[];
+  userRights: Array<UserRight | UserRightOrganizationPopulate>;
+  places?: number[];
+  status: UserStatus;
+  type: UserTypeLogged;
+}
 // Matches what the DTO authorize and return (except for passwordConfirmation)
 export type SignupUser = Pick<
   User,
   "name" | "lastname" | "mail" | "status" | "areas"
 > &
   Partial<
-    Pick<
-      User,
-      "title" | "territories" | "phone" | "categoriesLimitations" | "password"
-    >
+    Pick<User, "title" | "phone" | "categoriesLimitations" | "password">
   > & {
     country: SoliguideCountries;
   };
 
-export type NotLoggedUserType = {
-  type: UserTypeLogged.NOT_LOGGED;
-  language?: SupportedLanguagesCode;
-  status: UserStatusNotLogged.NOT_LOGGED | UserStatus.WIDGET_USER;
-};
+export interface NotLoggedUserType extends Omit<UserPopulateType, "status"> {
+  type: UserTypeLogged;
+  language: SupportedLanguagesCode; // Current Language
+  isLogged(): boolean;
+  status: AllUserStatus;
+}
 
 export type PartialUserForLogs = {
   language?: SupportedLanguagesCode;
@@ -103,29 +98,12 @@ export type CurrentUserType = (UserPopulateType | NotLoggedUserType) & {
   isLogged: () => boolean;
 };
 
-abstract class ACurrentUser {
-  abstract isLogged(): boolean;
-}
-
-export class UserFactory {
-  public static createUser(
-    user: UserPopulateType | NotLoggedUserType
-  ): UserPopulateType | NotLoggedUserType {
-    if (user.type === UserTypeLogged.LOGGED) {
-      return new UserPopulate(user as UserPopulateType);
-    } else {
-      return new NotLoggedUser(user as NotLoggedUserType);
-    }
-  }
-}
-
-class UserPopulate implements ACurrentUser, UserPopulate {
+export class UserPopulate implements UserPopulateType {
   public _id;
   public organizations;
   public invitations;
   public userRights;
   public places;
-  public type;
   public verified;
   public name;
   public lastname;
@@ -136,8 +114,10 @@ class UserPopulate implements ACurrentUser, UserPopulate {
   public updatedAt;
   public title;
   public blocked;
-  public status;
+  public type: UserTypeLogged;
+  public status: UserStatus;
   public languages;
+  public language: SupportedLanguagesCode; // Current Language
   public selectedOrgaIndex;
   public user_id;
   public categoriesLimitations;
@@ -146,7 +126,6 @@ class UserPopulate implements ACurrentUser, UserPopulate {
   public campaigns;
   public devToken;
   public passwordToken;
-  public territories;
   public areas;
 
   constructor(user: UserPopulateType) {
@@ -176,26 +155,10 @@ class UserPopulate implements ACurrentUser, UserPopulate {
     this.campaigns = user?.campaigns;
     this.devToken = user?.devToken;
     this.passwordToken = user?.passwordToken;
-    this.territories = user?.territories;
     this.areas = user?.areas;
   }
 
   isLogged(): boolean {
     return this.type === UserTypeLogged.LOGGED;
-  }
-}
-
-class NotLoggedUser implements ACurrentUser, NotLoggedUserType {
-  public type;
-  public language;
-  public status;
-
-  constructor(user: NotLoggedUserType) {
-    this.type = user?.type;
-    this.language = user?.language;
-    this.status = user?.status;
-  }
-  isLogged(): boolean {
-    return this.type !== UserTypeLogged.NOT_LOGGED;
   }
 }

@@ -21,15 +21,7 @@
 
 import { DEFAULT_USER_PROPS } from "../constants";
 
-import {
-  InvitationPopulate,
-  SignupUser,
-  User,
-  UserPopulateType,
-  UserToInvite,
-  ModelWithId,
-  OrganizationPopulate,
-} from "../../_models";
+import { ModelWithId, OrganizationPopulate } from "../../_models";
 
 import { hashPassword, generateUrlToken } from "../../_utils";
 
@@ -63,6 +55,14 @@ import {
   deleteInvitationWithParams,
 } from "../services";
 import { mongooseConnection } from "../../config/database/connection";
+import { extractTerritoriesFromAreasForCountry } from "../utils/getTerritoriesFromAreas";
+import {
+  UserPopulateType,
+  InvitationPopulate,
+  SignupUser,
+  User,
+} from "../interfaces";
+import { UserToInvite } from "../types";
 
 export const createUserWithInvitation = async (
   userToInvite: UserToInvite,
@@ -87,12 +87,6 @@ export const createUserWithInvitation = async (
       const updatedUser = await updateUser(
         { _id: existingUser._id },
         {
-          // @deprecated
-          territories: [
-            ...new Set(
-              existingUser.territories.concat(organization.territories)
-            ),
-          ],
           areas: mergeOperationalAreas(
             organization?.areas,
             existingUser?.areas
@@ -119,7 +113,10 @@ export const createUserWithInvitation = async (
         name: userToInvite.name,
         password: generateUrlToken(),
         status: UserStatus.PRO,
-        territories: organization.territories,
+        territories: extractTerritoriesFromAreasForCountry(
+          organization.areas,
+          userToInvite.country
+        ),
         areas: organization.areas,
       };
 
@@ -180,6 +177,7 @@ export const createUserWithInvitation = async (
       organization,
       user,
       role,
+      userToInvite.country,
       session
     );
 
@@ -270,7 +268,7 @@ export const validateInvitation = async (
 export const acceptFirstInvitation = async (
   invitation: InvitationPopulate,
   userPassword: string
-) => {
+): Promise<UserPopulateType> => {
   const userObjectId = invitation.user._id;
 
   const user: Partial<User> = {

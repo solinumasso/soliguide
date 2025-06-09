@@ -28,12 +28,9 @@ import {
   CAMPAIGN_LIST,
 } from "@soliguide/common";
 
-import type {
-  OrganizationPopulate,
-  UserPopulateType,
-  UserRight,
-} from "../../_models";
 import { PRIORITARY_CATEGORIES } from "../../categories/constants/prioritary-categories.const";
+import { OrganizationPopulate } from "../../_models";
+import { UserPopulateType, UserRight } from "../../user/interfaces";
 
 export const getPlaces = (
   user: UserPopulateType,

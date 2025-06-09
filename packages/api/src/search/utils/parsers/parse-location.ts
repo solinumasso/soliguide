@@ -33,8 +33,7 @@ import {
   GeoPosition,
   extractGeoTypeFromSearch,
 } from "@soliguide/common";
-
-import { User } from "../../../_models";
+import { UserForSearch } from "../../../user/types";
 
 const parseDepartmentFromPostalCode = (
   geoValue: string
@@ -57,7 +56,7 @@ const parseDepartmentFromPostalCode = (
 const parsePostalCode = (
   postalCode: string,
   nosqlQuery: RootQuerySelector<ApiPlace>,
-  user: User,
+  user: UserForSearch,
   onItinerary = false
 ): void => {
   postalCode = postalCode.toString().trim().toUpperCase();
@@ -134,7 +133,7 @@ const parseLocationWithGeoNearOnly = (
 export const parseLocation = (
   location: GeoPosition,
   nosqlQuery: RootQuerySelector<ApiPlace>,
-  user: User,
+  user: UserForSearch,
   admin = false
 ): void => {
   const countryToSearch =
@@ -234,7 +233,7 @@ export const parseLocation = (
 export const parseLocationParcours = (
   location: GeoPosition,
   nosqlQuery: RootQuerySelector<ApiPlace>,
-  user: User,
+  user: UserForSearch,
   admin = false
 ) => {
   const countryToSearch =

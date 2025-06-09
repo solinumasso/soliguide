@@ -19,10 +19,13 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { ApiOrganization, UserRightStatus, UserRole } from "@soliguide/common";
-import { UserPopulateType, UserRight } from "../../_models";
+import { UserPopulateType, UserRight } from "../interfaces";
 
 export const aggregateUserRightsForAuth = (
-  user: UserPopulateType,
+  user: Pick<
+    UserPopulateType,
+    "userRights" | "organizations" | "selectedOrgaIndex"
+  >,
   organizationId?: string
 ): {
   role: UserRole;
@@ -34,6 +37,7 @@ export const aggregateUserRightsForAuth = (
       places: [],
     };
   }
+
   let role: UserRole = UserRole.READER;
   const places: number[] = [];
   const selectedOrganization: ApiOrganization =

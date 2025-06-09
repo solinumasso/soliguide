@@ -29,8 +29,7 @@ import {
   ManageSearchOptions,
   AutoCompleteType,
 } from "@soliguide/common";
-
-import { UserForLogs } from "../../_models";
+import { UserForLogs } from "../../user/interfaces";
 
 export interface LogSearchPlaces {
   _id?: string;

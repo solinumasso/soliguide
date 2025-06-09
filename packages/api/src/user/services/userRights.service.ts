@@ -22,13 +22,7 @@ import mongoose, { ClientSession } from "mongoose";
 
 import { UserRightModel } from "../models/userRight.model";
 
-import type {
-  ModelWithId,
-  UserRight,
-  UserRightUserPopulate,
-  UserRightOrganizationPopulate,
-  OrganizationPopulate,
-} from "../../_models";
+import type { ModelWithId, OrganizationPopulate } from "../../_models";
 import {
   UserRightStatus,
   UserRightsForOrganizations,
@@ -41,6 +35,11 @@ import {
   USER_ROLES_FOR_EDITION,
   USERS_FIELDS_FOR_POPULATE,
 } from "../constants";
+import {
+  UserRight,
+  UserRightUserPopulate,
+  UserRightOrganizationPopulate,
+} from "../interfaces";
 
 export const saveUserRights = async (
   userRights: UserRight[],

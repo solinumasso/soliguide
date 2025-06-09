@@ -21,15 +21,14 @@
 import { RootQuerySelector } from "mongoose";
 import {
   ApiPlace,
-  CommonUser,
   CountryCodes,
   getAllowedTerritories,
   SoliguideCountries,
 } from "@soliguide/common";
-import { UserPopulateType } from "../../../_models";
+import { UserForSearch } from "../../../user/types";
 
 const createPositionRequestForCountry = (
-  user: Pick<CommonUser, "areas" | "status">,
+  user: UserForSearch,
   country: SoliguideCountries
 ) => {
   const allowedTerritories = getAllowedTerritories(user, country);
@@ -50,7 +49,7 @@ const createPositionRequestForCountry = (
 
 export const generateApiUserRestriction = (
   nosqlQuery: RootQuerySelector<ApiPlace>,
-  user: UserPopulateType
+  user: UserForSearch
 ): RootQuerySelector<ApiPlace> => {
   const apiUserRestriction: RootQuerySelector<ApiPlace> = {};
 

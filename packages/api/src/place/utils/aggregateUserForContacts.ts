@@ -24,14 +24,14 @@ import {
   UserRole,
   UserStatus,
 } from "@soliguide/common";
-import { UserPopulateType, UserRightUserPopulate } from "../../_models";
+import { UserRightUserPopulate, UserPopulate } from "../../user/interfaces";
 
 const userStatuses = Object.values(UserStatus);
 
 // Roles filtered by user, used in the professional directory pages
 export const aggregateUsersForContactsEdition = (
   rightsFromDb: UserRightUserPopulate[],
-  authUser: UserPopulateType
+  authUser: Pick<UserPopulate, "status" | "userRights" | "user_id">
 ): PlaceContactForAdmin[] => {
   if (!rightsFromDb) {
     return [];
@@ -68,7 +68,7 @@ export const aggregateUsersForContactsEdition = (
         mail: right.user.mail,
         name: right.user.name,
         phone: right.user?.phone ?? null,
-        status: right.user.status,
+        status: right.user.status as UserStatus,
         title: right.user?.title ?? null,
         userObjectId: right.user._id.toString(),
       };
@@ -82,8 +82,8 @@ export const aggregateUsersForContactsEdition = (
           : null;
 
         if (
-          userStatuses.indexOf(right.user.status) <=
-          userStatuses.indexOf(authUser.status)
+          userStatuses.indexOf(right.user.status as UserStatus) <=
+          userStatuses.indexOf(authUser.status as UserStatus)
         ) {
           currentRight.canEdit = true;
           currentRight.canEditUserInfos =

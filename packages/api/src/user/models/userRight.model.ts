@@ -19,11 +19,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import mongoose from "mongoose";
-
-import { USER_ROLES } from "../constants/USER_ROLES.const";
-
-import type { UserRight } from "../../_models";
 import { UserRightStatus } from "@soliguide/common";
+import { USER_ROLES } from "../constants";
+import { UserRight } from "../interfaces";
 
 const UserRightSchema = new mongoose.Schema<UserRight>(
   {

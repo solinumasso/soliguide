@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { ExpressRequest, FRONT_URLS_MAPPINGS, Origin } from "../../../_models";
+import { ExpressRequest, FRONT_URLS_MAPPINGS } from "../../../_models";
 import {
   SupportedLanguagesCode,
   type CategoriesService,
@@ -32,6 +32,7 @@ import {
 } from "../services";
 import { getThemeFromOrigin } from "../services/getThemeFromOrigin.service";
 import { getServiceCategoriesApi } from "../../../categories/functions/get-service-categories-api.function";
+import { Origin } from "../../../_models/users/enums";
 
 export class RequestInformation {
   public readonly originForLogs: Origin;
