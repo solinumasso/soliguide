@@ -33,6 +33,12 @@ import { DateService } from "../../services/date.service";
 import { BasePlaceTempInfos } from "../../../../models/place/classes/temp-infos";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { CommonPosthogMockService } from "../../../../../../mocks";
+import { CommonModule } from "@angular/common";
+import {
+  FontAwesomeModule,
+  FaIconLibrary,
+} from "@fortawesome/angular-fontawesome";
+import { fas } from "@fortawesome/free-solid-svg-icons";
 
 const today = new Date();
 const oneWeekLater = new Date(today);
@@ -47,14 +53,21 @@ describe("DisplayTempBannerComponent", () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [DisplayTempBannerComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         DateService,
         { provide: PosthogService, useClass: CommonPosthogMockService },
       ],
-      imports: [TranslateModule.forRoot()],
+      imports: [
+        TranslateModule.forRoot(),
+        DisplayTempBannerComponent,
+        FontAwesomeModule,
+        CommonModule,
+      ],
     }).compileComponents();
+
+    const library = TestBed.inject(FaIconLibrary);
+    library.addIconPacks(fas);
   }));
 
   beforeEach(() => {
