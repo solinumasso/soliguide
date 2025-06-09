@@ -1,3 +1,16 @@
+# [4.90.0](https://github.com/solinumasso/soliguide/compare/v4.89.0...v4.90.0) (2025-06-09)
+
+
+### Bug Fixes
+
+* **api:** fix siteamp headers [#343](https://github.com/solinumasso/soliguide/issues/343) ([bbca347](https://github.com/solinumasso/soliguide/commit/bbca3478ea6a349f28e1fdb807bf3657a798af86))
+* **frontend:** fix tests for temp-info and holiday standalone components [#653](https://github.com/solinumasso/soliguide/issues/653) ([c677439](https://github.com/solinumasso/soliguide/commit/c6774398f77a9cc91ff32d507dbacba8e23aeb70))
+
+
+### Features
+
+* **frontend:** make temp-info and holiday standalone components [#653](https://github.com/solinumasso/soliguide/issues/653) ([e7592ce](https://github.com/solinumasso/soliguide/commit/e7592ce3e215a58e11c386f3113dbbe113f38211))
+
 # [4.89.0](https://github.com/solinumasso/soliguide/compare/v4.88.0...v4.89.0) (2025-06-07)
 
 
