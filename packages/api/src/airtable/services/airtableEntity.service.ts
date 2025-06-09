@@ -37,11 +37,11 @@ import {
   AirtableEntityType,
   ExpressRequest,
   ExpressResponse,
-  User,
 } from "../../_models";
 
 import { UserModel } from "../../user/models/user.model";
 import { PlaceModel } from "../../place/models/place.model";
+import { User } from "../../user/interfaces";
 
 export const updateAirtableId = async (
   airtableEntityType: AirtableEntityType,
@@ -104,7 +104,7 @@ export const getEntitiesToSync = async (
     ];
   } else if (airtableEntityType === AirtableEntityType.USER) {
     model = UserModel;
-    $match["areas.fr"] = { $exists: true };
+    $match["areas.fr"] = { $exists: true }; // TODO: update this for international territories
   } else {
     throw new Error("WRONG_ENTITY_TYPE");
   }

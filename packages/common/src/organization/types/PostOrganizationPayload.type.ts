@@ -18,13 +18,12 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { SoliguideCountries } from "../../location";
+import { AnyDepartmentCode, SoliguideCountries } from "../../location";
 import { ApiOrganization } from "../interfaces/ApiOrganization.interface";
 
 export type PostOrganizationPayload = Pick<
   ApiOrganization,
   | "name"
-  | "territories"
   | "description"
   | "phone"
   | "mail"
@@ -34,4 +33,5 @@ export type PostOrganizationPayload = Pick<
   | "relations"
 > & {
   country: SoliguideCountries;
+  territories: AnyDepartmentCode[];
 };

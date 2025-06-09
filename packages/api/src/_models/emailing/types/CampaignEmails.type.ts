@@ -21,11 +21,11 @@
 import mongoose from "mongoose";
 
 import { CampaignNameAndAll, AnyDepartmentCode } from "@soliguide/common";
-import { User } from "../../users";
 import { EmailEvents } from "./EmailEvents.type";
 import { CampaignEmailName } from "./CampaignEmailName.type";
 import { EmailData } from "./EmailData.type";
 import { Partners } from "../../../partners";
+import { User } from "../../../user/interfaces";
 
 export type CampaignEmails = {
   airtable: {

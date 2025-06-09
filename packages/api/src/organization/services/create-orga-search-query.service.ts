@@ -20,15 +20,15 @@
  */
 import { ApiOrganization, CAMPAIGN_DEFAULT_NAME } from "@soliguide/common";
 
-import { UserPopulateType } from "../../_models";
 import { getPlaceByParams } from "../../place/services/place.service";
 import { getGlobalSearchQuery } from "../../search/services";
 import { parseTerritories } from "../../search/utils";
 import { FilterQuery } from "mongoose";
+import { UserForSearch } from "../../user/types";
 
 export const createOrgaSearchQuery = async (
   searchData: FilterQuery<ApiOrganization>,
-  user: UserPopulateType
+  user: UserForSearch
 ) => {
   const query: any = {
     $and: [],

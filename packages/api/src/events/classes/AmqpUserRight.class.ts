@@ -19,8 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import type { UserRightStatus, UserRole } from "@soliguide/common";
-
-import type { UserRight } from "../../_models/users";
+import { UserRight } from "../../user/interfaces";
 
 export class AmqpUserRight {
   public organization_id: number;
