@@ -138,9 +138,13 @@ _app.use(
   })
 );
 
-const isPublicRoute = (path: string) =>
-  path.startsWith("/medias/") || path.startsWith("/sitemap");
-
+const isPublicRoute = (path: string): boolean => {
+  return (
+    path.startsWith("/medias/") ||
+    path.startsWith("/sitemap") ||
+    path === "/robots.txt"
+  );
+};
 _app.use(compression());
 
 _app.use(
@@ -160,9 +164,12 @@ _app.use(
 _app.use(cookieParser());
 
 _app.use((req: Request, res: Response, next: NextFunction) => {
-  if (!isPublicRoute(req.path)) {
-    res.header("X-Robots-Tag", "noindex, nofollow");
+  if (isPublicRoute(req.path)) {
+    res.removeHeader("X-Robots-Tag");
+    return next();
   }
+
+  res.header("X-Robots-Tag", "noindex, nofollow");
   next();
 });
 
@@ -171,9 +178,9 @@ _app.use("/", index);
 _app.use("/robots.txt", (_req: ExpressRequest, res: ExpressResponse) => {
   res.type("text/plain");
   res.send(`User-agent: *
-Disallow: /
-Allow: /medias*
-Allow: /sitemap*`);
+Allow: /medias/
+Allow: /sitemap
+Disallow: /`);
 });
 
 // First middlewares
@@ -183,9 +190,8 @@ _app.use([
   setUserForLogs, // create a user for Log
 ]);
 
-// Custom middleware to disable for pictures
 _app.use((req: ExpressRequest, res, next) => {
-  if (req.path.startsWith("/medias/") || req.path.startsWith("/sitemap")) {
+  if (isPublicRoute(req.path)) {
     next();
   } else {
     originGuard(req, res, next);
