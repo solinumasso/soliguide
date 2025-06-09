@@ -51,6 +51,8 @@ import { LocationAutocompleteComponent } from "../shared/components/location-aut
 import { SearchBarModule } from "../search-bar/search-bar.module";
 import { FormatInternationalPhoneNumberPipe } from "../shared";
 import { SearchMapComponent } from "../place/standalone-components/search-map/search-map.component";
+import { DisplayTempBannerComponent } from "../place/standalone-components/display-temp-banner/display-temp-banner.component";
+import { DisplayHolidaysComponent } from "../place/standalone-components/display-holidays/display-holidays.component";
 
 @NgModule({
   declarations: [
@@ -78,6 +80,8 @@ import { SearchMapComponent } from "../place/standalone-components/search-map/se
     SearchRoutingModule,
     SharedModule,
     TranslateModule,
+    DisplayTempBannerComponent,
+    DisplayHolidaysComponent,
   ],
   providers: [SearchService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],

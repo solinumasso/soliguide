@@ -47,7 +47,7 @@ import { DisplayPlaceInfosComponent } from "./components/display-place-infos/dis
 import { DisplayPublicsInlineComponent } from "./components/display-publics-inline/display-publics-inline.component";
 import { DisplayServicesComponent } from "./components/display-services/display-services.component";
 import { DisplaySpecificFieldsComponent } from "./components/display-specific-fields/display-specific-fields.component";
-import { DisplayTempBannerComponent } from "./components/display-temp-banner/display-temp-banner.component";
+import { DisplayTempBannerComponent } from "./standalone-components/display-temp-banner/display-temp-banner.component";
 import { PlaceUpdateCampaignBannerComponent } from "./components/place-update-campaign-banner/place-update-campaign-banner.component";
 
 import { SharePlaceComponent } from "./components/share-place/share-place.component";
@@ -58,7 +58,7 @@ import { CampaignSharedModule } from "../campaign-shared/campaign-shared.module"
 import { SharedModule } from "../shared/shared.module";
 
 import { PlaceTransportsComponent } from "./components/place-transports/place-transports.component";
-import { DisplayHolidaysComponent } from "./components/display-holidays/display-holidays.component";
+import { DisplayHolidaysComponent } from "./standalone-components/display-holidays/display-holidays.component";
 import { HolidaysService } from "./services/holidays.service";
 import { HttpClientModule } from "@angular/common/http";
 import { ShareButtons } from "ngx-sharebuttons/buttons";
@@ -80,13 +80,11 @@ import { ExternalSourcePlaceCampaignBannerComponent } from "./components/externa
     DisplayPublicsInlineComponent,
     DisplayServicesComponent,
     DisplaySpecificFieldsComponent,
-    DisplayTempBannerComponent,
     PlaceUpdateCampaignBannerComponent,
     ExternalSourcePlaceCampaignBannerComponent,
     SharePlaceComponent,
     SingleContactComponent,
     PlaceTransportsComponent,
-    DisplayHolidaysComponent,
   ],
   imports: [
     CommonModule,
@@ -103,6 +101,8 @@ import { ExternalSourcePlaceCampaignBannerComponent } from "./components/externa
     CampaignSharedModule,
     FormatInternationalPhoneNumberPipe,
     DisplayHorairesComponent,
+    DisplayTempBannerComponent,
+    DisplayHolidaysComponent,
   ],
   exports: [
     DisplayContactsComponent,
@@ -116,13 +116,11 @@ import { ExternalSourcePlaceCampaignBannerComponent } from "./components/externa
     DisplayPublicsInlineComponent,
     DisplayServicesComponent,
     DisplaySpecificFieldsComponent,
-    DisplayTempBannerComponent,
     PlaceUpdateCampaignBannerComponent,
     ExternalSourcePlaceCampaignBannerComponent,
     SharePlaceComponent,
     SingleContactComponent,
     PlaceTransportsComponent,
-    DisplayHolidaysComponent,
   ],
   providers: [CampaignService, HolidaysService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],

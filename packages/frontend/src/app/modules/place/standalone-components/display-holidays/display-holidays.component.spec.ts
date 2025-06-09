@@ -29,8 +29,7 @@ describe("DisplayHolidaysComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DisplayHolidaysComponent],
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, DisplayHolidaysComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DisplayHolidaysComponent);
