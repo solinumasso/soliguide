@@ -56,6 +56,7 @@ import {
 } from "../../user/services";
 import { findOnePlaceChanges } from "../../place-changes/services/place-changes.service";
 import type { PlaceChanges } from "../../place-changes/interfaces/PlaceChanges.interface";
+import { UserPopulateType } from "../../user/interfaces";
 
 const saveEmails = async (
   emailsToSave: Partial<CampaignEmails>[],
@@ -172,7 +173,7 @@ export const generateCampaignEmails = async (
               campaign,
               invitationToken,
               emailType,
-              organization,
+              organization._id,
               organization_id,
               territory,
               user

@@ -32,19 +32,15 @@ import { DEFAULT_USER_POPULATE } from "../constants";
 import { FIELDS_TO_SELECT_FOR_SEARCH } from "../constants/FIELDS_TO_SELECT_FOR_SEARCH.const";
 
 import { UserModel } from "../models/user.model";
-import type {
-  SignupUser,
-  User,
-  UserPopulateType,
-  ModelWithId,
-  OrganizationPopulate,
-} from "../../_models";
+import type { ModelWithId, OrganizationPopulate } from "../../_models";
 import { DEFAULT_SEARCH_OPTIONS } from "../../_utils/constants";
 import { hashPassword } from "../../_utils";
-import { getMongoId } from "../../_utils/functions/mongo";
+
 import { getUserRightsWithParams } from "./userRights.service";
 import { PARTNERS_EMAIL_DOMAIN } from "../../partners";
-import { mergeOperationalAreas } from "../utils";
+import { isUserStatusInArray, mergeOperationalAreas } from "../utils";
+import { getMongoId } from "../../_utils/functions/mongo";
+import { User, UserPopulateType, SignupUser } from "../interfaces";
 
 export const getUserByParams = (
   params: mongoose.FilterQuery<User>,
@@ -108,7 +104,7 @@ export const searchUsers = (
   params: mongoose.FilterQuery<User>,
   options: mongoose.QueryOptions<User> = DEFAULT_SEARCH_OPTIONS,
   context = UserSearchContext.MANAGE_USERS
-) => {
+): Promise<UserPopulateType[]> => {
   const fieldsToSelect = FIELDS_TO_SELECT_FOR_SEARCH[context];
 
   if (params._id) {
@@ -247,38 +243,26 @@ export const updateUsersTerritories = async (
     throw new Error(`Cannot find user with id ${userObjectId}`);
   }
 
-  let territoriesFromOrga: AnyDepartmentCode[] = [];
-
   if (Array.isArray(user.organizations) && user.organizations?.length) {
     user.organizations.forEach((organization: ModelWithId<ApiOrganization>) => {
-      // @deprecated
-      territoriesFromOrga = territoriesFromOrga.concat(
-        organization.territories
-      );
-
       user.areas = mergeOperationalAreas(organization?.areas, user?.areas);
     });
   }
 
-  const territories =
-    user.organizations?.length && territoriesFromOrga.length
-      ? Array.from(new Set(territoriesFromOrga))
-      : [];
-
   const userStatus = user.status;
 
   // If the user is in no organization and it's not an admin nor an API user, we change the user to SIMPLE_USER
-  const status = [
+  const status = isUserStatusInArray(userStatus, [
     UserStatus.ADMIN_SOLIGUIDE,
     UserStatus.ADMIN_TERRITORY,
     UserStatus.API_USER,
-  ].includes(userStatus)
+  ])
     ? userStatus
     : UserStatus.PRO;
 
   return UserModel.findOneAndUpdate<UserPopulateType>(
     { _id },
-    { $set: { status, territories, areas: user.areas } },
+    { $set: { status, areas: user.areas } },
     { new: true }
   )
     .lean<UserPopulateType>()

@@ -26,7 +26,9 @@ import {
   UserStatus,
   getAllowedTerritories,
 } from "@soliguide/common";
-import { User } from "../../../_models";
+
+import { isUserStatusInArray } from "../../../user/utils";
+import { UserForSearch } from "../../../user/types";
 
 //
 // Description: parse territories as simple array of department code
@@ -37,15 +39,16 @@ export const parseTerritories = <T extends { [key: string]: any }>(
   query: FilterQuery<any>,
   searchData: T,
   field: keyof T,
-  user: User,
+  user: UserForSearch,
   searchInAreas: boolean = false,
   nullableTerritories = false
 ) => {
   // Check if the user has the required permissions and if searchData contains a country
   if (
-    ![UserStatus.ADMIN_TERRITORY, UserStatus.ADMIN_SOLIGUIDE].includes(
-      user.status
-    ) ||
+    !isUserStatusInArray(user.status, [
+      UserStatus.ADMIN_TERRITORY,
+      UserStatus.ADMIN_SOLIGUIDE,
+    ]) ||
     !searchData?.country
   ) {
     return;

@@ -25,7 +25,6 @@ import { getAllowedTerritories } from "../getAllowedTerritories";
 
 const user = {
   status: UserStatus.ADMIN_SOLIGUIDE,
-  territories: ["01", "03", "978", "984", "986", "987", "988"],
   areas: {
     fr: new CountryAreaTerritories<CountryCodes.FR>({
       departments: ["01", "03"],
