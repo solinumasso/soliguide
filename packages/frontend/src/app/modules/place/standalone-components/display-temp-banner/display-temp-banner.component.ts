@@ -21,14 +21,19 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
 import { TempInfoType } from "@soliguide/common";
+import { CommonModule } from "@angular/common";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 import { DateService } from "../../services/date.service";
 
 import { BasePlaceTempInfos } from "../../../../models/place/classes/temp-infos";
 import { PosthogComponent } from "../../../analytics/components/posthog.component";
 import { PosthogService } from "../../../analytics/services/posthog.service";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, TranslatePipe, FontAwesomeModule],
   selector: "app-display-temp-banner",
   templateUrl: "./display-temp-banner.component.html",
   styleUrls: ["./display-temp-banner.component.css"],
