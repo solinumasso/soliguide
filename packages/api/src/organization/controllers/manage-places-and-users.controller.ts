@@ -26,13 +26,7 @@ import {
   UserRole,
 } from "@soliguide/common";
 import mongoose from "mongoose";
-import {
-  UserPopulateType,
-  OrganizationPopulate,
-  ModelWithId,
-  Invitation,
-  UserRight,
-} from "../../_models";
+import { OrganizationPopulate, ModelWithId } from "../../_models";
 import { getMongoId } from "../../_utils/functions/mongo";
 import { updateOrganizationCampaign } from "../../campaign/controllers";
 import {
@@ -56,13 +50,15 @@ import {
 } from "../services";
 import { mongooseConnection } from "../../config/database/connection";
 
+import { Invitation, UserPopulateType, UserRight } from "../../user/interfaces";
+
 /**
  * @summary removeUser - remove user from organization
  * @param {object} user
  * @param {object} organization
  */
 export const removeUserFromOrga = async (
-  user: UserPopulateType,
+  user: Pick<UserPopulateType, "_id">,
   organization: OrganizationPopulate
 ): Promise<OrganizationPopulate | null> => {
   const invitationsToUpdate: mongoose.Types.ObjectId[] =

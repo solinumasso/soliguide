@@ -18,23 +18,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import mongoose from "mongoose";
-import { EmailEvents } from "../../emailing";
-
-export type UserCampaignEmailsValue = {
-  done: boolean;
-  ready: boolean;
-  sendDate: Date | null;
-};
-
-export type UserCampaignEmails = {
-  _id?: mongoose.Types.ObjectId;
-  CAMPAGNE_COMPTES_PRO: UserCampaignEmailsValue;
-  CAMPAGNE_INVITATIONS: UserCampaignEmailsValue;
-  RELANCE_CAMPAGNE_COMPTES_PRO: UserCampaignEmailsValue;
-  RELANCE_CAMPAGNE_INVITATIONS: UserCampaignEmailsValue;
-  RELANCE_DESESPOIR_COMPTES_PRO: UserCampaignEmailsValue;
-  RELANCE_DESESPOIR_INVITATIONS: UserCampaignEmailsValue;
-  RELANCE_TERMINER_MAJ: UserCampaignEmailsValue;
-  lastEmailStatus: EmailEvents;
-};
+//@index('./*', f => `export * from '${f.path}'`)
+export * from "./PopulatedUser.type";
+export * from "./UserCampaignEmails.type";
+export * from "./UserForCampains.type";
+export * from "./UserForSearch.type";
+export * from "./UserToInvite.type";
