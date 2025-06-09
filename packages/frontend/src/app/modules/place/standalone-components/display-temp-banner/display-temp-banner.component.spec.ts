@@ -47,13 +47,12 @@ describe("DisplayTempBannerComponent", () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [DisplayTempBannerComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         DateService,
         { provide: PosthogService, useClass: CommonPosthogMockService },
       ],
-      imports: [TranslateModule.forRoot()],
+      imports: [TranslateModule.forRoot(), DisplayTempBannerComponent],
     }).compileComponents();
   }));
 
