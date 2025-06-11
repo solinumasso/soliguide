@@ -18,32 +18,38 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { AllCampaign, CountryCodes, DEPARTMENT_CODES } from "@soliguide/common";
 import { Db } from "mongodb";
-import { logger } from "../src/general/logger";
-import { REMIND_ME_CAMPAIGN_MAILS_CONTENT } from "../src/_models";
-import { getSenderData } from "../src/emailing/utils/getSenderData";
 
-const message = "Update Remind-Me mails templates";
+import { logger } from "../../src/general/logger";
+import {
+  CAMPAIGN_DEFAULT_NAME,
+  CountryCodes,
+  DEPARTMENT_CODES,
+} from "@soliguide/common";
 
-export const down = () => {
-  logger.info("ROLLBACK IMPOSSIBLE");
+import { CAMPAIGN_EMAILS_CONTENT } from "../../src/_models";
+import { getSenderData } from "../../src/emailing/utils/getSenderData";
+
+const message = "Generate campaign mails templates";
+
+export const down = async (db: Db) => {
+  logger.info(`[ROLLBACK] - ${message}`);
+  await db
+    .collection("emailsTemplates")
+    .deleteMany({ campaign: CAMPAIGN_DEFAULT_NAME });
 };
 
 export const up = async (db: Db) => {
   logger.info(`[MIGRATION] - ${message}`);
-  await db
-    .collection("emailsTemplates")
-    .deleteMany({ campaign: "ALL_CAMPAIGN" });
 
   const emailsTemplates = [];
 
   for (const territory of DEPARTMENT_CODES[CountryCodes.FR]) {
     emailsTemplates.push({
+      campaign: CAMPAIGN_DEFAULT_NAME,
       confirm: false,
-      campaign: AllCampaign.ALL_CAMPAIGN,
       confirmDate: null,
-      emails: REMIND_ME_CAMPAIGN_MAILS_CONTENT,
+      emails: CAMPAIGN_EMAILS_CONTENT[CAMPAIGN_DEFAULT_NAME],
       senderEmail: getSenderData(territory, "senderEmail"),
       senderName: getSenderData(territory, "senderName"),
       territory,
