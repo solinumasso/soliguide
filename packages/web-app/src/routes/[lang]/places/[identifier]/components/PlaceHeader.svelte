@@ -21,11 +21,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <script lang="ts">
   import { InfoIcon, Text } from '@soliguide/design-system';
   import { PhoneButton, PlaceStatus, TodayInfo } from '$lib/components';
-  import { isObjectEmpty } from '$lib/utils';
   import GoToButton from './GoToButton.svelte';
   import { getPlaceDetailsPageController } from '../pageController';
   import type { Phone, TodayInfo as TodayInfoType } from '$lib/models/types';
-  import { PlaceTempInfo, TempInfoStatus, type PlaceOpeningStatus } from '@soliguide/common';
+  import {
+    PlaceTempInfo,
+    TempInfoStatus,
+    type PlaceOpeningStatus,
+    isObjectEmpty
+  } from '@soliguide/common';
   import type { I18nStore } from '$lib/client/types';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import { getContext } from 'svelte';

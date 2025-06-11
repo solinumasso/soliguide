@@ -20,7 +20,7 @@
  */
 import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { getPlaceDetailsPageController } from './pageController';
-import { PlaceOpeningStatus, PlaceTempInfo } from '@soliguide/common';
+import { PlaceOpeningStatus, type PlaceTempInfo } from '@soliguide/common';
 import { get } from 'svelte/store';
 import type { PlaceDetails } from '$lib/models/types';
 import type { PageController } from './types';

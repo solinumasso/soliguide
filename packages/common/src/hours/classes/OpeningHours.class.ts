@@ -31,7 +31,7 @@ export class OpeningHours extends CommonOpeningHours {
       hours,
       isInForm ? OpeningHoursContext.ADMIN : OpeningHoursContext.PUBLIC
     );
-    this.isOpeningHoursSet = hours ? isOneDayOpen(hours) : false;
+    this.isOpeningHoursSet = isOneDayOpen(hours);
     this.h24 = is24HoursOpen(hours);
   }
 }

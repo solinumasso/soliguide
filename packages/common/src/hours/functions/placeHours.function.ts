@@ -21,7 +21,9 @@
 import { WEEK_DAYS, DayName } from "../../dates";
 import { CommonOpeningHours } from "../classes/CommonOpeningHours.class";
 
-export const isOneDayOpen = (hours: CommonOpeningHours | null): boolean => {
+export const isOneDayOpen = (
+  hours: CommonOpeningHours | undefined
+): boolean => {
   if (hours) {
     for (const day of WEEK_DAYS) {
       if (hours[day as DayName].open) {

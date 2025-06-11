@@ -73,10 +73,7 @@ export class BasePlaceTempInfo {
       if (tempInfos?.hours instanceof OpeningHours) {
         this.hours = tempInfos.hours;
       } else {
-        this.hours = new OpeningHours(
-          tempInfos.hours ? tempInfos.hours : undefined,
-          isInForm
-        );
+        this.hours = new OpeningHours(tempInfos.hours, isInForm);
       }
 
       this.serviceActif = this.isService && this.actif;

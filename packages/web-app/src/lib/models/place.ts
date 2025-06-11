@@ -55,7 +55,7 @@ export const formatTimeslots = (timeslots: CommonTimeslot[] = []): HoursRange[] 
   }));
 
 /**
- * Calculates opening hours: date interval, hour interval or nothing and closing days
+ * Calculates opening hours and closing days: date interval, hour interval or nothing
  */
 export const computeTodayInfo = (
   place: ApiPlace,
@@ -122,7 +122,7 @@ export const buildSources = (sources?: CommonPlaceSource[]): Source[] =>
       }, [])
     : [];
 
-//! TODO Type tempInfos here after rewriting the  types
+//! TODO Type tempInfos here after rewriting the types
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const computeTempInfo = (tempInfo: any): SearchResultTempInfo => {
   return (['hours', 'closure', 'message'] as const).reduce((acc, key) => {
