@@ -18,5 +18,29 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-//@index('./*', f => `export * from '${f.path}'`)
-export * from "./CAMPAIGN_SLUG_TERRITORIES.const";
+import { Db } from "mongodb";
+
+import { logger } from "../src/general/logger";
+import { PRIORITARY_CATEGORIES } from "../src/categories/constants/prioritary-categories.const";
+import { PlaceStatus } from "@soliguide/common";
+
+const message = "Fix priorty of places in the database";
+
+export const up = async (db: Db) => {
+  logger.info(`[MIGRATION] - ${message}`);
+
+  await db.collection("lieux").updateMany({}, { $set: { priority: false } });
+
+  await db.collection("lieux").updateMany(
+    {
+      "services_all.category": { $in: PRIORITARY_CATEGORIES },
+      status: { $in: [PlaceStatus.ONLINE, PlaceStatus.OFFLINE] },
+    },
+    { $set: { priority: true } }
+  );
+};
+
+export const down = () => {
+  logger.info(`[ROLLBACK] - ${message}`);
+  logger.info("NO ROLLBACK POSSIBLE");
+};
