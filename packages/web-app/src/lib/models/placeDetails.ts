@@ -34,10 +34,11 @@ import {
   type Checked,
   type DayName,
   type Phone as CommonPhone,
-  type PlaceTempInfo,
+  type IPlaceTempInfo,
   Categories,
   translatePublics,
-  SupportedLanguagesCode
+  SupportedLanguagesCode,
+  PlaceTempInfo
 } from '@soliguide/common';
 import { computeTodayInfo, computeAddress, formatTimeslots, buildSources } from './place';
 import {
@@ -74,7 +75,7 @@ const buildHours = (hours: CommonOpeningHours, allDays: boolean): PlaceDetailsOp
  */
 const buildPlaceDetailsHours = (
   hours: CommonOpeningHours,
-  tempInfo: PlaceTempInfo
+  tempInfo: IPlaceTempInfo
 ): PlaceDetailsOpeningHours => {
   const tempHours = tempInfo.hours;
 
@@ -328,6 +329,7 @@ const buildPlaceDetails = (placeResult: ApiPlace, categorySearched: Categories):
     sources: buildSources(placeResult.sources),
     status: computePlaceOpeningStatus(placeResult),
     todayInfo: computeTodayInfo(placeResult, status),
+    tempInfo: new PlaceTempInfo(placeResult.tempInfos),
     website: placeResult.entity.website ?? ''
   };
 };

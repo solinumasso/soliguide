@@ -34,7 +34,7 @@ export class CommonDayOpeningHours {
     if (dayHour?.timeslot) {
       dayHour.timeslot
         .filter(
-          (timeSlot: CommonTimeslot) => () =>
+          (timeSlot: CommonTimeslot) => 
             timeSlot.end && timeSlot.start != null // check null of undefined to include a possible start at 0
         )
         .sort((timeSlotA, timeSlotB) => {

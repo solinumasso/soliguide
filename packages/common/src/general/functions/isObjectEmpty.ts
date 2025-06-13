@@ -18,6 +18,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-// @index('./*.ts', f => `export * from '${f.path}'`)
-export * from "./stringUtils";
-export * from "./isObjectEmpty";
+export const isObjectEmpty = (obj: object): boolean => {
+  return Object.keys(obj).length === 0;
+};

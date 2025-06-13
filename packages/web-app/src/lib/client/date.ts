@@ -80,6 +80,10 @@ const formatDateRangeToLocale = (range: DaysRange, locale = 'fr'): DaysRange => 
   };
 };
 
+const formatDateToLocale = (date: Date, locale = 'fr'): string => {
+  return new Date(date).toLocaleDateString(locale, { timeZone: 'UTC' });
+};
+
 const convertHoursToDisplay = (hours: HoursRange[], translator: TFunction): string => {
   return formatTimeRangeToLocale(hours)
     .map((range) => `${translator('OPENING_RANGE', { start: range.start, end: range.end })}`)
@@ -89,6 +93,7 @@ const convertHoursToDisplay = (hours: HoursRange[], translator: TFunction): stri
 export {
   formatTimeRangeToLocale,
   formatDateRangeToLocale,
+  formatDateToLocale,
   formatToDateWithFullMonth,
   convertHoursToDisplay
 };

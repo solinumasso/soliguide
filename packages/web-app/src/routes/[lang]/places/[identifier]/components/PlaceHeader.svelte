@@ -19,37 +19,67 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <script lang="ts">
-  import { Text } from '@soliguide/design-system';
+  import { InfoIcon, Text } from '@soliguide/design-system';
   import { PhoneButton, PlaceStatus, TodayInfo } from '$lib/components';
   import GoToButton from './GoToButton.svelte';
   import { getPlaceDetailsPageController } from '../pageController';
   import type { Phone, TodayInfo as TodayInfoType } from '$lib/models/types';
-  import type { PlaceOpeningStatus } from '@soliguide/common';
+  import {
+    PlaceTempInfo,
+    TempInfoStatus,
+    type PlaceOpeningStatus,
+    isObjectEmpty
+  } from '@soliguide/common';
+  import type { I18nStore } from '$lib/client/types';
+  import { I18N_CTX_KEY } from '$lib/client/i18n';
+  import { getContext } from 'svelte';
 
   export let todayInfo: TodayInfoType = {};
-
   export let name: string;
-
   export let status: PlaceOpeningStatus;
-
   export let phones: Phone[];
-
   export let address: string;
-
   export let onOrientation: boolean;
+  export let hasTempMessage: boolean;
+  export let tempInfo: PlaceTempInfo;
 
   const placeController = getPlaceDetailsPageController();
+  const i18n: I18nStore = getContext(I18N_CTX_KEY);
 </script>
 
 <header class="card-header">
   <div class="details-container">
-    <Text type="title1PrimaryExtraBold">{name}</Text>
+    <div class="name-container">
+      <Text type="title1PrimaryExtraBold">{name}</Text>
+      {#if hasTempMessage}
+        <a href="#tempMessage"
+          ><InfoIcon
+            altTag={$i18n.t('PLACE_HAVE_IMPORTANT_INFO', { name })}
+            variant="warning"
+            size="medium"
+          ></InfoIcon></a
+        >
+      {/if}
+    </div>
     <div class="tag-container">
       <PlaceStatus {status} />
     </div>
-    <div class="today-info-container">
-      <TodayInfo {todayInfo} />
-    </div>
+    {#if !isObjectEmpty(todayInfo)}
+      <div class="today-info-container">
+        <TodayInfo {todayInfo}
+          >{#if tempInfo.hours.status === TempInfoStatus.CURRENT && tempInfo.message.status !== TempInfoStatus.CURRENT}
+            <a href={`#openingHoursSection`}
+              ><InfoIcon
+                size="small"
+                variant="warning"
+                withShadow
+                altTag={$i18n.t('TEMPORARY_HOURS_CURRENTLY_ACTIVE')}
+              ></InfoIcon></a
+            >
+          {/if}</TodayInfo
+        >
+      </div>
+    {/if}
   </div>
 
   <div class="actions">
@@ -79,6 +109,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     padding: 0 var(--spacingLG) var(--spacingLG);
     background: var(--color-surfaceSecondaryGradient);
     color: var(--color-textInverse);
+  }
+
+  .name-container {
+    display: flex;
+    justify-content: space-between;
   }
 
   .details-container {
