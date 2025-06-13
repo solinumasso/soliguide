@@ -1,3 +1,16 @@
+# [4.91.0](https://github.com/solinumasso/soliguide/compare/v4.90.0...v4.91.0) (2025-06-13)
+
+
+### Bug Fixes
+
+* **api:** fix prioritary places [#660](https://github.com/solinumasso/soliguide/issues/660) ([f1a3e86](https://github.com/solinumasso/soliguide/commit/f1a3e866de3ebeac7abaa5ce92ce88b7b257c435))
+* **frontend:** fix tests for temp-info and holiday standalone components [#653](https://github.com/solinumasso/soliguide/issues/653) ([b4fa995](https://github.com/solinumasso/soliguide/commit/b4fa9956d3cce242fff111bf049eac018fe8c2e6))
+
+
+### Features
+
+* **api:** update idf sender mail and name for territories notif [#656](https://github.com/solinumasso/soliguide/issues/656) ([16b92c0](https://github.com/solinumasso/soliguide/commit/16b92c08646a11869b63c1d64aefaa86d20780f0))
+
 # [4.90.0](https://github.com/solinumasso/soliguide/compare/v4.89.0...v4.90.0) (2025-06-09)
 
 
