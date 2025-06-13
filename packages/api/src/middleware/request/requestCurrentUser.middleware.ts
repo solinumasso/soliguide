@@ -27,15 +27,9 @@ import {
   UserStatusNotLogged,
   UserTypeLogged,
 } from "@soliguide/common";
-import {
-  CONFIG,
-  CurrentUserType,
-  ExpressRequest,
-  ExpressResponse,
-  NotLoggedUserType,
-  UserFactory,
-} from "../../_models";
+import { CONFIG, ExpressRequest, ExpressResponse } from "../../_models";
 import { getUserByIdWithUserRights } from "../../user/services";
+import { UserPopulate, CurrentUserType } from "../../user/interfaces";
 
 export const getCurrentUser = (
   req: ExpressRequest,
@@ -51,11 +45,12 @@ export const getCurrentUser = (
   req.isAdmin = false;
   req.isAdminOrPro = false;
 
-  req.user = UserFactory.createUser({
+  req.user = {
     type: UserTypeLogged.NOT_LOGGED,
     status: UserStatusNotLogged.NOT_LOGGED,
     language,
-  } as NotLoggedUserType);
+    isLogged: () => false,
+  } as unknown as UserPopulate;
 
   if (!token) {
     return next();
@@ -87,7 +82,7 @@ export const getCurrentUser = (
       // Logged user
       user.type = UserTypeLogged.LOGGED;
 
-      req.user = UserFactory.createUser(user);
+      req.user = new UserPopulate(user);
 
       next();
     }
