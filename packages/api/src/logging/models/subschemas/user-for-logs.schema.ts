@@ -26,11 +26,12 @@ import {
 } from "@soliguide/common";
 
 import { Schema } from "mongoose";
-
-import { UserForLogs, Origin } from "../../../_models/users";
-
-import { USER_ROLES_FOR_LOGS } from "../../../user/constants/USER_ROLES.const";
-import { USER_STATUS_FOR_LOGS } from "../../../user/constants/USER_STATUS.const";
+import {
+  USER_ROLES_FOR_LOGS,
+  USER_STATUS_FOR_LOGS,
+} from "../../../user/constants";
+import { Origin } from "../../../_models/users/enums";
+import { UserForLogs } from "../../../user/interfaces";
 
 export const UserForLogsSchema = new Schema<UserForLogs>(
   {

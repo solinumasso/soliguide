@@ -22,16 +22,13 @@ import type { NextFunction } from "express";
 import mongoose from "mongoose";
 import { UserRightStatus, UserRole, UserStatus } from "@soliguide/common";
 
-import type {
-  ExpressRequest,
-  ExpressResponse,
-  UserPopulateType,
-} from "../../_models";
+import type { ExpressRequest, ExpressResponse } from "../../_models";
 import { hasAdminAccessToOrga } from "../../_utils";
 import {
   getUserByIdWithUserRights,
   countUserRights,
 } from "../../user/services";
+import { UserPopulateType } from "../../user/interfaces";
 
 export const canEditUser = async (
   req: ExpressRequest,

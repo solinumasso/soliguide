@@ -19,7 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 //@index('./*', f => `export * from '${f.path}'`)
-export * from "./PopulatedUser.type";
-export * from "./UserCampaignEmails.type";
-export * from "./UserRight.type";
-export * from "./UserToInvite.type";
+export * from "./Invitation.interface";
+export * from "./User.interface";
+export * from "./UserForLogs.type";
+export * from "./UserRight.interface";

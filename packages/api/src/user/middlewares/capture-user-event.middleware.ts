@@ -19,9 +19,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { ExpressRequest, UserPopulateType } from "../../_models";
 import { PosthogClient } from "../../analytics/services";
 import { TRACKED_EVENTS } from "../../analytics/constants";
+import { ExpressRequest } from "../../_models";
+import { UserPopulateType } from "../interfaces";
 
 const captureUserEvent = (
   req: ExpressRequest & { selectedUser: UserPopulateType },
