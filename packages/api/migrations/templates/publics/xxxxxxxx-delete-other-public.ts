@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Db } from "mongodb";
+import { AnyBulkWriteOperation, Db } from "mongodb";
 
 import {
   ApiPlace,
@@ -32,8 +32,9 @@ import {
   WelcomedPublics,
 } from "@soliguide/common";
 import { createWriteStream } from "node:fs";
-import { logger } from "@sentry/node";
-import { CONFIG } from "../src/_models";
+
+import { logger } from "../../../src/general/logger";
+import { CONFIG } from "../../../src/_models";
 
 const OTHER_PUBLIC_TO_DELETE = "ukraine";
 const message = `Delete ${OTHER_PUBLIC_TO_DELETE} refugees`;
@@ -42,13 +43,12 @@ export const up = async (db: Db) => {
   logger.info(`[MIGRATION] - ${message}`);
 
   let csvStream;
-  if (CONFIG.ENV === "local" || CONFIG.ENV === "dev") {
+  if (CONFIG.ENV !== "local") {
     csvStream = createWriteStream("invalid_publics_details.csv");
     csvStream.write("LIEU ID,NOM,DEPARTEMENT,VILLE,CATEGORY\n");
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const bulkOps: any = [];
+  const bulkOps: AnyBulkWriteOperation[] = [];
 
   // Récupération des lieux
   const places: ApiPlace[] = await db

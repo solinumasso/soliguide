@@ -32,30 +32,27 @@ export class PublicsAdministrativeService {
     schema: string,
   ): Promise<PublicsAdministrative[]> {
     const connection = this.postgresService.getConnection();
-
     const postgresPublicsAdministrative = await connection<
       PostgresPublicsAdministrative[]
     >`
-      SELECT *
-      FROM ${connection(schema)}.publics_administrative
-      WHERE id = ${id}
-    `;
+    SELECT *
+    FROM ${connection(schema)}.publics_administrative
+    WHERE id = ${id}
+    LIMIT 1
+  `;
 
-    const publicsAdministrative: PublicsAdministrative[] = [];
-
-    if (postgresPublicsAdministrative[0].regular) {
-      publicsAdministrative.push(PublicsAdministrative.regular);
-    }
-    if (postgresPublicsAdministrative[0].asylum) {
-      publicsAdministrative.push(PublicsAdministrative.asylum);
-    }
-    if (postgresPublicsAdministrative[0].refugee) {
-      publicsAdministrative.push(PublicsAdministrative.refugee);
-    }
-    if (postgresPublicsAdministrative[0].undocumented) {
-      publicsAdministrative.push(PublicsAdministrative.undocumented);
+    if (!postgresPublicsAdministrative[0]) {
+      return [];
     }
 
-    return publicsAdministrative;
+    const administrativeData = postgresPublicsAdministrative[0];
+
+    return Object.values(PublicsAdministrative).filter(
+      (enumValue) =>
+        enumValue !== PublicsAdministrative.all && // Exclude "all"
+        enumValue in administrativeData && // Check if property exists
+        administrativeData[enumValue as keyof PostgresPublicsAdministrative] ===
+          true, // Check if it's true
+    );
   }
 }
