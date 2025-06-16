@@ -1,3 +1,11 @@
+# [4.92.0](https://github.com/solinumasso/soliguide/compare/v4.91.0...v4.92.0) (2025-06-16)
+
+
+### Features
+
+* **api:** reinitialize AT synchro for maj [#663](https://github.com/solinumasso/soliguide/issues/663) ([6f6b058](https://github.com/solinumasso/soliguide/commit/6f6b0581686557abb4d3804ff8c0dd17c92f9f4b))
+* **web-app:** display temporary hours/closure/message [#136](https://github.com/solinumasso/soliguide/issues/136) [#107](https://github.com/solinumasso/soliguide/issues/107) [#78](https://github.com/solinumasso/soliguide/issues/78) [#105](https://github.com/solinumasso/soliguide/issues/105) [#73](https://github.com/solinumasso/soliguide/issues/73) ([9e14117](https://github.com/solinumasso/soliguide/commit/9e14117220188c9032d0f4d3e72824092764916f))
+
 # [4.91.0](https://github.com/solinumasso/soliguide/compare/v4.90.0...v4.91.0) (2025-06-13)
 
 
