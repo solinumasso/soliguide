@@ -82,5 +82,4 @@ export const baseEditOrganizationDto = [
     }),
 ];
 
-export const createOrgaDto = [...baseEditOrganizationDto, ...territoriesDto];
-export const patchOrgaDto = [...baseEditOrganizationDto];
+export const orgaDto = [...baseEditOrganizationDto, ...territoriesDto];
