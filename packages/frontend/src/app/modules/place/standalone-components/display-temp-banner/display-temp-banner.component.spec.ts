@@ -78,7 +78,7 @@ describe("DisplayTempBannerComponent", () => {
       hours: null,
     });
 
-    component.tempInfoType = TempInfoType.hours;
+    component.tempInfoType = TempInfoType.HOURS;
     fixture.detectChanges();
   });
 

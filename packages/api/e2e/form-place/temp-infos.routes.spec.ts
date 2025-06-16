@@ -114,7 +114,7 @@ describe("Testing temporary information", () => {
         expect(tempInfo.name).toEqual(null);
         expect(tempInfo.dateFin).toEqual(null);
         expect(tempInfo.nbDays).toEqual(null);
-        expect(tempInfo.tempInfoType).toEqual(TempInfoType.closure);
+        expect(tempInfo.tempInfoType).toEqual(TempInfoType.CLOSURE);
         expect(tempInfo.description).toBeTruthy();
       });
 
@@ -147,7 +147,7 @@ describe("Testing temporary information", () => {
         expect(tempInfo.name).toEqual(null);
         expect(tempInfo.nbDays).toEqual(3);
         expect(tempInfo.dateFin).toEqual("2022-09-17T23:59:59.000Z");
-        expect(tempInfo.tempInfoType).toEqual(TempInfoType.closure);
+        expect(tempInfo.tempInfoType).toEqual(TempInfoType.CLOSURE);
         expect(tempInfo.description).toEqual("A new test");
       });
 

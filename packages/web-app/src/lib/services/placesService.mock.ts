@@ -23,8 +23,7 @@ import {
   Categories,
   CountryCodes,
   PlaceClosedHolidays,
-  PlaceOpeningStatus,
-  PlaceTempInfo
+  PlaceOpeningStatus
 } from '@soliguide/common';
 import type { PlaceDetailsParams, SearchOptions, SearchParams } from './types';
 
@@ -214,7 +213,38 @@ export const placeDetailsMock: PlaceDetails = {
     ]
   },
   website: 'http://www.soupesainteustache.fr',
-  tempInfo: new PlaceTempInfo()
+  tempInfo: {
+    closure: {
+      actif: false,
+      dateDebut: null,
+      dateFin: null,
+      description: null,
+      infoColor: null,
+      name: null,
+      status: null,
+      hours: null
+    },
+    hours: {
+      actif: false,
+      dateDebut: null,
+      dateFin: null,
+      description: null,
+      infoColor: null,
+      name: null,
+      status: null,
+      hours: null
+    },
+    message: {
+      actif: false,
+      dateDebut: null,
+      dateFin: null,
+      description: null,
+      infoColor: null,
+      name: null,
+      status: null,
+      hours: null
+    }
+  }
 };
 
 export const fakePlacesService = (error = '') => {

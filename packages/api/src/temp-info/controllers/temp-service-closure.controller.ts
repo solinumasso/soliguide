@@ -48,12 +48,12 @@ export const rebuildTempServiceClosure = async (
     const tempClosuresOnPlace = await findTempInfoWithParams({
       place: place._id,
       tempInfoType: {
-        $in: [TempInfoType.closure, TempInfoType.serviceClosure],
+        $in: [TempInfoType.CLOSURE, TempInfoType.SERVICE_CLOSURE],
       },
     });
 
     for (const closure of tempClosuresOnPlace) {
-      if (closure.tempInfoType === TempInfoType.serviceClosure) {
+      if (closure.tempInfoType === TempInfoType.SERVICE_CLOSURE) {
         if (!closure.serviceObjectId) {
           req.log.error(`Service closure ${closure._id} has no service!`);
           continue;

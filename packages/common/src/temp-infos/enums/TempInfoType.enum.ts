@@ -19,8 +19,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 export enum TempInfoType {
-  closure = "closure",
-  hours = "hours",
-  message = "message",
-  serviceClosure = "serviceClosure",
+  CLOSURE = "closure",
+  HOURS = "hours",
+  MESSAGE = "message",
+  SERVICE_CLOSURE = "serviceClosure",
 }

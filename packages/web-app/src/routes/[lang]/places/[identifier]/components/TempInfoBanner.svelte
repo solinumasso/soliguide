@@ -19,76 +19,112 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <script lang="ts">
-  import { TempInfoStatus, type BasePlaceTempInfo } from '@soliguide/common';
+  import { TempInfoStatus, TempInfoType } from '@soliguide/common';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import { getContext } from 'svelte';
   import { InfoBlock } from '@soliguide/design-system';
-  import { formatDateToLocale } from '$lib/client';
   import { page } from '$app/stores';
-  import type { InfoBlockVariant } from '../../../../../../../design-system/dist/types';
+  import { formatDateToLocale } from '$lib/client';
   import type { I18nStore } from '$lib/client/types';
+  import { DisplayMode, type PlaceTempInfoHoursReady } from '$lib/models/types';
+  import type { InfoBlockVariant } from '../../../../../../../design-system/dist/types';
+  import type { PageController } from '../types';
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
+  const pageController: PageController = getContext('PLACE_CONTROLLER_CTX_KEY');
 
-  export let tempInfo: BasePlaceTempInfo;
-  export let tempInfoType: 'hours' | 'closure' | 'message';
+  export let tempInfo: PlaceTempInfoHoursReady;
+  export let tempInfoType: TempInfoType;
+  export let closureDisplayMode: DisplayMode;
+  export let hoursDisplayMode: DisplayMode;
 
-  const getTitle = () => {
-    switch (tempInfoType) {
-      case 'hours':
-        if (tempInfo.infoColor === 'danger') {
-          tempInfo = { ...tempInfo, infoColor: 'warning' };
+  const getTitle = (type: TempInfoType, info: PlaceTempInfoHoursReady) => {
+    switch (type) {
+      case TempInfoType.HOURS:
+        if (info.status === TempInfoStatus.CURRENT) {
           return $i18n.t('EXCEPTIONAL_OPENING_HOURS');
         }
         return $i18n.t('EXCEPTIONAL_OPENING_HOURS_TO_COME');
-      case 'closure':
-        if (tempInfo.infoColor === 'danger') {
+      case TempInfoType.CLOSURE:
+        if (info.status === TempInfoStatus.CURRENT) {
           return $i18n.t('EXPORTS_HEADER_TEMP_CLOSURE');
         }
         return $i18n.t('TEMPORARY_CLOSURE_TO_COME');
-      case 'message':
-        tempInfo = { ...tempInfo, infoColor: 'warning' };
-        return tempInfo.name;
+      case TempInfoType.MESSAGE:
+        return info.name;
       default:
         return '';
     }
   };
 
   const getDescription = (description: string | null) => {
-    if (!description || tempInfoType === 'hours') {
+    if (!description || tempInfoType === TempInfoType.HOURS) {
       return '';
     }
 
     return description;
   };
 
-  const getFormatedDates = (info: BasePlaceTempInfo, lang: string) => {
+  const getFormatedDates = (info: PlaceTempInfoHoursReady, lang: string) => {
     const { dateDebut, dateFin } = info;
 
     if (!dateDebut) {
-      return;
+      return '';
     }
 
     if (dateDebut && dateFin) {
-      // eslint-disable-next-line consistent-return
       return $i18n.t('APPLICABLE_TEMP_INFO_DATES', {
         startDate: formatDateToLocale(dateDebut, lang),
         endDate: formatDateToLocale(dateFin, lang)
       });
     }
-    // eslint-disable-next-line consistent-return
+
     return $i18n.t('APPLICABLE_TEMP_INFO_START_DATE_ONLY', {
       startDate: formatDateToLocale(dateDebut, lang)
     });
   };
 
-  $: title = getTitle();
+  const getButtonLabel = (
+    type: TempInfoType,
+    closureMode: DisplayMode,
+    hoursMode: DisplayMode,
+    infoStatus: TempInfoStatus
+  ) => {
+    if (type === TempInfoType.CLOSURE) {
+      if (closureMode === DisplayMode.TEMPORARY) {
+        if (infoStatus === TempInfoStatus.CURRENT) {
+          return $i18n.t('SHOW_REGULAR_HOURS');
+        }
+        return $i18n.t('SHOW_INCOMING_HOURS');
+      }
+    }
 
+    if (type === TempInfoType.HOURS) {
+      if (hoursMode === DisplayMode.TEMPORARY) {
+        if (infoStatus === TempInfoStatus.CURRENT) {
+          return $i18n.t('SHOW_REGULAR_HOURS');
+        }
+        return $i18n.t('SHOW_INCOMING_HOURS');
+      }
+    }
+    return $i18n.t('SHOW_CURRENT_HOURS');
+  };
+
+  $: title = getTitle(tempInfoType, tempInfo);
   $: formatedDates = getFormatedDates(tempInfo, $page.data.lang);
   $: variant =
-    tempInfo.status === TempInfoStatus.CURRENT && tempInfoType === 'closure'
+    tempInfo.status === TempInfoStatus.CURRENT && tempInfoType === TempInfoType.CLOSURE
       ? ('error' as InfoBlockVariant)
       : ('warning' as InfoBlockVariant);
+  $: buttonLabel = getButtonLabel(
+    tempInfoType,
+    closureDisplayMode,
+    hoursDisplayMode,
+    tempInfo.status!
+  );
+  $: withButton = !(
+    tempInfo.status === TempInfoStatus.INCOMING && tempInfoType === TempInfoType.CLOSURE
+  );
 </script>
 
 {#if tempInfo.status === TempInfoStatus.CURRENT || tempInfo.status === TempInfoStatus.INCOMING}
@@ -98,5 +134,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     text={getDescription(tempInfo.description)}
     {title}
     date={formatedDates}
+    buttonAction={() => pageController.toggleHours(tempInfoType)}
+    {buttonLabel}
+    {withButton}
   ></InfoBlock>
 {/if}
