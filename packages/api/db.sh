@@ -173,7 +173,7 @@ if [ "$ACTION" = restore ]; then
     exit 0
   fi
 
-  ADDITIONAL_ARGS=()
+  ADDITIONAL_ARGS=("")
   if [ "$MODE" != full ]; then
     ADDITIONAL_ARGS=("--nsExclude=*.log*" "--nsExclude=*.mails" "--nsExclude=*.*Campaign" "--nsExclude=*.search" "--nsExclude=*.tempServiceClosures")
   fi
