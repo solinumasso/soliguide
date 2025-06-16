@@ -74,7 +74,7 @@ export class CampaignFormInfosComponent
     this.editorConfig.placeholder = this.translateService.instant(
       "ENTER_REASON_FOR_CLOSING"
     );
-    this.tempInfoType = TempInfoType.message;
+    this.tempInfoType = TempInfoType.MESSAGE;
 
     this.isCampaign = true;
     this.noChanges = null;

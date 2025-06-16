@@ -540,7 +540,7 @@ export const patchServices = async (
   for (const service of updatedServices) {
     if (service.close.actif) {
       await patchTempInfoByType(
-        { ...service.close, tempInfoType: TempInfoType.serviceClosure },
+        { ...service.close, tempInfoType: TempInfoType.SERVICE_CLOSURE },
         updatedPlace,
         req.userForLogs as UserForLogs,
         service

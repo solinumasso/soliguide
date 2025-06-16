@@ -173,9 +173,9 @@ export class ParentTempInfosFormComponent implements OnInit, OnDestroy {
           this.placeId = params.lieu_id;
           const tempInfoTypeFromUrl = params.tempInfoType;
           if (
-            tempInfoTypeFromUrl !== TempInfoType.message &&
-            tempInfoTypeFromUrl !== TempInfoType.hours &&
-            tempInfoTypeFromUrl !== TempInfoType.closure
+            tempInfoTypeFromUrl !== TempInfoType.MESSAGE &&
+            tempInfoTypeFromUrl !== TempInfoType.HOURS &&
+            tempInfoTypeFromUrl !== TempInfoType.CLOSURE
           ) {
             this.router.navigate([
               this.currentLanguageService.routePrefix,
@@ -237,7 +237,7 @@ export class ParentTempInfosFormComponent implements OnInit, OnDestroy {
     this.tempInfoToEdit = new BasePlaceTempInfo(tempInfo, true);
 
     // For a creation, we add place data
-    if (this.tempInfoType === TempInfoType.hours) {
+    if (this.tempInfoType === TempInfoType.HOURS) {
       this.actualHours = cloneDeep(this.place.newhours);
 
       // If no timetables defined, we take those of the place
@@ -251,14 +251,14 @@ export class ParentTempInfosFormComponent implements OnInit, OnDestroy {
         _id: new UntypedFormControl(this.tempInfoToEdit._id, []),
         name: [
           this.tempInfoToEdit.name,
-          this.tempInfoType === TempInfoType.message
+          this.tempInfoType === TempInfoType.MESSAGE
             ? [Validators.required, noWhiteSpace]
             : [],
         ],
         description: new UntypedFormControl(
           this.tempInfoToEdit.description,
-          (this.isCampaign && this.tempInfoType === TempInfoType.message) ||
-          (!this.isCampaign && this.tempInfoType !== TempInfoType.hours)
+          (this.isCampaign && this.tempInfoType === TempInfoType.MESSAGE) ||
+          (!this.isCampaign && this.tempInfoType !== TempInfoType.HOURS)
             ? [
                 Validators.required,
                 Validators.minLength(2),
@@ -268,7 +268,7 @@ export class ParentTempInfosFormComponent implements OnInit, OnDestroy {
         ),
         hours: new UntypedFormControl(
           this.tempInfoToEdit.hours,
-          this.tempInfoType !== TempInfoType.hours ? [] : [Validators.required]
+          this.tempInfoType !== TempInfoType.HOURS ? [] : [Validators.required]
         ),
         dateDebut: new UntypedFormControl(this.tempInfoToEdit.dateDebut, [
           Validators.required,
@@ -385,7 +385,7 @@ export class ParentTempInfosFormComponent implements OnInit, OnDestroy {
         );
         return;
       } else if (
-        this.tempInfoType === TempInfoType.hours &&
+        this.tempInfoType === TempInfoType.HOURS &&
         this.checkHoursChanged()
       ) {
         this.captureEvent("click-save-with-invalid-form", {
@@ -448,7 +448,7 @@ export class ParentTempInfosFormComponent implements OnInit, OnDestroy {
       );
       return;
     } else if (
-      this.tempInfoType === TempInfoType.hours &&
+      this.tempInfoType === TempInfoType.HOURS &&
       this.checkHoursChanged()
     ) {
       this.captureEvent("click-save-with-invalid-form", {

@@ -77,9 +77,9 @@ import { TranslatedFieldModel } from "../../../translations/models/translatedFie
 
         basicCleaning.description = "";
 
-        if (tempInfoType === TempInfoType.hours) {
+        if (tempInfoType === TempInfoType.HOURS) {
           basicCleaning.hours = null;
-        } else if (tempInfoType === TempInfoType.message) {
+        } else if (tempInfoType === TempInfoType.MESSAGE) {
           basicCleaning.name = "";
         }
 

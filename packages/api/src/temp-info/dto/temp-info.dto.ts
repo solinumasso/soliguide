@@ -51,9 +51,9 @@ export const baseTempInfoDto = [
     .custom((value: string, { req }) => {
       if (
         (!req.body.isCampaign &&
-          req.params?.tempInfoType !== TempInfoType.hours) ||
+          req.params?.tempInfoType !== TempInfoType.HOURS) ||
         (req.body.isCampaign &&
-          req.params?.tempInfoType === TempInfoType.message)
+          req.params?.tempInfoType === TempInfoType.MESSAGE)
       ) {
         return 5 <= value.trim().length && value.trim().length <= 4000;
       }
@@ -69,13 +69,13 @@ export const baseTempInfoDto = [
   // 'name' required for temporary message only
   body("name")
     .custom((value: string, { req }) => {
-      if (req.params?.tempInfoType === TempInfoType.message) {
+      if (req.params?.tempInfoType === TempInfoType.MESSAGE) {
         return value.trim().length > 0;
       }
       return true;
     })
     .customSanitizer((value, { req }) => {
-      if (req.params?.tempInfoType === TempInfoType.message) {
+      if (req.params?.tempInfoType === TempInfoType.MESSAGE) {
         return value.trim();
       }
       return null;

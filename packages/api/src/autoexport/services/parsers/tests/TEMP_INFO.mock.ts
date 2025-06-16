@@ -31,7 +31,7 @@ const commonPartialTempInfo = {
   place: new Types.ObjectId(),
   placeId: 33268,
   serviceObjectId: null,
-  tempInfoType: TempInfoType.closure,
+  tempInfoType: TempInfoType.CLOSURE,
 };
 
 export const TEMP_INFO_MOCK: UpComingTempInfo = [
@@ -115,7 +115,7 @@ export const MULTIPLE_TEMP_INFO_MOCK: TempInfo[] = [
     name: null,
     nbDays: 16,
     placeId: 33,
-    tempInfoType: TempInfoType.hours,
+    tempInfoType: TempInfoType.HOURS,
   } as unknown as TempInfo,
   {
     dateDebut: new Date("2022-09-01T01:00:00.000Z"),
@@ -125,7 +125,7 @@ export const MULTIPLE_TEMP_INFO_MOCK: TempInfo[] = [
     hours: null,
     nbDays: 5,
     placeId: 33268,
-    tempInfoType: TempInfoType.closure,
+    tempInfoType: TempInfoType.CLOSURE,
   } as unknown as TempInfo,
   {
     dateDebut: new Date("2022-09-01T01:00:00.000Z"),
@@ -133,6 +133,6 @@ export const MULTIPLE_TEMP_INFO_MOCK: TempInfo[] = [
     description: null,
     name: "A fake temp message",
     placeId: 33,
-    tempInfoType: TempInfoType.message,
+    tempInfoType: TempInfoType.MESSAGE,
   } as unknown as TempInfo,
 ];

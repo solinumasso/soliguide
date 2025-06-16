@@ -19,8 +19,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import type { Writable } from 'svelte/store';
-import type { PlaceDetails } from '$lib/models/types';
-import type { DayName } from '@soliguide/common';
+import type { DisplayMode, PlaceDetails, PlaceDetailsOpeningHours } from '$lib/models/types';
+import type { DayName, TempInfoType } from '@soliguide/common';
 
 import Group from 'svelte-google-materialdesign-icons/Group.svelte';
 import Event from 'svelte-google-materialdesign-icons/Date_range.svelte';
@@ -32,6 +32,9 @@ import type { PosthogCaptureFunction } from '$lib/services/types';
 
 export interface PageState {
   placeDetails: PlaceDetails;
+  hoursToDisplay: PlaceDetailsOpeningHours;
+  hoursDisplayMode: DisplayMode;
+  closureDisplayMode: DisplayMode;
   currentDay: DayName;
   error: string | null;
 }
@@ -40,6 +43,9 @@ export interface PageController {
   subscribe: Writable<PageState>['subscribe'];
   init(s: PlaceDetails): void;
   captureEvent: PosthogCaptureFunction;
+  showRegularHours(tempInfoType: TempInfoType): void;
+  showTempInfoHours(): void;
+  toggleHours(tempInfoType: TempInfoType): void;
 }
 
 export interface TitleAndIcon {
