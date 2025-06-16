@@ -19,19 +19,22 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <script lang="ts">
-  import { TempInfoStatus, type BasePlaceTempInfo } from '@soliguide/common';
+  import { TempInfoStatus, TempInfoType } from '@soliguide/common';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import { getContext } from 'svelte';
   import { InfoBlock } from '@soliguide/design-system';
-  import { formatDateToLocale } from '$lib/client';
   import { page } from '$app/stores';
-  import type { InfoBlockVariant } from '../../../../../../../design-system/dist/types';
+  import { formatDateToLocale } from '$lib/client';
   import type { I18nStore } from '$lib/client/types';
+  import type { PlaceTempInfoHoursReady } from '$lib/models/types';
+  import type { InfoBlockVariant } from '../../../../../../../design-system/dist/types';
+  import type { PageController } from '../types';
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
+  const pageController: PageController = getContext('PLACE_CONTROLLER_CTX_KEY');
 
-  export let tempInfo: BasePlaceTempInfo;
-  export let tempInfoType: 'hours' | 'closure' | 'message';
+  export let tempInfo: PlaceTempInfoHoursReady;
+  export let tempInfoType: TempInfoType;
 
   const getTitle = () => {
     switch (tempInfoType) {
@@ -62,11 +65,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     return description;
   };
 
-  const getFormatedDates = (info: BasePlaceTempInfo, lang: string) => {
+  const getFormatedDates = (info: PlaceTempInfoHoursReady, lang: string) => {
     const { dateDebut, dateFin } = info;
 
     if (!dateDebut) {
-      return;
+      return '';
     }
 
     if (dateDebut && dateFin) {
@@ -89,6 +92,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     tempInfo.status === TempInfoStatus.CURRENT && tempInfoType === 'closure'
       ? ('error' as InfoBlockVariant)
       : ('warning' as InfoBlockVariant);
+  $: buttonLabel =
+    tempInfo.status === TempInfoStatus.CURRENT
+      ? 'Afficher les horaires habituels'
+      : 'Afficher les horaires à venir';
 </script>
 
 {#if tempInfo.status === TempInfoStatus.CURRENT || tempInfo.status === TempInfoStatus.INCOMING}
@@ -98,5 +105,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     text={getDescription(tempInfo.description)}
     {title}
     date={formatedDates}
+    buttonAction={() => pageController.toggleHours(tempInfoType)}
+    {buttonLabel}
+    withButton={true}
   ></InfoBlock>
 {/if}

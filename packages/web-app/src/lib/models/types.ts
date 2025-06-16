@@ -19,11 +19,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import type {
+  BasePlaceTempInfo,
   Categories,
   CountryCodes,
   PlaceClosedHolidays,
   PlaceOpeningStatus,
-  PlaceTempInfo,
   TempInfoStatus
 } from '@soliguide/common';
 import type { types as DSTypes } from '@soliguide/design-system';
@@ -101,6 +101,16 @@ export interface PlaceDetailsOpeningHours {
   sunday?: HoursRange[];
 }
 
+export type PlaceTempInfoHoursReady = Omit<BasePlaceTempInfo, 'hours'> & {
+  hours: PlaceDetailsOpeningHours | null;
+};
+
+export interface PlaceDetailsTempInfo {
+  closure: PlaceTempInfoHoursReady;
+  hours: PlaceTempInfoHoursReady;
+  message: PlaceTempInfoHoursReady;
+}
+
 export enum PlaceDetailsInfoType {
   WELCOME_UNCONDITIONAL_CUSTOM = 'WELCOME_UNCONDITIONAL_CUSTOM',
   WELCOME_UNCONDITIONAL = 'WELCOME_UNCONDITIONAL',
@@ -166,7 +176,7 @@ export interface PlaceDetails {
   sources: Source[];
   status: PlaceOpeningStatus;
   todayInfo: TodayInfo;
-  tempInfo: PlaceTempInfo;
+  tempInfo: PlaceDetailsTempInfo;
   website: string;
 }
 
@@ -175,3 +185,5 @@ export interface SearchLocationParams {
   coordinates: number[];
   distance: number;
 }
+
+export type DisplayMode = 'regular' | 'temporary';

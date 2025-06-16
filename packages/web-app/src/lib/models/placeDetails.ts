@@ -28,7 +28,6 @@ import {
   WEEK_DAYS,
   WelcomedPublics,
   computePlaceOpeningStatus,
-  computeTempIsActive,
   type ApiPlace,
   type CheckAndPrecisions,
   type Checked,
@@ -46,6 +45,7 @@ import {
   type PlaceDetailsInfo,
   PlaceDetailsInfoType,
   type PlaceDetailsOpeningHours,
+  type PlaceDetailsTempInfo,
   type Saturation,
   type Service
 } from './types';
@@ -70,23 +70,23 @@ const buildHours = (hours: CommonOpeningHours, allDays: boolean): PlaceDetailsOp
   }, {});
 };
 
-/**
- * Transform all opening hours to a front ready opening hours
- */
-const buildPlaceDetailsHours = (
-  hours: CommonOpeningHours,
-  tempInfo: IPlaceTempInfo
-): PlaceDetailsOpeningHours => {
-  const tempHours = tempInfo.hours;
+// /**
+//  * Transform all opening hours to a front ready opening hours
+//  */
+// const buildPlaceDetailsHours = (
+//   hours: CommonOpeningHours,
+//   tempInfo: PlaceTempInfo
+// ): PlaceDetailsOpeningHours => {
+//   const tempHours = tempInfo.hours;
 
-  const isTempHoursActive = computeTempIsActive(tempHours);
+//   const isTempHoursActive = computeTempIsActive(tempHours);
 
-  if (isTempHoursActive) {
-    return buildHours(tempHours.hours, true);
-  }
+//   if (isTempHoursActive) {
+//     return buildHours(tempHours.hours, true);
+//   }
 
-  return buildHours(hours, true);
-};
+//   return buildHours(hours, true);
+// };
 
 /**
  * Transform publics to front ready info
@@ -300,6 +300,19 @@ const buildServices = (
   }));
 };
 
+const buildPlaceDetailsTempInfo = (tempInfo: IPlaceTempInfo): PlaceDetailsTempInfo => {
+  const newPlaceTempInfo = new PlaceTempInfo(tempInfo);
+
+  return {
+    closure: { ...newPlaceTempInfo.closure, hours: null },
+    message: { ...newPlaceTempInfo.message, hours: null },
+    hours: {
+      ...newPlaceTempInfo.hours,
+      hours: tempInfo.hours.hours ? buildHours(tempInfo.hours.hours, true) : null
+    }
+  };
+};
+
 /**
  * Transform a place sent by the API to a front ready place
  */
@@ -315,7 +328,7 @@ const buildPlaceDetails = (placeResult: ApiPlace, categorySearched: Categories):
     email: placeResult.entity.mail ?? '',
     facebook: placeResult.entity.facebook ?? '',
     fax: placeResult.entity.fax ?? '',
-    hours: buildPlaceDetailsHours(placeResult.newhours, placeResult.tempInfos),
+    hours: buildHours(placeResult.newhours, true),
     info: buildPlaceDetailsInfo(placeResult),
     instagram: placeResult.entity.instagram ?? '',
     lastUpdate: new Date(placeResult.updatedByUserAt).toISOString(),
@@ -329,7 +342,7 @@ const buildPlaceDetails = (placeResult: ApiPlace, categorySearched: Categories):
     sources: buildSources(placeResult.sources),
     status: computePlaceOpeningStatus(placeResult),
     todayInfo: computeTodayInfo(placeResult, status),
-    tempInfo: new PlaceTempInfo(placeResult.tempInfos),
+    tempInfo: buildPlaceDetailsTempInfo(placeResult.tempInfos),
     website: placeResult.entity.website ?? ''
   };
 };

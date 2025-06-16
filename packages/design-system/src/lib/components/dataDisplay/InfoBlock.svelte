@@ -40,6 +40,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let buttonLinkHref = '';
   export let showMoreLabel = '';
   export let showLessLabel = '';
+  export let buttonAction: (() => void) | undefined = undefined;
   export let date: string | null = null;
 
   const variantMapping: Record<InfoBlockVariant, InfoIconVariant> = {
@@ -92,7 +93,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     </div>
     {#if showButton}
       <div class="infoblock-button">
-        <Button type="neutralOutlined" size="xsmall">{buttonLabel}</Button>
+        <Button type="neutralOutlined" on:click={buttonAction} size="xsmall">{buttonLabel}</Button>
       </div>
     {/if}
 

@@ -40,7 +40,6 @@ import { CurrentLanguageService } from "../../../general/services/current-langua
 
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { TranslateService } from "@ngx-translate/core";
-
 import { Place } from "../../../../models/place/classes";
 
 @Component({
