@@ -23,13 +23,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { PhoneButton, PlaceStatus, TodayInfo } from '$lib/components';
   import GoToButton from './GoToButton.svelte';
   import { getPlaceDetailsPageController } from '../pageController';
-  import type { Phone, TodayInfo as TodayInfoType } from '$lib/models/types';
-  import {
-    PlaceTempInfo,
-    TempInfoStatus,
-    type PlaceOpeningStatus,
-    isObjectEmpty
-  } from '@soliguide/common';
+
+  import type { Phone, TodayInfo as TodayInfoType, PlaceDetailsTempInfo } from '$lib/models/types';
+  import { TempInfoStatus, type PlaceOpeningStatus, isObjectEmpty } from '@soliguide/common';
+
   import type { I18nStore } from '$lib/client/types';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import { getContext } from 'svelte';
@@ -41,7 +38,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let address: string;
   export let onOrientation: boolean;
   export let hasTempMessage: boolean;
-  export let tempInfo: PlaceTempInfo;
+  export let tempInfo: PlaceDetailsTempInfo;
 
   const placeController = getPlaceDetailsPageController();
   const i18n: I18nStore = getContext(I18N_CTX_KEY);

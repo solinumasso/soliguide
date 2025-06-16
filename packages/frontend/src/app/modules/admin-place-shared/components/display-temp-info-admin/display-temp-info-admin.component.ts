@@ -47,7 +47,7 @@ export class DisplayTempInfoAdminComponent implements OnInit {
       .translateDateInterval(this.tempInfo.dateDebut, this.tempInfo.dateFin)
       .toLowerCase();
 
-    if (this.tempInfo.tempInfoType === TempInfoType.hours) {
+    if (this.tempInfo.tempInfoType === TempInfoType.HOURS) {
       this.openingHours = new OpeningHours(this.tempInfo.hours, true);
     }
   }

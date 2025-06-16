@@ -22,7 +22,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <div class="row" *ngIf="!isCampaign">
     <div
       [ngClass]="
-        tempInfoType === TempInfoType.hours ? 'col-12' : 'col-10 offset-1'
+        tempInfoType === TempInfoType.HOURS ? 'col-12' : 'col-10 offset-1'
       "
     >
       <div class="my-4 d-flex align-items-center justify-content-between">
@@ -47,7 +47,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <div class="row">
     <div
       [ngClass]="
-        tempInfoType === TempInfoType.hours ? 'col-8' : 'col-10 offset-1'
+        tempInfoType === TempInfoType.HOURS ? 'col-8' : 'col-10 offset-1'
       "
     >
       <div
@@ -55,16 +55,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         *ngIf="tempInfoToEdit && tempInfosForm"
       >
         <section *ngIf="!isCampaign">
-          <p *ngIf="tempInfoType === TempInfoType.closure">
+          <p *ngIf="tempInfoType === TempInfoType.CLOSURE">
             {{ "CLOSED_FORM_INFO" | translate }}
             <br />
             {{ "TEMP_CLOSE_WILL_APPEAR_IN_TEMPORARY_BANNER" | translate }}
           </p>
 
-          <p *ngIf="tempInfoType === TempInfoType.message">
+          <p *ngIf="tempInfoType === TempInfoType.MESSAGE">
             {{ "TEMP_MESSAGE_WILL_APPEAR_IN_TEMPORARY_BANNER" | translate }}
           </p>
-          <p *ngIf="tempInfoType === TempInfoType.hours">
+          <p *ngIf="tempInfoType === TempInfoType.HOURS">
             {{ "TEMP_HOURS_WILL_APPEAR_IN_TEMPORARY_BANNER" | translate }}
           </p>
         </section>
@@ -73,7 +73,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <!-- Title only required for temporary message -->
             <div
               class="my-2 form-group col-12 required"
-              *ngIf="tempInfoType === TempInfoType.message"
+              *ngIf="tempInfoType === TempInfoType.MESSAGE"
             >
               <label class="form-label" for="name">{{
                 "INFORMATION_TITLE" | translate
@@ -100,7 +100,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             </div>
             <div
               class="my-2 form-group col-12"
-              [ngClass]="{ required: tempInfoType !== TempInfoType.hours }"
+              [ngClass]="{ required: tempInfoType !== TempInfoType.HOURS }"
             >
               <label class="form-label" for="description">{{
                 contextData.descriptionLabel | translate
@@ -120,7 +120,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     (f.description.dirty || f.description.value) &&
                     !f.description.errors
                 }"
-                [required]="tempInfoType !== TempInfoType.hours"
+                [required]="tempInfoType !== TempInfoType.HOURS"
               ></ckeditor>
               <p
                 *ngIf="
@@ -136,7 +136,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <!-- OpeningHours -->
             <div
               class="col-md-12 my-3"
-              *ngIf="tempInfoType === TempInfoType.hours"
+              *ngIf="tempInfoType === TempInfoType.HOURS"
             >
               <label class="label" for="">{{
                 "TEMPORARY_HOURS" | translate
@@ -176,7 +176,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         </form>
       </div>
     </div>
-    <div class="col-4" *ngIf="tempInfoType === TempInfoType.hours">
+    <div class="col-4" *ngIf="tempInfoType === TempInfoType.HOURS">
       <div class="form-container">
         <span class="label">{{ "CURRENT_WORKING_HOURS" | translate }}</span>
         <app-display-horaires

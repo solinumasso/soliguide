@@ -96,7 +96,7 @@ import { TempInfoModel } from "../../../temp-info/models/temp-info.model";
 
       const tempInfoType = tempInfos.tempInfoType;
 
-      if (tempInfoType === TempInfoType.serviceClosure) {
+      if (tempInfoType === TempInfoType.SERVICE_CLOSURE) {
         placeBulkQuery.push({
           updateOne: {
             arrayFilters: [
@@ -110,9 +110,9 @@ import { TempInfoModel } from "../../../temp-info/models/temp-info.model";
       } else {
         basicContent["description"] = tempInfos.description;
 
-        if (tempInfoType === TempInfoType.hours) {
+        if (tempInfoType === TempInfoType.HOURS) {
           basicContent["hours"] = tempInfos.hours;
-        } else if (tempInfoType === TempInfoType.message) {
+        } else if (tempInfoType === TempInfoType.MESSAGE) {
           basicContent["name"] = tempInfos.name;
         }
 

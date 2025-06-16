@@ -80,21 +80,21 @@ export const convertPlaceToExportRow = (
     translator,
     language,
     upcomingTempInfo,
-    TempInfoType.closure
+    TempInfoType.CLOSURE
   );
 
   docExportRow.tempHours = parseTempInfo(
     translator,
     language,
     upcomingTempInfo,
-    TempInfoType.hours
+    TempInfoType.HOURS
   );
 
   docExportRow.tempMessage = parseTempInfo(
     translator,
     language,
     upcomingTempInfo,
-    TempInfoType.message
+    TempInfoType.MESSAGE
   );
 
   // If we need one service per line
@@ -118,10 +118,10 @@ export const convertPlaceToExportRow = (
           {
             ...service.close,
             dateDebut: service.close.dateDebut ?? undefined,
-            tempInfoType: TempInfoType.closure,
+            tempInfoType: TempInfoType.CLOSURE,
           },
         ],
-        TempInfoType.closure
+        TempInfoType.CLOSURE
       );
     }
 
