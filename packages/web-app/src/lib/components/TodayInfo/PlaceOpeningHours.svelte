@@ -36,16 +36,24 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     .join(' - ');
 </script>
 
-<div class="opening-hours">
-  <QueryBuilder size="16" />
-  <Text ellipsis type="text2Medium"
-    >{$i18n.t('TODAY_OPENING_RANGE', { openingRange: formatedContent })}</Text
-  >
+<div class="opening-hours-container">
+  <div class="opening-hours">
+    <QueryBuilder size="16" />
+    <Text ellipsis type="text2Medium"
+      >{$i18n.t('TODAY_OPENING_RANGE', { openingRange: formatedContent })}</Text
+    >
+  </div>
+  <slot />
 </div>
 
 <style lang="scss">
+  .opening-hours-container {
+    display: flex;
+    gap: var(--spacing3XS);
+  }
+
   .opening-hours {
-    width: 100%;
+    max-width: 100%;
     display: flex;
     align-items: center;
     gap: var(--spacing4XS);

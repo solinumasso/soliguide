@@ -30,7 +30,7 @@ import { ToastrModule } from "ngx-toastr";
 
 import { HorairesFormTableComponent } from "./horaires-form-table.component";
 
-import { OpeningHours } from "../../../../models";
+import { OpeningHours } from "@soliguide/common";
 import { SharedModule } from "../../../shared/shared.module";
 
 describe("HorairesComponent", () => {

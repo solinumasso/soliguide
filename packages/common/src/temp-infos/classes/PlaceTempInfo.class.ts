@@ -18,23 +18,25 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { CommonOpeningHours, OpeningHoursContext } from "@soliguide/common";
 
-import {
-  isOneDayOpen,
-  is24HoursOpen,
-} from "../../../shared/functions/place-hours/placeHours.utils";
+import { IPlaceTempInfo } from "../interfaces";
 
-export class OpeningHours extends CommonOpeningHours {
-  public h24: boolean;
-  public isOpeningHoursSet: boolean;
+import { BasePlaceTempInfo } from "./BasePlaceTempInfo.class";
 
-  constructor(hours?: CommonOpeningHours, isInForm?: boolean) {
-    super(
-      hours,
-      isInForm ? OpeningHoursContext.ADMIN : OpeningHoursContext.PUBLIC
+export class PlaceTempInfo {
+  public closure: BasePlaceTempInfo;
+  public hours: BasePlaceTempInfo;
+  public message: BasePlaceTempInfo;
+
+  constructor(placeTempInfo?: IPlaceTempInfo, isInForm?: boolean) {
+    this.closure = new BasePlaceTempInfo(
+      placeTempInfo?.closure ?? null,
+      isInForm
     );
-    this.isOpeningHoursSet = isOneDayOpen(hours);
-    this.h24 = is24HoursOpen(hours);
+    this.hours = new BasePlaceTempInfo(placeTempInfo?.hours ?? null, isInForm);
+    this.message = new BasePlaceTempInfo(
+      placeTempInfo?.message ?? null,
+      isInForm
+    );
   }
 }

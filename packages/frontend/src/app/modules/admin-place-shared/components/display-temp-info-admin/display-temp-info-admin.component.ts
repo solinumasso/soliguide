@@ -20,11 +20,9 @@
  */
 import { Component, Input, OnInit } from "@angular/core";
 
-import { TempInfo, TempInfoType } from "@soliguide/common";
+import { TempInfo, TempInfoType, OpeningHours } from "@soliguide/common";
 
 import { DateService } from "../../../place/services/date.service";
-
-import { OpeningHours } from "../../../../models";
 
 @Component({
   selector: "app-display-temp-info-admin",

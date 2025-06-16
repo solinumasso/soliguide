@@ -28,7 +28,7 @@ import { TranslateModule } from "@ngx-translate/core";
 
 import { FormPointPassageComponent } from "./point-passage.component";
 
-import { OpeningHours } from "../../../../../../models/place/classes/opening-hours.class";
+import { OpeningHours } from "@soliguide/common";
 import {
   PlaceParcours,
   PlacePosition,
