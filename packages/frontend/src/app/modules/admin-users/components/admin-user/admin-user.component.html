@@ -143,7 +143,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
           <div *ngIf="me.status === 'ADMIN_SOLIGUIDE'" class="row">
             <app-select-territories
-              [disabled]="user.status === UserStatus.PRO"
               class="col-6"
               [isRequired]="
                 user.status === UserStatus.ADMIN_TERRITORY ||
