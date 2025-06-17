@@ -25,7 +25,7 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 import { ToastrService } from "ngx-toastr";
 
-import { Subscription, concatMap } from "rxjs";
+import { Subscription, catchError, concatMap, of } from "rxjs";
 
 import { ManagePlacesService } from "../../services/manage-places.service";
 
@@ -91,6 +91,7 @@ export class DeletePlaceComponent implements OnInit, OnDestroy {
       this.managePlacesService
         .deletePair(this.place.lieu_id)
         .pipe(
+          catchError(() => of(null)),
           concatMap(() =>
             this.managePlacesService.deletePlace(this.place.lieu_id)
           )
