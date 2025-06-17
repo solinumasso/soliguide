@@ -20,22 +20,16 @@
  */
 import { Db } from "mongodb";
 
-import { logger } from "../src/general/logger";
-import { UserStatus } from "@soliguide/common";
-
-const message = "Exclude admin soliguide for AT sync";
+import { logger } from "../../src/general/logger";
 
 export const up = async (db: Db) => {
-  logger.info(`[MIGRATION] - ${message}`);
-  await db
-    .collection("users")
-    .updateMany(
-      { status: UserStatus.ADMIN_SOLIGUIDE },
-      { $set: { "atSync.excluded": true } }
-    );
-};
-
-export const down = () => {
-  logger.info(`[ROLLBACK] - ${message}`);
-  logger.info("NO ROLLBACK POSSIBLE");
+  logger.info("[MIGRATION] - Reset migration variable");
+  await db.collection("lieux").updateMany(
+    {},
+    {
+      $set: {
+        migrated: false,
+      },
+    }
+  );
 };

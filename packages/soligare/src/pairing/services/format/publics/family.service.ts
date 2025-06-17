@@ -34,23 +34,19 @@ export class PublicsFamilyService {
       SELECT *
       FROM ${connection(schema)}.publics_family
       WHERE id = ${id}
+      LIMIT 1
     `;
 
-    const publicsFamily: PublicsFamily[] = [];
-
-    if (postgresPublicsFamily[0].isolated) {
-      publicsFamily.push(PublicsFamily.isolated);
-    }
-    if (postgresPublicsFamily[0].family) {
-      publicsFamily.push(PublicsFamily.family);
-    }
-    if (postgresPublicsFamily[0].couple) {
-      publicsFamily.push(PublicsFamily.couple);
-    }
-    if (postgresPublicsFamily[0].pregnant) {
-      publicsFamily.push(PublicsFamily.pregnant);
+    if (!postgresPublicsFamily[0]) {
+      return [];
     }
 
-    return publicsFamily;
+    const familyData = postgresPublicsFamily[0];
+    return Object.values(PublicsFamily).filter(
+      (enumValue) =>
+        enumValue !== PublicsFamily.all && // Exclude "all"
+        enumValue in familyData && // Check if property exists
+        familyData[enumValue as keyof PostgresPublicsFamily] === true, // Check if it's true
+    );
   }
 }
