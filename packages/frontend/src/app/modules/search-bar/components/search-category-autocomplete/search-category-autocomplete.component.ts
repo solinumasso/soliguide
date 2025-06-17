@@ -43,9 +43,9 @@ import {
 } from "rxjs/operators";
 
 import {
-  type SearchAutoComplete,
   slugString,
   type Categories,
+  SearchSuggestion,
 } from "@soliguide/common";
 import type { PosthogProperties } from "@soliguide/common-angular";
 import { Search } from "../../../search/interfaces";
@@ -75,7 +75,7 @@ export class SearchCategoryAutocompleteComponent
   @ViewChild("searchValueInput", { static: true })
   public readonly autoCompleteSearchInput!: ElementRef;
 
-  public autoCompleteResults: SearchAutoComplete;
+  public searchSuggestions: SearchSuggestion[];
 
   private readonly subscription = new Subscription();
 
@@ -86,10 +86,7 @@ export class SearchCategoryAutocompleteComponent
   ) {
     this.showSuggestions = false;
 
-    this.autoCompleteResults = {
-      categories: [],
-      terms: [],
-    };
+    this.searchSuggestions = [];
     this.searching = false;
   }
 
@@ -122,16 +119,16 @@ export class SearchCategoryAutocompleteComponent
         distinctUntilChanged()
       )
       .subscribe((text: string) => {
-        if (!this.autoCompleteResults && text) {
+        if (!this.searchSuggestions && text) {
           this.searching = true;
           this.showSuggestions = true;
         }
       });
 
     this.subscription.add(
-      input$.subscribe((results: SearchAutoComplete) => {
+      input$.subscribe((results: SearchSuggestion[]) => {
         this.searching = false;
-        this.autoCompleteResults = results;
+        this.searchSuggestions = results;
       })
     );
   }
@@ -166,10 +163,7 @@ export class SearchCategoryAutocompleteComponent
     this.search.label = decodeURI(word);
     this.search.word = slugString(word);
     this.search.category = null;
-    this.autoCompleteResults = {
-      categories: [],
-      terms: [],
-    };
+    this.searchSuggestions = [];
     this.updateSearchTerm.emit();
     this.showSuggestions = false;
     this.captureEvent("autocomplete-search-word", { keyUsed, word });
@@ -204,7 +198,7 @@ export class SearchCategoryAutocompleteComponent
     this.posthogService.capture(`search-category-autocomplete-${eventName}`, {
       ...properties,
       search: this.search,
-      autoCompleteResults: this.autoCompleteResults,
+      searchSuggestions: this.searchSuggestions,
     });
   }
 }
