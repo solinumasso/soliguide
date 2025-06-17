@@ -59,6 +59,7 @@ import { LocationAutocompleteComponent } from "../shared/components/location-aut
 import { SearchMapComponent } from "../place/standalone-components/search-map/search-map.component";
 import { SearchBarModule } from "../search-bar/search-bar.module";
 import { DisplayHorairesComponent } from "../place/standalone-components/display-horaires/horaires.component";
+import { DisplayTempBannerComponent } from "../place/standalone-components/display-temp-banner/display-temp-banner.component";
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import { DisplayHorairesComponent } from "../place/standalone-components/display
     LocationAutocompleteComponent,
     SearchMapComponent,
     SearchBarModule,
+    DisplayTempBannerComponent,
   ],
   providers: [ManagePlacesService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
