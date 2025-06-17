@@ -25,11 +25,12 @@ import { CountryCodes, UserSearchContext, UserStatus } from "@soliguide/common";
 import { addAuth, getExpectedStatus, supertest } from "../endPointTester";
 import { ExpectedStatus, TestAccounts } from "../endPointTester.type";
 
-import type { SignupUser, User, UserPopulateType } from "../../src/_models";
 import { deleteUser } from "../../src/user/controllers/user-admin.controller";
 import { getUserByIdWithUserRights } from "../../src/user/services";
 import { signupWithoutInvitation } from "../../src/user/controllers/user.controller";
 import get from "lodash.get";
+
+import { SignupUser, User, UserPopulateType } from "../../src/user/interfaces";
 
 const ALLOWED_USERS = [TestAccounts.USER_ADMIN_SOLIGUIDE];
 

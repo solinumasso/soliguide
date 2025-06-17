@@ -19,7 +19,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { UserStatus } from "@soliguide/common";
-import { EmailEvents, ModelWithId, User } from "../../_models";
+import { EmailEvents, ModelWithId } from "../../_models";
+import { User } from "../interfaces";
 
 export const DEFAULT_USER_PROPS: Pick<
   ModelWithId<User>,

@@ -21,9 +21,10 @@
 import { PlaceStatus, PlaceVisibility, UserStatus } from "@soliguide/common";
 
 import { TypesenseClient } from "../services/TypesenseClient.service";
-import type { CurrentUserType } from "../../_models";
+
 import type { SearchRequest } from "../validators";
 import { TypesensePlaceSearchQuery } from "../queries";
+import { CurrentUserType } from "../../user/interfaces";
 
 export const searchPlaces = async (
   request: SearchRequest,
