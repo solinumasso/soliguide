@@ -1,3 +1,11 @@
+## [4.92.1](https://github.com/solinumasso/soliguide/compare/v4.92.0...v4.92.1) (2025-06-18)
+
+
+### Bug Fixes
+
+* **frontend:** add isCampaign logic to external sources banner [#608](https://github.com/solinumasso/soliguide/issues/608) ([2bc3d00](https://github.com/solinumasso/soliguide/commit/2bc3d009c2a3e019431505e87c3bd82e27a9ee7a))
+* **frontend:** missing imports for standalone components [#670](https://github.com/solinumasso/soliguide/issues/670) ([a6f755f](https://github.com/solinumasso/soliguide/commit/a6f755fccdbc631caad3760d5801d1e0c54f7e43))
+
 # [4.92.0](https://github.com/solinumasso/soliguide/compare/v4.91.0...v4.92.0) (2025-06-16)
 
 
