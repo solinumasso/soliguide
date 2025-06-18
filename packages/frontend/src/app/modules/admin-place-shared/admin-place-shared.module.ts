@@ -42,6 +42,7 @@ import { PlaceModule } from "../place/place.module";
 import { SharedModule } from "../shared/shared.module";
 import { FormatInternationalPhoneNumberPipe } from "../shared";
 import { DisplayHorairesComponent } from "../place/standalone-components/display-horaires/horaires.component";
+import { DisplayTempBannerComponent } from "../place/standalone-components/display-temp-banner/display-temp-banner.component";
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { DisplayHorairesComponent } from "../place/standalone-components/display
     TranslateModule,
     FormatInternationalPhoneNumberPipe,
     DisplayHorairesComponent,
+    DisplayTempBannerComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

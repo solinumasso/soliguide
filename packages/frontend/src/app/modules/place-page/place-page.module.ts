@@ -38,6 +38,8 @@ import { SharedModule } from "../shared";
 import { PlacePageRoutingModule } from "./place-page-routing.module";
 import { PlaceComponent } from "./components/place/place.component";
 import { PlaceModule } from "../place/place.module";
+import { DisplayTempBannerComponent } from "../place/standalone-components/display-temp-banner/display-temp-banner.component";
+import { DisplayHolidaysComponent } from "../place/standalone-components/display-holidays/display-holidays.component";
 
 @NgModule({
   declarations: [PlaceComponent],
@@ -55,6 +57,8 @@ import { PlaceModule } from "../place/place.module";
     TranslateModule,
     CampaignSharedModule,
     DisplayHorairesComponent,
+    DisplayTempBannerComponent,
+    DisplayHolidaysComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [PlaceService],
