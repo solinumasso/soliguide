@@ -45,7 +45,6 @@ import { User } from "../../../users/classes";
 
 import { CAMPAIGN_LIST } from "../../../../models/campaign/constants";
 import { Place } from "../../../../models/place/classes";
-
 import cloneDeep from "lodash.clonedeep";
 
 import { TranslateService } from "@ngx-translate/core";
