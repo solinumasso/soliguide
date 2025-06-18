@@ -22,14 +22,17 @@ import { body } from "express-validator";
 
 const addHttpsIfNeeded = (url: string) => {
   if (!/^https?:\/\//i.test(url)) {
-    url = "https://" + url;
+    return "https://" + url;
   }
   return url;
 };
 
 export const checkUrlFieldDto = (urlField: string) =>
   body(urlField)
-    .if((value: any) => value)
+    .optional({ checkFalsy: true })
     .trim()
-    .isURL()
-    .customSanitizer(addHttpsIfNeeded);
+    .customSanitizer(addHttpsIfNeeded)
+    .custom((value) => {
+      new URL(value);
+      return true;
+    });
