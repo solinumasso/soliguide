@@ -29,7 +29,16 @@ const addHttpsIfNeeded = (url: string) => {
 
 export const checkUrlFieldDto = (urlField: string) =>
   body(urlField)
-    .if((value: any) => value)
+    .if((value: string) => value)
     .trim()
-    .isURL()
-    .customSanitizer(addHttpsIfNeeded);
+    .customSanitizer(addHttpsIfNeeded)
+    .custom((value) => {
+      const regex = new RegExp(
+        /^(https?:\/\/)?([a-z0-9ç-]+\.)+[a-zç]{2,6}(\/[\w %?#=&.-]*)*\/?$/i
+      );
+
+      if (!regex.test(value)) {
+        throw new Error("Invalid URL format");
+      }
+      return true;
+    });
