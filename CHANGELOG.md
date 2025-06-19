@@ -1,3 +1,10 @@
+# [4.93.0](https://github.com/solinumasso/soliguide/compare/v4.92.1...v4.93.0) (2025-06-19)
+
+
+### Features
+
+* **api:** migration to set isOpenToday [#679](https://github.com/solinumasso/soliguide/issues/679) ([#680](https://github.com/solinumasso/soliguide/issues/680)) ([a6329eb](https://github.com/solinumasso/soliguide/commit/a6329eb7306a4cfbb56e8d30b360b80741a43fc7))
+
 ## [4.92.1](https://github.com/solinumasso/soliguide/compare/v4.92.0...v4.92.1) (2025-06-18)
 
 
