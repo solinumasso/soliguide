@@ -1673,6 +1673,7 @@
   "SHOW_PASSWORD": "Mostrar la contrasenya",
   "SHOW_PHONE_NUMBER": "Mostra el número",
   "SHOW_PHONE_NUMBERS": "Mostra números",
+  "SHOW_REGULAR_HOURS": "Mostra els horaris habituals",
   "SIGNUP_AS_TRANSLATOR": "Inscriu-te com a traductor a {{ brandName }}",
   "SIGNUP_FAIL": "No es pot inscriure",
   "SIGNUP_FAIL_TRY_AGAIN": "No s'ha pogut inscriure, si us plau, torna-ho a provar més tard",
