@@ -1673,6 +1673,7 @@
   "SHOW_PASSWORD": "Mostrar contraseña",
   "SHOW_PHONE_NUMBER": "Anunciar el número",
   "SHOW_PHONE_NUMBERS": "Anunciar los números",
+  "SHOW_REGULAR_HOURS": "Ver los horarios habituales",
   "SIGNUP_AS_TRANSLATOR": "Regístrate como traductor en {{ brandName }}",
   "SIGNUP_FAIL": "No se puede registrar",
   "SIGNUP_FAIL_TRY_AGAIN": "No se pudo realizar la inscripción, por favor inténtelo de nuevo más tarde",
