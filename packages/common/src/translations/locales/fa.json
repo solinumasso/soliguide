@@ -1673,6 +1673,7 @@
   "SHOW_PASSWORD": "نمایش رمز عبور",
   "SHOW_PHONE_NUMBER": "نمایش شماره",
   "SHOW_PHONE_NUMBERS": "نمایش اعداد",
+  "SHOW_REGULAR_HOURS": "نمایش ساعات معمول",
   "SIGNUP_AS_TRANSLATOR": "به عنوان مترجم در {{ brandName }} ثبت نام کنید",
   "SIGNUP_FAIL": "امکان ثبت نام وجود ندارد",
   "SIGNUP_FAIL_TRY_AGAIN": "ثبت نام ممکن نیست، لطفاً بعداً دوباره امتحان کنید",
