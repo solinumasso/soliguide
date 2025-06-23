@@ -1673,6 +1673,7 @@
   "SHOW_PASSWORD": "Показати пароль",
   "SHOW_PHONE_NUMBER": "Показати номер",
   "SHOW_PHONE_NUMBERS": "Показати цифри",
+  "SHOW_REGULAR_HOURS": "Показати звичайний графік роботи",
   "SIGNUP_AS_TRANSLATOR": "Зареєструйтесь як перекладач на {{ brandName }}",
   "SIGNUP_FAIL": "Не вдалося зареєструватися",
   "SIGNUP_FAIL_TRY_AGAIN": "Не вдається зареєструватися, спробуйте пізніше",
