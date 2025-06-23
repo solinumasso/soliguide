@@ -1673,6 +1673,7 @@
   "SHOW_PASSWORD": "عرض كلمة المرور",
   "SHOW_PHONE_NUMBER": "اعرض الرقم",
   "SHOW_PHONE_NUMBERS": "إظهار الأرقام",
+  "SHOW_REGULAR_HOURS": "إظهار الساعات المعتادة",
   "SIGNUP_AS_TRANSLATOR": "سجل كمترجم في {{ brandName }}",
   "SIGNUP_FAIL": "غير قادر على التسجيل",
   "SIGNUP_FAIL_TRY_AGAIN": "غير قادر على التسجيل، يرجى المحاولة مرة أخرى في وقت لاحق",
