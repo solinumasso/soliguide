@@ -1673,6 +1673,7 @@
   "SHOW_PASSWORD": "پټنوم ښکاره کړئ",
   "SHOW_PHONE_NUMBER": "شمیره وښایاست",
   "SHOW_PHONE_NUMBERS": "شمیرې ښکاره کړئ",
+  "SHOW_REGULAR_HOURS": "معمول ساعتونه وښایاست",
   "SIGNUP_AS_TRANSLATOR": "په {{ brandName }} کې د ژباړونکي په توګه راجستر کړئ",
   "SIGNUP_FAIL": "د راجستر کولو توان نلري",
   "SIGNUP_FAIL_TRY_AGAIN": "د راجستر کولو توان نلري، مهرباني وکړئ وروسته بیا هڅه وکړئ",
