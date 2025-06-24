@@ -72,14 +72,15 @@ export const startAndEndDateDto = (path = "") => {
         return true;
       })
       .customSanitizer((value) => {
-        let dateDebut;
-        let dateFin;
+        if (!value.actif) return value;
 
-        if (value.actif) {
-          dateDebut = new Date(value.dateDebut).setUTCHours(0, 0, 0);
-          dateFin = value.dateFin
-            ? new Date(value.dateFin).setUTCHours(23, 59, 59)
-            : null;
+        const dateDebut = new Date(value.dateDebut);
+        dateDebut.setUTCHours(0, 0, 0);
+
+        let dateFin = null;
+        if (value.dateFin) {
+          dateFin = new Date(value.dateFin);
+          dateFin.setUTCHours(23, 59, 59);
         }
 
         return { ...value, dateDebut, dateFin };
