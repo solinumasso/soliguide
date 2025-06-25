@@ -19,71 +19,112 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { Db } from "mongodb";
+import { isValid } from "date-fns";
 import { logger } from "../src/general/logger";
 
-const message =
-  "Convert timestamps to Dates in placeChanges.new[].close.dateDebut and dateFin";
+const message = "Convert numeric dateDebut/dateFin to Date in placeChanges";
+
+type CloseItem = {
+  close?: {
+    dateDebut?: number | Date;
+    dateFin?: number | Date;
+    [key: string]: any;
+  };
+  [key: string]: any;
+};
+
+function convertDates(data: CloseItem[]): {
+  updated: CloseItem[];
+  hasChanges: boolean;
+} {
+  let hasChanges = false;
+
+  const updated = data.map((item) => {
+    if (!item.close) return item;
+
+    const close = { ...item.close };
+
+    if (typeof close.dateDebut === "number") {
+      const d = new Date(close.dateDebut);
+      if (isValid(d)) {
+        close.dateDebut = d;
+        hasChanges = true;
+      }
+    }
+
+    if (typeof close.dateFin === "number") {
+      const d = new Date(close.dateFin);
+      if (isValid(d)) {
+        close.dateFin = d;
+        hasChanges = true;
+      }
+    }
+
+    return { ...item, close };
+  });
+
+  return { updated, hasChanges };
+}
 
 export const up = async (db: Db) => {
   logger.info(`[MIGRATION] - ${message}`);
 
-  const result = await db.collection("placeChanges").updateMany(
-    {
-      "new.close.dateDebut": { $type: ["int", "long", "double"] },
-    },
-    [
-      {
-        $set: {
-          new: {
-            $map: {
-              input: "$new",
-              as: "item",
-              in: {
-                $mergeObjects: [
-                  "$$item",
-                  {
-                    close: {
-                      $mergeObjects: [
-                        "$$item.close",
-                        {
-                          dateDebut: {
-                            $cond: [
-                              {
-                                $in: [
-                                  { $type: "$$item.close.dateDebut" },
-                                  ["int", "long", "double"],
-                                ],
-                              },
-                              { $toDate: "$$item.close.dateDebut" },
-                              "$$item.close.dateDebut",
-                            ],
-                          },
-                          dateFin: {
-                            $cond: [
-                              {
-                                $in: [
-                                  { $type: "$$item.close.dateFin" },
-                                  ["int", "long", "double"],
-                                ],
-                              },
-                              { $toDate: "$$item.close.dateFin" },
-                              "$$item.close.dateFin",
-                            ],
-                          },
-                        },
-                      ],
-                    },
-                  },
-                ],
-              },
-            },
-          },
-        },
-      },
-    ]
+  const query = {
+    $or: [
+      { "new.close.dateDebut": { $type: "number" } },
+      { "new.close.dateFin": { $type: "number" } },
+      { "old.close.dateDebut": { $type: "number" } },
+      { "old.close.dateFin": { $type: "number" } },
+    ],
+  };
+
+  const placeChanges = await db
+    .collection("placeChanges")
+    .find(query)
+    .toArray();
+  logger.info(
+    `[MIGRATION] - Found ${placeChanges.length} documents to process`
   );
 
-  logger.info(`[MIGRATION] - ${result.modifiedCount} documents updated`);
+  let updatedCount = 0;
+
+  for (const doc of placeChanges) {
+    const { updated: updatedNew, hasChanges: newChanged } = convertDates(
+      doc.new || []
+    );
+    const { updated: updatedOld, hasChanges: oldChanged } = convertDates(
+      doc.old || []
+    );
+
+    if (newChanged || oldChanged) {
+      await db.collection("placeChanges").updateOne(
+        { _id: doc._id },
+        {
+          $set: {
+            new: updatedNew,
+            old: updatedOld,
+          },
+        }
+      );
+      updatedCount++;
+    }
+  }
+
+  logger.info(`[MIGRATION] - Updated ${updatedCount} placeChanges documents`);
+
+  // 👀 Additional check for non-date values
+  const remainingInvalidCount = await db
+    .collection("placeChanges")
+    .countDocuments({
+      $or: [
+        { "new.close.dateDebut": { $exists: true, $not: { $type: "date" } } },
+        { "new.close.dateFin": { $exists: true, $not: { $type: "date" } } },
+        { "old.close.dateDebut": { $exists: true, $not: { $type: "date" } } },
+        { "old.close.dateFin": { $exists: true, $not: { $type: "date" } } },
+      ],
+    });
+
+  logger.info(`[CHECK] - ${remainingInvalidCount} documents aren't dates`);
 };
 
 export const down = async () => {

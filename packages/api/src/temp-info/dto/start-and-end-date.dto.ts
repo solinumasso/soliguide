@@ -50,8 +50,7 @@ export const startAndEndDateDto = (path = "") => {
         })
         .custom(
           (value, { req }) =>
-            !value.dateFin ||
-            differenceInCalendarDays(req.body.dateDebut, value.dateFin) <= 0
+            !value || differenceInCalendarDays(req.body.dateDebut, value) <= 0
         ),
     ];
   }
@@ -63,37 +62,34 @@ export const startAndEndDateDto = (path = "") => {
           if (!isValidDate(value.dateDebut)) {
             return false;
           }
-
           const dateFin = value.dateFin;
-
           return !dateFin || isValidDate(dateFin);
         }
-
         return true;
       })
       .customSanitizer((value) => {
-        if (!value.actif) return value;
+        if (!value.actif) {
+          return {
+            ...value,
+            dateDebut: null,
+            dateFin: null,
+          };
+        }
 
         const dateDebut = new Date(value.dateDebut);
-        dateDebut.setUTCHours(0, 0, 0);
+        dateDebut.setUTCHours(0, 0, 0, 0);
 
         let dateFin = null;
         if (value.dateFin) {
           dateFin = new Date(value.dateFin);
-          dateFin.setUTCHours(23, 59, 59);
+          dateFin.setUTCHours(23, 59, 59, 999);
         }
 
-        return { ...value, dateDebut, dateFin };
-      })
-      .custom((value) => {
-        if (value.actif) {
-          return (
-            !value.dateFin ||
-            differenceInCalendarDays(value.dateDebut, value.dateFin) <= 0
-          );
-        }
-
-        return true;
+        return {
+          ...value,
+          dateDebut,
+          dateFin,
+        };
       }),
   ];
 };
