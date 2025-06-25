@@ -25,7 +25,7 @@ import {
   MIN_DATE_GENERAL,
   getMinDateToday,
 } from "../../../../../shared/constants";
-import { BasePlaceTempInfos } from "../../../../../models/place/classes/temp-infos";
+import { BasePlaceTempInfo } from "@soliguide/common";
 import { endDateAfterBeginDateValidator } from "../../../../../shared";
 
 @Component({
@@ -34,9 +34,9 @@ import { endDateAfterBeginDateValidator } from "../../../../../shared";
   styleUrls: ["./start-and-end-date.component.css"],
 })
 export class FormStartAndEndDateFicheComponent implements OnInit {
-  @Input() public object!: BasePlaceTempInfos;
+  @Input() public object!: BasePlaceTempInfo;
   @Output() public readonly objectChange =
-    new EventEmitter<BasePlaceTempInfos>();
+    new EventEmitter<BasePlaceTempInfo>();
 
   @Input() public parentFormGroup!: FormGroup;
 
@@ -87,7 +87,7 @@ export class FormStartAndEndDateFicheComponent implements OnInit {
 
   public ngOnInit(): void {
     if (!this.object) {
-      this.object = new BasePlaceTempInfos();
+      this.object = new BasePlaceTempInfo();
     }
     if (this.object) {
       this.refreshDates(this.object.dateDebut, this.object.dateFin);

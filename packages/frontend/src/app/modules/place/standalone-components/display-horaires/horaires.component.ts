@@ -19,8 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { Component, Input, OnInit } from "@angular/core";
-import { OpeningHours } from "../../../../models";
-import { DayName, WEEK_DAYS } from "@soliguide/common";
+import { DayName, WEEK_DAYS, OpeningHours } from "@soliguide/common";
 import { weekDaysOrdering } from "../../../../shared/functions";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { CommonModule } from "@angular/common";

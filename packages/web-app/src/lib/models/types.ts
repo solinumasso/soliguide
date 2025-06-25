@@ -22,7 +22,9 @@ import type {
   Categories,
   CountryCodes,
   PlaceClosedHolidays,
-  PlaceOpeningStatus
+  PlaceOpeningStatus,
+  PlaceTempInfo,
+  TempInfoStatus
 } from '@soliguide/common';
 import type { types as DSTypes } from '@soliguide/design-system';
 
@@ -59,11 +61,16 @@ export interface Source {
   licenseLink: string;
 }
 
+export interface SearchResultTempInfo {
+  hours: TempInfoStatus | null;
+  closure: TempInfoStatus | null;
+  message: TempInfoStatus | null;
+}
+
 export interface SearchResultItem {
   address: string;
   banners: {
     holidays: PlaceClosedHolidays;
-    message: BannerMessage | null;
     orientation: boolean;
   };
   distance: number;
@@ -75,6 +82,7 @@ export interface SearchResultItem {
   sources: Source[];
   status: PlaceOpeningStatus;
   todayInfo: TodayInfo;
+  tempInfo: SearchResultTempInfo;
 }
 
 export interface SearchResult {
@@ -158,6 +166,7 @@ export interface PlaceDetails {
   sources: Source[];
   status: PlaceOpeningStatus;
   todayInfo: TodayInfo;
+  tempInfo: PlaceTempInfo;
   website: string;
 }
 

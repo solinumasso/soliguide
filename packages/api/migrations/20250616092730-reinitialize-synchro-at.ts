@@ -18,27 +18,30 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { PlaceTempInfo } from "@soliguide/common";
+import { Db } from "mongodb";
+import { logger } from "../src/general/logger";
 
-import { BasePlaceTempInfos } from "./BaseTempInfos.class";
+const message =
+  "Reinitialize AT sync: set lastSync to null for excluded entities in lieux and users collections";
 
-export class PlaceTempInfos implements PlaceTempInfo {
-  public closure: BasePlaceTempInfos;
-  public hours: BasePlaceTempInfos;
-  public message: BasePlaceTempInfos;
+export const down = async () => {
+  logger.info(`[ROLLBACK] - ${message}`);
+};
 
-  constructor(placeTempInfos?: PlaceTempInfo, isInForm?: boolean) {
-    this.closure = new BasePlaceTempInfos(
-      placeTempInfos?.closure ?? null,
-      isInForm
-    );
-    this.hours = new BasePlaceTempInfos(
-      placeTempInfos?.hours ?? null,
-      isInForm
-    );
-    this.message = new BasePlaceTempInfos(
-      placeTempInfos?.message ?? null,
-      isInForm
-    );
-  }
-}
+export const up = async (db: Db) => {
+  logger.info(`[MIGRATION] - ${message}`);
+
+  const filter = {
+    "atSync.excluded": false,
+  };
+
+  const update = {
+    $set: { "atSync.lastSync": null },
+  };
+
+  const lieuxResult = await db.collection("lieux").updateMany(filter, update);
+  logger.info(`[MIGRATION] - ${lieuxResult.modifiedCount} lieux updated`);
+
+  const usersResult = await db.collection("users").updateMany(filter, update);
+  logger.info(`[MIGRATION] - ${usersResult.modifiedCount} users updated`);
+};

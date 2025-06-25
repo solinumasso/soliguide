@@ -21,8 +21,8 @@
 import { PlacePosition } from "./place-position.class";
 
 import { Photo } from "./photo.class";
-import { OpeningHours } from ".";
-import { CommonPlaceParcours } from "@soliguide/common";
+
+import { CommonPlaceParcours, OpeningHours } from "@soliguide/common";
 
 export class PlaceParcours implements CommonPlaceParcours {
   public description: string;

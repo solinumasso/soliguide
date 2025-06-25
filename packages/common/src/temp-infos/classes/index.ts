@@ -18,12 +18,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
-import { TERRITORIES_NOTIF, TerritoryNotif } from "@soliguide/common";
-
-export const CAMPAIGN_SLUG_TERRITORIES: string[] = Object.values(
-  TERRITORIES_NOTIF
-).reduce((acc: string[], campaignTerritoriesNotif: TerritoryNotif) => {
-  acc.push(campaignTerritoriesNotif.slug);
-  return acc;
-}, []);
+// @index('./*', f => `export * from '${f.path}'`)
+export * from "./BasePlaceTempInfo.class";
+export * from "./PlaceTempInfo.class";

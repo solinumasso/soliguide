@@ -20,7 +20,14 @@
  */
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 
-import { PairingSources } from "@soliguide/common";
+import {
+  PairingSources,
+  getPosition,
+  type SoliguideCountries,
+  CountryCodes,
+  getDepartmentCodeFromPostalCode,
+} from "@soliguide/common";
+import { campaignIsActive } from "../../../../shared";
 
 import { CurrentLanguageService } from "../../../general/services/current-language.service";
 import { Place, THEME_CONFIGURATION } from "../../../../models";
@@ -63,10 +70,28 @@ export class ExternalSourcePlaceCampaignBannerComponent
       )
     );
 
-    this.shouldShowExternalBanner = this.place.sources.some(
+    const position = getPosition(this.place);
+    const postalCode = position.postalCode;
+    const country = position.country;
+
+    const isFromExternalSource = this.place.sources.some(
       (source) =>
         EXTERNAL_SOURCES.includes(source.name) && source.isOrigin === true
     );
+
+    const campaignIsActiveForPlace =
+      country &&
+      postalCode &&
+      THEME_CONFIGURATION.country === CountryCodes.FR &&
+      campaignIsActive([
+        getDepartmentCodeFromPostalCode(
+          country as SoliguideCountries,
+          postalCode
+        ),
+      ]);
+
+    this.shouldShowExternalBanner =
+      isFromExternalSource && campaignIsActiveForPlace;
   }
 
   public ngOnDestroy(): void {

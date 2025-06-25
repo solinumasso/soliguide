@@ -28,7 +28,11 @@ import { RouterTestingModule } from "@angular/router/testing";
 
 import { TranslateModule } from "@ngx-translate/core";
 
-import { Categories, PlaceUpdateCampaign } from "@soliguide/common";
+import {
+  Categories,
+  PlaceUpdateCampaign,
+  BasePlaceTempInfo,
+} from "@soliguide/common";
 
 import { ToastrModule } from "ngx-toastr";
 
@@ -41,7 +45,6 @@ import {
 } from "../../../../../../mocks";
 
 import { Place, Service } from "../../../../models/place/classes";
-import { BasePlaceTempInfos } from "../../../../models/place/classes/temp-infos";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 
 describe("FormCampaignServicesComponent", () => {
@@ -89,7 +92,7 @@ describe("FormCampaignServicesComponent", () => {
       {
         categorySpecificFields: "",
         category: Categories.PUBLIC_WRITER,
-        close: new BasePlaceTempInfos(c1),
+        close: new BasePlaceTempInfo(c1),
         serviceObjectId: SERVICE_MOCK.serviceObjectId,
       },
     ];
@@ -120,7 +123,7 @@ describe("FormCampaignServicesComponent", () => {
       {
         categorySpecificFields: "",
         category: Categories.DISABILITY_ADVICE,
-        close: new BasePlaceTempInfos(c2),
+        close: new BasePlaceTempInfo(c2),
         serviceObjectId: component.place.services_all[0].serviceObjectId,
       },
     ];

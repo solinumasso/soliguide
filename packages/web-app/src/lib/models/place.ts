@@ -20,6 +20,7 @@
  */
 import {
   type ApiPlace,
+  BasePlaceTempInfo,
   CommonPlacePosition,
   CommonPlaceSource,
   CommonTimeslot,
@@ -30,7 +31,7 @@ import {
   checkIfSourceMustBeDisplayed,
   computeTempIsActive
 } from '@soliguide/common';
-import type { HoursRange, Source, TodayInfo } from './types';
+import type { HoursRange, SearchResultTempInfo, Source, TodayInfo } from './types';
 
 /**
  * Calculates the complete address to display
@@ -54,7 +55,7 @@ export const formatTimeslots = (timeslots: CommonTimeslot[] = []): HoursRange[] 
   }));
 
 /**
- * Calculates opening hours: date interval, hour interval or nothing
+ * Calculates opening hours and closing days: date interval, hour interval or nothing
  */
 export const computeTodayInfo = (
   place: ApiPlace,
@@ -120,3 +121,14 @@ export const buildSources = (sources?: CommonPlaceSource[]): Source[] =>
         return acc;
       }, [])
     : [];
+
+//! TODO Type tempInfos here after rewriting the types
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const computeTempInfo = (tempInfo: any): SearchResultTempInfo => {
+  return (['hours', 'closure', 'message'] as const).reduce((acc, key) => {
+    return {
+      ...acc,
+      [key]: new BasePlaceTempInfo(tempInfo[key]).status
+    };
+  }, {} as SearchResultTempInfo);
+};

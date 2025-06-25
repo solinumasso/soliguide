@@ -131,13 +131,21 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
         <div
           class="alert alert-custom alert-danger ms-3"
+          *ngIf="place.openingTagStatus === PlaceOpeningStatus.CLOSED"
+        >
+          <div>
+            {{ "SEARCH_FILTER_CLOSED_TODAY" | translate }}
+          </div>
+        </div>
+
+        <div
+          class="alert alert-custom alert-danger ms-3"
           *ngIf="
-            place.openingTagStatus === PlaceOpeningStatus.CLOSED ||
             place.openingTagStatus === PlaceOpeningStatus.TEMPORARILY_CLOSED
           "
         >
           <div>
-            {{ "SEARCH_FILTER_CLOSED_TODAY" | translate }}
+            {{ "TEMPORARILY_CLOSED" | translate }}
           </div>
         </div>
 
@@ -226,7 +234,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         ></app-display-temp-banner>
 
         <app-display-temp-banner
-          *ngIf="place.tempInfos.message.actif === true"
+          *ngIf="place.tempInfos.message.actif"
           [tempInfoType]="TempInfoType.message"
           [tempInfos]="place.tempInfos.message"
         ></app-display-temp-banner>

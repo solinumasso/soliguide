@@ -26,6 +26,7 @@ import {
   CAMPAIGN_DEFAULT_NAME,
   getCategoriesSpecificFields,
   type Categories,
+  BasePlaceTempInfo,
 } from "@soliguide/common";
 import type { PosthogProperties } from "@soliguide/common-angular";
 
@@ -36,7 +37,6 @@ import { AdminTempInfosService } from "../../../form-place/services/admin-temp-i
 import { DateValidatorService } from "../../../shared/services/date-validator.service";
 
 import { CAMPAIGN_LIST } from "../../../../models/campaign/constants";
-import { BasePlaceTempInfos } from "../../../../models/place/classes/temp-infos";
 import type { Place, Service } from "../../../../models/place/classes";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import {
@@ -63,7 +63,7 @@ export class CampaignFormServicesComponent implements OnInit {
     serviceObjectId: string;
     categorySpecificFields?: string;
     category: Categories;
-    close: BasePlaceTempInfos;
+    close: BasePlaceTempInfo;
   }[];
 
   public readonly CAMPAIGN_NAME = CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].name;
@@ -99,7 +99,7 @@ export class CampaignFormServicesComponent implements OnInit {
         close:
           service.close.actif || service.close.serviceActif
             ? { ...service.close, actif: service.close.serviceActif }
-            : new BasePlaceTempInfos(),
+            : new BasePlaceTempInfo(),
       };
     });
   }
@@ -146,9 +146,9 @@ export class CampaignFormServicesComponent implements OnInit {
       });
 
       if (this.loading) {
-        const placeClosedServices: BasePlaceTempInfos[] =
+        const placeClosedServices: BasePlaceTempInfo[] =
           this.closeServiceForm.map((service) => {
-            const newService = new BasePlaceTempInfos({
+            const newService = new BasePlaceTempInfo({
               actif: service.close.actif,
               dateDebut: new Date(service.close.dateDebut),
               dateFin: service.close.dateFin
