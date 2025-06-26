@@ -43,7 +43,7 @@ const TIMESLOT_MOCK: CommonTimeslot = new CommonTimeslot(
   OpeningHoursContext.PUBLIC
 );
 
-export const PLACE_EN_LIGNE_MOCK = new Place({
+export const ONLINE_PLACE_MOCK = new Place({
   _id: "614bb2f678fc0312c43e5850",
   auto: false,
   country: CountryCodes.FR,

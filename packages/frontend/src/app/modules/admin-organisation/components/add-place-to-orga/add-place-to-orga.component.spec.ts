@@ -45,13 +45,13 @@ import { SearchResults } from "../../../../models/search-places";
 import {
   CommonPosthogMockService,
   ORGANIZATION_MOCK,
-  PLACE_EN_LIGNE_MOCK,
+  ONLINE_PLACE_MOCK,
 } from "../../../../../../mocks";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 
 const searchResult: SearchResults = {
   nbResults: 1,
-  places: [PLACE_EN_LIGNE_MOCK],
+  places: [ONLINE_PLACE_MOCK],
 };
 
 describe("AddPlaceToOrgaComponent", () => {
@@ -113,11 +113,11 @@ describe("AddPlaceToOrgaComponent", () => {
     );
   });
 
-  it("should return PLACE_EN_LIGNE_MOCK for both search methods", () => {
+  it("should return ONLINE_PLACE_MOCK for both search methods", () => {
     component.searchPlacebyName("test");
-    expect(component.foundPlaces).toEqual([PLACE_EN_LIGNE_MOCK]);
+    expect(component.foundPlaces).toEqual([ONLINE_PLACE_MOCK]);
 
     component.searchPlacebyId("14270");
-    expect(component.foundPlaces).toEqual([PLACE_EN_LIGNE_MOCK]);
+    expect(component.foundPlaces).toEqual([ONLINE_PLACE_MOCK]);
   });
 });

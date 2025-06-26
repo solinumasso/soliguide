@@ -37,7 +37,7 @@ import { DisplayContactsComponent } from "./display-contacts.component";
 import { PlaceContactsService } from "../../services/place-contacts.service";
 
 import {
-  PLACE_EN_LIGNE_MOCK,
+  ONLINE_PLACE_MOCK,
   PLACE_CONTACT_FOR_ADMIN_MOCK,
   USER_SOLIGUIDE_MOCK,
   CommonPosthogMockService,
@@ -74,7 +74,7 @@ describe("DisplayContactsComponent", () => {
 
     component.me = USER_SOLIGUIDE_MOCK;
     component.template = "public";
-    component.place = PLACE_EN_LIGNE_MOCK;
+    component.place = ONLINE_PLACE_MOCK;
 
     jest
       .spyOn(placeContactService, "getPlaceContacts")

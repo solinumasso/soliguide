@@ -40,7 +40,7 @@ import { CampaignFormServicesComponent } from "./campaign-form-services.componen
 
 import {
   CommonPosthogMockService,
-  PLACE_EN_LIGNE_MOCK,
+  ONLINE_PLACE_MOCK,
   SERVICE_MOCK,
 } from "../../../../../../mocks";
 
@@ -86,7 +86,7 @@ describe("FormCampaignServicesComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CampaignFormServicesComponent);
     component = fixture.componentInstance;
-    component.place = PLACE_EN_LIGNE_MOCK;
+    component.place = ONLINE_PLACE_MOCK;
     component.place.services_all = [SERVICE_MOCK];
     component.closeServiceForm = [
       {

@@ -31,7 +31,7 @@ import { TranslateModule } from "@ngx-translate/core";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import {
-  PLACE_EN_LIGNE_MOCK,
+  ONLINE_PLACE_MOCK,
   USER_SOLIGUIDE_MOCK,
 } from "../../../../../../mocks";
 import { Place } from "../../../../models";
@@ -59,7 +59,7 @@ describe("PlaceHistoryComponent", () => {
 
     fixture = TestBed.createComponent(PlaceHistoryComponent);
     component = fixture.componentInstance;
-    component.place = new Place(PLACE_EN_LIGNE_MOCK);
+    component.place = new Place(ONLINE_PLACE_MOCK);
     component.search = new SearchPlaceChanges(
       { userData: { status: null } },
       USER_SOLIGUIDE_MOCK

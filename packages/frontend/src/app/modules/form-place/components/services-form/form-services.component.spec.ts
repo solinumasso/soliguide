@@ -32,7 +32,7 @@ import { FormServicesComponent } from "./form-services.component";
 import { MockAdminPlaceService } from "../../services/mocks/AdminPlaceService.mock";
 import { AdminPlaceService } from "../../services/admin-place.service";
 import { ApiError, Place, THEME_CONFIGURATION } from "../../../../models";
-import { PLACE_EN_LIGNE_MOCK } from "../../../../../../mocks";
+import { ONLINE_PLACE_MOCK } from "../../../../../../mocks";
 
 describe("ServicesComponent", () => {
   let component: FormServicesComponent;
@@ -86,7 +86,7 @@ describe("ServicesComponent", () => {
     jest.spyOn(router, "navigate").mockReturnValue(Promise.resolve(true));
 
     component = fixture.componentInstance;
-    component.place = new Place(PLACE_EN_LIGNE_MOCK);
+    component.place = new Place(ONLINE_PLACE_MOCK);
 
     fixture.detectChanges();
   });

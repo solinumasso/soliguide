@@ -45,7 +45,7 @@ import { Place } from "../../../../models/place/classes";
 import { THEME_CONFIGURATION } from "../../../../models";
 import {
   PLACE_CONTACT_FOR_ADMIN_MOCK,
-  PLACE_EN_LIGNE_MOCK,
+  ONLINE_PLACE_MOCK,
   MockAuthService,
 } from "../../../../../../mocks";
 
@@ -97,7 +97,7 @@ describe("EditContactsFormComponent", () => {
 
     component = fixture.componentInstance;
 
-    component.place = new Place(PLACE_EN_LIGNE_MOCK);
+    component.place = new Place(ONLINE_PLACE_MOCK);
 
     fixture.detectChanges();
   });
@@ -109,13 +109,13 @@ describe("EditContactsFormComponent", () => {
   it("doit s'initialiser correctement", () => {
     jest
       .spyOn(adminPlaceService, "getPlace")
-      .mockReturnValue(of(new Place(PLACE_EN_LIGNE_MOCK)));
+      .mockReturnValue(of(new Place(ONLINE_PLACE_MOCK)));
     jest
       .spyOn(placeContactsService, "getPlaceContactsForAdmin")
       .mockReturnValue(of([PLACE_CONTACT_FOR_ADMIN_MOCK]));
 
     component.ngOnInit();
-    expect(component.place).toMatchObject(new Place(PLACE_EN_LIGNE_MOCK));
+    expect(component.place).toMatchObject(new Place(ONLINE_PLACE_MOCK));
     expect(component.placeContacts).toStrictEqual([
       PLACE_CONTACT_FOR_ADMIN_MOCK,
     ]);
@@ -159,7 +159,7 @@ describe("EditContactsFormComponent", () => {
 
     jest
       .spyOn(adminPlaceService, "getPlace")
-      .mockReturnValue(of(new Place(PLACE_EN_LIGNE_MOCK)));
+      .mockReturnValue(of(new Place(ONLINE_PLACE_MOCK)));
     jest
       .spyOn(placeContactsService, "getPlaceContactsForAdmin")
       .mockReturnValue(of([PLACE_CONTACT_FOR_ADMIN_MOCK]));
@@ -168,7 +168,7 @@ describe("EditContactsFormComponent", () => {
 
     jest
       .spyOn(adminPlaceService, "patchPlaceContacts")
-      .mockReturnValue(of(PLACE_EN_LIGNE_MOCK));
+      .mockReturnValue(of(ONLINE_PLACE_MOCK));
 
     component.patchContacts();
 

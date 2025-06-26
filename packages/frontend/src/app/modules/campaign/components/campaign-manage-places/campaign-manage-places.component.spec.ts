@@ -45,7 +45,7 @@ import { Place } from "../../../../models/place/classes";
 
 import { globalConstants } from "../../../../shared/functions/global-constants.class";
 
-import { PLACE_EN_LIGNE_MOCK } from "../../../../../../mocks/PLACE_EN_LIGNE.mock";
+import { ONLINE_PLACE_MOCK } from "../../../../../../mocks/ONLINE_PLACE.mock";
 import { USER_PRO_MOCK } from "../../../../../../mocks/USER_PRO.mock";
 import { CommonPosthogMockService } from "../../../../../../mocks/CommonPosthogMockService.mock";
 import { MockAuthService } from "../../../../../../mocks/MockAuthService";
@@ -54,8 +54,8 @@ import { User } from "../../../users/classes";
 
 const PLACES: Place[] = [];
 
-PLACES.push(PLACE_EN_LIGNE_MOCK);
-PLACES.push(PLACE_EN_LIGNE_MOCK);
+PLACES.push(ONLINE_PLACE_MOCK);
+PLACES.push(ONLINE_PLACE_MOCK);
 
 PLACES[1]._id = "614bb2f678fc0312c43e585a";
 PLACES[1].lieu_id += 10;
@@ -139,7 +139,7 @@ describe("CampaignManagePlacesComponent", () => {
   });
 
   it("should set a remind me for place #3", () => {
-    PLACES.push(PLACE_EN_LIGNE_MOCK);
+    PLACES.push(ONLINE_PLACE_MOCK);
 
     PLACES[2]._id = "614bb2f678fc0312c43e5860";
     PLACES[2].lieu_id += 20;

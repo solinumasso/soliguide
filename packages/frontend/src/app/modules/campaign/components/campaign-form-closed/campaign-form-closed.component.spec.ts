@@ -36,7 +36,7 @@ import { TranslateModule } from "@ngx-translate/core";
 
 import {
   CommonPosthogMockService,
-  PLACE_EN_LIGNE_MOCK,
+  ONLINE_PLACE_MOCK,
 } from "../../../../../../mocks";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 
@@ -67,7 +67,7 @@ describe("CampaignFormClosedComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CampaignFormClosedComponent);
     component = fixture.componentInstance;
-    component.place = PLACE_EN_LIGNE_MOCK;
+    component.place = ONLINE_PLACE_MOCK;
     component.place.campaigns.runningCampaign = new PlaceUpdateCampaign({
       toUpdate: true,
     });

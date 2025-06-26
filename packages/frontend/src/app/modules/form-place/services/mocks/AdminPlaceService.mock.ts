@@ -29,7 +29,7 @@ import { Observable, of, throwError } from "rxjs";
 
 import { ApiError, Service, Place } from "../../../../models";
 
-import { PLACE_EN_LIGNE_MOCK } from "../../../../../../mocks";
+import { ONLINE_PLACE_MOCK } from "../../../../../../mocks";
 
 export class MockAdminPlaceService {
   public patchPublics(placeToPatch: Place): Observable<Place> {
@@ -97,8 +97,8 @@ export class MockAdminPlaceService {
   }
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public getPlace(lieu_id: string, _admin = false): Observable<Place> {
-    if (parseInt(lieu_id, 10) === PLACE_EN_LIGNE_MOCK.lieu_id) {
-      return of(PLACE_EN_LIGNE_MOCK);
+    if (parseInt(lieu_id, 10) === ONLINE_PLACE_MOCK.lieu_id) {
+      return of(ONLINE_PLACE_MOCK);
     }
 
     return throwError(() => new ApiError("MARAUDE_NOT_FOUND"));
@@ -169,6 +169,6 @@ export class MockAdminPlaceService {
         }
       }
     }
-    return of(PLACE_EN_LIGNE_MOCK);
+    return of(ONLINE_PLACE_MOCK);
   }
 }

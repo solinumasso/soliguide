@@ -34,7 +34,7 @@ import { AuthService } from "../../../users/services/auth.service";
 
 import {
   CommonPosthogMockService,
-  PLACE_EN_LIGNE_MOCK,
+  ONLINE_PLACE_MOCK,
   USER_SOLIGUIDE_MOCK,
 } from "../../../../../../mocks";
 import { PosthogService } from "../../../analytics/services/posthog.service";
@@ -67,7 +67,7 @@ describe("DisplayEntityInfosComponent", () => {
       .spyOn(authService, "currentUserValue", "get")
       .mockReturnValue(USER_SOLIGUIDE_MOCK);
     component = fixture.componentInstance;
-    component.place = PLACE_EN_LIGNE_MOCK;
+    component.place = ONLINE_PLACE_MOCK;
     fixture.detectChanges();
   });
 

@@ -21,7 +21,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { PlaceTransportsComponent } from "./place-transports.component";
-import { PLACE_EN_LIGNE_MOCK } from "../../../../../../mocks/PLACE_EN_LIGNE.mock";
+import { ONLINE_PLACE_MOCK } from "../../../../../../mocks/ONLINE_PLACE.mock";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 
 describe("PlaceTransportsComponent", () => {
@@ -36,7 +36,7 @@ describe("PlaceTransportsComponent", () => {
 
     fixture = TestBed.createComponent(PlaceTransportsComponent);
     component = fixture.componentInstance;
-    component.place = PLACE_EN_LIGNE_MOCK;
+    component.place = ONLINE_PLACE_MOCK;
     fixture.detectChanges();
   });
 

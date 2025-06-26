@@ -26,7 +26,7 @@ import { TranslateModule } from "@ngx-translate/core";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
 import { DisplayServiceAdminComponent } from "./display-service-admin.component";
-import { PLACE_EN_LIGNE_MOCK } from "../../../../../../mocks/PLACE_EN_LIGNE.mock";
+import { ONLINE_PLACE_MOCK } from "../../../../../../mocks/ONLINE_PLACE.mock";
 
 describe("DisplayServiceAdminComponent", () => {
   let component: DisplayServiceAdminComponent;
@@ -47,7 +47,7 @@ describe("DisplayServiceAdminComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DisplayServiceAdminComponent);
     component = fixture.componentInstance;
-    component.service = PLACE_EN_LIGNE_MOCK.services_all[0];
+    component.service = ONLINE_PLACE_MOCK.services_all[0];
     fixture.detectChanges();
   });
 

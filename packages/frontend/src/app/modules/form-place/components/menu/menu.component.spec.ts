@@ -35,7 +35,7 @@ import { AdminPlaceService } from "../../services/admin-place.service";
 import { AuthService } from "../../../users/services/auth.service";
 
 import {
-  PLACE_EN_LIGNE_MOCK,
+  ONLINE_PLACE_MOCK,
   USER_SOLIGUIDE_MOCK,
 } from "../../../../../../mocks";
 
@@ -67,7 +67,7 @@ describe("FormMenuPlaceComponent", () => {
       .spyOn(authService, "currentUserValue", "get")
       .mockReturnValue(USER_SOLIGUIDE_MOCK);
     component = fixture.componentInstance;
-    component.place = PLACE_EN_LIGNE_MOCK;
+    component.place = ONLINE_PLACE_MOCK;
     fixture.detectChanges();
   });
 
