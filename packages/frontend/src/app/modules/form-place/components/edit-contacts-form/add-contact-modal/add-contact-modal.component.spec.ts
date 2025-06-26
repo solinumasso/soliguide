@@ -42,7 +42,7 @@ import { AuthService } from "../../../../users/services/auth.service";
 
 import {
   ORGANIZATION_MOCK,
-  PLACE_EN_LIGNE_MOCK,
+  ONLINE_PLACE_MOCK,
   USER_PRO_MOCK,
   USER_SOLIGUIDE_MOCK,
 } from "../../../../../../../mocks";
@@ -86,7 +86,7 @@ describe("AddContactModalComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AddContactModalComponent);
     component = fixture.componentInstance;
-    component.place = PLACE_EN_LIGNE_MOCK;
+    component.place = ONLINE_PLACE_MOCK;
     component.me = USER_SOLIGUIDE_MOCK;
 
     authService = TestBed.inject(AuthService);

@@ -41,7 +41,7 @@ import { AuthService } from "../../../users/services/auth.service";
 
 import {
   CommonPosthogMockService,
-  PLACE_EN_LIGNE_MOCK,
+  ONLINE_PLACE_MOCK,
 } from "../../../../../../mocks";
 import { MockAuthService } from "../../../../../../mocks/MockAuthService";
 import { TranslateModule } from "@ngx-translate/core";
@@ -89,7 +89,7 @@ describe("PlaceComponent", () => {
       .mockImplementation((x, y) => window.scrollTo({ left: x, top: y }));
     jest
       .spyOn(placeService, "getPlace")
-      .mockReturnValue(of(new Place(PLACE_EN_LIGNE_MOCK)));
+      .mockReturnValue(of(new Place(ONLINE_PLACE_MOCK)));
 
     component = fixture.componentInstance;
 
@@ -98,6 +98,6 @@ describe("PlaceComponent", () => {
 
   it("should be created", () => {
     expect(component).toBeTruthy();
-    expect(component.place).toMatchObject(new Place(PLACE_EN_LIGNE_MOCK));
+    expect(component.place).toMatchObject(new Place(ONLINE_PLACE_MOCK));
   });
 });

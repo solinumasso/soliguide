@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { PLACE_EN_LIGNE_MOCK } from "./PLACE_EN_LIGNE.mock";
+import { ONLINE_PLACE_MOCK } from "./ONLINE_PLACE.mock";
 
 import { Organisation } from "../src/app/modules/admin-organisation/interfaces/organisation.interface";
 
@@ -45,7 +45,7 @@ export const ORGANIZATION_MOCK: Organisation = new Organisation({
   name: "Organisme de test",
   organization_id: 2316,
   phone: null,
-  places: [PLACE_EN_LIGNE_MOCK],
+  places: [ONLINE_PLACE_MOCK],
   priority: false,
   relations: [],
   territories: ["75"],

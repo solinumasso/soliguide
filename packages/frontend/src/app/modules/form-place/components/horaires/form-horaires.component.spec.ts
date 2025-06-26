@@ -35,7 +35,7 @@ import { FormHorairesComponent } from "./form-horaires.component";
 
 import { AdminPlaceService } from "../../services/admin-place.service";
 
-import { PLACE_EN_LIGNE_MOCK } from "../../../../../../mocks/PLACE_EN_LIGNE.mock";
+import { ONLINE_PLACE_MOCK } from "../../../../../../mocks/ONLINE_PLACE.mock";
 import { THEME_CONFIGURATION } from "../../../../models";
 
 describe("FormHorairesComponent", () => {
@@ -81,7 +81,7 @@ describe("FormHorairesComponent", () => {
     adminPlaceService = TestBed.inject(AdminPlaceService);
     jest
       .spyOn(adminPlaceService, "getPlace")
-      .mockReturnValue(of(PLACE_EN_LIGNE_MOCK));
+      .mockReturnValue(of(ONLINE_PLACE_MOCK));
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -101,11 +101,11 @@ describe("FormHorairesComponent", () => {
   it("should submit", () => {
     jest
       .spyOn(adminPlaceService, "patchHoraires")
-      .mockReturnValue(of(PLACE_EN_LIGNE_MOCK));
+      .mockReturnValue(of(ONLINE_PLACE_MOCK));
 
     component.submitHoraires();
 
-    expect(PLACE_EN_LIGNE_MOCK.newhours.monday.timeslot).toEqual([
+    expect(ONLINE_PLACE_MOCK.newhours.monday.timeslot).toEqual([
       { end: "23:59", start: "00:00" },
     ]);
   });

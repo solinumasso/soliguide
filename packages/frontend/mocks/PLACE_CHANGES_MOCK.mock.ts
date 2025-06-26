@@ -26,7 +26,7 @@ import {
   UserRole,
 } from "@soliguide/common";
 
-import { PLACE_EN_LIGNE_MOCK } from "./PLACE_EN_LIGNE.mock";
+import { ONLINE_PLACE_MOCK } from "./ONLINE_PLACE.mock";
 import { USER_PRO_MOCK } from "./USER_PRO.mock";
 
 import { PlaceChanges } from "../src/app/models/place-changes";
@@ -38,12 +38,12 @@ export const PLACE_CHANGES_MOCK: PlaceChanges = new PlaceChanges({
   createdAt: new Date("2022-02-18T17:35:05"),
   isCampaign: false,
   lieu_id: 1,
-  new: PLACE_EN_LIGNE_MOCK,
+  new: ONLINE_PLACE_MOCK,
   noChanges: false,
-  old: PLACE_EN_LIGNE_MOCK,
+  old: ONLINE_PLACE_MOCK,
   section: PlaceChangesSection.status,
   source: CampaignSource.CALL,
-  place: PLACE_EN_LIGNE_MOCK,
+  place: ONLINE_PLACE_MOCK,
   status: PlaceChangesStatus.NOT_EVALUATED,
   updatedAt: new Date("2022-03-18T11:02:16"),
   userData: {

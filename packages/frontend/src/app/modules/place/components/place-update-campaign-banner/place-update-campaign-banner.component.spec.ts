@@ -32,7 +32,7 @@ import { PosthogService } from "../../../analytics/services/posthog.service";
 
 import { AuthService } from "../../../users/services/auth.service";
 
-import { PLACE_EN_LIGNE_MOCK } from "../../../../../../mocks/PLACE_EN_LIGNE.mock";
+import { ONLINE_PLACE_MOCK } from "../../../../../../mocks/ONLINE_PLACE.mock";
 import { CommonPosthogMockService } from "../../../../../../mocks/CommonPosthogMockService.mock";
 import { MockAuthService } from "../../../../../../mocks/MockAuthService";
 
@@ -61,7 +61,7 @@ describe("PlaceUpdateCampaignBannerComponent", () => {
     fixture = TestBed.createComponent(PlaceUpdateCampaignBannerComponent);
     component = fixture.componentInstance;
     component.canEdit = true;
-    component.place = PLACE_EN_LIGNE_MOCK;
+    component.place = ONLINE_PLACE_MOCK;
     fixture.detectChanges();
   });
 

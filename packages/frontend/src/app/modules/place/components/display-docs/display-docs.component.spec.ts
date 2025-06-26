@@ -23,7 +23,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { DisplayDocsComponent } from "./display-docs.component";
 import { ToastrModule } from "ngx-toastr";
-import { PLACE_EN_LIGNE_MOCK } from "../../../../../../mocks/PLACE_EN_LIGNE.mock";
+import { ONLINE_PLACE_MOCK } from "../../../../../../mocks/ONLINE_PLACE.mock";
 import { TranslateModule } from "@ngx-translate/core";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { CommonPosthogMockService } from "../../../../../../mocks";
@@ -49,7 +49,7 @@ describe("DisplayDocsComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DisplayDocsComponent);
     component = fixture.componentInstance;
-    component.docs = PLACE_EN_LIGNE_MOCK.modalities.docs;
+    component.docs = ONLINE_PLACE_MOCK.modalities.docs;
     fixture.detectChanges();
   });
 

@@ -24,7 +24,7 @@ import { TranslateModule } from "@ngx-translate/core";
 
 import { DisplayPositionAdminComponent } from "./display-position-admin.component";
 
-import { PLACE_EN_LIGNE_MOCK } from "../../../../../../mocks";
+import { ONLINE_PLACE_MOCK } from "../../../../../../mocks";
 
 describe("DisplayPositionAdminComponent", () => {
   let component: DisplayPositionAdminComponent;
@@ -40,7 +40,7 @@ describe("DisplayPositionAdminComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DisplayPositionAdminComponent);
     component = fixture.componentInstance;
-    component.place = PLACE_EN_LIGNE_MOCK;
+    component.place = ONLINE_PLACE_MOCK;
     fixture.detectChanges();
   });
 

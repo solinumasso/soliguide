@@ -29,7 +29,7 @@ import { CampaignSourceUpdateComponent } from "./campaign-source-update.componen
 
 import {
   CommonPosthogMockService,
-  PLACE_EN_LIGNE_MOCK,
+  ONLINE_PLACE_MOCK,
 } from "../../../../../../mocks";
 import { TranslateModule } from "@ngx-translate/core";
 import { PosthogService } from "../../../analytics/services/posthog.service";
@@ -57,7 +57,7 @@ describe("CampaignSourceUpdateComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CampaignSourceUpdateComponent);
     component = fixture.componentInstance;
-    component.place = PLACE_EN_LIGNE_MOCK;
+    component.place = ONLINE_PLACE_MOCK;
     component.placeIndex = 1;
     fixture.detectChanges();
   });

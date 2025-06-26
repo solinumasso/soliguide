@@ -27,7 +27,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateModule } from "@ngx-translate/core";
 import { SharedModule } from "../../../shared/shared.module";
-import { PLACE_EN_LIGNE_MOCK } from "../../../../../../mocks/PLACE_EN_LIGNE.mock";
+import { ONLINE_PLACE_MOCK } from "../../../../../../mocks/ONLINE_PLACE.mock";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { CommonPosthogMockService } from "../../../../../../mocks";
 import { ShareButtons } from "ngx-sharebuttons/buttons";
@@ -57,7 +57,7 @@ describe("SharePlaceComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SharePlaceComponent);
     component = fixture.componentInstance;
-    component.place = PLACE_EN_LIGNE_MOCK;
+    component.place = ONLINE_PLACE_MOCK;
     fixture.detectChanges();
   });
 

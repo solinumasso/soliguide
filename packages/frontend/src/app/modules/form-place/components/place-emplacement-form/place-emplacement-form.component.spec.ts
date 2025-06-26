@@ -31,7 +31,7 @@ import { PlaceEmplacementFormComponent } from "./place-emplacement-form.componen
 
 import { AdminPlaceService } from "../../services/admin-place.service";
 
-import { PLACE_EN_LIGNE_MOCK } from "../../../../../../mocks";
+import { ONLINE_PLACE_MOCK } from "../../../../../../mocks";
 import { THEME_CONFIGURATION } from "../../../../models";
 
 describe("PlaceEmplacementFormComponent", () => {
@@ -56,7 +56,7 @@ describe("PlaceEmplacementFormComponent", () => {
           provide: ActivatedRoute,
           useValue: {
             params: of({
-              lieu_id: PLACE_EN_LIGNE_MOCK.lieu_id,
+              lieu_id: ONLINE_PLACE_MOCK.lieu_id,
             }),
           },
         },
@@ -71,7 +71,7 @@ describe("PlaceEmplacementFormComponent", () => {
     adminPlaceService = TestBed.inject(AdminPlaceService);
     jest
       .spyOn(adminPlaceService, "getPlace")
-      .mockReturnValue(of(PLACE_EN_LIGNE_MOCK));
+      .mockReturnValue(of(ONLINE_PLACE_MOCK));
     fixture.detectChanges();
   });
 
