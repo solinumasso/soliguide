@@ -99,7 +99,7 @@ export const parseTempInfo = (
       }
     }
 
-    if (tempInfoType === TempInfoType.hours && temp.hours) {
+    if (tempInfoType === TempInfoType.HOURS && temp.hours) {
       tempInfoMessage += `\n${parseHours(temp.hours, lng)}`;
     }
 

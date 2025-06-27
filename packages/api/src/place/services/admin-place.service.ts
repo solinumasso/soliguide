@@ -169,10 +169,10 @@ export const updateTempInfos = async (
       description: firstCurrentTempInfo.description,
     };
 
-    if (tempInfoType === TempInfoType.hours) {
+    if (tempInfoType === TempInfoType.HOURS) {
       place.tempInfos[tempInfoType].hours = firstCurrentTempInfo.hours;
       place.tempInfos[tempInfoType].name = null;
-    } else if (tempInfoType === TempInfoType.message) {
+    } else if (tempInfoType === TempInfoType.MESSAGE) {
       place.tempInfos[tempInfoType].name = firstCurrentTempInfo.name;
       place.tempInfos[tempInfoType].hours = null;
     } else {
@@ -180,20 +180,20 @@ export const updateTempInfos = async (
     }
   } else {
     if (
-      tempInfoType === TempInfoType.hours ||
-      tempInfoType === TempInfoType.message
+      tempInfoType === TempInfoType.HOURS ||
+      tempInfoType === TempInfoType.MESSAGE
     ) {
       place.tempInfos[tempInfoType].name = null;
     }
     if (
-      tempInfoType === TempInfoType.message ||
-      tempInfoType === TempInfoType.closure
+      tempInfoType === TempInfoType.MESSAGE ||
+      tempInfoType === TempInfoType.CLOSURE
     ) {
       place.tempInfos[tempInfoType].hours = null;
     }
   }
 
-  if (tempInfoType !== TempInfoType.message) {
+  if (tempInfoType !== TempInfoType.MESSAGE) {
     place.isOpenToday = await isPlaceOpenToday(place);
   }
 

@@ -23,19 +23,19 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <fa-icon
       [icon]="[
         'fas',
-        tempInfoType === TempInfoType.message
+        tempInfoType === TempInfoType.MESSAGE
           ? 'info-circle'
           : 'exclamation-triangle'
       ]"
     ></fa-icon>
 
-    <span *ngIf="tempInfoType === TempInfoType.message">
+    <span *ngIf="tempInfoType === TempInfoType.MESSAGE">
       {{ "INFO_TEMPORAIRE" | translate }}
     </span>
-    <span *ngIf="tempInfoType === TempInfoType.closure && !tempInfos.isService">
+    <span *ngIf="tempInfoType === TempInfoType.CLOSURE && !tempInfos.isService">
       {{ "FERMETURE_TEMPORAIRE" | translate }}
     </span>
-    <span *ngIf="tempInfoType === TempInfoType.closure && tempInfos.isService">
+    <span *ngIf="tempInfoType === TempInfoType.CLOSURE && tempInfos.isService">
       {{
         (tempInfos.infoColor === "warning"
           ? "SERVICE_FERMERA_TEMP"
@@ -43,7 +43,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         ) | translate
       }}
     </span>
-    <span *ngIf="tempInfoType === TempInfoType.hours">
+    <span *ngIf="tempInfoType === TempInfoType.HOURS">
       {{ "TEMPORARY_HOURS" | translate }}
     </span>
     {{ dateString }}
@@ -60,7 +60,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     ></div>
   </div>
 
-  <ng-container *ngIf="tempInfoType === TempInfoType.hours">
+  <ng-container *ngIf="tempInfoType === TempInfoType.HOURS">
     <button
       type="submit"
       class="btn btn-outline-primary btn-block mt-2"
@@ -81,7 +81,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   <ng-container
     *ngIf="
-      tempInfoType === TempInfoType.closure &&
+      tempInfoType === TempInfoType.CLOSURE &&
       displayHoursWhenTempClosed &&
       !admin
     "

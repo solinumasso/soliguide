@@ -92,18 +92,18 @@ export const buildTempInfo = (
   };
   if (
     [
-      TempInfoType.closure,
-      TempInfoType.hours,
-      TempInfoType.serviceClosure,
+      TempInfoType.CLOSURE,
+      TempInfoType.HOURS,
+      TempInfoType.SERVICE_CLOSURE,
     ].includes(tempInfo.tempInfoType)
   ) {
     newTempInfo.name = null;
   }
   if (
     [
-      TempInfoType.closure,
-      TempInfoType.message,
-      TempInfoType.serviceClosure,
+      TempInfoType.CLOSURE,
+      TempInfoType.MESSAGE,
+      TempInfoType.SERVICE_CLOSURE,
     ].includes(tempInfo.tempInfoType)
   ) {
     newTempInfo.hours = null;
@@ -209,7 +209,7 @@ export const getUpcomingTempInfo = (
           { dateDebut: { $lt: twoMonthsLater }, dateFin: { $gt: new Date() } },
         ],
         placeId: { $in: placesIds },
-        tempInfoType: { $ne: TempInfoType.serviceClosure },
+        tempInfoType: { $ne: TempInfoType.SERVICE_CLOSURE },
       },
     },
     {

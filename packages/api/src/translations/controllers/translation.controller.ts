@@ -519,14 +519,14 @@ export const deleteTempInfoTranslatedFields = async (
   place: ModelWithId<ApiPlace>
 ): Promise<void> => {
   if (
-    tempInfo.tempInfoType !== TempInfoType.serviceClosure &&
+    tempInfo.tempInfoType !== TempInfoType.SERVICE_CLOSURE &&
     tempInfo.description
   ) {
     const params: FilterQuery<ApiTranslatedField> = {
       lieu_id: place.lieu_id,
     };
 
-    if (tempInfo.tempInfoType === TempInfoType.message) {
+    if (tempInfo.tempInfoType === TempInfoType.MESSAGE) {
       params.$or = [
         {
           content: tempInfo.description,

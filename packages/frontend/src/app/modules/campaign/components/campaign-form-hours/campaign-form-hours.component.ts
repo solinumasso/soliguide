@@ -40,7 +40,6 @@ import { CurrentLanguageService } from "../../../general/services/current-langua
 
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { TranslateService } from "@ngx-translate/core";
-
 import { Place } from "../../../../models/place/classes";
 
 @Component({
@@ -85,7 +84,7 @@ export class CampaignFormHoursComponent
     this.loading = false;
     this.submitted = false;
 
-    this.tempInfoType = TempInfoType.hours;
+    this.tempInfoType = TempInfoType.HOURS;
     this.tempHours = new BasePlaceTempInfo();
     this.actualHours = new OpeningHours();
     this.isCampaign = true;

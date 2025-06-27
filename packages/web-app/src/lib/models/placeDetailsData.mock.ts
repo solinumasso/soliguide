@@ -39,8 +39,7 @@ import {
   FAMILY_DEFAULT_VALUES,
   GENDER_DEFAULT_VALUES,
   ADMINISTRATIVE_DEFAULT_VALUES,
-  OTHER_DEFAULT_VALUES,
-  PlaceTempInfo
+  OTHER_DEFAULT_VALUES
 } from '@soliguide/common';
 import { PlaceDetailsInfoType, type PlaceDetails } from './types';
 
@@ -579,7 +578,38 @@ const samplePlaceTransformed: PlaceDetails = {
       isSpecialPhoneNumber: false
     }
   ],
-  tempInfo: new PlaceTempInfo(samplePlace.tempInfos, false),
+  tempInfo: {
+    closure: {
+      actif: false,
+      dateDebut: null,
+      dateFin: null,
+      description: null,
+      infoColor: '',
+      name: null,
+      status: null,
+      hours: null
+    },
+    hours: {
+      actif: false,
+      dateDebut: null,
+      dateFin: null,
+      description: null,
+      infoColor: '',
+      name: null,
+      status: null,
+      hours: null
+    },
+    message: {
+      actif: false,
+      dateDebut: null,
+      dateFin: null,
+      description: null,
+      infoColor: '',
+      name: null,
+      status: null,
+      hours: null
+    }
+  },
   services: [
     {
       category: Categories.FOOD_DISTRIBUTION,
