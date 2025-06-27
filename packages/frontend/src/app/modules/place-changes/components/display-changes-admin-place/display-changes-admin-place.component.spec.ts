@@ -29,7 +29,7 @@ import { PlaceChanges } from "../../../../models/place-changes";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 
-import { PLACE_EN_LIGNE_MOCK } from "./../../../../../../mocks";
+import { ONLINE_PLACE_MOCK } from "./../../../../../../mocks";
 import { APP_BASE_HREF } from "@angular/common";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
@@ -57,7 +57,7 @@ describe("DisplayChangesAdminPlaceComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DisplayChangesAdminPlaceComponent);
     component = fixture.componentInstance;
-    component.place = PLACE_EN_LIGNE_MOCK;
+    component.place = ONLINE_PLACE_MOCK;
     component.changes = [new PlaceChanges()];
     fixture.detectChanges();
   });

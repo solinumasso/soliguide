@@ -24,7 +24,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import {
   ORGANIZATION_MOCK,
-  PLACE_EN_LIGNE_MOCK,
+  ONLINE_PLACE_MOCK,
   USER_PRO_MOCK,
   USER_SOLIGUIDE_MOCK,
 } from "../../../../../../mocks";
@@ -61,7 +61,7 @@ describe("RemovePlaceComponent", () => {
     authService.currentUserSubject.next(new User(USER_PRO_MOCK));
 
     component = fixture.componentInstance;
-    component.place = new Place(PLACE_EN_LIGNE_MOCK);
+    component.place = new Place(ONLINE_PLACE_MOCK);
     component.orga = new Organisation(ORGANIZATION_MOCK);
     fixture.detectChanges();
   });

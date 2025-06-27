@@ -37,7 +37,7 @@ import { CampaignService } from "../../../campaign/services/campaign.service";
 
 import { AuthService } from "../../../users/services/auth.service";
 
-import { PLACE_EN_LIGNE_MOCK } from "../../../../../../mocks/PLACE_EN_LIGNE.mock";
+import { ONLINE_PLACE_MOCK } from "../../../../../../mocks/ONLINE_PLACE.mock";
 import { CommonPosthogMockService } from "../../../../../../mocks/CommonPosthogMockService.mock";
 import { MockAuthService } from "../../../../../../mocks/MockAuthService";
 
@@ -68,9 +68,9 @@ describe("CampaignNoChangeModalComponent", () => {
     campaignService = TestBed.inject(CampaignService);
     jest
       .spyOn(campaignService, "setNoChangeForPlace")
-      .mockReturnValue(of(PLACE_EN_LIGNE_MOCK));
+      .mockReturnValue(of(ONLINE_PLACE_MOCK));
     component = fixture.componentInstance;
-    component.place = PLACE_EN_LIGNE_MOCK;
+    component.place = ONLINE_PLACE_MOCK;
     fixture.detectChanges();
   });
 

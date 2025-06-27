@@ -33,7 +33,7 @@ import { LieuPositionFormComponent } from "./lieu-position-form.component";
 
 import { AdminPlaceService } from "../../../services/admin-place.service";
 
-import { PLACE_EN_LIGNE_MOCK } from "../../../../../../../mocks";
+import { ONLINE_PLACE_MOCK } from "../../../../../../../mocks";
 
 describe("LieuPositionFormComponent", () => {
   let component: LieuPositionFormComponent;
@@ -59,7 +59,7 @@ describe("LieuPositionFormComponent", () => {
     adminPlaceService = TestBed.inject(AdminPlaceService);
     jest.spyOn(adminPlaceService, "checkInOrga").mockReturnValue(of(false));
     component = fixture.componentInstance;
-    component.place = PLACE_EN_LIGNE_MOCK;
+    component.place = ONLINE_PLACE_MOCK;
     fixture.detectChanges();
   });
 

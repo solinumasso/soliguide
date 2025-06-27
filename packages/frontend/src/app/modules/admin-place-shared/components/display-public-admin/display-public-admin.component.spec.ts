@@ -24,7 +24,7 @@ import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { TranslateModule } from "@ngx-translate/core";
 
 import { DisplayPublicAdminComponent } from "./display-public-admin.component";
-import { PLACE_EN_LIGNE_MOCK } from "../../../../../../mocks";
+import { ONLINE_PLACE_MOCK } from "../../../../../../mocks";
 
 describe("DisplayPublicAdminComponent", () => {
   let component: DisplayPublicAdminComponent;
@@ -40,7 +40,7 @@ describe("DisplayPublicAdminComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DisplayPublicAdminComponent);
     component = fixture.componentInstance;
-    component.publics = PLACE_EN_LIGNE_MOCK.publics;
+    component.publics = ONLINE_PLACE_MOCK.publics;
     component.languages = [];
     fixture.detectChanges();
   });

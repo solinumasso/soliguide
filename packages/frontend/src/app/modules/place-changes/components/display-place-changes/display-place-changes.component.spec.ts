@@ -27,7 +27,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ToastrModule } from "ngx-toastr";
 
 import { DisplayPlaceChangesComponent } from "./display-place-changes.component";
-import { PLACE_EN_LIGNE_MOCK } from "../../../../../../mocks/PLACE_EN_LIGNE.mock";
+import { ONLINE_PLACE_MOCK } from "../../../../../../mocks/ONLINE_PLACE.mock";
 import { PlaceChangesSection } from "@soliguide/common";
 import { TranslateModule } from "@ngx-translate/core";
 import { Place } from "../../../../models";
@@ -55,8 +55,8 @@ describe("DisplayPlaceChangesComponent", () => {
     fixture = TestBed.createComponent(DisplayPlaceChangesComponent);
     component = fixture.componentInstance;
 
-    component.oldPlace = { ...PLACE_EN_LIGNE_MOCK, services_all: [] };
-    component.placeChanged = { ...PLACE_EN_LIGNE_MOCK, services_all: [] };
+    component.oldPlace = { ...ONLINE_PLACE_MOCK, services_all: [] };
+    component.placeChanged = { ...ONLINE_PLACE_MOCK, services_all: [] };
     component.section = PlaceChangesSection.services;
     component.changeSection = "new";
 

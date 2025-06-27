@@ -47,7 +47,7 @@ import { Place } from "../../../../models/place/classes";
 
 import {
   CommonPosthogMockService,
-  PLACE_EN_LIGNE_MOCK,
+  ONLINE_PLACE_MOCK,
   PLACE_CONTACT_FOR_ADMIN_MOCK,
   USER_PRO_MOCK,
 } from "../../../../../../mocks";
@@ -105,7 +105,7 @@ describe("AdminPlaceComponent", () => {
     placeContactsService = TestBed.inject(PlaceContactsService);
 
     component = fixture.componentInstance;
-    component.place = new Place(PLACE_EN_LIGNE_MOCK);
+    component.place = new Place(ONLINE_PLACE_MOCK);
     component.me = new User(USER_PRO_MOCK);
 
     component.place.photos = [];
@@ -120,13 +120,13 @@ describe("AdminPlaceComponent", () => {
   it("doit s'initialiser correctement", () => {
     jest
       .spyOn(adminPlaceService, "getPlace")
-      .mockReturnValue(of(new Place(PLACE_EN_LIGNE_MOCK)));
+      .mockReturnValue(of(new Place(ONLINE_PLACE_MOCK)));
     jest.spyOn(adminPlaceService, "checkInOrga").mockReturnValue(of(true));
     jest
       .spyOn(placeContactsService, "getPlaceContacts")
       .mockReturnValue(of([PLACE_CONTACT_FOR_ADMIN_MOCK]));
 
     component.ngOnInit();
-    expect(component.place).toMatchObject(new Place(PLACE_EN_LIGNE_MOCK));
+    expect(component.place).toMatchObject(new Place(ONLINE_PLACE_MOCK));
   });
 });

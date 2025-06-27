@@ -135,7 +135,7 @@ const bree = new Bree({
       ),
     },
     {
-      interval: "at 3:30 am",
+      interval: "at 1:00 am",
       name: "[PLACES] Set isOpenToday on places",
       path: join(
         __dirname,

@@ -26,7 +26,7 @@ import { TempInfoType, TempInfoStatus } from "@soliguide/common";
 import { DisplayTempInfoAdminComponent } from "./display-temp-info-admin.component";
 
 import { SharedModule } from "../../../shared/shared.module";
-import { PLACE_EN_LIGNE_MOCK } from "../../../../../../mocks";
+import { ONLINE_PLACE_MOCK } from "../../../../../../mocks";
 import { Place } from "../../../../models";
 
 describe("DisplayTempInfoAdminComponent", () => {
@@ -55,7 +55,7 @@ describe("DisplayTempInfoAdminComponent", () => {
       placeId: 1,
       dateDebut: new Date(2021, 5, 21),
       dateFin: new Date(2021, 4, 21),
-      place: new Place(PLACE_EN_LIGNE_MOCK),
+      place: new Place(ONLINE_PLACE_MOCK),
       actif: true,
       isCampaign: false,
     };

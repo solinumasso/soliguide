@@ -47,7 +47,7 @@ import { SharedModule } from "../../../shared/shared.module";
 
 import {
   CommonPosthogMockService,
-  PLACE_EN_LIGNE_MOCK,
+  ONLINE_PLACE_MOCK,
 } from "../../../../../../mocks";
 import { MockAuthService } from "../../../../../../mocks/MockAuthService";
 import { PosthogService } from "../../../analytics/services/posthog.service";
@@ -96,7 +96,7 @@ describe("SearchComponent", () => {
     searchService = TestBed.inject(SearchService);
     jest
       .spyOn(searchService, "launchSearch")
-      .mockReturnValue(of({ places: [PLACE_EN_LIGNE_MOCK], nbResults: 1 }));
+      .mockReturnValue(of({ places: [ONLINE_PLACE_MOCK], nbResults: 1 }));
 
     locationService = TestBed.inject(LocationService);
     jest.spyOn(locationService, "locationAutoComplete").mockReturnValue(

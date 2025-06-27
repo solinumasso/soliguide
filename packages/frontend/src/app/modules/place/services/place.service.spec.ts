@@ -36,7 +36,7 @@ import { Place } from "../../../models/place/classes";
 
 import { environment } from "../../../../environments/environment";
 
-import { PLACE_EN_LIGNE_MOCK } from "../../../../../mocks";
+import { ONLINE_PLACE_MOCK } from "../../../../../mocks";
 
 describe("PlaceService", () => {
   let placeservice: PlaceService;
@@ -57,27 +57,27 @@ describe("PlaceService", () => {
   it("should return an Observable<Place>", () => {
     currentLanguageService.setCurrentLanguage(SupportedLanguagesCode.EN);
     placeservice
-      .getPlace(PLACE_EN_LIGNE_MOCK.seo_url)
+      .getPlace(ONLINE_PLACE_MOCK.seo_url)
       .subscribe((place: Place) => {
-        expect(place.seo_url).toBe(PLACE_EN_LIGNE_MOCK.seo_url);
+        expect(place.seo_url).toBe(ONLINE_PLACE_MOCK.seo_url);
       });
 
     const req = httpMock.expectOne(
-      `${environment.apiUrl}place/${PLACE_EN_LIGNE_MOCK.seo_url}/${currentLanguageService.currentLanguage}`
+      `${environment.apiUrl}place/${ONLINE_PLACE_MOCK.seo_url}/${currentLanguageService.currentLanguage}`
     );
     expect(req.request.method).toBe("GET");
-    req.flush(PLACE_EN_LIGNE_MOCK);
+    req.flush(ONLINE_PLACE_MOCK);
   });
 
   it("should return an Observable<boolean>", () => {
     placeservice
-      .canEditPlace(PLACE_EN_LIGNE_MOCK.seo_url)
+      .canEditPlace(ONLINE_PLACE_MOCK.seo_url)
       .subscribe((canEdit: boolean) => {
         expect(canEdit).toBe(true);
       });
 
     const req = httpMock.expectOne(
-      `${environment.apiUrl}admin/user-rights/can-edit/${PLACE_EN_LIGNE_MOCK.seo_url}`
+      `${environment.apiUrl}admin/user-rights/can-edit/${ONLINE_PLACE_MOCK.seo_url}`
     );
     expect(req.request.method).toBe("GET");
     req.flush(true);

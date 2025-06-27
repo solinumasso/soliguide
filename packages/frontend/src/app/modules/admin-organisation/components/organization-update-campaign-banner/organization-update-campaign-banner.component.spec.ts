@@ -31,12 +31,12 @@ import { User } from "../../../users/classes/user.class";
 import {
   CommonPosthogMockService,
   ORGANIZATION_MOCK,
-  PLACE_EN_LIGNE_MOCK,
+  ONLINE_PLACE_MOCK,
   USER_PRO_MOCK,
 } from "../../../../../../mocks";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 
-ORGANIZATION_MOCK.places.push(PLACE_EN_LIGNE_MOCK);
+ORGANIZATION_MOCK.places.push(ONLINE_PLACE_MOCK);
 
 describe("OrganizationUpdateCampaignBannerComponent", () => {
   let component: OrganizationUpdateCampaignBannerComponent;

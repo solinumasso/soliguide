@@ -38,7 +38,7 @@ import { SharedModule } from "../../../shared/shared.module";
 import { AuthService } from "../../../users/services/auth.service";
 import {
   CommonPosthogMockService,
-  PLACE_EN_LIGNE_MOCK,
+  ONLINE_PLACE_MOCK,
 } from "../../../../../../mocks";
 import { MockAuthService } from "../../../../../../mocks/MockAuthService";
 import { registerLocales } from "../../../../shared";
@@ -46,7 +46,7 @@ import { PosthogService } from "../../../analytics/services/posthog.service";
 
 const MOCK_SEARCH_RESULTS = {
   nbResults: 1,
-  places: [PLACE_EN_LIGNE_MOCK],
+  places: [ONLINE_PLACE_MOCK],
 };
 
 describe("ManagePlacesComponent", () => {

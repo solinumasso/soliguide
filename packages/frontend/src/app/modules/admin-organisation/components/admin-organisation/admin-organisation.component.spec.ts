@@ -45,7 +45,7 @@ import { SharedModule } from "../../../shared/shared.module";
 import {
   CommonPosthogMockService,
   ORGANIZATION_MOCK,
-  PLACE_EN_LIGNE_MOCK,
+  ONLINE_PLACE_MOCK,
   USER_PRO_MOCK,
 } from "../../../../../../mocks";
 import { MockAuthService } from "../../../../../../mocks/MockAuthService";
@@ -53,14 +53,14 @@ import { TranslateModule } from "@ngx-translate/core";
 import { PlaceForOrganization } from "../../types";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 
-PLACE_EN_LIGNE_MOCK.name = "Centre social";
+ONLINE_PLACE_MOCK.name = "Centre social";
 
-const PLACE_EN_LIGNE_COPY_MOCK = new Place(
-  JSON.parse(JSON.stringify(PLACE_EN_LIGNE_MOCK))
+const ONLINE_PLACE_COPY_MOCK = new Place(
+  JSON.parse(JSON.stringify(ONLINE_PLACE_MOCK))
 );
 
-PLACE_EN_LIGNE_COPY_MOCK._id = PLACE_EN_LIGNE_MOCK._id + "_copy";
-PLACE_EN_LIGNE_COPY_MOCK.name = "Accueil de jour";
+ONLINE_PLACE_COPY_MOCK._id = ONLINE_PLACE_MOCK._id + "_copy";
+ONLINE_PLACE_COPY_MOCK.name = "Accueil de jour";
 
 const USER_PRO_COPY_MOCK = new User(
   JSON.parse(JSON.stringify({ ...USER_PRO_MOCK, name: "Bastien" }))
@@ -68,7 +68,7 @@ const USER_PRO_COPY_MOCK = new User(
 USER_PRO_COPY_MOCK._id = USER_PRO_MOCK._id + "_copy";
 USER_PRO_COPY_MOCK.name = "Amandine";
 
-ORGANIZATION_MOCK.places = [PLACE_EN_LIGNE_MOCK, PLACE_EN_LIGNE_COPY_MOCK];
+ORGANIZATION_MOCK.places = [ONLINE_PLACE_MOCK, ONLINE_PLACE_COPY_MOCK];
 
 describe("AdminOrganisationComponent", () => {
   let component: AdminOrganisationComponent;

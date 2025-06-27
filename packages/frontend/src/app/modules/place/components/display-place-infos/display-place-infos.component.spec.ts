@@ -21,7 +21,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
-import { PLACE_EN_LIGNE_MOCK } from "../../../../../../mocks/PLACE_EN_LIGNE.mock";
+import { ONLINE_PLACE_MOCK } from "../../../../../../mocks/ONLINE_PLACE.mock";
 
 import { Place } from "../../../../models/place/classes";
 
@@ -47,7 +47,7 @@ describe("DisplayPlaceInfosComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DisplayPlaceInfosComponent);
     component = fixture.componentInstance;
-    component.place = new Place(PLACE_EN_LIGNE_MOCK);
+    component.place = new Place(ONLINE_PLACE_MOCK);
     fixture.detectChanges();
   });
 
