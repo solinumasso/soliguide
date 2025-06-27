@@ -19,11 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { NextFunction } from "express";
-import {
-  ExpressRequest,
-  ExpressResponse,
-  InvitationPopulate,
-} from "../../_models";
+import { ExpressRequest, ExpressResponse } from "../../_models";
 
 import { hasAdminAccessToOrga } from "../../_utils/adminSolinum.functions";
 
@@ -31,6 +27,7 @@ import { getInvitationByToken } from "../../user/services/invitations.service";
 
 import { countUserRights } from "../../user/services/userRights.service";
 import { UserRole, UserRightStatus } from "@soliguide/common";
+import { InvitationPopulate } from "../../user/interfaces";
 
 export const canManageInvitation = async (
   req: ExpressRequest & {

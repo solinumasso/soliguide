@@ -18,9 +18,10 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { User, UserPopulateType } from "../../_models";
+
 import { hashPassword } from "../../_utils";
 import { DEFAULT_USER_POPULATE } from "../constants";
+import { User, UserPopulateType } from "../interfaces";
 
 import { UserModel } from "../models/user.model";
 

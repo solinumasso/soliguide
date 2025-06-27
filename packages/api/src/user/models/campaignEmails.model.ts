@@ -19,8 +19,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import mongoose from "mongoose";
-import type { UserCampaignEmails } from "../../_models/users";
+
 import { MG_EVENT_STRING_SORTED, EmailEvents } from "../../_models/emailing";
+import { UserCampaignEmails } from "../types";
 
 const DEFAULT_VALUE = {
   done: { default: false, type: Boolean },

@@ -37,25 +37,20 @@ import {
   updateUser,
 } from "../services/users.service";
 
-import {
-  CONFIG,
-  type InvitationPopulate,
-  type ModelWithId,
-  type OrganizationPopulate,
-  type User,
-  type UserPopulateType,
-} from "../../_models";
+import { CONFIG, type OrganizationPopulate } from "../../_models";
 
 import { getMongoId } from "../../_utils/functions/mongo";
 import { mongooseConnection } from "../../config/database/connection";
 import { logger as defaultLogger } from "../../general/logger";
 import { pullUserFromOrganization } from "../../organization/services";
 import { generateSearchOptions } from "../../search/utils";
+import { UserForSearch } from "../types";
+import { InvitationPopulate, UserPopulateType } from "../interfaces";
 
 export const searchUsers = async (
   searchUsersData: any,
-  user: ModelWithId<User>
-): Promise<SearchResults<ModelWithId<User>>> => {
+  user: UserForSearch
+): Promise<SearchResults<UserPopulateType>> => {
   const searchUsersQuery = generateSearchUserQuery(searchUsersData, user);
 
   const nbResults = await countUsers(searchUsersQuery);

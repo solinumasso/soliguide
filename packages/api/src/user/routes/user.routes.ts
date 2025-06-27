@@ -43,8 +43,6 @@ import { sendUserForAuth } from "../utils";
 import {
   type ExpressRequest,
   type ExpressResponse,
-  type SignupUser,
-  UserFactory,
   AirtableEntityType,
 } from "../../_models";
 
@@ -65,6 +63,7 @@ import {
   capturePasswordReset,
   capturePasswordResetToken,
 } from "../middlewares/capture-user-event.middleware";
+import { SignupUser } from "../interfaces";
 
 const router = express.Router();
 
@@ -112,7 +111,7 @@ router.post(
 
       if (
         validateUserStatusWithEmail(
-          signupUserPayload.status,
+          signupUserPayload.status as UserStatus,
           signupUserPayload.mail
         ) !== null
       ) {
@@ -382,12 +381,11 @@ router.patch(
       if (patchedUser) {
         patchedUser.type = req.user.type;
       }
-      req.user = UserFactory.createUser(patchedUser!);
 
-      req.airtableEntity = req.user;
+      req.airtableEntity = patchedUser;
       req.airtableEntityType = AirtableEntityType.USER;
 
-      res.status(200).json(req.user);
+      res.status(200).json(patchedUser);
       return next();
     } catch (e) {
       req.log.error(e);

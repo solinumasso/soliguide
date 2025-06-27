@@ -20,7 +20,8 @@
  */
 import { UserRole, UserRightStatus, ApiPlace } from "@soliguide/common";
 import mongoose from "mongoose";
-import { OrganizationPopulate, UserRight, ModelWithId } from "../../_models";
+import { OrganizationPopulate, ModelWithId } from "../../_models";
+import { UserRight } from "../interfaces";
 
 export const createUserRights = (
   user: { user_id: number; _id: mongoose.Types.ObjectId },

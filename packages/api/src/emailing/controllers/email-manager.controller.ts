@@ -34,8 +34,6 @@ import {
   MG_EVENT_STRING_SORTED,
   CampaignEmailNameToSync,
   type CampaignEmails,
-  type UserPopulateType,
-  type User,
 } from "../../_models";
 
 import { logger } from "../../general/logger";
@@ -44,6 +42,7 @@ import { updateUser } from "../../user/services";
 import { PosthogClient } from "../../analytics/services";
 import { TRACKED_EVENTS } from "../../analytics/constants";
 import { generateSearchOptions, parseTerritories } from "../../search/utils";
+import { User, UserPopulateType } from "../../user/interfaces";
 
 export const searchEmail = async (searchEmail: any, user: UserPopulateType) => {
   const query: FilterQuery<CampaignEmails> = {};

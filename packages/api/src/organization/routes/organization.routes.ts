@@ -29,7 +29,6 @@ import {
   ExpressRequest,
   ExpressResponse,
   OrganizationPopulate,
-  UserPopulateType,
 } from "../../_models";
 
 import { createOrgaDto, patchOrgaDto, searchOrgasDto } from "../dto";
@@ -61,6 +60,7 @@ import {
   patchOrganization,
   removeOrganization,
 } from "../controllers/organization.controller";
+import { UserPopulateType } from "../../user/interfaces";
 
 /**
  * @swagger

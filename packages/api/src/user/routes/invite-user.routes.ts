@@ -27,7 +27,6 @@ import {
   AirtableEntityType,
   ExpressRequest,
   ExpressResponse,
-  InvitationPopulate,
 } from "../../_models";
 import { setEntityExcludedOrNotAndNext } from "../../airtable/services/airtableEntity.service";
 
@@ -60,6 +59,7 @@ import {
   captureSendInvitation,
   captureWelcomeEvent,
 } from "../middlewares/capture-inivitation-event.middleware";
+import { InvitationPopulate } from "../interfaces";
 
 const router = express.Router();
 
