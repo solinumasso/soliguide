@@ -20,4 +20,5 @@
  */
 // @index('./*', f => `export * from '${f.path}'`)
 export * from "./auto-complete.model";
+export * from "./search-suggestion.model";
 export * from "./subschemas";
