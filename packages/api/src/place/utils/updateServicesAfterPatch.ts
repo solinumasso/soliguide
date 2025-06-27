@@ -28,24 +28,17 @@ export const updateServicesAfterPatch = async (place: ApiPlace) => {
         // 1. Opening hours copy
         if (!service.differentHours) {
           service.hours = place.newhours;
-          service.hours.description = null;
         }
 
         // 2. Welcomed publics copy
         if (!service.differentPublics) {
           service.publics = place.publics;
-          service.publics.description = null;
         }
 
         // 3. Access conditions copy
         if (!service.differentModalities) {
           service.modalities = place.modalities;
-          service.modalities.appointment.precisions = null;
-          service.modalities.inscription.precisions = null;
-          service.modalities.orientation.precisions = null;
-          service.modalities.price.precisions = null;
           service.modalities.docs = [];
-          service.modalities.other = null;
         }
 
         // 4. 'isOpenToday' update
@@ -55,6 +48,5 @@ export const updateServicesAfterPatch = async (place: ApiPlace) => {
       })
     );
   }
-
   return place.services_all;
 };
