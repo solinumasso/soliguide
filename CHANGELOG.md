@@ -1,3 +1,17 @@
+# [4.94.0](https://github.com/solinumasso/soliguide/compare/v4.93.0...v4.94.0) (2025-06-27)
+
+
+### Bug Fixes
+
+* fix weblate conflict and import missing translations [#495](https://github.com/solinumasso/soliguide/issues/495) ([39d9cee](https://github.com/solinumasso/soliguide/commit/39d9ceeaffa2f9c1839af70587682085d2a97836)), closes [#653](https://github.com/solinumasso/soliguide/issues/653)
+* **frontend:** add soligare pairing delete error handling [#669](https://github.com/solinumasso/soliguide/issues/669) ([1025d5f](https://github.com/solinumasso/soliguide/commit/1025d5fec19499bdcb539b574bf34e4c3c8690f8))
+
+
+### Features
+
+* add test [#669](https://github.com/solinumasso/soliguide/issues/669) ([601fd9a](https://github.com/solinumasso/soliguide/commit/601fd9a02c051cee12a94f0ee231d323ed7c0c96))
+* **api:** migration to set isOpenToday [#679](https://github.com/solinumasso/soliguide/issues/679) ([5e5ef24](https://github.com/solinumasso/soliguide/commit/5e5ef24d96826bf9cad3b9fa2baa207b1293e96d))
+
 # [4.93.0](https://github.com/solinumasso/soliguide/compare/v4.92.1...v4.93.0) (2025-06-19)
 
 
