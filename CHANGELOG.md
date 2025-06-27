@@ -1,3 +1,10 @@
+## [4.94.1](https://github.com/solinumasso/soliguide/compare/v4.94.0...v4.94.1) (2025-06-27)
+
+
+### Bug Fixes
+
+* **api:** reset isOpenToday [#704](https://github.com/solinumasso/soliguide/issues/704) ([#705](https://github.com/solinumasso/soliguide/issues/705)) ([52b9ff2](https://github.com/solinumasso/soliguide/commit/52b9ff21cbd470b2d83f5c443d4f543b63e5afab))
+
 # [4.94.0](https://github.com/solinumasso/soliguide/compare/v4.93.0...v4.94.0) (2025-06-27)
 
 
