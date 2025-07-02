@@ -28,7 +28,7 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 export class HelperNotificationComponent {
   @Input() public title!: string;
   @Input() public message!: string;
-  @Input() public link!: string;
+  @Input() public link!: (string | number)[];
   @Input() public buttonMessage!: string;
   @Input() public type!: string;
 

@@ -527,7 +527,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       <app-helper-notification
         [title]="'UPDATE_CAMPAIGN' | translate"
         [message]="'UPDATE_PERIOD_INFORMATION' | translate"
-        [routerLink]="[routePrefix, 'campaign', 'fiche', place.lieu_id]"
+        [link]="[routePrefix, 'campaign', 'fiche', place.lieu_id]"
         [buttonMessage]="'TO_UPDATE' | translate"
         *ngIf="
           campaignIsActive &&
@@ -724,7 +724,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         "
         [title]="'TEMPORARY_CLOSURE' | translate"
         [message]="'PLAN_CLOSURE' | translate"
-        [routerLink]="[
+        [link]="[
           routePrefix,
           'admin-place',
           'temp-infos',
@@ -743,7 +743,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         "
         [title]="'TEMPORARY_SCHEDULE' | translate"
         [message]="'PLAN_TEMPORARY_SCHEDULE' | translate"
-        [routerLink]="[
+        [link]="[
           routePrefix,
           'admin-place',
           'temp-infos',
@@ -761,7 +761,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         "
         [title]="'TEMPORARY_MESSAGE' | translate"
         [message]="'PLAN_TEMPORARY_MESSAGE' | translate"
-        [routerLink]="[
+        [link]="[
           routePrefix,
           'admin-place',
           'temp-infos',

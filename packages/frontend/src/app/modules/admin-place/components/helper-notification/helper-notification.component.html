@@ -26,7 +26,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     {{ message }}
   </p>
   <div *ngIf="link">
-    <a [routerLink]="[link]" class="btn btn-sm btn-primary">
+    <a
+      [routerLink]="link"
+      class="btn btn-sm btn-primary"
+      (click)="clickFunction?.emit()"
+    >
       {{ buttonMessage }}
     </a>
   </div>
