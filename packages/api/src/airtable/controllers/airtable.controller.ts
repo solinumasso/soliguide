@@ -98,28 +98,44 @@ export const syncAirtableRecords = async (
 
   try {
     for (const airtableEntity of entities) {
-      airtableEntity.atSync.airtableId = await getAirtableIdIfRecordExists(
-        airtableEntityType,
-        getEntityId(airtableEntity, airtableEntityType),
-        airtableEntity.atSync?.airtableId,
-        airtableEntity.mail
-      );
+      try {
+        airtableEntity.atSync.airtableId = await getAirtableIdIfRecordExists(
+          airtableEntityType,
+          getEntityId(airtableEntity, airtableEntityType),
+          airtableEntity.atSync?.airtableId,
+          airtableEntity.mail
+        );
 
-      // If there is an airtableId, this means the record already exists
-      if (airtableEntity.atSync.airtableId) {
-        updateContent.push(
-          generateContentForUpdate(frontUrl, airtableEntityType, airtableEntity)
+        // If there is an airtableId, this means the record already exists
+        if (airtableEntity.atSync.airtableId) {
+          updateContent.push(
+            generateContentForUpdate(
+              frontUrl,
+              airtableEntityType,
+              airtableEntity
+            )
+          );
+          updateEntityIds.push(getEntityId(airtableEntity, airtableEntityType));
+        } else {
+          creationContent.push(
+            generateContentForCreation(
+              frontUrl,
+              airtableEntityType,
+              airtableEntity
+            )
+          );
+          creationEntityIds.push(
+            getEntityId(airtableEntity, airtableEntityType)
+          );
+        }
+      } catch (e) {
+        logger.error(
+          `Error processing ${airtableEntityType} with ID ${getEntityId(
+            airtableEntity,
+            airtableEntityType
+          )}: ${e.message}`
         );
-        updateEntityIds.push(getEntityId(airtableEntity, airtableEntityType));
-      } else {
-        creationContent.push(
-          generateContentForCreation(
-            frontUrl,
-            airtableEntityType,
-            airtableEntity
-          )
-        );
-        creationEntityIds.push(getEntityId(airtableEntity, airtableEntityType));
+        continue;
       }
     }
 
