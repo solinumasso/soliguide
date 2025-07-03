@@ -25,6 +25,8 @@ import { CONFIG } from "../../_models";
 
 mongoose.set("strictQuery", true);
 
+console.log(CONFIG.MONGODB_URI);
+
 // Create the database connection
 mongoose.connect(CONFIG.MONGODB_URI, {
   maxIdleTimeMS: 50000,
