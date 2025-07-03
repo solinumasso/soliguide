@@ -20,10 +20,8 @@
  */
 import {
   CAMPAIGN_DEFAULT_NAME,
-  CampaignStatus,
   PAIRING_SOURCES,
-  PlaceStatus,
-  PlaceUpdateCampaign,
+  PairingSources,
 } from "@soliguide/common";
 
 import { Db, ObjectId } from "mongodb";
@@ -41,83 +39,39 @@ export const up = async (db: Db) => {
 
   logger.info(`Reset field 'campaigns.${CAMPAIGN_DEFAULT_NAME}' in places`);
 
-  await db.collection("lieux").updateMany(
-    {},
-    {
-      $set: {
-        [`campaigns.${CAMPAIGN_DEFAULT_NAME}`]: new PlaceUpdateCampaign(),
-      },
-    }
-  );
-
-  const externalSourceOriginFilter = {
-    $or: [
-      { name: "Croix-Rouge française" },
-      {
-        name: {
-          $in: PAIRING_SOURCES.filter(
-            (source) => source !== "Croix-Rouge française"
-          ),
-        },
-        isOrigin: true,
-      },
-    ],
-  };
-
   logger.info("[MIGRATION] [RESET] Add 'toUpdate' to places online & offline");
   await db.collection("lieux").updateMany(
     {
-      status: { $in: [PlaceStatus.ONLINE, PlaceStatus.OFFLINE] },
-      $or: [
-        { sources: { $exists: false } },
-        {
-          sources: {
-            $not: {
-              $elemMatch: externalSourceOriginFilter,
+      sources: {
+        $elemMatch: {
+          $or: [
+            { name: "Croix-Rouge française" },
+            {
+              name: {
+                $in: PAIRING_SOURCES.filter(
+                  (source) => source !== PairingSources.CRF
+                ),
+              },
+              isOrigin: true,
             },
-          },
+          ],
         },
-      ],
+      },
     },
     {
       $set: {
-        [`campaigns.${CAMPAIGN_DEFAULT_NAME}.toUpdate`]: true,
+        [`campaigns.${CAMPAIGN_DEFAULT_NAME}.toUpdate`]: false,
       },
     }
-  );
-
-  const excludedCount = await db.collection("lieux").countDocuments({
-    status: { $in: [PlaceStatus.ONLINE, PlaceStatus.OFFLINE] },
-    sources: {
-      $elemMatch: externalSourceOriginFilter,
-    },
-  });
-
-  logger.info(
-    `[MIGRATION] [SKIPPED] ${excludedCount} external-source places were excluded from 'toUpdate'`
   );
 
   logger.info(
     `[MIGRATION] [RESET] Reset field 'campaigns.${CAMPAIGN_DEFAULT_NAME}' in organizations`
   );
-  await db.collection("organization").updateMany(
-    {},
-    {
-      $set: {
-        [`campaigns.${CAMPAIGN_DEFAULT_NAME}`]: {
-          autonomyRate: 0,
-          endDate: null,
-          startDate: null,
-          status: CampaignStatus.TO_DO,
-          toUpdate: false,
-        },
-      },
-    }
-  );
 
   const places = await db
     .collection("lieux")
-    .find({ [`campaigns.${CAMPAIGN_DEFAULT_NAME}.toUpdate`]: true })
+    .find({ [`campaigns.${CAMPAIGN_DEFAULT_NAME}.toUpdate`]: false })
     .project({ _id: 1 })
     .toArray();
 
@@ -130,7 +84,7 @@ export const up = async (db: Db) => {
     { places: { $in: placeIds } },
     {
       $set: {
-        [`campaigns.${CAMPAIGN_DEFAULT_NAME}.toUpdate`]: true,
+        [`campaigns.${CAMPAIGN_DEFAULT_NAME}.toUpdate`]: false,
       },
     }
   );
