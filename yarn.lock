@@ -12541,6 +12541,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@typescript-eslint/utils@npm:7.18.0":
+  version: 7.18.0
+  resolution: "@typescript-eslint/utils@npm:7.18.0"
+  dependencies:
+    "@eslint-community/eslint-utils": "npm:^4.4.0"
+    "@typescript-eslint/scope-manager": "npm:7.18.0"
+    "@typescript-eslint/types": "npm:7.18.0"
+    "@typescript-eslint/typescript-estree": "npm:7.18.0"
+  peerDependencies:
+    eslint: ^8.56.0
+  checksum: 10c0/a25a6d50eb45c514469a01ff01f215115a4725fb18401055a847ddf20d1b681409c4027f349033a95c4ff7138d28c3b0a70253dfe8262eb732df4b87c547bd1e
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/utils@npm:8.30.1":
   version: 8.30.1
   resolution: "@typescript-eslint/utils@npm:8.30.1"
@@ -12553,6 +12567,21 @@ __metadata:
     eslint: ^8.57.0 || ^9.0.0
     typescript: ">=4.8.4 <5.9.0"
   checksum: 10c0/ad54aa386edc2e19957c73ef25eea3e263e7e15e941c72e91ca6c8ea2536979d343a6069de0e40b15f0e732ddaacbfcc3d5f25a1583e11a32120c42c471802ea
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/utils@npm:8.32.0":
+  version: 8.32.0
+  resolution: "@typescript-eslint/utils@npm:8.32.0"
+  dependencies:
+    "@eslint-community/eslint-utils": "npm:^4.7.0"
+    "@typescript-eslint/scope-manager": "npm:8.32.0"
+    "@typescript-eslint/types": "npm:8.32.0"
+    "@typescript-eslint/typescript-estree": "npm:8.32.0"
+  peerDependencies:
+    eslint: ^8.57.0 || ^9.0.0
+    typescript: ">=4.8.4 <5.9.0"
+  checksum: 10c0/b5b65555b98c8fc92ec016ce2329f644b4d09def28c36422ce77aad9eda1b4dae009bf97b684357e97dd15de66dddba7d8d86e426e11123dae80f7ca2b4f9bd4
   languageName: node
   linkType: hard
 
@@ -32494,7 +32523,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:5.8.3, typescript@npm:>=3 < 6, typescript@npm:^4.9.4 || ^5.0.0, typescript@npm:^5.0.0, typescript@npm:^5.0.3, typescript@npm:^5.4.5":
+"typescript@npm:5.8.3, typescript@npm:>=3 < 6, typescript@npm:^4.9.4 || ^5.0.0, typescript@npm:^5.0.0, typescript@npm:^5.0.3, typescript@npm:^5.4.5, typescript@npm:^5.8.3":
   version: 5.8.3
   resolution: "typescript@npm:5.8.3"
   bin:
@@ -32534,13 +32563,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A>=3 < 6#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^4.9.4 || ^5.0.0#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.0.0#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.0.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.4.5#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A>=3 < 6#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^4.9.4 || ^5.0.0#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.0.0#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.0.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.4.5#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.8.3#optional!builtin<compat/typescript>":
   version: 5.8.3
-  resolution: "typescript@patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=8c6c40"
+  resolution: "typescript@patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/92ea03509e06598948559ddcdd8a4ae5a7ab475766d5589f1b796f5731b3d631a4c7ddfb86a3bd44d58d10102b132cd4b4994dda9b63e6273c66d77d6a271dbd
+  checksum: 10c0/39117e346ff8ebd87ae1510b3a77d5d92dae5a89bde588c747d25da5c146603a99c8ee588c7ef80faaf123d89ed46f6dbd918d534d641083177d5fac38b8a1cb
   languageName: node
   linkType: hard
 

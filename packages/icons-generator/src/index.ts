@@ -47,12 +47,24 @@ const generateFont = async (): Promise<void> => {
   }).start();
 
   const options: SvgToFontOptions = {
+    config: {
+      mustExist: true,
+    },
+    svgicons2svgfont: {
+      normalize: true,
+      fontHeight: 1000,
+      descent: 0,
+      fixedWidth: true, // Optionnel : largeur fixe pour tous les icônes
+      centerHorizontally: true, // Optionnel : centrage horizontal
+      centerVertically: true, // Optionnel : centrage vertical
+    },
     fontName: "categories-icons",
     classNamePrefix: "category-icon",
     src: resolve(process.cwd(), SOURCE_SVG_DIR),
     dist: resolve(process.cwd(), "fonts"),
     excludeFormat: ["eot", "ttf", "svg", "symbol.svg"],
     css: true,
+    log: true,
     website: {
       title: "Soliguide categories icons",
       logo: resolve(process.cwd(), "soliguide.svg"),
