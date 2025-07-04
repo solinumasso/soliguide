@@ -22,7 +22,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <b>
     {{ dateString | ucFirst }}
   </b>
-  <ng-container *ngIf="tempInfo.tempInfoType === TempInfoType.closure">
+  <ng-container *ngIf="tempInfo.tempInfoType === TempInfoType.CLOSURE">
     <p
       *ngIf="tempInfo.description"
       class="m-0 p-0"
@@ -30,7 +30,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     ></p>
   </ng-container>
 
-  <ng-container *ngIf="tempInfo.tempInfoType === TempInfoType.message">
+  <ng-container *ngIf="tempInfo.tempInfoType === TempInfoType.MESSAGE">
     <br />
     <b>{{ tempInfo?.name }}</b>
     <p
@@ -38,7 +38,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       class="m-0 p-0"
       [innerHTML]="tempInfo.description"
     ></p> </ng-container
-  ><ng-container *ngIf="tempInfo.tempInfoType === TempInfoType.hours">
+  ><ng-container *ngIf="tempInfo.tempInfoType === TempInfoType.HOURS">
     <p
       *ngIf="tempInfo.description"
       class="m-0 p-0"

@@ -43,7 +43,7 @@ describe("parseTempInfo", () => {
       translator,
       SupportedLanguagesCode.EN,
       upComingTempInfo[0].tempInfo,
-      TempInfoType.closure
+      TempInfoType.CLOSURE
     );
 
     expect(result).toEqual(

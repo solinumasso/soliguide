@@ -35,9 +35,9 @@ export const startAndEndDateDto = (path = "") => {
         .exists(CHECK_STRING_NULL)
         .custom((value) => isValidDate(value))
         .customSanitizer((value) => {
-          const givenStartDate = new Date(value);
-          givenStartDate.setUTCHours(0, 0, 0);
-          return givenStartDate;
+          const date = new Date(value);
+          date.setUTCHours(0, 0, 0);
+          return date;
         }),
 
       body("dateFin")
@@ -50,8 +50,7 @@ export const startAndEndDateDto = (path = "") => {
         })
         .custom(
           (value, { req }) =>
-            !value.dateFin ||
-            differenceInCalendarDays(req.body.dateDebut, value.dateFin) <= 0
+            !value || differenceInCalendarDays(req.body.dateDebut, value) <= 0
         ),
     ];
   }
@@ -63,26 +62,34 @@ export const startAndEndDateDto = (path = "") => {
           if (!isValidDate(value.dateDebut)) {
             return false;
           }
-
           const dateFin = value.dateFin;
-
           return !dateFin || isValidDate(dateFin);
         }
-
         return true;
       })
       .customSanitizer((value) => {
-        let dateDebut;
-        let dateFin;
-
-        if (value.actif) {
-          dateDebut = new Date(value.dateDebut).setUTCHours(0, 0, 0);
-          dateFin = value.dateFin
-            ? new Date(value.dateFin).setUTCHours(23, 59, 59)
-            : null;
+        if (!value.actif) {
+          return {
+            ...value,
+            dateDebut: null,
+            dateFin: null,
+          };
         }
 
-        return { ...value, dateDebut, dateFin };
+        const dateDebut = new Date(value.dateDebut);
+        dateDebut.setUTCHours(0, 0, 0);
+
+        let dateFin = null;
+        if (value.dateFin) {
+          dateFin = new Date(value.dateFin);
+          dateFin.setUTCHours(23, 59, 59);
+        }
+
+        return {
+          ...value,
+          dateDebut,
+          dateFin,
+        };
       })
       .custom((value) => {
         if (value.actif) {
@@ -91,7 +98,6 @@ export const startAndEndDateDto = (path = "") => {
             differenceInCalendarDays(value.dateDebut, value.dateFin) <= 0
           );
         }
-
         return true;
       }),
   ];

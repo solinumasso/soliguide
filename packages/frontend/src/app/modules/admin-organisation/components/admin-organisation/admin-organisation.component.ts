@@ -191,7 +191,6 @@ export class AdminOrganisationComponent implements OnInit, OnDestroy {
     );
   };
 
-  // skipcq: JS-0323
   public captureEvent(eventName: string, properties?: PosthogProperties) {
     this.posthogService.capture(`admin-orga-${eventName}`, {
       organizationId: this.organisation._id,

@@ -83,7 +83,7 @@ export class CampaignFormClosedComponent
     this.loading = false;
     this.submitted = false;
 
-    this.tempInfoType = TempInfoType.closure;
+    this.tempInfoType = TempInfoType.CLOSURE;
 
     this.isCampaign = true;
   }

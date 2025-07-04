@@ -44,7 +44,6 @@ import {
 import cloneDeep from "lodash.clonedeep";
 
 import { CampaignsForPlace } from "./campaigns-for-place.class";
-
 import { Photo } from "./photo.class";
 import { PlaceParcours } from "./place-parcours.class";
 import { PlacePosition } from "./place-position.class";

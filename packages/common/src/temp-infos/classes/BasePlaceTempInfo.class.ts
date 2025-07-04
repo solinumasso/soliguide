@@ -18,9 +18,12 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { TempInfo, getInfoColor, InfoColor, TempInfoStatus } from "..";
-import { OpeningHours } from "../../hours";
+import { computeValidity } from "../functions";
 import { formatInTimeZone } from "date-fns-tz";
+import { InfoColor } from "../types";
+import { OpeningHours } from "../../hours";
+import { TempInfo } from "../interfaces";
+import { TempInfoStatus } from "../enums";
 
 export class BasePlaceTempInfo {
   public _id?: string;
@@ -79,7 +82,7 @@ export class BasePlaceTempInfo {
       this.serviceActif = this.isService && this.actif;
     }
 
-    const validity = getInfoColor(this.dateDebut, this.dateFin);
+    const validity = computeValidity(this.dateDebut, this.dateFin);
 
     this.actif = validity.active;
     this.infoColor = validity.infoColor;

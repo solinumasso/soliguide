@@ -200,36 +200,32 @@ export class CampaignFormServicesComponent implements OnInit {
     }
   }
 
-  private generateCategorySpecificFieldsDisplay = (service: Service) => {
-    return this.CATEGORIES_SPECIFIC_FIELDS_CATEGORY_MAPPING[service.category]
-      ? this.CATEGORIES_SPECIFIC_FIELDS_CATEGORY_MAPPING[service.category]
-          .filter(
-            (categorySpecificField) =>
-              service.categorySpecificFields[categorySpecificField]
-          )
-          .map((categorySpecificField) =>
-            CATEGORIES_SPECIFIC_FIELDS_FIELD_TYPE.enumType.includes(
-              categorySpecificField
-            )
-              ? this.translateService.instant(
-                  service.categorySpecificFields[
-                    categorySpecificField
-                  ].toUpperCase()
-                )
-              : CATEGORIES_SPECIFIC_FIELDS_FIELD_TYPE.checklist.includes(
-                  categorySpecificField
-                )
-              ? service.categorySpecificFields[categorySpecificField]
-                  .map((value) =>
-                    this.translateService.instant(value.toUpperCase())
-                  )
-                  .join(", ")
-              : service.categorySpecificFields[categorySpecificField]
-          )
-          .filter((categorySpecificFieldValue) => categorySpecificFieldValue)
-          .join(" - ")
-      : "";
-  };
+  private generateCategorySpecificFieldsDisplay(service: Service): string {
+    const fieldsMapping =
+      this.CATEGORIES_SPECIFIC_FIELDS_CATEGORY_MAPPING[service.category];
+
+    if (!fieldsMapping) return "";
+
+    return fieldsMapping
+      .filter((field) => service.categorySpecificFields?.[field])
+      .map((field) => {
+        const value = service.categorySpecificFields[field];
+
+        if (CATEGORIES_SPECIFIC_FIELDS_FIELD_TYPE.enumType.includes(field)) {
+          return this.translateService.instant(value.toUpperCase());
+        }
+
+        if (CATEGORIES_SPECIFIC_FIELDS_FIELD_TYPE.checklist.includes(field)) {
+          return value
+            .map((v: string) => this.translateService.instant(v.toUpperCase()))
+            .join(", ");
+        }
+
+        return value;
+      })
+      .filter(Boolean)
+      .join(" - ");
+  }
 
   private captureEvent(
     eventName: string,

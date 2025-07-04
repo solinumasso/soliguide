@@ -34,6 +34,7 @@ export class PublicsGenderService {
       SELECT *
       FROM ${connection(schema)}.publics_gender
       WHERE id = ${id}
+      LIMIT 1
     `;
 
     const publicsGender: PublicsGender[] = [];

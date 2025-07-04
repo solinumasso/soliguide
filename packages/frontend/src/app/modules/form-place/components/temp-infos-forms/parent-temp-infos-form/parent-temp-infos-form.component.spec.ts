@@ -59,7 +59,7 @@ describe("ParentTempInfosFormComponent", () => {
           useValue: {
             params: of({
               lieu_id: "10",
-              tempInfoType: TempInfoType.closure,
+              tempInfoType: TempInfoType.CLOSURE,
             }),
           },
         },
@@ -76,7 +76,7 @@ describe("ParentTempInfosFormComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ParentTempInfosFormComponent);
     component = fixture.componentInstance;
-    component.tempInfoType = TempInfoType.closure;
+    component.tempInfoType = TempInfoType.CLOSURE;
     fixture.detectChanges();
   });
 
