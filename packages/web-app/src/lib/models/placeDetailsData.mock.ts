@@ -547,50 +547,10 @@ const samplePlaceTransformed: PlaceDetails = {
       isSpecialPhoneNumber: false
     }
   ],
-  /* eslint-disable no-undefined */
   tempInfo: {
-    closure: {
-      _id: undefined,
-      actif: false,
-      dateDebut: null,
-      dateFin: null,
-      description: null,
-      infoColor: '',
-      name: null,
-      status: null,
-      hours: null,
-      isCampaign: false,
-      isService: false,
-      serviceActif: false
-    },
-    hours: {
-      _id: undefined,
-      actif: false,
-      dateDebut: null,
-      dateFin: null,
-      description: null,
-      infoColor: '',
-      name: null,
-      status: null,
-      hours: null,
-      isCampaign: false,
-      isService: false,
-      serviceActif: false
-    },
-    message: {
-      _id: undefined,
-      actif: false,
-      dateDebut: null,
-      dateFin: null,
-      description: null,
-      infoColor: '',
-      name: null,
-      status: null,
-      hours: null,
-      isCampaign: false,
-      isService: false,
-      serviceActif: false
-    }
+    closure: null,
+    hours: null,
+    message: null
   },
   services: [
     {

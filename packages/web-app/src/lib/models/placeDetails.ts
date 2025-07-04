@@ -37,7 +37,8 @@ import {
   Categories,
   translatePublics,
   SupportedLanguagesCode,
-  PlaceTempInfo
+  PlaceTempInfo,
+  TempInfoStatus
 } from '@soliguide/common';
 import { computeTodayInfo, computeAddress, formatTimeslots, buildSources } from './place';
 import {
@@ -285,13 +286,23 @@ const buildServices = (
 const buildPlaceDetailsTempInfo = (tempInfo: IPlaceTempInfo): PlaceDetailsTempInfo => {
   const newPlaceTempInfo = new PlaceTempInfo(tempInfo);
 
+  const closureActive =
+    newPlaceTempInfo.closure.status === TempInfoStatus.CURRENT ||
+    newPlaceTempInfo.closure.status === TempInfoStatus.INCOMING;
+  const messageActive = newPlaceTempInfo.message.status === TempInfoStatus.CURRENT;
+  const hoursActive =
+    newPlaceTempInfo.hours.status === TempInfoStatus.CURRENT ||
+    newPlaceTempInfo.hours.status === TempInfoStatus.INCOMING;
+
   return {
-    closure: { ...newPlaceTempInfo.closure, hours: null },
-    message: { ...newPlaceTempInfo.message, hours: null },
-    hours: {
-      ...newPlaceTempInfo.hours,
-      hours: tempInfo.hours.hours ? buildHours(tempInfo.hours.hours, true) : null
-    }
+    closure: closureActive ? { ...newPlaceTempInfo.closure, hours: null } : null,
+    message: messageActive ? { ...newPlaceTempInfo.message, hours: null } : null,
+    hours: hoursActive
+      ? {
+          ...newPlaceTempInfo.hours,
+          hours: tempInfo.hours.hours ? buildHours(tempInfo.hours.hours, true) : null
+        }
+      : null
   };
 };
 

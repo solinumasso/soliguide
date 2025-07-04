@@ -86,8 +86,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     pageStore.captureEvent('go-back', { fromPlace: $pageStore.placeDetails.id });
     goto(`${$routes.ROUTE_PLACES}#${$pageStore.placeDetails.id}`);
   };
-
-  $: displayMessage = $pageStore.placeDetails.tempInfo.message.status === 'CURRENT';
 </script>
 
 <svelte:head>
@@ -106,13 +104,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     address={$pageStore.placeDetails.address}
     status={$pageStore.placeDetails.status}
     onOrientation={$pageStore.placeDetails.onOrientation}
-    hasTempMessage={displayMessage}
     tempInfo={$pageStore.placeDetails.tempInfo}
   />
   <section class="sections">
     <div>
       <div class="info-block" id="tempMessage">
-        {#if displayMessage}
+        {#if $pageStore.placeDetails.tempInfo.message}
           <InfoBlock
             variant="warning"
             withClamp
