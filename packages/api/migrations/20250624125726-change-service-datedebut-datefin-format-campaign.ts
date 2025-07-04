@@ -19,140 +19,74 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { Db } from "mongodb";
-import { isValid } from "date-fns";
 import { logger } from "../src/general/logger";
 
 const message = "Convert numeric dateDebut/dateFin to Date in placeChanges";
 
-type CloseItem = {
-  close?: {
-    dateDebut?: number | Date;
-    dateFin?: number | Date;
-    [key: string]: any;
-  };
-  [key: string]: any;
-};
-
-function convertDates(data: CloseItem[]): {
-  updated: CloseItem[];
-  hasChanges: boolean;
-} {
-  let hasChanges = false;
-
-  const updated = data.map((item) => {
-    if (!item.close) return item;
-
-    const close = { ...item.close };
-
-    if (typeof close.dateDebut === "number") {
-      const d = new Date(close.dateDebut);
-      if (isValid(d)) {
-        close.dateDebut = d;
-        hasChanges = true;
-      }
-    }
-
-    if (typeof close.dateFin === "number") {
-      const d = new Date(close.dateFin);
-      if (isValid(d)) {
-        close.dateFin = d;
-        hasChanges = true;
-      }
-    }
-
-    return { ...item, close };
-  });
-
-  return { updated, hasChanges };
-}
-
 export const up = async (db: Db) => {
   logger.info(`[MIGRATION] - ${message}`);
 
-  const [newDateDebutDocs, newDateFinDocs, oldDateDebutDocs, oldDateFinDocs] =
-    await Promise.all([
-      db
-        .collection("placeChanges")
-        .find({ "new.close.dateDebut": { $type: "number" } })
-        .toArray(),
-      db
-        .collection("placeChanges")
-        .find({ "new.close.dateFin": { $type: "number" } })
-        .toArray(),
-      db
-        .collection("placeChanges")
-        .find({ "old.close.dateDebut": { $type: "number" } })
-        .toArray(),
-      db
-        .collection("placeChanges")
-        .find({ "old.close.dateFin": { $type: "number" } })
-        .toArray(),
-    ]);
+  const places = await db
+    .collection("placeChanges")
+    .find({
+      $or: [
+        { "new.close.dateDebut": { $type: "number" } },
+        { "new.close.dateFin": { $type: "number" } },
+        { "old.close.dateDebut": { $type: "number" } },
+        { "old.close.dateFin": { $type: "number" } },
+      ],
+    })
+    .toArray();
 
-  const allDocs = [
-    ...newDateDebutDocs,
-    ...newDateFinDocs,
-    ...oldDateDebutDocs,
-    ...oldDateFinDocs,
-  ];
+  logger.info(`[MIGRATION] - Found ${places.length} docs with numeric dates`);
 
-  const uniqueDocs = Object.values(
-    allDocs.reduce((acc, doc) => {
-      acc[doc._id.toString()] = doc;
-      return acc;
-    }, {} as Record<string, any>)
-  );
+  const fieldsToProcess = [
+    { context: "new", field: "dateDebut" },
+    { context: "new", field: "dateFin" },
+    { context: "old", field: "dateDebut" },
+    { context: "old", field: "dateFin" },
+  ] as const;
 
-  logger.info(
-    `[MIGRATION] - Found ${uniqueDocs.length} unique documents to process`
-  );
+  for (const { context, field } of fieldsToProcess) {
+    logger.info(`[MIGRATION] - Processing ${context}.${field}`);
 
-  const bulkOps = [];
+    const bulkQuery = [];
 
-  for (const doc of uniqueDocs) {
-    const { updated: updatedNew, hasChanges: newChanged } = convertDates(
-      doc.new || []
-    );
-    const { updated: updatedOld, hasChanges: oldChanged } = convertDates(
-      doc.old || []
-    );
-
-    if (newChanged || oldChanged) {
-      bulkOps.push({
+    for (const place of places) {
+      bulkQuery.push({
         updateOne: {
-          filter: { _id: doc._id },
+          filter: { _id: place._id },
           update: {
-            $set: {
-              new: updatedNew,
-              old: updatedOld,
-            },
+            $set: place[context].reduce(
+              (
+                acc: Record<string, Date>,
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                value: any, // skipcq: JS-0323
+                index: number
+              ) => {
+                if (value.close && typeof value.close[field] === "number") {
+                  acc[`${context}.${index}.close.${field}`] = new Date(
+                    value.close[field]
+                  );
+                }
+                return acc;
+              },
+              {}
+            ),
           },
         },
       });
     }
+
+    if (bulkQuery.length) {
+      const result = await db.collection("placeChanges").bulkWrite(bulkQuery);
+      logger.info(
+        `[MIGRATION] - Updated ${result.modifiedCount} docs for ${context}.${field}`
+      );
+    } else {
+      logger.info(`[MIGRATION] - No docs to update for ${context}.${field}`);
+    }
   }
-
-  if (bulkOps.length > 0) {
-    const res = await db.collection("placeChanges").bulkWrite(bulkOps);
-    logger.info(
-      `[MIGRATION] - Updated ${res.modifiedCount} placeChanges documents`
-    );
-  } else {
-    logger.info(`[MIGRATION] - No documents needed to be updated`);
-  }
-
-  const remainingInvalidCount = await db
-    .collection("placeChanges")
-    .countDocuments({
-      $or: [
-        { "new.close.dateDebut": { $exists: true, $not: { $type: "date" } } },
-        { "new.close.dateFin": { $exists: true, $not: { $type: "date" } } },
-        { "old.close.dateDebut": { $exists: true, $not: { $type: "date" } } },
-        { "old.close.dateFin": { $exists: true, $not: { $type: "date" } } },
-      ],
-    });
-
-  logger.info(`[CHECK] - ${remainingInvalidCount} documents aren't dates`);
 };
 
 export const down = async () => {

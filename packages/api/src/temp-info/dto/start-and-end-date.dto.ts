@@ -77,12 +77,12 @@ export const startAndEndDateDto = (path = "") => {
         }
 
         const dateDebut = new Date(value.dateDebut);
-        dateDebut.setUTCHours(0, 0, 0, 0);
+        dateDebut.setUTCHours(0, 0, 0);
 
         let dateFin = null;
         if (value.dateFin) {
           dateFin = new Date(value.dateFin);
-          dateFin.setUTCHours(23, 59, 59, 999);
+          dateFin.setUTCHours(23, 59, 59);
         }
 
         return {
