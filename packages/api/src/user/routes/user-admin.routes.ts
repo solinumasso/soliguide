@@ -31,13 +31,13 @@ import {
   AirtableEntityType,
   type ExpressRequest,
   type ExpressResponse,
-  UserPopulateType,
 } from "../../_models";
 
 import { syncEntityDeletion } from "../../airtable/controllers/airtable.controller";
 import { setEntityExcludedOrNot } from "../../airtable/services/airtableEntity.service";
 
 import { checkRights, getUserFromUrl, getFilteredData } from "../../middleware";
+import { UserPopulateType } from "../interfaces";
 
 const router = express.Router();
 /**

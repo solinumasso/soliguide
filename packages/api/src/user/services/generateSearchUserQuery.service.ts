@@ -20,9 +20,10 @@
  */
 
 import { UserStatus } from "@soliguide/common";
-import { User } from "../../_models/users";
+
 import { getGlobalSearchQuery } from "../../search/services";
 import { parseTerritories } from "../../search/utils";
+import { UserForSearch } from "../types";
 
 export const generateSearchUserQuery = (
   searchUserData: {
@@ -34,7 +35,7 @@ export const generateSearchUserQuery = (
       | "territories"
       | "developer"]: any;
   },
-  user: User
+  user: UserForSearch
 ) => {
   const query = getGlobalSearchQuery(
     searchUserData,

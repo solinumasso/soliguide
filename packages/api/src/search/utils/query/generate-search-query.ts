@@ -49,12 +49,12 @@ import {
   parseTextSearch,
   parseUpdatedAt,
 } from "../parsers";
-import { UserPopulateType } from "../../../_models";
+import { UserForSearch } from "../../../user/types";
 
 export const generateSearchQuery = (
   categoryService: CategoriesService,
   searchData: Partial<PlaceSearchForAdmin>,
-  user: UserPopulateType,
+  user: UserForSearch,
   admin = false
 ): RootQuerySelector<ApiPlace> => {
   const nosqlQuery: RootQuerySelector<ApiPlace> = {};

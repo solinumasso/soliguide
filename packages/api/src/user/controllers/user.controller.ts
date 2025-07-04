@@ -27,18 +27,14 @@ import {
   isUserInOrganization,
 } from "../services";
 
-import type {
-  OrganizationPopulate,
-  SignupUser,
-  User,
-  UserPopulateType,
-} from "../../_models";
+import type { OrganizationPopulate } from "../../_models";
 
 import {
   CountryAreaTerritories,
   SoliguideCountries,
   UserStatus,
 } from "@soliguide/common";
+import { SignupUser, User, UserPopulateType } from "../interfaces";
 
 export const signupWithoutInvitation = async (
   userData: SignupUser
