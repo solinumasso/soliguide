@@ -37,7 +37,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let phones: Phone[];
   export let address: string;
   export let onOrientation: boolean;
-  export let hasTempMessage: boolean;
   export let tempInfo: PlaceDetailsTempInfo;
 
   const placeController = getPlaceDetailsPageController();
@@ -48,7 +47,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <div class="details-container">
     <div class="name-container">
       <Text type="title1PrimaryExtraBold">{name}</Text>
-      {#if hasTempMessage}
+      {#if tempInfo.message}
         <a href="#tempMessage"
           ><InfoIcon
             altTag={$i18n.t('PLACE_HAVE_IMPORTANT_INFO', { name })}
@@ -63,8 +62,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     </div>
     {#if !isObjectEmpty(todayInfo)}
       <div class="today-info-container">
-        <TodayInfo {todayInfo}
-          >{#if tempInfo.hours.status === TempInfoStatus.CURRENT && tempInfo.message.status !== TempInfoStatus.CURRENT}
+        <TodayInfo {todayInfo}>
+          {#if tempInfo.hours?.status === TempInfoStatus.CURRENT && !tempInfo.message}
             <a href={`#openingHoursSection`}
               ><InfoIcon
                 size="small"

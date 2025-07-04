@@ -106,9 +106,9 @@ export type PlaceTempInfoHoursReady = Omit<BasePlaceTempInfo, 'hours'> & {
 };
 
 export interface PlaceDetailsTempInfo {
-  closure: PlaceTempInfoHoursReady;
-  hours: PlaceTempInfoHoursReady;
-  message: PlaceTempInfoHoursReady;
+  closure: PlaceTempInfoHoursReady | null;
+  hours: PlaceTempInfoHoursReady | null;
+  message: PlaceTempInfoHoursReady | null;
 }
 
 export enum PlaceDetailsInfoType {

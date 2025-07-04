@@ -25,12 +25,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import PlaceDetailsSection from './PlaceDetailsSection.svelte';
   import TempInfoBanner from './TempInfoBanner.svelte';
   import { formatTimeRangeToLocale } from '$lib/client';
-  import {
-    PlaceOpeningStatus,
-    TempInfoStatus,
-    TempInfoType,
-    type DayName
-  } from '@soliguide/common';
+  import { PlaceOpeningStatus, TempInfoType, type DayName } from '@soliguide/common';
   import {
     DisplayMode,
     type HoursRange,
@@ -58,13 +53,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <PlaceDetailsSection>
   <section class="opening-hours" id="openingHoursSection">
     <Text type="title3PrimaryExtraBold">{$i18n.t('OPEN_HOURS_AND_DAYS')}</Text>
-    {#if tempInfo.closure.status === TempInfoStatus.CURRENT || tempInfo.closure.status === TempInfoStatus.INCOMING}<TempInfoBanner
+    {#if tempInfo.closure}
+      <TempInfoBanner
         tempInfo={tempInfo.closure}
         tempInfoType={TempInfoType.CLOSURE}
         {closureDisplayMode}
         {hoursDisplayMode}
       ></TempInfoBanner>{/if}
-    {#if tempInfo.hours.status === TempInfoStatus.CURRENT || tempInfo.hours.status === TempInfoStatus.INCOMING}
+    {#if tempInfo.hours}
       <TempInfoBanner
         tempInfo={tempInfo.hours}
         tempInfoType={TempInfoType.HOURS}

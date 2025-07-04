@@ -109,8 +109,8 @@ export const getPlaceDetailsPageController = (): PageController => {
         : DisplayMode.REGULAR;
 
     const hoursToDisplay =
-      hoursDisplayMode === DisplayMode.TEMPORARY
-        ? reorderedDays(tempInfo.hours.hours!)
+      hoursDisplayMode === DisplayMode.TEMPORARY && tempInfo.hours?.hours
+        ? reorderedDays(tempInfo.hours.hours)
         : reorderedDays(hours);
 
     pageStore.set({
@@ -134,7 +134,9 @@ export const getPlaceDetailsPageController = (): PageController => {
   const showTempInfoHours = () => {
     pageStore.update((oldState) => ({
       ...oldState,
-      hoursToDisplay: reorderedDays(oldState.placeDetails.tempInfo.hours.hours!),
+      hoursToDisplay: reorderedDays(
+        oldState.placeDetails.tempInfo.hours?.hours ?? oldState.placeDetails.hours
+      ),
       hoursDisplayMode: DisplayMode.TEMPORARY
     }));
   };
