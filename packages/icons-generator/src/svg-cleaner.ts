@@ -26,7 +26,13 @@
  * - Converting to match Categories enum format
  * - Adding "_outlined" suffix for outlined versions
  */
-import { readdirSync, existsSync, renameSync } from "fs";
+import {
+  readdirSync,
+  existsSync,
+  renameSync,
+  readFileSync,
+  writeFileSync,
+} from "fs";
 import { extname, basename, join } from "path";
 import { Categories } from "@soliguide/common";
 import ora from "ora";
@@ -62,7 +68,33 @@ function matchCategoryFormat(text: string): string {
 }
 
 /**
- * Cleans SVG filenames in a directory
+ * Creates outlined version of an SVG file by copying the normal version
+ * @param {string} svgDir - Directory containing SVG files
+ * @param {string} baseName - Base name without extension
+ * @returns {boolean} - Success status
+ */
+function createOutlinedVersion(svgDir: string, baseName: string): boolean {
+  try {
+    const filledPath = join(svgDir, `${baseName}.svg`);
+    const outlinedPath = join(svgDir, `${baseName}_outlined.svg`);
+
+    // Simply copy the normal version to create the outlined version
+    const content = readFileSync(filledPath, "utf-8");
+    writeFileSync(outlinedPath, content);
+
+    return true;
+  } catch (error) {
+    console.log(
+      chalk.red(
+        `❌ Failed to create outlined version for ${baseName}: ${error}`
+      )
+    );
+    return false;
+  }
+}
+
+/**
+ * Cleans SVG filenames in a directory and ensures outlined versions exist
  * @param {string} svgDir - Directory containing SVG files to clean
  */
 export function cleanSvgFilenames(svgDir: string = "./icons/svg"): void {
@@ -153,13 +185,53 @@ export function cleanSvgFilenames(svgDir: string = "./icons/svg"): void {
     }
   }
 
+  // Phase 2: Create outlined versions for missing ones
+  spinner.start();
+  spinner.text = chalk.blue("🎨 Creating missing outlined versions...");
+
+  const updatedFiles = readdirSync(svgDir).filter(
+    (file) => extname(file) === ".svg"
+  );
+
+  const baseNames = new Set<string>();
+  const outlinedNames = new Set<string>();
+
+  // Categorize existing files
+  updatedFiles.forEach((file) => {
+    const baseName = basename(file, ".svg");
+    if (baseName.endsWith("_outlined")) {
+      outlinedNames.add(baseName.replace("_outlined", ""));
+    } else {
+      baseNames.add(baseName);
+    }
+  });
+
+  let createdOutlined = 0;
+  let failedOutlined = 0;
+
+  // Create outlined versions for files that don't have them
+  for (const baseName of baseNames) {
+    if (!outlinedNames.has(baseName)) {
+      spinner.text = chalk.blue(`🎨 Creating outlined version: ${baseName}`);
+
+      if (createOutlinedVersion(svgDir, baseName)) {
+        console.log(chalk.green(`✓ Created ${baseName}_outlined.svg`));
+        createdOutlined++;
+      } else {
+        failedOutlined++;
+      }
+    }
+  }
+
   // Final result
-  if (failed === 0) {
+  if (failed === 0 && failedOutlined === 0) {
     spinner.succeed(
       chalk.green(`✅ Successfully processed ${svgFiles.length} files!`)
     );
   } else {
-    spinner.warn(chalk.yellow(`⚠️ Processed with ${failed} errors`));
+    spinner.warn(
+      chalk.yellow(`⚠️ Processed with ${failed + failedOutlined} errors`)
+    );
   }
 
   // Check if all categories have icons
@@ -218,6 +290,15 @@ export function cleanSvgFilenames(svgDir: string = "./icons/svg"): void {
     )}                │
 │  ${chalk.blue(
       `∑ Total files:   ${svgFiles.length.toString().padStart(3)}`
+    )}                │
+│                                           │
+│  ${chalk.magenta("🎨 OUTLINED GENERATION")}             │
+│                                           │
+│  ${chalk.green(
+      `✓ Created:       ${createdOutlined.toString().padStart(3)}`
+    )}                │
+│  ${chalk.red(
+      `✗ Failed:        ${failedOutlined.toString().padStart(3)}`
     )}                │
 │                                           │
 │  ${chalk.magenta("📋 CATEGORY COVERAGE")}               │
