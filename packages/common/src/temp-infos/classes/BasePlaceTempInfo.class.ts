@@ -70,7 +70,7 @@ export class BasePlaceTempInfo {
         : null;
       this.description = tempInfos.description ?? null;
       this.isCampaign = tempInfos.isCampaign ?? false;
-      this.isService = !!tempInfos?.serviceObjectId?.length;
+      this.isService = Boolean(tempInfos?.serviceObjectId?.length);
       this.name = tempInfos.name ?? null;
 
       if (tempInfos?.hours instanceof OpeningHours) {

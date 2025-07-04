@@ -93,7 +93,7 @@ export const up = async (db: Db) => {
       place.placeType === PlaceType.ITINERARY &&
       !place?.parcours
     ) {
-      console.error("No parcours for " + place._id);
+      console.error(`No parcours for ${place._id}`);
       i++;
       continue;
     }
@@ -103,7 +103,7 @@ export const up = async (db: Db) => {
       place.placeType === PlaceType.PLACE &&
       !place?.position
     ) {
-      console.error("No position for " + place._id);
+      console.error(`No position for ${place._id}`);
       i++;
       continue;
     }
@@ -147,7 +147,7 @@ export const up = async (db: Db) => {
       ].join(",");
 
       if (csvStream) {
-        csvStream.write(placeLine + "\n");
+        csvStream.write(`${placeLine}\n`);
       }
     }
 
@@ -184,7 +184,7 @@ export const up = async (db: Db) => {
         ].join(",");
 
         if (csvStream) {
-          csvStream.write(serviceLine + "\n");
+          csvStream.write(`${serviceLine}\n`);
         }
       }
 
