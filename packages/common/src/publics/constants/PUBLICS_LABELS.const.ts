@@ -56,7 +56,7 @@ export const PUBLICS_LABELS: {
     [PublicsOther.handicap]: "PUBLICS_OTHER_DISABLED",
     [PublicsOther.hiv]: "PUBLICS_OTHER_HIV",
     [PublicsOther.lgbt]: "PUBLICS_OTHER_LGBT+",
-    [PublicsOther.mentalHealth]: "PUBLICS_OTHER_VIOLENCE",
+    [PublicsOther.mentalHealth]: "PUBLICS_OTHER_MENTAL_HEALTH",
     [PublicsOther.prison]: "PUBLICS_OTHER_PRISON",
     [PublicsOther.prostitution]: "PUBLICS_OTHER_SEX_WORKER",
     [PublicsOther.student]: "PUBLICS_OTHER_STUDENT",
