@@ -76,7 +76,8 @@ export const patchTempInfoByType = async (
         },
   place: ModelWithId<ApiPlace>,
   userForLogs: UserForLogs,
-  service?: CommonNewPlaceService
+  service?: CommonNewPlaceService,
+  forceChanges = true
 ) => {
   const dataToUpdate = {
     ...tempInfo,
@@ -119,7 +120,7 @@ export const patchTempInfoByType = async (
 
   let updatedPlace = await updateTempInfos(place, tempInfo.tempInfoType);
 
-  updatedPlace = await updateServices(updatedPlace);
+  updatedPlace = await updateServices(updatedPlace, forceChanges);
 
   if (tempInfo.isCampaign) {
     updatedPlace = await updateCampaignSection(
