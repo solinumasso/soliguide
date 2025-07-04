@@ -24,6 +24,7 @@ export interface PostgresPublicsOther {
   handicap: boolean;
   hiv: boolean;
   lgbt: boolean;
+  mentalHealth: boolean;
   prison: boolean;
   prostitution: boolean;
   student: boolean;
