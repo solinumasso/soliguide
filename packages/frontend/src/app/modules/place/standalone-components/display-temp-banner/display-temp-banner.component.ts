@@ -47,11 +47,13 @@ export class DisplayTempBannerComponent
   @Input() public displayTempHours?: boolean;
   @Input() public admin?: boolean;
   @Input() public displayHoursWhenTempClosed?: boolean;
+  @Input() public forceDisplay = false;
 
   @Output() public readonly displayTempHoursEvent = new EventEmitter<boolean>();
   @Output() public readonly displayRegularHoursEvent = new EventEmitter();
 
   public dateString: string;
+  public shouldDisplay = false;
 
   public readonly TempInfoType = TempInfoType;
 
@@ -72,6 +74,10 @@ export class DisplayTempBannerComponent
     this.dateString = this.dateService
       .translateDateInterval(this.tempInfos.dateDebut, this.tempInfos.dateFin)
       .toLowerCase();
+
+    this.shouldDisplay =
+      (this.forceDisplay || this.tempInfos.actif) &&
+      Boolean(this.tempInfos.dateDebut);
   }
 
   public toogleDisplayTempHours = (value: boolean): void => {
