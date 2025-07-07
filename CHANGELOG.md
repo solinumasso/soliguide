@@ -1,3 +1,28 @@
+# [4.95.0](https://github.com/solinumasso/soliguide/compare/v4.94.1...v4.95.0) (2025-07-07)
+
+
+### Bug Fixes
+
+* **api:** fix dump of soligare ([703ee46](https://github.com/solinumasso/soliguide/commit/703ee461ead83ac664e9c1b22e403b1df774e257))
+* **api:** fix wrong types in category specific fields [#730](https://github.com/solinumasso/soliguide/issues/730) ([c9a9b89](https://github.com/solinumasso/soliguide/commit/c9a9b89a765f1569308e7fee6509795729712522))
+* change temp closure dates for services done via campaign form to… ([#685](https://github.com/solinumasso/soliguide/issues/685)) ([93fdb26](https://github.com/solinumasso/soliguide/commit/93fdb260285e7ca3a79c16004d41515aa7589a8b))
+* **common:** add publics with mental health problems ([652ec4d](https://github.com/solinumasso/soliguide/commit/652ec4d06c3a268a4df0d7cf514c9fba488a04ec))
+* **common:** fix mental health key as violence [#349](https://github.com/solinumasso/soliguide/issues/349) ([5c63518](https://github.com/solinumasso/soliguide/commit/5c63518c15a320191cdcc35f0fdaf8bb50115f36))
+* **common:** fix missing mental health [#349](https://github.com/solinumasso/soliguide/issues/349) ([b9dd5ce](https://github.com/solinumasso/soliguide/commit/b9dd5ce57755a092e55e2e41036fa799c2ba27d3))
+* correct campaign service for for when specific field is not string [#703](https://github.com/solinumasso/soliguide/issues/703) ([5375bdf](https://github.com/solinumasso/soliguide/commit/5375bdffbaa1554f5931353c6a7d131ac83f48d9))
+* correct end date [#608](https://github.com/solinumasso/soliguide/issues/608) ([316b592](https://github.com/solinumasso/soliguide/commit/316b592ad1c63fab7e41b3e370eb55d0539f0cb1))
+* correct migration issues for crf structures during campaign [#707](https://github.com/solinumasso/soliguide/issues/707) ([8d6d88f](https://github.com/solinumasso/soliguide/commit/8d6d88fe3d2d181dae34a98dbd6cd3d945570cbd))
+* fix deepsource warning [#735](https://github.com/solinumasso/soliguide/issues/735) ([a7a55f5](https://github.com/solinumasso/soliguide/commit/a7a55f53e14d78231b7711b05f14444ca25362a6))
+* force display service temp closure banner in history [#740](https://github.com/solinumasso/soliguide/issues/740) ([2c339b0](https://github.com/solinumasso/soliguide/commit/2c339b0f7187c148507e5c5ec026bfaebc8626ff))
+* remove reset campaign from crf migration [#707](https://github.com/solinumasso/soliguide/issues/707) ([7756fdf](https://github.com/solinumasso/soliguide/commit/7756fdf5f41785cafb55443df041927940fbe620))
+* **soligare:** dix dump of soligare ([4ea25c6](https://github.com/solinumasso/soliguide/commit/4ea25c6b4036241da2a47419aaa5a685c169caa6))
+
+
+### Features
+
+* **web-app:** keep tempInfo in data only if is active [#724](https://github.com/solinumasso/soliguide/issues/724) ([088b783](https://github.com/solinumasso/soliguide/commit/088b783cbcf2361fa4364ca9efe9b6b504d24e0e))
+* **web-app:** switch button to toggle regular/temporary hours [#647](https://github.com/solinumasso/soliguide/issues/647) ([49dd597](https://github.com/solinumasso/soliguide/commit/49dd597da90d2b4f364f33cd1d09e438f9268a05))
+
 ## [4.94.1](https://github.com/solinumasso/soliguide/compare/v4.94.0...v4.94.1) (2025-06-27)
 
 
