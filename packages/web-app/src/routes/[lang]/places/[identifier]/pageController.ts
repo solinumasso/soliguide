@@ -18,9 +18,21 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { writable } from 'svelte/store';
-import { PlaceOpeningStatus, PlaceTempInfo, WEEK_DAYS, type DayName } from '@soliguide/common';
-import type { PlaceDetails, PlaceDetailsOpeningHours } from '$lib/models/types';
+import { writable, get } from 'svelte/store';
+
+import {
+  PlaceOpeningStatus,
+  TempInfoStatus,
+  TempInfoType,
+  WEEK_DAYS,
+  type DayName
+} from '@soliguide/common';
+import {
+  DisplayMode,
+  type PlaceDetails,
+  type PlaceDetailsOpeningHours,
+  type PlaceDetailsTempInfo
+} from '$lib/models/types';
 import { posthogService } from '$lib/services/posthogService';
 import type { PageController, PageState } from './types';
 import type { PosthogCaptureFunction } from '$lib/services/types';
@@ -67,8 +79,11 @@ const initialValue: PageState = {
     status: PlaceOpeningStatus.OPEN,
     todayInfo: {},
     website: '',
-    tempInfo: {} as PlaceTempInfo
+    tempInfo: {} as PlaceDetailsTempInfo
   },
+  hoursToDisplay: {},
+  hoursDisplayMode: DisplayMode.REGULAR,
+  closureDisplayMode: DisplayMode.REGULAR,
   error: null,
   currentDay: getCurrentDay()
 };
@@ -81,18 +96,81 @@ export const getPlaceDetailsPageController = (): PageController => {
   const pageStore = writable(initialValue);
 
   const init = (placeData: PlaceDetails): void => {
-    const { hours } = placeData;
+    const { hours, tempInfo } = placeData;
+
+    const hoursDisplayMode =
+      tempInfo.hours?.status === TempInfoStatus.CURRENT
+        ? DisplayMode.TEMPORARY
+        : DisplayMode.REGULAR;
+
+    const closureDisplayMode =
+      tempInfo.closure?.status === TempInfoStatus.CURRENT
+        ? DisplayMode.TEMPORARY
+        : DisplayMode.REGULAR;
+
+    const hoursToDisplay =
+      hoursDisplayMode === DisplayMode.TEMPORARY && tempInfo.hours?.hours
+        ? reorderedDays(tempInfo.hours.hours)
+        : reorderedDays(hours);
 
     pageStore.set({
       ...initialValue,
       placeDetails: { ...placeData, hours: reorderedDays(hours) },
+      hoursToDisplay,
+      hoursDisplayMode,
+      closureDisplayMode,
       currentDay: getCurrentDay()
     });
+  };
+
+  const showRegularHours = (displayType: string) => {
+    pageStore.update((oldState) => ({
+      ...oldState,
+      hoursToDisplay: reorderedDays(oldState.placeDetails.hours),
+      [`${displayType}DisplayMode`]: DisplayMode.REGULAR
+    }));
+  };
+
+  const showTempInfoHours = () => {
+    pageStore.update((oldState) => ({
+      ...oldState,
+      hoursToDisplay: reorderedDays(
+        oldState.placeDetails.tempInfo.hours?.hours ?? oldState.placeDetails.hours
+      ),
+      hoursDisplayMode: DisplayMode.TEMPORARY
+    }));
+  };
+
+  const showTempInfoClosures = () => {
+    pageStore.update((oldState) => ({
+      ...oldState,
+      closureDisplayMode: DisplayMode.TEMPORARY
+    }));
+  };
+
+  const toggleHours = (tempInfoType: TempInfoType) => {
+    const currentState = get(pageStore);
+
+    if (
+      (tempInfoType === TempInfoType.HOURS &&
+        currentState.hoursDisplayMode === DisplayMode.TEMPORARY) ||
+      (tempInfoType === TempInfoType.CLOSURE &&
+        currentState.closureDisplayMode === DisplayMode.TEMPORARY)
+    ) {
+      showRegularHours(tempInfoType);
+    } else if (tempInfoType === TempInfoType.HOURS) {
+      showTempInfoHours();
+    } else {
+      showTempInfoClosures();
+    }
   };
 
   return {
     subscribe: pageStore.subscribe,
     init,
-    captureEvent
+    captureEvent,
+    toggleHours,
+    showRegularHours,
+    showTempInfoHours
   };
 };

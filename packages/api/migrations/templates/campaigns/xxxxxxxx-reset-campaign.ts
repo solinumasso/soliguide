@@ -21,14 +21,15 @@
 import {
   CAMPAIGN_DEFAULT_NAME,
   CampaignStatus,
+  PAIRING_SOURCES,
+  PairingSources,
   PlaceStatus,
   PlaceUpdateCampaign,
 } from "@soliguide/common";
 
 import { Db, ObjectId } from "mongodb";
-import { logger } from "../../src/general/logger";
-import { CAMPAIGN_EMAILS_CONTENT_FOR_USERS } from "../../src/user/models/default_values";
-import { PAIRING_SOURCES, PairingSources } from "@soliguide/common";
+import { logger } from "../../../src/general/logger";
+import { CAMPAIGN_EMAILS_CONTENT_FOR_USERS } from "../../../src/user/models/default_values";
 
 const message =
   "Add default value for users, orga and places for summer update 2023";

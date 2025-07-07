@@ -40,6 +40,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let buttonLinkHref = '';
   export let showMoreLabel = '';
   export let showLessLabel = '';
+  /* eslint-disable-next-line @typescript-eslint/no-empty-function */
+  export let buttonAction = () => {};
   export let date: string | null = null;
 
   const variantMapping: Record<InfoBlockVariant, InfoIconVariant> = {
@@ -92,7 +94,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     </div>
     {#if showButton}
       <div class="infoblock-button">
-        <Button type="neutralOutlined" size="xsmall">{buttonLabel}</Button>
+        <Button type="neutralOutlined" on:click={buttonAction} size="xsmall">{buttonLabel}</Button>
       </div>
     {/if}
 
@@ -108,7 +110,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 <style lang="scss">
   .infoblock {
-    display: flex;
     border-radius: var(--radiusMiddle);
     padding: var(--spacingSM);
     gap: var(--spacingXS);

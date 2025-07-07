@@ -20,21 +20,27 @@
  */
 import { Db } from "mongodb";
 
-import { logger } from "../src/general/logger";
+import { logger } from "../../src/general/logger";
 
-const message = "Reset AT sync for places";
-
-export const up = async (db: Db) => {
-  logger.info(`[MIGRATION] - ${message}`);
-  await db
-    .collection("lieux")
-    .updateMany(
-      { "atSync.excluded": false },
-      { $set: { "atSync.lastSync": null } }
-    );
+export const resetMigrationFlag = async (
+  db: Db,
+  collection: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  query: any
+): Promise<void> => {
+  logger.info("[MIGRATION] - Reset migration variable");
+  await db.collection(collection).updateMany(query, {
+    $set: {
+      migrated: false,
+    },
+  });
 };
 
-export const down = () => {
-  logger.info(`[ROLLBACK] - ${message}`);
-  logger.info("NO ROLLBACK POSSIBLE");
+export const countElementsToMigrate = async (
+  db: Db,
+  collection: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  query: any
+): Promise<number> => {
+  return await db.collection(collection).countDocuments(query);
 };

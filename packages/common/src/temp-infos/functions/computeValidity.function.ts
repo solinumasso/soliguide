@@ -22,7 +22,7 @@ import { differenceInCalendarDays } from "date-fns";
 import { InfoColor } from "../types";
 import { TempInfoStatus } from "../enums";
 
-export const getInfoColor = (
+export const computeValidity = (
   startDate: Date | null,
   endDate: Date | null
 ): {

@@ -50,7 +50,7 @@ describe("DisplayTempInfoAdminComponent", () => {
       description: null,
       createdAt: new Date(),
       updatedAt: new Date(),
-      tempInfoType: TempInfoType.closure,
+      tempInfoType: TempInfoType.CLOSURE,
       status: TempInfoStatus.CURRENT,
       placeId: 1,
       dateDebut: new Date(2021, 5, 21),

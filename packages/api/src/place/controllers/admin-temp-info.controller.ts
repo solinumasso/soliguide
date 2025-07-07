@@ -50,7 +50,7 @@ export const patchClosedServices = async (
     if (newService.close.actif) {
       const tempInfoToUpdate = {
         ...servicesClosure[i],
-        tempInfoType: TempInfoType.serviceClosure,
+        tempInfoType: TempInfoType.SERVICE_CLOSURE,
       };
 
       await patchTempInfoByType(
@@ -75,7 +75,7 @@ export const patchClosedServices = async (
   );
 
   const placeChanges = await saveTempChanges(
-    TEMP_INFO_HISTORY_SECTIONS[TempInfoType.serviceClosure],
+    TEMP_INFO_HISTORY_SECTIONS[TempInfoType.SERVICE_CLOSURE],
     place,
     { ...place, services_all: newServices },
     userForLogs,

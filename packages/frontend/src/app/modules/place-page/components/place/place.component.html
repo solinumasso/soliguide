@@ -150,7 +150,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <h2>{{ "HORAIRES_DEPART" | translate }}</h2>
             <app-display-temp-banner
               *ngIf="place.tempInfos.closure.actif"
-              [tempInfoType]="TempInfoType.closure"
+              [tempInfoType]="TempInfoType.CLOSURE"
               [tempInfos]="place.tempInfos.closure"
               [displayHoursWhenTempClosed]="
                 place.openingTagStatus === PlaceOpeningStatus.TEMPORARILY_CLOSED
@@ -266,7 +266,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
           <app-display-temp-banner
             *ngIf="place.tempInfos.hours.actif"
-            [tempInfoType]="TempInfoType.hours"
+            [tempInfoType]="TempInfoType.HOURS"
             [tempInfos]="place.tempInfos.hours"
             [displayTempHours]="displayTempHours"
             (displayTempHoursEvent)="toogleDisplayTempHours($any($event))"
@@ -275,7 +275,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
           <app-display-temp-banner
             *ngIf="place.tempInfos.closure.actif"
-            [tempInfoType]="TempInfoType.closure"
+            [tempInfoType]="TempInfoType.CLOSURE"
             [tempInfos]="place.tempInfos.closure"
             [displayHoursWhenTempClosed]="isTempClosed"
             (displayTempHoursEvent)="toogleDisplayTempHours($any($event))"

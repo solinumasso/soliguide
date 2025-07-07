@@ -151,7 +151,7 @@ export const patchTempInfoByType = async (
       tempInfos: oldTempInfoFromDb,
     };
 
-    if (updatedTempInfo.tempInfoType !== TempInfoType.serviceClosure) {
+    if (updatedTempInfo.tempInfoType !== TempInfoType.SERVICE_CLOSURE) {
       placeChanges = await saveTempChanges(
         TEMP_INFO_HISTORY_SECTIONS[
           updatedTempInfo.tempInfoType

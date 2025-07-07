@@ -20,9 +20,9 @@
  */
 import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { getPlaceDetailsPageController } from './pageController';
-import { PlaceOpeningStatus, type PlaceTempInfo } from '@soliguide/common';
+import { PlaceOpeningStatus } from '@soliguide/common';
 import { get } from 'svelte/store';
-import type { PlaceDetails } from '$lib/models/types';
+import type { PlaceDetails, PlaceDetailsTempInfo } from '$lib/models/types';
 import type { PageController } from './types';
 
 const defaultState: PlaceDetails = {
@@ -43,7 +43,7 @@ const defaultState: PlaceDetails = {
   sources: [],
   status: PlaceOpeningStatus.OPEN,
   todayInfo: {},
-  tempInfo: {} as PlaceTempInfo,
+  tempInfo: {} as PlaceDetailsTempInfo,
   website: ''
 };
 

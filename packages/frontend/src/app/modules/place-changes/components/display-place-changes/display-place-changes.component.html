@@ -77,6 +77,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <app-display-service-admin
           [index]="i"
           [service]="servicesChanges.oldServicesEdited[service.serviceObjectId]"
+          [forceDisplayTempInfo]="true"
         ></app-display-service-admin>
       </div>
 
@@ -84,6 +85,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <app-display-service-admin
           [index]="i"
           [service]="service"
+          [forceDisplayTempInfo]="true"
         ></app-display-service-admin>
       </div>
     </div>
@@ -95,6 +97,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         *ngFor="let service of servicesChanges.unchanged; let i = index"
         [index]="i"
         [service]="service"
+        [forceDisplayTempInfo]="true"
       ></app-display-service-admin>
     </div>
   </section>

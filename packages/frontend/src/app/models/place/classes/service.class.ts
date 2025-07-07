@@ -24,7 +24,6 @@ import {
   BasePlaceTempInfo,
   OpeningHours,
 } from "@soliguide/common";
-
 import { THEME_CONFIGURATION } from "../../themes";
 
 export class Service extends CommonNewPlaceService {

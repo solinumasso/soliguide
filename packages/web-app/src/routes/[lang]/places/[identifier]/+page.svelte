@@ -21,8 +21,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <script lang="ts">
   import { getContext, onMount, setContext } from 'svelte';
   import { goto } from '$app/navigation';
-  import type { I18nStore, RoutingStore } from '$lib/client/types';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
+  import { ROUTES_CTX_KEY } from '$lib/client/index';
+  import type { I18nStore, RoutingStore } from '$lib/client/types';
   import { Topbar, InfoBlock } from '@soliguide/design-system';
   import {
     PlaceInfoSection,
@@ -34,9 +35,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     PlaceContact,
     PlaceServices
   } from './components';
-  import { getPlaceDetailsPageController } from './pageController';
-  import { ROUTES_CTX_KEY } from '$lib/client/index';
   import type { PageData } from './$types';
+  import { getPlaceDetailsPageController } from './pageController';
 
   export let data: PageData;
 
@@ -44,6 +44,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   const pageStore = getPlaceDetailsPageController();
   pageStore.init(data);
 
+  setContext('PLACE_CONTROLLER_CTX_KEY', pageStore);
   setContext('CAPTURE_FCTN_CTX_KEY', pageStore.captureEvent);
 
   let headerHeight = 0;
@@ -85,8 +86,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     pageStore.captureEvent('go-back', { fromPlace: $pageStore.placeDetails.id });
     goto(`${$routes.ROUTE_PLACES}#${$pageStore.placeDetails.id}`);
   };
-
-  $: displayMessage = $pageStore.placeDetails.tempInfo.message.status === 'CURRENT';
 </script>
 
 <svelte:head>
@@ -105,13 +104,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     address={$pageStore.placeDetails.address}
     status={$pageStore.placeDetails.status}
     onOrientation={$pageStore.placeDetails.onOrientation}
-    hasTempMessage={displayMessage}
     tempInfo={$pageStore.placeDetails.tempInfo}
   />
   <section class="sections">
     <div>
       <div class="info-block" id="tempMessage">
-        {#if displayMessage}
+        {#if $pageStore.placeDetails.tempInfo.message}
           <InfoBlock
             variant="warning"
             withClamp
@@ -130,10 +128,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       />
       <PlaceDescriptionSection description={$pageStore.placeDetails.description} />
       <OpeningHoursSection
-        openHours={$pageStore.placeDetails.hours}
+        openHours={$pageStore.hoursToDisplay}
         currentDay={$pageStore.currentDay}
         status={$pageStore.placeDetails.status}
-        tempInfos={$pageStore.placeDetails.tempInfo}
+        tempInfo={$pageStore.placeDetails.tempInfo}
+        closureDisplayMode={$pageStore.closureDisplayMode}
+        hoursDisplayMode={$pageStore.hoursDisplayMode}
       />
       <PlaceServices
         services={$pageStore.placeDetails.services}

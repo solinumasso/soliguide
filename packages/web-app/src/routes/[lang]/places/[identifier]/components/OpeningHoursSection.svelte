@@ -23,19 +23,24 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { Text } from '@soliguide/design-system';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import PlaceDetailsSection from './PlaceDetailsSection.svelte';
-  import TempInfosBanner from './TempInfosBanner.svelte';
+  import TempInfoBanner from './TempInfoBanner.svelte';
   import { formatTimeRangeToLocale } from '$lib/client';
-  import { PlaceOpeningStatus, PlaceTempInfo, type DayName } from '@soliguide/common';
-  import type { HoursRange, PlaceDetailsOpeningHours } from '$lib/models/types';
+  import { PlaceOpeningStatus, TempInfoType, type DayName } from '@soliguide/common';
+  import {
+    DisplayMode,
+    type HoursRange,
+    type PlaceDetailsOpeningHours,
+    type PlaceDetailsTempInfo
+  } from '$lib/models/types';
+
   import type { I18nStore } from '$lib/client/types';
 
   export let status: PlaceOpeningStatus;
-
-  export let tempInfos: PlaceTempInfo;
-
+  export let tempInfo: PlaceDetailsTempInfo;
   export let openHours: PlaceDetailsOpeningHours = {};
-
   export let currentDay: DayName;
+  export let closureDisplayMode: DisplayMode;
+  export let hoursDisplayMode: DisplayMode;
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
 
@@ -48,8 +53,20 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <PlaceDetailsSection>
   <section class="opening-hours" id="openingHoursSection">
     <Text type="title3PrimaryExtraBold">{$i18n.t('OPEN_HOURS_AND_DAYS')}</Text>
-    <TempInfosBanner tempInfo={tempInfos.closure} tempInfoType="closure"></TempInfosBanner>
-    <TempInfosBanner tempInfo={tempInfos.hours} tempInfoType="hours"></TempInfosBanner>
+    {#if tempInfo.closure}
+      <TempInfoBanner
+        tempInfo={tempInfo.closure}
+        tempInfoType={TempInfoType.CLOSURE}
+        {closureDisplayMode}
+        {hoursDisplayMode}
+      ></TempInfoBanner>{/if}
+    {#if tempInfo.hours}
+      <TempInfoBanner
+        tempInfo={tempInfo.hours}
+        tempInfoType={TempInfoType.HOURS}
+        {closureDisplayMode}
+        {hoursDisplayMode}
+      ></TempInfoBanner>{/if}
     <ul>
       {#each Object.entries(openHours) as [day, openingHours]}
         <li class="open-hours" class:highlight={day === currentDay}>
@@ -58,7 +75,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <Text type="caption1Medium" color="neutral">
               {#if status === PlaceOpeningStatus.UNKNOWN}
                 {$i18n.t('TIME_UNKNOWN')}
-              {:else if status === PlaceOpeningStatus.TEMPORARILY_CLOSED}
+              {:else if closureDisplayMode === DisplayMode.TEMPORARY}
                 {$i18n.t('TEMPORARILY_CLOSED')}
               {:else if openingHours.length > 0}
                 {convertHours(openingHours)}

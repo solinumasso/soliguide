@@ -23,13 +23,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { PhoneButton, PlaceStatus, TodayInfo } from '$lib/components';
   import GoToButton from './GoToButton.svelte';
   import { getPlaceDetailsPageController } from '../pageController';
-  import type { Phone, TodayInfo as TodayInfoType } from '$lib/models/types';
-  import {
-    PlaceTempInfo,
-    TempInfoStatus,
-    type PlaceOpeningStatus,
-    isObjectEmpty
-  } from '@soliguide/common';
+
+  import type { Phone, TodayInfo as TodayInfoType, PlaceDetailsTempInfo } from '$lib/models/types';
+  import { TempInfoStatus, type PlaceOpeningStatus, isObjectEmpty } from '@soliguide/common';
+
   import type { I18nStore } from '$lib/client/types';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import { getContext } from 'svelte';
@@ -40,8 +37,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let phones: Phone[];
   export let address: string;
   export let onOrientation: boolean;
-  export let hasTempMessage: boolean;
-  export let tempInfo: PlaceTempInfo;
+  export let tempInfo: PlaceDetailsTempInfo;
 
   const placeController = getPlaceDetailsPageController();
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
@@ -51,7 +47,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <div class="details-container">
     <div class="name-container">
       <Text type="title1PrimaryExtraBold">{name}</Text>
-      {#if hasTempMessage}
+      {#if tempInfo.message}
         <a href="#tempMessage"
           ><InfoIcon
             altTag={$i18n.t('PLACE_HAVE_IMPORTANT_INFO', { name })}
@@ -66,8 +62,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     </div>
     {#if !isObjectEmpty(todayInfo)}
       <div class="today-info-container">
-        <TodayInfo {todayInfo}
-          >{#if tempInfo.hours.status === TempInfoStatus.CURRENT && tempInfo.message.status !== TempInfoStatus.CURRENT}
+        <TodayInfo {todayInfo}>
+          {#if tempInfo.hours?.status === TempInfoStatus.CURRENT && !tempInfo.message}
             <a href={`#openingHoursSection`}
               ><InfoIcon
                 size="small"

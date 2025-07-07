@@ -25,9 +25,6 @@ import {
   Categories,
   ServiceStyleType,
   PlaceClosedHolidays,
-  PublicsAdministrative,
-  PublicsFamily,
-  PublicsOther,
   ServiceSaturation,
   CountryCodes,
   FR_DEPARTMENT_CODES,
@@ -39,8 +36,7 @@ import {
   FAMILY_DEFAULT_VALUES,
   GENDER_DEFAULT_VALUES,
   ADMINISTRATIVE_DEFAULT_VALUES,
-  OTHER_DEFAULT_VALUES,
-  PlaceTempInfo
+  OTHER_DEFAULT_VALUES
 } from '@soliguide/common';
 import { PlaceDetailsInfoType, type PlaceDetails } from './types';
 
@@ -187,16 +183,7 @@ const samplePlace: ApiPlace = Object.freeze({
         description: null,
         familialle: structuredClone(FAMILY_DEFAULT_VALUES),
         gender: structuredClone(GENDER_DEFAULT_VALUES),
-        other: [
-          PublicsOther.violence,
-          PublicsOther.addiction,
-          PublicsOther.handicap,
-          PublicsOther.lgbt,
-          PublicsOther.hiv,
-          PublicsOther.prostitution,
-          PublicsOther.prison,
-          PublicsOther.student
-        ]
+        other: structuredClone(OTHER_DEFAULT_VALUES)
       },
       saturated: { precision: null, status: ServiceSaturation.LOW },
       serviceObjectId: '6181a6d08ac6b179ffb9fcc1',
@@ -273,16 +260,7 @@ const samplePlace: ApiPlace = Object.freeze({
         familialle: structuredClone(FAMILY_DEFAULT_VALUES),
 
         gender: structuredClone(GENDER_DEFAULT_VALUES),
-        other: [
-          PublicsOther.violence,
-          PublicsOther.addiction,
-          PublicsOther.handicap,
-          PublicsOther.lgbt,
-          PublicsOther.hiv,
-          PublicsOther.prostitution,
-          PublicsOther.prison,
-          PublicsOther.student
-        ]
+        other: structuredClone(OTHER_DEFAULT_VALUES)
       },
       saturated: { precision: null, status: ServiceSaturation.LOW },
       serviceObjectId: '6181a6d08ac6b179ffb9fcc3',
@@ -305,19 +283,9 @@ const samplePlace: ApiPlace = Object.freeze({
   publics: {
     age: { min: 0, max: 99 },
     accueil: 0,
-    administrative: [
-      PublicsAdministrative.regular,
-      PublicsAdministrative.asylum,
-      PublicsAdministrative.refugee,
-      PublicsAdministrative.undocumented
-    ],
+    administrative: structuredClone(ADMINISTRATIVE_DEFAULT_VALUES),
     description: null,
-    familialle: [
-      PublicsFamily.isolated,
-      PublicsFamily.family,
-      PublicsFamily.couple,
-      PublicsFamily.pregnant
-    ],
+    familialle: structuredClone(FAMILY_DEFAULT_VALUES),
     gender: structuredClone(GENDER_DEFAULT_VALUES),
     other: structuredClone(OTHER_DEFAULT_VALUES)
   },
@@ -579,7 +547,11 @@ const samplePlaceTransformed: PlaceDetails = {
       isSpecialPhoneNumber: false
     }
   ],
-  tempInfo: new PlaceTempInfo(samplePlace.tempInfos, false),
+  tempInfo: {
+    closure: null,
+    hours: null,
+    message: null
+  },
   services: [
     {
       category: Categories.FOOD_DISTRIBUTION,

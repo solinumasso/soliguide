@@ -194,6 +194,7 @@ export const dummyExpectedResultsFormatSourceIdToSoliguideFormat: Pick<
       PublicsOther.lgbt,
       PublicsOther.prison,
       PublicsOther.student,
+      PublicsOther.mentalHealth,
       PublicsOther.violence,
     ],
     age: {
@@ -419,6 +420,7 @@ export const dummyExpectedResultsFormatSourceIdToSoliguideFormat: Pick<
           PublicsOther.lgbt,
           PublicsOther.prison,
           PublicsOther.student,
+          PublicsOther.mentalHealth,
           PublicsOther.violence,
         ],
         age: {
