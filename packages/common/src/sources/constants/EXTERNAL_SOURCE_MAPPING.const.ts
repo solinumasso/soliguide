@@ -31,4 +31,7 @@ export const EXTERNAL_SOURCE_MAPPING: Record<
   },
   [PairingSources.CRF]: { label: "Croix-Rouge française" },
   [PairingSources.ALISOL]: { label: "Alisol (AD2S)" },
+  [PairingSources.CROUS_PDL]: {
+    label: "Crous - Pays de la Loire",
+  },
 };

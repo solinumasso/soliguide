@@ -31,6 +31,8 @@ export const checkIfSourceMustBeDisplayed = (
       return true;
     case PairingSources.ALISOL:
       return isOrigin;
+    case PairingSources.CROUS_PDL:
+      return true;
     default:
       return false;
   }
