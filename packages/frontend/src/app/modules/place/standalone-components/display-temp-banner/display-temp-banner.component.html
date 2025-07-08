@@ -18,7 +18,7 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
-<div *ngIf="shouldDisplay" class="alert alert-{{ tempInfos.infoColor }}">
+<div *ngIf="shouldDisplay" class="alert alert-{{ alertColor }}">
   <div class="my-1 fw-bold">
     <fa-icon
       [icon]="[
@@ -37,9 +37,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     </span>
     <span *ngIf="tempInfoType === TempInfoType.CLOSURE && tempInfos.isService">
       {{
-        (tempInfos.infoColor === "warning"
-          ? "SERVICE_FERMERA_TEMP"
-          : "SERVICE_FERME_TEMP"
+        (tempInfos.status === TempInfoStatus.CURRENT
+          ? "SERVICE_FERME_TEMP"
+          : tempInfos.status === TempInfoStatus.OBSOLETE
+          ? "OLD_SERVICE_TEMP_CLOSE"
+          : "SERVICE_FERMERA_TEMP"
         ) | translate
       }}
     </span>
