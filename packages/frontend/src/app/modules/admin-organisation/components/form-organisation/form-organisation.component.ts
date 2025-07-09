@@ -45,7 +45,12 @@ import { CurrentLanguageService } from "../../../general/services/current-langua
 import type { User } from "../../../users/classes";
 import { AuthService } from "../../../users/services/auth.service";
 
-import { regexp, CK_EDITOR_CONF, EmailValidator } from "../../../../shared";
+import {
+  regexp,
+  CK_EDITOR_CONF,
+  EmailValidator,
+  UrlValidator,
+} from "../../../../shared";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { phoneValidator } from "../../../shared/components/form-phone-input/validators";
 import { THEME_CONFIGURATION } from "../../../../models";
@@ -135,10 +140,7 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
       description: [this.organisation.description, []],
       phone: [this.organisation.phone, [phoneValidator]],
       mail: [this.organisation.mail, [EmailValidator]],
-      website: [
-        this.organisation.website,
-        [Validators.pattern(regexp.website)],
-      ],
+      website: [this.organisation.website, [UrlValidator]],
       facebook: [
         this.organisation.facebook,
         [Validators.pattern(regexp.facebook)],
