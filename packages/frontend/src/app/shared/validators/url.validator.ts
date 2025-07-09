@@ -18,15 +18,21 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 
-export const regexp = {
-  date: /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/,
-  facebook:
-    "(https?://)?([\\da-z.-]+\\.)?(facebook)\\.([a-z.]{2,6})[/\\w%@ %?#=&.-]*/?",
+export function UrlValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const value = control.value;
 
-  htmlTag: /(<([^>]+)>)|(&nbsp;)/gi,
-  instagram:
-    "(https?://)?([\\da-z.-]+\\.)?(instagram)\\.([a-z.]{2,6})[/\\w %?#=&.-]*/?",
+    if (!value) {
+      return null;
+    }
 
-  postcode: /^[0-9][0-9AB][0-9]{3}$/,
-};
+    try {
+      new URL(value.startsWith("http") ? value : `https://${value}`);
+      return null;
+    } catch {
+      return { invalidUrl: true };
+    }
+  };
+}
