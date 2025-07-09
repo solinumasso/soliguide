@@ -48,6 +48,8 @@ silktideCookieBannerManager.updateCookieBannerConfig({
 
         console.log("Posthog cookies rejected");
 
+        delete window.posthog;
+
         // !(function (t, e) {
         //   var o, n, p, r;
         //   e.__SV ||
@@ -104,7 +106,7 @@ silktideCookieBannerManager.updateCookieBannerConfig({
         //     }),
         //     (e.__SV = 1));
         // })(document, window.posthog || []);
-        // posthog.init("this.posthogConfig.posthogApiKey", {
+        // posthog.init(window.CURRENT_DATA.posthogApiKey, {
         //   api_host: "https://eu.i.posthog.com",
         //   persistence: "memory",
         //   autocapture: false,
@@ -133,16 +135,20 @@ silktideCookieBannerManager.updateCookieBannerConfig({
         dataLayer.push({
           event: "consent_accepted_chat",
         });
-        console.log("Chat cookies accepted");
+
+        var zE = window.zE;
+
+        try {
+          zE("messenger:set", "cookies", true);
+          zE("messenger", "show");
+        } catch (e) {}
       },
       onReject: function () {
         gtag("consent", "update", {
           functionality_storage: "denied",
         });
 
-        console.log("Chat cookies rejected");
-
-        zE = window.zE;
+        var zE = window.zE;
 
         try {
           zE("messenger:set", "cookies", false);
