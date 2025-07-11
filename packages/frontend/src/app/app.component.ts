@@ -41,6 +41,7 @@ import { THEME_CONFIGURATION } from "./models";
 export class AppComponent implements OnInit, OnDestroy {
   private readonly subscription: Subscription = new Subscription();
   public readonly isChatEnabled = !!THEME_CONFIGURATION.chatWebsiteId;
+  public cookieBannerLoaded = false;
 
   public readonly IS_WEBVIEW_APP = IS_WEBVIEW_APP;
   public readonly IS_BOT = IS_BOT;
@@ -123,6 +124,10 @@ export class AppComponent implements OnInit, OnDestroy {
         }
       )
     );
+
+    document.addEventListener("CookieConsentLoaded", () => {
+      this.cookieBannerLoaded = true;
+    });
 
     document.addEventListener(
       "ConsentChanged",
