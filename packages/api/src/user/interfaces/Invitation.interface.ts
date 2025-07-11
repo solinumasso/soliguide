@@ -18,21 +18,20 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { User } from "../interfaces/User.interface";
-import { ModelWithId } from "../../mongo/types/ModelWithId.type";
+import type { ApiOrganization, CommonInvitation } from "@soliguide/common";
+import mongoose from "mongoose";
+import type { UserPopulateType } from "./User.interface";
+import type { ModelWithId } from "../../_models/mongo";
 
-export type PopulatedUser = Pick<
-  ModelWithId<User>,
-  | "_id"
-  | "invitations"
-  | "lastname"
-  | "mail"
-  | "name"
-  | "organizations"
-  | "phone"
-  | "status"
-  | "title"
-  | "territories"
-  | "verified"
-  | "user_id"
->;
+export interface Invitation extends Omit<CommonInvitation, "createdBy"> {
+  _id: mongoose.Types.ObjectId;
+  createdBy?: mongoose.Types.ObjectId;
+  organization: mongoose.Types.ObjectId;
+  user: mongoose.Types.ObjectId;
+}
+
+export type InvitationPopulate = Omit<Invitation, "organization" | "user"> &
+  Required<{
+    organization: ModelWithId<Omit<ApiOrganization, "_id">>;
+    user: UserPopulateType;
+  }>;

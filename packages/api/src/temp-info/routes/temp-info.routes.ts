@@ -38,11 +38,7 @@ import {
 
 import { checkTempInfoInterval } from "../utils/temp-info.utils";
 
-import type {
-  ExpressRequest,
-  ExpressResponse,
-  UserForLogs,
-} from "../../_models";
+import type { ExpressRequest, ExpressResponse } from "../../_models";
 
 import { parseObjectIdOptionalDto } from "../../_utils/dto";
 
@@ -55,6 +51,7 @@ import {
 import { generateElementsToTranslate } from "../../translations/controllers/translation.controller";
 import { patchClosedServices } from "../../place/controllers";
 import { sendPlaceChangesToMq } from "../../place-changes/middlewares/send-place-changes-to-mq.middleware";
+import { UserForLogs } from "../../user/interfaces";
 
 const router = express.Router();
 

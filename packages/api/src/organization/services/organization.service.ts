@@ -28,13 +28,9 @@ import {
   PLACE_FIELDS_FOR_USERS,
   USERS_FIELDS_FOR_POPULATE,
 } from "../../user/constants";
-import {
-  OrganizationPopulate,
-  InvitationPopulate,
-  ModelWithId,
-  UserPopulateType,
-} from "../../_models";
+import { OrganizationPopulate, ModelWithId } from "../../_models";
 import { countAccountsByRole } from "../../user/services";
+import { UserPopulateType, InvitationPopulate } from "../../user/interfaces";
 
 /**
  * @summary Save an organization

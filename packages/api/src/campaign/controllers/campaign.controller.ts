@@ -29,12 +29,9 @@ import {
 
 import { CAMPAIGN_LIST } from "../constants/CAMPAIGN.const";
 
-import type {
-  OrganizationPopulate,
-  UserPopulateType,
-  UserRight,
-} from "../../_models";
+import type { OrganizationPopulate } from "../../_models";
 import { PRIORITARY_CATEGORIES } from "../../categories/constants/prioritary-categories.const";
+import { UserPopulateType, UserRight } from "../../user/interfaces";
 
 export const getPlaces = (
   user: UserPopulateType,

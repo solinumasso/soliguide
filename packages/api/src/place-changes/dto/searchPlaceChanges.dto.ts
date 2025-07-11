@@ -28,11 +28,9 @@ import {
   PlaceType,
 } from "@soliguide/common";
 
-import { USER_STATUS } from "../../_models";
-
 import { territoriesDto } from "../../_utils/dto/territories.dto";
-
 import { searchOptionsDto } from "../../general/dto/searchOptions.dto";
+import { USER_STATUS } from "../../user/constants";
 
 const checkOptionalId = (path: string) =>
   body(path)
