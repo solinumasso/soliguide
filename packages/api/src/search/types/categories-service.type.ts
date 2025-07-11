@@ -18,7 +18,11 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-// @index('./*', f => `export * from '${f.path}'`)
-export * from "./AutoComplete.interface";
-export * from "./search-suggestion.interface";
-export * from "./SearchAutoComplete.interface";
+
+import { TypeCategoriesServiceNotFromThemeEnum } from "../enums/type-categories-service-not-from-theme.enum";
+import { Themes } from "@soliguide/common";
+
+export type TypeCategoriesService =
+  | Themes
+  | TypeCategoriesServiceNotFromThemeEnum
+  | null;

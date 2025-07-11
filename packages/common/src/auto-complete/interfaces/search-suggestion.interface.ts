@@ -18,7 +18,25 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-// @index('./*', f => `export * from '${f.path}'`)
-export * from "./AutoComplete.interface";
-export * from "./search-suggestion.interface";
-export * from "./SearchAutoComplete.interface";
+import { Categories } from "../../categories";
+import { SupportedLanguagesCode } from "../../translations";
+import { AutoCompleteType } from "../enums";
+
+export interface SearchSuggestion {
+  id: string;
+  referenceId: string;
+  lang: SupportedLanguagesCode;
+  categoryId: Categories | null;
+  description: string;
+  expressionId: string | null;
+  label: string;
+  slug: string;
+  synonyms: string[];
+  type: AutoCompleteType;
+  seoTitle: string;
+  seoDescription: string;
+  searchText: string;
+  normalizedSearchText: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
