@@ -31,6 +31,7 @@ export class PosthogService implements OnDestroy {
   public constructor(
     private readonly commonPosthogService: CommonPosthogService
   ) {
+    this.commonPosthogService.switchPersistence("memory");
     this.subscription = new Subscription();
   }
 

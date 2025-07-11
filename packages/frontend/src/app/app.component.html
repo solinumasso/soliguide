@@ -21,7 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <button
   type="button"
   class="btn btn-secondary"
-  *ngIf="isChatEnabled && !IS_BOT && !hasUserGivenConsent"
+  *ngIf="cookieBannerLoaded && isChatEnabled && !IS_BOT && !hasUserGivenConsent"
   (click)="openChatCookiesConsentModal()"
   id="chat-placeholder"
 >
