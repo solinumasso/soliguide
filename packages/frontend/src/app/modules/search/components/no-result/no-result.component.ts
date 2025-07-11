@@ -27,6 +27,7 @@ import type { PosthogProperties } from "@soliguide/common-angular";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { THEME_CONFIGURATION } from "../../../../models";
 import { CurrentLanguageService } from "../../../general/services/current-language.service";
+import { ChatService } from "../../../shared/services/chat.service";
 
 @Component({
   selector: "app-no-result",
@@ -41,7 +42,8 @@ export class NoResultComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly currentLanguageService: CurrentLanguageService,
-    private readonly posthogService: PosthogService
+    private readonly posthogService: PosthogService,
+    private readonly chatService: ChatService
   ) {
     this.routePrefix = this.currentLanguageService.routePrefix;
   }
@@ -59,9 +61,7 @@ export class NoResultComponent implements OnInit, OnDestroy {
   }
 
   public openChat = (): void => {
-    if (window["$launcher"]) {
-      window["$launcher"].push(["do", "chat:open"]);
-    }
+    this.chatService.openChat();
   };
 
   public captureEvent(eventName: string, properties?: PosthogProperties): void {

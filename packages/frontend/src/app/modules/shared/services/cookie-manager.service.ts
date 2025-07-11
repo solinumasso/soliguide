@@ -19,57 +19,22 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { Injectable } from "@angular/core";
-import { globalConstants } from "../../../shared/functions";
 import { BehaviorSubject } from "rxjs";
-import isValid from "date-fns/isValid";
-import { ChatService } from "./chat.service";
-import { AuthService } from "../../users/services/auth.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class CookieManagerService {
-  public consentSubject: BehaviorSubject<boolean>;
+  public analyticsConsentSubject: BehaviorSubject<boolean>;
+  public chatConsentSubject: BehaviorSubject<boolean>;
 
-  constructor(
-    private readonly chatService: ChatService,
-    private readonly authService: AuthService
-  ) {
-    this.consentSubject = new BehaviorSubject<boolean>(
-      CookieManagerService.hasUserGivenConsent()
-    );
+  constructor() {
+    this.analyticsConsentSubject = new BehaviorSubject<boolean>(false);
+    this.chatConsentSubject = new BehaviorSubject<boolean>(false);
   }
 
-  public get consentSubjectValue(): boolean {
-    return this.consentSubject.value;
-  }
-
-  public static hasUserGivenConsent(): boolean {
-    // If "USER_COOKIES_CONSENT" doesn't exist in locale storage getItem() return null
-    // new Date(null) = Thu Jan 01 1970
-    const cookieConsent = new Date(
-      globalConstants.getItem("USER_COOKIES_CONSENT")
-    );
-    return isValid(cookieConsent) && new Date() < cookieConsent;
-  }
-
-  public setConsentCookie(): void {
-    this.consentSubject.next(true);
-    const dateExpiration = new Date();
-    dateExpiration.setMonth(dateExpiration.getMonth() + 3);
-    globalConstants.setItem("USER_COOKIES_CONSENT", dateExpiration.toString());
-    this.chatService.openChat(this.authService.currentUserValue);
-  }
-
-  public deleteConsentCookie(): void {
-    for (const item of globalConstants.listItems()) {
-      if (item.startsWith("ZD")) {
-        globalConstants.removeItem(item);
-      }
-    }
-
-    globalConstants.removeItem("USER_COOKIES_CONSENT");
-    this.chatService.resetSession();
-    this.consentSubject.next(false);
+  public openCookiesConsentModal(): void {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).silktideCookieBannerManager.toggleModal(true);
   }
 }
