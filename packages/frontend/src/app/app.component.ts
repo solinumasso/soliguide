@@ -18,17 +18,10 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  TemplateRef,
-  ViewChild,
-} from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";
 
 import { Subscription, filter } from "rxjs";
-import { NgbModalRef, NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 import { CurrentLanguageService } from "./modules/general/services/current-language.service";
 import { LanguageSetupService } from "./modules/general/services/language-setup.service";
@@ -36,12 +29,8 @@ import { User } from "./modules/users/classes";
 import { AuthService } from "./modules/users/services/auth.service";
 import { PosthogService } from "./modules/analytics/services/posthog.service";
 
-import {
-  DEFAULT_MODAL_OPTIONS,
-  IS_BOT,
-  IS_WEBVIEW_APP,
-} from "./shared/constants";
-import { ChatService, CookieManagerService } from "./modules/shared/services";
+import { IS_BOT, IS_WEBVIEW_APP } from "./shared/constants";
+import { CookieManagerService } from "./modules/shared/services";
 import { THEME_CONFIGURATION } from "./models";
 
 @Component({
@@ -59,12 +48,8 @@ export class AppComponent implements OnInit, OnDestroy {
   public currentUrl = "";
   public todayYear: number;
   public routePrefix: string;
-  private isCookieModalOpen = false;
 
   public hasUserGivenConsent: boolean;
-
-  @ViewChild("cookiesConsentModal", { static: true })
-  public cookiesConsentModal!: TemplateRef<NgbModalRef>;
 
   constructor(
     private readonly authService: AuthService,
@@ -72,8 +57,6 @@ export class AppComponent implements OnInit, OnDestroy {
     private readonly languageSetupService: LanguageSetupService,
     private readonly currentLanguageService: CurrentLanguageService,
     private readonly posthogService: PosthogService,
-    private readonly chatService: ChatService,
-    private readonly modalService: NgbModal,
     private readonly cookieManagerService: CookieManagerService
   ) {
     this.hasUserGivenConsent = false;
@@ -134,12 +117,31 @@ export class AppComponent implements OnInit, OnDestroy {
     );
 
     this.subscription.add(
-      this.cookieManagerService.consentSubject.subscribe((consent: boolean) => {
-        this.hasUserGivenConsent = consent;
-        if (consent) {
-          this.chatService.loadScript();
+      this.cookieManagerService.chatConsentSubject.subscribe(
+        (consent: boolean) => {
+          this.hasUserGivenConsent = consent;
         }
-      })
+      )
+    );
+
+    document.addEventListener(
+      "ConsentChanged",
+      (
+        event: CustomEvent<{
+          type: "analytics" | "chat";
+          value: "granted" | "denied";
+        }>
+      ) => {
+        if (event.detail.type === "analytics") {
+          this.cookieManagerService.analyticsConsentSubject.next(
+            event.detail.value === "granted"
+          );
+        } else if (event.detail.type === "chat") {
+          this.cookieManagerService.chatConsentSubject.next(
+            event.detail.value === "granted"
+          );
+        }
+      }
     );
   }
 
@@ -148,28 +150,12 @@ export class AppComponent implements OnInit, OnDestroy {
     this.languageSetupService.tearDown();
   }
 
-  private openCookieConsentModal(): void {
-    if (!this.isCookieModalOpen) {
-      this.modalService
-        .open(this.cookiesConsentModal, DEFAULT_MODAL_OPTIONS)
-        .result.then(
-          () => {
-            this.isCookieModalOpen = false;
-          },
-          () => {
-            this.isCookieModalOpen = false;
-          }
-        );
-      this.isCookieModalOpen = true;
-    }
-  }
-
   public openChatCookiesConsentModal(): void {
     this.posthogService.capture("chat-button");
-    this.openCookieConsentModal();
+    this.cookieManagerService.openCookiesConsentModal();
   }
 
   public openFooterCookiesConsentModal(): void {
-    this.openCookieConsentModal();
+    this.cookieManagerService.openCookiesConsentModal();
   }
 }
