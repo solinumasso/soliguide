@@ -18,21 +18,21 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { body } from "express-validator";
+import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 
-const addHttpsIfNeeded = (url: string) => {
-  if (!/^https?:\/\//i.test(url)) {
-    return "https://" + url;
-  }
-  return url;
-};
+export function UrlValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const value = control.value;
 
-export const checkUrlFieldDto = (urlField: string) =>
-  body(urlField)
-    .optional({ checkFalsy: true })
-    .trim()
-    .customSanitizer(addHttpsIfNeeded)
-    .custom((value) => {
-      new URL(value);
-      return true;
-    });
+    if (!value) {
+      return null;
+    }
+
+    try {
+      new URL(value.startsWith("http") ? value : `https://${value}`);
+      return null;
+    } catch {
+      return { invalidUrl: true };
+    }
+  };
+}
