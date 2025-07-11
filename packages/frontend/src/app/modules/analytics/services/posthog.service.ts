@@ -25,6 +25,7 @@ import {
   PosthogService as CommonPosthogService,
   type PosthogProperties,
 } from "@soliguide/common-angular";
+import { CookieManagerService } from "../../shared";
 
 @Injectable({
   providedIn: "root",
@@ -33,9 +34,22 @@ export class PosthogService implements OnDestroy {
   private readonly subscription: Subscription;
 
   public constructor(
-    private readonly commonPosthogService: CommonPosthogService
+    private readonly commonPosthogService: CommonPosthogService,
+    private readonly cookieManagerService: CookieManagerService
   ) {
     this.subscription = new Subscription();
+
+    this.subscription.add(
+      this.cookieManagerService.analyticsConsentSubject.subscribe(
+        (consent: boolean) => {
+          if (consent) {
+            this.commonPosthogService.switchPersistence("localStorage+cookie");
+          } else {
+            this.commonPosthogService.switchPersistence("memory");
+          }
+        }
+      )
+    );
   }
 
   public ngOnDestroy(): void {
