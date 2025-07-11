@@ -954,10 +954,38 @@ class SilktideCookieBanner {
     document.head.appendChild(script);
   }
 
+  /**
+   * Custom function to toggle the modal visibility
+   * DO NOT ERASE THIS FUNCTION WHEN UPDATING SILKTIDE
+   */
+  function toggleModal() {
+    if (cookieBanner) {
+      // If modal is not found, create it
+      if (!cookieBanner.modal) {
+        cookieBanner.createModal();
+        cookieBanner.toggleModal(true);
+        cookieBanner.hideCookieIcon();
+      }
+      // If modal is hidden, show it
+      else if (
+        cookieBanner.modal.style.display === "none" ||
+        cookieBanner.modal.style.display === ""
+      ) {
+        cookieBanner.toggleModal(true);
+        cookieBanner.hideCookieIcon();
+      }
+      // If modal is visible, hide it
+      else {
+        cookieBanner.toggleModal(false);
+      }
+    }
+  }
+
   window.silktideCookieBannerManager.initCookieBanner = initCookieBanner;
   window.silktideCookieBannerManager.updateCookieBannerConfig =
     updateCookieBannerConfig;
   window.silktideCookieBannerManager.injectScript = injectScript;
+  window.silktideCookieBannerManager.toggleModal = toggleModal;
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initCookieBanner, {
