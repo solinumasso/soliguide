@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2025 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.8677 16.25H16.1323C14.8409 16.25 13.8484 17.1595 14.0192 18.171L15.8655 22H20.1345L21.9808 18.171C22.1516 17.1595 21.1591 16.25 19.8677 16.25Z" fill="#404040"/>
+<path d="M18 15.4C19.1789 15.4 20.1345 14.6389 20.1345 13.7C20.1345 12.7611 19.1789 12 18 12C16.8211 12 15.8655 12.7611 15.8655 13.7C15.8655 14.6389 16.8211 15.4 18 15.4Z" fill="#404040"/>
+<path d="M31.8677 16.25H28.1323C26.8409 16.25 25.8484 17.1595 26.0192 18.171L27.8655 22H32.1345L33.9808 18.171C34.1516 17.1595 33.1591 16.25 31.8677 16.25Z" fill="#404040"/>
+<path d="M30 15.4C31.1789 15.4 32.1345 14.6389 32.1345 13.7C32.1345 12.7611 31.1789 12 30 12C28.8211 12 27.8655 12.7611 27.8655 13.7C27.8655 14.6389 28.8211 15.4 30 15.4Z" fill="#404040"/>
+<path d="M40.1467 8.35667C39.68 6.98 38.3733 6 36.8333 6H11.1667C9.62667 6 8.34333 6.98 7.85333 8.35667L3 22.3333V41C3 42.2833 4.05 43.3333 5.33333 43.3333H7.66667C8.95 43.3333 10 42.2833 10 41V38.6667H38V41C38 42.2833 39.05 43.3333 40.3333 43.3333H42.6667C43.95 43.3333 45 42.2833 45 41V22.3333L40.1467 8.35667ZM11.9833 10.6667H35.9933L38.5133 17.9233H9.46333L11.9833 10.6667ZM40.3333 34H7.66667V22.3333H40.3333V34Z" fill="#404040"/>
+<path d="M13.5 31.6667C15.433 31.6667 17 30.0997 17 28.1667C17 26.2337 15.433 24.6667 13.5 24.6667C11.567 24.6667 10 26.2337 10 28.1667C10 30.0997 11.567 31.6667 13.5 31.6667Z" fill="#404040"/>
+<path d="M34.5 31.6667C36.433 31.6667 38 30.0997 38 28.1667C38 26.2337 36.433 24.6667 34.5 24.6667C32.567 24.6667 31 26.2337 31 28.1667C31 30.0997 32.567 31.6667 34.5 31.6667Z" fill="#404040"/>
+</svg>
