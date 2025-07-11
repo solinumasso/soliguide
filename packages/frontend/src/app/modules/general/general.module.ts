@@ -43,7 +43,6 @@ import { FooterComponent } from "./components/footer/footer.component";
 import { GeneralService } from "./services/general.services";
 
 import { SharedModule } from "../shared/shared.module";
-import { CookiesModalComponent } from "./components/cookies-modal/cookies-modal.component";
 import { ChatService } from "../shared/services";
 
 import { HomeTerritoriesStatsComponent } from "./components/home-territiries-stats/home-territories-stats.component";
@@ -60,7 +59,6 @@ import { SolidataComponent } from "./components/solidata/solidata.component";
     NavComponent,
     FooterComponent,
     NotFoundComponent,
-    CookiesModalComponent,
     DownloadMobileAppComponent,
     SolidataComponent,
     HomeTerritoriesStatsComponent,
@@ -71,7 +69,6 @@ import { SolidataComponent } from "./components/solidata/solidata.component";
     NavComponent,
     FooterComponent,
     DownloadMobileAppComponent,
-    CookiesModalComponent,
     HomeTerritoriesStatsComponent,
   ],
   imports: [
