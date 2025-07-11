@@ -40,6 +40,14 @@ silktideCookieBannerManager.updateCookieBannerConfig({
           event: "consent_accepted_analytics",
         });
         console.log("Posthog cookies accepted");
+
+        var event = new CustomEvent("ConsentChanged", {
+          detail: {
+            type: "analytics",
+            value: "granted",
+          },
+        });
+        document.dispatchEvent(event);
       },
       onReject: function () {
         gtag("consent", "update", {
@@ -49,6 +57,14 @@ silktideCookieBannerManager.updateCookieBannerConfig({
         console.log("Posthog cookies rejected");
 
         delete window.posthog;
+
+        var event = new CustomEvent("ConsentChanged", {
+          detail: {
+            type: "analytics",
+            value: "denied",
+          },
+        });
+        document.dispatchEvent(event);
 
         // !(function (t, e) {
         //   var o, n, p, r;
@@ -136,6 +152,14 @@ silktideCookieBannerManager.updateCookieBannerConfig({
           event: "consent_accepted_chat",
         });
 
+        var event = new CustomEvent("ConsentChanged", {
+          detail: {
+            type: "chat",
+            value: "granted",
+          },
+        });
+        document.dispatchEvent(event);
+
         var zE = window.zE;
 
         try {
@@ -147,6 +171,14 @@ silktideCookieBannerManager.updateCookieBannerConfig({
         gtag("consent", "update", {
           functionality_storage: "denied",
         });
+
+        var event = new CustomEvent("ConsentChanged", {
+          detail: {
+            type: "chat",
+            value: "denied",
+          },
+        });
+        document.dispatchEvent(event);
 
         var zE = window.zE;
 
