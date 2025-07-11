@@ -20,6 +20,7 @@
  */
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
+import { globalConstants } from "../../../shared";
 
 @Injectable({
   providedIn: "root",
@@ -29,8 +30,12 @@ export class CookieManagerService {
   public chatConsentSubject: BehaviorSubject<boolean>;
 
   constructor() {
-    this.analyticsConsentSubject = new BehaviorSubject<boolean>(false);
-    this.chatConsentSubject = new BehaviorSubject<boolean>(false);
+    this.analyticsConsentSubject = new BehaviorSubject<boolean>(
+      globalConstants.getItem("silktideCookieChoice_analytics") === true
+    );
+    this.chatConsentSubject = new BehaviorSubject<boolean>(
+      globalConstants.getItem("silktideCookieChoice_chat") === true
+    );
   }
 
   public openCookiesConsentModal(): void {
