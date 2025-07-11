@@ -1,0 +1,37 @@
+{
+  "license": "../../LICENSE.header",
+  "ignore": [
+    "**/*.eot",
+    "**/*.ttf",
+    "**/*.woff",
+    "**/*.woff2",
+    "**/*.webp",
+    ".eslintcache",
+    "**/.gitkeep",
+    "**/*.license"
+  ],
+  "licenseFormats": {
+    "xml|svg": {
+      "prepend": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!--",
+      "append": "-->"
+    },
+    "html|md": {
+      "prepend": "<!--",
+      "append": "-->"
+    },
+    "js|ts|css|scss": {
+      "prepend": "/*",
+      "append": " */",
+      "eachLine": {
+        "prepend": " * "
+      }
+    },
+    "^Dockerfile|conf|^.editorconfig|^.gitignore|^.prettierignore": {
+      "eachLine": {
+        "prepend": "# "
+      }
+    }
+  },
+  "trailingWhitespace": "TRIM",
+  "regexIdentifier": "___"
+}
