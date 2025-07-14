@@ -21,13 +21,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <div id="form_recherche">
   <div class="row">
     <div class="col-md-5 col-12">
-      <app-search-category-autocomplete
-        [search]="search"
-        (updateCategory)="updateCategory.emit()"
-        (updateSearchTerm)="updateSearchTerm.emit()"
-        (click)="captureEvent('category-input')"
-        class="search-input"
-      ></app-search-category-autocomplete>
+      <div class="search-input">
+        <label for="address-search">
+          {{ "A_PROXIMITE" | translate }}
+        </label>
+        <app-search-category-autocomplete
+          [search]="search"
+          (updateCategory)="updateCategory.emit()"
+          class="search-input"
+        ></app-search-category-autocomplete>
+      </div>
     </div>
     <div class="col-md-5 col-12">
       <div class="search-input">
@@ -38,7 +41,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           [addressesOnly]="false"
           [currentAddress]="search?.location.label"
           (updateLocation)="updateLocation.emit($event)"
-          (click)="captureEvent('location-input')"
         ></app-location-autocomplete>
       </div>
     </div>
