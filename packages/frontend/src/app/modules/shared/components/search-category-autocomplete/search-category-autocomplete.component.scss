@@ -18,30 +18,59 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import "../../../config/database/connection";
 
-import "../../../place/models/document.model";
-import "../../../place/models/photo.model";
-import "../../../place/models/place.model";
-import "../../../place/models/opening-hours.model";
-import "../../../translations/models/translatedField.model";
-import "../../../translations/models/translatedPlace.model";
+.aa-ItemIcon {
+  border: 1px solid rgb(85, 85, 85);
+  width: 36px;
+  height: 36px;
+  font-size: 1.5rem;
+  color: var(--bs-primary);
+  fill: var(--bs-primary);
+  margin-right: 0.5rem;
+}
 
-import delay from "delay";
-import { parentPort } from "worker_threads";
-import { logger } from "../../../general/logger";
-import { importCategories } from "../../../place/utils/importCategories";
+.aa-ItemContentTitle {
+  font-size: 1.1rem;
+}
 
-(async () => {
-  logger.info("[IMPORT CATEGORIES]: Start import");
+.aa-ItemLink {
+  img {
+    width: 34px !important;
+    height: auto;
+  }
 
-  try {
-    await importCategories();
-  } catch (e) {
-    logger.error(e, "ERROR IMPORT CATEGORIES");
-    await delay(500);
-    if (parentPort) {
-      parentPort.postMessage("ERROR IMPORT CATEGORIES");
+  justify-content: left !important;
+  font-size: 1.1rem;
+}
+
+.aa-PanelLayout {
+  padding: 0 !important;
+}
+
+.aa-Item {
+  padding: 0.3rem 0.2rem;
+  border-bottom: 1px solid rgb(211, 211, 211);
+}
+
+.search-input {
+  min-width: 340px;
+
+  .aa-Label,
+  .aa-InputWrapperSuffix,
+  .aa-SubmitButton {
+    display: none !important;
+  }
+
+  .aa-Form:focus-within,
+  .aa-Form {
+    border: none !important;
+    padding: none !important;
+    box-shadow: none !important;
+  }
+
+  .aa-Autocomplete {
+    button {
+      border: none;
     }
   }
-})();
+}

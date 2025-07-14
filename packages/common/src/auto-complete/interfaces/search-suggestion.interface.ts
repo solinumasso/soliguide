@@ -18,30 +18,21 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Db } from "mongodb";
-import { logger } from "../src/general/logger";
+import { Categories } from "../../categories";
+import { SupportedLanguagesCode } from "../../translations";
+import { AutoCompleteType } from "../enums";
 
-const message =
-  "Reinitialize AT sync: set lastSync to null for excluded entities in lieux and users collections";
-
-export const down = async () => {
-  logger.info(`[ROLLBACK] - ${message}`);
-};
-
-export const up = async (db: Db) => {
-  logger.info(`[MIGRATION] - ${message}`);
-
-  const filter = {
-    "atSync.excluded": false,
-  };
-
-  const update = {
-    $set: { "atSync.lastSync": null },
-  };
-
-  const lieuxResult = await db.collection("lieux").updateMany(filter, update);
-  logger.info(`[MIGRATION] - ${lieuxResult.modifiedCount} lieux updated`);
-
-  const usersResult = await db.collection("users").updateMany(filter, update);
-  logger.info(`[MIGRATION] - ${usersResult.modifiedCount} users updated`);
-};
+export interface SearchSuggestion {
+  sourceId: string;
+  lang: SupportedLanguagesCode;
+  label: string;
+  categoryId: Categories | null;
+  slug: string;
+  synonyms: string[];
+  type: AutoCompleteType;
+  content: string;
+  seoTitle: string;
+  seoDescription: string;
+  createdAt: Date;
+  updatedAt: Date;
+}

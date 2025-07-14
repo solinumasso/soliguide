@@ -19,5 +19,5 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 // @index('./*', f => `export * from '${f.path}'`)
-export * from "./auto-complete.model";
-export * from "./subschemas";
+export * from "./generate-categories-autocomplete";
+export * from "./generate-categories-json";

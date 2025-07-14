@@ -18,11 +18,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { default as axios } from "axios";
-
-import { createWriteStream } from "fs";
-
-export const readGsheetFile = async (url: string, destinationPath: string) => {
-  const response = await axios({ method: "get", responseType: "stream", url });
-  return response.data.pipe(createWriteStream(destinationPath));
-};
+// @index('./*', f => `export * from '${f.path}'`)
+export * from "./anonymizeDb";
+export * from "./connection";
