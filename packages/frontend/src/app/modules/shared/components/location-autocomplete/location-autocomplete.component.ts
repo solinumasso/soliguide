@@ -102,7 +102,7 @@ export class LocationAutocompleteComponent
   private readonly subscription = new Subscription();
 
   public currentPosition: LocationAutoCompleteAddress | null;
-  private searchCancelSubject = new Subject<void>();
+  private readonly searchCancelSubject = new Subject<void>();
 
   constructor(
     private readonly locationService: LocationService,

@@ -18,44 +18,11 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-#autocomplete-results b {
-  text-transform: uppercase;
-}
 
-#autocomplete-results {
-  position: absolute;
-  width: 98%;
-  background: white;
-  font-size: 1rem;
-  z-index: 20000;
-  padding: 12px 10px;
-  border-radius: 6px;
-  box-shadow: 0 1px 5px 2px rgb(80 80 80 / 10%);
-}
+import { Themes } from "@soliguide/common";
+import { TypeCategoriesServiceNotFromThemeEnum } from "../../categories/enums/type-categories-service-not-from-theme.enum";
 
-#autocomplete-results ul {
-  margin: 0;
-  padding: 0;
-}
-
-#autocomplete-results li {
-  list-style-type: none;
-  margin: 2px 0;
-  padding: 0.5rem;
-  cursor: pointer;
-  border-radius: 6px;
-}
-
-#autocomplete-results li:hover {
-  background-color: var(--bs-primary);
-  color: white;
-  -webkit-transition: all 0.2s;
-  -moz-transition: all 0.2s;
-  -o-transition: all 0.2s;
-  transition: all 0.2s;
-}
-
-#typeLoading {
-  width: 40px;
-  height: auto;
-}
+export type TypeCategoriesService =
+  | Themes
+  | TypeCategoriesServiceNotFromThemeEnum
+  | null;
