@@ -31,8 +31,8 @@
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.57.1",
+    "eslint-config-love": "^121.0.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-config-standard-with-typescript": "^43.0.1",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jest": "^28.8.3",
     "eslint-plugin-n": "^17.10.3",
@@ -44,7 +44,7 @@
     "rimraf": "^6.0.1",
     "ts-jest": "^29.3.2",
     "ts-node": "^10.9.2",
-    "typescript": "^4.9.5"
+    "typescript": "~5.4.5"
   },
   "dependencies": {
     "date-fns": "^2.30.0",
@@ -58,6 +58,9 @@
     "lodash.get": "^4.4.2",
     "slug": "^9.1.0",
     "striptags": "^3.2.0"
+  },
+  "engines": {
+    "node": ">= 20"
   },
   "lint-staged": {
     "*": "prettier --cache --ignore-unknown -w",
