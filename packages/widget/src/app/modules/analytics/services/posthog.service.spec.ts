@@ -46,15 +46,15 @@ describe("PosthogService", () => {
       posthogMock.enabled = false;
       const posthogService = TestBed.inject(PosthogService);
       posthogService.capture("plop", { hello: "world" });
-      expect(posthogMock.mockInstance).not.toBeCalled();
+      expect(posthogMock.mockInstance).not.toHaveBeenCalled();
     });
 
     it("should capture an event", () => {
       posthogMock.enabled = true;
       const posthogService = TestBed.inject(PosthogService);
       posthogService.capture("plop", { hello: "world" });
-      expect(posthogMock.mockInstance).toBeCalledTimes(1);
-      expect(posthogMock.mockInstance).toBeCalledWith("widget-plop", {
+      expect(posthogMock.mockInstance).toHaveBeenCalledTimes(1);
+      expect(posthogMock.mockInstance).toHaveBeenCalledWith("widget-plop", {
         hello: "world",
       });
     });
