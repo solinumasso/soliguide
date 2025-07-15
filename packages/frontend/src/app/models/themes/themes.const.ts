@@ -101,6 +101,12 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
           "https://superset.solinum.org/superset/dashboard/solidata_jo_2024/?standalone=2",
         seoUrl: "olympic-games",
       },
+      demoFoodAccess: {
+        label: "Démo – Analyse de l'accès à l'alimentation",
+        dashboardUrl:
+          "https://superset.solinum.org/superset/dashboard/demo_acces_alimentation/",
+        seoUrl: "demo_acces_alimentation",
+      },
     },
     praticalFilesLink: environment.praticalFilesLink,
     becomeTranslatorFormLink: environment.becomeTranslatorFormLink,
