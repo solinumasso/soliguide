@@ -65,7 +65,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             (click)="clearCategories()"
           >
             <img
-              alt=""
               src="../../../assets/images/homepage/homepictos.png"
               class="p-2"
               aria-hidden="true"
@@ -137,9 +136,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                   [ngClass]="search.category === category.id ? 'active' : ''"
                 >
                   <span
-                    [class]="
-                      'category-icon category-icon-' + category.id + '_outlined'
-                    "
+                    [class]="'category-icon category-icon-' + category.id"
                   ></span>
                   {{ category.id | uppercase | translate }}
                 </button>
