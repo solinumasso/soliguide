@@ -24,6 +24,7 @@ export * from "./CommonPosthogMockService.mock";
 export * from "./INVITATION.mock";
 export * from "./EMAIL.mock";
 export * from "./MockAuthService";
+export * from "./MockCookieManagerService";
 export * from "./ORGANIZATION.mock";
 export * from "./ONLINE_PLACE.mock";
 export * from "./PAIRED_ONLINE_PLACE.mock";

@@ -27,6 +27,12 @@ import { ChatService } from "./chat.service";
 import { USER_PRO_MOCK } from "../../../../../mocks/USER_PRO.mock";
 import { User } from "../../users/classes";
 import { THEME_CONFIGURATION } from "../../../models";
+import {
+  MockAuthService,
+  MockCookieManagerService,
+} from "../../../../../mocks";
+import { AuthService } from "../../users/services/auth.service";
+import { CookieManagerService } from "./cookie-manager.service";
 
 describe("ChatService", () => {
   let service: ChatService;
@@ -36,6 +42,8 @@ describe("ChatService", () => {
       providers: [
         ChatService,
         { provide: DOCUMENT, useValue: global.document },
+        { provide: AuthService, useClass: MockAuthService },
+        { provide: CookieManagerService, useClass: MockCookieManagerService },
       ],
     });
 

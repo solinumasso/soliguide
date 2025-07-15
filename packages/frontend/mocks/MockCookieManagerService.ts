@@ -18,23 +18,29 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { globalConstants } from "../../../shared/functions/global-constants.class";
 
-@Injectable({
-  providedIn: "root",
-})
-export class CookieManagerService {
+global.window = {
+  silktideCookieBannerManager: { toggleModal: () => {} },
+} as unknown as Window & typeof globalThis;
+
+export class MockCookieManagerService {
   public analyticsConsentSubject: BehaviorSubject<boolean>;
   public chatConsentSubject: BehaviorSubject<boolean>;
 
+  private store = {};
+  private globalConstants = {
+    getItem: (key: string): string | boolean => {
+      return key in this.store ? this.store[key] : null;
+    },
+  };
+
   constructor() {
     this.analyticsConsentSubject = new BehaviorSubject<boolean>(
-      globalConstants.getItem("silktideCookieChoice_analytics") === true
+      this.globalConstants.getItem("silktideCookieChoice_analytics") === true
     );
     this.chatConsentSubject = new BehaviorSubject<boolean>(
-      globalConstants.getItem("silktideCookieChoice_chat") === true
+      this.globalConstants.getItem("silktideCookieChoice_chat") === true
     );
   }
 
