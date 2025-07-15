@@ -19,7 +19,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-import { RouterTestingModule } from "@angular/router/testing";
 
 import { TranslateModule } from "@ngx-translate/core";
 
@@ -27,7 +26,11 @@ import { NoResultComponent } from "./no-result.component";
 
 import { PosthogService } from "../../../analytics/services/posthog.service";
 
-import { CommonPosthogMockService } from "../../../../../../mocks";
+import {
+  CommonPosthogMockService,
+  MockAuthService,
+} from "../../../../../../mocks";
+import { AuthService } from "../../../users/services/auth.service";
 
 describe("NoResultComponent", () => {
   let component: NoResultComponent;
@@ -36,9 +39,10 @@ describe("NoResultComponent", () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [NoResultComponent],
-      imports: [RouterTestingModule, TranslateModule.forRoot({})],
+      imports: [TranslateModule.forRoot({})],
       providers: [
         { provide: PosthogService, useClass: CommonPosthogMockService },
+        { provide: AuthService, useClass: MockAuthService },
       ],
     }).compileComponents();
   }));
