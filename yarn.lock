@@ -9598,7 +9598,7 @@ __metadata:
     lint-staged: "npm:^15.5.1"
     ng-lint-staged: "npm:^12.0.4"
     ng-packagr: "npm:^17.3.0"
-    posthog-js: "npm:1.154.1"
+    posthog-js: "npm:1.257.0"
     prettier: "npm:^2.8.8"
     rxjs: "npm:^7.8.2"
     ts-jest: "npm:^29.3.2"
@@ -9614,7 +9614,7 @@ __metadata:
     "@angular/platform-browser-dynamic": ^17.3.12
     "@angular/router": ^17.3.12
     "@soliguide/common": "workspace:*"
-    posthog-js: 1.154.1
+    posthog-js: 1.257.0
     rxjs: ^7.8.1
     zone.js: ~0.14.7
   languageName: unknown
@@ -26678,14 +26678,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"posthog-js@npm:1.154.1":
-  version: 1.154.1
-  resolution: "posthog-js@npm:1.154.1"
+"posthog-js@npm:1.257.0":
+  version: 1.257.0
+  resolution: "posthog-js@npm:1.257.0"
   dependencies:
+    core-js: "npm:^3.38.1"
     fflate: "npm:^0.4.8"
     preact: "npm:^10.19.3"
-    web-vitals: "npm:^4.0.1"
-  checksum: 10c0/889a43f7eb4a4eb082249b73b95fb6f2db8c5c82051bcbbc7613436d1862d0536c1f554a7ff3443921ec88c5de57499acc1b171d946fad51eb47db10f3734ec5
+    web-vitals: "npm:^4.2.4"
+  peerDependencies:
+    "@rrweb/types": 2.0.0-alpha.17
+    rrweb-snapshot: 2.0.0-alpha.17
+  peerDependenciesMeta:
+    "@rrweb/types":
+      optional: true
+    rrweb-snapshot:
+      optional: true
+  checksum: 10c0/a2471791a6c0ae1fb10ccc36941c111c3e63ca06202d74e727627c887a15c48f1b0d3c177884c49b8fad56148b499ab91e2064baf184e0957af982696096eb59
   languageName: node
   linkType: hard
 
@@ -31804,7 +31813,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"web-vitals@npm:^4.0.1, web-vitals@npm:^4.2.4":
+"web-vitals@npm:^4.2.4":
   version: 4.2.4
   resolution: "web-vitals@npm:4.2.4"
   checksum: 10c0/383c9281d5b556bcd190fde3c823aeb005bb8cf82e62c75b47beb411014a4ed13fa5c5e0489ed0f1b8d501cd66b0bebcb8624c1a75750bd5df13e2a3b1b2d194
