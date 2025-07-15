@@ -71,7 +71,7 @@ const generateFont = async (): Promise<void> => {
       meta: {
         description: "Converts SVG icons to a font format.",
       },
-      description: "",
+      description: ``,
       corners: {
         url: "https://github.com/solinumasso/soliguide/",
         width: 100, // default: 60
