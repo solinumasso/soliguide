@@ -32,7 +32,9 @@ export enum PrivateDashboards {
 
 export enum PublicDashboards {
   SearchTracking = "searchTracking",
+  DemoFoodAccess = "demoFoodAccess",
 }
+
 type Dashboards = PrivateDashboards | PublicDashboards;
 
 export interface SolidataDashboardConfig {
