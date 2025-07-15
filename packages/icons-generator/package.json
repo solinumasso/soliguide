@@ -9,7 +9,7 @@
     "fs-extra": "^11.3.0",
     "oslllo-potrace": "^4.0.0",
     "sharp": "^0.34.1",
-    "svgtofont": "^6.3.1"
+    "svgtofont": "^6.3.2"
   },
   "scripts": {
     "start": "tsx src/index.ts",
@@ -32,14 +32,14 @@
   "license": "MIT",
   "devDependencies": {
     "@eslint/css": "^0.7.0",
-    "@eslint/js": "^9.26.0",
+    "@eslint/js": "^9.31.0",
     "@swc/core": "^1.11.24",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^22.15.17",
+    "@types/node": "^22.16.4",
     "@types/sharp": "^0.32.0",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
-    "eslint": "^9.26.0",
+    "eslint": "^9.31.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jest": "^28.8.3",
@@ -50,7 +50,7 @@
     "lint-staged": "^15.5.1",
     "ng-lint-staged": "^12.0.4",
     "prettier": "^2.8.8",
-    "tsx": "^4.19.4",
+    "tsx": "^4.20.3",
     "typescript": "5.8.3",
     "typescript-eslint": "8.37.0"
   }
