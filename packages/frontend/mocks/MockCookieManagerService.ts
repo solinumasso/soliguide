@@ -28,24 +28,10 @@ export class MockCookieManagerService {
   public analyticsConsentSubject: BehaviorSubject<boolean>;
   public chatConsentSubject: BehaviorSubject<boolean>;
 
-  private store = {};
-  private globalConstants = {
-    getItem: (key: string): string | boolean => {
-      return key in this.store ? this.store[key] : null;
-    },
-  };
-
   constructor() {
-    this.analyticsConsentSubject = new BehaviorSubject<boolean>(
-      this.globalConstants.getItem("silktideCookieChoice_analytics") === true
-    );
-    this.chatConsentSubject = new BehaviorSubject<boolean>(
-      this.globalConstants.getItem("silktideCookieChoice_chat") === true
-    );
+    this.analyticsConsentSubject = new BehaviorSubject<boolean>(false);
+    this.chatConsentSubject = new BehaviorSubject<boolean>(false);
   }
 
-  public openCookiesConsentModal(): void {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (window as any).silktideCookieBannerManager.toggleModal(true);
-  }
+  public openCookiesConsentModal(): void {}
 }
