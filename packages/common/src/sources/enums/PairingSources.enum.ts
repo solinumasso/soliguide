@@ -22,4 +22,5 @@ export enum PairingSources {
   DORA = "dora",
   CRF = "Croix-Rouge française",
   ALISOL = "Alisol (AD2S)",
+  CROUS_PDL = "Crous - Pays de la Loire",
 }
