@@ -25,6 +25,7 @@ import { User } from "../../users/classes/user.class";
 import { CookieManagerService } from "./cookie-manager.service";
 import { globalConstants } from "../../../shared/functions";
 import { AuthService } from "../../users/services/auth.service";
+import { THEME_CONFIGURATION } from "../../../models";
 
 @Injectable({
   providedIn: "root",
@@ -32,6 +33,7 @@ import { AuthService } from "../../users/services/auth.service";
 export class ChatService {
   private chatHasBeenSetup = false;
   private readonly subscription: Subscription;
+  public readonly isChatEnabled = !!THEME_CONFIGURATION.chatWebsiteId;
 
   constructor(
     private readonly cookieManagerService: CookieManagerService,
@@ -72,12 +74,14 @@ export class ChatService {
   public resetSession(): void {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const zE = (window as any).zE as any; // skipcq: JS-0323
+
+    if (!zE) {
+      return;
+    }
+
     zE("messenger", "hide");
     zE("messenger:set", "cookies", false);
     zE("messenger", "logoutUser");
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    delete (window as any).zE;
   }
 
   public setupChat = async (user?: User): Promise<void> => {

@@ -30,8 +30,7 @@ import { AuthService } from "./modules/users/services/auth.service";
 import { PosthogService } from "./modules/analytics/services/posthog.service";
 
 import { IS_BOT, IS_WEBVIEW_APP } from "./shared/constants";
-import { CookieManagerService } from "./modules/shared/services";
-import { THEME_CONFIGURATION } from "./models";
+import { ChatService, CookieManagerService } from "./modules/shared/services";
 
 @Component({
   selector: "app-root",
@@ -40,7 +39,7 @@ import { THEME_CONFIGURATION } from "./models";
 })
 export class AppComponent implements OnInit, OnDestroy {
   private readonly subscription: Subscription = new Subscription();
-  public readonly isChatEnabled = !!THEME_CONFIGURATION.chatWebsiteId;
+  public isChatEnabled: boolean;
   public cookieBannerLoaded = false;
 
   public readonly IS_WEBVIEW_APP = IS_WEBVIEW_APP;
@@ -58,7 +57,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private readonly languageSetupService: LanguageSetupService,
     private readonly currentLanguageService: CurrentLanguageService,
     private readonly posthogService: PosthogService,
-    private readonly cookieManagerService: CookieManagerService
+    private readonly cookieManagerService: CookieManagerService,
+    private readonly chatService: ChatService
   ) {
     this.hasUserGivenConsent = false;
 
@@ -68,6 +68,8 @@ export class AppComponent implements OnInit, OnDestroy {
     const today = new Date();
     this.todayYear = today.getFullYear();
     this.routePrefix = this.currentLanguageService.routePrefix;
+
+    this.isChatEnabled = this.chatService.isChatEnabled;
   }
 
   public ngOnInit(): void {
@@ -124,6 +126,11 @@ export class AppComponent implements OnInit, OnDestroy {
         }
       )
     );
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if ((window as any).silktideCookieBannerManager) {
+      this.cookieBannerLoaded = true;
+    }
 
     document.addEventListener("CookieConsentLoaded", () => {
       this.cookieBannerLoaded = true;
