@@ -47,6 +47,6 @@ FROM base AS deps
 
 RUN <<EOF
 set -e
-yarn install --immutable --inline-builds --mode=skip-build
+yarn install --inline-builds --mode=skip-build
 yarn cache clean
 EOF
