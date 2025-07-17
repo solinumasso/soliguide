@@ -72,8 +72,12 @@ export class ChatService {
   public resetSession(): void {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const zE = (window as any).zE as any; // skipcq: JS-0323
+    zE("messenger", "hide");
     zE("messenger:set", "cookies", false);
     zE("messenger", "logoutUser");
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    delete (window as any).zE;
   }
 
   public setupChat = async (user?: User): Promise<void> => {
