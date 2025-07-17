@@ -47,7 +47,6 @@ FROM base AS deps
 
 RUN <<EOF
 set -e
-corepack enable
-yarn install --immutable
+yarn install --immutable --inline-builds=false --mode=skip-build
 yarn cache clean
 EOF
