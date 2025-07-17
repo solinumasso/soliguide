@@ -79,7 +79,7 @@
     "zod": "^3.23.8"
   },
   "engines": {
-    "node": ">= 20"
+    "node": ">= 22"
   },
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",
