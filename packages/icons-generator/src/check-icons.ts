@@ -30,7 +30,7 @@ import ora from "ora";
  * @returns {Promise<void>}
  */
 export async function checkCategoriesIcons(
-  svgDir: string = "./icons/svg"
+  svgDir = "./icons/svg"
 ): Promise<void> {
   console.log(
     chalk.bold.cyan(`

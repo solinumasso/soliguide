@@ -168,5 +168,5 @@ async function main(): Promise<void> {
 // Execute the main function
 main().catch((error) => {
   console.error(chalk.red.bold("❌ FATAL ERROR:"), error);
-  process.exit(1);
+  process.exit(1); //skipcq JS-0263
 });

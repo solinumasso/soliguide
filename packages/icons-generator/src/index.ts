@@ -26,8 +26,8 @@ import ora from "ora";
 import chalk from "chalk";
 import { cleanSvgFilenames } from "./svg-cleaner";
 
-const SOURCE_SVG_DIR: string = "./icons/svg";
-const OUTPUT_PNG_DIR: string = "./icons/png";
+const SOURCE_SVG_DIR = "./icons/svg";
+const OUTPUT_PNG_DIR = "./icons/png";
 const showBanner = (): void => {
   console.log(
     chalk.bold.cyan(`
@@ -135,7 +135,7 @@ async function convertSvgToPng(): Promise<void> {
       try {
         const svgPath: string = resolve(join(SOURCE_SVG_DIR, file));
         const pngPath: string = resolve(
-          join(OUTPUT_PNG_DIR, file.replace(".svg", "") + ".png")
+          join(OUTPUT_PNG_DIR, `${file.replace(".svg", "")}.png`)
         );
 
         await sharp(svgPath).resize(256, 256).png().toFile(pngPath);

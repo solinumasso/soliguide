@@ -97,7 +97,7 @@ function createOutlinedVersion(svgDir: string, baseName: string): boolean {
  * Cleans SVG filenames in a directory and ensures outlined versions exist
  * @param {string} svgDir - Directory containing SVG files to clean
  */
-export function cleanSvgFilenames(svgDir: string = "./icons/svg"): void {
+export function cleanSvgFilenames(svgDir = "./icons/svg"): void {
   console.log(
     chalk.bold.cyan(`
 ╭───────────────────────────────────────────╮
