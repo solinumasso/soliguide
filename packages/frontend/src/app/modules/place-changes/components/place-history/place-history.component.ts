@@ -27,16 +27,17 @@ import { Observable } from "rxjs";
 import { TranslateService } from "@ngx-translate/core";
 
 import {
-  UserStatus,
   CAMPAIGN_DEFAULT_NAME,
-  PlaceChangesStatus,
+  CAMPAIGN_LIST,
   PlaceChangesSection,
+  PlaceChangesStatus,
+  UserStatus,
 } from "@soliguide/common";
 
 import { CurrentLanguageService } from "../../../general/services/current-language.service";
 import { PlaceChangesService } from "../../services/place-changes.service";
 import { DisplayChangesAdminPlaceComponent } from "../display-changes-admin-place/display-changes-admin-place.component";
-import { CAMPAIGN_ICONS, CAMPAIGN_LIST, Place } from "../../../../models";
+import { CAMPAIGN_ICONS, Place } from "../../../../models";
 
 import { AuthService } from "../../../users/services/auth.service";
 import { AdminPlaceService } from "../../../form-place/services/admin-place.service";

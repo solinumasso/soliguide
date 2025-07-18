@@ -32,7 +32,7 @@ import { CampaignsForOrga } from "./campaigns-for-orga.interface";
 import { Invitation } from "../../users/classes/invitation.class";
 import { CampaignsForPlace } from "../../../models/place/classes/campaigns-for-place.class";
 import { PlaceForOrganization, UserForOrganization } from "../types";
-import { campaignIsActive } from "../../../shared/functions/campaign";
+import { campaignIsActiveWithTheme } from "../../../shared/functions/campaign";
 import { THEME_CONFIGURATION } from "../../../models";
 
 export class Organisation implements Partial<ApiOrganization> {
@@ -113,7 +113,7 @@ export class Organisation implements Partial<ApiOrganization> {
     }
 
     this.isCampaignActive =
-      campaignIsActive(this.territories) &&
+      campaignIsActiveWithTheme(this.territories) &&
       this.campaigns.runningCampaign.toUpdate;
   }
 }

@@ -37,6 +37,7 @@ import { TranslateService } from "@ngx-translate/core";
 
 import {
   CAMPAIGN_DEFAULT_NAME,
+  CAMPAIGN_LIST,
   PlaceStatus,
   TERRITORIES_NOTIF,
 } from "@soliguide/common";
@@ -49,7 +50,6 @@ import type { User } from "../../../users/classes";
 import { AuthService } from "../../../users/services/auth.service";
 
 import { THEME_CONFIGURATION } from "../../../../models";
-import { CAMPAIGN_LIST } from "../../../../models/campaign";
 import type { Place } from "../../../../models/place";
 
 import {

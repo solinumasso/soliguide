@@ -24,7 +24,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import GoToButton from './GoToButton.svelte';
   import { getPlaceDetailsPageController } from '../pageController';
 
-  import type { Phone, TodayInfo as TodayInfoType, PlaceDetailsTempInfo } from '$lib/models/types';
+  import type {
+    Phone,
+    TodayInfo as TodayInfoType,
+    PlaceDetailsTempInfo,
+    PlaceCampaignBannerMessage
+  } from '$lib/models/types';
   import { TempInfoStatus, type PlaceOpeningStatus, isObjectEmpty } from '@soliguide/common';
 
   import type { I18nStore } from '$lib/client/types';
@@ -38,6 +43,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let address: string;
   export let onOrientation: boolean;
   export let tempInfo: PlaceDetailsTempInfo;
+  export let campaignBanner: PlaceCampaignBannerMessage | null;
 
   const placeController = getPlaceDetailsPageController();
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
@@ -47,12 +53,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <div class="details-container">
     <div class="name-container">
       <Text type="title1PrimaryExtraBold">{name}</Text>
-      {#if tempInfo.message}
-        <a href="#tempMessage"
-          ><InfoIcon
-            altTag={$i18n.t('PLACE_HAVE_IMPORTANT_INFO', { name })}
-            variant="warning"
-            size="medium"
+      {#if campaignBanner}
+        <a href="#bannerMessage"
+          ><InfoIcon altTag={$i18n.t('NO_RECENT_SCHEDULE_UPDATE')} variant="warning" size="medium"
+          ></InfoIcon></a
+        >
+      {:else if tempInfo.message}
+        <a href="#bannerMessage"
+          ><InfoIcon altTag={$i18n.t('PLACE_HAVE_IMPORTANT_INFO')} variant="warning" size="medium"
           ></InfoIcon></a
         >
       {/if}

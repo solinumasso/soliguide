@@ -21,6 +21,7 @@
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 
 import {
+  CampaignInfos,
   PlaceClosedHolidays,
   PlaceStatus,
   TempInfoType,
@@ -32,7 +33,6 @@ import { CurrentLanguageService } from "../../../general/services/current-langua
 
 import { User } from "../../../users/classes";
 
-import { CampaignInfos } from "../../../../models/campaign";
 import { Place } from "../../../../models/place";
 import { PosthogComponent } from "../../../analytics/components/posthog.component";
 import { PosthogService } from "../../../analytics/services/posthog.service";
@@ -60,7 +60,7 @@ export class DisplayPlaceInfosComponent
   public readonly PlaceStatus = PlaceStatus;
   public readonly TempInfoType = TempInfoType;
 
-  public haveIRightOnThisPlace: boolean;
+  public haveRightOnThisPlace: boolean;
 
   constructor(
     private readonly currentLanguageService: CurrentLanguageService,
@@ -70,7 +70,7 @@ export class DisplayPlaceInfosComponent
 
     this.routePrefix = this.currentLanguageService.routePrefix;
 
-    this.haveIRightOnThisPlace = false;
+    this.haveRightOnThisPlace = false;
   }
 
   public ngOnInit(): void {
@@ -80,7 +80,7 @@ export class DisplayPlaceInfosComponent
       )
     );
 
-    this.haveIRightOnThisPlace = this.me?.places.includes(this.place.lieu_id);
+    this.haveRightOnThisPlace = this.me?.places.includes(this.place.lieu_id);
   }
 
   public ngOnDestroy(): void {
