@@ -25,13 +25,14 @@ import {
   CAMPAIGN_DEFAULT_NAME,
   PlaceStatus,
   UserRole,
+  CAMPAIGN_LIST,
 } from "@soliguide/common";
 import type { PosthogProperties } from "@soliguide/common-angular";
 
 import type { Organisation } from "../../interfaces";
 import { CurrentLanguageService } from "../../../general/services/current-language.service";
 import type { User } from "../../../users/classes";
-import { CAMPAIGN_LIST, THEME_CONFIGURATION } from "../../../../models";
+import { THEME_CONFIGURATION } from "../../../../models";
 import { campaignIsActive } from "../../../../shared";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 

@@ -24,6 +24,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 
 import {
   CAMPAIGN_DEFAULT_NAME,
+  CAMPAIGN_LIST,
   WEEK_DAYS,
   AdminPlaceMenuSteps,
   DayName,
@@ -43,7 +44,6 @@ import { CurrentLanguageService } from "../../../general/services/current-langua
 
 import { User } from "../../../users/classes";
 
-import { CAMPAIGN_LIST } from "../../../../models/campaign/constants";
 import { Place } from "../../../../models/place/classes";
 import cloneDeep from "lodash.clonedeep";
 

@@ -24,6 +24,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 
 import {
   CAMPAIGN_DEFAULT_NAME,
+  CAMPAIGN_LIST,
   CampaignSource,
   PlaceType,
 } from "@soliguide/common";
@@ -37,7 +38,6 @@ import { CurrentLanguageService } from "../../../general/services/current-langua
 import { User } from "../../../users/classes";
 import { AuthService } from "../../../users/services/auth.service";
 
-import { CAMPAIGN_LIST } from "../../../../models/campaign/constants";
 import { Place } from "../../../../models/place/classes";
 
 import { globalConstants } from "./../../../../shared/functions";

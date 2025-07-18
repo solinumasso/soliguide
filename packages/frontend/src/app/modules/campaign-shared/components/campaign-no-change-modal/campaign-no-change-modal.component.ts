@@ -23,7 +23,11 @@ import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
-import { CAMPAIGN_DEFAULT_NAME, UserStatus } from "@soliguide/common";
+import {
+  CAMPAIGN_DEFAULT_NAME,
+  UserStatus,
+  CAMPAIGN_LIST,
+} from "@soliguide/common";
 
 import { TranslateService } from "@ngx-translate/core";
 
@@ -36,7 +40,6 @@ import { CampaignService } from "../../../campaign/services/campaign.service";
 import { User } from "../../../users/classes/user.class";
 import { AuthService } from "../../../users/services/auth.service";
 
-import { CAMPAIGN_LIST } from "../../../../models/campaign/constants/CAMPAIGN_LIST.const";
 import { Place } from "../../../../models/place/classes/place.class";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { PosthogComponent } from "../../../analytics/components/posthog.component";

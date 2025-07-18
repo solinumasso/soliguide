@@ -18,14 +18,5 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { CampaignIcon } from "../types";
-import { CampaignIconName } from "@soliguide/common";
-
-export const CAMPAIGN_ICONS: {
-  [key in CampaignIconName]: CampaignIcon;
-} = {
-  snow: "❄️",
-  sun: "☀️",
-  covid: "🦠",
-  ukraine: "🇺🇦",
-};
+export { displayCampaignInfo } from './displayCampaignInfo';
+export { isFromExternalSource } from './isFromExternalSource';

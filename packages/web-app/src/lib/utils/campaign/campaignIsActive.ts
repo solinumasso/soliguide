@@ -18,14 +18,24 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { CampaignIcon } from "../types";
-import { CampaignIconName } from "@soliguide/common";
+import { CAMPAIGN_DEFAULT_NAME, CAMPAIGN_LIST, type AnyDepartmentCode } from '@soliguide/common';
 
-export const CAMPAIGN_ICONS: {
-  [key in CampaignIconName]: CampaignIcon;
-} = {
-  snow: "❄️",
-  sun: "☀️",
-  covid: "🦠",
-  ukraine: "🇺🇦",
+export const campaignIsActive = (territories?: AnyDepartmentCode[]): boolean => {
+  const today = new Date();
+
+  // eslint-disable-next-line fp/no-let
+  let isTerritoryInCampaign = !territories?.length;
+
+  if (territories?.length) {
+    // eslint-disable-next-line fp/no-mutation
+    isTerritoryInCampaign = territories.some((territory) =>
+      CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].territories.includes(territory)
+    );
+  }
+
+  return (
+    CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].dateDebutCampagne <= today &&
+    today <= CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].dateFin &&
+    isTerritoryInCampaign
+  );
 };

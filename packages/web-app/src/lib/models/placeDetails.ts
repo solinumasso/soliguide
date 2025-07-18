@@ -40,7 +40,13 @@ import {
   PlaceTempInfo,
   TempInfoStatus
 } from '@soliguide/common';
-import { computeTodayInfo, computeAddress, formatTimeslots, buildSources } from './place';
+import {
+  computeTodayInfo,
+  computeAddress,
+  formatTimeslots,
+  buildSources,
+  computeCampaignBanner
+} from './place';
 import {
   type PlaceDetails,
   type PlaceDetailsInfo,
@@ -317,6 +323,7 @@ const buildPlaceDetails = (placeResult: ApiPlace, categorySearched: Categories):
   return {
     id: placeResult.lieu_id,
     address: computeAddress(placeResult.position, onOrientation),
+    campaignBanner: computeCampaignBanner(placeResult),
     description: placeResult.description ?? '',
     email: placeResult.entity.mail ?? '',
     facebook: placeResult.entity.facebook ?? '',

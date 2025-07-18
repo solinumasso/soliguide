@@ -19,3 +19,4 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 export { sortServicesByRelevance } from './prioritizeServices';
+export * from './campaign';

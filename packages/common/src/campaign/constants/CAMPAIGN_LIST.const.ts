@@ -18,13 +18,10 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {
-  CampaignName,
-  CountryCodes,
-  DEPARTMENT_CODES,
-} from "@soliguide/common";
-
 import { CampaignInfos } from "../types";
+import { CampaignName } from "../enums";
+import { CountryCodes } from "../../location/enums";
+import { DEPARTMENT_CODES } from "../../location/constants";
 
 export const CAMPAIGN_LIST: { [key in CampaignName]: CampaignInfos } = {
   MAJ_ETE_2022: {
