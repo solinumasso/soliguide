@@ -57,7 +57,7 @@ export const getPlaceByParams = async (
   if (place) {
     place.organizations = await OrganizationModel.find(
       { places: { $in: place._id } },
-      { name: 1, organization_id: 1, _id: -1 }
+      { name: 1, organization_id: 1, _id: 0 }
     )
       .session(session ?? null)
       .exec();
