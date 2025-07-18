@@ -28,18 +28,15 @@ jest.mock("@soliguide/common", () => {
   return {
     ...original,
     CAMPAIGN_DEFAULT_NAME: "MAJ_TEST",
+    CAMPAIGN_LIST: {
+      MAJ_TEST: {
+        dateDebutAffichage: new Date("2020-06-15T00:00:00.000Z"),
+        dateDebutCampagne: new Date("2020-06-01T01:00:00.000Z"),
+        dateFin: new Date("2020-09-01T00:00:00.000Z"),
+      },
+    },
   };
 });
-
-jest.mock("../../../models/campaign/constants/CAMPAIGN_LIST.const", () => ({
-  CAMPAIGN_LIST: {
-    MAJ_TEST: {
-      dateDebutAffichage: new Date("2020-06-15T00:00:00.000Z"),
-      dateDebutCampagne: new Date("2020-06-01T01:00:00.000Z"),
-      dateFin: new Date("2020-09-01T00:00:00.000Z"),
-    },
-  },
-}));
 
 beforeAll(() => {
   jest.useFakeTimers();

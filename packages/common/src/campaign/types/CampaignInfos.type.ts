@@ -18,14 +18,19 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { CampaignIcon } from "../types";
-import { CampaignIconName } from "@soliguide/common";
+import { AnyDepartmentCode } from "../../location/types";
+import { CampaignIconName } from "./CampaignIconName.type";
 
-export const CAMPAIGN_ICONS: {
-  [key in CampaignIconName]: CampaignIcon;
-} = {
-  snow: "❄️",
-  sun: "☀️",
-  covid: "🦠",
-  ukraine: "🇺🇦",
-};
+export interface CampaignInfos {
+  adjective?: string;
+  closingFormula?: string;
+  dateDebutAffichage: Date;
+  dateDebutCampagne: Date;
+  dateFin: Date;
+  description: string;
+  icon?: CampaignIconName; // Emoji to display
+  period?: string;
+  name: string;
+  specificServiceMessage?: string;
+  territories: AnyDepartmentCode[];
+}

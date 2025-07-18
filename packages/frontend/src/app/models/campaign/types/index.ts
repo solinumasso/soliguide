@@ -21,7 +21,5 @@
 //@index('./*', f => `export * from '${f.path}'`)
 export * from "./CampaignFormSection.type";
 export * from "./CampaignIcon.type";
-export * from "./CampaignIconName.type";
-export * from "./CampaignInfos.type";
 export * from "./CampaignObject.type";
 export * from "./CampaignStatus.type";

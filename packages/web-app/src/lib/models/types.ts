@@ -67,11 +67,17 @@ export interface SearchResultTempInfo {
   message: TempInfoStatus | null;
 }
 
+export enum PlaceCampaignBannerMessage {
+  WEBAPP_CAMPAIGN_BANNER_MESSAGE = 'WEBAPP_CAMPAIGN_BANNER_MESSAGE',
+  WEBAPP_EXTERNAL_SOURCE_CAMPAIGN_BANNER = 'WEBAPP_EXTERNAL_SOURCE_CAMPAIGN_BANNER'
+}
+
 export interface SearchResultItem {
   address: string;
   banners: {
     holidays: PlaceClosedHolidays;
     orientation: boolean;
+    campaign: PlaceCampaignBannerMessage | null;
   };
   distance: number;
   id: number;
@@ -161,6 +167,7 @@ export interface Service {
 export interface PlaceDetails {
   id: number;
   address: string;
+  campaignBanner: PlaceCampaignBannerMessage | null;
   description: string;
   email: string;
   facebook: string;

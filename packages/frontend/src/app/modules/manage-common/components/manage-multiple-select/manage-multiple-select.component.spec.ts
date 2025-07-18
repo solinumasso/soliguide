@@ -22,8 +22,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { ManageMultipleSelectComponent } from "./manage-multiple-select.component";
-
-import { CAMPAIGN_LIST, CAMPAIGN_NAME_LABELS } from "../../../../models";
+import { CAMPAIGN_LIST } from "@soliguide/common";
+import { CAMPAIGN_NAME_LABELS } from "../../../../models";
 import { TranslateModule } from "@ngx-translate/core";
 
 describe("ManageMultipleSelectComponent", () => {

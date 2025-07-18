@@ -37,6 +37,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   } from './components';
   import type { PageData } from './$types';
   import { getPlaceDetailsPageController } from './pageController';
+  import CampaignBanner from './components/CampaignBanner.svelte';
 
   export let data: PageData;
 
@@ -105,10 +106,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     status={$pageStore.placeDetails.status}
     onOrientation={$pageStore.placeDetails.onOrientation}
     tempInfo={$pageStore.placeDetails.tempInfo}
+    campaignBanner={$pageStore.placeDetails.campaignBanner}
   />
   <section class="sections">
     <div>
-      <div class="info-block" id="tempMessage">
+      <div class="info-block" id="bannerMessage">
+        <CampaignBanner campaignBanner={$pageStore.placeDetails.campaignBanner}></CampaignBanner>
         {#if $pageStore.placeDetails.tempInfo.message}
           <InfoBlock
             variant="warning"
@@ -183,6 +186,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     gap: var(--spacingLG);
 
     .info-block {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacingSM);
       background-color: var(--color-surfaceWhite);
       padding: var(--spacingLG) var(--spacingLG) 0 var(--spacingLG);
     }
@@ -195,7 +201,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     bottom: 0;
   }
 
-  #tempMessage {
+  #bannerMessage {
     scroll-margin-top: var(--topbar-height);
   }
 </style>

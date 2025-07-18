@@ -44,7 +44,8 @@ export const searchResultMock: SearchResult = {
       address: '2 Quai Saint-Bernard, 75005 Paris',
       banners: {
         holidays: PlaceClosedHolidays.UNKNOWN,
-        orientation: false
+        orientation: false,
+        campaign: null
       },
       distance: -1,
       id: 169,
@@ -61,7 +62,8 @@ export const searchResultMock: SearchResult = {
       address: "4 Rue de l'Ave Maria, 75004 Paris",
       banners: {
         holidays: PlaceClosedHolidays.UNKNOWN,
-        orientation: false
+        orientation: false,
+        campaign: null
       },
       distance: -1,
       id: 34120,
@@ -92,7 +94,8 @@ export const searchResultMock: SearchResult = {
       address: '19 Rue Santeuil, 75005 Paris',
       banners: {
         holidays: PlaceClosedHolidays.UNKNOWN,
-        orientation: false
+        orientation: false,
+        campaign: null
       },
       distance: -1,
       id: 26287,
@@ -112,7 +115,7 @@ export const searchResultMock: SearchResult = {
     },
     {
       address: '1 Rue Montmartre, 75001 Paris',
-      banners: { orientation: false, holidays: PlaceClosedHolidays.UNKNOWN },
+      banners: { orientation: false, holidays: PlaceClosedHolidays.UNKNOWN, campaign: null },
       distance: 478.42644975047216,
       id: 154,
       name: 'Soupe Saint-Eustache',
@@ -139,6 +142,7 @@ export const searchResultMock: SearchResult = {
 export const placeDetailsMock: PlaceDetails = {
   id: 154,
   address: '1 Rue Montmartre, 75001 Paris',
+  campaignBanner: null,
   description:
     "<p>Repas complets servis sur le parvis de l'église Saint-Eustache. Il est conseillé d'arriver en avance.</p><p><strong>Attention : il s'agit d'un dispositif hivernal qui commence le 1er décembre et qui finit le 31 mars.</strong></p>",
   email: 'lasoupe@saint-eustache.org',

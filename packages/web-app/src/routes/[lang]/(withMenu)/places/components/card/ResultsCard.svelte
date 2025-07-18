@@ -95,14 +95,24 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
         <div class="card-title">
           <Text ellipsis type="title2PrimaryExtraBold">{place.name}</Text>
-          {#if place.tempInfo.message === TempInfoStatus.CURRENT}
+          {#if place.banners.campaign}
+            <a
+              href={`${$routes.ROUTE_PLACES}/${place.seoUrl}?categorySearched=${category}#bannerMessage`}
+              ><InfoIcon
+                size="medium"
+                variant="warning"
+                withShadow
+                altTag={$i18n.t('NO_RECENT_SCHEDULE_UPDATE_OPEN_DETAIL', { name: place.name })}
+              ></InfoIcon></a
+            >
+          {:else if place.tempInfo.message === TempInfoStatus.CURRENT}
             <a
               href={`${$routes.ROUTE_PLACES}/${place.seoUrl}?categorySearched=${category}#tempMessage`}
               ><InfoIcon
                 size="medium"
                 variant="warning"
                 withShadow
-                altTag={$i18n.t('STRUCTURE_IMPORTANT_INFO_OPEN_DETAILS')}
+                altTag={$i18n.t('OPEN_PLACE_WHO_HAVE_IMPORTANT_INFO', { name: place.name })}
               ></InfoIcon></a
             >
           {/if}
@@ -186,7 +196,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   .card-title {
     display: flex;
     align-items: center;
-    gap: var(--spacing3XS);
+    gap: var(--spacingXS);
   }
 
   .card-link {

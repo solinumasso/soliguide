@@ -24,6 +24,7 @@ import { TranslateService } from "@ngx-translate/core";
 
 import {
   CAMPAIGN_DEFAULT_NAME,
+  CAMPAIGN_LIST,
   getCategoriesSpecificFields,
   type Categories,
   BasePlaceTempInfo,
@@ -36,7 +37,6 @@ import { AdminTempInfosService } from "../../../form-place/services/admin-temp-i
 
 import { DateValidatorService } from "../../../shared/services/date-validator.service";
 
-import { CAMPAIGN_LIST } from "../../../../models/campaign/constants";
 import type { Place, Service } from "../../../../models/place/classes";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import {
