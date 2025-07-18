@@ -18,28 +18,20 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { globalConstants } from "../../../shared/functions/global-constants.class";
 
-@Injectable({
-  providedIn: "root",
-})
-export class CookieManagerService {
+global.window = {
+  silktideCookieBannerManager: { toggleModal: () => {} },
+} as unknown as Window & typeof globalThis;
+
+export class MockCookieManagerService {
   public analyticsConsentSubject: BehaviorSubject<boolean>;
   public chatConsentSubject: BehaviorSubject<boolean>;
 
   constructor() {
-    this.analyticsConsentSubject = new BehaviorSubject<boolean>(
-      globalConstants.getItem("silktideCookieChoice_analytics") === true
-    );
-    this.chatConsentSubject = new BehaviorSubject<boolean>(
-      globalConstants.getItem("silktideCookieChoice_chat") === true
-    );
+    this.analyticsConsentSubject = new BehaviorSubject<boolean>(false);
+    this.chatConsentSubject = new BehaviorSubject<boolean>(false);
   }
 
-  public openCookiesConsentModal(): void {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (window as any).silktideCookieBannerManager.toggleModal(true);
-  }
+  public openCookiesConsentModal(): void {}
 }
