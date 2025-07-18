@@ -400,6 +400,21 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               >
                 {{ "DASHBOARD_DES_RECHERCHES" | translate }}
               </a>
+              <a
+                routerLinkActive="router-link-active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                [routerLink]="[
+                  routePrefix,
+                  'solidata',
+                  'public',
+                  'demo_acces_alimentation'
+                ]"
+                (click)="captureEvent('click-solidata-demo-food-access')"
+                ngbDropdownItem
+                *ngIf="displaySolidataDemoFoodAccess"
+              >
+                {{ "SOLIDATA_DEMO_FOOD_ACCESS" | translate }}
+              </a>
             </div>
           </div>
         </li>
