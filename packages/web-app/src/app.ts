@@ -23,13 +23,7 @@
 declare global {
   // skipcq JS-0337
   // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace App {
-    // interface Error {}
-    // interface Locals {}
-    // interface PageData {}
-    // interface PageState {}
-    // interface Platform {}
-  }
+  namespace App {}
 }
 
 export {};
