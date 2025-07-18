@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2025 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M43.7956 17.78L41.6956 9.04C41.2556 7.24 39.6956 6 37.8756 6H10.0956C8.29562 6 6.71562 7.26 6.29562 9.04L4.19562 17.78C3.71562 19.82 4.15562 21.9 5.43562 23.54C5.59562 23.76 5.81562 23.92 5.99562 24.12V38C5.99562 40.2 7.79562 42 9.99562 42H37.9956C40.1956 42 41.9956 40.2 41.9956 38V24.12C42.1756 23.94 42.3956 23.76 42.5556 23.56C43.8356 21.92 44.2956 19.82 43.7956 17.78ZM37.8156 9.98L39.9156 18.72C40.1156 19.56 39.9356 20.4 39.4156 21.06C39.1356 21.42 38.5356 22 37.5356 22C36.3156 22 35.2556 21.02 35.1156 19.72L33.9556 10L37.8156 9.98ZM25.9956 10H29.9156L30.9956 19.04C31.0956 19.82 30.8556 20.6 30.3356 21.18C29.8956 21.7 29.2556 22 28.4356 22C27.0956 22 25.9956 20.82 25.9956 19.38V10ZM16.9756 19.04L18.0756 10H21.9956V19.38C21.9956 20.82 20.8956 22 19.4156 22C18.7356 22 18.1156 21.7 17.6356 21.18C17.1356 20.6 16.8956 19.82 16.9756 19.04ZM8.07562 18.72L10.0956 10H14.0356L12.8756 19.72C12.7156 21.02 11.6756 22 10.4556 22C9.47562 22 8.85562 21.42 8.59562 21.06C8.05562 20.42 7.87562 19.56 8.07562 18.72ZM9.99562 38V25.94C10.1556 25.96 10.2956 26 10.4556 26C12.1956 26 13.7756 25.28 14.9356 24.1C16.1356 25.3 17.7356 26 19.5556 26C21.2956 26 22.8556 25.28 24.0156 24.14C25.1956 25.28 26.7956 26 28.5956 26C30.2756 26 31.8756 25.3 33.0756 24.1C34.2356 25.28 35.8156 26 37.5556 26C37.7156 26 37.8556 25.96 38.0156 25.94V38H9.99562Z" fill="#404040"/>
+</svg>

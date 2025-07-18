@@ -299,7 +299,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           <div class="d-flex align-items-center">
             <div class="pt-2 pb-3">
               <div
-                [class]="'category-icon category-icon-' + service.category"
+                [class]="
+                  'category-icon category-icon-' +
+                  service.category +
+                  '_outlined'
+                "
               ></div>
             </div>
             <div class="ms-2">
