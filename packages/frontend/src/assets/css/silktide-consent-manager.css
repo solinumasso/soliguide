@@ -33,13 +33,15 @@
   --focus: 0 0 0 2px #ffffff, 0 0 0 4px #000000, 0 0 0 6px #ffffff;
   --boxShadow: -5px 5px 10px 0px #00000012, 0px 0px 50px 0px #0000001a;
   --fontFamily: Helvetica Neue, Segoe UI, Arial, sans-serif;
-  --primaryColor: #533be2;
+  --primaryColor: #ff4124;
   --backgroundColor: #ffffff;
-  --textColor: #4b494b;
+  --textColor: #171717;
   --backdropBackgroundColor: #00000033;
   --backdropBackgroundBlur: 0px;
-  --cookieIconColor: #533be2;
-  --cookieIconBackgroundColor: #ffffff;
+  --cookieIconColor: #ff4124;
+  --cookieIconBackgroundColor: #271332;
+  --switchPillColor: #404040;
+  --switchCheckedColor: #047857;
   position: fixed;
   bottom: 0;
   right: 0;
@@ -101,7 +103,7 @@
 -------------------------------- */
 
 #silktide-wrapper .st-button {
-  color: var(--backgroundColor);
+  color: var(--cookieIconBackgroundColor);
   background-color: var(--primaryColor);
   border: 2px solid var(--primaryColor);
   padding: 10px 20px;
@@ -112,6 +114,7 @@
   line-height: 24px;
   cursor: pointer;
   border-radius: 5px;
+  font-weight: bold;
 }
 
 #silktide-wrapper .st-button--primary {
@@ -401,7 +404,7 @@
   display: block;
   height: 34px;
   width: 74px;
-  background: var(--textColor);
+  background: var(--switchPillColor);
   border-radius: 25px;
 }
 
@@ -439,7 +442,7 @@
 
 /* Checked Switch Styles */
 #silktide-modal .switch input:checked + .switch__pill {
-  background: var(--primaryColor);
+  background: var(--switchCheckedColor);
 }
 
 #silktide-modal .switch input:checked ~ .switch__dot {
