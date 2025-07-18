@@ -46,6 +46,7 @@ import { TranslateService } from "@ngx-translate/core";
 
 import {
   CAMPAIGN_DEFAULT_NAME,
+  CAMPAIGN_LIST,
   TEMP_INFOS_CONTEXT,
   type TempInfo,
   type ApiTempInfoResponse,
@@ -71,10 +72,7 @@ import { PosthogService } from "../../../../analytics/services/posthog.service";
 import { Place } from "../../../../../models/place/classes";
 
 import type { ApiError } from "../../../../../models/api";
-import {
-  type CampaignFormSection,
-  CAMPAIGN_LIST,
-} from "../../../../../models/campaign";
+import { type CampaignFormSection } from "../../../../../models/campaign";
 import cloneDeep from "lodash.clonedeep";
 
 @Component({

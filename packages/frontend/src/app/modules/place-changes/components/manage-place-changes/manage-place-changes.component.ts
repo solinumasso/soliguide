@@ -26,12 +26,13 @@ import { TranslateService } from "@ngx-translate/core";
 import { Subject, ReplaySubject, Subscription } from "rxjs";
 
 import {
+  CAMPAIGN_DEFAULT_NAME,
+  CAMPAIGN_LIST,
+  AnyDepartmentCode,
   PlaceChangesStatus,
   PlaceChangesSection,
-  UserStatus,
-  CAMPAIGN_DEFAULT_NAME,
   SearchResults,
-  AnyDepartmentCode,
+  UserStatus,
 } from "@soliguide/common";
 
 import { SearchPlaceChanges } from "../../classes";
@@ -48,7 +49,7 @@ import {
   campaignIsActive,
   globalConstants,
 } from "../../../../shared/functions";
-import { CAMPAIGN_ICONS, CAMPAIGN_LIST } from "../../../../models";
+import { CAMPAIGN_ICONS } from "../../../../models";
 
 @Component({
   selector: "app-manage-place-changes",

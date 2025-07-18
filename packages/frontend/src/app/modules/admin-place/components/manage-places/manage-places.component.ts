@@ -36,6 +36,7 @@ import { ReplaySubject, type Subject, Subscription } from "rxjs";
 import {
   AdminSearchFilterOrganization,
   CAMPAIGN_DEFAULT_NAME,
+  CAMPAIGN_LIST,
   PLACE_AUTONOMY_LABELS,
   CampaignPlaceAutonomy,
   type CampaignSource,
@@ -62,7 +63,6 @@ import type { User } from "../../../users/classes";
 import { AuthService } from "../../../users/services/auth.service";
 
 import {
-  CAMPAIGN_LIST,
   CAMPAIGN_SOURCE_LABELS,
   ORGA_CAMPAIGN_STATUS,
   PLACE_CAMPAIGN_STATUS,

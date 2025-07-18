@@ -21,11 +21,11 @@
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 
 import {
-  PairingSources,
   getPosition,
   type SoliguideCountries,
   CountryCodes,
   getDepartmentCodeFromPostalCode,
+  checkIfSourceMustBeDisplayed,
 } from "@soliguide/common";
 import { campaignIsActive } from "../../../../shared";
 
@@ -34,9 +34,6 @@ import { Place, THEME_CONFIGURATION } from "../../../../models";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { PosthogComponent } from "../../../analytics/components/posthog.component";
 import { Subscription } from "rxjs";
-
-// Define this constant outside the class
-const EXTERNAL_SOURCES: string[] = Object.values(PairingSources);
 
 @Component({
   selector: "app-external-source-place-campaign-banner",
@@ -74,9 +71,8 @@ export class ExternalSourcePlaceCampaignBannerComponent
     const postalCode = position.postalCode;
     const country = position.country;
 
-    const isFromExternalSource = this.place.sources.some(
-      (source) =>
-        EXTERNAL_SOURCES.includes(source.name) && source.isOrigin === true
+    const isFromExternalSource = this.place.sources.some((source) =>
+      checkIfSourceMustBeDisplayed(source.name, source.isOrigin)
     );
 
     const campaignIsActiveForPlace =

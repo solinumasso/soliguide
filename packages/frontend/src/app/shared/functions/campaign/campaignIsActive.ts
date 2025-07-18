@@ -22,8 +22,9 @@ import {
   AnyDepartmentCode,
   CAMPAIGN_DEFAULT_NAME,
   CountryCodes,
+  CAMPAIGN_LIST,
 } from "@soliguide/common";
-import { CAMPAIGN_LIST } from "../../../models/campaign";
+
 import { THEME_CONFIGURATION } from "../../../models";
 
 export const campaignIsActive = (

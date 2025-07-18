@@ -38,6 +38,7 @@ import {
   USER_TYPES,
   USER_TYPES_TO_READABLE,
   UserTypes,
+  CAMPAIGN_LIST,
 } from "@soliguide/common";
 
 import { ToastrService } from "ngx-toastr";
@@ -54,7 +55,6 @@ import { User } from "../../../users/classes";
 import { AuthService } from "../../../users/services/auth.service";
 
 import {
-  CAMPAIGN_LIST,
   ORGA_CAMPAIGN_STATUS,
   OrgaCampaignStatus,
 } from "../../../../models/campaign";
