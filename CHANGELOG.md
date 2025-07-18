@@ -1,3 +1,110 @@
+# [4.95.0](https://github.com/solinumasso/soliguide/compare/v4.94.1...v4.95.0) (2025-07-07)
+
+
+### Bug Fixes
+
+* **api:** fix dump of soligare ([703ee46](https://github.com/solinumasso/soliguide/commit/703ee461ead83ac664e9c1b22e403b1df774e257))
+* **api:** fix wrong types in category specific fields [#730](https://github.com/solinumasso/soliguide/issues/730) ([c9a9b89](https://github.com/solinumasso/soliguide/commit/c9a9b89a765f1569308e7fee6509795729712522))
+* change temp closure dates for services done via campaign form to… ([#685](https://github.com/solinumasso/soliguide/issues/685)) ([93fdb26](https://github.com/solinumasso/soliguide/commit/93fdb260285e7ca3a79c16004d41515aa7589a8b))
+* **common:** add publics with mental health problems ([652ec4d](https://github.com/solinumasso/soliguide/commit/652ec4d06c3a268a4df0d7cf514c9fba488a04ec))
+* **common:** fix mental health key as violence [#349](https://github.com/solinumasso/soliguide/issues/349) ([5c63518](https://github.com/solinumasso/soliguide/commit/5c63518c15a320191cdcc35f0fdaf8bb50115f36))
+* **common:** fix missing mental health [#349](https://github.com/solinumasso/soliguide/issues/349) ([b9dd5ce](https://github.com/solinumasso/soliguide/commit/b9dd5ce57755a092e55e2e41036fa799c2ba27d3))
+* correct campaign service for for when specific field is not string [#703](https://github.com/solinumasso/soliguide/issues/703) ([5375bdf](https://github.com/solinumasso/soliguide/commit/5375bdffbaa1554f5931353c6a7d131ac83f48d9))
+* correct end date [#608](https://github.com/solinumasso/soliguide/issues/608) ([316b592](https://github.com/solinumasso/soliguide/commit/316b592ad1c63fab7e41b3e370eb55d0539f0cb1))
+* correct migration issues for crf structures during campaign [#707](https://github.com/solinumasso/soliguide/issues/707) ([8d6d88f](https://github.com/solinumasso/soliguide/commit/8d6d88fe3d2d181dae34a98dbd6cd3d945570cbd))
+* fix deepsource warning [#735](https://github.com/solinumasso/soliguide/issues/735) ([a7a55f5](https://github.com/solinumasso/soliguide/commit/a7a55f53e14d78231b7711b05f14444ca25362a6))
+* force display service temp closure banner in history [#740](https://github.com/solinumasso/soliguide/issues/740) ([2c339b0](https://github.com/solinumasso/soliguide/commit/2c339b0f7187c148507e5c5ec026bfaebc8626ff))
+* remove reset campaign from crf migration [#707](https://github.com/solinumasso/soliguide/issues/707) ([7756fdf](https://github.com/solinumasso/soliguide/commit/7756fdf5f41785cafb55443df041927940fbe620))
+* **soligare:** dix dump of soligare ([4ea25c6](https://github.com/solinumasso/soliguide/commit/4ea25c6b4036241da2a47419aaa5a685c169caa6))
+
+
+### Features
+
+* **web-app:** keep tempInfo in data only if is active [#724](https://github.com/solinumasso/soliguide/issues/724) ([088b783](https://github.com/solinumasso/soliguide/commit/088b783cbcf2361fa4364ca9efe9b6b504d24e0e))
+* **web-app:** switch button to toggle regular/temporary hours [#647](https://github.com/solinumasso/soliguide/issues/647) ([49dd597](https://github.com/solinumasso/soliguide/commit/49dd597da90d2b4f364f33cd1d09e438f9268a05))
+
+## [4.94.1](https://github.com/solinumasso/soliguide/compare/v4.94.0...v4.94.1) (2025-06-27)
+
+
+### Bug Fixes
+
+* **api:** reset isOpenToday [#704](https://github.com/solinumasso/soliguide/issues/704) ([#705](https://github.com/solinumasso/soliguide/issues/705)) ([52b9ff2](https://github.com/solinumasso/soliguide/commit/52b9ff21cbd470b2d83f5c443d4f543b63e5afab))
+
+# [4.94.0](https://github.com/solinumasso/soliguide/compare/v4.93.0...v4.94.0) (2025-06-27)
+
+
+### Bug Fixes
+
+* fix weblate conflict and import missing translations [#495](https://github.com/solinumasso/soliguide/issues/495) ([39d9cee](https://github.com/solinumasso/soliguide/commit/39d9ceeaffa2f9c1839af70587682085d2a97836)), closes [#653](https://github.com/solinumasso/soliguide/issues/653)
+* **frontend:** add soligare pairing delete error handling [#669](https://github.com/solinumasso/soliguide/issues/669) ([1025d5f](https://github.com/solinumasso/soliguide/commit/1025d5fec19499bdcb539b574bf34e4c3c8690f8))
+
+
+### Features
+
+* add test [#669](https://github.com/solinumasso/soliguide/issues/669) ([601fd9a](https://github.com/solinumasso/soliguide/commit/601fd9a02c051cee12a94f0ee231d323ed7c0c96))
+* **api:** migration to set isOpenToday [#679](https://github.com/solinumasso/soliguide/issues/679) ([5e5ef24](https://github.com/solinumasso/soliguide/commit/5e5ef24d96826bf9cad3b9fa2baa207b1293e96d))
+
+# [4.93.0](https://github.com/solinumasso/soliguide/compare/v4.92.1...v4.93.0) (2025-06-19)
+
+
+### Features
+
+* **api:** migration to set isOpenToday [#679](https://github.com/solinumasso/soliguide/issues/679) ([#680](https://github.com/solinumasso/soliguide/issues/680)) ([a6329eb](https://github.com/solinumasso/soliguide/commit/a6329eb7306a4cfbb56e8d30b360b80741a43fc7))
+
+## [4.92.1](https://github.com/solinumasso/soliguide/compare/v4.92.0...v4.92.1) (2025-06-18)
+
+
+### Bug Fixes
+
+* **frontend:** add isCampaign logic to external sources banner [#608](https://github.com/solinumasso/soliguide/issues/608) ([2bc3d00](https://github.com/solinumasso/soliguide/commit/2bc3d009c2a3e019431505e87c3bd82e27a9ee7a))
+* **frontend:** missing imports for standalone components [#670](https://github.com/solinumasso/soliguide/issues/670) ([a6f755f](https://github.com/solinumasso/soliguide/commit/a6f755fccdbc631caad3760d5801d1e0c54f7e43))
+
+# [4.92.0](https://github.com/solinumasso/soliguide/compare/v4.91.0...v4.92.0) (2025-06-16)
+
+
+### Features
+
+* **api:** reinitialize AT synchro for maj [#663](https://github.com/solinumasso/soliguide/issues/663) ([6f6b058](https://github.com/solinumasso/soliguide/commit/6f6b0581686557abb4d3804ff8c0dd17c92f9f4b))
+* **web-app:** display temporary hours/closure/message [#136](https://github.com/solinumasso/soliguide/issues/136) [#107](https://github.com/solinumasso/soliguide/issues/107) [#78](https://github.com/solinumasso/soliguide/issues/78) [#105](https://github.com/solinumasso/soliguide/issues/105) [#73](https://github.com/solinumasso/soliguide/issues/73) ([9e14117](https://github.com/solinumasso/soliguide/commit/9e14117220188c9032d0f4d3e72824092764916f))
+
+# [4.91.0](https://github.com/solinumasso/soliguide/compare/v4.90.0...v4.91.0) (2025-06-13)
+
+
+### Bug Fixes
+
+* **api:** fix prioritary places [#660](https://github.com/solinumasso/soliguide/issues/660) ([f1a3e86](https://github.com/solinumasso/soliguide/commit/f1a3e866de3ebeac7abaa5ce92ce88b7b257c435))
+* **frontend:** fix tests for temp-info and holiday standalone components [#653](https://github.com/solinumasso/soliguide/issues/653) ([b4fa995](https://github.com/solinumasso/soliguide/commit/b4fa9956d3cce242fff111bf049eac018fe8c2e6))
+
+
+### Features
+
+* **api:** update idf sender mail and name for territories notif [#656](https://github.com/solinumasso/soliguide/issues/656) ([16b92c0](https://github.com/solinumasso/soliguide/commit/16b92c08646a11869b63c1d64aefaa86d20780f0))
+
+# [4.90.0](https://github.com/solinumasso/soliguide/compare/v4.89.0...v4.90.0) (2025-06-09)
+
+
+### Bug Fixes
+
+* **api:** fix siteamp headers [#343](https://github.com/solinumasso/soliguide/issues/343) ([bbca347](https://github.com/solinumasso/soliguide/commit/bbca3478ea6a349f28e1fdb807bf3657a798af86))
+* **frontend:** fix tests for temp-info and holiday standalone components [#653](https://github.com/solinumasso/soliguide/issues/653) ([c677439](https://github.com/solinumasso/soliguide/commit/c6774398f77a9cc91ff32d507dbacba8e23aeb70))
+
+
+### Features
+
+* **frontend:** make temp-info and holiday standalone components [#653](https://github.com/solinumasso/soliguide/issues/653) ([e7592ce](https://github.com/solinumasso/soliguide/commit/e7592ce3e215a58e11c386f3113dbbe113f38211))
+
+# [4.89.0](https://github.com/solinumasso/soliguide/compare/v4.88.0...v4.89.0) (2025-06-07)
+
+
+### Bug Fixes
+
+* **api:** fix security issue, update soligare dump ([3aac306](https://github.com/solinumasso/soliguide/commit/3aac306cb493feb8093585613e0fa78938d1c38a))
+
+
+### Features
+
+* **web-app:** remove tally form [#644](https://github.com/solinumasso/soliguide/issues/644) ([c28f61d](https://github.com/solinumasso/soliguide/commit/c28f61d38c25db3d74cf3466810f62295339cb7d))
+
 # [4.88.0](https://github.com/solinumasso/soliguide/compare/v4.87.1...v4.88.0) (2025-06-05)
 
 
