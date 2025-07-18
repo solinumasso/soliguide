@@ -26,12 +26,13 @@ import { TranslateService } from "@ngx-translate/core";
 import { Subject, ReplaySubject, Subscription } from "rxjs";
 
 import {
+  CAMPAIGN_DEFAULT_NAME,
+  CAMPAIGN_LIST,
+  AnyDepartmentCode,
   PlaceChangesStatus,
   PlaceChangesSection,
-  UserStatus,
-  CAMPAIGN_DEFAULT_NAME,
   SearchResults,
-  AnyDepartmentCode,
+  UserStatus,
 } from "@soliguide/common";
 
 import { SearchPlaceChanges } from "../../classes";
@@ -45,10 +46,10 @@ import { AuthService } from "../../../users/services/auth.service";
 import { PlaceChanges } from "../../../../models/place-changes/classes";
 
 import {
-  campaignIsActive,
+  campaignIsActiveWithTheme,
   globalConstants,
 } from "../../../../shared/functions";
-import { CAMPAIGN_ICONS, CAMPAIGN_LIST } from "../../../../models";
+import { CAMPAIGN_ICONS } from "../../../../models";
 
 @Component({
   selector: "app-manage-place-changes",
@@ -111,7 +112,7 @@ export class ManagePlaceChangesComponent implements OnInit, OnDestroy {
       )
     );
 
-    this.campaignIsActive = campaignIsActive(this.me?.territories);
+    this.campaignIsActive = campaignIsActiveWithTheme(this.me?.territories);
     this.titleService.setTitle(this.translateService.instant("MANAGE_UPDATES"));
     this.searchSubject.next(this.search);
 

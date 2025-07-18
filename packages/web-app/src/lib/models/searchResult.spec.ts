@@ -78,7 +78,8 @@ describe('Search Result', () => {
       expect(resultItem.todayInfo).toStrictEqual(samplePlaceTransformed.todayInfo);
       expect(resultItem.banners).toStrictEqual({
         orientation: samplePlace.modalities.orientation.checked,
-        holidays: samplePlace.newhours.closedHolidays
+        holidays: samplePlace.newhours.closedHolidays,
+        campaign: null
       });
 
       expect(resultItem.sources).toStrictEqual([]);

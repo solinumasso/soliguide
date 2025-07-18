@@ -24,6 +24,7 @@ import { Organization, WithContext } from "schema-dts";
 import { Subscription } from "rxjs";
 
 import {
+  CAMPAIGN_LIST,
   PlaceClosedHolidays,
   PlaceStatus,
   slugLocation,
@@ -44,14 +45,13 @@ import type { User } from "../../../users/classes";
 import { AuthService } from "../../../users/services/auth.service";
 
 import {
-  CAMPAIGN_LIST,
   type MarkerOptions,
   Place,
   THEME_CONFIGURATION,
 } from "../../../../models";
 
 import {
-  campaignIsActive,
+  campaignIsActiveWithTheme,
   displayCampaignInfo,
   generateMarkerOptions,
   globalConstants,
@@ -156,7 +156,7 @@ export class PlaceComponent
           this.updateMarkers();
           this.getDepartmentCodes();
           this.showAddress = true;
-          this.campaignIsActive = campaignIsActive(this.territories);
+          this.campaignIsActive = campaignIsActiveWithTheme(this.territories);
 
           this.updateDefaultPosthogProperties({
             campaign: this.campaignIsActive ? this.CAMPAIGN_NAME : null,
@@ -188,7 +188,7 @@ export class PlaceComponent
           this.place = place;
           this.getDepartmentCodes();
 
-          this.campaignIsActive = campaignIsActive(this.territories);
+          this.campaignIsActive = campaignIsActiveWithTheme(this.territories);
 
           this.updateDefaultPosthogProperties({
             campaign: this.campaignIsActive ? this.CAMPAIGN_NAME : null,

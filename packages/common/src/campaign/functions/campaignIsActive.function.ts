@@ -18,35 +18,23 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {
-  AnyDepartmentCode,
-  CAMPAIGN_DEFAULT_NAME,
-  CountryCodes,
-  CAMPAIGN_LIST,
-  campaignIsActive,
-} from "@soliguide/common";
+import type { AnyDepartmentCode } from "../../location/types/DepartmentCode.type";
+import { CAMPAIGN_LIST } from "../constants/CAMPAIGN_LIST.const";
+import { CAMPAIGN_DEFAULT_NAME } from "../constants/CAMPAIGN_DEFAULT_NAME.const";
 
-import { THEME_CONFIGURATION } from "../../../models";
-
-export const campaignIsActiveWithTheme = (
+export const campaignIsActive = (
   territories?: AnyDepartmentCode[]
 ): boolean => {
-  //! Todo - Remove this when working on manage MAJ filters
-  return (
-    THEME_CONFIGURATION.country === CountryCodes.FR &&
-    campaignIsActive(territories)
-  );
-};
+  const today = new Date();
+  const campaign = CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME];
 
-export const campaignIsAvailable = (
-  territories: AnyDepartmentCode[]
-): boolean => {
-  let isCampaignAvailable = false;
-  for (const territory of territories) {
-    if (CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].territories.includes(territory)) {
-      isCampaignAvailable = true;
-      break;
-    }
+  if (campaign.dateDebutCampagne > today || today > campaign.dateFin) {
+    return false;
   }
-  return isCampaignAvailable;
+
+  const isTerritoryInCampaign = territories?.length
+    ? territories.some((territory) => campaign.territories.includes(territory))
+    : true;
+
+  return isTerritoryInCampaign;
 };
