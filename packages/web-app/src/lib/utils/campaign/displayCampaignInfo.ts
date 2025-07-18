@@ -36,7 +36,7 @@ export const displayCampaignInfo = (place: ApiPlace, isExternal: boolean): boole
   const campaignInfo = CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME];
   const campaign = place.campaigns[CAMPAIGN_DEFAULT_NAME];
   const hasCampaignDisplayStarted =
-    differenceInHours(new Date(), campaignInfo.dateDebutAffichage) > 0;
+    differenceInHours(new Date(), campaignInfo.dateDebutAffichage) < 0;
 
   if (isExternal) {
     const position = getPosition(place);
