@@ -35,6 +35,7 @@ COPY packages/common/package.json /app/packages/common/
 COPY packages/common-angular/package.json /app/packages/common-angular/
 COPY packages/design-system/package.json /app/packages/design-system/
 COPY packages/frontend/package.json /app/packages/frontend/
+COPY packages/icons-generator/package.json /app/packages/icons-generator/
 COPY packages/location-api/package.json /app/packages/location-api/
 COPY packages/maintenance/package.json /app/packages/maintenance/
 COPY packages/soligare/package.json /app/packages/soligare/
