@@ -26,21 +26,20 @@ import { findEmailTemplates } from "../services/email-templates.service";
 
 import {
   CONFIG,
-  User,
   CampaignEmails,
   CampaignEmailTemplates,
   CampaignEmailName,
   EmailData,
-  ModelWithId,
   PARTNER_CC,
 } from "../../_models";
 import { Partners } from "../../partners";
+import { UserForCompaigns } from "../../user/types";
 
 const generateBaseCampaignEmail = (
   frontUrl: string,
   emailTemplate: CampaignEmailTemplates,
   emailType: CampaignEmailName,
-  user: User,
+  user: Pick<UserForCompaigns, "user_id" | "mail">,
   invitationToken: string,
   organization_id = -1,
   partner?: Partners
@@ -135,7 +134,7 @@ const generateEmail = async (
   emailType: CampaignEmailName,
   organization_id: number,
   territory: AnyDepartmentCode,
-  user: User,
+  user: UserForCompaigns,
   partner?: Partners
 ): Promise<{ emailData: EmailData; template: CampaignEmailTemplates }> => {
   if (emailType.includes("INVITATION") && !invitationToken) {
@@ -174,10 +173,10 @@ export const createEmail = async (
   campaign: CampaignNameAndAll,
   invitationToken: string,
   emailType: CampaignEmailName,
-  organization: mongoose.Types.ObjectId | any,
+  organization: mongoose.Types.ObjectId,
   organization_id: number,
   territory: AnyDepartmentCode,
-  user: ModelWithId<User>,
+  user: UserForCompaigns,
   partner?: Partners
 ): Promise<Partial<CampaignEmails>> => {
   let generatedEmail;

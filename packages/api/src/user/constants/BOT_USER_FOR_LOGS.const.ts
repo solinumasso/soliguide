@@ -19,8 +19,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { SupportedLanguagesCode, UserStatus } from "@soliguide/common";
-
-import { Origin, UserForLogs } from "../../_models";
+import { UserForLogs } from "../interfaces";
+import { Origin } from "../../_models/users/enums";
 
 export const BOT_USER_FOR_LOGS: UserForLogs = {
   email: "tech@solinum.org",
