@@ -18,11 +18,13 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
-<!-- category-autocomplete.component.html -->
-<div class="category-autocomplete-container">
-  <div #autocompleteContainer class="autocomplete-container"></div>
 
-  <!-- Indicateur de chargement -->
+<div class="category-autocomplete-container">
+  <div
+    #autocompleteContainerCategories
+    class="autocomplete-container-categories"
+  ></div>
+
   <div *ngIf="searching" class="loading-indicator">
     <fa-icon [icon]="faCircleNotch" [spin]="true"></fa-icon>
     <span>{{ "SEARCHING" | translate }}</span>

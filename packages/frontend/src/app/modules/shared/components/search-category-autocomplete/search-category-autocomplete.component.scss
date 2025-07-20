@@ -19,27 +19,23 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-.aa-ItemIcon {
-  border: 1px solid rgb(85, 85, 85);
-  width: 36px;
-  height: 36px;
-  font-size: 1.5rem;
-  color: var(--bs-primary);
+.aa-CategoryIcon {
+  img {
+    width: 26px;
+    height: auto;
+  }
+  border: 1px solid rgb(85, 85, 85) !important;
+  min-width: 36px !important;
+  min-height: 36px !important;
+  font-size: 1.5rem !important;
+  color: var(--bs-primary) !important;
   fill: var(--bs-primary);
   margin-right: 0.5rem;
+  padding: 0.3rem;
+  border-radius: 4px;
 }
 
 .aa-ItemContentTitle {
-  font-size: 1.1rem;
-}
-
-.aa-ItemLink {
-  img {
-    width: 34px !important;
-    height: auto;
-  }
-
-  justify-content: left !important;
   font-size: 1.1rem;
 }
 

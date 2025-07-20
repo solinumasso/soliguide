@@ -40,11 +40,11 @@ export class TempOpenFilterComponent implements OnInit {
   constructor() {}
 
   public ngOnInit(): void {
-    this.openTodayChecked = this.filters.openToday ? true : false;
+    this.openTodayChecked = !!this.filters.openToday;
   }
 
   public emitFilters = () => {
-    this.openTodayChecked = this.openTodayChecked ? false : true;
+    this.openTodayChecked = !this.openTodayChecked;
     this.filtersChange.emit();
   };
 }

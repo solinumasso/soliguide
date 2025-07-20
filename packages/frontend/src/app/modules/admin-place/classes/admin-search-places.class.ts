@@ -36,6 +36,8 @@ import {
   COUNTRIES_LOCATION,
   type LocationAutoCompleteAddress,
   GeoPosition,
+  AutoCompleteType,
+  SearchSuggestion,
 } from "@soliguide/common";
 
 import { ManageSearch, THEME_CONFIGURATION } from "../../../models";
@@ -150,6 +152,38 @@ export class AdminSearchPlaces
       } else {
         this.category = null;
       }
+    }
+  }
+
+  public resetSearchTerms(): void {
+    this.category = null;
+    this.word = null;
+    this.label = null;
+  }
+
+  public setCategory(categoryId: Categories, label?: string): void {
+    this.category = categoryId;
+    this.word = null;
+    if (label) {
+      this.label = label;
+    }
+  }
+
+  public setWord(word: string, label?: string): void {
+    this.word = word;
+    this.category = null;
+    if (label) {
+      this.label = label;
+    }
+  }
+  public applySearchSuggestion(suggestion: SearchSuggestion): void {
+    this.resetSearchTerms();
+
+    if (suggestion.type === AutoCompleteType.CATEGORY) {
+      this.category = suggestion.categoryId;
+    } else {
+      this.word = suggestion.slug;
+      this.label = suggestion.label;
     }
   }
 }
