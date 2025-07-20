@@ -78,7 +78,6 @@ export class SearchBarService {
   }
 
   public findBySlug(slug: string): SearchSuggestion | null {
-    console.log(this.allSuggestions);
     if (!this.isInitialized || this.allSuggestions.length === 0) {
       console.warn(
         "SearchBarService n'est pas initialisé ou aucune donnée disponible"
@@ -155,15 +154,12 @@ export class SearchBarService {
   async reload(
     lang: SupportedLanguagesCode = SupportedLanguagesCode.FR
   ): Promise<void> {
-    console.log("Rechargement de Fuse.js...");
     this.isInitialized = false;
     this.initializationSubject.next(false);
     await this.initialize(lang);
   }
 
   public autoComplete(term: string): FuseResult<SearchSuggestion>[] {
-    console.log({ term });
-
     if (!this.fuse || !this.isInitialized) {
       console.warn("Fuse.js n'est pas initialisé");
       return [];

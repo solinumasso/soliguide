@@ -7,7 +7,6 @@ import {
   Output,
   ViewChild,
   ViewEncapsulation,
-  OnInit,
   AfterViewInit,
   OnChanges,
   SimpleChanges,
@@ -55,12 +54,12 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class SearchCategoryAutocompleteComponent
-  implements OnInit, OnDestroy, AfterViewInit, OnChanges
+  implements OnDestroy, AfterViewInit, OnChanges
 {
-  @Input()
+  @Input() // Value of placeholder from serach
   public currentValue: string = "";
 
-  @Input()
+  @Input({ required: true })
   public search!: Search;
 
   @Output()
@@ -69,8 +68,8 @@ export class SearchCategoryAutocompleteComponent
   @Output()
   public readonly clearSearch = new EventEmitter<void>();
 
-  @ViewChild("autocompleteContainer", { static: true })
-  autocompleteContainer: ElementRef<HTMLElement>;
+  @ViewChild("autocompleteContainerCategories", { static: true })
+  autocompleteContainerCategories: ElementRef<HTMLElement>;
 
   public readonly faEllipsisH = faEllipsisH;
   public readonly faBuilding = faBuilding;
@@ -104,13 +103,8 @@ export class SearchCategoryAutocompleteComponent
       const currentSearchValue = this.getCurrentSearchValue(
         changes.search.currentValue
       );
-      const previousSearchValue = this.getCurrentSearchValue(
-        changes.search.previousValue
-      );
 
-      if (currentSearchValue !== previousSearchValue) {
-        this.setQuery(currentSearchValue);
-      }
+      this.setQuery(currentSearchValue);
     }
   }
 
@@ -134,10 +128,9 @@ export class SearchCategoryAutocompleteComponent
     }
   }
 
-  // Nouvelle méthode pour définir la valeur initiale
   private setInitialValue(): void {
     const inputEl =
-      this.autocompleteContainer.nativeElement.querySelector("input");
+      this.autocompleteContainerCategories.nativeElement.querySelector("input");
     const currentValue = this.getCurrentSearchValue(this.search);
 
     if (inputEl && currentValue) {
@@ -148,36 +141,29 @@ export class SearchCategoryAutocompleteComponent
     }
   }
 
-  // Nouvelle méthode utilitaire
   private getCurrentSearchValue(search: Search): string {
     if (!search) return "";
 
     if (search.category) {
-      // Pour les catégories, utiliser le label traduit
       return (
         search.label ||
         this.translateService.instant(search.category.toUpperCase())
       );
     } else if (search.word) {
-      // Pour les mots-clés, utiliser le label ou le word
       return search.label || search.word;
     }
 
     return "";
   }
 
-  ngOnInit(): void {
-    console.log("koko");
-  }
-
   private setupAutocomplete(): void {
-    if (this.autocompleteContainer) {
+    if (this.autocompleteContainerCategories) {
       const { destroy, setQuery } = autocomplete({
         detachedMediaQuery: "none",
         placeholder:
           this.translateService.instant("SEARCH_PLACEHOLDER") ||
           "Rechercher...",
-        container: this.autocompleteContainer.nativeElement,
+        container: this.autocompleteContainerCategories.nativeElement,
         openOnFocus: true,
         onReset: () => {
           this.clearSearch.emit();
@@ -189,7 +175,6 @@ export class SearchCategoryAutocompleteComponent
       this.destroy = destroy;
       this.setQuery = setQuery;
 
-      // Définir la valeur initiale si elle existe
       if (this.currentValue) {
         this.setQuery(this.currentValue);
       }
@@ -219,15 +204,12 @@ export class SearchCategoryAutocompleteComponent
     this.captureEvent(`click-autocomplete-search-category-${category}`, {
       keyUsed,
     });
-    console.log(this.search);
   }
 
   private searchByWord(
     item: SearchSuggestion,
     keyUsed: "mouse-clicked" | "enter-pressed"
   ) {
-    console.log(item);
-    console.log("SEARCH BY WORD");
     this.search.category = null;
     this.search.word = item?.slug ?? slugString(item?.label);
     this.search.label = item?.label;
@@ -257,7 +239,7 @@ export class SearchCategoryAutocompleteComponent
       case AutoCompleteType.EXPRESSION:
         iconContent = html`<img
           src="/assets/images/symbols/expression.svg"
-          class="aa-icon"
+          class="aa-category-icon"
           alt="Expression"
           title="Expression"
         />`;
@@ -265,7 +247,7 @@ export class SearchCategoryAutocompleteComponent
       case AutoCompleteType.ESTABLISHMENT_TYPE:
         iconContent = html`<img
           src="/assets/images/symbols/etablishment.svg"
-          class="aa-icon"
+          class="aa-category-icon"
           alt="Type d'établissement"
           title="Type d'établissement"
         />`;
@@ -273,7 +255,7 @@ export class SearchCategoryAutocompleteComponent
       case AutoCompleteType.ORGANIZATION:
         iconContent = html`<img
           src="/assets/images/symbols/organization.svg"
-          class="aa-icon"
+          class="aa-category-icon"
           alt="Organisation"
           title="Organisation"
         />`;
@@ -281,7 +263,7 @@ export class SearchCategoryAutocompleteComponent
       default:
         iconContent = html`<img
           src="/assets/images/symbols/expression.svg"
-          class="aa-icon"
+          class="aa-category-icon"
           alt="Recherche"
           title="Recherche"
         /> `;
@@ -289,7 +271,7 @@ export class SearchCategoryAutocompleteComponent
     }
 
     return html`<button class="aa-ItemLink" type="button">
-      <div class="aa-ItemIcon aa-ItemIcon--noBorder">${iconContent}</div>
+      <div class="aa-CategoryIcon">${iconContent}</div>
       <div class="aa-ItemContent">
         <div class="aa-ItemContentTitle">${item.label}</div>
       </div>
@@ -318,9 +300,7 @@ export class SearchCategoryAutocompleteComponent
             return of([]);
           }),
           map((fuseResults) => {
-            console.log({ fuseResults });
             this.searching = false;
-            // Limiter à 6 suggestions comme dans l'original
             return fuseResults.slice(0, 6).map((result) => result.item);
           })
         )
@@ -372,11 +352,11 @@ export class SearchCategoryAutocompleteComponent
           getItemInputValue: () => sanitizedQuery,
           templates: {
             item: ({ html }) => html`<button class="aa-ItemLink" type="button">
-              <div class="aa-ItemIcon aa-ItemIcon--noBorder">
+              <div class="aa-CategoryIcon">
                 <span class="aa-icon-wrapper">
                   <img
                     src="/assets/images/symbols/list.svg"
-                    class="aa-icon"
+                    class="aa-category-icon"
                     alt="Recherche"
                     title="Recherche"
                   />
