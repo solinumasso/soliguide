@@ -20,8 +20,10 @@
  */
 import { Component, OnInit } from "@angular/core";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { THEME_CONFIGURATION } from "../../../../models";
+import { AuthService } from "src/app/modules/users/services/auth.service";
+import { CurrentLanguageService } from "../../services/current-language.service";
 
 @Component({
   selector: "app-solidata",
@@ -30,18 +32,38 @@ import { THEME_CONFIGURATION } from "../../../../models";
 })
 export class SolidataComponent implements OnInit {
   public iframeUrl?: SafeResourceUrl;
+  public routePrefix: string;
 
-  constructor(private sanitizer: DomSanitizer, private route: ActivatedRoute) {}
+  constructor(
+    private sanitizer: DomSanitizer,
+    private route: ActivatedRoute,
+    private readonly router: Router,
+    private readonly authService: AuthService,
+    private readonly currentLanguageService: CurrentLanguageService
+  ) {
+    this.routePrefix = this.currentLanguageService.routePrefix;
+  }
 
   ngOnInit() {
     const superset = this.route.snapshot.paramMap.get("superset");
 
-    const supersetData = Object.values(THEME_CONFIGURATION.solidata || {}).find(
-      (data) => data.seoUrl === superset
-    );
+    this.authService.isAuth().subscribe((isAuthenticated) => {
+      if (isAuthenticated && superset === "demo_acces_alimentation") {
+        this.router.navigate([
+          this.routePrefix,
+          "solidata",
+          "access_alimentation",
+        ]);
+        return;
+      }
 
-    this.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-      supersetData.dashboardUrl
-    );
+      const supersetData = Object.values(
+        THEME_CONFIGURATION.solidata || {}
+      ).find((data) => data.seoUrl === superset);
+
+      this.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+        supersetData.dashboardUrl
+      );
+    });
   }
 }
