@@ -111,6 +111,14 @@ export class LoginComponent implements OnInit, OnDestroy {
       )
     );
 
+    const source = this.route.snapshot.queryParamMap.get("from");
+
+    if (source === "food-access") {
+      this.posthogService.capture("create-pro-account", {
+        source: "food-access-dashboard",
+      });
+    }
+
     this.initForm();
   }
 
