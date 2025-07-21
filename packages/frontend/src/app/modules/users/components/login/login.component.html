@@ -161,11 +161,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         </p>
         <p *ngIf="!IS_WEBVIEW_APP && !!proAccountCreationFormLink">
           <a
-            target="_blank"
-            rel="noopener noreferrer"
-            [href]="proAccountCreationFormLink"
+            [routerLink]="[routePrefix, 'create-pro-account']"
             (click)="createProAccount()"
-            >{{ "CREER_COMPTE_PRO" | translate }}
+          >
+            {{ "CREER_COMPTE_PRO" | translate }}
           </a>
         </p>
       </div>
