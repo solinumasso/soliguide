@@ -1,7 +1,7 @@
 import { AutoCompleteType, SearchSuggestion } from "@soliguide/common";
 import { logger } from "../../general/logger";
 import { SearchSuggestionModel } from "../models/search-suggestion.model";
-import { FormattedSuggestion } from "../types/FormattedSuggestion.interface";
+import { FormattedSuggestion } from "../types/FormattedSuggestion.type";
 
 export class SearchSuggestionsService {
   public suggestions: FormattedSuggestion[] = [];
