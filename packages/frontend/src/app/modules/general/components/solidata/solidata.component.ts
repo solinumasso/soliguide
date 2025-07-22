@@ -24,6 +24,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { THEME_CONFIGURATION } from "../../../../models";
 import { AuthService } from "src/app/modules/users/services/auth.service";
 import { CurrentLanguageService } from "../../services/current-language.service";
+import { SOLIDATA_DASHBOARD_REDIRECTIONS } from "src/app/shared";
 
 @Component({
   selector: "app-solidata",
@@ -48,11 +49,12 @@ export class SolidataComponent implements OnInit {
     const superset = this.route.snapshot.paramMap.get("superset");
 
     this.authService.isAuth().subscribe((isAuthenticated) => {
-      if (isAuthenticated && superset === "demo_acces_alimentation") {
+      if (!superset) return;
+
+      if (isAuthenticated && SOLIDATA_DASHBOARD_REDIRECTIONS[superset]) {
         this.router.navigate([
           this.routePrefix,
-          "solidata",
-          "access_alimentation",
+          ...SOLIDATA_DASHBOARD_REDIRECTIONS[superset],
         ]);
         return;
       }
@@ -61,9 +63,11 @@ export class SolidataComponent implements OnInit {
         THEME_CONFIGURATION.solidata || {}
       ).find((data) => data.seoUrl === superset);
 
-      this.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-        supersetData.dashboardUrl
-      );
+      if (supersetData?.dashboardUrl) {
+        this.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+          supersetData.dashboardUrl
+        );
+      }
     });
   }
 }

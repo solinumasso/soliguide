@@ -58,13 +58,9 @@ export class ProCreateAccountComponent implements OnInit, OnDestroy {
       })
     );
 
-    const source = this.activatedRoute.snapshot.queryParamMap.get("from");
+    const from = this.activatedRoute.snapshot.queryParamMap.get("from");
 
-    if (source === "food-access") {
-      this.posthogService.capture("create-pro-account", {
-        source: "food-access-dashboard",
-      });
-    }
+    this.posthogService.capture("create-pro-account", { from });
   }
 
   public ngOnDestroy(): void {
