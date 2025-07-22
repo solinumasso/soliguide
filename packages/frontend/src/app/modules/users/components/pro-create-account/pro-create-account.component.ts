@@ -20,9 +20,7 @@
  */
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Title } from "@angular/platform-browser";
-import { ActivatedRoute } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
-import { PosthogService } from "@soliguide/common-angular";
 import { Subscription } from "rxjs";
 
 import { THEME_CONFIGURATION } from "src/app/models";
@@ -40,9 +38,7 @@ export class ProCreateAccountComponent implements OnInit, OnDestroy {
   constructor(
     private readonly currentLanguageService: CurrentLanguageService,
     private readonly titleService: Title,
-    private readonly translateService: TranslateService,
-    private readonly activatedRoute: ActivatedRoute,
-    private readonly posthogService: PosthogService
+    private readonly translateService: TranslateService
   ) {}
 
   public ngOnInit(): void {
@@ -57,14 +53,6 @@ export class ProCreateAccountComponent implements OnInit, OnDestroy {
         this.routePrefix = this.currentLanguageService.routePrefix;
       })
     );
-
-    const source = this.activatedRoute.snapshot.queryParamMap.get("from");
-
-    if (source === "food-access") {
-      this.posthogService.capture("create-pro-account", {
-        source: "food-access-dashboard",
-      });
-    }
   }
 
   public ngOnDestroy(): void {

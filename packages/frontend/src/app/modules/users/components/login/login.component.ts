@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   public hidePassword: boolean;
   public loading: boolean;
   public submitted: boolean;
+  public dashboardTracking: Record<string, string> = {};
 
   private returnUrl: string[] | string;
 
@@ -91,6 +92,15 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
     this.seoService.updateTitleAndTags(title, description, true);
 
+    const paramMap = this.route.snapshot.queryParamMap;
+
+    for (const key of paramMap.keys) {
+      const value = paramMap.get(key);
+      if (value !== null) {
+        this.dashboardTracking[key] = value;
+      }
+    }
+
     this.subscription.add(
       this.translateService.onLangChange.subscribe({
         next: () => {
@@ -110,14 +120,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         () => (this.routePrefix = this.currentLanguageService.routePrefix)
       )
     );
-
-    const source = this.route.snapshot.queryParamMap.get("from");
-
-    if (source === "food-access") {
-      this.posthogService.capture("create-pro-account", {
-        source: "food-access-dashboard",
-      });
-    }
 
     this.initForm();
   }

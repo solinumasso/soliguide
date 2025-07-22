@@ -22,4 +22,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   *ngIf="!!iframeUrl"
   class="e2e-iframe-trusted-src"
   [src]="iframeUrl"
+  sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
 ></iframe>

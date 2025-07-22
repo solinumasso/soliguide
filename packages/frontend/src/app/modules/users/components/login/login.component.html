@@ -161,8 +161,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         </p>
         <p *ngIf="!IS_WEBVIEW_APP && !!proAccountCreationFormLink">
           <a
+            target="_blank"
+            rel="noopener noreferrer"
             [routerLink]="[routePrefix, 'create-pro-account']"
             (click)="createProAccount()"
+            [queryParams]="dashboardTracking"
           >
             {{ "CREER_COMPTE_PRO" | translate }}
           </a>
