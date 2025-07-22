@@ -105,13 +105,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       *ngIf="!!THEME_CONFIGURATION.logos.sponsor"
       class="row justify-content-center pb-5"
     >
-      <div class="col-6 justify-content-center d-flex">
-        <img
-          class="mw-100"
-          [src]="'/assets/images/themes/' + THEME_CONFIGURATION.logos.sponsor"
-          alt="Sponsor logo"
-          aria-hidden="true"
-        />
+      <div class="justify-content-center d-flex">
+        <app-partners-banner></app-partners-banner>
       </div>
     </div>
     <div class="row justify-content-center">
