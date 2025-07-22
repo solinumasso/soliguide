@@ -19,4 +19,5 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 // @index('./*', f => `export * from '${f.path}'`)
-export * from "./search-suggestion.interface";
+export * from "./categories-service.type";
+export * from "./FormattedSuggestion.type";

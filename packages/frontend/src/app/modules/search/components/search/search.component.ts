@@ -53,7 +53,7 @@ import {
 import type { PosthogProperties } from "@soliguide/common-angular";
 
 import { SearchFiltersComponent } from "../search-filters/search-filters.component";
-import { Search } from "../../interfaces";
+import { Search, SearchFilterParams } from "../../interfaces";
 import { SearchService } from "../../services/search.service";
 import { CurrentLanguageService } from "../../../general/services/current-language.service";
 import { SeoService, LocationService } from "../../../shared/services";
@@ -63,9 +63,6 @@ import { AuthService } from "../../../users/services/auth.service";
 import {
   type Place,
   type MarkerOptions,
-  type SearchFilterParams,
-  PLACE_SEARCH_LIMIT,
-  PARCOURS_SEARCH_LIMIT,
   THEME_CONFIGURATION,
 } from "../../../../models";
 
@@ -76,6 +73,7 @@ import {
 } from "../../../../shared";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { SearchBarService } from "../../../search-bar/services/search-bar.service";
+import { PARCOURS_SEARCH_LIMIT, PLACE_SEARCH_LIMIT } from "../../constants";
 
 @Component({
   animations: [fadeInOut],
@@ -424,10 +422,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
 
     if (foundItem) {
-      console.log(
-        `🎯 ${foundItem.type} trouvé dans les suggestions:`,
-        foundItem
-      );
+      console.log(`🎯 ${foundItem.type} found in suggestions `, foundItem);
 
       this.search.applySearchSuggestion(foundItem);
       this.parcoursSearch.applySearchSuggestion(foundItem);
@@ -501,11 +496,9 @@ export class SearchComponent implements OnInit, OnDestroy {
           const item = addresses[0];
           const searchPosition = new GeoPosition(item);
           this.locationService.localPositionSubject.next(searchPosition);
-          // New location
           this.search.location = searchPosition;
           this.parcoursSearch.location = searchPosition;
           this.launchSearches();
-          return;
         },
         error: () => {
           this.toastr.error(

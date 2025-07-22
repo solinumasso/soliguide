@@ -138,14 +138,7 @@ router.post(
   }
 );
 
-/**
- * @swagger
- *
- * /new-search/auto-complete/:term:
- *   get:
- *     description: Get suggested category or word
- *     tags: [SearchPlace]
- */
+// @deprecated
 router.get(
   "/auto-complete/:term",
   isNotApiUser,

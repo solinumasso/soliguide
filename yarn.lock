@@ -5156,17 +5156,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@google/genai@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@google/genai@npm:1.0.1"
+"@google/genai@npm:^1.10.0":
+  version: 1.10.0
+  resolution: "@google/genai@npm:1.10.0"
   dependencies:
     google-auth-library: "npm:^9.14.2"
     ws: "npm:^8.18.0"
-    zod: "npm:^3.22.4"
-    zod-to-json-schema: "npm:^3.22.4"
   peerDependencies:
     "@modelcontextprotocol/sdk": ^1.11.0
-  checksum: 10c0/1b908e4497ba6717598d93369ce54814059fb4879fb7fe9563059bae2298f4b8ceb50fd5ab3908b8fa04ccb90043d69ea824d530794e582476b8392c2d94303b
+  peerDependenciesMeta:
+    "@modelcontextprotocol/sdk":
+      optional: true
+  checksum: 10c0/be53415b83ad68a59f8d1af8501f4f69c915c9a713c5c42e74d01c4af3eca88b890fd9f583367bb49406ad4576d9f8e4bfbe62f46ebc602f8ceb371714b7070f
   languageName: node
   linkType: hard
 
@@ -10685,7 +10686,7 @@ __metadata:
     "@babel/runtime": "npm:^7.27.6"
     "@eslint/create-config": "npm:^0.4.6"
     "@google-cloud/translate": "npm:^8.3.0"
-    "@google/genai": "npm:^1.0.1"
+    "@google/genai": "npm:^1.10.0"
     "@sentry/node": "npm:^9.15.0"
     "@sentry/profiling-node": "npm:^9.15.0"
     "@sentry/wizard": "npm:^4.8.0"
@@ -35304,15 +35305,6 @@ __metadata:
   bin:
     z-schema: bin/z-schema
   checksum: 10c0/e4c812cfe6468c19b2a21d07d4ff8fb70359062d33400b45f89017eaa3efe9d51e85963f2b115eaaa99a16b451782249bf9b1fa8b31d35cc473e7becb3e44264
-  languageName: node
-  linkType: hard
-
-"zod-to-json-schema@npm:^3.22.4":
-  version: 3.24.6
-  resolution: "zod-to-json-schema@npm:3.24.6"
-  peerDependencies:
-    zod: ^3.24.1
-  checksum: 10c0/b907ab6d057100bd25a37e5545bf5f0efa5902cd84d3c3ec05c2e51541431a47bd9bf1e5e151a244273409b45f5986d55b26e5d207f98abc5200702f733eb368
   languageName: node
   linkType: hard
 

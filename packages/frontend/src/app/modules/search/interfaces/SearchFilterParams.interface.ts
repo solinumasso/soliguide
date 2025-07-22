@@ -18,9 +18,30 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Place } from "../../place";
+import {
+  WelcomedPublics,
+  PublicsAdministrative,
+  PublicsFamily,
+  PublicsGender,
+  PublicsOther,
+} from "@soliguide/common";
 
-export interface SearchResults {
-  nbResults: number;
-  places: Place[];
+export interface SearchFilterParams {
+  accueil?: WelcomedPublics;
+  administrative?: PublicsAdministrative;
+  age?: number;
+  animal?: boolean;
+  appointment?: boolean;
+  familialle?: PublicsFamily;
+  gender?: PublicsGender;
+  hours?: { start: number | string; end: number | string };
+  inconditionnel?: boolean;
+  inscription?: boolean;
+  languages?: string;
+  openToday?: boolean;
+  orientation?: boolean;
+  other?: PublicsOther;
+  pmr?: boolean;
+  price?: boolean;
+  sign?: boolean;
 }

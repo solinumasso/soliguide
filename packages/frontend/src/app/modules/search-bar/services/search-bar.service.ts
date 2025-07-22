@@ -108,7 +108,7 @@ export class SearchBarService {
   }
 
   private async loadSuggestions(
-    lang: string = "fr"
+    lang: SupportedLanguagesCode = SupportedLanguagesCode.FR
   ): Promise<SearchSuggestion[]> {
     try {
       const data = await firstValueFrom(
@@ -135,7 +135,7 @@ export class SearchBarService {
       const data = await this.loadSuggestions(lang);
 
       if (data.length === 0) {
-        console.warn("Aucune donnée trouvée pour initialiser Fuse.js");
+        console.warn("No data in Fuse");
         return;
       }
 
@@ -143,9 +143,9 @@ export class SearchBarService {
       this.fuse = new Fuse(data, this.getFuseOptions());
       this.isInitialized = true;
       this.initializationSubject.next(true);
-      console.log(`✅ Fuse.js initialisé avec ${data.length} éléments`);
+      console.log(`✅ Fuse.js initialized: ${data.length} elements`);
     } catch (error) {
-      console.error("❌ Erreur lors de l'initialisation de Fuse.js:", error);
+      console.error("❌ Cannot load fuse:", error);
       this.initializationSubject.next(false);
       throw error;
     }
@@ -161,7 +161,7 @@ export class SearchBarService {
 
   public autoComplete(term: string): FuseResult<SearchSuggestion>[] {
     if (!this.fuse || !this.isInitialized) {
-      console.warn("Fuse.js n'est pas initialisé");
+      console.warn("Fuse.js is not initialized");
       return [];
     }
 

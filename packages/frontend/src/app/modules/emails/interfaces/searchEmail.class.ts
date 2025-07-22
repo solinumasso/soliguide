@@ -21,9 +21,8 @@
 import { CampaignName } from "@soliguide/common";
 
 import { CampaignEmailType, EmailStatus } from "../types";
-
-import { ManageSearch } from "../../../models/manage-search";
 import { User } from "../../users/classes";
+import { ManageSearch } from "../../manage-common/classes";
 
 export class SearchEmail extends ManageSearch {
   public campaigns?: CampaignName[];

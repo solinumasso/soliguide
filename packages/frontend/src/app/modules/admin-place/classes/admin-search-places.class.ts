@@ -40,8 +40,9 @@ import {
   SearchSuggestion,
 } from "@soliguide/common";
 
-import { ManageSearch, THEME_CONFIGURATION } from "../../../models";
+import { THEME_CONFIGURATION } from "../../../models";
 import type { User } from "../../users/classes";
+import { ManageSearch } from "../../manage-common/classes";
 
 export class AdminSearchPlaces
   extends ManageSearch
