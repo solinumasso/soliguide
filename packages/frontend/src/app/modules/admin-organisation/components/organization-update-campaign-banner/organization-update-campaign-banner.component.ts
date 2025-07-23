@@ -33,7 +33,7 @@ import type { Organisation } from "../../interfaces";
 import { CurrentLanguageService } from "../../../general/services/current-language.service";
 import type { User } from "../../../users/classes";
 import { THEME_CONFIGURATION } from "../../../../models";
-import { campaignIsActive } from "../../../../shared";
+import { campaignIsActiveWithTheme } from "../../../../shared";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 
 @Component({
@@ -71,7 +71,9 @@ export class OrganizationUpdateCampaignBannerComponent
   public ngOnInit(): void {
     const now = new Date();
 
-    this.campaignIsActive = campaignIsActive(this.organisation.territories);
+    this.campaignIsActive = campaignIsActiveWithTheme(
+      this.organisation.territories
+    );
 
     this.canEdit =
       this.me.admin ||

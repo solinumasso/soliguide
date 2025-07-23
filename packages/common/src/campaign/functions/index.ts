@@ -18,24 +18,5 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {
-  CampaignName,
-  KeyStringValueAny,
-  CampaignChangesSection,
-  AnyDepartmentCode,
-} from "@soliguide/common";
-
-type CampaignDetails = {
-  CAMPAIGN_DISPLAY_START_DATE: Date;
-  CAMPAIGN_END_DATE: Date;
-  CAMPAIGN_MESSAGE?: string;
-  CAMPAIGN_START_DATE: Date;
-  DESCRIPTION?: string;
-  PLACES_TO_UPDATE: KeyStringValueAny | null;
-  SECTIONS?: CampaignChangesSection[];
-  TERRITORIES: AnyDepartmentCode[];
-};
-
-export type CampaignList = {
-  [key in CampaignName]: CampaignDetails;
-};
+// @index('./*', f => `export * from '${f.path}'`)
+export * from "./campaignIsActive.function";

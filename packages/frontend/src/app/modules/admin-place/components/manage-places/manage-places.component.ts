@@ -73,7 +73,7 @@ import {
 
 import {
   fadeInOut,
-  campaignIsActive,
+  campaignIsActiveWithTheme,
   globalConstants,
   DEFAULT_MODAL_OPTIONS,
 } from "../../../../shared";
@@ -180,7 +180,9 @@ export class ManagePlacesComponent implements OnInit, OnDestroy {
       )
     );
 
-    this.campaignIsActiveForMe = campaignIsActive(this.me?.territories);
+    this.campaignIsActiveForMe = campaignIsActiveWithTheme(
+      this.me?.territories
+    );
     this.titleService.setTitle(
       this.translateService.instant("MANAGE_STRUCTURES")
     );
@@ -326,7 +328,7 @@ export class ManagePlacesComponent implements OnInit, OnDestroy {
     return (
       THEME_CONFIGURATION.country === CountryCodes.FR &&
       postalCode &&
-      campaignIsActive([
+      campaignIsActiveWithTheme([
         getDepartmentCodeFromPostalCode(CountryCodes.FR, postalCode),
       ])
     );

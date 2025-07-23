@@ -46,7 +46,7 @@ import { AuthService } from "../../../users/services/auth.service";
 import { PlaceChanges } from "../../../../models/place-changes/classes";
 
 import {
-  campaignIsActive,
+  campaignIsActiveWithTheme,
   globalConstants,
 } from "../../../../shared/functions";
 import { CAMPAIGN_ICONS } from "../../../../models";
@@ -112,7 +112,7 @@ export class ManagePlaceChangesComponent implements OnInit, OnDestroy {
       )
     );
 
-    this.campaignIsActive = campaignIsActive(this.me?.territories);
+    this.campaignIsActive = campaignIsActiveWithTheme(this.me?.territories);
     this.titleService.setTitle(this.translateService.instant("MANAGE_UPDATES"));
     this.searchSubject.next(this.search);
 

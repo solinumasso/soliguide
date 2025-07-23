@@ -25,15 +25,28 @@ import { Categories } from "@soliguide/common";
 
 jest.mock("@soliguide/common", () => {
   const original = jest.requireActual("@soliguide/common");
+  const CAMPAIGN_DEFAULT_NAME = "MAJ_TEST";
+  const CAMPAIGN_LIST = {
+    MAJ_TEST: {
+      dateDebutAffichage: new Date("2020-06-15T00:00:00.000Z"),
+      dateDebutCampagne: new Date("2020-06-01T01:00:00.000Z"),
+      dateFin: new Date("2020-09-01T00:00:00.000Z"),
+    },
+  };
+
   return {
     ...original,
-    CAMPAIGN_DEFAULT_NAME: "MAJ_TEST",
-    CAMPAIGN_LIST: {
-      MAJ_TEST: {
-        dateDebutAffichage: new Date("2020-06-15T00:00:00.000Z"),
-        dateDebutCampagne: new Date("2020-06-01T01:00:00.000Z"),
-        dateFin: new Date("2020-09-01T00:00:00.000Z"),
-      },
+    CAMPAIGN_DEFAULT_NAME,
+    CAMPAIGN_LIST,
+    campaignIsActive: () => {
+      const today = new Date();
+      const campaign = CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME];
+
+      if (campaign.dateDebutCampagne > today || today > campaign.dateFin) {
+        return false;
+      }
+
+      return true;
     },
   };
 });

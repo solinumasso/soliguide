@@ -18,11 +18,13 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { CAMPAIGN_DEFAULT_NAME, PlaceStatus } from "@soliguide/common";
+import {
+  CAMPAIGN_DEFAULT_NAME,
+  PlaceStatus,
+  CAMPAIGN_LIST,
+} from "@soliguide/common";
 
 import mongoose from "mongoose";
-
-import { CAMPAIGN_LIST } from "../constants/CAMPAIGN.const";
 
 import { PlaceModel } from "../../place/models/place.model";
 
@@ -60,7 +62,7 @@ export const findPlacesToUpdateWithParams = async (
 ): Promise<number[]> => {
   const runningCampaign = CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME];
   // Specific criteria to search which places need to be updated
-  const campaignParams = runningCampaign.PLACES_TO_UPDATE;
+  const campaignParams = runningCampaign.placesToUpdate;
   // List of places which don't need to be updated
   const placesToExclude = await findPlacesToExclude();
 

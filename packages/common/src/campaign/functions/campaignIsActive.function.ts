@@ -18,24 +18,23 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { CAMPAIGN_DEFAULT_NAME, CAMPAIGN_LIST, type AnyDepartmentCode } from '@soliguide/common';
+import type { AnyDepartmentCode } from "../../location/types/DepartmentCode.type";
+import { CAMPAIGN_LIST } from "../constants/CAMPAIGN_LIST.const";
+import { CAMPAIGN_DEFAULT_NAME } from "../constants/CAMPAIGN_DEFAULT_NAME.const";
 
-export const campaignIsActive = (territories?: AnyDepartmentCode[]): boolean => {
+export const campaignIsActive = (
+  territories?: AnyDepartmentCode[]
+): boolean => {
   const today = new Date();
+  const campaign = CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME];
 
-  // eslint-disable-next-line fp/no-let
-  let isTerritoryInCampaign = !territories?.length;
-
-  if (territories?.length) {
-    // eslint-disable-next-line fp/no-mutation
-    isTerritoryInCampaign = territories.some((territory) =>
-      CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].territories.includes(territory)
-    );
+  if (campaign.dateDebutCampagne > today || today > campaign.dateFin) {
+    return false;
   }
 
-  return (
-    CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].dateDebutCampagne <= today &&
-    today <= CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].dateFin &&
-    isTerritoryInCampaign
-  );
+  const isTerritoryInCampaign = territories?.length
+    ? territories.some((territory) => campaign.territories.includes(territory))
+    : true;
+
+  return isTerritoryInCampaign;
 };

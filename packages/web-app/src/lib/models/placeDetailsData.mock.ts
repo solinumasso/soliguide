@@ -418,7 +418,7 @@ const samplePlace: ApiPlace = Object.freeze({
       status: 'FINISHED',
       toUpdate: true
     },
-    END_YEAR_2024: {
+    MAJ_ETE_2024: {
       autonomy: 'NOT_AUTONOMOUS',
       currentStep: 4,
       general: {

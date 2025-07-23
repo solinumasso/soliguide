@@ -18,6 +18,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { CampaignName } from "../enums";
+import { CampaignName } from "../enums/CampaignName.enum";
 
 export const CAMPAIGN_DEFAULT_NAME = CampaignName.MID_YEAR_2025;

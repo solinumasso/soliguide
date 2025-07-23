@@ -27,13 +27,13 @@ import {
 import { differenceInHours } from "date-fns";
 
 import { Place } from "../../../models";
-import { campaignIsActive } from "./campaignIsActive";
+import { campaignIsActiveWithTheme } from "./campaignIsActive";
 
 export const displayCampaignInfo = (place: Place): boolean => {
   const campaignInfo = CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME];
 
   return (
-    campaignIsActive() &&
+    campaignIsActiveWithTheme() &&
     differenceInHours(new Date(), campaignInfo.dateDebutAffichage) > 0 &&
     place.campaigns.runningCampaign.toUpdate &&
     place.campaigns.runningCampaign.status !== CampaignStatus.FINISHED

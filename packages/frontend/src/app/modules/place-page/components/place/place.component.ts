@@ -51,7 +51,7 @@ import {
 } from "../../../../models";
 
 import {
-  campaignIsActive,
+  campaignIsActiveWithTheme,
   displayCampaignInfo,
   generateMarkerOptions,
   globalConstants,
@@ -156,7 +156,7 @@ export class PlaceComponent
           this.updateMarkers();
           this.getDepartmentCodes();
           this.showAddress = true;
-          this.campaignIsActive = campaignIsActive(this.territories);
+          this.campaignIsActive = campaignIsActiveWithTheme(this.territories);
 
           this.updateDefaultPosthogProperties({
             campaign: this.campaignIsActive ? this.CAMPAIGN_NAME : null,
@@ -188,7 +188,7 @@ export class PlaceComponent
           this.place = place;
           this.getDepartmentCodes();
 
-          this.campaignIsActive = campaignIsActive(this.territories);
+          this.campaignIsActive = campaignIsActiveWithTheme(this.territories);
 
           this.updateDefaultPosthogProperties({
             campaign: this.campaignIsActive ? this.CAMPAIGN_NAME : null,

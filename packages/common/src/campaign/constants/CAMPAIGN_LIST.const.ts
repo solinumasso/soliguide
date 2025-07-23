@@ -18,10 +18,12 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { CampaignInfos } from "../types";
-import { CampaignName } from "../enums";
-import { CountryCodes } from "../../location/enums";
-import { DEPARTMENT_CODES } from "../../location/constants";
+import { CampaignInfos } from "../types/CampaignInfos.type";
+import { CampaignChangesSection } from "../enums/CampaignChangesSection.enum";
+import { CampaignName } from "../enums/CampaignName.enum";
+import { CountryCodes } from "../../location/enums/CountryCodes.enum";
+import { DEPARTMENT_CODES } from "../../location/constants/ALL_DEPARTMENT_CODES.const";
+import { PlaceType } from "../../place/enums/PlaceType.enum";
 
 export const CAMPAIGN_LIST: { [key in CampaignName]: CampaignInfos } = {
   MAJ_ETE_2022: {
@@ -34,6 +36,13 @@ export const CAMPAIGN_LIST: { [key in CampaignName]: CampaignInfos } = {
     icon: "sun",
     name: "été",
     period: "juillet-août",
+    placesToUpdate: { placeType: PlaceType.PLACE },
+    sections: [
+      CampaignChangesSection.tempClosure,
+      CampaignChangesSection.services,
+      CampaignChangesSection.tempHours,
+      CampaignChangesSection.tempMessage,
+    ],
     territories: [...DEPARTMENT_CODES[CountryCodes.FR]],
   },
   MAJ_ETE_2023: {
@@ -46,6 +55,13 @@ export const CAMPAIGN_LIST: { [key in CampaignName]: CampaignInfos } = {
     icon: "sun",
     name: "été",
     period: "juillet-août",
+    placesToUpdate: null,
+    sections: [
+      CampaignChangesSection.tempClosure,
+      CampaignChangesSection.services,
+      CampaignChangesSection.tempHours,
+      CampaignChangesSection.tempMessage,
+    ],
     specificServiceMessage: "SPECIFIC_SERVICE_FOR_HEATWAVES",
     territories: [...DEPARTMENT_CODES[CountryCodes.FR]],
   },
@@ -59,6 +75,13 @@ export const CAMPAIGN_LIST: { [key in CampaignName]: CampaignInfos } = {
     icon: "sun",
     name: "été",
     period: "juillet-août",
+    placesToUpdate: null,
+    sections: [
+      CampaignChangesSection.tempClosure,
+      CampaignChangesSection.services,
+      CampaignChangesSection.tempHours,
+      CampaignChangesSection.tempMessage,
+    ],
     specificServiceMessage: "SPECIFIC_SERVICE_FOR_HEATWAVES",
     territories: DEPARTMENT_CODES[CountryCodes.FR].filter(
       (code) => code !== "974"
@@ -74,6 +97,13 @@ export const CAMPAIGN_LIST: { [key in CampaignName]: CampaignInfos } = {
     icon: "snow",
     name: "hiver",
     period: "décembre-janvier",
+    placesToUpdate: null,
+    sections: [
+      CampaignChangesSection.tempClosure,
+      CampaignChangesSection.services,
+      CampaignChangesSection.tempHours,
+      CampaignChangesSection.tempMessage,
+    ],
     territories: [...DEPARTMENT_CODES[CountryCodes.FR]],
   },
   MAJ_HIVER_2023: {
@@ -86,6 +116,13 @@ export const CAMPAIGN_LIST: { [key in CampaignName]: CampaignInfos } = {
     icon: "snow",
     name: "hiver",
     period: "décembre-janvier",
+    placesToUpdate: null,
+    sections: [
+      CampaignChangesSection.tempClosure,
+      CampaignChangesSection.services,
+      CampaignChangesSection.tempHours,
+      CampaignChangesSection.tempMessage,
+    ],
     specificServiceMessage: "SPECIFIC_SERVICE_FOR_WINTER",
     territories: [...DEPARTMENT_CODES[CountryCodes.FR]],
   },
@@ -97,6 +134,13 @@ export const CAMPAIGN_LIST: { [key in CampaignName]: CampaignInfos } = {
     description: "Mise à jour de fin d'année 2024",
     name: "fin d'année",
     period: "décembre-janvier",
+    placesToUpdate: null,
+    sections: [
+      CampaignChangesSection.tempClosure,
+      CampaignChangesSection.services,
+      CampaignChangesSection.tempHours,
+      CampaignChangesSection.tempMessage,
+    ],
     specificServiceMessage: "",
     territories: [...DEPARTMENT_CODES[CountryCodes.FR]],
   },
@@ -108,6 +152,13 @@ export const CAMPAIGN_LIST: { [key in CampaignName]: CampaignInfos } = {
     description: "Mise à jour de mi-année 2025",
     name: "milieu d'année",
     period: "juin-juillet",
+    placesToUpdate: null,
+    sections: [
+      CampaignChangesSection.tempClosure,
+      CampaignChangesSection.services,
+      CampaignChangesSection.tempHours,
+      CampaignChangesSection.tempMessage,
+    ],
     specificServiceMessage: "",
     territories: [...DEPARTMENT_CODES[CountryCodes.FR]],
   },

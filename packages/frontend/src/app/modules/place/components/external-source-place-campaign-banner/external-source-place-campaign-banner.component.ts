@@ -27,7 +27,7 @@ import {
   getDepartmentCodeFromPostalCode,
   checkIfSourceMustBeDisplayed,
 } from "@soliguide/common";
-import { campaignIsActive } from "../../../../shared";
+import { campaignIsActiveWithTheme } from "../../../../shared";
 
 import { CurrentLanguageService } from "../../../general/services/current-language.service";
 import { Place, THEME_CONFIGURATION } from "../../../../models";
@@ -79,7 +79,7 @@ export class ExternalSourcePlaceCampaignBannerComponent
       country &&
       postalCode &&
       THEME_CONFIGURATION.country === CountryCodes.FR &&
-      campaignIsActive([
+      campaignIsActiveWithTheme([
         getDepartmentCodeFromPostalCode(
           country as SoliguideCountries,
           postalCode

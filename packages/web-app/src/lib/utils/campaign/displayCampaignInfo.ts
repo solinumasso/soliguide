@@ -21,6 +21,7 @@
 import {
   CAMPAIGN_DEFAULT_NAME,
   CAMPAIGN_LIST,
+  campaignIsActive,
   CampaignStatus,
   getDepartmentCodeFromPostalCode,
   getPosition,
@@ -29,8 +30,6 @@ import {
 } from '@soliguide/common';
 
 import { differenceInHours } from 'date-fns';
-
-import { campaignIsActive } from './campaignIsActive';
 
 export const displayCampaignInfo = (place: ApiPlace, isExternal: boolean): boolean => {
   const campaignInfo = CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME];

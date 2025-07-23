@@ -20,6 +20,8 @@
  */
 import { AnyDepartmentCode } from "../../location/types";
 import { CampaignIconName } from "./CampaignIconName.type";
+import { CampaignChangesSection } from "../enums/CampaignChangesSection.enum";
+import { KeyStringValueAny } from "../../general/types";
 
 export interface CampaignInfos {
   adjective?: string;
@@ -32,5 +34,7 @@ export interface CampaignInfos {
   period?: string;
   name: string;
   specificServiceMessage?: string;
+  placesToUpdate: KeyStringValueAny | null;
+  sections?: CampaignChangesSection[];
   territories: AnyDepartmentCode[];
 }
