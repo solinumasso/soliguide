@@ -26,10 +26,12 @@ export function UrlValidator(): ValidatorFn {
     if (!value) return null;
 
     try {
+      // eslint-disable-next-line no-new
       new URL(value);
       return null;
     } catch {
       try {
+        // eslint-disable-next-line no-new
         new URL(`https://${value}`);
         return null;
       } catch {
