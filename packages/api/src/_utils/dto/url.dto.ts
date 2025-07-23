@@ -33,6 +33,7 @@ export const checkUrlFieldDto = (urlField: string) =>
     .trim()
     .customSanitizer(addHttpsIfNeeded)
     .custom((value) => {
+      // eslint-disable-next-line no-new
       new URL(value);
       return true;
     });
