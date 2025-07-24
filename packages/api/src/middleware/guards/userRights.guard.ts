@@ -22,15 +22,12 @@ import { NextFunction } from "express";
 
 import { UserRightStatus, UserStatus } from "@soliguide/common";
 
-import {
-  ExpressRequest,
-  ExpressResponse,
-  UserRightUserPopulate,
-} from "../../_models";
+import { ExpressRequest, ExpressResponse } from "../../_models";
 
 import { USER_ROLES_FOR_EDITION } from "../../user/constants";
 import mongoose, { isValidObjectId } from "mongoose";
 import { getUserRightsById } from "../../user/services";
+import { UserRightUserPopulate } from "../../user/interfaces";
 
 export const canGetContact = async (
   req: ExpressRequest & {

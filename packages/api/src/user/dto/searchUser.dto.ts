@@ -40,11 +40,6 @@ export const searchUserDto = [
     .isBoolean()
     .toBoolean(),
 
-  body("developer")
-    .if(body("developer").exists(CHECK_STRING_NULL))
-    .isBoolean()
-    .toBoolean(),
-
   body("options.sortBy")
     .if(body("options.sortBy").exists(CHECK_STRING_NULL))
     .isIn([

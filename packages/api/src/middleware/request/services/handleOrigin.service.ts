@@ -22,13 +22,13 @@ import { UserStatus } from "@soliguide/common";
 import {
   ExpressRequest,
   SOLIGUIDE_HOSTNAME_REGEXP,
-  Origin,
   CONFIG,
   FRONT_URLS,
   WEBAPP_URLS,
 } from "../../../_models";
 import { cleanUrl } from "./cleanUrl.service";
 import { logger } from "../../../general/logger";
+import { Origin } from "../../../_models/users/enums";
 
 export const isMobileHeader = (req: ExpressRequest): boolean => {
   const userAgent = req.headers?.["user-agent"];
