@@ -26,13 +26,19 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { TranslateModule } from "@ngx-translate/core";
 
 describe("CookieManagerService", () => {
   let service: CookieManagerService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, HttpClientTestingModule, NgbModule],
+      imports: [
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        NgbModule,
+        TranslateModule.forRoot(),
+      ],
       providers: [
         CookieManagerService,
         { provide: AuthService, useClass: MockAuthService },
