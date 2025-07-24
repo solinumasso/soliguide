@@ -121,6 +121,7 @@ export const createUserWithInvitation = async (
         status: UserStatus.PRO,
         territories: organization.territories,
         areas: organization.areas,
+        organizations: [],
       };
 
       userToCreate.phone = userToInvite.phone ?? null;
