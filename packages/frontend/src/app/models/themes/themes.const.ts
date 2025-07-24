@@ -118,6 +118,7 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
     },
     showTranslationMenuDropdown: true,
     showSoligareMenu: true,
+    websiteUrl: "soliguide.fr",
   },
   [Themes.SOLIGUIA_ES]: {
     ...DEFAULT_THEME_VALUE,
@@ -138,6 +139,7 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
     locationAutocompletePlaceholder: "Barcelona Sants, Lleida, etc.",
     showTranslationMenuDropdown: false,
     showSoligareMenu: false,
+    websiteUrl: "soliguia.cat",
   },
   [Themes.SOLIGUIA_AD]: {
     ...DEFAULT_THEME_VALUE,
@@ -163,6 +165,7 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
       "Andorre-la-Vieja, Escaldes-Engordany, etc.",
     showTranslationMenuDropdown: false,
     showSoligareMenu: false,
+    websiteUrl: "soliguia.ad",
   },
 } as const;
 
