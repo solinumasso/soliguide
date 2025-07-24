@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-silktideCookieBannerManager.updateCookieBannerConfig({
+window.silktideConfig = {
   background: {
     showBackground: false,
   },
@@ -129,8 +129,6 @@ silktideCookieBannerManager.updateCookieBannerConfig({
       title: "Customize your cookie preferences",
       description:
         "<p>We respect your right to privacy. You can choose not to allow some types of cookies. Your cookie preferences will apply across our website.</p>",
-      creditLinkText: "Get this banner for free",
-      creditLinkAccessibleLabel: "Get this banner for free",
     },
   },
-});
+};
