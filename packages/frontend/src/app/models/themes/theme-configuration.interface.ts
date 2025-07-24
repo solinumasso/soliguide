@@ -85,4 +85,5 @@ export interface ThemeConfiguration {
   };
   showTranslationMenuDropdown?: boolean;
   showSoligareMenu?: boolean;
+  websiteUrl?: string;
 }
