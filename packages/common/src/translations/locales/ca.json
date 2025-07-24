@@ -367,7 +367,7 @@
   "COOKIES_TITLE": "Gestió de galetes (cookies)",
   "COOKIE_BANNER_ACCEPT_ALL_BUTTON": "Accepta-ho tot",
   "COOKIE_BANNER_ACCEPT_ALL_BUTTON_ACCESSIBLE_LABEL": "Accepta totes les galetes",
-  "COOKIE_BANNER_DESCRIPTION": "<p>Utilitzem cookies per millorar l'experiència d'usuari, ajudar-vos a navegar pel xat o analitzar el trànsit del lloc web. <a href=\"https://{{ website }}/{{ lang }}/politique-cookies\" target=\"_blank\">Política de cookies.</a></p>„",
+  "COOKIE_BANNER_DESCRIPTION": "<p>Utilitzem cookies per millorar l'experiència d'usuari, ajudar-vos a navegar pel xat o analitzar el trànsit del lloc web. <a href=\"https://{{ website }}/{{ lang }}/politique-cookies\" target=\"_blank\">Política de cookies.</a></p>",
   "COOKIE_BANNER_PREFERENCES_BUTTON": "Preferències",
   "COOKIE_BANNER_PREFERENCES_BUTTON_ACCESSIBLE_LABEL": "Obre les preferències de galetes",
   "COOKIE_BANNER_REJECT_NON_ESSENTIAL_BUTTON": "Rebutja-ho tot",

@@ -367,7 +367,7 @@
   "COOKIES_TITLE": "مدیریت کوکی ها",
   "COOKIE_BANNER_ACCEPT_ALL_BUTTON": "همه چیز را بپذیرید",
   "COOKIE_BANNER_ACCEPT_ALL_BUTTON_ACCESSIBLE_LABEL": "همه کوکی‌ها را بپذیرید",
-  "COOKIE_BANNER_DESCRIPTION": "<p>ما از کوکی‌ها برای ارائه تجربه کاربری بهتر، کمک به شما در پیمایش چت یا تجزیه و تحلیل ترافیک سایت استفاده می‌کنیم. <a href=\"https://{{ website }}/{{ lang }}/politique-cookies\" target=\"_blank\">سیاست کوکی‌ها.</a></p>„",
+  "COOKIE_BANNER_DESCRIPTION": "<p>ما از کوکی‌ها برای ارائه تجربه کاربری بهتر، کمک به شما در پیمایش چت یا تجزیه و تحلیل ترافیک سایت استفاده می‌کنیم. <a href=\"https://{{ website }}/{{ lang }}/politique-cookies\" target=\"_blank\">سیاست کوکی‌ها.</a></p>",
   "COOKIE_BANNER_PREFERENCES_BUTTON": "تنظیمات برگزیده",
   "COOKIE_BANNER_PREFERENCES_BUTTON_ACCESSIBLE_LABEL": "تنظیمات کوکی را باز کنید",
   "COOKIE_BANNER_REJECT_NON_ESSENTIAL_BUTTON": "همه چیز را رد کنید",
