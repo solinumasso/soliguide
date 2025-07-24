@@ -23,6 +23,7 @@ import { PosthogService as CommonPosthogService } from "@soliguide/common-angula
 
 import { CommonPosthogMockService } from "../../../../../mocks/CommonPosthogMockService.mock";
 import { PosthogService } from "./posthog.service";
+import { TranslateModule } from "@ngx-translate/core";
 
 describe("PosthogService", () => {
   let posthogMock: CommonPosthogMockService;
@@ -30,6 +31,7 @@ describe("PosthogService", () => {
   beforeEach(() => {
     posthogMock = new CommonPosthogMockService();
     TestBed.configureTestingModule({
+      imports: [TranslateModule.forRoot()],
       providers: [{ provide: CommonPosthogService, useValue: posthogMock }],
     });
   });
