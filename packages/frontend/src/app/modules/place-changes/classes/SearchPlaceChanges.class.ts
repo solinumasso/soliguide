@@ -25,8 +25,8 @@ import {
   UserStatus,
 } from "@soliguide/common";
 
-import { ManageSearch } from "../../../models";
 import { User } from "../../users/classes";
+import { ManageSearch } from "../../manage-common/classes";
 
 export class SearchPlaceChanges extends ManageSearch {
   public isCampaign: boolean | null;

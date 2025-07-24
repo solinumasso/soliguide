@@ -272,7 +272,7 @@ export class PlaceComponent
     }
   };
 
-  private updateTitleAndTags = (): void => {
+  private readonly updateTitleAndTags = (): void => {
     this.seoService.updateTitleAndTags(
       this.place.name,
       this.place.descriptionExtract,
@@ -303,7 +303,7 @@ export class PlaceComponent
     };
   };
 
-  private updateMarkers = (): void => {
+  private readonly updateMarkers = (): void => {
     this.marker = generateMarkerOptions([this.place], this.me);
   };
 
