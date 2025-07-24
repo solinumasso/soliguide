@@ -367,7 +367,7 @@
   "COOKIES_TITLE": "Gestionarea cookie-urilor",
   "COOKIE_BANNER_ACCEPT_ALL_BUTTON": "Acceptă totul",
   "COOKIE_BANNER_ACCEPT_ALL_BUTTON_ACCESSIBLE_LABEL": "Acceptați toate cookie-urile",
-  "COOKIE_BANNER_DESCRIPTION": "<p>Folosim cookie-uri pentru a oferi o experiență mai bună utilizatorului, pentru a vă ajuta să navigați în chat sau pentru a analiza traficul pe site. <a href=\"https://{{ website }}/{{ lang }}/politique-cookies\" target=\"_blank\">Politica privind cookie-urile.</a></p>„",
+  "COOKIE_BANNER_DESCRIPTION": "<p>Folosim cookie-uri pentru a oferi o experiență mai bună utilizatorului, pentru a vă ajuta să navigați în chat sau pentru a analiza traficul pe site. <a href=\"https://{{ website }}/{{ lang }}/politique-cookies\" target=\"_blank\">Politica privind cookie-urile.</a></p>",
   "COOKIE_BANNER_PREFERENCES_BUTTON": "Preferințe",
   "COOKIE_BANNER_PREFERENCES_BUTTON_ACCESSIBLE_LABEL": "Deschideți preferințele privind cookie-urile",
   "COOKIE_BANNER_REJECT_NON_ESSENTIAL_BUTTON": "Respingeți cookie-urile opționale",

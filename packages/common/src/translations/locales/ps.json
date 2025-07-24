@@ -367,7 +367,7 @@
   "COOKIES_TITLE": "د کوکیز مدیریت",
   "COOKIE_BANNER_ACCEPT_ALL_BUTTON": "هر څه ومنئ",
   "COOKIE_BANNER_ACCEPT_ALL_BUTTON_ACCESSIBLE_LABEL": "ټول کوکیز ومنئ",
-  "COOKIE_BANNER_DESCRIPTION": "<p>موږ د کوکیز څخه کار اخلو ترڅو د کاروونکي غوره تجربه فعاله کړو، تاسو سره د چیٹ نیویګیټ کولو کې مرسته وکړو یا په سایټ کې ټرافیک تحلیل کړو. <a href=\"https://{{ website }}/{{ lang }}/politique-cookies\" target=\"_blank\">د کوکیز پالیسي.</a></p>„",
+  "COOKIE_BANNER_DESCRIPTION": "<p>موږ د کوکیز څخه کار اخلو ترڅو د کاروونکي غوره تجربه فعاله کړو، تاسو سره د چیٹ نیویګیټ کولو کې مرسته وکړو یا په سایټ کې ټرافیک تحلیل کړو. <a href=\"https://{{ website }}/{{ lang }}/politique-cookies\" target=\"_blank\">د کوکیز پالیسي.</a></p>",
   "COOKIE_BANNER_PREFERENCES_BUTTON": "غوره توبونه",
   "COOKIE_BANNER_PREFERENCES_BUTTON_ACCESSIBLE_LABEL": "د کوکي غوره توبونه خلاص کړئ",
   "COOKIE_BANNER_REJECT_NON_ESSENTIAL_BUTTON": "هرڅه رد کړئ",

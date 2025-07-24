@@ -1319,7 +1319,7 @@
   "ORGANIZATION_ID": "ID de la organización",
   "ORGANIZATION_INFO": "Información sobre<br /> <b>tu organización</b>",
   "ORGANIZATION_INFORMATION_VISIBILITY": "Esta información estará visible y accesible desde la página de tu organización en {{ brandName }}.",
-  "ORGANIZATION_NAME": "Nombre de la Organización",
+  "ORGANIZATION_NAME": "Nombre de la organización",
   "ORGANIZATION_NAME_REQUIRED": "El nombre de su organización es obligatorio",
   "ORGANIZATION_PLACE_NAME": "{{ placeName }} de la organización",
   "ORGANIZATION_SUCCESSFULLY_DELETED": "Organización eliminada con éxito",

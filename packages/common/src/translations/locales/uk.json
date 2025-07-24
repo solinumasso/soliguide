@@ -367,7 +367,7 @@
   "COOKIES_TITLE": "Керування файлами cookie",
   "COOKIE_BANNER_ACCEPT_ALL_BUTTON": "Приймати все",
   "COOKIE_BANNER_ACCEPT_ALL_BUTTON_ACCESSIBLE_LABEL": "Прийняти всі файли cookie",
-  "COOKIE_BANNER_DESCRIPTION": "<p>Ми використовуємо файли cookie, щоб покращити взаємодію з користувачем, допомогти вам орієнтуватися в чаті або аналізувати трафік на сайті. <a href=\"https://{{ website }}/{{ lang }}/politique-cookies\" target=\"_blank\">Політика щодо файлів cookie.</a></p>„",
+  "COOKIE_BANNER_DESCRIPTION": "<p>Ми використовуємо файли cookie, щоб покращити взаємодію з користувачем, допомогти вам орієнтуватися в чаті або аналізувати трафік на сайті. <a href=\"https://{{ website }}/{{ lang }}/politique-cookies\" target=\"_blank\">Політика щодо файлів cookie.</a></p>",
   "COOKIE_BANNER_PREFERENCES_BUTTON": "Налаштування",
   "COOKIE_BANNER_PREFERENCES_BUTTON_ACCESSIBLE_LABEL": "Відкрити налаштування файлів cookie",
   "COOKIE_BANNER_REJECT_NON_ESSENTIAL_BUTTON": "Відхилити додаткові файли cookie",

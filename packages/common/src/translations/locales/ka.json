@@ -367,7 +367,7 @@
   "COOKIES_TITLE": "ქუქიების მართვა",
   "COOKIE_BANNER_ACCEPT_ALL_BUTTON": "ყველაფრის მიღება",
   "COOKIE_BANNER_ACCEPT_ALL_BUTTON_ACCESSIBLE_LABEL": "ყველა ქუქი-ფაილის მიღება",
-  "COOKIE_BANNER_DESCRIPTION": "<p>ჩვენ ვიყენებთ ქუქი-ფაილებს მომხმარებლის უკეთესი გამოცდილების უზრუნველსაყოფად, ჩატში ნავიგაციის დასახმარებლად ან საიტზე ტრაფიკის გასაანალიზებლად. <a href=\"https://{{ website }}/{{ lang }}/politique-cookies\" target=\"_blank\"> ქუქი-ფაილების პოლიტიკა.</a></p>„",
+  "COOKIE_BANNER_DESCRIPTION": "<p>ჩვენ ვიყენებთ ქუქი-ფაილებს მომხმარებლის უკეთესი გამოცდილების უზრუნველსაყოფად, ჩატში ნავიგაციის დასახმარებლად ან საიტზე ტრაფიკის გასაანალიზებლად. <a href=\"https://{{ website }}/{{ lang }}/politique-cookies\" target=\"_blank\"> ქუქი-ფაილების პოლიტიკა.</a></p>",
   "COOKIE_BANNER_PREFERENCES_BUTTON": "პარამეტრები",
   "COOKIE_BANNER_PREFERENCES_BUTTON_ACCESSIBLE_LABEL": "ქუქი-ფაილების პარამეტრების გახსნა",
   "COOKIE_BANNER_REJECT_NON_ESSENTIAL_BUTTON": "ყველაფერზე უარის თქმა",

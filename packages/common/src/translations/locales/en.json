@@ -367,7 +367,7 @@
   "COOKIES_TITLE": "Cookie management",
   "COOKIE_BANNER_ACCEPT_ALL_BUTTON": "Accept everything",
   "COOKIE_BANNER_ACCEPT_ALL_BUTTON_ACCESSIBLE_LABEL": "Accept all cookies",
-  "COOKIE_BANNER_DESCRIPTION": "<p>We use cookies to enable a better user experience, to help you navigate the chat or to analyze traffic on the site. <a href=\"https://{{ website }}/{{ lang }}/politique-cookies\" target=\"_blank\">Cookie Policy.</a></p>„",
+  "COOKIE_BANNER_DESCRIPTION": "<p>We use cookies to enable a better user experience, to help you navigate the chat or to analyze traffic on the site. <a href=\"https://{{ website }}/{{ lang }}/politique-cookies\" target=\"_blank\">Cookie Policy.</a></p>",
   "COOKIE_BANNER_PREFERENCES_BUTTON": "Preferences",
   "COOKIE_BANNER_PREFERENCES_BUTTON_ACCESSIBLE_LABEL": "Open cookie preferences",
   "COOKIE_BANNER_REJECT_NON_ESSENTIAL_BUTTON": "Reject optional cookies",
