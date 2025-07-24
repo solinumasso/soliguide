@@ -83,9 +83,9 @@ export class AppComponent implements OnInit, OnDestroy {
     );
 
     this.subscription.add(
-      this.currentLanguageService.subscribe(
-        () => (this.routePrefix = this.currentLanguageService.routePrefix)
-      )
+      this.currentLanguageService.subscribe(() => {
+        this.routePrefix = this.currentLanguageService.routePrefix;
+      })
     );
 
     this.subscription.add(
@@ -128,12 +128,16 @@ export class AppComponent implements OnInit, OnDestroy {
     );
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    if ((window as any).silktideCookieBannerManager) {
+    if ((window as any).silktideCookieBannerManager?.updateCookieBannerConfig) {
       this.cookieBannerLoaded = true;
+      this.cookieManagerService.translateCookieBanner();
     }
 
     document.addEventListener("CookieConsentLoaded", () => {
-      this.cookieBannerLoaded = true;
+      if (!this.cookieBannerLoaded) {
+        this.cookieBannerLoaded = true;
+        this.cookieManagerService.translateCookieBanner();
+      }
     });
 
     document.addEventListener(
