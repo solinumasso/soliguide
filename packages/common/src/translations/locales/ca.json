@@ -373,8 +373,6 @@
   "COOKIE_BANNER_REJECT_NON_ESSENTIAL_BUTTON": "Rebutja-ho tot",
   "COOKIE_BANNER_REJECT_NON_ESSENTIAL_BUTTON_ACCESSIBLE_LABEL": "Rebutja les galetes opcionals",
   "COOKIE_POLICY": "Política de cookies",
-  "COOKIE_PREFERENCES_BANNER_CREDIT_LINK_ACCESSIBLE_LABEL": "Aconsegueix aquest bàner gratuïtament",
-  "COOKIE_PREFERENCES_BANNER_CREDIT_LINK_TEXT": "Aconsegueix aquest bàner gratuïtament",
   "COOKIE_PREFERENCES_BANNER_DESCRIPTION": "<p>Respectem la vostra privadesa. Podeu optar per no acceptar certs tipus de cookies. Les vostres preferències de cookies s'aplicaran a tot el lloc web.</p>",
   "COOKIE_PREFERENCES_BANNER_TITLE": "Personalitza les teves preferències de cookies",
   "COOKIE_TYPES_ANALYTICS_DESCRIPTION": "<p>Aquestes galetes ens ajuden a millorar el lloc web fent un seguiment de quines pàgines són més populars i com es mouen els visitants pel lloc web.</p>",
