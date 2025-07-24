@@ -38,6 +38,10 @@ export const aggregateUserRightsForAuth = (
   const selectedOrganization: ApiOrganization =
     user.organizations[user.selectedOrgaIndex];
 
+  if (!selectedOrganization) {
+    return { role, places };
+  }
+
   const tmpUserRights = user.userRights.filter(
     (userRight: UserRight) =>
       userRight.status === UserRightStatus.VERIFIED &&
