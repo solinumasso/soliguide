@@ -1,3 +1,29 @@
+# [4.96.0](https://github.com/solinumasso/soliguide/compare/v4.95.0...v4.96.0) (2025-07-25)
+
+
+### Bug Fixes
+
+* **api:** disable no-new lint rule for URL validation [#801](https://github.com/solinumasso/soliguide/issues/801) ([4e2b9b5](https://github.com/solinumasso/soliguide/commit/4e2b9b5326f78c0c9b0bdbec9ed8ed74bf0b18a9))
+* **common:** fix licences for icons [#745](https://github.com/solinumasso/soliguide/issues/745) ([a5eda9a](https://github.com/solinumasso/soliguide/commit/a5eda9a2572867644b31ab73ba271c33c6b9be19))
+* **design-system:** disable es-lint no inner declarations rule [#788](https://github.com/solinumasso/soliguide/issues/788) ([02c8e27](https://github.com/solinumasso/soliguide/commit/02c8e27b57c4144ea411d2b30881ea95a5fdc1bb))
+* **frontend:** use consistent boolean logic [#794](https://github.com/solinumasso/soliguide/issues/794) ([55ec73b](https://github.com/solinumasso/soliguide/commit/55ec73b0e04f161ec8e154e9ba44be6a0f24fff6))
+* make temp closur banner dependant on status [#745](https://github.com/solinumasso/soliguide/issues/745) ([6d6f79e](https://github.com/solinumasso/soliguide/commit/6d6f79e226f0a06941f44fc3a7afe9f8fb637333))
+* redo crf fix that didn't work first time [#755](https://github.com/solinumasso/soliguide/issues/755) ([a1f00d0](https://github.com/solinumasso/soliguide/commit/a1f00d03ff99a560c51720c9f87c17a2af3e23b7))
+
+
+### Features
+
+* add solidata demo food access page [#747](https://github.com/solinumasso/soliguide/issues/747) ([1f44fce](https://github.com/solinumasso/soliguide/commit/1f44fceb46732a0e49ce5c0fc1b11bc9cc1dccf4))
+* **common:** add source to crous places [#743](https://github.com/solinumasso/soliguide/issues/743) ([c3d59a2](https://github.com/solinumasso/soliguide/commit/c3d59a2c9fdf7fe56b8f1803e5be3be9df1efe41))
+* create url validator [#625](https://github.com/solinumasso/soliguide/issues/625) ([cfc06ca](https://github.com/solinumasso/soliguide/commit/cfc06ca2b0e41b7732a56ab8a7ba0bb18354dca5))
+* **frontend:** allow ç in website url [#625](https://github.com/solinumasso/soliguide/issues/625) ([21fd134](https://github.com/solinumasso/soliguide/commit/21fd13420dc4542bbc535265c2550ba5e6b755ce))
+* **soliguide-font-generator:** new icon system [#537](https://github.com/solinumasso/soliguide/issues/537) ([ab78ee8](https://github.com/solinumasso/soliguide/commit/ab78ee86974325ebeac73c1242d12940a2acfd5f))
+
+
+### Reverts
+
+* Revert "fix(common): fix licences for icons" ([50aa82d](https://github.com/solinumasso/soliguide/commit/50aa82d82d361f221a5b47fbc8ab54f45972bf7f))
+
 # [4.95.0](https://github.com/solinumasso/soliguide/compare/v4.94.1...v4.95.0) (2025-07-07)
 
 
