@@ -111,6 +111,10 @@ export class LoginComponent implements OnInit, OnDestroy {
       )
     );
 
+    const from = this.route.snapshot.queryParamMap.get("from");
+
+    this.posthogService.capture("create-pro-account", { from });
+
     this.initForm();
   }
 

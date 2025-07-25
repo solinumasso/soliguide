@@ -18,17 +18,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-//@index('./*', f => `export * from '${f.path}'`)
-export * from "./BOTS_LIST_REGEXP.const";
-export * from "./BOTS_LIST.const";
-export * from "./ckeditor";
-export * from "./DEFAULT_MODAL_OPTIONS.const";
-export * from "./FA_ICONS.const";
-export * from "./HOLIDAYS.const";
-export * from "./IS_BOT.const";
-export * from "./IS_WEBVIEW_APP.const";
-export * from "./LANGUAGE_FOR_PRACTICAL_FILES.const";
-export * from "./LOGOS_TERRITORIES.const";
-export * from "./MIN_DATE_TODAY.const";
-export * from "./SOLIDATA_DASHBOARD_REDIRECTIONS.const";
-export * from "./VALID_HOURS.const";
+export const SOLIDATA_DASHBOARD_REDIRECTIONS: {
+  [seoUrl: string]: string[];
+} = {
+  demo_acces_alimentation: ["solidata", "access_alimentation"],
+};
