@@ -21,21 +21,42 @@
 import {
   CAMPAIGN_DEFAULT_NAME,
   CAMPAIGN_LIST,
+  campaignIsActive,
   CampaignStatus,
-} from "@soliguide/common";
+  getDepartmentCodeFromPostalCode,
+  getPosition,
+  type ApiPlace,
+  type SoliguideCountries
+} from '@soliguide/common';
 
-import { differenceInHours } from "date-fns";
+import { differenceInHours } from 'date-fns';
 
-import { Place } from "../../../models";
-import { campaignIsActiveWithTheme } from "./campaignIsActive";
-
-export const displayCampaignInfo = (place: Place): boolean => {
+export const displayCampaignInfo = (place: ApiPlace, isExternal: boolean): boolean => {
   const campaignInfo = CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME];
+  const campaign = place.campaigns[CAMPAIGN_DEFAULT_NAME];
+  const hasCampaignDisplayStarted =
+    differenceInHours(new Date(), campaignInfo.dateDebutAffichage) > 0;
+
+  if (isExternal) {
+    const position = getPosition(place);
+
+    if (!position?.postalCode || !position?.country) {
+      return false;
+    }
+    const { postalCode } = position;
+    const { country } = position;
+
+    return (
+      campaignIsActive([
+        getDepartmentCodeFromPostalCode(country as SoliguideCountries, postalCode)
+      ]) && hasCampaignDisplayStarted
+    );
+  }
 
   return (
-    campaignIsActiveWithTheme() &&
-    differenceInHours(new Date(), campaignInfo.dateDebutAffichage) > 0 &&
-    place.campaigns.runningCampaign.toUpdate &&
-    place.campaigns.runningCampaign.status !== CampaignStatus.FINISHED
+    campaignIsActive() &&
+    hasCampaignDisplayStarted &&
+    campaign.toUpdate &&
+    campaign.status !== CampaignStatus.FINISHED
   );
 };

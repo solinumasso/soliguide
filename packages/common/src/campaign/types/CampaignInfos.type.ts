@@ -18,10 +18,12 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { AnyDepartmentCode } from "@soliguide/common";
+import { AnyDepartmentCode } from "../../location/types";
 import { CampaignIconName } from "./CampaignIconName.type";
+import { CampaignChangesSection } from "../enums/CampaignChangesSection.enum";
+import { KeyStringValueAny } from "../../general/types";
 
-export type CampaignInfos = {
+export interface CampaignInfos {
   adjective?: string;
   closingFormula?: string;
   dateDebutAffichage: Date;
@@ -32,5 +34,7 @@ export type CampaignInfos = {
   period?: string;
   name: string;
   specificServiceMessage?: string;
+  placesToUpdate: KeyStringValueAny | null;
+  sections?: CampaignChangesSection[];
   territories: AnyDepartmentCode[];
-};
+}

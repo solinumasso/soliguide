@@ -21,7 +21,7 @@
 import { subMinutes } from "date-fns";
 import type { Logger } from "pino";
 
-import { CAMPAIGN_DEFAULT_NAME } from "@soliguide/common";
+import { CAMPAIGN_DEFAULT_NAME, CAMPAIGN_LIST } from "@soliguide/common";
 
 import {
   countEmailsManage,
@@ -35,8 +35,6 @@ import {
   EmailEvents,
   LIMIT_NUM_EMAILS_TO_SEND,
 } from "../../_models";
-
-import { CAMPAIGN_LIST } from "../../campaign/constants/CAMPAIGN.const";
 
 import { logger as defaultLogger } from "../../general/logger";
 
@@ -67,7 +65,7 @@ export const sendCampaignEmails = async (
 
   const request: Record<string, any> = {
     "info.territory": {
-      $in: CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].TERRITORIES,
+      $in: CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].territories,
     },
     lastStatus: EmailEvents.TO_SEND,
   };

@@ -33,12 +33,8 @@ import { CurrentLanguageService } from "../../../general/services/current-langua
 import { User } from "../../../users/classes/user.class";
 import { AuthService } from "../../../users/services/auth.service";
 
-import {
-  CAMPAIGN_LIST,
-  PlaceChanges,
-  THEME_CONFIGURATION,
-} from "../../../../models";
-import { UserStatus } from "@soliguide/common";
+import { PlaceChanges, THEME_CONFIGURATION } from "../../../../models";
+import { CAMPAIGN_LIST, UserStatus } from "@soliguide/common";
 import { TranslateService } from "@ngx-translate/core";
 
 @Component({

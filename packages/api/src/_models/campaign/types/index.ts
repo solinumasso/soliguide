@@ -19,6 +19,5 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 //@index('./*', f => `export * from '${f.path}'`)
-export * from "./CampaignList.type";
 export * from "./CampaignSteps.type";
 export * from "./CampaignUpdates.interface";

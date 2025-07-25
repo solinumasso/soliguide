@@ -25,7 +25,11 @@ import { ActivatedRoute, Router } from "@angular/router";
 
 import { TranslateService } from "@ngx-translate/core";
 
-import { CAMPAIGN_DEFAULT_NAME, TempInfoType } from "@soliguide/common";
+import {
+  CAMPAIGN_DEFAULT_NAME,
+  CAMPAIGN_LIST,
+  TempInfoType,
+} from "@soliguide/common";
 
 import { ToastrService } from "ngx-toastr";
 
@@ -34,7 +38,6 @@ import { ParentTempInfosFormComponent } from "../../../form-place/components/tem
 import { AdminTempInfosService } from "../../../form-place/services/admin-temp-infos.service";
 import { CurrentLanguageService } from "../../../general/services/current-language.service";
 import { PosthogService } from "../../../analytics/services/posthog.service";
-import { CAMPAIGN_LIST } from "../../../../models";
 
 @Component({
   selector: "app-campaign-form-infos",

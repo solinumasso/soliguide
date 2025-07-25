@@ -27,6 +27,7 @@ import type { PageController } from './types';
 
 const defaultState: PlaceDetails = {
   address: '',
+  campaignBanner: null,
   description: '',
   email: '',
   facebook: '',

@@ -18,11 +18,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { CAMPAIGN_DEFAULT_NAME } from "@soliguide/common";
+import { CAMPAIGN_DEFAULT_NAME, CAMPAIGN_LIST } from "@soliguide/common";
 
-import { campaignIsActive } from "./campaignIsActive";
-
-import { CAMPAIGN_LIST } from "../../../models";
+import { campaignIsActiveWithTheme } from "./campaignIsActive";
 
 describe("Test la fonction campaignIsActive", () => {
   it("Doit renvoyer 'false' si on est hors période de campagne et 'true' sinon", () => {
@@ -33,11 +31,15 @@ describe("Test la fonction campaignIsActive", () => {
       TODAY > CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].dateFin
     ) {
       expect(
-        campaignIsActive(CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].territories)
+        campaignIsActiveWithTheme(
+          CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].territories
+        )
       ).toBeFalsy();
     } else {
       expect(
-        campaignIsActive(CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].territories)
+        campaignIsActiveWithTheme(
+          CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].territories
+        )
       ).toBeTruthy();
     }
   });

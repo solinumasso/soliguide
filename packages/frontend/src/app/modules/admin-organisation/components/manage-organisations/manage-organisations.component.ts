@@ -38,6 +38,7 @@ import {
   USER_TYPES,
   USER_TYPES_TO_READABLE,
   UserTypes,
+  CAMPAIGN_LIST,
 } from "@soliguide/common";
 
 import { ToastrService } from "ngx-toastr";
@@ -54,7 +55,6 @@ import { User } from "../../../users/classes";
 import { AuthService } from "../../../users/services/auth.service";
 
 import {
-  CAMPAIGN_LIST,
   ORGA_CAMPAIGN_STATUS,
   OrgaCampaignStatus,
 } from "../../../../models/campaign";
@@ -62,7 +62,7 @@ import { Place } from "../../../../models/place";
 
 import { fadeInOut } from "../../../../shared/animations";
 import {
-  campaignIsActive,
+  campaignIsActiveWithTheme,
   globalConstants,
 } from "../../../../shared/functions";
 import { DEFAULT_MODAL_OPTIONS } from "../../../../shared";
@@ -166,7 +166,9 @@ export class ManageOrganisationsComponent implements OnInit, OnDestroy {
 
     // Récupère les données de l'utilisateur connecté afin d'initialiser la recherche de manière adaptée
     this.me = this.authService.currentUserValue;
-    this.campaignIsActiveForMe = campaignIsActive(this.me?.territories);
+    this.campaignIsActiveForMe = campaignIsActiveWithTheme(
+      this.me?.territories
+    );
 
     this.search = new SearchOrgaObject(
       globalConstants.getItem("MANAGE_ORGAS"),

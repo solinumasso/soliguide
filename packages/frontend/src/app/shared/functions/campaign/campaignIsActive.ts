@@ -22,33 +22,18 @@ import {
   AnyDepartmentCode,
   CAMPAIGN_DEFAULT_NAME,
   CountryCodes,
+  CAMPAIGN_LIST,
+  campaignIsActive,
 } from "@soliguide/common";
-import { CAMPAIGN_LIST } from "../../../models/campaign";
+
 import { THEME_CONFIGURATION } from "../../../models";
 
-export const campaignIsActive = (
+export const campaignIsActiveWithTheme = (
   territories?: AnyDepartmentCode[]
 ): boolean => {
-  const today = new Date();
-
-  let isTerritoryInCampaign = !territories?.length;
-
-  if (territories?.length) {
-    for (const territory of territories) {
-      if (
-        CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].territories.includes(territory)
-      ) {
-        isTerritoryInCampaign = true;
-        break;
-      }
-    }
-  }
-
   return (
     THEME_CONFIGURATION.country === CountryCodes.FR &&
-    CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].dateDebutCampagne <= today &&
-    today <= CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].dateFin &&
-    isTerritoryInCampaign
+    campaignIsActive(territories)
   );
 };
 

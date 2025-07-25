@@ -110,6 +110,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 <style lang="scss">
   .infoblock {
+    display: flex;
+    align-items: center;
     border-radius: var(--radiusMiddle);
     padding: var(--spacingSM);
     gap: var(--spacingXS);

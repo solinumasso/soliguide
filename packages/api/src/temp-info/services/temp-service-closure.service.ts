@@ -21,11 +21,10 @@
 import mongoose, { type FilterQuery } from "mongoose";
 import { differenceInCalendarDays } from "date-fns";
 
-import type { CampaignName } from "@soliguide/common";
+import { type CampaignName, CAMPAIGN_LIST } from "@soliguide/common";
 
 import type { TempServiceClosure } from "../interfaces";
 import { TempServiceClosureModel } from "../models/temp-service-closure.model";
-import { CAMPAIGN_LIST } from "../../campaign/constants/CAMPAIGN.const";
 
 const findTempServiceClosureWithParams = async (
   params: FilterQuery<TempServiceClosure>
@@ -131,16 +130,14 @@ export const insertNewTempServiceClosure = async (
   for (const campaignName in CAMPAIGN_LIST) {
     if (
       lastEndDate &&
-      firstStartDate <=
-        CAMPAIGN_LIST[campaignName as CampaignName].CAMPAIGN_END_DATE &&
-      CAMPAIGN_LIST[campaignName as CampaignName].CAMPAIGN_START_DATE <=
+      firstStartDate <= CAMPAIGN_LIST[campaignName as CampaignName].dateFin &&
+      CAMPAIGN_LIST[campaignName as CampaignName].dateDebutCampagne <=
         lastEndDate
     ) {
       campaign = campaignName;
     } else if (
       !lastEndDate &&
-      firstStartDate <=
-        CAMPAIGN_LIST[campaignName as CampaignName].CAMPAIGN_END_DATE
+      firstStartDate <= CAMPAIGN_LIST[campaignName as CampaignName].dateFin
     ) {
       campaign = campaignName;
     }
