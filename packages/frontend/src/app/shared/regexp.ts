@@ -29,5 +29,4 @@ export const regexp = {
     "(https?://)?([\\da-z.-]+\\.)?(instagram)\\.([a-z.]{2,6})[/\\w %?#=&.-]*/?",
 
   postcode: /^[0-9][0-9AB][0-9]{3}$/,
-  website: "(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w %?#=&.-]*/?",
 };

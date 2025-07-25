@@ -43,7 +43,7 @@ import { CurrentLanguageService } from "../../../general/services/current-langua
 
 import { User } from "../../../users/classes";
 import { Place, THEME_CONFIGURATION } from "../../../../models";
-import { CK_EDITOR_CONF, regexp } from "../../../../shared";
+import { CK_EDITOR_CONF, regexp, UrlValidator } from "../../../../shared";
 import { TranslateService } from "@ngx-translate/core";
 
 @Component({
@@ -199,10 +199,7 @@ export class InfosComponent implements OnInit, OnDestroy {
         ],
         mail: [this.place.entity.mail, Validators.email],
         phones: this.formBuilder.array([]),
-        website: [
-          this.place.entity.website,
-          Validators.pattern(regexp.website),
-        ],
+        website: [this.place.entity.website, [UrlValidator]],
       }),
       country: [THEME_CONFIGURATION.country],
     });

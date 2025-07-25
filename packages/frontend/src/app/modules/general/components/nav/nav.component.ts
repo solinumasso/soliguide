@@ -71,16 +71,24 @@ export class NavComponent implements OnInit, OnDestroy {
   public showTranslationMenuDropdown = false;
   public showSoligareMenu = false;
 
-  public readonly displaySolidataSearchTracking =
-    !!THEME_CONFIGURATION.solidata?.searchTracking;
-  public readonly displaySolidataSeasonalAnalysis =
-    !!THEME_CONFIGURATION.solidata?.seasonalAnalysis;
-  public readonly displaySolidataTerritorialAnalysis =
-    !!THEME_CONFIGURATION.solidata?.territorialAnalysis;
-  public readonly displaySolidataFoodAccess =
-    !!THEME_CONFIGURATION.solidata?.foodAccess;
-  public readonly displaySolidataNavButtons =
-    THEME_CONFIGURATION.solidata != null;
+  public readonly displaySolidataSearchTracking = Boolean(
+    THEME_CONFIGURATION.solidata?.searchTracking
+  );
+  public readonly displaySolidataSeasonalAnalysis = Boolean(
+    THEME_CONFIGURATION.solidata?.seasonalAnalysis
+  );
+  public readonly displaySolidataTerritorialAnalysis = Boolean(
+    THEME_CONFIGURATION.solidata?.territorialAnalysis
+  );
+  public readonly displaySolidataFoodAccess = Boolean(
+    THEME_CONFIGURATION.solidata?.foodAccess
+  );
+  public readonly displaySolidataDemoFoodAccess = Boolean(
+    THEME_CONFIGURATION.solidata?.demoFoodAccess
+  );
+  public readonly displaySolidataNavButtons = Boolean(
+    THEME_CONFIGURATION.solidata
+  );
 
   public readonly IS_WEBVIEW_APP = IS_WEBVIEW_APP;
   public readonly IS_BOT = IS_BOT;

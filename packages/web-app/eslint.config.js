@@ -44,6 +44,7 @@ export default tseslint.config(
   {
     plugins: { fp },
     rules: {
+      'svelte/no-inner-declarations': 'off',
       'no-inline-comments': 'off', // we need to add inline @type delarations
       'sort-imports': 'off', //
       'sort-keys': 'off', // sort keys in objects

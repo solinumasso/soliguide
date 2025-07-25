@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2025 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M23.9999 45C33.1199 45 40.6599 38.2 41.8399 29.4C42.0199 28.12 40.8799 26.98 39.5999 27.16C30.7999 28.34 23.9999 35.88 23.9999 45ZM11.1999 21.5C11.1999 24.26 13.4399 26.5 16.1999 26.5C17.2599 26.5 18.2199 26.18 19.0399 25.62L18.9999 26C18.9999 28.76 21.2399 31 23.9999 31C26.7599 31 28.9999 28.76 28.9999 26L28.9599 25.62C29.7599 26.18 30.7399 26.5 31.7999 26.5C34.5599 26.5 36.7999 24.26 36.7999 21.5C36.7999 19.5 35.6199 17.8 33.9399 17C35.6199 16.2 36.7999 14.5 36.7999 12.5C36.7999 9.74 34.5599 7.5 31.7999 7.5C30.7399 7.5 29.7799 7.82 28.9599 8.38L28.9999 8C28.9999 5.24 26.7599 3 23.9999 3C21.2399 3 18.9999 5.24 18.9999 8L19.0399 8.38C18.2399 7.82 17.2599 7.5 16.1999 7.5C13.4399 7.5 11.1999 9.74 11.1999 12.5C11.1999 14.5 12.3799 16.2 14.0599 17C12.3799 17.8 11.1999 19.5 11.1999 21.5ZM23.9999 12C26.7599 12 28.9999 14.24 28.9999 17C28.9999 19.76 26.7599 22 23.9999 22C21.2399 22 18.9999 19.76 18.9999 17C18.9999 14.24 21.2399 12 23.9999 12ZM6.15991 29.4C7.33991 38.2 14.8799 45 23.9999 45C23.9999 35.88 17.1999 28.34 8.39991 27.16C7.11991 26.98 5.97991 28.12 6.15991 29.4Z" fill="#271332"/>
+</svg>
