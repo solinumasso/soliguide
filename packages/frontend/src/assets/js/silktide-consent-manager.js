@@ -207,8 +207,6 @@ class SilktideCookieBanner {
 
     this.removeBanner();
     this.hideBackdrop();
-    this.toggleModal(false);
-    this.showCookieIcon();
 
     this.config.cookieTypes.forEach((type) => {
       // Set localStorage and run accept/reject callbacks
@@ -251,6 +249,8 @@ class SilktideCookieBanner {
 
     // finally update the checkboxes in the modal with the values from localStorage
     this.updateCheckboxState();
+
+    this.toggleModal(false);
   }
 
   getAcceptedCookies() {
@@ -639,7 +639,7 @@ class SilktideCookieBanner {
   }
 
   showCookieIcon() {
-    if (this.cookieIcon) {
+    if (this.cookieIcon && !this.allCookiesAccepted()) {
       this.cookieIcon.style.display = "flex";
     }
   }
@@ -648,6 +648,25 @@ class SilktideCookieBanner {
     if (this.cookieIcon) {
       this.cookieIcon.style.display = "none";
     }
+  }
+
+  allCookiesAccepted() {
+    for (const type of this.config.cookieTypes) {
+      if (!type.required) {
+        const storedValue = localStorage.getItem(
+          `silktideCookieChoice_${type.id}${this.getBannerSuffix()}`
+        );
+
+        if (
+          (storedValue !== null && storedValue === "false") ||
+          (storedValue === null && !cookieType.defaultValue)
+        ) {
+          return false;
+        }
+      }
+    }
+
+    return true;
   }
 
   /**
@@ -983,14 +1002,4 @@ class SilktideCookieBanner {
     updateCookieBannerConfig;
   window.silktideCookieBannerManager.injectScript = injectScript;
   window.silktideCookieBannerManager.toggleModal = toggleModal;
-
-  document.dispatchEvent(new Event("CookieConsentLoaded"));
-
-  // if (document.readyState === "loading") {
-  //   document.addEventListener("DOMContentLoaded", initCookieBanner, {
-  //     once: true,
-  //   });
-  // } else {
-  //   initCookieBanner();
-  // }
 })();
