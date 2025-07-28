@@ -40,7 +40,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       >{{ "SPECIFIC_DAY" | translate }}
       {{
         search.updatedByUserAt.value
-          ? (search.updatedByUserAt.value | date)
+          ? (search.updatedByUserAt.value | dateProxy)
           : ""
       }}
     </span>
@@ -51,7 +51,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       >{{ "AFTER_THE" | translate }}
       {{
         search.updatedByUserAt.value
-          ? (search.updatedByUserAt.value | date)
+          ? (search.updatedByUserAt.value | dateProxy)
           : ""
       }}
     </span>
@@ -62,7 +62,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       >{{ "BEFORE_THE" | translate }}
       {{
         search.updatedByUserAt.value
-          ? (search.updatedByUserAt.value | date)
+          ? (search.updatedByUserAt.value | dateProxy)
           : ""
       }}
     </span>
@@ -79,7 +79,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         type="radio"
         [(ngModel)]="search.updatedByUserAt.intervalType"
         name="intervalType"
-        [ngValue]="null"
+        [value]="null"
         id="no-interval"
         [disabled]="loading"
       />

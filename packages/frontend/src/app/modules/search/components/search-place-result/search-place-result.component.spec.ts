@@ -20,13 +20,13 @@
  */
 import { APP_BASE_HREF } from "@angular/common";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import {
   BrowserAnimationsModule,
   NoopAnimationsModule,
 } from "@angular/platform-browser/animations";
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterModule } from "@angular/router";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
@@ -55,7 +55,7 @@ describe("SearchPlaceResultComponent", () => {
         NoopAnimationsModule,
         HttpClientTestingModule,
         NgbModule,
-        RouterTestingModule,
+        RouterModule.forRoot([]),
         SharedModule,
         ToastrModule.forRoot({}),
         TranslateModule.forRoot({}),
@@ -64,7 +64,7 @@ describe("SearchPlaceResultComponent", () => {
         { provide: APP_BASE_HREF, useValue: "/" },
         { provide: PosthogService, useClass: CommonPosthogMockService },
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   }));
 
