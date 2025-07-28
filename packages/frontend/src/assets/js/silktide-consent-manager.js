@@ -650,25 +650,6 @@ class SilktideCookieBanner {
     }
   }
 
-  allCookiesAccepted() {
-    for (const type of this.config.cookieTypes) {
-      if (!type.required) {
-        const storedValue = localStorage.getItem(
-          `silktideCookieChoice_${type.id}${this.getBannerSuffix()}`
-        );
-
-        if (
-          (storedValue !== null && storedValue === "false") ||
-          (storedValue === null && !cookieType.defaultValue)
-        ) {
-          return false;
-        }
-      }
-    }
-
-    return true;
-  }
-
   /**
    * This runs if the user closes the modal without making a choice for the first time
    * We apply the default values and the necessary values as default
@@ -916,6 +897,29 @@ class SilktideCookieBanner {
     document.body.style.position = "";
     document.body.style.width = "";
   }
+
+  /**
+   * CUSTOM FUNCTION - DO NOT REMOVE
+   * Check if all cookies are accepted
+   */
+  allCookiesAccepted() {
+    for (const type of this.config.cookieTypes) {
+      if (!type.required) {
+        const storedValue = localStorage.getItem(
+          `silktideCookieChoice_${type.id}${this.getBannerSuffix()}`
+        );
+
+        if (
+          (storedValue !== null && storedValue === "false") ||
+          (storedValue === null && !cookieType.defaultValue)
+        ) {
+          return false;
+        }
+      }
+    }
+
+    return true;
+  }
 }
 
 (function () {
@@ -1002,4 +1006,6 @@ class SilktideCookieBanner {
     updateCookieBannerConfig;
   window.silktideCookieBannerManager.injectScript = injectScript;
   window.silktideCookieBannerManager.toggleModal = toggleModal;
+
+  document.dispatchEvent(new Event("SilktideConsentManagerLoaded"));
 })();
