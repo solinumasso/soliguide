@@ -18,20 +18,16 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
-<section
-  id="logos-partners"
-  *ngIf="deployerLogos.length && funderLogos.length"
-  class="bg-white py-4"
->
+<section id="logos-partners" *ngIf="logos.length" class="bg-white py-4">
   <div class="container px-4">
     <div class="row g-5 align-items-start">
-      <div class="col-12 col-lg-7 pe-lg-5">
+      <div class="col-12 col-lg-7 pe-lg-5" *ngIf="getDeployerLogos().length">
         <div class="section">
           <h3 class="text-primary mb-3">
             {{ "SOLIGUIA_INITIATIVE" | translate }}
           </h3>
           <div class="row g-4 align-items-center">
-            <div class="col-6 col-md-4" *ngFor="let logo of deployerLogos">
+            <div class="col-6 col-md-4" *ngFor="let logo of getDeployerLogos()">
               <a
                 [href]="logo.link"
                 target="_blank"
@@ -50,14 +46,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         </div>
       </div>
 
-      <div class="col-12 col-lg-5 ps-lg-5">
+      <div class="col-12 col-lg-5 ps-lg-5" *ngIf="getFunderLogos().length">
         <div class="section">
           <h3 class="text-primary mb-3">
             {{ "WITH_THE_SUPPORT_OF" | translate }}
           </h3>
           <div class="d-flex flex-column gap-4">
             <a
-              *ngFor="let logo of funderLogos"
+              *ngFor="let logo of getFunderLogos()"
               [href]="logo.link"
               target="_blank"
               rel="noopener noreferrer"

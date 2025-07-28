@@ -18,16 +18,12 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import { CountryCodes } from "@soliguide/common";
 import { Logos } from "../types";
 
 export interface LogoWithLink extends Logos {
   link: string;
 }
-
-export const FUNDERS = new Set<string>([
-  "Interreg POCTEFA",
-  "Diputació de Tarragona",
-]);
 
 const LOGOS_BASE_PATH = "../../../../../assets/images/poctefa-logos";
 
@@ -73,3 +69,34 @@ export const ALL_LOGOS: LogoWithLink[] = [
     link: "https://www.ari.ad/",
   },
 ];
+
+export const LOGOS_BY_COUNTRY: Partial<Record<CountryCodes, string[]>> = {
+  [CountryCodes.ES]: [
+    "Interreg POCTEFA",
+    "Diputació de Tarragona",
+    "Fundació Resilis",
+    "Alba",
+    "Solinum",
+    "Andorra Research & Innovation",
+    "Pere Claver",
+    "iSocial",
+  ],
+  [CountryCodes.AD]: [
+    "Interreg POCTEFA",
+    "Diputació de Tarragona",
+    "Fundació Resilis",
+    "Alba",
+    "Solinum",
+    "Andorra Research & Innovation",
+    "Pere Claver",
+    "iSocial",
+    "Andorra Research & Innovation",
+  ],
+  [CountryCodes.FR]: [], // No partner logos for France currently
+};
+
+export const FUNDERS_BY_COUNTRY: Partial<Record<CountryCodes, string[]>> = {
+  [CountryCodes.ES]: ["Interreg POCTEFA", "Diputació de Tarragona"],
+  [CountryCodes.AD]: ["Interreg POCTEFA", "Diputació de Tarragona"],
+  [CountryCodes.FR]: [],
+};
