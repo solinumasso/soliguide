@@ -28,6 +28,8 @@ import {
 import { TranslateModule } from "@ngx-translate/core";
 
 import { PlaceFormPhonesComponent } from "./place-form-phones.component";
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { SharedModule } from "../../../../shared";
 
 describe("PhonesComponent", () => {
   let component: PlaceFormPhonesComponent;
@@ -41,7 +43,8 @@ describe("PhonesComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [PlaceFormPhonesComponent],
-      imports: [ReactiveFormsModule, TranslateModule.forRoot({})],
+      imports: [ReactiveFormsModule, SharedModule, TranslateModule.forRoot({})],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 

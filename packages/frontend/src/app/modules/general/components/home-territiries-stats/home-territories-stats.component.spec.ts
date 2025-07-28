@@ -20,7 +20,7 @@
  */
 import { APP_BASE_HREF } from "@angular/common";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterModule } from "@angular/router";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
@@ -50,7 +50,7 @@ describe("HomeTerritoriesStatsComponent", () => {
         CountUpModule,
         HttpClientTestingModule,
         NgbModule,
-        RouterTestingModule.withRoutes([]),
+        RouterModule.forRoot([]),
         TranslateModule.forRoot({}),
       ],
       providers: [

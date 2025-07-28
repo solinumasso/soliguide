@@ -20,7 +20,7 @@
  */
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterModule } from "@angular/router";
 import { ToastrModule } from "ngx-toastr";
 import { TranslateModule } from "@ngx-translate/core";
 import { of } from "rxjs";
@@ -34,6 +34,7 @@ import {
   ONLINE_PLACE_MOCK,
   PAIRED_ONLINE_PLACE_MOCK,
 } from "../../../../../../mocks";
+import { FixNavigationTriggeredOutsideAngularZoneNgModule } from "../../../../shared/modules/FixNavigationTriggeredOutsideAngularZoneNgModule.module";
 
 class MockManagePlacesService {
   deletePlace() {
@@ -53,7 +54,8 @@ describe("DeletePlaceComponent", () => {
     TestBed.configureTestingModule({
       declarations: [DeletePlaceComponent],
       imports: [
-        RouterTestingModule,
+        FixNavigationTriggeredOutsideAngularZoneNgModule,
+        RouterModule.forRoot([]),
         ToastrModule.forRoot(),
         TranslateModule.forRoot(),
       ],

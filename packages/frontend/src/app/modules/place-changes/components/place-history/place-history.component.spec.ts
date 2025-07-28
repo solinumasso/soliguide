@@ -20,7 +20,7 @@
  */
 import { SharedModule } from "./../../../shared/shared.module";
 import { ManageCommonModule } from "./../../../manage-common/manage-common.module";
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterModule } from "@angular/router";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
@@ -48,7 +48,7 @@ describe("PlaceHistoryComponent", () => {
         NgbAccordionModule,
         ToastrModule.forRoot({}),
         TranslateModule.forRoot({}),
-        RouterTestingModule,
+        RouterModule.forRoot([]),
         ManageCommonModule,
         SharedModule,
         FormsModule,

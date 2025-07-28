@@ -25,7 +25,7 @@ import { TranslateModule } from "@ngx-translate/core";
 import { ToastrModule } from "ngx-toastr";
 import { SearchService } from "../../../search/services/search.service";
 import { Search } from "../../../search/interfaces";
-import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { CommonPosthogMockService } from "../../../../../../mocks";
@@ -69,7 +69,7 @@ describe("LocationAutocompleteComponent", () => {
         LocationService,
         { provide: PosthogService, useClass: CommonPosthogMockService },
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LocationAutocompleteComponent);

@@ -18,29 +18,17 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { RouterModule } from "@angular/router";
+import { NgModule } from "@angular/core";
+import { Router } from "@angular/router";
 
-import { GcuComponent } from "./gcu.component";
-
-describe("GcuComponent", () => {
-  let component: GcuComponent;
-  let fixture: ComponentFixture<GcuComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [GcuComponent],
-      imports: [RouterModule.forRoot([])],
-    }).compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(GcuComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it("should create", () => {
-    expect(component).toBeTruthy();
-  });
-});
+/**
+ * NgModule as workaround for "Navigation triggered outside Angular zone" in tests
+ *
+ * https://github.com/angular/angular/issues/47236
+ */
+@NgModule()
+// skipcq: JS-0327
+export class FixNavigationTriggeredOutsideAngularZoneNgModule {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  constructor(_router: Router) {} // skipcq: JS-0358, JS-0321
+}

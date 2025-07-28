@@ -24,8 +24,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ActivatedRoute } from "@angular/router";
-import { RouterTestingModule } from "@angular/router/testing";
+import { ActivatedRoute, RouterModule } from "@angular/router";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
@@ -51,6 +50,8 @@ import { CommonPosthogMockService } from "../../../../../../mocks/CommonPosthogM
 import { MockAuthService } from "../../../../../../mocks/MockAuthService";
 import { TranslateModule } from "@ngx-translate/core";
 import { User } from "../../../users/classes";
+import { SharedModule } from "../../../shared";
+import { registerLocales } from "../../../../shared/functions/registerLocales";
 
 const PLACES: Place[] = [];
 
@@ -67,17 +68,22 @@ describe("CampaignManagePlacesComponent", () => {
   let viewPortScroller: ViewportScroller;
   let campaignService: CampaignService;
 
+  beforeAll(() => {
+    registerLocales();
+  });
+
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [CampaignManagePlacesComponent],
       imports: [
-        RouterTestingModule,
-        ToastrModule.forRoot({}),
-        HttpClientTestingModule,
-        ReactiveFormsModule,
-        NgbModule,
-        FormsModule,
         BrowserAnimationsModule,
+        FormsModule,
+        HttpClientTestingModule,
+        NgbModule,
+        ReactiveFormsModule,
+        RouterModule.forRoot([]),
+        SharedModule,
+        ToastrModule.forRoot({}),
         TranslateModule.forRoot(),
       ],
       providers: [

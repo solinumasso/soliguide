@@ -115,7 +115,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <div appTextDirection>
       {{ "UPDATE_FOUNDS" | translate : { nbResults } }} -
       {{ "LAST_UPDATE_AT" | translate }}
-      {{ place?.updatedByUserAt | date : "longDate" }}
+      {{ place?.updatedByUserAt | dateProxy : "longDate" }}
     </div>
   </div>
   <div ngbAccordion class="my-1">
@@ -124,7 +124,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <button ngbAccordionButton type="button">
           <div class="d-flex align-items-center justify-content-between w-100">
             <b>
-              {{ placeChanges.createdAt | date : "short" }} -
+              {{ placeChanges.createdAt | dateProxy : "short" }} -
               {{
                 "PLACE_CHANGES_SECTION_" + placeChanges.section
                   | uppercase

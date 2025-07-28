@@ -20,10 +20,9 @@
  */
 import { APP_BASE_HREF } from "@angular/common";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-import { ActivatedRoute } from "@angular/router";
-import { RouterTestingModule } from "@angular/router/testing";
+import { ActivatedRoute, RouterModule } from "@angular/router";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
@@ -64,7 +63,7 @@ describe("PlaceComponent", () => {
         HttpClientTestingModule,
         TranslateModule.forRoot({}),
         NgbModule,
-        RouterTestingModule,
+        RouterModule.forRoot([]),
         SharedModule,
       ],
       providers: [
@@ -78,7 +77,7 @@ describe("PlaceComponent", () => {
         { provide: AuthService, useClass: MockAuthService },
         { provide: PosthogService, useClass: CommonPosthogMockService },
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PlaceComponent);

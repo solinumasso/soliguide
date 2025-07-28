@@ -23,8 +23,7 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
-import { RouterTestingModule } from "@angular/router/testing";
+import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateModule } from "@ngx-translate/core";
@@ -48,6 +47,7 @@ import {
   ONLINE_PLACE_MOCK,
   MockAuthService,
 } from "../../../../../../mocks";
+import { FixNavigationTriggeredOutsideAngularZoneNgModule } from "../../../../shared/modules/FixNavigationTriggeredOutsideAngularZoneNgModule.module";
 
 describe("EditContactsFormComponent", () => {
   let component: EditContactsFormComponent;
@@ -60,10 +60,11 @@ describe("EditContactsFormComponent", () => {
     await TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
-        NgbModule,
+        FixNavigationTriggeredOutsideAngularZoneNgModule,
         FormsModule,
+        NgbModule,
         ReactiveFormsModule,
-        RouterTestingModule.withRoutes([
+        RouterModule.forRoot([
           {
             path: `${THEME_CONFIGURATION.defaultLanguage}/manage-place/14270`,
             component: AdminPlaceComponent,

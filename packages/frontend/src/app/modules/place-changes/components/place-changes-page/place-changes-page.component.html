@@ -46,7 +46,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
       <p class="text-center my-2 text-primary">
         <b
-          >{{ placeChanges.createdAt | date : "longDate" }}
+          >{{ placeChanges.createdAt | dateProxy : "longDate" }}
           {{ "BY" | translate | lowercase }}
           {{
             placeChanges.userName === "ACCOUNT_DELETED"

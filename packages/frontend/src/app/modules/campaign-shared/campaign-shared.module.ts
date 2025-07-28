@@ -19,11 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { CommonModule } from "@angular/common";
-import {
-  CUSTOM_ELEMENTS_SCHEMA,
-  NO_ERRORS_SCHEMA,
-  NgModule,
-} from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
@@ -33,11 +29,18 @@ import { TranslateModule } from "@ngx-translate/core";
 
 import { CampaignNoChangeModalComponent } from "./components/campaign-no-change-modal/campaign-no-change-modal.component";
 import { CampaignSourceUpdateComponent } from "./components/campaign-source-update/campaign-source-update.component";
+import { SharedModule } from "../shared";
 
 @NgModule({
   declarations: [CampaignNoChangeModalComponent, CampaignSourceUpdateComponent],
   exports: [CampaignNoChangeModalComponent, CampaignSourceUpdateComponent],
-  imports: [CommonModule, FontAwesomeModule, NgbModule, TranslateModule],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+  imports: [
+    CommonModule,
+    FontAwesomeModule,
+    NgbModule,
+    SharedModule,
+    TranslateModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class CampaignSharedModule {}
+export class CampaignSharedModule {} // skipcq: JS-0327

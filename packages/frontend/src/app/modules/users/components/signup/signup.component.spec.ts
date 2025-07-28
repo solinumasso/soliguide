@@ -20,10 +20,10 @@
  */
 import { APP_BASE_HREF } from "@angular/common";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterModule } from "@angular/router";
 
 import { SharedModule } from "../../../shared/shared.module";
 
@@ -46,7 +46,7 @@ describe("SignupComponent", () => {
         HttpClientTestingModule,
         ReactiveFormsModule,
         SharedModule,
-        RouterTestingModule,
+        RouterModule.forRoot([]),
         ToastrModule.forRoot({}),
         TranslateModule.forRoot({}),
       ],
@@ -54,7 +54,7 @@ describe("SignupComponent", () => {
         { provide: APP_BASE_HREF, useValue: "/register" },
         { provide: AuthService, useClass: MockAuthService },
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   }));
 

@@ -34,6 +34,7 @@ import {
   MockAuthService,
 } from "../../../../../../../mocks";
 import { PosthogService } from "../../../../analytics/services/posthog.service";
+import { LocationAutocompleteComponent } from "../../../../shared/components/location-autocomplete/location-autocomplete.component";
 
 describe("AddressInputComponent", () => {
   let component: AddressInputComponent;
@@ -43,13 +44,14 @@ describe("AddressInputComponent", () => {
     await TestBed.configureTestingModule({
       declarations: [AddressInputComponent],
       imports: [
-        SharedModule,
         CommonModule,
+        FormsModule,
         HttpClientTestingModule,
+        LocationAutocompleteComponent,
+        ReactiveFormsModule,
+        SharedModule,
         ToastrModule.forRoot(),
         TranslateModule.forRoot(),
-        FormsModule,
-        ReactiveFormsModule,
       ],
       providers: [
         LocationService,

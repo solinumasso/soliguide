@@ -25,6 +25,7 @@ import { TranslateModule } from "@ngx-translate/core";
 import { ToastrModule } from "ngx-toastr";
 
 import { SoligareMatchingComponent } from "./soligare-matching.component";
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
 describe("SoligareMatchingComponent", () => {
   let component: SoligareMatchingComponent;
@@ -44,6 +45,7 @@ describe("SoligareMatchingComponent", () => {
           useValue: { params: { source_id: "123", source: "Test" } },
         },
       ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 

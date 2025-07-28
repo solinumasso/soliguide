@@ -23,8 +23,8 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { FormsModule } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
-import { RouterTestingModule } from "@angular/router/testing";
+import { ActivatedRoute, RouterModule } from "@angular/router";
+
 import { SharedModule } from "../../../shared/shared.module";
 import { TranslateModule } from "@ngx-translate/core";
 import { ToastrModule } from "ngx-toastr";
@@ -60,7 +60,7 @@ describe("AddPlaceToOrgaComponent", () => {
       imports: [
         FormsModule,
         HttpClientTestingModule,
-        RouterTestingModule,
+        RouterModule.forRoot([]),
         SharedModule,
         ToastrModule.forRoot({}),
         TranslateModule.forRoot({}),

@@ -21,6 +21,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { TranslateModule } from "@ngx-translate/core";
 import { PrivacyPolicySoliguiaCaComponent } from "./privacy-policy-soliguia-ca.component";
+import { RouterModule } from "@angular/router";
 
 describe("PrivacyPolicySoliguiaCaComponent", () => {
   let component: PrivacyPolicySoliguiaCaComponent;
@@ -29,7 +30,7 @@ describe("PrivacyPolicySoliguiaCaComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [PrivacyPolicySoliguiaCaComponent],
-      imports: [TranslateModule.forRoot()],
+      imports: [RouterModule.forRoot([]), TranslateModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PrivacyPolicySoliguiaCaComponent);
