@@ -20,8 +20,7 @@
  */
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { getTestBed, TestBed } from "@angular/core/testing";
-import { ActivatedRouteSnapshot, Router } from "@angular/router";
-import { RouterTestingModule } from "@angular/router/testing";
+import { ActivatedRouteSnapshot, Router, RouterModule } from "@angular/router";
 
 import { TranslateModule } from "@ngx-translate/core";
 
@@ -49,7 +48,7 @@ describe("CanReadChangeGuard", () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
-        RouterTestingModule.withRoutes([
+        RouterModule.forRoot([
           {
             path: THEME_CONFIGURATION.defaultLanguage,
             redirectTo: "",

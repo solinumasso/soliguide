@@ -21,6 +21,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { TranslateModule } from "@ngx-translate/core";
 import { GcuSoliguiaEsComponent } from "./gcu-soliguia-es.component";
+import { RouterModule } from "@angular/router";
 
 describe("GcuSoliguiaEsComponent", () => {
   let component: GcuSoliguiaEsComponent;
@@ -29,7 +30,7 @@ describe("GcuSoliguiaEsComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [GcuSoliguiaEsComponent],
-      imports: [TranslateModule.forRoot()],
+      imports: [RouterModule.forRoot([]), TranslateModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(GcuSoliguiaEsComponent);
