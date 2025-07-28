@@ -20,11 +20,7 @@
  */
 import { ClipboardModule } from "@angular/cdk/clipboard";
 import { CommonModule } from "@angular/common";
-import {
-  CUSTOM_ELEMENTS_SCHEMA,
-  NO_ERRORS_SCHEMA,
-  NgModule,
-} from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
@@ -66,6 +62,7 @@ import { SearchMapComponent } from "./standalone-components/search-map/search-ma
 import { FormatInternationalPhoneNumberPipe } from "../shared";
 import { DisplayHorairesComponent } from "./standalone-components/display-horaires/horaires.component";
 import { ExternalSourcePlaceCampaignBannerComponent } from "./components/external-source-place-campaign-banner/external-source-place-campaign-banner.component";
+import { RouterModule } from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -80,29 +77,30 @@ import { ExternalSourcePlaceCampaignBannerComponent } from "./components/externa
     DisplayPublicsInlineComponent,
     DisplayServicesComponent,
     DisplaySpecificFieldsComponent,
-    PlaceUpdateCampaignBannerComponent,
     ExternalSourcePlaceCampaignBannerComponent,
+    PlaceTransportsComponent,
+    PlaceUpdateCampaignBannerComponent,
     SharePlaceComponent,
     SingleContactComponent,
-    PlaceTransportsComponent,
   ],
   imports: [
-    CommonModule,
-    ClipboardModule,
-    FontAwesomeModule,
-    FormsModule,
-    NgbModule,
-    NgxJsonLdModule,
-    SharedModule,
-    ShareButtons,
-    SearchMapComponent,
-    HttpClientModule,
-    TranslateModule,
     CampaignSharedModule,
-    FormatInternationalPhoneNumberPipe,
+    ClipboardModule,
+    CommonModule,
+    DisplayHolidaysComponent,
     DisplayHorairesComponent,
     DisplayTempBannerComponent,
-    DisplayHolidaysComponent,
+    FontAwesomeModule,
+    FormatInternationalPhoneNumberPipe,
+    FormsModule,
+    HttpClientModule,
+    NgbModule,
+    NgxJsonLdModule,
+    RouterModule,
+    SearchMapComponent,
+    ShareButtons,
+    SharedModule,
+    TranslateModule,
   ],
   exports: [
     DisplayContactsComponent,
@@ -116,13 +114,13 @@ import { ExternalSourcePlaceCampaignBannerComponent } from "./components/externa
     DisplayPublicsInlineComponent,
     DisplayServicesComponent,
     DisplaySpecificFieldsComponent,
-    PlaceUpdateCampaignBannerComponent,
     ExternalSourcePlaceCampaignBannerComponent,
+    PlaceTransportsComponent,
+    PlaceUpdateCampaignBannerComponent,
     SharePlaceComponent,
     SingleContactComponent,
-    PlaceTransportsComponent,
   ],
   providers: [CampaignService, HolidaysService],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class PlaceModule {}
+export class PlaceModule {} // skipcq: JS-0327

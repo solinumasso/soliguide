@@ -19,7 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { TestBed } from "@angular/core/testing";
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterModule } from "@angular/router";
 import { TranslateModule } from "@ngx-translate/core";
 
 import { LanguageSetupService } from "./language-setup.service";
@@ -29,7 +29,7 @@ describe("LanguageSetupService", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, TranslateModule.forRoot({})],
+      imports: [RouterModule.forRoot([]), TranslateModule.forRoot({})],
     }).compileComponents();
     service = TestBed.inject(LanguageSetupService);
   });

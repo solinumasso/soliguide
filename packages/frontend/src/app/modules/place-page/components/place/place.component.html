@@ -198,7 +198,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
           <p class="share text-center mt-1">
             {{ "EXPORTS_HEADER_LAST_UPDATE" | translate }} :
-            {{ place.updatedByUserAt | date : "longDate" }}
+            {{ place.updatedByUserAt | dateProxy : "longDate" }}
           </p>
 
           <app-share-place

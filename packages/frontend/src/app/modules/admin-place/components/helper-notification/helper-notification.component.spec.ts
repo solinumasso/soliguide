@@ -20,7 +20,7 @@
  */
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterModule } from "@angular/router";
 
 import { HelperNotificationComponent } from "./helper-notification.component";
 
@@ -31,7 +31,7 @@ describe("HelperNotificationComponent", () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [HelperNotificationComponent],
-      imports: [HttpClientTestingModule, RouterTestingModule],
+      imports: [HttpClientTestingModule, RouterModule.forRoot([])],
     }).compileComponents();
   }));
 

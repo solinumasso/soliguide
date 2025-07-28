@@ -24,7 +24,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { SupportedLanguagesCode } from "@soliguide/common";
 
 @Pipe({
-  name: "date",
+  name: "dateProxy",
 })
 export class DateProxyPipe implements PipeTransform {
   constructor(private readonly translateService: TranslateService) {}

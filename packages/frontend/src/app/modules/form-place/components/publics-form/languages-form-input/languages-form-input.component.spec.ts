@@ -22,7 +22,7 @@ import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
 import { APP_BASE_HREF } from "@angular/common";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterModule } from "@angular/router";
 import { ToastrModule } from "ngx-toastr";
 import { FormsModule } from "@angular/forms";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
@@ -38,7 +38,7 @@ describe("LanguagesFormInputComponent", () => {
     TestBed.configureTestingModule({
       declarations: [LanguagesFormInputComponent],
       imports: [
-        RouterTestingModule,
+        RouterModule.forRoot([]),
         ToastrModule.forRoot({}),
         TranslateModule.forRoot(),
         FormsModule,

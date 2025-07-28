@@ -31,6 +31,7 @@ import {
   MockAuthService,
 } from "../../../../../../mocks";
 import { AuthService } from "../../../users/services/auth.service";
+import { RouterModule } from "@angular/router";
 
 describe("NoResultComponent", () => {
   let component: NoResultComponent;
@@ -39,7 +40,7 @@ describe("NoResultComponent", () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [NoResultComponent],
-      imports: [TranslateModule.forRoot({})],
+      imports: [RouterModule.forRoot([]), TranslateModule.forRoot({})],
       providers: [
         { provide: PosthogService, useClass: CommonPosthogMockService },
         { provide: AuthService, useClass: MockAuthService },

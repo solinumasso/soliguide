@@ -21,11 +21,10 @@
 import { ClipboardModule } from "@angular/cdk/clipboard";
 import { APP_BASE_HREF } from "@angular/common";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { RouterTestingModule } from "@angular/router/testing";
 import { TranslateModule } from "@ngx-translate/core";
 import { ToastrModule } from "ngx-toastr";
 import { BehaviorSubject, of } from "rxjs";
@@ -43,6 +42,8 @@ import { USER_SOLIGUIDE_MOCK } from "../../../../../../mocks/USER_SOLIGUIDE.mock
 import { registerLocales } from "../../../../shared";
 import { CommonUser, SearchResults } from "@soliguide/common";
 import { COMMON_USER_PRO } from "../../../../../../mocks/COMMON_USER.mock";
+import { RouterModule } from "@angular/router";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 class MockAuthService {
   public currentUserSubject: BehaviorSubject<User | null>;
@@ -80,9 +81,10 @@ describe("ManageUsersComponent", () => {
         FormsModule,
         HttpClientTestingModule,
         ManageCommonModule,
+        NgbModule,
         NoopAnimationsModule,
         ReactiveFormsModule,
-        RouterTestingModule,
+        RouterModule.forRoot([]),
         SharedModule,
         ToastrModule.forRoot({}),
         TranslateModule.forRoot({}),
@@ -92,7 +94,7 @@ describe("ManageUsersComponent", () => {
         { provide: APP_BASE_HREF, useValue: "/" },
         { provide: AuthService, useClass: MockAuthService },
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   }));
 

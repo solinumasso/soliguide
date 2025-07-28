@@ -89,11 +89,7 @@ describe("HomeComponent", () => {
       .spyOn(currentLanguageService, "currentLanguage", "get")
       .mockReturnValue(SupportedLanguagesCode.FR);
     seoService = TestBed.inject(SeoService);
-    jest
-      .spyOn(seoService, "updateTitleAndTags")
-      .mockImplementation((title: string, description: string) => {
-        console.debug(title, description);
-      });
+    jest.spyOn(seoService, "updateTitleAndTags").mockImplementation(() => {}); // skipcq: JS-0321
     jest
       .spyOn(mockGlobalConstants, "getItem")
       .mockImplementation((key: string) => {

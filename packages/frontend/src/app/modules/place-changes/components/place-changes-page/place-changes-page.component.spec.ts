@@ -22,8 +22,7 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { ActivatedRoute } from "@angular/router";
-import { RouterTestingModule } from "@angular/router/testing";
+import { ActivatedRoute, RouterModule } from "@angular/router";
 
 import { ToastrModule } from "ngx-toastr";
 
@@ -50,7 +49,7 @@ describe("PlaceChangesPageComponent", () => {
       imports: [
         HttpClientTestingModule,
         NoopAnimationsModule,
-        RouterTestingModule,
+        RouterModule.forRoot([]),
         ToastrModule.forRoot(),
         TranslateModule.forRoot({}),
       ],
