@@ -20,7 +20,7 @@
  */
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterModule } from "@angular/router";
 import { TranslateModule } from "@ngx-translate/core";
 
 import { THEME_CONFIGURATION } from "../../../../../models";
@@ -33,7 +33,7 @@ describe("ReturnToPlaceComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ReturnToPlaceComponent],
-      imports: [TranslateModule.forRoot(), RouterTestingModule],
+      imports: [TranslateModule.forRoot(), RouterModule.forRoot([])],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });

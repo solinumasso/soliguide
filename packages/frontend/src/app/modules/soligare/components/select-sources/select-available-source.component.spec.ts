@@ -20,7 +20,7 @@
  */
 import { APP_BASE_HREF } from "@angular/common";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { TranslateModule } from "@ngx-translate/core";
 import { BehaviorSubject } from "rxjs";
@@ -29,6 +29,8 @@ import { SelectAvailableSourceComponent } from "./select-available-source.compon
 import { User } from "../../../users/classes/user.class";
 import { AuthService } from "../../../users/services/auth.service";
 import { USER_SOLIGUIDE_MOCK } from "../../../../../../mocks/USER_SOLIGUIDE.mock";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { FormsModule } from "@angular/forms";
 
 class MockAuthService {
   public currentUserSubject: BehaviorSubject<User | null>;
@@ -51,12 +53,17 @@ describe("SelectAvailableSourceComponent", () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [SelectAvailableSourceComponent],
-      imports: [TranslateModule.forRoot(), HttpClientTestingModule],
+      imports: [
+        FormsModule,
+        HttpClientTestingModule,
+        NgbModule,
+        TranslateModule.forRoot(),
+      ],
       providers: [
         { provide: APP_BASE_HREF, useValue: "/" },
         { provide: AuthService, useClass: MockAuthService },
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SelectAvailableSourceComponent);

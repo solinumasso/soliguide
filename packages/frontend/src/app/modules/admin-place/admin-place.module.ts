@@ -20,11 +20,7 @@
  */
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { CommonModule } from "@angular/common";
-import {
-  CUSTOM_ELEMENTS_SCHEMA,
-  NO_ERRORS_SCHEMA,
-  NgModule,
-} from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
@@ -75,28 +71,28 @@ import { DisplayTempBannerComponent } from "../place/standalone-components/displ
   ],
   exports: [DeletePlaceComponent, HelperNotificationComponent],
   imports: [
-    AdminPlaceRoutingModule,
     AdminOrganisationModule,
+    AdminPlaceRoutingModule,
     AdminPlaceSharedModule,
     CampaignSharedModule,
     CommonModule,
+    DisplayHorairesComponent,
+    DisplayTempBannerComponent,
     DragDropModule,
     FicheChangesModule,
     FontAwesomeModule,
     FormsModule,
     HttpClientJsonpModule,
+    LocationAutocompleteComponent,
     ManageCommonModule,
     NgbModule,
     PlaceModule,
+    SearchBarModule,
+    SearchMapComponent,
     SharedModule,
     TranslateModule,
-    DisplayHorairesComponent,
-    LocationAutocompleteComponent,
-    SearchMapComponent,
-    SearchBarModule,
-    DisplayTempBannerComponent,
   ],
   providers: [ManagePlacesService],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AdminPlaceModule {}

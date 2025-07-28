@@ -18,11 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {
-  CUSTOM_ELEMENTS_SCHEMA,
-  NgModule,
-  NO_ERRORS_SCHEMA,
-} from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { PlaceService } from "../place/services/place.service";
 import { HttpClientModule } from "@angular/common/http";
@@ -60,7 +56,7 @@ import { DisplayHolidaysComponent } from "../place/standalone-components/display
     DisplayTempBannerComponent,
     DisplayHolidaysComponent,
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [PlaceService],
 })
 export class PlacePageModule {}

@@ -23,8 +23,7 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
-import { RouterTestingModule } from "@angular/router/testing";
+import { ActivatedRoute, RouterModule } from "@angular/router";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
@@ -40,6 +39,7 @@ import { AdminPlaceService } from "../../services/admin-place.service";
 
 import { ONLINE_PLACE_MOCK } from "../../../../../../mocks/ONLINE_PLACE.mock";
 import { THEME_CONFIGURATION } from "../../../../models";
+import { FixNavigationTriggeredOutsideAngularZoneNgModule } from "../../../../shared/modules/FixNavigationTriggeredOutsideAngularZoneNgModule.module";
 
 describe("InfosComponent", () => {
   let component: InfosComponent;
@@ -50,11 +50,12 @@ describe("InfosComponent", () => {
     TestBed.configureTestingModule({
       declarations: [InfosComponent],
       imports: [
+        FixNavigationTriggeredOutsideAngularZoneNgModule,
         FormsModule,
         HttpClientTestingModule,
         NgbModule,
         ReactiveFormsModule,
-        RouterTestingModule.withRoutes([
+        RouterModule.forRoot([
           {
             path: `${THEME_CONFIGURATION.defaultLanguage}/manage-place/14270`,
             redirectTo: "",
@@ -80,7 +81,11 @@ describe("InfosComponent", () => {
           useValue: `/${THEME_CONFIGURATION.defaultLanguage}`,
         },
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA,
+        // For CKEditor
+        NO_ERRORS_SCHEMA,
+      ],
     }).compileComponents();
   }));
 

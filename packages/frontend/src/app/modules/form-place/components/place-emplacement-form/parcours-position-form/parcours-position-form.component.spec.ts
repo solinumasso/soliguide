@@ -21,7 +21,7 @@
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterModule } from "@angular/router";
 
 import { ToastrModule } from "ngx-toastr";
 
@@ -44,7 +44,7 @@ describe("ParcoursPositionFormComponent", () => {
       declarations: [ParcoursPositionFormComponent],
       imports: [
         HttpClientTestingModule,
-        RouterTestingModule,
+        RouterModule.forRoot([]),
         TranslateModule.forRoot({}),
         ToastrModule.forRoot({}),
       ],
