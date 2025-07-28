@@ -209,7 +209,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                   >{{ "TRANSLATE_BY" | translate }}
                   <b>{{ field.languages[lang].human.translatorName }}</b
                   >,
-                  {{ field.languages[lang].human.updatedAt | date }}
+                  {{ field.languages[lang].human.updatedAt | dateProxy }}
                 </ng-template>
                 <span
                   class="status status-success"
@@ -243,7 +243,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               </ng-container>
             </td>
           </ng-container>
-          <td>{{ field.updatedAt | date }}</td>
+          <td>{{ field.updatedAt | dateProxy }}</td>
         </tr>
       </tbody>
     </table>

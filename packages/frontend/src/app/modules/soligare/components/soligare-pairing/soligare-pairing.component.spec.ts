@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { TranslateModule, TranslateService } from "@ngx-translate/core";
@@ -31,6 +31,7 @@ import { SoligareSearchService } from "../../services/soligare-search.service";
 import { SoligarePairingComponent } from "./soligare-pairing.component";
 import { SharedModule } from "../../../shared/shared.module";
 import { MockAuthService } from "../../../../../../mocks";
+import { SoligareModule } from "../../soligare.module";
 
 describe("SoligarePairingComponent", () => {
   let component: SoligarePairingComponent;
@@ -40,10 +41,12 @@ describe("SoligarePairingComponent", () => {
     await TestBed.configureTestingModule({
       declarations: [SoligarePairingComponent],
       imports: [
-        TranslateModule.forRoot(),
-        ToastrModule.forRoot(),
+        BrowserAnimationsModule,
         HttpClientTestingModule,
         SharedModule,
+        SoligareModule,
+        ToastrModule.forRoot(),
+        TranslateModule.forRoot(),
       ],
       providers: [
         CurrentLanguageService,
@@ -53,7 +56,6 @@ describe("SoligarePairingComponent", () => {
         AvailableSourceService,
         { provide: AuthService, useClass: MockAuthService },
       ],
-      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   });
 

@@ -23,8 +23,7 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { BrowserModule } from "@angular/platform-browser";
-import { ActivatedRoute } from "@angular/router";
-import { RouterTestingModule } from "@angular/router/testing";
+import { ActivatedRoute, RouterModule } from "@angular/router";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
@@ -54,6 +53,8 @@ import {
 import { MockAuthService } from "../../../../../../mocks/MockAuthService";
 import { THEME_CONFIGURATION } from "../../../../models";
 import { PosthogService } from "../../../analytics/services/posthog.service";
+import { registerLocales } from "../../../../shared/functions/registerLocales";
+import { SharedModule } from "../../../shared";
 
 describe("AdminPlaceComponent", () => {
   let component: AdminPlaceComponent;
@@ -62,6 +63,10 @@ describe("AdminPlaceComponent", () => {
 
   let placeContactsService: PlaceContactsService;
 
+  beforeAll(() => {
+    registerLocales();
+  });
+
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [AdminPlaceComponent],
@@ -69,13 +74,14 @@ describe("AdminPlaceComponent", () => {
         HttpClientTestingModule,
         BrowserModule,
         NgbModule,
-        RouterTestingModule.withRoutes([
+        RouterModule.forRoot([
           {
             path: `${THEME_CONFIGURATION.defaultLanguage}/404`,
             component: NotFoundComponent,
           },
         ]),
         ToastrModule.forRoot({}),
+        SharedModule,
         TranslateModule.forRoot({}),
       ],
       providers: [

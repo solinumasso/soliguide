@@ -69,7 +69,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       </p>
       <p class="my-1" appTextDirection>
         {{ "CREATION_DATE" | translate }}
-        {{ place.createdAt | date : "fullDate" }}
+        {{ place.createdAt | dateProxy : "fullDate" }}
         <ng-container *ngIf="place.createdBy">
           {{ "BY" | translate | lowercase }} {{ place.createdBy }}</ng-container
         >

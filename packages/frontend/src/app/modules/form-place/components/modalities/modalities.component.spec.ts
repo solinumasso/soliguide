@@ -22,13 +22,13 @@ import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
 import { APP_BASE_HREF } from "@angular/common";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { RouterTestingModule } from "@angular/router/testing";
 import { ToastrModule } from "ngx-toastr";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
 import { ModalitiesComponent } from "./modalities.component";
 import { TranslateModule } from "@ngx-translate/core";
+import { RouterModule } from "@angular/router";
 
 describe("ModalitiesComponent", () => {
   let component: ModalitiesComponent;
@@ -38,7 +38,7 @@ describe("ModalitiesComponent", () => {
     TestBed.configureTestingModule({
       declarations: [ModalitiesComponent],
       imports: [
-        RouterTestingModule,
+        RouterModule.forRoot([]),
         ToastrModule.forRoot({}),
         TranslateModule.forRoot({}),
         HttpClientTestingModule,

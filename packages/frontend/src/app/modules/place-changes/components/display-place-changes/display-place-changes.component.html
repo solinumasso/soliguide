@@ -146,7 +146,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <div *ngIf="!photosChanged">
     <h5>
       {{ "PHOTOS_MODIFIED_AND_OR_DELETED" | translate }}
-      {{ changesDate | date }}
+      {{ changesDate | dateProxy }}
     </h5>
   </div>
 </section>
@@ -218,10 +218,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       <b> {{ "DESCRIPTION" | translate }} : </b>
       <div [innerHTML]="placeChanged.tempInfos.message.description"></div>
       <b>{{ "START_DATE" | translate }} :</b>
-      {{ placeChanged.tempInfos.message.dateDebut | date }}
+      {{ placeChanged.tempInfos.message.dateDebut | dateProxy }}
       <br />
       <b>{{ "END_DATE_INCLUDED" | translate }} : </b>
-      {{ placeChanged.tempInfos.message.dateFin | date }}
+      {{ placeChanged.tempInfos.message.dateFin | dateProxy }}
     </span>
   </div>
 </section>
@@ -255,10 +255,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       <br />
       <br />
       <b> {{ "START_DATE" | translate }} : </b>
-      {{ placeChanged.tempInfos.hours.dateDebut | date }}
+      {{ placeChanged.tempInfos.hours.dateDebut | dateProxy }}
       <br />
       <b> {{ "END_DATE_INCLUDED" | translate }} : </b>
-      {{ placeChanged.tempInfos.hours.dateFin | date }}
+      {{ placeChanged.tempInfos.hours.dateFin | dateProxy }}
     </p>
   </div>
 </section>
@@ -269,14 +269,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <div [innerHTML]="placeChanged.tempInfos.closure.description"></div>
     <p>
       <b> {{ "START_DATE" | translate }} : </b>
-      {{ placeChanged.tempInfos.closure.dateDebut | date }}
+      {{ placeChanged.tempInfos.closure.dateDebut | dateProxy }}
     </p>
     <p>
       <b> {{ "END_DATE_INCLUDED" | translate }} : </b>
       <span *ngIf="placeChanged.tempInfos.closure.dateFin === null">{{
         "END_DATE_NOT_SPECIFIED" | translate
       }}</span>
-      {{ placeChanged.tempInfos.closure.dateFin | date }}
+      {{ placeChanged.tempInfos.closure.dateFin | dateProxy }}
     </p>
   </div>
 </section>

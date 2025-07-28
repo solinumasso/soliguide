@@ -25,8 +25,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ActivatedRoute } from "@angular/router";
-import { RouterTestingModule } from "@angular/router/testing";
+import { ActivatedRoute, RouterModule } from "@angular/router";
 import { ToastrModule } from "ngx-toastr";
 import { of } from "rxjs";
 
@@ -45,13 +44,13 @@ describe("ParentTempInfosFormComponent", () => {
     await TestBed.configureTestingModule({
       declarations: [ParentTempInfosFormComponent],
       imports: [
-        RouterTestingModule,
-        ToastrModule.forRoot({}),
-        TranslateModule.forRoot({}),
+        BrowserAnimationsModule,
+        FormsModule,
         HttpClientTestingModule,
         ReactiveFormsModule,
-        FormsModule,
-        BrowserAnimationsModule,
+        RouterModule.forRoot([]),
+        ToastrModule.forRoot({}),
+        TranslateModule.forRoot({}),
       ],
       providers: [
         {
@@ -69,7 +68,11 @@ describe("ParentTempInfosFormComponent", () => {
         },
         { provide: PosthogService, useClass: CommonPosthogMockService },
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA,
+        // For CKEditor
+        NO_ERRORS_SCHEMA,
+      ],
     }).compileComponents();
   });
 

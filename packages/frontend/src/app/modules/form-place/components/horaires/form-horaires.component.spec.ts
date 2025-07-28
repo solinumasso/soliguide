@@ -23,8 +23,7 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { FormsModule } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
-import { RouterTestingModule } from "@angular/router/testing";
+import { ActivatedRoute, RouterModule } from "@angular/router";
 import { TranslateModule } from "@ngx-translate/core";
 
 import { ToastrModule } from "ngx-toastr";
@@ -37,6 +36,7 @@ import { AdminPlaceService } from "../../services/admin-place.service";
 
 import { ONLINE_PLACE_MOCK } from "../../../../../../mocks/ONLINE_PLACE.mock";
 import { THEME_CONFIGURATION } from "../../../../models";
+import { FixNavigationTriggeredOutsideAngularZoneNgModule } from "../../../../shared/modules/FixNavigationTriggeredOutsideAngularZoneNgModule.module";
 
 describe("FormHorairesComponent", () => {
   let component: FormHorairesComponent;
@@ -47,10 +47,11 @@ describe("FormHorairesComponent", () => {
     TestBed.configureTestingModule({
       declarations: [FormHorairesComponent],
       imports: [
+        FixNavigationTriggeredOutsideAngularZoneNgModule,
         FormsModule,
         HttpClientTestingModule,
         TranslateModule.forRoot({}),
-        RouterTestingModule.withRoutes([
+        RouterModule.forRoot([
           {
             path: `${THEME_CONFIGURATION.defaultLanguage}/manage-place/14270`,
             redirectTo: "",

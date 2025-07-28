@@ -20,7 +20,7 @@
  */
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterModule } from "@angular/router";
 
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
@@ -50,7 +50,7 @@ describe("DisplayEntityInfosComponent", () => {
       imports: [
         FontAwesomeModule,
         HttpClientTestingModule,
-        RouterTestingModule,
+        RouterModule.forRoot([]),
         ToastrModule.forRoot({}),
         TranslateModule.forRoot({}),
       ],

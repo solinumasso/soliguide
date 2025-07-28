@@ -38,7 +38,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             "DOCUMENT_CREATION_DATE"
               | translate
                 : {
-                    DOCUMENT_CREATION_DATE_VALUE: (doc.createdAt | date)
+                    DOCUMENT_CREATION_DATE_VALUE: (doc.createdAt | dateProxy)
                   }
           }}
         </small>

@@ -57,7 +57,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 id="organizationName"
                 formControlName="organizationName"
                 class="form-control"
-                [disabled]="true"
               />
             </div>
           </div>
@@ -122,7 +121,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               type="email"
               formControlName="mail"
               class="form-control"
-              [disabled]="invitationToken !== null"
               autocomplete="email"
               [placeholder]="'EMAIL_ADDRESS' | translate"
               [ngClass]="{
