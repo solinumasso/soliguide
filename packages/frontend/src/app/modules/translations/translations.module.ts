@@ -20,11 +20,7 @@
  */
 import { ManageCommonModule } from "./../manage-common/manage-common.module";
 import { SharedModule } from "./../shared/shared.module";
-import {
-  NgModule,
-  CUSTOM_ELEMENTS_SCHEMA,
-  NO_ERRORS_SCHEMA,
-} from "@angular/core";
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -62,6 +58,6 @@ import { EditTradFieldComponent } from "./components/edit-trad-field/edit-trad-f
     TranslationsRoutingModule,
   ],
   providers: [TranslationService],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class TranslationsModule {}
+export class TranslationsModule {} // skipcq: JS-0327
