@@ -24,8 +24,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ActivatedRoute, Router } from "@angular/router";
-import { RouterTestingModule } from "@angular/router/testing";
+import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { SharedModule } from "../../../shared/shared.module";
@@ -47,6 +46,7 @@ import {
 } from "../../../../../../mocks";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { THEME_CONFIGURATION } from "../../../../models";
+import { FixNavigationTriggeredOutsideAngularZoneNgModule } from "../../../../shared/modules/FixNavigationTriggeredOutsideAngularZoneNgModule.module";
 
 describe("InviteMemberComponent", () => {
   let component: InviteMemberComponent;
@@ -60,17 +60,18 @@ describe("InviteMemberComponent", () => {
       declarations: [InviteMemberComponent],
       imports: [
         BrowserAnimationsModule,
-        SharedModule,
+        FixNavigationTriggeredOutsideAngularZoneNgModule,
         FormsModule,
         HttpClientTestingModule,
         NgbModule,
         ReactiveFormsModule,
-        RouterTestingModule.withRoutes([
+        RouterModule.forRoot([
           {
             path: `${THEME_CONFIGURATION.defaultLanguage}/organisations/${ORGANIZATION_MOCK.organization_id}`,
             redirectTo: "",
           },
         ]),
+        SharedModule,
         ToastrModule.forRoot(),
         TranslateModule.forRoot(),
       ],

@@ -20,11 +20,7 @@
  */
 import { ManageCommonModule } from "../manage-common/manage-common.module";
 import { CommonModule } from "@angular/common";
-import {
-  NgModule,
-  CUSTOM_ELEMENTS_SCHEMA,
-  NO_ERRORS_SCHEMA,
-} from "@angular/core";
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
@@ -63,6 +59,6 @@ import { SharedModule } from "../shared/shared.module";
     TranslateModule,
     ManageCommonModule,
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class EmailsModule {}
+export class EmailsModule {} // skipcq: JS-0327

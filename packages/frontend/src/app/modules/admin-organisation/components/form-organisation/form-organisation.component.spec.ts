@@ -22,8 +22,7 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
-import { RouterTestingModule } from "@angular/router/testing";
+import { ActivatedRoute, RouterModule } from "@angular/router";
 
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
@@ -71,7 +70,7 @@ describe("FormOrganisationComponent", () => {
         FontAwesomeModule,
         FormsModule,
         HttpClientTestingModule,
-        RouterTestingModule,
+        RouterModule.forRoot([]),
         ReactiveFormsModule,
         ToastrModule.forRoot({}),
         TranslateModule.forRoot({}),
@@ -90,7 +89,11 @@ describe("FormOrganisationComponent", () => {
         { provide: AuthService, useClass: MockAuthService },
         { provide: PosthogService, useClass: CommonPosthogMockService },
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA,
+        // For CKEditor
+        NO_ERRORS_SCHEMA,
+      ],
     }).compileComponents();
   }));
 

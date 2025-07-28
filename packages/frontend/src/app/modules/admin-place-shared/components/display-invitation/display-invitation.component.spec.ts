@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterModule } from "@angular/router";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { INVITATION_MOCK } from "./../../../../../../mocks/INVITATION.mock";
 import { ToastrModule } from "ngx-toastr";
@@ -27,7 +27,7 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { DisplayInvitationComponent } from "./display-invitation.component";
-import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { TranslateModule } from "@ngx-translate/core";
 
 describe("DisplayInvitationComponent", () => {
@@ -43,9 +43,9 @@ describe("DisplayInvitationComponent", () => {
         ToastrModule.forRoot(),
         TranslateModule.forRoot({}),
         FontAwesomeModule,
-        RouterTestingModule,
+        RouterModule.forRoot([]),
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 
