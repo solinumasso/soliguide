@@ -96,7 +96,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               >
                 <span class="me-2">⏰ </span
                 >{{ "STRUCTURE_RECALL_ON" | translate }} :
-                {{ place.campaigns.runningCampaign.remindMeDate | date }}
+                {{ place.campaigns.runningCampaign.remindMeDate | dateProxy }}
               </div>
               <div
                 *ngIf="
@@ -105,11 +105,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 "
               >
                 {{ "STARTED_ON" | translate }}
-                {{ place.campaigns.runningCampaign.general.startDate | date }}
+                {{
+                  place.campaigns.runningCampaign.general.startDate | dateProxy
+                }}
               </div>
               <div *ngIf="place.campaigns.runningCampaign.general.endDate">
                 {{ "COMPLETED_ON" | translate }}
-                {{ place.campaigns.runningCampaign.general.endDate | date }}
+                {{
+                  place.campaigns.runningCampaign.general.endDate | dateProxy
+                }}
               </div>
             </div>
 
@@ -257,7 +261,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             id="remindMe"
             type="date"
             [(ngModel)]="remindMeDate"
-            [min]="MIN_DATE_TODAY | date : 'yyyy-MM-dd'"
+            [min]="MIN_DATE_TODAY | dateProxy : 'yyyy-MM-dd'"
             #dp1="ngModel"
             [ngClass]="{
               'is-invalid':

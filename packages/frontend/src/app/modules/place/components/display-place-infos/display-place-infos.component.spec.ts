@@ -20,7 +20,7 @@
  */
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterModule } from "@angular/router";
 import { ONLINE_PLACE_MOCK } from "../../../../../../mocks/ONLINE_PLACE.mock";
 
 import { Place } from "../../../../models/place/classes";
@@ -36,7 +36,7 @@ describe("DisplayPlaceInfosComponent", () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [DisplayPlaceInfosComponent],
-      imports: [RouterTestingModule],
+      imports: [RouterModule.forRoot([])],
       providers: [
         { provide: PosthogService, useClass: CommonPosthogMockService },
       ],
