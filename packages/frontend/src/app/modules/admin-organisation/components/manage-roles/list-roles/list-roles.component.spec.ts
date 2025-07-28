@@ -26,7 +26,7 @@ import { ToastrModule } from "ngx-toastr";
 
 import { ListRolesComponent } from "./list-roles.component";
 import { USER_SOLIGUIDE_MOCK } from "../../../../../../../mocks";
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterModule } from "@angular/router";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 
 describe("ListRolesComponent", () => {
@@ -40,7 +40,7 @@ describe("ListRolesComponent", () => {
         FormsModule,
         ToastrModule.forRoot({}),
         TranslateModule.forRoot({}),
-        RouterTestingModule,
+        RouterModule.forRoot([]),
         HttpClientTestingModule,
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -289,7 +289,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             {{ EMAIL_STATUS_LABELS[email.lastStatus] }}
           </td>
 
-          <td>{{ email.lastUpdate | date : "short" }}</td>
+          <td>{{ email.lastUpdate | dateProxy : "short" }}</td>
 
           <td>
             <a

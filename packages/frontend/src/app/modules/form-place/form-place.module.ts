@@ -20,11 +20,7 @@
  */
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { CommonModule } from "@angular/common";
-import {
-  CUSTOM_ELEMENTS_SCHEMA,
-  NgModule,
-  NO_ERRORS_SCHEMA,
-} from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
@@ -158,7 +154,7 @@ import { DisplayHorairesComponent } from "../place/standalone-components/display
     PendingChangesGuard,
     UploadService,
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     AdminPlaceSharedModule,
     LocationAutocompleteComponent,
@@ -182,4 +178,4 @@ import { DisplayHorairesComponent } from "../place/standalone-components/display
     DisplayHorairesComponent,
   ],
 })
-export class FormPlaceModule {}
+export class FormPlaceModule {} // skipcq: JS-0327
