@@ -26,6 +26,7 @@ import type {
 } from "@soliguide/common";
 
 import type { ModelWithId } from "../../_models";
+import { extractTerritoriesAndCountryFromAreas } from "../../user/utils/getTerritoriesFromAreas";
 
 export class AmqpOrganization {
   public createdAt?: Date;
@@ -46,9 +47,9 @@ export class AmqpOrganization {
     this.organization_id = organization.organization_id;
     this.email = organization.mail ?? undefined;
     this.phone = organization.phone ?? undefined;
-    this.territories = organization.territories.length
-      ? organization.territories
-      : undefined;
+    this.territories = extractTerritoriesAndCountryFromAreas(
+      organization.areas
+    ).territories;
     this.priority = organization.priority;
     this.relations = organization.relations;
     this.website = organization.website ?? undefined;

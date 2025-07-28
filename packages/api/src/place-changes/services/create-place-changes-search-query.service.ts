@@ -22,13 +22,15 @@ import dot from "dot-object";
 import { FilterQuery } from "mongoose";
 
 import { PlaceChangesSection } from "@soliguide/common";
-import { User } from "../../_models";
+
 import { parseTerritories, parseTextSearch } from "../../search/utils";
 import { PlaceChanges } from "../interfaces/PlaceChanges.interface";
 
+import { UserForSearch } from "../../user/types";
+
 export const createPlaceChangesSearchQuery = (
   searchData: any,
-  user: User
+  user: UserForSearch
 ): FilterQuery<PlaceChanges> => {
   const query: FilterQuery<PlaceChanges> = {
     placeOnline: true,

@@ -47,7 +47,6 @@ import {
   AirtableEntityType,
   ExpressRequest,
   ExpressResponse,
-  UserForLogs,
 } from "../../_models";
 
 import { syncEntityDeletion } from "../../airtable/controllers/airtable.controller";
@@ -94,6 +93,7 @@ import {
 
 import { sendPlaceChangesToMq } from "../../place-changes/middlewares/send-place-changes-to-mq.middleware";
 import { forceChangesDto } from "../dto/forceChanges.dto";
+import { UserForLogs } from "../../user/interfaces";
 
 const router = express.Router();
 
