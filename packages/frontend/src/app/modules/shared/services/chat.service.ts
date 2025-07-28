@@ -106,6 +106,7 @@ export class ChatService {
 
     zE("messenger:set", "cookies", true);
     zE("messenger", "show");
+    zE("messenger", "open");
 
     // Only for pros
     if (user?.pro) {
@@ -126,10 +127,6 @@ export class ChatService {
   };
 
   public async openChat(user?: User): Promise<void> {
-    if (!this.hasUserGivenConsent()) {
-      return;
-    }
-
     if (!this.chatHasBeenSetup) {
       this.setupChat(user);
     }

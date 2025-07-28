@@ -133,7 +133,7 @@ export class AppComponent implements OnInit, OnDestroy {
       this.cookieManagerService.translateCookieBanner();
     }
 
-    document.addEventListener("CookieConsentLoaded", () => {
+    document.addEventListener("SilktideConsentManagerLoaded", () => {
       if (!this.cookieBannerLoaded) {
         this.cookieBannerLoaded = true;
         this.cookieManagerService.translateCookieBanner();

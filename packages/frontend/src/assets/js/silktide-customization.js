@@ -43,8 +43,6 @@ window.silktideConfig = {
         "<p>These cookies help us improve the site by tracking which pages are most popular and how visitors move around the site.</p>",
       defaultValue: false,
       onAccept: function () {
-        delete window.posthog;
-
         gtag("consent", "update", {
           analytics_storage: "granted",
         });
@@ -62,8 +60,6 @@ window.silktideConfig = {
         );
       },
       onReject: function () {
-        delete window.posthog;
-
         gtag("consent", "update", {
           analytics_storage: "denied",
         });
@@ -91,26 +87,28 @@ window.silktideConfig = {
           event: "consent_accepted_chat",
         });
 
-        var event = new CustomEvent("ConsentChanged", {
-          detail: {
-            type: "chat",
-            value: "granted",
-          },
-        });
-        document.dispatchEvent(event);
+        document.dispatchEvent(
+          new CustomEvent("ConsentChanged", {
+            detail: {
+              type: "chat",
+              value: "granted",
+            },
+          })
+        );
       },
       onReject: function () {
         gtag("consent", "update", {
           functionality_storage: "denied",
         });
 
-        var event = new CustomEvent("ConsentChanged", {
-          detail: {
-            type: "chat",
-            value: "denied",
-          },
-        });
-        document.dispatchEvent(event);
+        document.dispatchEvent(
+          new CustomEvent("ConsentChanged", {
+            detail: {
+              type: "chat",
+              value: "denied",
+            },
+          })
+        );
       },
     },
   ],
