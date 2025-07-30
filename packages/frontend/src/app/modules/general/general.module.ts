@@ -49,6 +49,7 @@ import { ChatService } from "../shared/services";
 import { HomeTerritoriesStatsComponent } from "./components/home-territiries-stats/home-territories-stats.component";
 import { SearchBarModule } from "../search-bar/search-bar.module";
 import { SolidataComponent } from "./components/solidata/solidata.component";
+import { PartnersBannerComponent } from "./components/pofecta-banner/partners-banner.component";
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { SolidataComponent } from "./components/solidata/solidata.component";
     DownloadMobileAppComponent,
     SolidataComponent,
     HomeTerritoriesStatsComponent,
+    PartnersBannerComponent,
   ],
   exports: [
     HomeComponent,
@@ -73,6 +75,7 @@ import { SolidataComponent } from "./components/solidata/solidata.component";
     DownloadMobileAppComponent,
     CookiesModalComponent,
     HomeTerritoriesStatsComponent,
+    PartnersBannerComponent,
   ],
   imports: [
     CommonModule,
