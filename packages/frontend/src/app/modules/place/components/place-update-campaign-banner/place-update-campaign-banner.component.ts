@@ -31,6 +31,7 @@ import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 
 import {
   CAMPAIGN_DEFAULT_NAME,
+  CAMPAIGN_LIST,
   PlaceStatus,
   getDepartmentCodeFromPostalCode,
   type SoliguideCountries,
@@ -42,9 +43,12 @@ import { Subscription } from "rxjs";
 
 import { CurrentLanguageService } from "../../../general/services/current-language.service";
 
-import { CAMPAIGN_LIST, Place, THEME_CONFIGURATION } from "../../../../models";
+import { Place, THEME_CONFIGURATION } from "../../../../models";
 
-import { campaignIsActive, DEFAULT_MODAL_OPTIONS } from "../../../../shared";
+import {
+  campaignIsActiveWithTheme,
+  DEFAULT_MODAL_OPTIONS,
+} from "../../../../shared";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { PosthogComponent } from "../../../analytics/components/posthog.component";
 
@@ -101,7 +105,7 @@ export class PlaceUpdateCampaignBannerComponent
 
     this.campaignIsActive =
       country && postalCode && THEME_CONFIGURATION.country === CountryCodes.FR
-        ? campaignIsActive([
+        ? campaignIsActiveWithTheme([
             getDepartmentCodeFromPostalCode(
               country as SoliguideCountries,
               postalCode

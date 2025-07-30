@@ -18,19 +18,4 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { AnyDepartmentCode } from "@soliguide/common";
-import { CampaignIconName } from "./CampaignIconName.type";
-
-export type CampaignInfos = {
-  adjective?: string;
-  closingFormula?: string;
-  dateDebutAffichage: Date;
-  dateDebutCampagne: Date;
-  dateFin: Date;
-  description: string;
-  icon?: CampaignIconName; // Emoji to display
-  period?: string;
-  name: string;
-  specificServiceMessage?: string;
-  territories: AnyDepartmentCode[];
-};
+export { displayCampaignInfo } from './displayCampaignInfo';

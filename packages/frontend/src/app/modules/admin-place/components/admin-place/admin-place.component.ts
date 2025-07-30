@@ -62,7 +62,7 @@ import {
 
 import {
   generateMarkerOptions,
-  campaignIsActive,
+  campaignIsActiveWithTheme,
   DEFAULT_MODAL_OPTIONS,
 } from "../../../../shared";
 import { PosthogService } from "../../../analytics/services/posthog.service";
@@ -136,7 +136,7 @@ export class AdminPlaceComponent implements OnInit, OnDestroy {
       this.currentUrl = this.currentUrl.slice(0, hashIndex);
     }
 
-    this.campaignIsActive = campaignIsActive(this.me?.territories);
+    this.campaignIsActive = campaignIsActiveWithTheme(this.me?.territories);
 
     this.subscription.add(
       this.route.params.subscribe((params) => {
@@ -264,7 +264,7 @@ export class AdminPlaceComponent implements OnInit, OnDestroy {
       THEME_CONFIGURATION.country === CountryCodes.FR &&
       postalCode &&
       country &&
-      campaignIsActive([
+      campaignIsActiveWithTheme([
         getDepartmentCodeFromPostalCode(
           country as SoliguideCountries,
           postalCode

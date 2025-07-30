@@ -29,9 +29,17 @@ import {
   PairingSources,
   PlaceOpeningStatus,
   checkIfSourceMustBeDisplayed,
-  computeTempIsActive
+  computeTempIsActive,
+  isFromExternalSource
 } from '@soliguide/common';
-import type { HoursRange, SearchResultTempInfo, Source, TodayInfo } from './types';
+import {
+  PlaceCampaignBannerMessage,
+  type HoursRange,
+  type SearchResultTempInfo,
+  type Source,
+  type TodayInfo
+} from './types';
+import { displayCampaignInfo } from '$lib/utils';
 
 /**
  * Calculates the complete address to display
@@ -131,4 +139,21 @@ export const computeTempInfo = (tempInfo: any): SearchResultTempInfo => {
       [key]: new BasePlaceTempInfo(tempInfo[key]).status
     };
   }, {} as SearchResultTempInfo);
+};
+
+/**
+ * Computes the campaign banner message based on the place result and its source.
+ * Returns a specific message if the place is from an external source, a general campaign banner message or null if banner should not be displayed.
+ */
+export const computeCampaignBanner = (placeResult: ApiPlace): PlaceCampaignBannerMessage | null => {
+  const isExternal = isFromExternalSource(placeResult);
+  const mustBeShown = displayCampaignInfo(placeResult, isExternal);
+
+  if (!mustBeShown) {
+    return null;
+  }
+
+  return isExternal
+    ? PlaceCampaignBannerMessage.WEBAPP_EXTERNAL_SOURCE_CAMPAIGN_BANNER
+    : PlaceCampaignBannerMessage.WEBAPP_CAMPAIGN_BANNER_MESSAGE;
 };

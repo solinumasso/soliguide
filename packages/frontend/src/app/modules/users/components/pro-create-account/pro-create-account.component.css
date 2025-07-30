@@ -18,35 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {
-  AnyDepartmentCode,
-  CAMPAIGN_DEFAULT_NAME,
-  CountryCodes,
-  CAMPAIGN_LIST,
-  campaignIsActive,
-} from "@soliguide/common";
-
-import { THEME_CONFIGURATION } from "../../../models";
-
-export const campaignIsActiveWithTheme = (
-  territories?: AnyDepartmentCode[]
-): boolean => {
-  //! Todo - Remove this when working on manage MAJ filters
-  return (
-    THEME_CONFIGURATION.country === CountryCodes.FR &&
-    campaignIsActive(territories)
-  );
-};
-
-export const campaignIsAvailable = (
-  territories: AnyDepartmentCode[]
-): boolean => {
-  let isCampaignAvailable = false;
-  for (const territory of territories) {
-    if (CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].territories.includes(territory)) {
-      isCampaignAvailable = true;
-      break;
-    }
-  }
-  return isCampaignAvailable;
-};
+iframe {
+  width: 100%;
+  height: 100vh;
+}

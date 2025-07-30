@@ -57,13 +57,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     </b>
     <br />
     <span
-      *ngIf="me?.admin || (me?.role !== 'READER' && haveIRightOnThisPlace)"
+      *ngIf="me?.admin || (me?.role !== 'READER' && haveRightOnThisPlace)"
       >{{ "STRUCTURE_HORS_LIGNE_MESSAGE_CAN_EDIT" | translate }}</span
     >
-    <span *ngIf="me?.role === 'READER' && haveIRightOnThisPlace">{{
+    <span *ngIf="me?.role === 'READER' && haveRightOnThisPlace">{{
       "STRUCTURE_HORS_LIGNE_MESSAGE_READER" | translate
     }}</span>
-    <span *ngIf="me && !me.admin && !haveIRightOnThisPlace">{{
+    <span *ngIf="me && !me.admin && !haveRightOnThisPlace">{{
       "STRUCTURE_HORS_LIGNE_MESSAGE_LOGGED" | translate
     }}</span>
     <span *ngIf="!me">{{

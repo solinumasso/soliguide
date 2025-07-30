@@ -25,14 +25,15 @@ import {
   CAMPAIGN_DEFAULT_NAME,
   PlaceStatus,
   UserRole,
+  CAMPAIGN_LIST,
 } from "@soliguide/common";
 import type { PosthogProperties } from "@soliguide/common-angular";
 
 import type { Organisation } from "../../interfaces";
 import { CurrentLanguageService } from "../../../general/services/current-language.service";
 import type { User } from "../../../users/classes";
-import { CAMPAIGN_LIST, THEME_CONFIGURATION } from "../../../../models";
-import { campaignIsActive } from "../../../../shared";
+import { THEME_CONFIGURATION } from "../../../../models";
+import { campaignIsActiveWithTheme } from "../../../../shared";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 
 @Component({
@@ -70,7 +71,9 @@ export class OrganizationUpdateCampaignBannerComponent
   public ngOnInit(): void {
     const now = new Date();
 
-    this.campaignIsActive = campaignIsActive(this.organisation.territories);
+    this.campaignIsActive = campaignIsActiveWithTheme(
+      this.organisation.territories
+    );
 
     this.canEdit =
       this.me.admin ||

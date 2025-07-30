@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   public hidePassword: boolean;
   public loading: boolean;
   public submitted: boolean;
+  public dashboardTracking: Record<string, string> = {};
 
   private returnUrl: string[] | string;
 
@@ -90,6 +91,15 @@ export class LoginComponent implements OnInit, OnDestroy {
       brandName: THEME_CONFIGURATION.brandName,
     });
     this.seoService.updateTitleAndTags(title, description, true);
+
+    const paramMap = this.route.snapshot.queryParamMap;
+
+    for (const key of paramMap.keys) {
+      const value = paramMap.get(key);
+      if (value !== null) {
+        this.dashboardTracking[key] = value;
+      }
+    }
 
     this.subscription.add(
       this.translateService.onLangChange.subscribe({

@@ -437,6 +437,42 @@ const samplePlace: ApiPlace = Object.freeze({
       source: null,
       status: 'FINISHED',
       toUpdate: true
+    },
+    MID_YEAR_2025: {
+      autonomy: 'UNKNOWN',
+      currentStep: 0,
+      general: {
+        changes: false,
+        endDate: null,
+        startDate: null,
+        updated: false
+      },
+      remindMeDate: null,
+      sections: {
+        hours: {
+          changes: false,
+          date: null,
+          updated: false
+        },
+        services: {
+          changes: false,
+          date: null,
+          updated: false
+        },
+        tempClosure: {
+          changes: false,
+          date: null,
+          updated: false
+        },
+        tempMessage: {
+          changes: false,
+          date: null,
+          updated: false
+        }
+      },
+      source: null,
+      status: 'TO_DO',
+      toUpdate: false
     }
   },
   visibility: PlaceVisibility.ALL,
@@ -470,6 +506,7 @@ const samplePlace: ApiPlace = Object.freeze({
 const samplePlaceTransformed: PlaceDetails = {
   id: 154,
   address: '1 Rue Montmartre, 75001 Paris',
+  campaignBanner: null,
   description:
     "<p>Repas complets servis sur le parvis de l'église Saint-Eustache. Il est conseillé d'arriver en avance.</p><p><strong>Attention : il s'agit d'un dispositif hivernal qui commence le 1er décembre et qui finit le 31 mars.</strong></p>",
   email: 'lasoupe@saint-eustache.org',

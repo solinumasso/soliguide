@@ -41,7 +41,7 @@ import type { User } from "../../../users/classes/user.class";
 import { AuthService } from "../../../users/services/auth.service";
 
 import {
-  campaignIsActive,
+  campaignIsActiveWithTheme,
   campaignIsAvailable,
   fadeInOut,
   IS_BOT,
@@ -63,7 +63,7 @@ export class NavComponent implements OnInit, OnDestroy {
 
   public routePrefix: string;
   public isNavbarCollapsed = true;
-  public campaignIsActive = campaignIsActive();
+  public campaignIsActive = campaignIsActiveWithTheme();
   public isAdmin = false;
   public isCampaignAvailable = false;
   public me: User | null = null;
@@ -142,7 +142,7 @@ export class NavComponent implements OnInit, OnDestroy {
           this.me?.role === UserRole.OWNER ||
           this.me?.role === UserRole.EDITOR
         ) {
-          this.campaignIsActive = campaignIsActive();
+          this.campaignIsActive = campaignIsActiveWithTheme();
           this.isCampaignAvailable = campaignIsAvailable(this.me.territories);
         }
       })

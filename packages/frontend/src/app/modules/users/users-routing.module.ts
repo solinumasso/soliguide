@@ -33,6 +33,7 @@ import { AuthGuard } from "../../guards/auth.guard";
 import { LanguageGuard } from "../../guards/language.guard";
 import { NotAuthGuard } from "../../guards/not-logged.guard";
 import { THEME_CONFIGURATION } from "../../models";
+import { ProCreateAccountComponent } from "./components/pro-create-account/pro-create-account.component";
 
 export const manageRoutes: Routes = [
   // Redirects to prefixed routes
@@ -67,6 +68,11 @@ export const manageRoutes: Routes = [
   {
     path: ":lang/connexion",
     component: LoginComponent,
+    canActivate: [LanguageGuard, NotAuthGuard],
+  },
+  {
+    path: ":lang/create-pro-account",
+    component: ProCreateAccountComponent,
     canActivate: [LanguageGuard, NotAuthGuard],
   },
   {

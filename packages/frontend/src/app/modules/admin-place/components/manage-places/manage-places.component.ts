@@ -36,6 +36,7 @@ import { ReplaySubject, type Subject, Subscription } from "rxjs";
 import {
   AdminSearchFilterOrganization,
   CAMPAIGN_DEFAULT_NAME,
+  CAMPAIGN_LIST,
   PLACE_AUTONOMY_LABELS,
   CampaignPlaceAutonomy,
   type CampaignSource,
@@ -62,7 +63,6 @@ import type { User } from "../../../users/classes";
 import { AuthService } from "../../../users/services/auth.service";
 
 import {
-  CAMPAIGN_LIST,
   CAMPAIGN_SOURCE_LABELS,
   ORGA_CAMPAIGN_STATUS,
   PLACE_CAMPAIGN_STATUS,
@@ -73,7 +73,7 @@ import {
 
 import {
   fadeInOut,
-  campaignIsActive,
+  campaignIsActiveWithTheme,
   globalConstants,
   DEFAULT_MODAL_OPTIONS,
 } from "../../../../shared";
@@ -180,7 +180,9 @@ export class ManagePlacesComponent implements OnInit, OnDestroy {
       )
     );
 
-    this.campaignIsActiveForMe = campaignIsActive(this.me?.territories);
+    this.campaignIsActiveForMe = campaignIsActiveWithTheme(
+      this.me?.territories
+    );
     this.titleService.setTitle(
       this.translateService.instant("MANAGE_STRUCTURES")
     );
@@ -326,7 +328,7 @@ export class ManagePlacesComponent implements OnInit, OnDestroy {
     return (
       THEME_CONFIGURATION.country === CountryCodes.FR &&
       postalCode &&
-      campaignIsActive([
+      campaignIsActiveWithTheme([
         getDepartmentCodeFromPostalCode(CountryCodes.FR, postalCode),
       ])
     );

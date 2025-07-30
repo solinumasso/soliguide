@@ -19,6 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { PairingSources } from "../enums";
+import { ApiPlace } from "../../place";
 
 export const checkIfSourceMustBeDisplayed = (
   sourceName: string,
@@ -36,4 +37,14 @@ export const checkIfSourceMustBeDisplayed = (
     default:
       return false;
   }
+};
+
+export const isFromExternalSource = (place: ApiPlace): boolean => {
+  if (!place.sources) {
+    return false;
+  }
+
+  return place.sources.some((source) =>
+    checkIfSourceMustBeDisplayed(source.name, source.isOrigin)
+  );
 };

@@ -30,4 +30,5 @@ export * from "./IS_WEBVIEW_APP.const";
 export * from "./LANGUAGE_FOR_PRACTICAL_FILES.const";
 export * from "./LOGOS_TERRITORIES.const";
 export * from "./MIN_DATE_TODAY.const";
+export * from "./SOLIDATA_DASHBOARD_REDIRECTIONS.const";
 export * from "./VALID_HOURS.const";

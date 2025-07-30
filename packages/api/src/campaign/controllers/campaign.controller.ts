@@ -25,9 +25,8 @@ import {
   UserRole,
   type ApiPlace,
   CountryCodes,
+  CAMPAIGN_LIST,
 } from "@soliguide/common";
-
-import { CAMPAIGN_LIST } from "../constants/CAMPAIGN.const";
 
 import type {
   OrganizationPopulate,
@@ -96,7 +95,7 @@ export const isCampaignActive = (
   for (const territory of territories) {
     campaignIsOn =
       campaignIsOn ||
-      CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].TERRITORIES.includes(territory);
+      CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].territories.includes(territory);
 
     if (campaignIsOn) {
       break;
@@ -105,8 +104,8 @@ export const isCampaignActive = (
 
   return (
     campaignIsOn &&
-    CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].CAMPAIGN_START_DATE <= now &&
-    CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].CAMPAIGN_END_DATE >= now
+    CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].dateDebutCampagne <= now &&
+    CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].dateFin >= now
   );
 };
 
