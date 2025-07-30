@@ -163,9 +163,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           <a
             target="_blank"
             rel="noopener noreferrer"
-            [href]="proAccountCreationFormLink"
+            [routerLink]="[routePrefix, 'create-pro-account']"
             (click)="createProAccount()"
-            >{{ "CREER_COMPTE_PRO" | translate }}
+            [queryParams]="dashboardTracking"
+          >
+            {{ "CREER_COMPTE_PRO" | translate }}
           </a>
         </p>
       </div>
