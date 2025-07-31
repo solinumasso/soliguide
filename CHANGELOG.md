@@ -1,3 +1,10 @@
+## [4.97.1](https://github.com/solinumasso/soliguide/compare/v4.97.0...v4.97.1) (2025-07-31)
+
+
+### Bug Fixes
+
+* **api:** redo crous migration for campaign reset [#755](https://github.com/solinumasso/soliguide/issues/755) ([fdb26bf](https://github.com/solinumasso/soliguide/commit/fdb26bfd2bedb1f192ca11aee6bb667482adb6f0))
+
 # [4.97.0](https://github.com/solinumasso/soliguide/compare/v4.96.0...v4.97.0) (2025-07-30)
 
 
