@@ -1,3 +1,30 @@
+# [4.97.0](https://github.com/solinumasso/soliguide/compare/v4.96.0...v4.97.0) (2025-07-30)
+
+
+### Bug Fixes
+
+* **api:** disable no-new lint rule for URL validation [#801](https://github.com/solinumasso/soliguide/issues/801) ([f278e7f](https://github.com/solinumasso/soliguide/commit/f278e7f901b5d83bd727bdc4a6868161748bec30))
+* **api:** fix crous pdl in campaign migration [#755](https://github.com/solinumasso/soliguide/issues/755) ([a2dc5e2](https://github.com/solinumasso/soliguide/commit/a2dc5e22cf5d56fb6f6be07972921e1782783a99))
+* **design-system:** disable es-lint no inner declarations rule [#788](https://github.com/solinumasso/soliguide/issues/788) ([c2fce3d](https://github.com/solinumasso/soliguide/commit/c2fce3d58feac8cb7242d716e67aadbfcc1a249f))
+* **frontend:** use consistent boolean logic [#794](https://github.com/solinumasso/soliguide/issues/794) ([9c539a1](https://github.com/solinumasso/soliguide/commit/9c539a128d9ee9c3bd9a8345da983761cb1ab72a))
+* redo crf fix that didn't work first time [#755](https://github.com/solinumasso/soliguide/issues/755) ([881657c](https://github.com/solinumasso/soliguide/commit/881657c9034fc96c6c7acc6b26c2a0dd32de2acc))
+
+
+### Features
+
+* add pro account page embed and tracking for food dashboard [#747](https://github.com/solinumasso/soliguide/issues/747) ([#771](https://github.com/solinumasso/soliguide/issues/771)) ([9d16d34](https://github.com/solinumasso/soliguide/commit/9d16d34ad0dfaefd34ff93390ecbdc8a369123e8))
+* add solidata demo food access page [#747](https://github.com/solinumasso/soliguide/issues/747) ([4f54b06](https://github.com/solinumasso/soliguide/commit/4f54b067bec3ffcc56850c1ba62b58bc0159ca5a))
+* create url validator [#625](https://github.com/solinumasso/soliguide/issues/625) ([1dbca8b](https://github.com/solinumasso/soliguide/commit/1dbca8b14dc5b09a6d08c48fe1d6068b3d66abf2))
+* **frontend:** allow ç in website url [#625](https://github.com/solinumasso/soliguide/issues/625) ([a738475](https://github.com/solinumasso/soliguide/commit/a73847552e0c191d97ab23762ac94336efcc653a))
+* only disable french places [#673](https://github.com/solinumasso/soliguide/issues/673) ([4a871eb](https://github.com/solinumasso/soliguide/commit/4a871ebfcd6c51a14d9f5d08550cf94926a0b3bc))
+* **soliguide-font-generator:** new icon system [#537](https://github.com/solinumasso/soliguide/issues/537) ([fba21c1](https://github.com/solinumasso/soliguide/commit/fba21c1ae2e160b94ab1dd456652bf1de295bd9b))
+* **web-app:** display campaign banner place/searchResul [#137](https://github.com/solinumasso/soliguide/issues/137) [#92](https://github.com/solinumasso/soliguide/issues/92) ([d494f1c](https://github.com/solinumasso/soliguide/commit/d494f1c86dd1b907155550a555778af82a5d5d9b))
+
+
+### Reverts
+
+* Revert "feat(common): new icon system [#537](https://github.com/solinumasso/soliguide/issues/537)" ([51c9621](https://github.com/solinumasso/soliguide/commit/51c9621e58e9f0a69ca2dcdfde565b77544d5960))
+
 # [4.96.0](https://github.com/solinumasso/soliguide/compare/v4.95.0...v4.96.0) (2025-07-25)
 
 
