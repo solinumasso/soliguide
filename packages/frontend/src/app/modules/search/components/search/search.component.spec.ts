@@ -96,7 +96,7 @@ describe("SearchComponent", () => {
     searchService = TestBed.inject(SearchService);
     jest
       .spyOn(searchService, "launchSearch")
-      .mockReturnValue(of({ places: [ONLINE_PLACE_MOCK], nbResults: 1 }));
+      .mockReturnValue(of({ results: [ONLINE_PLACE_MOCK], nbResults: 1 }));
 
     locationService = TestBed.inject(LocationService);
     jest.spyOn(locationService, "locationAutoComplete").mockReturnValue(

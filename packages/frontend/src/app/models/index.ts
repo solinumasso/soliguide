@@ -23,7 +23,6 @@ export * from "./_general";
 export * from "./api";
 export * from "./campaign";
 export * from "./categories";
-export * from "./manage-search";
 export * from "./place";
 export * from "./place-changes";
 export * from "./search-places";

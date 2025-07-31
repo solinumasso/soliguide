@@ -21,9 +21,8 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-import { NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbPaginationModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateModule } from "@ngx-translate/core";
 
 import { SoligareRoutingModule } from "./soligare-routing.module";
@@ -42,6 +41,7 @@ import { SelectAvailableSourceComponent } from "./components/select-sources/sele
 import { SoligarePreviewComponent } from "./components/soligare-preview/soligare-preview.component";
 import { SearchMapComponent } from "../place/standalone-components/search-map/search-map.component";
 import { DisplayHorairesComponent } from "../place/standalone-components/display-horaires/horaires.component";
+import { SearchCategoryAutocompleteComponent } from "../shared/components/search-category-autocomplete/search-category-autocomplete.component";
 
 @NgModule({
   declarations: [
@@ -62,6 +62,7 @@ import { DisplayHorairesComponent } from "../place/standalone-components/display
     SoligareRoutingModule,
     SearchModule,
     SharedModule,
+    SearchCategoryAutocompleteComponent,
     SearchMapComponent,
     FontAwesomeModule,
     FormsModule,
