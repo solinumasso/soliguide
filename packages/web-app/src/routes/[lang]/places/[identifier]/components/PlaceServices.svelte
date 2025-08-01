@@ -23,6 +23,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import {
     Accordion,
     AccordionGroup,
+    InfoBlock,
     ListItem,
     Tag,
     Text,
@@ -35,12 +36,33 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { CategoryIcon } from '$lib/components';
   import DOMPurify from 'dompurify';
   import Warning from 'svelte-google-materialdesign-icons/Warning_amber.svelte';
-  import type { Service } from '$lib/models/types';
-  import type { DayName } from '@soliguide/common';
+  import type { PlaceTempInfoHoursReady, Service } from '$lib/models/types';
+  import { TempInfoStatus, type DayName } from '@soliguide/common';
   import type { I18nStore } from '$lib/client/types';
+  import { formatDateToLocale } from '$lib/client/date';
+  import { page } from '$app/stores';
 
   export let services: Service[];
   export let currentDay: DayName;
+
+  const getFormatedDates = (info: PlaceTempInfoHoursReady, lang: string) => {
+    const { dateDebut, dateFin } = info;
+
+    if (!dateDebut) {
+      return '';
+    }
+
+    if (!dateFin) {
+      return $i18n.t('SERVICE_TEMPORARY_CLOSED_START_DATE_ONLY', {
+        startDate: formatDateToLocale(dateDebut, lang)
+      });
+    }
+
+    return $i18n.t('SERVICE_TEMPORARY_CLOSED', {
+      startDate: formatDateToLocale(dateDebut, lang),
+      endDate: formatDateToLocale(dateFin, lang)
+    });
+  };
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
 </script>
@@ -53,8 +75,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <div class="AccordionGroup">
     <AccordionGroup>
       <div class="services">
-        {#each services as { category, description, hours, info, saturation }, index}
-          {#if description || hours || info.length || saturation}
+        {#each services as { category, description, hours, info, saturation, tempClosure }, index}
+          {#if description || hours || info.length || saturation || tempClosure}
             <section class="service-accordion">
               <Accordion
                 title={$i18n.t(category.toUpperCase())}
@@ -73,6 +95,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                         {$i18n.t(saturation.tag.value)}
                       </Tag>
                     </div>
+                  {/if}
+
+                  {#if tempClosure}
+                    <InfoBlock
+                      withIcon={true}
+                      variant={tempClosure.status === TempInfoStatus.CURRENT ? 'error' : 'warning'}
+                      text={getFormatedDates(tempClosure, $page.data.lang)}
+                    ></InfoBlock>
                   {/if}
 
                   {#if description}

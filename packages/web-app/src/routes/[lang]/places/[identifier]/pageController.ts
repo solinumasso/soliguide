@@ -71,6 +71,7 @@ const initialValue: PageState = {
     id: 7,
     info: [],
     instagram: '',
+    lang: 'fr',
     lastUpdate: '',
     name: '',
     onOrientation: false,

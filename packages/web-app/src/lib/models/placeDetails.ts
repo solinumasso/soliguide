@@ -38,7 +38,8 @@ import {
   translatePublics,
   SupportedLanguagesCode,
   PlaceTempInfo,
-  TempInfoStatus
+  TempInfoStatus,
+  BasePlaceTempInfo
 } from '@soliguide/common';
 import {
   computeTodayInfo,
@@ -270,6 +271,30 @@ const buildServiceSaturation = (service: CommonNewPlaceService): { saturation?: 
 };
 
 /**
+ * Transform services close to front ready info
+ */
+const buildServiceTempClosure = (
+  service: CommonNewPlaceService
+): Pick<Service, 'tempClosure'> | null => {
+  if (!service.close.actif || !service.close.dateDebut) return null;
+
+  const serviceClosure = new BasePlaceTempInfo({
+    dateDebut: new Date(service.close.dateDebut),
+    dateFin: service.close?.dateFin ? new Date(service.close.dateFin) : null
+  });
+
+  if (
+    serviceClosure.status !== TempInfoStatus.CURRENT &&
+    serviceClosure.status !== TempInfoStatus.INCOMING
+  )
+    return null;
+
+  return {
+    tempClosure: { ...serviceClosure, hours: null }
+  };
+};
+
+/**
  * Transform services to front ready info
  */
 const buildServices = (
@@ -285,7 +310,8 @@ const buildServices = (
     description: service.description ?? '',
     ...buildServiceHours(service),
     info: buildServiceInfo(service),
-    ...buildServiceSaturation(service)
+    ...buildServiceSaturation(service),
+    ...buildServiceTempClosure(service)
   }));
 };
 
@@ -315,7 +341,10 @@ const buildPlaceDetailsTempInfo = (tempInfo: IPlaceTempInfo): PlaceDetailsTempIn
 /**
  * Transform a place sent by the API to a front ready place
  */
-const buildPlaceDetails = (placeResult: ApiPlace, categorySearched: Categories): PlaceDetails => {
+const buildPlaceDetails = (
+  placeResult: ApiPlace & { lang: string },
+  categorySearched: Categories
+): PlaceDetails => {
   const status = computePlaceOpeningStatus(placeResult);
 
   const onOrientation = Boolean(placeResult.modalities.orientation.checked);
@@ -331,6 +360,7 @@ const buildPlaceDetails = (placeResult: ApiPlace, categorySearched: Categories):
     hours: buildHours(placeResult.newhours, true),
     info: buildPlaceDetailsInfo(placeResult),
     instagram: placeResult.entity.instagram ?? '',
+    lang: placeResult.lang as SupportedLanguagesCode,
     lastUpdate: new Date(placeResult.updatedByUserAt).toISOString(),
     name: placeResult.name,
     onOrientation,
