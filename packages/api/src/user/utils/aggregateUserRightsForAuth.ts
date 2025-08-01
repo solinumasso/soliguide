@@ -22,7 +22,8 @@ import { ApiOrganization, UserRightStatus, UserRole } from "@soliguide/common";
 import { UserPopulateType, UserRight } from "../../_models";
 
 export const aggregateUserRightsForAuth = (
-  user: UserPopulateType
+  user: UserPopulateType,
+  organizationId?: string
 ): {
   role: UserRole;
   places: number[];
@@ -36,12 +37,14 @@ export const aggregateUserRightsForAuth = (
   let role: UserRole = UserRole.READER;
   const places: number[] = [];
   const selectedOrganization: ApiOrganization =
-    user.organizations[user.selectedOrgaIndex];
+    user.organizations?.[user.selectedOrgaIndex];
+
+  const orgId = organizationId || selectedOrganization?.organization_id;
 
   const tmpUserRights = user.userRights.filter(
     (userRight: UserRight) =>
       userRight.status === UserRightStatus.VERIFIED &&
-      userRight.organization_id === selectedOrganization.organization_id
+      userRight.organization_id === orgId
   );
 
   if (tmpUserRights?.length) {
