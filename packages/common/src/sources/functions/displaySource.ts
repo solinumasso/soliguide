@@ -20,24 +20,14 @@
  */
 import { PairingSources } from "../enums";
 import { ApiPlace } from "../../place";
+import { EXTERNAL_UPDATES_ONLY_SOURCES, PAIRING_SOURCES } from "../constants";
 
 export const checkIfSourceMustBeDisplayed = (
   sourceName: string,
   isOrigin: boolean
-): boolean => {
-  switch (sourceName) {
-    case PairingSources.DORA:
-      return isOrigin;
-    case PairingSources.CRF:
-      return true;
-    case PairingSources.ALISOL:
-      return isOrigin;
-    case PairingSources.CROUS_PDL:
-      return true;
-    default:
-      return false;
-  }
-};
+): boolean =>
+  EXTERNAL_UPDATES_ONLY_SOURCES.includes(sourceName as PairingSources) ||
+  (PAIRING_SOURCES.includes(sourceName as PairingSources) && isOrigin);
 
 export const isFromExternalSource = (place: ApiPlace): boolean => {
   if (!place.sources) {

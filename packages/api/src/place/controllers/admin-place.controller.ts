@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import mongoose from "mongoose";
+import mongoose, { FilterQuery } from "mongoose";
 import type { Logger } from "pino";
 
 import {
@@ -35,6 +35,7 @@ import {
   type PlaceSourceId,
   PositionSlugs,
   getPosition,
+  checkIfSourceMustBeDisplayed,
 } from "@soliguide/common";
 
 import {
@@ -868,6 +869,7 @@ export const putSource = async (
   placeChanges: PlaceChanges | null;
   updatedPlace: ModelWithId<ApiPlace>;
 }> => {
+  const update: FilterQuery<ApiPlace> = {};
   const sources: CommonPlaceSource[] = oldPlace.sources ?? [];
 
   const existingSource = sources.find(
@@ -894,11 +896,19 @@ export const putSource = async (
     });
   }
 
+  update.sources = sources;
+
+  if (
+    sources.some((source) =>
+      checkIfSourceMustBeDisplayed(source.name, source.isOrigin)
+    )
+  ) {
+    update[`campaigns.${CAMPAIGN_DEFAULT_NAME}.toUpdate`] = false;
+  }
+
   const updatedPlace = await updatePlaceByPlaceId(
     oldPlace.lieu_id,
-    {
-      sources,
-    },
+    update,
     false,
     oldPlace.status
   );

@@ -21,8 +21,7 @@
 import {
   CAMPAIGN_DEFAULT_NAME,
   CampaignStatus,
-  PAIRING_SOURCES,
-  PairingSources,
+  EXTERNAL_UPDATES_ONLY_SOURCES,
   PlaceStatus,
   PlaceUpdateCampaign,
 } from "@soliguide/common";
@@ -65,17 +64,8 @@ export const up = async (db: Db) => {
   );
 
   const externalSourceOriginFilter = {
-    $or: [
-      { name: PairingSources.CRF },
-      {
-        name: {
-          $in: PAIRING_SOURCES.filter(
-            (source) => source !== PairingSources.CRF
-          ),
-        },
-        isOrigin: true,
-      },
-    ],
+    name: { $nin: EXTERNAL_UPDATES_ONLY_SOURCES },
+    isOrigin: false,
   };
 
   logger.info("[MIGRATION] [RESET] Add 'toUpdate' to places online & offline");
@@ -86,9 +76,7 @@ export const up = async (db: Db) => {
         { sources: { $exists: false } },
         {
           sources: {
-            $not: {
-              $elemMatch: externalSourceOriginFilter,
-            },
+            $elemMatch: externalSourceOriginFilter,
           },
         },
       ],
