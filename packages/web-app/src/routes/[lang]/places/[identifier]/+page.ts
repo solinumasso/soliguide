@@ -24,7 +24,7 @@ import getPlacesService from '$lib/services/placesService';
 import type { PlaceDetailsParams } from '$lib/services/types';
 import { Categories } from '@soliguide/common';
 
-export const load = ({ params, fetch, url }): Promise<PlaceDetails> => {
+export const load = async ({ params, fetch, url }): Promise<PlaceDetails> => {
   const lang = String(params.lang);
   const identifier = String(params.identifier);
 
@@ -35,11 +35,16 @@ export const load = ({ params, fetch, url }): Promise<PlaceDetails> => {
   const sveltekitFetchImpl = wrapSveltekitFetch<any>(fetch);
   const placesService = getPlacesService(sveltekitFetchImpl);
 
-  return placesService.placeDetails(
+  const details = await placesService.placeDetails(
     {
       lang,
       identifier
     } as PlaceDetailsParams,
     categorySearched
   );
+
+  return {
+    ...details,
+    lang
+  };
 };

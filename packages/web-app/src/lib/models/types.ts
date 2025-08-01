@@ -162,6 +162,7 @@ export interface Service {
   hours?: PlaceDetailsOpeningHours;
   info: PlaceDetailsInfo[];
   saturation?: Saturation;
+  tempClosure?: PlaceTempInfoHoursReady;
 }
 
 export interface PlaceDetails {
@@ -175,6 +176,7 @@ export interface PlaceDetails {
   hours: PlaceDetailsOpeningHours;
   info: PlaceDetailsInfo[];
   instagram: string;
+  lang: string;
   lastUpdate: string;
   name: string;
   onOrientation: boolean;
