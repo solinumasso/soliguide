@@ -162,6 +162,7 @@ export interface Service {
   hours?: PlaceDetailsOpeningHours;
   info: PlaceDetailsInfo[];
   saturation?: Saturation;
+  tempClosure?: PlaceTempInfoHoursReady;
 }
 
 export interface PlaceDetails {
