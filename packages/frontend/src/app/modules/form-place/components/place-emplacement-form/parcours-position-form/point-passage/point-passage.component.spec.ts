@@ -19,7 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { APP_BASE_HREF } from "@angular/common";
-import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
@@ -51,7 +51,7 @@ describe("FormPointPassageComponent", () => {
       declarations: [FormPointPassageComponent],
       imports: [ReactiveFormsModule, TranslateModule.forRoot({})],
       providers: [{ provide: APP_BASE_HREF, useValue: "/" }],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   }));
 
