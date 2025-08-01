@@ -23,6 +23,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import {
     Accordion,
     AccordionGroup,
+    InfoBlock,
     ListItem,
     Tag,
     Text,
@@ -35,14 +36,36 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { CategoryIcon } from '$lib/components';
   import DOMPurify from 'dompurify';
   import Warning from 'svelte-google-materialdesign-icons/Warning_amber.svelte';
-  import type { Service } from '$lib/models/types';
-  import type { DayName } from '@soliguide/common';
+  import type { PlaceTempInfoHoursReady, Service } from '$lib/models/types';
+  import { TempInfoStatus, type DayName } from '@soliguide/common';
   import type { I18nStore } from '$lib/client/types';
+  import { formatDateToLocale } from '$lib/client/date';
+  import { page } from '$app/stores';
+
+  const i18n: I18nStore = getContext(I18N_CTX_KEY);
 
   export let services: Service[];
   export let currentDay: DayName;
+  // eslint-disable-next-line prefer-destructuring
+  $: lang = $page.params.lang;
 
-  const i18n: I18nStore = getContext(I18N_CTX_KEY);
+  const getFormatedDates = (info: PlaceTempInfoHoursReady, lang: string) => {
+    const { dateDebut, dateFin, status } = info;
+    if (!dateDebut) return '';
+
+    const startDate = formatDateToLocale(dateDebut, lang);
+    const endDate = dateFin ? formatDateToLocale(dateFin, lang) : null;
+
+    if (!endDate) {
+      return status === TempInfoStatus.CURRENT
+        ? $i18n.t('SERVICE_TEMPORARY_CLOSED_START_DATE_ONLY', { startDate })
+        : $i18n.t('SERVICE_TEMPORARY_CLOSED_START_DATE_ONLY_INCOMING', { startDate });
+    }
+
+    return status === TempInfoStatus.CURRENT
+      ? $i18n.t('SERVICE_TEMPORARY_CLOSED', { startDate, endDate })
+      : $i18n.t('SERVICE_TEMPORARY_CLOSED_INCOMING', { startDate, endDate });
+  };
 </script>
 
 <PlaceDetailsSection>
@@ -53,8 +76,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <div class="AccordionGroup">
     <AccordionGroup>
       <div class="services">
-        {#each services as { category, description, hours, info, saturation }, index}
-          {#if description || hours || info.length || saturation}
+        {#each services as { category, description, hours, info, saturation, tempClosure }, index}
+          {#if description || hours || info.length || saturation || tempClosure}
             <section class="service-accordion">
               <Accordion
                 title={$i18n.t(category.toUpperCase())}
@@ -73,6 +96,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                         {$i18n.t(saturation.tag.value)}
                       </Tag>
                     </div>
+                  {/if}
+
+                  {#if tempClosure}
+                    <InfoBlock
+                      withIcon={true}
+                      variant={tempClosure.status === TempInfoStatus.CURRENT ? 'error' : 'warning'}
+                      text={getFormatedDates(tempClosure, lang)}
+                    ></InfoBlock>
                   {/if}
 
                   {#if description}
