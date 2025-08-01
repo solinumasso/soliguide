@@ -19,12 +19,14 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import {
+  ApiPlace,
   CAMPAIGN_DEFAULT_NAME,
-  PlaceStatus,
   CAMPAIGN_LIST,
+  EXTERNAL_UPDATES_ONLY_SOURCES,
+  PlaceStatus,
 } from "@soliguide/common";
 
-import mongoose from "mongoose";
+import mongoose, { FilterQuery } from "mongoose";
 
 import { PlaceModel } from "../../place/models/place.model";
 
@@ -36,9 +38,19 @@ export const findPlacesToExclude = async (): Promise<number[]> => {
   const placesIds = await PlaceModel.aggregate([
     {
       $match: {
-        status: {
-          $in: [PlaceStatus.PERMANENTLY_CLOSED, PlaceStatus.DRAFT],
-        },
+        $or: [
+          {
+            status: {
+              $in: [PlaceStatus.PERMANENTLY_CLOSED, PlaceStatus.DRAFT],
+            },
+          },
+          {
+            $or: [
+              { "sources.name": { $in: EXTERNAL_UPDATES_ONLY_SOURCES } },
+              { "sources.isOrigin": true },
+            ],
+          },
+        ],
       },
     },
     {
@@ -58,13 +70,18 @@ export const findPlacesToExclude = async (): Promise<number[]> => {
  * @returns Places to update during a campaign
  */
 export const findPlacesToUpdateWithParams = async (
-  params: any | null = null
+  params: FilterQuery<ApiPlace> | null = null
 ): Promise<number[]> => {
   const runningCampaign = CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME];
   // Specific criteria to search which places need to be updated
   const campaignParams = runningCampaign.placesToUpdate;
   // List of places which don't need to be updated
   const placesToExclude = await findPlacesToExclude();
+
+  console.log(
+    "is lieu_id in place to exclude",
+    placesToExclude.includes(params?.lieu_id)
+  );
 
   const placesIds = await PlaceModel.aggregate([
     {

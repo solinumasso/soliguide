@@ -22,3 +22,8 @@
 import { PairingSources } from "../enums";
 
 export const PAIRING_SOURCES = Object.values(PairingSources);
+
+export const EXTERNAL_UPDATES_ONLY_SOURCES = [
+  PairingSources.CRF,
+  PairingSources.CROUS_PDL,
+];
