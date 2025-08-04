@@ -47,34 +47,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-4 col-lg-4 py-3">
-        <div class="row align-items-center">
-          <div class="col-md-12 col-4 text-center">
-            <img
-              aria-hidden="true"
-              class="img-fluid p-1"
-              src="/assets/images/homepage/france-map.svg"
-              alt=""
-              loading="lazy"
-            />
-          </div>
-          <div class="col-md-12 col-8 text-md-center text-sm-start">
-            <p class="my-2">
-              <span
-                class="fs-2 fw-bolder"
-                [options]="countUpOptions"
-                [countUp]="
-                  THEME_CONFIGURATION.territoriesStats.territoriesPresent
-                "
-              >
-              </span>
-              <span class="fs-5 d-block">
-                {{ "HOME_TERRITOIRES_COUVERTS" | translate }}</span
-              >
-            </p>
-          </div>
-        </div>
-      </div>
       <div class="col-12 col-md-4 col-lg-4">
         <div class="row align-items-center">
           <div class="col-md-12 col-4 text-center">
@@ -99,38 +71,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             </p>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="row py-2 align-items-center justify-content-md-center">
-      <div class="col-md-8 text-center">
-        <p class="fs-5 fw-bolder">
-          {{ "SERVICE_AVAILABLE" | translate }}
-          <a
-            [routerLink]="[routePrefix, 'search', 'ile-de-france']"
-            (click)="captureEvent('click-search-ile-de-france')"
-            >Île-de-France</a
-          >,
-          <a
-            [routerLink]="[routePrefix, 'search', 'bas-rhin']"
-            (click)="captureEvent('click-search-bas-rhin')"
-            >Bas-Rhin</a
-          >,
-          <a
-            [routerLink]="[routePrefix, 'search', 'loire-atlantique']"
-            (click)="captureEvent('click-search-loire-atlantique')"
-            >Loire-Atlantique</a
-          >,
-          <a
-            [routerLink]="[routePrefix, 'search', 'alpes-maritimes']"
-            (click)="captureEvent('click-search-alpes-maritimes')"
-            >Alpes-Maritimes</a
-          >,
-          <a
-            [routerLink]="[routePrefix, 'search', 'gironde']"
-            (click)="captureEvent('click-search-gironde')"
-            >Gironde</a
-          >, etc.
-        </p>
       </div>
     </div>
   </div>

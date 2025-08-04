@@ -175,7 +175,7 @@ handle {
 	map {header.X-Forwarded-Host} {soliguide_theme} {soliguide_language} {soliguide_title} {soliguide_description} {
 		{$SOLIGUIA_AD_DOMAIN} soliguia_ad ca "Soliguia, la guía de la solidaridad en línea" "Soliguia te permite encontrar ayuda alimentaria, asistencia social, asociaciones y numerosos servicios solidarios gratuitos."
 		{$SOLIGUIA_ES_DOMAIN} soliguia_es ca "Soliguia, la guía de la solidaridad en línea" "Soliguia te permite encontrar ayuda alimentaria, asistencia social, asociaciones y numerosos servicios solidarios gratuitos."
-		default soliguide_fr fr "Soliguide, le guide de la solidarité en ligne" "Soliguide vous permet de trouver une aide alimentaire, une assistance sociale, des associations et de nombreux services solidaires gratuits."
+		default soliguide_fr fr "Soliguide - Itinéraire vers la solidarité" "Soliguide vous indique où trouver les services dont vous avez besoin, au plus proche de vous. Gratuit et anonyme, disponible en plusieurs langues."
 	}
 	log_append soliguide_theme {soliguide_theme}
 	log_append soliguide_language {soliguide_language}

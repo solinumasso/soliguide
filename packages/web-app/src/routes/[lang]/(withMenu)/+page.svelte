@@ -184,7 +184,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     }
 
     .categories-tiles {
-      margin-top: var(--spacing3XL);
+      margin-top: var(--spacingXL);
       display: flex;
       flex-direction: column;
       gap: var(--spacingLG);
