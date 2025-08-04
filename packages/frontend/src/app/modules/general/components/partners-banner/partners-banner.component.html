@@ -1,0 +1,76 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<section id="logos-partners" *ngIf="logos.length" class="bg-white py-4">
+  <div class="container px-4">
+    <div class="row g-5 align-items-start">
+      <div class="col-12 col-lg-7 pe-lg-5" *ngIf="getDeployerLogos().length">
+        <div class="section">
+          <h3 class="text-primary mb-3">
+            {{ "SOLIGUIA_INITIATIVE" | translate }}
+          </h3>
+          <div class="row g-4 align-items-center">
+            <div class="col-6 col-md-4" *ngFor="let logo of getDeployerLogos()">
+              <a
+                [href]="logo.link"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="logo-link"
+                [attr.aria-label]="'Visit ' + logo.alt + ' website'"
+              >
+                <img
+                  [src]="logo.path"
+                  [alt]="logo.alt"
+                  class="logo-img w-100"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-5 ps-lg-5" *ngIf="getFunderLogos().length">
+        <div class="section">
+          <h3 class="text-primary mb-3">
+            {{ "WITH_THE_SUPPORT_OF" | translate }}
+          </h3>
+          <div class="d-flex flex-column gap-4">
+            <a
+              *ngFor="let logo of getFunderLogos()"
+              [href]="logo.link"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="logo-link"
+              [attr.aria-label]="'Visit ' + logo.alt + ' website'"
+            >
+              <img [src]="logo.path" [alt]="logo.alt" class="logo-img" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <p class="text-primary mb-0">
+          {{ "LOGOS_SOLIGUIA" | translate }}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

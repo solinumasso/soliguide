@@ -18,18 +18,19 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-//@index('./*', f => `export * from '${f.path}'`)
-export * from "./BOTS_LIST_REGEXP.const";
-export * from "./BOTS_LIST.const";
-export * from "./ckeditor";
-export * from "./DEFAULT_MODAL_OPTIONS.const";
-export * from "./FA_ICONS.const";
-export * from "./HOLIDAYS.const";
-export * from "./IS_BOT.const";
-export * from "./IS_WEBVIEW_APP.const";
-export * from "./LANGUAGE_FOR_PRACTICAL_FILES.const";
-export * from "./LOGOS_TERRITORIES.const";
-export * from "./MIN_DATE_TODAY.const";
-export * from "./SOLIDATA_DASHBOARD_REDIRECTIONS.const";
-export * from "./INTERNATIONAL_PARTNERS.const";
-export * from "./VALID_HOURS.const";
+import { CountryCodes } from "@soliguide/common";
+import {
+  ALL_LOGOS,
+  LOGOS_BY_COUNTRY,
+  FUNDERS_BY_COUNTRY,
+  LogoWithLink,
+} from "../constants";
+
+export function getLogosForCountry(country: CountryCodes): LogoWithLink[] {
+  const logoNames = LOGOS_BY_COUNTRY[country] ?? [];
+  return ALL_LOGOS.filter((logo) => logoNames.includes(logo.alt));
+}
+
+export function getFunderNamesForCountry(country: CountryCodes): string[] {
+  return FUNDERS_BY_COUNTRY[country] ?? [];
+}
