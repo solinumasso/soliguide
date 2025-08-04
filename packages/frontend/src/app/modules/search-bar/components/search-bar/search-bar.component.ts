@@ -35,9 +35,6 @@ export class SearchBarComponent {
   // Selected category
   @Output()
   public readonly updateCategory = new EventEmitter<void>();
-  // Searched term
-  @Output()
-  public readonly updateSearchTerm = new EventEmitter<void>();
   // Searched location
   @Output()
   public readonly updateLocation =

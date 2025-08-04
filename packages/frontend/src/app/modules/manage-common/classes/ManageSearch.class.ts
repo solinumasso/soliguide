@@ -25,8 +25,8 @@ import {
 } from "@soliguide/common";
 
 import { initSearchAdminTerritory } from "../../../shared";
-import { THEME_CONFIGURATION } from "../../themes";
-import type { User } from "../../../modules/users/classes";
+import { THEME_CONFIGURATION } from "../../../models/themes";
+import type { User } from "../../users/classes";
 
 export class ManageSearch {
   public options: ManageSearchOptions;

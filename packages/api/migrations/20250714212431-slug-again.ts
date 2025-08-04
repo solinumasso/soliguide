@@ -21,31 +21,22 @@
 import { Db } from "mongodb";
 
 import { logger } from "../src/general/logger";
-import { CampaignName } from "@soliguide/common/dist/cjs/campaign/enums/CampaignName.enum";
+import { getSeoSlug } from "@soliguide/common";
 
-const message = "Updtate IDF mail and name contact in campaign templates";
-
-export const down = async () => {
-  logger.info(`[ROLLBACK] - ${message}`);
-};
+const message = "Slug again suggestions";
 
 export const up = async (db: Db) => {
   logger.info(`[MIGRATION] - ${message}`);
+  const collection = db.collection("search_suggestions");
+  const documents = await collection.find({}).toArray();
 
-  const idfDepartments = ["75", "77", "78", "91", "92", "93", "94", "95"];
+  for (const doc of documents) {
+    const newSlug = getSeoSlug(doc.slug || doc.label || "");
+    await collection.updateOne({ _id: doc._id }, { $set: { slug: newSlug } });
+  }
+};
 
-  await db.collection("emailsTemplates").updateMany(
-    {
-      campaign: CampaignName.MID_YEAR_2025,
-      territory: { $in: idfDepartments },
-    },
-    {
-      $set: {
-        senderEmail: "soliguide.idf@solinum.org",
-        senderName: "Soliguide Île-de-France",
-      },
-    }
-  );
-
-  logger.info(`[MIGRATION] - IDF mail and name contact updated in templates`);
+export const down = async (db: Db) => {
+  logger.info(`[ROLLBACK] - ${message}`);
+  await db.collection("lieux").findOne();
 };
