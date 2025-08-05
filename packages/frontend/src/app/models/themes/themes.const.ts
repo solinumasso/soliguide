@@ -104,7 +104,7 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
       demoFoodAccess: {
         label: "Démo – Analyse de l'accès à l'alimentation",
         dashboardUrl:
-          "https://superset.solinum.org/superset/dashboard/demo_acces_alimentation/",
+          "https://superset.solinum.org/superset/dashboard/demo_acces_alimentation/?standalone=2",
         seoUrl: "demo_acces_alimentation",
       },
     },
