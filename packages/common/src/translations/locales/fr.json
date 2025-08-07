@@ -1421,7 +1421,7 @@
   "PLACE_CHANGES_SECTION_EMPLACEMENT": "Emplacement",
   "PLACE_CHANGES_SECTION_GENERALINFO": "Informations générales",
   "PLACE_CHANGES_SECTION_HOURS": "Horaires d'ouverture",
-  "PLACE_CHANGES_SECTION_MODALITIES": "Modalités d'accès à {{ place.name }}",
+  "PLACE_CHANGES_SECTION_MODALITIES": "Modalités d'accès à {{ placeName }}",
   "PLACE_CHANGES_SECTION_NEW": "Création de la fiche",
   "PLACE_CHANGES_SECTION_PHOTOS": "Photos",
   "PLACE_CHANGES_SECTION_PLACE": "Fiche entière",

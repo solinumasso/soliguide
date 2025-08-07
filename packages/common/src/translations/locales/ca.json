@@ -1421,7 +1421,7 @@
   "PLACE_CHANGES_SECTION_EMPLACEMENT": "Ubicació",
   "PLACE_CHANGES_SECTION_GENERALINFO": "Informació general",
   "PLACE_CHANGES_SECTION_HOURS": "Horari d'obertura",
-  "PLACE_CHANGES_SECTION_MODALITIES": "Condicions d'accés a {{ place.name }}",
+  "PLACE_CHANGES_SECTION_MODALITIES": "Modalitats d'accés a {{ placeName }}",
   "PLACE_CHANGES_SECTION_NEW": "Creació del fitxer",
   "PLACE_CHANGES_SECTION_PHOTOS": "Fotos",
   "PLACE_CHANGES_SECTION_PLACE": "Fitxa sencera",
