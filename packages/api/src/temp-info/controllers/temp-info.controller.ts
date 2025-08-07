@@ -205,8 +205,9 @@ export const deleteTempInfo = async (
     userForLogs
   );
 
-  await deleteTempInfoTranslatedFields(tempInfoToDelete[0], updatedPlace);
-
+  if (tempInfoType !== TempInfoType.MESSAGE) {
+    await deleteTempInfoTranslatedFields(tempInfoToDelete[0], updatedPlace);
+  }
   const tempInfo = await getTempInfoByType(tempInfoType, updatedPlace);
 
   return { place: updatedPlace, tempInfo };
