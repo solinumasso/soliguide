@@ -46,28 +46,30 @@ export class SolidataComponent implements OnInit {
   }
 
   ngOnInit() {
-    const superset = this.route.snapshot.paramMap.get("superset");
+    this.route.paramMap.subscribe((params) => {
+      const superset = params.get("superset");
 
-    this.authService.isAuth().subscribe((isAuthenticated) => {
-      if (!superset) return;
+      this.authService.isAuth().subscribe((isAuthenticated) => {
+        if (!superset) return;
 
-      if (isAuthenticated && SOLIDATA_DASHBOARD_REDIRECTIONS[superset]) {
-        this.router.navigate([
-          this.routePrefix,
-          ...SOLIDATA_DASHBOARD_REDIRECTIONS[superset],
-        ]);
-        return;
-      }
+        if (isAuthenticated && SOLIDATA_DASHBOARD_REDIRECTIONS[superset]) {
+          this.router.navigate([
+            this.routePrefix,
+            ...SOLIDATA_DASHBOARD_REDIRECTIONS[superset],
+          ]);
+          return;
+        }
 
-      const supersetData = Object.values(
-        THEME_CONFIGURATION.solidata || {}
-      ).find((data) => data.seoUrl === superset);
+        const supersetData = Object.values(
+          THEME_CONFIGURATION.solidata || {}
+        ).find((data) => data.seoUrl === superset);
 
-      if (supersetData?.dashboardUrl) {
-        this.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-          supersetData.dashboardUrl
-        );
-      }
+        if (supersetData?.dashboardUrl) {
+          this.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+            supersetData.dashboardUrl
+          );
+        }
+      });
     });
   }
 }

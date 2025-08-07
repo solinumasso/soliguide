@@ -18,23 +18,19 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { PairingSources } from "../enums";
-import { ApiPlace } from "../../place";
-import { EXTERNAL_UPDATES_ONLY_SOURCES, PAIRING_SOURCES } from "../constants";
+import { CountryCodes } from "@soliguide/common";
+import {
+  ALL_LOGOS,
+  LOGOS_BY_COUNTRY,
+  FUNDERS_BY_COUNTRY,
+  LogoWithLink,
+} from "../constants";
 
-export const checkIfSourceMustBeDisplayed = (
-  sourceName: string,
-  isOrigin: boolean
-): boolean =>
-  EXTERNAL_UPDATES_ONLY_SOURCES.includes(sourceName as PairingSources) ||
-  (PAIRING_SOURCES.includes(sourceName as PairingSources) && isOrigin);
+export function getLogosForCountry(country: CountryCodes): LogoWithLink[] {
+  const logoNames = LOGOS_BY_COUNTRY[country] ?? [];
+  return ALL_LOGOS.filter((logo) => logoNames.includes(logo.alt));
+}
 
-export const isFromExternalSource = (place: ApiPlace): boolean => {
-  if (!place.sources) {
-    return false;
-  }
-
-  return place.sources.some((source) =>
-    checkIfSourceMustBeDisplayed(source.name, source.isOrigin)
-  );
-};
+export function getFunderNamesForCountry(country: CountryCodes): string[] {
+  return FUNDERS_BY_COUNTRY[country] ?? [];
+}

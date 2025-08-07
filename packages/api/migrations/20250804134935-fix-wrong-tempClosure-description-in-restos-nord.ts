@@ -18,23 +18,25 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { PairingSources } from "../enums";
-import { ApiPlace } from "../../place";
-import { EXTERNAL_UPDATES_ONLY_SOURCES, PAIRING_SOURCES } from "../constants";
+import { Db } from "mongodb";
 
-export const checkIfSourceMustBeDisplayed = (
-  sourceName: string,
-  isOrigin: boolean
-): boolean =>
-  EXTERNAL_UPDATES_ONLY_SOURCES.includes(sourceName as PairingSources) ||
-  (PAIRING_SOURCES.includes(sourceName as PairingSources) && isOrigin);
+import { logger } from "../src/general/logger";
 
-export const isFromExternalSource = (place: ApiPlace): boolean => {
-  if (!place.sources) {
-    return false;
-  }
+const message = "Fix wrong tempClosure description in restos nord";
 
-  return place.sources.some((source) =>
-    checkIfSourceMustBeDisplayed(source.name, source.isOrigin)
-  );
+export const down = () => {
+  logger.info("[ROLLBACK IMPOSSIBLE]");
+};
+
+export const up = async (db: Db) => {
+  logger.info(`[MIGRATION] - ${message}`);
+
+  const result = await db
+    .collection("lieux")
+    .updateMany(
+      { "tempInfos.closure.description": "<p>-----</p>" },
+      { $set: { "tempInfos.closure.description": null } }
+    );
+
+  logger.info(`${result} modified documents`);
 };
