@@ -92,9 +92,10 @@ export const rebuildTranslatedPlace = async (
   translatedFields: ApiTranslatedField[],
   translatedServiceFields: ApiTranslatedField[]
 ): Promise<ApiTranslatedPlace> => {
-  const placePosition = PlaceType.PLACE
-    ? place.position
-    : place.parcours[0]?.position;
+  const placePosition =
+    place.placeType === PlaceType.PLACE
+      ? place.position
+      : place.parcours[0].position;
 
   const oldPlace = await findTranslatedPlace({
     lieu_id: place.lieu_id,
