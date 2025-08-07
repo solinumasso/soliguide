@@ -1421,7 +1421,7 @@
   "PLACE_CHANGES_SECTION_EMPLACEMENT": "Locație",
   "PLACE_CHANGES_SECTION_GENERALINFO": "Informații generale",
   "PLACE_CHANGES_SECTION_HOURS": "Orele de funcționare",
-  "PLACE_CHANGES_SECTION_MODALITIES": "Condiții de acces",
+  "PLACE_CHANGES_SECTION_MODALITIES": "Condiții de acces la {{ placeName }}",
   "PLACE_CHANGES_SECTION_NEW": "Crearea dosarului",
   "PLACE_CHANGES_SECTION_PHOTOS": "Poze",
   "PLACE_CHANGES_SECTION_PLACE": "Foaia intreaga",

@@ -1421,7 +1421,7 @@
   "PLACE_CHANGES_SECTION_EMPLACEMENT": "ځای",
   "PLACE_CHANGES_SECTION_GENERALINFO": "عمومي معلومات",
   "PLACE_CHANGES_SECTION_HOURS": "د عملیاتو ساعتونه",
-  "PLACE_CHANGES_SECTION_MODALITIES": "د لاسرسي شرایط",
+  "PLACE_CHANGES_SECTION_MODALITIES": "{{ placeName }} ته د لاسرسي شرایط",
   "PLACE_CHANGES_SECTION_NEW": "د فایل جوړول",
   "PLACE_CHANGES_SECTION_PHOTOS": "انځورونه",
   "PLACE_CHANGES_SECTION_PLACE": "ټوله پاڼه",

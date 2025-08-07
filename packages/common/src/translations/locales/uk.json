@@ -1421,7 +1421,7 @@
   "PLACE_CHANGES_SECTION_EMPLACEMENT": "Місцезнаходження",
   "PLACE_CHANGES_SECTION_GENERALINFO": "Загальні відомості",
   "PLACE_CHANGES_SECTION_HOURS": "Години роботи",
-  "PLACE_CHANGES_SECTION_MODALITIES": "Умови доступу",
+  "PLACE_CHANGES_SECTION_MODALITIES": "Умови доступу до {{ placeName }}",
   "PLACE_CHANGES_SECTION_NEW": "Створення файлу",
   "PLACE_CHANGES_SECTION_PHOTOS": "Картинки",
   "PLACE_CHANGES_SECTION_PLACE": "Весь аркуш",

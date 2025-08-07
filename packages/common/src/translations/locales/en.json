@@ -1421,7 +1421,7 @@
   "PLACE_CHANGES_SECTION_EMPLACEMENT": "Location",
   "PLACE_CHANGES_SECTION_GENERALINFO": "General information",
   "PLACE_CHANGES_SECTION_HOURS": "Hours of operation",
-  "PLACE_CHANGES_SECTION_MODALITIES": "Access terms",
+  "PLACE_CHANGES_SECTION_MODALITIES": "Access conditions to {{ placeName }}",
   "PLACE_CHANGES_SECTION_NEW": "Creation of the file",
   "PLACE_CHANGES_SECTION_PHOTOS": "Pictures",
   "PLACE_CHANGES_SECTION_PLACE": "Entire sheet",
