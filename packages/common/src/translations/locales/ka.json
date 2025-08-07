@@ -1421,7 +1421,7 @@
   "PLACE_CHANGES_SECTION_EMPLACEMENT": "არანაირი კამპანია",
   "PLACE_CHANGES_SECTION_GENERALINFO": "ზოგადი ინფორმაცია",
   "PLACE_CHANGES_SECTION_HOURS": "Ოპერაციის საათები",
-  "PLACE_CHANGES_SECTION_MODALITIES": "წვდომის პირობები",
+  "PLACE_CHANGES_SECTION_MODALITIES": "{{ placeName }}-ზე წვდომის პირობები",
   "PLACE_CHANGES_SECTION_NEW": "ფაილის შექმნა",
   "PLACE_CHANGES_SECTION_PHOTOS": "სურათები",
   "PLACE_CHANGES_SECTION_PLACE": "მთელი ფურცელი",
