@@ -18,44 +18,55 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Inject, Injectable, Renderer2, RendererFactory2 } from "@angular/core";
-import { DOCUMENT } from "@angular/common";
+import { Injectable } from "@angular/core";
+import { Subscription } from "rxjs";
 
 import { User } from "../../users/classes/user.class";
+import { CookieManagerService } from "./cookie-manager.service";
+import { globalConstants } from "../../../shared/functions";
+import { AuthService } from "../../users/services/auth.service";
 import { THEME_CONFIGURATION } from "../../../models";
 
 @Injectable({
   providedIn: "root",
 })
 export class ChatService {
-  private readonly renderer: Renderer2;
+  private chatHasBeenSetup = false;
+  private readonly subscription: Subscription;
+  public readonly isChatEnabled = !!THEME_CONFIGURATION.chatWebsiteId;
 
   constructor(
-    private readonly rendererFactory: RendererFactory2,
-    @Inject(DOCUMENT) private readonly document: Document
+    private readonly cookieManagerService: CookieManagerService,
+    private readonly authService: AuthService
   ) {
-    this.renderer = this.rendererFactory.createRenderer(null, null);
-  }
+    this.subscription = new Subscription();
 
-  public loadScript(): void {
-    if (THEME_CONFIGURATION.chatWebsiteId != null && !this.isScriptLoaded()) {
-      window["ZENDESK_COOKIE_EXPIRE"] = 15778800; // 15778800 = 6 months
-      const script = this.renderer.createElement("script");
-      this.renderer.setAttribute(
-        script,
-        "src",
-        `https://static.zdassets.com/ekr/snippet.js?key=${THEME_CONFIGURATION.chatWebsiteId}`
-      );
-      this.renderer.setAttribute(script, "id", "ze-snippet");
-      const head = this.document.head;
-      this.renderer.appendChild(head, script);
-    }
-  }
-
-  public isScriptLoaded(): boolean {
-    return !!this.document.querySelector(
-      `script[src='https://static.zdassets.com/ekr/snippet.js?key=${THEME_CONFIGURATION.chatWebsiteId}']`
+    this.subscription.add(
+      this.cookieManagerService.chatConsentSubject.subscribe(
+        (consent: boolean) => {
+          if (consent) {
+            this.setupChat(this.authService.currentUserValue);
+          } else {
+            for (const item of globalConstants.listItems()) {
+              if (item.startsWith("ZD")) {
+                globalConstants.removeItem(item);
+              }
+            }
+            this.resetSession();
+          }
+        }
+      )
     );
+  }
+
+  public hasUserGivenConsent(): boolean {
+    if (this.cookieManagerService.chatConsentSubject.value) {
+      return true;
+    }
+
+    this.cookieManagerService.openCookiesConsentModal();
+
+    return false;
   }
 
   // Delete chat session cookie and refresh page
@@ -63,12 +74,18 @@ export class ChatService {
   public resetSession(): void {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const zE = (window as any).zE as any; // skipcq: JS-0323
+
+    if (!zE) {
+      return;
+    }
+
+    zE("messenger", "hide");
     zE("messenger:set", "cookies", false);
     zE("messenger", "logoutUser");
   }
 
-  public async openChat(user?: User): Promise<void> {
-    if (!this.isScriptLoaded()) {
+  public setupChat = async (user?: User): Promise<void> => {
+    if (!this.hasUserGivenConsent()) {
       return;
     }
 
@@ -88,6 +105,7 @@ export class ChatService {
     }
 
     zE("messenger:set", "cookies", true);
+    zE("messenger", "show");
     zE("messenger", "open");
 
     // Only for pros
@@ -104,5 +122,30 @@ export class ChatService {
         { id: "USER_NOM", value: user.lastname },
       ]);
     }
+
+    this.chatHasBeenSetup = true;
+  };
+
+  public async openChat(user?: User): Promise<void> {
+    if (!this.chatHasBeenSetup) {
+      this.setupChat(user);
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let zE = (window as any).zE as any; // skipcq: JS-0323
+    let counter = 0;
+
+    while (!zE && counter < 3) {
+      await new Promise((f) => setTimeout(f, 1000));
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      zE = (window as any).zE as any; // skipcq: JS-0323
+      counter++;
+    }
+
+    if (!zE) {
+      return;
+    }
+
+    zE("messenger", "open");
   }
 }
