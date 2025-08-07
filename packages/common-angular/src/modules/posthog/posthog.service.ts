@@ -66,11 +66,20 @@ export class PosthogService implements OnDestroy {
       autocapture: false,
       ip: false,
       debug: this.posthogConfig.posthogDebug,
-      disable_session_recording: true,
+      disable_session_recording: false,
       loaded,
       persistence: "memory",
       session_idle_timeout_seconds: 1800, // 30 minutes
       sanitize_properties: processProperties,
+      session_recording: {
+        maskAllInputs: true,
+        maskInputFn: (text, element) => {
+          if (element?.dataset.record === "true") {
+            return text;
+          }
+          return "*".repeat(text.trim().length);
+        },
+      },
     };
   }
 
