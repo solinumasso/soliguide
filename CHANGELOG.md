@@ -1,3 +1,26 @@
+# [4.98.0](https://github.com/solinumasso/soliguide/compare/v4.97.1...v4.98.0) (2025-08-07)
+
+
+### Bug Fixes
+
+* **api:** fix user rights upon invitation [#797](https://github.com/solinumasso/soliguide/issues/797) ([#808](https://github.com/solinumasso/soliguide/issues/808)) ([8ab7c4d](https://github.com/solinumasso/soliguide/commit/8ab7c4d8060cacfe6143baf089a6cc4e91329ae6))
+* **api:** redo crous migration for campaign reset [#755](https://github.com/solinumasso/soliguide/issues/755) ([3bb3c5f](https://github.com/solinumasso/soliguide/commit/3bb3c5fe703a33d62aa99d9740853122122ddab2))
+* disable to update to be set to true for external sources [#755](https://github.com/solinumasso/soliguide/issues/755) ([91b7aa4](https://github.com/solinumasso/soliguide/commit/91b7aa48254a821f1562beacfec44a97fe5b07f5))
+* **frontend:** delete unecessary description in temp closure Restos nord [#835](https://github.com/solinumasso/soliguide/issues/835) ([c8b4e63](https://github.com/solinumasso/soliguide/commit/c8b4e6335f5da7a16341755fe8ab9a9dfb1cb71a))
+* **frontend:** update displayed dashboard on page change [#682](https://github.com/solinumasso/soliguide/issues/682) ([346d44f](https://github.com/solinumasso/soliguide/commit/346d44f2cb08148ccfb789c6bb5320136dbc855a))
+* place name for translation [#837](https://github.com/solinumasso/soliguide/issues/837) ([c355baf](https://github.com/solinumasso/soliguide/commit/c355baf9d376a3b33e995b0628f4864a9ea1b719))
+* use correct dashboard link [#747](https://github.com/solinumasso/soliguide/issues/747) ([a64d962](https://github.com/solinumasso/soliguide/commit/a64d9623ea77f6706437b38d42a196f023738cca))
+
+
+### Features
+
+* add pro account page embed and tracking for food dashboard [#747](https://github.com/solinumasso/soliguide/issues/747) ([#771](https://github.com/solinumasso/soliguide/issues/771)) ([e35fe01](https://github.com/solinumasso/soliguide/commit/e35fe0169d6dbd08fca271c03f7b1608ee9f7e08))
+* add translation key [#837](https://github.com/solinumasso/soliguide/issues/837) ([#834](https://github.com/solinumasso/soliguide/issues/834)) ([d5e4ccd](https://github.com/solinumasso/soliguide/commit/d5e4ccdf9eccb6b1c12c3a4b628784bde8d38333))
+* **frontend:** add poctefa logos [#706](https://github.com/solinumasso/soliguide/issues/706) ([17ed7eb](https://github.com/solinumasso/soliguide/commit/17ed7eb77a444b02c3e7c51aa84275aaa6952eec))
+* update text displayed to new signature de marque [#688](https://github.com/solinumasso/soliguide/issues/688) ([514ef67](https://github.com/solinumasso/soliguide/commit/514ef67014b672e673bfeae6ba438492dd3591d7))
+* **web-app:** change color hours in service [#848](https://github.com/solinumasso/soliguide/issues/848) ([c5dee8f](https://github.com/solinumasso/soliguide/commit/c5dee8ffbba38f030f08ecfba230d69457ce9918))
+* **web-app:** show temporary closure banner into services [#399](https://github.com/solinumasso/soliguide/issues/399) ([1994050](https://github.com/solinumasso/soliguide/commit/1994050b47346b33c27bbcd48d65d1137f4ac497))
+
 ## [4.97.1](https://github.com/solinumasso/soliguide/compare/v4.97.0...v4.97.1) (2025-07-31)
 
 
