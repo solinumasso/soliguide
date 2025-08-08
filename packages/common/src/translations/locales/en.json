@@ -344,6 +344,7 @@
   "CONTACT": "Contact",
   "CONTACTS": "Professional contacts",
   "CONTACTS_FOR": "Contacts of {{ placeName }}",
+  "CONTACTS_LOADING": "Loading contacts",
   "CONTACTS_ONLY_VISIBLE_BY_PROFESSIONAL_ACCOUNTS": "These contacts will only be visible to solidarity professionals and volunteers with an account on {{ brandName }}.",
   "CONTACT_AND_INFO": "Contact & Practical information",
   "CONTACT_EMAIL": "Your email",

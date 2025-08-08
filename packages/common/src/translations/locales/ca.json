@@ -344,6 +344,7 @@
   "CONTACT": "Contacte",
   "CONTACTS": "Contactes professionals",
   "CONTACTS_FOR": "Contactes de {{ placeName }}",
+  "CONTACTS_LOADING": "S'estan carregant els contactes",
   "CONTACTS_ONLY_VISIBLE_BY_PROFESSIONAL_ACCOUNTS": "Aquests contactes només els podran veure els professionals i voluntaris/àries d'acció social amb compte a {{ brandName }}.",
   "CONTACT_AND_INFO": "Contacte i informació pràctica",
   "CONTACT_EMAIL": "El teu correu electrònic",

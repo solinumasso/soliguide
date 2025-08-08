@@ -344,6 +344,7 @@
   "CONTACT": "Контакт",
   "CONTACTS": "Профессиональные контакты",
   "CONTACTS_FOR": "Контакты {{ placeName }}",
+  "CONTACTS_LOADING": "Загрузка контактов",
   "CONTACTS_ONLY_VISIBLE_BY_PROFESSIONAL_ACCOUNTS": "Эти контакты будут видны только профессионалам солидарности и волонтерам, имеющим учетную запись на {{ brandName }}.",
   "CONTACT_AND_INFO": "Контактная и практическая информация",
   "CONTACT_EMAIL": "Ваш адрес электронной почты",
