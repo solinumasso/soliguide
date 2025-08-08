@@ -344,6 +344,7 @@
   "CONTACT": "إتصال",
   "CONTACTS": "اتصالات مهنية",
   "CONTACTS_FOR": "جهات اتصال {{ placeName }}",
+  "CONTACTS_LOADING": "تحميل جهات الاتصال",
   "CONTACTS_ONLY_VISIBLE_BY_PROFESSIONAL_ACCOUNTS": "ستكون جهات الاتصال هذه مرئية فقط للمهنيين والمتطوعين المتضامنين الذين لديهم حساب على {{ brandName }}.",
   "CONTACT_AND_INFO": "معلومات الاتصال والعملية",
   "CONTACT_EMAIL": "بريدك الإلكتروني",

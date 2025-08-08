@@ -344,6 +344,7 @@
   "CONTACT": "اړیکه",
   "CONTACTS": "مسلکي اړیکې",
   "CONTACTS_FOR": "د {{ placeName }} اړیکې",
+  "CONTACTS_LOADING": "اړیکې بارول کیږي",
   "CONTACTS_ONLY_VISIBLE_BY_PROFESSIONAL_ACCOUNTS": "دا لینکونه به یوازې د {{ brandName }} حساب سره تړلي مسلکي کسانو او رضاکارانو ته ښکاره شي.",
   "CONTACT_AND_INFO": "اړیکه او عملي معلومات",
   "CONTACT_EMAIL": "ستا برېښنالیک",

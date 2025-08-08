@@ -344,6 +344,7 @@
   "CONTACT": "Контакти",
   "CONTACTS": "ділові контакти",
   "CONTACTS_FOR": "Контакти {{ placeName }}",
+  "CONTACTS_LOADING": "Завантаження контактів",
   "CONTACTS_ONLY_VISIBLE_BY_PROFESSIONAL_ACCOUNTS": "Ці контакти будуть видимі лише для професіоналів із солідарності та волонтерів із обліковим записом на {{ brandName }}.",
   "CONTACT_AND_INFO": "Контактна та практична інформація",
   "CONTACT_EMAIL": "Твій емейл",
