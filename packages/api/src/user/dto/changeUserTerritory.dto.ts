@@ -19,34 +19,30 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { body } from "express-validator";
-
+import { CHECK_STRING_NULL } from "../../config/expressValidator.config";
 import { AnyDepartmentCode } from "@soliguide/common";
 
-import { CHECK_STRING_NULL } from "../../config/expressValidator.config";
-import { countryDto } from "./country.dto";
-import { ExpressRequest } from "../../_models";
-import { checkRightsForTerritories } from "../functions/check-rights-for-territories";
-
-export const territoriesDto = [
+export const changeUserTerritoryDto = [
   body("territories")
     .if(body("territories").exists(CHECK_STRING_NULL))
     .isArray()
-    .custom((territories: AnyDepartmentCode[], { req }) => {
-      return checkRightsForTerritories(territories, req as ExpressRequest);
+    .withMessage("Territories must be an array")
+    .custom((territories) => {
+      for (const territory of territories) {
+        if (typeof territory !== "string") {
+          throw new Error("INVALID_TERRITORY_FORMAT");
+        }
+      }
+      return true;
     })
-    .customSanitizer((territories: AnyDepartmentCode) => {
+    .customSanitizer((territories: AnyDepartmentCode[]) => {
       return [...new Set(territories)];
     }),
 
   body("areas.*.departments")
     .if(body("areas.*.departments").exists(CHECK_STRING_NULL))
     .isArray()
-    .custom((departments: AnyDepartmentCode[], { req }) => {
-      return checkRightsForTerritories(departments, req as ExpressRequest);
-    })
     .customSanitizer((departments: AnyDepartmentCode[]) => {
       return [...new Set(departments)];
     }),
-
-  ...countryDto,
 ];
