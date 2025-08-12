@@ -51,6 +51,7 @@ import {
   trackSearchPlaces,
   logSearchQuery,
   handleLanguage,
+  overrideLocationWithAreasInfo,
 } from "../../middleware";
 
 import { getTranslatedPlacesForSearch } from "../../translations/controllers/translation.controller";
@@ -267,6 +268,7 @@ router.post(
       res.status(500).json({ message: "SEARCH_ERROR" });
     }
   },
+  overrideLocationWithAreasInfo,
   logSearchQuery,
   trackSearchPlaces
 );

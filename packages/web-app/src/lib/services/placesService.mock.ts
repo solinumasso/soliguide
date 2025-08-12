@@ -22,6 +22,7 @@ import type { PlaceDetails, SearchResult } from '$lib/models/types';
 import {
   Categories,
   CountryCodes,
+  FR_DEPARTMENT_CODES,
   PlaceClosedHolidays,
   PlaceOpeningStatus
 } from '@soliguide/common';
@@ -47,6 +48,18 @@ export const searchResultMock: SearchResult = {
         orientation: false,
         campaign: null
       },
+      dataForLogs: {
+        id: '169',
+        lieuId: 169,
+        position: {
+          country: CountryCodes.FR,
+          department: '75',
+          departmentCode: FR_DEPARTMENT_CODES['75'],
+          distance: -1,
+          region: 'Île-de-France',
+          regionCode: 'IDF'
+        }
+      },
       distance: -1,
       id: 169,
       name: 'Restos du Coeur - Camion de Paris 5e',
@@ -64,6 +77,18 @@ export const searchResultMock: SearchResult = {
         holidays: PlaceClosedHolidays.UNKNOWN,
         orientation: false,
         campaign: null
+      },
+      dataForLogs: {
+        id: '34120',
+        lieuId: 34120,
+        position: {
+          country: CountryCodes.FR,
+          department: '75',
+          departmentCode: FR_DEPARTMENT_CODES['75'],
+          distance: -1,
+          region: 'Île-de-France',
+          regionCode: 'IDF'
+        }
       },
       distance: -1,
       id: 34120,
@@ -97,6 +122,18 @@ export const searchResultMock: SearchResult = {
         orientation: false,
         campaign: null
       },
+      dataForLogs: {
+        id: '26287',
+        lieuId: 26287,
+        position: {
+          country: CountryCodes.FR,
+          department: '75',
+          departmentCode: FR_DEPARTMENT_CODES['75'],
+          distance: -1,
+          region: 'Île-de-France',
+          regionCode: 'IDF'
+        }
+      },
       distance: -1,
       id: 26287,
       name: 'Cop1 - Solidarités Étudiantes Paris 5',
@@ -116,6 +153,18 @@ export const searchResultMock: SearchResult = {
     {
       address: '1 Rue Montmartre, 75001 Paris',
       banners: { orientation: false, holidays: PlaceClosedHolidays.UNKNOWN, campaign: null },
+      dataForLogs: {
+        id: '154',
+        lieuId: 154,
+        position: {
+          country: CountryCodes.FR,
+          department: '75',
+          departmentCode: FR_DEPARTMENT_CODES['75'],
+          distance: 478.42644975047216,
+          region: 'Île-de-France',
+          regionCode: 'IDF'
+        }
+      },
       distance: 478.42644975047216,
       id: 154,
       name: 'Soupe Saint-Eustache',
