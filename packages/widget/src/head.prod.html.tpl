@@ -22,7 +22,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 {{ define "head" }}
 <meta
   name="description"
-  content="Soliguide vous permet de trouver une aide alimentaire, une assistance sociale, des associations et de nombreux services solidaires gratuits."
+  content="Soliguide vous indique où trouver les services dont vous avez besoin, au plus proche de vous. Gratuit et anonyme, disponible en plusieurs langues."
 />
 <meta property="fb:app_id" content="1163084087233428" />
 <meta property="og:type" content="website" />
@@ -35,7 +35,7 @@ property="og:image" content="{{ env "SOLIGUIDE_FRONTEND_URL"
 }}images/social.jpg" />
 <meta
   property="og:description"
-  content="Soliguide vous permet de trouver une aide alimentaire, une assistance sociale, des associations et de nombreux services solidaires gratuits."
+  content="Soliguide vous indique où trouver les services dont vous avez besoin, au plus proche de vous. Gratuit et anonyme, disponible en plusieurs langues."
 />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@solinum_asso" />
@@ -45,7 +45,7 @@ property="og:image" content="{{ env "SOLIGUIDE_FRONTEND_URL"
 />
 <meta
   name="twitter:description"
-  content="Soliguide vous permet de trouver une aide alimentaire, une assistance sociale, des associations et de nombreux services solidaires gratuits."
+  content="Soliguide vous indique où trouver les services dont vous avez besoin, au plus proche de vous. Gratuit et anonyme, disponible en plusieurs langues."
 />
 <meta name="twitter:url" content="{{ env "SOLIGUIDE_FRONTEND_URL" }}" /> <meta
 name="twitter:image" content="{{ env "SOLIGUIDE_FRONTEND_URL"
