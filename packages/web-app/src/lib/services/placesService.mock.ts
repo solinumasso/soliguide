@@ -34,7 +34,12 @@ export const searchParamsMock = {
   latitude: '48.8566',
   longitude: '2.3522',
   type: 'position',
-  label: '19 Rue Santeuil, 75005 Paris'
+  label: '19 Rue Santeuil, 75005 Paris',
+  department: '',
+  departmentCode: '',
+  region: '',
+  regionCode: '',
+  country: ''
 };
 
 export const searchResultMock: SearchResult = {

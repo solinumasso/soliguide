@@ -32,6 +32,11 @@ export interface SearchParams {
   type: string;
   distance: number;
   options: SearchOptions;
+  department: string;
+  region: string;
+  departmentCode: string;
+  regionCode: string;
+  country: string;
 }
 
 // Need to forward info from frontend request
