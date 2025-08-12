@@ -76,6 +76,19 @@ const buildSearchResultItem = (
       orientation: onOrientation,
       campaign: computeCampaignBanner(place)
     },
+    dataForLogs: {
+      // eslint-disable-next-line no-underscore-dangle
+      id: place?._id,
+      lieuId: place.lieu_id,
+      position: {
+        country: place?.country,
+        department: place.position.department,
+        departmentCode: place.position?.departmentCode,
+        distance,
+        region: place.position.region,
+        regionCode: place.position?.regionCode
+      }
+    },
     distance,
     id: place.lieu_id,
     name: place.name,

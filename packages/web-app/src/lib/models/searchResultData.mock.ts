@@ -322,6 +322,18 @@ const samplePlace: ApiPlace = Object.freeze({
 const samplePlaceTransformed: SearchResultItem = Object.freeze({
   address: '1 Rue Montmartre, 75001 Paris',
   banners: { orientation: false, holidays: PlaceClosedHolidays.UNKNOWN, campaign: null },
+  dataForLogs: {
+    id: '5a58c0c7c1797fe45e377324',
+    lieuId: 154,
+    position: {
+      country: CountryCodes.FR,
+      department: 'Paris',
+      departmentCode: FR_DEPARTMENT_CODES[75],
+      distance: 478.42644975047216,
+      region: 'Île-de-France',
+      regionCode: FR_REGION_CODES['11']
+    }
+  },
   distance: 478.42644975047216,
   id: 154,
   name: 'Soupe Saint-Eustache',
@@ -1219,6 +1231,18 @@ const sampleItineraryTransformed: SearchResultItem[] = [
   {
     address: '58 Bd Saint-Marcel, 75005 Paris - Point de départ de la maraude',
     banners: { orientation: false, holidays: PlaceClosedHolidays.UNKNOWN, campaign: null },
+    dataForLogs: {
+      id: '30965',
+      lieuId: 30965,
+      position: {
+        country: CountryCodes.FR,
+        department: 'Paris',
+        departmentCode: FR_DEPARTMENT_CODES['75'],
+        distance: 403.7915416747283,
+        region: 'Île-de-France',
+        regionCode: FR_REGION_CODES['11']
+      }
+    },
     distance: 403.7915416747283,
     id: 30965,
     name: 'Maraude Balades des Lucioles 13e Paris',
@@ -1240,6 +1264,18 @@ const sampleItineraryTransformed: SearchResultItem[] = [
   {
     address: "Pl. Louis-Armand, 75012 Paris - Point d'arrivée de la maraude",
     banners: { orientation: false, holidays: PlaceClosedHolidays.UNKNOWN, campaign: null },
+    dataForLogs: {
+      id: '30965',
+      lieuId: 30965,
+      position: {
+        country: CountryCodes.FR,
+        department: 'Paris',
+        departmentCode: FR_DEPARTMENT_CODES['75'],
+        distance: 403.7915416747283,
+        region: 'Île-de-France',
+        regionCode: FR_REGION_CODES['11']
+      }
+    },
     distance: 403.7915416747283,
     id: 30965,
     name: 'Maraude Balades des Lucioles 13e Paris',
