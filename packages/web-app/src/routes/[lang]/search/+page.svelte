@@ -91,7 +91,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         latitude: locationSuggestion.coordinates[0],
         longitude: locationSuggestion.coordinates[1],
         type: locationSuggestion.geoType,
-        label: locationSuggestion.suggestionLabel
+        label: locationSuggestion.suggestionLabel,
+        region: locationSuggestion.region ?? '',
+        department: locationSuggestion.department ?? '',
+        regionCode: locationSuggestion.regionCode ?? '',
+        departmentCode: locationSuggestion.departmentCode ?? '',
+        country: locationSuggestion.country ?? ''
       }
     });
 

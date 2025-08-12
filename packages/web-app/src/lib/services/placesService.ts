@@ -27,7 +27,19 @@ import { isValidStringEnumValue } from '$lib/ts';
 
 export default (fetcher = fetch) => {
   const searchPlaces = (
-    { lang, location, category, latitude, longitude, type }: SearchParams,
+    {
+      lang,
+      location,
+      category,
+      latitude,
+      longitude,
+      type,
+      department,
+      region,
+      departmentCode,
+      regionCode,
+      country
+    }: SearchParams,
     options: SearchOptions = { page: 1 }
   ): Promise<SearchResult> => {
     if (!isValidStringEnumValue(SupportedLanguagesCode, lang)) {
@@ -52,7 +64,12 @@ export default (fetcher = fetch) => {
         category,
         type,
         coordinates: [latitude, longitude],
-        options
+        options,
+        department,
+        region,
+        departmentCode,
+        regionCode,
+        country
       }),
       headers: posthogService.getHeaders() as unknown as Record<string, string>
     });

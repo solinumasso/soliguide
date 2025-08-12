@@ -67,7 +67,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     latitude: url.searchParams.get('latitude') ?? '',
     longitude: url.searchParams.get('longitude') ?? '',
     type: url.searchParams.get('type') ?? '',
-    label: url.searchParams.get('label') ?? ''
+    label: url.searchParams.get('label') ?? '',
+    department: url.searchParams.get('department') ?? '',
+    region: url.searchParams.get('region') ?? '',
+    departmentCode: url.searchParams.get('departmentCode') ?? '',
+    regionCode: url.searchParams.get('regionCode') ?? '',
+    country: url.searchParams.get('country') ?? ''
   });
 
   const handleIntersection = () => {

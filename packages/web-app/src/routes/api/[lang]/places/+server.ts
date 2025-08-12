@@ -27,7 +27,18 @@ import { getHeaders } from '$lib/server/services/headers';
  * Get headers from a request event
  */
 export const POST = async (requestEvent: RequestEvent): Promise<Response> => {
-  const { location, category, coordinates, type, options } = await requestEvent.request.json();
+  const {
+    location,
+    category,
+    coordinates,
+    type,
+    options,
+    region,
+    department,
+    departmentCode,
+    regionCode,
+    country
+  } = await requestEvent.request.json();
   const { lang } = requestEvent.params;
 
   const headers = getHeaders(requestEvent);
@@ -41,7 +52,12 @@ export const POST = async (requestEvent: RequestEvent): Promise<Response> => {
       coordinates,
       type,
       distance: getDistanceFromGeoType(type),
-      options
+      options,
+      region,
+      department,
+      departmentCode,
+      regionCode,
+      country
     },
     headers
   );

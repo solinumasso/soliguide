@@ -61,6 +61,11 @@ export interface SearchParams {
   longitude: number;
   type: string;
   options: SearchOptions;
+  department: string;
+  region: string;
+  departmentCode: string;
+  regionCode: string;
+  country: string;
 }
 
 export interface PlaceDetailsParams {
@@ -112,6 +117,11 @@ interface PosthogProperties {
     longitude: number;
     type: GeoTypes;
     label: string;
+    region: string;
+    department: string;
+    regionCode: string;
+    departmentCode: string;
+    country: string;
   };
   newLanguage?: SupportedLanguagesCode | null;
   position?: { latitude: number; longitude: number };

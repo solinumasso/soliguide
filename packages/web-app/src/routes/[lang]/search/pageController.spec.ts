@@ -67,7 +67,12 @@ const sampleSuggestionsServiceResult: LocationSuggestion[] = [
     suggestionLabel: 'suggestion1, postalCode1 city1',
     geoValue: 'geo1',
     geoType: GeoTypes.POSITION,
-    coordinates: [1.2345, 6.09876]
+    coordinates: [1.2345, 6.09876],
+    department: '',
+    departmentCode: '',
+    region: '',
+    regionCode: '',
+    country: ''
   },
   {
     suggestionLine1: 'suggestion2 (postalCode2)',
@@ -75,7 +80,12 @@ const sampleSuggestionsServiceResult: LocationSuggestion[] = [
     suggestionLabel: 'suggestion2 (postalCode2)',
     geoValue: 'geo2',
     geoType: GeoTypes.CITY,
-    coordinates: [5.2345, 8.12345]
+    coordinates: [5.2345, 8.12345],
+    department: '',
+    departmentCode: '',
+    region: '',
+    regionCode: '',
+    country: ''
   }
 ];
 const sampleLocationSuggestion: LocationSuggestion = {
@@ -84,7 +94,12 @@ const sampleLocationSuggestion: LocationSuggestion = {
   suggestionLabel: 'suggestion1, postalCode1 city1',
   geoValue: 'geo1',
   geoType: GeoTypes.POSITION,
-  coordinates: [1.2345, 6.09876]
+  coordinates: [1.2345, 6.09876],
+  department: '',
+  departmentCode: '',
+  region: '',
+  regionCode: '',
+  country: ''
 };
 
 const otherSampleSuggestions: LocationAutoCompleteAddress[] = [
@@ -116,7 +131,12 @@ const otherSampleSuggestionsServiceResult: LocationSuggestion[] = [
     suggestionLabel: 'suggestion1, postalCode1 city1',
     geoValue: 'geo1',
     geoType: GeoTypes.POSITION,
-    coordinates: [1.2345, 6.09876]
+    coordinates: [1.2345, 6.09876],
+    department: '',
+    departmentCode: '',
+    region: '',
+    regionCode: '',
+    country: ''
   },
   {
     suggestionLine1: 'suggestion11 (postalCode11)',
@@ -124,7 +144,12 @@ const otherSampleSuggestionsServiceResult: LocationSuggestion[] = [
     suggestionLabel: 'suggestion11 (postalCode11)',
     geoValue: 'geo11',
     geoType: GeoTypes.CITY,
-    coordinates: [5.2345, 8.12345]
+    coordinates: [5.2345, 8.12345],
+    department: '',
+    departmentCode: '',
+    region: '',
+    regionCode: '',
+    country: ''
   }
 ];
 
@@ -572,7 +597,12 @@ describe('Search page', () => {
           geoValue: 'poul-pout-22610-pleubian',
           suggestionLabel: 'Poul Pout, 22610 Pleubian',
           geoType: GeoTypes.POSITION,
-          coordinates: [1.2345, 6.789]
+          coordinates: [1.2345, 6.789],
+          department: '',
+          departmentCode: '',
+          region: '',
+          regionCode: '',
+          country: ''
         },
         {
           suggestionLine1: 'Bourg-Madame (66760)',
@@ -580,7 +610,12 @@ describe('Search page', () => {
           suggestionLabel: 'Bourg-Madame (66760)',
           geoValue: 'bourg-madame-66760',
           geoType: GeoTypes.CITY,
-          coordinates: [6.5432, 3.74567]
+          coordinates: [6.5432, 3.74567],
+          department: '',
+          departmentCode: '',
+          region: '',
+          regionCode: '',
+          country: ''
         }
       ];
       const selectedLocationSuggestion = {
@@ -589,7 +624,12 @@ describe('Search page', () => {
         geoValue: 'poul-pout-22610-pleubian',
         suggestionLabel: 'Poul Pout, 22610 Pleubian',
         geoType: GeoTypes.POSITION,
-        coordinates: [1.2345, 6.789]
+        coordinates: [1.2345, 6.789],
+        department: '',
+        departmentCode: '',
+        region: '',
+        regionCode: '',
+        country: ''
       };
 
       it('The page is loading while data is retrieved', async () => {
