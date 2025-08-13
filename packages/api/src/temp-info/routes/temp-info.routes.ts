@@ -174,7 +174,7 @@ router.delete(
   getPlaceFromUrl,
   canEditPlace,
   tempInfoUrlParamDto,
-  async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
+  async (req: ExpressRequest, res: ExpressResponse) => {
     try {
       const result = await deleteTempInfo(
         req.params.tempInfoId,
@@ -186,7 +186,6 @@ router.delete(
       req.updatedPlace = result.place;
 
       res.status(200).json(result);
-      next();
     } catch (e) {
       const message = `DELETE_TEMP_${req.params.tempInfoType.toUpperCase()}_FAIL`;
       req.log.error(e, message);
