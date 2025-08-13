@@ -72,53 +72,25 @@ export const isPlaceOpenToday = async (place: ApiPlace): Promise<boolean> => {
 
 export const isServiceOpenToday = async (
   service: CommonPlaceService,
-  place: Pick<
-    ApiPlace,
-    | "parcours"
-    | "position"
-    | "status"
-    | "newhours"
-    | "placeType"
-    | "tempInfos"
-    | "country"
-  >
+  place: ApiPlace
 ): Promise<boolean> => {
-  if (place.status === PlaceStatus.PERMANENTLY_CLOSED) {
+  const today = new Date();
+  const day = getTodayName(today);
+
+  const isPlaceOpen = await isPlaceOpenToday(place);
+
+  if (!service.differentHours && !isPlaceOpen) {
     return false;
-  } else {
-    const today = new Date();
-    const day = getTodayName(today);
-
-    // We check whether it's a day off
-    const isHoliday = await holidaysService.isDayHolidayForPostalCode(place);
-
-    // If it's a day off and the place is closed on days off, then it's closed
-    if (
-      isHoliday &&
-      place.newhours.closedHolidays === PlaceClosedHolidays.CLOSED
-    ) {
-      return false;
-    }
-
-    // Effective temporary closures
-    if (
-      service.close.dateDebut &&
-      ((place.tempInfos.closure.actif &&
-        place.tempInfos.closure.dateDebut <= today) ||
-        (service.close.actif && service.close.dateDebut <= today))
-    ) {
-      return false;
-    }
-
-    // Effective temporary opening hours
-    if (
-      !service.differentHours &&
-      place.tempInfos.hours.actif &&
-      place.tempInfos.hours.dateDebut <= today
-    ) {
-      return place.tempInfos.hours.hours[day].open;
-    }
-
-    return service.hours[day].open;
   }
+
+  // Effective temporary closures
+  if (
+    service.close.actif &&
+    service.close.dateDebut &&
+    service.close.dateDebut <= today
+  ) {
+    return false;
+  }
+
+  return service.hours[day].open;
 };
