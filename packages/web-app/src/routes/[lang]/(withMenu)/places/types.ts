@@ -31,6 +31,11 @@ export interface PageParams {
   type: string;
   label: string;
   category: string;
+  department: string;
+  region: string;
+  departmentCode: string;
+  regionCode: string;
+  country: string;
 }
 
 export interface PageState {

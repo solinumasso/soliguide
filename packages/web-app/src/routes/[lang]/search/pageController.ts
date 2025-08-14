@@ -219,16 +219,27 @@ export const getSearchPageController = (
   ): SearchPageParams | null => {
     if (locationSelection !== null && categorySelection !== null) {
       const [latitude, longitude] = locationSelection.coordinates;
-      return {
+
+      const params: Record<string, string> = {
         lang: get(myPageStore).lang,
         location: locationSelection.geoValue,
-        // Need to convert to string to be usable into URLSearchParams
         latitude: String(latitude),
         longitude: String(longitude),
         type: locationSelection.geoType,
         label: locationSelection.suggestionLabel,
-        category: categorySelection
+        category: categorySelection,
+        department: locationSelection.department ?? '',
+        region: locationSelection.region ?? '',
+        departmentCode: locationSelection.departmentCode ?? '',
+        regionCode: locationSelection.regionCode ?? '',
+        country: locationSelection.country ?? ''
       };
+      // Remove empty values from params
+      const filteredParams: Partial<SearchPageParams> = Object.fromEntries(
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        Object.entries(params).filter(([_, value]) => value !== '')
+      );
+      return filteredParams as SearchPageParams;
     }
     return null;
   };
