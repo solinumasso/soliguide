@@ -42,10 +42,14 @@ export class ProCreateAccountComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit(): void {
-    this.titleService.setTitle(
-      this.translateService.instant("SIGNUP_SOLIGUIDE", {
-        brandName: THEME_CONFIGURATION.brandName,
-      })
+    this.subscription.add(
+      this.translateService
+        .stream("SIGNUP_SOLIGUIDE", {
+          brandName: THEME_CONFIGURATION.brandName,
+        })
+        .subscribe((translatedTitle: string) => {
+          this.titleService.setTitle(translatedTitle);
+        })
     );
 
     this.subscription.add(
