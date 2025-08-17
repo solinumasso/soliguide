@@ -16,7 +16,7 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
-FROM mongo:7.0
+FROM mongo:8.0
 
 # Install required tools
 RUN apt-get update &&\
