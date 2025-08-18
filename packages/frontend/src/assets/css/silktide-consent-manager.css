@@ -132,7 +132,7 @@
 
 #silktide-wrapper .st-button--secondary:hover {
   background-color: var(--primaryColor);
-  color: var(--backgroundColor);
+  color: var(--cookieIconBackgroundColor);
 }
 
 /* --------------------------------
