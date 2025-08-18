@@ -348,7 +348,7 @@ class SilktideCookieBanner {
       "Reject non-essential";
     const rejectNonEssentialButtonLabel =
       this.config.text?.banner?.rejectNonEssentialButtonAccessibleLabel;
-    const rejectNonEssentialButton = `<button class="reject-all st-button st-button--primary"${
+    const rejectNonEssentialButton = `<button class="reject-all st-button st-button--secondary"${
       rejectNonEssentialButtonLabel &&
       rejectNonEssentialButtonLabel !== rejectNonEssentialButtonText
         ? ` aria-label="${rejectNonEssentialButtonLabel}"`
@@ -481,7 +481,7 @@ class SilktideCookieBanner {
       "Reject non-essential";
     const rejectNonEssentialButtonLabel =
       this.config.text?.banner?.rejectNonEssentialButtonAccessibleLabel;
-    const rejectNonEssentialButton = `<button class="preferences-reject-all st-button st-button--primary"${
+    const rejectNonEssentialButton = `<button class="preferences-reject-all st-button st-button--secondary"${
       rejectNonEssentialButtonLabel &&
       rejectNonEssentialButtonLabel !== rejectNonEssentialButtonText
         ? ` aria-label="${rejectNonEssentialButtonLabel}"`
