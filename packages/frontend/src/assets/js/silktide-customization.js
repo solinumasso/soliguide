@@ -32,9 +32,6 @@ window.silktideConfig = {
       description:
         "<p>These cookies are necessary for the website to function properly and cannot be switched off. They help with things like logging in and setting your privacy preferences.</p>",
       required: true,
-      onAccept: function () {
-        document.dispatchEvent(new Event("CookieConsentLoaded"));
-      },
     },
     {
       id: "analytics",
