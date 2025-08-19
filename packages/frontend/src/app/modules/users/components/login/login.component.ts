@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   public submitted: boolean;
   public dashboardTracking: Record<string, string> = {};
 
-  private returnUrl: string[] | string;
+  private returnUrl: string | null;
 
   constructor(
     private readonly authService: AuthService,
@@ -77,10 +77,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.hidePassword = true;
     this.loading = false;
     this.submitted = false;
-    this.returnUrl =
-      this.route.snapshot.queryParams.returnUrl ||
-      this.currentLanguageService.routePrefix;
+
     this.routePrefix = this.currentLanguageService.routePrefix;
+
+    this.returnUrl = this.route.snapshot.queryParamMap.get("returnUrl");
   }
 
   public ngOnInit(): void {
@@ -183,30 +183,33 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private redirectUserAfterLogin = (user: User): void => {
     // Root URL e.g. /<lang>
-    if (
-      this.returnUrl &&
-      ((Array.isArray(this.returnUrl) && this.returnUrl.length !== 1) ||
-        (typeof this.returnUrl === "string" &&
-          !/^\/[a-z][a-z]$/.test(this.returnUrl)))
-    ) {
-      setTimeout(() => {
-        this.router.navigateByUrl(this.returnUrl as string);
-      }, 100);
-    } else {
-      if (user.pro && user.currentOrga) {
-        this.router.navigate([
-          this.currentLanguageService.routePrefix,
-          "organisations",
-          user.currentOrga.organization_id,
-        ]);
-      } else if (user.translator) {
-        this.router.navigate([
-          this.currentLanguageService.routePrefix,
-          "aide-trad",
-        ]);
-      } else {
-        this.router.navigate([this.currentLanguageService.routePrefix]);
+
+    if (this.returnUrl) {
+      const url = new URL(this.returnUrl, window.location.origin);
+
+      if (url.origin === window.location.origin) {
+        const target = `${url.pathname}${url.search}${url.hash}`.replace(
+          "/?",
+          "?"
+        );
+        this.router.navigateByUrl(target);
+        return;
       }
+    }
+
+    if (user.pro && user.currentOrga) {
+      this.router.navigate([
+        this.currentLanguageService.routePrefix,
+        "organisations",
+        user.currentOrga.organization_id,
+      ]);
+    } else if (user.translator) {
+      this.router.navigate([
+        this.currentLanguageService.routePrefix,
+        "aide-trad",
+      ]);
+    } else {
+      this.router.navigate([this.currentLanguageService.routePrefix]);
     }
   };
 }
