@@ -20,7 +20,6 @@
  */
 import StoryDecorator from './StoryDecorator.svelte';
 import type { Preview } from '@storybook/svelte';
-import '@soliguide/common/src/themes/styles/theme.css';
 
 const preview: Preview = {
   parameters: {

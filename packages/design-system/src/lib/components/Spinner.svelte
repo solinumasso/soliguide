@@ -44,8 +44,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 <div class={spinnerClass}></div>
 
-<style lang="scss">
-  .spinner {
+<style>
+  /* .spinner {
     display: block;
     border-radius: 50%;
     position: relative;
@@ -59,10 +59,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     left: 50%;
     border: 1px solid;
     animation: loading 1s infinite linear;
-  }
+  }*/
 
   /* Tailles du spinner */
-  .spinner-small {
+  /*.spinner-small {
     width: 24px;
     height: 24px;
     padding: var(--spacing3XS);
@@ -96,10 +96,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       height: 32px;
       border-width: 3px;
     }
-  }
+  } */
 
   /* Variantes de fond */
-  .spinner-primary::before {
+  /*.spinner-primary::before {
     border-color: var(--color-textHighlightPrimary);
   }
 
@@ -161,5 +161,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     70% {
       clip-path: polygon(50% 50%, 0 100%, 0 100%, 0 100%, 0 100%, 0 0);
     }
-  }
+  } */
 </style>

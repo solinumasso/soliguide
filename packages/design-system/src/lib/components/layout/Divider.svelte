@@ -20,7 +20,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <hr class="divider" />
 
-<style lang="scss">
+<style>
   .divider {
     border: 0;
     border-top: 1px solid var(--color-borderNeutral);
