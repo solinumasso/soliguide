@@ -32,6 +32,7 @@ import { THEME_CONFIGURATION } from "../../../models";
 })
 export class ChatService {
   private chatHasBeenSetup = false;
+  private preferencesOpened = false;
   private readonly subscription: Subscription;
   public readonly isChatEnabled = !!THEME_CONFIGURATION.chatWebsiteId;
 
@@ -82,12 +83,16 @@ export class ChatService {
     zE("messenger", "hide");
     zE("messenger:set", "cookies", false);
     zE("messenger", "logoutUser");
+
+    this.chatHasBeenSetup = false;
   }
 
   public setupChat = async (user?: User): Promise<void> => {
     if (!this.hasUserGivenConsent()) {
       return;
     }
+
+    this.chatHasBeenSetup = true;
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let zE = (window as any).zE as any; // skipcq: JS-0323
@@ -101,12 +106,12 @@ export class ChatService {
     }
 
     if (!zE) {
+      this.chatHasBeenSetup = false;
       return;
     }
 
     zE("messenger:set", "cookies", true);
     zE("messenger", "show");
-    zE("messenger", "open");
 
     // Only for pros
     if (user?.pro) {
@@ -122,8 +127,6 @@ export class ChatService {
         { id: "USER_NOM", value: user.lastname },
       ]);
     }
-
-    this.chatHasBeenSetup = true;
   };
 
   public async openChat(user?: User): Promise<void> {
@@ -147,5 +150,15 @@ export class ChatService {
     }
 
     zE("messenger", "open");
+  }
+
+  public async openChatAfterPreferences(user?: User): Promise<void> {
+    if (this.preferencesOpened) {
+      this.openChat(user);
+    }
+  }
+
+  public preferencesHaveBeenOpened(): void {
+    this.preferencesOpened = true;
   }
 }
