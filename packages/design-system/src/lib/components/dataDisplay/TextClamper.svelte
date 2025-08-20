@@ -81,41 +81,37 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   {/if}
 </div>
 
-<style lang="scss">
-  // This is a trick to fade the text away when the webkit line clamp trick is not available.
+<style>
+  /* // This is a trick to fade the text away when the webkit line clamp trick is not available.
   // I've not used it because we would have to ask for the line height, which we do not know.
-  //
-  // @mixin truncate($rows, $line-height, $background: '') {
-  //   position: relative;
-  //   overflow: hidden;
-  //   max-height: $line-height * $rows;
-  //   line-height: $line-height;
-
-  //   &:after {
-  //     content: '';
-  //     position: absolute;
-  //     right: 0;
-  //     bottom: 0;
-  //     width: 100px;
-  //     height: $line-height;
-
-  //     @if $background != '' {
-  //       background: linear-gradient(to right, rgba($background, 0) 0%, rgba($background, 1) 100%);
-  //     }
-  //   }
-
-  //   // If supports line-clamp then add an ellipsis overflow and hide the gradient
-  //   // This will work in Chrome and Opera, otherwise a gradient will gradually hide the text.
-  //   @supports (-webkit-line-clamp: $rows) {
-  //     display: -webkit-box;
-  //     -webkit-line-clamp: $rows;
-  //     -webkit-box-orient: vertical;
-
-  //     &:after {
-  //       display: none;
-  //     }
-  //   }
-  // }
+  
+   @mixin truncate($rows, $line-height, $background: '') {
+     position: relative;
+     overflow: hidden;
+     max-height: $line-height * $rows;
+     line-height: $line-height
+     &:after {
+       content: '';
+       position: absolute;
+       right: 0;
+       bottom: 0;
+       width: 100px;
+       height: $line-height
+       @if $background != '' {
+         background: linear-gradient(to right, rgba($background, 0) 0%, rgba($background, 1) 100%);
+       }
+     
+     // If supports line-clamp then add an ellipsis overflow and hide the gradient
+     // This will work in Chrome and Opera, otherwise a gradient will gradually hide the text.
+     @supports (-webkit-line-clamp: $rows) {
+       display: -webkit-box;
+       -webkit-line-clamp: $rows;
+       -webkit-box-orient: vertical
+       &:after {
+         display: none;
+       }
+     }
+   }
 
   .text-clamper {
     display: flex;
@@ -180,5 +176,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         display: none;
       }
     }
-  }
+  } */
 </style>

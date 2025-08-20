@@ -48,7 +48,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 <Story name="Default" args={{}} />
 
-<style lang="scss">
+<style>
   .fake-content {
     display: flex;
     align-items: center;

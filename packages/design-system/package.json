@@ -69,7 +69,6 @@
     "prettier": "^3.1.1",
     "prettier-plugin-svelte": "^3.1.2",
     "publint": "^0.2.0",
-    "sass": "^1.77.6",
     "storybook": "^8.4.7",
     "svelte": "^4.2.7",
     "svelte-check": "^3.6.0",
@@ -91,7 +90,7 @@
   "types": "./dist/index.d.ts",
   "type": "module",
   "lint-staged": {
-    "*.{js,ts,svelte,css,scss,postcss,md,json}": "prettier --cache --ignore-unknown -w",
+    "*.{js,ts,svelte,css,postcss,md,json}": "prettier --cache --ignore-unknown -w",
     "*.{js,ts,svelte}": "eslint . --fix"
   },
   "eslintConfig": {

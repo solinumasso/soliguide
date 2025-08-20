@@ -87,8 +87,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   </span>
 </div>
 
-<style lang="scss">
-  @import '../../styles/typography.scss';
+<style>
+  /* @import '../../styles/typography.scss';
 
   .input-wrapper {
     height: 52px;
@@ -191,5 +191,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         height: 20px;
       }
     }
-  }
+  } */
 </style>

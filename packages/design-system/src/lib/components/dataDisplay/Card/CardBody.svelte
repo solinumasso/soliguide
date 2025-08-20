@@ -23,9 +23,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </section>
 
 <style>
-  .card-body {
+  /* .card-body {
     display: flex;
     padding-top: var(--spacingLG);
     background-color: var(--color-surfaceWhite);
-  }
+  } */
 </style>

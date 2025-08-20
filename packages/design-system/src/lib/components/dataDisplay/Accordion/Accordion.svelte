@@ -70,7 +70,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   };
 
   $: textColor = getTextColor();
-  $: iconColor = disabled ? $theme.color.textShy : $theme.color.textDark;
+  $: iconColor = disabled ? $theme.color.shy : $theme.color.dark;
   $: contentId = `${key}-content`;
   $: buttonId = `${key}-button`;
 
@@ -117,8 +117,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   </div>
 </section>
 
-<style lang="scss">
-  .accordion {
+<style>
+  /* .accordion {
     display: flex;
     flex-direction: column;
     border-bottom: 1px solid var(--color-borderNeutral);
@@ -206,5 +206,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       transition: opacity 0.15s;
       opacity: 0;
     }
-  }
+  } */
 </style>

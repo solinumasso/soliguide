@@ -49,8 +49,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   {/if}
 </div>
 
-<style lang="scss">
-  .form-control {
+<style>
+  /* .form-control {
     display: flex;
     flex-direction: column;
     gap: var(--spacing3XS);
@@ -85,5 +85,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   .error-dangerous-icon {
     flex-shrink: 0;
-  }
+  } */
 </style>

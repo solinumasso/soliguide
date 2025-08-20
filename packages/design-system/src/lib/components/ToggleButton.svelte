@@ -91,8 +91,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   </span>
 </label>
 
-<style lang="scss">
-  @import '../styles/typography.scss';
+<style>
+  /* @import '../styles/typography.scss';
 
   .btn {
     text-decoration: none;
@@ -352,5 +352,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     &.btn-primary-shy {
       background: none;
     }
-  }
+  } */
 </style>

@@ -32,7 +32,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   $: sizeClass = size === 'medium' ? 'toggle-switch-medium' : 'toggle-switch-small';
   $: checkmarkSize = size === 'medium' ? 16 : 12;
-  $: iconColor = disabled ? $theme.color.textShy : $theme.color.textSuccess;
+  $: iconColor = disabled ? $theme.color.shy : $theme.color.success;
 </script>
 
 <label class={`toggle-switch ${sizeClass}`}>
@@ -52,8 +52,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   >
 </label>
 
-<style lang="scss">
-  .toggle-switch {
+<style>
+  /* .toggle-switch {
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -138,5 +138,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     border: 0;
     clip: rect(0, 0, 0, 0);
     overflow: hidden;
-  }
+  } */
 </style>

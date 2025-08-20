@@ -69,8 +69,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   </span>
 {/if}
 
-<style lang="scss">
-  .link {
+<style>
+  /* .link {
     text-decoration: none;
     display: inline-flex;
     align-items: center;
@@ -129,5 +129,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       color: var(--color-textShy);
       pointer-events: none;
     }
-  }
+  } */
 </style>

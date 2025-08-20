@@ -58,8 +58,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   </div>
 </nav>
 
-<style lang="scss">
-  nav {
+<style>
+  /* nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -91,5 +91,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   .nav-title {
     width: 100%;
     text-align: center;
-  }
+  } */
 </style>

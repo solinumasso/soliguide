@@ -109,8 +109,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   </div>
 </Story>
 
-<style lang="scss">
-  .story-row {
+<style>
+  /* .story-row {
     display: flex;
     gap: 25px;
     align-items: flex-end;
@@ -150,5 +150,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     display: flex;
     align-items: center;
     gap: 10px;
-  }
+  } */
 </style>

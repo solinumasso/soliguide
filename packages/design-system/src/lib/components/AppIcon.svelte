@@ -41,8 +41,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <svelte:component this={icon} size={16} />
 </span>
 
-<style lang="scss">
-  .app-icon {
+<style>
+  /* .app-icon {
     border-radius: var(--radiusFull);
     height: 24px;
     width: 24px;
@@ -70,5 +70,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   .disabled {
     background-color: var(--color-surfaceGray1);
     color: var(--color-textShy);
-  }
+  } */
 </style>

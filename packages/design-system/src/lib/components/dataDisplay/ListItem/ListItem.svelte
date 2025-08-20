@@ -87,8 +87,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   </ListItemContainer>
 </li>
 
-<style lang="scss">
-  .item {
+<style>
+  /* .item {
     background-color: transparent;
     list-style: none;
     border-bottom: 1px solid transparent;
@@ -153,5 +153,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   .item-icon-container {
     display: flex;
     align-items: center;
-  }
+  } */
 </style>

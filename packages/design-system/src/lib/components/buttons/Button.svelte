@@ -84,13 +84,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   </span>
 </button>
 
-<style lang="scss">
-  @import '../../styles/typography.scss';
-  @import '../../styles/components/buttons.scss';
-  // Basic styles
-
-  // All button types have the same disabled state
-  .btn-disabled-state {
+<style>
+  /* @import '../../styles/typography.scss';
+  /* @import '../../styles/components/buttons.scss'; */
+  /* Basic style */
+  /* All button types have the same disabled state */
+  /* .btn-disabled-state {
     &:disabled,
     &:disabled:hover,
     &:disabled:focus,
@@ -108,5 +107,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         background: none;
       }
     }
-  }
+  } */
 </style>

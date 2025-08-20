@@ -85,10 +85,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <slot />
 </svelte:element>
 
-<style lang="scss">
-  .ellipsis {
+<style>
+  /* .ellipsis {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
+  } */
 </style>

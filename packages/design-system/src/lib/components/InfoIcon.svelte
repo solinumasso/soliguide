@@ -39,10 +39,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     InfoIconVariant,
     { icon: ComponentType<SvelteComponent>; color: string }
   > = {
-    info: { icon: Info, color: $theme.color.textHighlightSecondary },
-    success: { icon: CheckCircle, color: $theme.color.textSuccess },
-    warning: { icon: Warning, color: $theme.color.textWarning },
-    error: { icon: GppBad, color: $theme.color.textError }
+    info: { icon: Info, color: $theme.color.highlightSecondary },
+    success: { icon: CheckCircle, color: $theme.color.success },
+    warning: { icon: Warning, color: $theme.color.warning },
+    error: { icon: GppBad, color: $theme.color.error }
   };
   const defaultVariantMapping = variantMapping.info;
 
@@ -57,8 +57,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <svelte:component this={icon} alt={altTag} variation="filled" size={iconSize} {color} />
 </span>
 
-<style lang="scss">
-  .info-icon {
+<style>
+  /* .info-icon {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,5 +80,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       height: $size;
       width: $size;
     }
-  }
+  } */
 </style>

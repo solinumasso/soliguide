@@ -81,7 +81,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   </div>
 </div>
 
-<style lang="scss">
+<style>
   .container {
     display: flex;
     height: 64px;
@@ -109,9 +109,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       display: block;
     }
 
-    .dropdown {
+    /* .dropdown {
       display: none;
       position: absolute;
-    }
+    } */
   }
 </style>

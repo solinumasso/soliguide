@@ -39,7 +39,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   {/each}
 </ul>
 
-<style lang="scss">
+<style>
   ul {
     list-style: none;
     background-color: white;

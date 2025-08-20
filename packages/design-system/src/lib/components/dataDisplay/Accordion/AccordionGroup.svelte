@@ -76,9 +76,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <slot />
 </section>
 
-<style lang="scss">
-  .accordion-group {
+<style>
+  /* .accordion-group {
     display: flex;
     flex-direction: column;
-  }
+  } */
 </style>
