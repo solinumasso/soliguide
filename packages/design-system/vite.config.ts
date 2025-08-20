@@ -21,9 +21,11 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
 import legacy from '@vitejs/plugin-legacy';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   plugins: [
+    tailwindcss(),
     sveltekit(),
     legacy({
       modernPolyfills: true,
