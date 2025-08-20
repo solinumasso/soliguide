@@ -114,7 +114,11 @@ export class CookieManagerService {
         "COOKIE_PREFERENCES_BANNER_TITLE"
       );
       config.text.preferences.description = this.translateService.instant(
-        "COOKIE_PREFERENCES_BANNER_DESCRIPTION"
+        "COOKIE_PREFERENCES_BANNER_DESCRIPTION",
+        {
+          website: THEME_CONFIGURATION.websiteUrl,
+          lang: this.translateService.currentLang,
+        }
       );
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

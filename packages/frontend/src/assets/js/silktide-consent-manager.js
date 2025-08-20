@@ -43,7 +43,7 @@ class SilktideCookieBanner {
       this.createBanner();
       this.showBackdrop();
     } else {
-      this.showCookieIcon();
+      // this.showCookieIcon();
     }
 
     this.setupEventListeners();
@@ -495,7 +495,7 @@ class SilktideCookieBanner {
     const creditLinkAccessibleLabel =
       this.config.text?.preferences?.creditLinkAccessibleLabel;
     const creditLink =
-      '<a href="https://silktide.com/consent-manager" aria-label="Get this banner for free">Powered by Silktide</a>';
+      '<a target="_blank" href="https://silktide.com/consent-manager" aria-label="Get this banner for free">Powered by Silktide</a>';
 
     const modalContent = `
       <header>
@@ -588,7 +588,7 @@ class SilktideCookieBanner {
       this.updateCheckboxState(true);
 
       this.hideBackdrop();
-      this.showCookieIcon();
+      // this.showCookieIcon();
       this.allowBodyScroll();
 
       // Trigger optional onPreferencesClose callback
@@ -639,7 +639,7 @@ class SilktideCookieBanner {
   }
 
   showCookieIcon() {
-    if (this.cookieIcon && !this.allCookiesAccepted()) {
+    if (this.cookieIcon) {
       this.cookieIcon.style.display = "flex";
     }
   }
@@ -896,29 +896,6 @@ class SilktideCookieBanner {
     document.body.style.overflow = "";
     document.body.style.position = "";
     document.body.style.width = "";
-  }
-
-  /**
-   * CUSTOM FUNCTION - DO NOT REMOVE
-   * Check if all cookies are accepted
-   */
-  allCookiesAccepted() {
-    for (const type of this.config.cookieTypes) {
-      if (!type.required) {
-        const storedValue = localStorage.getItem(
-          `silktideCookieChoice_${type.id}${this.getBannerSuffix()}`
-        );
-
-        if (
-          (storedValue !== null && storedValue === "false") ||
-          (storedValue === null && !cookieType.defaultValue)
-        ) {
-          return false;
-        }
-      }
-    }
-
-    return true;
   }
 }
 
