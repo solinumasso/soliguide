@@ -81,9 +81,11 @@
     "vitest": "^2.0.0"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.1.11",
     "i18next": "^23.11.5",
     "normalize.css": "^8.0.1",
-    "svelte-google-materialdesign-icons": "^1.0.5"
+    "svelte-google-materialdesign-icons": "^1.0.5",
+    "tailwindcss": "^4.1.11"
   },
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",

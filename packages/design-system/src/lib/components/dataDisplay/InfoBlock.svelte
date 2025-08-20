@@ -60,6 +60,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   $: showButtonLink = withButtonLink && !withClamp;
 </script>
 
+<div class="bg-red-500 text-white p-4 rounded">blabla</div>
 <article class={cls}>
   {#if withIcon && !withTitle}
     <div class="infoblock-left-panel"><InfoIcon variant={iconVariant} size="medium" /></div>
