@@ -70,8 +70,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   </ul>
 </nav>
 
-<style lang="scss">
-  nav {
+<style>
+  /* nav {
     background-color: var(--color-surfaceWhite);
     height: var(--menu-height);
     box-shadow: var(--shadowXL);
@@ -157,5 +157,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     position: absolute;
     top: -0.25rem;
     right: 0.375rem;
-  }
+  } */
 </style>

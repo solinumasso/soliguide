@@ -49,8 +49,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <slot />
 </div>
 
-<style lang="scss">
-  .badge-container {
+<style>
+  /* .badge-container {
     position: relative;
     display: inline-flex;
   }
@@ -103,5 +103,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     position: absolute;
     transform: translate(50%, -50%);
     transform-origin: 100% 0;
-  }
+  } */
 </style>

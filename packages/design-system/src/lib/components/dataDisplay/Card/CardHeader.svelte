@@ -22,8 +22,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <slot />
 </section>
 
-<style lang="scss">
-  .card-header {
+<style>
+  /* .card-header {
     background: var(--color-surfaceSecondaryGradient);
     color: var(--color-textInverse);
     padding: var(--spacingLG);
@@ -36,5 +36,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     &:active {
       background: var(--color-interactionHighlightSecondaryPress);
     }
-  }
+  } */
 </style>

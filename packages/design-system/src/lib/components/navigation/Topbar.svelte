@@ -58,7 +58,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   </div>
 </nav>
 
-<style lang="scss">
+<style>
   nav {
     display: flex;
     align-items: center;

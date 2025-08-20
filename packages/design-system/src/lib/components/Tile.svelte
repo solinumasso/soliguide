@@ -40,8 +40,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   </p>
 </div>
 
-<style lang="scss">
-  .tile {
+<style>
+  /* .tile {
     width: 100%;
     padding: 8px;
     display: flex;
@@ -90,5 +90,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         color: var(--color-textHighlightPrimary);
       }
     }
-  }
+  } */
 </style>

@@ -26,6 +26,3 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   Design system Translations test :
   <p>Key TOTO (exists in DS only): {$i18n.t('TOTO')}</p>
 </div>
-
-<style lang="scss">
-</style>

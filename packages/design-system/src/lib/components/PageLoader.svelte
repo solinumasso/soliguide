@@ -33,8 +33,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <slot />
 {/if}
 
-<style lang="scss">
-  .loader {
+<style>
+  /* .loader {
     display: flex;
     justify-content: center;
     padding-top: var(--spacingLG);
@@ -42,5 +42,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     &.full-page {
       padding-top: var(--spacing2XL);
     }
-  }
+  } */
 </style>
