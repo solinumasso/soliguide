@@ -159,6 +159,13 @@ export class AppComponent implements OnInit, OnDestroy {
         }
       }
     );
+
+    document.addEventListener("PreferencesClosed", () => {
+      this.chatService.openChatAfterPreferences(this.me);
+    });
+    document.addEventListener("PreferencesOpened", () => {
+      this.chatService.preferencesHaveBeenOpened();
+    });
   }
 
   public ngOnDestroy(): void {

@@ -126,4 +126,10 @@ window.silktideConfig = {
         "<p>We respect your right to privacy. You can choose not to allow some types of cookies. Your cookie preferences will apply across our website.</p>",
     },
   },
+  onPreferencesClose: function () {
+    document.dispatchEvent(new Event("PreferencesClosed"));
+  },
+  onPreferencesOpen: function () {
+    document.dispatchEvent(new Event("PreferencesOpened"));
+  },
 };
