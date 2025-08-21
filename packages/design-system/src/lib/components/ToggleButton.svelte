@@ -32,29 +32,31 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let value: unknown | null = null;
   export let block = false;
 
+  // Mapping Tailwind classes pour la taille
   const sizeMapping: Record<ToggleButtonSize, string> = {
-    xsmall: 'btn-xsmall',
-    medium: 'btn-medium',
-    large: 'btn-large'
+    xsmall: 'h-6 min-w-6 px-md rounded-middle text-secondary-caption1-bold',
+    medium: 'h-10 min-w-10 px-lg rounded-middle text-secondary-text1-bold',
+    large: 'h-13 min-w-13 px-xl rounded-rounded text-secondary-text1-bold'
   };
 
+  // Mapping Tailwind classes pour le type
   const typeMapping: Record<ToggleButtonType, string> = {
-    secondaryBordered: 'btn-secondary-bordered',
-    secondaryOutline: 'btn-secondary-shadowed',
-    primaryShy: 'btn-primary-shy',
-    primaryReversed: 'btn-primary-reversed'
+    secondaryBordered:
+      'border border-borderNeutral bg-transparent text-dark hover:bg-interactionOutlinedSecondaryHover focus-visible:bg-interactionOutlinedSecondaryPress active:bg-interactionOutlinedSecondaryPress',
+    secondaryOutline:
+      'bg-interactionOutlinedSecondary shadow-xs text-dark hover:bg-interactionOutlinedSecondaryHover focus-visible:bg-interactionOutlinedSecondaryPress active:bg-interactionOutlinedSecondaryPress',
+    primaryShy:
+      'bg-transparent text-interactionNeutral hover:bg-interactionReversedHover hover:text-highlightPrimary focus-visible:bg-interactionReversedPress focus-visible:text-interactionHighlightPrimaryPress active:bg-interactionReversedPress',
+    primaryReversed:
+      'bg-surfaceWhiteAlphaLight text-interactionReversed hover:bg-interactionReversedHover focus-visible:bg-interactionReversedPress active:bg-interactionReversedPress'
   };
 
-  $: btnClass = `btn ${sizeMapping[size]} ${typeMapping[type]}`;
+  $: btnClass = `inline-flex items-center justify-center font-secondary border border-transparent cursor-pointer whitespace-nowrap select-none transition-colors duration-100 ${sizeMapping[size]} ${typeMapping[type]}${disabled ? ' bg-interactionDisable text-shy cursor-not-allowed shadow-none border-transparent' : ''}`;
   $: iconOnly = type === 'primaryShy' || type === 'primaryReversed' || iconOnly;
 </script>
 
 <label
-  class={btnClass}
-  class:btn-disabled-state={disabled}
-  class:btn-active={checked}
-  class:btn-icon={iconOnly}
-  class:btn-block={block}
+  class={`${btnClass}${checked ? ' bg-interactionOutlinedSecondaryActive text-inverse' : ''}${iconOnly ? ' p-0 w-full rounded-full justify-center' : ''}${block ? ' w-full' : ''}`}
 >
   {#if singleSelect}
     <input
@@ -79,10 +81,20 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       {...$$restProps}
     />
   {/if}
-  <span class="btn-content-container">
+  <span class="flex items-center gap-xs justify-center">
     {#if !!icon}
-      <span class="btn-icon-container">
-        <svelte:component this={icon} class="icon" aria-hidden="true" />
+      <span class="inline-flex items-center">
+        <svelte:component
+          this={icon}
+          class={iconOnly
+            ? 'w-6 h-6'
+            : size === 'xsmall'
+              ? 'w-4 h-4'
+              : size === 'large'
+                ? 'w-8 h-8'
+                : 'w-5 h-5'}
+          aria-hidden="true"
+        />
       </span>
     {/if}
     {#if !iconOnly}
@@ -90,267 +102,3 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     {/if}
   </span>
 </label>
-
-<style>
-  /* @import '../styles/typography.scss';
-
-  .btn {
-    text-decoration: none;
-    cursor: pointer;
-    white-space: nowrap;
-    font-family: var(--typography-fontFamilySecondary);
-    border: 1px solid transparent;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    &.disabled,
-    &:disabled,
-    &:disabled:hover {
-      cursor: not-allowed;
-    }
-
-    &:hover {
-      text-decoration: none;
-      cursor: pointer;
-      color: var(--color-textHighlightSecondary2);
-    }
-    &:focus,
-    &:active {
-      outline: none;
-      color: var(--color-textHighlightSecondary2);
-    }
-  }
-
-  .btn-xsmall {
-    @extend .text-secondary-caption1-bold;
-    padding: 0 var(--spacingMD);
-    height: 24px;
-    min-width: 24px;
-    border-radius: var(--radiusMiddle);
-
-    .btn-content-container {
-      gap: var(--spacing3XS);
-    }
-
-    :global(.icon) {
-      width: 16px;
-      height: 16px;
-    }
-
-    &.btn-icon {
-      padding: 0;
-      width: 24px;
-      border-radius: var(--radiusFull);
-    }
-  }
-
-  .btn-medium {
-    @extend .text-secondary-text1-bold;
-    padding: 0 var(--spacingLG);
-    height: 40px;
-    min-width: 40px;
-    border-radius: var(--radiusMiddle);
-
-    :global(.icon) {
-      width: 22px;
-      height: 22px;
-    }
-
-    &.btn-icon {
-      padding: 0;
-      width: 40px;
-      border-radius: var(--radiusFull);
-
-      :global(.icon) {
-        width: 24px;
-        height: 24px;
-      }
-    }
-  }
-
-  .btn-large {
-    @extend .text-secondary-text1-bold;
-    padding: 0 var(--spacingXL);
-    height: 52px;
-    min-width: 52px;
-    border-radius: var(--radiusRounded);
-
-    :global(.icon) {
-      width: 24px;
-      height: 24px;
-    }
-
-    &.btn-icon {
-      padding: 0;
-      width: 52px;
-      border-radius: var(--radiusFull);
-
-      :global(.icon) {
-        width: 32px;
-        height: 32px;
-      }
-    }
-  }
-
-  .btn-secondary-bordered {
-    border: 1px solid var(--color-borderNeutral);
-    background: transparent;
-    color: var(--color-textDark);
-
-    &:hover {
-      background: var(--color-interactionOutlinedSecondaryHover);
-    }
-    &:active,
-    &:focus-visible,
-    &:focus-visible:hover {
-      background: var(--color-interactionOutlinedSecondaryPress);
-    }
-
-    &.btn-active {
-      color: var(--color-textInverse);
-      background: var(--color-interactionOutlinedSecondaryActive);
-
-      &:hover {
-        background: var(--color-interactionOutlinedSecondaryActiveHover);
-      }
-
-      &:active,
-      &:focus-visible,
-      &:focus-visible:hover {
-        background: var(--color-interactionOutlinedSecondaryActivePress);
-      }
-    }
-  }
-
-  .btn-secondary-shadowed {
-    background: var(--color-interactionOutlinedSecondary);
-    box-shadow: var(--shadowXS);
-    color: var(--color-textDark);
-
-    &:hover {
-      background: var(--color-interactionOutlinedSecondaryHover);
-    }
-    &:active,
-    &:focus-visible,
-    &:focus-visible:hover {
-      background: var(--color-interactionOutlinedSecondaryPress);
-    }
-    &.btn-active {
-      color: var(--color-textInverse);
-      background: var(--color-interactionOutlinedSecondaryActive);
-
-      &:hover {
-        background: var(--color-interactionOutlinedSecondaryActiveHover);
-      }
-
-      &:active,
-      &:focus-visible,
-      &:focus-visible:hover {
-        background: var(--color-interactionOutlinedSecondaryActivePress);
-      }
-    }
-  }
-
-  .btn-primary-shy {
-    background: transparent;
-    color: var(--color-interactionNeutral);
-    &:hover {
-      background: var(--color-interactionReversedHover);
-      color: var(--color-textHighlightPrimary);
-    }
-    &:active,
-    &:focus-visible,
-    &:focus-visible:hover {
-      background: var(--color-interactionReversedPress);
-      color: var(--color-interactionHighlightPrimaryPress);
-    }
-
-    &.btn-active {
-      background: var(--color-surfaceSecondary1);
-      color: var(--color-textHighlightPrimary);
-      &:hover {
-        background: var(--color-interactionReversedHover);
-        color: var(--color-interactionReversedActiveHover);
-      }
-
-      &:active,
-      &:focus-visible,
-      &:focus-visible:hover {
-        background: var(--color-interactionReversedPress);
-        color: var(--color-interactionReversedActivePress);
-      }
-    }
-  }
-
-  .btn-primary-reversed {
-    background: var(--color-surfaceWhiteAlphaLight);
-    color: var(--color-interactionReversed);
-
-    &:hover {
-      background: var(--color-interactionReversedHover);
-    }
-    &:active,
-    &:focus-visible,
-    &:focus-visible:hover {
-      background: var(--color-interactionReversedPress);
-    }
-
-    &.btn-active {
-      background: var(--color-surfaceWhiteAlphaStrong);
-      color: var(--color-interactionReversedActive);
-      &:hover {
-        background: var(--color-interactionReversedHover);
-        color: var(--color-interactionReversedActiveHover);
-      }
-
-      &:active,
-      &:focus-visible,
-      &:focus-visible:hover {
-        background: var(--color-interactionReversedActivePress);
-      }
-    }
-  }
-
-  .btn-content-container {
-    display: flex;
-    align-items: center;
-    gap: var(--spacingXS);
-    justify-content: center;
-  }
-
-  .btn-icon-container {
-    display: inline-flex;
-    align-items: center;
-  }
-
-  .btn-block {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    padding: 0;
-    border: 0;
-    clip: rect(0, 0, 0, 0);
-    overflow: hidden;
-  }
-  .btn-disabled-state,
-  .btn-disabled-state:hover,
-  .btn-disabled-state:focus,
-  .btn-disabled-state:active {
-    background: var(--color-interactionDisable);
-    color: var(--color-textShy);
-    border: 1px solid transparent;
-    cursor: not-allowed;
-    box-shadow: none;
-
-    &.btn-primary-shy {
-      background: none;
-    }
-  } */
-</style>
