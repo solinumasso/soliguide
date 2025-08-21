@@ -132,4 +132,19 @@ window.silktideConfig = {
   onPreferencesOpen: function () {
     document.dispatchEvent(new Event("PreferencesOpened"));
   },
+  onAcceptAll: function () {
+    document.dispatchEvent(new Event("AcceptAll"));
+  },
+  onAcceptAllPreferences: function () {
+    document.dispatchEvent(new Event("AcceptAllPreferences"));
+  },
+  onRejectAll: function () {
+    document.dispatchEvent(new Event("RejectAll"));
+  },
+  onRejectAllPreferences: function () {
+    document.dispatchEvent(new Event("RejectAllPreferences"));
+  },
+  onPreferencesCloseWithButton: function () {
+    document.dispatchEvent(new Event("PreferencesClosedWithButton"));
+  },
 };
