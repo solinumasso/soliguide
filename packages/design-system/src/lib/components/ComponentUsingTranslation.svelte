@@ -22,7 +22,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import i18n from '$lib/i18n';
 </script>
 
-<div style="border: 1px solid black">
+<div class="border border-black">
   Design system Translations test :
   <p>Key TOTO (exists in DS only): {$i18n.t('TOTO')}</p>
 </div>
