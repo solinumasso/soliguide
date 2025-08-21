@@ -27,81 +27,29 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let offset: [number, number] = [0, 0];
 
   const typeMapping: Record<BadgeType, string> = {
-    focus: 'badge-focus',
-    success: 'badge-success',
-    error: 'badge-error',
-    warning: 'badge-warning',
-    reversed: 'badge-reversed'
+    focus: 'bg-focus text-inverse',
+    success: 'bg-success text-inverse',
+    error: 'bg-error text-inverse',
+    warning: 'bg-warning text-inverse',
+    reversed: 'bg-inverse text-dark'
   };
 
-  $: badgeClass = `badge ${typeMapping[type]}`;
+  $: badgeClass = `flex items-center justify-center ${typeMapping[type]}`;
   $: offsetStyle = `top: ${offset[0]}px; right: ${offset[1]}px;`;
 </script>
 
-<div class="badge-container">
-  <div class:adjusted-position={$$slots.default} style={$$slots.default ? offsetStyle : ''}>
+<div class="relative inline-flex">
+  <div
+    class={$$slots.default ? 'absolute translate-x-1/2 -translate-y-1/2 origin-top-right' : ''}
+    style={$$slots.default ? offsetStyle : ''}
+  >
     {#if text}
-      <span class={`${badgeClass} pill`}><Text type="caption1Bold">{text}</Text></span>
+      <span class={`${badgeClass} rounded-full min-w-[1.125rem] min-h-[1.125rem] px-2xs`}
+        ><Text type="caption1Bold">{text}</Text></span
+      >
     {:else}
-      <span class={`${badgeClass} dot`} />
+      <span class={`${badgeClass} rounded-full w-2 h-2`} />
     {/if}
   </div>
   <slot />
 </div>
-
-<style>
-  /* .badge-container {
-    position: relative;
-    display: inline-flex;
-  }
-
-  .badge {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &.badge-focus {
-      background: var(--color-textFocus);
-      color: var(--color-textInverse);
-    }
-
-    &.badge-success {
-      background: var(--color-textSuccess);
-      color: var(--color-textInverse);
-    }
-
-    &.badge-error {
-      background: var(--color-textError);
-      color: var(--color-textInverse);
-    }
-
-    &.badge-warning {
-      background: var(--color-textWarning);
-      color: var(--color-textInverse);
-    }
-
-    &.badge-reversed {
-      background: var(--color-textInverse);
-      color: var(--color-textDark);
-    }
-  }
-
-  .dot {
-    border-radius: var(--radiusFull);
-    width: 0.5rem;
-    height: 0.5rem;
-  }
-
-  .pill {
-    border-radius: var(--radiusFull);
-    min-width: 1.125rem;
-    min-height: 1.125rem;
-    padding: 0 var(--spacing2XS);
-  }
-
-  .adjusted-position {
-    position: absolute;
-    transform: translate(50%, -50%);
-    transform-origin: 100% 0;
-  } */
-</style>

@@ -110,7 +110,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </Story>
 
 <style>
-  /* .story-row {
+  .story-row {
     display: flex;
     gap: 25px;
     align-items: flex-end;
@@ -127,28 +127,31 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     display: flex;
     align-items: center;
     justify-content: center;
+  }
 
-    &.mini {
-      width: 35px;
-      height: 35px;
-      border-radius: var(--radiusMiddle);
-    }
-    &.midi {
-      width: 50px;
-      height: 50px;
-    }
-    &.maxi {
-      width: 90px;
-      height: 90px;
-    }
-    &.round {
-      border-radius: var(--radiusFull);
-    }
+  .fake-avatar.mini {
+    width: 35px;
+    height: 35px;
+    border-radius: var(--radiusMiddle);
+  }
+
+  .fake-avatar.midi {
+    width: 50px;
+    height: 50px;
+  }
+
+  .fake-avatar.maxi {
+    width: 90px;
+    height: 90px;
+  }
+
+  .fake-avatar.round {
+    border-radius: var(--radiusFull);
   }
 
   .msg {
     display: flex;
     align-items: center;
     gap: 10px;
-  } */
+  }
 </style>
