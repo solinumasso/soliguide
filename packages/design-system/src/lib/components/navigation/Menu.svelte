@@ -37,30 +37,46 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   };
 </script>
 
-<nav class="menu">
-  <ul role="menu">
+<nav class="bg-surfaceWhite h-menu-height shadow-xl">
+  <ul role="menu" class="h-menu-height flex justify-between items-center px-lg pt-2xs pb-xs">
     {#each menuItems as item}
       {@const active = item.route === activeItem}
-      <li class:active aria-label={active ? item.ariaLabelActive : item.ariaLabel} role="menuitem">
+      <li
+        class={`text-dark ${active ? 'text-highlightPrimary!' : ''}`}
+        aria-label={active ? item.ariaLabelActive : item.ariaLabel}
+        role="menuitem"
+      >
         {#if active}
-          <span class="menu-item">
-            <span class="menu-icon active">
+          <span class="flex min-w-[64px] flex-col items-center gap-4xs">
+            <span
+              class="flex items-center justify-center h-7 rounded-rounded bg-surfacePrimary2 relative px-xs"
+            >
               <svelte:component this={item.iconActive} size="20" />
             </span>
-            <span class="menu-item-text active">
+            <span class="text-highlightPrimary2">
               <Text type="caption2Medium">{item.label}</Text>
             </span>
           </span>
         {:else}
-          <a class="menu-item" href={item.route} on:click={() => handleClick(item)}>
-            <span class="menu-icon">
+          <a
+            class="flex min-w-[64px] flex-col items-center gap-4xs no-underline"
+            href={item.route}
+            on:click={() => handleClick(item)}
+          >
+            <span
+              class="flex items-center justify-center h-7 rounded-rounded bg-transparent relative group"
+            >
               {#if item.hasBadge && showBadge}
-                <span class="icon-badge"><Badge type="focus" /></span>
+                <span class="absolute -top-1 right-1.5"><Badge type="focus" /></span>
               {/if}
-              <span class="icon-inactive"><svelte:component this={item.icon} size="20" /></span>
-              <span class="icon-active"><svelte:component this={item.iconActive} size="20" /></span>
+              <span class="flex group-hover:hidden"
+                ><svelte:component this={item.icon} size="20" /></span
+              >
+              <span class="hidden group-hover:flex"
+                ><svelte:component this={item.iconActive} size="20" /></span
+              >
             </span>
-            <span class="menu-item-text">
+            <span class="group-hover:text-highlightPrimary2">
               <Text type="caption2Medium">{item.label}</Text>
             </span>
           </a>
@@ -69,93 +85,3 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     {/each}
   </ul>
 </nav>
-
-<style>
-  /* nav {
-    background-color: var(--color-surfaceWhite);
-    height: var(--menu-height);
-    box-shadow: var(--shadowXL);
-  }
-  ul {
-    height: var(--menu-height);
-    padding: var(--spacing2XS) var(--spacingLG) var(--spacingXS);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  li {
-    color: var(--color-textDark);
-
-    .menu-item {
-      min-width: 64px;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      gap: var(--spacing4XS);
-    }
-
-    .menu-icon {
-      height: 28px;
-      border-radius: var(--radiusRounded);
-      background-color: transparent;
-      padding: 0 var(--spacingXS);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-
-      &.active {
-        background-color: var(--color-surfacePrimary2);
-      }
-    }
-
-    .menu-item-text {
-      &.active {
-        color: var(--color-textHighlightPrimary2);
-      }
-    }
-
-    a {
-      text-decoration: none;
-      .icon-inactive {
-        display: flex;
-      }
-      .icon-active {
-        display: none;
-      }
-    }
-
-    &:hover:not(.active),
-    &:active {
-      color: var(--color-textHighlightPrimary);
-
-      a {
-        .menu-icon {
-          background-color: var(--color-surfaceGray3);
-        }
-        .menu-item-text {
-          color: var(--color-textHighlightPrimary2);
-        }
-
-        @media (pointer: fine) {
-          .icon-inactive {
-            display: none;
-          }
-          .icon-active {
-            display: flex;
-          }
-        }
-      }
-    }
-
-    &.active {
-      color: var(--color-textHighlightPrimary);
-    }
-  }
-
-  .icon-badge {
-    position: absolute;
-    top: -0.25rem;
-    right: 0.375rem;
-  } */
-</style>
