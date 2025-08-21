@@ -28,47 +28,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let disabled = false;
 
   const types: Record<AppIconType, string> = {
-    primary: 'icon-primary',
-    secondary: 'icon-secondary',
-    tertiary: 'icon-tertiary',
-    quartary: 'icon-quartary'
+    primary: 'bg-surfacePrimary2 text-interactionHighlightPrimary',
+    secondary: 'bg-surfaceSecondary1 text-highlightSecondary',
+    tertiary: 'bg-surfaceTertiary1 text-highlightTertiary',
+    quartary: 'bg-surfaceQuartary1 text-highlightQuartary'
   };
 
-  $: cls = types[type] || types.primary;
+  $: cls = `${types[type] || types.primary} ${disabled ? 'bg-surfaceGray1! text-shy' : ''}`;
 </script>
 
-<span class={`app-icon ${cls}`} class:disabled>
+<span class={`flex items-center justify-center rounded-full w-6 h-6 ${cls}`}>
   <svelte:component this={icon} size={16} />
 </span>
-
-<style>
-  /* .app-icon {
-    border-radius: var(--radiusFull);
-    height: 24px;
-    width: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .icon-primary {
-    background-color: var(--color-surfacePrimary2);
-    color: var(--color-interactionHighlightPrimary);
-  }
-  .icon-secondary {
-    background-color: var(--color-surfaceSecondary1);
-    color: var(--color-textHighlightSecondary);
-  }
-  .icon-tertiary {
-    background-color: var(--color-surfaceTertiary1);
-    color: var(--color-textHighlightTertiary);
-  }
-  .icon-quartary {
-    background-color: var(--color-surfaceQuartary1);
-    color: var(--color-textHighlightQuartary);
-  }
-  .disabled {
-    background-color: var(--color-surfaceGray1);
-    color: var(--color-textShy);
-  } */
-</style>
