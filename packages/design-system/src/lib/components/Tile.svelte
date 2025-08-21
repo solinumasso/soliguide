@@ -25,8 +25,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let label: string;
   export let variant: TileVariant;
 
-  $: tileClass = `tile ${variant}`;
-  $: iconClass = `tile-icon ${variant}`;
+  $: tileClass = `w-full p-xs flex justify-center items-center self-center gap-xs rounded-xs shadow-xs
+    ${variant === 'primary' ? 'bg-surfacePrimary2' : ''}
+    ${variant === 'secondary' ? 'bg-surfaceSecondary1' : ''}
+    ${variant === 'tertiary' ? 'bg-surfaceTertiary2' : ''}`;
+
+  $: iconClass = `rounded-full w-6 h-6 p-3xs flex items-center justify-center gap-sm
+    ${variant === 'primary' ? 'bg-surfaceSecondary1 text-highlightTertiary' : ''}
+    ${variant === 'secondary' ? 'bg-surfaceTertiary1 text-highlightSecondary' : ''}
+    ${variant === 'tertiary' ? 'bg-surfacePrimary1 text-highlightPrimary' : ''}`;
 </script>
 
 <div class={tileClass}>
@@ -35,60 +42,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       <slot />
     </span>
   {/if}
-  <p class="tile-text text-secondary-text2-medium">
+  <p class="text-secondary-text2-medium text-neutral">
     {label}
   </p>
 </div>
-
-<style>
-  /* .tile {
-    width: 100%;
-    padding: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-self: center;
-    gap: var(--spacingXS);
-    border-radius: var(--spacingXS);
-    box-shadow: var(--shadowXS);
-
-    &.primary {
-      background-color: var(--color-surfacePrimary2);
-    }
-
-    &.secondary {
-      background-color: var(--color-surfaceSecondary1);
-    }
-
-    &.tertiary {
-      background-color: var(--color-surfaceTertiary2);
-    }
-
-    .tile-text {
-      color: var(--textNeutral);
-    }
-
-    .tile-icon {
-      border-radius: var(--radiusFull);
-      width: 24px;
-      height: 24px;
-      padding: var(--spacing3XS);
-      gap: 10px;
-
-      &.primary {
-        background-color: var(--color-surfaceSecondary1);
-        color: var(--color-textHighlightTertiary);
-      }
-
-      &.secondary {
-        background-color: var(--color-surfaceTertiary1);
-        color: var(--color-textHighlightSecondary);
-      }
-
-      &.tertiary {
-        background-color: var(--color-surfacePrimary1);
-        color: var(--color-textHighlightPrimary);
-      }
-    }
-  } */
-</style>
