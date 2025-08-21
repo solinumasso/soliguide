@@ -166,6 +166,21 @@ export class AppComponent implements OnInit, OnDestroy {
     document.addEventListener("PreferencesOpened", () => {
       this.chatService.preferencesHaveBeenOpened();
     });
+    document.addEventListener("AcceptAll", () => {
+      this.posthogService.capture("accept-all-cookies");
+    });
+    document.addEventListener("AcceptAllPreferences", () => {
+      this.posthogService.capture("accept-all-cookies-preferences");
+    });
+    document.addEventListener("RejectAll", () => {
+      this.posthogService.capture("reject-all-cookies");
+    });
+    document.addEventListener("RejectAllPreferences", () => {
+      this.posthogService.capture("reject-all-cookies-preferences");
+    });
+    document.addEventListener("PreferencesClosedWithButton", () => {
+      this.posthogService.capture("preferences-close-cookies-banner");
+    });
   }
 
   public ngOnDestroy(): void {
