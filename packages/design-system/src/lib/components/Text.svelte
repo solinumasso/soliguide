@@ -56,20 +56,20 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   };
 
   const colorMapping: Record<TextColor, string> = {
-    dark: 'text-color-dark',
-    neutral: 'text-color-neutral',
-    shy: 'text-color-shy',
-    inverse: 'text-color-inverse',
-    highlightPrimary: 'text-color-highlight-primary',
-    highlightPrimary2: 'text-color-highlight-primary2',
-    highlightSecondary: 'text-color-highlight-secondary',
-    highlightSecondary2: 'text-color-highlight-secondary2',
-    highlightTertiary: 'text-color-highlight-tertiary',
-    highlightQuartary: 'text-color-highlight-quartary',
-    focus: 'text-color-text-focus',
-    success: 'text-color-success',
-    warning: 'text-color-warning',
-    error: 'text-color-error'
+    dark: 'text-dark',
+    neutral: 'text-neutral',
+    shy: 'text-shy',
+    inverse: 'text-inverse',
+    highlightPrimary: 'text-highlightPrimary',
+    highlightPrimary2: 'text-highlightPrimary2',
+    highlightSecondary: 'text-highlightSecondary',
+    highlightSecondary2: 'text-highlightSecondary2',
+    highlightTertiary: 'text-highlightTertiary',
+    highlightQuartary: 'text-highlightQuartary',
+    focus: 'text-focus',
+    success: 'text-success',
+    warning: 'text-warning',
+    error: 'text-error'
   };
 
   // Make sure text has always a valid style
@@ -77,18 +77,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     console.log(`Text has no type '${type}'. Using 'text1'`);
   }
   $: textDefinition = textMapping[type] || textMapping.text1;
-  $: cssClass = `${textDefinition.cls} ${color ? colorMapping[color] : ''} ${ellipsis ? 'ellipsis' : ''}`;
+  $: cssClass = `${textDefinition.cls} ${color ? colorMapping[color] : ''} ${ellipsis ? 'truncate' : ''}`;
   $: tag = as || textDefinition.tag || 'span';
 </script>
 
 <svelte:element this={tag} class={cssClass}>
   <slot />
 </svelte:element>
-
-<style>
-  /* .ellipsis {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  } */
-</style>
