@@ -33,9 +33,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let color: LinkColor = 'primary';
 
   const colorMapping: Record<LinkColor, string> = {
-    primary: 'link-primary',
-    neutral: 'link-neutral',
-    reversed: 'link-reversed'
+    primary:
+      'text-interactionHighlightPrimary hover:text-interactionHighlightPrimaryHover active:text-interactionHighlightPrimaryPress focus-visible:text-interactionHighlightPrimaryPress',
+    neutral:
+      'text-interactionNeutral hover:text-interactionNeutralHover active:text-interactionNeutralPress focus-visible:text-interactionNeutralPress',
+    reversed:
+      'text-inverse hover:text-interactionReversedHover active:text-interactionReversedPress focus-visible:text-interactionReversedPress'
   };
 
   const sizeMapping: Record<LinkSize, { text: string; icon: number }> = {
@@ -43,12 +46,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     small: { text: 'text-secondary-text2-bold', icon: 20 }
   };
 
-  $: linkClass = `link ${colorMapping[color]} ${sizeMapping[size].text} ${iconLeft ? 'link-icon-left' : 'link-icon-right'}`;
+  $: linkClass = `inline-flex items-center gap-3xs no-underline focus:outline-none ${colorMapping[color]} ${sizeMapping[size].text}`;
   $: target = isExternal ? '_blank' : '_self';
 </script>
 
 {#if !disabled}
-  <a {href} class={linkClass} {target} class:underline>
+  <a {href} class={linkClass} class:underline {target}>
     {#if icon && iconLeft}
       <svelte:component this={icon} size={sizeMapping[size].icon} />
     {/if}
@@ -58,7 +61,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     {/if}
   </a>
 {:else}
-  <span class={linkClass} class:disabled>
+  <span class={`${linkClass} text-shy pointer-events-none`}>
     {#if icon && iconLeft}
       <svelte:component this={icon} size={sizeMapping[size].icon} />
     {/if}
@@ -68,66 +71,3 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     {/if}
   </span>
 {/if}
-
-<style>
-  /* .link {
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing3XS);
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    &:focus,
-    &:active {
-      outline: none;
-    }
-    &.link-primary {
-      color: var(--color-interactionHighlightPrimary);
-
-      &:hover {
-        color: var(--color-interactionHighlightPrimaryHover);
-      }
-
-      &:active,
-      &:focus-visible {
-        color: var(--color-interactionHighlightPrimaryPress);
-      }
-    }
-
-    &.link-neutral {
-      color: var(--color-interactionNeutral);
-      &:hover {
-        color: var(--color-interactionNeutralHover);
-      }
-
-      &:active,
-      &:focus-visible {
-        color: var(--color-interactionNeutralPress);
-      }
-    }
-
-    &.link-reversed {
-      color: var(--color-textInverse);
-
-      &:hover {
-        color: var(--color-interactionReversedHover);
-      }
-
-      &:active,
-      &:focus-visible {
-        color: var(--color-interactionReversedPress);
-      }
-    }
-
-    &.underline {
-      text-decoration: underline;
-    }
-    &.disabled {
-      color: var(--color-textShy);
-      pointer-events: none;
-    }
-  } */
-</style>
