@@ -46,39 +46,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   };
   const defaultVariantMapping = variantMapping.info;
 
-  $: sizeClass = size === 'medium' ? 'info-icon-medium' : 'info-icon-small';
-  $: cls = `info-icon ${sizeClass}`;
+  $: sizeClass = size === 'medium' ? 'w-6 h-6' : 'w-4 h-4';
+  $: cls = `flex justify-center items-center bg-surfaceWhite rounded-full ${sizeClass}`;
   $: icon = variantMapping[variant].icon ?? defaultVariantMapping.icon;
   $: color = variantMapping[variant].color ?? defaultVariantMapping.color;
   $: iconSize = size === 'medium' ? 16 : 12;
 </script>
 
-<span class={cls} class:with-shadow={withShadow}>
+<span class={cls} class:shadow-xs={withShadow}>
   <svelte:component this={icon} alt={altTag} variation="filled" size={iconSize} {color} />
 </span>
-
-<style>
-  /* .info-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--color-surfaceWhite);
-    border-radius: var(--radiusFull);
-
-    &.with-shadow {
-      box-shadow: var(--shadowXS);
-    }
-
-    &.info-icon-small {
-      $size: 16px;
-      height: $size;
-      width: $size;
-    }
-
-    &.info-icon-medium {
-      $size: 24px;
-      height: $size;
-      width: $size;
-    }
-  } */
-</style>
