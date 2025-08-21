@@ -153,7 +153,6 @@
   /* -------------------- */
   /* Radius */
   /* -------------------- */
-  --radius-*: initial;
   --radius-minimal: 2px;
   --radius-middle: 6px;
   --radius-rounded: 12px;

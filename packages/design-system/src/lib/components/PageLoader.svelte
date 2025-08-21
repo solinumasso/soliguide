@@ -26,21 +26,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </script>
 
 {#if loading}
-  <section class="loader" class:full-page={fullPage}>
+  <section class={`flex justify-center ${fullPage ? 'pt-2xl' : 'pt-lg'}`}>
     <Spinner type="primaryWithBackground" />
   </section>
 {:else}
   <slot />
 {/if}
-
-<style>
-  /* .loader {
-    display: flex;
-    justify-content: center;
-    padding-top: var(--spacingLG);
-
-    &.full-page {
-      padding-top: var(--spacing2XL);
-    }
-  } */
-</style>
