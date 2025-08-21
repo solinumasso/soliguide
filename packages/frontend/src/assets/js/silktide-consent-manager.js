@@ -236,17 +236,6 @@ class SilktideCookieBanner {
       }
     });
 
-    // Trigger optional onAcceptAll/onRejectAll callbacks
-    if (accepted && typeof this.config.onAcceptAll === "function") {
-      if (typeof this.config.onAcceptAll === "function") {
-        this.config.onAcceptAll();
-      }
-    } else if (typeof this.config.onRejectAll === "function") {
-      if (typeof this.config.onRejectAll === "function") {
-        this.config.onRejectAll();
-      }
-    }
-
     // finally update the checkboxes in the modal with the values from localStorage
     this.updateCheckboxState();
 
@@ -712,12 +701,18 @@ class SilktideCookieBanner {
       const preferencesButton = this.banner.querySelector(".preferences");
 
       // Add event listeners to the buttons
-      acceptButton?.addEventListener("click", () =>
-        this.handleCookieChoice(true)
-      );
-      rejectButton?.addEventListener("click", () =>
-        this.handleCookieChoice(false)
-      );
+      acceptButton?.addEventListener("click", () => {
+        this.handleCookieChoice(true);
+        if (typeof this.config.onAcceptAll === "function") {
+          this.config.onAcceptAll();
+        }
+      });
+      rejectButton?.addEventListener("click", () => {
+        this.handleCookieChoice(false);
+        if (typeof this.config.onRejectAll === "function") {
+          this.config.onRejectAll();
+        }
+      });
       preferencesButton?.addEventListener("click", () => {
         this.showBackdrop();
         this.toggleModal(true);
@@ -773,13 +768,26 @@ class SilktideCookieBanner {
           // handle the case where the user closes without making a choice for the first time
           this.handleClosedWithNoChoice();
         }
+
+        if (typeof this.config.onPreferencesCloseWithButton === "function") {
+          // CUSTOM: this is a custom function that runs when the user closes the preferences modal
+          this.config.onPreferencesCloseWithButton();
+        }
       });
-      acceptAllButton?.addEventListener("click", () =>
-        this.handleCookieChoice(true)
-      );
-      rejectAllButton?.addEventListener("click", () =>
-        this.handleCookieChoice(false)
-      );
+      acceptAllButton?.addEventListener("click", () => {
+        this.handleCookieChoice(true);
+        if (typeof this.config.onAcceptAllPreferences === "function") {
+          // CUSTOM: this is a custom function that runs when the user accepts all cookies on the preferences modal
+          this.config.onAcceptAllPreferences();
+        }
+      });
+      rejectAllButton?.addEventListener("click", () => {
+        this.handleCookieChoice(false);
+        if (typeof this.config.onRejectAllPreferences === "function") {
+          // CUSTOM: this is a custom function that runs when the user rejects all cookies on the preferences modal
+          this.config.onRejectAllPreferences();
+        }
+      });
 
       // Banner Focus Trap
       const focusableElements = this.getFocusableElements(this.modal);

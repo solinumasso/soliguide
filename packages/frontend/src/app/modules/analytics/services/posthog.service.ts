@@ -47,6 +47,30 @@ export class PosthogService implements OnDestroy {
           } else {
             this.commonPosthogService.switchPersistence("memory");
           }
+
+          this.commonPosthogService
+            .getUserDistinctId()
+            .subscribe((distinctId) => {
+              this.commonPosthogService.identify(distinctId, {
+                analytics_cookies_consent: consent ? "granted" : "denied",
+              });
+            })
+            .unsubscribe();
+        }
+      )
+    );
+
+    this.subscription.add(
+      this.cookieManagerService.chatConsentSubject.subscribe(
+        (consent: boolean) => {
+          this.commonPosthogService
+            .getUserDistinctId()
+            .subscribe((distinctId) => {
+              this.commonPosthogService.identify(distinctId, {
+                chat_cookies_consent: consent ? "granted" : "denied",
+              });
+            })
+            .unsubscribe();
         }
       )
     );
