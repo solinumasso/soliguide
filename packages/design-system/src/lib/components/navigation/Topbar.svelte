@@ -38,11 +38,20 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     reversedTransparent: 'reversed'
   };
 
+  const buttonTypeColorMapping: Record<TopbarType, string> = {
+    gradient: 'bg-gradientBackground text-dark',
+    reversedGradient: 'bg-gradientSecondary text-inverse',
+    transparent: 'text-dark',
+    reversedTransparent: 'text-inverse'
+  };
+
   const dispatch = createEventDispatcher<{ navigate: null }>();
 </script>
 
 <!-- IN V2, to include the buttons, check what was done in src/routes/actions/+page.svelte with actions buttons -->
-<nav class={type}>
+<nav
+  class={`fixed top-0 left-0 w-screen z-[1] flex items-center overflow-hidden h-topbar-height px-lg ${buttonTypeColorMapping[type]}`}
+>
   <Button
     type={buttonTypeMapping[type]}
     iconPosition="iconOnly"
@@ -53,43 +62,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <ChevronLeft slot="icon" />
   </Button>
 
-  <div class="nav-title">
+  <div class="flex-1 text-center">
     <Text type="title3PrimaryExtraBold">{title}</Text>
   </div>
 </nav>
-
-<style>
-  /* nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    overflow: hidden;
-    padding: 0 var(--spacingLG);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: var(--topbar-height);
-    z-index: 1;
-
-    &.gradient {
-      background: var(--color-gradientBackground);
-      color: var(--color-textDark);
-    }
-    &.reversedGradient {
-      background: var(--color-gradientSecondary);
-      color: var(--color-textInverse);
-    }
-    &.transparent {
-      color: var(--color-textDark);
-    }
-    &.reversedTransparent {
-      color: var(--color-textInverse);
-    }
-  }
-
-  .nav-title {
-    width: 100%;
-    text-align: center;
-  } */
-</style>

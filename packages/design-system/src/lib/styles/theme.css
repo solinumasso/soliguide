@@ -370,4 +370,20 @@
   .text-secondary-caption2-bold {
     @apply font-secondary text-caption2 leading-caption2 font-bold;
   }
+
+  /* -------------------- */
+  /* Gradients colors */
+  /* -------------------- */
+  .bg-gradientPrimary {
+    background: linear-gradient(270deg, #fa6d56 0%, #ff4124 100%);
+  }
+  .bg-gradientSecondary {
+    background: linear-gradient(270deg, #613677 0%, #463351 100%);
+  }
+  .bg-gradientTertiary {
+    background: linear-gradient(270deg, #504eb4 0%, #3b3d74 100%);
+  }
+  .bg-gradientBackground {
+    background: radial-gradient(104.32% 140.38% at 0% 0%, #f6f5ff 0%, #f7f3f7 50%, #fff 100%);
+  }
 }
