@@ -378,6 +378,7 @@
   "COOKIE_PREFERENCES_BANNER_TITLE": "Настройте параметры файлов cookie",
   "COOKIE_TYPES_ANALYTICS_DESCRIPTION": "<p>Эти файлы cookie помогают нам улучшать сайт, отслеживая через PostHog и Google Analytics, какие страницы посещают чаще всего и как пользователи ведут себя на сайте. Вы можете ознакомиться с политикой использования файлов cookie <a target=\"_blank\" href=\"https://posthog.com/privacy\">PostHog</a> и <a href=\"https://policies.google.com/privacy\" target=\"_blank\">Google Analytics<a/></p>",
   "COOKIE_TYPES_ANALYTICS_NAME": "Анализ",
+  "COOKIE_TYPES_CHAT_DESCRIPTION": "Эти файлы cookie позволяют нам предложить вам чат с нашим социальным работником через платформу Zendesk. Вы можете ознакомиться с политикой использования файлов cookie <a target=\"_blank\" href=\"https://www.zendesk.fr/company/agreements-and-terms/privacy-notice/\">Zendesk</a>.",
   "COOKIE_TYPES_CHAT_NAME": "Кот",
   "COOKIE_TYPES_NECESSARY_DESCRIPTION": "<p>Эти файлы cookie необходимы для корректной работы сайта и не могут быть отключены. Они используются для некоторых функций, таких как вход в систему или ваши настройки файлов cookie.</p>",
   "COOKIE_TYPES_NECESSARY_NAME": "Необходимый",
