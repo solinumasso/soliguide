@@ -64,6 +64,16 @@ export class PosthogService implements OnDestroy {
         }
       )
     );
+
+    this.subscription.add(
+      this.cookieManagerService.hasUserMadeCookieChoice.subscribe(
+        (hasMadeChoice: boolean) => {
+          this.commonPosthogService.setPersonProperties({
+            has_made_cookie_choice: hasMadeChoice ? "yes" : "no",
+          });
+        }
+      )
+    );
   }
 
   public ngOnDestroy(): void {
