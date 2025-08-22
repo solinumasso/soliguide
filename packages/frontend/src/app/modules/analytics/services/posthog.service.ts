@@ -48,14 +48,9 @@ export class PosthogService implements OnDestroy {
             this.commonPosthogService.switchPersistence("memory");
           }
 
-          this.commonPosthogService
-            .getUserDistinctId()
-            .subscribe((distinctId) => {
-              this.commonPosthogService.identify(distinctId, {
-                analytics_cookies_consent: consent ? "granted" : "denied",
-              });
-            })
-            .unsubscribe();
+          this.commonPosthogService.setPersonProperties({
+            analytics_cookies_consent: consent ? "granted" : "denied",
+          });
         }
       )
     );
@@ -63,14 +58,9 @@ export class PosthogService implements OnDestroy {
     this.subscription.add(
       this.cookieManagerService.chatConsentSubject.subscribe(
         (consent: boolean) => {
-          this.commonPosthogService
-            .getUserDistinctId()
-            .subscribe((distinctId) => {
-              this.commonPosthogService.identify(distinctId, {
-                chat_cookies_consent: consent ? "granted" : "denied",
-              });
-            })
-            .unsubscribe();
+          this.commonPosthogService.setPersonProperties({
+            chat_cookies_consent: consent ? "granted" : "denied",
+          });
         }
       )
     );
