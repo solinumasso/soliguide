@@ -378,6 +378,7 @@
   "COOKIE_PREFERENCES_BANNER_TITLE": "تنظیمات کوکی خود را سفارشی کنید",
   "COOKIE_TYPES_ANALYTICS_DESCRIPTION": "<p>این کوکی‌ها با ردیابی صفحاتی که بیشتر بازدید می‌شوند و نحوه رفتار کاربران در سایت، از طریق PostHog و Google Analytics، به ما در بهبود سایت کمک می‌کنند. می‌توانید سیاست‌های کوکی <a target=\"_blank\" href=\"https://posthog.com/privacy\">PostHog</a> و <a href=\"https://policies.google.com/privacy\" target=\"_blank\">Google Analytics<a/></p> را مطالعه کنید.",
   "COOKIE_TYPES_ANALYTICS_NAME": "تحلیل",
+  "COOKIE_TYPES_CHAT_DESCRIPTION": "این کوکی‌ها به ما اجازه می‌دهند تا از طریق پلتفرم Zendesk، گفتگوی چت با مددکار اجتماعی خود را برای شما فراهم کنیم. می‌توانید به سیاست کوکی <a target=\"_blank\" href=\"https://www.zendesk.fr/company/agreements-and-terms/privacy-notice/\">Zendesk</a> مراجعه کنید.",
   "COOKIE_TYPES_CHAT_NAME": "گربه",
   "COOKIE_TYPES_NECESSARY_DESCRIPTION": "<p>این کوکی‌ها برای عملکرد صحیح سایت ضروری هستند و نمی‌توان آنها را غیرفعال کرد. آنها در بخش‌های خاصی مانند ورود به سیستم یا تنظیمات کوکی شما استفاده می‌شوند.</p>",
   "COOKIE_TYPES_NECESSARY_NAME": "ضروری",

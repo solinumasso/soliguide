@@ -378,6 +378,7 @@
   "COOKIE_PREFERENCES_BANNER_TITLE": "تخصيص تفضيلات ملفات تعريف الارتباط الخاصة بك",
   "COOKIE_TYPES_ANALYTICS_DESCRIPTION": "تساعدنا ملفات تعريف الارتباط هذه على تحسين الموقع من خلال تتبع الصفحات الأكثر زيارة وسلوك المستخدمين على الموقع، عبر PostHog وGoogle Analytics. يمكنك الاطلاع على سياسات ملفات تعريف الارتباط الخاصة بـ <a target=\"_blank\" href=\"https://posthog.com/privacy\">PostHog</a> و<a href=\"https://policies.google.com/privacy\" target=\"_blank\">Google Analytics<a/></p>",
   "COOKIE_TYPES_ANALYTICS_NAME": "تحليل",
+  "COOKIE_TYPES_CHAT_DESCRIPTION": "تتيح لنا ملفات تعريف الارتباط هذه تقديم محادثة دردشة مع أخصائينا الاجتماعي عبر منصة Zendesk. يمكنك الاطلاع على سياسة ملفات تعريف الارتباط الخاصة بـ <a target=\"_blank\" href=\"https://www.zendesk.fr/company/agreements-and-terms/privacy-notice/\">Zendesk</a>.",
   "COOKIE_TYPES_CHAT_NAME": "قطة",
   "COOKIE_TYPES_NECESSARY_DESCRIPTION": "<p>هذه ملفات تعريف الارتباط ضرورية لضمان عمل الموقع بشكل صحيح، ولا يمكن تعطيلها. تُستخدم في بعض المهام، مثل تسجيل الدخول أو تفضيلات ملفات تعريف الارتباط.</p>",
   "COOKIE_TYPES_NECESSARY_NAME": "ضروري",

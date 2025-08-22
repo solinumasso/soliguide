@@ -378,6 +378,7 @@
   "COOKIE_PREFERENCES_BANNER_TITLE": "Personalitza les teves preferències de galetes (cookies)",
   "COOKIE_TYPES_ANALYTICS_DESCRIPTION": "<p>Aquestes galetes ens ajuden a millorar el lloc web fent un seguiment, a través de PostHog i Google Analytics, de quines pàgines es visiten més i com es comporten els usuaris al lloc web. Podeu consultar les polítiques de galetes de <a target=\"_blank\" href=\"https://posthog.com/privacy\">PostHog</a> i <a href=\"https://policies.google.com/privacy\" target=\"_blank\">Google Analytics<a/></p>",
   "COOKIE_TYPES_ANALYTICS_NAME": "Anàlisi",
+  "COOKIE_TYPES_CHAT_DESCRIPTION": "Aquestes galetes ens permeten oferir-vos una conversa de xat amb el nostre treballador social, a través de la plataforma Zendesk. Podeu consultar la política de galetes de <a target=\"_blank\" href=\"https://www.zendesk.fr/company/agreements-and-terms/privacy-notice/\">Zendesk</a>.",
   "COOKIE_TYPES_CHAT_NAME": "Xat",
   "COOKIE_TYPES_NECESSARY_DESCRIPTION": "<p>Aquestes galetes (cookies) són necessàries per al correcte funcionament del lloc web i no es poden desactivar. S'utilitzen en determinades parts, com ara l'inici de sessió o les teves preferències de galetes.</p>",
   "COOKIE_TYPES_NECESSARY_NAME": "Necessari",

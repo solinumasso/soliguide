@@ -378,6 +378,7 @@
   "COOKIE_PREFERENCES_BANNER_TITLE": "Personaliza tus preferencias de galletas (cookies)",
   "COOKIE_TYPES_ANALYTICS_DESCRIPTION": "Estas cookies nos ayudan a mejorar el sitio web rastreando, a través de PostHog y Google Analytics, qué páginas son las más visitadas y cómo se comportan los usuarios. Puedes consultar las políticas de cookies de <a target=\"_blank\" href=\"https://posthog.com/privacy\">PostHog</a> y <a href=\"https://policies.google.com/privacy\" target=\"_blank\">Google Analytics</p>",
   "COOKIE_TYPES_ANALYTICS_NAME": "Análisis",
+  "COOKIE_TYPES_CHAT_DESCRIPTION": "Estas cookies permitimos una conversación por tchat con nuestro interviniente social, vía la plataforma Zendesk. Podéis consultar la política de cookies de <a target=\"_blank\" href=\"https://www.zendesk.fr/company/agreements-and-terms/privacy-notice/\">Zendesk</a>.",
   "COOKIE_TYPES_CHAT_NAME": "Chat",
   "COOKIE_TYPES_NECESSARY_DESCRIPTION": "<p>Estas galletas (cookies) son necesarias para el correcto funcionamiento del sitio y no se pueden desactivar. Se utilizan en ciertas secciones, como el inicio de sesión o tus preferencias de galletas.</p>",
   "COOKIE_TYPES_NECESSARY_NAME": "Necesario",
