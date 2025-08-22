@@ -18,11 +18,5 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
-<hr class="divider" />
 
-<style>
-  .divider {
-    border: 0;
-    border-top: 1px solid var(--color-borderNeutral);
-  }
-</style>
+<hr class="border-0 border-t border-borderNeutral" />
