@@ -163,6 +163,16 @@ export class PosthogService implements OnDestroy {
     }
   }
 
+  public setPersonProperties(properties: PosthogProperties): void {
+    if (this.enabled) {
+      this.posthogInstance.subscribe((posthogInstance) => {
+        if (posthogInstance) {
+          posthogInstance.setPersonProperties(properties);
+        }
+      });
+    }
+  }
+
   public switchPersistence(
     persistence: "memory" | "localStorage+cookie"
   ): void {
