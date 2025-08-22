@@ -25,6 +25,7 @@ import { TranslateModule } from "@ngx-translate/core";
 
 import { DisplayPublicAdminComponent } from "./display-public-admin.component";
 import { ONLINE_PLACE_MOCK } from "../../../../../../mocks";
+import { AdminPlaceSharedModule } from "../../admin-place-shared.module";
 
 describe("DisplayPublicAdminComponent", () => {
   let component: DisplayPublicAdminComponent;
@@ -33,7 +34,12 @@ describe("DisplayPublicAdminComponent", () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [DisplayPublicAdminComponent],
-      imports: [TranslateModule.forRoot(), SharedModule, CommonModule],
+      imports: [
+        AdminPlaceSharedModule,
+        CommonModule,
+        SharedModule,
+        TranslateModule.forRoot(),
+      ],
     }).compileComponents();
   }));
 
