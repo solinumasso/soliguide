@@ -34,12 +34,17 @@ export class CookieManagerService {
   public analyticsConsentSubject: BehaviorSubject<boolean>;
   public chatConsentSubject: BehaviorSubject<boolean>;
 
+  public hasUserMadeCookieChoice: BehaviorSubject<boolean>;
+
   constructor(private readonly translateService: TranslateService) {
     this.analyticsConsentSubject = new BehaviorSubject<boolean>(
       globalConstants.getItem("silktideCookieChoice_analytics") === true
     );
     this.chatConsentSubject = new BehaviorSubject<boolean>(
       globalConstants.getItem("silktideCookieChoice_chat") === true
+    );
+    this.hasUserMadeCookieChoice = new BehaviorSubject<boolean>(
+      globalConstants.getItem("silktideCookieBanner_InitialChoice") === 1
     );
 
     this.subscription = new Subscription();
