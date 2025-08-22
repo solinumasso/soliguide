@@ -43,8 +43,16 @@ export class CookieManagerService {
     this.chatConsentSubject = new BehaviorSubject<boolean>(
       globalConstants.getItem("silktideCookieChoice_chat") === true
     );
+    console.log(
+      "Initial hasUserMadeCookieChoice",
+      globalConstants.getItem("silktideCookieBanner_InitialChoice")
+    );
+    console.log(
+      "Initial hasUserMadeCookieChoice test",
+      globalConstants.getItem("silktideCookieBanner_InitialChoice") === 1
+    );
     this.hasUserMadeCookieChoice = new BehaviorSubject<boolean>(
-      globalConstants.getItem("silktideCookieBanner_InitialChoice") === "1"
+      globalConstants.getItem("silktideCookieBanner_InitialChoice") === 1
     );
 
     this.subscription = new Subscription();

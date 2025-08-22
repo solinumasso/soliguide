@@ -419,6 +419,7 @@ class SilktideCookieBanner {
     if (this.config.showBanner === false) {
       return false;
     }
+
     return (
       localStorage.getItem(
         `silktideCookieBanner_InitialChoice${this.getBannerSuffix()}`
@@ -992,7 +993,7 @@ class SilktideCookieBanner {
    */
   function hasUserMadeCookieChoice() {
     if (cookieBanner) {
-      return cookieBanner.shouldShowBanner();
+      return !cookieBanner.shouldShowBanner();
     }
     return false;
   }
