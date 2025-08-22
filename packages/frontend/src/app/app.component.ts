@@ -157,6 +157,10 @@ export class AppComponent implements OnInit, OnDestroy {
             event.detail.value === "granted"
           );
         }
+
+        this.cookieManagerService.hasUserMadeCookieChoice.next(
+          (window as any).silktideCookieBannerManager?.hasUserMadeCookieChoice()
+        );
       }
     );
 
@@ -179,7 +183,15 @@ export class AppComponent implements OnInit, OnDestroy {
       this.posthogService.capture("reject-all-cookies-preferences");
     });
     document.addEventListener("PreferencesClosedWithButton", () => {
-      this.posthogService.capture("preferences-close-cookies-banner");
+      this.posthogService.capture("preferences-close-cookies-banner", {
+        analytics_cookies_consent: this.cookieManagerService
+          .analyticsConsentSubject.value
+          ? "granted"
+          : "denied",
+        chat_cookies_consent: this.cookieManagerService.chatConsentSubject.value
+          ? "granted"
+          : "denied",
+      });
     });
   }
 

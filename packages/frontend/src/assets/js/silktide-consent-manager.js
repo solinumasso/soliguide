@@ -986,11 +986,24 @@ class SilktideCookieBanner {
     }
   }
 
+  /**
+   * Custom function to know if user has answered the cookie banner yet
+   * DO NOT ERASE THIS FUNCTION WHEN UPDATING SILKTIDE
+   */
+  function hasUserMadeCookieChoice() {
+    if (cookieBanner) {
+      return cookieBanner.shouldShowBanner();
+    }
+    return false;
+  }
+
   window.silktideCookieBannerManager.initCookieBanner = initCookieBanner;
   window.silktideCookieBannerManager.updateCookieBannerConfig =
     updateCookieBannerConfig;
   window.silktideCookieBannerManager.injectScript = injectScript;
   window.silktideCookieBannerManager.toggleModal = toggleModal;
+  window.silktideCookieBannerManager.hasUserMadeCookieChoice =
+    hasUserMadeCookieChoice;
 
   document.dispatchEvent(new Event("SilktideConsentManagerLoaded"));
 })();
