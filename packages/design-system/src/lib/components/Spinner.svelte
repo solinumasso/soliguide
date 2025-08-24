@@ -45,12 +45,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <div class={spinnerClass}></div>
 
 <style>
-  /* .spinner {
+  .spinner {
     display: block;
     border-radius: 50%;
     position: relative;
     transform: rotate(135deg);
   }
+
   .spinner::before {
     content: '';
     position: absolute;
@@ -59,80 +60,84 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     left: 50%;
     border: 1px solid;
     animation: loading 1s infinite linear;
-  }*/
+  }
 
-  /* Tailles du spinner */
-  /*.spinner-small {
+  .spinner-small {
     width: 24px;
     height: 24px;
-    padding: var(--spacing3XS);
-    &:before {
-      margin: -8px 0 0 -8px;
-      width: 16px;
-      height: 16px;
-      border-width: 1px;
-    }
+    padding: var(--spacing-3xs);
+  }
+
+  .spinner-small::before {
+    margin: -8px 0 0 -8px;
+    width: 16px;
+    height: 16px;
+    border-width: 1px;
   }
 
   .spinner-medium {
     width: 36px;
     height: 36px;
-    padding: var(--spacing2XS);
-    &:before {
-      margin: -12px 0 0 -12px;
-      width: 24px;
-      height: 24px;
-      border-width: 2px;
-    }
+    padding: var(--spacing-2xs);
+  }
+
+  .spinner-medium::before {
+    margin: -12px 0 0 -12px;
+    width: 24px;
+    height: 24px;
+    border-width: 2px;
   }
 
   .spinner-large {
     width: 48px;
     height: 48px;
-    padding: var(--spacingXS);
-    &:before {
-      margin: -16px 0 0 -16px;
-      width: 32px;
-      height: 32px;
-      border-width: 3px;
-    }
-  } */
+    padding: var(--spacing-xs);
+  }
 
-  /* Variantes de fond */
-  /*.spinner-primary::before {
-    border-color: var(--color-textHighlightPrimary);
+  .spinner-large::before {
+    margin: -16px 0 0 -16px;
+    width: 32px;
+    height: 32px;
+    border-width: 3px;
+  }
+
+  .spinner-primary::before {
+    border-color: var(--color-highlightPrimary);
   }
 
   .spinner-primary-background {
-    background-color: var(--color-textInverse);
+    background-color: var(--color-inverse);
     box-shadow: var(--shadowXS);
-    &:before {
-      border-color: var(--color-textHighlightPrimary);
-    }
+  }
+
+  .spinner-primary-background::before {
+    border-color: var(--color-highlightPrimary);
   }
 
   .spinner-neutral::before {
-    border-color: var(--color-textHighlightSecondary2);
+    border-color: var(--color-highlightSecondary2);
   }
 
   .spinner-neutral-background {
-    background-color: var(--color-textInverse);
+    background-color: var(--color-inverse);
     box-shadow: var(--shadowXS);
-    &:before {
-      border-color: var(--color-textHighlightSecondary2);
-    }
+  }
+
+  .spinner-neutral-background::before {
+    border-color: var(--color-highlightSecondary2);
   }
 
   .spinner-reversed::before {
-    border-color: var(--color-textInverse);
+    border-color: var(--color-inverse);
   }
 
   .spinner-reversed-background {
     background-color: var(--color-surfacePrimary5);
     box-shadow: var(--shadowXS);
-    &:before {
-      border-color: var(--color-textInverse);
-    }
+  }
+
+  .spinner-reversed-background::before {
+    border-color: var(--color-inverse);
   }
 
   @keyframes loading {
@@ -161,5 +166,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     70% {
       clip-path: polygon(50% 50%, 0 100%, 0 100%, 0 100%, 0 100%, 0 0);
     }
-  } */
+  }
 </style>
