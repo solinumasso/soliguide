@@ -378,7 +378,7 @@
   "COOKIE_PREFERENCES_BANNER_TITLE": "د کوکيز غوره توبونه تنظیم کړئ",
   "COOKIE_TYPES_ANALYTICS_DESCRIPTION": "<p>دا کوکیز موږ سره د پوسټ هاګ او ګوګل انالیټیکس له لارې د سایټ ښه کولو کې مرسته کوي، چې کوم پاڼې ډیری لیدل کیږي او کاروونکي په سایټ کې څنګه چلند کوي. تاسو کولی شئ د <a target=\"_blank\" href=\"https://posthog.com/privacy\">PostHog</a> او <a href=\"https://policies.google.com/privacy\" target=\"_blank\">ګوګل انالیټیکس<a/></p> د کوکي پالیسیو سره مشوره وکړئ.",
   "COOKIE_TYPES_ANALYTICS_NAME": "تحلیل",
-  "COOKIE_TYPES_CHAT_DESCRIPTION": "دا کوکیز موږ ته اجازه راکوي چې تاسو ته د زینډیسک پلیټ فارم له لارې زموږ د ټولنیز کارمند سره د چیٹ خبرې اترې وړاندې کړو. تاسو کولی شئ د <a target=\"_blank\" href=\"https://www.zendesk.fr/company/agreements-and-terms/privacy-notice/\"> زینډیسک</a> کوکیز پالیسۍ سره مشوره وکړئ.",
+  "COOKIE_TYPES_CHAT_DESCRIPTION": "<p>دا کوکیز موږ ته اجازه راکوي چې تاسو ته د زینډیسک پلیټ فارم له لارې زموږ د ټولنیز کارمند سره د چیٹ خبرې اترې وړاندې کړو. تاسو کولی شئ د <a target=\"_blank\" href=\"https://www.zendesk.fr/company/agreements-and-terms/privacy-notice/\"> زینډیسک </a>.</p> کوکیز پالیسۍ سره مشوره وکړئ",
   "COOKIE_TYPES_CHAT_NAME": "پیشو",
   "COOKIE_TYPES_NECESSARY_DESCRIPTION": "<p>دا کوکیز د سایټ د سم فعالیت لپاره اړین دي او غیر فعال کیدی نشي. دوی په ځینو برخو کې کارول کیږي لکه ننوتل یا ستاسو د کوکیز غوره توبونه. </p>",
   "COOKIE_TYPES_NECESSARY_NAME": "اړین",

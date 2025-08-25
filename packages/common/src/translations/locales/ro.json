@@ -378,7 +378,7 @@
   "COOKIE_PREFERENCES_BANNER_TITLE": "Personalizează-ți preferințele privind cookie-urile",
   "COOKIE_TYPES_ANALYTICS_DESCRIPTION": "<p>Aceste cookie-uri ne ajută să îmbunătățim site-ul prin urmărirea, prin intermediul PostHog și Google Analytics, a paginilor vizitate cel mai des și a comportamentului utilizatorilor pe site. Puteți consulta politicile privind cookie-urile <a target=\"_blank\" href=\"https://posthog.com/privacy\">PostHog</a> și <a href=\"https://policies.google.com/privacy\" target=\"_blank\">Google Analytics<a/></p>",
   "COOKIE_TYPES_ANALYTICS_NAME": "Analiză",
-  "COOKIE_TYPES_CHAT_DESCRIPTION": "Aceste cookie-uri ne permit să vă oferim o conversație prin chat cu asistentul nostru social, prin intermediul platformei Zendesk. Puteți consulta politica privind cookie-urile <a target=\"_blank\" href=\"https://www.zendesk.fr/company/agreements-and-terms/privacy-notice/\">Zendesk</a>.",
+  "COOKIE_TYPES_CHAT_DESCRIPTION": "<p>Aceste cookie-uri ne permit să vă oferim o conversație prin chat cu asistentul nostru social, prin intermediul platformei Zendesk. Puteți consulta politica privind cookie-urile <a target=\"_blank\" href=\"https://www.zendesk.fr/company/agreements-and-terms/privacy-notice/\">Zendesk</a>.</p>",
   "COOKIE_TYPES_CHAT_NAME": "Pisică",
   "COOKIE_TYPES_NECESSARY_DESCRIPTION": "<p>Aceste cookie-uri sunt necesare pentru buna funcționare a site-ului și nu pot fi dezactivate. Sunt utilizate în anumite părți, cum ar fi autentificarea sau preferințele dvs. privind cookie-urile.</p>",
   "COOKIE_TYPES_NECESSARY_NAME": "Necesar",

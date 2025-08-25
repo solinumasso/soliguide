@@ -378,7 +378,7 @@
   "COOKIE_PREFERENCES_BANNER_TITLE": "თქვენი ქუქი-ფაილების პარამეტრების პერსონალიზება",
   "COOKIE_TYPES_ANALYTICS_DESCRIPTION": "<p>ეს ქუქი-ფაილები გვეხმარება საიტის გაუმჯობესებაში PostHog-ისა და Google Analytics-ის მეშვეობით იმით, თუ რომელ გვერდებს ათვალიერებენ ყველაზე ხშირად და როგორ იქცევიან მომხმარებლები საიტზე. თქვენ შეგიძლიათ გაეცნოთ <a target=\"_blank\" href=\"https://posthog.com/privacy\">PostHog</a>-ისა და <a href=\"https://policies.google.com/privacy\" target=\"_blank\">Google Analytics<a/></p>-ის ქუქი-ფაილების პოლიტიკას.",
   "COOKIE_TYPES_ANALYTICS_NAME": "ანალიზი",
-  "COOKIE_TYPES_CHAT_DESCRIPTION": "ეს ქუქი-ფაილები საშუალებას გვაძლევს, შემოგთავაზოთ ჩატით საუბარი ჩვენს სოციალურ მუშაკთან Zendesk პლატფორმის საშუალებით. შეგიძლიათ გაეცნოთ <a target=\"_blank\" href=\"https://www.zendesk.fr/company/agreements-and-terms/privacy-notice/\">Zendesk</a> ქუქი-ფაილების პოლიტიკას.",
+  "COOKIE_TYPES_CHAT_DESCRIPTION": "<p>ეს ქუქი-ფაილები საშუალებას გვაძლევს, შემოგთავაზოთ ჩატით საუბარი ჩვენს სოციალურ მუშაკთან Zendesk პლატფორმის მეშვეობით. შეგიძლიათ გაეცნოთ <a target=\"_blank\" href=\"https://www.zendesk.fr/company/agreements-and-terms/privacy-notice/\">Zendesk</a>.</p>",
   "COOKIE_TYPES_CHAT_NAME": "კატა",
   "COOKIE_TYPES_NECESSARY_DESCRIPTION": "<p>ეს ქუქი-ფაილები აუცილებელია საიტის გამართული ფუნქციონირებისთვის და მათი გამორთვა შეუძლებელია. ისინი გამოიყენება გარკვეულ ნაწილებში, როგორიცაა შესვლა ან თქვენი ქუქი-ფაილების პარამეტრები.</p>",
   "COOKIE_TYPES_NECESSARY_NAME": "აუცილებელი",
