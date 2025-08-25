@@ -25,6 +25,7 @@ import {
   PosthogService as CommonPosthogService,
   type PosthogProperties,
 } from "@soliguide/common-angular";
+import { CookieManagerService } from "../../shared";
 
 @Injectable({
   providedIn: "root",
@@ -33,9 +34,46 @@ export class PosthogService implements OnDestroy {
   private readonly subscription: Subscription;
 
   public constructor(
-    private readonly commonPosthogService: CommonPosthogService
+    private readonly commonPosthogService: CommonPosthogService,
+    private readonly cookieManagerService: CookieManagerService
   ) {
     this.subscription = new Subscription();
+
+    this.subscription.add(
+      this.cookieManagerService.analyticsConsentSubject.subscribe(
+        (consent: boolean) => {
+          if (consent) {
+            this.commonPosthogService.switchPersistence("localStorage+cookie");
+          } else {
+            this.commonPosthogService.switchPersistence("memory");
+          }
+
+          this.commonPosthogService.setPersonProperties({
+            analytics_cookies_consent: consent ? "granted" : "denied",
+          });
+        }
+      )
+    );
+
+    this.subscription.add(
+      this.cookieManagerService.chatConsentSubject.subscribe(
+        (consent: boolean) => {
+          this.commonPosthogService.setPersonProperties({
+            chat_cookies_consent: consent ? "granted" : "denied",
+          });
+        }
+      )
+    );
+
+    this.subscription.add(
+      this.cookieManagerService.hasUserMadeCookieChoice.subscribe(
+        (hasMadeChoice: boolean) => {
+          this.commonPosthogService.setPersonProperties({
+            has_made_cookie_choice: hasMadeChoice ? "yes" : "no",
+          });
+        }
+      )
+    );
   }
 
   public ngOnDestroy(): void {
