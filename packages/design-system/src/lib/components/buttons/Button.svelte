@@ -20,7 +20,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <script lang="ts">
   import Spinner from '$lib/components/Spinner.svelte';
-  import { sizeMapping, typeMapping, spinnerSizeMapping } from './buttonsMapping';
+  import {
+    baseClasses,
+    sizeMapping,
+    typeMapping,
+    disabledClasses,
+    spinnerSizeMapping,
+    iconSizeMapping
+  } from './buttonsTailwindMapping';
   import type { ButtonShape, ButtonSize, ButtonType, IconPosition } from '$lib/types/Button';
   import type { SpinnerType } from '$lib/types/Spinner';
 
@@ -46,10 +53,23 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         return 'neutral';
     }
   };
-  // Shape is forced for icon buttons
-  $: btnShapeIsRounded = iconPosition === 'iconOnly' || shape === 'rounded';
-  $: btnClass = `btn ${sizeMapping[size]} ${typeMapping[type]}`;
-  // Parameters for loading button
+
+  $: isRounded = iconPosition === 'iconOnly' || shape === 'rounded';
+  $: isIconOnly = iconPosition === 'iconOnly';
+  $: iconSize = iconSizeMapping[size];
+
+  $: buttonClasses = [
+    baseClasses,
+    sizeMapping[size],
+    disabled ? disabledClasses[type] : typeMapping[type],
+    block ? 'w-full' : '',
+    isRounded ? 'rounded-full!' : '',
+    isIconOnly ? `aspect-square p-0 ${iconSize.width} ${iconSize.height}` : '',
+    iconPosition === 'reversed' ? 'flex-row-reverse' : ''
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   $: spinnerType = getSpinnerType(type);
   $: spinnerSize = spinnerSizeMapping[size];
 </script>
@@ -57,55 +77,24 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <button
   type={submit ? 'submit' : 'button'}
   on:click
-  class={btnClass}
-  class:btn-disabled-state={disabled}
-  class:btn-block={block}
-  class:btn-rounded={btnShapeIsRounded}
-  class:btn-icon={iconPosition === 'iconOnly'}
+  class={buttonClasses}
   {disabled}
   {...$$restProps}
 >
-  <span class="btn-loader-container" class:loading={isLoading}>
-    <Spinner size={spinnerSize} type={spinnerType}></Spinner>
-  </span>
   <span
-    class="btn-content-container"
-    class:reversed={iconPosition === 'reversed'}
-    class:hidden={isLoading}
+    class={`absolute transition-opacity duration-200 ${isLoading ? 'opacity-100' : 'opacity-0'}`}
   >
+    <Spinner size={spinnerSize} type={spinnerType} />
+  </span>
+
+  <span class={`inline-flex items-center gap-xs ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
     {#if $$slots.icon}
-      <span class="btn-icon-container">
+      <span class={`flex items-center justify-center ${iconSize.width} ${iconSize.height}`}>
         <slot name="icon" />
       </span>
     {/if}
-    {#if iconPosition !== 'iconOnly'}
+    {#if !isIconOnly}
       <slot />
     {/if}
   </span>
 </button>
-
-<style>
-  /* @import '../../styles/typography.scss';
-  /* @import '../../styles/components/buttons.scss'; */
-  /* Basic style */
-  /* All button types have the same disabled state */
-  /* .btn-disabled-state {
-    &:disabled,
-    &:disabled:hover,
-    &:disabled:focus,
-    &:disabled:focus:hover {
-      background: var(--color-interactionDisable);
-      color: var(--color-textShy);
-      box-shadow: none;
-      border: 1px solid transparent;
-      &.btn-shy.btn-icon,
-      &.btn-reversed.btn-icon {
-        box-shadow: none;
-        background: none;
-      }
-      &.btn-shy {
-        background: none;
-      }
-    }
-  } */
-</style>
