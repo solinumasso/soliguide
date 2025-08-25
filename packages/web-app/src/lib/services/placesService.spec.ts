@@ -48,7 +48,12 @@ const validParams = {
   latitude: 2.3554445,
   longitude: 48.8381335,
   type: GeoTypes.CITY,
-  options: { page: 1 }
+  options: { page: 1 },
+  department: '',
+  departmentCode: '',
+  region: '',
+  regionCode: '',
+  country: ''
 };
 
 const invalidParams = {
@@ -58,7 +63,12 @@ const invalidParams = {
   latitude: 2.3554445,
   longitude: 48.8381335,
   type: '',
-  options: { page: 1 }
+  options: { page: 1 },
+  department: '',
+  departmentCode: '',
+  region: '',
+  regionCode: '',
+  country: ''
 };
 
 describe('Search Service', () => {

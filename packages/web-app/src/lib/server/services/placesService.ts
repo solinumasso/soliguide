@@ -34,7 +34,20 @@ export default (fetcher = fetch) => {
    * Executes a search
    */
   const search = async (
-    { lang, location, category, coordinates, type, distance, options = { page: 1 } }: SearchParams,
+    {
+      lang,
+      location,
+      category,
+      coordinates,
+      type,
+      distance,
+      options = { page: 1 },
+      department,
+      region,
+      departmentCode,
+      regionCode,
+      country
+    }: SearchParams,
     commonHeaders: RequestOptions
   ): Promise<SearchResult> => {
     const url = `${apiUrl}new-search/${lang}`;
@@ -46,7 +59,17 @@ export default (fetcher = fetch) => {
 
     const body = {
       category,
-      location: { geoValue: location, geoType: type, coordinates, distance }
+      location: {
+        geoValue: location,
+        geoType: type,
+        coordinates,
+        distance,
+        department,
+        region,
+        departmentCode,
+        regionCode,
+        country
+      }
     };
 
     const placesResult: ApiSearchResults = await fetcher(url, {

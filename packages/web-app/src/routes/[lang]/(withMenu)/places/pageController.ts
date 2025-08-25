@@ -36,7 +36,12 @@ const initialState: PageState = {
     latitude: 0,
     longitude: 0,
     type: '',
-    options: { page: 0 }
+    options: { page: 0 },
+    department: '',
+    region: '',
+    departmentCode: '',
+    regionCode: '',
+    country: ''
   },
   searchError: null,
   hasMorePages: false,

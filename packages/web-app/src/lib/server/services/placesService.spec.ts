@@ -52,7 +52,12 @@ describe('Search Service', () => {
           coordinates: [1.234, 8.7654],
           type: GeoTypes.CITY,
           distance: 50,
-          options: { page: 1 }
+          options: { page: 1 },
+          department: '',
+          departmentCode: '',
+          region: '',
+          regionCode: '',
+          country: ''
         },
         searchReqOptions
       );

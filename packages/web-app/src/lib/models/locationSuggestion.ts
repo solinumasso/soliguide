@@ -27,7 +27,12 @@ export const LocationSuggestionSchema = z.object({
   geoValue: z.string(),
   geoType: z.nativeEnum(GeoTypes),
   suggestionLabel: z.string(),
-  coordinates: z.array(z.number())
+  coordinates: z.array(z.number()),
+  department: z.string().optional(),
+  region: z.string().optional(),
+  departmentCode: z.string().optional(),
+  regionCode: z.string().optional(),
+  country: z.string().optional()
 });
 
 export type LocationSuggestion = z.infer<typeof LocationSuggestionSchema>;
@@ -106,7 +111,12 @@ const buildSuggestion = (data: LocationAutoCompleteAddress): LocationSuggestion 
     suggestionLabel: label,
     geoValue: data.geoValue,
     geoType: data.geoType,
-    coordinates: data.coordinates
+    coordinates: data.coordinates,
+    department: data?.department ?? '',
+    region: data?.region ?? '',
+    departmentCode: data?.departmentCode ?? '',
+    regionCode: data?.regionCode ?? '',
+    country: data?.country ?? ''
   };
 
   const result = LocationSuggestionSchema.safeParse(preprocessed);
