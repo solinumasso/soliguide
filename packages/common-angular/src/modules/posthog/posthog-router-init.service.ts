@@ -42,7 +42,7 @@ export class PosthogRouterInitService implements OnDestroy {
   }
 
   public subscribeToRouteChange(): void {
-    if (this.posthogService.enabled && this.router) {
+    if (this.posthogService.canBeEnabled && this.router) {
       this.subscription.add(
         this.router.events
           .pipe(filter((event: Event) => event instanceof NavigationEnd))
