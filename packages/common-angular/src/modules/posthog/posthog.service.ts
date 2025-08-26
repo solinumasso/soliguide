@@ -33,6 +33,7 @@ export class PosthogService implements OnDestroy {
   private _posthogInstance: Promise<PostHog | null>;
   private readonly subscription: Subscription;
   public enabled: boolean;
+  public canBeEnabled: boolean;
 
   private persistence: "memory" | "localStorage+cookie";
 
@@ -41,6 +42,11 @@ export class PosthogService implements OnDestroy {
     this.enabled = false;
 
     this.persistence = "memory";
+
+    this.canBeEnabled =
+      this.posthogConfig.posthogUrl.length !== 0 &&
+      typeof this.posthogConfig.posthogApiKey !== "undefined" &&
+      this.posthogConfig.posthogApiKey.length !== 0;
 
     this._posthogInstance = this.setPosthogInstance();
   }
