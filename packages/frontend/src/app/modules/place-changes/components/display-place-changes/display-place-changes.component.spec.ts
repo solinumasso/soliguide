@@ -22,7 +22,7 @@ import { APP_BASE_HREF } from "@angular/common";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ToastrModule } from "ngx-toastr";
 
@@ -42,7 +42,7 @@ describe("DisplayPlaceChangesComponent", () => {
       imports: [
         NgbModule,
         HttpClientTestingModule,
-        RouterTestingModule,
+        RouterModule.forRoot([]),
         ToastrModule.forRoot({}),
         TranslateModule.forRoot(),
       ],

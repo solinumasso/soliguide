@@ -22,8 +22,7 @@ import { APP_BASE_HREF } from "@angular/common";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-import { ActivatedRoute } from "@angular/router";
-import { RouterTestingModule } from "@angular/router/testing";
+import { ActivatedRoute, RouterModule } from "@angular/router";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
@@ -82,7 +81,7 @@ describe("AdminOrganisationComponent", () => {
         HttpClientTestingModule,
         NgbModule,
         SharedModule,
-        RouterTestingModule,
+        RouterModule.forRoot([]),
         ToastrModule.forRoot({}),
         TranslateModule.forRoot({}),
       ],

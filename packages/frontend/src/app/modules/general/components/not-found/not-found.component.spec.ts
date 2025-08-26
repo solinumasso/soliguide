@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterModule } from "@angular/router";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
 import { APP_BASE_HREF } from "@angular/common";
@@ -43,7 +43,7 @@ describe("NotFoundComponent", () => {
         FormsModule,
         TranslateModule.forRoot({}),
         HttpClientTestingModule,
-        RouterTestingModule,
+        RouterModule.forRoot([]),
       ],
       providers: [{ provide: APP_BASE_HREF, useValue: "/" }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],

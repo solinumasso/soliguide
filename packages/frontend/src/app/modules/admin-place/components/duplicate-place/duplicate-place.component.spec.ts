@@ -25,7 +25,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ToastrModule } from "ngx-toastr";
 import { Place } from "../../../../models/place/classes";
@@ -51,7 +51,7 @@ describe("DuplicatePlaceComponent", () => {
         NgbModule,
         FormsModule,
         BrowserAnimationsModule,
-        RouterTestingModule,
+        RouterModule.forRoot([]),
         ToastrModule.forRoot({}),
         TranslateModule.forRoot({}),
       ],
