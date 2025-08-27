@@ -207,6 +207,7 @@ class SilktideCookieBanner {
 
     this.removeBanner();
     this.hideBackdrop();
+    this.toggleModal(false);
 
     this.config.cookieTypes.forEach((type) => {
       // Set localStorage and run accept/reject callbacks
@@ -238,8 +239,6 @@ class SilktideCookieBanner {
 
     // finally update the checkboxes in the modal with the values from localStorage
     this.updateCheckboxState();
-
-    this.toggleModal(false);
   }
 
   getAcceptedCookies() {
