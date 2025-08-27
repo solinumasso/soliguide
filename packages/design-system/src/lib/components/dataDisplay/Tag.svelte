@@ -55,14 +55,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <slot />
 </span>
 
-<style lang="scss">
-  .tag {
+<style>
+  /* .tag {
     display: inline-flex;
     align-items: center;
     gap: var(--spacing3XS);
     border-radius: var(--radiusFull);
 
-    /* Variants */
+
     &.neutral {
       background-color: var(--color-surfaceGray2);
       color: var(--color-textInverse);
@@ -80,7 +80,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       color: var(--color-textDark);
     }
 
-    /* Sizes */
+
     &.small {
       height: 16px;
       padding: 0 var(--spacingXS);
@@ -89,9 +89,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       height: 26px;
       padding: 0 var(--spacingMD);
     }
-  }
+  }  */
 
-  /* Icon sizing */
+  /* Icon sizing
   .icon-container {
     display: flex;
     justify-content: center;
@@ -109,5 +109,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         height: 14px;
       }
     }
-  }
+  } */
 </style>

@@ -24,11 +24,19 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   import { theme as defaultTheme } from './theme';
   import type { Theme, ThemeContext } from '$lib/types/theme';
-  import '../styles/main.scss';
+  import '../styles/theme.css';
 
   export let currentTheme = defaultTheme;
 
-  const themeKeys: (keyof Theme)[] = ['color', 'typography', 'spacing', 'radius', 'shadow'];
+  const themeKeys: (keyof Theme)[] = [
+    'color',
+    'text',
+    'leading',
+    'fontWeight',
+    'spacing',
+    'radius',
+    'shadow'
+  ];
   const themeStore = writable<Theme>();
 
   const applyTheme = (themeToApply: Theme): void => {
@@ -37,7 +45,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     themeKeys.forEach((key) => {
       Object.entries(themeToApply[key]).forEach(([prop, value]) => {
         // add prefix only for typography and colors
-        const varString = ['color', 'typography'].includes(key) ? `--${key}-${prop}` : `--${prop}`;
+        const varString = ['color', 'text', 'leading', 'fontWeight'].includes(key)
+          ? key === 'fontWeight'
+            ? `--font-weight-${prop}`
+            : `--${key}-${prop}`
+          : `--${prop}`;
         document.documentElement.style.setProperty(varString, value.toString());
       });
     });

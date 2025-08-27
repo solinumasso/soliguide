@@ -22,9 +22,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <slot />
 </section>
 
-<style lang="scss">
-  .card {
+<style>
+  /* .card {
     border-radius: var(--radiusRounded);
     box-shadow: var(--shadowLG);
-  }
+  } */
 </style>

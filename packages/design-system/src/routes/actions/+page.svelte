@@ -114,7 +114,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   />
 </section>
 
-<style lang="scss">
+<style>
   section {
     border: 1px solid #ccc;
     width: 500px;
