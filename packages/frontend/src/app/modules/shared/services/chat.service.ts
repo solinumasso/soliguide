@@ -32,8 +32,8 @@ import { THEME_CONFIGURATION } from "../../../models";
 })
 export class ChatService {
   private chatHasBeenSetup = false;
-  private preferencesOpened = false;
   private readonly subscription: Subscription;
+  public chatButtonClicked = false;
   public readonly isChatEnabled = !!THEME_CONFIGURATION.chatWebsiteId;
 
   constructor(
@@ -154,14 +154,15 @@ export class ChatService {
 
   public async openChatAfterPreferences(user?: User): Promise<void> {
     if (
-      this.preferencesOpened &&
+      this.chatButtonClicked &&
       this.cookieManagerService.chatConsentSubject.value
     ) {
       this.openChat(user);
     }
+    this.chatButtonClicked = false;
   }
 
   public preferencesHaveBeenOpened(): void {
-    this.preferencesOpened = true;
+    this.chatButtonClicked = true;
   }
 }
