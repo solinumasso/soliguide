@@ -21,7 +21,9 @@ version = 1
 test_patterns = ["**/*.spec.ts"]
 
 exclude_patterns = [
-  "data/**"
+  "data/**",
+  "packages/frontend/src/assets/js/silktide-consent-manager.js",
+  "packages/frontend/src/assets/js/silktide-customization.js"
 ]
 
 [[analyzers]]
