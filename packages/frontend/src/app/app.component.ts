@@ -168,9 +168,6 @@ export class AppComponent implements OnInit, OnDestroy {
     document.addEventListener("PreferencesClosed", () => {
       this.chatService.openChatAfterPreferences(this.me);
     });
-    document.addEventListener("PreferencesOpened", () => {
-      this.chatService.preferencesHaveBeenOpened();
-    });
     document.addEventListener("AcceptAll", () => {
       this.posthogService.capture("accept-all-cookies");
     });
@@ -203,6 +200,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public openChatCookiesConsentModal(): void {
     this.posthogService.capture("chat-button");
+    this.chatService.chatButtonClicked = true;
     this.cookieManagerService.openCookiesConsentModal();
   }
 
