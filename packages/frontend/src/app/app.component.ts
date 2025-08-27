@@ -41,6 +41,8 @@ export class AppComponent implements OnInit, OnDestroy {
   private readonly subscription: Subscription = new Subscription();
   public isChatEnabled: boolean;
   public cookieBannerLoaded = false;
+  private preferencesHaveBeenOpened = false;
+  private chatButtonClicked = false;
 
   public readonly IS_WEBVIEW_APP = IS_WEBVIEW_APP;
   public readonly IS_BOT = IS_BOT;
@@ -165,8 +167,15 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     );
 
+    document.addEventListener("PreferencesOpened", () => {
+      this.preferencesHaveBeenOpened = true;
+    });
     document.addEventListener("PreferencesClosed", () => {
-      this.chatService.openChatAfterPreferences(this.me);
+      if (this.preferencesHaveBeenOpened && this.chatButtonClicked) {
+        this.chatService.openChatAfterPreferences(this.me);
+        this.chatButtonClicked = false;
+        this.preferencesHaveBeenOpened = false;
+      }
     });
     document.addEventListener("AcceptAll", () => {
       this.posthogService.capture("accept-all-cookies");
@@ -200,7 +209,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public openChatCookiesConsentModal(): void {
     this.posthogService.capture("chat-button");
-    this.chatService.chatButtonClicked = true;
+    this.chatButtonClicked = true;
     this.cookieManagerService.openCookiesConsentModal();
   }
 

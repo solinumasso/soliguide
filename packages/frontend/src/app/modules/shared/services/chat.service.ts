@@ -153,16 +153,8 @@ export class ChatService {
   }
 
   public async openChatAfterPreferences(user?: User): Promise<void> {
-    if (
-      this.chatButtonClicked &&
-      this.cookieManagerService.chatConsentSubject.value
-    ) {
+    if (this.cookieManagerService.chatConsentSubject.value) {
       this.openChat(user);
     }
-    this.chatButtonClicked = false;
-  }
-
-  public preferencesHaveBeenOpened(): void {
-    this.chatButtonClicked = true;
   }
 }
