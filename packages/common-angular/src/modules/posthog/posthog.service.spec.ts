@@ -59,12 +59,17 @@ describe("PosthogService", () => {
         api_host: baseConfig.posthogUrl,
         autocapture: false,
         persistence: "memory",
-        disable_session_recording: true,
+        disable_session_recording: false,
         debug: undefined,
         ip: false,
         loaded: expect.any(Function),
         sanitize_properties: undefined,
         session_idle_timeout_seconds: 1800,
+        session_recording: {
+          maskAllInputs: true,
+          maskTextSelector: "*",
+          maskTextFn: expect.any(Function),
+        },
       },
       baseConfig.posthogLibraryName
     );
