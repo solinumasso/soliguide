@@ -19,6 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import type {
+  AnyDepartmentCode,
   BasePlaceTempInfo,
   Categories,
   CountryCodes,
@@ -89,6 +90,16 @@ export interface SearchResultItem {
   status: PlaceOpeningStatus;
   todayInfo: TodayInfo;
   tempInfo: SearchResultTempInfo;
+  dataForLogs: {
+    country?: CountryCodes;
+    department: string;
+    departmentCode?: AnyDepartmentCode;
+    distance: number;
+    id?: string;
+    lieuId: number;
+    region: string;
+    regionCode?: string;
+  };
 }
 
 export interface SearchResult {
