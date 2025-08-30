@@ -30,113 +30,64 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   const { theme } = getContext<ThemeContext>('theme');
 
-  $: sizeClass = size === 'medium' ? 'toggle-switch-medium' : 'toggle-switch-small';
-  $: checkmarkSize = size === 'medium' ? 16 : 12;
+  // Size configuration mapping - following design tokens from theme.css
+  const sizeConfig: Record<
+    ToggleSwitchSize,
+    { container: string; handle: string; checkmarkSize: number }
+  > = {
+    small: {
+      container: 'h-[24px] w-[42px] px-[3px]',
+      handle: 'h-[18px] w-[18px]',
+      checkmarkSize: 12
+    },
+    medium: {
+      container: 'h-[32px] w-[56px] px-[4px]',
+      handle: 'h-[24px] w-[24px]',
+      checkmarkSize: 16
+    }
+  };
+
+  // Base classes using design tokens from theme.css
+  const baseClasses = 'cursor-pointer flex items-center rounded-full transition-all duration-150';
+  const handleClasses =
+    'inline-flex items-center justify-center bg-surfaceWhite rounded-full transition-transform duration-150';
+  const hiddenInputClasses = 'sr-only';
+
+  // Dynamic classes based on state and props
+  $: containerClasses = [
+    baseClasses,
+    sizeConfig[size].container,
+    checked ? 'bg-success' : 'bg-neutral',
+    disabled ? '!cursor-not-allowed !bg-interactionDisable' : 'hover:cursor-pointer'
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  $: toggleHandleClasses = [
+    handleClasses,
+    sizeConfig[size].handle,
+    checked ? 'translate-x-full' : 'translate-x-0'
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  $: checkmarkClasses = checked ? 'flex items-center justify-center' : 'hidden';
   $: iconColor = disabled ? $theme.color.shy : $theme.color.success;
 </script>
 
-<label class={`toggle-switch ${sizeClass}`}>
+<label class={containerClasses}>
   <input
     type="checkbox"
     role="switch"
     bind:checked
-    class="sr-only"
+    class={hiddenInputClasses}
     {disabled}
     on:change
     {...$$restProps}
   />
-  <span class="toggle-switch-handle"
-    ><span class="toggle-switch-checkmark"
-      ><CheckMark color={iconColor} size={checkmarkSize} tabindex="-1" inert /></span
-    ></span
-  >
+  <span class={toggleHandleClasses}>
+    <span class={checkmarkClasses}>
+      <CheckMark color={iconColor} size={sizeConfig[size].checkmarkSize} tabindex="-1" inert />
+    </span>
+  </span>
 </label>
-
-<style>
-  /* .toggle-switch {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    border-radius: var(--radiusFull);
-    background-color: var(--color-textNeutral);
-
-    &.disabled,
-    &:disabled,
-    &:disabled:hover {
-      cursor: not-allowed;
-    }
-
-    &:hover {
-      cursor: pointer;
-    }
-    &:focus,
-    &:active {
-      outline: none;
-    }
-
-    &:has(input:checked) {
-      background-color: var(--color-textSuccess);
-      .toggle-switch-handle {
-        transform: translateX(100%);
-        .toggle-switch-checkmark {
-          display: inline-flex;
-        }
-      }
-    }
-
-    &:has(input:disabled),
-    &:has(input:disabled):hover,
-    &:has(input:disabled):focus,
-    &:has(input:disabled):active {
-      background-color: var(--color-interactionDisable);
-    }
-
-    .toggle-switch-handle {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      background-color: var(--color-surfaceWhite);
-      border-radius: var(--radiusFull);
-      transition: transform 0.15s;
-      .toggle-switch-checkmark {
-        display: none;
-      }
-    }
-  }
-
-  .toggle-switch-small {
-    height: 24px;
-    width: 42px;
-    padding: 0 3px;
-
-    .toggle-switch-handle {
-      $toggle-switch-handle-size: 18px;
-      height: $toggle-switch-handle-size;
-      width: $toggle-switch-handle-size;
-    }
-  }
-
-  .toggle-switch-medium {
-    height: 32px;
-    width: 56px;
-    padding: 0 4px;
-
-    .toggle-switch-handle {
-      $toggle-switch-handle-size: 24px;
-      height: $toggle-switch-handle-size;
-      width: $toggle-switch-handle-size;
-    }
-  }
-
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    padding: 0;
-    border: 0;
-    clip: rect(0, 0, 0, 0);
-    overflow: hidden;
-  } */
-</style>
