@@ -27,11 +27,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let type: TagType = 'icon';
   export let variant: TagVariant = 'neutral';
 
-  const sizeMapping: Record<TagSize, string> = {
-    small: 'text-secondary-caption2-medium',
-    medium: 'text-secondary-caption1-medium'
-  };
-
   const variantMapping: Record<TagVariant, BadgeType> = {
     neutral: 'reversed',
     success: 'success',
@@ -39,14 +34,32 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     error: 'error'
   };
 
-  $: tagClass = `tag ${sizeMapping[size]} ${variant} ${size}`;
-  $: iconContainerClass = `icon-container ${size}`;
+  const variantClassesMapping: Record<TagVariant, string> = {
+    neutral: 'bg-surfaceGray2 text-inverse',
+    success: 'bg-surfaceSuccess1 text-dark',
+    warning: 'bg-surfaceWarning1 text-dark',
+    error: 'bg-surfaceError1 text-dark'
+  };
+
+  const sizeClassesMapping: Record<TagSize, string> = {
+    small: 'h-[16px] px-xs text-secondary-caption2-medium',
+    medium: 'h-[26px] px-md text-secondary-caption1-medium'
+  };
+
+  const iconSizeClassesMapping: Record<TagSize, string> = {
+    small: '[&>svg]:w-[10px] [&>svg]:h-[10px]',
+    medium: '[&>svg]:w-[14px] [&>svg]:h-[14px]'
+  };
+
+  $: baseClasses = 'inline-flex items-center gap-3xs rounded-full';
+  $: tagClasses = `${baseClasses} ${sizeClassesMapping[size]} ${variantClassesMapping[variant]}`;
+  $: iconContainerClasses = `flex justify-center items-center ${iconSizeClassesMapping[size]}`;
   $: badgeType = variantMapping[variant];
 </script>
 
-<span class={tagClass}>
+<span class={tagClasses}>
   {#if $$slots.icon}
-    <span class={iconContainerClass}>
+    <span class={iconContainerClasses}>
       <slot name="icon" />
     </span>
   {:else if type === 'badge'}
@@ -54,60 +67,3 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   {/if}
   <slot />
 </span>
-
-<style>
-  /* .tag {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing3XS);
-    border-radius: var(--radiusFull);
-
-
-    &.neutral {
-      background-color: var(--color-surfaceGray2);
-      color: var(--color-textInverse);
-    }
-    &.success {
-      background-color: var(--color-surfaceSuccess1);
-      color: var(--color-textDark);
-    }
-    &.warning {
-      background-color: var(--color-surfaceWarning1);
-      color: var(--color-textDark);
-    }
-    &.error {
-      background-color: var(--color-surfaceError1);
-      color: var(--color-textDark);
-    }
-
-
-    &.small {
-      height: 16px;
-      padding: 0 var(--spacingXS);
-    }
-    &.medium {
-      height: 26px;
-      padding: 0 var(--spacingMD);
-    }
-  }  */
-
-  /* Icon sizing
-  .icon-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &.small {
-      :global(svg) {
-        width: 10px;
-        height: 10px;
-      }
-    }
-    &.medium {
-      :global(svg) {
-        width: 14px;
-        height: 14px;
-      }
-    }
-  } */
-</style>
