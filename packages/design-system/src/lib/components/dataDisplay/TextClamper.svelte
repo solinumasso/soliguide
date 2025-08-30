@@ -82,99 +82,146 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </div>
 
 <style>
-  /* // This is a trick to fade the text away when the webkit line clamp trick is not available.
-  // I've not used it because we would have to ask for the line height, which we do not know.
-  
-   @mixin truncate($rows, $line-height, $background: '') {
-     position: relative;
-     overflow: hidden;
-     max-height: $line-height * $rows;
-     line-height: $line-height
-     &:after {
-       content: '';
-       position: absolute;
-       right: 0;
-       bottom: 0;
-       width: 100px;
-       height: $line-height
-       @if $background != '' {
-         background: linear-gradient(to right, rgba($background, 0) 0%, rgba($background, 1) 100%);
-       }
-     
-     // If supports line-clamp then add an ellipsis overflow and hide the gradient
-     // This will work in Chrome and Opera, otherwise a gradient will gradually hide the text.
-     @supports (-webkit-line-clamp: $rows) {
-       display: -webkit-box;
-       -webkit-line-clamp: $rows;
-       -webkit-box-orient: vertical
-       &:after {
-         display: none;
-       }
-     }
-   }
-
   .text-clamper {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     gap: var(--spacing3XS);
+  }
 
-    .text-clamper-body {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 1;
-      line-clamp: 1;
-      -webkit-box-orient: vertical;
-    }
+  .text-clamper .text-clamper-body {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
 
-    @for $i from 1 through 20 {
-      .clamp-after-#{$i}-lines {
-        -webkit-line-clamp: $i;
-        line-clamp: $i;
-      }
-    }
+  .text-clamper .clamp-after-1-lines {
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+  }
+  .text-clamper .clamp-after-2-lines {
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+  .text-clamper .clamp-after-3-lines {
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+  .text-clamper .clamp-after-4-lines {
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+  }
+  .text-clamper .clamp-after-5-lines {
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+  }
+  .text-clamper .clamp-after-6-lines {
+    -webkit-line-clamp: 6;
+    line-clamp: 6;
+  }
+  .text-clamper .clamp-after-7-lines {
+    -webkit-line-clamp: 7;
+    line-clamp: 7;
+  }
+  .text-clamper .clamp-after-8-lines {
+    -webkit-line-clamp: 8;
+    line-clamp: 8;
+  }
+  .text-clamper .clamp-after-9-lines {
+    -webkit-line-clamp: 9;
+    line-clamp: 9;
+  }
+  .text-clamper .clamp-after-10-lines {
+    -webkit-line-clamp: 10;
+    line-clamp: 10;
+  }
+  .text-clamper .clamp-after-11-lines {
+    -webkit-line-clamp: 11;
+    line-clamp: 11;
+  }
+  .text-clamper .clamp-after-12-lines {
+    -webkit-line-clamp: 12;
+    line-clamp: 12;
+  }
+  .text-clamper .clamp-after-13-lines {
+    -webkit-line-clamp: 13;
+    line-clamp: 13;
+  }
+  .text-clamper .clamp-after-14-lines {
+    -webkit-line-clamp: 14;
+    line-clamp: 14;
+  }
+  .text-clamper .clamp-after-15-lines {
+    -webkit-line-clamp: 15;
+    line-clamp: 15;
+  }
+  .text-clamper .clamp-after-16-lines {
+    -webkit-line-clamp: 16;
+    line-clamp: 16;
+  }
+  .text-clamper .clamp-after-17-lines {
+    -webkit-line-clamp: 17;
+    line-clamp: 17;
+  }
+  .text-clamper .clamp-after-18-lines {
+    -webkit-line-clamp: 18;
+    line-clamp: 18;
+  }
+  .text-clamper .clamp-after-19-lines {
+    -webkit-line-clamp: 19;
+    line-clamp: 19;
+  }
+  .text-clamper .clamp-after-20-lines {
+    -webkit-line-clamp: 20;
+    line-clamp: 20;
+  }
 
-    .text-clamper-check {
-      display: none;
-      &:checked ~ .text-clamper-label .text-clamper-show-less {
-        display: block;
-      }
-      &:checked ~ .text-clamper-label .text-clamper-show-more {
-        display: none;
-      }
+  .text-clamper .text-clamper-check {
+    display: none;
+  }
 
-      &:checked ~ .text-clamper-body {
-        display: block;
-        max-height: 100%;
-      }
-    }
+  .text-clamper .text-clamper-check:checked ~ .text-clamper-label .text-clamper-show-less {
+    display: block;
+  }
 
-    .text-clamper-label {
-      cursor: pointer;
-      align-self: flex-end;
+  .text-clamper .text-clamper-check:checked ~ .text-clamper-label .text-clamper-show-more {
+    display: none;
+  }
 
-      &.disabled,
-      &:disabled,
-      &:disabled:hover {
-        cursor: not-allowed;
-      }
+  .text-clamper .text-clamper-check:checked ~ .text-clamper-body {
+    display: block;
+    max-height: 100%;
+  }
 
-      &:hover {
-        cursor: pointer;
-      }
-      &:focus,
-      &:active {
-        outline: none;
-      }
+  .text-clamper .text-clamper-label {
+    cursor: pointer;
+    align-self: flex-end;
+  }
 
-      .text-clamper-show-less,
-      .text-clamper-show-more {
-        text-decoration: underline;
-      }
-      .text-clamper-show-less {
-        display: none;
-      }
-    }
-  } */
+  .text-clamper .text-clamper-label.disabled,
+  .text-clamper .text-clamper-label:disabled,
+  .text-clamper .text-clamper-label:disabled:hover {
+    cursor: not-allowed;
+  }
+
+  .text-clamper .text-clamper-label:hover {
+    cursor: pointer;
+  }
+
+  .text-clamper .text-clamper-label:focus,
+  .text-clamper .text-clamper-label:active {
+    outline: none;
+  }
+
+  .text-clamper .text-clamper-label .text-clamper-show-less,
+  .text-clamper .text-clamper-label .text-clamper-show-more {
+    text-decoration: underline;
+  }
+
+  .text-clamper .text-clamper-label .text-clamper-show-less {
+    display: none;
+  }
 </style>
