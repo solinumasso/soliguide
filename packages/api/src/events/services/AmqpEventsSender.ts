@@ -18,13 +18,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import amqp, {
-  AmqpConnectionManager,
-  ChannelWrapper,
-} from "amqp-connection-manager";
-import { ConfirmChannel } from "amqplib";
+import axios, { AxiosInstance } from "axios";
 import type { Logger } from "pino";
-
 import { logger } from "../../general/logger";
 import { CONFIG } from "../../_models/config";
 
@@ -32,40 +27,57 @@ import { Exchange } from "../enums";
 import { AmqpEvent } from "../interfaces";
 
 export class AmqpEventsSender {
-  private connectionManager?: AmqpConnectionManager;
-  private channelWrapper?: ChannelWrapper;
+  private http?: AxiosInstance;
+  private vhostEnc = "%2F";
 
   constructor() {
     this.connect();
   }
 
-  private connect() {
-    if (CONFIG.AMQP_URL) {
-      logger.info("Connecting to AMQP broker...");
-      this.connectionManager = amqp.connect(CONFIG.AMQP_URL);
-      this.channelWrapper = this.connectionManager?.createChannel({
-        json: true,
-        setup: async (channel: ConfirmChannel) =>
-          await Promise.all(
-            // Create all exchanges if they do not exist
-            Object.values(Exchange).map((exchange) =>
-              channel.assertExchange(exchange, "topic", {
-                durable: true,
-              })
-            )
-          ),
-      });
-      logger.info("Connection to AMQP broker established");
+  private async connect() {
+    if (!CONFIG.AMQP_URL) {
+      logger.warn("AMQP_URL undefined, HTTP RabbitMQ not configured.");
+      return;
     }
+
+    const parsed = new URL(CONFIG.AMQP_URL);
+    const base = `${parsed.protocol}//${parsed.hostname}${
+      parsed.port ? `:${parsed.port}` : ""
+    }${parsed.pathname}`;
+    const user = decodeURIComponent(parsed.username);
+    const pass = decodeURIComponent(parsed.password);
+    const vhost = "/";
+
+    this.vhostEnc = encodeURIComponent(vhost);
+    this.http = axios.create({
+      baseURL: base.replace(/\/+$/, ""),
+      auth: { username: user, password: pass },
+      headers: { "content-type": "application/json" },
+      timeout: 15000,
+    });
+
+    logger.info("Connecting to AMQP broker...");
+    await Promise.all(
+      Object.values(Exchange).map((exchange) =>
+        this.http!.put(
+          `/exchanges/${this.vhostEnc}/${encodeURIComponent(exchange)}`,
+          {
+            type: "topic",
+            durable: true,
+            auto_delete: false,
+            internal: false,
+            arguments: {},
+          }
+        )
+      )
+    );
+    logger.info("Connection to AMQP broker established");
   }
 
   public async close(): Promise<void> {
-    if (this.connectionManager) {
+    if (this.http) {
       logger.info("Closing AMQP Connection...");
-      await this.channelWrapper?.close();
-      delete this.channelWrapper;
-      await this.connectionManager.close();
-      delete this.connectionManager;
+      this.http = undefined;
       logger.info("AMQP Connection successfully closed");
     }
   }
@@ -76,28 +88,51 @@ export class AmqpEventsSender {
     payload: T,
     log: Logger = logger
   ): Promise<void> {
-    if (CONFIG.ENV === "test" || !CONFIG.AMQP_URL) {
-      return;
-    }
+    if (CONFIG.ENV === "test" || !this.http) return;
 
-    if (this.channelWrapper) {
-      let retries = 0;
+    const exchangeName = exchange as string;
+    const body =
+      typeof payload === "string" ? payload : JSON.stringify(payload);
 
-      while (
-        !(await this.channelWrapper.publish(exchange, routingKey, payload))
-      ) {
-        if (retries === 3) {
+    let retries = 0;
+
+    // eslint-disable-next-line no-constant-condition
+    while (true) {
+      try {
+        const { data } = await this.http.post(
+          `/exchanges/${this.vhostEnc}/${encodeURIComponent(
+            exchangeName
+          )}/publish`,
+          {
+            properties: {
+              content_type: "application/json",
+              delivery_mode: 2,
+            },
+            routing_key: routingKey,
+            payload: body,
+            payload_encoding: "string",
+            mandatory: true,
+          }
+        );
+
+        if (data?.routed) {
+          log.info("AMQP event sent successfully");
+          return;
+        }
+
+        throw new Error(
+          `Message not routed (exchange='${exchangeName}', routingKey='${routingKey}')`
+        );
+      } catch (err) {
+        if (retries >= 3) {
           log.error(
-            `AMQP 3 tests, sending failed:\n Exchange\t${exchange}\nroutingKey\t${routingKey}`
+            `AMQP 3 tests, sending failed:\n Exchange\t${exchangeName}\nroutingKey\t${routingKey}`
           );
           throw new Error("FAILED_PUBLISH_EVENT");
         }
         retries++;
-        await new Promise((resolve) => setTimeout(resolve, 100));
+        await new Promise((r) => setTimeout(r, 100));
       }
-      log.info("AMQP event sent successfully");
-    } else {
-      log.warn("AmqpEventSender not configured");
     }
   }
 }
