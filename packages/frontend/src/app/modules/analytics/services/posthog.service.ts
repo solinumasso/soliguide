@@ -33,6 +33,10 @@ import { CookieManagerService } from "../../shared";
 export class PosthogService implements OnDestroy {
   private readonly subscription: Subscription;
 
+  private analyticsCookieConsent: boolean;
+  private chatCookieConsent: boolean;
+  private hasUserMadeCookieChoice: boolean;
+
   public constructor(
     private readonly commonPosthogService: CommonPosthogService,
     private readonly cookieManagerService: CookieManagerService
@@ -48,9 +52,12 @@ export class PosthogService implements OnDestroy {
             this.commonPosthogService.switchPersistence("memory");
           }
 
-          this.commonPosthogService.setPersonProperties({
-            analytics_cookies_consent: consent ? "granted" : "denied",
-          });
+          if (this.analyticsCookieConsent !== consent) {
+            this.commonPosthogService.setPersonProperties({
+              analytics_cookies_consent: consent ? "granted" : "denied",
+            });
+            this.analyticsCookieConsent = consent;
+          }
         }
       )
     );
@@ -58,9 +65,12 @@ export class PosthogService implements OnDestroy {
     this.subscription.add(
       this.cookieManagerService.chatConsentSubject.subscribe(
         (consent: boolean) => {
-          this.commonPosthogService.setPersonProperties({
-            chat_cookies_consent: consent ? "granted" : "denied",
-          });
+          if (this.chatCookieConsent !== consent) {
+            this.commonPosthogService.setPersonProperties({
+              chat_cookies_consent: consent ? "granted" : "denied",
+            });
+            this.chatCookieConsent = consent;
+          }
         }
       )
     );
@@ -68,9 +78,12 @@ export class PosthogService implements OnDestroy {
     this.subscription.add(
       this.cookieManagerService.hasUserMadeCookieChoice.subscribe(
         (hasMadeChoice: boolean) => {
-          this.commonPosthogService.setPersonProperties({
-            has_made_cookie_choice: hasMadeChoice ? "yes" : "no",
-          });
+          if (this.hasUserMadeCookieChoice !== hasMadeChoice) {
+            this.commonPosthogService.setPersonProperties({
+              has_made_cookie_choice: hasMadeChoice ? "yes" : "no",
+            });
+            this.hasUserMadeCookieChoice = hasMadeChoice;
+          }
         }
       )
     );
