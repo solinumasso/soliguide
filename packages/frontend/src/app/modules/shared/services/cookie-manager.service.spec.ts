@@ -61,9 +61,6 @@ describe("CookieManagerService", () => {
           store[key] = `${value}`;
         }
       },
-      removeItem: (key: string) => {
-        delete store[key];
-      },
       clear: () => {
         store = {};
       },

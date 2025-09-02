@@ -56,6 +56,7 @@ export class CookieManagerService {
     );
   }
 
+  // skipcq: JS-0105
   public openCookiesConsentModal(): void {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (window as any).silktideCookieBannerManager.toggleModal(true);

@@ -60,6 +60,7 @@ export class PosthogService implements OnDestroy {
   }
 
   private setPosthogInstance(): Promise<PostHog | null> {
+    // skipcq: JS-0045 (the return is inside the init function)
     return new Promise<PostHog | null>((resolve) => {
       if (!this.enabled || !this.posthogConfig.posthogApiKey) {
         return resolve(null);
