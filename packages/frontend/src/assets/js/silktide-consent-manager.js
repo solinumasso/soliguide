@@ -997,6 +997,70 @@ class SilktideCookieBanner {
     return false;
   }
 
+  /**
+   * Custom function to translate the banner and modal content
+   * DO NOT ERASE THIS FUNCTION WHEN UPDATING SILKTIDE
+   */
+  function translateCookieBanner(config) {
+    this.config = { ...this.config, ...config };
+
+    if (!cookieBanner) {
+      this.updateCookieBannerConfig(this.config);
+    } else {
+      if (cookieBanner.shouldShowBanner()) {
+        // Remove existing banner if present
+        if (cookieBanner.banner && cookieBanner.banner.parentNode) {
+          cookieBanner.banner.parentNode.removeChild(cookieBanner.banner);
+          cookieBanner.banner = null;
+        }
+
+        // Create banner element
+        cookieBanner.banner = cookieBanner.createWrapperChild(
+          cookieBanner.getBannerContent(),
+          "silktide-banner"
+        );
+
+        // Add positioning class from config
+        if (cookieBanner.banner && cookieBanner.config.position?.banner) {
+          cookieBanner.banner.classList.add(
+            cookieBanner.config.position.banner
+          );
+        }
+      }
+
+      var display = "none";
+
+      if (cookieBanner.modal) {
+        display =
+          cookieBanner.modal.style.display === "none" ||
+          cookieBanner.modal.style.display === ""
+            ? "none"
+            : "flex";
+
+        // Remove existing modal if present
+        if (cookieBanner.modal && cookieBanner.modal.parentNode) {
+          cookieBanner.modal.parentNode.removeChild(cookieBanner.modal);
+          cookieBanner.modal = null;
+        }
+      }
+
+      // Create modal element
+      cookieBanner.modal = cookieBanner.createWrapperChild(
+        cookieBanner.getModalContent(),
+        "silktide-modal"
+      );
+
+      // // Set display state
+      cookieBanner.modal.style.display = display;
+
+      if (display == "flex") {
+        cookieBanner.toggleModal(true);
+      }
+
+      cookieBanner.setupEventListeners();
+    }
+  }
+
   window.silktideCookieBannerManager.initCookieBanner = initCookieBanner;
   window.silktideCookieBannerManager.updateCookieBannerConfig =
     updateCookieBannerConfig;
@@ -1004,6 +1068,8 @@ class SilktideCookieBanner {
   window.silktideCookieBannerManager.toggleModal = toggleModal;
   window.silktideCookieBannerManager.hasUserMadeCookieChoice =
     hasUserMadeCookieChoice;
+  window.silktideCookieBannerManager.translateCookieBanner =
+    translateCookieBanner;
 
   document.dispatchEvent(new Event("SilktideConsentManagerLoaded"));
 })();
