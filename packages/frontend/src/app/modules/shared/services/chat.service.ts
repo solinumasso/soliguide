@@ -34,7 +34,7 @@ export class ChatService {
   private chatHasBeenSetup = false;
   private readonly subscription: Subscription;
   public chatButtonClicked = false;
-  public readonly isChatEnabled = !!THEME_CONFIGURATION.chatWebsiteId;
+  public readonly isChatEnabled = Boolean(THEME_CONFIGURATION.chatWebsiteId);
 
   constructor(
     private readonly cookieManagerService: CookieManagerService,
