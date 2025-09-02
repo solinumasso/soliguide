@@ -23,7 +23,7 @@ import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { APP_BASE_HREF } from "@angular/common";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ReactiveFormsModule } from "@angular/forms";
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterModule } from "@angular/router";
 import { ToastrModule } from "ngx-toastr";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
@@ -38,7 +38,7 @@ describe("ManageApiUsersComponent", () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
+        RouterModule.forRoot([]),
         ToastrModule.forRoot({}),
         TranslateModule.forRoot({}),
         HttpClientTestingModule,

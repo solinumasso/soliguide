@@ -20,9 +20,9 @@
  */
 import { APP_BASE_HREF } from "@angular/common";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterModule } from "@angular/router";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateModule } from "@ngx-translate/core";
@@ -33,6 +33,7 @@ import { SharedModule } from "../../../shared/shared.module";
 import { AuthService } from "../../../users/services/auth.service";
 import { MockAuthService } from "../../../../../../mocks/MockAuthService";
 import { CountryCodes, ManageSearchOptions } from "@soliguide/common";
+import { FormsModule } from "@angular/forms";
 
 describe("ManageTradFieldsComponent", () => {
   let component: ManageTradFieldsComponent;
@@ -43,10 +44,11 @@ describe("ManageTradFieldsComponent", () => {
       declarations: [ManageTradFieldsComponent],
       imports: [
         HttpClientTestingModule,
-        NgbModule,
-        RouterTestingModule,
-        SharedModule,
+        FormsModule,
         ManageCommonModule,
+        NgbModule,
+        RouterModule.forRoot([]),
+        SharedModule,
         ToastrModule.forRoot({}),
         TranslateModule.forRoot({}),
       ],
@@ -54,7 +56,7 @@ describe("ManageTradFieldsComponent", () => {
         { provide: APP_BASE_HREF, useValue: "/" },
         { provide: AuthService, useClass: MockAuthService },
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 

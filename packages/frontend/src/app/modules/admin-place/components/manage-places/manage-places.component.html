@@ -655,7 +655,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
           <td>
             <b>
-              {{ place.createdAt | date }}
+              {{ place.createdAt | dateProxy }}
             </b>
           </td>
 
@@ -692,7 +692,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             </b>
             <b [class]="'saturation bg-' + place.updatedAtColor"></b>
             <b>
-              {{ place.updatedByUserAt | date }}
+              {{ place.updatedByUserAt | dateProxy }}
             </b>
           </td>
 
@@ -739,7 +739,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <td>
               <ng-template #rappelTooltip
                 >{{ "REMINDER" | translate }}
-                {{ place.campaigns?.runningCampaign?.remindMeDate | date }}
+                {{ place.campaigns?.runningCampaign?.remindMeDate | dateProxy }}
               </ng-template>
               <div
                 class="status status-info"
@@ -783,7 +783,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               >
                 <ng-template #generalCompleteText
                   >{{ "COMPLETED_ON" | translate }}
-                  {{ place.campaigns.runningCampaign.general.endDate | date }}
+                  {{
+                    place.campaigns.runningCampaign.general.endDate | dateProxy
+                  }}
                 </ng-template>
                 <div
                   [ngbTooltip]="generalCompleteText"

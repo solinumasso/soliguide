@@ -23,7 +23,7 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterModule } from "@angular/router";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
@@ -55,7 +55,7 @@ describe("NavComponent", () => {
         HttpClientTestingModule,
         NgbModule,
         ReactiveFormsModule,
-        RouterTestingModule,
+        RouterModule.forRoot([]),
         SharedModule,
         ToastrModule.forRoot({}),
         TranslateModule.forRoot({}),
