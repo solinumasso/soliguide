@@ -18,17 +18,10 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  TemplateRef,
-  ViewChild,
-} from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";
 
 import { Subscription, filter } from "rxjs";
-import { NgbModalRef, NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 import { CurrentLanguageService } from "./modules/general/services/current-language.service";
 import { LanguageSetupService } from "./modules/general/services/language-setup.service";
@@ -36,13 +29,8 @@ import { User } from "./modules/users/classes";
 import { AuthService } from "./modules/users/services/auth.service";
 import { PosthogService } from "./modules/analytics/services/posthog.service";
 
-import {
-  DEFAULT_MODAL_OPTIONS,
-  IS_BOT,
-  IS_WEBVIEW_APP,
-} from "./shared/constants";
+import { IS_BOT, IS_WEBVIEW_APP } from "./shared/constants";
 import { ChatService, CookieManagerService } from "./modules/shared/services";
-import { THEME_CONFIGURATION } from "./models";
 
 @Component({
   selector: "app-root",
@@ -51,7 +39,9 @@ import { THEME_CONFIGURATION } from "./models";
 })
 export class AppComponent implements OnInit, OnDestroy {
   private readonly subscription: Subscription = new Subscription();
-  public readonly isChatEnabled = !!THEME_CONFIGURATION.chatWebsiteId;
+  public isChatEnabled: boolean;
+  public cookieBannerLoaded = false;
+  private chatButtonClicked = false;
 
   public readonly IS_WEBVIEW_APP = IS_WEBVIEW_APP;
   public readonly IS_BOT = IS_BOT;
@@ -59,12 +49,8 @@ export class AppComponent implements OnInit, OnDestroy {
   public currentUrl = "";
   public todayYear: number;
   public routePrefix: string;
-  private isCookieModalOpen = false;
 
   public hasUserGivenConsent: boolean;
-
-  @ViewChild("cookiesConsentModal", { static: true })
-  public cookiesConsentModal!: TemplateRef<NgbModalRef>;
 
   constructor(
     private readonly authService: AuthService,
@@ -72,9 +58,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private readonly languageSetupService: LanguageSetupService,
     private readonly currentLanguageService: CurrentLanguageService,
     private readonly posthogService: PosthogService,
-    private readonly chatService: ChatService,
-    private readonly modalService: NgbModal,
-    private readonly cookieManagerService: CookieManagerService
+    private readonly cookieManagerService: CookieManagerService,
+    private readonly chatService: ChatService
   ) {
     this.hasUserGivenConsent = false;
 
@@ -84,6 +69,8 @@ export class AppComponent implements OnInit, OnDestroy {
     const today = new Date();
     this.todayYear = today.getFullYear();
     this.routePrefix = this.currentLanguageService.routePrefix;
+
+    this.isChatEnabled = this.chatService.isChatEnabled;
   }
 
   public ngOnInit(): void {
@@ -97,9 +84,9 @@ export class AppComponent implements OnInit, OnDestroy {
     );
 
     this.subscription.add(
-      this.currentLanguageService.subscribe(
-        () => (this.routePrefix = this.currentLanguageService.routePrefix)
-      )
+      this.currentLanguageService.subscribe(() => {
+        this.routePrefix = this.currentLanguageService.routePrefix;
+      })
     );
 
     this.subscription.add(
@@ -134,13 +121,83 @@ export class AppComponent implements OnInit, OnDestroy {
     );
 
     this.subscription.add(
-      this.cookieManagerService.consentSubject.subscribe((consent: boolean) => {
-        this.hasUserGivenConsent = consent;
-        if (consent) {
-          this.chatService.loadScript();
+      this.cookieManagerService.chatConsentSubject.subscribe(
+        (consent: boolean) => {
+          this.hasUserGivenConsent = consent;
         }
-      })
+      )
     );
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if ((window as any).silktideCookieBannerManager?.updateCookieBannerConfig) {
+      this.cookieBannerLoaded = true;
+      this.cookieManagerService.translateCookieBanner();
+    }
+
+    document.addEventListener("SilktideConsentManagerLoaded", () => {
+      if (!this.cookieBannerLoaded) {
+        this.cookieBannerLoaded = true;
+        this.cookieManagerService.translateCookieBanner();
+      }
+    });
+
+    document.addEventListener(
+      "ConsentChanged",
+      (
+        event: CustomEvent<{
+          type: "analytics" | "chat";
+          value: "granted" | "denied";
+        }>
+      ) => {
+        if (event.detail.type === "analytics") {
+          this.cookieManagerService.analyticsConsentSubject.next(
+            event.detail.value === "granted"
+          );
+        } else if (event.detail.type === "chat") {
+          this.cookieManagerService.chatConsentSubject.next(
+            event.detail.value === "granted"
+          );
+        }
+
+        this.cookieManagerService.hasUserMadeCookieChoice.next(
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (window as any).silktideCookieBannerManager?.hasUserMadeCookieChoice()
+        );
+      }
+    );
+
+    document.addEventListener("PreferencesClosed", () => {
+      if (this.chatButtonClicked) {
+        this.chatService.openChatAfterPreferences(this.me);
+      }
+    });
+    document.addEventListener("AcceptAll", () => {
+      this.posthogService.capture("accept-all-cookies");
+    });
+    document.addEventListener("AcceptAllPreferences", () => {
+      if (this.chatButtonClicked) {
+        this.chatService.openChatAfterPreferences(this.me);
+      }
+
+      this.posthogService.capture("accept-all-cookies-preferences");
+    });
+    document.addEventListener("RejectAll", () => {
+      this.posthogService.capture("reject-all-cookies");
+    });
+    document.addEventListener("RejectAllPreferences", () => {
+      this.posthogService.capture("reject-all-cookies-preferences");
+    });
+    document.addEventListener("PreferencesClosedWithButton", () => {
+      this.posthogService.capture("preferences-close-cookies-banner", {
+        analytics_cookies_consent: this.cookieManagerService
+          .analyticsConsentSubject.value
+          ? "granted"
+          : "denied",
+        chat_cookies_consent: this.cookieManagerService.chatConsentSubject.value
+          ? "granted"
+          : "denied",
+      });
+    });
   }
 
   public ngOnDestroy(): void {
@@ -148,28 +205,13 @@ export class AppComponent implements OnInit, OnDestroy {
     this.languageSetupService.tearDown();
   }
 
-  private openCookieConsentModal(): void {
-    if (!this.isCookieModalOpen) {
-      this.modalService
-        .open(this.cookiesConsentModal, DEFAULT_MODAL_OPTIONS)
-        .result.then(
-          () => {
-            this.isCookieModalOpen = false;
-          },
-          () => {
-            this.isCookieModalOpen = false;
-          }
-        );
-      this.isCookieModalOpen = true;
-    }
-  }
-
   public openChatCookiesConsentModal(): void {
     this.posthogService.capture("chat-button");
-    this.openCookieConsentModal();
+    this.chatButtonClicked = true;
+    this.cookieManagerService.openCookiesConsentModal();
   }
 
   public openFooterCookiesConsentModal(): void {
-    this.openCookieConsentModal();
+    this.cookieManagerService.openCookiesConsentModal();
   }
 }
