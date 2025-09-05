@@ -117,10 +117,19 @@ export class AuthService {
     this.logout();
 
     if (state) {
-      let returnUrl = state.url.join("/");
-      if (state.children.length > 0)
-        returnUrl +=
-          "/" + state.children.map((childRoute) => childRoute.url.join("/"));
+      let returnUrl = `/${state.url.join("/")}`;
+
+      if (state.children.length > 0) {
+        returnUrl += `/${state.children
+          .map((childRoute) => childRoute.url.join("/"))
+          .join("/")}`;
+      }
+
+      const queryString = this.buildQueryString(state.queryParams);
+      if (queryString) {
+        returnUrl += `?${queryString}`;
+      }
+
       this.router.navigate(
         [this.currentLanguageService.routePrefix, "connexion"],
         {
@@ -133,6 +142,17 @@ export class AuthService {
         "connexion",
       ]);
     }
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  private buildQueryString(params: Record<string, unknown>): string {
+    return Object.entries(params)
+      .filter(([value]) => value !== undefined && value !== null)
+      .map(
+        ([key, value]) =>
+          `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`
+      )
+      .join("&");
   }
 
   public notAuthorized(): void {

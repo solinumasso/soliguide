@@ -71,6 +71,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <div class="cgu-invalid my-2" *ngIf="!cguChecked">
           {{ "TAKE_OF_THIS_NOTE_CONDITION" | translate }}
         </div>
+        <div
+          *ngIf="loading || !contactsBeforeUpdate"
+          class="d-flex justify-content-center align-items-center my-4 gap-2"
+        >
+          <fa-icon
+            aria-hidden="true"
+            [icon]="['fas', 'circle-notch']"
+            [spin]="true"
+          ></fa-icon>
+          <span>{{ "CONTACTS_LOADING" | translate }}</span>
+        </div>
 
         <br />
         <ng-container *ngFor="let contact of placeContacts; let i = index">
@@ -274,7 +285,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       <button
         type="submit"
         class="btn btn-lg btn-primary"
-        [disabled]="loading"
+        [disabled]="loading || !contactsBeforeUpdate"
         (click)="patchContacts()"
       >
         <span *ngIf="!loading">{{ "SAVE_AND_CONTINUE" | translate }} </span>

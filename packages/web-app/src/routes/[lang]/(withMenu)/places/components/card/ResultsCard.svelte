@@ -162,7 +162,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             slot="icon"
             on:click={() => {
               if (!isDisabled) {
-                captureEvent('go-to-click');
+                captureEvent('go-to-click', { place: { ...place.dataForLogs } });
               }
             }}
           /></ButtonLink
@@ -177,7 +177,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         type="neutralOutlined"
         phones={place.phones}
         on:click={() => {
-          captureEvent('phone-click');
+          captureEvent('phone-click', { place: { ...place.dataForLogs } });
         }}
       />
       <Button

@@ -186,9 +186,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (
       this.returnUrl &&
       ((Array.isArray(this.returnUrl) && this.returnUrl.length !== 1) ||
-        /^\/[a-z][a-z]$/.test(this.returnUrl as string))
+        (typeof this.returnUrl === "string" &&
+          !/^\/[a-z][a-z]$/.test(this.returnUrl)))
     ) {
-      this.router.navigate([this.returnUrl]);
+      setTimeout(() => {
+        this.router.navigateByUrl(this.returnUrl as string);
+      }, 100);
     } else {
       if (user.pro && user.currentOrga) {
         this.router.navigate([

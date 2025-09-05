@@ -102,10 +102,11 @@ export const isServiceOpenToday = async (
 
     // Effective temporary closures
     if (
-      service.close.dateDebut &&
-      ((place.tempInfos.closure.actif &&
-        place.tempInfos.closure.dateDebut <= today) ||
-        (service.close.actif && service.close.dateDebut <= today))
+      (service.close.actif &&
+        service.close.dateDebut &&
+        service.close.dateDebut <= today) ||
+      (place.tempInfos.closure.actif &&
+        place.tempInfos.closure.dateDebut <= today)
     ) {
       return false;
     }

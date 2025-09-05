@@ -46,7 +46,12 @@ export default (fetcher = fetch) => {
 
     const body = {
       category,
-      location: { geoValue: location, geoType: type, coordinates, distance }
+      location: {
+        geoValue: location,
+        geoType: type,
+        coordinates,
+        distance
+      }
     };
 
     const placesResult: ApiSearchResults = await fetcher(url, {

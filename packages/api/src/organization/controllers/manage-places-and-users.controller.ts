@@ -23,6 +23,7 @@ import {
   CAMPAIGN_DEFAULT_NAME,
   CountryCodes,
   getPosition,
+  UserRole,
 } from "@soliguide/common";
 import mongoose from "mongoose";
 import {
@@ -168,9 +169,14 @@ export const addPlaceToOrga = async (
 
     // If there's no role, it means a place is added to an organization which never had invitations before
     if (organizationUserRights.length > 0) {
-      const userRights: UserRight[] = [];
-      for (const userRight of organizationUserRights) {
-        userRights.push({
+      const globalRights = organizationUserRights.filter(
+        (userRight) =>
+          userRight.role === UserRole.OWNER ||
+          userRight.role === UserRole.READER
+      );
+
+      if (globalRights.length > 0) {
+        const userRights: UserRight[] = globalRights.map((userRight) => ({
           displayContactPro: false,
           organization: organization._id,
           organization_id: organization.organization_id,
@@ -180,11 +186,11 @@ export const addPlaceToOrga = async (
           status: userRight.status,
           user: userRight.user._id,
           user_id: userRight.user_id,
-        });
-      }
+        }));
 
-      // 2. Create the rights
-      await saveUserRights(userRights, session, false);
+        // 2. Create the rights
+        await saveUserRights(userRights, session, false);
+      }
     }
     await session.commitTransaction();
 

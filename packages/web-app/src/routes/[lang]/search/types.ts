@@ -59,6 +59,10 @@ export interface SearchPageParams {
   type: GeoTypes;
   label: string;
   category: string;
+  department?: string;
+  region?: string;
+  departmentCode?: string;
+  regionCode?: string;
 }
 
 export interface PageOptions {

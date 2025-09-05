@@ -21,7 +21,14 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import getSearchService from './placesService';
 import { fakeFetch } from '$lib/client';
-import { GeoTypes, Categories, SupportedLanguagesCode } from '@soliguide/common';
+import {
+  GeoTypes,
+  Categories,
+  SupportedLanguagesCode,
+  CountryCodes,
+  FR_DEPARTMENT_CODES,
+  FR_REGION_CODES
+} from '@soliguide/common';
 
 const serviceResult = {
   nbResults: 1,
@@ -33,6 +40,18 @@ const serviceResult = {
       status: 'temporarilyClosed',
       hours: { endDate: '2024-11-30T23:59:59.000Z', startDate: '2024-04-01T00:00:00.000Z' },
       address: '1 Rue Montmartre, 75001 Paris',
+      dataForLogs: {
+        id: '5a58c0c7c1797fe45e377324',
+        lieuId: 154,
+        position: {
+          country: CountryCodes.FR,
+          department: 'Paris',
+          departmentCode: FR_DEPARTMENT_CODES['75'],
+          distance: 478.42644975047216,
+          region: 'Île-de-France',
+          regionCode: FR_REGION_CODES['11']
+        }
+      },
       distance: 478.42644975047216,
       services: ['food_distribution'],
       phones: [{ label: '', phoneNumber: '01 42 36 31 05', countryCode: 'fr' }],

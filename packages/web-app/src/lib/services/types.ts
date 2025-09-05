@@ -19,7 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import type { LocationSuggestion } from '$lib/models/locationSuggestion';
-import type { SearchResult, PlaceDetails } from '$lib/models/types';
+import type { SearchResult, PlaceDetails, DataForLogs } from '$lib/models/types';
 import {
   Categories,
   GeoTypes,
@@ -127,6 +127,7 @@ interface PosthogProperties {
   fromPlace?: number;
   clickedItem?: string;
   isDisabled?: boolean;
+  place?: DataForLogs;
 }
 
 export interface ZendeskState {
