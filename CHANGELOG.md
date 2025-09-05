@@ -1,3 +1,23 @@
+# [4.99.0](https://github.com/solinumasso/soliguide/compare/v4.98.0...v4.99.0) (2025-09-05)
+
+
+### Bug Fixes
+
+* meta description text [#688](https://github.com/solinumasso/soliguide/issues/688) ([853d8aa](https://github.com/solinumasso/soliguide/commit/853d8aa426e2becc71f3c2db21347bee86ceb67c))
+* place name for translation [#837](https://github.com/solinumasso/soliguide/issues/837) ([f5accea](https://github.com/solinumasso/soliguide/commit/f5acceabf5c70b136c397eaf853ac6c20407025a))
+* stop place from being assigned to all users in orga [#676](https://github.com/solinumasso/soliguide/issues/676) ([14a783c](https://github.com/solinumasso/soliguide/commit/14a783c4cb395e4b115cec54cfe3212a6fbc7358))
+* title translate page for pro signup  [#860](https://github.com/solinumasso/soliguide/issues/860) ([3754439](https://github.com/solinumasso/soliguide/commit/37544390ce08ca6dc92e41017b780f04be7df796))
+
+
+### Features
+
+* add loading spinner for adding contacts to place [#839](https://github.com/solinumasso/soliguide/issues/839) ([4f38110](https://github.com/solinumasso/soliguide/commit/4f38110257561ab9661ea923140b85b08dabd5d4))
+* **api:** close services when temp closure is active [#840](https://github.com/solinumasso/soliguide/issues/840) ([fd54191](https://github.com/solinumasso/soliguide/commit/fd54191dbfd84f8224792dc03275344cd4b8b33e))
+* handle correct redirect on login [#791](https://github.com/solinumasso/soliguide/issues/791) ([036f8ec](https://github.com/solinumasso/soliguide/commit/036f8ec8e71db60394008a23c003e03b68878f70))
+* reactivate cron for setting places offline for france [#859](https://github.com/solinumasso/soliguide/issues/859) ([733edd0](https://github.com/solinumasso/soliguide/commit/733edd0116c8c4fa154da0b17a0129e1ec0dfc7a))
+* **web-app:** add location properties for sending to api when launching search [#851](https://github.com/solinumasso/soliguide/issues/851) ([585ba75](https://github.com/solinumasso/soliguide/commit/585ba75a76312e3802187f97e227d6433ca76ebe))
+* **web-app:** change color hours in service [#848](https://github.com/solinumasso/soliguide/issues/848) ([70eae7d](https://github.com/solinumasso/soliguide/commit/70eae7d213958414c3b6ddeac60f6e748d92383c))
+
 # [4.98.0](https://github.com/solinumasso/soliguide/compare/v4.97.1...v4.98.0) (2025-08-07)
 
 
