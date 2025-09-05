@@ -60,6 +60,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   $: showButtonLink = withButtonLink && !withClamp;
 </script>
 
+<div class="bg-red-500 text-white p-4 rounded">blabla</div>
 <article class={cls}>
   {#if withIcon && !withTitle}
     <div class="infoblock-left-panel"><InfoIcon variant={iconVariant} size="medium" /></div>
@@ -108,8 +109,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   </div>
 </article>
 
-<style lang="scss">
-  .infoblock {
+<style>
+  /* .infoblock {
     display: flex;
     align-items: center;
     border-radius: var(--radiusMiddle);
@@ -145,5 +146,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   }
   .infoblock-error {
     background-color: var(--color-surfaceError2);
-  }
+  } */
 </style>

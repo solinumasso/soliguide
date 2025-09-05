@@ -54,9 +54,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   </section>
 </ThemeContext>
 
-<style lang="scss">
-  @import '../lib/styles/variables.scss';
-  $color-test: cornflowerblue;
+<style>
+  /* $color-test: cornflowerblue;
   p {
     color: $color-test;
     display: flex;
@@ -79,5 +78,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       background-color: var(--color-interactionHighlightSecondaryHover);
       color: white;
     }
-  }
+  } */
 </style>

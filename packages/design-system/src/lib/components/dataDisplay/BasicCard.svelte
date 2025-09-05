@@ -28,8 +28,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <slot />
 </section>
 
-<style lang="scss">
-  section {
+<style>
+  /* section {
     padding: var(--spacingLG);
     border-radius: var(--radiusRounded);
     box-shadow: var(--shadowMD);
@@ -41,5 +41,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     &.secondary {
       background-color: var(--color-surfaceSecondary2);
     }
-  }
+  } */
 </style>

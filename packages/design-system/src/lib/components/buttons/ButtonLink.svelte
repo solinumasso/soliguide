@@ -65,8 +65,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   </span>
 </a>
 
-<style lang="scss">
-  @import '../../styles/typography.scss';
+<style>
+  /* @import '../../styles/typography.scss';
   @import '../../styles/components/buttons.scss';
 
   // All button types have the same disabled state
@@ -92,5 +92,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     &.btn-shy {
       background: none;
     }
-  }
+  } */
 </style>
