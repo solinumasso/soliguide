@@ -18,9 +18,11 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Place } from "../../place";
 
-export interface SearchResults {
-  nbResults: number;
-  places: Place[];
-}
+import { Themes } from "@soliguide/common";
+import { TypeCategoriesServiceNotFromThemeEnum } from "../../categories/enums/type-categories-service-not-from-theme.enum";
+
+export type TypeCategoriesService =
+  | Themes
+  | TypeCategoriesServiceNotFromThemeEnum
+  | null;
