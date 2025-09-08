@@ -25,7 +25,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import PlaceDetailsSection from './PlaceDetailsSection.svelte';
   import TempInfoBanner from './TempInfoBanner.svelte';
   import { formatTimeRangeToLocale } from '$lib/client';
-  import { PlaceOpeningStatus, TempInfoType, type DayName } from '@soliguide/common';
+  import { PlaceOpeningStatus, PlaceType, TempInfoType, type DayName } from '@soliguide/common';
   import {
     DisplayMode,
     type HoursRange,
@@ -41,6 +41,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let currentDay: DayName;
   export let closureDisplayMode: DisplayMode;
   export let hoursDisplayMode: DisplayMode;
+  export let placeType: PlaceType;
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
 
@@ -80,7 +81,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               {:else if openingHours.length > 0}
                 {convertHours(openingHours)}
               {:else}
-                {$i18n.t('CLOSED')}
+                {placeType === PlaceType.PLACE ? $i18n.t('CLOSED') : $i18n.t('NO_PASSAGE')}
               {/if}
             </Text>
           </span>

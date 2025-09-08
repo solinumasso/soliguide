@@ -21,7 +21,9 @@
 import { writable, get } from 'svelte/store';
 
 import {
+  Categories,
   PlaceOpeningStatus,
+  PlaceType,
   TempInfoStatus,
   TempInfoType,
   WEEK_DAYS,
@@ -63,6 +65,7 @@ const initialValue: PageState = {
     // lieu_id 7 does not exist in the database
     address: '',
     campaignBanner: null,
+    categorySearched: Categories.ACCESS_TO_HOUSING,
     description: '',
     email: '',
     facebook: '',
@@ -74,8 +77,11 @@ const initialValue: PageState = {
     lastUpdate: '',
     name: '',
     onOrientation: false,
+    parcours: [],
     phones: [],
+    placeType: PlaceType.PLACE,
     services: [],
+    seoUrl: '',
     sources: [],
     status: PlaceOpeningStatus.OPEN,
     todayInfo: {},

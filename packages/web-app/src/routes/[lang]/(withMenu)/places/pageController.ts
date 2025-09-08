@@ -51,7 +51,7 @@ export const getSearchResultPageController = (
   /**
    * Update seachResult by adding new fetched places
    */
-  const getNextResults = async (): Promise<void> => {
+  const getNextResults = async (isInitialisation = false): Promise<void> => {
     // Set loading to true and increment page
     myPageStore.update(
       (oldValue): PageState => ({
@@ -74,7 +74,7 @@ export const getSearchResultPageController = (
           hasMorePages: result.places.length > 0,
           search: { ...oldValue.search, options: newOptions },
           searchResult: {
-            nbResults: result.nbResults,
+            nbResults: isInitialisation ? result.nbResults : oldValue.searchResult.nbResults,
             places: [...oldValue.searchResult.places, ...result.places]
           }
         })
@@ -125,7 +125,7 @@ export const getSearchResultPageController = (
       });
 
       // Get data - put in store
-      await getNextResults();
+      await getNextResults(true);
     }
   };
 
