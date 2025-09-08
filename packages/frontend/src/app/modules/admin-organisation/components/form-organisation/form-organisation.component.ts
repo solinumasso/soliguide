@@ -76,8 +76,6 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
   public readonly RELATIONS = RELATIONS;
   public readonly THEME_CONFIGURATION = THEME_CONFIGURATION;
 
-  private countryCode: string;
-
   constructor(
     private readonly authService: AuthService,
     private readonly formBuilder: UntypedFormBuilder,
@@ -94,7 +92,6 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
     this.loading = false;
     this.me = null;
     this.organisation = new Organisation();
-    this.countryCode = this.THEME_CONFIGURATION.country;
   }
 
   public ngOnInit(): void {
@@ -137,7 +134,7 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
         ],
       ],
       territories: [
-        this.organisation?.areas?.[this.countryCode]?.departments ?? [],
+        this.organisation.territories,
         this.me.admin ? [Validators.required] : [],
       ],
       description: [this.organisation.description, []],
@@ -153,7 +150,7 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
         this.organisation.relations,
         this.me.admin ? [Validators.required] : [],
       ],
-      country: [this.countryCode],
+      country: [THEME_CONFIGURATION.country],
     });
   };
 
@@ -167,17 +164,6 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
       newValue: this.orgaForm.value,
     });
 
-    const formValue = {
-      ...this.orgaForm.value,
-      areas: {
-        ...this.organisation.areas,
-        [this.countryCode]: {
-          ...this.organisation.areas[this.countryCode],
-          departments: this.orgaForm.value.territories,
-        },
-      },
-    };
-
     this.submitted = true;
 
     if (this.orgaForm.invalid) {
@@ -189,7 +175,7 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
 
     this.subscription.add(
       this.organisationService
-        .create(this.organisation._id, formValue)
+        .create(this.organisation._id, this.orgaForm.value)
         .subscribe({
           next: (organisation: Organisation) => {
             this.submitted = false;

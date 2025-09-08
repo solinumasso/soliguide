@@ -29,4 +29,3 @@ export * from "./pwdReset.dto";
 export * from "./searchUser.dto";
 export * from "./signin.dto";
 export * from "./signup.dto";
-export * from "./changeUserTerritory.dto";
