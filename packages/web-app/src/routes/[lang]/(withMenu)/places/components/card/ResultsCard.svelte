@@ -69,7 +69,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <a
     {id}
     class="card-link"
-    href={`${$routes.ROUTE_PLACES}/${place.seoUrl}?categorySearched=${category}`}
+    href={`${$routes.ROUTE_PLACES}/${place.seoUrl}?categorySearched=${category}${typeof place.parcourIndex === 'number' ? `&parcourIndex=${place.parcourIndex}` : ''}`}
   >
     <CardHeader
       on:click={() => {

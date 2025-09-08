@@ -20,11 +20,14 @@
  */
 import type {
   AnyDepartmentCode,
+  ApiPlace,
   BasePlaceTempInfo,
   Categories,
+  CommonPlaceParcours,
   CountryCodes,
   PlaceClosedHolidays,
   PlaceOpeningStatus,
+  PlaceType,
   TempInfoStatus
 } from '@soliguide/common';
 import type { types as DSTypes } from '@soliguide/design-system';
@@ -95,9 +98,11 @@ export interface SearchResultItem {
     orientation: boolean;
     campaign: PlaceCampaignBannerMessage | null;
   };
+  dataForLogs: DataForLogs;
   distance: number;
   id: number;
   name: string;
+  parcourIndex?: number;
   phones: Phone[];
   seoUrl: string;
   services: Categories[];
@@ -105,7 +110,6 @@ export interface SearchResultItem {
   status: PlaceOpeningStatus;
   todayInfo: TodayInfo;
   tempInfo: SearchResultTempInfo;
-  dataForLogs: DataForLogs;
 }
 
 export interface SearchResult {
@@ -196,7 +200,9 @@ export interface PlaceDetails {
   lastUpdate: string;
   name: string;
   onOrientation: boolean;
+  parcours: CommonPlaceParcours[] | [];
   phones: Phone[];
+  placeType: PlaceType;
   services: Service[];
   sources: Source[];
   status: PlaceOpeningStatus;
@@ -215,3 +221,7 @@ export enum DisplayMode {
   REGULAR = 'regular',
   TEMPORARY = 'temporary'
 }
+
+export type ApiPlaceWithParcourIndex = ApiPlace & {
+  parcourIndex?: number;
+};
