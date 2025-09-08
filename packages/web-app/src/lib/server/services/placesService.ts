@@ -21,7 +21,7 @@
 import { env } from '$env/dynamic/private';
 import { Categories, PlaceType, type ApiPlace, type ApiSearchResults } from '@soliguide/common';
 import { fetch } from '$lib/client';
-import { buildSearchResult } from '$lib/models/searchResult';
+import { buildSearchResultWithParcours } from '$lib/models/searchResult';
 import { buildPlaceDetails } from '$lib/models/placeDetails';
 import type { RequestOptions, SearchParams } from './types';
 import type { PlaceDetails, SearchResult } from '$lib/models/types';
@@ -59,13 +59,24 @@ export default (fetcher = fetch) => {
       body: JSON.stringify({
         ...body,
         placeType: PlaceType.PLACE,
+        options: { ...options, limit: 100, sortBy: 'distance' }
+      }),
+      headers
+    });
+
+    const parcoursResult: ApiSearchResults = await fetcher(url, {
+      method: 'POST',
+      body: JSON.stringify({
+        ...body,
+        placeType: PlaceType.ITINERARY,
         options: { ...options, limit: 10, sortBy: 'distance' }
       }),
       headers
     });
 
-    return buildSearchResult(
+    return buildSearchResultWithParcours(
       placesResult,
+      parcoursResult,
       {
         geoType: type,
         coordinates,
@@ -81,7 +92,8 @@ export default (fetcher = fetch) => {
   const placeDetails = async (
     { identifier, lang }: PlaceDetailsParams,
     commonHeaders: RequestOptions,
-    categorySearched: Categories
+    categorySearched: Categories,
+    parcourIndex?: number
   ): Promise<PlaceDetails> => {
     const url = `${apiUrl}place/${identifier}/${lang}`;
 
@@ -95,7 +107,7 @@ export default (fetcher = fetch) => {
       headers
     });
 
-    return buildPlaceDetails(placeResult, categorySearched);
+    return buildPlaceDetails(placeResult, categorySearched, parcourIndex);
   };
 
   return {

@@ -19,7 +19,6 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <script lang="ts">
-  import { Text } from '@soliguide/design-system';
   import Block from 'svelte-google-materialdesign-icons/Block.svelte';
   import { formatDateRangeToLocale } from '$lib/client';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
@@ -36,26 +35,33 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </script>
 
 <div class="closing-days">
-  <Block size="16" />
-  <Text type="text2Medium">
-    {formatedContent.end
+  <span class="closing-days-icon">
+    <Block id="closing-days-icon" size="16" />
+  </span>
+  <span class="closing-days-text text-secondary-text2-medium"
+    >{formatedContent.end
       ? $i18n.t('CLOSING_DAYS_RANGE', {
           startDate: formatedContent.start,
           endDate: formatedContent.end
         })
       : $i18n.t('CLOSING_DAYS_RANGE_WITHOUT_END_DATE', {
           startDate: formatedContent.start
-        })}</Text
+        })}</span
   >
 </div>
 
 <style lang="scss">
   .closing-days {
-    display: flex;
-    align-items: center;
     gap: var(--spacing4XS);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    max-width: 100%;
+  }
+  .closing-days-text {
+    vertical-align: middle;
+  }
+  .closing-days-icon {
+    vertical-align: middle;
   }
 </style>

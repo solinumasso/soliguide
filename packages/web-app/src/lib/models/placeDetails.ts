@@ -18,49 +18,52 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import { categoryService } from '$lib/services/categoryService';
+import { sortServicesByRelevance } from '$lib/utils';
 import {
+  BasePlaceTempInfo,
+  Categories,
   CommonNewPlaceService,
   CommonOpeningHours,
   CountryCodes,
   Modalities,
+  PlaceOpeningStatus,
+  PlaceTempInfo,
+  PlaceType,
   Publics,
   ServiceSaturation,
+  SupportedLanguagesCode,
+  TempInfoStatus,
   WEEK_DAYS,
   WelcomedPublics,
   computePlaceOpeningStatus,
+  translatePublics,
   type ApiPlace,
   type CheckAndPrecisions,
   type Checked,
-  type DayName,
   type Phone as CommonPhone,
-  type IPlaceTempInfo,
-  Categories,
-  translatePublics,
-  SupportedLanguagesCode,
-  PlaceTempInfo,
-  TempInfoStatus,
-  BasePlaceTempInfo
+  type DayName,
+  type IPlaceTempInfo
 } from '@soliguide/common';
+import { getCurrentLangInStorage } from '../client';
+import { i18nInstance } from '../client/i18n';
 import {
-  computeTodayInfo,
-  computeAddress,
-  formatTimeslots,
   buildSources,
-  computeCampaignBanner
+  computeAddress,
+  computeCampaignBanner,
+  computeTodayInfo,
+  formatTimeslots
 } from './place';
 import {
+  PlaceDetailsInfoType,
+  type LightPlace,
   type PlaceDetails,
   type PlaceDetailsInfo,
-  PlaceDetailsInfoType,
   type PlaceDetailsOpeningHours,
   type PlaceDetailsTempInfo,
   type Saturation,
   type Service
 } from './types';
-import { categoryService } from '$lib/services/categoryService';
-import { sortServicesByRelevance } from '$lib/utils';
-import { i18nInstance } from '../client/i18n';
-import { getCurrentLangInStorage } from '../client';
 
 /**
  * Transform all opening hours to a front ready opening hours
@@ -315,6 +318,24 @@ const buildServices = (
   }));
 };
 
+/**
+ * Compute each passage point of a parcour for being displayed in cards
+ */
+const buildLightPlaces = (
+  apiPlace: ApiPlace,
+  onOrientation: boolean,
+  categorySearched: Categories,
+  status: PlaceOpeningStatus
+): LightPlace[] => {
+  return apiPlace.parcours?.map((crossingPoint, index) => ({
+    address: computeAddress(crossingPoint.position, onOrientation),
+    url: `${apiPlace.seo_url}?categorySearched=${categorySearched}&crossingPointIndex=${index}`,
+    name: apiPlace.name,
+    status,
+    todayInfo: computeTodayInfo({ ...apiPlace, newhours: crossingPoint.hours }, status)
+  }));
+};
+
 const buildPlaceDetailsTempInfo = (tempInfo: IPlaceTempInfo): PlaceDetailsTempInfo => {
   const newPlaceTempInfo = new PlaceTempInfo(tempInfo);
 
@@ -341,33 +362,62 @@ const buildPlaceDetailsTempInfo = (tempInfo: IPlaceTempInfo): PlaceDetailsTempIn
 /**
  * Transform a place sent by the API to a front ready place
  */
-const buildPlaceDetails = (placeResult: ApiPlace, categorySearched: Categories): PlaceDetails => {
+const buildPlaceDetails = (
+  placeResult: ApiPlace,
+  categorySearched: Categories,
+  parcourIndex?: number
+): PlaceDetails => {
   const status = computePlaceOpeningStatus(placeResult);
 
   const onOrientation = Boolean(placeResult.modalities.orientation.checked);
 
+  const isItinerary = placeResult.placeType === PlaceType.ITINERARY;
+
+  const validItineraryIndex =
+    isItinerary && typeof parcourIndex === 'number' && placeResult.parcours?.[parcourIndex]
+      ? parcourIndex
+      : 0;
+
+  // Use place or passage point position based on the context
+  const positionToCompute = isItinerary
+    ? placeResult.parcours[validItineraryIndex].position
+    : placeResult.position;
+
+  // Use place or passage point hours based on the context
+  const hoursToBuild = isItinerary
+    ? placeResult.parcours[validItineraryIndex]?.hours
+    : placeResult.newhours;
+
   return {
     id: placeResult.lieu_id,
-    address: computeAddress(placeResult.position, onOrientation),
+    address: computeAddress(positionToCompute, onOrientation),
     campaignBanner: computeCampaignBanner(placeResult),
+    ...(isItinerary && { crossingPointIndex: validItineraryIndex }),
     description: placeResult.description ?? '',
     email: placeResult.entity.mail ?? '',
     facebook: placeResult.entity.facebook ?? '',
     fax: placeResult.entity.fax ?? '',
-    hours: buildHours(placeResult.newhours, true),
+    hours: buildHours(hoursToBuild, true),
     info: buildPlaceDetailsInfo(placeResult),
     instagram: placeResult.entity.instagram ?? '',
     lastUpdate: new Date(placeResult.updatedByUserAt).toISOString(),
+    linkedPlaces: isItinerary
+      ? buildLightPlaces(placeResult, onOrientation, categorySearched, status).toSpliced(
+          validItineraryIndex,
+          1
+        )
+      : [],
     name: placeResult.name,
     onOrientation,
     phones: placeResult.entity.phones.map((phone: CommonPhone) => ({
       ...phone,
       countryCode: phone.countryCode as CountryCodes
     })),
+    placeType: placeResult.placeType,
     services: buildServices(placeResult.services_all, categorySearched),
     sources: buildSources(placeResult.sources),
-    status: computePlaceOpeningStatus(placeResult),
-    todayInfo: computeTodayInfo(placeResult, status),
+    status,
+    todayInfo: computeTodayInfo({ ...placeResult, newhours: hoursToBuild }, status),
     tempInfo: buildPlaceDetailsTempInfo(placeResult.tempInfos),
     website: placeResult.entity.website ?? ''
   };

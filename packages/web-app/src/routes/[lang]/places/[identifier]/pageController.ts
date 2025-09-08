@@ -22,6 +22,7 @@ import { writable, get } from 'svelte/store';
 
 import {
   PlaceOpeningStatus,
+  PlaceType,
   TempInfoStatus,
   TempInfoType,
   WEEK_DAYS,
@@ -72,9 +73,11 @@ const initialValue: PageState = {
     info: [],
     instagram: '',
     lastUpdate: '',
+    linkedPlaces: [],
     name: '',
     onOrientation: false,
     phones: [],
+    placeType: PlaceType.PLACE,
     services: [],
     sources: [],
     status: PlaceOpeningStatus.OPEN,

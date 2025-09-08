@@ -20,11 +20,13 @@
  */
 import type {
   AnyDepartmentCode,
+  ApiPlace,
   BasePlaceTempInfo,
   Categories,
   CountryCodes,
   PlaceClosedHolidays,
   PlaceOpeningStatus,
+  PlaceType,
   TempInfoStatus
 } from '@soliguide/common';
 import type { types as DSTypes } from '@soliguide/design-system';
@@ -95,17 +97,20 @@ export interface SearchResultItem {
     orientation: boolean;
     campaign: PlaceCampaignBannerMessage | null;
   };
+  crossingPointIndex?: number;
+  dataForLogs: DataForLogs;
   distance: number;
   id: number;
   name: string;
+  parcourIndex?: number;
   phones: Phone[];
+  searchGeoType: string;
   seoUrl: string;
   services: Categories[];
   sources: Source[];
   status: PlaceOpeningStatus;
   todayInfo: TodayInfo;
   tempInfo: SearchResultTempInfo;
-  dataForLogs: DataForLogs;
 }
 
 export interface SearchResult {
@@ -182,6 +187,14 @@ export interface Service {
   tempClosure?: PlaceTempInfoHoursReady;
 }
 
+export interface LightPlace {
+  address: string;
+  name: string;
+  status: PlaceOpeningStatus;
+  todayInfo: TodayInfo;
+  url: string;
+}
+
 export interface PlaceDetails {
   id: number;
   address: string;
@@ -194,9 +207,11 @@ export interface PlaceDetails {
   info: PlaceDetailsInfo[];
   instagram: string;
   lastUpdate: string;
+  linkedPlaces: LightPlace[] | [];
   name: string;
   onOrientation: boolean;
   phones: Phone[];
+  placeType: PlaceType;
   services: Service[];
   sources: Source[];
   status: PlaceOpeningStatus;
@@ -215,3 +230,7 @@ export enum DisplayMode {
   REGULAR = 'regular',
   TEMPORARY = 'temporary'
 }
+
+export type ApiPlaceWithCrossingPointIndex = ApiPlace & {
+  crossingPointIndex: number;
+};

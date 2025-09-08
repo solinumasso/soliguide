@@ -576,6 +576,8 @@ const samplePlaceTransformed: PlaceDetails = {
   lastUpdate: '2024-06-11T15:27:13.409Z',
   name: 'Soupe Saint-Eustache',
   onOrientation: false,
+  linkedPlaces: [],
+  placeType: PlaceType.PLACE,
   phones: [
     {
       label: '',

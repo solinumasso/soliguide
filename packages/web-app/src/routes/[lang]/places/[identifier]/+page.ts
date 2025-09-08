@@ -29,6 +29,8 @@ export const load = ({ params, fetch, url }): Promise<PlaceDetails> => {
   const identifier = String(params.identifier);
 
   const categorySearched = url.searchParams.get('categorySearched') as Categories;
+  const crossingPointIndex = url.searchParams.get('crossingPointIndex');
+  const parsedCrossingPointIndex = crossingPointIndex ? Number(crossingPointIndex) : null;
 
   // Use service with this version of fetch, works with SSR
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -40,6 +42,7 @@ export const load = ({ params, fetch, url }): Promise<PlaceDetails> => {
       lang,
       identifier
     } as PlaceDetailsParams,
-    categorySearched
+    categorySearched,
+    ...(typeof parsedCrossingPointIndex === 'number' ? [parsedCrossingPointIndex] : [])
   );
 };
