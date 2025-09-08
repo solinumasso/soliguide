@@ -24,7 +24,8 @@ import {
   CountryCodes,
   FR_DEPARTMENT_CODES,
   PlaceClosedHolidays,
-  PlaceOpeningStatus
+  PlaceOpeningStatus,
+  PlaceType
 } from '@soliguide/common';
 import type { PlaceDetailsParams, SearchOptions, SearchParams } from './types';
 
@@ -64,6 +65,7 @@ export const searchResultMock: SearchResult = {
       id: 169,
       name: 'Restos du Coeur - Camion de Paris 5e',
       phones: [],
+      searchGeoType: 'position',
       seoUrl: 'camions-des-restos-du-coeur-salpetriere-paris-169',
       services: [Categories.FOOD_DISTRIBUTION],
       sources: [],
@@ -85,12 +87,12 @@ export const searchResultMock: SearchResult = {
           country: CountryCodes.FR,
           department: '75',
           departmentCode: FR_DEPARTMENT_CODES['75'],
-          distance: -1,
+          distance: 0,
           region: 'Île-de-France',
           regionCode: 'IDF'
         }
       },
-      distance: -1,
+      distance: 0,
       id: 34120,
       name: 'Restaurant Emeraude Ave Maria',
       phones: [
@@ -101,6 +103,7 @@ export const searchResultMock: SearchResult = {
           phoneNumber: '01 48 87 67 39'
         }
       ],
+      searchGeoType: 'position',
       seoUrl: 'restaurant-emeraude-europe-copie-paris-34120',
       services: [Categories.FOOD_DISTRIBUTION],
       sources: [],
@@ -129,15 +132,16 @@ export const searchResultMock: SearchResult = {
           country: CountryCodes.FR,
           department: '75',
           departmentCode: FR_DEPARTMENT_CODES['75'],
-          distance: -1,
+          distance: 0,
           region: 'Île-de-France',
           regionCode: 'IDF'
         }
       },
-      distance: -1,
+      distance: 0,
       id: 26287,
       name: 'Cop1 - Solidarités Étudiantes Paris 5',
       phones: [],
+      searchGeoType: 'position',
       seoUrl: 'co-p1-solidarites-etudiantes-copie-paris-26287',
       services: [Categories.FOOD_DISTRIBUTION, Categories.ACTIVITIES],
       sources: [],
@@ -146,7 +150,7 @@ export const searchResultMock: SearchResult = {
       todayInfo: {
         closingDays: {
           end: '',
-          start: '2024-07-14T00:00:00.000Z'
+          start: '2024-0704T00:00:00.000Z'
         }
       }
     },
@@ -165,6 +169,7 @@ export const searchResultMock: SearchResult = {
           regionCode: 'IDF'
         }
       },
+      searchGeoType: 'position',
       distance: 478.42644975047216,
       id: 154,
       name: 'Soupe Saint-Eustache',
@@ -244,6 +249,8 @@ export const placeDetailsMock: PlaceDetails = {
   info: [],
   instagram: '',
   lastUpdate: '2024-06-11T15:27:13.409Z',
+  linkedPlaces: [],
+  placeType: PlaceType.PLACE,
   name: 'Soupe Saint-Eustache',
   onOrientation: false,
   phones: [

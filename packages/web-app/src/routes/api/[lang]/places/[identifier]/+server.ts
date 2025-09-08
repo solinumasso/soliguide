@@ -29,8 +29,11 @@ import type { Categories } from '@soliguide/common';
  */
 export const POST = async (requestEvent: RequestEvent): Promise<Response> => {
   const { identifier, lang } = requestEvent.params;
-  const { categorySearched }: { categorySearched: Categories } = await requestEvent.request.json();
-
+  const {
+    categorySearched,
+    crossingPointIndex
+  }: { categorySearched: Categories; crossingPointIndex: number | null } =
+    await requestEvent.request.json();
   const headers = getHeaders(requestEvent);
 
   const placeDetailService = getPlaceDetailsService();
@@ -40,8 +43,9 @@ export const POST = async (requestEvent: RequestEvent): Promise<Response> => {
       identifier
     } as PlaceDetailsParams,
     headers,
-    categorySearched
+    categorySearched,
+    ...(typeof crossingPointIndex === 'number' ? [crossingPointIndex] : [])
   );
 
-  return json(result, { status: 201 });
+  return json({ ...result }, { status: 201 });
 };

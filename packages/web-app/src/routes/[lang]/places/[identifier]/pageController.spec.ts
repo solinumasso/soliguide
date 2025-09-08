@@ -20,7 +20,7 @@
  */
 import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { getPlaceDetailsPageController } from './pageController';
-import { PlaceOpeningStatus } from '@soliguide/common';
+import { PlaceOpeningStatus, PlaceType } from '@soliguide/common';
 import { get } from 'svelte/store';
 import type { PlaceDetails, PlaceDetailsTempInfo } from '$lib/models/types';
 import type { PageController } from './types';
@@ -39,7 +39,9 @@ const defaultState: PlaceDetails = {
   lastUpdate: '',
   name: '',
   onOrientation: false,
+  linkedPlaces: [],
   phones: [],
+  placeType: PlaceType.PLACE,
   services: [],
   sources: [],
   status: PlaceOpeningStatus.OPEN,
