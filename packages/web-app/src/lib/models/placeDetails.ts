@@ -39,7 +39,8 @@ import {
   SupportedLanguagesCode,
   PlaceTempInfo,
   TempInfoStatus,
-  BasePlaceTempInfo
+  BasePlaceTempInfo,
+  PlaceType
 } from '@soliguide/common';
 import {
   computeTodayInfo,
@@ -341,20 +342,42 @@ const buildPlaceDetailsTempInfo = (tempInfo: IPlaceTempInfo): PlaceDetailsTempIn
 /**
  * Transform a place sent by the API to a front ready place
  */
-const buildPlaceDetails = (placeResult: ApiPlace, categorySearched: Categories): PlaceDetails => {
+const buildPlaceDetails = (
+  placeResult: ApiPlace,
+  categorySearched: Categories,
+  parcourIndex?: number
+): PlaceDetails => {
   const status = computePlaceOpeningStatus(placeResult);
 
   const onOrientation = Boolean(placeResult.modalities.orientation.checked);
+  const isValidParcour =
+    placeResult.placeType === PlaceType.ITINERARY && typeof parcourIndex === 'number';
+
+  // Check if parcourIndex is valid, otherwise default to 0
+  const isParcourPointExist =
+    isValidParcour && placeResult.parcours?.[parcourIndex] ? parcourIndex : 0;
+
+  const positionToCompute = isValidParcour
+    ? placeResult.parcours[0].position
+    : placeResult.position;
+
+  const hoursToBuild = isValidParcour
+    ? placeResult.parcours?.[isParcourPointExist]?.hours
+    : placeResult.newhours;
+
+  // const description = isValidParcour
+  //   ? placeResult.parcours?.[isParcourPointExist]?.description
+  //   : placeResult.description;
 
   return {
     id: placeResult.lieu_id,
-    address: computeAddress(placeResult.position, onOrientation),
+    address: computeAddress(positionToCompute, onOrientation),
     campaignBanner: computeCampaignBanner(placeResult),
     description: placeResult.description ?? '',
     email: placeResult.entity.mail ?? '',
     facebook: placeResult.entity.facebook ?? '',
     fax: placeResult.entity.fax ?? '',
-    hours: buildHours(placeResult.newhours, true),
+    hours: buildHours(hoursToBuild, true),
     info: buildPlaceDetailsInfo(placeResult),
     instagram: placeResult.entity.instagram ?? '',
     lastUpdate: new Date(placeResult.updatedByUserAt).toISOString(),
@@ -369,7 +392,8 @@ const buildPlaceDetails = (placeResult: ApiPlace, categorySearched: Categories):
     status: computePlaceOpeningStatus(placeResult),
     todayInfo: computeTodayInfo(placeResult, status),
     tempInfo: buildPlaceDetailsTempInfo(placeResult.tempInfos),
-    website: placeResult.entity.website ?? ''
+    website: placeResult.entity.website ?? '',
+    ...(parcourIndex ? [parcourIndex] : [])
   };
 };
 

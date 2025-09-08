@@ -20,6 +20,7 @@
  */
 import type {
   AnyDepartmentCode,
+  ApiPlace,
   BasePlaceTempInfo,
   Categories,
   CountryCodes,
@@ -95,9 +96,11 @@ export interface SearchResultItem {
     orientation: boolean;
     campaign: PlaceCampaignBannerMessage | null;
   };
+  dataForLogs: DataForLogs;
   distance: number;
   id: number;
   name: string;
+  parcourIndex?: number;
   phones: Phone[];
   seoUrl: string;
   services: Categories[];
@@ -105,7 +108,6 @@ export interface SearchResultItem {
   status: PlaceOpeningStatus;
   todayInfo: TodayInfo;
   tempInfo: SearchResultTempInfo;
-  dataForLogs: DataForLogs;
 }
 
 export interface SearchResult {
@@ -215,3 +217,7 @@ export enum DisplayMode {
   REGULAR = 'regular',
   TEMPORARY = 'temporary'
 }
+
+export type ApiPlaceWithParcourIndex = ApiPlace & {
+  parcourIndex?: number;
+};
