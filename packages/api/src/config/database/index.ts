@@ -18,6 +18,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-//@index('./*', f => `export * from '${f.path}'`)
-export * from "./MarkerOptions.type";
-export * from "./SearchFilterParams.type";
+// @index('./*', f => `export * from '${f.path}'`)
+export * from "./anonymizeDb";
+export * from "./connection";
