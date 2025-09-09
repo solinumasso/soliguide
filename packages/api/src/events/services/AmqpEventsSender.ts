@@ -126,5 +126,5 @@ export class AmqpEventsSender {
     }
   }
 }
-
+// TEST
 export const amqpEventsSender = new AmqpEventsSender();
