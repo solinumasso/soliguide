@@ -200,33 +200,33 @@ jobs:
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
         run: |
-          qovery lifecycle update \
+          qovery lifecycle --verbose update \
             --organization "$QOVERY_ORGANIZATION_NAME" \
             --project "$QOVERY_PROJECT_NAME" \
             --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
             --lifecycle "Seed MongoDB" \
             --branch "$BRANCH_NAME"
 
-          qovery lifecycle update \
+          qovery lifecycle --verbose update \
             --organization "$QOVERY_ORGANIZATION_NAME" \
             --project "$QOVERY_PROJECT_NAME" \
             --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
             --lifecycle "API migrations" \
             --tag "$SOLIGUIDE_TAG"
 
-          qovery container update \
-            --organization "$QOVERY_ORGANIZATION_NAME" \
-            --project "$QOVERY_PROJECT_NAME" \
-            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
-            --container "API" \
-            --tag "$SOLIGUIDE_TAG"
+      # qovery container --verbose update \
+      #   --organization "$QOVERY_ORGANIZATION_NAME" \
+      #   --project "$QOVERY_PROJECT_NAME" \
+      #   --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+      #   --container "API" \
+      #   --tag "$SOLIGUIDE_TAG"
 
-          qovery container update \
-            --organization "$QOVERY_ORGANIZATION_NAME" \
-            --project "$QOVERY_PROJECT_NAME" \
-            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
-            --container "Cron" \
-            --tag "$SOLIGUIDE_TAG"
+      # qovery container --verbose update \
+      #   --organization "$QOVERY_ORGANIZATION_NAME" \
+      #   --project "$QOVERY_PROJECT_NAME" \
+      #   --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+      #   --container "Cron" \
+      #   --tag "$SOLIGUIDE_TAG"
 
       - name: Override RabbitMQ connection URL
         if: github.ref == 'refs/heads/develop'
