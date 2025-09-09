@@ -49,20 +49,20 @@ export const theme = {
     interactionReversedActivePress: '#882314',
     interactionDisable: '#e5e5e5',
     // Text
-    textDark: '#171717',
-    textNeutral: '#404040',
-    textShy: '#737373',
-    textInverse: '#ffffff',
-    textHighlightPrimary: '#ff4124',
-    textHighlightPrimary2: '#c8260d',
-    textHighlightSecondary: '#613677',
-    textHighlightSecondary2: '#271332',
-    textHighlightTertiary: '#424291',
-    textHighlightQuartary: '#784034',
-    textFocus: '#5e5ecd',
-    textSuccess: '#047857',
-    textWarning: '#be8204',
-    textError: '#d32f2f',
+    dark: '#171717',
+    neutral: '#404040',
+    shy: '#737373',
+    inverse: '#ffffff',
+    highlightPrimary: '#ff4124',
+    highlightPrimary2: '#c8260d',
+    highlightSecondary: '#613677',
+    highlightSecondary2: '#271332',
+    highlightTertiary: '#424291',
+    highlightQuartary: '#784034',
+    focus: '#5e5ecd',
+    success: '#047857',
+    warning: '#be8204',
+    error: '#d32f2f',
     // Surfaces
     surfaceWhite: '#ffffff',
     surfaceWhiteAlphaLight: 'rgba(255, 255, 255, 0.20)',
@@ -109,21 +109,21 @@ export const theme = {
     // Misc
     appBackground: '#e5e5e5'
   },
-  typography: {
+  text: {
     // Families
-    fontFamilyPrimary: 'Nunito',
-    fontFamilySecondary: 'Roboto',
+    primary: 'Nunito',
+    secondary: 'Roboto',
     // Sizes
-    fontSizeDisplay1: '40px',
-    fontSizeDisplay2: '32px',
-    fontSizeTitle1: '24px',
-    fontSizeTitle2: '20px',
-    fontSizeTitle3: '18px',
-    fontSizeTitle4: '16px',
-    fontSizeText1: '16px',
-    fontSizeText2: '14px',
-    fontSizeCaption1: '12px',
-    fontSizeCaption2: '10px',
+    display1: '40px',
+    display2: '32px',
+    title1: '24px',
+    title2: '20px',
+    title3: '18px',
+    title4: '16px',
+    text1: '16px',
+    text2: '14px',
+    caption1: '12px',
+    caption2: '10px',
     // Line heights
     lineHeightDisplay1: '48px',
     lineHeightDisplay2: '40px',
@@ -140,6 +140,24 @@ export const theme = {
     fontWeightMedium: 500,
     fontWeightBold: 700,
     fontWeightExtrabold: 800
+  },
+  leading: {
+    display1: '48px',
+    display2: '40px',
+    title1: '32px',
+    title2: '32px',
+    title3: '24px',
+    title4: '24px',
+    text1: '24px',
+    text2: '18px',
+    caption1: '18px',
+    caption2: '12px'
+  },
+  fontWeight: {
+    regular: 400,
+    medium: 500,
+    bold: 700,
+    extrabold: 800
   },
   spacing: {
     spacing4XS: '0.125rem', // 2px
