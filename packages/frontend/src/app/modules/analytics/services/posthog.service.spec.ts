@@ -23,6 +23,7 @@ import { PosthogService as CommonPosthogService } from "@soliguide/common-angula
 
 import { CommonPosthogMockService } from "../../../../../mocks/CommonPosthogMockService.mock";
 import { PosthogService } from "./posthog.service";
+import { TranslateModule } from "@ngx-translate/core";
 
 describe("PosthogService", () => {
   let posthogMock: CommonPosthogMockService;
@@ -30,6 +31,7 @@ describe("PosthogService", () => {
   beforeEach(() => {
     posthogMock = new CommonPosthogMockService();
     TestBed.configureTestingModule({
+      imports: [TranslateModule.forRoot()],
       providers: [{ provide: CommonPosthogService, useValue: posthogMock }],
     });
   });
@@ -46,15 +48,15 @@ describe("PosthogService", () => {
       posthogMock.enabled = false;
       const posthogService = TestBed.inject(PosthogService);
       posthogService.capture("plop", { hello: "world" });
-      expect(posthogMock.mockInstance).not.toBeCalled();
+      expect(posthogMock.mockInstance).not.toHaveBeenCalled();
     });
 
     it("should capture an event", () => {
       posthogMock.enabled = true;
       const posthogService = TestBed.inject(PosthogService);
       posthogService.capture("plop", { hello: "world" });
-      expect(posthogMock.mockInstance).toBeCalledTimes(1);
-      expect(posthogMock.mockInstance).toBeCalledWith("frontend-plop", {
+      expect(posthogMock.mockInstance).toHaveBeenCalledTimes(1);
+      expect(posthogMock.mockInstance).toHaveBeenCalledWith("frontend-plop", {
         hello: "world",
       });
     });

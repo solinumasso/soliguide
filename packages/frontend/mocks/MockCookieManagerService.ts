@@ -18,18 +18,24 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-// @index('./*', f => `export * from '${f.path}'`)
-export * from "./PLACE_CHANGES_MOCK.mock";
-export * from "./CommonPosthogMockService.mock";
-export * from "./INVITATION.mock";
-export * from "./EMAIL.mock";
-export * from "./MockAuthService";
-export * from "./MockCookieManagerService";
-export * from "./ORGANIZATION.mock";
-export * from "./ONLINE_PLACE.mock";
-export * from "./PAIRED_ONLINE_PLACE.mock";
-export * from "./SERVICE.mock";
-export * from "./PLACE_CONTACT_FOR_ADMIN_MOCK.mock";
-export * from "./USER_INVITED.mock";
-export * from "./USER_PRO.mock";
-export * from "./USER_SOLIGUIDE.mock";
+import { BehaviorSubject } from "rxjs";
+
+global.window = {
+  silktideCookieBannerManager: {
+    // skipcq JS-0321
+    toggleModal: () => {},
+  },
+} as unknown as Window & typeof globalThis;
+
+export class MockCookieManagerService {
+  public analyticsConsentSubject: BehaviorSubject<boolean>;
+  public chatConsentSubject: BehaviorSubject<boolean>;
+
+  constructor() {
+    this.analyticsConsentSubject = new BehaviorSubject<boolean>(false);
+    this.chatConsentSubject = new BehaviorSubject<boolean>(false);
+  }
+
+  // skipcq: JS-0105, JS-0321
+  public openCookiesConsentModal(): void {}
+}

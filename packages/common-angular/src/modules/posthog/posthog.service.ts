@@ -30,18 +30,38 @@ import type { PosthogProperties } from "./posthog-properties.type";
 })
 export class PosthogService implements OnDestroy {
   // We should not call posthog.identity before posthog.init is loaded
-  private readonly _posthogInstance: Promise<PostHog | null>;
+  private _posthogInstance: Promise<PostHog | null>;
   private readonly subscription: Subscription;
-  public readonly enabled: boolean;
+  public enabled: boolean;
+  public canBeEnabled: boolean;
+
+  private persistence: "memory" | "localStorage+cookie";
 
   public constructor(private readonly posthogConfig: PosthogConfig) {
     this.subscription = new Subscription();
-    this.enabled =
+    this.enabled = false;
+
+    this.persistence = "memory";
+
+    this.canBeEnabled =
       this.posthogConfig.posthogUrl.length !== 0 &&
       typeof this.posthogConfig.posthogApiKey !== "undefined" &&
       this.posthogConfig.posthogApiKey.length !== 0;
 
-    this._posthogInstance = new Promise<PostHog | null>((resolve) => {
+    this._posthogInstance = this.setPosthogInstance();
+  }
+
+  private enablePosthog(persistence: "memory" | "localStorage+cookie"): void {
+    this.enabled = this.canBeEnabled;
+
+    this.persistence = persistence;
+
+    this._posthogInstance = this.setPosthogInstance();
+  }
+
+  private setPosthogInstance(): Promise<PostHog | null> {
+    // skipcq: JS-0045 (the return is inside the init function)
+    return new Promise<PostHog | null>((resolve) => {
       if (!this.enabled || !this.posthogConfig.posthogApiKey) {
         return resolve(null);
       }
@@ -68,7 +88,7 @@ export class PosthogService implements OnDestroy {
       debug: this.posthogConfig.posthogDebug,
       disable_session_recording: true,
       loaded,
-      persistence: "memory",
+      persistence: this.persistence,
       session_idle_timeout_seconds: 1800, // 30 minutes
       sanitize_properties: processProperties,
     };
@@ -144,6 +164,32 @@ export class PosthogService implements OnDestroy {
           posthogInstance.identify(userId, properties);
         }
       });
+    }
+  }
+
+  public setPersonProperties(properties: PosthogProperties): void {
+    if (this.enabled) {
+      this.posthogInstance.subscribe((posthogInstance) => {
+        if (posthogInstance) {
+          posthogInstance.setPersonProperties(properties);
+        }
+      });
+    }
+  }
+
+  public switchPersistence(
+    persistence: "memory" | "localStorage+cookie"
+  ): void {
+    this.persistence = persistence;
+
+    if (!this.enabled) {
+      this.enablePosthog(persistence);
+    } else {
+      this.subscription.add(
+        this.posthogInstance.subscribe((posthogInstance) => {
+          posthogInstance?.set_config({ persistence });
+        })
+      );
     }
   }
 }
