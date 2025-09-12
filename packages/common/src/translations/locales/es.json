@@ -368,7 +368,7 @@
   "COOKIES_TITLE": "Gestión de cookies",
   "COOKIE_BANNER_ACCEPT_ALL_BUTTON": "Acéptalo todo",
   "COOKIE_BANNER_ACCEPT_ALL_BUTTON_ACCESSIBLE_LABEL": "Aceptar todas las galletas (cookies)",
-  "COOKIE_BANNER_DESCRIPTION": "Usamos cookies para mejorar tu experiencia en el sitio, ayudarte a navegar por el chat y analizar el tráfico. ¡Aceptar las cookies nos ayuda en nuestras misiones! Puedes consultar nuestra política de cookies.",
+  "COOKIE_BANNER_DESCRIPTION": "<p>Usamos cookies para mejorar tu experiencia en el sitio, ayudarte a navegar por el chat y analizar el tráfico. ¡Aceptar las cookies nos ayuda en nuestras misiones! Puedes consultar  <a href=\"https://{{ website }}/{{ lang }}/politique-cookies\" target=\"_blank\">nuestra política de cookies.</a>.</p>",
   "COOKIE_BANNER_PREFERENCES_BUTTON": "Preferencias",
   "COOKIE_BANNER_PREFERENCES_BUTTON_ACCESSIBLE_LABEL": "Abrir las preferencias de galletas (cookies)",
   "COOKIE_BANNER_REJECT_NON_ESSENTIAL_BUTTON": "Rechazar todo",
