@@ -3,7 +3,9 @@ import "../../config/database/connection";
 import { GoogleGenAI } from "@google/genai";
 import {
   AutoCompleteType,
+  CountryCodes,
   SearchSuggestion,
+  SoliguideCountries,
   SupportedLanguagesCode,
 } from "@soliguide/common";
 import { CONFIG } from "../../_models";
@@ -19,8 +21,28 @@ interface TranslationResult {
 
 type SearchSuggestionForTranslation = Pick<
   SearchSuggestion,
-  "sourceId" | "label" | "seoDescription" | "synonyms" | "type" | "categoryId"
+  | "sourceId"
+  | "label"
+  | "seoDescription"
+  | "synonyms"
+  | "type"
+  | "categoryId"
+  | "lang"
 >;
+
+const LANGUAGE_NAMES: Record<SupportedLanguagesCode, string> = {
+  [SupportedLanguagesCode.AR]: "arabe",
+  [SupportedLanguagesCode.CA]: "catalan",
+  [SupportedLanguagesCode.EN]: "anglais",
+  [SupportedLanguagesCode.ES]: "espagnol",
+  [SupportedLanguagesCode.FA]: "farsi",
+  [SupportedLanguagesCode.KA]: "géorgien",
+  [SupportedLanguagesCode.PS]: "pachto",
+  [SupportedLanguagesCode.RO]: "roumain",
+  [SupportedLanguagesCode.RU]: "russe",
+  [SupportedLanguagesCode.UK]: "ukrainien",
+  [SupportedLanguagesCode.FR]: "français",
+};
 
 class CategoryTranslationScript {
   private readonly genAI: GoogleGenAI;
@@ -39,43 +61,45 @@ class CategoryTranslationScript {
     console.log("🚀 Démarrage traduction automatique des catégories...");
 
     // Get french Categories
-    const frenchCategories = await this.getFrenchCategories();
-    console.log(`📊 ${frenchCategories.length} catégories françaises trouvées`);
+    const categories = await this.getCategories();
 
-    for (const suggestion of frenchCategories) {
-      console.log(`\n📝 Traduction de: ${suggestion.label}`);
-
+    for (const suggestion of categories) {
+      console.log(
+        `\n🌍 Traduction de: ${suggestion.label} en ${
+          LANGUAGE_NAMES[suggestion.lang]
+        }`
+      );
       try {
-        const translation = await this.translateCategory(
-          suggestion,
-          SupportedLanguagesCode.FR
-        );
+        const langTranslation = await this.translateCategory(suggestion);
+        console.log({ langTranslation });
+        console.log({ sourceId: suggestion.sourceId, lang: suggestion.lang });
 
         await SearchSuggestionModel.updateOne(
-          { sourceId: suggestion.sourceId },
+          { sourceId: suggestion.sourceId, lang: suggestion.lang },
           {
-            lang: translation.lang,
-            seoTitle: translation.seoTitle,
-            seoDescription: translation.seoDescription,
-            synonyms: translation.synonyms,
-          }
+            seoTitle: langTranslation.seoTitle,
+            seoDescription: langTranslation.seoDescription,
+            synonyms: langTranslation.synonyms,
+          },
+          { upsert: true }
         );
 
-        await this.delay(1500);
+        this.results.push(langTranslation);
       } catch (error) {
-        console.error(`  ❌ Erreur ${suggestion.label}:`, error.message);
+        console.error(
+          `  ❌ Erreur ${suggestion.label} en ${
+            LANGUAGE_NAMES[suggestion.lang]
+          }:`,
+          error.message
+        );
       }
     }
-
-    console.log(`\n✅ Terminé ! ${this.results.length} traductions générées`);
   }
 
-  private async getFrenchCategories(): Promise<
+  private async getCategories(): Promise<
     Array<SearchSuggestionForTranslation>
   > {
-    const categories = await SearchSuggestionModel.find({
-      lang: SupportedLanguagesCode.FR,
-    });
+    const categories = await SearchSuggestionModel.find({ seoTitle: "" });
 
     return categories.map((doc) => ({
       sourceId: doc.sourceId,
@@ -83,15 +107,15 @@ class CategoryTranslationScript {
       seoDescription: doc.seoDescription || "",
       synonyms: doc.synonyms || [],
       type: doc.type,
+      lang: doc.lang,
       categoryId: doc.categoryId,
     }));
   }
 
   private async translateCategory(
-    suggestion: SearchSuggestionForTranslation,
-    targetLang?: SupportedLanguagesCode
+    suggestion: SearchSuggestionForTranslation
   ): Promise<TranslationResult> {
-    const prompt = this.buildPrompt(suggestion, targetLang);
+    const prompt = this.buildPrompt(suggestion);
 
     const response = await this.genAI.models.generateContent({
       model: "gemini-2.0-flash-001",
@@ -100,8 +124,7 @@ class CategoryTranslationScript {
 
     if (response) {
       const text = response.text as string;
-
-      return this.parseResponse(text, suggestion, targetLang);
+      return this.parseResponse(text, suggestion);
     } else {
       throw new Error("NO RESPONSE");
     }
@@ -109,96 +132,112 @@ class CategoryTranslationScript {
 
   private buildPrompt(
     suggestion: SearchSuggestionForTranslation,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    _targetLang?: SupportedLanguagesCode
+    country?: SoliguideCountries
   ): string {
     const getContentTypeContext = (type: AutoCompleteType): string => {
       switch (type) {
         case AutoCompleteType.ORGANIZATION:
-          return `Il s'agit d'un ORGANISME/ASSOCIATION spécifique (${suggestion.label}). Les utilisateurs cherchent cette organisation précise près de chez eux.`;
+          return `ORGANISME spécifique (${suggestion.label}) - utilisateurs cherchent cette organisation près de chez eux`;
 
         case AutoCompleteType.ESTABLISHMENT_TYPE:
-          return `Il s'agit d'un TYPE D'ÉTABLISSEMENT (${suggestion.label}). Les utilisateurs cherchent n'importe quel établissement de ce type près de chez eux.`;
+          return `TYPE D'ÉTABLISSEMENT (${suggestion.label}) - utilisateurs cherchent ce type d'établissement près de chez eux`;
 
         case AutoCompleteType.CATEGORY:
-          return `Il s'agit d'une CATÉGORIE thématique d'aide sociale (${suggestion.label}). Les utilisateurs cherchent de l'aide dans ce domaine.`;
+          return `CATÉGORIE d'aide sociale (${suggestion.label}) - utilisateurs cherchent de l'aide dans ce domaine`;
 
         default:
-          return `Il s'agit d'une recherche libre (${suggestion.label}). Les utilisateurs cherchent des informations ou de l'aide sur ce sujet.`;
+          return `RECHERCHE LIBRE (${suggestion.label}) - informations sur ce sujet`;
       }
     };
 
-    // Définir si on a besoin de synonymes
     const needsSynonyms = suggestion.type === AutoCompleteType.CATEGORY;
-    const synonymsSection = needsSynonyms
-      ? `
-- Synonymes: mots que le public cible utilise vraiment pour cette catégorie. Mettre 8-12 synonymes maximum en langage courant.`
-      : "";
-
-    const jsonFormat = needsSynonyms
-      ? `{
-  "seoTitle": "Titre SEO adapté au type de contenu",
-  "seoDescription": "Description adaptée au type avec géolocalisation",
-  "synonyms": ["synonyme1", "synonyme2", "etc"]. Ils ne doivent pas faire plus de 2 mots
-}`
-      : `{
-  "seoTitle": "Titre SEO adapté au type de contenu",
-  "seoDescription": "Description adaptée au type avec géolocalisation"
+    const jsonFormat = `{
+  "seoTitle": "Titre SEO optimisé",
+  "seoDescription": "Description 150-160 chars avec géolocalisation"${
+    needsSynonyms ? ',\n  "synonyms": ["terme1", "terme2"]' : ""
+  }
 }`;
 
-    return `Tu es expert en SEO et tu comprends très bien le Français Facile à Lire et à Comprendre pour un site qui recense des milliers de lieux solidaires: associations, ccas, maison des solidarités, accueils de jour, etc.
+    // Instructions langue et pays
+    const langInstruction =
+      suggestion.lang && suggestion.lang !== SupportedLanguagesCode.FR
+        ? `\nIMPORTANT: Traduis tout dans la langue suivante: ${
+            LANGUAGE_NAMES[suggestion.lang]
+          }.`
+        : "";
 
-CONTEXTE SOLIGUIDE:
-- Soliguide ne fait que référencer, on ne propose pas d'aide direct. Les lieux ne nous appartiennent pas
-- Site d'aide sociale pour personnes précaires. Nous référençons des lieux
-- Public: sans-abri, personnes vulnérables, réfugiées, professionnels du Social
-- Langue très simple, chaleureux, mots courants, phrases courtes
-- Ton bienveillant et rassurant
+    const countryInstruction =
+      country && country !== CountryCodes.FR
+        ? `\nAdapte pour ${country} (organismes locaux, terminologie du pays).`
+        : "";
 
-CONTEXTE DU CONTENU:
-${getContentTypeContext(suggestion.type)}
+    return `Expert SEO + FALC pour Soliguide (plateforme de lieux solidaires).
 
-Elements de référence:
-- Nom: "${suggestion.label}"
-- Description: "${suggestion.seoDescription || "Pas de description fournie"}"
-- Type: ${suggestion.type}
+PUBLIC: Personnes précaires, sans-abri, réfugiés, professionnels sociaux
+CONTEXTE: ${getContentTypeContext(suggestion.type)}
 
-RÈGLES FALC:
-Le facile à lire et à comprendre est une méthode qui a pour but de traduire un langage classique en un langage simplifié. Le FALC permet de rendre l'information plus simple et plus claire et est ainsi utile à tout le monde, notamment aux personnes en situation de handicap, dyslexiques, âgées ou encore maîtrisant mal la langue française.
+Nom: "${suggestion.label}"
+Description: "${suggestion.seoDescription || "Non définie"}"
+Pays: ${country || CountryCodes.FR}
 
-- Mots simples et courants
-- Ne pas répéter un même mot plusieurs fois dans le titre
-- Phrases courtes (max 22 mots)
-- Éviter jargon administratif/médical
-- Utiliser "vous" jamais "tu"
-- Être concret et direct avec des exemples
+RÈGLES:
+- Mots simples, phrases courtes (max 22 mots)
+- Éviter jargon administratif
+- Utiliser "vous", ton bienveillant et direct
+- Être concret avec exemples
 
 OBLIGATIONS:
-- Titre SEO: le titre doit être le plus optimal possible pour être référencé sur Google. Il doit partir d'exemples concrets et mentionner "Soliguide". Le "Nom" doit être intégré dans la phrase, de manière naturelle. Adapter le style selon le type (organisme vs établissement vs catégorie).
-- Description: mentionner "Soliguide" + géolocalisation ("près de chez vous"). 150-180 chars max. Adapter le message selon le type de contenu.${synonymsSection}.Des exemples d'aide apporté doivent figurer dans la description
+- Titre: PUNCHY et DIRECT, adapter selon le contexte émotionnel. Utiliser "${
+      suggestion.label
+    }" naturellement. Mentionner "Soliguide". PAS de ":" dans le titre. Language direct et engageant.
+- Description: "Soliguide" + 3 EXEMPLES CONCRETS d'aide + géolocalisation (150-160 chars)${
+      needsSynonyms ? "\n- Synonymes: 8-12 termes courants" : ""
+    }
 
-EXEMPLES DE STYLE SELON LE TYPE:
-- ORGANISME: "La CAF près de chez vous avec Soliguide" Indiquer des exemples d'aides à trouver : repas, vétements, accueil, etc
-- ÉTABLISSEMENT: "CCAS pour votre domiciliation"
-- CATÉGORIE: "Les aides au logement près de chez vous grâce à Soliguide"
+EXEMPLES DE TITRES PUNCHY SELON LE CONTEXTE:
+- Santé: "Trouvez des soins gratuits avec Soliguide"
+- Logement: "Trouvez de l'aide au logement avec Soliguide"
+- Addiction: "Problèmes d'addiction ? Des structures spécialisées sont là pour vous aider"
+- Alimentation: "Ne restez plus sans manger, Soliguide vous aide"
+- Emploi: "Décrochez un travail, formez-vous avec Soliguide"
+- Urgence sociale: "Besoin d'aide maintenant ? Soliguide vous trouve des solutions"
 
-RÉPONDS UNIQUEMENT AVEC CE JSON (aucun autre texte):
+EXEMPLES DE DESCRIPTIONS AVEC 3 EXEMPLES CONCRETS:
+- "Soliguide trouve près de chez vous : médecin gratuit, dentiste solidaire, infirmerie. Soins accessibles sans avance de frais."
+- "Soliguide vous aide : hébergement d'urgence, logement social, aide au loyer. Solutions logement près de chez vous."
+
+EXEMPLES D'ÉTABLISSEMENTS:
+- "CCAS pour votre domiciliation"
+- "Maison de santé près de chez vous"${langInstruction}${countryInstruction}
+
+RÉPONDS UNIQUEMENT AVEC LE JSON BRUT, AUCUN TEXTE AVANT OU APRÈS. COMMENCE DIRECTEMENT PAR { ET TERMINE PAR }:
 ${jsonFormat}`;
   }
 
   private parseResponse(
     text: string,
-    suggestion: SearchSuggestionForTranslation,
-    lang: SupportedLanguagesCode = SupportedLanguagesCode.FR
+    suggestion: SearchSuggestionForTranslation
   ): TranslationResult {
     try {
-      const cleanText = text
-        .trim()
-        .replace(/```json|```/g, "")
-        .trim();
+      // Nettoyer le texte
+      let cleanText = text.trim();
 
-      const parsed = JSON.parse(cleanText);
-      console.log(parsed);
+      // Supprimer les balises de code si présentes
+      cleanText = cleanText.replace(/```json\s*|```\s*/g, "");
+
+      // Extraire le JSON entre les premières { et dernières }
+      const firstBrace = cleanText.indexOf("{");
+      const lastBrace = cleanText.lastIndexOf("}");
+
+      if (firstBrace === -1 || lastBrace === -1 || firstBrace >= lastBrace) {
+        throw new Error("Format JSON invalide - accolades manquantes");
+      }
+
+      const jsonText = cleanText.substring(firstBrace, lastBrace + 1);
+      const parsed = JSON.parse(jsonText);
+
+      console.log("✅ JSON parsé:", parsed);
+
       if (!parsed.seoTitle || !parsed.seoDescription) {
         throw new Error(
           "Champs manquants dans la réponse JSON (seoTitle et seoDescription requis)"
@@ -207,13 +246,13 @@ ${jsonFormat}`;
 
       const result: TranslationResult = {
         sourceId: suggestion.sourceId,
-        lang,
+        lang: suggestion.lang,
         seoTitle: parsed.seoTitle.trim(),
         seoDescription: parsed.seoDescription.trim(),
         synonyms: [],
       };
 
-      // Add synonyms only for categories. For other things we will add them manually
+      // Add synonyms only for categories
       if (suggestion.type === AutoCompleteType.CATEGORY) {
         if (!parsed.synonyms || !Array.isArray(parsed.synonyms)) {
           throw new Error(
@@ -224,12 +263,13 @@ ${jsonFormat}`;
           (s: string) => s && s.trim().length > 0
         );
       } else {
-        result.synonyms = suggestion.synonyms;
+        result.synonyms = suggestion.synonyms || [];
       }
 
       return result;
     } catch (error) {
-      console.error("Réponse Gemini brute:", text);
+      console.error("❌ Réponse Gemini brute:", text);
+      console.error("❌ Erreur de parsing:", error.message);
       throw new Error(`Impossible de parser le JSON: ${error.message}`);
     }
   }

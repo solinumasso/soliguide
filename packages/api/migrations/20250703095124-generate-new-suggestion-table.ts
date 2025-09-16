@@ -27,6 +27,7 @@ import {
   SearchSuggestion,
   getSeoSlug,
   SupportedLanguagesCode,
+  SUPPORTED_LANGUAGES,
 } from "@soliguide/common";
 import {
   AUTOCOMPLETE_ORGANIZATIONS,
@@ -38,17 +39,20 @@ const message = "Generate campaign mails templates";
 export const down = async () => {
   logger.info(`[ROLLBACK] - ${message}`);
 };
-export const up = async (db: Db) => {
-  console.log("🚀 Migration of search suggestions to a new collection");
 
-  // Récupérer les documents existants
+export const up = async (db: Db) => {
+  console.log(
+    "🚀 Migration of search suggestions to a new collection (multilingual)"
+  );
+
+  // Récupérer les documents existants (catégories uniquement)
   const existingDocs = await db
     .collection("autoComplete")
     .find({
       type: "CATEGORY",
     })
     .toArray();
-  console.log(`📊 ${existingDocs.length} existing docs`);
+  console.log(`📊 ${existingDocs.length} existing category docs`);
 
   const newCollectionName = "search_suggestions";
   await db.createCollection(newCollectionName);
@@ -57,40 +61,46 @@ export const up = async (db: Db) => {
 
   const newDocs = [];
 
+  // Obtenir toutes les langues supportées
+
+  console.log(`🌍 Supported languages: ${SUPPORTED_LANGUAGES.join(", ")}`);
+
+  // Migrer les catégories existantes pour toutes les langues
   for (const doc of existingDocs) {
-    const label = translator.t(doc.label, { lng: SupportedLanguagesCode.FR });
-    const synonyms = doc.synonyms
-      ? doc.synonyms
-          .split(",")
-          .map((s: string) => s.trim())
-          .filter(Boolean)
-      : [];
+    const sourceId = generateSourceId(doc.type, doc.label);
 
-    const sourceId = generateSourceId(doc.type, label);
+    for (const lang of SUPPORTED_LANGUAGES) {
+      const label = translator.t(doc.label, { lng: lang });
+      const synonyms = doc.synonyms
+        ? doc.synonyms
+            .split(",")
+            .map((s: string) => s.trim())
+            .filter(Boolean)
+        : [];
 
-    const frenchDoc: SearchSuggestion = {
-      sourceId: sourceId,
-      lang: SupportedLanguagesCode.FR,
-      label: label,
-      slug: doc.seo || getSeoSlug(label),
-      synonyms: synonyms,
-      type: doc.type,
-      content: "",
-      categoryId: doc.categoryId,
-      seoTitle: "",
-      seoDescription: doc.description,
-      createdAt: doc.createdAt || new Date(),
-      updatedAt: doc.updatedAt || new Date(),
-    };
+      const languageDoc: SearchSuggestion = {
+        sourceId: sourceId,
+        lang: lang,
+        label: label,
+        slug: doc.seo || getSeoSlug(label),
+        synonyms: synonyms,
+        type: doc.type,
+        content: "",
+        categoryId: doc.categoryId,
+        seoTitle: "",
+        seoDescription: doc.description || "",
+        createdAt: doc.createdAt || new Date(),
+        updatedAt: doc.updatedAt || new Date(),
+      };
 
-    newDocs.push(frenchDoc);
+      newDocs.push(languageDoc);
+    }
   }
 
-  // Ajouter les organisations
-  console.log("📝 Adding organizations...");
+  // Ajouter les organisations (uniquement en français comme demandé)
+  console.log("📝 Adding organizations (French only)...");
   for (const org of AUTOCOMPLETE_ORGANIZATIONS) {
     const sourceId = generateSourceId(AutoCompleteType.ORGANIZATION, org.slug);
-    console.log({ sourceId });
 
     const orgDoc: SearchSuggestion = {
       sourceId: sourceId,
@@ -110,7 +120,8 @@ export const up = async (db: Db) => {
     newDocs.push(orgDoc);
   }
 
-  console.log("📝 Adding establishment types...");
+  // Ajouter les types d'établissements (uniquement en français comme demandé)
+  console.log("📝 Adding establishment types (French only)...");
   for (const estType of AUTOCOMPLETE_ESTABLISHMENT_TYPES) {
     const sourceId = generateSourceId(
       AutoCompleteType.ESTABLISHMENT_TYPE,
@@ -139,12 +150,18 @@ export const up = async (db: Db) => {
   if (newDocs.length > 0) {
     await db.collection(newCollectionName).insertMany(newDocs);
     console.log(`✅ ${newDocs.length} suggestions created:`);
-    console.log(`   - ${existingDocs.length} existing docs migrated`);
     console.log(
-      `   - ${AUTOCOMPLETE_ORGANIZATIONS.length} organizations added`
+      `   - ${
+        existingDocs.length * SUPPORTED_LANGUAGES.length
+      } category docs migrated (${existingDocs.length} categories × ${
+        SUPPORTED_LANGUAGES.length
+      } languages)`
     );
     console.log(
-      `   - ${AUTOCOMPLETE_ESTABLISHMENT_TYPES.length} establishment types added`
+      `   - ${AUTOCOMPLETE_ORGANIZATIONS.length} organizations added (French only)`
+    );
+    console.log(
+      `   - ${AUTOCOMPLETE_ESTABLISHMENT_TYPES.length} establishment types added (French only)`
     );
   }
 
