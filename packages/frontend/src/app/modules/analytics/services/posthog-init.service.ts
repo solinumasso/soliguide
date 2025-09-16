@@ -61,12 +61,9 @@ export class PosthogInitService implements OnDestroy {
   }
 
   private subscribeToCurrentUserSubject(): void {
-    console.log("Posthog can be enabled:", this.posthogService.canBeEnabled);
     if (this.posthogService.canBeEnabled) {
       this.subscription.add(
         this.authService.currentUserSubject.subscribe((user: User | null) => {
-          console.log("Current user changed", user);
-          console.log("Posthog enabled:", this.posthogService.enabled);
           if (user) {
             this.identify(user);
           } else {

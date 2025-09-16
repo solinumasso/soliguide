@@ -24,6 +24,7 @@ import { TranslateService } from "@ngx-translate/core";
 
 import { globalConstants } from "../../../shared/functions/global-constants.class";
 import { THEME_CONFIGURATION } from "../../../models";
+import { getPathFromTheme } from "../../../shared/functions/getPathFromTheme";
 
 @Injectable({
   providedIn: "root",
@@ -79,18 +80,13 @@ export class CookieManagerService {
       config.cookieTypes[1].description = this.translateService.instant(
         "COOKIE_TYPES_ANALYTICS_DESCRIPTION"
       );
-      config.cookieTypes[2].name = this.translateService.instant(
-        "COOKIE_TYPES_CHAT_NAME"
-      );
-      config.cookieTypes[2].description = this.translateService.instant(
-        "COOKIE_TYPES_CHAT_DESCRIPTION"
-      );
 
       config.text.banner.description = this.translateService.instant(
         "COOKIE_BANNER_DESCRIPTION",
         {
           website: THEME_CONFIGURATION.websiteUrl,
           lang: this.translateService.currentLang,
+          cookiePolicyUrl: getPathFromTheme("cookie-policy"),
         }
       );
       config.text.banner.acceptAllButtonText = this.translateService.instant(
@@ -119,13 +115,26 @@ export class CookieManagerService {
       config.text.preferences.title = this.translateService.instant(
         "COOKIE_PREFERENCES_BANNER_TITLE"
       );
+
       config.text.preferences.description = this.translateService.instant(
         "COOKIE_PREFERENCES_BANNER_DESCRIPTION",
         {
           website: THEME_CONFIGURATION.websiteUrl,
           lang: this.translateService.currentLang,
+          cookiePolicyUrl: getPathFromTheme("cookie-policy"),
         }
       );
+
+      if (THEME_CONFIGURATION.chatWebsiteId) {
+        config.cookieTypes[2].name = this.translateService.instant(
+          "COOKIE_TYPES_CHAT_NAME"
+        );
+        config.cookieTypes[2].description = this.translateService.instant(
+          "COOKIE_TYPES_CHAT_DESCRIPTION"
+        );
+      } else {
+        delete config.cookieTypes[2];
+      }
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (window as any).silktideCookieBannerManager?.translateCookieBanner(
