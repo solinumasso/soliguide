@@ -38,6 +38,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import type { PageData } from './$types';
   import { getPlaceDetailsPageController } from './pageController';
   import CampaignBanner from './components/CampaignBanner.svelte';
+  //import PlaceParcoursMobileSection from './components/PlaceParcoursMobileSection.svelte';
 
   export let data: PageData;
 
@@ -137,7 +138,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         tempInfo={$pageStore.placeDetails.tempInfo}
         closureDisplayMode={$pageStore.closureDisplayMode}
         hoursDisplayMode={$pageStore.hoursDisplayMode}
+        placeType={$pageStore.placeDetails.placeType}
       />
+
       <PlaceServices
         services={$pageStore.placeDetails.services}
         currentDay={$pageStore.currentDay}
@@ -147,6 +150,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         address={$pageStore.placeDetails.address}
         onOrientation={$pageStore.placeDetails.onOrientation}
       />
+
+      <!-- <PlaceParcoursMobileSection
+        placetype={$pageStore.placeDetails.placeType}
+        parcours={$pageStore.placeDetails.parcours}
+      /> -->
 
       <PlaceContact
         phones={$pageStore.placeDetails.phones}

@@ -36,7 +36,12 @@ import {
   computeTempInfo,
   computeCampaignBanner
 } from './place';
-import type { SearchLocationParams, SearchResult, SearchResultItem } from './types';
+import type {
+  ApiPlaceWithParcourIndex,
+  SearchLocationParams,
+  SearchResult,
+  SearchResultItem
+} from './types';
 import { sortServicesByRelevance } from '../utils';
 import { categoryService } from '$lib/services/categoryService';
 
@@ -44,7 +49,7 @@ import { categoryService } from '$lib/services/categoryService';
  * Transformation
  */
 const buildSearchResultItem = (
-  place: ApiPlace,
+  place: ApiPlace | ApiPlaceWithParcourIndex,
   locationParams: SearchLocationParams,
   categorySearched: Categories
 ): SearchResultItem => {
@@ -92,6 +97,7 @@ const buildSearchResultItem = (
     distance,
     id: place.lieu_id,
     name: place.name,
+    ...('parcourIndex' in place ? { parcourIndex: place.parcourIndex } : {}),
     phones: [
       ...place.entity.phones.map((phone: CommonPhone) => ({
         ...phone,
@@ -112,14 +118,15 @@ const buildSearchResultItem = (
 /**
  * Transforms a itinerary steps into Places by hoisting their data
  */
-const extractStepsFromItineraryPlace = (place: ApiPlace): ApiPlace[] => {
+const extractStepsFromItineraryPlace = (place: ApiPlace): ApiPlaceWithParcourIndex[] => {
   // We have description, hours, photos and position to extract
-  return place.parcours.map((step) => {
+  return place.parcours.map((step, index) => {
     return {
       ...place,
       hours: step.hours,
       position: step.position,
-      parcours: []
+      parcours: [],
+      parcourIndex: index
     };
   });
 };
