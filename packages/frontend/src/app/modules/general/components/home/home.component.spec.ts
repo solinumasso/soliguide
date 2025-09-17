@@ -28,8 +28,7 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { Router } from "@angular/router";
-import { RouterTestingModule } from "@angular/router/testing";
+import { Router, RouterModule } from "@angular/router";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateModule, TranslateService } from "@ngx-translate/core";
@@ -64,7 +63,7 @@ describe("HomeComponent", () => {
         BrowserAnimationsModule,
         HttpClientTestingModule,
         NgbModule,
-        RouterTestingModule.withRoutes([
+        RouterModule.forRoot([
           {
             path: `${SupportedLanguagesCode.FR}/search/paris/${Categories.FOOD}`,
             redirectTo: "",

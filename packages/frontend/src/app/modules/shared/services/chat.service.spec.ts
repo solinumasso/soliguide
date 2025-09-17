@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { TestBed, fakeAsync } from "@angular/core/testing";
+import { TestBed } from "@angular/core/testing";
 
 import { DOCUMENT } from "@angular/common";
 
@@ -27,6 +27,12 @@ import { ChatService } from "./chat.service";
 import { USER_PRO_MOCK } from "../../../../../mocks/USER_PRO.mock";
 import { User } from "../../users/classes";
 import { THEME_CONFIGURATION } from "../../../models";
+import {
+  MockAuthService,
+  MockCookieManagerService,
+} from "../../../../../mocks";
+import { AuthService } from "../../users/services/auth.service";
+import { CookieManagerService } from "./cookie-manager.service";
 
 describe("ChatService", () => {
   let service: ChatService;
@@ -36,6 +42,8 @@ describe("ChatService", () => {
       providers: [
         ChatService,
         { provide: DOCUMENT, useValue: global.document },
+        { provide: AuthService, useClass: MockAuthService },
+        { provide: CookieManagerService, useClass: MockCookieManagerService },
       ],
     });
 
@@ -52,26 +60,16 @@ describe("ChatService", () => {
     expect(service).toBeTruthy();
   });
 
-  it("should not append script to head if Chat is not enabled", fakeAsync(() => {
-    expect(service.isScriptLoaded()).toBeFalsy();
-    service.loadScript();
+  it("should setup chat for pro", () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const script: any = global.document.querySelector(
-      `script[src='https://static.zdassets.com/ekr/snippet.js?key=${THEME_CONFIGURATION.chatWebsiteId}']`
-    );
-    expect(script).toBeFalsy();
-  }));
+    (window as any).$zE = (element: string, action: string) => {
+      console.log(`${action} on ${element}: done`);
+    };
 
-  it("should append script to head if script is not already loaded", fakeAsync(() => {
-    THEME_CONFIGURATION.chatWebsiteId = "xxx";
-    expect(service.isScriptLoaded()).toBeFalsy();
-    service.loadScript();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const script: any = global.document.querySelector(
-      `script[src='https://static.zdassets.com/ekr/snippet.js?key=${THEME_CONFIGURATION.chatWebsiteId}']`
-    );
-    expect(script).toBeTruthy();
-  }));
+    const spyChatSetup = jest.spyOn(service, "setupChat");
+    service.setupChat(new User(USER_PRO_MOCK));
+    expect(spyChatSetup).toHaveBeenCalled();
+  });
 
   it("should open chat for pro", () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -79,8 +77,19 @@ describe("ChatService", () => {
       console.log(`${action} on ${element}: done`);
     };
 
-    const spyChatOpen = jest.spyOn(service, "openChat");
-    service.openChat(new User(USER_PRO_MOCK));
-    expect(spyChatOpen).toHaveBeenCalled();
+    const spyOpenChat = jest.spyOn(service, "openChat");
+    service.openChat();
+    expect(spyOpenChat).toHaveBeenCalled();
+  });
+
+  it("should reset chat for pro", () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).$zE = (element: string, action: string) => {
+      console.log(`${action} on ${element}: done`);
+    };
+
+    const spyResetSession = jest.spyOn(service, "resetSession");
+    service.resetSession();
+    expect(spyResetSession).toHaveBeenCalled();
   });
 });

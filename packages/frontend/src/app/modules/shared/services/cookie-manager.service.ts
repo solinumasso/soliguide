@@ -19,57 +19,127 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { Injectable } from "@angular/core";
-import { globalConstants } from "../../../shared/functions";
-import { BehaviorSubject } from "rxjs";
-import isValid from "date-fns/isValid";
-import { ChatService } from "./chat.service";
-import { AuthService } from "../../users/services/auth.service";
+import { BehaviorSubject, Subscription } from "rxjs";
+import { TranslateService } from "@ngx-translate/core";
+
+import { globalConstants } from "../../../shared/functions/global-constants.class";
+import { THEME_CONFIGURATION } from "../../../models";
+import { getPathFromTheme } from "../../../shared/functions/getPathFromTheme";
 
 @Injectable({
   providedIn: "root",
 })
 export class CookieManagerService {
-  public consentSubject: BehaviorSubject<boolean>;
+  private readonly subscription: Subscription;
 
-  constructor(
-    private readonly chatService: ChatService,
-    private readonly authService: AuthService
-  ) {
-    this.consentSubject = new BehaviorSubject<boolean>(
-      CookieManagerService.hasUserGivenConsent()
+  public analyticsConsentSubject: BehaviorSubject<boolean>;
+  public chatConsentSubject: BehaviorSubject<boolean>;
+
+  public hasUserMadeCookieChoice: BehaviorSubject<boolean>;
+
+  constructor(private readonly translateService: TranslateService) {
+    this.analyticsConsentSubject = new BehaviorSubject<boolean>(
+      globalConstants.getItem("silktideCookieChoice_analytics") === true
+    );
+    this.chatConsentSubject = new BehaviorSubject<boolean>(
+      globalConstants.getItem("silktideCookieChoice_chat") === true
+    );
+    this.hasUserMadeCookieChoice = new BehaviorSubject<boolean>(
+      globalConstants.getItem("silktideCookieBanner_InitialChoice") === 1
+    );
+
+    this.subscription = new Subscription();
+
+    this.subscription.add(
+      this.translateService.onLangChange.subscribe(() => {
+        this.translateCookieBanner();
+      })
     );
   }
 
-  public get consentSubjectValue(): boolean {
-    return this.consentSubject.value;
+  // skipcq: JS-0105
+  public openCookiesConsentModal(): void {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).silktideCookieBannerManager.toggleModal(true);
   }
 
-  public static hasUserGivenConsent(): boolean {
-    // If "USER_COOKIES_CONSENT" doesn't exist in locale storage getItem() return null
-    // new Date(null) = Thu Jan 01 1970
-    const cookieConsent = new Date(
-      globalConstants.getItem("USER_COOKIES_CONSENT")
-    );
-    return isValid(cookieConsent) && new Date() < cookieConsent;
-  }
+  public translateCookieBanner(): void {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const config = (window as any).silktideConfig;
 
-  public setConsentCookie(): void {
-    this.consentSubject.next(true);
-    const dateExpiration = new Date();
-    dateExpiration.setMonth(dateExpiration.getMonth() + 3);
-    globalConstants.setItem("USER_COOKIES_CONSENT", dateExpiration.toString());
-    this.chatService.openChat(this.authService.currentUserValue);
-  }
+    if (config) {
+      config.cookieTypes[0].name = this.translateService.instant(
+        "COOKIE_TYPES_NECESSARY_NAME"
+      );
+      config.cookieTypes[0].description = this.translateService.instant(
+        "COOKIE_TYPES_NECESSARY_DESCRIPTION"
+      );
+      config.cookieTypes[1].name = this.translateService.instant(
+        "COOKIE_TYPES_ANALYTICS_NAME"
+      );
+      config.cookieTypes[1].description = this.translateService.instant(
+        "COOKIE_TYPES_ANALYTICS_DESCRIPTION"
+      );
 
-  public deleteConsentCookie(): void {
-    for (const item of globalConstants.listItems()) {
-      if (item.startsWith("ZD")) {
-        globalConstants.removeItem(item);
+      config.text.banner.description = this.translateService.instant(
+        "COOKIE_BANNER_DESCRIPTION",
+        {
+          website: THEME_CONFIGURATION.websiteUrl,
+          lang: this.translateService.currentLang,
+          cookiePolicyUrl: getPathFromTheme("cookie-policy"),
+        }
+      );
+      config.text.banner.acceptAllButtonText = this.translateService.instant(
+        "COOKIE_BANNER_ACCEPT_ALL_BUTTON"
+      );
+      config.text.banner.acceptAllButtonAccessibleLabel =
+        this.translateService.instant(
+          "COOKIE_BANNER_ACCEPT_ALL_BUTTON_ACCESSIBLE_LABEL"
+        );
+      config.text.banner.rejectNonEssentialButtonText =
+        this.translateService.instant(
+          "COOKIE_BANNER_REJECT_NON_ESSENTIAL_BUTTON"
+        );
+      config.text.banner.rejectNonEssentialButtonAccessibleLabel =
+        this.translateService.instant(
+          "COOKIE_BANNER_REJECT_NON_ESSENTIAL_BUTTON_ACCESSIBLE_LABEL"
+        );
+      config.text.banner.preferencesButtonText = this.translateService.instant(
+        "COOKIE_BANNER_PREFERENCES_BUTTON"
+      );
+      config.text.banner.preferencesButtonAccessibleLabel =
+        this.translateService.instant(
+          "COOKIE_BANNER_PREFERENCES_BUTTON_ACCESSIBLE_LABEL"
+        );
+
+      config.text.preferences.title = this.translateService.instant(
+        "COOKIE_PREFERENCES_BANNER_TITLE"
+      );
+
+      config.text.preferences.description = this.translateService.instant(
+        "COOKIE_PREFERENCES_BANNER_DESCRIPTION",
+        {
+          website: THEME_CONFIGURATION.websiteUrl,
+          lang: this.translateService.currentLang,
+          cookiePolicyUrl: getPathFromTheme("cookie-policy"),
+        }
+      );
+
+      if (THEME_CONFIGURATION.chatWebsiteId) {
+        config.cookieTypes[2].name = this.translateService.instant(
+          "COOKIE_TYPES_CHAT_NAME"
+        );
+        config.cookieTypes[2].description = this.translateService.instant(
+          "COOKIE_TYPES_CHAT_DESCRIPTION"
+        );
+      } else {
+        delete config.cookieTypes[2];
       }
-    }
 
-    globalConstants.removeItem("USER_COOKIES_CONSENT");
-    this.chatService.resetSession();
-    this.consentSubject.next(false);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window as any).silktideCookieBannerManager?.translateCookieBanner(
+        config
+      );
+    }
   }
 }
