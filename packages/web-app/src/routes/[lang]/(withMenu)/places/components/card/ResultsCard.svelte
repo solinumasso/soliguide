@@ -31,7 +31,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     CardFooter,
     Text,
     ButtonLink,
-    InfoIcon
+    InfoIcon,
+    IconFavoriteOff,
+    IconFavoriteOn,
+    ToggleButton
   } from '@soliguide/design-system';
   import NearMe from 'svelte-google-materialdesign-icons/Near_me.svelte';
   import PinDrop from 'svelte-google-materialdesign-icons/Pin_drop.svelte';
@@ -42,6 +45,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { getSearchResultPageController } from '../../pageController';
   import { searchService } from '$lib/services';
 
+  import { favorites, toggleFavorite } from '$lib/client/favorites';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import type { SearchResultItem } from '$lib/models/types';
 
@@ -65,6 +69,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   const isDisabled = place.banners.orientation;
   const urlWithItinerary = `${typeof place.crossingPointIndex === 'number' ? `&crossingPointIndex=${place.crossingPointIndex}` : ''}`;
   const href = `${$routes.ROUTE_PLACES}/${place.seoUrl}?categorySearched=${category}${urlWithItinerary}`;
+
+  $: favoriteIdsSet = new Set($favorites);
+  $: isFavorite = favoriteIdsSet.has(place.id);
 </script>
 
 <Card>
@@ -75,22 +82,46 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       }}
     >
       <div class="card-header-container">
-        {#if place?.sources.length}
-          <div class="card-header-source">
-            <Text type="caption2" color="inverse">
-              {$i18n.t('SOURCE')}
-              {#each place.sources as source, index}
-                {source.label}
-                {#if source.licenseLabel && source.licenseLink}(<a
-                    href={source.licenseLink}
-                    target="_blank">{source.licenseLabel}</a
-                  >){/if}{#if index < place.sources.length - 1}<span>, </span>
-                {/if}
-              {/each}
-            </Text>
+        <div class="card-header-infos-container">
+          <div class="card-infos-left">
+            <PlaceStatus status={place.status} />
+            <div>
+              <TodayInfo todayInfo={place.todayInfo}>
+                {#if place.tempInfo.hours === TempInfoStatus.CURRENT && place.tempInfo.message !== TempInfoStatus.CURRENT}
+                  <a
+                    href={`${$routes.ROUTE_PLACES}/${place.seoUrl}?categorySearched=${category}#openingHoursSection`}
+                    ><InfoIcon
+                      size="small"
+                      variant="warning"
+                      withShadow
+                      altTag={$i18n.t('TEMPORARY_HOURS_CURRENTLY_ACTIVE')}
+                    ></InfoIcon></a
+                  >
+                {/if}</TodayInfo
+              >
+            </div>
           </div>
-        {/if}
-
+          <div
+            class="card-infos-right"
+            on:click|stopPropagation
+            on:change|stopPropagation
+            on:keydown|stopPropagation
+            role="button"
+            tabindex="-1"
+          >
+            <ToggleButton
+              type="primaryReversed"
+              size="medium"
+              icon={isFavorite ? IconFavoriteOn : IconFavoriteOff}
+              {...!isFavorite ? { iconColor: 'var(--color-textInverse)' } : {}}
+              checked={isFavorite}
+              aria-label={$i18n.t('TOGGLE_FAVORITES')}
+              on:change={() => {
+                toggleFavorite(place.id);
+              }}
+            />
+          </div>
+        </div>
         <div class="card-title">
           <Text ellipsis type="title2PrimaryExtraBold">{place.name}</Text>
           {#if place.banners.campaign}
@@ -115,25 +146,21 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             >
           {/if}
         </div>
-
-        <div class="card-header-infos-container">
-          <PlaceStatus status={place.status} />
-          <div>
-            <TodayInfo todayInfo={place.todayInfo}>
-              {#if place.tempInfo.hours === TempInfoStatus.CURRENT && place.tempInfo.message !== TempInfoStatus.CURRENT}
-                <a
-                  href={`${$routes.ROUTE_PLACES}/${place.seoUrl}?categorySearched=${category}#openingHoursSection`}
-                  ><InfoIcon
-                    size="small"
-                    variant="warning"
-                    withShadow
-                    altTag={$i18n.t('TEMPORARY_HOURS_CURRENTLY_ACTIVE')}
-                  ></InfoIcon></a
-                >
-              {/if}</TodayInfo
-            >
+        {#if place?.sources.length}
+          <div class="card-header-source">
+            <Text type="caption2" color="inverse">
+              {$i18n.t('SOURCE')}
+              {#each place.sources as source, index}
+                {source.label}
+                {#if source.licenseLabel && source.licenseLink}(<a
+                    href={source.licenseLink}
+                    target="_blank">{source.licenseLabel}</a
+                  >){/if}{#if index < place.sources.length - 1}<span>, </span>
+                {/if}
+              {/each}
+            </Text>
           </div>
-        </div>
+        {/if}
       </div>
     </CardHeader>
   </a>
@@ -190,11 +217,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </Card>
 
 <style lang="scss">
-  $cardHeaderHeight: 90px;
+  $cardHeaderHeight: 130px;
   .card-title {
     display: flex;
     align-items: center;
-    gap: var(--spacingXS);
+    gap: var(--spacing3XS);
+    align-self: stretch;
   }
 
   .card-link {
@@ -204,11 +232,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   .card-header-container {
     position: relative;
     height: $cardHeaderHeight;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacingSM);
   }
 
   .card-header-source {
     position: absolute;
-    top: -14px;
+    bottom: 4px;
     right: 0;
     white-space: nowrap;
     overflow: hidden;
@@ -222,9 +253,24 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   .card-header-infos-container {
     display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--spacingXS);
+    align-self: stretch;
+  }
+
+  .card-infos-left {
+    display: flex;
+    flex: 1;
     flex-direction: column;
+    justify-content: center;
     align-items: flex-start;
     gap: var(--spacing3XS);
+  }
+
+  .card-infos-right {
+    display: flex;
+    align-items: center;
   }
 
   .card-body {
