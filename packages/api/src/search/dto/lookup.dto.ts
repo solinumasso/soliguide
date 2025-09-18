@@ -18,14 +18,13 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-// @index('./*', f => `export * from '${f.path}'`)
-export * from "./categories.dto";
-export * from "./location.dto";
-export * from "./placeType.dto";
-export * from "./publics.dto";
-export * from "./search.dto";
-export * from "./searchAdmin.dto";
-export * from "./searchLocations.dto";
-export * from "./searchUpdatedAt.dto";
-export * from "./text-search.dto";
-export * from "./lookup.dto";
+import { body } from "express-validator";
+import { SOLIGUIDE_COUNTRIES, UserStatus } from "@soliguide/common";
+import { placeTypeDto } from "./placeType.dto";
+
+export const lookupDto = [
+  body("ids").exists().isArray({ min: 1 }),
+  body("ids.*").isInt({ min: 1 }),
+  
+  ...placeTypeDto,
+];
