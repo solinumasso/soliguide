@@ -30,7 +30,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     IconTalkOff,
     IconTalkOn,
     IconBurgerOff,
-    IconBurgerOn
+    IconBurgerOn,
+    IconFavoriteOff,
+    IconFavoriteOn
   } from '@soliguide/design-system';
   import { ROUTES_CTX_KEY } from '$lib/client';
 
@@ -91,6 +93,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       ariaLabelActive: `${$i18n.t('MENU_SEARCH_ARIA')} ${$i18n.t('MENU_PAGE_ACTIVE')}`,
       route: $routes.ROUTE_PLACES,
       id: 'search'
+    },
+    {
+      icon: IconFavoriteOff,
+      iconActive: IconFavoriteOn,
+      label: $i18n.t('MENU_FAVORITES'),
+      ariaLabel: $i18n.t('MENU_FAVORITES_ARIA'),
+      ariaLabelActive: `${$i18n.t('MENU_FAVORITES_ARIA')} ${$i18n.t('MENU_PAGE_ACTIVE')}`,
+      route: $routes.ROUTE_FAVORITES,
+      id: 'favorites'
     },
     ...talkMenu,
     {
