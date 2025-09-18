@@ -78,8 +78,32 @@ export default (fetcher = fetch) => {
     });
   };
 
+  const lookupPlaces = (
+    { lang, ids }: { 
+      lang: SupportedLanguagesCode; 
+      ids: number[];
+    }
+  ): Promise<SearchResult> => {
+    if (!isValidStringEnumValue(SupportedLanguagesCode, lang)) {
+      throw Error(`Bad request, lang ${lang} is invalid`);
+    }
+    if (!Array.isArray(ids) || ids.length === 0) {
+      throw Error('Bad request, ids must be a non-empty array');
+    }
+    if (ids.some(id => typeof id !== 'number' || id <= 0)) {
+      throw Error('Bad request, all ids must be positive numbers');
+    }
+    
+    return fetcher(`/api/${lang}/places/lookup`, {
+      method: 'POST',
+      body: JSON.stringify({ ids }),
+      headers: posthogService.getHeaders() as unknown as Record<string, string>
+    });
+  };
+
   return {
     searchPlaces,
-    placeDetails
+    placeDetails,
+    lookupPlaces
   };
 };
