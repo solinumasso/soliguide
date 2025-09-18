@@ -26,7 +26,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   .card-header {
     background: var(--color-surfaceSecondaryGradient);
     color: var(--color-textInverse);
-    padding: var(--spacingLG);
+    padding: var(--spacingXL, 24px) var(--spacingLG, 16px);
     border-radius: var(--radiusRounded) var(--radiusRounded) 0 0;
 
     &:hover {
