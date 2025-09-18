@@ -44,7 +44,7 @@ COPY \
   ./packages/design-system/vitest.config.ts \
   /app/packages/design-system/
 
-FROM caddy:2.9-alpine AS deploy
+FROM caddy:2.10-alpine AS deploy
 
 COPY --chmod=0544 packages/design-system/docker_cmd.sh /bin/docker_cmd.sh
 COPY packages/design-system/Caddyfile /etc/caddy/
