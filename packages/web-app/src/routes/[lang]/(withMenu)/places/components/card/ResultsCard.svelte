@@ -113,7 +113,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               type="primaryReversed"
               size="medium"
               icon={isFavorite ? IconFavoriteOn : IconFavoriteOff}
-              {...!isFavorite ? { iconColor: 'var(--color-textInverse)' } : {}}
+              {...isFavorite ? {} : { iconColor: 'var(--color-textInverse)' }}
               checked={isFavorite}
               aria-label={$i18n.t('TOGGLE_FAVORITES')}
               on:change={() => {
