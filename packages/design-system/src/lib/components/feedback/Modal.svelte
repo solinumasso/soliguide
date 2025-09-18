@@ -88,8 +88,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   </div>
 </dialog>
 
-<style lang="scss">
-  dialog {
+<style>
+  /* dialog {
     border-radius: var(--radiusRounded);
     border: none;
     padding: 0;
@@ -154,5 +154,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       gap: var(--spacingXS);
       justify-content: flex-end;
     }
-  }
+  } */
 </style>
