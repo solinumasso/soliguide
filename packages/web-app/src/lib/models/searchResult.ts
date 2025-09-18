@@ -19,16 +19,18 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { categoryService } from '$lib/services/categoryService';
-import { sort } from '$lib/ts';
 import {
+  GeoTypes,
+  calculateDistanceBetweenTwoPoints,
+  computePlaceOpeningStatus,
   type ApiPlace,
-  type ApiSearchResults,
+  CountryCodes,
   Categories,
   type Phone as CommonPhone,
-  CountryCodes,
-  calculateDistanceBetweenTwoPoints,
-  computePlaceOpeningStatus
+  type ApiSearchResults,
+  type CommonNewPlaceService
 } from '@soliguide/common';
+import { sort } from '$lib/ts';
 import { sortServicesByRelevance } from '../utils';
 import {
   buildSources,
@@ -59,26 +61,18 @@ const computeDistance = (
 };
 
 /**
- * Transformation
+ * Base function to build result item with common logic
  */
-const buildSearchResultItem = (
+const buildBaseResultItem = (
   place: ApiPlace | ApiPlaceWithCrossingPointIndex,
-  locationParams: SearchLocationParams,
-  categorySearched: Categories
+  locationParams: SearchLocationParams | null | undefined,
+  servicesAll: CommonNewPlaceService[]
 ): SearchResultItem => {
   const onOrientation = Boolean(place.modalities.orientation.checked);
 
-  const distance = computeDistance(place, locationParams);
+  const distance = locationParams ? computeDistance(place, locationParams) : 10000;
 
   const status = computePlaceOpeningStatus(place);
-
-  const allCategoriesByTheme = categoryService.getAllCategories();
-
-  const sortedServices = sortServicesByRelevance(
-    place.services_all,
-    categorySearched,
-    allCategoriesByTheme
-  );
 
   return {
     address: computeAddress(place.position, onOrientation),
@@ -104,9 +98,9 @@ const buildSearchResultItem = (
         countryCode: phone.countryCode as CountryCodes
       }))
     ],
-    searchGeoType: locationParams.geoType,
+    searchGeoType: locationParams?.geoType ?? GeoTypes.UNKNOWN,
     seoUrl: place.seo_url,
-    services: sortedServices
+    services: servicesAll
       .map((service) => service?.category)
       .filter((category) => typeof category !== 'undefined'),
     sources: buildSources(place.sources),
@@ -114,6 +108,25 @@ const buildSearchResultItem = (
     todayInfo: computeTodayInfo(place, status),
     tempInfo: computeTempInfo(place.tempInfos)
   };
+};
+
+/**
+ * Transformation for search results with category-based service sorting
+ */
+const buildSearchResultItem = (
+  place: ApiPlace,
+  locationParams: SearchLocationParams,
+  categorySearched: Categories
+): SearchResultItem => {
+  const allCategoriesByTheme = categoryService.getAllCategories();
+
+  const sortedServices = sortServicesByRelevance(
+    place.services_all,
+    categorySearched,
+    allCategoriesByTheme
+  );
+
+  return buildBaseResultItem(place, locationParams, sortedServices);
 };
 
 /**
@@ -213,4 +226,4 @@ const buildSearchResult = (
   };
 };
 
-export { buildSearchResult, buildSearchResultWithParcours };
+export { buildSearchResult, buildSearchResultWithParcours, buildBaseResultItem };

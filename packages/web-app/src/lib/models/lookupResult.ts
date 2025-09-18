@@ -18,32 +18,27 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import type { SupportedLanguagesCode, SoliguideCountries, Themes } from '@soliguide/common';
+import {
+  type ApiSearchResults
+} from '@soliguide/common';
+import { buildBaseResultItem } from './searchResult';
+import type { SearchResult } from './types';
 
-export interface ThemeDefinition {
-  name: Themes;
-  brandName: string;
-  country: SoliguideCountries;
-  defaultLanguage: SupportedLanguagesCode;
-  supportedLanguages: SupportedLanguagesCode[];
-  media: {
-    homeIllustration: string;
-    favoritesIllustration: string;
-    logos: {
-      inline: string;
-      original: string;
-      symbol: string;
-    };
+/**
+ * Builds a lookup result from a places query (for favorites)
+ * Does not sort services by category relevance since there's no search context
+ */
+const buildLookupResult = (
+  placesResult: ApiSearchResults
+): SearchResult => {
+  const placesResultItems = placesResult.places.map((place) =>
+    buildBaseResultItem(place, undefined, place.services_all)
+  );
+
+  return {
+    nbResults: placesResult.nbResults,
+    places: placesResultItems
   };
-  links: {
-    fichesPratiques: string;
-    solinumSite: string;
-    becomeTranslator: string;
-    cookiePolicy: string;
-    privacyPolicy: string;
-    dataProtectionAgreement: string;
-    legalNotice: string;
-    termsAndConditions: string;
-  };
-  chatWebsiteId: string | undefined | null;
-}
+};
+
+export { buildLookupResult };

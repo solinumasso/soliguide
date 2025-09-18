@@ -29,7 +29,8 @@ export type Routes =
   | 'ROUTE_SEARCH'
   | 'ROUTE_PLACES'
   | 'ROUTE_MORE_OPTIONS'
-  | 'ROUTE_TALK';
+  | 'ROUTE_TALK'
+  | 'ROUTE_FAVORITES';
 
 export type Routing = Record<Routes, string>;
 export type RoutingStore = Readable<Record<Routes, string>>;
