@@ -26,6 +26,7 @@ import PageLoader from './components/PageLoader.svelte';
 import ComponentUsingTranslation from './components/ComponentUsingTranslation.svelte';
 import ThemeContext from './theme/ThemeContext.svelte';
 import ToggleButton from './components/ToggleButton.svelte';
+import ActionButton from './components/ActionButton.svelte';
 import AppIcon from './components/AppIcon.svelte';
 import InfoIcon from './components/InfoIcon.svelte';
 import Link from './components/Link.svelte';
@@ -80,6 +81,8 @@ import {
   Healing,
   Home,
   HomeWork,
+  IconFavoriteOff,
+  IconFavoriteOn,
   IconHomeOff,
   IconHomeOn,
   IconSearchOff,
@@ -165,6 +168,7 @@ export type { types };
 export {
   Button,
   ButtonLink,
+  ActionButton,
   ComponentUsingTranslation,
   InputText,
   FormControl,
@@ -214,6 +218,8 @@ export {
   Healing,
   Home,
   HomeWork,
+  IconFavoriteOff,
+  IconFavoriteOn,
   IconHomeOff,
   IconHomeOn,
   IconSearchOff,
