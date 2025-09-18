@@ -36,8 +36,10 @@ import {
   getFilteredData,
 } from "../../middleware";
 import type { ExpressRequest, ExpressResponse } from "../../_models";
-import { getTranslatedPlace } from "../../translations/controllers/translation.controller";
-import { getTranslatedPlacesForSearch } from "../../translations/controllers/translation.controller";
+import { 
+  getTranslatedPlace,
+  getTranslatedPlacesForSearch 
+} from "../../translations/controllers/translation.controller";
 import { cleanPlaceCategorySpecificFields } from "../utils";
 import { getPlacesByIds } from "../services/place.service";
 import { lookupDto } from "../../search/dto";
@@ -146,7 +148,7 @@ router.post(
 
       const lookupResults: ApiSearchResults = {
         nbResults: places.length,
-        places: places
+        places
       };
 
       const country = req.bodyValidated?.country ?? CountryCodes.FR;
