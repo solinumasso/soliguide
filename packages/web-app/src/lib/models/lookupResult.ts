@@ -32,7 +32,7 @@ const buildLookupResult = (
   placesResult: ApiSearchResults
 ): SearchResult => {
   const placesResultItems = placesResult.places.map((place) =>
-    buildBaseResultItem(place, undefined, place.services_all)
+    buildBaseResultItem(place, null, place.services_all)
   );
 
   return {
