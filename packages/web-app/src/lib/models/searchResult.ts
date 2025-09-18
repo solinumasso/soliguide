@@ -46,7 +46,7 @@ import { categoryService } from '$lib/services/categoryService';
  */
 const buildBaseResultItem = (
   place: ApiPlace,
-  locationParams: SearchLocationParams | undefined,
+  locationParams: SearchLocationParams | null | undefined,
   servicesAll: CommonNewPlaceService[]
 ): SearchResultItem => {
   const onOrientation = Boolean(place.modalities.orientation.checked);
