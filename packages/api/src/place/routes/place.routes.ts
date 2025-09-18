@@ -20,9 +20,12 @@
  */
 import express, { type NextFunction } from "express";
 import {
+  CountryCodes,
   SoliguideCountries,
   SUPPORTED_LANGUAGES_BY_COUNTRY,
+  SupportedLanguagesCode,
   UserStatus,
+  type ApiSearchResults,
 } from "@soliguide/common";
 
 import {
@@ -30,10 +33,14 @@ import {
   canGetPlace,
   logPlace,
   handleLanguage,
+  getFilteredData,
 } from "../../middleware";
 import type { ExpressRequest, ExpressResponse } from "../../_models";
 import { getTranslatedPlace } from "../../translations/controllers/translation.controller";
+import { getTranslatedPlacesForSearch } from "../../translations/controllers/translation.controller";
 import { cleanPlaceCategorySpecificFields } from "../utils";
+import { getPlacesByIds } from "../services/place.service";
+import { lookupDto } from "../../search/dto";
 
 const router = express.Router();
 
@@ -98,6 +105,70 @@ router.get(
     next();
   },
   logPlace
+);
+
+/**
+ * @swagger
+ *
+ * /place/lookup/{lang}:
+ *   post:
+ *     description: Lookup places by IDs
+ *     tags: [Place]
+ *     parameters:
+ *       - name: ids
+ *         required: true
+ *         in: formData
+ *         type: array
+ *         items:
+ *           type: number
+ *       - name: lang
+ *         in: path
+ *         required: false
+ *         type: string
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: places lookup results
+ *       500:
+ *         description: LOOKUP_ERROR
+ */
+router.post(
+  "/lookup/:lang?",
+  handleLanguage,
+  lookupDto,
+  getFilteredData,
+  async (req: ExpressRequest, res: ExpressResponse) => {
+    try {
+      const { ids } = req.bodyValidated;
+      
+      const places = await getPlacesByIds(ids);
+
+      const lookupResults: ApiSearchResults = {
+        nbResults: places.length,
+        places: places
+      };
+
+      const country = req.bodyValidated?.country ?? CountryCodes.FR;
+
+      if (
+        req?.params?.lang &&
+        SUPPORTED_LANGUAGES_BY_COUNTRY[country as unknown as SoliguideCountries]
+          .source !== req?.params?.lang
+      ) {
+        lookupResults.places = await getTranslatedPlacesForSearch(
+          lookupResults.places,
+          req?.params?.lang as SupportedLanguagesCode
+        );
+      }
+
+      req.nbResults = lookupResults.nbResults;
+      res.status(200).json(lookupResults);
+    } catch (e) {
+      req.log.error(e, "LOOKUP_ERROR");
+      res.status(500).json({ message: "LOOKUP_ERROR" });
+    }
+  }
 );
 
 export default router;
