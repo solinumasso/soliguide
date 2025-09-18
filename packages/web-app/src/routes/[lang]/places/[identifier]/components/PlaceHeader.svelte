@@ -51,6 +51,23 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 <header class="card-header">
   <div class="details-container">
+    <div class="tag-hours-container">
+      <PlaceStatus {status} />
+      {#if !isObjectEmpty(todayInfo)}
+        <TodayInfo {todayInfo}>
+          {#if tempInfo.hours?.status === TempInfoStatus.CURRENT && !tempInfo.message}
+            <a href={`#openingHoursSection`}
+              ><InfoIcon
+                size="small"
+                variant="warning"
+                withShadow
+                altTag={$i18n.t('TEMPORARY_HOURS_CURRENTLY_ACTIVE')}
+              ></InfoIcon></a
+            >
+          {/if}</TodayInfo
+        >
+      {/if}
+    </div>
     <div class="name-container">
       <Text type="title1PrimaryExtraBold">{name}</Text>
       {#if campaignBanner}
@@ -65,25 +82,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         >
       {/if}
     </div>
-    <div class="tag-container">
-      <PlaceStatus {status} />
-    </div>
-    {#if !isObjectEmpty(todayInfo)}
-      <div class="today-info-container">
-        <TodayInfo {todayInfo}>
-          {#if tempInfo.hours?.status === TempInfoStatus.CURRENT && !tempInfo.message}
-            <a href={`#openingHoursSection`}
-              ><InfoIcon
-                size="small"
-                variant="warning"
-                withShadow
-                altTag={$i18n.t('TEMPORARY_HOURS_CURRENTLY_ACTIVE')}
-              ></InfoIcon></a
-            >
-          {/if}</TodayInfo
-        >
-      </div>
-    {/if}
   </div>
 
   <div class="actions">
@@ -110,7 +108,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     flex-direction: column;
     gap: var(--spacingXL);
 
-    padding: 0 var(--spacingLG) var(--spacingLG);
+    padding: 0 var(--spacingLG) var(--spacingXL) var(--spacingLG);
     background: var(--color-surfaceSecondaryGradient);
     color: var(--color-textInverse);
   }
@@ -122,6 +120,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   .details-container {
     display: flex;
+    gap: var(--spacingLG);
     flex-direction: column;
     padding: 0 var(--spacingLG);
   }
@@ -132,11 +131,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     gap: var(--spacingXL);
   }
 
-  .tag-container {
-    padding-top: var(--spacingXS);
-  }
-
-  .today-info-container {
-    padding-top: var(--spacing3XS);
+  .tag-hours-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing3XS);
+    align-self: stretch;
   }
 </style>
