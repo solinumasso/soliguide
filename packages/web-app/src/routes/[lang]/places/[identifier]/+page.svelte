@@ -111,7 +111,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     label: $i18n.t('TOGGLE_FAVORITES'),
     type: 'toggle' as DSTypes.TopbarActionType,
     icon: isFavorite ? IconFavoriteOn : IconFavoriteOff,
-    ...(!isFavorite ? { iconColor: "var(--color-textInverse)" } : {}),
+    ...(isFavorite ? {} : { iconColor: "var(--color-textInverse)" }),
     eventKey: 'favorite' as DSTypes.TopbarActionEventKey,
     active: isFavorite
   };

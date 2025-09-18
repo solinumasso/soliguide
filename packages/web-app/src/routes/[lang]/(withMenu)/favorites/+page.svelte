@@ -19,19 +19,18 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <script lang="ts">
+  import { onMount, getContext } from 'svelte';
+  import { get } from 'svelte/store';
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
-  import { onMount } from 'svelte';
   import { ROUTES_CTX_KEY } from '$lib/client';
   import { favorites } from '$lib/client/favorites';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
-  import { SupportedLanguagesCode } from '@soliguide/common';
   import { themeStore } from '$lib/theme';
   import type { ThemeDefinition } from '$lib/theme/types';
+  import { SupportedLanguagesCode } from '@soliguide/common';
   import { Button, Text, PageLoader } from '@soliguide/design-system';
-  import { getContext } from 'svelte';
-  import { get } from 'svelte/store';
   import ResultsCard from '../places/components/card/ResultsCard.svelte';
   import pageStore from './index';
   
@@ -82,6 +81,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
           <div class="no-results-description">
             <Text type="text1">
+              <!-- eslint-disable-next-line svelte/no-at-html-tags -->
               {@html $i18n.t('FAVORITES_EMPTY_LIST')}
             </Text>
           </div>
