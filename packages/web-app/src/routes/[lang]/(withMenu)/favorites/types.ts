@@ -29,6 +29,13 @@ export interface PageState {
   lang: SupportedLanguagesCode;
 }
 
+export interface CachedFavoritesData {
+  favoriteIds: number[];
+  places: SearchResultItem[];
+  lang: string;
+  timestamp: number;
+}
+
 export interface FavoritesPageController {
   loadFavoritePlaces: (favoriteIds: number[]) => Promise<void>;
   setPlaces: (places: SearchResultItem[]) => void;
