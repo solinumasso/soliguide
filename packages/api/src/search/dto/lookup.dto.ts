@@ -19,7 +19,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { body } from "express-validator";
-import { SOLIGUIDE_COUNTRIES, UserStatus } from "@soliguide/common";
 import { placeTypeDto } from "./placeType.dto";
 
 export const lookupDto = [
