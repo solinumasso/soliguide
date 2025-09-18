@@ -74,3 +74,17 @@ export const findPlacesByParams = async (
 
   return PlaceModel.find(params).lean<Array<ModelWithId<ApiPlace>>>().exec();
 };
+
+/**
+ * @summary Get places by IDs for favorites
+ * @param {number[]} ids Array of place IDs
+ */
+export const getPlacesByIds = async (
+  ids: number[],
+): Promise<ApiPlace[]> => {
+   const places = await PlaceModel.find({
+    lieu_id: { $in: ids }
+  }).lean<Array<ModelWithId<ApiPlace>>>().exec();
+
+  return places;
+};
