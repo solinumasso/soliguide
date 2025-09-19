@@ -31,10 +31,28 @@ export class PostgresService implements OnApplicationShutdown {
 
   constructor(private configService: ConfigService) {
     try {
-      const config_url: string = this.configService.get<string>(
-        'POSTGRES_EXTERNAL_URI',
+      const username: string = this.configService.get<string>(
+        'POSTGRES_EXTERNAL_USERNAME',
       )!;
-      this.connection = postgres(config_url);
+      const password: string = this.configService.get<string>(
+        'POSTGRES_EXTERNAL_PASSWORD',
+      )!;
+      const host: string = this.configService.get<string>(
+        'POSTGRES_EXTERNAL_HOST',
+      )!;
+      const port: number = this.configService.get<number>(
+        'POSTGRES_EXTERNAL_PORT',
+      )!;
+      const database: string = this.configService.get<string>(
+        'POSTGRES_EXTERNAL_DATABASE',
+      )!;
+      this.connection = postgres('', {
+        username,
+        password,
+        host,
+        port,
+        database,
+      });
     } catch (error) {
       captureMessage('Error connecting to postgres');
       captureException(error);
