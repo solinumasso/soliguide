@@ -43,18 +43,24 @@ if [ "${DB_TO_RESTORE}" != "test" ] && [ "${DB_TO_RESTORE}" != "dev" ]; then
 fi
 
 # Get the .env variable if necessary
-POSTGRES_EXTERNAL_URI="${POSTGRES_EXTERNAL_URI:-}"
-if [ -f "${DIRNAME}/../packages/soligare/.env" ] && [ -z "${POSTGRES_EXTERNAL_URI}" ]; then
+POSTGRES_EXTERNAL_USERNAME="${POSTGRES_EXTERNAL_USERNAME:-}"
+POSTGRES_EXTERNAL_PASSWORD="${POSTGRES_EXTERNAL_PASSWORD:-}"
+POSTGRES_EXTERNAL_HOST="${POSTGRES_EXTERNAL_HOST:-}"
+POSTGRES_EXTERNAL_PORT="${POSTGRES_EXTERNAL_PORT:-}"
+POSTGRES_EXTERNAL_DATABASE="${POSTGRES_EXTERNAL_DATABASE:-}"
+if [ -f "${DIRNAME}/../packages/soligare/.env" ] && ([ -z "${POSTGRES_EXTERNAL_USERNAME}" ] || [ -z "${POSTGRES_EXTERNAL_PASSWORD}" ] || [ -z "${POSTGRES_EXTERNAL_HOST}" ] || [ -z "${POSTGRES_EXTERNAL_PORT}" ] || [ -z "${POSTGRES_EXTERNAL_DATABASE}" ]); then
   . "${DIRNAME}/../packages/soligare/.env"
 fi
 
-if [ -z "${POSTGRES_EXTERNAL_URI}" ]; then
+if [ -z "${POSTGRES_EXTERNAL_USERNAME}" ] || [ -z "${POSTGRES_EXTERNAL_PASSWORD}" ] || [ -z "${POSTGRES_EXTERNAL_HOST}" ] || [ -z "${POSTGRES_EXTERNAL_PORT}" ] || [ -z "${POSTGRES_EXTERNAL_DATABASE}" ]; then
   echo "" >&2
   echo "##############################################################################################" >&2
   echo "# [ERROR] Provide POSTGRES_EXTERNAL_URI env variable and create ${DIRNAME}/../packages/soligare/.env" >&2
   echo "##############################################################################################" >&2
   exit 2
 fi
+
+POSTGRES_EXTERNAL_URI="postgres://${POSTGRES_EXTERNAL_USERNAME}:${POSTGRES_EXTERNAL_PASSWORD}@${POSTGRES_EXTERNAL_HOST}:${POSTGRES_EXTERNAL_PORT}/${POSTGRES_EXTERNAL_DATABASE}"
 
 DUMP_FILE_NAME=soligare_db.sql.gz
 
