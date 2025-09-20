@@ -531,18 +531,30 @@ jobs:
       - name: Restore PostgreSQL test database
         run: ./scripts/restore-soligare-db.sh --db=test
         env:
-          POSTGRES_EXTERNAL_URI: postgres://postgres:postgres@127.0.0.1:5432/postgres
+          POSTGRES_EXTERNAL_USERNAME: postgres
+          POSTGRES_EXTERNAL_PASSWORD: postgres
+          POSTGRES_EXTERNAL_HOST: 127.0.0.1
+          POSTGRES_EXTERNAL_PORT: 5432
+          POSTGRES_EXTERNAL_DATABASE: postgres
 
       - name: Test
         run: |
           docker run \
             -v ./packages/soligare/coverage/:/app/packages/soligare/coverage/ \
-            -e POSTGRES_EXTERNAL_URI=${POSTGRES_EXTERNAL_URI} \
+            -e POSTGRES_EXTERNAL_USERNAME \
+            -e POSTGRES_EXTERNAL_PASSWORD \
+            -e POSTGRES_EXTERNAL_HOST \
+            -e POSTGRES_EXTERNAL_PORT \
+            -e POSTGRES_EXTERNAL_DATABASE \
             --network soliguide_default \
             "$TEST_SOLIGARE_IMAGE" \
             yarn workspace @soliguide/soligare test --coverage
         env:
-          POSTGRES_EXTERNAL_URI: postgres://postgres:postgres@postgres:5432/postgres
+          POSTGRES_EXTERNAL_USERNAME: postgres
+          POSTGRES_EXTERNAL_PASSWORD: postgres
+          POSTGRES_EXTERNAL_HOST: postgres
+          POSTGRES_EXTERNAL_PORT: 5432
+          POSTGRES_EXTERNAL_DATABASE: postgres
 
       - name: Upload coverage
         uses: actions/upload-artifact@v4
