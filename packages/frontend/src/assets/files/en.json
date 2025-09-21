@@ -136,9 +136,7 @@
     "categoryId": "vaccination",
     "label": "Vaccinations",
     "slug": "vaccination",
-    "synonyms": [
-      "vaccination vaccin covid piqure rappel rappel de vaccin"
-    ],
+    "synonyms": ["vaccination vaccin covid piqure rappel rappel de vaccin"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": "Vaccins gratuits ou accessibles aux personnes sous CMU ou AME."
@@ -208,9 +206,7 @@
     "categoryId": "allergology",
     "label": "Allergies",
     "slug": "allergologie",
-    "synonyms": [
-      "allergologie allergies"
-    ],
+    "synonyms": ["allergologie allergies"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": ""
@@ -219,9 +215,7 @@
     "categoryId": "cardiology",
     "label": "Cardiology",
     "slug": "cardiologie",
-    "synonyms": [
-      "cardiologie coeur cardiaque cardio"
-    ],
+    "synonyms": ["cardiologie coeur cardiaque cardio"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": ""
@@ -252,9 +246,7 @@
     "categoryId": "echography",
     "label": "Medical Ultrasound",
     "slug": "echographie",
-    "synonyms": [
-      "echographie bebe enceinte"
-    ],
+    "synonyms": ["echographie bebe enceinte"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": ""
@@ -283,9 +275,7 @@
     "categoryId": "gastroenterology",
     "label": "Gastroenterology",
     "slug": "gastro-enterologie",
-    "synonyms": [
-      "gastro enterologue gastro enterologie kk caca"
-    ],
+    "synonyms": ["gastro enterologue gastro enterologie kk caca"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": ""
@@ -305,9 +295,7 @@
     "categoryId": "kinesitherapy",
     "label": "Kinesiotherapy",
     "slug": "kinesitherapie",
-    "synonyms": [
-      "kinesitherapie reeducation blessure kine"
-    ],
+    "synonyms": ["kinesitherapie reeducation blessure kine"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": ""
@@ -376,9 +364,7 @@
     "categoryId": "nutrition",
     "label": "Nutritionist",
     "slug": "nutrition",
-    "synonyms": [
-      "nutrition dietetique regime surpoids obesite perte de poids"
-    ],
+    "synonyms": ["nutrition dietetique regime surpoids obesite perte de poids"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": ""
@@ -696,9 +682,7 @@
     "categoryId": "legal_protection",
     "label": "Legal protection",
     "slug": "protection-juridique",
-    "synonyms": [
-      "protection juridique pjj"
-    ],
+    "synonyms": ["protection juridique pjj"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": ""
@@ -727,9 +711,7 @@
     "categoryId": "hygiene_and_wellness",
     "label": "Access to hygiene",
     "slug": "hygiene",
-    "synonyms": [
-      "hygiene laver douche bain se laver se doucher propre"
-    ],
+    "synonyms": ["hygiene laver douche bain se laver se doucher propre"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": ""
@@ -787,9 +769,7 @@
     "categoryId": "toilets",
     "label": "Toilets",
     "slug": "toilettes",
-    "synonyms": [
-      "toilettes sanisette pisser pipi wc caca chiotte toilet"
-    ],
+    "synonyms": ["toilettes sanisette pisser pipi wc caca chiotte toilet"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": "Toilettes en accès libre."
@@ -818,9 +798,7 @@
     "categoryId": "face_masks",
     "label": "Masks",
     "slug": "masques",
-    "synonyms": [
-      "masque protection covid virus"
-    ],
+    "synonyms": ["masque protection covid virus"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": "Masques de protection"
@@ -1022,9 +1000,7 @@
     "categoryId": "wifi",
     "label": "WiFi",
     "slug": "wifi",
-    "synonyms": [
-      "wifi internet web connexion reseau"
-    ],
+    "synonyms": ["wifi internet web connexion reseau"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": "Wifi disponible en accès libre."
@@ -1033,9 +1009,7 @@
     "categoryId": "electrical_outlets_available",
     "label": "Power/Electricity plugs",
     "slug": "prise",
-    "synonyms": [
-      "prise charger electricite chargeur recharge charge"
-    ],
+    "synonyms": ["prise charger electricite chargeur recharge charge"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": "Prises électriques disponibles en accès libre."
@@ -1303,9 +1277,7 @@
     "categoryId": "rest_area",
     "label": "Rest area",
     "slug": "espace-repos",
-    "synonyms": [
-      "espace de repos reposer dormir repos pause"
-    ],
+    "synonyms": ["espace de repos reposer dormir repos pause"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": "Espaces de repos ouverts au public"
@@ -1345,9 +1317,7 @@
     "categoryId": "information_point",
     "label": "Information and orientation point",
     "slug": "point-information",
-    "synonyms": [
-      "point information point d information information ukraine"
-    ],
+    "synonyms": ["point information point d information information ukraine"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": "Point d'information"
@@ -1440,9 +1410,7 @@
     "categoryId": "equipment",
     "label": "Equipment",
     "slug": "materiel",
-    "synonyms": [
-      "materiel affaires mobilier"
-    ],
+    "synonyms": ["materiel affaires mobilier"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": ""
@@ -1511,9 +1479,7 @@
     "categoryId": "animal_assitance",
     "label": "Pets",
     "slug": "animaux",
-    "synonyms": [
-      "animaux animals chien chat croquettes animal"
-    ],
+    "synonyms": ["animaux animals chien chat croquettes animal"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": "Aide aux animaux de compagnie"
@@ -1681,9 +1647,7 @@
     "categoryId": "long_term_accomodation",
     "label": "Long-terme shelters",
     "slug": "hebergement-long-terme",
-    "synonyms": [
-      "hebergement dormir lit logement chrs repos toit"
-    ],
+    "synonyms": ["hebergement dormir lit logement chrs repos toit"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": "Possibilité d'hébergement à long terme, au sein de la structure ou d'une structure partenaire. Indiquer dans la description les modalités d'accès."
@@ -1692,9 +1656,7 @@
     "categoryId": "citizen_housing",
     "label": "Citizen accommodation",
     "slug": "hebergement-citoyen",
-    "synonyms": [
-      "hebergement hebergement citoyen merci pour l invit singa"
-    ],
+    "synonyms": ["hebergement hebergement citoyen merci pour l invit singa"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": ""

@@ -2102,11 +2102,7 @@
     "categoryId": null,
     "label": "France Services: guichet unique de services publics",
     "slug": "france-services",
-    "synonyms": [
-      "france service",
-      "maison france services",
-      "MFS"
-    ],
+    "synonyms": ["france service", "maison france services", "MFS"],
     "type": "ORGANIZATION",
     "seoTitle": "France Services Soliguide Votre guichet unique près de chez vous",
     "seoDescription": "Soliguide vous aide à trouver France Services! Accès aux droits, aide administrative, accompagnement numérique. Trouvez un service près de vous!"
@@ -2115,11 +2111,7 @@
     "categoryId": null,
     "label": "CIMADE: service œcuménique d'entraide",
     "slug": "cimade",
-    "synonyms": [
-      "la cimade",
-      "CIMADE",
-      "service œcuménique d'entraide"
-    ],
+    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
     "type": "ORGANIZATION",
     "seoTitle": "Besoin d'aide ? La CIMADE est là avec Soliguide",
     "seoDescription": "Soliguide et CIMADE vous aident près de chez vous ! Accès aux droits, conseils juridiques, accompagnement social. Trouvez la CIMADE proche de vous !"
@@ -2223,11 +2215,7 @@
     "categoryId": null,
     "label": "Centre socioculturel: structure d'animation et de lien social",
     "slug": "centre-socioculturel",
-    "synonyms": [
-      "centre socio culturel",
-      "csc",
-      "centre social"
-    ],
+    "synonyms": ["centre socio culturel", "csc", "centre social"],
     "type": "ESTABLISHMENT_TYPE",
     "seoTitle": "Besoin de lien social près de chez vous ? Soliguide vous aide !",
     "seoDescription": "Soliguide vous oriente : activités, rencontres, ateliers. Trouvez un centre socioculturel près de chez vous ! Participez, échangez, créez du lien !"
