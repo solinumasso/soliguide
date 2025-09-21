@@ -44,3 +44,15 @@ export const autoCompleteSearchDto = (key: string) => {
       .customSanitizer((string: string) => slugString(string)),
   ];
 };
+
+export const searchSuggestionDto = (key: string) => {
+  return [
+    param(key)
+      .stripLow()
+      .blacklist("<>&\"'=(){}[];")
+      .trim()
+      .isLength({ min: 2, max: 100 })
+      .notEmpty()
+      .escape(),
+  ];
+};

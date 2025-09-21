@@ -1,0 +1,2005 @@
+[
+  {
+    "categoryId": "health",
+    "label": "Sănătate",
+    "slug": "sante",
+    "synonyms": [
+      "asistență medicală gratuită",
+      "clinică socială",
+      "medicament gratuit",
+      "consult medical gratuit",
+      "îngrijire medicală",
+      "acces la sănătate",
+      "servicii medicale gratuite",
+      "sprijin medical"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Sănătate: Găsește ajutor medical gratuit cu Soliguide",
+    "seoDescription": "Soliguide te ajută să găsești: medic gratuit, dentist solidar, asistență medicală. Ai acces la îngrijire medicală aproape de tine!"
+  },
+  {
+    "categoryId": "addiction",
+    "label": "Dependență",
+    "slug": "addiction",
+    "synonyms": [
+      "Dependență",
+      "Adicție",
+      "Alcoolism",
+      "Toxicomanie",
+      "Jocuri de noroc",
+      "Consiliere dependență",
+      "Centru dezintoxicare",
+      "Grup suport",
+      "Ajutor adicții",
+      "Renunțare dependență",
+      "Reabilitare",
+      "Abuz substanțe"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Probleme cu Dependența? Soliguide vă ajută să găsiți sprijin",
+    "seoDescription": "Soliguide vă arată centre de dezintoxicare, grupuri de suport și consiliere. Găsiți ajutor pentru dependență lângă dumneavoastră!"
+  },
+  {
+    "categoryId": "std_testing",
+    "label": "Screening",
+    "slug": "depistage",
+    "synonyms": [
+      "testare boli venerice",
+      "depistare boli sexuale",
+      "analize MST gratuite",
+      "control boli transmisibile",
+      "sănătate sexuală",
+      "prevenire MST",
+      "centre testare HIV",
+      "depistare BTS",
+      "analize gratuite boli sexuale",
+      "screening gratuit boli sexuale"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Screening MST gratuit cu Soliguide: Protejează-ți sănătatea",
+    "seoDescription": "Soliguide te ajută: testare HIV, depistare sifilis, screening gonoree. Găsește centre de screening gratuite aproape de tine."
+  },
+  {
+    "categoryId": "psychological_support",
+    "label": "Psihologie",
+    "slug": "psychologie",
+    "synonyms": [
+      "consiliere psihologica",
+      "terapie gratuita",
+      "ajutor psihic",
+      "sprijin emotional",
+      "psiholog social",
+      "sedinte psihoterapie",
+      "probleme mentale",
+      "stare de bine psihologica",
+      "centru consiliere",
+      "suport psihologic"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ai nevoie de sprijin psihologic? Soliguide te ajută!",
+    "seoDescription": "Soliguide îți arată: consiliere gratuită, psihologi, grupuri de suport. Găsește ajutor psihologic aproape de tine!"
+  },
+  {
+    "categoryId": "child_care",
+    "label": "Îngrijirea copiilor",
+    "slug": "soins-enfants",
+    "synonyms": [
+      "creșe",
+      "centre de zi",
+      "PMI",
+      "protecția copilului",
+      "sprijin familial",
+      "asistență parentală",
+      "îngrijire bebeluși",
+      "educație timpurie",
+      "bone",
+      "centre de plasament"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ai nevoie de Îngrijirea Copiilor? Soliguide te ajută!",
+    "seoDescription": "Soliguide te ajută: găsește creșe, centre de zi, PMI aproape de tine. Sprijin pentru îngrijirea copiilor accesibil și ușor de găsit."
+  },
+  {
+    "categoryId": "general_practitioner",
+    "label": "Medic generalist",
+    "slug": "generaliste",
+    "synonyms": [
+      "medic de familie gratuit",
+      "consult gratuit medic",
+      "medici CMU AME",
+      "centre de sănătate",
+      "consultații medicale gratuite",
+      "cabinet medic general",
+      "asistență medicală",
+      "medic generalist"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ai nevoie de un medic generalist? Soliguide te ajută!",
+    "seoDescription": "Soliguide găsește: medic generalist gratuit, consultații CMU/AME, centre de sănătate. Găsește îngrijire medicală aproape de tine!"
+  },
+  {
+    "categoryId": "dental_care",
+    "label": "Dentar",
+    "slug": "dentaire",
+    "synonyms": [
+      "stomatologie socială",
+      "clinici gratuite dentare",
+      "cabinete stomatologice CMU",
+      "cabinete AME",
+      "îngrijire dentară gratuită",
+      "acces la dentist",
+      "urgențe stomatologice sociale",
+      "proteze gratuite",
+      "tratamente dentare gratuite",
+      "medici stomatologi sociali"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Dentar: Găsiți cabinete stomatologice gratuite cu Soliguide",
+    "seoDescription": "Soliguide vă ajută: consultații gratuite, tratamente stomatologice subvenționate, proteze accesibile. Găsiți soluții dentare aproape de dvs."
+  },
+  {
+    "categoryId": "pregnancy_care",
+    "label": "Monitorizarea sarcinii",
+    "slug": "planification",
+    "synonyms": [
+      "Îngrijire prenatală",
+      "Sarcina și ajutor social",
+      "Sprijin pentru gravide",
+      "Asistență medicală sarcina",
+      "Consultații ginecologice gratuite",
+      "Servicii pentru viitoare mame",
+      "Centre de planificare familială",
+      "Suport maternal"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Monitorizarea sarcinii: Soluții și suport cu Soliguide",
+    "seoDescription": "Soliguide vă ajută: consultații prenatale gratuite, ecografii accesibile, cursuri de pregătire pentru naștere. Găsiți servicii aproape de dvs.!"
+  },
+  {
+    "categoryId": "vaccination",
+    "label": "Vaccinare",
+    "slug": "vaccination",
+    "synonyms": [
+      "vaccin gratuit",
+      "vaccinare gratuită",
+      "centre de vaccinare gratuite",
+      "vaccinare CMU",
+      "vaccinare AME",
+      "unde ma vaccinez gratuit",
+      "vaccinuri pentru persoane vulnerabile",
+      "vaccinuri fara asigurare",
+      "Soliguide vaccinare",
+      "vaccinuri accesibile",
+      "vaccinare fără costuri",
+      "centre de vaccinare sociale"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Vaccinare ușor cu Soliguide: vaccinuri gratuite pentru tine",
+    "seoDescription": "Soliguide te ajută: vaccinuri gratuite, centre de vaccinare, informații despre vaccinuri. Găsește servicii de vaccinare lângă tine."
+  },
+  {
+    "categoryId": "infirmary",
+    "label": "Infirmerie",
+    "slug": "infirmerie",
+    "synonyms": [
+      "infirmerie soins se soigner bobo pansements maladie malade bandage"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "",
+    "seoDescription": "Soins infirmiers (pansements, bandages, médicaments sans ordonnance)."
+  },
+  {
+    "categoryId": "vet_care",
+    "label": "Medic veterinar",
+    "slug": "veterinaire",
+    "synonyms": [
+      "veterinar gratuit",
+      "clinica veterinară socială",
+      "îngrijire animale gratuite",
+      "tratament veterinar ieftin",
+      "vaccinuri gratuite animale",
+      "castrare gratuită animale",
+      "sterilizare gratuită animale",
+      "hrană animale gratuită",
+      "ajutor veterinar urgent",
+      "asistență veterinară"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Medic veterinar? Soliguide vă ajută să găsiți îngrijire pentru animalele dvs.",
+    "seoDescription": "Soliguide găsește: veterinar gratuit, tratamente, hrană. Ajutor veterinar aproape de dvs., chiar și fără bani. [Oraș/Regiune]"
+  },
+  {
+    "categoryId": "health_specialists",
+    "label": "Specialiști",
+    "slug": "specialistes-medecine",
+    "synonyms": [
+      "Ajutor social",
+      "Asistență socială",
+      "Servicii sociale",
+      "Consiliere gratuită",
+      "Sprijin social",
+      "Ajutor precarietate",
+      "Ghid social",
+      "Centre sociale",
+      "Servicii pentru refugiați",
+      "Ajutor pentru persoane fără adăpost"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Specialiști te ajută! Soliguide îți găsește soluții sociale",
+    "seoDescription": "Soliguide te ajută să găsești: asistență socială, consiliere juridică, ajutor financiar. Găsește specialiști aproape de tine!"
+  },
+  {
+    "categoryId": "allergology",
+    "label": "Alergologie",
+    "slug": "allergologie",
+    "synonyms": [
+      "alergii",
+      "alergolog",
+      "testare alergii",
+      "tratament alergii",
+      "urticarie",
+      "eczeme",
+      "astm alergic",
+      "rinită alergică",
+      "alergie alimentară",
+      "alergie medicamente"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Alergii? Soliguide vă ajută să respirați ușurat",
+    "seoDescription": "Soliguide găsește: consultații alergolog gratuite, tratamente accesibile, informații despre alergii. Găsiți ajutor aproape de dvs.!"
+  },
+  {
+    "categoryId": "cardiology",
+    "label": "Cardiologie",
+    "slug": "cardiologie",
+    "synonyms": [
+      "inima",
+      "cardiac",
+      "boală de inimă",
+      "cardiolog",
+      "tensiune arterială",
+      "EKG",
+      "infarct",
+      "palpitații",
+      "insuficiență cardiacă",
+      "consult cardiologie"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Problèmes de cœur ? Soliguide vous aide en cardiologie",
+    "seoDescription": "Soliguide găsește: cardiolog gratuit, bilanț cardiac, asistență post-infarct. Sănătate accesibilă aproape de tine. Găsiți ajutor acum!"
+  },
+  {
+    "categoryId": "dermatology",
+    "label": "Dermatologie",
+    "slug": "dermatologie",
+    "synonyms": [
+      "piele",
+      "eczemă",
+      "mâncărimi",
+      "erupții cutanate",
+      "dermatolog",
+      "soins de la peau",
+      "sănătatea pielii",
+      "tratament dermatologic",
+      "alergie cutanată",
+      "psoriazis",
+      "acnee",
+      "micoză cutanată"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Problèmes de peau ? Soliguide vous aide à trouver un dermatologue",
+    "seoDescription": "Soliguide vă ajută: dermatolog gratuit, crème cicatrizante, conseils pour l'eczéma. Soins de la peau près de vous."
+  },
+  {
+    "categoryId": "echography",
+    "label": "Ecografie",
+    "slug": "echographie",
+    "synonyms": [
+      "Ajutor social",
+      "Asistență socială",
+      "Sprijin comunitar",
+      "Servicii sociale",
+      "Centre de zi",
+      "Consiliere socială",
+      "Informații sociale",
+      "Ajutor pentru persoane vulnerabile",
+      "Sprijin pentru refugiați",
+      "Asistență pentru persoanele fără adăpost"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ecografie cu Soliguide: Găsește sprijin social rapid!",
+    "seoDescription": "Soliguide te ajută: centre de ajutor social, consiliere juridică gratuită, puncte de informare. Sprijin Ecografie aproape de tine!"
+  },
+  {
+    "categoryId": "endocrinology",
+    "label": "Endocrinologie",
+    "slug": "endocrinologie",
+    "synonyms": [
+      "Diabet",
+      "Glandă tiroidă",
+      "Hormoni",
+      "Endocrinolog",
+      "Boli metabolice",
+      "Control glicemie",
+      "Insulină",
+      "Probleme hormonale",
+      "Analize endocrinologice",
+      "Tratament diabet"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Problèmes d'endocrinologie ? Soliguide vous aide à trouver des solutions",
+    "seoDescription": "Soliguide găsește: medici endocrinologi, analize gratuite, suport specializat. Ajutor endocrinologie aproape de dvs.!"
+  },
+  {
+    "categoryId": "gastroenterology",
+    "label": "Gastroenterologie",
+    "slug": "gastro-enterologie",
+    "synonyms": [
+      "probleme stomac",
+      "dureri abdominale ajutor",
+      "boli digestive sprijin",
+      "gastroenterolog gratuit",
+      "ajutor medical stomac",
+      "spital gastroenterologie social",
+      "tratamente digestive ieftine",
+      "clinici stomac gratuite",
+      "consultații gastroenterologie",
+      "afecțiuni digestive asistență"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Probleme de Gastroenterologie? Soluții gratuite cu Soliguide",
+    "seoDescription": "Soliguide vă ajută: consultație gastroenterologie gratuită, medicamente accesibile, sprijin nutrițional. Găsiți ajutor lângă dumneavoastră."
+  },
+  {
+    "categoryId": "gynecology",
+    "label": "Ginecologie",
+    "slug": "gynecologie",
+    "synonyms": [
+      "Control ginecologic gratuit",
+      "Ginecolog social",
+      "Planificare familială ajutor",
+      "Contracepție gratuită",
+      "Sănătate femei precaritate",
+      "Îngrijire ginecologică gratuită",
+      "Ginecologie ajutor",
+      "Sănătate sexuală femei",
+      "Ginecologie fără costuri",
+      "Servicii ginecologice gratuite",
+      "Acces ginecolog",
+      "Ginecologie socială"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ginecologie: Soliguide vă ajută să aveți acces la îngrijire gratuită!",
+    "seoDescription": "Soliguide găsește: consultații ginecologice gratuite, planning familial, acces la contracepție. Servicii medicale aproape de tine, fără costuri!"
+  },
+  {
+    "categoryId": "kinesitherapy",
+    "label": "Kinetoterapie",
+    "slug": "kinesitherapie",
+    "synonyms": [
+      "Fizioterapie",
+      "Recuperare medicală",
+      "Reabilitare",
+      "Terapie prin mișcare",
+      "Kinetoterapie socială",
+      "Kinetoterapeut",
+      "Masaj terapeutic",
+      "Gymnastica medicală",
+      "Ajutor kinetoterapie",
+      "Sesiuni kinetoterapie gratuite"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Kinetoterapie gratuită? Soliguide te ajută!",
+    "seoDescription": "Soliguide găsește: kinetoterapie gratuită, recuperare medicală, masaj terapeutic. Găsește ajutor aproape de tine, ușor și rapid."
+  },
+  {
+    "categoryId": "mammography",
+    "label": "Mamografie",
+    "slug": "mammographie",
+    "synonyms": [
+      "control sân",
+      "depistare cancer sân",
+      "examinare mamară gratuită",
+      "radiografie sân",
+      "screening mamar",
+      "sănătatea femeii",
+      "prevenire cancer sân",
+      "oncologie mamară",
+      "cabinet mamografie",
+      "centru senologie"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Mamografie gratuite cu Soliguide: Ai grijă de sănătatea ta!",
+    "seoDescription": "Soliguide te ajută: mamografii gratuite, centre de screening, sprijin psihologic. Găsește servicii de sănătate aproape de tine!"
+  },
+  {
+    "categoryId": "ophthalmology",
+    "label": "Oftalmologie",
+    "slug": "ophtalmologie",
+    "synonyms": [
+      "ophtalmologie ophtalmologue yeux voir lunette"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "otorhinolaryngology",
+    "label": "Otolaringologie",
+    "slug": "oto-rhino-laryngologie",
+    "synonyms": [
+      "ORL",
+      "Oto-rhino-laryngologie",
+      "Soins oreilles nez gorge",
+      "Problèmes auditifs",
+      "Troubles de l'audition",
+      "Aide auditive",
+      "Consultation ORL gratuite",
+      "Dépistage surdité",
+      "Maladies ORL",
+      "Otolaryngologiste"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Problèmes d'oreille, nez, gorge ? Soliguide vous aide à trouver un ORL",
+    "seoDescription": "Soliguide vous aide : consultation ORL gratuite, dépistage auditif, aide pour appareils auditifs. Trouvez une solution près de chez vous !"
+  },
+  {
+    "categoryId": "nutrition",
+    "label": "Nutriție",
+    "slug": "nutrition",
+    "synonyms": [
+      "Alimentație",
+      "Mâncare gratuită",
+      "Ajutor alimentar",
+      "Bancă alimentară",
+      "Masă caldă",
+      "Pachete alimentare",
+      "Ajutor nutriție",
+      "Centre de distribuție alimente",
+      "Cantină socială",
+      "Suport alimentar"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Nu mai stați fără mâncare, Soliguide vă ajută cu Nutriție",
+    "seoDescription": "Soliguide găsește lângă tine: masă caldă gratuită, pachet cu alimente, ajutor alimentar de urgență. Nutriție și suport aproape de tine."
+  },
+  {
+    "categoryId": "pedicure",
+    "label": "Pedichiură",
+    "slug": "pedicure",
+    "synonyms": [
+      "Îngrijire picioare gratuite",
+      "Pedichiură socială",
+      "Centre podologie socială",
+      "Pedichiură persoane fără venituri",
+      "Tratament unghii gratuit",
+      "Îngrijire unghii picioare",
+      "Ajutor pedichiură",
+      "Pedichiură pentru persoane vulnerabile",
+      "Servicii podologice gratuite",
+      "Pedichiură refugiați",
+      "Pedichiură persoane precare"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Pedichiură accesibilă cu Soliguide - Ai grijă de picioarele tale!",
+    "seoDescription": "Soliguide te ajută să găsești: pedichiură socială, îngrijire gratuită a picioarelor, centre de podologie. Găsește servicii de pedichiură aproape de tine!"
+  },
+  {
+    "categoryId": "phlebology",
+    "label": "Flebologie",
+    "slug": "phlebologie",
+    "synonyms": [
+      "varices",
+      "jambes lourdes",
+      "problèmes veineux",
+      "phlébologue",
+      "troubles circulatoires",
+      "insuffisance veineuse",
+      "oedème",
+      "ulcère veineux",
+      "soins des jambes",
+      "bas de contention"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Problèmes de jambes ? Soliguide vous aide à trouver des soins",
+    "seoDescription": "Soliguide vous oriente : consultation flebologue gratuite, soins des varices, contention veineuse. Trouvez de l'aide près de chez vous !"
+  },
+  {
+    "categoryId": "pneumology",
+    "label": "Pneumologie",
+    "slug": "pneumologie",
+    "synonyms": [
+      "Afecțiuni pulmonare",
+      "Boală de plămâni",
+      "Pneumonie ajutor",
+      "Bronșită cronică sprijin",
+      "Astm ajutor",
+      "Tuberculoză ajutor",
+      "Respirație dificilă ajutor",
+      "Centre de pneumologie gratuite",
+      "Sprijin respirator",
+      "Consultații pneumologie gratuite"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Probleme cu respirația? Soliguide vă ajută cu pneumologia",
+    "seoDescription": "Soliguide găsește: consultații gratuite pentru plămâni, medicamente, oxigen. Ajutor pentru pneumologie aproape de dumneavoastră."
+  },
+  {
+    "categoryId": "radiology",
+    "label": "Radiologie",
+    "slug": "radiologie",
+    "synonyms": [
+      "radio",
+      "radiographie",
+      "imagerie médicale",
+      "scanner",
+      "IRM",
+      "échographie",
+      "rayons X",
+      "examen médical",
+      "centre de radiologie",
+      "radiologie sociale"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Besoin d'une radiologie? Soliguide vous aide!",
+    "seoDescription": "Soliguide vous aide: radiologie gratuite, examens à prix réduits, centres d'imagerie solidaire. Trouvez une solution près de chez vous!"
+  },
+  {
+    "categoryId": "rheumatology",
+    "label": "Reumatologie",
+    "slug": "rhumatologie",
+    "synonyms": [
+      "reumatism",
+      "dureri articulare",
+      "artrită",
+      "artroză",
+      "lumbago",
+      "sciatica",
+      "inflamație articulară",
+      "boli autoimune"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Reumatologie? Soluții de ajutor cu Soliguide!",
+    "seoDescription": "Soliguide vă ajută: consultații reumatologie gratuite, medicamente reduse, consiliere. Găsiți sprijin aproape de dumneavoastră!"
+  },
+  {
+    "categoryId": "urology",
+    "label": "Urologie",
+    "slug": "urologie",
+    "synonyms": [
+      "Probleme urinare",
+      "Sănătatea prostatei",
+      "Infecții urinare",
+      "Incontinență",
+      "Calculi renali",
+      "Urolog gratuit",
+      "Clinică urologie socială",
+      "Ajutor urologic",
+      "Medici urologi",
+      "Specialist urologie"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Urologie: Soluții medicale gratuite sunt aici pentru tine!",
+    "seoDescription": "Soliguide te ajută: consultații urologice gratuite, tratamente accesibile, informații despre sănătatea ta. Găsește ajutor aproape de tine!"
+  },
+  {
+    "categoryId": "speech_therapy",
+    "label": "Terapie logopedică",
+    "slug": "orthophonie",
+    "synonyms": [
+      "logopedie gratuită",
+      "terapie vorbire",
+      "deficiențe de vorbire",
+      "corectarea pronunției",
+      "ajutor logopedic",
+      "centre logopedice",
+      "probleme de limbaj",
+      "recuperare vorbire",
+      "evaluare logopedică",
+      "tulburări de limbaj"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Probleme de vorbire? Soliguide vă ajută cu Terapie Logopedică",
+    "seoDescription": "Soliguide găsește: logoped gratuit, consultații specializate, centre de terapie. Ajutor pentru vorbire aproape de tine! Localizează acum."
+  },
+  {
+    "categoryId": "stomatology",
+    "label": "Stomatologie",
+    "slug": "stomatologie",
+    "synonyms": [
+      "stomatologie stomatologue estomac digestion ventre"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "osteopathy",
+    "label": "Osteopat",
+    "slug": "osteo",
+    "synonyms": [
+      "osteopat gratuit",
+      "terapie osteopatică",
+      "dureri de spate ajutor",
+      "masaj terapeutic",
+      "kinetoterapie",
+      "centre osteopatie",
+      "tratament osteopat",
+      "durere musculară ameliorare",
+      "osteopat solidar",
+      "centre de recuperare",
+      "ajutor medical osteopat",
+      "consultație osteopat"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Mal de dos? Soliguide vă ajută să găsiți osteopat",
+    "seoDescription": "Soliguide găsește: osteopat gratuit, terapie accesibilă, masaj de relaxare. Găsiți ajutor specializat aproape de dumneavoastră!"
+  },
+  {
+    "categoryId": "acupuncture",
+    "label": "acupunctura",
+    "slug": "acupuncture",
+    "synonyms": [
+      "acupunctură socială",
+      "tratamente alternative gratuite",
+      "centre acupunctură precare",
+      "acupunctură refugiați",
+      "terapie acupunctură ajutor social",
+      "sesiuni acupunctură gratuite",
+      "acupunctura persoane vulnerabile",
+      "punctură uscată gratuită",
+      "acupunctură asistență socială",
+      "clinici acupunctură gratuite"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Acupunctura gratuită cu Soliguide – Ai grijă de sănătatea ta!",
+    "seoDescription": "Soliguide te ajută: acupunctură gratuită, consultații sociale, tratamente alternative. Găsește ajutor aproape de tine. Sănătate accesibilă tuturor! [GÉOLOCALISATION]"
+  },
+  {
+    "categoryId": "training_and_jobs",
+    "label": "Formare și angajare",
+    "slug": "formation-emploi",
+    "synonyms": [
+      "cursuri gratuite",
+      "angajare",
+      "formare profesională",
+      "ajutor CV",
+      "consiliere carieră",
+      "locuri de muncă",
+      "recrutare",
+      "calificare",
+      "orientare profesională",
+      "stagiu de practică"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Formare și angajare? Soliguide te ajută să găsești soluții!",
+    "seoDescription": "Soliguide găsește: cursuri gratuite, ajutor CV, consiliere în carieră. Formare și angajare facilă aproape de tine!"
+  },
+  {
+    "categoryId": "digital_tools_training",
+    "label": "Atelier digital",
+    "slug": "formation-numerique",
+    "synonyms": [
+      "Cursuri de informatică gratuite",
+      "Ajutor cu calculatorul",
+      "Formare digitală",
+      "Inițiere în IT",
+      "Alfabetizare digitală",
+      "Atelier utilizare calculator",
+      "Asistență informatică",
+      "Găsește un atelier digital",
+      "Locuri unde înveți să folosești calculatorul gratuit",
+      "Ajutor cu internetul"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Atelier digital Soliguide Te ajută să te descurci cu calculatorul",
+    "seoDescription": "Soliguide te ajută: învață să folosești un computer, caută un loc de muncă online, scrie un CV. Atelier digital lângă tine."
+  },
+  {
+    "categoryId": "french_course",
+    "label": "cursuri de franceza",
+    "slug": "formation-francais",
+    "synonyms": [
+      "cursuri de franceză gratuite",
+      "învățare limba franceză",
+      "cursuri FLE",
+      "cursuri ASL",
+      "alfabetizare în franceză",
+      "lecții de franceză gratuite",
+      "centre de limbi străine",
+      "cursuri de franceză pentru începători",
+      "cursuri de franceză pentru refugiați",
+      "cursuri de franceză pentru imigranți"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Vrei să înveți franceză? Soliguide te ajută să găsești cursuri gratuite!",
+    "seoDescription": "Soliguide vă ajută să găsiți cursuri de franceză gratuite: alfabetizare, ASL, FLE. Găsiți cursuri de franceză lângă dumneavoastră!"
+  },
+  {
+    "categoryId": "job_coaching",
+    "label": "Sprijin pentru angajare",
+    "slug": "accompagnement-emploi",
+    "synonyms": [
+      "Ajutor angajare",
+      "Reintegrare profesională",
+      "Găsire job",
+      "Atelier CV",
+      "Pregătire interviu",
+      "Consiliere carieră",
+      "Locuri de muncă",
+      "Formare profesională",
+      "Sprijin șomeri",
+      "Sprijin căutare job",
+      "Ajutor CV",
+      "Interviu angajare"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Sprijin pentru angajare: Găsiți un job cu Soliguide!",
+    "seoDescription": "Soliguide vă ajută să găsiți: ateliere CV, pregătire pentru interviuri, oferte de muncă. Totul aproape de dumneavoastră!"
+  },
+  {
+    "categoryId": "integration_through_economic_activity",
+    "label": "Integrare prin activitate economică",
+    "slug": "insertion-activite-economique",
+    "synonyms": [
+      "Muncă pentru persoane în dificultate",
+      "Locuri de muncă sociale",
+      "Angajare cu sprijin",
+      "Integrare socio-profesională",
+      "Formare profesională gratuită",
+      "Ajutor găsire loc de muncă",
+      "Centre de reinserție profesională",
+      "CV și scrisoare de intenție - ajutor",
+      "Locuri de muncă pentru refugiați",
+      "Muncă pentru persoane fără adăpost"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Integrare prin activitate economică? Soliguide te ajută să găsești un loc de muncă",
+    "seoDescription": "Soliguide te sprijină: cursuri de formare, angajare în structuri de inserție, ajutor pentru redactarea CV-ului. Găsește sprijin aproape de tine!"
+  },
+  {
+    "categoryId": "hairdresser",
+    "label": "Coafor",
+    "slug": "coiffeur",
+    "synonyms": [
+      "ajutor social",
+      "servicii sociale",
+      "asistență socială",
+      "sprijin financiar",
+      "sprijin social",
+      "centre sociale",
+      "ONG",
+      "primărie",
+      "DGASPC",
+      "Direcția Generală de Asistență Socială și Protecția Copilului"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Coafor te ajută cu Soliguide găsește suportul potrivit!",
+    "seoDescription": "Soliguide îți arată: ajutor financiar, consiliere juridică, sprijin pentru acte. Găsește Coafor aproape de tine!"
+  },
+  {
+    "categoryId": "legal_protection",
+    "label": "Protecție juridică",
+    "slug": "protection-juridique",
+    "synonyms": [
+      "Asistență juridică gratuită",
+      "Ajutor juridic",
+      "Consiliere juridică",
+      "Avocat gratuit",
+      "Drepturile mele",
+      "Apărare juridică",
+      "Sprijin juridic",
+      "Ajutor legal",
+      "Informații juridice",
+      "Protecția drepturilor"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Protecție juridică? Soliguide vă ajută să găsiți sprijin",
+    "seoDescription": "Soliguide vă oferă: avocat gratuit, consiliere juridică, ajutor cu actele. Găsiți protecție juridică aproape de dumneavoastră."
+  },
+  {
+    "categoryId": "tutoring",
+    "label": "Îndrumare școlară",
+    "slug": "soutien-scolaire",
+    "synonyms": [
+      "Ajutor teme",
+      "Meditații gratuite",
+      "Sprijin școlar",
+      "Asistență elevi",
+      "Cursuri gratuite",
+      "Voluntari educație",
+      "Îndrumare copii",
+      "Suport educațional",
+      "Consiliere școlară",
+      "After school gratuit"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Îndrumare școlară gratuită cu Soliguide pentru copiii dumneavoastră",
+    "seoDescription": "Soliguide vă ajută: găsiți meditații gratuite, ajutor cu temele, sprijin școlar. Asistență pentru elevi și studenți aproape de dumneavoastră."
+  },
+  {
+    "categoryId": "hygiene_and_wellness",
+    "label": "Igienă și bunăstare",
+    "slug": "hygiene",
+    "synonyms": [
+      "igienă personală",
+      "produse de igienă",
+      "dușuri gratuite",
+      "spălătorie socială",
+      "centre de igienă",
+      "ajutor igienă",
+      "bunăstare personală",
+      "menținere curățenie",
+      "centre de îngrijire",
+      "servicii igienă"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Igienă și bunăstare ușor de găsit cu Soliguide",
+    "seoDescription": "Soliguide te ajută: dușuri publice gratuite, spălătorii sociale, kituri de igienă. Găsește servicii de Igienă și bunăstare aproape de tine!"
+  },
+  {
+    "categoryId": "shower",
+    "label": "Duș",
+    "slug": "douche",
+    "synonyms": [
+      "Duș gratuit",
+      "Duș public",
+      "Unde pot face un duș?",
+      "Centre cu dușuri",
+      "Igienă personală",
+      "Duș social",
+      "Spălătorie socială",
+      "Baie publică",
+      "Unde mă pot spăla?",
+      "Ajutor igienă"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ai nevoie de un duș? Soliguide te ajută să găsești un loc!",
+    "seoDescription": "Soliguide îți arată: dușuri publice gratuite, centre de primire cu dușuri, spălătorii sociale. Igienă accesibilă aproape de tine!"
+  },
+  {
+    "categoryId": "laundry",
+    "label": "Spălătorie",
+    "slug": "laverie",
+    "synonyms": [
+      "spălătorie socială",
+      "mașină de spălat gratuită",
+      "unde spăl haine ieftin",
+      "spălare haine gratuită",
+      "loc pentru spălat rufe",
+      "spălătorie caritabilă",
+      "spălătorie pentru persoane fără adăpost",
+      "spălătorie pentru refugiați",
+      "spălătorie accesibilă",
+      "spălătorie haine"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Spălătorie? Soliguide te ajută să găsești unde să-ți speli hainele gratuit",
+    "seoDescription": "Soliguide îți arată: spălătorie socială, mașină de spălat gratuită, loc unde poți spăla haine ieftin. Găsește ajutor aproape de tine!"
+  },
+  {
+    "categoryId": "wellness",
+    "label": "Bunăstare",
+    "slug": "bien-etre",
+    "synonyms": [
+      "bine",
+      "bunăstare",
+      "relaxare",
+      "calm",
+      "echilibru",
+      "îngrijire personală",
+      "spa",
+      "frumusețe",
+      "ateliere gratuite",
+      "servicii sociale gratuite"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ai nevoie de Bunăstare? Soliguide te ajută!",
+    "seoDescription": "Soliguide îți arată unde găsești: coafor gratuit, masaj relaxant, cursuri de sophrologie. Ateliere de bine aproape de tine!"
+  },
+  {
+    "categoryId": "toilets",
+    "label": "Toalete",
+    "slug": "toilettes",
+    "synonyms": [
+      "WC gratuite",
+      "Toalete publice",
+      "Grupuri sanitare gratuite",
+      "WC accesibile",
+      "Toalete de urgență",
+      "Toalete pentru persoane fără adăpost",
+      "Dușuri publice",
+      "Centre de igienă",
+      "Toalete pentru refugiați",
+      "Toalete pentru precari"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Toalete gratuite? Soliguide vă ajută să le găsiți!",
+    "seoDescription": "Soliguide vă arată: toalete publice gratuite, dușuri sociale, centre de igienă. Găsiți locuri sigure și curate aproape de dvs."
+  },
+  {
+    "categoryId": "hygiene_products",
+    "label": "Produse de igienă",
+    "slug": "produits-hygiene",
+    "synonyms": [
+      "produse de îngrijire personală gratuite",
+      "articole de igienă gratuite",
+      "kituri de igienă gratuite",
+      "săpun gratuit",
+      "pastă de dinți gratuită",
+      "absorbante gratuite",
+      "tampoane gratuite",
+      "produse de igienă intima gratuite",
+      "centre de distribuire produse igienă",
+      "ajutor produse de igienă",
+      "donatii produse de igienă",
+      "nevoie produse igienă"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ai nevoie de Produse de igienă? Soliguide te ajută!",
+    "seoDescription": "Soliguide îți arată unde găsești: săpun gratuit, pastă de dinți, absorbante. Igienă pentru toți, aproape de tine! [Oraș/Regiune]"
+  },
+  {
+    "categoryId": "face_masks",
+    "label": "Măști",
+    "slug": "masques",
+    "synonyms": [
+      "măști gratuite",
+      "măști de protecție",
+      "unde găsesc măști",
+      "măști sociale",
+      "măști donație",
+      "centre distribuție măști",
+      "măști COVID",
+      "protecție sanitară",
+      "măști chirurgicale",
+      "măști FFP2",
+      "măști refolosibile"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ai nevoie de măști? Soliguide te ajută!",
+    "seoDescription": "Soliguide te ajută: găsește măști gratuite, centre de distribuție, puncte de informare. Protecție sanitară aproape de tine."
+  },
+  {
+    "categoryId": "counseling",
+    "label": "Sfat",
+    "slug": "conseil",
+    "synonyms": [
+      "ajutor social",
+      "asistență socială urgentă",
+      "sprijin financiar",
+      "servicii sociale",
+      "consiliere socială",
+      "Sfat ajutor",
+      "sprijin de urgență",
+      "ajutor precari",
+      "ajutor refugiați",
+      "profesioniști sociali"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ai nevoie de ajutor imediat? Soliguide îți găsește soluții Sfat",
+    "seoDescription": "Soliguide te ajută: asistență socială, consiliere juridică, sprijin financiar. Găsește ajutor Sfat lângă tine! Servicii rapide și accesibile."
+  },
+  {
+    "categoryId": "legal_advice",
+    "label": "Permanența legală",
+    "slug": "permanence-juridique",
+    "synonyms": [
+      "Ajutor juridic gratuit",
+      "Avocat din oficiu",
+      "Consiliere juridică",
+      "Asistență juridică pro bono",
+      "Drepturile mele",
+      "Apărare juridică",
+      "Ajutor cu acte",
+      "Reprezentare juridică",
+      "Servicii juridice gratuite",
+      "Jurisprudență socială"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Permanența legală Soliguide te ajută să-ți aperi drepturile",
+    "seoDescription": "Soliguide vă ajută: avocat gratuit, sfaturi juridice, ajutor cu actele. Permanența legală aproape de dumneavoastră!"
+  },
+  {
+    "categoryId": "domiciliation",
+    "label": "Domiciliere",
+    "slug": "domiciliation",
+    "synonyms": [
+      "Domiciliere",
+      "Adresă poștală",
+      "Adresă administrativă",
+      "Domiciliu",
+      "CCAS",
+      "Acte",
+      "Documente",
+      "Recepție corespondență",
+      "Sprijin administrativ",
+      "Loc de înregistrare"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Domiciliere cu Soliguide: Ai nevoie de o adresă? Găsim soluții!",
+    "seoDescription": "Soliguide te ajută: adresă poștală, acte administrative, domiciliație CCAS. Găsește centre aproape de tine!"
+  },
+  {
+    "categoryId": "social_accompaniment",
+    "label": "Suport social",
+    "slug": "accompagnement-social",
+    "synonyms": [
+      "Ajutor social",
+      "Asistență socială",
+      "Sprijin social",
+      "Reintegrare",
+      "Servicii sociale",
+      "Asistenți sociali",
+      "Ajutor acte",
+      "Consiliere"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ai nevoie de Suport Social? Soliguide te ajută!",
+    "seoDescription": "Soliguide te ajută: asistenți sociali, ajutor cu actele, consiliere. Găsește Suport Social aproape de tine!"
+  },
+  {
+    "categoryId": "public_writer",
+    "label": "Scriitor public",
+    "slug": "ecrivain-public",
+    "synonyms": [
+      "Ajutor redactare acte",
+      "Scriere documente administrative",
+      "Redactare cereri",
+      "Completare formulare",
+      "Asistență administrativă gratuită",
+      "Ajutor cu birocrația",
+      "Scriitor public gratuit",
+      "Sprijin acte administrative",
+      "Asistent administrativ",
+      "Ajutor cu hârtiile"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ai nevoie de ajutor cu actele? Soliguide te ajută cu Scriitor Public!",
+    "seoDescription": "Soliguide te sprijină: redactare cereri, completare formulare, scrisori administrative. Găsește un Scriitor Public lângă tine!"
+  },
+  {
+    "categoryId": "disability_advice",
+    "label": "Sfaturi pentru persoanele cu handicap",
+    "slug": "conseil-handicap",
+    "synonyms": [
+      "ajutor handicap",
+      "drepturi handicap",
+      "acces drepturi persoane cu handicap",
+      "consiliere handicap",
+      "asistență juridică handicap",
+      "servicii pentru persoane cu dizabilități",
+      "sprijin persoane cu dizabilități",
+      "informații handicap",
+      "orientare handicap",
+      "ghid handicap",
+      "persoane cu nevoi speciale",
+      "ajutor dizabilități"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Sfaturi pentru persoanele cu handicap? Soliguide vă ajută!",
+    "seoDescription": "Soliguide găsește: asistență juridică, sprijin pentru obținerea drepturilor, consiliere. Servicii gratuite și accesibile persoanelor cu handicap aproape de dvs."
+  },
+  {
+    "categoryId": "administrative_assistance",
+    "label": "Consiliul administrativ",
+    "slug": "conseil-administratif",
+    "synonyms": [
+      "Ajutor dosare",
+      "Acte administrative",
+      "Asistență socială",
+      "Depunere acte",
+      "Ajutor formulare",
+      "Servicii administrative gratuite",
+      "Consiliere administrativă",
+      "Ajutor proceduri administrative",
+      "Ghișeu unic",
+      "Servicii publice"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ai nevoie de ajutor administrativ? Soliguide te ghidează!",
+    "seoDescription": "Soliguide te ajută: obține ajutor pentru RSA, CMU, alocații, șomaj. Găsește servicii administrative gratuite lângă tine!"
+  },
+  {
+    "categoryId": "parent_assistance",
+    "label": "Sfaturi pentru parinti",
+    "slug": "conseil-parents",
+    "synonyms": [
+      "Ajutor pentru părinți",
+      "Sprijin parental",
+      "Consiliere familială",
+      "Ateliere pentru părinți",
+      "Educare parentală",
+      "Asistență pentru părinți",
+      "Probleme cu copiii",
+      "Dificultăți parentale",
+      "Sfaturi despre copii",
+      "Ghid parental"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ai nevoie de Sfaturi pentru parinti? Soliguide te ajută!",
+    "seoDescription": "Soliguide te ajută: consiliere, sprijin psihologic, ateliere educative pentru părinți. Găsește ajutor aproape de tine! #Soliguide"
+  },
+  {
+    "categoryId": "budget_advice",
+    "label": "Sfaturi bugetare",
+    "slug": "conseil-budget",
+    "synonyms": [
+      "Consiliere financiară gratuită",
+      "Ajutor gestionare buget",
+      "Puncte consiliere buget",
+      "PCB ajutor",
+      "Economisire bani",
+      "Reducere datorii",
+      "Planificare financiară",
+      "Buget personal"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Sfaturi bugetare gratuite cu Soliguide, aproape de tine",
+    "seoDescription": "Soliguide te ajută cu sfaturi bugetare! Învață să economisești, gestionează-ți datoriile și planifică-ți viitorul financiar. Găsește PCB lângă tine!"
+  },
+  {
+    "categoryId": "technology",
+    "label": "Tehnologie",
+    "slug": "technologie",
+    "synonyms": [
+      "acces internet gratuit",
+      "cursuri digitale",
+      "reparare calculatoare",
+      "alfabetizare digitală",
+      "ajutor IT",
+      "e-administrație",
+      "telefonia gratuită",
+      "wifi gratuit",
+      "formare digitală",
+      "conexiune internet"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Tehnologie ușoară cu Soliguide: Găsește ajutor digital simplu",
+    "seoDescription": "Soliguide vă arată: acces internet gratuit, cursuri de inițiere, reparare calculatoare. Găsiți tehnologie utilă lângă dumneavoastră!"
+  },
+  {
+    "categoryId": "computers_at_your_disposal",
+    "label": "Calculator",
+    "slug": "ordinateur",
+    "synonyms": [
+      "calculatoare gratuite",
+      "acces internet public",
+      "centre de resurse digitale",
+      "wifi gratuit",
+      "cyber café social",
+      "posturi de lucru",
+      "centre de formare digitală",
+      "alfabetizare digitală",
+      "birou public",
+      "servicii en ligne gratuite"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Besoin d'un Calculator? Soliguide vous aide à trouver un accès internet gratuit",
+    "seoDescription": "Soliguide vă ajută: calculator gratuit, acces internet, formare digitală. Găsiți un loc aproape de dumneavoastră."
+  },
+  {
+    "categoryId": "wifi",
+    "label": "Wifi",
+    "slug": "wifi",
+    "synonyms": [
+      "internet gratuit",
+      "wifi public",
+      "connexion wifi gratuite",
+      "hotspot wifi",
+      "accès internet",
+      "internet pour tous",
+      "point wifi",
+      "wifi solidaire",
+      "acces la internet gratuit",
+      "legatura wifi gratuita"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Wifi gratuit avec Soliguide : restez connecté !",
+    "seoDescription": "Soliguide vă ajută: găsiți internet gratuit, încărcați telefonul, accesați informații esențiale. Găsiți Wifi gratuit aproape de dvs. cu Soliguide."
+  },
+  {
+    "categoryId": "electrical_outlets_available",
+    "label": "Priză",
+    "slug": "prise",
+    "synonyms": [
+      "încărcare telefon gratuită",
+      "acces priză gratuit",
+      "energie electrică gratuită",
+      "unde încarc telefonul",
+      "Wi-Fi gratuit",
+      "locuri cu prize",
+      "energie electrică accesibilă",
+      "punct de încărcare"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ai nevoie de o Priză? Soliguide te ajută să găsești!",
+    "seoDescription": "Soliguide te ajută să găsești: Priză electrică gratuită, loc de încărcare telefon, Wi-Fi gratuit. Găsește locuri aproape de tine!"
+  },
+  {
+    "categoryId": "telephone_at_your_disposal",
+    "label": "Telefon",
+    "slug": "telephone",
+    "synonyms": [
+      "Telefon gratuit",
+      "Telefon public",
+      "Telefon social",
+      "Telefon de urgență",
+      "Apel gratuit",
+      "Cabine telefonice",
+      "Telefon accesibil",
+      "Telefon social",
+      "Telefon pentru toți",
+      "Telefon comunitar"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Un Telefon Urgent? Soliguide Te Ajută Să Găsești Ajutor",
+    "seoDescription": "Soliguide îți arată: telefon gratuit, apeluri de urgență, asistență juridică telefonică. Găsește Telefon aproape de tine!"
+  },
+  {
+    "categoryId": "digital_safe",
+    "label": "Seif digital",
+    "slug": "numerisation",
+    "synonyms": [
+      "seif digital",
+      "spațiu digital securizat",
+      "stocare documente gratuite",
+      "cloud solidar",
+      "ajutor digital acte",
+      "digitalizare acte gratuite",
+      "păstrare acte online",
+      "acces internet gratuit",
+      "imprimare documente",
+      "actele tale in siguranta",
+      "ajutor digital persoane fara adapost"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Seif digital Soliguide: Găsește ajutor sigur pentru documentele tale",
+    "seoDescription": "Soliguide te ajută: salvează-ți actele digital cu Seif digital, găsește acces la internet gratuit, imprimă documente. Totul aproape de tine!"
+  },
+  {
+    "categoryId": "food",
+    "label": "Alimente",
+    "slug": "alimentation-bouffe-boufe-manger-soupe-repas-aliment-manger-mange-repa-faim-diner-dejeuner-dejeunet-dine-se-nourrir-fin-portage-portage-de-repas-aide-alimentaire-comida-comer-resto-du-coeur",
+    "synonyms": [
+      "ajutor alimentar",
+      "bancă alimentară",
+      "hrană gratuită",
+      "cantină socială",
+      "prânz gratuit",
+      "pachet alimente",
+      "unde mănânc gratis",
+      "mâncare pentru nevoiași",
+      "alimente de urgență",
+      "sprijin cu alimente"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Fără griji pentru mâncare cu Soliguide",
+    "seoDescription": "Soliguide te ajută: masă caldă gratuită, alimente, ajutor alimentar. Găsește sprijin alimentar aproape de tine."
+  },
+  {
+    "categoryId": "food_distribution",
+    "label": "Distribuire de mese",
+    "slug": "distribution-repas",
+    "synonyms": [
+      "Mâncare gratuită",
+      "Ajutor alimentar",
+      "Distribuție alimente",
+      "Cantine sociale",
+      "Pachete cu alimente",
+      "Mese calde gratuite",
+      "Unde găsesc mâncare",
+      "Centre de distribuție alimente",
+      "Ajutor pentru hrană",
+      "Soluții alimentare"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Nu mai rămâneți fără mâncare! Soliguide vă ajută cu Distribuire de mese",
+    "seoDescription": "Soliguide vă oferă: distribuire de mese calde, pachete alimentare, acces la cantine sociale. Găsiți ajutor alimentar aproape de dvs.!"
+  },
+  {
+    "categoryId": "food_packages",
+    "label": "Coș cu alimente",
+    "slug": "colis-alimentaire",
+    "synonyms": [
+      "Ajutor alimentar",
+      "Pachet cu alimente",
+      "Distribuire alimente",
+      "Alimente gratuite",
+      "Sprijin alimentar de urgență",
+      "Bancă de alimente",
+      "Ajutor pentru mâncare",
+      "Mâncare gratuită",
+      "Conserve gratuite",
+      "Legume gratuite"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Nu mai suferi de foame! Soliguide te ajută cu un Coș cu alimente",
+    "seoDescription": "Soliguide îți oferă: Coș cu alimente, mese calde, ajutor alimentar de urgență. Găsește sprijin alimentar lângă tine!"
+  },
+  {
+    "categoryId": "social_grocery_stores",
+    "label": "Magazin alimentar Social și Solidar",
+    "slug": "epicerie-sociale-solidaire",
+    "synonyms": [
+      "alimente gratuite",
+      "coșuri alimentare gratuite",
+      "ajutor alimentar",
+      "bănci de alimente",
+      "distribuție alimente",
+      "magazin social",
+      "mâncare ieftină",
+      "asistență alimentară de urgență",
+      "ajutor cu alimente",
+      "produse alimentare gratuite"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Nu mai stați fără mâncare, Soliguide vă ajută: Magazin alimentar Social și Solidar",
+    "seoDescription": "Soliguide vă găsește: alimente la preț redus, coșuri gratuite, mese calde. Găsiți un Magazin alimentar Social și Solidar aproape de dvs.!"
+  },
+  {
+    "categoryId": "fountain",
+    "label": "fântână de apă",
+    "slug": "fontaine",
+    "synonyms": [
+      "apă gratuită",
+      "apă potabilă gratis",
+      "robinet apă potabilă",
+      "punct de apă public",
+      "unde găsesc apă gratis",
+      "apă de băut gratuită",
+      "apă accesibilă",
+      "fântână publică"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Sete? Găsește apă potabilă gratuit cu Soliguide",
+    "seoDescription": "Soliguide te ajută: găsește fântâni publice, puncte de apă în centre sociale, și asociații care oferă apă gratuit. Apă potabilă aproape de tine."
+  },
+  {
+    "categoryId": "solidarity_fridge",
+    "label": "Frigider solidar",
+    "slug": "frigo-solidaire",
+    "synonyms": [
+      "Frigider comunitar",
+      "Bancă de alimente",
+      "Distribuire alimente gratuite",
+      "Ajutor alimentar urgență",
+      "Unde găsesc mâncare gratuită?",
+      "Alimente pentru persoane defavorizate",
+      "Sprijin alimentar",
+      "Mâncare gratis",
+      "Frigider cu alimente gratuite",
+      "Ajutor cu alimente"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Frigider solidar în apropierea ta? Soliguide te ajută să nu mai rămâi fără mâncare!",
+    "seoDescription": "Soliguide te ajută: frigidere sociale cu alimente gratuite, cantine sociale, pachete alimentare. Găsește mâncare aproape de tine!"
+  },
+  {
+    "categoryId": "shared_kitchen",
+    "label": "Bucătărie comună",
+    "slug": "cuisine-partagee",
+    "synonyms": [
+      "Cantină socială",
+      "Mâncare gratuită",
+      "Ajutor alimentar",
+      "Distribuire alimente",
+      "Mâncare caldă",
+      "Bucătărie comunitară",
+      "Asistență alimentară",
+      "Masă caldă"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Bucătărie comună? Soliguide te ajută să găsești o masă caldă!",
+    "seoDescription": "Soliguide îți arată: bucătării sociale, cantine gratuite, distribuire de alimente. Găsește ajutor alimentar aproape de tine! Mănâncă decent și fără griji."
+  },
+  {
+    "categoryId": "cooking_workshop",
+    "label": "Atelier de bucătărie",
+    "slug": "atelier-cuisine",
+    "synonyms": [
+      "Cursuri de gătit gratuite",
+      "Ateliere de gătit sociale",
+      "Gătit economic",
+      "Rețete ușoare",
+      "Nutriție pentru toți",
+      "Atelier culinar",
+      "Inițiere în bucătărie",
+      "Bucătărie socială",
+      "Gătit pas cu pas",
+      "Ateliere de nutriție",
+      "Ateliere de gătit low cost",
+      "Gătit pentru începători"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Atelier de bucătărie? Soliguide vă ajută să găsiți unul!",
+    "seoDescription": "Soliguide vă arată: cursuri de gătit gratuite, ateliere de nutriție, locuri unde învățați rețete noi. Atelier de bucătărie aproape de dumneavoastră!"
+  },
+  {
+    "categoryId": "baby_parcel",
+    "label": "Pachet pentru bebeluși",
+    "slug": "colis-bebe",
+    "synonyms": [
+      "Ajutor bebeluși",
+      "Produse gratuite bebeluși",
+      "Scutece gratis",
+      "Lapte praf gratuit",
+      "Haine bebeluși second hand",
+      "Pachet nou născut",
+      "Centre de ajutor maternitate",
+      "Resurse pentru bebeluși"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ai nevoie de Pachet pentru bebeluși? Soliguide te ajută!",
+    "seoDescription": "Soliguide te ajută cu Pachet pentru bebeluși, scutece gratuite, lapte praf și hăinuțe. Găsește ajutor aproape de tine!"
+  },
+  {
+    "categoryId": "food_voucher",
+    "label": "Voucher/tichet de mâncare",
+    "slug": "bon-alimentaire",
+    "synonyms": [
+      "Voucher alimentar",
+      "Tichet de masă",
+      "Bonuri de mâncare",
+      "Ajutor alimentar",
+      "Sprijin alimentar",
+      "Distribuire vouchere",
+      "Cantină socială",
+      "Ajutor pentru alimente",
+      "Vouchere sociale",
+      "Tichete sociale"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Nu mai stați nemâncat! Soliguide vă ajută cu Voucher/tichet de mâncare",
+    "seoDescription": "Soliguide vă arată: distribuție de vouchere alimentare, cantine sociale, ajutoare pentru a cumpăra mâncare. Găsiți sprijin alimentar aproape de dumneavoastră!"
+  },
+  {
+    "categoryId": "community_garden",
+    "label": "Grădină comunitară",
+    "slug": "jardin-solidaire",
+    "synonyms": [
+      "grădină socială",
+      "grădină urbană",
+      "legumicultură socială",
+      "spațiu verde comunitar",
+      "grădină ecologică",
+      "grădină partajată",
+      "cultivare comunitară",
+      "agricultură urbană",
+      "grădină de cartier",
+      "proiect de grădinărit social",
+      "grădinițe comunitare",
+      "grădini pentru toți"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Grădină comunitară? Soliguide te ajută să cultivi speranța!",
+    "seoDescription": "Soliguide îți oferă: legume proaspete, activități în aer liber, prieteni noi. Grădini comunitare aproape de tine pentru un viitor mai verde."
+  },
+  {
+    "categoryId": "welcome",
+    "label": "Bine ați venit",
+    "slug": "accueil",
+    "synonyms": [
+      "ajutor social",
+      "sprijin umanitar",
+      "centre sociale",
+      "asistență socială",
+      "servicii sociale",
+      "locuri de ajutor",
+      "adăpost",
+      "hrană",
+      "consiliere"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Bine ați venit! Găsiți ajutor rapid cu Soliguide",
+    "seoDescription": "Soliguide vă ajută: adăpost de urgență, hrană gratuită, consiliere juridică. Găsiți sprijin aproape de dumneavoastră!"
+  },
+  {
+    "categoryId": "day_hosting",
+    "label": "Recepție de zi",
+    "slug": "accueil-jour",
+    "synonyms": [
+      "adăpost de zi",
+      "centru de zi",
+      "loc de odihnă",
+      "refugiu de zi",
+      "punct de sprijin",
+      "spațiu de respiro",
+      "centru de primire",
+      "adăpost temporar",
+      "loc sigur ziua",
+      "repaus ziua"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ai nevoie de un loc sigur ziua? Soliguide te ajută cu Recepție de zi",
+    "seoDescription": "Soliguide îți arată: un loc cald, o masă caldă, acces la duș și spălătorie, aproape de tine. Recepție de zi pentru o pauză binemeritată."
+  },
+  {
+    "categoryId": "rest_area",
+    "label": "Zona de odihnă",
+    "slug": "espace-repos",
+    "synonyms": [
+      "Loc de odihnă",
+      "Spațiu de relaxare",
+      "Centru de zi",
+      "Refugiu temporar",
+      "Adăpost de zi",
+      "Loc liniștit",
+      "Oază de relaxare",
+      "Spațiu sigur",
+      "Punct de odihnă",
+      "Loc pentru repaus"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ai nevoie de un loc să te odihnești? Soliguide te ajută să găsești Zona de odihnă",
+    "seoDescription": "Soliguide îți găsește: locuri unde te poți odihni gratuit, centre de zi, adăposturi temporare. Găsește spații de odihnă aproape de tine!"
+  },
+  {
+    "categoryId": "babysitting",
+    "label": "Babysitting",
+    "slug": "garde-enfants",
+    "synonyms": [
+      "garde d'enfants",
+      "nounou",
+      "baby-sitter",
+      "assistance parentale",
+      "soutien à la parentalité",
+      "crèche",
+      "halte-garderie",
+      "centre de loisirs",
+      "accueil périscolaire",
+      "aide à la garde d'enfants"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Besoin de babysitting ? Soliguide vous aide à trouver une solution",
+    "seoDescription": "Soliguide vous aide : babysitting occasionnel, garde d'enfants régulière, activités pour enfants. Trouvez des solutions près de chez vous."
+  },
+  {
+    "categoryId": "family_area",
+    "label": "Zona pentru familii",
+    "slug": "espace-famille",
+    "synonyms": [
+      "Loc de primire familii",
+      "Centru suport familial",
+      "Ajutor familii defavorizate",
+      "Asistență pentru părinți",
+      "Sprijin pentru copii",
+      "Servicii sociale familii",
+      "Adăpost familii",
+      "Consiliere parenting",
+      "Asistență socială familii",
+      "Locuri de joacă sigure"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Zona pentru familii? Soliguide te ajută să găsești sprijin!",
+    "seoDescription": "Soliguide te ajută să găsești: locuri de joacă pentru copii, consiliere familială, adăpost temporar. Găsește Zona pentru familii lângă tine!"
+  },
+  {
+    "categoryId": "information_point",
+    "label": "Punct de informare si orientare",
+    "slug": "point-information",
+    "synonyms": [
+      "Punct de informare",
+      "Orientare socială",
+      "Ajutor social",
+      "Centre de informare",
+      "Ghid social",
+      "Asistență socială",
+      "Servicii sociale",
+      "Unde găsesc ajutor"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ai nevoie de ajutor? Soliguide te informează și te orientează!",
+    "seoDescription": "Soliguide te ajută: informații, orientare, acces la drepturi. Găsește un punct de informare și orientare aproape de tine!"
+  },
+  {
+    "categoryId": "activities",
+    "label": "Activități",
+    "slug": "activites",
+    "synonyms": [
+      "Ajutor social",
+      "Centre de ajutor",
+      "Servicii sociale",
+      "Asistență socială",
+      "Sprijin social",
+      "Urgente sociale",
+      "Solidaritate",
+      "Centre de zi",
+      "Ajutor persoane fără adăpost",
+      "Asistență refugiați"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ai nevoie de ajutor? Soliguide găsește soluții Activități pentru tine",
+    "seoDescription": "Soliguide te ajută: adapost de urgență, hrană, haine. Găsește centre Activități aproape de tine, rapid și ușor!"
+  },
+  {
+    "categoryId": "sport_activities",
+    "label": "Activități sportive",
+    "slug": "activites-sportives",
+    "synonyms": [
+      "Sport gratuit",
+      "Activități sportive gratuite",
+      "Fotbal gratuit",
+      "Jogging gratuit",
+      "Mers pe jos gratuit",
+      "Sport social",
+      "Activități sportive pentru toți",
+      "Sport incluziv",
+      "Club sportiv gratuit",
+      "Sport pentru persoane defavorizate"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Vrei să faci sport gratuit? Soliguide te ajută!",
+    "seoDescription": "Soliguide îți arată: fotbal gratuit, jogging în grup, cluburi de mers pe jos. Sport aproape de tine, ușor și gratuit!"
+  },
+  {
+    "categoryId": "museums",
+    "label": "Muzeu",
+    "slug": "musee",
+    "synonyms": [
+      "Muzeu gratis",
+      "Intrare liberă muzeu",
+      "Expoziții gratuite",
+      "Artă pentru toți",
+      "Cultură gratuită",
+      "Activități culturale gratuite",
+      "Muzeu fără plată",
+      "Soluții culturale gratuite",
+      "Evenimente gratuite muzeu",
+      "Muzeu accesibil",
+      "Muzeu social",
+      "Descoperă Muzeu gratis"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Muzeu gratuit cu Soliguide, descoperă arta accesibilă",
+    "seoDescription": "Soliguide îți arată Muzeu gratuit, ateliere artistice, expoziții incluzive. Cultură deschisă tuturor, aproape de tine."
+  },
+  {
+    "categoryId": "libraries",
+    "label": "Bibliotecă",
+    "slug": "bibliotheque",
+    "synonyms": [
+      "Biblioteca publica",
+      "Biblioteca gratuita",
+      "Carti gratuite",
+      "Acces internet gratuit",
+      "Ajutor lectura",
+      "Spatiu lectura",
+      "Resurse bibliotecă",
+      "Biblioteca pentru toti",
+      "Biblioteca comunitara",
+      "Biblioteca sociala"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Bibliotecă: Găsește cărți și ajutor cu Soliguide",
+    "seoDescription": "Soliguide te ajută: bibliotecă gratuită, acces la internet, ajutor cu lectura. Găsește o bibliotecă aproape de tine!"
+  },
+  {
+    "categoryId": "other_activities",
+    "label": "Activități diverse",
+    "slug": "activites-diverses",
+    "synonyms": [
+      "ateliere gratuite",
+      "activități sociale",
+      "evenimente culturale",
+      "cursuri gratuite",
+      "petrecere timp liber",
+      "programe recreative",
+      "loisirs",
+      "activité"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ai nevoie de activități diverse? Soliguide te ajută",
+    "seoDescription": "Soliguide te ajută: ateliere creative, activități culturale, evenimente sociale. Găsește activități diverse aproape de tine."
+  },
+  {
+    "categoryId": "equipment",
+    "label": "Material",
+    "slug": "materiel",
+    "synonyms": [
+      "materiel affaires mobilier"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "luggage_storage",
+    "label": "Loc de depozitare a bagajelor",
+    "slug": "bagagerie",
+    "synonyms": [
+      "Păstrare bagaje",
+      "Vestiar gratuit",
+      "Depozitare temporară",
+      "Dulapuri sigure",
+      "Loc pentru bagaje",
+      "Garderobă socială",
+      "Depozitare obiecte personale",
+      "Vestiare publice",
+      "Unde las bagajele",
+      "Soluții depozitare"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ai nevoie să depozitezi bagajele? Soliguide te ajută",
+    "seoDescription": "Soliguide îți găsește locuri sigure pentru bagaje! Depozitare temporară, vestiare gratuite, garderobe sociale. Găsește ajutor în apropierea ta!"
+  },
+  {
+    "categoryId": "solidarity_store",
+    "label": "Magazin de solidaritate",
+    "slug": "boutique-solidaire",
+    "synonyms": [
+      "magazin social",
+      "ajutor haine",
+      "alimente ieftine",
+      "preț redus",
+      "produse solidaritate",
+      "haine second hand",
+      "alimente subvenționate",
+      "magazin caritabil",
+      "centre de ajutor",
+      "produse de bază",
+      "discount social",
+      "prețuri mici"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Magazin de solidaritate Soliguide: Haine, alimente, produse la preț redus",
+    "seoDescription": "Soliguide te ajută: haine ieftine, alimente reduse, produse de igienă. Magazin de solidaritate aproape de tine. Găsește ce ai nevoie!"
+  },
+  {
+    "categoryId": "clothing",
+    "label": "Haine",
+    "slug": "vetements",
+    "synonyms": [
+      "haine gratis",
+      "îmbrăcăminte donată",
+      "haine second hand",
+      "haine ieftine",
+      "ajutor îmbrăcăminte",
+      "donații haine",
+      "magazin caritabil haine",
+      "unde găsesc haine"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ai nevoie de haine? Soliguide te ajută să găsești!",
+    "seoDescription": "Soliguide îți arată: haine gratuite, prețuri mici la îmbrăcăminte, donații de haine. Găsește ajutor aproape de tine!"
+  },
+  {
+    "categoryId": "animal_assitance",
+    "label": "Animale",
+    "slug": "animaux",
+    "synonyms": [
+      "aide animaux",
+      "soins animaux",
+      "vétérinaire gratuit",
+      "nourriture animaux",
+      "animaux compagnie",
+      "garde animaux",
+      "assistance animaux",
+      "protection animale",
+      "refuge animaux",
+      "association animale"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Votre animal est votre famille ? Soliguide vous aide!",
+    "seoDescription": "Soliguide vous aide avec vos animaux : vétérinaire solidaire, nourriture gratuite, garde. Trouvez l'aide Animale près de vous ! (155)"
+  },
+  {
+    "categoryId": "mobility",
+    "label": "Transport / Mobilitate",
+    "slug": "transport-mobilite",
+    "synonyms": [
+      "transport gratuit",
+      "ajutor transport",
+      "mobilitate redusă",
+      "deplasare gratuită",
+      "costuri transport",
+      "abonament transport",
+      "bilete gratuite",
+      "călătorie gratuită",
+      "sprijin transport",
+      "acces transport"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Probleme cu transportul? Soliguide te ajută să te deplasezi!",
+    "seoDescription": "Soliguide te ghidează: transport gratuit, reduceri pentru transport, ajutor cu abonamente. Mobilitate accesibilă aproape de tine."
+  },
+  {
+    "categoryId": "carpooling",
+    "label": "Carpooling",
+    "slug": "covoiturage",
+    "synonyms": [
+      "Călătorie partajată",
+      "Transport solidar",
+      "Mașină comună",
+      "Partajare auto",
+      "Transport ocazional",
+      "Economie transport",
+      "Deplasare ieftină",
+      "Transport gratuit ocazional",
+      "BlaBlaCar solidar",
+      "Covoiturage social"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Besoin de Carpooling ? Soliguide vous aide à vous déplacer",
+    "seoDescription": "Soliguide vă ajută: găsiți o mașină, împărțiți costurile, călătoriți ușor. Transport solidar aproape de dvs."
+  },
+  {
+    "categoryId": "provision_of_vehicles",
+    "label": "Furnizare de vehicule",
+    "slug": "vehicule",
+    "synonyms": [
+      "Ajutor vehicul",
+      "Mașină socială",
+      "Transport gratuit",
+      "Împrumut auto social",
+      "Donații mașini",
+      "Reparații auto gratuite",
+      "Sprijin mobilitate",
+      "Auto pentru muncă",
+      "Vehicul pentru șomaj",
+      "Program vehicule sociale"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ai nevoie de un vehicul? Soliguide te ajută să găsești soluții!",
+    "seoDescription": "Soliguide te ghidează: împrumut auto, reparații gratuite, donații auto. Găsește ajutor pentru transport aproape de tine!"
+  },
+  {
+    "categoryId": "chauffeur_driven_transport",
+    "label": "Transport cu șofer",
+    "slug": "chauffeur",
+    "synonyms": [
+      "transport gratuit",
+      "transport social",
+      "șofer social",
+      "asistență transport",
+      "mașină socială",
+      "transport pentru persoane vulnerabile",
+      "transport medical gratuit",
+      "transport la interviu",
+      "transport adaptat",
+      "deplasare gratuită"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Aveți nevoie de Transport cu Șofer? Soliguide vă ajută",
+    "seoDescription": "Soliguide vă găsește: transport gratuit la medic, asistență pentru deplasări la interviuri, mașină pentru persoane cu handicap. Transport cu șofer aproape de dvs."
+  },
+  {
+    "categoryId": "mobility_assistance",
+    "label": "Sfaturi pentru locuințe",
+    "slug": "permis",
+    "synonyms": [
+      "ajutor locuință",
+      "adăpost de urgență",
+      "locuințe sociale",
+      "chirie",
+      "sprijin locativ",
+      "rezolvare locuință",
+      "găsire locuință",
+      "probleme locuință",
+      "centre de ajutor locuințe",
+      "asistență locativă"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Sfaturi pentru locuințe? Soliguide vă ajută să găsiți un loc sigur",
+    "seoDescription": "Soliguide: adăpost de urgență, locuințe sociale, ajutor chirie. Găsiți sprijin locativ aproape de dumneavoastră!"
+  },
+  {
+    "categoryId": "accomodation_and_housing",
+    "label": "Cazare",
+    "slug": "hebergement-et-logement",
+    "synonyms": [
+      "adăpost",
+      "locuință",
+      "cazare de urgență",
+      "centre de primire",
+      "locuințe sociale",
+      "ajutor locativ",
+      "fără adăpost",
+      "dormitoare publice",
+      "centre de găzduire",
+      "servicii de cazare",
+      "cazare temporară",
+      "cazare gratuită"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Cazare urgentă? Soliguide te ajută să găsești un loc sigur",
+    "seoDescription": "Soliguide te ajută: adăpost de urgență, locuințe sociale, ajutor pentru chirie. Găsește cazare aproape de tine!"
+  },
+  {
+    "categoryId": "overnight_stop",
+    "label": "oprire de noapte",
+    "slug": "halte-nuit",
+    "synonyms": [
+      "adăpost de noapte",
+      "centru de primire nocturnă",
+      "adăpost pentru persoane fără adăpost",
+      "loc de refugiu nocturn",
+      "centru de noapte pentru oameni ai străzii",
+      "adăpost temporar de noapte",
+      "serviciu de urgență pentru persoane fără adăpost",
+      "loc de dormit pe timp de noapte",
+      "ajutor pentru persoanele fără adăpost noaptea",
+      "centre sociale nocturne",
+      "adăpost pentru persoane vulnerabile pe timp de noapte"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ai nevoie de un loc sigur? Găsește o oprire de noapte cu Soliguide",
+    "seoDescription": "Soliguide te ajută: un loc cald unde să dormi, o masă caldă, sprijin uman. Găsește o oprire de noapte aproape de tine! (158 caractere)"
+  },
+  {
+    "categoryId": "emergency_accommodation",
+    "label": "Cazare de urgență",
+    "slug": "hebergement-urgence",
+    "synonyms": [
+      "adăpost de urgență",
+      "cazare temporară",
+      "adăpost pe timp de noapte",
+      "centru de primire",
+      "ajutor cazare urgentă",
+      "locuință temporară",
+      "adăpost de criză",
+      "cazare de scurtă durată",
+      "unde dormi în seara asta"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Cazare de urgență cu Soliguide: Găsește un loc sigur azi",
+    "seoDescription": "Soliguide te ajută: cazare de urgență, adăpost pe timp de noapte, centre de primire. Găsește rapid un loc sigur aproape de tine! Aplicație mobilă disponibilă."
+  },
+  {
+    "categoryId": "long_term_accomodation",
+    "label": "Cazare pe termen lung",
+    "slug": "hebergement-long-terme",
+    "synonyms": [
+      "Locuință pe termen lung",
+      "Adăpost de lungă durată",
+      "Găzduire prelungită",
+      "Cazare socială",
+      "Locuințe sociale",
+      "Centre de cazare",
+      "Adăpost temporar transformat în permanent",
+      "Cameră de închiriat pe termen lung",
+      "Apartament social",
+      "Ajutor cazare"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Cazare pe termen lung cu Soliguide - Găsește-ți un loc sigur!",
+    "seoDescription": "Soliguide te ajută! Găsește un loc de cazare pe termen lung, un adăpost sigur sau o locuință socială. Soluții aproape de tine!"
+  },
+  {
+    "categoryId": "citizen_housing",
+    "label": "Cazare cetăţean",
+    "slug": "hebergement-citoyen",
+    "synonyms": [
+      "adăpost",
+      "locuință socială",
+      "cazare de urgență",
+      "centru de primire",
+      "dormitor public",
+      "adăpost nocturn",
+      "locuințe pentru persoane fără adăpost",
+      "ajutor cazare"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Cazare cetățean? Soliguide te ajută să găsești un loc sigur",
+    "seoDescription": "Soliguide găsește rapid: adăpost de urgență, cazare temporară, centre de primire. Găsește un loc sigur aproape de tine!"
+  },
+  {
+    "categoryId": "access_to_housing",
+    "label": "Sfaturi cazare",
+    "slug": "conseil-logement",
+    "synonyms": [
+      "Ajutor locativ",
+      "Cazare urgență",
+      "Locuință socială",
+      "DALO",
+      "Sfaturi locuințe",
+      "Găsire locuință",
+      "Asistență cazare",
+      "Ajutor chirie",
+      "Unde dormi"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Sfaturi cazare Soliguide Te ajută să găsești un loc sigur",
+    "seoDescription": "Soliguide te sprijină: obține o locuință socială, ajutor DALO, sfaturi cazare. Găsește ajutor locativ aproape de tine! Cazare urgență, informații accesibile."
+  }
+]
