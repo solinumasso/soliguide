@@ -416,9 +416,7 @@
     "categoryId": "ophthalmology",
     "label": "Oftalmologie",
     "slug": "ophtalmologie",
-    "synonyms": [
-      "ophtalmologie ophtalmologue yeux voir lunette"
-    ],
+    "synonyms": ["ophtalmologie ophtalmologue yeux voir lunette"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": ""
@@ -606,9 +604,7 @@
     "categoryId": "stomatology",
     "label": "Stomatologie",
     "slug": "stomatologie",
-    "synonyms": [
-      "stomatologie stomatologue estomac digestion ventre"
-    ],
+    "synonyms": ["stomatologie stomatologue estomac digestion ventre"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": ""
@@ -1696,9 +1692,7 @@
     "categoryId": "equipment",
     "label": "Material",
     "slug": "materiel",
-    "synonyms": [
-      "materiel affaires mobilier"
-    ],
+    "synonyms": ["materiel affaires mobilier"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": ""

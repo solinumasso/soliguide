@@ -1610,9 +1610,7 @@
     "categoryId": "information_point",
     "label": "Servei d'informació i orientació",
     "slug": "point-information",
-    "synonyms": [
-      "point information point d information information ukraine"
-    ],
+    "synonyms": ["point information point d information information ukraine"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": "Point d'information"
@@ -1800,9 +1798,7 @@
     "categoryId": "animal_assitance",
     "label": "Animals",
     "slug": "animaux",
-    "synonyms": [
-      "animaux animals chien chat croquettes animal"
-    ],
+    "synonyms": ["animaux animals chien chat croquettes animal"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": "Aide aux animaux de compagnie"

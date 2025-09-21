@@ -579,9 +579,7 @@
     "categoryId": "urology",
     "label": "Urología",
     "slug": "urologie",
-    "synonyms": [
-      "urologie urology"
-    ],
+    "synonyms": ["urologie urology"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": ""
@@ -891,9 +889,7 @@
     "categoryId": "toilets",
     "label": "Aseos",
     "slug": "toilettes",
-    "synonyms": [
-      "toilettes sanisette pisser pipi wc caca chiotte toilet"
-    ],
+    "synonyms": ["toilettes sanisette pisser pipi wc caca chiotte toilet"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": "Toilettes en accès libre."
@@ -1161,9 +1157,7 @@
     "categoryId": "wifi",
     "label": "Wifi",
     "slug": "wifi",
-    "synonyms": [
-      "wifi internet web connexion reseau"
-    ],
+    "synonyms": ["wifi internet web connexion reseau"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": "Wifi disponible en accès libre."
@@ -1192,9 +1186,7 @@
     "categoryId": "telephone_at_your_disposal",
     "label": "Teléfono",
     "slug": "telephone",
-    "synonyms": [
-      "appel gratuit telephone telephoner appeler appel"
-    ],
+    "synonyms": ["appel gratuit telephone telephoner appeler appel"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": "Téléphone disponible en accès libre."
@@ -1593,9 +1585,7 @@
     "categoryId": "museums",
     "label": "Museo",
     "slug": "musee",
-    "synonyms": [
-      "musee culture sortie peinture tableau se cultiver"
-    ],
+    "synonyms": ["musee culture sortie peinture tableau se cultiver"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": "Musée gratuit."
@@ -1644,9 +1634,7 @@
     "categoryId": "equipment",
     "label": "Material",
     "slug": "materiel",
-    "synonyms": [
-      "materiel affaires mobilier"
-    ],
+    "synonyms": ["materiel affaires mobilier"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": ""
@@ -1717,9 +1705,7 @@
     "categoryId": "animal_assitance",
     "label": "Animales",
     "slug": "animaux",
-    "synonyms": [
-      "animaux animals chien chat croquettes animal"
-    ],
+    "synonyms": ["animaux animals chien chat croquettes animal"],
     "type": "CATEGORY",
     "seoTitle": "",
     "seoDescription": "Aide aux animaux de compagnie"
