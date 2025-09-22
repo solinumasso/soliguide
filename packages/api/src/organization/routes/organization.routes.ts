@@ -32,7 +32,7 @@ import {
   UserPopulateType,
 } from "../../_models";
 
-import { createOrgaDto, patchOrgaDto, searchOrgasDto } from "../dto";
+import { orgaDto, searchOrgasDto } from "../dto";
 
 import {
   setEntityExcludedOrNot,
@@ -72,7 +72,7 @@ import {
 router.post(
   "/",
   checkRights([UserStatus.ADMIN_SOLIGUIDE, UserStatus.ADMIN_TERRITORY]),
-  createOrgaDto,
+  orgaDto,
   getFilteredData,
   async (req: ExpressRequest, res: ExpressResponse) => {
     const organizationData = req.bodyValidated;
@@ -154,7 +154,7 @@ router.patch(
   "/:orgaObjectId",
   getOrgaFromUrl,
   canEditOrga,
-  patchOrgaDto,
+  orgaDto,
   getFilteredData,
   async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
     try {
