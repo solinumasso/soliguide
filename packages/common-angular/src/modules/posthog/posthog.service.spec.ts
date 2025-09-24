@@ -19,7 +19,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { TestBed } from "@angular/core/testing";
-import { RouterTestingModule } from "@angular/router/testing";
 
 import posthog, { PostHog } from "posthog-js";
 import { PosthogConfig } from "./posthog-config";
@@ -42,17 +41,22 @@ describe("PosthogService", () => {
     mockedPosthog.init.mockClear();
   });
 
-  it("should init posthog", () => {
+  it("should init posthog only when switching persistence", () => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
         PosthogModule.forRoot({ ...baseConfig, posthogApiKey: "hello" }),
       ],
     });
     const service = TestBed.inject(PosthogService);
     expect(service).toBeTruthy();
-    expect(service.enabled).toBeTruthy();
+    expect(service.enabled).toBe(false);
+
+    expect(posthog.init).toHaveBeenCalledTimes(0);
+
+    service.switchPersistence("memory");
+    expect(service.enabled).toBe(true);
     expect(posthog.init).toHaveBeenCalledTimes(1);
+
     expect(posthog.init).toHaveBeenCalledWith(
       "hello",
       {
@@ -72,7 +76,7 @@ describe("PosthogService", () => {
 
   it("should not init posthog", () => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, PosthogModule.forRoot(baseConfig)],
+      imports: [PosthogModule.forRoot(baseConfig)],
     });
     const service = TestBed.inject(PosthogService);
     expect(service).toBeTruthy();

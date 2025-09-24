@@ -21,6 +21,43 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <!DOCTYPE html>
 <html lang="fr">
   <head>
+    <script>
+      // Initialize the dataLayer
+      window.dataLayer = window.dataLayer || [];
+
+      // Create the gtag function that pushes to the dataLayer
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      // Set consent defaults
+      gtag("consent", "default", {
+        analytics_storage:
+          localStorage.getItem("silktideCookieChoice_analytics") === "true"
+            ? "granted"
+            : "denied",
+        functionality_storage:
+          localStorage.getItem("silktideCookieChoice_chat") === "true"
+            ? "granted"
+            : "denied",
+      });
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-W88VRN3M");
+    </script>
+    <!-- End Google Tag Manager -->
+
     <meta charset="utf-8" />
     <title>Soliguide - Itinéraire vers la solidarité</title>
     <base href="/" />
@@ -131,6 +168,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     />
   </head>
   <body id="top-site">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-W88VRN3M"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <script>
       window.CURRENT_DATA = {
         THEME: "soliguide_fr",

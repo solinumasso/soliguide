@@ -42,6 +42,7 @@
               "src/assets/css/forms.scss",
               "src/assets/css/tables.scss",
               "src/assets/fonts/icons/categories-icons.scss",
+              "src/assets/css/silktide-consent-manager.css",
               "node_modules/leaflet/dist/leaflet.css",
               "node_modules/ngx-sharebuttons/themes/default.scss",
               "node_modules/intl-tel-input/build/css/intlTelInput.css",
