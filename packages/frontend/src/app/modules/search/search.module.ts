@@ -19,11 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { CommonModule } from "@angular/common";
-import {
-  CUSTOM_ELEMENTS_SCHEMA,
-  NgModule,
-  NO_ERRORS_SCHEMA,
-} from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
@@ -84,6 +80,6 @@ import { DisplayHolidaysComponent } from "../place/standalone-components/display
     DisplayHolidaysComponent,
   ],
   providers: [SearchService],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class SearchModule {}
+export class SearchModule {} // skipcq: JS-0327

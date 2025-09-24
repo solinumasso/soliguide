@@ -24,7 +24,7 @@ import {
   HttpTestingController,
 } from "@angular/common/http/testing";
 import { TestBed } from "@angular/core/testing";
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterModule } from "@angular/router";
 
 import { AdminPlaceService } from "./admin-place.service";
 
@@ -34,7 +34,7 @@ describe("AdminPlaceService", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule],
+      imports: [HttpClientTestingModule, RouterModule.forRoot([])],
       providers: [{ provide: APP_BASE_HREF, useValue: "/" }],
     });
     service = TestBed.inject(AdminPlaceService);
