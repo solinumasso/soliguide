@@ -46,10 +46,10 @@ import {
   parseModalities,
   parseOpenToday,
   parsePublics,
-  parseTextSearch,
   parseUpdatedAt,
 } from "../parsers";
 import { UserPopulateType } from "../../../_models";
+import { buildEnhancedWordSearch } from "../parsers/parse-word";
 
 export const generateSearchQuery = (
   categoryService: CategoriesService,
@@ -124,10 +124,8 @@ export const generateSearchQuery = (
     parsePublics(searchData.publics, nosqlQuery, inService);
   }
 
-  if (searchData.word) {
-    const tempQuery = { word: "" };
-    parseTextSearch(tempQuery, searchData, "word");
-    nosqlQuery["slugs.infos.name"] = tempQuery.word;
+  if (searchData?.word) {
+    buildEnhancedWordSearch(searchData, nosqlQuery, "fr");
   }
 
   if (searchData.openToday) {

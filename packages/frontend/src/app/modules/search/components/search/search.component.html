@@ -26,8 +26,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     "
   >
     <app-search-bar
-      (launchSearch)="launchSearchFromSearchBar()"
-      (updateSearchTerm)="updateSearchTerm()"
       (updateCategory)="updateCategory()"
       (updateLocation)="updateLocation($event)"
       [search]="search"
@@ -48,16 +46,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           (click)="toggleFilter()"
         >
           <fa-icon class="me-2" [icon]="['fas', 'filter']"></fa-icon>
-          <span *ngIf="!hideFilters">{{ "HIDE_FILTERS" | translate }}</span>
-          <span *ngIf="hideFilters">{{ "SHOW_FILTERS" | translate }}</span>
+          <span *ngIf="!showFilters">{{ "HIDE_FILTERS" | translate }}</span>
+          <span *ngIf="showFilters">{{ "SHOW_FILTERS" | translate }}</span>
         </button>
       </div>
     </div>
 
     <app-search-filters
-      *ngIf="!hideFilters"
+      *ngIf="!showFilters"
       #appFilters
-      [hideFilters]="hideFilters"
+      [showFilters]="showFilters"
       [search]="search"
       [parcoursSearch]="parcoursSearch"
       [searchSubject]="searchSubject"

@@ -1,0 +1,2032 @@
+[
+  {
+    "categoryId": "health",
+    "label": "Salut",
+    "slug": "sante",
+    "synonyms": [
+      "ajuda urgent",
+      "necessitat social",
+      "crisi",
+      "emergència social",
+      "suport immediat",
+      "recursos urgents",
+      "assistència social",
+      "primeres necessitats",
+      "ajuda ràpida",
+      "sense sostre",
+      "precarietat"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites ajuda urgent? Soliguide et troba solucions immediates",
+    "seoDescription": "Soliguide t'ajuda: menjar gratis, dutxa, roba neta. Troba ajuda d'emergència a prop teu."
+  },
+  {
+    "categoryId": "addiction",
+    "label": "Atenció al consum de substàncies i a les addiccions",
+    "slug": "addiction",
+    "synonyms": [
+      "addicció",
+      "toxicomanía",
+      "alcoholisme",
+      "ludopatia",
+      "desintoxicació",
+      "rehabilitació addiccions",
+      "suport addiccions",
+      "tractament addiccions",
+      "ajuda dependència",
+      "consum de substàncies"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Problemes d'addicció? Soliguide us pot ajudar",
+    "seoDescription": "Soliguide us ajuda: suport per deixar les drogues, acompanyament contra l'alcoholisme, ajuda contra l'addicció al joc. Trobeu ajuda a prop vostre."
+  },
+  {
+    "categoryId": "std_testing",
+    "label": "Detecció d'infeccions de transmissió sexual",
+    "slug": "depistage",
+    "synonyms": [
+      "proves ITS",
+      "detecció MST",
+      "malalties de transmissió sexual proves",
+      "proves VIH",
+      "cribratge ITS",
+      "salut sexual",
+      "centres de detecció ITS",
+      "prevenció ITS",
+      "revisions ginecològiques gratuïtes",
+      "revisions urològiques gratuïtes"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites proves de detecció d'ITS? Soliguide t'ajuda",
+    "seoDescription": "Soliguide et troba: proves gratuïtes de detecció d'ITS, consell mèdic, acompanyament. Troba ajuda a prop teu."
+  },
+  {
+    "categoryId": "psychological_support",
+    "label": "Psicologia",
+    "slug": "psychologie",
+    "synonyms": [
+      "suport psicològic",
+      "teràpia",
+      "ajuda emocional",
+      "benestar mental",
+      "consell psicològic",
+      "psicoterapia",
+      "salut mental",
+      "escolta psicològica",
+      "gestió de l'estrès",
+      "alleujament de l'ansietat"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Psicologia: Soliguide us ajuda a trobar suport emocional",
+    "seoDescription": "Soliguide us ofereix: consultes amb psicòlegs, grups de suport, acompanyament individual. Trobeu ajuda psicològica a prop vostre!"
+  },
+  {
+    "categoryId": "child_care",
+    "label": "Pediatria",
+    "slug": "soins-enfants",
+    "synonyms": [
+      "pediatra",
+      "cura infantil",
+      "salut infantil",
+      "PMI",
+      "revisions mèdiques",
+      "vacunació",
+      "atenció pediàtrica",
+      "bébés",
+      "nens petits",
+      "infermeria pediàtrica"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Pediatria: Troba ajuda per als teus fills amb Soliguide",
+    "seoDescription": "Soliguide t'ajuda a trobar pediatres, centres de vacunació i revisions mèdiques per als teus fills. Tot a prop teu i gratis! Troba la Pediatria amb Soliguide!"
+  },
+  {
+    "categoryId": "general_practitioner",
+    "label": "Metge/essa de capçalera",
+    "slug": "generaliste",
+    "synonyms": [
+      "Metge gratuït",
+      "Atenció primària gratis",
+      "Salut sense papers",
+      "Medicina general accessible",
+      "Metge CMU",
+      "Metge AME",
+      "Consulta mèdica gratis",
+      "Centre de salut accessible",
+      "Assistència sanitària gratuïta",
+      "Doctor de capçalera social"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites metge/essa de capçalera? Soliguide t'ajuda",
+    "seoDescription": "Soliguide troba: metge/essa de capçalera gratuït, infermeria, accés a medicaments. Atenció mèdica a prop teu i accessible a tothom."
+  },
+  {
+    "categoryId": "dental_care",
+    "label": "Dental",
+    "slug": "dentaire",
+    "synonyms": [
+      "dentista solidari",
+      "atenció dental gratuïta",
+      "CMU dental",
+      "AME dental",
+      "cures dentals per a persones sense recursos",
+      "odontologia social",
+      "dentistes per a persones vulnerables",
+      "urgències dentals socials",
+      "ajuda dental",
+      "tractaments dentals CMU",
+      "assistència dental AME",
+      "accés a l'odontologia"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Urgències dentals? Soliguide us ajuda a trobar odontòlegs solidaris",
+    "seoDescription": "Soliguide: trobeu dentistes que accepten la CMU/AME, consultes gratuïtes i reparacions dentals accessibles. Atenció dental a prop teu!"
+  },
+  {
+    "categoryId": "pregnancy_care",
+    "label": "Seguiment de l'embaràs",
+    "slug": "planification",
+    "synonyms": [
+      "cura prenatal",
+      "atenció a l'embaràs",
+      "suport a la maternitat",
+      "ginecòleg solidari",
+      "matrona social",
+      "ajuda embaràs",
+      "embarazo",
+      "maternitat",
+      "centre matern"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Embaràs acompanyat amb Soliguide: ajuda per a futures mares",
+    "seoDescription": "Soliguide us ajuda: seguiment mèdic gratuït, classes de preparació al part, suport psicològic. Troba ajuda per a l'embaràs a prop teu."
+  },
+  {
+    "categoryId": "vaccination",
+    "label": "Vacunació",
+    "slug": "vaccination",
+    "synonyms": [
+      "vacunes gratuïtes",
+      "vacunació accessible",
+      "vacunes per a CMU",
+      "vacunes per a AME",
+      "centres de vacunació",
+      "punts de vacunació",
+      "vacunes solidàries",
+      "vacunes sense papers",
+      "vaccinació",
+      "vacunació per a vulnerables"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites Vacunació accessible? Soliguide t'ajuda",
+    "seoDescription": "Soliguide et troba: vacunació gratuïta, centres de vacunació per a persones amb CMU/AME, informació sobre vacunes. Troba ajuda a prop teu!"
+  },
+  {
+    "categoryId": "infirmary",
+    "label": "Infermeria",
+    "slug": "infirmerie",
+    "synonyms": [
+      "Cures mèdiques bàsiques",
+      "Assistència infermera",
+      "Atenció sanitària",
+      "Primeres cures",
+      "Centre de salut",
+      "Infermeria gratuïta",
+      "Suport mèdic",
+      "Atenció bàsica de salut",
+      "Pansements",
+      "Embenatges"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites infermeria urgent? Soliguide t'ajuda a trobar-la",
+    "seoDescription": "Soliguide t'ofereix: infermeria, cures, medicaments sense recepta. Troba centres que ofereixen suport sanitari gratuït a prop teu."
+  },
+  {
+    "categoryId": "vet_care",
+    "label": "Veterinari",
+    "slug": "veterinaire",
+    "synonyms": [
+      "Cura animal",
+      "Veterinari social",
+      "Ajuda veterinària",
+      "Aliments mascotes",
+      "Salut animal",
+      "Veterinaris gratuïts",
+      "Cura animals precàries",
+      "Protecció animal"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Veterinari: Troba cures per a animals amb Soliguide",
+    "seoDescription": "Soliguide t'ajuda: Veterinari solidari, aliments per a mascotes, cures a baix cost. Troba ajuda veterinària a prop teu."
+  },
+  {
+    "categoryId": "health_specialists",
+    "label": "Metge/essa especialista",
+    "slug": "specialistes-medecine",
+    "synonyms": [
+      "metge especialista",
+      "metge solidari",
+      "consulta mèdica gratis",
+      "ajuda mèdica",
+      "centre de salut",
+      "atenció mèdica",
+      "sanitat pública",
+      "metges a prop meu",
+      "essa especialista"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites un metge/essa especialista? Soliguide t'ajuda!",
+    "seoDescription": "Soliguide troba a prop teu: metge especialista gratuït, infermer, accés a medicaments. Salut accessible sense pagar per avançat."
+  },
+  {
+    "categoryId": "allergology",
+    "label": "Al·lergologia",
+    "slug": "allergologie",
+    "synonyms": [
+      "Al·lergòleg",
+      "Prova d'al·lèrgia",
+      "Tractament al·lèrgies",
+      "Reaccions al·lèrgiques",
+      "Asma",
+      "Dermatitis",
+      "Rinitis",
+      "Urticària",
+      "Aliments al·lèrgens",
+      "Intol·lerància alimentària"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Al·lèrgia? Soliguide us ajuda a trobar assistència mèdica",
+    "seoDescription": "Soliguide us connecta amb al·lergòlegs, proves d'al·lèrgia accessibles i medicaments a baix cost. Trobeu assistència a prop vostre! 155 caràcters"
+  },
+  {
+    "categoryId": "cardiology",
+    "label": "Cardiologia",
+    "slug": "cardiologie",
+    "synonyms": [
+      "malalties del cor",
+      "problemes cardíacs",
+      "cardiopaties",
+      "atenció cardiològica",
+      "salut cardiovascular",
+      "metge especialista cor",
+      "prevenció malalties cor",
+      "tractaments cor",
+      "rehabilitació cardíaca",
+      "suport cardíac"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Problemes de cor? Soliguide us ajuda a trobar suport",
+    "seoDescription": "Soliguide us ajuda a trobar: consulta cardiològica gratuïta, medicaments subvencionats, consell mèdic. Salut del cor accessible a prop vostre."
+  },
+  {
+    "categoryId": "dermatology",
+    "label": "Dermatologia",
+    "slug": "dermatologie",
+    "synonyms": [
+      "problemes de pell",
+      "malalties cutànies",
+      "dermatitis",
+      "èczema",
+      "psoriasi",
+      "acne",
+      "fongs a la pell",
+      "reaccions al·lèrgiques pell",
+      "cura de la pell",
+      "metge pell gratis",
+      "consulta dermatològica",
+      "tractament pell solidari"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Problemes de pell? Solucions dermatològiques amb Soliguide",
+    "seoDescription": "Soliguide us ajuda: metge dermatològic gratuït, infermeria, consells. Tractament de la pell accessible sense diners per endavant. Troba ajuda a prop teu!"
+  },
+  {
+    "categoryId": "echography",
+    "label": "Ecografia",
+    "slug": "echographie",
+    "synonyms": [
+      "ajuda social",
+      "suport social",
+      "assistència social",
+      "serveis socials",
+      "urgència social",
+      "precarietat",
+      "vulnerabilitat social",
+      "ajut d'emergència",
+      "Ecografia social",
+      "recursos socials",
+      "acompanyament social"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites ajuda urgent? Soliguide et troba solucions",
+    "seoDescription": "Soliguide et facilita: orientació social, ajudes econòmiques puntuals, accés a drets. Troba suport a prop teu."
+  },
+  {
+    "categoryId": "endocrinology",
+    "label": "Endocrinologia",
+    "slug": "endocrinologie",
+    "synonyms": [
+      "endocrinologia",
+      "diabetis",
+      "tiroide",
+      "hormones",
+      "metabolisme",
+      "centre salut endocrinologia",
+      "endocrinòleg gratis",
+      "consulta endocrinòleg",
+      "suport diabetis",
+      "problemes hormonals"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Problèmes d'Endocrinologia? Soliguide vous aide à trouver des solutions",
+    "seoDescription": "Soliguide: trouba metge gratuït, suport endocrinòleg, centre de salut. Ajuda endocrinologia a prop teu! Accès facile et rapide."
+  },
+  {
+    "categoryId": "gastroenterology",
+    "label": "Gastroenterologia",
+    "slug": "gastro-enterologie",
+    "synonyms": [
+      "problemes digestius",
+      "malalties intestinals",
+      "dolor abdominal",
+      "inflamació gàstrica",
+      "trastorns digestius",
+      "còlon irritable",
+      "malaltia de Crohn",
+      "celiaquia",
+      "intolerància alimentària",
+      "gastroenteròleg",
+      "ajuda digestiva",
+      "suport gastroenterològic"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Problemes de Gastroenterologia? Soliguide us ajuda a trobar solucions",
+    "seoDescription": "Soliguide us troba: consulta gastroenterològica gratuïta, atenció especialitzada, suport nutricional. Atenció a prop teu per a la teva salut digestiva."
+  },
+  {
+    "categoryId": "gynecology",
+    "label": "Ginecologia",
+    "slug": "gynecologie",
+    "synonyms": [
+      "ginecologia gratuïta",
+      "salut femenina",
+      "planificació familiar",
+      "anticonceptius",
+      "revisions ginecològiques",
+      "centre de salut sexual",
+      "embaràs",
+      "part",
+      "avortament",
+      "menopausa",
+      "salut íntima",
+      "ginecòleg"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ginecologia accessible amb Soliguide: cuida't!",
+    "seoDescription": "Soliguide t'ajuda: consulta ginecològica gratuïta, centre de planificació familiar, accés a la contracepció. Troba suport en ginecologia a prop teu."
+  },
+  {
+    "categoryId": "kinesitherapy",
+    "label": "Fisioteràpia",
+    "slug": "kinesitherapie",
+    "synonyms": [
+      "fisio gratuïta",
+      "rehabilitació accessible",
+      "tractaments fisioterapèutics",
+      "cura física",
+      "teràpia manual",
+      "recuperació funcional",
+      "benestar físic",
+      "dolor crònic",
+      "lesions esportives",
+      "fisioteràpia solidària"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites fisioteràpia? Soliguide t'ajuda a trobar-la",
+    "seoDescription": "Soliguide et troba: fisioteràpia gratuïta, massatges terapèutics, rehabilitació. Accedeix a la fisioteràpia a prop teu i sense cita."
+  },
+  {
+    "categoryId": "mammography",
+    "label": "Mamografia",
+    "slug": "mammographie",
+    "synonyms": [
+      "mamografia gratuïta",
+      "detecció càncer mama",
+      "salut femenina gratuïta",
+      "ajuda mamografia",
+      "revisió pit gratuïta",
+      "centre salut mama",
+      "suport càncer mama",
+      "prevenció càncer mama",
+      "mamografia solidària",
+      "accés mamografia",
+      "revisió mamària",
+      "diagnòstic càncer"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Mamografia accessible? Soliguide t'ajuda a França",
+    "seoDescription": "Soliguide et troba: mamografies gratuïtes, centres de salut, suport psicològic. Accedeix a la salut sense costos a França."
+  },
+  {
+    "categoryId": "ophthalmology",
+    "label": "Oftalmologia",
+    "slug": "ophtalmologie",
+    "synonyms": [
+      "cura ulls",
+      "oftalmòleg gratuït",
+      "revisió de la vista",
+      "problemes oculars",
+      "ulleres barates",
+      "salut ocular",
+      "assistència oftalmològica",
+      "oftalmologia social",
+      "ajuda visual",
+      "visió",
+      "salut visual",
+      "oftalmòlegs"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Problemes de vista? Solucions d'oftalmologia amb Soliguide",
+    "seoDescription": "Soliguide us ajuda: revisions gratuïtes, ulleres a baix cost, cirurgia accessible. Trobeu centres d'oftalmologia a prop vostre!"
+  },
+  {
+    "categoryId": "otorhinolaryngology",
+    "label": "Otorrinolaringologia",
+    "slug": "oto-rhino-laryngologie",
+    "synonyms": [
+      "ORL solidari",
+      "problemes d'oïda",
+      "problemes de nas",
+      "problemes de gola",
+      "consulta ORL gratuïta",
+      "otorrino accessible",
+      "atenció auditiva",
+      "ajuda per l'oïda",
+      "ajuda pel nas",
+      "ajuda per la gola",
+      "especialista ORL",
+      "revisió ORL"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Problemes d'Otorrinolaringologia? Soliguide us ajuda a trobar solucions",
+    "seoDescription": "Soliguide troba a prop vostre: metge ORL solidari, consulta especialitzada, accés a audiòfons. Atenció sense costos elevats garantida."
+  },
+  {
+    "categoryId": "nutrition",
+    "label": "Nutrició",
+    "slug": "nutrition",
+    "synonyms": [
+      "menjar",
+      "alimentació",
+      "nutrició",
+      "menjar gratis",
+      "banc d'aliments",
+      "cuina solidària",
+      "ajuda alimentària",
+      "sopar",
+      "dinar",
+      "esmorzar",
+      "productes bàsics"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites nutrició? Soliguide t'ajuda a trobar solucions",
+    "seoDescription": "Soliguide et troba: menjar gratis, bancs d'aliments, cuines solidàries. Ajuda alimentària a prop teu."
+  },
+  {
+    "categoryId": "pedicure",
+    "label": "Pedicura",
+    "slug": "pedicure",
+    "synonyms": [
+      "cura dels peus",
+      "podologia social",
+      "atenció podològica gratis",
+      "peus sans",
+      "tall d'ungles solidari",
+      "podòleg solidari",
+      "ajuda peus",
+      "salut peus precaris",
+      "pedicura sense cost",
+      "tractament peus"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Pedicura amb Soliguide per cuidar els teus peus gratis",
+    "seoDescription": "Soliguide t'ajuda: podòleg solidari, cura de peus gratuïta, tall d'ungles. Troba ajuda a prop teu sense cita prèvia ni papers."
+  },
+  {
+    "categoryId": "phlebology",
+    "label": "Flebologia",
+    "slug": "phlebologie",
+    "synonyms": [
+      "Varices",
+      "Cames cansades",
+      "Problemes circulatoris",
+      "Venes inflades",
+      "Dolor de cames",
+      "Flebòleg",
+      "Atenció venosa",
+      "Consulta flebologia",
+      "Cura de cames",
+      "Tractament de varices"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Problemes de cames? Flebologia accessible amb Soliguide",
+    "seoDescription": "Soliguide us ajuda: metge gratuït, infermeria, cures a domicili. Solucions flebològiques accessibles a prop teu."
+  },
+  {
+    "categoryId": "pneumology",
+    "label": "Pneumologia",
+    "slug": "pneumologie",
+    "synonyms": [
+      "malalties respiratòries",
+      "dificultat per respirar",
+      "asma",
+      "bronquitis",
+      "EPOC",
+      "infecció pulmonar",
+      "pneumònia",
+      "ajuda respiratòria",
+      "oxigen",
+      "fisioteràpia respiratòria"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Problemes respiratoris? Soliguide us ajuda a trobar suport Pneumologia",
+    "seoDescription": "Soliguide troba: metge especialitzat, ajuda respiratòria, suport psicològic. Solucions a prop teu per a problemes Pneumologia."
+  },
+  {
+    "categoryId": "radiology",
+    "label": "Radiologia",
+    "slug": "radiologie",
+    "synonyms": [
+      "radiografia",
+      "ressonància magnètica",
+      "ecografia",
+      "scanner",
+      "imatge mèdica",
+      "centre radiològic",
+      "examen mèdic",
+      "diagnòstic",
+      "salut",
+      "assistència mèdica"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Besoin d'une radio ? Radiologia i Soliguide t'ajuden",
+    "seoDescription": "Soliguide et troba: radiografies gratuïtes, ressonàncies accessibles, centres d'imatge solidaris. Exàmens mèdics a prop teu sense problemes."
+  },
+  {
+    "categoryId": "rheumatology",
+    "label": "Reumatologia",
+    "slug": "rhumatologie",
+    "synonyms": [
+      "dolors articulars",
+      "artritis",
+      "artrosi",
+      "reuma",
+      "inflamació articular",
+      "tractament reumatologia",
+      "especialista reumatologia",
+      "consulta reumatològica",
+      "rehabilitació reumatològica",
+      "ajuda reumatologia"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Reumatologia: Solucions per a la teva salut a prop teu",
+    "seoDescription": "Soliguide et troba: metges especialistes, fisioteràpia accessible, suport psicològic. Atenció reumatològica a prop teu i sense costos elevats."
+  },
+  {
+    "categoryId": "urology",
+    "label": "Urologia",
+    "slug": "urologie",
+    "synonyms": [
+      "problemes urinaris",
+      "incontinència",
+      "infecció urinària",
+      "urgència urinària",
+      "dolor al orinar",
+      "hematúria",
+      "càncer de pròstata",
+      "cistitis",
+      "nefritis",
+      "uròleg solidari"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Problemes d'Urologia? Soliguide us ajuda a trobar solucions!",
+    "seoDescription": "Soliguide us connecta amb uròlegs, consultes gratuïtes i ajuda per a problemes d'incontinència prop de tu. Troba solucions urològiques ara!"
+  },
+  {
+    "categoryId": "speech_therapy",
+    "label": "Logopèdia",
+    "slug": "orthophonie",
+    "synonyms": [
+      "teràpia del llenguatge",
+      "reeducació de la parla",
+      "dificultats de comunicació",
+      "problemes de llenguatge",
+      "logopeda",
+      "trastorns de la parla",
+      "comunicació augmentativa",
+      "disfàgia",
+      "afàsia",
+      "tartamudesa"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Logopèdia: Soliguide t'ajuda a comunicar-te millor!",
+    "seoDescription": "Soliguide et troba: logopeda gratuït, acompanyament per a la parla, tallers de comunicació. Suport a prop teu! Troba ajuda ara."
+  },
+  {
+    "categoryId": "stomatology",
+    "label": "Estomatologia",
+    "slug": "stomatologie",
+    "synonyms": [
+      "odontologia",
+      "cura dental",
+      "salut bucal",
+      "dentista solidari",
+      "atenció odontològica gratuïta",
+      "problemes dentals",
+      "higiene bucal",
+      "càries"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Problemes d'estomatologia? Soliguide us ajuda a trobar solucions",
+    "seoDescription": "Soliguide: atenció dental gratuïta, odontòlegs solidaris, higiene bucal. Trobeu assistència en estomatologia a prop vostre."
+  },
+  {
+    "categoryId": "osteopathy",
+    "label": "Osteòpata",
+    "slug": "osteo",
+    "synonyms": [
+      "osteopatia",
+      "mal d'esquena",
+      "dolor muscular",
+      "teràpia manual",
+      "salut òssia",
+      "benestar físic",
+      "tractament del dolor",
+      "equilibri corporal",
+      "mobilitat",
+      "postura"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Mal d'esquena? Soliguide troba osteòpates que t'ajuden",
+    "seoDescription": "Soliguide et facilita: osteòpata assequible, massatges terapèutics, cures per a la teva esquena. Troba ajuda propera sense avançar diners."
+  },
+  {
+    "categoryId": "acupuncture",
+    "label": "Acupuntura",
+    "slug": "acupuncture",
+    "synonyms": [
+      "acupuntura social",
+      "acupuntura gratuïta",
+      "sessions d'acupuntura",
+      "tractament amb agulles",
+      "alleujament del dolor",
+      "medicina xinesa",
+      "benestar",
+      "teràpia alternativa",
+      "acupuntura per a pobres",
+      "acupuntura refugiats"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Alleuja el dolor amb acupuntura a Soliguide",
+    "seoDescription": "Soliguide t'ajuda a trobar acupuntura: alleuja el dolor, redueix l'estrès, millora el benestar. Troba sessions prop de tu!"
+  },
+  {
+    "categoryId": "training_and_jobs",
+    "label": "Formació i ocupació",
+    "slug": "formation-emploi",
+    "synonyms": [
+      "formació professional",
+      "cursos gratuïts",
+      "inserció laboral",
+      "orientació laboral",
+      "ajuda per trobar feina",
+      "tallers d'ocupació",
+      "entrevistes d'ocupació",
+      "currículum vitae",
+      "preparació laboral",
+      "habilitats professionals"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Formació i ocupació? Soliguide t'obre les portes a l'èxit!",
+    "seoDescription": "Soliguide et troba: cursos de formació, orientació laboral, ajuda per trobar feina. Troba suport a prop teu per a la formació i l'ocupació."
+  },
+  {
+    "categoryId": "digital_tools_training",
+    "label": "Taller de competències digitals",
+    "slug": "formation-numerique",
+    "synonyms": [
+      "Taller informàtica gratuït",
+      "Aprendre ordinador",
+      "Cursos digitals per a principiants",
+      "Ajuda informàtica",
+      "Formació digital bàsica",
+      "Competències digitals per a tothom",
+      "Suport informàtic",
+      "Alfabetització digital",
+      "Connectar-se a internet",
+      "Usar el mòbil fàcilment"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Taller de competències digitals amb Soliguide: aprèn i connecta't!",
+    "seoDescription": "Soliguide t'ajuda: aprèn a fer servir l'ordinador, internet, mòbil. Cursos i acompanyament digital prop teu. Troba un Taller de competències digitals!"
+  },
+  {
+    "categoryId": "french_course",
+    "label": "Curs de francès",
+    "slug": "formation-francais",
+    "synonyms": [
+      "aprendre francès",
+      "cursos de francès gratuïts",
+      "francès per a immigrants",
+      "francès per a refugiats",
+      "classes de francès per a principiants",
+      "francès com a llengua estrangera",
+      "alfabetització en francès",
+      "millorar el francès",
+      "curs d'idiomes",
+      "formació en francès",
+      "francès per a la integració",
+      "estudiar francès"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Curs de francès fàcil amb Soliguide",
+    "seoDescription": "Soliguide t'ajuda a aprendre francès: classes d'alfabetització, cursos d'ASL, formació FLE. Troba un curs a prop teu!"
+  },
+  {
+    "categoryId": "job_coaching",
+    "label": "Orientació i inserció laboral",
+    "slug": "accompagnement-emploi",
+    "synonyms": [
+      "buscar feina",
+      "ofertes de feina",
+      "curriculum vitae",
+      "entrevista de feina",
+      "formació professional",
+      "inserció laboral",
+      "orientació laboral",
+      "tornar a treballar",
+      "ajuda per trobar feina",
+      "suport per a l'ocupació"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Orientació i inserció laboral: Soliguide t'ajuda a trobar feina",
+    "seoDescription": "Soliguide t'ofereix: ajuda per fer currículums, preparació per entrevistes i cursos de formació. Troba suport a prop teu per a la teva inserció laboral."
+  },
+  {
+    "categoryId": "integration_through_economic_activity",
+    "label": "Formació ocupacional",
+    "slug": "insertion-activite-economique",
+    "synonyms": [
+      "Formació per a l'ocupació",
+      "Cursos d'inserció laboral",
+      "Programes d'inserció",
+      "Acompanyament a la feina",
+      "Tallers d'ocupació",
+      "Formació professionalitzadora",
+      "Inserció sociolaboral",
+      "Recerca de feina",
+      "Entrenament laboral",
+      "Capacitació professional"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Formació ocupacional amb Soliguide per trobar feina",
+    "seoDescription": "Soliguide t'ajuda: cursos de formació, pràctiques, acompanyament laboral. Troba oportunitats d'inserció prop teu. (150 chars)"
+  },
+  {
+    "categoryId": "hairdresser",
+    "label": "Perruqueria",
+    "slug": "coiffeur",
+    "synonyms": [
+      "Perruqueria social",
+      "Perruqueria gratuïta",
+      "Tall de cabells solidari",
+      "Cura del cabell precària",
+      "Higiene personal",
+      "Centre d'higiene",
+      "Dignitat",
+      "Benestar",
+      "Pentinat solidari",
+      "Cura personal",
+      "Cabell"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites una perruqueria? Soliguide t'ajuda a trobar-la",
+    "seoDescription": "Soliguide et troba: tall de cabell gratis, perruqueria solidària, classes de pentinat. Troba perruqueries a prop teu!"
+  },
+  {
+    "categoryId": "legal_protection",
+    "label": "Protecció jurídica",
+    "slug": "protection-juridique",
+    "synonyms": [
+      "assistència jurídica",
+      "ajuda legal",
+      "defensa jurídica",
+      "assessorament legal gratuït",
+      "advocat gratuït",
+      "drets legals",
+      "informació jurídica",
+      "suport legal",
+      "protecció dels drets"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites Protecció Jurídica? Soliguide t'ajuda!",
+    "seoDescription": "Soliguide et troba: assessorament legal gratuït, advocats especialitzats, ajuda jurídica d'urgència. Suport legal a prop teu."
+  },
+  {
+    "categoryId": "tutoring",
+    "label": "Suport escolar",
+    "slug": "soutien-scolaire",
+    "synonyms": [
+      "reforç escolar",
+      "classes de suport",
+      "ajuda amb els deures",
+      "deures assistits",
+      "tutoria escolar",
+      "classes particulars gratis",
+      "suport educatiu",
+      "ajuda escolar"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites Suport Escolar? Soliguide t'ajuda!",
+    "seoDescription": "Soliguide t'ofereix: deures assistits, classes particulars gratuïtes, reforç escolar. Troba suport escolar a prop teu ara mateix!"
+  },
+  {
+    "categoryId": "hygiene_and_wellness",
+    "label": "Higiene i benestar",
+    "slug": "hygiene",
+    "synonyms": [
+      "Higiene personal",
+      "Dutxa gratis",
+      "Bugaderia solidària",
+      "Productes d'higiene",
+      "Benestar social",
+      "Ajuda higiene",
+      "Neteja roba",
+      "Higiene precària",
+      "Serveis socials higiene",
+      "Centre d'higiene"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites ajuda amb la higiene i el benestar? Soliguide et dona un cop de mà",
+    "seoDescription": "Soliguide et troba prop teu dutxes gratuïtes, bugaderies solidàries, kits d'higiene. Troba serveis d'higiene i benestar accessibles fàcilment."
+  },
+  {
+    "categoryId": "shower",
+    "label": "Dutxa",
+    "slug": "douche",
+    "synonyms": [
+      "Dutxes gratis",
+      "On dutxar-se gratis",
+      "Higiene personal",
+      "Banys socials",
+      "Llocs per dutxar-se",
+      "Dutxes per a persones sense sostre",
+      "Dutxes solidàries",
+      "Accés a dutxes"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites Dutxa? Soliguide t'ajuda a trobar llocs per dutxar-te",
+    "seoDescription": "Soliguide t'indica on dutxar-te a prop: dutxes públiques, centres d'acollida amb dutxa, associacions. Troba aigua calenta i sabó gratuïtament!"
+  },
+  {
+    "categoryId": "laundry",
+    "label": "Bugaderia",
+    "slug": "laverie",
+    "synonyms": [
+      "rentadora social",
+      "llavatgeria solidària",
+      "bugaderia autoservei",
+      "rentar roba gratis",
+      "rentar roba barat",
+      "preu bugaderia",
+      "on rentar roba",
+      "bugaderia assequible",
+      "rentadora comunitària",
+      "ajuda rentar roba"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Bugaderia accessible fàcilment amb Soliguide",
+    "seoDescription": "Soliguide et troba: bugaderia social, rentadora a preu baix, assecadora solidària. Roba neta a prop teu amb Soliguide!"
+  },
+  {
+    "categoryId": "wellness",
+    "label": "Benestar",
+    "slug": "bien-etre",
+    "synonyms": [
+      "benestar social",
+      "cura personal",
+      "teràpies alternatives",
+      "atenció social",
+      "ajuda emocional",
+      "alleujament estrès",
+      "salut comunitària",
+      "suport benestar",
+      "benestar emocional",
+      "actuació social"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Benestar amb Soliguide: cuida't gratis i a prop teu",
+    "seoDescription": "Soliguide et troba: perruqueria solidària, massatges benestar, classes de ioga. Benestar accessible a tothom, a prop teu."
+  },
+  {
+    "categoryId": "toilets",
+    "label": "Lavabos",
+    "slug": "toilettes",
+    "synonyms": [
+      "lavabos públics",
+      "vàters gratuïts",
+      "dutxes públiques",
+      "sanitaris públics",
+      "higiene personal",
+      "neteja",
+      "bany",
+      "serveis públics",
+      "lavabos per a tothom",
+      "aigua i sabó"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Lavabos accessibles à Barcelone ? Soliguide vous aide",
+    "seoDescription": "Soliguide troba: lavabos públics, dutxes solidàries, consignes gratuïtes. Accedeix a la higiene a prop teu."
+  },
+  {
+    "categoryId": "hygiene_products",
+    "label": "Productes d'higiene",
+    "slug": "produits-hygiene",
+    "synonyms": [
+      "higiene personal",
+      "productes bàsics",
+      "neteja",
+      "cura personal",
+      "sabó",
+      "xampú",
+      "dentifrici",
+      "compreses",
+      "tampons",
+      "articles d'higiene",
+      "kits d'higiene",
+      "neteja corporal"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites productes d'higiene? Soliguide t'ajuda!",
+    "seoDescription": "Soliguide et troba: sabó, pasta de dents, compreses, prop teu. Troba productes d'higiene gratuits o a baix cost a prop teu."
+  },
+  {
+    "categoryId": "face_masks",
+    "label": "Mascaretes",
+    "slug": "masques",
+    "synonyms": [
+      "mascaretes gratuïtes",
+      "distribució mascaretes",
+      "punts de recollida mascaretes",
+      "protecció Covid",
+      "mascaretes solidàries",
+      "obtenir mascaretes gratis",
+      "mascaretes protecció",
+      "ajuda mascaretes",
+      "mascaretes sense cost",
+      "mascaretes per a persones vulnerables"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Mascaretes gratuïtes amb Soliguide, protegeix-te!",
+    "seoDescription": "Soliguide t'ajuda: obtén mascaretes gratis, troba punts de distribució propers, protegeix la teva salut. Informació localitzada fàcil!"
+  },
+  {
+    "categoryId": "counseling",
+    "label": "Orientació",
+    "slug": "conseil",
+    "synonyms": [
+      "Orientació social",
+      "Acompanyament social",
+      "Ajudes socials",
+      "Informació drets",
+      "Tràmits administratius",
+      "Serveis socials",
+      "Suport social",
+      "Guia social",
+      "Ajudes precàries",
+      "Ajudes refugiats"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites Orientació? Soliguide t'ajuda a trobar solucions",
+    "seoDescription": "Soliguide et troba: informació, acompanyament social, ajuda amb els tràmits. Orienta't i troba suport a prop teu!"
+  },
+  {
+    "categoryId": "legal_advice",
+    "label": "Assessorament jurídic",
+    "slug": "permanence-juridique",
+    "synonyms": [
+      "assistència jurídica",
+      "ajuda legal",
+      "drets",
+      "suport jurídic",
+      "defensa jurídica",
+      "assessoria legal gratuïta",
+      "consulta jurídica",
+      "orientació legal",
+      "ajuda per problemes legals",
+      "tramitació jurídica"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites assessorament jurídic? Soliguide t'ajuda",
+    "seoDescription": "Soliguide t'ajuda: consell legal gratuït, ajuda amb deutes, suport per sol·licituds d'asil. Troba assessorament jurídic a prop teu."
+  },
+  {
+    "categoryId": "domiciliation",
+    "label": "Domiciliació",
+    "slug": "domiciliation",
+    "synonyms": [
+      "Adreça postal",
+      "Adreça administrativa",
+      "Domiciliació",
+      "Rebre correu",
+      "Justificant d'adreça",
+      "Punt de contacte",
+      "Tràmits administratius",
+      "Avoir une adresse"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Domiciliació amb Soliguide: Tingues una adreça per als teus drets",
+    "seoDescription": "Soliguide t'ajuda a tenir una adreça! Domiciliació per rebre correu, fer tràmits o tenir un punt de contacte. Troba centres a prop teu!"
+  },
+  {
+    "categoryId": "social_accompaniment",
+    "label": "Servei d'atenció i orientació social",
+    "slug": "accompagnement-social",
+    "synonyms": [
+      "ajuda social",
+      "serveis socials",
+      "assistència social",
+      "orientació social",
+      "suport social",
+      "acompanyament social",
+      "reintegració social",
+      "treball social",
+      "assistent social",
+      "permanència social",
+      "SAOS"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites ajuda social? Soliguide et guia per trobar solucions",
+    "seoDescription": "Soliguide et dona suport: assistents socials, orientació personalitzada, suport en tràmits. Troba el Servei d'Atenció i Orientació Social a prop teu!"
+  },
+  {
+    "categoryId": "public_writer",
+    "label": "Escrivent",
+    "slug": "ecrivain-public",
+    "synonyms": [
+      "ajuda tràmits administratius",
+      "redacció de documents",
+      "assessorament administratiu",
+      "suport paperassa",
+      "escriure cartes oficials",
+      "omplir formularis",
+      "ajuda amb administració",
+      "escrivent públic",
+      "assistent administratiu",
+      "redacció courrier",
+      "ajuda formalitats",
+      "suport documents"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Escrivent Soliguide: T'ajudem amb els teus documents!",
+    "seoDescription": "Soliguide t'ajuda amb Escrivent: carta a la Seguretat Social, formulari CAF, sol·licitud d'ajudes. Troba suport a prop teu!"
+  },
+  {
+    "categoryId": "disability_advice",
+    "label": "Suport a persones amb discapacitat",
+    "slug": "conseil-handicap",
+    "synonyms": [
+      "Ajuda discapacitat",
+      "Drets persones discapacitades",
+      "Suport persones amb discapacitat",
+      "Assistència discapacitat",
+      "Recursos discapacitat",
+      "Incapacitat",
+      "Dependència",
+      "Adaptació handicap",
+      "Llei dependència",
+      "Servei per a discapacitats",
+      "Centre de recursos discapacitat",
+      "Orientació discapacitat"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites Suport a persones amb discapacitat? Soliguide t'ajuda",
+    "seoDescription": "Soliguide t'ofereix suport: informació sobre drets, accés a ajudes tècniques, orientació laboral adaptada. Troba serveis a prop teu per Suport a persones amb discapacitat."
+  },
+  {
+    "categoryId": "administrative_assistance",
+    "label": "Assessorament administratiu",
+    "slug": "conseil-administratif",
+    "synonyms": [
+      "Ajuda administrativa",
+      "Tràmits socials",
+      "Acompanyament administratiu",
+      "Assessorament social",
+      "Ajuda RSA",
+      "Ajuda CMU",
+      "Acompanyament per atur",
+      "Tràmits per prestacions socials",
+      "Suport administratiu",
+      "Guia tràmits socials",
+      "Ajuda per formularis",
+      "Serveis administratius"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Assessorament administratiu fàcil amb Soliguide: Ajuda't!",
+    "seoDescription": "Soliguide t'ajuda: RSA, CMU, atur, etc. Troba ajuda administrativa a prop teu. Assessorament gratuït i personalitzat a la teva localitat."
+  },
+  {
+    "categoryId": "parent_assistance",
+    "label": "Assessorament familiar",
+    "slug": "conseil-parents",
+    "synonyms": [
+      "ajuda familiar",
+      "suport a la criança",
+      "mediació familiar",
+      "pares i fills",
+      "dificultats familiars",
+      "ajuda per a pares",
+      "consells per a la família",
+      "suport parental",
+      "educació infantil",
+      "orientació familiar"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Assessorament familiar: Soliguide us ajuda a criar els vostres fills",
+    "seoDescription": "Soliguide us troba: suport per a pares joves, consells davant problemes amb els fills, mediació familiar. A prop vostre i gratuït!"
+  },
+  {
+    "categoryId": "budget_advice",
+    "label": "Assessorament pressupostari",
+    "slug": "conseil-budget",
+    "synonyms": [
+      "Consell pressupostari",
+      "Ajuda pressupostària",
+      "Gestió de pressupost",
+      "Punts de Consell Pressupostari",
+      "PCB",
+      "Assessorament de deutes",
+      "Planificació financera",
+      "Educació financera",
+      "Suport econòmic",
+      "Guia pressupostària"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites ajuda per al teu pressupost? Soliguide t'ajuda",
+    "seoDescription": "Soliguide t'ajuda amb l'Assessorament pressupostari: consells, gestió de deutes, planificació. Troba solucions a prop teu!"
+  },
+  {
+    "categoryId": "technology",
+    "label": "Tecnologia",
+    "slug": "technologie",
+    "synonyms": [
+      "Informàtica solidària",
+      "Accés digital",
+      "Alfabetització digital",
+      "Eines tecnològiques",
+      "Suport tecnològic",
+      "Centre d'accés a Internet",
+      "Formació digital",
+      "Ajuda informàtica",
+      "Tecnologia assistencial",
+      "Connectivitat precària"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Tecnologia per a tothom amb Soliguide",
+    "seoDescription": "Soliguide t'ajuda: accés a ordinadors, tallers digitals, connexió Wi-Fi. Tecnologia accessible a prop teu."
+  },
+  {
+    "categoryId": "computers_at_your_disposal",
+    "label": "Ordinadors de lliure accés",
+    "slug": "ordinateur",
+    "synonyms": [
+      "Ordinadors gratuïts",
+      "Accés a internet gratis",
+      "Ciberespai públic",
+      "Punt digital",
+      "Sala d'informàtica lliure",
+      "Accés a ordinadors públics",
+      "Ordinadors per a tothom",
+      "Internet sense cost"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Ordinadors de lliure accés: troba un ordinador gratuït amb Soliguide",
+    "seoDescription": "Soliguide t'ajuda: ordinadors per buscar feina, fer tràmits, comunicar-te. Troba ordinadors de lliure accés a prop teu i connecta't!"
+  },
+  {
+    "categoryId": "wifi",
+    "label": "Wifi gratuït",
+    "slug": "wifi",
+    "synonyms": [
+      "Wifi lliure",
+      "Internet gratis",
+      "Punt wifi",
+      "Connexió wifi",
+      "Accés internet",
+      "Xarxa wifi pública",
+      "Zones wifi",
+      "Cercador wifi"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Wifi gratuït: connectez-vous gratuitement grâce à Soliguide",
+    "seoDescription": "Soliguide us ajuda a trobar wifi gratuït, ordinadors en accés lliure i cursos d'informàtica. Connecteu-vos a prop vostre!"
+  },
+  {
+    "categoryId": "electrical_outlets_available",
+    "label": "Càrrega de dispositius",
+    "slug": "prise",
+    "synonyms": [
+      "Carregar mòbil gratis",
+      "Endolls lliures",
+      "Punts de càrrega oberts",
+      "Carrega fàcil mòbil",
+      "Bateries gratis",
+      "Electricitat gratuïta",
+      "Carregar dispositius",
+      "On carregar el telèfon"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites carregar el mòbil? Soliguide t'ajuda a trobar punts de càrrega",
+    "seoDescription": "Soliguide et permet carregar el mòbil gratis, connectar tauletes i dispositius. Troba punts de càrrega accessibles a prop teu! Ajuda essencial per tu."
+  },
+  {
+    "categoryId": "telephone_at_your_disposal",
+    "label": "Telèfon",
+    "slug": "telephone",
+    "synonyms": [
+      "Telèfon gratuït",
+      "Telèfon públic",
+      "Telèfon d'assistència",
+      "Accés telefònic",
+      "Cabina telefònica",
+      "Comunicació accessible",
+      "Trucada gratuïta",
+      "Telèfon social",
+      "Punt telefònic",
+      "Telèfon solidari"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites Telèfon? Soliguide et troba ajuda!",
+    "seoDescription": "Soliguide et connecta amb telèfons accessibles, serveis d'emergència i informació crucial. Troba ajuda a prop teu per contactar els serveis necessaris."
+  },
+  {
+    "categoryId": "digital_safe",
+    "label": "Caixa forta digital",
+    "slug": "numerisation",
+    "synonyms": [
+      "cofre digital",
+      "guardar documents",
+      "documentació en línia",
+      "núvol solidari",
+      "emmagatzematge segur",
+      "documents sense sostre",
+      "digitalització",
+      "reconnect"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Caixa forta digital a Soliguide: guarda els teus documents segurs",
+    "seoDescription": "Soliguide t'ajuda amb Caixa forta digital: guarda documents, comparteix-los fàcilment i accedeix-hi sempre. Troba ajuda a prop teu!"
+  },
+  {
+    "categoryId": "food",
+    "label": "Alimentació",
+    "slug": "alimentation-bouffe-boufe-manger-soupe-repas-aliment-manger-mange-repa-faim-diner-dejeuner-dejeunet-dine-se-nourrir-fin-portage-portage-de-repas-aide-alimentaire-comida-comer-resto-du-coeur",
+    "synonyms": [
+      "ajuda alimentària",
+      "menjar gratis",
+      "bancs d'aliments",
+      "menjadors socials",
+      "distribució aliments",
+      "alimentació solidària",
+      "cuina solidària",
+      "cistelles aliments",
+      "on menjar gratis",
+      "emergència alimentària",
+      "aliments urgents",
+      "ajuda per menjar"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites Alimentació? Soliguide t'ajuda a trobar solucions",
+    "seoDescription": "Soliguide t'ajuda: bancs d'aliments, menjadors socials, paquets alimentaris. Troba ajuda alimentària a prop teu!"
+  },
+  {
+    "categoryId": "food_distribution",
+    "label": "Menjador social",
+    "slug": "distribution-repas",
+    "synonyms": [
+      "Menjar solidari",
+      "Refugi alimentari",
+      "Distribució gratuïta d'aliments",
+      "Menjar per necessitats",
+      "Ajuda alimentària",
+      "Banc d'aliments",
+      "Sopa popular",
+      "Menjador comunitari",
+      "Servei d'alimentació social",
+      "Aliments per a persones sense recursos"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Menjadors socials a prop teu amb Soliguide: Menjar per a tothom",
+    "seoDescription": "Soliguide t'ajuda a trobar: menjadors socials, distribució d'aliments, aliments gratuïts. Accedeix a menjar a prop teu, fàcilment."
+  },
+  {
+    "categoryId": "food_packages",
+    "label": "Banc d'aliments",
+    "slug": "colis-alimentaire",
+    "synonyms": [
+      "Menjar gratis",
+      "Ajuda alimentària",
+      "Paquets d'aliments",
+      "Banc d'aliments urgència",
+      "Menjador social",
+      "Aliments sense cost",
+      "On menjar gratis",
+      "Ajuda per menjar",
+      "Aliments solidaris",
+      "Distribució aliments"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites menjar? Soliguide et troba un Banc d'Aliments",
+    "seoDescription": "Soliguide t'ajuda: accés a aliments gratis, paquets d'aliments, menjadors socials. Troba ajuda alimentària prop teu."
+  },
+  {
+    "categoryId": "social_grocery_stores",
+    "label": "Botiga solidària d'aliments",
+    "slug": "epicerie-sociale-solidaire",
+    "synonyms": [
+      "Banc d'aliments",
+      "Menjar solidari",
+      "Aliments gratis",
+      "Ajuda alimentària",
+      "Cistella solidària",
+      "Distribució aliments",
+      "Menjador social",
+      "Economat social",
+      "Queviures solidaris",
+      "Aliments a baix cost"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites aliments? Soliguide et troba Botigues solidàries",
+    "seoDescription": "Soliguide t'ajuda: botiga solidària d'aliments, cuina comunitària, repartiment menjar. Troba ajuda alimentària a prop teu."
+  },
+  {
+    "categoryId": "fountain",
+    "label": "Font d'aigua",
+    "slug": "fontaine",
+    "synonyms": [
+      "Aigua potable gratuïta",
+      "Font pública",
+      "Aigua gratis",
+      "On beure aigua",
+      "Recursos hídrics",
+      "Aigua solidària",
+      "Punts d'aigua",
+      "Abastament d'aigua",
+      "Llocs per beure aigua",
+      "Aigua lliure accés"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Font d'aigua: Soliguide us ajuda a trobar aigua potable gratuïta",
+    "seoDescription": "Soliguide us troba: Font d'aigua, dutxes públiques, lavabos. Aigua potable i higiene accessible a prop vostre."
+  },
+  {
+    "categoryId": "solidarity_fridge",
+    "label": "Nevera solidària",
+    "slug": "frigo-solidaire",
+    "synonyms": [
+      "Nevera comunitària",
+      "Menjar gratis",
+      "Ajuda alimentària",
+      "Banc d'aliments",
+      "Menjador social",
+      "Aliments solidaris",
+      "Recursos alimentaris",
+      "On menjar gratis"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Nevera Solidària a prop teu? Soliguide t'ajuda",
+    "seoDescription": "Soliguide t'ensenya: nevera solidària, aliments gratis, menjadors socials. Troba ajuda alimentària a prop teu!"
+  },
+  {
+    "categoryId": "shared_kitchen",
+    "label": "Cuina comunitària",
+    "slug": "cuisine-partagee",
+    "synonyms": [
+      "Cuina compartida",
+      "Menjador social",
+      "Cuina solidària",
+      "Espai de cuina comunitària",
+      "Taller de cuina social",
+      "Àpats comunitaris",
+      "Cuinar junts",
+      "Menjar en grup",
+      "Ajuda alimentària",
+      "Menjar a baix cost"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Cuina comunitària: Soliguide us ajuda a menjar junts",
+    "seoDescription": "Soliguide us mostra: cuina col·lectiva, menjador social, tallers de cuina. Trobeu llocs per compartir un àpat a prop vostre."
+  },
+  {
+    "categoryId": "cooking_workshop",
+    "label": "Taller de cuina",
+    "slug": "atelier-cuisine",
+    "synonyms": [
+      "Cuina solidària",
+      "Aprenent a cuinar",
+      "Menjar barat",
+      "Taller d'aliments",
+      "Receptes fàcils",
+      "Cuinar junts",
+      "Ajuda alimentària",
+      "Curs de cuina econòmic",
+      "Cuina per a tothom",
+      "Nutrició accessible"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Taller de cuina? Soliguide us ajuda a cuinar!",
+    "seoDescription": "Soliguide us guia: classes de cuina gratuïtes, menjars compartits, tallers de nutrició. Trobeu ajuda a prop vostre!"
+  },
+  {
+    "categoryId": "baby_parcel",
+    "label": "Cistell per a nadons",
+    "slug": "colis-bebe",
+    "synonyms": [
+      "Cistell maternitat",
+      "Ajuda nadons",
+      "Suport bebès",
+      "Articles primera infància",
+      "Kit nadó",
+      "Recursos nadons",
+      "Paquet nadó",
+      "Assistencia nadons",
+      "Bolquers gratuits",
+      "Roba nadó gratis"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites un cistell per a nadons? Soliguide t'ajuda",
+    "seoDescription": "Soliguide et troba: bolquers, roba per a nadons, aliments infantils. Ajuda per al teu nadó a prop teu amb Soliguide."
+  },
+  {
+    "categoryId": "food_voucher",
+    "label": "Val / xec alimentari",
+    "slug": "bon-alimentaire",
+    "synonyms": [
+      "val alimentari",
+      "xec aliment",
+      "ajuda alimentària",
+      "cupons alimentaris",
+      "menjar gratis",
+      "aliments solidaris",
+      "recursos alimentaris",
+      "assistència alimentària",
+      "targeta alimentària",
+      "tiquet alimentari"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites val / xec alimentari? Soliguide t'ajuda",
+    "seoDescription": "Soliguide et troba: supermercats socials, menjadors populars, distribució d'aliments. Val / xec alimentari a prop teu per cobrir les teves necessitats bàsiques."
+  },
+  {
+    "categoryId": "community_garden",
+    "label": "Hort comunitari",
+    "slug": "jardin-solidaire",
+    "synonyms": [
+      "Hort social",
+      "Jardí comunitari",
+      "Espai de cultiu col·lectiu",
+      "Hort urbà",
+      "Hort terapèutic",
+      "Jardí solidari",
+      "Cultiu social",
+      "Hort compartit",
+      "Hort ecològic",
+      "Jardí urbà"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Cultiveu un futur millor! Hort comunitari a prop teu amb Soliguide",
+    "seoDescription": "Soliguide t'ajuda: aprèn a conrear, menja sa i fes amics a l'hort comunitari! Troba l'hort més proper i participa.  Jardins solidaris per a tothom!"
+  },
+  {
+    "categoryId": "welcome",
+    "label": "Acollida",
+    "slug": "accueil",
+    "synonyms": [
+      "ajuda social",
+      "acollida d'emergència",
+      "suport social",
+      "orientació",
+      "assistència social",
+      "recursos socials",
+      "acompanyament",
+      "inserció social",
+      "ajuda per a refugiats",
+      "ajuda per a persones sense llar"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites Acollida? Soliguide t'ajuda a trobar suport!",
+    "seoDescription": "Soliguide t'ofereix: orientació social, ajuda amb tràmits, acompanyament personalitzat. Troba centres d'acollida prop teu!"
+  },
+  {
+    "categoryId": "day_hosting",
+    "label": "Centre d'atenció diürna",
+    "slug": "accueil-jour",
+    "synonyms": [
+      "Centre obert",
+      "Refugi diürn",
+      "Espai d'acollida diürna",
+      "Lloc de descans",
+      "Acolliment de dia",
+      "Suport diürn",
+      "Ajuda diürna",
+      "Oasi urbà",
+      "Centre social de dia",
+      "Lloc segur"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Centre d'atenció diürna: Soliguide us acompanya",
+    "seoDescription": "Soliguide us ajuda: espai per descansar, dutxes, menjar calent. Trobeu un Centre d'atenció diürna a prop vostre ara mateix!"
+  },
+  {
+    "categoryId": "rest_area",
+    "label": "Àrea de descans",
+    "slug": "espace-repos",
+    "synonyms": [
+      "lloc per descansar",
+      "espai de repòs",
+      "refugi diürn",
+      "lloc tranquil",
+      "dutxa gratuïta",
+      "recàrrega mòbil",
+      "zona de descans",
+      "oasi urbà",
+      "descans diürn",
+      "refugi urbà"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Àrea de descans a prop teu amb Soliguide: troba un lloc per descansar",
+    "seoDescription": "Soliguide t'ajuda: llocs per dutxar-te, espais tranquils, punts de recàrrega de mòbil. Troba un àrea de descans a prop teu!"
+  },
+  {
+    "categoryId": "babysitting",
+    "label": "Servei de canguratge",
+    "slug": "garde-enfants",
+    "synonyms": [
+      "Cangurs",
+      "Canguratge",
+      "Niñera",
+      "Cura de nens",
+      "Ajudes per a pares",
+      "Suport familiar",
+      "Guarderia ocasional",
+      "Cangur a domicili",
+      "Cangur d'urgència",
+      "Servei de cura infantil"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites cangur? Soliguide t'ajuda a trobar servei de canguratge",
+    "seoDescription": "Soliguide et troba: cangur ocasional, cangur d'urgència, ajuda per a pares sols. Troba un servei de canguratge a prop teu!"
+  },
+  {
+    "categoryId": "family_area",
+    "label": "Espai familiar",
+    "slug": "espace-famille",
+    "synonyms": [
+      "Lloc d'acollida familiar",
+      "Suport a la criança",
+      "Orientació familiar",
+      "Espai de joc familiar",
+      "Acompanyament familiar",
+      "Centre familiar",
+      "Recursos per a famílies",
+      "Ajuda a la família",
+      "Suport a la criança"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites ajuda familiar? Soliguide et troba un Espai familiar",
+    "seoDescription": "Soliguide t'ajuda: espai per a jugar, suport parental, orientació familiar. Troba un Espai familiar a prop teu!"
+  },
+  {
+    "categoryId": "information_point",
+    "label": "Servei d'informació i orientació",
+    "slug": "point-information",
+    "synonyms": ["point information point d information information ukraine"],
+    "type": "CATEGORY",
+    "seoTitle": "",
+    "seoDescription": "Point d'information"
+  },
+  {
+    "categoryId": "activities",
+    "label": "Activitats",
+    "slug": "activites",
+    "synonyms": [
+      "ajuda social",
+      "suport social",
+      "serveis socials",
+      "assistència social",
+      "acció social",
+      "recursos socials",
+      "acompanyament social",
+      "ajuda comunitària",
+      "entitats socials",
+      "organitzacions socials"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites ajuda social? Activitats a Soliguide per a tu",
+    "seoDescription": "Soliguide et troba: menjador social, ajuda amb tràmits, classes de català. Suport a prop teu, gratis o a baix cost."
+  },
+  {
+    "categoryId": "sport_activities",
+    "label": "Activitats esportives",
+    "slug": "activites-sportives",
+    "synonyms": [
+      "Esport gratuït",
+      "Activitats físiques solidàries",
+      "Classes d'esport gratis",
+      "Futbol solidari",
+      "Senderisme accessible",
+      "Moure's sense pagar",
+      "Benestar físic",
+      "Esport per a tothom",
+      "Activitats esportives",
+      "Esport per a persones en situació de precarietat"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Fes esport sense pagar amb Soliguide! Activitats esportives a prop teu",
+    "seoDescription": "Soliguide t'ajuda! Troba classes de zumba gratuïtes, partits de futbol solidaris i sortides de senderisme. Activitats esportives accessibles a prop teu."
+  },
+  {
+    "categoryId": "museums",
+    "label": "Museu",
+    "slug": "musee",
+    "synonyms": [
+      "museu gratis",
+      "entrada lliure museu",
+      "activitats culturals gratuïtes",
+      "cultura sense cost",
+      "museus socials",
+      "art accessible",
+      "museu per a tothom",
+      "visites culturals gratis",
+      "museus solidaris",
+      "oci gratuit"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Museu gratuït amb Soliguide: cultura accessible a tothom",
+    "seoDescription": "Soliguide et troba: museus gratuïts, visites guiades accessibles, tallers creatius. Gaudeix de la cultura sense preocupar-te pel preu."
+  },
+  {
+    "categoryId": "libraries",
+    "label": "Biblioteca",
+    "slug": "bibliotheque",
+    "synonyms": [
+      "biblioteca pública",
+      "llibres gratis",
+      "lectura gratuïta",
+      "ordinadors disponibles",
+      "accés a internet",
+      "llibres solidaris",
+      "revistes gratuïtes",
+      "espai de lectura",
+      "cultura per a tothom",
+      "biblioteca social",
+      "aprendre gratis"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Envie de lire ? Biblioteca et Soliguide vous ouvrent les portes",
+    "seoDescription": "Soliguide vous guide : accès gratuit aux livres, revues, ordinateurs. Biblioteca près de vous pour lire, apprendre, vous cultiver."
+  },
+  {
+    "categoryId": "other_activities",
+    "label": "Activitats diverses",
+    "slug": "activites-diverses",
+    "synonyms": [
+      "tallers",
+      "activitats comunitàries",
+      "lleure",
+      "cursos",
+      "espais de socialització",
+      "animació sociocultural",
+      "activitats artístiques",
+      "esports",
+      "clubs",
+      "grups de suport"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Activitats diverses amb Soliguide: troba suport i diversió",
+    "seoDescription": "Soliguide t'ajuda a trobar: tallers creatius, activitats esportives, espais de trobada. Participa i connecta amb altres persones prop de tu!"
+  },
+  {
+    "categoryId": "equipment",
+    "label": "Material",
+    "slug": "materiel",
+    "synonyms": [
+      "aide matérielle",
+      "vêtements gratuits",
+      "kits hygiène",
+      "couverture de survie",
+      "dons matériels",
+      "objets de première nécessité",
+      "distribution gratuite",
+      "aide d'urgence"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Besoin de Material? Soliguide vous aide à trouver l'essentiel",
+    "seoDescription": "Soliguide: vêtements gratuits, kits d'hygiène, couvertures. Trouvez l'aide Material près de vous. Accès facile, infos claires et à jour."
+  },
+  {
+    "categoryId": "luggage_storage",
+    "label": "Consigna",
+    "slug": "bagagerie",
+    "synonyms": [
+      "guarda-roba",
+      "dipòsit d'equipatge",
+      "armariet",
+      "consigna d'objectes",
+      "lloc per guardar coses",
+      "emmagatzematge temporal",
+      "espai de guarda",
+      "servei de consigna",
+      "consigna gratuïta",
+      "consigna social"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Consigna segura amb Soliguide: allibera't de les teves coses!",
+    "seoDescription": "Soliguide t'ajuda: guarda roba, papers importants o objectes personals. Troba una Consigna a prop teu amb Soliguide per viure més lleuger!"
+  },
+  {
+    "categoryId": "solidarity_store",
+    "label": "Botiga solidària",
+    "slug": "boutique-solidaire",
+    "synonyms": [
+      "Roba solidària",
+      "Botiga de segona mà",
+      "Roba barata",
+      "Roba a preus reduïts",
+      "Ajuda per a la roba",
+      "Donació de roba",
+      "Roba per a persones vulnerables",
+      "Roba per a famílies necessitades",
+      "On comprar roba barata",
+      "Botiga social de roba"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Botiga solidària: Soliguide us ajuda a vestir-vos a preus baixos",
+    "seoDescription": "Soliguide us localitza: roba per a tota la família a preus accessibles, sabates resistents, productes d'higiene. Trobareu el que necessiteu a prop vostre!"
+  },
+  {
+    "categoryId": "clothing",
+    "label": "Rober",
+    "slug": "vetements",
+    "synonyms": [
+      "roba gratis",
+      "roba barata",
+      "donació roba",
+      "botiga solidària",
+      "vals roba",
+      "ajuda roba",
+      "Rober",
+      "vestimenta solidària",
+      "roba social",
+      "armari solidari"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites roba? Soliguide t'ajuda a trobar Rober!",
+    "seoDescription": "Soliguide et troba roba gratis o a preu baix: botigues solidàries, donacions de roba, vals Rober. Troba Rober a prop teu!"
+  },
+  {
+    "categoryId": "animal_assitance",
+    "label": "Animals",
+    "slug": "animaux",
+    "synonyms": ["animaux animals chien chat croquettes animal"],
+    "type": "CATEGORY",
+    "seoTitle": "",
+    "seoDescription": "Aide aux animaux de compagnie"
+  },
+  {
+    "categoryId": "mobility",
+    "label": "Transport / Mobilitat",
+    "slug": "transport-mobilite",
+    "synonyms": [
+      "transports gratuits",
+      "aide mobilité",
+      "déplacement solidaire",
+      "titres de transport",
+      "forfait transport",
+      "bons de transport",
+      "covoiturage solidaire",
+      "location de vélos",
+      "tarifs réduits transport",
+      "ajuts transport",
+      "mobilitat solidària",
+      "bitllets de transport"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Besoin de vous déplacer ? Soliguide vous aide avec Transport / Mobilitat",
+    "seoDescription": "Soliguide vous aide : tickets de bus gratuits, vélos solidaires, covoiturage. Trouvez des solutions de Transport / Mobilitat près de chez vous !"
+  },
+  {
+    "categoryId": "carpooling",
+    "label": "Vehicle compartit",
+    "slug": "covoiturage",
+    "synonyms": [
+      "Compartir cotxe",
+      "Transport solidari",
+      "Mobilitat social",
+      "Desplaçaments barats",
+      "Ajudes transport",
+      "Cotxe compartit gratis",
+      "Viatjar sense diners",
+      "Anar sense cotxe",
+      "Alternatives al cotxe",
+      "Transport accessible"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Vehicle compartit amb Soliguide: desplaça't sense problemes!",
+    "seoDescription": "Soliguide t'ajuda: troba transport públic, cotxe compartit, bicicletes. Movilitza't gratis o a baix cost a prop teu."
+  },
+  {
+    "categoryId": "provision_of_vehicles",
+    "label": "Provisió de vehicles",
+    "slug": "vehicule",
+    "synonyms": [
+      "Vehicle adaptat",
+      "Ajuts transport",
+      "Lloguer social vehicle",
+      "Cotxe solidari",
+      "Mobilitat reduïda",
+      "Desplaçaments precàries",
+      "Accés al vehicle",
+      "Ajudes al vehicle",
+      "Cotxe per a tothom",
+      "Vehicle accessible"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites un vehicle? Soliguide et pot ajudar",
+    "seoDescription": "Soliguide et dona un cop de mà: accés a vehicles adaptats, ajuts per al transport, lloguer de vehicles solidaris. Troba solucions a prop teu!"
+  },
+  {
+    "categoryId": "chauffeur_driven_transport",
+    "label": "Transport amb conductor/a",
+    "slug": "chauffeur",
+    "synonyms": [
+      "transport assistit",
+      "trasllat medicalitzat",
+      "acompanyament sanitari",
+      "servei de transport adaptat",
+      "taxi social",
+      "conductor acompanyant",
+      "transport per a persones amb mobilitat reduïda",
+      "trasllat sanitari no urgent",
+      "transport per a gent gran",
+      "ajuda al transport"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites transport amb conductor/a? Soliguide t'ajuda",
+    "seoDescription": "Soliguide et troba: transport sanitari, acompanyament a cites mèdiques, trasllat per gestions. Troba transport amb conductor/a a prop teu!"
+  },
+  {
+    "categoryId": "mobility_assistance",
+    "label": "Transport i assistència a la mobilitat",
+    "slug": "permis",
+    "synonyms": [
+      "Transport social",
+      "Assistència mobilitat",
+      "Ajudes desplaçament",
+      "Bitllets solidaris",
+      "Accés transport",
+      "Moure's fàcil",
+      "Mobilitat reduïda",
+      "Transport per a tothom",
+      "Acompanyament transports",
+      "Suport mobilitat"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Mobilitat i transport a Catalunya? Soliguide t'ajuda!",
+    "seoDescription": "Soliguide et troba: bitllets solidaris, acompanyament als transports, ajudes al desplaçament. Troba suport per moure't prop teu!"
+  },
+  {
+    "categoryId": "accomodation_and_housing",
+    "label": "Allotjament i habitatge",
+    "slug": "hebergement-et-logement",
+    "synonyms": [
+      "habitatge social",
+      "allotjament d'urgència",
+      "ajudes al lloguer",
+      "lloguer assequible",
+      "residència",
+      "centre d'acollida",
+      "allotjament temporal",
+      "reallotjament",
+      "habitatge protegit",
+      "domiciliació",
+      "sensellarisme",
+      "accés a l'habitatge"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites allotjament? Soliguide et troba solucions",
+    "seoDescription": "Soliguide t'ajuda amb allotjament d'emergència, habitatge social i ajudes al lloguer. Troba solucions a prop teu! Habitatge accessible ara."
+  },
+  {
+    "categoryId": "overnight_stop",
+    "label": "Refugi nocturn",
+    "slug": "halte-nuit",
+    "synonyms": [
+      "allotjament nocturn",
+      "refugi d'emergència",
+      "lloc per dormir",
+      "centre d'acollida nocturna",
+      "alberg temporal",
+      "nit al ras",
+      "pernocta",
+      "dormir al carrer",
+      "ajuda per indigents",
+      "sense sostre",
+      "emergència social",
+      "dormir"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites un refugi nocturn? Soliguide t'ajuda",
+    "seoDescription": "Soliguide et troba: un llit per passar la nit, dutxes i un lloc segur per descansar. Refugis nocturns prop de tu, sense cita prèvia."
+  },
+  {
+    "categoryId": "emergency_accommodation",
+    "label": "Allotjament d'emergència",
+    "slug": "hebergement-urgence",
+    "synonyms": [
+      "Refugi temporal",
+      "Allotjament urgent",
+      "Lloc per dormir",
+      "Centre d'acollida nocturna",
+      "Acollida d'emergència",
+      "Habitatge precari",
+      "Sense sostre",
+      "Sense casa",
+      "Allotjament per transeünts",
+      "Acolliment immediat"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites Allotjament d'Emergència? Soliguide T'Ajuda",
+    "seoDescription": "Soliguide et troba: allotjament d'urgència, un lloc per dutxar-te, menjar calent i acompanyament social. Troba solucions a prop teu!"
+  },
+  {
+    "categoryId": "long_term_accomodation",
+    "label": "Habitatge social",
+    "slug": "hebergement-long-terme",
+    "synonyms": [
+      "Lloguer social",
+      "Habitatge protegit",
+      "Allotjament social",
+      "Residència social",
+      "Pis social",
+      "Habitatge assequible",
+      "Ajuda a l'habitatge",
+      "Habitatge digne",
+      "Lloc on viure",
+      "Allotjament de llarga durada"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Habitatge social amb Soliguide: Troba un lloc per viure",
+    "seoDescription": "Soliguide t'ajuda: habitatge social, allotjament temporal, residència tutelada. Troba una llar a prop teu."
+  },
+  {
+    "categoryId": "citizen_housing",
+    "label": "Allotjament ciutadà",
+    "slug": "hebergement-citoyen",
+    "synonyms": [
+      "allotjament urgent",
+      "habitatge social",
+      "pis compartit",
+      "recursos habitatge",
+      "ajudes lloguer",
+      "emergència habitacional",
+      "on dormir",
+      "allotjament temporal",
+      "suport habitatge",
+      "trobar pis"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites allotjament? Soliguide t'ajuda amb Allotjament ciutadà",
+    "seoDescription": "Soliguide t'ofereix: allotjament d'emergència, suport per trobar pis, ajudes per al lloguer. Troba solucions d'Allotjament ciutadà a prop teu!"
+  },
+  {
+    "categoryId": "access_to_housing",
+    "label": "Assessorament i suport a l'habitatge",
+    "slug": "conseil-logement",
+    "synonyms": [
+      "ajuda habitatge",
+      "habitatge social",
+      "DALO",
+      "lloguer",
+      "permanències habitatge",
+      "assessorament habitatge",
+      "suport habitatge",
+      "dret a l'habitatge",
+      "accés a l'habitatge",
+      "habitatge assequible"
+    ],
+    "type": "CATEGORY",
+    "seoTitle": "Necessites assessorament per a l'habitatge? Soliguide t'ajuda",
+    "seoDescription": "Soliguide t'ajuda a trobar: habitatge social, assessorament DALO, ajuda amb el lloguer. Troba suport per a l'habitatge a prop teu."
+  }
+]

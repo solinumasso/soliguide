@@ -160,7 +160,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public putTextCat(value: Categories | string) {
     this.search.category = value as Categories;
-
     this.search.label = this.translateService.instant(value.toUpperCase());
     this.captureEvent(`select-category-${value}`);
     window.scroll({
