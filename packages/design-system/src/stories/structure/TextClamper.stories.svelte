@@ -186,7 +186,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   </TextClamper>
 </Story>
 
-<style lang="scss">
+<style>
   .story-row {
     display: flex;
     flex-direction: column;
