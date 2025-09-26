@@ -1,3 +1,112 @@
+## [4.100.2](https://github.com/solinumasso/soliguide/compare/v4.100.1...v4.100.2) (2025-09-26)
+
+
+### Bug Fixes
+
+* **api:** revert change rabbitmq [#889](https://github.com/solinumasso/soliguide/issues/889) ([13adca3](https://github.com/solinumasso/soliguide/commit/13adca354c1b201b7cdebe1353ca8294cbf284db))
+
+## [4.100.1](https://github.com/solinumasso/soliguide/compare/v4.100.0...v4.100.1) (2025-09-26)
+
+
+### Bug Fixes
+
+* **api:** fix env rabbitmq [#889](https://github.com/solinumasso/soliguide/issues/889) ([2449795](https://github.com/solinumasso/soliguide/commit/2449795578f35b59ee87861842f163ae8b66ee3f))
+
+# [4.100.0](https://github.com/solinumasso/soliguide/compare/v4.99.0...v4.100.0) (2025-09-24)
+
+
+### Bug Fixes
+
+* change amqpEventSender to http [#889](https://github.com/solinumasso/soliguide/issues/889) ([9d55e86](https://github.com/solinumasso/soliguide/commit/9d55e860a6afbfaba271c107d3bc0b373979b682))
+* fix chat not disapearing after cookie refusal [#88](https://github.com/solinumasso/soliguide/issues/88) ([514c822](https://github.com/solinumasso/soliguide/commit/514c8223901265f2862e3b5b7fcc0f6bcded8926))
+* fix tests [#88](https://github.com/solinumasso/soliguide/issues/88) ([1e16824](https://github.com/solinumasso/soliguide/commit/1e168246a28ae987fedc9d4b4abd4c8e3a6e063c))
+* fix tests V1 -> DONE [#88](https://github.com/solinumasso/soliguide/issues/88) ([52b2215](https://github.com/solinumasso/soliguide/commit/52b2215c11c7a43b9751a1e7568fd7342ed8d313))
+* **frontend:** fix feedbacks [#88](https://github.com/solinumasso/soliguide/issues/88) ([667145f](https://github.com/solinumasso/soliguide/commit/667145f47162b45fb1316af8e012034924f3526f))
+* **frontend:** fix tests [#88](https://github.com/solinumasso/soliguide/issues/88) ([c57ee26](https://github.com/solinumasso/soliguide/commit/c57ee26b4249f2508fc34ef031283bbc80b2496c))
+* redirect on login [#791](https://github.com/solinumasso/soliguide/issues/791) ([52419f5](https://github.com/solinumasso/soliguide/commit/52419f5971b9875453842f8c1471ae7c4ec12118))
+* **soligare:** fix soligare connection [#905](https://github.com/solinumasso/soliguide/issues/905) ([9022c5b](https://github.com/solinumasso/soliguide/commit/9022c5b0e4f1d2a993c2c92ddddcbcf2785399ec))
+
+
+### Features
+
+* **common-angular:** upgrade posthog-js [#88](https://github.com/solinumasso/soliguide/issues/88) ([53ec61a](https://github.com/solinumasso/soliguide/commit/53ec61a58b8c0304fe9f7f20ff8cd293a14ead90))
+* fix deepsource [#88](https://github.com/solinumasso/soliguide/issues/88) ([2dfa238](https://github.com/solinumasso/soliguide/commit/2dfa2389820146ef3ddc1b385950e258f89cb51a))
+* **frontend:** add cookie banner on the frontend [#88](https://github.com/solinumasso/soliguide/issues/88) ([d067caf](https://github.com/solinumasso/soliguide/commit/d067cafdec76b74150fe8103aaa6ded2d8e6d39c))
+* **frontend:** add tracking elements [#88](https://github.com/solinumasso/soliguide/issues/88) ([8b2fa2f](https://github.com/solinumasso/soliguide/commit/8b2fa2f6305c0566cd99d64069b4abc01c2d573f))
+* **frontend:** change silktide storage name for default functionality storage in GTAG [#88](https://github.com/solinumasso/soliguide/issues/88) ([3ec7642](https://github.com/solinumasso/soliguide/commit/3ec7642b5c49600afe64f4e6cde29f2d8ca0a9cc))
+* **frontend:** fix chat not being hidden [#88](https://github.com/solinumasso/soliguide/issues/88) ([34004d4](https://github.com/solinumasso/soliguide/commit/34004d4aa4da6235b27c4d21b67b5b42620f20eb))
+* **frontend:** fix double import of the cookies [#88](https://github.com/solinumasso/soliguide/issues/88) ([cf22b9d](https://github.com/solinumasso/soliguide/commit/cf22b9dc1b8861c3024fb8784e7f9bd5a61b835e))
+* **frontend:** fix identify user in posthog [#891](https://github.com/solinumasso/soliguide/issues/891) ([a20379b](https://github.com/solinumasso/soliguide/commit/a20379bffc199030971ede1163166f552b80aed9))
+* **frontend:** fix pageview not appearing [#88](https://github.com/solinumasso/soliguide/issues/88) ([95116aa](https://github.com/solinumasso/soliguide/commit/95116aa51a385e300408f07283544879d331e82b))
+* **frontend:** hide cookie icon when all cookies are accepted [#88](https://github.com/solinumasso/soliguide/issues/88) ([ded9a77](https://github.com/solinumasso/soliguide/commit/ded9a77dda0fe9ffdf84729982eea4e9a52c2d24))
+* **frontend:** open chat after preferences only if placeholder clicked [#88](https://github.com/solinumasso/soliguide/issues/88) ([e1102e6](https://github.com/solinumasso/soliguide/commit/e1102e666b39d2fdf6c6415fc004eddc794d3254))
+* **frontend:** optimize update posthog person [#88](https://github.com/solinumasso/soliguide/issues/88) ([315582e](https://github.com/solinumasso/soliguide/commit/315582e4d5081a8d2417f2550b2f4d1a71b775d9))
+* **frontend:** remove chat with soliguia [#88](https://github.com/solinumasso/soliguide/issues/88) ([9c40915](https://github.com/solinumasso/soliguide/commit/9c4091562563058088c099539f35081fc15c70a9))
+* **frontend:** remove cookie banner with soliguia [#88](https://github.com/solinumasso/soliguide/issues/88) ([ce32a99](https://github.com/solinumasso/soliguide/commit/ce32a99a05992bd4342c34a52591bfe6572971f8))
+* **frontend:** remove useless functions [#88](https://github.com/solinumasso/soliguide/issues/88) ([806425f](https://github.com/solinumasso/soliguide/commit/806425f5ecf09f12681910b83114d031f5f5d1ad))
+* **frontend:** remove useless info on necessary cookies [#88](https://github.com/solinumasso/soliguide/issues/88) ([c77d3d4](https://github.com/solinumasso/soliguide/commit/c77d3d4b9d720d5205a0a9adff968e99659fa332))
+* **frontend:** reverse color of the reject all [#88](https://github.com/solinumasso/soliguide/issues/88) ([6b1d27b](https://github.com/solinumasso/soliguide/commit/6b1d27b96b75f29e3219f0d1a267eb47a78cd0a5))
+* **frontend:** setup person properties in posthog [#88](https://github.com/solinumasso/soliguide/issues/88) ([8007aaf](https://github.com/solinumasso/soliguide/commit/8007aafe24daf497ea8d4b72a00ccbefe37d6b32))
+* **frontend:** setup posthog with silktide [#88](https://github.com/solinumasso/soliguide/issues/88) ([fd4d268](https://github.com/solinumasso/soliguide/commit/fd4d2680f7009f3140476f0a88869a0e96319d7c))
+* **frontend:** setup tracking cookie banner [#88](https://github.com/solinumasso/soliguide/issues/88) ([a238339](https://github.com/solinumasso/soliguide/commit/a238339e16a2c39d02dc3bf9952825a85170f3d3))
+* **frontend:** setup zendesk and posthog in google tag manager [#88](https://github.com/solinumasso/soliguide/issues/88) ([7a9256e](https://github.com/solinumasso/soliguide/commit/7a9256e6845fdc271cfbea207b9d7ec1ec962f99))
+* **frontend:** setup zendesk with silktide [#88](https://github.com/solinumasso/soliguide/issues/88) ([50a03ae](https://github.com/solinumasso/soliguide/commit/50a03aee64fbc965657a9fbcb91a9766e4b97cb3))
+* **frontend:** update cookie banners colors [#88](https://github.com/solinumasso/soliguide/issues/88) ([3020d20](https://github.com/solinumasso/soliguide/commit/3020d20050b65cdd0c32fab80ea9c33def7e4a3d))
+* **frontend:** update cookie consent translation [#88](https://github.com/solinumasso/soliguide/issues/88) ([5db90cc](https://github.com/solinumasso/soliguide/commit/5db90cc6f7c86e4c5b90d64efeaa479e8e400590))
+* **frontend:** upgrade the translate function [#88](https://github.com/solinumasso/soliguide/issues/88) ([c695159](https://github.com/solinumasso/soliguide/commit/c695159e87cbd06639b494f764ff399a8ab708e6))
+* **frontend:** use built in files instead of the module [#88](https://github.com/solinumasso/soliguide/issues/88) ([87d78ed](https://github.com/solinumasso/soliguide/commit/87d78edf78281e7c80563602e777fe25a59b0a2b))
+* remove silktide from deepsource [#88](https://github.com/solinumasso/soliguide/issues/88) ([4f254e0](https://github.com/solinumasso/soliguide/commit/4f254e06ee1f36d687b7c4fb516bffb74b153ba7))
+
+# [4.99.0](https://github.com/solinumasso/soliguide/compare/v4.98.0...v4.99.0) (2025-09-05)
+
+
+### Bug Fixes
+
+* meta description text [#688](https://github.com/solinumasso/soliguide/issues/688) ([853d8aa](https://github.com/solinumasso/soliguide/commit/853d8aa426e2becc71f3c2db21347bee86ceb67c))
+* place name for translation [#837](https://github.com/solinumasso/soliguide/issues/837) ([f5accea](https://github.com/solinumasso/soliguide/commit/f5acceabf5c70b136c397eaf853ac6c20407025a))
+* stop place from being assigned to all users in orga [#676](https://github.com/solinumasso/soliguide/issues/676) ([14a783c](https://github.com/solinumasso/soliguide/commit/14a783c4cb395e4b115cec54cfe3212a6fbc7358))
+* title translate page for pro signup  [#860](https://github.com/solinumasso/soliguide/issues/860) ([3754439](https://github.com/solinumasso/soliguide/commit/37544390ce08ca6dc92e41017b780f04be7df796))
+
+
+### Features
+
+* add loading spinner for adding contacts to place [#839](https://github.com/solinumasso/soliguide/issues/839) ([4f38110](https://github.com/solinumasso/soliguide/commit/4f38110257561ab9661ea923140b85b08dabd5d4))
+* **api:** close services when temp closure is active [#840](https://github.com/solinumasso/soliguide/issues/840) ([fd54191](https://github.com/solinumasso/soliguide/commit/fd54191dbfd84f8224792dc03275344cd4b8b33e))
+* handle correct redirect on login [#791](https://github.com/solinumasso/soliguide/issues/791) ([036f8ec](https://github.com/solinumasso/soliguide/commit/036f8ec8e71db60394008a23c003e03b68878f70))
+* reactivate cron for setting places offline for france [#859](https://github.com/solinumasso/soliguide/issues/859) ([733edd0](https://github.com/solinumasso/soliguide/commit/733edd0116c8c4fa154da0b17a0129e1ec0dfc7a))
+* **web-app:** add location properties for sending to api when launching search [#851](https://github.com/solinumasso/soliguide/issues/851) ([585ba75](https://github.com/solinumasso/soliguide/commit/585ba75a76312e3802187f97e227d6433ca76ebe))
+* **web-app:** change color hours in service [#848](https://github.com/solinumasso/soliguide/issues/848) ([70eae7d](https://github.com/solinumasso/soliguide/commit/70eae7d213958414c3b6ddeac60f6e748d92383c))
+
+# [4.98.0](https://github.com/solinumasso/soliguide/compare/v4.97.1...v4.98.0) (2025-08-07)
+
+
+### Bug Fixes
+
+* **api:** fix user rights upon invitation [#797](https://github.com/solinumasso/soliguide/issues/797) ([#808](https://github.com/solinumasso/soliguide/issues/808)) ([8ab7c4d](https://github.com/solinumasso/soliguide/commit/8ab7c4d8060cacfe6143baf089a6cc4e91329ae6))
+* **api:** redo crous migration for campaign reset [#755](https://github.com/solinumasso/soliguide/issues/755) ([3bb3c5f](https://github.com/solinumasso/soliguide/commit/3bb3c5fe703a33d62aa99d9740853122122ddab2))
+* disable to update to be set to true for external sources [#755](https://github.com/solinumasso/soliguide/issues/755) ([91b7aa4](https://github.com/solinumasso/soliguide/commit/91b7aa48254a821f1562beacfec44a97fe5b07f5))
+* **frontend:** delete unecessary description in temp closure Restos nord [#835](https://github.com/solinumasso/soliguide/issues/835) ([c8b4e63](https://github.com/solinumasso/soliguide/commit/c8b4e6335f5da7a16341755fe8ab9a9dfb1cb71a))
+* **frontend:** update displayed dashboard on page change [#682](https://github.com/solinumasso/soliguide/issues/682) ([346d44f](https://github.com/solinumasso/soliguide/commit/346d44f2cb08148ccfb789c6bb5320136dbc855a))
+* place name for translation [#837](https://github.com/solinumasso/soliguide/issues/837) ([c355baf](https://github.com/solinumasso/soliguide/commit/c355baf9d376a3b33e995b0628f4864a9ea1b719))
+* use correct dashboard link [#747](https://github.com/solinumasso/soliguide/issues/747) ([a64d962](https://github.com/solinumasso/soliguide/commit/a64d9623ea77f6706437b38d42a196f023738cca))
+
+
+### Features
+
+* add pro account page embed and tracking for food dashboard [#747](https://github.com/solinumasso/soliguide/issues/747) ([#771](https://github.com/solinumasso/soliguide/issues/771)) ([e35fe01](https://github.com/solinumasso/soliguide/commit/e35fe0169d6dbd08fca271c03f7b1608ee9f7e08))
+* add translation key [#837](https://github.com/solinumasso/soliguide/issues/837) ([#834](https://github.com/solinumasso/soliguide/issues/834)) ([d5e4ccd](https://github.com/solinumasso/soliguide/commit/d5e4ccdf9eccb6b1c12c3a4b628784bde8d38333))
+* **frontend:** add poctefa logos [#706](https://github.com/solinumasso/soliguide/issues/706) ([17ed7eb](https://github.com/solinumasso/soliguide/commit/17ed7eb77a444b02c3e7c51aa84275aaa6952eec))
+* update text displayed to new signature de marque [#688](https://github.com/solinumasso/soliguide/issues/688) ([514ef67](https://github.com/solinumasso/soliguide/commit/514ef67014b672e673bfeae6ba438492dd3591d7))
+* **web-app:** change color hours in service [#848](https://github.com/solinumasso/soliguide/issues/848) ([c5dee8f](https://github.com/solinumasso/soliguide/commit/c5dee8ffbba38f030f08ecfba230d69457ce9918))
+* **web-app:** show temporary closure banner into services [#399](https://github.com/solinumasso/soliguide/issues/399) ([1994050](https://github.com/solinumasso/soliguide/commit/1994050b47346b33c27bbcd48d65d1137f4ac497))
+
+## [4.97.1](https://github.com/solinumasso/soliguide/compare/v4.97.0...v4.97.1) (2025-07-31)
+
+
+### Bug Fixes
+
+* **api:** redo crous migration for campaign reset [#755](https://github.com/solinumasso/soliguide/issues/755) ([fdb26bf](https://github.com/solinumasso/soliguide/commit/fdb26bfd2bedb1f192ca11aee6bb667482adb6f0))
+
 # [4.97.0](https://github.com/solinumasso/soliguide/compare/v4.96.0...v4.97.0) (2025-07-30)
 
 
