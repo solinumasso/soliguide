@@ -18,33 +18,39 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {
-  PlaceStatus,
-  GeoTypes,
-  computePlaceOpeningStatus,
-  type ApiPlace,
-  CountryCodes,
-  Categories,
-  type Phone as CommonPhone,
-  type ApiSearchResults
-} from '@soliguide/common';
+import { categoryService } from '$lib/services/categoryService';
 import { sort } from '$lib/ts';
 import {
-  computeTodayInfo,
-  computeAddress,
-  buildSources,
-  computeTempInfo,
-  computeCampaignBanner
-} from './place';
-import type { SearchLocationParams, SearchResult, SearchResultItem } from './types';
+  type ApiPlace,
+  type ApiSearchResults,
+  Categories,
+  type Phone as CommonPhone,
+  CountryCodes,
+  GeoTypes,
+  PlaceStatus,
+  calculateDistanceBetweenTwoPoints,
+  computePlaceOpeningStatus
+} from '@soliguide/common';
 import { sortServicesByRelevance } from '../utils';
-import { categoryService } from '$lib/services/categoryService';
+import {
+  buildSources,
+  computeAddress,
+  computeCampaignBanner,
+  computeTempInfo,
+  computeTodayInfo
+} from './place';
+import type {
+  ApiPlaceWithCrossingPointIndex,
+  SearchLocationParams,
+  SearchResult,
+  SearchResultItem
+} from './types';
 
 /**
  * Transformation
  */
 const buildSearchResultItem = (
-  place: ApiPlace,
+  place: ApiPlace | ApiPlaceWithCrossingPointIndex,
   locationParams: SearchLocationParams,
   categorySearched: Categories
 ): SearchResultItem => {
@@ -92,6 +98,7 @@ const buildSearchResultItem = (
     distance,
     id: place.lieu_id,
     name: place.name,
+    ...('crossingPointIndex' in place ? { crossingPointIndex: place.crossingPointIndex } : {}),
     phones: [
       ...place.entity.phones.map((phone: CommonPhone) => ({
         ...phone,
@@ -110,17 +117,36 @@ const buildSearchResultItem = (
 };
 
 /**
- * Transforms a itinerary steps into Places by hoisting their data
+ * Transforms itinerary steps into Places by hoisting their data
+ * Calculate their distance from the search location
+ * Also filter steps that are out of the search radius
  */
-const extractStepsFromItineraryPlace = (place: ApiPlace): ApiPlace[] => {
-  // We have description, hours, photos and position to extract
-  return place.parcours.map((step) => {
-    return {
-      ...place,
-      hours: step.hours,
-      position: step.position,
-      parcours: []
-    };
+const extractStepsFromItineraryPlace = (
+  place: ApiPlace,
+  locationParams: SearchLocationParams
+): ApiPlaceWithCrossingPointIndex[] => {
+  const [lat, lon] = locationParams.coordinates;
+
+  return place.parcours.flatMap((step, index) => {
+    // Handle case where coordinates are identical to avoid NaN from calculateDistanceBetweenTwoPoints
+    const [stepLat, stepLon] = step.position.location.coordinates;
+    const distance =
+      lat === stepLat && lon === stepLon
+        ? 0
+        : calculateDistanceBetweenTwoPoints(lat, lon, stepLat, stepLon);
+
+    if (distance > locationParams.distance) return [];
+
+    return [
+      {
+        ...place,
+        distance: distance * 1000, // in meters
+        newhours: step.hours,
+        position: step.position,
+        parcours: [],
+        crossingPointIndex: index
+      }
+    ];
   });
 };
 
@@ -148,18 +174,18 @@ const buildSearchResultWithParcours = (
   const placesResultItems = placesResult.places.map((place) =>
     buildSearchResultItem(place, searchLocationParams, category)
   );
+
+  // We extract itinerary steps and build a "place" for each one of them
   const itineraryResultItems = itineraryResult.places.flatMap((place) => {
-    const extractedSteps = extractStepsFromItineraryPlace(place);
+    const extractedSteps = extractStepsFromItineraryPlace(place, searchLocationParams);
     return extractedSteps.map((extractedStep) =>
       buildSearchResultItem(extractedStep, searchLocationParams, category)
     );
   });
-
   const sortedPlaces = sortPlacesByDistance([...placesResultItems, ...itineraryResultItems]);
 
   return {
-    // NB: Impossible to calculate nbResults of itineraries, we should have the sum of nb steps of each
-    nbResults: placesResult.nbResults + itineraryResult.nbResults,
+    nbResults: placesResult.nbResults + itineraryResultItems.length,
     places: sortedPlaces
   };
 };
