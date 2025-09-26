@@ -237,8 +237,22 @@ jobs:
             --organization "$QOVERY_ORGANIZATION_NAME" \
             --project "$QOVERY_PROJECT_NAME" \
             --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
-            --key AMQP_URL \
-            --value '${{ secrets.AMQP_URL }}'
+            --key RABBIT_HTTP_BASE \
+            --value '${{ secrets.RABBIT_HTTP_BASE }}'
+
+          qovery environment env update \
+            --organization "$QOVERY_ORGANIZATION_NAME" \
+            --project "$QOVERY_PROJECT_NAME" \
+            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+            --key RABBIT_USER \
+            --value '${{ secrets.RABBIT_USER }}'
+
+          qovery environment env update \
+            --organization "$QOVERY_ORGANIZATION_NAME" \
+            --project "$QOVERY_PROJECT_NAME" \
+            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+            --key RABBIT_PASSWORD \
+            --value '${{ secrets.RABBIT_PASSWORD }}'
 
       - name: Create the API custom domain in Qovery
         if: steps.create_environment.outcome == 'success'
