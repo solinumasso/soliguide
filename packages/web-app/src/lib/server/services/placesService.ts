@@ -22,6 +22,7 @@ import { env } from '$env/dynamic/private';
 import { Categories, PlaceType, type ApiPlace, type ApiSearchResults } from '@soliguide/common';
 import { fetch } from '$lib/client';
 import { buildSearchResult } from '$lib/models/searchResult';
+import { buildLookupResult } from '$lib/models/lookupResult';
 import { buildPlaceDetails } from '$lib/models/placeDetails';
 import type { RequestOptions, SearchParams } from './types';
 import type { PlaceDetails, SearchResult } from '$lib/models/types';
@@ -98,8 +99,38 @@ export default (fetcher = fetch) => {
     return buildPlaceDetails(placeResult, categorySearched);
   };
 
+  /**
+   * Lookup places by IDs
+   */
+  const lookup = async (
+    { lang, ids }: { 
+      lang: string; 
+      ids: number[];
+    },
+    commonHeaders: RequestOptions
+  ): Promise<SearchResult> => {
+    const url = `${apiUrl}place/lookup/${lang}`;
+
+    const headers = {
+      'Content-Type': 'application/json',
+      ...commonHeaders
+    };
+
+    const placesResult: ApiSearchResults = await fetcher(url, {
+      method: 'POST',
+      body: JSON.stringify({
+        ids,
+        placeType: PlaceType.PLACE
+      }),
+      headers
+    });
+
+    return buildLookupResult(placesResult);
+  };
+
   return {
     placeDetails,
-    search
+    search,
+    lookup
   };
 };

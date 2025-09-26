@@ -26,7 +26,8 @@ import {
   CountryCodes,
   Categories,
   type Phone as CommonPhone,
-  type ApiSearchResults
+  type ApiSearchResults,
+  type CommonNewPlaceService
 } from '@soliguide/common';
 import { sort } from '$lib/ts';
 import {
@@ -41,17 +42,17 @@ import { sortServicesByRelevance } from '../utils';
 import { categoryService } from '$lib/services/categoryService';
 
 /**
- * Transformation
+ * Base function to build result item with common logic
  */
-const buildSearchResultItem = (
+const buildBaseResultItem = (
   place: ApiPlace,
-  locationParams: SearchLocationParams,
-  categorySearched: Categories
+  locationParams: SearchLocationParams | null | undefined,
+  servicesAll: CommonNewPlaceService[]
 ): SearchResultItem => {
   const onOrientation = Boolean(place.modalities.orientation.checked);
 
   const distance =
-    locationParams.geoType === GeoTypes.POSITION &&
+    locationParams?.geoType === GeoTypes.POSITION &&
     place.status !== PlaceStatus.PERMANENTLY_CLOSED &&
     place.status !== PlaceStatus.DRAFT &&
     typeof place.distance === 'number' &&
@@ -60,14 +61,6 @@ const buildSearchResultItem = (
       : -1;
 
   const status = computePlaceOpeningStatus(place);
-
-  const allCategoriesByTheme = categoryService.getAllCategories();
-
-  const sortedServices = sortServicesByRelevance(
-    place.services_all,
-    categorySearched,
-    allCategoriesByTheme
-  );
 
   return {
     address: computeAddress(place.position, onOrientation),
@@ -99,7 +92,7 @@ const buildSearchResultItem = (
       }))
     ],
     seoUrl: place.seo_url,
-    services: sortedServices
+    services: servicesAll
       .map((service) => service?.category)
       .filter((category) => typeof category !== 'undefined'),
     sources: buildSources(place.sources),
@@ -107,6 +100,25 @@ const buildSearchResultItem = (
     todayInfo: computeTodayInfo(place, status),
     tempInfo: computeTempInfo(place.tempInfos)
   };
+};
+
+/**
+ * Transformation for search results with category-based service sorting
+ */
+const buildSearchResultItem = (
+  place: ApiPlace,
+  locationParams: SearchLocationParams,
+  categorySearched: Categories
+): SearchResultItem => {
+  const allCategoriesByTheme = categoryService.getAllCategories();
+
+  const sortedServices = sortServicesByRelevance(
+    place.services_all,
+    categorySearched,
+    allCategoriesByTheme
+  );
+
+  return buildBaseResultItem(place, locationParams, sortedServices);
 };
 
 /**
@@ -182,4 +194,4 @@ const buildSearchResult = (
   };
 };
 
-export { buildSearchResult, buildSearchResultWithParcours };
+export { buildSearchResult, buildSearchResultWithParcours, buildBaseResultItem };
