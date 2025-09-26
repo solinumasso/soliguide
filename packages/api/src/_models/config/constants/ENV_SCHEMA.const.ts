@@ -168,7 +168,15 @@ export const ENV_SCHEMA: JSONSchemaType<Config> = {
       type: "string",
       default: "solinum.org",
     },
-    AMQP_URL: {
+    RABBIT_HTTP_BASE: {
+      type: "string",
+      nullable: true,
+    },
+    RABBIT_USER: {
+      type: "string",
+      nullable: true,
+    },
+    RABBIT_PASSWORD: {
       type: "string",
       nullable: true,
     },

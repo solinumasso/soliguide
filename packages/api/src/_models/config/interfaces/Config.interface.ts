@@ -111,7 +111,9 @@ export interface Config {
   SYNONYMS_GOOGLE_DOCS_LINK?: string;
 
   // RabbitMQ
-  AMQP_URL?: string;
+  RABBIT_HTTP_BASE?: string;
+  RABBIT_USER?: string;
+  RABBIT_PASSWORD?: string;
 
   // Typesense (search engine)
   TYPESENSE_NODES_URL: string;
