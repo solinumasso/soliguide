@@ -1,3 +1,10 @@
+## [4.100.1](https://github.com/solinumasso/soliguide/compare/v4.100.0...v4.100.1) (2025-09-26)
+
+
+### Bug Fixes
+
+* **api:** fix env rabbitmq [#889](https://github.com/solinumasso/soliguide/issues/889) ([2449795](https://github.com/solinumasso/soliguide/commit/2449795578f35b59ee87861842f163ae8b66ee3f))
+
 # [4.100.0](https://github.com/solinumasso/soliguide/compare/v4.99.0...v4.100.0) (2025-09-24)
 
 
