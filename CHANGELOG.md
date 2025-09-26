@@ -1,3 +1,10 @@
+## [4.100.2](https://github.com/solinumasso/soliguide/compare/v4.100.1...v4.100.2) (2025-09-26)
+
+
+### Bug Fixes
+
+* **api:** revert change rabbitmq [#889](https://github.com/solinumasso/soliguide/issues/889) ([13adca3](https://github.com/solinumasso/soliguide/commit/13adca354c1b201b7cdebe1353ca8294cbf284db))
+
 ## [4.100.1](https://github.com/solinumasso/soliguide/compare/v4.100.0...v4.100.1) (2025-09-26)
 
 
