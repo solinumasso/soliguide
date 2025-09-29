@@ -37,9 +37,10 @@ import {
   ServiceSaturation,
   ServiceStyleType,
   SupportedLanguagesCode,
-  TempInfoStatus,
   type ApiPlace,
-  type CommonPlaceParcours
+  type CommonPlaceParcours,
+  TempInfoStatus,
+  CommonPlacePosition
 } from '@soliguide/common';
 import type { SearchResultItem } from './types';
 
@@ -327,13 +328,36 @@ const samplePlaceTransformed: SearchResultItem = Object.freeze({
   dataForLogs: {
     id: '5a58c0c7c1797fe45e377324',
     lieuId: 154,
+    distance: 478.42644975047216,
     position: {
-      country: CountryCodes.FR,
-      department: 'Paris',
-      departmentCode: FR_DEPARTMENT_CODES[75],
-      distance: 478.42644975047216,
+      adresse: '1 Rue Montmartre, 75001 Paris',
+      codePostal: '75001',
+      complementAdresse: '',
+      departement: 'Paris',
+      departementCode: '75',
+      location: { coordinates: [2.345897, 48.86323609999999], type: 'Point' },
+      pays: 'fr',
       region: 'Île-de-France',
-      regionCode: FR_REGION_CODES['11']
+      slugs: {
+        ville: 'paris',
+        departement: 'paris',
+        pays: 'fr',
+        department: 'paris',
+        country: 'fr',
+        region: 'ile-de-france',
+        city: 'paris'
+      },
+      ville: 'Paris',
+      address: '1 Rue Montmartre, 75001 Paris',
+      additionalInformation: '',
+      city: 'Paris',
+      postalCode: '75001',
+      cityCode: '75001',
+      department: 'Paris',
+      departmentCode: FR_DEPARTMENT_CODES['75'],
+      country: CountryCodes.FR,
+      regionCode: FR_REGION_CODES['11'],
+      timeZone: FR_TIMEZONES[4]
     }
   },
   distance: 478.42644975047216,
@@ -1320,14 +1344,8 @@ const sampleItineraryTransformed: SearchResultItem[] = [
     dataForLogs: {
       id: '30965',
       lieuId: 30965,
-      position: {
-        country: CountryCodes.FR,
-        department: 'Paris',
-        departmentCode: FR_DEPARTMENT_CODES['75'],
-        distance: 403.7915416747283,
-        region: 'Île-de-France',
-        regionCode: FR_REGION_CODES['11']
-      }
+      distance: 403.7915416747283,
+      position: new CommonPlacePosition()
     },
     distance: 403.7915416747283,
     id: 30965,
@@ -1354,14 +1372,8 @@ const sampleItineraryTransformed: SearchResultItem[] = [
     dataForLogs: {
       id: '30965',
       lieuId: 30965,
-      position: {
-        country: CountryCodes.FR,
-        department: 'Paris',
-        departmentCode: FR_DEPARTMENT_CODES['75'],
-        distance: 403.7915416747283,
-        region: 'Île-de-France',
-        regionCode: FR_REGION_CODES['11']
-      }
+      distance: 403.7915416747283,
+      position: new CommonPlacePosition()
     },
     distance: 403.7915416747283,
     id: 30965,

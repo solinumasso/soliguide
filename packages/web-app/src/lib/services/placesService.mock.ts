@@ -21,8 +21,8 @@
 import type { PlaceDetails, SearchResult } from '$lib/models/types';
 import {
   Categories,
+  CommonPlacePosition,
   CountryCodes,
-  FR_DEPARTMENT_CODES,
   PlaceClosedHolidays,
   PlaceOpeningStatus,
   PlaceType
@@ -52,14 +52,8 @@ export const searchResultMock: SearchResult = {
       dataForLogs: {
         id: '169',
         lieuId: 169,
-        position: {
-          country: CountryCodes.FR,
-          department: '75',
-          departmentCode: FR_DEPARTMENT_CODES['75'],
-          distance: -1,
-          region: 'Île-de-France',
-          regionCode: 'IDF'
-        }
+        distance: -1,
+        position: new CommonPlacePosition()
       },
       distance: -1,
       id: 169,
@@ -83,14 +77,8 @@ export const searchResultMock: SearchResult = {
       dataForLogs: {
         id: '34120',
         lieuId: 34120,
-        position: {
-          country: CountryCodes.FR,
-          department: '75',
-          departmentCode: FR_DEPARTMENT_CODES['75'],
-          distance: 0,
-          region: 'Île-de-France',
-          regionCode: 'IDF'
-        }
+        distance: -1,
+        position: new CommonPlacePosition()
       },
       distance: 0,
       id: 34120,
@@ -128,14 +116,8 @@ export const searchResultMock: SearchResult = {
       dataForLogs: {
         id: '26287',
         lieuId: 26287,
-        position: {
-          country: CountryCodes.FR,
-          department: '75',
-          departmentCode: FR_DEPARTMENT_CODES['75'],
-          distance: 0,
-          region: 'Île-de-France',
-          regionCode: 'IDF'
-        }
+        distance: -1,
+        position: new CommonPlacePosition()
       },
       distance: 0,
       id: 26287,
@@ -160,14 +142,8 @@ export const searchResultMock: SearchResult = {
       dataForLogs: {
         id: '154',
         lieuId: 154,
-        position: {
-          country: CountryCodes.FR,
-          department: '75',
-          departmentCode: FR_DEPARTMENT_CODES['75'],
-          distance: 478.42644975047216,
-          region: 'Île-de-France',
-          regionCode: 'IDF'
-        }
+        distance: 478.42644975047216,
+        position: new CommonPlacePosition()
       },
       searchGeoType: 'position',
       distance: 478.42644975047216,
