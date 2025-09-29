@@ -19,10 +19,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import type {
-  AnyDepartmentCode,
   ApiPlace,
   BasePlaceTempInfo,
   Categories,
+  CommonPlacePosition,
   CountryCodes,
   PlaceClosedHolidays,
   PlaceOpeningStatus,
@@ -75,19 +75,11 @@ export enum PlaceCampaignBannerMessage {
   WEBAPP_EXTERNAL_SOURCE_CAMPAIGN_BANNER = 'WEBAPP_EXTERNAL_SOURCE_CAMPAIGN_BANNER'
 }
 
-export interface PlacePositionForLogs {
-  country?: CountryCodes;
-  department: string;
-  departmentCode?: AnyDepartmentCode;
-  distance: number;
-  region: string;
-  regionCode?: string;
-}
-
 export interface DataForLogs {
   id?: string;
   lieuId: number;
-  position: PlacePositionForLogs;
+  position: CommonPlacePosition;
+  distance: number;
 }
 
 export interface SearchResultItem {
