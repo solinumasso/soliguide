@@ -25,10 +25,9 @@ import {
   AutoCompleteType,
   CountryCodes,
   SearchSuggestion,
-  SoliguideCountries,
   SupportedLanguagesCode,
 } from "@soliguide/common";
-import { CONFIG } from "../../_models";
+import { ModelWithId, CONFIG } from "../../_models";
 import { SearchSuggestionModel } from "../models/search-suggestion.model";
 
 interface TranslationResult {
@@ -39,15 +38,18 @@ interface TranslationResult {
   synonyms: string[];
 }
 
-type SearchSuggestionForTranslation = Pick<
-  SearchSuggestion,
-  | "sourceId"
-  | "label"
-  | "seoDescription"
-  | "synonyms"
-  | "type"
-  | "categoryId"
-  | "lang"
+type SearchSuggestionForTranslation = ModelWithId<
+  Pick<
+    SearchSuggestion,
+    | "sourceId"
+    | "label"
+    | "seoDescription"
+    | "synonyms"
+    | "type"
+    | "categoryId"
+    | "lang"
+    | "country"
+  >
 >;
 
 const LANGUAGE_NAMES: Record<SupportedLanguagesCode, string> = {
@@ -78,14 +80,13 @@ class CategoryTranslationScript {
   }
 
   async run() {
-    console.log("🚀 Démarrage traduction automatique des catégories...");
+    console.log("🚀 Starting automatic category translation...");
 
-    // Get french Categories
     const categories = await this.getCategories();
 
     for (const suggestion of categories) {
       console.log(
-        `\n🌍 Traduction de: ${suggestion.label} en ${
+        `\n🌍 Translating: ${suggestion.label} into ${
           LANGUAGE_NAMES[suggestion.lang]
         }`
       );
@@ -95,7 +96,7 @@ class CategoryTranslationScript {
         console.log({ sourceId: suggestion.sourceId, lang: suggestion.lang });
 
         await SearchSuggestionModel.updateOne(
-          { sourceId: suggestion.sourceId, lang: suggestion.lang },
+          { _id: suggestion._id },
           {
             seoTitle: langTranslation.seoTitle,
             seoDescription: langTranslation.seoDescription,
@@ -105,9 +106,10 @@ class CategoryTranslationScript {
         );
 
         this.results.push(langTranslation);
-      } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (error: any) {
         console.error(
-          `  ❌ Erreur ${suggestion.label} en ${
+          `  ❌ Error while translating ${suggestion.label} into ${
             LANGUAGE_NAMES[suggestion.lang]
           }:`,
           error.message
@@ -128,6 +130,8 @@ class CategoryTranslationScript {
       synonyms: doc.synonyms || [],
       type: doc.type,
       lang: doc.lang,
+      country: doc.country,
+      _id: doc._id,
       categoryId: doc.categoryId,
     }));
   }
@@ -146,25 +150,19 @@ class CategoryTranslationScript {
       const text = response.text as string;
       return this.parseResponse(text, suggestion);
     } else {
-      throw new Error("NO RESPONSE");
+      throw new Error("No response from model");
     }
   }
 
-  private buildPrompt(
-    suggestion: SearchSuggestionForTranslation,
-    country?: SoliguideCountries
-  ): string {
+  private buildPrompt(suggestion: SearchSuggestionForTranslation): string {
     const getContentTypeContext = (type: AutoCompleteType): string => {
       switch (type) {
         case AutoCompleteType.ORGANIZATION:
           return `ORGANISME spécifique (${suggestion.label}) - utilisateurs cherchent cette organisation près de chez eux`;
-
         case AutoCompleteType.ESTABLISHMENT_TYPE:
           return `TYPE D'ÉTABLISSEMENT (${suggestion.label}) - utilisateurs cherchent ce type d'établissement près de chez eux`;
-
         case AutoCompleteType.CATEGORY:
           return `CATÉGORIE d'aide sociale (${suggestion.label}) - utilisateurs cherchent de l'aide dans ce domaine`;
-
         default:
           return `RECHERCHE LIBRE (${suggestion.label}) - informations sur ce sujet`;
       }
@@ -178,7 +176,6 @@ class CategoryTranslationScript {
   }
 }`;
 
-    // Instructions langue et pays
     const langInstruction =
       suggestion.lang && suggestion.lang !== SupportedLanguagesCode.FR
         ? `\nIMPORTANT: Traduis tout dans la langue suivante: ${
@@ -187,8 +184,8 @@ class CategoryTranslationScript {
         : "";
 
     const countryInstruction =
-      country && country !== CountryCodes.FR
-        ? `\nAdapte pour ${country} (organismes locaux, terminologie du pays).`
+      suggestion?.country !== CountryCodes.FR
+        ? `\nAdapte pour ${suggestion?.country} (organismes locaux, terminologie du pays).`
         : "";
 
     return `Expert SEO + FALC pour Soliguide (plateforme de lieux solidaires).
@@ -198,7 +195,7 @@ CONTEXTE: ${getContentTypeContext(suggestion.type)}
 
 Nom: "${suggestion.label}"
 Description: "${suggestion.seoDescription || "Non définie"}"
-Pays: ${country || CountryCodes.FR}
+Pays: ${suggestion?.country}
 
 RÈGLES:
 - Mots simples, phrases courtes (max 22 mots)
@@ -209,12 +206,12 @@ RÈGLES:
 OBLIGATIONS:
 - Titre: PUNCHY et DIRECT, adapter selon le contexte émotionnel. Utiliser "${
       suggestion.label
-    }" naturellement. Mentionner "Soliguide". PAS de ":" dans le titre. Language direct et engageant.
+    }" naturellement. Mentionner "Soliguide". PAS de ":" dans le titre. Langage direct et engageant.
 - Description: "Soliguide" + 3 EXEMPLES CONCRETS d'aide + géolocalisation (150-160 chars)${
       needsSynonyms ? "\n- Synonymes: 8-12 termes courants" : ""
     }
 
-EXEMPLES DE TITRES PUNCHY SELON LE CONTEXTE:
+EXEMPLES DE TITRES:
 - Santé: "Trouvez des soins gratuits avec Soliguide"
 - Logement: "Trouvez de l'aide au logement avec Soliguide"
 - Addiction: "Problèmes d'addiction ? Des structures spécialisées sont là pour vous aider"
@@ -222,7 +219,7 @@ EXEMPLES DE TITRES PUNCHY SELON LE CONTEXTE:
 - Emploi: "Décrochez un travail, formez-vous avec Soliguide"
 - Urgence sociale: "Besoin d'aide maintenant ? Soliguide vous trouve des solutions"
 
-EXEMPLES DE DESCRIPTIONS AVEC 3 EXEMPLES CONCRETS:
+EXEMPLES DE DESCRIPTIONS (3 ÉLÉMENTS CONCRETS):
 - "Soliguide trouve près de chez vous : médecin gratuit, dentiste solidaire, infirmerie. Soins accessibles sans avance de frais."
 - "Soliguide vous aide : hébergement d'urgence, logement social, aide au loyer. Solutions logement près de chez vous."
 
@@ -230,7 +227,7 @@ EXEMPLES D'ÉTABLISSEMENTS:
 - "CCAS pour votre domiciliation"
 - "Maison de santé près de chez vous"${langInstruction}${countryInstruction}
 
-RÉPONDS UNIQUEMENT AVEC LE JSON BRUT, AUCUN TEXTE AVANT OU APRÈS. COMMENCE DIRECTEMENT PAR { ET TERMINE PAR }:
+RÉPONDS UNIQUEMENT AVEC LE JSON BRUT, AUCUN TEXTE AVANT OU APRÈS. COMMENCE DIRECTEMENT PAR { ET TERMINE PAR } :
 ${jsonFormat}`;
   }
 
@@ -239,28 +236,24 @@ ${jsonFormat}`;
     suggestion: SearchSuggestionForTranslation
   ): TranslationResult {
     try {
-      // Nettoyer le texte
       let cleanText = text.trim();
-
-      // Supprimer les balises de code si présentes
       cleanText = cleanText.replace(/```json\s*|```\s*/g, "");
 
-      // Extraire le JSON entre les premières { et dernières }
       const firstBrace = cleanText.indexOf("{");
       const lastBrace = cleanText.lastIndexOf("}");
 
       if (firstBrace === -1 || lastBrace === -1 || firstBrace >= lastBrace) {
-        throw new Error("Format JSON invalide - accolades manquantes");
+        throw new Error("Invalid JSON format - braces missing");
       }
 
       const jsonText = cleanText.substring(firstBrace, lastBrace + 1);
       const parsed = JSON.parse(jsonText);
 
-      console.log("✅ JSON parsé:", parsed);
+      console.log("✅ Parsed JSON:", parsed);
 
       if (!parsed.seoTitle || !parsed.seoDescription) {
         throw new Error(
-          "Champs manquants dans la réponse JSON (seoTitle et seoDescription requis)"
+          "Missing fields in JSON response (seoTitle and seoDescription required)"
         );
       }
 
@@ -272,11 +265,10 @@ ${jsonFormat}`;
         synonyms: [],
       };
 
-      // Add synonyms only for categories
       if (suggestion.type === AutoCompleteType.CATEGORY) {
         if (!parsed.synonyms || !Array.isArray(parsed.synonyms)) {
           throw new Error(
-            "Les synonymes sont requis et doivent être un tableau pour les catégories"
+            "Synonyms are required and must be an array for categories"
           );
         }
         result.synonyms = parsed.synonyms.filter(
@@ -287,10 +279,10 @@ ${jsonFormat}`;
       }
 
       return result;
-    } catch (error) {
-      console.error("❌ Réponse Gemini brute:", text);
-      console.error("❌ Erreur de parsing:", error.message);
-      throw new Error(`Impossible de parser le JSON: ${error.message}`);
+    } catch (error: any) {
+      console.error("❌ Raw Gemini response:", text);
+      console.error("❌ Parsing error:", error.message);
+      throw new Error(`Failed to parse JSON: ${error.message}`);
     }
   }
 
@@ -305,7 +297,7 @@ async function main() {
     await script.run();
     process.exit(0);
   } catch (error) {
-    console.error("❌ Erreur fatale:", error);
+    console.error("❌ Fatal error:", error);
     process.exit(1);
   }
 }

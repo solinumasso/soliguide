@@ -22,6 +22,7 @@ import {
   AutoCompleteType,
   Categories,
   SearchSuggestion,
+  SOLIGUIDE_COUNTRIES,
   SUPPORTED_LANGUAGES,
 } from "@soliguide/common";
 import mongoose from "mongoose";
@@ -75,6 +76,12 @@ const SearchSuggestionSchema = new mongoose.Schema<SearchSuggestion>(
       enum: Object.values(AutoCompleteType),
       index: true,
     },
+    country: {
+      type: String,
+      required: true,
+      enum: SOLIGUIDE_COUNTRIES,
+      index: true,
+    },
 
     content: {
       type: String,
@@ -100,8 +107,6 @@ const SearchSuggestionSchema = new mongoose.Schema<SearchSuggestion>(
 // Indexes
 SearchSuggestionSchema.index({ sourceId: 1, lang: 1 }, { unique: true });
 SearchSuggestionSchema.index({ lang: 1, type: 1 });
-SearchSuggestionSchema.index({ categoryId: 1 });
-SearchSuggestionSchema.index({ slug: 1 });
 
 export const SearchSuggestionModel = mongoose.model(
   "SearchSuggestion",

@@ -255,7 +255,7 @@ export class SearchComponent implements OnInit, OnDestroy {
             return;
           }
 
-          // Affichage immédiat des résultats selon le type
+          // Immediate display of results by type
           if (result.type === PlaceType.PLACE) {
             this.nbResults = result.response.nbResults;
             this.loading = false;

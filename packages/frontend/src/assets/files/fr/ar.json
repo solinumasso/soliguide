@@ -1,0 +1,2024 @@
+[
+  {
+    "categoryId": "welcome",
+    "label": "إستقبال",
+    "slug": "accueil",
+    "synonyms": [
+      "accueil cafe repos acceuil parler acueil accueil femme accueil femmes acueil femme violence harcelement partir"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "day_hosting",
+    "label": "الإستقبال النهاري",
+    "slug": "accueil-jour",
+    "synonyms": [
+      "accueil accueil de jour cafe se reposer se poser repos reposer femmes battues femme battue fem batue fem batu violence harcelement partir"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Lieu d'accueil des bénéficaires proposant une pause pendant la journée."
+  },
+  {
+    "categoryId": "rest_area",
+    "label": "مكان للراحة",
+    "slug": "espace-repos",
+    "synonyms": [
+      "espace de repos reposer dormir repos pause"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Espaces de repos ouverts au public"
+  },
+  {
+    "categoryId": "babysitting",
+    "label": "مجالسة الأطفال",
+    "slug": "garde-enfants",
+    "synonyms": [
+      "garde enfant garderie enfant nounou assistance maternelle bebe creche"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Activité d'un baby-sitter consistant à garder temporairement des enfants en l'abscence de leurs parents"
+  },
+  {
+    "categoryId": "family_area",
+    "label": "منطقة الأسرة",
+    "slug": "espace-famille",
+    "synonyms": [
+      "espace famille famille maman papa parents enfants"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Lieu d'accueil capable de recevoir des familles"
+  },
+  {
+    "categoryId": "information_point",
+    "label": "نقطة المعلومات والتوجيه",
+    "slug": "point-information",
+    "synonyms": [
+      "point information point d information information ukraine"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Point d'information"
+  },
+  {
+    "categoryId": "activities",
+    "label": "نشاطات",
+    "slug": "activites",
+    "synonyms": [
+      "activites sorties sport loisirs sortir jeux jeu loisir isolement isole solitude isolee"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "sport_activities",
+    "label": "نشاطات رياضية",
+    "slug": "activites-sportives",
+    "synonyms": [
+      "activites sportives sport foot basket danse rugby loisirs loisir"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Activités sportives : foot, jogging, marche, etc."
+  },
+  {
+    "categoryId": "museums",
+    "label": "متحف",
+    "slug": "musee",
+    "synonyms": [
+      "musee culture sortie peinture tableau se cultiver"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Musée gratuit."
+  },
+  {
+    "categoryId": "libraries",
+    "label": "مكتبة",
+    "slug": "bibliotheque",
+    "synonyms": [
+      "bibliotheque livres culture mediatheque"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Bibliothèque accessible en accès libre."
+  },
+  {
+    "categoryId": "other_activities",
+    "label": "نشاطات مختلفة",
+    "slug": "activites-diverses",
+    "synonyms": [
+      "activites diverses animation divertissement loisir s occuper culture activites enfants loisirs loisir"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Activités diverses : ateliers, activités culturelles, etc. (précisez.)"
+  },
+  {
+    "categoryId": "food",
+    "label": "طعام",
+    "slug": "alimentation-bouffe-boufe-manger-soupe-repas-aliment-manger-mange-repa-faim-diner-dejeuner-dejeunet-dine-se-nourrir-fin-portage-portage-de-repas-aide-alimentaire-comida-comer-resto-du-coeur",
+    "synonyms": [
+      "alimentation bouffe boufe manger soupe repas aliment manger mange repa faim diner dejeuner dejeunet dine se nourrir fin portage portage de repas aide alimentaire comida comer"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "food_distribution",
+    "label": "توزيع الوجبات",
+    "slug": "distribution-repas",
+    "synonyms": [
+      "distribution alimentaire distribution de repas manger maraude bouffe soupe nourriture faim repas mange manger fin distribution aide alimentaire restauration assise comida comer"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Point d'arrêt d'une distribution alimentaire. Attention : Veuillez créer une structure par point de distribution."
+  },
+  {
+    "categoryId": "food_packages",
+    "label": "سلة الأغذية",
+    "slug": "colis-alimentaire",
+    "synonyms": [
+      "colis colis alimentaire manger mange fruits legumes panier repas aide alimentaire panier comida comer"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Distribution de colis contenant des denrées alimentaires (conserves, légumes, etc.)."
+  },
+  {
+    "categoryId": "social_grocery_stores",
+    "label": "بقالة اجتماعية وتضامنية",
+    "slug": "epicerie-sociale-solidaire",
+    "synonyms": [
+      "epicerie sociale epicerie manger fruits legumes panier repas epicerie solidaire aide alimentaire"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Les épiceries solidaires accueillent les personnes en précarité et leur permettent de faire des courses à prix solidaire."
+  },
+  {
+    "categoryId": "fountain",
+    "label": "نافورة مياه عامة",
+    "slug": "fontaine",
+    "synonyms": [
+      "fontaine boire eau soif robinet potable"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Eau potable en accès libre."
+  },
+  {
+    "categoryId": "solidarity_fridge",
+    "label": "ثلاجة التضامن",
+    "slug": "frigo-solidaire",
+    "synonyms": [
+      "manger mange conserver frais bouffe aliment faim frigo frigo solidaire"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Frigo solidaire"
+  },
+  {
+    "categoryId": "shared_kitchen",
+    "label": "مطبخ مشترك",
+    "slug": "cuisine-partagee",
+    "synonyms": [
+      "cuisine cuisiner preparer partage partagee cuisine partagee"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Cuisine partagée "
+  },
+  {
+    "categoryId": "cooking_workshop",
+    "label": "ورشة الطبخ",
+    "slug": "atelier-cuisine",
+    "synonyms": [
+      "atelier cuisine cuisiner partage preparer atelier cuisine cuire"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Atelier de cuisine"
+  },
+  {
+    "categoryId": "baby_parcel",
+    "label": "حزمة الطفل",
+    "slug": "colis-bebe",
+    "synonyms": [
+      "bebe nourrir nourisson colis colis bebe puericulture lait couche biberon maternite manger nourriture vetement"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Colis pour bébé"
+  },
+  {
+    "categoryId": "food_voucher",
+    "label": "قسيمة الطعام / الشيك",
+    "slug": "bon-alimentaire",
+    "synonyms": [
+      "bon cheque ticket alimentaire gratuit aide"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Distribution de bon/chèque alimentaire"
+  },
+  {
+    "categoryId": "community_garden",
+    "label": "حديقة التضامن",
+    "slug": "jardin-solidaire",
+    "synonyms": [
+      "fruits pousser jardin bio nature legumes jardin solidaire jardinage"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Jardin solidaire"
+  },
+  {
+    "categoryId": "counseling",
+    "label": "كن نصوح",
+    "slug": "conseil",
+    "synonyms": [
+      "conseil conseils soutien accompagnement aide se faire aider conseiller numerique"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "legal_advice",
+    "label": "مكانة قانونية",
+    "slug": "permanence-juridique",
+    "synonyms": [
+      "proces permanence juridique amende avocat droits droit recours juge ldh droits de l homme ligue des droits de l homme acces au droit cnda ofpra asile sejour carte sejour divorce separation"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Permanences juridiques (surendettement, demande d'asile, procès, etc.)."
+  },
+  {
+    "categoryId": "social_accompaniment",
+    "label": "المرافقة الاجتماعية",
+    "slug": "accompagnement-social",
+    "synonyms": [
+      "accompagnement assistante sociale social travailleur social droits demarches femmes battues femme battue violence isolement isole solitude isolee partir separation divorce victime"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Accompagement des personnes dans leur réinsertion (assistantes sociales, permanences, etc.)."
+  },
+  {
+    "categoryId": "disability_advice",
+    "label": "مجلس الإعاقة",
+    "slug": "conseil-handicap",
+    "synonyms": [
+      "conseil handicap handicap aah conseils conseil handicape handicapee personne a mobilite reduite pmr"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Permanences d'accès aux droits pour les personnes en situation de handicap."
+  },
+  {
+    "categoryId": "administrative_assistance",
+    "label": "اﺳﺘﺸﺎﺭاﺕ ﺇﺩاﺭﻳﺔ",
+    "slug": "conseil-administratif",
+    "synonyms": [
+      "conseil administratif conseils administratifs aide administrative demarches rsa cmu allocations papiers securite sociale caf cpampapier conseiller numerique"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Permanences d'aide administrative (RSA, CMU, allocations, chômage, etc.)."
+  },
+  {
+    "categoryId": "parent_assistance",
+    "label": "الاستشارة للوالدين",
+    "slug": "conseil-parents",
+    "synonyms": [
+      "conseil parents conseil aux parents conseil parental mediation familiale mediation conflit adolescents enfants parent parentalite parents enfant ado adolescent couple couples"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Permances d'aide pour les jeunes parents et les parents rencontrant des difficultés avec leurs enfants."
+  },
+  {
+    "categoryId": "budget_advice",
+    "label": "نصيحة الميزانية",
+    "slug": "conseil-budget",
+    "synonyms": [
+      "conseil budget conseil budget argent finance cresus"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Points conseil budget (PCB) proposent des conseils gratuits et personnalisés de gestion budgétaire "
+  },
+  {
+    "categoryId": "training_and_jobs",
+    "label": "اﻟﺘﺪﺭﻳﺐ ﻭ اﻟﺘﻮﻇﻴﻒ",
+    "slug": "formation-emploi",
+    "synonyms": [
+      "formation emploi travailler job travail boulot se former taf taff taffe apprendre lire etudier comprendre france travail pole emploi conseiller numerique"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "digital_tools_training",
+    "label": "اﻟﺘﺪﺭﻳﺐ اﻟﺮﻗﻤﻲ",
+    "slug": "formation-numerique",
+    "synonyms": [
+      "formation numerique atelier numerique formation informatique ordinateur connexion se former technologie tech apprendre comprendre lire etudier conseiller numerique"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Permanences ou ateliers visant à la maitrise d'outils informatiques."
+  },
+  {
+    "categoryId": "job_coaching",
+    "label": "المرافقة في العمل",
+    "slug": "accompagnement-emploi",
+    "synonyms": [
+      "accompagnement emploi travailler job pole emploi travail boulot se former etre accompagne taf taff taffe apprendre comprendre lire etudier france travail orientation"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Aide au retour à l'emploi : ateliers de préparation aux entretiens, aide à la recherche d'emploi, atelier CV, etc."
+  },
+  {
+    "categoryId": "integration_through_economic_activity",
+    "label": "التكامل من خلال النشاط الاقتصادي",
+    "slug": "insertion-activite-economique",
+    "synonyms": [
+      "chantier de reinsertion chantier reinsertion travailler job insertion reinsertion siae iae se reinserer taf taff taffe apprendre comprendre lire etudier orientation"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Embauche de personnes en insertion."
+  },
+  {
+    "categoryId": "tutoring",
+    "label": "الدعم المدرسي",
+    "slug": "soutien-scolaire",
+    "synonyms": [
+      "soutien scolaire aide au devoir etudes college lycee devoirs cours apprendre comprendre lire etudier"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Soutien scolaire gratuit (préciser le niveau dans la description)."
+  },
+  {
+    "categoryId": "accomodation_and_housing",
+    "label": "السكن والإسكان",
+    "slug": "hebergement-et-logement",
+    "synonyms": [
+      "hebergement dormir lit logement repos toit hebergement logement logement hebergement et logement hebergementetlogement domir"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "overnight_stop",
+    "label": "توقف ليلي",
+    "slug": "halte-nuit",
+    "synonyms": [
+      "halte de nuit halte nuit dormir se reposer alte de nui accueil nuit accueil de nuit accueil nuit"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "La halte de nuit est un lieu d'accueil et de repos pour les personnes sans abri ouvert de 20h à 8h du matin, 7/7 jours."
+  },
+  {
+    "categoryId": "emergency_accommodation",
+    "label": "الإيواء الطارئ",
+    "slug": "hebergement-urgence",
+    "synonyms": [
+      "hebergement urgence dormir lit logement chu halte de nuit toit a la rue rue dehors accueil de nuit accueil nuit accueil nuit"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Hébergement à court terme (à la nuitée), accessible directement."
+  },
+  {
+    "categoryId": "long_term_accomodation",
+    "label": "الإيواء لمدة طويلة",
+    "slug": "hebergement-long-terme",
+    "synonyms": [
+      "hebergement dormir lit logement chrs repos toit"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Possibilité d'hébergement à long terme, au sein de la structure ou d'une structure partenaire. Indiquer dans la description les modalités d'accès."
+  },
+  {
+    "categoryId": "citizen_housing",
+    "label": "سكن المواطن",
+    "slug": "hebergement-citoyen",
+    "synonyms": [
+      "hebergement hebergement citoyen merci pour l invit singa"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "access_to_housing",
+    "label": "اﻟﺪﻋﻢ اﻟﺴﻜﻨﻲ",
+    "slug": "conseil-logement",
+    "synonyms": [
+      "hebergement dalo logement expulsion toit maison impayes factures chauffage conseil conseil logement"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Permanences d'accès au logement (logement social, DALO, etc.)."
+  },
+  {
+    "categoryId": "hygiene_and_wellness",
+    "label": "النظافة والرفاهية",
+    "slug": "hygiene",
+    "synonyms": [
+      "hygiene laver douche bain se laver se doucher propre"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "shower",
+    "label": "الإستحمام",
+    "slug": "douche",
+    "synonyms": [
+      "douche laver se laver bain bain douche piscine propre sale cheveux"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "hairdresser",
+    "label": "مصفف شعر",
+    "slug": "coiffeur",
+    "synonyms": [
+      "coiffeur cheveux"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "laundry",
+    "label": "مغسلة الثياب",
+    "slug": "laverie",
+    "synonyms": [
+      "laverie vetements vetement laver machine a laver pressing linge lave linge"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Lave-linge en accès libre."
+  },
+  {
+    "categoryId": "wellness",
+    "label": "اﻟﺘﺮﻓﻴﺔ ﻋﻦ اﻟﻨﻔﺲ",
+    "slug": "bien-etre",
+    "synonyms": [
+      "bien etre coiffeur massage maquillage belle beau pedicure manicure manucire"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Ateliers de bien-être : coiffeur, massage, sophrologie, etc. (à préciser dans la description)."
+  },
+  {
+    "categoryId": "toilets",
+    "label": "اﻟﻤﺮاﺣﻴﺾ",
+    "slug": "toilettes",
+    "synonyms": [
+      "toilettes sanisette pisser pipi wc caca chiotte toilet"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Toilettes en accès libre."
+  },
+  {
+    "categoryId": "hygiene_products",
+    "label": "منتجات العناية",
+    "slug": "produits-hygiene",
+    "synonyms": [
+      "periodiques protections periodiques protection periodique regles regle tampon serviette hygienique serviette menstrues produits d hygiene hygiene cup culotte tampax"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Distribution de produits d'hygiène (savons, dentifrice, tampons, serviettes hygiéniques, etc.)."
+  },
+  {
+    "categoryId": "face_masks",
+    "label": "أقنعة",
+    "slug": "masques",
+    "synonyms": [
+      "masque protection covid virus"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Masques de protection"
+  },
+  {
+    "categoryId": "equipment",
+    "label": "معدات",
+    "slug": "materiel",
+    "synonyms": [
+      "materiel affaires mobilier"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "luggage_storage",
+    "label": "مكان تخزين الأمتعة",
+    "slug": "bagagerie",
+    "synonyms": [
+      "bagage bagagerie sac poser casier"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Lieu permettant de conserver des bagages ou matériel."
+  },
+  {
+    "categoryId": "solidarity_store",
+    "label": "متجر تضامني",
+    "slug": "boutique-solidaire",
+    "synonyms": [
+      "boutique solidaire meubles accessoires s habiller"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Boutique vendant du matériel à prix solidaire."
+  },
+  {
+    "categoryId": "clothing",
+    "label": "ملابس",
+    "slug": "vetements",
+    "synonyms": [
+      "vestiaire vetements t shirt pantalon robe vetir vestiboutique pull manteau habit s habiller"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Vêtements gratuits ou à prix symbolique. Préciser le sexe et/ou l'âge dans les conditions."
+  },
+  {
+    "categoryId": "animal_assitance",
+    "label": "حيوانات",
+    "slug": "animaux",
+    "synonyms": [
+      "animaux animals chien chat croquettes animal"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Aide aux animaux de compagnie"
+  },
+  {
+    "categoryId": "health",
+    "label": "الصحة",
+    "slug": "sante",
+    "synonyms": [
+      "sante soins se soigner hopital lam lit medicalise lhss medecin docteur infirmiere aide soignante aide soignant malade douleur materiel medical medicaments maintien a domicile senior assurance maladie securite sociale secu cpam sexe"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "addiction",
+    "label": "إدمان",
+    "slug": "addiction",
+    "synonyms": [
+      "addiction drogue alccol dependance caarud seringue sevrage sevrer alcool csapa tabac dependance cannabis rdr addcito materiels rdr"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Aide aux personnes en situation de dépendance (alcool, cannabis, jeux, etc.)"
+  },
+  {
+    "categoryId": "std_testing",
+    "label": "ﻓﺤﺺ اﻷﻣﺮاﺽ",
+    "slug": "depistage",
+    "synonyms": [
+      "depistage vih mst cdag sida hepatites maladies sexuelles malade ist maladie infectieuse tuberculose"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Dépistage gratuit des maladies sexuellement transmissibles (MST)."
+  },
+  {
+    "categoryId": "psychological_support",
+    "label": "علم النفس",
+    "slug": "psychologie",
+    "synonyms": [
+      "psychologie soutien ecoute depression psy aide psychologique se faire aider violences conjugales violences mari violent psychologiques femmes battues femmes battus femmes batues femmes batus femmes batue femme batu femme battue femme battu femme batue femme batu fem batue fem batu victime de violences violence violent conjoint violent tape harcelement psychologue partir divorce separation victime"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Soutien psychologique (écoute, permanences de psychologues, etc.)."
+  },
+  {
+    "categoryId": "child_care",
+    "label": "رعاية الأطفال",
+    "slug": "soins-enfants",
+    "synonyms": [
+      "bebe soins bebe soins enfants pediatrie pmi prevention specialisee protection de l enfance accompagnement eductaif puericulture puericulture nourrisson"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Soins dédiés aux bébés et/ou enfants. Ex : PMI."
+  },
+  {
+    "categoryId": "general_practitioner",
+    "label": "طبيب عام",
+    "slug": "generaliste",
+    "synonyms": [
+      "generaliste soins se soigner docteur medecin malade cpam assurance maladie ordonnance traitement certificat medical medicament"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Médecine généraliste, gratuite ou accessible aux personnes sous CMU ou AME."
+  },
+  {
+    "categoryId": "dental_care",
+    "label": "ﻃﺐ اﻷﺳﻨﺎﻥ",
+    "slug": "dentaire",
+    "synonyms": [
+      "dentaire dentiste dents gencive bouche couronne carie cari carrie appareil soin dent de sagesse"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Soins dentaires, gratuits ou accessibles aux personnes sous CMU ou AME."
+  },
+  {
+    "categoryId": "pregnancy_care",
+    "label": "تنظيم الأسرة",
+    "slug": "planification",
+    "synonyms": [
+      "planification suivi grossesse enceinte grossesse accouchement bebe avortement maternite planning familial sage femme pilule"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Soins pour les femmes enceintes."
+  },
+  {
+    "categoryId": "vaccination",
+    "label": "لقاحات",
+    "slug": "vaccination",
+    "synonyms": [
+      "vaccination vaccin covid piqure rappel rappel de vaccin"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Vaccins gratuits ou accessibles aux personnes sous CMU ou AME."
+  },
+  {
+    "categoryId": "infirmary",
+    "label": "تمريض",
+    "slug": "infirmerie",
+    "synonyms": [
+      "infirmerie soins se soigner bobo pansements maladie malade bandage"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Soins infirmiers (pansements, bandages, médicaments sans ordonnance)."
+  },
+  {
+    "categoryId": "vet_care",
+    "label": "طبيب بيطري",
+    "slug": "veterinaire",
+    "synonyms": [
+      "veterinaire animaux veto animal chien chat castrer castration"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Soins pour les animaux"
+  },
+  {
+    "categoryId": "health_specialists",
+    "label": "أطباء مختصين",
+    "slug": "specialistes-medecine",
+    "synonyms": [
+      "specialistes specialiste"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "allergology",
+    "label": "حساسية",
+    "slug": "allergologie",
+    "synonyms": [
+      "allergologie allergies"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "cardiology",
+    "label": "الأمراض القلبية",
+    "slug": "cardiologie",
+    "synonyms": [
+      "cardiologie coeur cardiaque cardio"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "dermatology",
+    "label": "الأمراض الجلدية",
+    "slug": "dermatologie",
+    "synonyms": [
+      "dermato dermatologie dermatologue peau bouton"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "echography",
+    "label": "التصوير بالموجات فوق الصوتية (إيكو)",
+    "slug": "echographie",
+    "synonyms": [
+      "echographie bebe enceinte"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "endocrinology",
+    "label": "أمراض الغدة",
+    "slug": "endocrinologie",
+    "synonyms": [
+      "endocrinologie hormones tyroide"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "gastroenterology",
+    "label": "أمراض الجهاز الهضمي",
+    "slug": "gastro-enterologie",
+    "synonyms": [
+      "gastro enterologue gastro enterologie kk caca"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "gynecology",
+    "label": "الطب النسائي",
+    "slug": "gynecologie",
+    "synonyms": [
+      "gynecologie enceinte vagin gyneco bebe gynecologie gynecologue suivi grossesse grossesse pilule frottis uterus"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "kinesitherapy",
+    "label": "المعالجة الفيزيائية",
+    "slug": "kinesitherapie",
+    "synonyms": [
+      "kinesitherapie reeducation blessure kine"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "mammography",
+    "label": "التصوير الشعاعي للثدي",
+    "slug": "mammographie",
+    "synonyms": [
+      "mammographie radio seins"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "ophthalmology",
+    "label": "طب العيون",
+    "slug": "ophtalmologie",
+    "synonyms": [
+      "ophtalmologie ophtalmologue yeux voir lunette"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "otorhinolaryngology",
+    "label": "أذن أنف حنجرة",
+    "slug": "oto-rhino-laryngologie",
+    "synonyms": [
+      "oto rhino laryngologogie oreilles appareils auditifs protheses auditives audition"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "nutrition",
+    "label": "إختصاص تغذية",
+    "slug": "nutrition",
+    "synonyms": [
+      "nutrition dietetique regime surpoids obesite perte de poids"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "pedicure",
+    "label": "إختصاص العناية بالأقدام",
+    "slug": "pedicure",
+    "synonyms": [
+      "pedicure pied pie soigner pieds soin podologue podologie"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "phlebology",
+    "label": "إختصاص الأوردة",
+    "slug": "phlebologie",
+    "synonyms": [
+      "phlebologie phlebology veines phlebites phlebites phlebologue phlebologue varices varisses"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "pneumology",
+    "label": "علم أمراض الرئة",
+    "slug": "pneumologie",
+    "synonyms": [
+      "poumons respiration respirer bronches"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "radiology",
+    "label": "إختصاص الأشعة",
+    "slug": "radiologie",
+    "synonyms": [
+      "radiologie radiologue radiology rayonx fracture entorse"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "rheumatology",
+    "label": "أمراض المفاصل",
+    "slug": "rhumatologie",
+    "synonyms": [
+      "rhumatologue rumatologie"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "urology",
+    "label": "أمراض المجاري البولية",
+    "slug": "urologie",
+    "synonyms": [
+      "urologie urology"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "speech_therapy",
+    "label": "إختصاص النطق",
+    "slug": "orthophonie",
+    "synonyms": [
+      "orthophonie orthophoniste dyslexique dyslexie oreilles appareils auditifs protheses auditives audition"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "stomatology",
+    "label": "طب الأسنان واللثة",
+    "slug": "stomatologie",
+    "synonyms": [
+      "stomatologie stomatologue estomac digestion ventre"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "osteopathy",
+    "label": "تقويم العظام",
+    "slug": "osteo",
+    "synonyms": [
+      "ostheopathe osteo dos mal"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "acupuncture",
+    "label": "العلاج بالإبر",
+    "slug": "acupuncture",
+    "synonyms": [
+      "acupuncture accupuncture bien etre"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "technology",
+    "label": "اﻟﺪﻋﻢ اﻟﺘﻜﻨﻮﻟﻮﺟﻲ",
+    "slug": "technologie",
+    "synonyms": [
+      "technologie numerique pc telephone smartphone iphone apple android informatique internet wifi ordinateur ordi"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "computers_at_your_disposal",
+    "label": "أجهزة الحاسوب",
+    "slug": "ordinateur",
+    "synonyms": [
+      "numerique pc informatique en ligne web ordinateur ordi appel android mac"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Ordinateurs disponibles en accès libre."
+  },
+  {
+    "categoryId": "wifi",
+    "label": "اﻟﻮاﻱ ﻓﺎﻱ (ﺧﺪﻣﺎﺕ اﻹﻧﺘﺮﻧﺖ)",
+    "slug": "wifi",
+    "synonyms": [
+      "wifi internet web connexion reseau"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Wifi disponible en accès libre."
+  },
+  {
+    "categoryId": "electrical_outlets_available",
+    "label": "مأخذ كهربائي",
+    "slug": "prise",
+    "synonyms": [
+      "prise charger electricite chargeur recharge charge"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Prises électriques disponibles en accès libre."
+  },
+  {
+    "categoryId": "telephone_at_your_disposal",
+    "label": "هاتف",
+    "slug": "telephone",
+    "synonyms": [
+      "appel gratuit telephone telephoner appeler appel"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Téléphone disponible en accès libre."
+  },
+  {
+    "categoryId": "digital_safe",
+    "label": "آمنة الرقمية",
+    "slug": "numerisation",
+    "synonyms": [
+      "reconnect numerisation scanner cloud coffre fort dossier imprimante"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Reconnect, cloud solidaire est un coffre-fort numérique pour numériser les documents des personnes sans-abri"
+  },
+  {
+    "categoryId": "mobility",
+    "label": "النقل / التنقل",
+    "slug": "transport-mobilite",
+    "synonyms": [
+      "transport mobilite transport et mobilite garage garage solidaire"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "carpooling",
+    "label": "استخدام السيارات",
+    "slug": "covoiturage",
+    "synonyms": [
+      "co voiturage partage de voiture"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "provision_of_vehicles",
+    "label": "توفير السيارة",
+    "slug": "vehicule",
+    "synonyms": [
+      "mise a disposition de vehicule voiture"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "chauffeur_driven_transport",
+    "label": "النقل مع السائق",
+    "slug": "chauffeur",
+    "synonyms": [
+      "transport avec chauffeur chauffeur transport a la demande"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "mobility_assistance",
+    "label": "مساعدات التنقل",
+    "slug": "permis",
+    "synonyms": [
+      "aide au permis de conduire permis de conduire auto ecole auto ecole auto ecole"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": "french_course",
+    "label": "دروس في الفرنسية",
+    "slug": "formation-francais",
+    "synonyms": [
+      "formation francais cours de francais alphabetisation francais langue traduction fle alpha asl accompagnement vers l emploi apprendre comprendre lire etudier"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Cours de français (alphabétisation, ASL, FLE, etc.)."
+  },
+  {
+    "categoryId": "domiciliation",
+    "label": "اﻹﺳﻜﺎﻥ",
+    "slug": "domiciliation",
+    "synonyms": [
+      "domiciliation demarches rsa adresse courrier lettre boite postale"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Adresse postale et/ou administrative."
+  },
+  {
+    "categoryId": "public_writer",
+    "label": "ﻛﺎﺗﺐ ﻋﺎﻡ",
+    "slug": "ecrivain-public",
+    "synonyms": [
+      "ecrivain demarches lettre courrier traduire traduction ecrire traduction traducteur papiers cv lettre de motivation"
+    ],
+    "type": "CATEGORY",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": "Aide à la rédaction des couriers administratifs."
+  },
+  {
+    "categoryId": null,
+    "label": "Restos du Cœur: association d'aide alimentaire et d'insertion",
+    "slug": "restos-du-coeur",
+    "synonyms": [
+      "resto du coeur",
+      "restos",
+      "resto",
+      "péniche du coeur",
+      "camion des restos",
+      "restaurant du coeur",
+      "restaurants du coeur",
+      "coluche",
+      "relais du coeur",
+      "restau",
+      "restaus"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "Secours Catholique: organisation caritative catholique",
+    "slug": "secours-catholique",
+    "synonyms": [
+      "secours cato",
+      "caritas",
+      "secour cath",
+      "secours catholiques"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "Croix Rouge: organisation humanitaire internationale",
+    "slug": "croix-rouge",
+    "synonyms": [
+      "croix-rouge",
+      "croix rouge française",
+      "crf",
+      "ul",
+      "unité locale",
+      "vestiboutique"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "SPF: secours populaire français",
+    "slug": "secours-populaire",
+    "synonyms": [
+      "SPF",
+      "secours pop",
+      "secours populaire français",
+      "secour populaire francais"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "Emmaüs: mouvement de lutte contre la pauvreté et l'exclusion",
+    "slug": "emmaus",
+    "synonyms": [
+      "emmaüs",
+      "emmaus france",
+      "communauté emmaus",
+      "abbé pierre",
+      "fondation abbé pierre"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "CAF: caisse des allocations familiales",
+    "slug": "caf",
+    "synonyms": [
+      "CAF",
+      "caisse allocations familiales",
+      "allocations",
+      "allocations familiales"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "France Services: guichet unique de services publics",
+    "slug": "france-services",
+    "synonyms": [
+      "france service",
+      "maison france services",
+      "MFS"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "CIMADE: service œcuménique d'entraide",
+    "slug": "cimade",
+    "synonyms": [
+      "la cimade",
+      "CIMADE",
+      "service œcuménique d'entraide"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "CIDFF: centre d'information sur les droits des femmes",
+    "slug": "cidff",
+    "synonyms": [
+      "CIDFF",
+      "centre information droits femmes",
+      "centre d'information sur les droits des femmes"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "ADIL: agence départementale d'information sur le logement",
+    "slug": "adil",
+    "synonyms": [
+      "ADIL",
+      "agence départementale information logement",
+      "agence d'information sur le logement"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "CPAM: caisse primaire d'assurance maladie",
+    "slug": "cpam",
+    "synonyms": [
+      "CPAM",
+      "caisse primaire assurance maladie",
+      "sécurité sociale",
+      "assurance maladie"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "PIMMS: point information médiation multi services",
+    "slug": "pimms",
+    "synonyms": [
+      "PIMMS",
+      "point information médiation multi services",
+      "médiation services"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "Armée du Salut: organisation chrétienne d'aide sociale",
+    "slug": "armee-du-salut",
+    "synonyms": [
+      "armée du salut",
+      "salvation army",
+      "citadelle",
+      "foyer armée du salut"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "France Travail: service public de l'emploi",
+    "slug": "france-travail",
+    "synonyms": [
+      "pole emploi",
+      "pôle emploi",
+      "agence pole emploi",
+      "PE",
+      "anpe",
+      "agence france travail",
+      "FT",
+      "pôle-emploi",
+      "pole-emploi",
+      "france-travail"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "Banque Alimentaire: réseau de distribution alimentaire",
+    "slug": "banque-alimentaire",
+    "synonyms": [
+      "banques alimentaires",
+      "BA",
+      "fédération banques alimentaires"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "Médecins Sans Frontières: aide médicale humanitaire",
+    "slug": "msf",
+    "synonyms": [
+      "médecins sans frontières",
+      "MSF",
+      "doctors without borders",
+      "médecin sans frontière"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "Petits Frères des Pauvres: accompagnement des personnes âgées isolées",
+    "slug": "petits-freres-des-pauvres",
+    "synonyms": [
+      "petits frères des pauvres",
+      "petits freres",
+      "association petits frères"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "Secours Islamique France: aide humanitaire et sociale",
+    "slug": "secours-islamique",
+    "synonyms": [
+      "secours islamique france",
+      "SIF",
+      "secours islamique",
+      "aide islamique"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "Fondation pour le Logement des Défavorisés: lutte contre le mal-logement",
+    "slug": "fondation-pour-le-logement",
+    "synonyms": [
+      "fondation pour le logement des défavorisés",
+      "fondation pour le logement",
+      "logement défavorisés",
+      "mal logement",
+      "fondation abbé pierre"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "CCAS: centre communal d'action sociale",
+    "slug": "ccas",
+    "synonyms": [
+      "CCAS",
+      "cias",
+      "centre communal d'action sociale",
+      "centre communal action sociale",
+      "centre intercommunal action sociale"
+    ],
+    "type": "ESTABLISHMENT_TYPE",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "Centre socioculturel: structure d'animation et de lien social",
+    "slug": "centre-socioculturel",
+    "synonyms": [
+      "centre socio culturel",
+      "csc",
+      "centre social"
+    ],
+    "type": "ESTABLISHMENT_TYPE",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "PIJ: point information jeunesse",
+    "slug": "pij",
+    "synonyms": [
+      "PIJ",
+      "point information jeunesse",
+      "point info jeunesse",
+      "bureau information jeunesse",
+      "bij",
+      "info jeune"
+    ],
+    "type": "ESTABLISHMENT_TYPE",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "PMI: protection maternelle et infantile",
+    "slug": "pmi",
+    "synonyms": [
+      "PMI",
+      "protection maternelle et infantile",
+      "centre pmi",
+      "centre de protection maternelle et infantile",
+      "bébé"
+    ],
+    "type": "ESTABLISHMENT_TYPE",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "Maison de l'autonomie: accompagnement des personnes âgées et handicapées",
+    "slug": "maison-de-l-autonomie",
+    "synonyms": [
+      "mda",
+      "maison des personnes handicapées",
+      "autonomie",
+      "mdph",
+      "aah",
+      "handicap",
+      "handicapé",
+      "âgées",
+      "personnes âgées",
+      "agé",
+      "agées"
+    ],
+    "type": "ESTABLISHMENT_TYPE",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "CADA: centre d'accueil pour demandeurs d'asile",
+    "slug": "cada",
+    "synonyms": [
+      "CADA",
+      "centre accueil demandeurs asile",
+      "centre d'accueil pour demandeurs d'asile",
+      "hébergement demandeurs asile"
+    ],
+    "type": "ESTABLISHMENT_TYPE",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "ESI: équipe spécialisée d'insertion",
+    "slug": "esi",
+    "synonyms": [
+      "ESI",
+      "équipe spécialisée d'insertion",
+      "équipe spécialisée insertion",
+      "service insertion"
+    ],
+    "type": "ESTABLISHMENT_TYPE",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "PASS: permanence d'accès aux soins",
+    "slug": "pass",
+    "synonyms": [
+      "PASS",
+      "permanence d'accès aux soins",
+      "permanence accès soins",
+      "point accès soins"
+    ],
+    "type": "ESTABLISHMENT_TYPE",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "Mission locale: accompagnement des jeunes vers l'emploi",
+    "slug": "mission-locale",
+    "synonyms": [
+      "missions locales",
+      "ML",
+      "mission locale jeunes",
+      "antenne mission locale"
+    ],
+    "type": "ESTABLISHMENT_TYPE",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "SAS: service d'accompagnement social",
+    "slug": "sas",
+    "synonyms": [
+      "SAS",
+      "service d'accompagnement social",
+      "service accompagnement social",
+      "structure d'accompagnement"
+    ],
+    "type": "ESTABLISHMENT_TYPE",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "SIAO: service intégré d'accueil et d'orientation",
+    "slug": "siao",
+    "synonyms": [
+      "SIAO",
+      "service intégré accueil orientation",
+      "service intégré d'accueil et d'orientation",
+      "plateforme siao"
+    ],
+    "type": "ESTABLISHMENT_TYPE",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "CMP: centre médico-psychologique",
+    "slug": "cmp",
+    "synonyms": [
+      "CMP",
+      "centre médico-psychologique",
+      "centre médico psychologique",
+      "consultation psychiatrie"
+    ],
+    "type": "ESTABLISHMENT_TYPE",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "CHRS: centre d'hébergement et de réinsertion sociale",
+    "slug": "chrs",
+    "synonyms": [
+      "CHRS",
+      "centre hébergement réinsertion sociale",
+      "centre d'hébergement et de réinsertion sociale",
+      "foyer CHRS"
+    ],
+    "type": "ESTABLISHMENT_TYPE",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "MDS: maison départementale des solidarités",
+    "slug": "mds",
+    "synonyms": [
+      "MDS",
+      "maison des solidarités",
+      "maison départementale des solidarités",
+      "maison départementale solidarités"
+    ],
+    "type": "ESTABLISHMENT_TYPE",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "Hôpital: établissement de soins médicaux",
+    "slug": "hopital",
+    "synonyms": [
+      "hôpital",
+      "centre hospitalier",
+      "CH",
+      "CHU",
+      "établissement hospitalier"
+    ],
+    "type": "ESTABLISHMENT_TYPE",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "PSA: point santé accueil",
+    "slug": "psa",
+    "synonyms": [
+      "PSA",
+      "point santé accueil",
+      "permanence santé accueil",
+      "point d'accès santé"
+    ],
+    "type": "ESTABLISHMENT_TYPE",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "CMS: centre médico-social",
+    "slug": "cms",
+    "synonyms": [
+      "CMS",
+      "centre médico-social",
+      "centre medico social",
+      "dispensaire"
+    ],
+    "type": "ESTABLISHMENT_TYPE",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "CSAPA: centre de soins, d'accompagnement et de prévention en addictologie",
+    "slug": "csapa",
+    "synonyms": [
+      "CSAPA",
+      "centre soins accompagnement prévention addictologie",
+      "centre addictologie",
+      "addiction"
+    ],
+    "type": "ESTABLISHMENT_TYPE",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "Point Justice: accès au droit et à la justice",
+    "slug": "point-justice",
+    "synonyms": [
+      "points justice",
+      "maison justice droit",
+      "mjd",
+      "accès droit"
+    ],
+    "type": "ESTABLISHMENT_TYPE",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "CAARUD: centre d'accueil et d'accompagnement à la réduction des risques pour usagers de drogues",
+    "slug": "caarud",
+    "synonyms": [
+      "CAARUD",
+      "centre accueil accompagnement réduction risques usagers drogues",
+      "réduction risques"
+    ],
+    "type": "ESTABLISHMENT_TYPE",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "Halte Femme: accueil et accompagnement des femmes en difficulté",
+    "slug": "halte-femme",
+    "synonyms": [
+      "halte femmes",
+      "accueil femmes",
+      "centre femmes",
+      "maison femmes"
+    ],
+    "type": "ESTABLISHMENT_TYPE",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "MDPH: maison départementale des personnes handicapées",
+    "slug": "mdph",
+    "synonyms": [
+      "MDPH",
+      "maison départementale personnes handicapées",
+      "handicap",
+      "dossier mdph"
+    ],
+    "type": "ESTABLISHMENT_TYPE",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "Maison Relais: logement accompagné pour personnes vulnérables",
+    "slug": "maison-relais",
+    "synonyms": [
+      "maisons relais",
+      "pension famille",
+      "résidence accueil",
+      "logement accompagné"
+    ],
+    "type": "ESTABLISHMENT_TYPE",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  },
+  {
+    "categoryId": null,
+    "label": "Planning Familial ",
+    "slug": "planning-familial",
+    "synonyms": [
+      "planning",
+      "contraception",
+      "ivg",
+      "conseil conjugal",
+      "éducation sexuelle"
+    ],
+    "type": "ESTABLISHMENT_TYPE",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "",
+    "seoDescription": ""
+  }
+]

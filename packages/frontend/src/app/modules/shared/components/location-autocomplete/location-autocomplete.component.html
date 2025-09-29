@@ -18,23 +18,66 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
-<div #autocompleteContainer id="autocomplete"></div>
+<div class="d-flex align-items-center position-relative">
+  <input
+    type="text"
+    class="form-control"
+    #searchInput
+    [ngbTypeahead]="searchLocation"
+    [resultFormatter]="formatter"
+    [resultTemplate]="resultTemplate"
+    [placeholder]="placeholder"
+    (selectItem)="onSelectItem($event, searchInput)"
+    (focus)="onInputFocus(searchInput)"
+    [editable]="false"
+    [focusFirst]="true"
+    [showHint]="true"
+  />
+  <ng-template #resultTemplate let-r="result" let-t="term">
+    <div
+      class="d-flex align-items-center"
+      *ngIf="r.geoType !== GeoTypes.POSITION; else positionTemplate"
+    >
+      <img
+        src="/assets/images/maps/0.png"
+        alt=""
+        class="me-2"
+        style="width: 20px; height: 20px"
+      />
+      <div>
+        <strong>{{ getGeoTypeLabel(r.geoType) }}</strong> - {{ r.label }}
+      </div>
+    </div>
+    <ng-template #positionTemplate>
+      <div class="d-flex align-items-center">
+        <img
+          src="/assets/images/maps/0.png"
+          alt=""
+          class="me-2"
+          style="width: 20px; height: 20px"
+        />
+        <div>{{ r.label }}</div>
+      </div>
+    </ng-template>
+  </ng-template>
 
-<button
-  type="button"
-  *ngIf="!addressesOnly"
-  class="search-input-button"
-  [disabled]="locationLoading"
-  [attr.aria-label]="'GEOLOCATE_MYSELF' | translate"
-  (click)="getCurrentPosition()"
->
-  <fa-icon *ngIf="!locationLoading" [icon]="faLocationDot" aria-hidden="true">
-  </fa-icon>
-  <fa-icon
-    *ngIf="locationLoading"
-    [icon]="faCircleNotch"
-    [spin]="true"
-    aria-hidden="true"
+  <button
+    type="button"
+    *ngIf="!addressesOnly"
+    class="btn btn-outline-secondary position-absolute end-0 me-1"
+    style="z-index: 10; border: none; background: transparent"
+    [disabled]="locationLoading"
+    [attr.aria-label]="'GEOLOCATE_MYSELF' | translate"
+    (click)="getCurrentPosition()"
   >
-  </fa-icon>
-</button>
+    <fa-icon *ngIf="!locationLoading" [icon]="faLocationDot" aria-hidden="true">
+    </fa-icon>
+    <fa-icon
+      *ngIf="locationLoading"
+      [icon]="faCircleNotch"
+      [spin]="true"
+      aria-hidden="true"
+    >
+    </fa-icon>
+  </button>
+</div>

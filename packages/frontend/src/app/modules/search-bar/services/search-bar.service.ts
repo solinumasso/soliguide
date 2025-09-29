@@ -29,6 +29,7 @@ import {
 import Fuse, { FuseResult, IFuseOptions } from "fuse.js";
 import { BehaviorSubject, firstValueFrom, Subscription } from "rxjs";
 import { CurrentLanguageService } from "../../general/services/current-language.service";
+import { THEME_CONFIGURATION } from "../../../models";
 
 interface SuggestionData {
   lang: SupportedLanguagesCode;
@@ -42,14 +43,17 @@ interface SuggestionData {
 export class SearchBarService implements OnDestroy {
   private fuse: Fuse<SearchSuggestion> | null = null;
   private isInitialized = false;
+  private initializationPromise: Promise<void> | null = null;
   private readonly initializationSubject = new BehaviorSubject<boolean>(false);
   private allSuggestions: SearchSuggestion[] = [];
   private currentLanguage: SupportedLanguagesCode;
+  private loadedLanguage: SupportedLanguagesCode | null = null;
 
   private readonly subscription = new Subscription();
 
   private readonly DB_NAME = "SoliguideDB";
   private readonly STORE_NAME = "suggestions";
+  private readonly COUNTRY = THEME_CONFIGURATION.country;
 
   public initialization$ = this.initializationSubject.asObservable();
 
@@ -62,8 +66,10 @@ export class SearchBarService implements OnDestroy {
     this.subscription.add(
       this.currentLanguageService.subscribe(
         (newLanguage: SupportedLanguagesCode) => {
-          console.log({ newLanguage });
           if (newLanguage !== this.currentLanguage) {
+            console.log(
+              `Language changed: ${this.currentLanguage} -> ${newLanguage}`
+            );
             this.currentLanguage = newLanguage;
             this.initialize();
           }
@@ -86,20 +92,28 @@ export class SearchBarService implements OnDestroy {
       request.onupgradeneeded = (event) => {
         const db = (event.target as IDBOpenDBRequest).result;
         if (!db.objectStoreNames.contains(this.STORE_NAME)) {
-          db.createObjectStore(this.STORE_NAME, { keyPath: "lang" });
+          db.createObjectStore(this.STORE_NAME, { keyPath: "id" });
         }
       };
     });
   }
 
-  private async getFromDB(): Promise<SuggestionData | null> {
+  private getCacheKey(country: string, lang: SupportedLanguagesCode): string {
+    return `${country}_${lang}`;
+  }
+
+  private async getFromDB(
+    country: string,
+    lang: SupportedLanguagesCode
+  ): Promise<SuggestionData | null> {
     try {
       const db = await this.openDB();
       const transaction = db.transaction([this.STORE_NAME], "readonly");
       const store = transaction.objectStore(this.STORE_NAME);
 
       return new Promise((resolve) => {
-        const request = store.get(this.currentLanguage);
+        const key = this.getCacheKey(country, lang);
+        const request = store.get(key);
         request.onsuccess = () => {
           const result = request.result;
           if (result) {
@@ -114,19 +128,29 @@ export class SearchBarService implements OnDestroy {
     }
   }
 
-  private async saveToDB(data: SuggestionData): Promise<void> {
+  private async saveToDB(
+    country: string,
+    lang: SupportedLanguagesCode,
+    content: SearchSuggestion[]
+  ): Promise<void> {
     try {
       const db = await this.openDB();
       const transaction = db.transaction([this.STORE_NAME], "readwrite");
       const store = transaction.objectStore(this.STORE_NAME);
 
       return new Promise((resolve, reject) => {
+        const data = {
+          id: this.getCacheKey(country, lang),
+          lang,
+          updatedAt: new Date(),
+          content,
+        };
         const request = store.put(data);
         request.onsuccess = () => resolve();
         request.onerror = () => reject(request.error);
       });
     } catch (error) {
-      console.error("Erreur sauvegarde IndexedDB:", error);
+      console.error("Error saving to IndexedDB:", error);
     }
   }
 
@@ -153,74 +177,91 @@ export class SearchBarService implements OnDestroy {
     };
   }
 
-  private async loadSuggestions(): Promise<SearchSuggestion[]> {
-    const cached = await this.getFromDB();
+  private async loadSuggestions(
+    country: string,
+    lang: SupportedLanguagesCode
+  ): Promise<SearchSuggestion[]> {
+    const cached = await this.getFromDB(country, lang);
     if (cached) {
-      console.log(
-        `📋 Données trouvées en IndexedDB pour ${this.currentLanguage}`
-      );
+      console.log(`Data found in IndexedDB for ${country}/${lang}`);
       return cached.content;
     }
 
     try {
-      console.log(
-        `🌐 Chargement ${this.currentLanguage}.json depuis le serveur`
-      );
+      console.log(`Loading ${country}/${lang}.json from server`);
       const data = await firstValueFrom(
         this.http.get<SearchSuggestion[]>(
-          `/assets/files/${this.currentLanguage}.json`
+          `/assets/files/${country}/${lang}.json`
         )
       );
 
-      await this.saveToDB({
-        lang: this.currentLanguage,
-        updatedAt: new Date(),
-        content: data,
-      });
+      await this.saveToDB(country, lang, data);
 
-      console.log(`✅ ${this.currentLanguage}.json sauvegardé en IndexedDB`);
+      console.log(`${country}/${lang}.json saved to IndexedDB`);
       return data;
     } catch (error) {
-      console.error(
-        `❌ Erreur chargement ${this.currentLanguage}.json:`,
-        error
-      );
+      console.error(`Error loading ${country}/${lang}.json:`, error);
       return [];
     }
   }
 
   async initialize(): Promise<void> {
-    this.isInitialized = false;
-    this.initializationSubject.next(false);
+    if (
+      this.initializationPromise &&
+      this.loadedLanguage === this.currentLanguage
+    ) {
+      return this.initializationPromise;
+    }
 
-    const data = await this.loadSuggestions();
+    this.initializationPromise = this._initialize();
+    return this.initializationPromise;
+  }
 
-    if (data.length === 0) {
-      console.warn(`⚠️ Aucune donnée pour ${this.currentLanguage}`);
+  private async _initialize(): Promise<void> {
+    if (this.loadedLanguage === this.currentLanguage && this.isInitialized) {
+      console.log(
+        `Suggestions already loaded for ${this.COUNTRY}/${this.currentLanguage}`
+      );
       return;
     }
 
-    // Remplacer les données en mémoire
+    this.isInitialized = false;
+    this.initializationSubject.next(false);
+
+    const data = await this.loadSuggestions(this.COUNTRY, this.currentLanguage);
+
+    if (data.length === 0) {
+      console.warn(
+        `No data available for ${this.COUNTRY}/${this.currentLanguage}`
+      );
+      this.loadedLanguage = null;
+      return;
+    }
+
     this.allSuggestions = data;
     this.fuse = new Fuse(data, this.getFuseOptions());
     this.isInitialized = true;
+    this.loadedLanguage = this.currentLanguage;
     this.initializationSubject.next(true);
 
     console.log(
-      `✅ ${this.currentLanguage} chargé en mémoire: ${data.length} éléments`
+      `${this.COUNTRY}/${this.currentLanguage} loaded: ${data.length} items`
     );
   }
 
-  async reload(lang: SupportedLanguagesCode): Promise<void> {
+  async reload(): Promise<void> {
     try {
       const db = await this.openDB();
       const transaction = db.transaction([this.STORE_NAME], "readwrite");
       const store = transaction.objectStore(this.STORE_NAME);
-      store.delete(lang);
+      const key = this.getCacheKey(this.COUNTRY, this.currentLanguage);
+      store.delete(key);
     } catch (error) {
-      console.error("Erreur suppression IndexedDB:", error);
+      console.error("Error deleting from IndexedDB:", error);
     }
 
+    this.loadedLanguage = null;
+    this.initializationPromise = null;
     await this.initialize();
   }
 

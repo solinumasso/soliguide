@@ -158,7 +158,7 @@ router.get(
 );
 
 router.get(
-  "/search-suggestions/:term",
+  "/search-suggestions/:country/:term",
   isNotApiUser,
   searchSuggestionDto("term"),
   getFilteredData,
@@ -171,7 +171,9 @@ router.get(
     }
     try {
       const autocompleteResults = SearchSuggestionsController.autoComplete(
-        req.bodyValidated.term
+        req.bodyValidated.term,
+        req.bodyValidated.country,
+        req.bodyValidated.lang
       );
       searchSuggestionsCache.set(cacheKey, autocompleteResults);
 

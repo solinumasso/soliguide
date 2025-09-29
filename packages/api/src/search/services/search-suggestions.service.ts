@@ -18,7 +18,12 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { AutoCompleteType, SearchSuggestion } from "@soliguide/common";
+import {
+  AutoCompleteType,
+  SearchSuggestion,
+  SoliguideCountries,
+  SupportedLanguagesCode,
+} from "@soliguide/common";
 import { logger } from "../../general/logger";
 import { SearchSuggestionModel } from "../models/search-suggestion.model";
 import { FormattedSuggestion } from "../types/FormattedSuggestion.type";
@@ -27,34 +32,63 @@ export class SearchSuggestionsService {
   public suggestions: FormattedSuggestion[] = [];
   private isLoaded = false;
 
+  constructor() {}
+
   async getAllSuggestions(): Promise<SearchSuggestion[]> {
     try {
       const suggestions = await SearchSuggestionModel.find({}).lean();
       return suggestions as SearchSuggestion[];
     } catch (error) {
-      logger.error("Erreur lors de la récupération des suggestions:", error);
+      logger.error("Error while fetching all suggestions:", error);
       throw error;
     }
   }
 
-  async getSuggestionsByLang(lang: string): Promise<SearchSuggestion[]> {
+  async getSuggestionsByCountryAndLang(
+    country: SoliguideCountries,
+    lang: SupportedLanguagesCode
+  ): Promise<SearchSuggestion[]> {
     try {
-      const suggestions = await SearchSuggestionModel.find({ lang }).lean();
+      const suggestions = await SearchSuggestionModel.find({
+        country,
+        lang,
+      }).lean();
       return suggestions as SearchSuggestion[];
     } catch (error) {
       logger.error(
-        "Erreur lors de la récupération des suggestions par langue:",
+        `Error while fetching suggestions (country=${country}, lang=${lang}):`,
         error
       );
       throw error;
     }
   }
 
-  async loadSuggestions(lang: string): Promise<void> {
-    if (this.isLoaded) return;
+  async loadSuggestions(
+    country: SoliguideCountries,
+    lang: SupportedLanguagesCode,
+    forceReload = false
+  ): Promise<void> {
+    if (this.isLoaded && !forceReload) {
+      logger.info(
+        `Suggestions already loaded, skipping (country=${country}, lang=${lang})`
+      );
+      return;
+    }
 
     try {
-      const suggestions = await this.getSuggestionsByLang(lang);
+      const suggestions = await this.getSuggestionsByCountryAndLang(
+        country,
+        lang
+      );
+
+      if (suggestions.length === 0) {
+        logger.warn(
+          `No suggestions found in database (country=${country}, lang=${lang})`
+        );
+        this.suggestions = [];
+        this.isLoaded = false;
+        return;
+      }
 
       this.suggestions = suggestions.map((suggestion) => ({
         categoryId: suggestion.categoryId,
@@ -62,16 +96,21 @@ export class SearchSuggestionsService {
         slug: suggestion.slug,
         synonyms: suggestion.synonyms || [],
         type: suggestion.type,
+        lang: suggestion.lang,
+        country: suggestion.country,
         seoTitle: suggestion.seoTitle,
         seoDescription: suggestion.seoDescription,
       }));
 
       this.isLoaded = true;
       logger.info(
-        `✅ Suggestions chargées: ${this.suggestions.length} éléments`
+        `Suggestions loaded: ${this.suggestions.length} items (country=${country}, lang=${lang})`
       );
     } catch (error) {
-      logger.error("❌ Erreur lors du chargement des suggestions:", error);
+      logger.error(
+        `Error while loading suggestions (country=${country}, lang=${lang}):`,
+        error
+      );
       throw error;
     }
   }
@@ -82,19 +121,17 @@ export class SearchSuggestionsService {
 
   findBySlug(slug: string): FormattedSuggestion | null {
     if (!this.isLoaded) {
-      logger.warn("Service pas initialisé");
+      logger.warn("Service not initialized. Call loadSuggestions() first.");
       return null;
     }
-
     return this.suggestions.find((item) => item.slug === slug) || null;
   }
 
   findById(categoryId: string): FormattedSuggestion | null {
     if (!this.isLoaded) {
-      logger.warn("Service pas initialisé");
+      logger.warn("Service not initialized. Call loadSuggestions() first.");
       return null;
     }
-
     return (
       this.suggestions.find(
         (item) =>
@@ -106,20 +143,19 @@ export class SearchSuggestionsService {
 
   findBySynonym(searchTerm: string): FormattedSuggestion | null {
     if (!this.isLoaded) {
-      logger.warn("Service pas initialisé");
+      logger.warn("Service not initialized. Call loadSuggestions() first.");
       return null;
     }
 
-    const normalizedSearch = searchTerm.toLowerCase().trim();
+    const normalized = searchTerm.toLowerCase().trim();
 
     return (
       this.suggestions.find((suggestion) => {
-        if (suggestion.label.toLowerCase().trim() === normalizedSearch) {
+        if (suggestion.label.toLowerCase().trim() === normalized) {
           return true;
         }
-
         return suggestion.synonyms.some(
-          (synonym) => synonym.toLowerCase().trim() === normalizedSearch
+          (synonym) => synonym.toLowerCase().trim() === normalized
         );
       }) ?? null
     );
@@ -128,7 +164,11 @@ export class SearchSuggestionsService {
   generate(): FormattedSuggestion[] {
     return this.suggestions;
   }
+
+  reset(): void {
+    this.suggestions = [];
+    this.isLoaded = false;
+  }
 }
 
-const autocompleteSuggestionService = new SearchSuggestionsService();
-export default autocompleteSuggestionService;
+export default new SearchSuggestionsService();

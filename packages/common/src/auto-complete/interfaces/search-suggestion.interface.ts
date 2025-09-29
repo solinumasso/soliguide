@@ -19,6 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { Categories } from "../../categories";
+import { SoliguideCountries } from "../../location";
 import { SupportedLanguagesCode } from "../../translations";
 import { AutoCompleteType } from "../enums";
 
@@ -28,6 +29,7 @@ export interface SearchSuggestion {
   label: string;
   categoryId: Categories | null;
   slug: string;
+  country: SoliguideCountries;
   synonyms: string[];
   type: AutoCompleteType;
   content: string;
