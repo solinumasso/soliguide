@@ -48,6 +48,8 @@ import {
 import {
   faCircleNotch,
   faLocationDot,
+  faMapPin,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { TranslateModule, TranslateService } from "@ngx-translate/core";
 import { ToastrService } from "ngx-toastr";
@@ -87,6 +89,8 @@ export class LocationAutocompleteComponent
 
   @Input()
   public currentAddress: string = "";
+  public readonly faXmark = faXmark;
+  public readonly faMapPin = faMapPin;
 
   public readonly faLocationDot = faLocationDot;
   public readonly faCircleNotch = faCircleNotch;
@@ -164,11 +168,6 @@ export class LocationAutocompleteComponent
       })
     );
 
-  public onInputFocus(inputElement: HTMLInputElement): void {
-    // Vider le champ quand on clique dedans pour permettre une nouvelle recherche
-    inputElement.value = "";
-  }
-
   private handleSelect(item: LocationAutoCompleteAddress, term: string): void {
     const lastPosition = new GeoPosition(item);
     this.posthogService.capture("search-location-autocomplete-term", {
@@ -177,10 +176,17 @@ export class LocationAutocompleteComponent
 
     this.locationService.localPositionSubject.next(lastPosition);
     this.updateLocation.emit(item);
-    // Ne pas reassigner model ici car c'est déjà fait dans onSelectItem
   }
-  public formatter = (result: LocationAutoCompleteAddress): string => {
-    return result?.label || "";
+
+  public clearLocation(): void {
+    this.model = "";
+    this.currentPosition = null;
+    this.clearAddress.emit();
+    this.captureEvent("click-clear-location");
+  }
+  public formatter = (result: string): string => {
+    console.log({ result });
+    return result || "";
   };
 
   public getGeoTypeLabel(geoType: string): string {
@@ -190,26 +196,17 @@ export class LocationAutocompleteComponent
     return geoTypeLabel.charAt(0).toUpperCase() + geoTypeLabel.slice(1);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public onSelectItem(event: any, inputElement: HTMLInputElement): void {
-    const item: LocationAutoCompleteAddress = event.item;
-    if (item) {
-      inputElement.value = item.label;
-      this.handleSelect(item, item.label);
-    }
-  }
-
-  public onInputChange(): void {
-    // Si l'utilisateur efface le champ
-    if (!this.model || this.model.trim() === "") {
-      this.clearAddress.emit();
-    }
-  }
-
   public captureEvent(eventName: string): void {
     this.posthogService.capture(`search-location-autocomplete-${eventName}`);
   }
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public onSelectItem(event: any): void {
+    event.preventDefault();
+    const item: LocationAutoCompleteAddress = event.item;
+    if (item) {
+      this.handleSelect(item, item.label);
+    }
+  }
   public getCurrentPosition(): void {
     this.captureEvent("click-get-current-position");
     if (typeof navigator.geolocation !== "object") {

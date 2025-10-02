@@ -4,684 +4,1410 @@
     "label": "صفحه اصلی",
     "slug": "accueil",
     "synonyms": [
-      "accueil cafe repos acceuil parler acueil accueil femme accueil femmes acueil femme violence harcelement partir"
+      "aide sociale",
+      "urgence",
+      "précarité",
+      "sans-abri",
+      "réfugié",
+      "accompagnement social",
+      "maraude",
+      "associations",
+      "bénévoles",
+      "nourriture",
+      "logement",
+      "santé",
+      "vêtements",
+      "écoute",
+      "orientation"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Besoin d'aide ? Soliguide vous oriente depuis la « صفحه اصلی »",
+    "seoDescription": "Soliguide vous aide près de chez vous : trouvez un repas gratuit, un hébergement d'urgence, ou des vêtements. Accédez à l'aide sociale facilement !"
   },
   {
     "categoryId": "day_hosting",
     "label": "پذیرایی روز",
     "slug": "accueil-jour",
     "synonyms": [
-      "accueil accueil de jour cafe se reposer se poser repos reposer femmes battues femme battue fem batue fem batu violence harcelement partir"
+      "وعده غذایی",
+      "غذای گرم",
+      "نهار",
+      "شام",
+      "صبحانه",
+      "دوش",
+      "لباس",
+      "کمک های اولیه",
+      "آدرس",
+      "نظافت",
+      "بهداشت",
+      "پناهگاه روزانه",
+      "مرکز روزانه",
+      "مکان امن",
+      "گرم شدن"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Lieu d'accueil des bénéficaires proposant une pause pendant la journée."
+    "seoTitle": "با Soliguide برای پذیرایی روز کمک پیدا کنید",
+    "seoDescription": "Soliguide به شما کمک می کند. دسترسی به وعده های غذایی گرم، دوش و لباس رایگان در فرانسه. مکان های نزدیک خود را پیدا کنید!"
   },
   {
     "categoryId": "rest_area",
     "label": "محل استراحت",
     "slug": "espace-repos",
     "synonyms": [
-      "espace de repos reposer dormir repos pause"
+      "استراحت",
+      "محل خواب",
+      "آرامش",
+      "دوش",
+      "شارژ تلفن",
+      "مکانی برای استراحت",
+      "حمام",
+      "خشکشویی",
+      "لباسشویی",
+      "پناهگاه",
+      "محل امن",
+      "بهداشت",
+      "مراقبت شخصی",
+      "خدمات بهداشتی",
+      "رفاه"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Espaces de repos ouverts au public"
+    "seoTitle": "با Soliguide محل استراحت مناسب خود را پیدا کنید",
+    "seoDescription": "Soliguide به شما کمک می‌کند مکانی برای استراحت، دوش گرفتن یا شارژ تلفن پیدا کنید. این سرویس رایگان است و نزدیک شما قرار دارد."
   },
   {
     "categoryId": "babysitting",
     "label": "مراقبت از کودک",
     "slug": "garde-enfants",
     "synonyms": [
-      "garde enfant garderie enfant nounou assistance maternelle bebe creche"
+      "مراقبت از کودک",
+      "مهدکودک",
+      "نگهداری کودک",
+      "مراقبت بعد از مدرسه",
+      "کمک هزینه مهدکودک",
+      "مادر و کودک",
+      "مراکز بازی",
+      "پرورش کودک",
+      "فعالیت کودکان",
+      "کودکستان",
+      "مربی کودک",
+      "پرستار کودک",
+      "مراقبت روزانه",
+      "کمک مالی کودک",
+      "خانواده"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Activité d'un baby-sitter consistant à garder temporairement des enfants en l'abscence de leurs parents"
+    "seoTitle": "مراقبت از کودک را با Soliguide پیدا کنید",
+    "seoDescription": "Soliguide به شما کمک می‌کند! مهدکودک رایگان، کمک هزینه نگهداری از کودک و مراکز مراقبت بعد از مدرسه را نزدیک خود پیدا کنید."
   },
   {
     "categoryId": "family_area",
     "label": "منطقه خانواده",
     "slug": "espace-famille",
     "synonyms": [
-      "espace famille famille maman papa parents enfants"
+      "خانواده",
+      "کودک",
+      "بچه",
+      "مادر",
+      "پدر",
+      "والدین",
+      "مراقبت از کودک",
+      "مشاوره",
+      "حمایت",
+      "بازی",
+      "فعالیت",
+      "تعلیم و تربیت",
+      "همراهی",
+      "فضا",
+      "ملاقات"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Lieu d'accueil capable de recevoir des familles"
+    "seoTitle": "با Soliguide مکانی برای منطقه خانواده خود پیدا کنید",
+    "seoDescription": "Soliguide به شما کمک می کند! خدمات مراقبت از کودکان، مشاوره خانواده و فعالیت های اوقات فراغت پیدا کنید. مکان یابی در فرانسه."
   },
   {
     "categoryId": "information_point",
     "label": "نقطه اطلاعات و جهت گیری",
     "slug": "point-information",
     "synonyms": [
-      "point information point d information information ukraine"
+      "اطلاعات",
+      "جهت گیری",
+      "مشاوره",
+      "راهنمایی",
+      "پشتیبانی",
+      "کمک",
+      "حقوق",
+      "اجتماعی",
+      "قانون",
+      "کمک حقوقی",
+      "کمک اداری",
+      "دسترسی به حقوق",
+      "مسکن",
+      "بهداشت",
+      "فرانسه"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Point d'information"
+    "seoTitle": "پیدا کردن نقطه اطلاعات و جهت گیری با Soliguide",
+    "seoDescription": "Soliguide به شما کمک می کند نقطه اطلاعات و جهت گیری در فرانسه پیدا کنید. پیدا کردن محل دریافت اطلاعات حقوقی، اجتماعی و مشاوره رایگان. جستجو نزدیک شما!"
   },
   {
     "categoryId": "activities",
     "label": "فعالیت ها",
     "slug": "activites",
     "synonyms": [
-      "activites sorties sport loisirs sortir jeux jeu loisir isolement isole solitude isolee"
+      "فعالیت",
+      "سرگرمی",
+      "تفریح",
+      "ورزش",
+      "کارگاه",
+      "آموزش",
+      "زبان",
+      "فرهنگ",
+      "هنر",
+      "اجتماعی",
+      "گروه",
+      "جلسه",
+      "کار",
+      "داوطلبانه",
+      "اشتغال"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "فعالیت های مورد نیاز خود را با Soliguide پیدا کنید",
+    "seoDescription": "با Soliguide فعالیت های مورد نیاز خود را بیابید. به عنوان مثال، کمک در یافتن سرپناه، دسترسی به غذا و یا یادگیری زبان. مکانی را در نزدیکی خود پیدا کنید!"
   },
   {
     "categoryId": "sport_activities",
     "label": "فعالیت های ورزشی",
     "slug": "activites-sportives",
     "synonyms": [
-      "activites sportives sport foot basket danse rugby loisirs loisir"
+      "ورزش",
+      "فعالیت بدنی",
+      "کلاس ورزشی رایگان",
+      "باشگاه ورزشی",
+      "فوتبال",
+      "بسکتبال",
+      "شنا",
+      "یوگا",
+      "پیاده روی",
+      "دویدن",
+      "پارک",
+      "زمین بازی",
+      "سالن ورزشی",
+      "آمادگی جسمانی",
+      "تندرستی"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Activités sportives : foot, jogging, marche, etc."
+    "seoTitle": "با سولیوگاید فعالیت های ورزشی مناسب خود را پیدا کنید",
+    "seoDescription": "سولیوگاید به شما کمک می‌کند فعالیت های ورزشی، کلاس های رایگان و مکان‌هایی برای ورزش در فضای باز در فرانسه را پیدا کنید. یافتن مکان های نزدیک به شما آسان است!"
   },
   {
     "categoryId": "museums",
     "label": "موزه",
     "slug": "musee",
     "synonyms": [
-      "musee culture sortie peinture tableau se cultiver"
+      "موزه",
+      "بازدید از موزه",
+      "فرهنگ",
+      "هنر",
+      "تاریخ",
+      "تخفیف موزه",
+      "موزه رایگان",
+      "موزه برای همه",
+      "موزه برای کودکان",
+      "موزه برای خانواده",
+      "راهنمای موزه",
+      "فعالیت های موزه",
+      "گردشگری فرهنگی",
+      "کارت موزه",
+      "موزه نزدیک من"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Musée gratuit."
+    "seoTitle": "با Soliguide، موزه های نزدیک خود را پیدا کنید",
+    "seoDescription": "با Soliguide موزه هایی با تخفیف، دسترسی رایگان و فعالیت های آموزشی پیدا کنید. مکان های نزدیک خود را بیابید!"
   },
   {
     "categoryId": "libraries",
     "label": "کتابخانه",
     "slug": "bibliotheque",
     "synonyms": [
-      "bibliotheque livres culture mediatheque"
+      "کتاب",
+      "مطالعه",
+      "خواندن",
+      "فرهنگ",
+      "فراغت",
+      "یادگیری",
+      "آموزش",
+      "منابع",
+      "مجله",
+      "روزنامه",
+      "دانش",
+      "اطلاعات",
+      "کتابداری",
+      "کتابخانه عمومی",
+      "کتابخانه کودکان"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Bibliothèque accessible en accès libre."
+    "seoTitle": "با Soliguide کتابخانه پیدا کنید و از خدمات رایگان بهره‌مند شوید",
+    "seoDescription": "با Soliguide، کتابخانه، کلاس‌های زبان و کمک برای تکالیف در فرانسه پیدا کنید. نزدیکترین مکان را روی نقشه پیدا کنید!"
   },
   {
     "categoryId": "other_activities",
     "label": "فعالیت های متنوع",
     "slug": "activites-diverses",
     "synonyms": [
-      "activites diverses animation divertissement loisir s occuper culture activites enfants loisirs loisir"
+      "فعالیت",
+      "گوناگون",
+      "سرگرمی",
+      "تفریح",
+      "ورزش",
+      "فرهنگ",
+      "آموزش",
+      "کارگاه",
+      "کلاس",
+      "اجتماعی",
+      "هنر",
+      "موسیقی",
+      "تئاتر",
+      "فیلم",
+      "گردشگری"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Activités diverses : ateliers, activités culturelles, etc. (précisez.)"
+    "seoTitle": "فعالیت های متنوع را با Soliguide پیدا کنید و کمک بگیرید",
+    "seoDescription": "با Soliguide فعالیت های متنوعی پیدا کنید! کلاس های آموزشی، فعالیت های ورزشی و فرهنگی نزدیک خود را بیابید. مکان یابی شده برای شما."
   },
   {
     "categoryId": "food",
     "label": "غذا",
     "slug": "alimentation-bouffe-boufe-manger-soupe-repas-aliment-manger-mange-repa-faim-diner-dejeuner-dejeunet-dine-se-nourrir-fin-portage-portage-de-repas-aide-alimentaire-comida-comer-resto-du-coeur",
     "synonyms": [
-      "alimentation bouffe boufe manger soupe repas aliment manger mange repa faim diner dejeuner dejeunet dine se nourrir fin portage portage de repas aide alimentaire comida comer"
+      "غذا",
+      "خوراک",
+      "وعده غذایی",
+      "بانک مواد غذایی",
+      "کمک غذایی",
+      "غذای رایگان",
+      "رستوران اجتماعی",
+      "سوپ رایگان",
+      "کمک هزینه غذا",
+      "غذای اضطراری",
+      "بسته غذایی",
+      "تغذیه",
+      "نهار",
+      "شام",
+      "صبحانه"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "با Soliguide غذا پیدا کنید – کمک برای همه",
+    "seoDescription": "Soliguide به شما کمک می‌کند غذا پیدا کنید. غذای رایگان، بانک مواد غذایی، وعده‌های غذایی گرم. پیدا کردن مکان ها نزدیک شما اکنون آسان است"
   },
   {
     "categoryId": "food_distribution",
     "label": "توزیع وعده های غذایی",
     "slug": "distribution-repas",
     "synonyms": [
-      "distribution alimentaire distribution de repas manger maraude bouffe soupe nourriture faim repas mange manger fin distribution aide alimentaire restauration assise comida comer"
+      "غذای رایگان",
+      "وعده غذایی رایگان",
+      "بانک غذا",
+      "کمک غذایی",
+      "توزیع غذا",
+      "غذای خیریه",
+      "رستوران اجتماعی",
+      "بسته غذایی",
+      "چک غذا",
+      "کمک هزینه غذا",
+      "ساندویچ رایگان",
+      "سوپ رایگان",
+      "غذای گرم",
+      "وعده غذایی",
+      "غذا"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Point d'arrêt d'une distribution alimentaire. Attention : Veuillez créer une structure par point de distribution."
+    "seoTitle": "با Soliguide مکان‌هایی برای دریافت وعده‌های غذایی رایگان پیدا کنید",
+    "seoDescription": "Soliguide به شما کمک می‌کند مکان‌هایی را برای دریافت وعده‌های غذایی، بسته‌های غذایی یا چک‌های غذا در فرانسه پیدا کنید. از جمله رستوران‌های اجتماعی و توزیع غذا توسط سازمان‌های خیریه. پیدا کردن نزدیک‌ترین مکان به شما."
   },
   {
     "categoryId": "food_packages",
     "label": "سبد غذایی",
     "slug": "colis-alimentaire",
     "synonyms": [
-      "colis colis alimentaire manger mange fruits legumes panier repas aide alimentaire panier comida comer"
+      "کمک غذایی",
+      "غذای رایگان",
+      "وعده غذایی گرم",
+      "بانک غذا",
+      "توزیع غذا",
+      "سبد کالا",
+      "کمک هزینه غذا",
+      "بن غذا",
+      "CCAS",
+      "صلیب سرخ",
+      "رستوران اجتماعی",
+      "مواد غذایی اولیه",
+      "برنامه غذایی",
+      "کمک اضطراری غذا",
+      "تغذیه"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Distribution de colis contenant des denrées alimentaires (conserves, légumes, etc.)."
+    "seoTitle": "با Soliguide سبد غذایی پیدا کنید و گرسنه نمانید",
+    "seoDescription": "Soliguide به شما کمک می‌کند تا مکان‌هایی را برای دریافت سبد غذایی، وعده غذایی رایگان یا بن‌های غذا پیدا کنید. مکانی در نزدیکی خود پیدا کنید!"
   },
   {
     "categoryId": "social_grocery_stores",
     "label": "خواربار فروشی اجتماعی و همبستگی",
     "slug": "epicerie-sociale-solidaire",
     "synonyms": [
-      "epicerie sociale epicerie manger fruits legumes panier repas epicerie solidaire aide alimentaire"
+      "خواربار",
+      "مواد غذایی",
+      "بسته غذایی",
+      "کوپن غذا",
+      "کمک غذایی",
+      "فروشگاه اجتماعی",
+      "همبستگی",
+      "ارزان",
+      "رایگان",
+      "توزیع غذا",
+      "بانک غذا",
+      "کمک های مردمی",
+      "CCAS",
+      "انجمن خیریه",
+      "غذای اهدایی"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Les épiceries solidaires accueillent les personnes en précarité et leur permettent de faire des courses à prix solidaire."
+    "seoTitle": "با Soliguide، خواربار فروشی اجتماعی و همبستگی را پیدا کنید",
+    "seoDescription": "Soliguide مکان‌هایی را برای دریافت بسته‌های غذایی، کوپن‌های غذا و خواربارفروشی ارزان ارائه می‌کند. کمک نزدیک خود را پیدا کنید!"
   },
   {
     "categoryId": "fountain",
     "label": "فواره آب",
     "slug": "fontaine",
     "synonyms": [
-      "fontaine boire eau soif robinet potable"
+      "آب آشامیدنی",
+      "آب",
+      "نوشیدن",
+      "فواره",
+      "شیر آب",
+      "آب رایگان",
+      "خنک شدن",
+      "رفع تشنگی",
+      "دسترسی به آب",
+      "آب شهری",
+      "فواره عمومی",
+      "آبرسانی",
+      "آب تصفیه شده",
+      "مکان های آب",
+      "جستجوی آب"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Eau potable en accès libre."
+    "seoTitle": "با Soliguide فواره آب در دسترس پیدا کنید",
+    "seoDescription": "با Soliguide فواره آب در دسترس، اطلاعات در مورد مکان‌های دسترسی به آب آشامیدنی رایگان در شهر خود را پیدا کنید. بهداشتی و خنک بنوشید. محل فواره‌های اطراف خود را بیابید."
   },
   {
     "categoryId": "solidarity_fridge",
     "label": "یخچال همبستگی",
     "slug": "frigo-solidaire",
     "synonyms": [
-      "manger mange conserver frais bouffe aliment faim frigo frigo solidaire"
+      "یخچال",
+      "همبستگی",
+      "غذا",
+      "مواد غذایی",
+      "تغذیه",
+      "رایگان",
+      "کمک غذایی",
+      "بانک غذا",
+      "توزیع غذا",
+      "اهدا",
+      "نیازمند",
+      "بی خانمان",
+      "افراد آسیب پذیر",
+      "غذای اهدایی",
+      "خوراک"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Frigo solidaire"
+    "seoTitle": "یخچال همبستگی را با Soliguide پیدا کنید",
+    "seoDescription": "با Soliguide یخچال همبستگی، غذای رایگان، بانک غذا و توزیع غذا را در نزدیکی خود پیدا کنید. کمک های غذایی در دسترس شما هستند!"
   },
   {
     "categoryId": "shared_kitchen",
     "label": "آشپزخانه مشترک",
     "slug": "cuisine-partagee",
     "synonyms": [
-      "cuisine cuisiner preparer partage partagee cuisine partagee"
+      "آشپزخانه اجتماعی",
+      "غذا خوردن گروهی",
+      "آموزش آشپزی",
+      "وعده غذایی رایگان",
+      "فضای آشپزی",
+      "غذای گرم",
+      "کمک غذایی",
+      "پخت و پز",
+      "آشپزی جمعی",
+      "وعده غذایی",
+      "مواد غذایی",
+      "اجتماع",
+      "همبستگی",
+      "مکان امن",
+      "دوستانه"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Cuisine partagée "
+    "seoTitle": "با Soliguide آشپزخانه مشترک پیدا کنید و غذای گرم بخورید",
+    "seoDescription": "Soliguide به شما کمک می‌کند آشپزخانه مشترک، وعده‌های غذایی رایگان و کمک‌های غذایی در fr پیدا کنید. نزدیکترین مکان‌ها را بیابید!"
   },
   {
     "categoryId": "cooking_workshop",
     "label": "کارگاه آشپزی",
     "slug": "atelier-cuisine",
     "synonyms": [
-      "atelier cuisine cuisiner partage preparer atelier cuisine cuire"
+      "آشپزی",
+      "پخت و پز",
+      "غذا",
+      "مهارت آموزی",
+      "یادگیری آشپزی",
+      "کلاس آشپزی",
+      "کارگاه آموزشی",
+      "تغذیه",
+      "مواد غذایی",
+      "دستور پخت",
+      "نانوایی",
+      "شیرینی پزی",
+      "غذاهای محلی",
+      "آشپزخانه",
+      "کمک غذایی"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Atelier de cuisine"
+    "seoTitle": "با سولیوگاید کارگاه آشپزی پیدا کنید و مهارت کسب کنید",
+    "seoDescription": "با سولیوگاید، مکان‌هایی برای کارگاه آشپزی، یادگیری پخت نان و شرکت در کلاس‌های تغذیه در فرانسه پیدا کنید. کمک نزدیک شما!"
   },
   {
     "categoryId": "baby_parcel",
     "label": "بسته کودک",
     "slug": "colis-bebe",
     "synonyms": [
-      "bebe nourrir nourisson colis colis bebe puericulture lait couche biberon maternite manger nourriture vetement"
+      "بسته کودک",
+      "لوازم کودک",
+      "وسایل نوزاد",
+      "پوشک",
+      "شیر خشک",
+      "غذای کودک",
+      "لباس کودک",
+      "اسباب بازی",
+      "کمک مالی کودک",
+      "مهد کودک",
+      "مراقبت از کودک",
+      "بهداشت کودک",
+      "سلامت کودک",
+      "تربیت کودک",
+      "حمایت از کودک"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Colis pour bébé"
+    "seoTitle": "با Soliguide بسته کودک پیدا کنید",
+    "seoDescription": "Soliguide به شما کمک می‌کند تا بسته کودک، وسایل کودک و کمک‌های مالی مربوط به کودکان را در نزدیکی خود پیدا کنید."
   },
   {
     "categoryId": "food_voucher",
     "label": "کوپن غذا / چک",
     "slug": "bon-alimentaire",
     "synonyms": [
-      "bon cheque ticket alimentaire gratuit aide"
+      "کوپن غذا",
+      "چک غذا",
+      "کمک غذایی",
+      "غذای رایگان",
+      "کمک هزینه غذا",
+      "بسته غذایی",
+      "مراکز توزیع غذا",
+      "رستوران های اجتماعی",
+      "سوپ رایگان",
+      "مواد غذایی اولیه",
+      "وعده غذایی رایگان",
+      "یارانه غذا",
+      "برنامه غذایی",
+      "بانک غذا",
+      "موسسات خیریه غذا"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Distribution de bon/chèque alimentaire"
+    "seoTitle": "با Soliguide کوپن غذا / چک پیدا کنید و گرسنه نمانید",
+    "seoDescription": "با Soliguide مکان‌هایی برای دریافت کوپن غذا، چک های غذا و کمک های غذایی در فرانسه پیدا کنید. مکانی در نزدیکی خود بیابید!"
   },
   {
     "categoryId": "community_garden",
     "label": "باغ همبستگی",
     "slug": "jardin-solidaire",
     "synonyms": [
-      "fruits pousser jardin bio nature legumes jardin solidaire jardinage"
+      "باغ",
+      "فضای سبز",
+      "کاشت",
+      "طبیعت",
+      "همکاری",
+      "فعالیت گروهی",
+      "آموزش باغبانی",
+      "تغذیه سالم",
+      "محیط زیست",
+      "باغبانی شهری",
+      "سبزیجات",
+      "میوه",
+      "گل",
+      "گیاهان دارویی",
+      "کمک"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Jardin solidaire"
+    "seoTitle": "باغ همبستگی را با Soliguide پیدا کنید و کمک بگیرید",
+    "seoDescription": "با Soliguide، باغ همبستگی، کارگاه‌های آموزشی و فضاهای سبز اجتماعی نزدیک خود را پیدا کنید. در فرانسه کمک بگیرید!"
   },
   {
     "categoryId": "counseling",
     "label": "مشاوره",
     "slug": "conseil",
     "synonyms": [
-      "conseil conseils soutien accompagnement aide se faire aider conseiller numerique"
+      "مشاوره",
+      "راهنمایی",
+      "مشاوره حقوقی",
+      "مشاوره شغلی",
+      "مشاوره خانواده",
+      "مشاوره روانشناسی",
+      "کمک",
+      "یاری",
+      "پشتیبانی",
+      "همیاری",
+      "مشورت",
+      "پرسش",
+      "پاسخ",
+      "صحبت",
+      "گفتگو"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "با Soliguide مشاوره رایگان پیدا کنید",
+    "seoDescription": "Soliguide به شما کمک می‌کند. مشاوره حقوقی رایگان، مشاوره شغلی و مشاوره خانواده در فرانسه را به راحتی پیدا کنید. مکان های نزدیک خود را بیابید!"
   },
   {
     "categoryId": "legal_advice",
     "label": "ماندگاری قانونی",
     "slug": "permanence-juridique",
     "synonyms": [
-      "proces permanence juridique amende avocat droits droit recours juge ldh droits de l homme ligue des droits de l homme acces au droit cnda ofpra asile sejour carte sejour divorce separation"
+      "اقامت",
+      "پناهندگی",
+      "حقوق",
+      "مشاوره حقوقی",
+      "وکالت",
+      "اداره مهاجرت",
+      "پری‌فکتور",
+      "تمدید اقامت",
+      "کارت اقامت",
+      "ویزای فرانسه",
+      "آزمون زبان",
+      "مدارک لازم",
+      "مشاوره رایگان",
+      "حقوق مهاجرین",
+      "کمک دولتی"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences juridiques (surendettement, demande d'asile, procès, etc.)."
+    "seoTitle": "با Soliguide برای ماندگاری قانونی کمک پیدا کنید",
+    "seoDescription": "Soliguide به شما کمک می‌کند برای درخواست پناهندگی، مشاوره حقوقی رایگان و کمک برای کارت اقامت اقدام کنید. نزدیکترین محل را پیدا کنید!"
   },
   {
     "categoryId": "social_accompaniment",
     "label": "حمایت اجتماعی",
     "slug": "accompagnement-social",
     "synonyms": [
-      "accompagnement assistante sociale social travailleur social droits demarches femmes battues femme battue violence isolement isole solitude isolee partir separation divorce victime"
+      "کمک",
+      "یاری",
+      "همدلی",
+      "پشتیبانی",
+      "همراهی",
+      "رازداری",
+      "تسکین",
+      "امید",
+      "آرامش",
+      "غذا",
+      "مسکن",
+      "بهداشت",
+      "مشاوره",
+      "راهنمایی",
+      "اطلاعات"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Accompagement des personnes dans leur réinsertion (assistantes sociales, permanences, etc.)."
+    "seoTitle": "حمایت اجتماعی را با Soliguide پیدا کنید",
+    "seoDescription": "Soliguide به شما کمک می‌کند تا حمایت اجتماعی پیدا کنید. به دنبال مسکن، غذا، یا کمک‌های اولیه پزشکی هستید؟ مکان‌های نزدیک خود را پیدا کنید!"
   },
   {
     "categoryId": "disability_advice",
     "label": "توصیه معلولین",
     "slug": "conseil-handicap",
     "synonyms": [
-      "conseil handicap handicap aah conseils conseil handicape handicapee personne a mobilite reduite pmr"
+      "مشاوره",
+      "معلولیت",
+      "حمایت",
+      "حقوق",
+      "توانبخشی",
+      "کمک مالی",
+      "تجهیزات",
+      "ویلچر",
+      "مناسب‌سازی",
+      "دسترسی",
+      "انجمن",
+      "مرکز",
+      "اطلاعات",
+      "راهنمایی",
+      "همیاری"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'accès aux droits pour les personnes en situation de handicap."
+    "seoTitle": "با Soliguide توصیه‌هایی برای معلولین را بیابید",
+    "seoDescription": "Soliguide به شما کمک می‌کند تا مراکزی برای حمایت از معلولین، مشاوره حقوقی رایگان و کمک‌های مالی پیدا کنید. همه در نزدیکی شما!"
   },
   {
     "categoryId": "administrative_assistance",
     "label": "شورای اداری",
     "slug": "conseil-administratif",
     "synonyms": [
-      "conseil administratif conseils administratifs aide administrative demarches rsa cmu allocations papiers securite sociale caf cpampapier conseiller numerique"
+      "مشاوره حقوقی",
+      "کمک حقوقی رایگان",
+      "حقوق",
+      "وکالت",
+      "دادگاه",
+      "قانون",
+      "دفاع",
+      "مشاور حقوقی",
+      "حقوق بشر",
+      "حقوق پناهندگی",
+      "حقوق مهاجرت",
+      "دسترسی به عدالت",
+      "حمایت حقوقی",
+      "اطلاعات حقوقی",
+      "وکیل"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'aide administrative (RSA, CMU, allocations, chômage, etc.)."
+    "seoTitle": "با Soliguide به دنبال کمک در شورای اداری باشید",
+    "seoDescription": "Soliguide به شما کمک می‌کند. به دنبال اطلاعات در مورد حقوق خود باشید، مشاوره رایگان دریافت کنید و به سازمان‌های کمک حقوقی دسترسی پیدا کنید. همه نزدیک به شما!"
   },
   {
     "categoryId": "parent_assistance",
     "label": "توصیه ای برای والدین",
     "slug": "conseil-parents",
     "synonyms": [
-      "conseil parents conseil aux parents conseil parental mediation familiale mediation conflit adolescents enfants parent parentalite parents enfant ado adolescent couple couples"
+      "مشاوره",
+      "فرزندپروری",
+      "والدین",
+      "آموزش",
+      "پشتیبانی",
+      "کودک",
+      "خانواده",
+      "مشکلات",
+      "راهنمایی",
+      "حل مسئله",
+      "اعتماد به نفس",
+      "مهارت",
+      "ارتباط",
+      "تربیت",
+      "پرورش"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permances d'aide pour les jeunes parents et les parents rencontrant des difficultés avec leurs enfants."
+    "seoTitle": "توصیه ای برای والدین را با Soliguide پیدا کنید",
+    "seoDescription": "Soliguide به شما کمک می‌کند تا مشاوره فرزندپروری، کلاس‌های آموزشی والدین و پشتیبانی عاطفی را در فرانسه پیدا کنید. نزدیکترین مکان ها را بیابید!"
   },
   {
     "categoryId": "budget_advice",
     "label": "مشاوره بودجه",
     "slug": "conseil-budget",
     "synonyms": [
-      "conseil budget conseil budget argent finance cresus"
+      "مشاوره مالی",
+      "کمک بودجه",
+      "مدیریت پول",
+      "مشاوره اقتصادی",
+      "بدهی",
+      "وام",
+      "صرفه جویی",
+      "بودجه بندی",
+      "برنامه ریزی مالی",
+      "مشاور مالی",
+      "کمک هزینه",
+      "یارانه",
+      "CCAS",
+      "CAF",
+      "کمک های دولتی"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Points conseil budget (PCB) proposent des conseils gratuits et personnalisés de gestion budgétaire "
+    "seoTitle": "مشاوره بودجه رایگان با Soliguide پیدا کنید",
+    "seoDescription": "Soliguide به شما کمک می‌کند تا مراکز مشاوره بودجه، کمک مالی و راهنمایی برای مدیریت پول در فرانسه را پیدا کنید. مکان‌ها نزدیک شما را پیدا کنید!"
   },
   {
     "categoryId": "training_and_jobs",
     "label": "آموزش و اشتغال",
     "slug": "formation-emploi",
     "synonyms": [
-      "formation emploi travailler job travail boulot se former taf taff taffe apprendre lire etudier comprendre france travail pole emploi conseiller numerique"
+      "آموزش",
+      "اشتغال",
+      "کار",
+      "شغل",
+      "مهارت",
+      "رزومه",
+      "مصاحبه",
+      "دوره آموزشی",
+      "کارآموزی",
+      "استخدام",
+      "فرصت",
+      "حرفه",
+      "تخصص",
+      "مهارت های نرم",
+      "مشاوره شغلی"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "با Soliguide آموزش و اشتغال پیدا کنید",
+    "seoDescription": "Soliguide به شما کمک می‌کند تا دوره‌های آموزشی رایگان، مشاوره شغلی و کارآموزی پیدا کنید. مکان‌های نزدیک به خود را پیدا کنید و شروع به یادگیری کنید!"
   },
   {
     "categoryId": "digital_tools_training",
     "label": "کارگاه دیجیتال",
     "slug": "formation-numerique",
     "synonyms": [
-      "formation numerique atelier numerique formation informatique ordinateur connexion se former technologie tech apprendre comprendre lire etudier conseiller numerique"
+      "آموزش کامپیوتر",
+      "اینترنت رایگان",
+      "نرم‌افزار",
+      "مهارت‌های دیجیتال",
+      "رزومه‌نویسی",
+      "کاریابی آنلاین",
+      "مهارت‌های اولیه کامپیوتر",
+      "تایپ",
+      "ورد",
+      "اکسل",
+      "پاورپوینت",
+      "ایمیل",
+      "جستجو در اینترنت",
+      "امنیت آنلاین",
+      "کارگاه آموزشی"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences ou ateliers visant à la maitrise d'outils informatiques."
+    "seoTitle": "با Soliguide کارگاه دیجیتال نزدیک خود را پیدا کنید",
+    "seoDescription": "با Soliguide کارگاه دیجیتال برای یادگیری کامپیوتر، اینترنت و نرم‌افزار پیدا کنید. آموزش رایگان، دسترسی به کامپیوتر، کمک برای رزومه‌نویسی. نزدیک شما در فرانسه!"
   },
   {
     "categoryId": "job_coaching",
     "label": "حمایت از اشتغال",
     "slug": "accompagnement-emploi",
     "synonyms": [
-      "accompagnement emploi travailler job pole emploi travail boulot se former etre accompagne taf taff taffe apprendre comprendre lire etudier france travail orientation"
+      "کار",
+      "استخدام",
+      "مشاوره شغلی",
+      "آموزش حرفه ای",
+      "کارآموزی",
+      "رزومه",
+      "مصاحبه",
+      "مهارت",
+      "کارفرما",
+      "موقعیت شغلی",
+      "فرصت شغلی",
+      "یافتن شغل",
+      " کاریابی",
+      "حمایت از استخدام",
+      "مرکز کاریابی"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Aide au retour à l'emploi : ateliers de préparation aux entretiens, aide à la recherche d'emploi, atelier CV, etc."
+    "seoTitle": "با Soliguide حمایت از اشتغال را پیدا کنید",
+    "seoDescription": "با Soliguide مکان‌هایی را برای یافتن شغل، مشاوره شغلی و آموزش حرفه‌ای در فرانسه بیابید. کمک نزدیک شما در دسترس است!"
   },
   {
     "categoryId": "integration_through_economic_activity",
     "label": "ادغام از طریق فعالیت اقتصادی",
     "slug": "insertion-activite-economique",
     "synonyms": [
-      "chantier de reinsertion chantier reinsertion travailler job insertion reinsertion siae iae se reinserer taf taff taffe apprendre comprendre lire etudier orientation"
+      "کار",
+      "شغل",
+      "استخدام",
+      "کارآموزی",
+      "آموزش حرفه ای",
+      "شرکت",
+      "تعاونی",
+      "مشاوره شغلی",
+      "حمایت شغلی",
+      "بازار کار",
+      "اقتصاد اجتماعی",
+      "ادغام اجتماعی",
+      "فرصت شغلی",
+      "یافتن کار",
+      "توسعه مهارت"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Embauche de personnes en insertion."
+    "seoTitle": "با Soliguide راهکارهای ادغام از طریق فعالیت اقتصادی را پیدا کنید",
+    "seoDescription": "Soliguide به شما کمک می‌کند تا فرصت‌های شغلی، کارآموزی و آموزش‌های حرفه‌ای در فرانسه را پیدا کنید. مکان‌های نزدیک به خود را پیدا کنید."
   },
   {
     "categoryId": "tutoring",
     "label": "تدریس خصوصی",
     "slug": "soutien-scolaire",
     "synonyms": [
-      "soutien scolaire aide au devoir etudes college lycee devoirs cours apprendre comprendre lire etudier"
+      "معلم خصوصی",
+      "آموزش در منزل",
+      "کمک درسی",
+      "تقویتی",
+      "مشاوره تحصیلی",
+      "مدرسه",
+      "دانش آموز",
+      "دانشجو",
+      "درس",
+      "ریاضی",
+      "فیزیک",
+      "شیمی",
+      "زبان",
+      "ادبیات",
+      "کمک آموزشی"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Soutien scolaire gratuit (préciser le niveau dans la description)."
+    "seoTitle": "با Soliguide کلاس تدریس خصوصی پیدا کنید",
+    "seoDescription": "Soliguide به شما کمک می‌کند تدریس خصوصی رایگان، کمک در تکالیف مدرسه و مشاوره آموزشی در فرانسه را پیدا کنید. مکان‌یابی آسان!"
   },
   {
     "categoryId": "accomodation_and_housing",
     "label": "مسکن و مسکن",
     "slug": "hebergement-et-logement",
     "synonyms": [
-      "hebergement dormir lit logement repos toit hebergement logement logement hebergement et logement hebergementetlogement domir"
+      "مسکن",
+      "سرپناه",
+      "اجاره",
+      "کمک هزینه مسکن",
+      "مسکن اضطراری",
+      "مسکن اجتماعی",
+      "خانه",
+      "بدون خانمان",
+      "سرپناه شبانه",
+      "محل اقامت",
+      "آپارتمان",
+      "خانه مشترک",
+      "اسکان موقت",
+      "خدمات مسکن",
+      "مشاوره مسکن"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "با Soliguide کمک های مسکن و مسکن را پیدا کنید",
+    "seoDescription": "Soliguide به شما در یافتن مسکن اضطراری، سرپناه شبانه و کمک هزینه اجاره در فرانسه کمک می کند. مکان ها را در نزدیکی خود پیدا کنید!"
   },
   {
     "categoryId": "overnight_stop",
     "label": "توقف شبانه",
     "slug": "halte-nuit",
     "synonyms": [
-      "halte de nuit halte nuit dormir se reposer alte de nui accueil nuit accueil de nuit accueil nuit"
+      "سرپناه شبانه",
+      "اسکان اضطراری",
+      "کمک به بی‌خانمان‌ها",
+      "پناهگاه",
+      "مرکز اسکان",
+      "تخت خواب",
+      "حمام",
+      "دوش",
+      "لباس",
+      "غذا",
+      "کمک اجتماعی",
+      "اورژانس اجتماعی",
+      "سامو اجتماعی",
+      "محل خواب",
+      "گرمخانه"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "La halte de nuit est un lieu d'accueil et de repos pour les personnes sans abri ouvert de 20h à 8h du matin, 7/7 jours."
+    "seoTitle": "با Soliguide مکان‌هایی برای توقف شبانه پیدا کنید",
+    "seoDescription": "Soliguide به شما کمک می‌کند تا مکان‌هایی برای توقف شبانه، حمام و دریافت لباس در فرانسه پیدا کنید. همه جا برای کمک رسانی نزدیک شما!"
   },
   {
     "categoryId": "emergency_accommodation",
     "label": "اسکان اضطراری",
     "slug": "hebergement-urgence",
     "synonyms": [
-      "hebergement urgence dormir lit logement chu halte de nuit toit a la rue rue dehors accueil de nuit accueil nuit accueil nuit"
+      "سرپناه",
+      "اسکان",
+      "اضطراری",
+      "بی خانمان",
+      "کمک فوری",
+      "کمک مسکن",
+      "شبانه",
+      "موقتی",
+      "اقامتگاه",
+      "گرمخانه",
+      "پناهگاه",
+      "کارتون خواب",
+      "خیابان خواب",
+      "محل خواب",
+      "سرپناه شب"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Hébergement à court terme (à la nuitée), accessible directement."
+    "seoTitle": "با Soliguide محل های اسکان اضطراری را پیدا کنید",
+    "seoDescription": "Soliguide به شما کمک می کند محل اسکان اضطراری، سرپناه شبانه و کمک فوری پیدا کنید. با استفاده از موقعیت مکانی خود در فرانسه، نزدیکترین مکان را بیابید."
   },
   {
     "categoryId": "long_term_accomodation",
     "label": "اقامت طولانی مدت",
     "slug": "hebergement-long-terme",
     "synonyms": [
-      "hebergement dormir lit logement chrs repos toit"
+      "مسکن",
+      "اسکان",
+      "سرپناه",
+      "خانه",
+      "آپارتمان",
+      "اجاره",
+      "صاحبخانه",
+      "بی خانمان",
+      "کارت شناسایی",
+      "مددکار اجتماعی",
+      "محل اقامت دائم",
+      "کمک به مسکن",
+      "خوابگاه",
+      "محل خواب",
+      "اقامتگاه"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Possibilité d'hébergement à long terme, au sein de la structure ou d'une structure partenaire. Indiquer dans la description les modalités d'accès."
+    "seoTitle": "با Soliguide، کمک برای اقامت طولانی مدت پیدا کنید",
+    "seoDescription": "Soliguide به شما در پیدا کردن محل اقامت دائم، خوابگاه و مسکن اجتماعی کمک می کند. در نزدیکی خود کمک پیدا کنید!"
   },
   {
     "categoryId": "citizen_housing",
     "label": "اسکان شهروندی",
     "slug": "hebergement-citoyen",
     "synonyms": [
-      "hebergement hebergement citoyen merci pour l invit singa"
+      "مسکن",
+      "پناهگاه",
+      "سرپناه",
+      "خوابگاه",
+      "بی‌خانمان",
+      "اجاره",
+      "کمک هزینه اجاره",
+      "اسکان اضطراری",
+      "اسکان موقت",
+      "اسکان دائم",
+      "مسکن اجتماعی",
+      "کمک به مسکن",
+      "مشاوره مسکن",
+      "حقوق مسکن",
+      "شهرداری"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "با Soliguide برای اسکان شهروندی کمک پیدا کنید",
+    "seoDescription": "Soliguide به شما کمک می‌کند! خوابگاه، پناهگاه اضطراری و کمک برای اجاره پیدا کنید. کمک نزدیک خود را با نقشه پیدا کنید!"
   },
   {
     "categoryId": "access_to_housing",
     "label": "مشاوره مسکن",
     "slug": "conseil-logement",
     "synonyms": [
-      "hebergement dalo logement expulsion toit maison impayes factures chauffage conseil conseil logement"
+      "مشاوره",
+      "مسکن",
+      "اجاره",
+      "خانه",
+      "سرپناه",
+      "بی خانمان",
+      "کمک هزینه مسکن",
+      "پیدا کردن مسکن",
+      "اسکان اضطراری",
+      "مسکن اجتماعی",
+      "کمک به اسکان",
+      "راهنمایی مسکن",
+      "مشاور املاک",
+      "محل اقامت",
+      "یافتن آپارتمان"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'accès au logement (logement social, DALO, etc.)."
+    "seoTitle": "با Soliguide مشاوره مسکن پیدا کنید و راهنمایی شوید",
+    "seoDescription": "Soliguide به شما کمک می‌کند تا مشاوره مسکن، کمک برای اجاره و راهنمایی برای یافتن مسکن در fr را پیدا کنید. مکان‌های نزدیک خود را بیابید!"
   },
   {
     "categoryId": "hygiene_and_wellness",
     "label": "بهداشت و رفاه",
     "slug": "hygiene",
     "synonyms": [
-      "hygiene laver douche bain se laver se doucher propre"
+      "سلامت",
+      "بهداشت",
+      "رفاه",
+      "درمان",
+      "پزشک",
+      "دارو",
+      "مشاوره",
+      "روانشناسی",
+      "دندانپزشک",
+      "بیمارستان",
+      "کمک های مالی",
+      "بیمه",
+      "سلامت روان",
+      "بهزیستی",
+      "خدمات اجتماعی"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "با Soliguide بهداشت و رفاه خود را پیدا کنید",
+    "seoDescription": "با Soliguide به پزشک رایگان، کمک هزینه درمانی و مشاوره دسترسی پیدا کنید. مکان‌های بهداشت و رفاه نزدیک خود را بیابید و از کمک‌های موجود بهره‌مند شوید."
   },
   {
     "categoryId": "shower",
     "label": "دوش",
     "slug": "douche",
     "synonyms": [
-      "douche laver se laver bain bain douche piscine propre sale cheveux"
+      "حمام",
+      "شستشو",
+      "نظافت",
+      "بهداشت",
+      "پاکیزگی",
+      "دوش رایگان",
+      "مکان دوش",
+      "امکانات بهداشتی",
+      "مرکز بهداشتی",
+      "بهداشت فردی",
+      "حمایت بهداشتی",
+      "لباس تمیز",
+      "صابون",
+      "شامپو",
+      "حوله"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "با Soliguide دوش بگیرید و احساس تازگی کنید",
+    "seoDescription": "Soliguide به شما کمک می‌کند دوش رایگان پیدا کنید، لباس تمیز بگیرید و بهداشت خود را حفظ کنید. در فرانسه مکان‌های دوش را نزدیک خود پیدا کنید."
   },
   {
     "categoryId": "hairdresser",
     "label": "آرایشگاه",
     "slug": "coiffeur",
     "synonyms": [
-      "coiffeur cheveux"
+      "آرایش",
+      "پیرایش",
+      "اصلاح",
+      "سلمانی",
+      "کوتاهی مو",
+      "آرایشگر",
+      "پیرایشگر",
+      "خدمات زیبایی",
+      "حمام",
+      "نظافت",
+      "بهداشت",
+      "مراکز حمایتی",
+      "مراکز بهداشتی",
+      "مراکز رفاهی",
+      "رایگان"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "با Soliguide آرایشگاه و خدمات پیرایشی رایگان پیدا کنید",
+    "seoDescription": "Soliguide به شما کمک می‌کند آرایشگاه رایگان، خدمات اصلاح و پیرایش و حمام پیدا کنید. نزدیکترین مکان‌ها به خودتان را پیدا کنید!"
   },
   {
     "categoryId": "laundry",
     "label": "خشکشویی",
     "slug": "laverie",
     "synonyms": [
-      "laverie vetements vetement laver machine a laver pressing linge lave linge"
+      "لباسشویی",
+      "خشکشویی رایگان",
+      "لباس تمیز",
+      "بهداشت",
+      "لباس شسته",
+      "لکه‌بری",
+      "اتو کردن",
+      "تعمیر لباس",
+      "دوخت",
+      "شستشو",
+      "لباس‌های اهدایی",
+      "کمک لباس",
+      "لباس‌های دست دوم",
+      "مراکز اجتماعی",
+      "بهداشتی"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Lave-linge en accès libre."
+    "seoTitle": "خشکشویی را با Soliguide پیدا کنید",
+    "seoDescription": "Soliguide به شما کمک می‌کند خشکشویی رایگان، لباسشویی ارزان و تعمیر لباس پیدا کنید. نزدیکترین مکان را پیدا کنید!"
   },
   {
     "categoryId": "wellness",
     "label": "تندرستی",
     "slug": "bien-etre",
     "synonyms": [
-      "bien etre coiffeur massage maquillage belle beau pedicure manicure manucire"
+      "بهداشت",
+      "سلامتی",
+      "پزشک",
+      "درمان",
+      "بیمارستان",
+      "دارو",
+      "دندانپزشک",
+      "مشاوره",
+      "روانشناس",
+      "مراقبت",
+      "بهبودی",
+      "تندرست",
+      "سلامت روان",
+      "درمانگاه",
+      "پرستار"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Ateliers de bien-être : coiffeur, massage, sophrologie, etc. (à préciser dans la description)."
+    "seoTitle": "با Soliguide، مراکز تندرستی و سلامتی را پیدا کنید",
+    "seoDescription": "با Soliguide، به پزشک رایگان، دندانپزشک و کمک های بهداشتی درمانی رایگان دسترسی پیدا کنید. مراکز مشاوره درمانی و بهداشتی نزدیک خود را بیابید."
   },
   {
     "categoryId": "toilets",
     "label": "حمام",
     "slug": "toilettes",
     "synonyms": [
-      "toilettes sanisette pisser pipi wc caca chiotte toilet"
+      "دوش",
+      "حمام رایگان",
+      "نظافت",
+      "بهداشت",
+      "بهداشت شخصی",
+      "شستشو",
+      "سرویس بهداشتی",
+      "توالت",
+      "لباسشویی",
+      "خشکشویی",
+      "آب",
+      "صابون",
+      "شامپو",
+      "حوله",
+      "گرمایش"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Toilettes en accès libre."
+    "seoTitle": "با سولیوگاید حمام پیدا کنید",
+    "seoDescription": "سولیوگاید مکان‌هایی برای دوش گرفتن رایگان، دسترسی به سرویس‌های بهداشتی و لباسشویی در فرانسه را به شما نشان می‌دهد. کمک نزدیک خود را پیدا کنید!"
   },
   {
     "categoryId": "hygiene_products",
     "label": "محصولات مراقبتی",
     "slug": "produits-hygiene",
     "synonyms": [
-      "periodiques protections periodiques protection periodique regles regle tampon serviette hygienique serviette menstrues produits d hygiene hygiene cup culotte tampax"
+      "بهداشت",
+      "نظافت",
+      "حمام",
+      "دوش",
+      "صابون",
+      "شامپو",
+      "مسواک",
+      "خمیر دندان",
+      "دستمال کاغذی",
+      "پوشاک تمیز",
+      "شوینده",
+      "لباس شویی",
+      "خشکشویی",
+      "بهداشتی",
+      "پاکیزگی"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Distribution de produits d'hygiène (savons, dentifrice, tampons, serviettes hygiéniques, etc.)."
+    "seoTitle": "پیدا کردن محصولات مراقبتی با Soliguide",
+    "seoDescription": "Soliguide به شما کمک می‌کند تا به محصولات بهداشتی، شوینده‌ها و وسایل مورد نیاز دسترسی پیدا کنید. مکان‌های نزدیک به خود را پیدا کنید و کمک بگیرید."
   },
   {
     "categoryId": "face_masks",
     "label": "ماسک ها",
     "slug": "masques",
     "synonyms": [
-      "masque protection covid virus"
+      "ماسک",
+      "ماسک رایگان",
+      "ماسک بهداشتی",
+      "ماسک پارچه ای",
+      "ماسک قابل شستشو",
+      "محافظت",
+      "بهداشت",
+      "کرونا",
+      "بیماری",
+      "پیشگیری",
+      "سلامتی",
+      "ضدعفونی",
+      "مراقبت",
+      "خرید ماسک",
+      "پیدا کردن ماسک"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Masques de protection"
+    "seoTitle": "با Soliguide ماسک ها را پیدا کنید و از خود محافظت کنید",
+    "seoDescription": "Soliguide به شما کمک می کند ماسک رایگان پیدا کنید، ماسک بخرید، یا ماسک قابل شستشو پیدا کنید. نزدیکترین مکان را پیدا کنید!"
   },
   {
     "categoryId": "equipment",
     "label": "تجهیزات",
     "slug": "materiel",
     "synonyms": [
-      "materiel affaires mobilier"
+      "لباس",
+      "پوشاک",
+      "کفش",
+      "وسایل بهداشتی",
+      "صابون",
+      "شامپو",
+      "مسواک",
+      "خمیر دندان",
+      "مبلمان",
+      "تخت",
+      "میز",
+      "صندلی",
+      "وسایل آشپزخانه",
+      "ظروف",
+      "لوازم خانگی"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "با Soliguide وسایل مورد نیاز خود را پیدا کنید",
+    "seoDescription": "Soliguide به شما کمک می‌کند وسایل ضروری مانند لباس، وسایل بهداشتی و مبلمان را در فرانسه پیدا کنید. نزدیک‌ترین مکان را پیدا کنید!"
   },
   {
     "categoryId": "luggage_storage",
     "label": "انبار چمدان",
     "slug": "bagagerie",
     "synonyms": [
-      "bagage bagagerie sac poser casier"
+      "نگهداری وسایل",
+      "امانت گذاری",
+      "محافظت از وسایل",
+      "وسایل شخصی",
+      "چمدان",
+      "کیف",
+      "کوله پشتی",
+      "محل امن",
+      "امنیت",
+      "حفاظت",
+      "نگهداری موقت",
+      "سفر",
+      "جابجایی",
+      "آسایش",
+      "اطمینان"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Lieu permettant de conserver des bagages ou matériel."
+    "seoTitle": "با Soliguide انبار چمدان پیدا کنید و آسوده خاطر باشید",
+    "seoDescription": "Soliguide به شما کمک می‌کند انبار چمدان در نزدیکی خود پیدا کنید. مانند خدمات Secours Catholique, Emmaüs و Armée du Salut. چمدان های خود را با خیال راحت تحویل دهید."
   },
   {
     "categoryId": "solidarity_store",
     "label": "فروشگاه همبستگی",
     "slug": "boutique-solidaire",
     "synonyms": [
-      "boutique solidaire meubles accessoires s habiller"
+      "فروشگاه خیریه",
+      "فروشگاه اجتماعی",
+      "لباس رایگان",
+      "مواد غذایی اهدایی",
+      "وسایل دست دوم",
+      "کمک به نیازمندان",
+      "لباس گرم",
+      "پوشاک زمستانی",
+      "پوشاک کودکان",
+      "کمک اضطراری",
+      "خرید ارزان",
+      "حمایت اجتماعی",
+      "اقلام ضروری",
+      "کمک هزینه",
+      "بازارچه خیریه"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Boutique vendant du matériel à prix solidaire."
+    "seoTitle": "با سولیوگاید فروشگاه همبستگی را پیدا کنید",
+    "seoDescription": "سولیوگاید به شما کمک می‌کند فروشگاه همبستگی نزدیک خود را پیدا کنید. لباس رایگان، مواد غذایی و وسایل ضروری در دسترس شماست. کمک در fr"
   },
   {
     "categoryId": "clothing",
     "label": "لباس ها",
     "slug": "vetements",
     "synonyms": [
-      "vestiaire vetements t shirt pantalon robe vetir vestiboutique pull manteau habit s habiller"
+      "لباس",
+      "پوشاک",
+      "لباس زنانه",
+      "لباس مردانه",
+      "لباس بچه گانه",
+      "لباس رایگان",
+      "لباس دست دوم",
+      "تعمیر لباس",
+      "خرید لباس ارزان",
+      "کمک لباس",
+      "اهدا لباس",
+      "گرم نگه داشتن",
+      "پناهگاه لباس",
+      "لباس زمستانی",
+      "لباس کار"
     ],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Vêtements gratuits ou à prix symbolique. Préciser le sexe et/ou l'âge dans les conditions."
+    "seoTitle": "با Soliguide لباس ها پیدا کنید",
+    "seoDescription": "Soliguide به شما کمک می‌کند لباس رایگان، لباس گرم برای زمستان و تعمیر لباس را پیدا کنید. نزدیکترین مکان را پیدا کنید!"
   },
   {
     "categoryId": "animal_assitance",
     "label": "حیوانات",
     "slug": "animaux",
-    "synonyms": [
-      "animaux animals chien chat croquettes animal"
-    ],
+    "synonyms": ["animaux animals chien chat croquettes animal"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -796,9 +1522,7 @@
     "categoryId": "vaccination",
     "label": "واکسیناسیون",
     "slug": "vaccination",
-    "synonyms": [
-      "vaccination vaccin covid piqure rappel rappel de vaccin"
-    ],
+    "synonyms": ["vaccination vaccin covid piqure rappel rappel de vaccin"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -835,9 +1559,7 @@
     "categoryId": "health_specialists",
     "label": "متخصصین",
     "slug": "specialistes-medecine",
-    "synonyms": [
-      "specialistes specialiste"
-    ],
+    "synonyms": ["specialistes specialiste"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -848,9 +1570,7 @@
     "categoryId": "allergology",
     "label": "آلرژی",
     "slug": "allergologie",
-    "synonyms": [
-      "allergologie allergies"
-    ],
+    "synonyms": ["allergologie allergies"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -861,9 +1581,7 @@
     "categoryId": "cardiology",
     "label": "قلب و عروق",
     "slug": "cardiologie",
-    "synonyms": [
-      "cardiologie coeur cardiaque cardio"
-    ],
+    "synonyms": ["cardiologie coeur cardiaque cardio"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -874,9 +1592,7 @@
     "categoryId": "dermatology",
     "label": "پوست",
     "slug": "dermatologie",
-    "synonyms": [
-      "dermato dermatologie dermatologue peau bouton"
-    ],
+    "synonyms": ["dermato dermatologie dermatologue peau bouton"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -887,9 +1603,7 @@
     "categoryId": "echography",
     "label": "سونوگرافی",
     "slug": "echographie",
-    "synonyms": [
-      "echographie bebe enceinte"
-    ],
+    "synonyms": ["echographie bebe enceinte"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -900,9 +1614,7 @@
     "categoryId": "endocrinology",
     "label": "غدد درون ریز",
     "slug": "endocrinologie",
-    "synonyms": [
-      "endocrinologie hormones tyroide"
-    ],
+    "synonyms": ["endocrinologie hormones tyroide"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -913,9 +1625,7 @@
     "categoryId": "gastroenterology",
     "label": "گوارش",
     "slug": "gastro-enterologie",
-    "synonyms": [
-      "gastro enterologue gastro enterologie kk caca"
-    ],
+    "synonyms": ["gastro enterologue gastro enterologie kk caca"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -939,9 +1649,7 @@
     "categoryId": "kinesitherapy",
     "label": "فیزیوتراپی",
     "slug": "kinesitherapie",
-    "synonyms": [
-      "kinesitherapie reeducation blessure kine"
-    ],
+    "synonyms": ["kinesitherapie reeducation blessure kine"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -952,9 +1660,7 @@
     "categoryId": "mammography",
     "label": "ماموگرافی",
     "slug": "mammographie",
-    "synonyms": [
-      "mammographie radio seins"
-    ],
+    "synonyms": ["mammographie radio seins"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -965,9 +1671,7 @@
     "categoryId": "ophthalmology",
     "label": "چشم پزشکی",
     "slug": "ophtalmologie",
-    "synonyms": [
-      "ophtalmologie ophtalmologue yeux voir lunette"
-    ],
+    "synonyms": ["ophtalmologie ophtalmologue yeux voir lunette"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -991,9 +1695,7 @@
     "categoryId": "nutrition",
     "label": "تغذیه",
     "slug": "nutrition",
-    "synonyms": [
-      "nutrition dietetique regime surpoids obesite perte de poids"
-    ],
+    "synonyms": ["nutrition dietetique regime surpoids obesite perte de poids"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -1004,9 +1706,7 @@
     "categoryId": "pedicure",
     "label": "پدیکور",
     "slug": "pedicure",
-    "synonyms": [
-      "pedicure pied pie soigner pieds soin podologue podologie"
-    ],
+    "synonyms": ["pedicure pied pie soigner pieds soin podologue podologie"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -1030,9 +1730,7 @@
     "categoryId": "pneumology",
     "label": "ریه",
     "slug": "pneumologie",
-    "synonyms": [
-      "poumons respiration respirer bronches"
-    ],
+    "synonyms": ["poumons respiration respirer bronches"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -1043,9 +1741,7 @@
     "categoryId": "radiology",
     "label": "رادیولوژی",
     "slug": "radiologie",
-    "synonyms": [
-      "radiologie radiologue radiology rayonx fracture entorse"
-    ],
+    "synonyms": ["radiologie radiologue radiology rayonx fracture entorse"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -1056,9 +1752,7 @@
     "categoryId": "rheumatology",
     "label": "روماتولوژی",
     "slug": "rhumatologie",
-    "synonyms": [
-      "rhumatologue rumatologie"
-    ],
+    "synonyms": ["rhumatologue rumatologie"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -1069,9 +1763,7 @@
     "categoryId": "urology",
     "label": "اورولوژی",
     "slug": "urologie",
-    "synonyms": [
-      "urologie urology"
-    ],
+    "synonyms": ["urologie urology"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -1095,9 +1787,7 @@
     "categoryId": "stomatology",
     "label": "دندان شناسی",
     "slug": "stomatologie",
-    "synonyms": [
-      "stomatologie stomatologue estomac digestion ventre"
-    ],
+    "synonyms": ["stomatologie stomatologue estomac digestion ventre"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -1108,9 +1798,7 @@
     "categoryId": "osteopathy",
     "label": "استئوپات",
     "slug": "osteo",
-    "synonyms": [
-      "ostheopathe osteo dos mal"
-    ],
+    "synonyms": ["ostheopathe osteo dos mal"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -1121,9 +1809,7 @@
     "categoryId": "acupuncture",
     "label": "طب سوزنی",
     "slug": "acupuncture",
-    "synonyms": [
-      "acupuncture accupuncture bien etre"
-    ],
+    "synonyms": ["acupuncture accupuncture bien etre"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -1160,9 +1846,7 @@
     "categoryId": "wifi",
     "label": "بي سيم",
     "slug": "wifi",
-    "synonyms": [
-      "wifi internet web connexion reseau"
-    ],
+    "synonyms": ["wifi internet web connexion reseau"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -1173,9 +1857,7 @@
     "categoryId": "electrical_outlets_available",
     "label": "سوکت",
     "slug": "prise",
-    "synonyms": [
-      "prise charger electricite chargeur recharge charge"
-    ],
+    "synonyms": ["prise charger electricite chargeur recharge charge"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -1186,9 +1868,7 @@
     "categoryId": "telephone_at_your_disposal",
     "label": "تلفن",
     "slug": "telephone",
-    "synonyms": [
-      "appel gratuit telephone telephoner appeler appel"
-    ],
+    "synonyms": ["appel gratuit telephone telephoner appeler appel"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -1225,9 +1905,7 @@
     "categoryId": "carpooling",
     "label": "کارپولینگ",
     "slug": "covoiturage",
-    "synonyms": [
-      "co voiturage partage de voiture"
-    ],
+    "synonyms": ["co voiturage partage de voiture"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -1238,9 +1916,7 @@
     "categoryId": "provision_of_vehicles",
     "label": "تهیه وسیله نقلیه",
     "slug": "vehicule",
-    "synonyms": [
-      "mise a disposition de vehicule voiture"
-    ],
+    "synonyms": ["mise a disposition de vehicule voiture"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -1251,9 +1927,7 @@
     "categoryId": "chauffeur_driven_transport",
     "label": "حمل و نقل با راننده",
     "slug": "chauffeur",
-    "synonyms": [
-      "transport avec chauffeur chauffeur transport a la demande"
-    ],
+    "synonyms": ["transport avec chauffeur chauffeur transport a la demande"],
     "type": "CATEGORY",
     "lang": "fa",
     "country": "fr",
@@ -1422,11 +2096,7 @@
     "categoryId": null,
     "label": "France Services: guichet unique de services publics",
     "slug": "france-services",
-    "synonyms": [
-      "france service",
-      "maison france services",
-      "MFS"
-    ],
+    "synonyms": ["france service", "maison france services", "MFS"],
     "type": "ORGANIZATION",
     "lang": "fa",
     "country": "fr",
@@ -1437,11 +2107,7 @@
     "categoryId": null,
     "label": "CIMADE: service œcuménique d'entraide",
     "slug": "cimade",
-    "synonyms": [
-      "la cimade",
-      "CIMADE",
-      "service œcuménique d'entraide"
-    ],
+    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
     "type": "ORGANIZATION",
     "lang": "fa",
     "country": "fr",
@@ -1647,11 +2313,7 @@
     "categoryId": null,
     "label": "Centre socioculturel: structure d'animation et de lien social",
     "slug": "centre-socioculturel",
-    "synonyms": [
-      "centre socio culturel",
-      "csc",
-      "centre social"
-    ],
+    "synonyms": ["centre socio culturel", "csc", "centre social"],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "fa",
     "country": "fr",

@@ -4,684 +4,1409 @@
     "label": "მოგესალმებით",
     "slug": "accueil",
     "synonyms": [
-      "accueil cafe repos acceuil parler acueil accueil femme accueil femmes acueil femme violence harcelement partir"
+      "დახმარება",
+      "სოციალური",
+      "მხარდაჭერა",
+      "თავშესაფარი",
+      "საკვები",
+      "ტანსაცმელი",
+      "ექიმი",
+      "მედიკამენტები",
+      "კონსულტაცია",
+      "ორიენტაცია",
+      "ადვოკატირება",
+      "უფლებები",
+      "პროცედურები",
+      "სოლიდარობა",
+      "სოციალური ცენტრი"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "მოგესალმებით: იპოვეთ სოლიგიდთან ერთად სოციალური დახმარება საფრანგეთში.",
+    "seoDescription": "სოლიგიდი დაგეხმარებათ იპოვოთ უფასო კვება, თავშესაფარი და სამედიცინო დახმარება საფრანგეთში. მოძებნეთ უახლოესი სოციალური დახმარების ცენტრები თქვენს გარშემო."
   },
   {
     "categoryId": "day_hosting",
     "label": "დღის მიღება",
     "slug": "accueil-jour",
     "synonyms": [
-      "accueil accueil de jour cafe se reposer se poser repos reposer femmes battues femme battue fem batue fem batu violence harcelement partir"
+      "დღის ცენტრი",
+      "თავშესაფარი",
+      "თავშესაფარი დღისთვის",
+      "ცხელი კვება",
+      "საშხაპე",
+      "სარეცხი მანქანა",
+      "სოციალური მუშაკი",
+      "ფსიქოლოგიური დახმარება",
+      "კონსულტაცია",
+      "ორიენტაცია",
+      "პირველადი დახმარება",
+      "ტანსაცმლის გაცემა",
+      "დროებითი საცხოვრებელი",
+      "CCAS",
+      "სოციალური დახმარება"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Lieu d'accueil des bénéficaires proposant une pause pendant la journée."
+    "seoTitle": "იპოვეთ დღის მიღება Soliguide-თან ერთად საფრანგეთში",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ დღის ცენტრები, თავშესაფრები და სოციალური დახმარების ადგილები საფრანგეთში. იპოვეთ დახმარება თქვენს მახლობლად!"
   },
   {
     "categoryId": "rest_area",
     "label": "დასასვენებელი ადგილი",
     "slug": "espace-repos",
     "synonyms": [
-      "espace de repos reposer dormir repos pause"
+      "დასვენება",
+      "თავშესაფარი",
+      "ღამისთევა",
+      "თავშესაფარი უსახლკაროებისთვის",
+      "უფასო wi-fi ზონა",
+      "კაფე",
+      "დროებითი თავშესაფარი",
+      "სოციალური ცენტრი",
+      "თავშესაფარი ქალებისთვის",
+      "დღის ცენტრი",
+      "შესვენება",
+      "დამშვიდება",
+      "უსაფრთხო ადგილი",
+      "მშვიდი ადგილი",
+      "სანატორიუმი"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Espaces de repos ouverts au public"
+    "seoTitle": "დასასვენებელი ადგილები Soliguide-ით საფრანგეთში",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ დასასვენებელი ადგილები საფრანგეთში. იპოვეთ თავშესაფარი, უფასო Wi-Fi და მოდუნდით. გეოლოკაცია თქვენს მახლობლად."
   },
   {
     "categoryId": "babysitting",
     "label": "ბავშვის მოვლა",
     "slug": "garde-enfants",
     "synonyms": [
-      "garde enfant garderie enfant nounou assistance maternelle bebe creche"
+      "ბავშვი",
+      "ბავშვები",
+      "მზრუნველობა",
+      "ძიძა",
+      "ბავშვთა მოვლა",
+      "ბაგა-ბაღი",
+      "ბავშვთა კლუბი",
+      "დახმარება ბავშვებისთვის",
+      "ადრეული ბავშვობის განვითარება",
+      "მშობლის დახმარება",
+      "ბავშვთა სახლი",
+      "მხარდაჭერა ოჯახებისთვის",
+      "პატარა ბავშვი",
+      "ბავშვთა აქტივობები",
+      "საბავშვო ბაღი"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Activité d'un baby-sitter consistant à garder temporairement des enfants en l'abscence de leurs parents"
+    "seoTitle": "ბავშვის მოვლა Soliguide-ის დახმარებით - იპოვეთ თქვენთვის საჭირო დახმარება",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ ბავშვთა მოვლის ცენტრები, ძიძები საფრანგეთში, ბავშვთა კლუბები და ა.შ. იპოვეთ თქვენს მახლობლად მდებარე დაწესებულებები!"
   },
   {
     "categoryId": "family_area",
     "label": "საოჯახო ტერიტორია",
     "slug": "espace-famille",
     "synonyms": [
-      "espace famille famille maman papa parents enfants"
+      "ოჯახი",
+      "ბავშვები",
+      "მშობლები",
+      "კონსულტაცია",
+      "მრჩეველი",
+      "ფსიქოლოგი",
+      "იურიდიული დახმარება",
+      "თავშესაფარი",
+      "კრიზისი",
+      "ძალადობა",
+      "მხარდაჭერა",
+      "უსაფრთხოება",
+      "თავშესაფარი ქალებისთვის",
+      "ბავშვთა დაცვა",
+      "ოჯახის დაგეგმვა"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Lieu d'accueil capable de recevoir des familles"
+    "seoTitle": "Soliguide და საოჯახო ტერიტორია - დახმარება ყველასთვის",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ ოჯახური პრობლემების გადაჭრის გზები. კონსულტაციები, იურიდიული დახმარება, თავშესაფარი. იპოვეთ თქვენს სიახლოვეს!"
   },
   {
     "categoryId": "information_point",
     "label": "ინფორმაცია და ორიენტაციის წერტილი",
     "slug": "point-information",
     "synonyms": [
-      "point information point d information information ukraine"
+      "ინფორმაცია",
+      "ორიენტაცია",
+      "კონსულტაცია",
+      "დახმარება",
+      "მხარდაჭერა",
+      "სახელმძღვანელო",
+      "მიმართვა",
+      "ადმინისტრაციული",
+      "სოციალური",
+      "პროცედურები",
+      "უფლებები",
+      "მოვალეობები",
+      "CCAS",
+      "ადგილობრივი მისია",
+      "სოლიდარობის ადგილი"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Point d'information"
+    "seoTitle": "იპოვეთ ინფორმაცია და ორიენტაციის წერტილი Soliguide-თან ერთად",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ ინფორმაცია და ორიენტაციის ცენტრები საფრანგეთში. მიიღეთ უფასო კონსულტაცია, დახმარება დოკუმენტებში, მხარდაჭერა პროცედურებში. გეოლოკაცია თქვენს სიახლოვეს!"
   },
   {
     "categoryId": "activities",
     "label": "Საქმიანობის",
     "slug": "activites",
     "synonyms": [
-      "activites sorties sport loisirs sortir jeux jeu loisir isolement isole solitude isolee"
+      "სამუშაო",
+      "დასაქმება",
+      "ვაკანსია",
+      "ტრენინგი",
+      "კონსულტაცია",
+      "CV",
+      "სამოტივაციო წერილი",
+      "გასაუბრება",
+      "ცენტრი",
+      "კარიერა",
+      "პროფესია",
+      "ხელფასი",
+      "კონტრაქტი",
+      "სტაჟირება",
+      "პოვნა"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "იპოვეთ სამუშაო Soliguide-ის დახმარებით",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ სამუშაო საფრანგეთში! იხილეთ ვაკანსიები, ტრენინგები და საკონსულტაციო ცენტრები თქვენს სიახლოვეს."
   },
   {
     "categoryId": "sport_activities",
     "label": "სპორტული აქტივობები",
     "slug": "activites-sportives",
     "synonyms": [
-      "activites sportives sport foot basket danse rugby loisirs loisir"
+      "სპორტი",
+      "ვარჯიში",
+      "ფიტნესი",
+      "ცურვა",
+      "ფეხბურთი",
+      "კალათბურთი",
+      "ველოსიპედი",
+      "სიარული",
+      "სირბილი",
+      "იოგა",
+      "პილატესი",
+      "სპორტული დარბაზი",
+      "ჯანმრთელობა",
+      "აქტივობა",
+      "გახდომა"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Activités sportives : foot, jogging, marche, etc."
+    "seoTitle": "იპოვეთ სპორტული აქტივობები თქვენთვის Soliguide-ის დახმარებით",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ სპორტული აქტივობები! მაგალითად: უფასო სპორტული დარბაზები, ჯგუფური ვარჯიშები, სპორტული კლუბები. იპოვეთ თქვენს მახლობლად!"
   },
   {
     "categoryId": "museums",
     "label": "მუზეუმი",
     "slug": "musee",
     "synonyms": [
-      "musee culture sortie peinture tableau se cultiver"
+      "მუზეუმი",
+      "კულტურა",
+      "გამოფენა",
+      "ხელოვნება",
+      "ისტორია",
+      "შემოქმედება",
+      "მემკვიდრეობა",
+      "ექსპონატი",
+      "კოლექცია",
+      "გალერეა",
+      "სამხატვრო გალერეა",
+      "კულტურული ცენტრი",
+      "არქიტექტურა",
+      "პარიზი მუზეუმი",
+      "უფასო შესვლა"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Musée gratuit."
+    "seoTitle": "იპოვეთ მუზეუმი თქვენს მახლობლად Soliguide-ით",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ მუზეუმები, სადაც შეგიძლიათ გაატაროთ დრო უფასოდ. იპოვეთ ადგილები პარიზში, მარსელში და ლიონში!"
   },
   {
     "categoryId": "libraries",
     "label": "ბიბლიოთეკა",
     "slug": "bibliotheque",
     "synonyms": [
-      "bibliotheque livres culture mediatheque"
+      "წიგნი",
+      "კითხვა",
+      "სწავლა",
+      "ცოდნა",
+      "ინფორმაცია",
+      "კულტურა",
+      "კომპიუტერი",
+      "ინტერნეტი",
+      "ბიბლიოთეკარი",
+      "ჟურნალი",
+      "გაზეთი",
+      "ფრანგული ბიბლიოთეკა",
+      "სახალხო ბიბლიოთეკა",
+      "ბავშვთა ბიბლიოთეკა",
+      "სტუდენტური ბიბლიოთეკა"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Bibliothèque accessible en accès libre."
+    "seoTitle": "იპოვეთ ბიბლიოთეკები Soliguide-ით მარტივად და სწრაფად",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ ბიბლიოთეკები თქვენს გარშემო! წაიკითხეთ წიგნები, ისარგებლეთ კომპიუტერებით და მიიღეთ დახმარება სწავლაში. მარტივად მოძებნეთ უახლოესი ბიბლიოთეკა!"
   },
   {
     "categoryId": "other_activities",
     "label": "მრავალფეროვანი აქტივობები",
     "slug": "activites-diverses",
     "synonyms": [
-      "activites diverses animation divertissement loisir s occuper culture activites enfants loisirs loisir"
+      "სახელოსნო",
+      "კულტურა",
+      "სპორტი",
+      "გასართობი",
+      "თავისუფალი დრო",
+      "აქტივობა",
+      "სოციალური კავშირი",
+      "თეატრი",
+      "მუზეუმი",
+      "კინო",
+      "კონცერტი",
+      "ცეკვა",
+      "ხელოვნება",
+      "მუსიკა",
+      "ღონისძიება"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Activités diverses : ateliers, activités culturelles, etc. (précisez.)"
+    "seoTitle": "იპოვეთ მრავალფეროვანი აქტივობები Soliguide-ის დახმარებით",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ სახელოსნოები, კულტურული ღონისძიებები და სპორტული აქტივობები საფრანგეთში. იპოვეთ თქვენთან ახლოს მდებარე ადგილები რუკაზე!"
   },
   {
     "categoryId": "food",
     "label": "საჭმელი",
     "slug": "alimentation-bouffe-boufe-manger-soupe-repas-aliment-manger-mange-repa-faim-diner-dejeuner-dejeunet-dine-se-nourrir-fin-portage-portage-de-repas-aide-alimentaire-comida-comer-resto-du-coeur",
     "synonyms": [
-      "alimentation bouffe boufe manger soupe repas aliment manger mange repa faim diner dejeuner dejeunet dine se nourrir fin portage portage de repas aide alimentaire comida comer"
+      "კვება",
+      "უფასო კვება",
+      "სასადილო",
+      "სასურსათო დახმარება",
+      "სასურსათო პაკეტი",
+      "ვაუჩერი",
+      "სოციალური კვება",
+      "დროებითი კვება",
+      "საჭმლის მიღება",
+      "მშიერი",
+      "კვების ბანკი",
+      "კვებითი დახმარება",
+      "საზოგადოებრივი სასადილო",
+      "რესტორანი სოლიდარობა"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Soliguide დაგეხმარებათ საჭმლის პოვნაში",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ უფასო სასადილოები, სასურსათო პაკეტები და სასურსათო ვაუჩერები fr-ში. იპოვეთ დახმარება თქვენს მახლობლად!"
   },
   {
     "categoryId": "food_distribution",
     "label": "კვების განაწილება",
     "slug": "distribution-repas",
     "synonyms": [
-      "distribution alimentaire distribution de repas manger maraude bouffe soupe nourriture faim repas mange manger fin distribution aide alimentaire restauration assise comida comer"
+      "კვება",
+      "საკვები პროდუქტები",
+      "სასადილო",
+      "უფასო კვება",
+      "სასურსათო დახმარება",
+      "ვაუჩერი",
+      "სოციალური სასადილო",
+      "ღარიბი",
+      "გაჭირვებული",
+      "დაბალი შემოსავალი",
+      "კვების ბანკი",
+      "დროებითი დახმარება",
+      "სოციალური მუშაკი",
+      "CCAS",
+      "ადგილობრივი დახმარება"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Point d'arrêt d'une distribution alimentaire. Attention : Veuillez créer une structure par point de distribution."
+    "seoTitle": "იპოვეთ უფასო კვების განაწილება Soliguide-ით",
+    "seoDescription": "Soliguide გეხმარებათ! მიიღეთ საკვები პროდუქტები, სასადილოებში კვება ან სასურსათო ვაუჩერები. იპოვეთ დახმარება თქვენს სიახლოვეს fr-ში!"
   },
   {
     "categoryId": "food_packages",
     "label": "სასურსათო კალათა",
     "slug": "colis-alimentaire",
     "synonyms": [
-      "colis colis alimentaire manger mange fruits legumes panier repas aide alimentaire panier comida comer"
+      "სასურსათო დახმარება",
+      "საკვები პროდუქტები",
+      "კვების დახმარება",
+      "სოციალური კვება",
+      "უფასო კვება",
+      "სასურსათო პაკეტი",
+      "საკვების ბანკი",
+      "სასურსათო ვაუჩერი",
+      "საკვები",
+      "დაბალი შემოსავალი",
+      "გაჭირვებულები",
+      "დროებითი დახმარება",
+      "CCAS",
+      "Red Cross",
+      "Secours Populaire"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Distribution de colis contenant des denrées alimentaires (conserves, légumes, etc.)."
+    "seoTitle": "იპოვეთ სასურსათო კალათა Soliguide-ის დახმარებით",
+    "seoDescription": "Soliguide-ის მეშვეობით იპოვეთ უფასო სასურსათო კალათები, სასურსათო ვაუჩერები და საკვები პროდუქტები მთელი საფრანგეთის მასშტაბით. გეოლოკაცია დაგეხმარებათ!"
   },
   {
     "categoryId": "social_grocery_stores",
     "label": "სოციალური და სოლიდარობის სასურსათო მაღაზია",
     "slug": "epicerie-sociale-solidaire",
     "synonyms": [
-      "epicerie sociale epicerie manger fruits legumes panier repas epicerie solidaire aide alimentaire"
+      "სოციალური მაღაზია",
+      "სოლიდარობის მაღაზია",
+      "სურსათის დახმარება",
+      "საკვები პროდუქტები",
+      "ჰიგიენის საშუალებები",
+      "ფასდაკლება",
+      "იაფი პროდუქტები",
+      "დაბალი ფასები",
+      "სურსათის პაკეტი",
+      "საკვების ბანკი",
+      "CCAS",
+      "სოციალური მუშაკი",
+      "დახმარება საკვებში",
+      "ადგილობრივი დახმარება",
+      "სიღარიბე"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Les épiceries solidaires accueillent les personnes en précarité et leur permettent de faire des courses à prix solidaire."
+    "seoTitle": "სოციალური და სოლიდარობის სასურსათო მაღაზია Soliguide-თან ერთად დაგეხმარებათ",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ სოციალური სასურსათო მაღაზიები fr-ში. მიიღეთ საკვები პროდუქტები, ჰიგიენის საშუალებები ან ისარგებლეთ ფასდაკლებებით თქვენს სიახლოვეს!"
   },
   {
     "categoryId": "fountain",
     "label": "ჩემი ორგანიზაცია",
     "slug": "fontaine",
     "synonyms": [
-      "fontaine boire eau soif robinet potable"
+      "სოციალური დახმარება",
+      "კონსულტაცია",
+      "უფასო დახმარება",
+      "დოკუმენტების შევსება",
+      "რჩევა",
+      "სოციალური მუშაკი",
+      "სოციალური ცენტრი",
+      "დამხმარე ორგანიზაცია",
+      "არაკომერციული ორგანიზაცია",
+      "დახმარების მიღება",
+      "გადაუდებელი დახმარება",
+      "სოლიდარობა",
+      "ადვოკატირება",
+      "მხარდაჭერა",
+      "ორგანიზაციული დახმარება"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Eau potable en accès libre."
+    "seoTitle": "Soliguide გეხმარებათ იპოვოთ „ჩემი ორგანიზაცია“ და დახმარება",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ ორგანიზაციები, რომლებიც გთავაზობენ კონსულტაციებს, დახმარებას დოკუმენტების შევსებაში და სოციალურ მხარდაჭერას. იპოვეთ თქვენს მახლობლად!"
   },
   {
     "categoryId": "solidarity_fridge",
     "label": "სოლიდარობის მაცივარი",
     "slug": "frigo-solidaire",
     "synonyms": [
-      "manger mange conserver frais bouffe aliment faim frigo frigo solidaire"
+      "სოლიდარობის მაცივარი",
+      "უფასო საკვები",
+      "სურსათის დახმარება",
+      "საკვები პროდუქტები",
+      "სოციალური დახმარება",
+      "პარიზის სოლიდარობის მაცივარი",
+      "მარსელის დახმარება",
+      "ლიონის საკვები",
+      "კვება გაჭირვებულთათვის",
+      "ჰუმანიტარული დახმარება",
+      "სურსათის ბანკი",
+      "კვების პუნქტი",
+      "გადარჩენის ნაკრები",
+      "პირველადი მოხმარების ნივთები",
+      "სოლიდარული ინიციატივა"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Frigo solidaire"
+    "seoTitle": "იპოვეთ სოლიდარობის მაცივრები Soliguide-ის დახმარებით",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ სოლიდარობის მაცივრები fr-ში! იპოვეთ უფასო საკვები, სურსათის პაკეტები და პირველადი მოხმარების საგნები თქვენს მახლობლად."
   },
   {
     "categoryId": "shared_kitchen",
     "label": "საერთო სამზარეულო",
     "slug": "cuisine-partagee",
     "synonyms": [
-      "cuisine cuisiner preparer partage partagee cuisine partagee"
+      "უფასო კვება",
+      "სასადილო",
+      "სოციალური კვება",
+      "კვების დახმარება",
+      "კვების ვაუჩერი",
+      "პური",
+      "ბოსტნეული",
+      "ხილი",
+      "სუპი",
+      "ცხელი კერძი",
+      "იაფი კვება",
+      "დაბალფასიანი კვება",
+      "საკვების ბანკი",
+      "სასურსათო პაკეტი",
+      "საკვები პროდუქტები"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Cuisine partagée "
+    "seoTitle": "იპოვეთ საერთო სამზარეულოები Soliguide-ის დახმარებით",
+    "seoDescription": "Soliguide-ით შეგიძლიათ იპოვოთ უფასო კვების ადგილები, სასადილოები და საკვების დარიგების პუნქტები საფრანგეთში. იპოვეთ უახლოესი დახმარება თქვენი მდებარეობის მიხედვით!"
   },
   {
     "categoryId": "cooking_workshop",
     "label": "სამზარეულოს სახელოსნო",
     "slug": "atelier-cuisine",
     "synonyms": [
-      "atelier cuisine cuisiner partage preparer atelier cuisine cuire"
+      "კვება",
+      "სამზარეულო",
+      "რეცეპტი",
+      "პროდუქტი",
+      "უფასო",
+      "დახმარება",
+      "სოლიდარობა",
+      "სახელოსნო",
+      "კურსი",
+      "ტრენინგი",
+      "სოციალური",
+      "მხარდაჭერა",
+      "რჩევა",
+      "პარიზი",
+      "მარსელი"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Atelier de cuisine"
+    "seoTitle": "იპოვეთ სამზარეულოს სახელოსნო Soliguide-ით და მიიღეთ დახმარება",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ უფასო კვების სახელოსნოები, მიიღოთ პროდუქტები და ისწავლოთ რეცეპტები საფრანგეთში თქვენს მახლობლად. იპოვეთ გამოსავალი ახლავე!"
   },
   {
     "categoryId": "baby_parcel",
     "label": "ბავშვის პაკეტი",
     "slug": "colis-bebe",
     "synonyms": [
-      "bebe nourrir nourisson colis colis bebe puericulture lait couche biberon maternite manger nourriture vetement"
+      "ბავშვის ტანსაცმელი",
+      "საფენები",
+      "ფორმულა",
+      "ბავშვის კვება",
+      "ბავშვის ჰიგიენა",
+      "ეტლი",
+      "საწოლი",
+      "ბავშვის სათამაშოები",
+      "პატარა ბავშვის ტანსაცმელი",
+      "ორსულობის დახმარება",
+      "დედის დახმარება",
+      "ოჯახის დახმარება",
+      "ბავშვის მოვლის საშუალებები",
+      "უფასო ბავშვის პროდუქტები",
+      "სოციალური დახმარება"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Colis pour bébé"
+    "seoTitle": "იპოვეთ ბავშვის პაკეტი Soliguide-ის დახმარებით",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ ბავშვის პაკეტები, ტანსაცმელი და საკვები საფრანგეთში. იპოვეთ ახლომდებარე ადგილები და მიიღეთ დახმარება! გეოლოკაცია."
   },
   {
     "categoryId": "food_voucher",
     "label": "კვების ვაუჩერი/ჩეკი",
     "slug": "bon-alimentaire",
     "synonyms": [
-      "bon cheque ticket alimentaire gratuit aide"
+      "კვების დახმარება",
+      "სურსათის დარიგება",
+      "სასადილო",
+      "უფასო კვება",
+      "სურსათის კალათა",
+      "სურსათის ბანკი",
+      "კვების პაკეტი",
+      "სოციალური სასადილო",
+      "დაბალფასიანი კვება",
+      "სასწრაფო კვება",
+      "სოლიდარობის მაღაზია",
+      "CCAS კვება",
+      "სურსათის ჩეკი",
+      "კვების ვაუჩერი",
+      "კვების ბარათი"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Distribution de bon/chèque alimentaire"
+    "seoTitle": "სურსათის ვაუჩერები/ჩეკები: იპოვეთ დახმარება Soliguide-ით",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ სადისტრიბუციო ცენტრები, მიიღოთ სასურსათო კალათები ან სასადილო ვაუჩერები საფრანგეთში. იპოვეთ თქვენთან ახლოს!"
   },
   {
     "categoryId": "community_garden",
     "label": "სოლიდარობის ბაღი",
     "slug": "jardin-solidaire",
     "synonyms": [
-      "fruits pousser jardin bio nature legumes jardin solidaire jardinage"
+      "ბაღი",
+      "სოლიდარობა",
+      "ეკოლოგია",
+      "ორგანული",
+      "ბოსტანი",
+      "მებაღეობა",
+      "საზოგადოება",
+      "დახმარება",
+      "გაზიარება",
+      "მცენარე",
+      "თესლი",
+      "ხილის ბაღი",
+      "ბოსტნეული",
+      "საკვები",
+      "გაცვლა"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Jardin solidaire"
+    "seoTitle": "იპოვეთ სოლიდარობის ბაღი Soliguide-ის დახმარებით",
+    "seoDescription": "Soliguide-ით იპოვეთ ბაღები, სადაც შეგიძლიათ მიიღოთ საკვები, ისწავლოთ მებაღეობა ან გაცვალოთ ცოდნა საფრანგეთში თქვენს სიახლოვეს. უფასო გეოლოკაცია."
   },
   {
     "categoryId": "counseling",
     "label": "რჩევა",
     "slug": "conseil",
     "synonyms": [
-      "conseil conseils soutien accompagnement aide se faire aider conseiller numerique"
+      "კონსულტაცია",
+      "იურიდიული დახმარება",
+      "ადმინისტრაციული დახმარება",
+      "სოციალური მუშაკი",
+      "ფსიქოლოგიური დახმარება",
+      "პროფესიული ორიენტაცია",
+      "სახელმწიფო სერვისები",
+      "დახმარება პროცედურებში",
+      "კომპანია",
+      "ასოციაცია",
+      "მრჩეველი",
+      "საინფორმაციო წერტილი",
+      "CAF",
+      "CPAM",
+      "სოლიდარობის ადგილი"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "მიიღეთ რჩევა Soliguide-ის დახმარებით",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ იურიდიული რჩევა, კონსულტაციები სამუშაოზე და უფასო ადმინისტრაციული დახმარება. იპოვეთ უახლოესი დახმარების ცენტრი რუკაზე!"
   },
   {
     "categoryId": "legal_advice",
     "label": "იურიდიული მუდმივობა",
     "slug": "permanence-juridique",
     "synonyms": [
-      "proces permanence juridique amende avocat droits droit recours juge ldh droits de l homme ligue des droits de l homme acces au droit cnda ofpra asile sejour carte sejour divorce separation"
+      "იურიდიული დახმარება",
+      "უფასო კონსულტაცია",
+      "ადვოკატი",
+      "სამართლებრივი რჩევა",
+      "საემიგრაციო დახმარება",
+      "დოკუმენტები",
+      "სამართლებრივი დაცვა",
+      "სასამართლო",
+      "ადვოკატირება",
+      "მოქალაქეობა",
+      "თავშესაფარი",
+      "იურიდიული უფლებები",
+      "სამართლიანობა",
+      "სახელმწიფო დახმარება",
+      "სამართლებრივი პროცედურები"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences juridiques (surendettement, demande d'asile, procès, etc.)."
+    "seoTitle": "იურიდიული მუდმივობა მარტივად Soliguide-თან ერთად",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ იურიდიული დახმარება საფრანგეთში. იპოვეთ უფასო იურიდიული კონსულტაცია, დახმარება საემიგრაციო საკითხებში და დოკუმენტების გაფორმებაში თქვენს მახლობლად!"
   },
   {
     "categoryId": "social_accompaniment",
     "label": "Სოციალური მხარდაჭერა",
     "slug": "accompagnement-social",
     "synonyms": [
-      "accompagnement assistante sociale social travailleur social droits demarches femmes battues femme battue violence isolement isole solitude isolee partir separation divorce victime"
+      "სოციალური დახმარება",
+      "დახმარება",
+      "მხარდაჭერა",
+      "უფასო იურიდიული დახმარება",
+      "კონსულტაცია",
+      "თავშესაფარი",
+      "დროებითი საცხოვრებელი",
+      "თავშესაფრის მოძიება",
+      "სოციალური მუშაკი",
+      "CCAS",
+      "სოციალური ცენტრი",
+      "კვების დახმარება",
+      "ტანსაცმლის დახმარება",
+      "ფინანსური დახმარება",
+      "მარტოობა"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Accompagement des personnes dans leur réinsertion (assistantes sociales, permanences, etc.)."
+    "seoTitle": "იპოვეთ Სოციალური მხარდაჭერა Soliguide-ის დახმარებით",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ Სოციალური მხარდაჭერა fr-ში! უფასო იურიდიული დახმარება, თავშესაფარი, კონსულტაციები. გეოლოკაცია თქვენს მახლობლად."
   },
   {
     "categoryId": "disability_advice",
     "label": "რჩევა ინვალიდობის შესახებ",
     "slug": "conseil-handicap",
     "synonyms": [
-      "conseil handicap handicap aah conseils conseil handicape handicapee personne a mobilite reduite pmr"
+      "ინვალიდობა",
+      "შეზღუდული შესაძლებლობები",
+      "უფლებები",
+      "დახმარება",
+      "შემწეობა",
+      "APF France handicap",
+      "MDPH (შეზღუდული შესაძლებლობის მქონე პირთა სახლი)",
+      "სოციალური დახმარება",
+      "ადვოკატირება",
+      "კონსულტაცია",
+      "ინფორმაცია",
+      "სახელმწიფო დახმარება",
+      "ადაპტირებული საცხოვრებელი",
+      "სამედიცინო დახმარება",
+      "ფინანსური დახმარება"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'accès aux droits pour les personnes en situation de handicap."
+    "seoTitle": "მიიღეთ რჩევა ინვალიდობის შესახებ Soliguide-თან ერთად",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ ინფორმაცია თქვენი უფლებების შესახებ, იპოვოთ დახმარება ინვალიდობის შემწეობის მისაღებად, დაუკავშირდეთ ორგანიზაციებს (APF France handicap...). იპოვეთ უახლოესი სოლიდარობის ადგილები!"
   },
   {
     "categoryId": "administrative_assistance",
     "label": "ადმინისტრაციული საბჭო",
     "slug": "conseil-administratif",
     "synonyms": [
-      "conseil administratif conseils administratifs aide administrative demarches rsa cmu allocations papiers securite sociale caf cpampapier conseiller numerique"
+      "ადმინისტრაციული დახმარება",
+      "სოციალური მხარდაჭერა",
+      "საბჭო",
+      "სახელმწიფო დახმარება",
+      "იურიდიული დახმარება",
+      "სოციალური მუშაკი",
+      "CCAS",
+      "სოციალური სახლი",
+      "პრეფექტურა",
+      "მერია",
+      "რეგიონალური საბჭო",
+      "დეპარტამენტის საბჭო",
+      "სუბსიდია",
+      "გრანტი",
+      "სოციალური დახმარების განაცხადი"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'aide administrative (RSA, CMU, allocations, chômage, etc.)."
+    "seoTitle": "იპოვეთ დახმარება ადმინისტრაციულ საბჭოში Soliguide-ის საშუალებით",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ ინფორმაცია ადმინისტრაციული საბჭოს შესახებ საფრანგეთში. იპოვეთ დახმარება საცხოვრებელთან, ჯანმრთელობასთან და სამართლებრივ საკითხებში. გეოლოკაცია ხელმისაწვდომია."
   },
   {
     "categoryId": "parent_assistance",
     "label": "რჩევა მშობლებს",
     "slug": "conseil-parents",
     "synonyms": [
-      "conseil parents conseil aux parents conseil parental mediation familiale mediation conflit adolescents enfants parent parentalite parents enfant ado adolescent couple couples"
+      "მშობელი",
+      "ოჯახი",
+      "ბავშვი",
+      "ბავშვები",
+      "აღზრდა",
+      "აღზრდის მხარდაჭერა",
+      "ოჯახის დახმარება",
+      "ფსიქოლოგიური დახმარება",
+      "კონსულტაცია მშობლებისთვის",
+      "მრჩეველი",
+      "სოციალური მუშაკი",
+      "მრჩევლები",
+      "პრობლემები ბავშვებთან",
+      "განათლება",
+      "საფრანგეთი"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permances d'aide pour les jeunes parents et les parents rencontrant des difficultés avec leurs enfants."
+    "seoTitle": "მშობლებისთვის რჩევა Soliguide-თან ერთად საფრანგეთში",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ ინფორმაცია მშობლებისთვის. მაგალითად, იპოვეთ ოჯახის ექიმი, მიიღეთ კონსულტაცია და დაესწარით მშობელთა შეხვედრებს თქვენს მახლობლად!"
   },
   {
     "categoryId": "budget_advice",
     "label": "საბიუჯეტო რჩევა",
     "slug": "conseil-budget",
     "synonyms": [
-      "conseil budget conseil budget argent finance cresus"
+      "ბიუჯეტი",
+      "რჩევა",
+      "ფინანსები",
+      "ფული",
+      "დავალიანება",
+      "კონსულტაცია",
+      "დახმარება",
+      "მრჩეველი",
+      "სოციალური დახმარება",
+      "საბანკო ანგარიში",
+      "დაზოგვა",
+      "ხარჯები",
+      "შემოსავალი",
+      "ვალები",
+      "საფრანგეთი"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Points conseil budget (PCB) proposent des conseils gratuits et personnalisés de gestion budgétaire "
+    "seoTitle": "საბიუჯეტო რჩევა Soliguide-თან ერთად - იპოვეთ დახმარება საფრანგეთში",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ საბიუჯეტო რჩევები საფრანგეთში. იპოვეთ უფასო კონსულტაციები, დახმარება ბიუჯეტის მართვაში და მოაგვარეთ დავალიანებები თქვენს მახლობლად!"
   },
   {
     "categoryId": "training_and_jobs",
     "label": "ტრენინგი და დასაქმება",
     "slug": "formation-emploi",
     "synonyms": [
-      "formation emploi travailler job travail boulot se former taf taff taffe apprendre lire etudier comprendre france travail pole emploi conseiller numerique"
+      "სამუშაო",
+      "სამუშაოს ძებნა",
+      "ტრენინგი",
+      "პროფესიული გადამზადება",
+      "კვალიფიკაციის ამაღლება",
+      "კარიერული კონსულტაცია",
+      "დასაქმების სააგენტო",
+      "სტაჟირება",
+      "სამუშაო გამოცდილება",
+      "CV",
+      "სამოტივაციო წერილი",
+      "სამუშაო გასაუბრება",
+      "აპელ",
+      "დამსაქმებელი",
+      "კომპეტენცია"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Soliguide გთავაზობთ ტრენინგებსა და დასაქმებას თქვენთვის",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ ტრენინგები, სამუშაო ადგილები და კარიერული კონსულტაციები საფრანგეთში. გეოლოკაციის გამოყენებით იპოვეთ თქვენთვის სასურველი დაწესებულება!"
   },
   {
     "categoryId": "digital_tools_training",
     "label": "რომელ განყოფილებაში მუშაობს მომხმარებელი?",
     "slug": "formation-numerique",
     "synonyms": [
-      "formation numerique atelier numerique formation informatique ordinateur connexion se former technologie tech apprendre comprendre lire etudier conseiller numerique"
+      "სოციალური მუშაკი",
+      "სოციალური დახმარება",
+      "CCAS",
+      "დახმარება",
+      "მხარდაჭერა",
+      "კონსულტაცია",
+      "მრჩეველი",
+      "ორიენტაცია",
+      "პროფესიონალური დახმარება",
+      "სოციალური ცენტრი",
+      "სოციალური მომსახურება",
+      "ადმინისტრაციული დახმარება",
+      "დახმარების თხოვნა",
+      "დახმარების ძებნა",
+      "ფსიქოლოგიური დახმარება"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences ou ateliers visant à la maitrise d'outils informatiques."
+    "seoTitle": "რომელ განყოფილებაში მუშაობს მომხმარებელი? იპოვეთ დახმარება Soliguide-თან ერთად",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ სოციალური მუშაკები, CCAS და ორგანიზაციები თქვენს მახლობლად. მიიღეთ უფასო დახმარება საფრანგეთში!"
   },
   {
     "categoryId": "job_coaching",
     "label": "დასაქმების მხარდაჭერა",
     "slug": "accompagnement-emploi",
     "synonyms": [
-      "accompagnement emploi travailler job pole emploi travail boulot se former etre accompagne taf taff taffe apprendre comprendre lire etudier france travail orientation"
+      "სამუშაო",
+      "დასაქმება",
+      "ტრენინგი",
+      "CV",
+      "მოტივაციის წერილი",
+      "გასაუბრება",
+      "სამუშაოს ძებნა",
+      "ცენტრი დასაქმებისთვის",
+      "Pôle emploi",
+      "სოციალური დახმარება",
+      "პროფესიული ორიენტაცია",
+      "სტაჟირება",
+      "კარიერა",
+      "კონსულტაცია",
+      "ხელშეკრულება"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Aide au retour à l'emploi : ateliers de préparation aux entretiens, aide à la recherche d'emploi, atelier CV, etc."
+    "seoTitle": "Soliguide გეხმარებათ დასაქმების მხარდაჭერის პოვნაში",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ ტრენინგები, სამუშაო შეთავაზებები და CV-ის დაწერაში დახმარება. იპოვეთ თქვენთან ახლოს არსებული ცენტრები რუკაზე!"
   },
   {
     "categoryId": "integration_through_economic_activity",
     "label": "ინტეგრაცია ეკონომიკური აქტივობით",
     "slug": "insertion-activite-economique",
     "synonyms": [
-      "chantier de reinsertion chantier reinsertion travailler job insertion reinsertion siae iae se reinserer taf taff taffe apprendre comprendre lire etudier orientation"
+      "დასაქმება",
+      "სამსახური",
+      "პროფესიული გადამზადება",
+      "ტრენინგი",
+      "სტაჟირება",
+      "კარიერული კონსულტაცია",
+      "სამუშაოს ძიება",
+      "რეზიუმეს დაწერა",
+      "სამოტივაციო წერილი",
+      "ინტერვიუ",
+      "მიკროკრედიტი",
+      "სოციალური საწარმო",
+      "კვალიფიკაცია",
+      "კომპეტენცია",
+      "ფინანსური დახმარება"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Embauche de personnes en insertion."
+    "seoTitle": "Soliguide დაგეხმარებათ ეკონომიკურ აქტივობაში ინტეგრაციაში",
+    "seoDescription": "Soliguide-ის მეშვეობით იპოვეთ სამუშაო, გაიარეთ ტრენინგი, მიიღეთ დახმარება სამუშაოს ძიებაში fr-ში. გეოლოკაციის ფუნქცია დაგეხმარებათ იპოვოთ თქვენთან ახლოს არსებული ადგილები."
   },
   {
     "categoryId": "tutoring",
     "label": "რეპეტიტორობა",
     "slug": "soutien-scolaire",
     "synonyms": [
-      "soutien scolaire aide au devoir etudes college lycee devoirs cours apprendre comprendre lire etudier"
+      "რეპეტიტორი",
+      "სასწავლო დახმარება",
+      "დახმარება სწავლაში",
+      "საშინაო დავალება",
+      "გაკვეთილები",
+      "სკოლის მოსამზადებელი",
+      "ონლაინ რეპეტიტორი",
+      "უფასო რეპეტიტორი",
+      "მენტორი",
+      "კერძო მასწავლებელი",
+      "სასწავლო ცენტრი",
+      "კურსები",
+      "განათლება",
+      "სწავლა",
+      "მომზადება გამოცდებისთვის"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Soutien scolaire gratuit (préciser le niveau dans la description)."
+    "seoTitle": "რეპეტიტორობა Soliguide-თან ერთად: იპოვეთ დახმარება სწავლაში",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ რეპეტიტორები, სასწავლო ცენტრები და საშინაო დავალების შესრულებაში დახმარება საფრანგეთში. იპოვეთ თქვენთან ახლოს!"
   },
   {
     "categoryId": "accomodation_and_housing",
     "label": "განთავსება და განთავსება",
     "slug": "hebergement-et-logement",
     "synonyms": [
-      "hebergement dormir lit logement repos toit hebergement logement logement hebergement et logement hebergementetlogement domir"
+      "თავშესაფარი",
+      "საცხოვრებელი",
+      "თავშესაფარი",
+      "განთავსება",
+      "განთავსება",
+      "სოციალური საცხოვრებელი",
+      "დროებითი განთავსება",
+      "სასწრაფო განთავსება",
+      "უსახლკაროები",
+      "CCAS",
+      "სასტუმრო სახლი",
+      "თავშესაფრის მაძიებელთათვის",
+      "მიგრანტებისთვის",
+      "კრიზისული განთავსება",
+      "სოციალური მუშაკი"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "იპოვეთ განთავსება და დაბინავება Soliguide-ის დახმარებით",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ სასტუმრო სახლები, თავშესაფრები და დროებითი საცხოვრებელი საფრანგეთში. გეოლოკაცია თქვენს მახლობლად."
   },
   {
     "categoryId": "overnight_stop",
     "label": "ღამის გაჩერება",
     "slug": "halte-nuit",
     "synonyms": [
-      "halte de nuit halte nuit dormir se reposer alte de nui accueil nuit accueil de nuit accueil nuit"
+      "ღამისთევა",
+      "თავშესაფარი",
+      "საცხოვრებელი",
+      "დროებითი",
+      "უსახლკარო",
+      "კრიზისი",
+      "სოციალური დახმარება",
+      "ღამის თავშესაფარი",
+      "თავშესაფარი ქალებისთვის",
+      "თავშესაფარი მამაკაცებისთვის",
+      "სასწრაფო დახმარება",
+      "კეთილდღეობა",
+      "პოვნა",
+      "ადგილი",
+      "დახმარება"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "La halte de nuit est un lieu d'accueil et de repos pour les personnes sans abri ouvert de 20h à 8h du matin, 7/7 jours."
+    "seoTitle": "ღამისთევა Soliguide-ის დახმარებით - იპოვეთ უსაფრთხო ადგილი",
+    "seoDescription": "Soliguide დაგეხმარებათ ღამისთევის პოვნაში საფრანგეთში. იპოვეთ თავშესაფარი, ღამის თავშესაფარი ან დროებითი საცხოვრებელი თქვენს მახლობლად. გეოლოკაცია."
   },
   {
     "categoryId": "emergency_accommodation",
     "label": "გადაუდებელი განსახლება",
     "slug": "hebergement-urgence",
     "synonyms": [
-      "hebergement urgence dormir lit logement chu halte de nuit toit a la rue rue dehors accueil de nuit accueil nuit accueil nuit"
+      "თავშესაფარი",
+      "დროებითი საცხოვრებელი",
+      "ღამისთევა",
+      "გადაუდებელი დახმარება",
+      "უსახლკარო",
+      "თავშესაფრის მოძებნა",
+      "განსახლება",
+      "სოციალური დახმარება",
+      "სასწრაფო დახმარება",
+      "საბინაო დახმარება",
+      "თავშესაფარი უსახლკაროებისთვის",
+      "CCAS განსახლებისთვის",
+      "თავშესაფარი ქალებისთვის",
+      "თავშესაფარი ოჯახებისთვის",
+      "samusocial"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Hébergement à court terme (à la nuitée), accessible directement."
+    "seoTitle": "იპოვეთ გადაუდებელი განსახლების დახმარება Soliguide-თან ერთად",
+    "seoDescription": "Soliguide დაგეხმარებათ საფრანგეთში იპოვოთ გადაუდებელი თავშესაფარი, დროებითი საცხოვრებელი და ღამის თავშესაფარი. იპოვეთ თქვენთან ახლოს მდებარე ადგილები!"
   },
   {
     "categoryId": "long_term_accomodation",
     "label": "გრძელვადიანი განსახლება",
     "slug": "hebergement-long-terme",
     "synonyms": [
-      "hebergement dormir lit logement chrs repos toit"
+      "თავშესაფარი",
+      "საცხოვრებელი",
+      "ბინა",
+      "სოციალური",
+      "სახლი",
+      "თავშესაფარი",
+      "კერა",
+      "განთავსება",
+      "დროებითი",
+      "უსახლკარობა",
+      "ფრანცია",
+      "CCAS",
+      "სოციალური მუშაკი",
+      "მოძებნე",
+      "დახმარება"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Possibilité d'hébergement à long terme, au sein de la structure ou d'une structure partenaire. Indiquer dans la description les modalités d'accès."
+    "seoTitle": "გრძელვადიანი განსახლება: იპოვეთ დახმარება Soliguide-ით",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ გრძელვადიანი საცხოვრებელი საფრანგეთში. მაგალითად: თავშესაფრები, სოციალური ბინები, რეზიდენციები. იპოვეთ უახლოესი დახმარება რუკაზე!"
   },
   {
     "categoryId": "citizen_housing",
     "label": "მოქალაქის განთავსება",
     "slug": "hebergement-citoyen",
     "synonyms": [
-      "hebergement hebergement citoyen merci pour l invit singa"
+      "თავშესაფარი",
+      "საცხოვრებელი",
+      "განთავსება",
+      "თავშესაფრის მოძიება",
+      "დროებითი საცხოვრებელი",
+      "სოციალური საცხოვრებელი",
+      "თავშესაფრის პოვნა",
+      "SOS თავშესაფარი",
+      "სოციალური დახმარება",
+      "თავშესაფარი ღამით",
+      "სახლი",
+      "თავშესაფარი უსახლკაროებისთვის",
+      "დახმარება განსახლებაში",
+      "სახურავი",
+      "თავშესაფრის ცენტრი"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "მოქალაქის განთავსების დახმარება Soliguide-ის მეშვეობით",
+    "seoDescription": "Soliguide დაგეხმარებათ საფრანგეთში თავშესაფრის მოძიებაში! იპოვეთ უფასო თავშესაფარი, დროებითი საცხოვრებელი ან სოციალური საცხოვრებელი თქვენს მახლობლად."
   },
   {
     "categoryId": "access_to_housing",
     "label": "საბინაო რჩევა",
     "slug": "conseil-logement",
     "synonyms": [
-      "hebergement dalo logement expulsion toit maison impayes factures chauffage conseil conseil logement"
+      "საბინაო დახმარება",
+      "იურიდიული რჩევა საცხოვრებელზე",
+      "დროებითი საცხოვრებელი",
+      "CCAS",
+      "საბინაო განაცხადი",
+      "ქირის გადახდის დახმარება",
+      "სოციალური საცხოვრებელი",
+      "უძრავი ქონების სააგენტო",
+      "ფონდი",
+      "უსახლკარო",
+      "საცხოვრებელი კრიზისი",
+      "ენერგიის ვაუჩერი",
+      "საბინაო უფლებები",
+      "დაბინავება",
+      "საცხოვრებლის მოძიება"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'accès au logement (logement social, DALO, etc.)."
+    "seoTitle": "საბინაო რჩევა Soliguide-თან ერთად - იპოვეთ დახმარება საფრანგეთში",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ საბინაო რჩევები საფრანგეთში! იპოვეთ ორგანიზაციები, რომლებიც გთავაზობენ იურიდიულ დახმარებას, დროებით საცხოვრებელს და საბინაო განაცხადების დახმარებას თქვენს მახლობლად."
   },
   {
     "categoryId": "hygiene_and_wellness",
     "label": "ჰიგიენა და კეთილდღეობა",
     "slug": "hygiene",
     "synonyms": [
-      "hygiene laver douche bain se laver se doucher propre"
+      "საშხაპე",
+      "საპონი",
+      "შამპუნი",
+      "სამრეცხაო",
+      "სარეცხი მანქანა",
+      "სარეცხი ფხვნილი",
+      "პირსახოცი",
+      "კბილის ჯაგრისი",
+      "კბილის პასტა",
+      "დეზოდორანტი",
+      "ჰიგიენური ბალიშები",
+      "ტამპონები",
+      "სუფთა ტანსაცმელი",
+      "სისუფთავე",
+      "ჯანმრთელობა"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "იპოვეთ ჰიგიენისა და კეთილდღეობის დახმარება Soliguide-თან ერთად",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ საშხაპეები, სამრეცხაოები და ჰიგიენური საშუალებების დარიგების ადგილები საფრანგეთში. იპოვეთ თქვენთან ახლოს მდებარე ადგილები!"
   },
   {
     "categoryId": "shower",
     "label": "შხაპი",
     "slug": "douche",
     "synonyms": [
-      "douche laver se laver bain bain douche piscine propre sale cheveux"
+      "აბაზანა",
+      "ჰიგიენა",
+      "სისუფთავე",
+      "წყალი",
+      "საპონი",
+      "შამპუნი",
+      "პირსახოცი",
+      "სარეცხი",
+      "ტანსაცმლის გარეცხვა",
+      "სანჰიგიენო საშუალებები",
+      "თავშესაფარი",
+      "ქუჩა",
+      "სიცხე",
+      "გამაგრილებელი",
+      "დასუფთავება"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "იპოვეთ უფასო საშხაპეები Soliguide-ის დახმარებით",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ საშხაპეები, სარეცხი მანქანები და ჰიგიენური საშუალებები მთელს fr-ში. მოძებნეთ თქვენს მახლობლად!"
   },
   {
     "categoryId": "hairdresser",
     "label": "პარიკმახერი",
     "slug": "coiffeur",
     "synonyms": [
-      "coiffeur cheveux"
+      "თმის შეჭრა",
+      "გაპარსვა",
+      "სტილის გაკეთება",
+      "უფასო",
+      "სოციალური",
+      "სოლიდარობა",
+      "თმის მოვლა",
+      "იმიჯი",
+      "პარიკმახერის სახელოსნო",
+      "სოციალური სალონი",
+      "დაბალი ფასი",
+      "დახმარება",
+      "სიახლოვე",
+      "მობილური პარიკმახერი",
+      "პარიკი"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "იპოვეთ პარიკმახერი სოლიგიდის დახმარებით",
+    "seoDescription": "სოლიგიდი დაგეხმარებათ იპოვოთ უფასო პარიკმახერის მომსახურება საფრანგეთში. აღმოაჩინეთ სოლიდარობის ადგილები თქვენს მახლობლად: საპარიკმახერო სოციალური სახელოსნოები, სილამაზის სალონები, მობილური საპარიკმახეროები."
   },
   {
     "categoryId": "laundry",
     "label": "სამრეცხაო",
     "slug": "laverie",
     "synonyms": [
-      "laverie vetements vetement laver machine a laver pressing linge lave linge"
+      "სამრეცხაო",
+      "სარეცხის მანქანა",
+      "სარეცხის საშრობი",
+      "გაუთოვება",
+      "ტანსაცმლის რეცხვა",
+      "თეთრეულის რეცხვა",
+      "ჰიგიენა",
+      "სისუფთავე",
+      "უფასო სამრეცხაო",
+      "სოციალური სამრეცხაო",
+      "სოლიდარული სამრეცხაო",
+      "სარეცხი საშუალება",
+      "გამრეცხი საშუალება",
+      "ლავუარი",
+      "რეცხვა"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Lave-linge en accès libre."
+    "seoTitle": "იპოვეთ სამრეცხაოები Soliguide-ის დახმარებით",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ უფასო სამრეცხაოები საფრანგეთში. იპოვეთ ადგილი ტანსაცმლის გასარეცხად, გასაშრობად და გასაუთოვებლად თქვენს მახლობლად."
   },
   {
     "categoryId": "wellness",
     "label": "კეთილდღეობა",
     "slug": "bien-etre",
     "synonyms": [
-      "bien etre coiffeur massage maquillage belle beau pedicure manicure manucire"
+      "სოციალური დახმარება",
+      "ფინანსური დახმარება",
+      "საკვები",
+      "თავშესაფარი",
+      "ჯანმრთელობა",
+      "კონსულტაცია",
+      "ფსიქოლოგიური დახმარება",
+      "სოციალური მუშაკი",
+      "CCAS",
+      "უფასო კვება",
+      "ტანსაცმელი",
+      "ჰიგიენის საშუალებები",
+      "კომპანიონი",
+      "სოლიდარობის ორგანიზაცია",
+      "დახმარების მოძიება"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Ateliers de bien-être : coiffeur, massage, sophrologie, etc. (à préciser dans la description)."
+    "seoTitle": "იპოვეთ კეთილდღეობის დახმარება Soliguide-ით",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ უფასო სამედიცინო დახმარება, კვების პროდუქტები და სოციალური მუშაკები საფრანგეთში. იპოვეთ უახლოესი ადგილი რუკაზე!"
   },
   {
     "categoryId": "toilets",
     "label": "აბაზანა",
     "slug": "toilettes",
     "synonyms": [
-      "toilettes sanisette pisser pipi wc caca chiotte toilet"
+      "საშხაპე",
+      "ჰიგიენა",
+      "სისუფთავე",
+      "ტუალეტი",
+      "წყალი",
+      "საპონი",
+      "შამპუნი",
+      "პირსახოცი",
+      "ტანსაცმლის რეცხვა",
+      "სარეცხი მანქანა",
+      "სარეცხი საშუალება",
+      "უფასო აბაზანა",
+      "გახურებული წყალი",
+      "სანიტარული ნივთები",
+      "დაბანა"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Toilettes en accès libre."
+    "seoTitle": "იპოვეთ უფასო აბაზანა Soliguide-ის დახმარებით",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ უფასო აბაზანები, საშხაპეები და სარეცხი საშუალებები საფრანგეთში. იპოვეთ უახლოესი ადგილი თქვენი გეოლოკაციის მიხედვით!"
   },
   {
     "categoryId": "hygiene_products",
     "label": "ჰიგიენის პროდუქტები",
     "slug": "produits-hygiene",
     "synonyms": [
-      "periodiques protections periodiques protection periodique regles regle tampon serviette hygienique serviette menstrues produits d hygiene hygiene cup culotte tampax"
+      "საპონი",
+      "შამპუნი",
+      "კბილის პასტა",
+      "კბილის ჯაგრისი",
+      "ტუალეტის ქაღალდი",
+      "სანიტარული ხელსახოცი",
+      "საფენები",
+      "დეოდორანტი",
+      "საპარსი",
+      "ქაფი",
+      "ჰიგიენა",
+      "სისუფთავე",
+      "უფასო",
+      "დახმარება",
+      "პოვნა"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Distribution de produits d'hygiène (savons, dentifrice, tampons, serviettes hygiéniques, etc.)."
+    "seoTitle": "იპოვეთ ჰიგიენის პროდუქტები Soliguide-ის დახმარებით",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ ადგილები უფასო ჰიგიენის პროდუქტებისთვის: საპონი, შამპუნი, კბილის პასტა. გეოლოკაციის წყალობით იპოვეთ თქვენთვის უახლოესი დახმარება."
   },
   {
     "categoryId": "face_masks",
     "label": "ნიღბები",
     "slug": "masques",
     "synonyms": [
-      "masque protection covid virus"
+      "ნიღაბი",
+      "უფასო ნიღაბი",
+      "ჰიგიენური ნიღაბი",
+      "ქირურგიული ნიღაბი",
+      "ffp2 ნიღაბი",
+      "კოვიდი",
+      "კოვიდ ტესტირება",
+      "ვაქცინაცია",
+      "აფთიაქი",
+      "ჯანმრთელობა",
+      "უსაფრთხოება",
+      "პანდემია",
+      "სოლიდარობა",
+      "დახმარება",
+      "პრევენცია"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Masques de protection"
+    "seoTitle": "იპოვეთ ნიღბები უფასოდ Soliguide-თან ერთად",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ ადგილები, სადაც შეგიძლიათ მიიღოთ ნიღბები, უფასო ტესტები ან ვაქცინაცია. იპოვეთ უახლოესი დახმარების ცენტრი თქვენს გარშემო!"
   },
   {
     "categoryId": "equipment",
     "label": "მასალა",
     "slug": "materiel",
     "synonyms": [
-      "materiel affaires mobilier"
+      "ტანსაცმელი",
+      "ფეხსაცმელი",
+      "საბანი",
+      "სათამაშო",
+      "წიგნი",
+      "საკვები პროდუქტი",
+      "პირადი ჰიგიენის ნივთები",
+      "სარეცხი საშუალება",
+      "საწმენდი საშუალება",
+      "სამზარეულო ჭურჭელი",
+      "ავეჯი",
+      "ელექტრო ტექნიკა",
+      "პირველადი დახმარების ნაკრები",
+      "საწვავი",
+      "შეშა"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "იპოვეთ მასალა დახმარება Soliguide-ით",
+    "seoDescription": "Soliguide-ით იპოვეთ ტანსაცმელი, ჰიგიენის საშუალებები და საკვები პროდუქტები. იპოვეთ თქვენთან ახლოს მდებარე ორგანიზაციები რუკაზე!"
   },
   {
     "categoryId": "luggage_storage",
     "label": "ბარგის შენახვა",
     "slug": "bagagerie",
     "synonyms": [
-      "bagage bagagerie sac poser casier"
+      "ბარგის დატოვება",
+      "ჩანთების შენახვა",
+      "კამერის შენახვა",
+      "ჩემოდნების შენახვა",
+      "უსაფრთხო შენახვა",
+      "დროებითი შენახვა",
+      "მგზავრობა მსუბუქად",
+      "ქალაქში ხეტიალი ხელბარგის გარეშე",
+      "ბარგის შენახვის სერვისი",
+      "საწყობი",
+      "ავტოფარეხი",
+      "სოციალური ცენტრი",
+      "თავშესაფარი",
+      "საავადმყოფო",
+      "ვაგზალი"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Lieu permettant de conserver des bagages ou matériel."
+    "seoTitle": "იპოვეთ სად შეინახოთ ბარგი Soliguide-თან ერთად",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ ბარგის შესანახი ადგილები საფრანგეთში. მაგალითად, შეგიძლიათ იპოვოთ საკრებულო, თავშესაფარი ან სოციალური ცენტრი თქვენს მახლობლად."
   },
   {
     "categoryId": "solidarity_store",
     "label": "სოლიდარობის მაღაზია",
     "slug": "boutique-solidaire",
     "synonyms": [
-      "boutique solidaire meubles accessoires s habiller"
+      "სოლიდარობის მაღაზია",
+      "უფასო დახმარება",
+      "ტანსაცმლის მიღება",
+      "საკვების მიღება",
+      "ჰიგიენის საშუალებები",
+      "მეორადი ტანსაცმელი",
+      "მეორადი ნივთები",
+      "სოციალური დახმარება",
+      "ქველმოქმედება",
+      "საჩუქარი",
+      "დახმარების ცენტრი",
+      "ღარიბი",
+      "პრობლემები",
+      "გაჭირვებული",
+      "გადარჩენა"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Boutique vendant du matériel à prix solidaire."
+    "seoTitle": "იპოვეთ სოლიდარობის მაღაზია თქვენს სიახლოვეს Soliguide-ით",
+    "seoDescription": "Soliguide გეხმარებათ სოლიდარობის მაღაზიების პოვნაში! ტანსაცმელი, საკვები, ჰიგიენის საშუალებები - იპოვეთ დახმარება თქვენს გარშემო!"
   },
   {
     "categoryId": "clothing",
     "label": "Ტანსაცმელი",
     "slug": "vetements",
     "synonyms": [
-      "vestiaire vetements t shirt pantalon robe vetir vestiboutique pull manteau habit s habiller"
+      "ტანსაცმელი",
+      "ტანსაცმლის დახმარება",
+      "მეორადი ტანსაცმელი",
+      "სამრეცხაო",
+      "ტანსაცმლის შეკეთება",
+      "უფასო ტანსაცმელი",
+      "ტანსაცმლის გაცემა",
+      "ტანსაცმლის დონაცია",
+      "ვეტმენტები",
+      "გამოყენებული ტანსაცმელი",
+      "ტანსაცმლის მაღაზია",
+      "სოციალური მაღაზია",
+      "ქველმოქმედება",
+      "ტანსაცმლის კოლექცია",
+      "ტანსაცმლის მიღება"
     ],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Vêtements gratuits ou à prix symbolique. Préciser le sexe et/ou l'âge dans les conditions."
+    "seoTitle": "იპოვეთ Ტანსაცმელი დახმარება Soliguide-თან ერთად",
+    "seoDescription": "Soliguide დაგეხმარებათ იპოვოთ ტანსაცმელი საფრანგეთში. მიიღეთ მეორადი ტანსაცმელი, ისარგებლეთ სამრეცხაოებით, მოიძიეთ დახმარება ტანსაცმლის შესაკეთებლად თქვენს სიახლოვეს."
   },
   {
     "categoryId": "animal_assitance",
     "label": "ცხოველები",
     "slug": "animaux",
-    "synonyms": [
-      "animaux animals chien chat croquettes animal"
-    ],
+    "synonyms": ["animaux animals chien chat croquettes animal"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -796,9 +1521,7 @@
     "categoryId": "vaccination",
     "label": "ვაქცინაცია",
     "slug": "vaccination",
-    "synonyms": [
-      "vaccination vaccin covid piqure rappel rappel de vaccin"
-    ],
+    "synonyms": ["vaccination vaccin covid piqure rappel rappel de vaccin"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -835,9 +1558,7 @@
     "categoryId": "health_specialists",
     "label": "სპეციალისტები",
     "slug": "specialistes-medecine",
-    "synonyms": [
-      "specialistes specialiste"
-    ],
+    "synonyms": ["specialistes specialiste"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -848,9 +1569,7 @@
     "categoryId": "allergology",
     "label": "ალერგოლოგია",
     "slug": "allergologie",
-    "synonyms": [
-      "allergologie allergies"
-    ],
+    "synonyms": ["allergologie allergies"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -861,9 +1580,7 @@
     "categoryId": "cardiology",
     "label": "კარდიოლოგია",
     "slug": "cardiologie",
-    "synonyms": [
-      "cardiologie coeur cardiaque cardio"
-    ],
+    "synonyms": ["cardiologie coeur cardiaque cardio"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -874,9 +1591,7 @@
     "categoryId": "dermatology",
     "label": "დერმატოლოგია",
     "slug": "dermatologie",
-    "synonyms": [
-      "dermato dermatologie dermatologue peau bouton"
-    ],
+    "synonyms": ["dermato dermatologie dermatologue peau bouton"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -887,9 +1602,7 @@
     "categoryId": "echography",
     "label": "ულტრაბგერა",
     "slug": "echographie",
-    "synonyms": [
-      "echographie bebe enceinte"
-    ],
+    "synonyms": ["echographie bebe enceinte"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -900,9 +1613,7 @@
     "categoryId": "endocrinology",
     "label": "ჩამოტვირთვა",
     "slug": "endocrinologie",
-    "synonyms": [
-      "endocrinologie hormones tyroide"
-    ],
+    "synonyms": ["endocrinologie hormones tyroide"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -913,9 +1624,7 @@
     "categoryId": "gastroenterology",
     "label": "გასტროენტეროლოგია",
     "slug": "gastro-enterologie",
-    "synonyms": [
-      "gastro enterologue gastro enterologie kk caca"
-    ],
+    "synonyms": ["gastro enterologue gastro enterologie kk caca"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -939,9 +1648,7 @@
     "categoryId": "kinesitherapy",
     "label": "ფიზიოთერაპია",
     "slug": "kinesitherapie",
-    "synonyms": [
-      "kinesitherapie reeducation blessure kine"
-    ],
+    "synonyms": ["kinesitherapie reeducation blessure kine"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -952,9 +1659,7 @@
     "categoryId": "mammography",
     "label": "მამოგრაფია",
     "slug": "mammographie",
-    "synonyms": [
-      "mammographie radio seins"
-    ],
+    "synonyms": ["mammographie radio seins"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -965,9 +1670,7 @@
     "categoryId": "ophthalmology",
     "label": "ოფთალმოლოგია",
     "slug": "ophtalmologie",
-    "synonyms": [
-      "ophtalmologie ophtalmologue yeux voir lunette"
-    ],
+    "synonyms": ["ophtalmologie ophtalmologue yeux voir lunette"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -991,9 +1694,7 @@
     "categoryId": "nutrition",
     "label": "კვება",
     "slug": "nutrition",
-    "synonyms": [
-      "nutrition dietetique regime surpoids obesite perte de poids"
-    ],
+    "synonyms": ["nutrition dietetique regime surpoids obesite perte de poids"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -1004,9 +1705,7 @@
     "categoryId": "pedicure",
     "label": "პედიკური",
     "slug": "pedicure",
-    "synonyms": [
-      "pedicure pied pie soigner pieds soin podologue podologie"
-    ],
+    "synonyms": ["pedicure pied pie soigner pieds soin podologue podologie"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -1030,9 +1729,7 @@
     "categoryId": "pneumology",
     "label": "პნევმოლოგია",
     "slug": "pneumologie",
-    "synonyms": [
-      "poumons respiration respirer bronches"
-    ],
+    "synonyms": ["poumons respiration respirer bronches"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -1043,9 +1740,7 @@
     "categoryId": "radiology",
     "label": "რადიოლოგია",
     "slug": "radiologie",
-    "synonyms": [
-      "radiologie radiologue radiology rayonx fracture entorse"
-    ],
+    "synonyms": ["radiologie radiologue radiology rayonx fracture entorse"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -1056,9 +1751,7 @@
     "categoryId": "rheumatology",
     "label": "რევმატოლოგია",
     "slug": "rhumatologie",
-    "synonyms": [
-      "rhumatologue rumatologie"
-    ],
+    "synonyms": ["rhumatologue rumatologie"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -1069,9 +1762,7 @@
     "categoryId": "urology",
     "label": "უროლოგია",
     "slug": "urologie",
-    "synonyms": [
-      "urologie urology"
-    ],
+    "synonyms": ["urologie urology"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -1095,9 +1786,7 @@
     "categoryId": "stomatology",
     "label": "🚀 დაწყვილება წარმატებულია!",
     "slug": "stomatologie",
-    "synonyms": [
-      "stomatologie stomatologue estomac digestion ventre"
-    ],
+    "synonyms": ["stomatologie stomatologue estomac digestion ventre"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -1108,9 +1797,7 @@
     "categoryId": "osteopathy",
     "label": "ოსტეოპათი",
     "slug": "osteo",
-    "synonyms": [
-      "ostheopathe osteo dos mal"
-    ],
+    "synonyms": ["ostheopathe osteo dos mal"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -1121,9 +1808,7 @@
     "categoryId": "acupuncture",
     "label": "აკუპუნქტურა",
     "slug": "acupuncture",
-    "synonyms": [
-      "acupuncture accupuncture bien etre"
-    ],
+    "synonyms": ["acupuncture accupuncture bien etre"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -1160,9 +1845,7 @@
     "categoryId": "wifi",
     "label": "Უკაბელო",
     "slug": "wifi",
-    "synonyms": [
-      "wifi internet web connexion reseau"
-    ],
+    "synonyms": ["wifi internet web connexion reseau"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -1173,9 +1856,7 @@
     "categoryId": "electrical_outlets_available",
     "label": "სოკეტი",
     "slug": "prise",
-    "synonyms": [
-      "prise charger electricite chargeur recharge charge"
-    ],
+    "synonyms": ["prise charger electricite chargeur recharge charge"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -1186,9 +1867,7 @@
     "categoryId": "telephone_at_your_disposal",
     "label": "ტელეფონი",
     "slug": "telephone",
-    "synonyms": [
-      "appel gratuit telephone telephoner appeler appel"
-    ],
+    "synonyms": ["appel gratuit telephone telephoner appeler appel"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -1225,9 +1904,7 @@
     "categoryId": "carpooling",
     "label": "Carpooling",
     "slug": "covoiturage",
-    "synonyms": [
-      "co voiturage partage de voiture"
-    ],
+    "synonyms": ["co voiturage partage de voiture"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -1238,9 +1915,7 @@
     "categoryId": "provision_of_vehicles",
     "label": "ავტომობილის უზრუნველყოფა",
     "slug": "vehicule",
-    "synonyms": [
-      "mise a disposition de vehicule voiture"
-    ],
+    "synonyms": ["mise a disposition de vehicule voiture"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -1251,9 +1926,7 @@
     "categoryId": "chauffeur_driven_transport",
     "label": "ტრანსპორტირება მძღოლთან ერთად",
     "slug": "chauffeur",
-    "synonyms": [
-      "transport avec chauffeur chauffeur transport a la demande"
-    ],
+    "synonyms": ["transport avec chauffeur chauffeur transport a la demande"],
     "type": "CATEGORY",
     "lang": "ka",
     "country": "fr",
@@ -1422,11 +2095,7 @@
     "categoryId": null,
     "label": "France Services: guichet unique de services publics",
     "slug": "france-services",
-    "synonyms": [
-      "france service",
-      "maison france services",
-      "MFS"
-    ],
+    "synonyms": ["france service", "maison france services", "MFS"],
     "type": "ORGANIZATION",
     "lang": "ka",
     "country": "fr",
@@ -1437,11 +2106,7 @@
     "categoryId": null,
     "label": "CIMADE: service œcuménique d'entraide",
     "slug": "cimade",
-    "synonyms": [
-      "la cimade",
-      "CIMADE",
-      "service œcuménique d'entraide"
-    ],
+    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
     "type": "ORGANIZATION",
     "lang": "ka",
     "country": "fr",
@@ -1647,11 +2312,7 @@
     "categoryId": null,
     "label": "Centre socioculturel: structure d'animation et de lien social",
     "slug": "centre-socioculturel",
-    "synonyms": [
-      "centre socio culturel",
-      "csc",
-      "centre social"
-    ],
+    "synonyms": ["centre socio culturel", "csc", "centre social"],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "ka",
     "country": "fr",

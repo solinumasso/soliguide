@@ -108,7 +108,9 @@ export class Search {
       this.label = label;
     }
   }
+
   public applySearchSuggestion(suggestion: SearchSuggestion): void {
+    console.warn("applySearchSuggestion");
     this.resetSearchTerms();
 
     if (suggestion.type === AutoCompleteType.CATEGORY) {

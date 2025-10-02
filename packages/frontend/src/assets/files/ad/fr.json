@@ -4,684 +4,1410 @@
     "label": "Accueil",
     "slug": "accueil",
     "synonyms": [
-      "accueil cafe repos acceuil parler acueil accueil femme accueil femmes acueil femme violence harcelement partir"
+      "accueil",
+      "orientation",
+      "écoute",
+      "information",
+      "soutien",
+      "accompagnement",
+      "aide administrative",
+      "première nécessité",
+      "domiciliation",
+      "orientation sociale",
+      "conseils",
+      "espace d'accueil",
+      "maraude",
+      "urgence sociale",
+      "se reposer"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Un accueil chaleureux avec Soliguide en Andorre",
+    "seoDescription": "Besoin d'un lieu d'écoute, d'une aide administrative ou d'un endroit pour se reposer ? Soliguide géolocalise les structures d'accueil en Andorre. Trouvez l'aide adaptée !"
   },
   {
     "categoryId": "day_hosting",
     "label": "Accueil de jour",
     "slug": "accueil-jour",
     "synonyms": [
-      "accueil accueil de jour cafe se reposer se poser repos reposer femmes battues femme battue fem batue fem batu violence harcelement partir"
+      "accueil",
+      "jour",
+      "repas",
+      "douche",
+      "repos",
+      "écoute",
+      "orientation",
+      "soutien",
+      "café",
+      "thé",
+      "abri",
+      "chaleur humaine",
+      "rencontre",
+      "informations",
+      "aide"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Lieu d'accueil des bénéficaires proposant une pause pendant la journée."
+    "seoTitle": "Votre accueil de jour facile avec Soliguide",
+    "seoDescription": "Besoin d'un accueil de jour à ad ? Soliguide vous aide à trouver un endroit pour vous reposer, prendre une douche ou un repas chaud. Géolocalisez-vous !"
   },
   {
     "categoryId": "rest_area",
     "label": "Espace de repos",
     "slug": "espace-repos",
     "synonyms": [
-      "espace de repos reposer dormir repos pause"
+      "répit",
+      "dormir",
+      "pause",
+      "calme",
+      "tranquillité",
+      "accueil de jour",
+      "salle de repos",
+      "se détendre",
+      "recharger son téléphone",
+      "boire un café",
+      "discussion",
+      "lieu sûr",
+      "abri",
+      "chaleur humaine",
+      "sommeil"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Espaces de repos ouverts au public"
+    "seoTitle": "Un espace de repos grâce à Soliguide, c'est possible",
+    "seoDescription": "Soliguide vous aide à trouver un lieu pour vous reposer en Andorre. Accédez à un espace de répit, prenez une douche, ou rechargez votre téléphone. Géolocalisation facile !"
   },
   {
     "categoryId": "babysitting",
     "label": "Garde d'enfants",
     "slug": "garde-enfants",
     "synonyms": [
-      "garde enfant garderie enfant nounou assistance maternelle bebe creche"
+      "crèche",
+      "garderie",
+      "nounou",
+      "assistante maternelle",
+      "halte-garderie",
+      "accueil",
+      "enfant",
+      "bébé",
+      "parent",
+      "soutien parental",
+      "centre petite enfance",
+      "aides financières",
+      "CAF",
+      "PMI",
+      "Andorre"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Activité d'un baby-sitter consistant à garder temporairement des enfants en l'abscence de leurs parents"
+    "seoTitle": "Besoin d'une garde d'enfants à Andorre ? Soliguide vous aide",
+    "seoDescription": "Soliguide vous aide à trouver une crèche, une garderie ou une assistante maternelle à Andorre. Géolocalisez les solutions de garde près de chez vous !"
   },
   {
     "categoryId": "family_area",
     "label": "Espace famille",
     "slug": "espace-famille",
     "synonyms": [
-      "espace famille famille maman papa parents enfants"
+      "parentalité",
+      "enfants",
+      "famille",
+      "soutien parental",
+      "écoute",
+      "activités familiales",
+      "aide éducative",
+      "garde d'enfants",
+      "centre social",
+      "médiation familiale",
+      "conseils famille",
+      "ateliers parents",
+      "espace parents-enfants",
+      "jeux",
+      "loisirs"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Lieu d'accueil capable de recevoir des familles"
+    "seoTitle": "Votre espace famille facilité avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver des lieux d'écoute, des activités parents-enfants ou du soutien éducatif à Andorre. Trouvez l'aide près de chez vous!"
   },
   {
     "categoryId": "information_point",
     "label": "Point d'information et d'orientation",
     "slug": "point-information",
     "synonyms": [
-      "point information point d information information ukraine"
+      "orientation",
+      "information",
+      "conseil",
+      "juridique",
+      "administratif",
+      "social",
+      "droits",
+      "démarches",
+      "accès aux droits",
+      "accompagnement",
+      "aide sociale",
+      "renseignements",
+      "permanence",
+      "écoute",
+      "guide"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Point d'information"
+    "seoTitle": "Besoin d'un Point d'information et d'orientation ? Soliguide vous aide",
+    "seoDescription": "Soliguide vous indique où trouver des conseils juridiques, de l'aide administrative ou une orientation vers les services sociaux en Andorre. Géolocalisation facile !"
   },
   {
     "categoryId": "activities",
     "label": "Activités",
     "slug": "activites",
     "synonyms": [
-      "activites sorties sport loisirs sortir jeux jeu loisir isolement isole solitude isolee"
+      "loisirs",
+      "ateliers",
+      "sorties",
+      "culture",
+      "sport",
+      "animations",
+      "divertissement",
+      "jeux",
+      "rencontres",
+      "échange",
+      "créativité",
+      "occupation",
+      "passe-temps",
+      "découverte",
+      "épanouissement"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Quelles activités près de chez vous ? Trouvez-les sur Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver des activités à Andorre ! Ateliers créatifs, sorties culturelles, sport... Trouvez des loisirs près de chez vous. C'est géolocalisé !"
   },
   {
     "categoryId": "sport_activities",
     "label": "Activités sportives",
     "slug": "activites-sportives",
     "synonyms": [
-      "activites sportives sport foot basket danse rugby loisirs loisir"
+      "sport",
+      "exercice physique",
+      "randonnée",
+      "marche",
+      "natation",
+      "football",
+      "basket",
+      "vélo",
+      "gymnastique",
+      "danse",
+      "yoga",
+      "plein air",
+      "activité physique",
+      "mouvement",
+      "santé"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Activités sportives : foot, jogging, marche, etc."
+    "seoTitle": "Bougez avec Soliguide, trouvez des activités sportives à Andorre",
+    "seoDescription": "Soliguide vous aide à trouver des cours de sport gratuits, des clubs de randonnée et des activités de plein air à Andorre. Trouvez l'activité près de chez vous !"
   },
   {
     "categoryId": "museums",
     "label": "Musée",
     "slug": "musee",
     "synonyms": [
-      "musee culture sortie peinture tableau se cultiver"
+      "culture",
+      "art",
+      "exposition",
+      "patrimoine",
+      "histoire",
+      "gratuit",
+      "visite",
+      "atelier",
+      "découverte",
+      "andorre",
+      "handicap",
+      "accessible",
+      "famille",
+      "enfants",
+      "loisirs"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Musée gratuit."
+    "seoTitle": "Découvrez les musées accessibles avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver des musées gratuits, des ateliers culturels et des visites guidées adaptées à Andorre. Géolocalisez les lieux près de vous !"
   },
   {
     "categoryId": "libraries",
     "label": "Bibliothèque",
     "slug": "bibliotheque",
     "synonyms": [
-      "bibliotheque livres culture mediatheque"
+      "lecture",
+      "livres",
+      "bouquins",
+      "emprunter",
+      "bibliothèques",
+      "culture",
+      "apprentissage",
+      "revues",
+      "ordinateurs",
+      "internet",
+      "ateliers",
+      "animations",
+      "accès libre",
+      "Andorre",
+      "étude"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Bibliothèque accessible en accès libre."
+    "seoTitle": "Empruntez des livres facilement avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver une bibliothèque près de vous en Andorre. Accédez à des livres, des ordinateurs, ou participez à des ateliers."
   },
   {
     "categoryId": "other_activities",
     "label": "Activités diverses",
     "slug": "activites-diverses",
     "synonyms": [
-      "activites diverses animation divertissement loisir s occuper culture activites enfants loisirs loisir"
+      "loisirs",
+      "ateliers",
+      "culture",
+      "sport",
+      "jeux",
+      "apprentissage",
+      "rencontres",
+      "animations",
+      "sorties",
+      "créativité",
+      "développement personnel",
+      "échange",
+      "partage",
+      "divertissement",
+      "activités manuelles"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Activités diverses : ateliers, activités culturelles, etc. (précisez.)"
+    "seoTitle": "Découvrez les activités diverses proposées par Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver des ateliers créatifs, des cours de langues ou des sorties culturelles à Andorre-la-Vieille. Géolocalisez les activités près de vous !"
   },
   {
     "categoryId": "food",
     "label": "Alimentation",
     "slug": "alimentation-bouffe-boufe-manger-soupe-repas-aliment-manger-mange-repa-faim-diner-dejeuner-dejeunet-dine-se-nourrir-fin-portage-portage-de-repas-aide-alimentaire-comida-comer-resto-du-coeur",
     "synonyms": [
-      "alimentation bouffe boufe manger soupe repas aliment manger mange repa faim diner dejeuner dejeunet dine se nourrir fin portage portage de repas aide alimentaire comida comer"
+      "repas",
+      "manger",
+      "nourriture",
+      "colis alimentaire",
+      "épicerie sociale",
+      "aide alimentaire",
+      "cantine sociale",
+      "restaurant social",
+      "banque alimentaire",
+      "distribution alimentaire",
+      "tickets restaurant",
+      "chèque repas",
+      "invendus",
+      "gaspillage alimentaire",
+      "produits frais"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Besoin d'aide pour l'alimentation ? Soliguide vous guide en andorre",
+    "seoDescription": "Soliguide vous aide à trouver de l'aide alimentaire en Andorre. Repas gratuits, colis alimentaires, épiceries sociales : localisez l'aide près de vous !"
   },
   {
     "categoryId": "food_distribution",
     "label": "Distribution de repas",
     "slug": "distribution-repas",
     "synonyms": [
-      "distribution alimentaire distribution de repas manger maraude bouffe soupe nourriture faim repas mange manger fin distribution aide alimentaire restauration assise comida comer"
+      "repas gratuit",
+      "aide alimentaire",
+      "banque alimentaire",
+      "cantine sociale",
+      "soupe populaire",
+      "repas chaud",
+      "colis alimentaire",
+      "nourriture",
+      "alimentation",
+      "restaurant social",
+      "ticket restaurant",
+      "chèque repas",
+      "distribution alimentaire",
+      "manger",
+      "s'alimenter"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Point d'arrêt d'une distribution alimentaire. Attention : Veuillez créer une structure par point de distribution."
+    "seoTitle": "Où trouver une distribution de repas grâce à Soliguide",
+    "seoDescription": "Avec Soliguide, trouvez facilement une soupe populaire, un repas chaud ou une aide alimentaire à Andorre. Géolocalisation et infos pratiques !"
   },
   {
     "categoryId": "food_packages",
     "label": "Panier alimentaire",
     "slug": "colis-alimentaire",
     "synonyms": [
-      "colis colis alimentaire manger mange fruits legumes panier repas aide alimentaire panier comida comer"
+      "aide alimentaire",
+      "distribution alimentaire",
+      "repas gratuit",
+      "banque alimentaire",
+      "colis alimentaire",
+      "nourriture",
+      "alimentation",
+      "épicerie sociale",
+      "restaurant social",
+      "cantine sociale",
+      "repas chaud",
+      "produits de première nécessité",
+      "vivres",
+      "aide d'urgence",
+      "soutien alimentaire"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Distribution de colis contenant des denrées alimentaires (conserves, légumes, etc.)."
+    "seoTitle": "Trouvez un panier alimentaire grâce à Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver un panier alimentaire à Andorre. Repas chauds, distribution de nourriture, épiceries sociales... Trouvez de l'aide près de chez vous !"
   },
   {
     "categoryId": "social_grocery_stores",
     "label": "Épicerie Sociale et Solidaire",
     "slug": "epicerie-sociale-solidaire",
     "synonyms": [
-      "epicerie sociale epicerie manger fruits legumes panier repas epicerie solidaire aide alimentaire"
+      "alimentation solidaire",
+      "épicerie sociale",
+      "aide alimentaire",
+      "produits à bas prix",
+      "paniers solidaires",
+      "courses solidaires",
+      "magasin solidaire",
+      "distribution alimentaire",
+      "cantine sociale",
+      "repas à petit prix",
+      "ateliers cuisine",
+      "conseils nutrition",
+      "soutien alimentaire",
+      "dépannage alimentaire",
+      "accès à l'alimentation"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Les épiceries solidaires accueillent les personnes en précarité et leur permettent de faire des courses à prix solidaire."
+    "seoTitle": "Votre Épicerie Sociale et Solidaire avec Soliguide en Andorre",
+    "seoDescription": "Soliguide vous aide à trouver une épicerie solidaire en Andorre. Accédez à des produits à prix réduits, des ateliers cuisine et du soutien personnalisé près de chez vous. Géolocalisation facile !"
   },
   {
     "categoryId": "fountain",
     "label": "Fontaine à eau",
     "slug": "fontaine",
     "synonyms": [
-      "fontaine boire eau soif robinet potable"
+      "eau potable",
+      "point d'eau",
+      "accès eau",
+      "se désaltérer",
+      "boire",
+      "eau gratuite",
+      "source d'eau",
+      "robinet d'eau",
+      "fontaine publique",
+      "hydratation",
+      "rafraîchissement",
+      "étancher sa soif",
+      "eau fraîche",
+      "distribution d'eau",
+      "besoin vital"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Eau potable en accès libre."
+    "seoTitle": "Trouver une fontaine à eau potable facilement avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver une fontaine à eau gratuite à Andorre-la-Vieille, Escaldes-Engordany, Encamp. Géolocalisation facile pour vous hydrater."
   },
   {
     "categoryId": "solidarity_fridge",
     "label": "Frigo solidaire",
     "slug": "frigo-solidaire",
     "synonyms": [
-      "manger mange conserver frais bouffe aliment faim frigo frigo solidaire"
+      "partage de nourriture",
+      "repas gratuit",
+      "aide alimentaire",
+      "frigo communautaire",
+      "banque alimentaire",
+      "don alimentaire",
+      "invendu",
+      "gaspillage alimentaire",
+      "nourriture",
+      "aliments",
+      "manger",
+      "se nourrir",
+      "cuisine solidaire",
+      "distribution alimentaire",
+      "alimentation"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Frigo solidaire"
+    "seoTitle": "Un frigo solidaire près de vous avec Soliguide",
+    "seoDescription": "Trouvez un frigo solidaire avec Soliguide ! Dépôt ou partage de nourriture, accès à des repas gratuits... Localisez l'aide alimentaire proche de vous en ad."
   },
   {
     "categoryId": "shared_kitchen",
     "label": "Cuisine partagée",
     "slug": "cuisine-partagee",
     "synonyms": [
-      "cuisine cuisiner preparer partage partagee cuisine partagee"
+      "cuisine collective",
+      "repas partagé",
+      "atelier cuisine",
+      "cours de cuisine",
+      "cuisine solidaire",
+      "cuisine participative",
+      "préparer à manger",
+      "manger ensemble",
+      "partager un repas",
+      "échanger recettes",
+      "lieu convivial",
+      "rencontres",
+      "lien social",
+      "alimentation",
+      "convivialité"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Cuisine partagée "
+    "seoTitle": "Cuisiner ensemble, c'est possible avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver des cuisines partagées à ad. Apprenez à cuisiner, partagez des repas et rencontrez du monde près de chez vous."
   },
   {
     "categoryId": "cooking_workshop",
     "label": "Atelier cuisine",
     "slug": "atelier-cuisine",
     "synonyms": [
-      "atelier cuisine cuisiner partage preparer atelier cuisine cuire"
+      "cours de cuisine",
+      "cuisine solidaire",
+      "alimentation",
+      "nutrition",
+      "repas",
+      "recettes",
+      "apprendre à cuisiner",
+      "atelier culinaire",
+      "cuisiner ensemble",
+      "équilibre alimentaire",
+      "manger sainement",
+      "cours de cuisine pas cher",
+      "cuisine pour tous",
+      "préparation repas",
+      "écoles hôtelières Andorre"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Atelier de cuisine"
+    "seoTitle": "Besoin d'un atelier cuisine ? Soliguide vous aide à Andorre",
+    "seoDescription": "Avec Soliguide, trouvez des ateliers cuisine gratuits, des cours de cuisine à bas prix et des conseils nutritionnels personnalisés à Andorre. Géolocalisation facile !"
   },
   {
     "categoryId": "baby_parcel",
     "label": "Colis bébé",
     "slug": "colis-bebe",
     "synonyms": [
-      "bebe nourrir nourisson colis colis bebe puericulture lait couche biberon maternite manger nourriture vetement"
+      "bébé",
+      "nourrisson",
+      "enfant",
+      "couches",
+      "lait infantile",
+      "alimentation bébé",
+      "vêtements bébé",
+      "produits de soin bébé",
+      "puériculture",
+      "matériel bébé",
+      "aide aux parents",
+      "soutien parental",
+      "naissance",
+      "maternité",
+      "parentalité"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Colis pour bébé"
+    "seoTitle": "Besoin d'un colis bébé ? Soliguide vous aide à Andorre",
+    "seoDescription": "Soliguide vous aide à trouver un colis bébé, des couches ou du lait infantile près de chez vous en Andorre. Géolocalisez les lieux d'aide !"
   },
   {
     "categoryId": "food_voucher",
     "label": "Bon / chèque alimentaire",
     "slug": "bon-alimentaire",
     "synonyms": [
-      "bon cheque ticket alimentaire gratuit aide"
+      "ticket restaurant",
+      "aide alimentaire",
+      "coupons alimentaires",
+      "chèque déjeuner",
+      "panier repas",
+      "repas gratuit",
+      "distribution alimentaire",
+      "épicerie sociale",
+      "banque alimentaire",
+      "colis alimentaire",
+      "aide courses",
+      "alimentation",
+      "manger",
+      "dépannage alimentaire",
+      "urgence alimentaire"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Distribution de bon/chèque alimentaire"
+    "seoTitle": "Bons et chèques alimentaires, Soliguide vous oriente à Andorre",
+    "seoDescription": "Soliguide vous aide à trouver des bons alimentaires à Andorre-la-Vieille, des repas gratuits ou une aide pour vos courses. Trouvez ces lieux près de vous !"
   },
   {
     "categoryId": "community_garden",
     "label": "Jardin solidaire",
     "slug": "jardin-solidaire",
     "synonyms": [
-      "fruits pousser jardin bio nature legumes jardin solidaire jardinage"
+      "jardin partagé",
+      "jardinage",
+      "potager collectif",
+      "culture",
+      "légumes",
+      "fruits",
+      "plantes",
+      "graines",
+      "terre",
+      "compost",
+      "nature",
+      "environnement",
+      "convivialité",
+      "échange",
+      "animation"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Jardin solidaire"
+    "seoTitle": "Cultivez le lien social grâce aux Jardins solidaires avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver un jardin solidaire près de vous en ad. Participez, échangez, cultivez! Trouvez ateliers jardinage, récoltes partagées, espaces verts."
   },
   {
     "categoryId": "counseling",
     "label": "Conseil",
     "slug": "conseil",
     "synonyms": [
-      "conseil conseils soutien accompagnement aide se faire aider conseiller numerique"
+      "orientation",
+      "information",
+      "assistance",
+      "accompagnement",
+      "juridique",
+      "administratif",
+      "social",
+      "aide sociale",
+      "droits",
+      "démarches",
+      "conseiller",
+      "tuteur",
+      "médiateur",
+      "écoute",
+      "soutien"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Besoin de conseil ? Soliguide vous oriente à Andorre",
+    "seoDescription": "Soliguide vous aide à trouver des conseils juridiques gratuits, un accompagnement administratif ou une orientation vers les services sociaux à Andorre. Géolocalisation facile."
   },
   {
     "categoryId": "legal_advice",
     "label": "Permanence juridique",
     "slug": "permanence-juridique",
     "synonyms": [
-      "proces permanence juridique amende avocat droits droit recours juge ldh droits de l homme ligue des droits de l homme acces au droit cnda ofpra asile sejour carte sejour divorce separation"
+      "aide juridique",
+      "conseil juridique",
+      "accès au droit",
+      "avocat gratuit",
+      "permanence juridique gratuite",
+      "information juridique",
+      "défenseur des droits",
+      "médiation",
+      "conciliation",
+      "tribunal",
+      "justice",
+      "problème juridique",
+      "litige",
+      "assistance juridique",
+      "droits"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Permanences juridiques (surendettement, demande d'asile, procès, etc.)."
+    "seoTitle": "Besoin d'une permanence juridique ? Soliguide vous aide à Andorre",
+    "seoDescription": "Soliguide vous oriente vers une aide juridique gratuite à Andorre. Accès au droit, conseils juridiques, accompagnement... Trouvez l'aide près de chez vous !"
   },
   {
     "categoryId": "social_accompaniment",
     "label": "Accompagnement social",
     "slug": "accompagnement-social",
     "synonyms": [
-      "accompagnement assistante sociale social travailleur social droits demarches femmes battues femme battue violence isolement isole solitude isolee partir separation divorce victime"
+      "aide sociale",
+      "conseil social",
+      "droits sociaux",
+      "démarches administratives",
+      "accompagnement personnalisé",
+      "soutien social",
+      "insertion sociale",
+      "accès aux droits",
+      "travailleur social",
+      "CCAS",
+      "service social",
+      "problèmes sociaux",
+      "difficultés sociales",
+      "orientation sociale",
+      "information sociale"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Accompagement des personnes dans leur réinsertion (assistantes sociales, permanences, etc.)."
+    "seoTitle": "Besoin d'accompagnement social ? Soliguide vous aide à Andorre",
+    "seoDescription": "Soliguide vous aide à trouver un accompagnement social à Andorre. Accès aux droits, démarches administratives, conseils personnalisés... Trouvez de l'aide près de chez vous !"
   },
   {
     "categoryId": "disability_advice",
     "label": "Conseil handicap",
     "slug": "conseil-handicap",
     "synonyms": [
-      "conseil handicap handicap aah conseils conseil handicape handicapee personne a mobilite reduite pmr"
+      "aide handicap",
+      "droits handicap",
+      "allocation handicap",
+      "prestation handicap",
+      "orientation handicap",
+      "accompagnement handicap",
+      "intégration handicap",
+      "vie quotidienne handicap",
+      "autonomie handicap",
+      "mdph andorre",
+      "cerpa",
+      "aide technique",
+      "accessibilité",
+      "aménagement logement",
+      "soutien handicap"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'accès aux droits pour les personnes en situation de handicap."
+    "seoTitle": "Besoin de conseil handicap ? Soliguide vous aide",
+    "seoDescription": "Soliguide vous informe sur vos droits, les aides financières, et l'accès aux soins à Andorre. Trouvez des solutions près de chez vous."
   },
   {
     "categoryId": "administrative_assistance",
     "label": "Conseil administratif",
     "slug": "conseil-administratif",
     "synonyms": [
-      "conseil administratif conseils administratifs aide administrative demarches rsa cmu allocations papiers securite sociale caf cpampapier conseiller numerique"
+      "aide juridique",
+      "conseil juridique",
+      "droit",
+      "démarches administratives",
+      "papiers",
+      "formulaires",
+      "explication",
+      "accompagnement",
+      "information",
+      "accès aux droits",
+      "service social",
+      "CCAS",
+      "mairie",
+      "résidence",
+      "séjour"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'aide administrative (RSA, CMU, allocations, chômage, etc.)."
+    "seoTitle": "Besoin d'un conseil administratif à Andorre ? Soliguide vous aide",
+    "seoDescription": "Soliguide vous informe ! Trouvez des conseils juridiques gratuits, de l'aide pour vos papiers ou pour comprendre vos droits à Andorre. Géolocalisation facile."
   },
   {
     "categoryId": "parent_assistance",
     "label": "Conseil aux parents",
     "slug": "conseil-parents",
     "synonyms": [
-      "conseil parents conseil aux parents conseil parental mediation familiale mediation conflit adolescents enfants parent parentalite parents enfant ado adolescent couple couples"
+      "parentalité",
+      "éducation",
+      "enfant",
+      "famille",
+      "soutien",
+      "écoute",
+      "guidance",
+      "budget",
+      "aide financière",
+      "développement enfant",
+      "relation parent-enfant",
+      "difficultés familiales",
+      "médiation familiale",
+      "Andorre",
+      "adolescent"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Permances d'aide pour les jeunes parents et les parents rencontrant des difficultés avec leurs enfants."
+    "seoTitle": "Besoin de conseil aux parents ? Soliguide vous aide en andorre",
+    "seoDescription": "Soliguide vous oriente ! Trouvez des conseils éducatifs, un soutien à la parentalité ou de l'aide pour gérer votre budget familial en Andorre."
   },
   {
     "categoryId": "budget_advice",
     "label": "Conseil budget",
     "slug": "conseil-budget",
     "synonyms": [
-      "conseil budget conseil budget argent finance cresus"
+      "budget",
+      "finances",
+      "argent",
+      "dépenses",
+      "revenus",
+      "économies",
+      "gestion budget",
+      "planification financière",
+      "conseiller financier",
+      "aide financière",
+      "endettement",
+      "surendettement",
+      "CAF",
+      "CCAS",
+      "impôts"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Points conseil budget (PCB) proposent des conseils gratuits et personnalisés de gestion budgétaire "
+    "seoTitle": "Besoin d'un conseil budget ? Soliguide vous aide en Andorre",
+    "seoDescription": "Soliguide vous indique où trouver de l'aide en Andorre. Bénéficiez de conseils budgétaires, d'aide à la gestion financière et d'accompagnement personnalisé près de chez vous."
   },
   {
     "categoryId": "training_and_jobs",
     "label": "Formation et emploi",
     "slug": "formation-emploi",
     "synonyms": [
-      "formation emploi travailler job travail boulot se former taf taff taffe apprendre lire etudier comprendre france travail pole emploi conseiller numerique"
+      "formation",
+      "emploi",
+      "travail",
+      "insertion",
+      "professionnel",
+      "CV",
+      "lettre motivation",
+      "entretien",
+      "candidature",
+      "stage",
+      "apprentissage",
+      "qualifiant",
+      "reconversion",
+      "compétences",
+      "métier"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Besoin d'aide pour la formation et l'emploi ? Soliguide est là",
+    "seoDescription": "Soliguide vous aide à trouver des formations professionnelles, des ateliers de recherche d'emploi et des conseils pour créer votre CV en Andorre. Géolocalisation facile !"
   },
   {
     "categoryId": "digital_tools_training",
     "label": "Atelier numérique",
     "slug": "formation-numerique",
     "synonyms": [
-      "formation numerique atelier numerique formation informatique ordinateur connexion se former technologie tech apprendre comprendre lire etudier conseiller numerique"
+      "ordinateur",
+      "internet",
+      "numérique",
+      "informatique",
+      "cours informatique",
+      "formation numérique",
+      "accès internet",
+      "cyber café",
+      "matériel informatique",
+      "initiation numérique",
+      "découverte numérique",
+      "inclusion numérique",
+      "e-inclusion",
+      "conseil numérique",
+      "aide numérique"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Permanences ou ateliers visant à la maitrise d'outils informatiques."
+    "seoTitle": "Besoin d'un atelier numérique ? Soliguide vous aide à Andorre",
+    "seoDescription": "Soliguide vous guide vers des ateliers numériques gratuits à Andorre. Apprenez l'informatique, utilisez un ordinateur ou accédez à internet près de chez vous. Géolocalisation facile !"
   },
   {
     "categoryId": "job_coaching",
     "label": "Accompagnement à l'emploi",
     "slug": "accompagnement-emploi",
     "synonyms": [
-      "accompagnement emploi travailler job pole emploi travail boulot se former etre accompagne taf taff taffe apprendre comprendre lire etudier france travail orientation"
+      "emploi",
+      "travail",
+      "formation",
+      "insertion professionnelle",
+      "CV",
+      "lettre de motivation",
+      "entretien d'embauche",
+      "recherche d'emploi",
+      "orientation professionnelle",
+      "conseil emploi",
+      "aide à l'emploi",
+      "coaching emploi",
+      "bilan de compétences",
+      "mission locale",
+      "Pôle emploi"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Aide au retour à l'emploi : ateliers de préparation aux entretiens, aide à la recherche d'emploi, atelier CV, etc."
+    "seoTitle": "Besoin d'aide pour l'emploi ? Soliguide vous oriente",
+    "seoDescription": "Soliguide vous aide à trouver un accompagnement à l'emploi adapté en Andorre. Ateliers CV, simulations d'entretien, conseils personnalisés, le tout près de chez vous !"
   },
   {
     "categoryId": "integration_through_economic_activity",
     "label": "Insertion par l'activité économique",
     "slug": "insertion-activite-economique",
     "synonyms": [
-      "chantier de reinsertion chantier reinsertion travailler job insertion reinsertion siae iae se reinserer taf taff taffe apprendre comprendre lire etudier orientation"
+      "insertion",
+      "activité",
+      "emploi",
+      "travail",
+      "chantier école",
+      "atelier",
+      "formation",
+      "entreprise d'insertion",
+      "accompagnement",
+      "recherche d'emploi",
+      "CV",
+      "lettre de motivation",
+      "entretien",
+      "qualification",
+      "réinsertion"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Embauche de personnes en insertion."
+    "seoTitle": "L'insertion par l'activité économique, votre tremplin avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver des ateliers d'insertion, des chantiers école et des entreprises sociales en Andorre. Reprenez pied grâce à la géolocalisation."
   },
   {
     "categoryId": "tutoring",
     "label": "Soutien scolaire",
     "slug": "soutien-scolaire",
     "synonyms": [
-      "soutien scolaire aide au devoir etudes college lycee devoirs cours apprendre comprendre lire etudier"
+      "aide aux devoirs",
+      "cours de rattrapage",
+      "soutien scolaire gratuit",
+      "accompagnement scolaire",
+      "tutorat",
+      "révision",
+      "apprentissage",
+      "école",
+      "collège",
+      "lycée",
+      "primaire",
+      "devoirs",
+      "leçons",
+      "étudier",
+      "apprendre"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Soutien scolaire gratuit (préciser le niveau dans la description)."
+    "seoTitle": "Besoin d'aide pour les devoirs ? Trouvez du soutien scolaire avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver du soutien scolaire gratuit, des ateliers d'aide aux devoirs ou des cours de rattrapage à Andorre. Trouvez l'aide près de chez vous !"
   },
   {
     "categoryId": "accomodation_and_housing",
     "label": "Hébergement et logement",
     "slug": "hebergement-et-logement",
     "synonyms": [
-      "hebergement dormir lit logement repos toit hebergement logement logement hebergement et logement hebergementetlogement domir"
+      "abri",
+      "logement",
+      "urgence",
+      "hébergement",
+      "domicile",
+      "toit",
+      "résidence",
+      "accueil",
+      "insertion",
+      "social",
+      "accompagnement",
+      "auberge",
+      "foyer",
+      "centre d'hébergement",
+      "relogement"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Hébergement et logement d'urgence, Soliguide vous oriente en Andorre",
+    "seoDescription": "Soliguide vous aide à trouver un hébergement d'urgence, un logement temporaire ou un accompagnement social en Andorre. Service gratuit et géolocalisé."
   },
   {
     "categoryId": "overnight_stop",
     "label": "Halte de nuit",
     "slug": "halte-nuit",
     "synonyms": [
-      "halte de nuit halte nuit dormir se reposer alte de nui accueil nuit accueil de nuit accueil nuit"
+      "abri de nuit",
+      "hébergement d'urgence",
+      "accueil de nuit",
+      "nuit",
+      "dormir",
+      "se reposer",
+      "douche",
+      "repas chaud",
+      "accompagnement social",
+      "orientation",
+      "écoute",
+      "urgence sociale",
+      "maraude",
+      "centre d'hébergement",
+      "veille sociale"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "La halte de nuit est un lieu d'accueil et de repos pour les personnes sans abri ouvert de 20h à 8h du matin, 7/7 jours."
+    "seoTitle": "Trouvez une halte de nuit avec Soliguide, c'est possible !",
+    "seoDescription": "Soliguide vous aide à trouver une halte de nuit à Andorre. Reposez-vous, prenez une douche, et bénéficiez d'un accompagnement. Géolocalisation facile et rapide !"
   },
   {
     "categoryId": "emergency_accommodation",
     "label": "Hébergement d'urgence",
     "slug": "hebergement-urgence",
     "synonyms": [
-      "hebergement urgence dormir lit logement chu halte de nuit toit a la rue rue dehors accueil de nuit accueil nuit accueil nuit"
+      "abri",
+      "nuit",
+      "urgence",
+      "logement",
+      "temporaire",
+      "refuge",
+      "accueil",
+      "domicile",
+      "toit",
+      "asile",
+      "protection",
+      "sans-abri",
+      "précarité",
+      "exclusion",
+      "squat"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Hébergement à court terme (à la nuitée), accessible directement."
+    "seoTitle": "Hébergement d'urgence, Soliguide vous oriente à Andorre",
+    "seoDescription": "Soliguide vous aide à trouver un hébergement d'urgence à Andorre. Trouvez un refuge, un accueil de nuit ou un logement temporaire. Géolocalisation facile !"
   },
   {
     "categoryId": "long_term_accomodation",
     "label": "Hébergement à long terme",
     "slug": "hebergement-long-terme",
     "synonyms": [
-      "hebergement dormir lit logement chrs repos toit"
+      "logement social",
+      "résidence sociale",
+      "foyer",
+      "hébergement stable",
+      "toit",
+      "abri",
+      "domicile",
+      "se loger",
+      "relogement",
+      "aide au logement",
+      "mal logement",
+      "sans domicile fixe",
+      "CHS",
+      "centre hébergement",
+      "asile"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Possibilité d'hébergement à long terme, au sein de la structure ou d'une structure partenaire. Indiquer dans la description les modalités d'accès."
+    "seoTitle": "Soliguide vous aide à trouver un hébergement à long terme",
+    "seoDescription": "Soliguide vous informe sur les logements sociaux, les résidences et les foyers à Andorre. Trouvez l'aide adaptée près de chez vous, géolocalisation incluse."
   },
   {
     "categoryId": "citizen_housing",
     "label": "Hébergement citoyen",
     "slug": "hebergement-citoyen",
     "synonyms": [
-      "hebergement hebergement citoyen merci pour l invit singa"
+      "logement solidaire",
+      "accueil temporaire",
+      "hébergement d'urgence",
+      "toit",
+      "abri",
+      "solution logement",
+      "citoyenneté",
+      "bénévolat",
+      "solidarité",
+      "accompagnement logement",
+      "résidence sociale",
+      "centre hébergement",
+      "insertion sociale",
+      "aide au logement",
+      "domicile"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Soliguide vous oriente vers l'hébergement citoyen à Andorre",
+    "seoDescription": "Trouvez un toit grâce à Soliguide. Accès à un logement temporaire, aide pour les démarches administratives, conseils personnalisés. Géolocalisation facile à ad."
   },
   {
     "categoryId": "access_to_housing",
     "label": "Conseil logement",
     "slug": "conseil-logement",
     "synonyms": [
-      "hebergement dalo logement expulsion toit maison impayes factures chauffage conseil conseil logement"
+      "logement",
+      "aide au logement",
+      "conseil juridique logement",
+      "droit au logement",
+      "APL",
+      "allocation logement",
+      "logement social",
+      "urgence logement",
+      "mal logement",
+      "expulsion",
+      "propriétaire",
+      "locataire",
+      "bail",
+      "CAF",
+      "FSL"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'accès au logement (logement social, DALO, etc.)."
+    "seoTitle": "Besoin d'un conseil logement ? Soliguide vous aide",
+    "seoDescription": "Soliguide vous informe sur vos droits au logement, les aides financières et les démarches à suivre en Andorre. Trouvez des solutions près de chez vous !"
   },
   {
     "categoryId": "hygiene_and_wellness",
     "label": "Hygiène et bien-être",
     "slug": "hygiene",
     "synonyms": [
-      "hygiene laver douche bain se laver se doucher propre"
+      "douche",
+      "laverie",
+      "savon",
+      "shampoing",
+      "serviette",
+      "dentifrice",
+      "brosse à dents",
+      "vêtements propres",
+      "hygiène féminine",
+      "rasoir",
+      "mousse à raser",
+      "déodorant",
+      "eau",
+      "toilettes",
+      "propreté"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Hygiène et bien-être à Andorre, Soliguide vous accompagne",
+    "seoDescription": "Soliguide vous aide à trouver des douches publiques, laveries sociales et kits d'hygiène gratuits à Andorre. Géolocalisez les services proches de vous."
   },
   {
     "categoryId": "shower",
     "label": "Douche",
     "slug": "douche",
     "synonyms": [
-      "douche laver se laver bain bain douche piscine propre sale cheveux"
+      "salle de bain",
+      "se laver",
+      "propreté",
+      "hygiène",
+      "eau",
+      "savon",
+      "shampoing",
+      "serviette",
+      "gel douche",
+      "bain",
+      "laverie",
+      "centre d'hébergement",
+      "accès à l'eau",
+      "équipement sanitaire",
+      "toilettes"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Où prendre une douche gratuitement à Andorre avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver des douches publiques, des kits d'hygiène et des laveries sociales à Andorre. Accès facile, géolocalisation précise !"
   },
   {
     "categoryId": "hairdresser",
     "label": "Coiffeur",
     "slug": "coiffeur",
     "synonyms": [
-      "coiffeur cheveux"
+      "coupe de cheveux",
+      "coiffure solidaire",
+      "coiffeur social",
+      "relooking",
+      "soins capillaires",
+      "barbier",
+      "coiffure gratuite",
+      "atelier coiffure",
+      "conseils beauté",
+      "centre social",
+      "insertion professionnelle",
+      "estime de soi",
+      "prendre soin de soi",
+      "bien-être",
+      "apparence"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Trouver un coiffeur solidaire avec Soliguide en Andorre",
+    "seoDescription": "Soliguide vous aide à trouver un coiffeur à prix réduit, des ateliers de relooking et des conseils beauté gratuits en Andorre. Géolocalisez les services près de vous !"
   },
   {
     "categoryId": "laundry",
     "label": "Laverie",
     "slug": "laverie",
     "synonyms": [
-      "laverie vetements vetement laver machine a laver pressing linge lave linge"
+      "linge",
+      "lessive",
+      "laver",
+      "sèche-linge",
+      "machine à laver",
+      "propreté",
+      "hygiène",
+      "vêtements propres",
+      "nettoyage",
+      "buanderie",
+      "lavomatique",
+      "jetons",
+      "lessive gratuite",
+      "centre social",
+      "solidarité"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Lave-linge en accès libre."
+    "seoTitle": "Besoin d'une laverie ? Soliguide vous aide à Andorre",
+    "seoDescription": "Soliguide vous indique les laveries sociales à Andorre-la-Vieille, Escaldes-Engordany et Sant Julià de Lòria. Trouvez facilement une solution près de chez vous !"
   },
   {
     "categoryId": "wellness",
     "label": "Bien-être",
     "slug": "bien-etre",
     "synonyms": [
-      "bien etre coiffeur massage maquillage belle beau pedicure manicure manucire"
+      "santé mentale",
+      "psychologie",
+      "soutien psychologique",
+      "loisirs",
+      "activités",
+      "sport",
+      "culture",
+      "spiritualité",
+      "relaxation",
+      "méditation",
+      "bien être",
+      "aide sociale",
+      "accompagnement",
+      "écoute",
+      "conseils"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Ateliers de bien-être : coiffeur, massage, sophrologie, etc. (à préciser dans la description)."
+    "seoTitle": "Améliorer votre bien-être à Andorre avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver des lieux pour des conseils psychologiques, des activités de loisirs ou un soutien spirituel à Andorre. Trouvez l'aide près de chez vous !"
   },
   {
     "categoryId": "toilets",
     "label": "Toilettes",
     "slug": "toilettes",
     "synonyms": [
-      "toilettes sanisette pisser pipi wc caca chiotte toilet"
+      "sanitaires",
+      "WC",
+      "toilettes publiques",
+      "lieux d'aisances",
+      "commodités",
+      "accès toilettes",
+      "hygiène",
+      "propreté",
+      "se laver",
+      "douche",
+      "douches publiques",
+      "centre d'accueil",
+      "fontaine à eau",
+      "eau potable",
+      "lavabo"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Toilettes en accès libre."
+    "seoTitle": "Trouver des toilettes accessibles avec Soliguide, c'est facile!",
+    "seoDescription": "Soliguide vous aide à trouver des toilettes publiques, des lieux avec sanitaires accessibles et des douches à Andorre. Géolocalisez-vous et trouvez!"
   },
   {
     "categoryId": "hygiene_products",
     "label": "Produits d'hygiène",
     "slug": "produits-hygiene",
     "synonyms": [
-      "periodiques protections periodiques protection periodique regles regle tampon serviette hygienique serviette menstrues produits d hygiene hygiene cup culotte tampax"
+      "savon",
+      "shampoing",
+      "dentifrice",
+      "brosse à dents",
+      "serviette",
+      "papier toilette",
+      "déodorant",
+      "rasoir",
+      "mousse à raser",
+      "protections hygiéniques",
+      "couches",
+      "lingettes",
+      "laverie",
+      "douche",
+      "hygiène"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Distribution de produits d'hygiène (savons, dentifrice, tampons, serviettes hygiéniques, etc.)."
+    "seoTitle": "Besoin de produits d'hygiène ? Soliguide vous aide à Andorre",
+    "seoDescription": "Soliguide vous oriente vers des douches gratuites, kits d'hygiène ou laveries sociales à Andorre. Trouvez l'aide près de chez vous grâce à la géolocalisation !"
   },
   {
     "categoryId": "face_masks",
     "label": "Masques",
     "slug": "masques",
     "synonyms": [
-      "masque protection covid virus"
+      "protection",
+      "covid",
+      "covid-19",
+      "prévention",
+      "barrière",
+      "protection respiratoire",
+      "gratuit",
+      "association",
+      "don",
+      "distribution",
+      "hygiène",
+      "sécurité",
+      "santé",
+      "andorre-la-vieille",
+      "canillo"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Masques de protection"
+    "seoTitle": "Besoin de masques ? Soliguide vous aide à Andorre",
+    "seoDescription": "Soliguide vous aide à trouver des masques gratuits, des distributions par des associations et des informations sur les gestes barrières à Andorre. Géolocalisation facile !"
   },
   {
     "categoryId": "equipment",
     "label": "Matériel",
     "slug": "materiel",
     "synonyms": [
-      "materiel affaires mobilier"
+      "vêtements",
+      "couverture",
+      "bébé",
+      "chaussures",
+      "hygiène",
+      "meubles",
+      "vaisselle",
+      "ustensiles",
+      "fournitures scolaires",
+      "dons",
+      "gratuit",
+      "urgence",
+      "social",
+      "aide matérielle",
+      "andorre"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Besoin de matériel ? Soliguide vous oriente",
+    "seoDescription": "Soliguide vous aide à trouver des vêtements chauds, des couvertures ou du matériel pour bébé à Andorre. Géolocalisez les lieux d'aide près de vous !"
   },
   {
     "categoryId": "luggage_storage",
     "label": "Bagagerie",
     "slug": "bagagerie",
     "synonyms": [
-      "bagage bagagerie sac poser casier"
+      "consigne",
+      "casier",
+      "déposer",
+      "stocker",
+      "affaires",
+      "bagages",
+      "valise",
+      "sac",
+      "effets personnels",
+      "ranger",
+      "entreposer",
+      "local sécurisé",
+      "dépôt",
+      "garder",
+      "service bagagerie"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Lieu permettant de conserver des bagages ou matériel."
+    "seoTitle": "Besoin d'une bagagerie ? Soliguide vous aide à Andorre",
+    "seoDescription": "Soliguide vous informe sur les bagageries à Andorre. Trouvez un lieu pour stocker vos affaires, des consignes sécurisées et des services de dépôt près de vous."
   },
   {
     "categoryId": "solidarity_store",
     "label": "Boutique solidaire",
     "slug": "boutique-solidaire",
     "synonyms": [
-      "boutique solidaire meubles accessoires s habiller"
+      "vêtements",
+      "meubles",
+      "vaisselle",
+      "bibelots",
+      "dons",
+      "récupération",
+      "Emmaüs",
+      "friperie",
+      "seconde main",
+      "articles ménagers",
+      "décoration",
+      "équipement maison",
+      "braderie",
+      "vente solidaire",
+      "textile"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Boutique vendant du matériel à prix solidaire."
+    "seoTitle": "Boutique solidaire à Andorre, trouvez l'essentiel avec Soliguide",
+    "seoDescription": "Avec Soliguide, trouvez une boutique solidaire à Andorre. Vêtements, meubles, objets du quotidien... Géolocalisez les lieux d'aide près de chez vous."
   },
   {
     "categoryId": "clothing",
     "label": "Vêtements",
     "slug": "vetements",
     "synonyms": [
-      "vestiaire vetements t shirt pantalon robe vetir vestiboutique pull manteau habit s habiller"
+      "habit",
+      "friperie",
+      "don vêtements",
+      "vêtement gratuit",
+      "se vêtir",
+      "s'habiller",
+      "garde-robe",
+      "vêtements chauds",
+      "vêtements enfant",
+      "vêtements bébé",
+      "recyclerie",
+      "dressing",
+      "mode solidaire",
+      "vêtements seconde main",
+      "collecte vêtements"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Vêtements gratuits ou à prix symbolique. Préciser le sexe et/ou l'âge dans les conditions."
+    "seoTitle": "Besoin de vêtements à Andorre ? Soliguide vous aide",
+    "seoDescription": "Soliguide vous aide à trouver des vêtements gratuits, des friperies solidaires et des bons d'achat pour vous habiller à Andorre. Géolocalisez l'aide près de vous !"
   },
   {
     "categoryId": "animal_assitance",
     "label": "Animaux",
     "slug": "animaux",
-    "synonyms": [
-      "animaux animals chien chat croquettes animal"
-    ],
+    "synonyms": ["animaux animals chien chat croquettes animal"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -796,9 +1522,7 @@
     "categoryId": "vaccination",
     "label": "Vaccination",
     "slug": "vaccination",
-    "synonyms": [
-      "vaccination vaccin covid piqure rappel rappel de vaccin"
-    ],
+    "synonyms": ["vaccination vaccin covid piqure rappel rappel de vaccin"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -835,9 +1559,7 @@
     "categoryId": "health_specialists",
     "label": "Spécialistes",
     "slug": "specialistes-medecine",
-    "synonyms": [
-      "specialistes specialiste"
-    ],
+    "synonyms": ["specialistes specialiste"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -848,9 +1570,7 @@
     "categoryId": "allergology",
     "label": "Allergologie",
     "slug": "allergologie",
-    "synonyms": [
-      "allergologie allergies"
-    ],
+    "synonyms": ["allergologie allergies"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -861,9 +1581,7 @@
     "categoryId": "cardiology",
     "label": "Cardiologie",
     "slug": "cardiologie",
-    "synonyms": [
-      "cardiologie coeur cardiaque cardio"
-    ],
+    "synonyms": ["cardiologie coeur cardiaque cardio"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -874,9 +1592,7 @@
     "categoryId": "dermatology",
     "label": "Dermatologie",
     "slug": "dermatologie",
-    "synonyms": [
-      "dermato dermatologie dermatologue peau bouton"
-    ],
+    "synonyms": ["dermato dermatologie dermatologue peau bouton"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -887,9 +1603,7 @@
     "categoryId": "echography",
     "label": "Échographie",
     "slug": "echographie",
-    "synonyms": [
-      "echographie bebe enceinte"
-    ],
+    "synonyms": ["echographie bebe enceinte"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -900,9 +1614,7 @@
     "categoryId": "endocrinology",
     "label": "Endocrinologie",
     "slug": "endocrinologie",
-    "synonyms": [
-      "endocrinologie hormones tyroide"
-    ],
+    "synonyms": ["endocrinologie hormones tyroide"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -913,9 +1625,7 @@
     "categoryId": "gastroenterology",
     "label": "Gastro-entérologie",
     "slug": "gastro-enterologie",
-    "synonyms": [
-      "gastro enterologue gastro enterologie kk caca"
-    ],
+    "synonyms": ["gastro enterologue gastro enterologie kk caca"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -939,9 +1649,7 @@
     "categoryId": "kinesitherapy",
     "label": "Kinésithérapie",
     "slug": "kinesitherapie",
-    "synonyms": [
-      "kinesitherapie reeducation blessure kine"
-    ],
+    "synonyms": ["kinesitherapie reeducation blessure kine"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -952,9 +1660,7 @@
     "categoryId": "mammography",
     "label": "Mammographie",
     "slug": "mammographie",
-    "synonyms": [
-      "mammographie radio seins"
-    ],
+    "synonyms": ["mammographie radio seins"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -965,9 +1671,7 @@
     "categoryId": "ophthalmology",
     "label": "Ophtalmologie",
     "slug": "ophtalmologie",
-    "synonyms": [
-      "ophtalmologie ophtalmologue yeux voir lunette"
-    ],
+    "synonyms": ["ophtalmologie ophtalmologue yeux voir lunette"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -991,9 +1695,7 @@
     "categoryId": "nutrition",
     "label": "Nutrition",
     "slug": "nutrition",
-    "synonyms": [
-      "nutrition dietetique regime surpoids obesite perte de poids"
-    ],
+    "synonyms": ["nutrition dietetique regime surpoids obesite perte de poids"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -1004,9 +1706,7 @@
     "categoryId": "pedicure",
     "label": "Pédicure",
     "slug": "pedicure",
-    "synonyms": [
-      "pedicure pied pie soigner pieds soin podologue podologie"
-    ],
+    "synonyms": ["pedicure pied pie soigner pieds soin podologue podologie"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -1030,9 +1730,7 @@
     "categoryId": "pneumology",
     "label": "Pneumologie",
     "slug": "pneumologie",
-    "synonyms": [
-      "poumons respiration respirer bronches"
-    ],
+    "synonyms": ["poumons respiration respirer bronches"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -1043,9 +1741,7 @@
     "categoryId": "radiology",
     "label": "Radiologie",
     "slug": "radiologie",
-    "synonyms": [
-      "radiologie radiologue radiology rayonx fracture entorse"
-    ],
+    "synonyms": ["radiologie radiologue radiology rayonx fracture entorse"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -1056,9 +1752,7 @@
     "categoryId": "rheumatology",
     "label": "Rhumatologie",
     "slug": "rhumatologie",
-    "synonyms": [
-      "rhumatologue rumatologie"
-    ],
+    "synonyms": ["rhumatologue rumatologie"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -1069,9 +1763,7 @@
     "categoryId": "urology",
     "label": "Urologie",
     "slug": "urologie",
-    "synonyms": [
-      "urologie urology"
-    ],
+    "synonyms": ["urologie urology"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -1095,9 +1787,7 @@
     "categoryId": "stomatology",
     "label": "Stomatologie",
     "slug": "stomatologie",
-    "synonyms": [
-      "stomatologie stomatologue estomac digestion ventre"
-    ],
+    "synonyms": ["stomatologie stomatologue estomac digestion ventre"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -1108,9 +1798,7 @@
     "categoryId": "osteopathy",
     "label": "Ostéopathe",
     "slug": "osteo",
-    "synonyms": [
-      "ostheopathe osteo dos mal"
-    ],
+    "synonyms": ["ostheopathe osteo dos mal"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -1121,9 +1809,7 @@
     "categoryId": "acupuncture",
     "label": "Acupuncture",
     "slug": "acupuncture",
-    "synonyms": [
-      "acupuncture accupuncture bien etre"
-    ],
+    "synonyms": ["acupuncture accupuncture bien etre"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -1160,9 +1846,7 @@
     "categoryId": "wifi",
     "label": "Wifi",
     "slug": "wifi",
-    "synonyms": [
-      "wifi internet web connexion reseau"
-    ],
+    "synonyms": ["wifi internet web connexion reseau"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -1173,9 +1857,7 @@
     "categoryId": "electrical_outlets_available",
     "label": "Prise",
     "slug": "prise",
-    "synonyms": [
-      "prise charger electricite chargeur recharge charge"
-    ],
+    "synonyms": ["prise charger electricite chargeur recharge charge"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -1186,9 +1868,7 @@
     "categoryId": "telephone_at_your_disposal",
     "label": "Téléphone",
     "slug": "telephone",
-    "synonyms": [
-      "appel gratuit telephone telephoner appeler appel"
-    ],
+    "synonyms": ["appel gratuit telephone telephoner appeler appel"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -1225,9 +1905,7 @@
     "categoryId": "carpooling",
     "label": "Co-voiturage",
     "slug": "covoiturage",
-    "synonyms": [
-      "co voiturage partage de voiture"
-    ],
+    "synonyms": ["co voiturage partage de voiture"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -1238,9 +1916,7 @@
     "categoryId": "provision_of_vehicles",
     "label": "Mise à disposition de véhicule",
     "slug": "vehicule",
-    "synonyms": [
-      "mise a disposition de vehicule voiture"
-    ],
+    "synonyms": ["mise a disposition de vehicule voiture"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -1251,9 +1927,7 @@
     "categoryId": "chauffeur_driven_transport",
     "label": "Transport avec chauffeur",
     "slug": "chauffeur",
-    "synonyms": [
-      "transport avec chauffeur chauffeur transport a la demande"
-    ],
+    "synonyms": ["transport avec chauffeur chauffeur transport a la demande"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -1303,9 +1977,7 @@
     "categoryId": "legal_protection",
     "label": "Protection juridique",
     "slug": "protection-juridique",
-    "synonyms": [
-      "protection juridique pjj"
-    ],
+    "synonyms": ["protection juridique pjj"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "ad",
@@ -1331,11 +2003,7 @@
     "categoryId": null,
     "label": "Càritas Andorrana: organisation caritative catholique",
     "slug": "caritas-andorra",
-    "synonyms": [
-      "caritas andorra",
-      "càritas",
-      "cáritas andorrana"
-    ],
+    "synonyms": ["caritas andorra", "càritas", "cáritas andorrana"],
     "type": "ORGANIZATION",
     "lang": "fr",
     "country": "ad",
@@ -1376,11 +2044,7 @@
     "categoryId": null,
     "label": "Alberg de transeünts: hébergement d’urgence",
     "slug": "alberg-transeunts",
-    "synonyms": [
-      "alberg",
-      "albergue",
-      "hébergement andorre"
-    ],
+    "synonyms": ["alberg", "albergue", "hébergement andorre"],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "fr",
     "country": "ad",
@@ -1391,11 +2055,7 @@
     "categoryId": null,
     "label": "Menjador social: restaurant solidaire",
     "slug": "menjador-social",
-    "synonyms": [
-      "menjador",
-      "cantine sociale",
-      "resto solidaire"
-    ],
+    "synonyms": ["menjador", "cantine sociale", "resto solidaire"],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "fr",
     "country": "ad",
@@ -1421,11 +2081,7 @@
     "categoryId": null,
     "label": "Centre de Salut: établissement de soins médicaux",
     "slug": "centre-salut",
-    "synonyms": [
-      "centre salut",
-      "hospital nsa",
-      "clinique andorre"
-    ],
+    "synonyms": ["centre salut", "hospital nsa", "clinique andorre"],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "fr",
     "country": "ad",

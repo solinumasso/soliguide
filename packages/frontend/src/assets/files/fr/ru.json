@@ -4,689 +4,1429 @@
     "label": "Приюты",
     "slug": "accueil",
     "synonyms": [
-      "accueil cafe repos acceuil parler acueil accueil femme accueil femmes acueil femme violence harcelement partir"
+      "ночлег",
+      "укрытие",
+      "временное жилье",
+      "приют для бездомных",
+      "помощь бездомным",
+      "жилье",
+      "еда",
+      "душ",
+      "стирка",
+      "адрес",
+      "безопасность",
+      "поддержка",
+      "комната",
+      "кровать",
+      "тепло"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "С Soliguide найдите приюты, где вам помогут",
+    "seoDescription": "Soliguide поможет найти приют, получить еду, душ и место для сна рядом с вами."
   },
   {
     "categoryId": "day_hosting",
     "label": "Дневные приюты",
     "slug": "accueil-jour",
     "synonyms": [
-      "accueil accueil de jour cafe se reposer se poser repos reposer femmes battues femme battue fem batue fem batu violence harcelement partir"
+      "дневной центр",
+      "приют",
+      "укрытие",
+      "временное жилье",
+      "душ",
+      "стирка",
+      "питание",
+      "консультация",
+      "поддержка",
+      "адрес",
+      "помощь",
+      "социальный работник",
+      "ночлег",
+      "бесплатный",
+      "обогрев"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Lieu d'accueil des bénéficaires proposant une pause pendant la journée."
+    "seoTitle": "Найдите дневные приюты с Soliguide, чтобы получить помощь",
+    "seoDescription": "Soliguide поможет вам найти места, где можно отдохнуть, поесть и получить консультацию. Найдите дневные приюты рядом с вами во Франции!"
   },
   {
     "categoryId": "rest_area",
     "label": "Зона отдыха",
     "slug": "espace-repos",
     "synonyms": [
-      "espace de repos reposer dormir repos pause"
+      "место отдыха",
+      "душ",
+      "стирка",
+      "прачечная",
+      "отдых",
+      "передышка",
+      "укрытие",
+      "приют",
+      "камера хранения",
+      "хранение вещей",
+      "туалет",
+      "безопассное место",
+      "умывальник",
+      "комната гигиены",
+      "место для сна"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Espaces de repos ouverts au public"
+    "seoTitle": "Найдите места для отдыха с Soliguide",
+    "seoDescription": "Soliguide поможет найти место для отдыха, принять душ, постирать вещи во Франции. Найдите ближайшие места на карте!"
   },
   {
     "categoryId": "babysitting",
     "label": "Присмотр за детьми",
     "slug": "garde-enfants",
     "synonyms": [
-      "garde enfant garderie enfant nounou assistance maternelle bebe creche"
+      "ясли",
+      "детский сад",
+      "няня",
+      "присмотр за детьми на дому",
+      "дневной уход",
+      "воспитатель",
+      "центр раннего развития",
+      "детский клуб",
+      "игровые комнаты",
+      "помощь матерям-одиночкам",
+      "дети",
+      "забота",
+      "воспитание",
+      "семейный центр",
+      "ассоциация помощи семье"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Activité d'un baby-sitter consistant à garder temporairement des enfants en l'abscence de leurs parents"
+    "seoTitle": "Soliguide поможет найти присмотр за детьми во Франции",
+    "seoDescription": "Soliguide поможет найти ясли, няню или центр дневного пребывания для детей. Найдите ближайшие услуги по уходу за детьми с помощью геолокации."
   },
   {
     "categoryId": "family_area",
     "label": "Семейная зона",
     "slug": "espace-famille",
     "synonyms": [
-      "espace famille famille maman papa parents enfants"
+      "семейный",
+      "родительский",
+      "детский",
+      "поддержка семьи",
+      "консультация",
+      "мероприятия для детей",
+      "игровая комната",
+      "няня",
+      "воспитатель",
+      "семейный психолог",
+      "детский сад",
+      "центр раннего развития",
+      "помощь родителям",
+      "социальная помощь",
+      "семейный отдых"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Lieu d'accueil capable de recevoir des familles"
+    "seoTitle": "Soliguide поможет найти «Семейная зона» рядом с вами",
+    "seoDescription": "Soliguide поможет найти место, где можно отдохнуть с семьей, получить консультацию или поучаствовать в мероприятиях. Все это рядом с вами!"
   },
   {
     "categoryId": "information_point",
     "label": "Информационно-ориентировочный пункт",
     "slug": "point-information",
     "synonyms": [
-      "point information point d information information ukraine"
+      "консультация",
+      "ориентирование",
+      "помощь",
+      "совет",
+      "информация",
+      "права",
+      "документы",
+      "социальная помощь",
+      "административные процедуры",
+      "администрация",
+      "поддержка",
+      "направление",
+      "социальный работник",
+      "общение",
+      "разъяснение"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Point d'information"
+    "seoTitle": "Нужна информация и ориентир? Soliguide поможет вам!",
+    "seoDescription": "Soliguide показывает пункты, где получить информацию, консультации по правам, помощь в оформлении документов. Все рядом с вами во Франции!"
   },
   {
     "categoryId": "activities",
     "label": "Досуг",
     "slug": "activites",
     "synonyms": [
-      "activites sorties sport loisirs sortir jeux jeu loisir isolement isole solitude isolee"
+      "отдых",
+      "развлечения",
+      "досуг",
+      "мероприятия",
+      "культура",
+      "спорт",
+      "хобби",
+      "игры",
+      "кружки",
+      "секции",
+      "клубы",
+      "сообщество",
+      "творчество",
+      "общение",
+      "свободное время"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Как провести досуг? Soliguide поможет!",
+    "seoDescription": "Soliguide подскажет, где отдохнуть, найти бесплатные развлечения или культурные мероприятия во fr. Геолокация, адреса, контакты – все здесь!"
   },
   {
     "categoryId": "sport_activities",
     "label": "Спорт",
     "slug": "activites-sportives",
     "synonyms": [
-      "activites sportives sport foot basket danse rugby loisirs loisir"
+      "спорт",
+      "фитнес",
+      "тренировка",
+      "гимнастика",
+      "баскетбол",
+      "футбол",
+      "плавание",
+      "йога",
+      "бег",
+      "теннис",
+      "велоспорт",
+      "спортивный зал",
+      "спортивная площадка",
+      "команда",
+      "соревнования"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Activités sportives : foot, jogging, marche, etc."
+    "seoTitle": "Занимайтесь спортом вместе с Soliguide - найдите бесплатные возможности",
+    "seoDescription": "Soliguide поможет найти бесплатные спортивные залы, секции и мероприятия во Франции. Геолокация покажет ближайшие места для занятий спортом!"
   },
   {
     "categoryId": "museums",
     "label": "Музеи",
     "slug": "musee",
     "synonyms": [
-      "musee culture sortie peinture tableau se cultiver"
+      "бесплатный музей",
+      "музей бесплатно",
+      "культурное наследие",
+      "искусство",
+      "история",
+      "экскурсия",
+      "выставка",
+      "Лувр",
+      "Орсе",
+      "музей Родена",
+      "наследие",
+      "галерея",
+      "бесплатные выставки",
+      "культурный досуг",
+      "образование"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Musée gratuit."
+    "seoTitle": "Бесплатные музеи с Soliguide – откройте для себя культуру",
+    "seoDescription": "Soliguide поможет вам найти бесплатные музеи во Франции! Посетите Лувр бесплатно в первое воскресенье месяца. Узнайте о музеях рядом с вами!"
   },
   {
     "categoryId": "libraries",
     "label": "Библиотеки",
     "slug": "bibliotheque",
     "synonyms": [
-      "bibliotheque livres culture mediatheque"
+      "книги",
+      "чтение",
+      "журналы",
+      "газеты",
+      "компьютер",
+      "интернет",
+      "wi-fi",
+      "мероприятия",
+      "мастер-классы",
+      "учеба",
+      "образование",
+      "самообразование",
+      "помощь",
+      "информация",
+      "культура"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Bibliothèque accessible en accès libre."
+    "seoTitle": "Бесплатные библиотеки рядом с вами с Soliguide",
+    "seoDescription": "Soliguide поможет найти библиотеки для чтения, компьютеры с интернетом и мастер-классы. Найдите ближайшую библиотеку!"
   },
   {
     "categoryId": "other_activities",
     "label": "Разнообразный досуг",
     "slug": "activites-diverses",
     "synonyms": [
-      "activites diverses animation divertissement loisir s occuper culture activites enfants loisirs loisir"
+      "досуг",
+      "развлечения",
+      "хобби",
+      "клубы",
+      "мероприятия",
+      "спорт",
+      "культура",
+      "отдых",
+      "занятия",
+      "кружки",
+      "бесплатно",
+      "социализация",
+      "общение",
+      "творчество",
+      "игры"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Activités diverses : ateliers, activités culturelles, etc. (précisez.)"
+    "seoTitle": "Интересный досуг с Soliguide для каждого",
+    "seoDescription": "Soliguide поможет найти бесплатные мероприятия, клубы по интересам и спортивные занятия рядом с вами во Франции. Откройте мир возможностей!"
   },
   {
     "categoryId": "food",
     "label": "Еда",
     "slug": "alimentation-bouffe-boufe-manger-soupe-repas-aliment-manger-mange-repa-faim-diner-dejeuner-dejeunet-dine-se-nourrir-fin-portage-portage-de-repas-aide-alimentaire-comida-comer-resto-du-coeur",
     "synonyms": [
-      "alimentation bouffe boufe manger soupe repas aliment manger mange repa faim diner dejeuner dejeunet dine se nourrir fin portage portage de repas aide alimentaire comida comer"
+      "питание",
+      "продукты",
+      "еда",
+      "помощь",
+      "столовая",
+      "бесплатно",
+      "голод",
+      "продовольствие",
+      "суп",
+      "хлеб",
+      "продуктовый набор",
+      "талоны на питание",
+      "поесть",
+      "где поесть",
+      "социальная помощь"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Не оставайтесь голодными, Soliguide поможет вам найти еду",
+    "seoDescription": "Soliguide предлагает места, где можно поесть, получить продуктовый набор или талоны на питание. Найдите бесплатные столовые и пункты раздачи еды рядом с вами!"
   },
   {
     "categoryId": "food_distribution",
     "label": "Раздача еды",
     "slug": "distribution-repas",
     "synonyms": [
-      "distribution alimentaire distribution de repas manger maraude bouffe soupe nourriture faim repas mange manger fin distribution aide alimentaire restauration assise comida comer"
+      "бесплатное питание",
+      "столовая",
+      "продуктовые наборы",
+      "гуманитарная помощь",
+      "еда бесплатно",
+      "суп",
+      "горячее питание",
+      "помощь едой",
+      "благотворительность",
+      "волонтёры",
+      "социальная помощь",
+      "помощь нуждающимся",
+      "пункт питания",
+      "талоны на еду",
+      "продовольственная помощь"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Point d'arrêt d'une distribution alimentaire. Attention : Veuillez créer une structure par point de distribution."
+    "seoTitle": "Soliguide поможет найти раздачу еды для нуждающихся",
+    "seoDescription": "Soliguide показывает бесплатные столовые, пункты раздачи продуктовых наборов и талоны на питание. Найдите ближайшую помощь в fr!"
   },
   {
     "categoryId": "food_packages",
     "label": "Продовольственная корзина",
     "slug": "colis-alimentaire",
     "synonyms": [
-      "colis colis alimentaire manger mange fruits legumes panier repas aide alimentaire panier comida comer"
+      "продукты",
+      "питание",
+      "еда",
+      "помощь едой",
+      "бесплатная еда",
+      "социальная столовая",
+      "продуктовый набор",
+      "гуманитарная помощь",
+      "кухня",
+      "обед",
+      "ужин",
+      "завтрак",
+      "волонтёры",
+      "паек",
+      "продукты питания"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Distribution de colis contenant des denrées alimentaires (conserves, légumes, etc.)."
+    "seoTitle": "Найдите продовольственную корзину с Soliguide",
+    "seoDescription": "Soliguide поможет вам найти бесплатные пункты питания, продуктовые наборы и социальные столовые во Франции. Найдите ближайшие места!"
   },
   {
     "categoryId": "social_grocery_stores",
     "label": "Социальный и солидарный продуктовый магазин",
     "slug": "epicerie-sociale-solidaire",
     "synonyms": [
-      "epicerie sociale epicerie manger fruits legumes panier repas epicerie solidaire aide alimentaire"
+      "социальный магазин",
+      "солидарный магазин",
+      "продукты питания",
+      "базовые товары",
+      "дешевые продукты",
+      "помощь продуктами",
+      "поддержка",
+      "продуктовая помощь",
+      "магазин солидарности",
+      "продуктовый набор",
+      "продуктовая корзина",
+      "бесплатные продукты",
+      "низкие цены",
+      "экономия",
+      "помощь нуждающимся"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Les épiceries solidaires accueillent les personnes en précarité et leur permettent de faire des courses à prix solidaire."
+    "seoTitle": "Soliguide поможет найти социальный и солидарный продуктовый магазин",
+    "seoDescription": "Soliguide предлагает социальные продуктовые магазины во Франции. Получите продукты питания, базовые товары и поддержку рядом с вами. Геолокация поможет!"
   },
   {
     "categoryId": "fountain",
     "label": "Общественный фонтан с водой",
     "slug": "fontaine",
     "synonyms": [
-      "fontaine boire eau soif robinet potable"
+      "вода",
+      "питьевая вода",
+      "бесплатная вода",
+      "фонтанчик",
+      "общедоступный фонтан",
+      "утолить жажду",
+      "жажда",
+      "источник воды",
+      "городской фонтан",
+      "парковый фонтан",
+      "улица",
+      "жаркий день",
+      "летний день",
+      "бесплатно",
+      "свежесть"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Eau potable en accès libre."
+    "seoTitle": "Найдите общественный фонтан с водой рядом с вами с Soliguide",
+    "seoDescription": "Soliguide поможет найти общественные фонтаны с водой во Франции. Бесплатная вода в парках, скверах, на улицах. Найдите ближайший к вам фонтан!"
   },
   {
     "categoryId": "solidarity_fridge",
     "label": "Холодильник Солидарности",
     "slug": "frigo-solidaire",
     "synonyms": [
-      "manger mange conserver frais bouffe aliment faim frigo frigo solidaire"
+      "холодильник солидарности",
+      "продукты бесплатно",
+      "бесплатная еда",
+      "помощь едой",
+      "где поесть бесплатно",
+      "социальная помощь",
+      "продовольственная помощь",
+      "пункт раздачи еды",
+      "центр питания",
+      "фонд помощи",
+      "столовая для бедных",
+      "волонтёры",
+      "бесплатные продукты",
+      "поделиться едой",
+      "отдать еду"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Frigo solidaire"
+    "seoTitle": "Найдите «Холодильник Солидарности» рядом с вами с помощью Soliguide",
+    "seoDescription": "Soliguide помогает найти места с бесплатной едой! Продукты, готовые блюда, холодильники солидарности во Франции - все рядом с вами!"
   },
   {
     "categoryId": "shared_kitchen",
     "label": "Общая кухня",
     "slug": "cuisine-partagee",
     "synonyms": [
-      "cuisine cuisiner preparer partage partagee cuisine partagee"
+      "бесплатное питание",
+      "бесплатный обед",
+      "кухня",
+      "готовить",
+      "еда",
+      "помощь едой",
+      "продукты",
+      "продуктовый набор",
+      "столовая",
+      "социальная столовая",
+      "готовить вместе",
+      "место для приготовления пищи",
+      "бесплатная еда",
+      "суп",
+      "обед"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Cuisine partagée "
+    "seoTitle": "Найдите общую кухню рядом с вами с Soliguide",
+    "seoDescription": "Soliguide поможет вам найти бесплатные обеды, кухни, где можно готовить вместе, и продуктовые наборы. Найдите помощь рядом с вами во Франции!"
   },
   {
     "categoryId": "cooking_workshop",
     "label": "Кулинарный мастер-класс",
     "slug": "atelier-cuisine",
     "synonyms": [
-      "atelier cuisine cuisiner partage preparer atelier cuisine cuire"
+      "кулинария",
+      "готовка",
+      "рецепты",
+      "уроки кулинарии",
+      "мастер-класс по кулинарии",
+      "еда",
+      "питание",
+      "обучение кулинарии",
+      "кулинарные курсы",
+      "социальная кулинария",
+      "бесплатные курсы",
+      "помощь в питании",
+      "научиться готовить",
+      "кулинарный опыт",
+      "вкусные блюда"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Atelier de cuisine"
+    "seoTitle": "Откройте для себя кулинарные мастер-классы с Soliguide",
+    "seoDescription": "Soliguide поможет найти бесплатные кулинарные мастер-классы. Научитесь готовить вкусные и полезные блюда! Курсы в Париже, Лионе и Марселе рядом с вами."
   },
   {
     "categoryId": "baby_parcel",
     "label": "Детский пакет",
     "slug": "colis-bebe",
     "synonyms": [
-      "bebe nourrir nourisson colis colis bebe puericulture lait couche biberon maternite manger nourriture vetement"
+      "Детское питание",
+      "Детская одежда",
+      "Подгузники",
+      "Детские товары",
+      "Уход за ребенком",
+      "Помощь детям",
+      "Детский набор",
+      "Бесплатная помощь",
+      "Малоимущим семьям",
+      "Детские вещи б/у",
+      "Игрушки",
+      "Молочные смеси",
+      "Детские каши",
+      "Коляски",
+      "Кроватки"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Colis pour bébé"
+    "seoTitle": "Soliguide поможет найти «Детский пакет» во Франции",
+    "seoDescription": "Soliguide находит места, где выдают детское питание, одежду и товары для ухода за ребенком. Все рядом с вами во Франции!"
   },
   {
     "categoryId": "food_voucher",
     "label": "Ваучер/чек на питание",
     "slug": "bon-alimentaire",
     "synonyms": [
-      "bon cheque ticket alimentaire gratuit aide"
+      "талон на питание",
+      "чек на питание",
+      "продовольственный ваучер",
+      "бесплатное питание",
+      "помощь с едой",
+      "продукты",
+      "горячая еда",
+      "столовая",
+      "суп",
+      "бесплатный обед",
+      "волонтерская организация",
+      "благотворительность",
+      "поддержка",
+      "помощь нуждающимся",
+      "социальная помощь"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Distribution de bon/chèque alimentaire"
+    "seoTitle": "Получите ваучер/чек на питание с Soliguide во Франции",
+    "seoDescription": "Soliguide поможет вам найти места, где можно получить бесплатные талоны на питание, продукты или горячую еду. Найдите помощь рядом с вами!"
   },
   {
     "categoryId": "community_garden",
     "label": "Сад солидарности",
     "slug": "jardin-solidaire",
     "synonyms": [
-      "fruits pousser jardin bio nature legumes jardin solidaire jardinage"
+      "огород",
+      "общественный огород",
+      "садоводство",
+      "выращивание овощей",
+      "фрукты",
+      "овощи",
+      "растения",
+      "земля",
+      "семена",
+      "почва",
+      "культивирование",
+      "зеленый",
+      "природа",
+      "общение",
+      "учение"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Jardin solidaire"
+    "seoTitle": "Найти сад солидарности рядом с вами с Soliguide",
+    "seoDescription": "Soliguide помогает найти сады солидарности во Франции. Учитесь садоводству, общайтесь, получайте свежие продукты! Все рядом с вами."
   },
   {
     "categoryId": "counseling",
     "label": "Административное и юридическое консультирование",
     "slug": "conseil",
     "synonyms": [
-      "conseil conseils soutien accompagnement aide se faire aider conseiller numerique"
+      "административная помощь",
+      "юридическая помощь",
+      "консультация юриста",
+      "помощь в документах",
+      "сопровождение",
+      "бесплатная консультация",
+      "права",
+      "закон",
+      "бюро помощи",
+      "ассоциация",
+      "адвокат",
+      "нотариус",
+      "CAF",
+      "CPAM",
+      "Pôle emploi"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Нужна административная и юридическая консультация? Soliguide поможет вам",
+    "seoDescription": "Soliguide показывает, где получить бесплатную консультацию юриста, помощь в оформлении документов или сопровождение в административных органах во fr рядом с вами."
   },
   {
     "categoryId": "legal_advice",
     "label": "Консультация юриста",
     "slug": "permanence-juridique",
     "synonyms": [
-      "proces permanence juridique amende avocat droits droit recours juge ldh droits de l homme ligue des droits de l homme acces au droit cnda ofpra asile sejour carte sejour divorce separation"
+      "юрист",
+      "адвокат",
+      "правовая помощь",
+      "бесплатная консультация",
+      "защита прав",
+      "оформление документов",
+      "суд",
+      "закон",
+      "юридическая консультация",
+      "помощь мигрантам",
+      "помощь беженцам",
+      "права человека",
+      "социальный юрист",
+      "государственная помощь юриста",
+      "адвокат для малоимущих"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences juridiques (surendettement, demande d'asile, procès, etc.)."
+    "seoTitle": "Soliguide поможет найти бесплатную консультацию юриста",
+    "seoDescription": "Soliguide подскажет, где получить бесплатную консультацию юриста, помощь в оформлении документов и защите прав в fr. Найдите ближайшее место!"
   },
   {
     "categoryId": "social_accompaniment",
     "label": "Социальная поддержка",
     "slug": "accompagnement-social",
     "synonyms": [
-      "accompagnement assistante sociale social travailleur social droits demarches femmes battues femme battue violence isolement isole solitude isolee partir separation divorce victime"
+      "помощь",
+      "поддержка",
+      "социальный работник",
+      "бесплатная еда",
+      "жилье",
+      "юрист",
+      "консультация",
+      "административная помощь",
+      "солидарность",
+      "поддержка семьи",
+      "материальная помощь",
+      "временное жилье",
+      "социальное жилье",
+      "борьба с бедностью",
+      "права"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Accompagement des personnes dans leur réinsertion (assistantes sociales, permanences, etc.)."
+    "seoTitle": "Soliguide поможет найти социальную поддержку во Франции",
+    "seoDescription": "Soliguide показывает места, где можно получить бесплатную еду, консультацию юриста или жилье. Найдите помощь рядом с вами!"
   },
   {
     "categoryId": "disability_advice",
     "label": "Помощь инвалидам",
     "slug": "conseil-handicap",
     "synonyms": [
-      "conseil handicap handicap aah conseils conseil handicape handicapee personne a mobilite reduite pmr"
+      "инвалидность",
+      "ограниченные возможности",
+      "помощь",
+      "адаптация",
+      "транспорт для инвалидов",
+      "консультация",
+      "права инвалидов",
+      "доступная среда",
+      "кресло-коляска",
+      "пенсия по инвалидности",
+      "жилье для инвалидов",
+      "ассистент",
+      "социальная поддержка",
+      "реабилитация",
+      "медицинская помощь"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'accès aux droits pour les personnes en situation de handicap."
+    "seoTitle": "Soliguide – как найти помощь инвалидам во Франции",
+    "seoDescription": "Soliguide поможет найти ресурсы для инвалидов: консультации, транспорт, адаптация жилья и многое другое. Найдите помощь рядом с вами!"
   },
   {
     "categoryId": "administrative_assistance",
     "label": "Административное консультирование",
     "slug": "conseil-administratif",
     "synonyms": [
-      "conseil administratif conseils administratifs aide administrative demarches rsa cmu allocations papiers securite sociale caf cpampapier conseiller numerique"
+      "администрация",
+      "документы",
+      "помощь в оформлении",
+      "заполнение бланков",
+      "консультация",
+      "совет",
+      "поддержка",
+      "права",
+      "социальная помощь",
+      "пособия",
+      "жилье",
+      "юридическая помощь",
+      "правовая помощь",
+      "CAF",
+      "CPAM"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'aide administrative (RSA, CMU, allocations, chômage, etc.)."
+    "seoTitle": "Soliguide поможет вам с административными консультациями",
+    "seoDescription": "Soliguide подскажет, где получить бесплатную консультацию по вопросам документов, пособий или жилья. Найдите ближайшую к вам организацию!"
   },
   {
     "categoryId": "parent_assistance",
     "label": "Консультации для родителей",
     "slug": "conseil-parents",
     "synonyms": [
-      "conseil parents conseil aux parents conseil parental mediation familiale mediation conflit adolescents enfants parent parentalite parents enfant ado adolescent couple couples"
+      "помощь родителям",
+      "консультация психолога",
+      "поддержка семьи",
+      "советы родителям",
+      "воспитание детей",
+      "семейный психолог",
+      "трудности воспитания",
+      "права родителей",
+      "юридическая помощь семье",
+      "поддержка детей",
+      "семейные проблемы",
+      "кризис в семье",
+      "бесплатная консультация",
+      "родительский клуб",
+      "группы поддержки"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permances d'aide pour les jeunes parents et les parents rencontrant des difficultés avec leurs enfants."
+    "seoTitle": "Soliguide – консультации для родителей во Франции: помощь рядом с вами",
+    "seoDescription": "Soliguide поможет найти бесплатные консультации для родителей во Франции. Поддержка психологов, юристов, педагогов. Найдите помощь рядом с вами!"
   },
   {
     "categoryId": "budget_advice",
     "label": "Консультация по бюджету",
     "slug": "conseil-budget",
     "synonyms": [
-      "conseil budget conseil budget argent finance cresus"
+      "бюджет",
+      "консультация",
+      "финансы",
+      "долги",
+      "экономия",
+      "управление бюджетом",
+      "советы",
+      "помощь",
+      "поддержка",
+      "деньги",
+      "кредит",
+      "планирование бюджета",
+      "финансовая грамотность",
+      "социальная помощь",
+      "CCAS"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Points conseil budget (PCB) proposent des conseils gratuits et personnalisés de gestion budgétaire "
+    "seoTitle": "Soliguide поможет с консультацией по бюджету во Франции",
+    "seoDescription": "Soliguide поможет найти бесплатные консультации по управлению бюджетом, советы по экономии, поддержку в погашении долгов. Найдите ближайшие места!"
   },
   {
     "categoryId": "training_and_jobs",
     "label": "обучение и трудоустройство",
     "slug": "formation-emploi",
     "synonyms": [
-      "formation emploi travailler job travail boulot se former taf taff taffe apprendre lire etudier comprendre france travail pole emploi conseiller numerique"
+      "работа",
+      "стажировка",
+      "курсы",
+      "тренинг",
+      "собеседование",
+      "резюме",
+      "мотивационное письмо",
+      "учеба",
+      "навыки",
+      "профессия",
+      "центр занятости",
+      "поиск работы",
+      "поддержка",
+      "карьера",
+      "трудоустройство"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Soliguide поможет вам с обучением и трудоустройством",
+    "seoDescription": "Soliguide показывает места, где можно получить помощь в обучении и трудоустройстве. Например, курсы французского, подготовка резюме, поиск работы. Все рядом с вами!"
   },
   {
     "categoryId": "digital_tools_training",
     "label": "Цифровое обучение",
     "slug": "formation-numerique",
     "synonyms": [
-      "formation numerique atelier numerique formation informatique ordinateur connexion se former technologie tech apprendre comprendre lire etudier conseiller numerique"
+      "цифровой",
+      "обучение",
+      "интернет",
+      "компьютер",
+      "смартфон",
+      "планшет",
+      "поддержка",
+      "помощь",
+      "курсы",
+      "консультация",
+      "грамотность",
+      "навыки",
+      "подключение",
+      "онлайн",
+      "бесплатно"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences ou ateliers visant à la maitrise d'outils informatiques."
+    "seoTitle": "Цифровое обучение стало проще с Soliguide",
+    "seoDescription": "Soliguide помогает найти бесплатные курсы, доступ к интернету и консультации по цифровой грамотности во Франции. Найдите помощь рядом с вами!"
   },
   {
     "categoryId": "job_coaching",
     "label": "Помощь в поиске работы",
     "slug": "accompagnement-emploi",
     "synonyms": [
-      "accompagnement emploi travailler job pole emploi travail boulot se former etre accompagne taf taff taffe apprendre comprendre lire etudier france travail orientation"
+      "работа",
+      "поиск работы",
+      "резюме",
+      "собеседование",
+      "стажировка",
+      "профобучение",
+      "вакансии",
+      "трудоустройство",
+      "карьера",
+      "центр занятости",
+      "помощь в трудоустройстве",
+      "консультация по трудоустройству",
+      "курсы",
+      "подработка",
+      "биржа труда"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Aide au retour à l'emploi : ateliers de préparation aux entretiens, aide à la recherche d'emploi, atelier CV, etc."
+    "seoTitle": "Soliguide поможет вам найти работу",
+    "seoDescription": "Soliguide показывает места, где помогут составить резюме, подготовиться к собеседованию или пройти профобучение. Ищите рядом с вами!"
   },
   {
     "categoryId": "integration_through_economic_activity",
     "label": "Интеграция через экономическую деятельность",
     "slug": "insertion-activite-economique",
     "synonyms": [
-      "chantier de reinsertion chantier reinsertion travailler job insertion reinsertion siae iae se reinserer taf taff taffe apprendre comprendre lire etudier orientation"
+      "работа",
+      "стажировка",
+      "обучение",
+      "профессия",
+      "навыки",
+      "собеседование",
+      "резюме",
+      "центр занятости",
+      "поиск работы",
+      "трудоустройство",
+      "адаптация",
+      "социализация",
+      "предпринимательство",
+      "карьера",
+      "зарплата"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Embauche de personnes en insertion."
+    "seoTitle": "Soliguide поможет с экономической интеграцией во Франции",
+    "seoDescription": "Soliguide помогает найти работу, пройти стажировку или получить профессиональное обучение. Найдите ближайшие к вам центры поддержки!"
   },
   {
     "categoryId": "tutoring",
     "label": "Репетиторство в школе",
     "slug": "soutien-scolaire",
     "synonyms": [
-      "soutien scolaire aide au devoir etudes college lycee devoirs cours apprendre comprendre lire etudier"
+      "подготовка к школе",
+      "помощь в учебе",
+      "занятия с репетитором",
+      "бесплатные занятия",
+      "школьная поддержка",
+      "домашнее задание",
+      "образование",
+      "успеваемость",
+      "подготовка к экзаменам",
+      "учитель",
+      "педагог",
+      "консультация",
+      "алгебра",
+      "геометрия",
+      "французский язык"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Soutien scolaire gratuit (préciser le niveau dans la description)."
+    "seoTitle": "Soliguide поможет найти репетиторов в школе для вашего ребенка",
+    "seoDescription": "Soliguide поможет найти бесплатные занятия, помощь с домашним заданием и поддержку в учебе во Франции рядом с вами! Услуги геолокации."
   },
   {
     "categoryId": "accomodation_and_housing",
     "label": "Проживание и жилье",
     "slug": "hebergement-et-logement",
     "synonyms": [
-      "hebergement dormir lit logement repos toit hebergement logement logement hebergement et logement hebergementetlogement domir"
+      "жилье",
+      "проживание",
+      "приют",
+      "временное жилье",
+      "социальное жилье",
+      "квартира",
+      "дом",
+      "кров",
+      "ночлег",
+      "убежище",
+      "общежитие",
+      "центр размещения",
+      "аренда",
+      "бесплатное жилье",
+      "помощь с жильем"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Soliguide поможет найти проживание и жилье во Франции",
+    "seoDescription": "Soliguide поможет вам найти приют, временное жилье или социальную квартиру во Франции. Найдите бесплатное жилье рядом с вами!"
   },
   {
     "categoryId": "overnight_stop",
     "label": "Ночная остановка",
     "slug": "halte-nuit",
     "synonyms": [
-      "halte de nuit halte nuit dormir se reposer alte de nui accueil nuit accueil de nuit accueil nuit"
+      "ночлег",
+      "приют",
+      "временное жилье",
+      "ночлежка",
+      "сон",
+      "отдых",
+      "душ",
+      "еда",
+      "ужин",
+      "завтрак",
+      "тепло",
+      "безопасность",
+      "помощь бездомным",
+      "адрес помощи",
+      "центр приема"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "La halte de nuit est un lieu d'accueil et de repos pour les personnes sans abri ouvert de 20h à 8h du matin, 7/7 jours."
+    "seoTitle": "Soliguide поможет найти «Ночная остановка»",
+    "seoDescription": "Soliguide покажет, где переночевать, поесть и получить помощь с гигиеной. Найдите ближайшие к вам «Ночная остановка» во Франции!"
   },
   {
     "categoryId": "emergency_accommodation",
     "label": "Приюты для чрезвычайных ситуаций",
     "slug": "hebergement-urgence",
     "synonyms": [
-      "hebergement urgence dormir lit logement chu halte de nuit toit a la rue rue dehors accueil de nuit accueil nuit accueil nuit"
+      "временное жилье",
+      "экстренное размещение",
+      "ночлег",
+      "укрытие",
+      "приют для бездомных",
+      "помощь бездомным",
+      "кризисный центр",
+      "служба спасения",
+      "социальная помощь",
+      "горячая линия",
+      "адрес",
+      "где переночевать",
+      "бесплатное жилье",
+      "помощь в трудную минуту",
+      "крыша над головой"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Hébergement à court terme (à la nuitée), accessible directement."
+    "seoTitle": "Найдите приюты для чрезвычайных ситуаций с Soliguide",
+    "seoDescription": "Soliguide поможет найти временное жилье, питание и психологическую поддержку во Франции. Геолокация приютов для экстренных случаев."
   },
   {
     "categoryId": "long_term_accomodation",
     "label": "Долгосрочные приюты",
     "slug": "hebergement-long-terme",
     "synonyms": [
-      "hebergement dormir lit logement chrs repos toit"
+      "временное жилье",
+      "центр размещения",
+      "социальное жилье",
+      "бесплатное проживание",
+      "крыша над головой",
+      "помощь бездомным",
+      "ночлег",
+      "аварийное жилье",
+      "приют для женщин",
+      "приют для мужчин",
+      "реабилитационный центр",
+      "социальная адаптация",
+      "долгосрочное проживание",
+      "жилье для беженцев",
+      "общежитие"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Possibilité d'hébergement à long terme, au sein de la structure ou d'une structure partenaire. Indiquer dans la description les modalités d'accès."
+    "seoTitle": "Soliguide поможет найти долгосрочные приюты во Франции",
+    "seoDescription": "Soliguide показывает адреса, где можно получить жилье на длительный срок, социальную поддержку, помощь в оформлении документов. Найдите помощь рядом с вами!"
   },
   {
     "categoryId": "citizen_housing",
     "label": "Жилье для граждан",
     "slug": "hebergement-citoyen",
     "synonyms": [
-      "hebergement hebergement citoyen merci pour l invit singa"
+      "временное жилье",
+      "социальное жилье",
+      "аренда",
+      "квартира",
+      "дом",
+      "студия",
+      "общежитие",
+      "приют",
+      "центр размещения",
+      "помощь с жильем",
+      "консультация по жилью",
+      "жилье для беженцев",
+      "жилье для малоимущих",
+      "жилье для бездомных",
+      "срочное размещение"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Soliguide поможет найти жилье для граждан во Франции",
+    "seoDescription": "Soliguide поможет вам найти временное жилье, социальное жилье или консультацию по жилищным вопросам. Найдите ближайшие места помощи!"
   },
   {
     "categoryId": "access_to_housing",
     "label": "Жилищная помощь",
     "slug": "conseil-logement",
     "synonyms": [
-      "hebergement dalo logement expulsion toit maison impayes factures chauffage conseil conseil logement"
+      "жилье",
+      "помощь с жильем",
+      "аренда",
+      "арендная плата",
+      "временное жилье",
+      "приют",
+      "общежитие",
+      "субсидия",
+      "социальное жилье",
+      "бесплатное жилье",
+      "дом",
+      "крыша над головой",
+      "консультация по жилью",
+      "срочное размещение"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'accès au logement (logement social, DALO, etc.)."
+    "seoTitle": "Soliguide поможет найти жилищную помощь во Франции",
+    "seoDescription": "Soliguide показывает места помощи с жильем. Например, доступное жилье, консультации или временный приют. Найдите рядом с вами!"
   },
   {
     "categoryId": "hygiene_and_wellness",
     "label": "Доступ к гигиене",
     "slug": "hygiene",
     "synonyms": [
-      "hygiene laver douche bain se laver se doucher propre"
+      "душ",
+      "прачечная",
+      "мыло",
+      "шампунь",
+      "зубная паста",
+      "зубная щетка",
+      "туалет",
+      "гигиенические прокладки",
+      "тампоны",
+      "бритье",
+      "дезодорант",
+      "стирка",
+      "чистота",
+      "уборка",
+      "постирать"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Найти доступ к гигиене с Soliguide во Франции",
+    "seoDescription": "Soliguide поможет вам найти душевые, прачечные и бесплатные средства гигиены во Франции. Найдите ближайшие места!"
   },
   {
     "categoryId": "shower",
     "label": "Душ",
     "slug": "douche",
     "synonyms": [
-      "douche laver se laver bain bain douche piscine propre sale cheveux"
+      "бесплатный душ",
+      "душ для бездомных",
+      "гигиена",
+      "умыться",
+      "помыться",
+      "чистота",
+      "мыло",
+      "шампунь",
+      "горячая вода",
+      "где помыться",
+      "помывочная",
+      "прачечная",
+      "стирка",
+      "стиральная машина",
+      "сушка"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Найти бесплатный душ с Soliguide – это просто!",
+    "seoDescription": "Soliguide поможет вам найти бесплатный душ, прачечную и место для хранения вещей во Франции. Найдите ближайшие места на карте!"
   },
   {
     "categoryId": "hairdresser",
     "label": "Парикмахер",
     "slug": "coiffeur",
     "synonyms": [
-      "coiffeur cheveux"
+      "стрижка",
+      "прическа",
+      "парикмахерская",
+      "салон красоты",
+      "укладка",
+      "окрашивание",
+      "бесплатная стрижка",
+      "социальный парикмахер",
+      "волосы",
+      "стилист",
+      "консультация",
+      "уход за волосами",
+      "модельная стрижка",
+      "женская стрижка",
+      "мужская стрижка"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Найдите бесплатного парикмахера с Soliguide",
+    "seoDescription": "Soliguide поможет найти бесплатную стрижку, консультацию стилиста или курсы парикмахерского искусства во Франции. Геолокация поможет найти ближайшие места."
   },
   {
     "categoryId": "laundry",
     "label": "Услуги прачечной",
     "slug": "laverie",
     "synonyms": [
-      "laverie vetements vetement laver machine a laver pressing linge lave linge"
+      "стирка",
+      "прачечная самообслуживания",
+      "белье",
+      "стиральная машина",
+      "сушка",
+      "глажка",
+      "чистое белье",
+      "бесплатная стирка",
+      "социальная прачечная",
+      "услуги прачечной",
+      "гигиена",
+      "одежда",
+      "постирать",
+      "выстирать",
+      "санитария"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Lave-linge en accès libre."
+    "seoTitle": "Найдите услуги прачечной с Soliguide",
+    "seoDescription": "Soliguide поможет найти бесплатную стирку, сушку или глажку во Франции. Найдите ближайшую прачечную самообслуживания рядом с вами!"
   },
   {
     "categoryId": "wellness",
     "label": "Благополучие",
     "slug": "bien-etre",
     "synonyms": [
-      "bien etre coiffeur massage maquillage belle beau pedicure manicure manucire"
+      "психологическая помощь",
+      "юридическая помощь",
+      "медицинская помощь",
+      "социальная помощь",
+      "поддержка",
+      "консультация",
+      "ориентация",
+      "совет",
+      "помощь в трудоустройстве",
+      "жилье",
+      "питание",
+      "одежда",
+      "права",
+      "трудности"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Ateliers de bien-être : coiffeur, massage, sophrologie, etc. (à préciser dans la description)."
+    "seoTitle": "Найдите поддержку для вашего благополучия с Soliguide",
+    "seoDescription": "Soliguide поможет вам найти бесплатного врача, получить юридическую помощь и консультацию по трудоустройству. Найдите организации рядом с вами!"
   },
   {
     "categoryId": "toilets",
     "label": "Туалеты",
     "slug": "toilettes",
     "synonyms": [
-      "toilettes sanisette pisser pipi wc caca chiotte toilet"
+      "туалет",
+      "уборная",
+      "бесплатный туалет",
+      "общественный туалет",
+      "WC",
+      "санузел",
+      "где найти туалет",
+      "ближайший туалет",
+      "пользоваться туалетом",
+      "места с туалетами",
+      "гигиена",
+      "удобства",
+      "кабинка",
+      "туалет для инвалидов",
+      "доступный туалет"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Toilettes en accès libre."
+    "seoTitle": "Найти туалеты рядом с вами с Soliguide",
+    "seoDescription": "Soliguide поможет вам найти общественные туалеты, туалеты в социальных центрах и другие бесплатные варианты во Франции. Узнайте, где они расположены!"
   },
   {
     "categoryId": "hygiene_products",
     "label": "Средства по уходу",
     "slug": "produits-hygiene",
     "synonyms": [
-      "periodiques protections periodiques protection periodique regles regle tampon serviette hygienique serviette menstrues produits d hygiene hygiene cup culotte tampax"
+      "гигиена",
+      "душ",
+      "стирка",
+      "мыло",
+      "шампунь",
+      "зубная паста",
+      "зубная щетка",
+      "дезодорант",
+      "туалетная бумага",
+      "предметы гигиены",
+      "средства личной гигиены",
+      "чистота",
+      "уход за собой",
+      "санитария",
+      "баня"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Distribution de produits d'hygiène (savons, dentifrice, tampons, serviettes hygiéniques, etc.)."
+    "seoTitle": "Soliguide поможет вам найти средства по уходу",
+    "seoDescription": "Soliguide поможет найти гигиенические наборы, душевые, стирку во Франции. Найдите рядом с вами!"
   },
   {
     "categoryId": "face_masks",
     "label": "Маски",
     "slug": "masques",
     "synonyms": [
-      "masque protection covid virus"
+      "защита",
+      "респиратор",
+      "бесплатные маски",
+      "маска для лица",
+      "маска медицинская",
+      "FFP2",
+      "тканевая маска",
+      "гигиена",
+      "профилактика",
+      "коронавирус",
+      "COVID-19",
+      "защитная маска",
+      "получить маску",
+      "пункт выдачи масок",
+      "аптека"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Masques de protection"
+    "seoTitle": "Где взять маски бесплатно с Soliguide",
+    "seoDescription": "Soliguide поможет вам найти пункты бесплатной выдачи масок, аптеки и социальные центры во Франции, где их можно получить. Найдите ближайшее место!"
   },
   {
     "categoryId": "equipment",
     "label": "Оборудование",
     "slug": "materiel",
     "synonyms": [
-      "materiel affaires mobilier"
+      "одежда",
+      "мебель",
+      "бытовая техника",
+      "посуда",
+      "инструменты",
+      "обогреватель",
+      "кровать",
+      "коляска",
+      "велосипед",
+      "матрас",
+      "одеяло",
+      "помощь в хозяйстве",
+      "техника",
+      "предметы первой необходимости",
+      "средства гигиены"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Найти оборудование с помощью Soliguide",
+    "seoDescription": "Soliguide поможет вам найти одежду, бытовую технику и другие необходимые вещи во Франции. Найдите ближайшие пункты помощи рядом с вами!"
   },
   {
     "categoryId": "luggage_storage",
     "label": "Хранилище багажа",
     "slug": "bagagerie",
     "synonyms": [
-      "bagage bagagerie sac poser casier"
+      "камера хранения",
+      "хранение вещей",
+      "оставить багаж",
+      "вещевая комната",
+      "социальная прачечная",
+      "вокзал",
+      "ассоциация",
+      "бесплатное хранение",
+      "недорогое хранение",
+      "где оставить вещи",
+      "безопасное хранение",
+      "временное хранение",
+      "камера для чемоданов",
+      "услуги хранения багажа",
+      "гардероб"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Lieu permettant de conserver des bagages ou matériel."
+    "seoTitle": "Найти камеру хранения багажа с Soliguide во Франции",
+    "seoDescription": "Soliguide поможет вам найти камеры хранения багажа. Во Франции это могут быть социальные прачечные, ассоциации или вокзалы. Геолокация поможет вам найти ближайшее место."
   },
   {
     "categoryId": "solidarity_store",
     "label": "Магазин солидарности",
     "slug": "boutique-solidaire",
     "synonyms": [
-      "boutique solidaire meubles accessoires s habiller"
+      "солидарность",
+      "помощь",
+      "одежда",
+      "продукты",
+      "питание",
+      "дом",
+      "низкие цены",
+      "скидки",
+      "благотворительность",
+      "поддержка",
+      "вещи",
+      "продуктовый магазин",
+      "секонд хенд",
+      "гуманитарная помощь",
+      "бесплатно"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Boutique vendant du matériel à prix solidaire."
+    "seoTitle": "Найти магазины солидарности рядом с вами с Soliguide",
+    "seoDescription": "Soliguide поможет вам найти магазины солидарности во Франции: одежда, продукты питания, товары для дома по низким ценам. Найдите ближайший магазин!"
   },
   {
     "categoryId": "clothing",
     "label": "Одежда",
     "slug": "vetements",
     "synonyms": [
-      "vestiaire vetements t shirt pantalon robe vetir vestiboutique pull manteau habit s habiller"
+      "одежда",
+      "одежда бесплатно",
+      "бесплатная одежда",
+      "пункт выдачи одежды",
+      "социальный магазин",
+      "благотворительность",
+      "пожертвования",
+      "одежда для женщин",
+      "одежда для мужчин",
+      "одежда для детей",
+      "одежда для младенцев",
+      "зимняя одежда",
+      "летняя одежда",
+      "одежда б/у",
+      "одежда новая"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Vêtements gratuits ou à prix symbolique. Préciser le sexe et/ou l'âge dans les conditions."
+    "seoTitle": "Найдите бесплатную одежду с Soliguide",
+    "seoDescription": "Soliguide поможет вам найти одежду во Франции. Получите одежду бесплатно, найдите пункты раздачи, воспользуйтесь социальными магазинами. Геолокация доступна!"
   },
   {
     "categoryId": "animal_assitance",
     "label": "Домашние питомцы",
     "slug": "animaux",
     "synonyms": [
-      "animaux animals chien chat croquettes animal"
+      "питомец",
+      "животное",
+      "собака",
+      "кошка",
+      "уход",
+      "ветеринар",
+      "лечение",
+      "вакцинация",
+      "корм",
+      "приют",
+      "помощь",
+      "бесплатно",
+      "адрес",
+      "найти",
+      "поддержка"
     ],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Aide aux animaux de compagnie"
+    "seoTitle": "Soliguide поможет позаботиться о ваших домашних питомцах во Франции",
+    "seoDescription": "Soliguide находит ветеринаров, принимающих бесплатно, корм для животных и места, где питомцам рады. Найдите помощь рядом с вами!"
   },
   {
     "categoryId": "health",
@@ -796,9 +1536,7 @@
     "categoryId": "vaccination",
     "label": "Прививки",
     "slug": "vaccination",
-    "synonyms": [
-      "vaccination vaccin covid piqure rappel rappel de vaccin"
-    ],
+    "synonyms": ["vaccination vaccin covid piqure rappel rappel de vaccin"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -835,9 +1573,7 @@
     "categoryId": "health_specialists",
     "label": "Специализированная медицина",
     "slug": "specialistes-medecine",
-    "synonyms": [
-      "specialistes specialiste"
-    ],
+    "synonyms": ["specialistes specialiste"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -848,9 +1584,7 @@
     "categoryId": "allergology",
     "label": "Аллергии",
     "slug": "allergologie",
-    "synonyms": [
-      "allergologie allergies"
-    ],
+    "synonyms": ["allergologie allergies"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -861,9 +1595,7 @@
     "categoryId": "cardiology",
     "label": "Кардиология",
     "slug": "cardiologie",
-    "synonyms": [
-      "cardiologie coeur cardiaque cardio"
-    ],
+    "synonyms": ["cardiologie coeur cardiaque cardio"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -874,9 +1606,7 @@
     "categoryId": "dermatology",
     "label": "Дерматология",
     "slug": "dermatologie",
-    "synonyms": [
-      "dermato dermatologie dermatologue peau bouton"
-    ],
+    "synonyms": ["dermato dermatologie dermatologue peau bouton"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -887,9 +1617,7 @@
     "categoryId": "echography",
     "label": "Медицинское УЗИ",
     "slug": "echographie",
-    "synonyms": [
-      "echographie bebe enceinte"
-    ],
+    "synonyms": ["echographie bebe enceinte"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -900,9 +1628,7 @@
     "categoryId": "endocrinology",
     "label": "Эндокринология",
     "slug": "endocrinologie",
-    "synonyms": [
-      "endocrinologie hormones tyroide"
-    ],
+    "synonyms": ["endocrinologie hormones tyroide"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -913,9 +1639,7 @@
     "categoryId": "gastroenterology",
     "label": "Гастроэнтерология",
     "slug": "gastro-enterologie",
-    "synonyms": [
-      "gastro enterologue gastro enterologie kk caca"
-    ],
+    "synonyms": ["gastro enterologue gastro enterologie kk caca"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -939,9 +1663,7 @@
     "categoryId": "kinesitherapy",
     "label": "Кинезиотерапия",
     "slug": "kinesitherapie",
-    "synonyms": [
-      "kinesitherapie reeducation blessure kine"
-    ],
+    "synonyms": ["kinesitherapie reeducation blessure kine"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -952,9 +1674,7 @@
     "categoryId": "mammography",
     "label": "Маммография",
     "slug": "mammographie",
-    "synonyms": [
-      "mammographie radio seins"
-    ],
+    "synonyms": ["mammographie radio seins"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -965,9 +1685,7 @@
     "categoryId": "ophthalmology",
     "label": "Офтальмология",
     "slug": "ophtalmologie",
-    "synonyms": [
-      "ophtalmologie ophtalmologue yeux voir lunette"
-    ],
+    "synonyms": ["ophtalmologie ophtalmologue yeux voir lunette"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -991,9 +1709,7 @@
     "categoryId": "nutrition",
     "label": "Диетолог",
     "slug": "nutrition",
-    "synonyms": [
-      "nutrition dietetique regime surpoids obesite perte de poids"
-    ],
+    "synonyms": ["nutrition dietetique regime surpoids obesite perte de poids"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -1004,9 +1720,7 @@
     "categoryId": "pedicure",
     "label": "Подология",
     "slug": "pedicure",
-    "synonyms": [
-      "pedicure pied pie soigner pieds soin podologue podologie"
-    ],
+    "synonyms": ["pedicure pied pie soigner pieds soin podologue podologie"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -1030,9 +1744,7 @@
     "categoryId": "pneumology",
     "label": "Пневмонология",
     "slug": "pneumologie",
-    "synonyms": [
-      "poumons respiration respirer bronches"
-    ],
+    "synonyms": ["poumons respiration respirer bronches"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -1043,9 +1755,7 @@
     "categoryId": "radiology",
     "label": "Радиология",
     "slug": "radiologie",
-    "synonyms": [
-      "radiologie radiologue radiology rayonx fracture entorse"
-    ],
+    "synonyms": ["radiologie radiologue radiology rayonx fracture entorse"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -1056,9 +1766,7 @@
     "categoryId": "rheumatology",
     "label": "Ревматология",
     "slug": "rhumatologie",
-    "synonyms": [
-      "rhumatologue rumatologie"
-    ],
+    "synonyms": ["rhumatologue rumatologie"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -1069,9 +1777,7 @@
     "categoryId": "urology",
     "label": "Урология",
     "slug": "urologie",
-    "synonyms": [
-      "urologie urology"
-    ],
+    "synonyms": ["urologie urology"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -1095,9 +1801,7 @@
     "categoryId": "stomatology",
     "label": "Стоматология",
     "slug": "stomatologie",
-    "synonyms": [
-      "stomatologie stomatologue estomac digestion ventre"
-    ],
+    "synonyms": ["stomatologie stomatologue estomac digestion ventre"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -1108,9 +1812,7 @@
     "categoryId": "osteopathy",
     "label": "Остеопат",
     "slug": "osteo",
-    "synonyms": [
-      "ostheopathe osteo dos mal"
-    ],
+    "synonyms": ["ostheopathe osteo dos mal"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -1121,9 +1823,7 @@
     "categoryId": "acupuncture",
     "label": "Иглоукалывание",
     "slug": "acupuncture",
-    "synonyms": [
-      "acupuncture accupuncture bien etre"
-    ],
+    "synonyms": ["acupuncture accupuncture bien etre"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -1160,9 +1860,7 @@
     "categoryId": "wifi",
     "label": "Вай-фай",
     "slug": "wifi",
-    "synonyms": [
-      "wifi internet web connexion reseau"
-    ],
+    "synonyms": ["wifi internet web connexion reseau"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -1173,9 +1871,7 @@
     "categoryId": "electrical_outlets_available",
     "label": "Вилки питания / электричества",
     "slug": "prise",
-    "synonyms": [
-      "prise charger electricite chargeur recharge charge"
-    ],
+    "synonyms": ["prise charger electricite chargeur recharge charge"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -1186,9 +1882,7 @@
     "categoryId": "telephone_at_your_disposal",
     "label": "Телефон",
     "slug": "telephone",
-    "synonyms": [
-      "appel gratuit telephone telephoner appeler appel"
-    ],
+    "synonyms": ["appel gratuit telephone telephoner appeler appel"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -1225,9 +1919,7 @@
     "categoryId": "carpooling",
     "label": "Совместное использование автомобилей",
     "slug": "covoiturage",
-    "synonyms": [
-      "co voiturage partage de voiture"
-    ],
+    "synonyms": ["co voiturage partage de voiture"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -1238,9 +1930,7 @@
     "categoryId": "provision_of_vehicles",
     "label": "Предоставление автомобиля",
     "slug": "vehicule",
-    "synonyms": [
-      "mise a disposition de vehicule voiture"
-    ],
+    "synonyms": ["mise a disposition de vehicule voiture"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -1251,9 +1941,7 @@
     "categoryId": "chauffeur_driven_transport",
     "label": "Транспорт с водителем",
     "slug": "chauffeur",
-    "synonyms": [
-      "transport avec chauffeur chauffeur transport a la demande"
-    ],
+    "synonyms": ["transport avec chauffeur chauffeur transport a la demande"],
     "type": "CATEGORY",
     "lang": "ru",
     "country": "fr",
@@ -1422,11 +2110,7 @@
     "categoryId": null,
     "label": "France Services: guichet unique de services publics",
     "slug": "france-services",
-    "synonyms": [
-      "france service",
-      "maison france services",
-      "MFS"
-    ],
+    "synonyms": ["france service", "maison france services", "MFS"],
     "type": "ORGANIZATION",
     "lang": "ru",
     "country": "fr",
@@ -1437,11 +2121,7 @@
     "categoryId": null,
     "label": "CIMADE: service œcuménique d'entraide",
     "slug": "cimade",
-    "synonyms": [
-      "la cimade",
-      "CIMADE",
-      "service œcuménique d'entraide"
-    ],
+    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
     "type": "ORGANIZATION",
     "lang": "ru",
     "country": "fr",
@@ -1647,11 +2327,7 @@
     "categoryId": null,
     "label": "Centre socioculturel: structure d'animation et de lien social",
     "slug": "centre-socioculturel",
-    "synonyms": [
-      "centre socio culturel",
-      "csc",
-      "centre social"
-    ],
+    "synonyms": ["centre socio culturel", "csc", "centre social"],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "ru",
     "country": "fr",

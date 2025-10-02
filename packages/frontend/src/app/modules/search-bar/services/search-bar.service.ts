@@ -67,9 +67,6 @@ export class SearchBarService implements OnDestroy {
       this.currentLanguageService.subscribe(
         (newLanguage: SupportedLanguagesCode) => {
           if (newLanguage !== this.currentLanguage) {
-            console.log(
-              `Language changed: ${this.currentLanguage} -> ${newLanguage}`
-            );
             this.currentLanguage = newLanguage;
             this.initialize();
           }
@@ -196,8 +193,6 @@ export class SearchBarService implements OnDestroy {
       );
 
       await this.saveToDB(country, lang, data);
-
-      console.log(`${country}/${lang}.json saved to IndexedDB`);
       return data;
     } catch (error) {
       console.error(`Error loading ${country}/${lang}.json:`, error);

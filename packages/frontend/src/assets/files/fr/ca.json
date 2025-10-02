@@ -4,684 +4,1407 @@
     "label": "Acollida",
     "slug": "accueil",
     "synonyms": [
-      "accueil cafe repos acceuil parler acueil accueil femme accueil femmes acueil femme violence harcelement partir"
+      "rebre",
+      "orientació",
+      "dutxar",
+      "parlar",
+      "ajuda",
+      "suport",
+      "acompanyament",
+      "informació",
+      "guia",
+      "assessorament",
+      "refugi",
+      "contacte",
+      "escoltar",
+      "comprensió",
+      "benvinguda"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Acollida: Soliguide us ajuda a trobar un lloc solidari",
+    "seoDescription": "Soliguide us guia a l'acollida. Trobeu un lloc per dutxar-vos, rebre orientació o simplement parlar. Acollida a prop vostre!"
   },
   {
     "categoryId": "day_hosting",
     "label": "Centre d'atenció diürna",
     "slug": "accueil-jour",
     "synonyms": [
-      "accueil accueil de jour cafe se reposer se poser repos reposer femmes battues femme battue fem batue fem batu violence harcelement partir"
+      "centre de dia",
+      "higiene",
+      "dutxa",
+      "bugaderia",
+      "menjar",
+      "roba",
+      "acolliment",
+      "acompanyament",
+      "suport",
+      "orientació",
+      "assistència",
+      "lleure",
+      "activitats",
+      "descans",
+      "refugi"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Lieu d'accueil des bénéficaires proposant une pause pendant la journée."
+    "seoTitle": "Troba un centre d'atenció diürna amb Soliguide",
+    "seoDescription": "Soliguide t'ajuda a trobar un centre d'atenció diürna. Dutxes, bugaderia, menjador... Geocolocalitza't per trobar ajuda a prop a França."
   },
   {
     "categoryId": "rest_area",
     "label": "Àrea de descans",
     "slug": "espace-repos",
     "synonyms": [
-      "espace de repos reposer dormir repos pause"
+      "descans",
+      "reposar",
+      "dormir",
+      "dutxa",
+      "rentar roba",
+      "higiene",
+      "refugi",
+      "calor",
+      "intempèrie",
+      "aixopluc",
+      "resguard",
+      "tranquil·litat",
+      "espai segur",
+      "banc públic",
+      "parc"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Espaces de repos ouverts au public"
+    "seoTitle": "Troba una Àrea de descans amb Soliguide per descansar",
+    "seoDescription": "Soliguide t'ajuda a trobar espais per descansar, dutxar-te o rentar la roba a França. Troba un lloc a prop teu!"
   },
   {
     "categoryId": "babysitting",
     "label": "Servei de canguratge",
     "slug": "garde-enfants",
     "synonyms": [
-      "garde enfant garderie enfant nounou assistance maternelle bebe creche"
+      "cangur",
+      "canguratge ocasional",
+      "canguratge regular",
+      "canguratge d'emergència",
+      "cura infantil",
+      "cura de nens",
+      "niñera",
+      "guarderia",
+      "lleure infantil",
+      "suport familiar",
+      "ajuda a la criança",
+      "cura de nadons",
+      "activitats per a nens",
+      "espai infantil",
+      "monitor"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Activité d'un baby-sitter consistant à garder temporairement des enfants en l'abscence de leurs parents"
+    "seoTitle": "Necessites un servei de canguratge? Soliguide t'ajuda a França",
+    "seoDescription": "Soliguide et permet trobar cangurs a França! Troba canguratge ocasional, regular o d'emergència. Consulta els serveis a prop teu amb Soliguide."
   },
   {
     "categoryId": "family_area",
     "label": "Espai familiar",
     "slug": "espace-famille",
     "synonyms": [
-      "espace famille famille maman papa parents enfants"
+      "suport familiar",
+      "ajuda familiar",
+      "mediació familiar",
+      "parentalitat positiva",
+      "espai de criança",
+      "lleure familiar",
+      "activitats familiars",
+      "suport a pares",
+      "suport a mares",
+      "nens",
+      "infants",
+      "adolescents",
+      "família",
+      "criatures",
+      "pares"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Lieu d'accueil capable de recevoir des familles"
+    "seoTitle": "Necessites un espai familiar? Soliguide t'ajuda a França",
+    "seoDescription": "Soliguide t'ajuda a trobar espais familiars a França. Exemples: suport parental, mediació familiar o activitats per a nens. Troba ajuda a prop teu!"
   },
   {
     "categoryId": "information_point",
     "label": "Servei d'informació i orientació",
     "slug": "point-information",
     "synonyms": [
-      "point information point d information information ukraine"
+      "assessorament",
+      "orientació",
+      "informació",
+      "suport",
+      "ajuda",
+      "acompanyament",
+      "drets",
+      "tràmits",
+      "legal",
+      "professional",
+      "social",
+      "consell",
+      "guia",
+      "itinerari",
+      "adreça"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Point d'information"
+    "seoTitle": "Necessites ajuda? Troba serveis d'informació i orientació amb Soliguide",
+    "seoDescription": "Soliguide t'ajuda a trobar assessorament jurídic gratuït, orientació professional i suport per tràmits administratius a França. Troba el servei més proper!"
   },
   {
     "categoryId": "activities",
     "label": "Activitats",
     "slug": "activites",
     "synonyms": [
-      "activites sorties sport loisirs sortir jeux jeu loisir isolement isole solitude isolee"
+      "oci",
+      "esbarjo",
+      "taller",
+      "curs",
+      "aprendre",
+      "cultura",
+      "esport",
+      "socialitzar",
+      "participar",
+      "descobrir",
+      "jugar",
+      "lleure",
+      "animació",
+      "intercanvi",
+      "comunitat"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Troba activitats per millorar el teu dia a dia amb Soliguide",
+    "seoDescription": "Soliguide t'ajuda a trobar tallers creatius, classes d'idiomes o sortides culturals a França. Tot geolocalitzat per a tu! Descobreix què fer a prop teu."
   },
   {
     "categoryId": "sport_activities",
     "label": "Activitats esportives",
     "slug": "activites-sportives",
     "synonyms": [
-      "activites sportives sport foot basket danse rugby loisirs loisir"
+      "esport",
+      "activitat física",
+      "gimnàs social",
+      "club esportiu",
+      "classes esportives",
+      "entrenament",
+      "exercici",
+      "benestar",
+      "salut",
+      "moure's",
+      "córrer",
+      "natació",
+      "ioga",
+      "pilates",
+      "ball"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Activités sportives : foot, jogging, marche, etc."
+    "seoTitle": "Fes esport i mantén-te actiu amb Soliguide",
+    "seoDescription": "Soliguide t'ajuda a trobar activitats esportives gratuïtes o a baix cost. Gimnasos socials, clubs esportius solidaris i classes a l'aire lliure accessibles. Troba el que necessites a prop teu!"
   },
   {
     "categoryId": "museums",
     "label": "Museu",
     "slug": "musee",
     "synonyms": [
-      "musee culture sortie peinture tableau se cultiver"
+      "museu",
+      "art",
+      "cultura",
+      "història",
+      "exposició",
+      "gratuït",
+      "descompte",
+      "accessible",
+      "visita guiada",
+      "taller",
+      "família",
+      "infants",
+      "patrimoni",
+      "galeria",
+      "col·lecció"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Musée gratuit."
+    "seoTitle": "Descobreix museus accessibles amb Soliguide a França",
+    "seoDescription": "Soliguide t'ajuda a trobar museus amb entrada gratuïta, descomptes o activitats adaptades a França. Troba'ls fàcilment a prop teu!"
   },
   {
     "categoryId": "libraries",
     "label": "Biblioteca",
     "slug": "bibliotheque",
     "synonyms": [
-      "bibliotheque livres culture mediatheque"
+      "llibres",
+      "lectura",
+      "ordinador",
+      "internet",
+      "estudi",
+      "aprenentatge",
+      "formació",
+      "coneixement",
+      "cultura",
+      "centre cultural",
+      "biblioteca pública",
+      "espai de lectura",
+      "llibres gratuïts",
+      "revistes",
+      "diaris"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Bibliothèque accessible en accès libre."
+    "seoTitle": "Cerca una biblioteca a prop teu amb Soliguide",
+    "seoDescription": "Troba llibres, ordinadors i ajuda per a la teva formació amb Soliguide. A prop teu, a França, tens biblioteques i centres d'accés gratuït."
   },
   {
     "categoryId": "other_activities",
     "label": "Activitats diverses",
     "slug": "activites-diverses",
     "synonyms": [
-      "activites diverses animation divertissement loisir s occuper culture activites enfants loisirs loisir"
+      "tallers",
+      "esports",
+      "classes",
+      "francès",
+      "lleure",
+      "cultura",
+      "jocs",
+      "sortides",
+      "cinema",
+      "teatre",
+      "art",
+      "música",
+      "dansa",
+      "manualitats",
+      "socialització"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Activités diverses : ateliers, activités culturelles, etc. (précisez.)"
+    "seoTitle": "Troba activitats diverses amb Soliguide per millorar el teu dia a dia",
+    "seoDescription": "Soliguide t'ajuda a trobar tallers, activitats esportives o classes de francès prop de tu. Descobreix llocs per a activitats diverses a França!"
   },
   {
     "categoryId": "food",
     "label": "Alimentació",
     "slug": "alimentation-bouffe-boufe-manger-soupe-repas-aliment-manger-mange-repa-faim-diner-dejeuner-dejeunet-dine-se-nourrir-fin-portage-portage-de-repas-aide-alimentaire-comida-comer-resto-du-coeur",
     "synonyms": [
-      "alimentation bouffe boufe manger soupe repas aliment manger mange repa faim diner dejeuner dejeunet dine se nourrir fin portage portage de repas aide alimentaire comida comer"
+      "menjar",
+      "aliments",
+      "menjador social",
+      "sopar",
+      "dinar",
+      "esmorzar",
+      "fruita",
+      "verdura",
+      "ajuda alimentària",
+      "banc d'aliments",
+      "cistella",
+      "paquet d'aliments",
+      "cuina",
+      "nutrició",
+      "begudes"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Necessites ajuda amb l'alimentació? Soliguide t'ajuda",
+    "seoDescription": "Troba menjadors socials, distribució d'aliments i ajuts alimentaris a prop teu amb Soliguide. Localitza'ls fàcilment!"
   },
   {
     "categoryId": "food_distribution",
     "label": "Menjador social",
     "slug": "distribution-repas",
     "synonyms": [
-      "distribution alimentaire distribution de repas manger maraude bouffe soupe nourriture faim repas mange manger fin distribution aide alimentaire restauration assise comida comer"
+      "menjar gratis",
+      "àpats gratuïts",
+      "banc d'aliments",
+      "distribució aliments",
+      "ajuda alimentària",
+      "sopar solidari",
+      "refugiats",
+      "sense sostre",
+      "precarietat",
+      "assistència alimentària",
+      "cuina social",
+      "aliments",
+      "sopar",
+      "dinar",
+      "esmorzar"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Point d'arrêt d'une distribution alimentaire. Attention : Veuillez créer une structure par point de distribution."
+    "seoTitle": "Troba un menjador social fàcilment amb Soliguide",
+    "seoDescription": "Soliguide t'ajuda a trobar menjadors socials, distribució d'aliments i vals d'alimentació a França. Localitza'ls fàcilment al teu voltant!"
   },
   {
     "categoryId": "food_packages",
     "label": "Banc d'aliments",
     "slug": "colis-alimentaire",
     "synonyms": [
-      "colis colis alimentaire manger mange fruits legumes panier repas aide alimentaire panier comida comer"
+      "aliments",
+      "menjar",
+      "ajuda alimentària",
+      "banc d'aliments",
+      "menjador social",
+      "distribució queviures",
+      "cistella aliments",
+      "productes bàsics",
+      "donació aliments",
+      "caritat",
+      "associació",
+      "assistència alimentària",
+      "urgència alimentària",
+      "aliments gratuïts",
+      "queviures"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Distribution de colis contenant des denrées alimentaires (conserves, légumes, etc.)."
+    "seoTitle": "Necessites ajuda alimentària? Soliguide et guia als bancs d'aliments",
+    "seoDescription": "Soliguide t'ajuda a trobar bancs d'aliments, menjadors socials i distribució de queviures a prop teu. Troba suport alimentari fàcilment a França!"
   },
   {
     "categoryId": "social_grocery_stores",
     "label": "Botiga solidària d'aliments",
     "slug": "epicerie-sociale-solidaire",
     "synonyms": [
-      "epicerie sociale epicerie manger fruits legumes panier repas epicerie solidaire aide alimentaire"
+      "aliments a baix cost",
+      "compra solidària",
+      "mercat social",
+      "menjar econòmic",
+      "banc d'aliments",
+      "cuina comunitària",
+      "cistella de queviures",
+      "ajuda alimentària",
+      "supermercat solidari",
+      "productes de proximitat",
+      "aliments assequibles",
+      "menjar per a tots",
+      "rebost solidari",
+      "val aliment",
+      "tiquet alimentació"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Les épiceries solidaires accueillent les personnes en précarité et leur permettent de faire des courses à prix solidaire."
+    "seoTitle": "Troba botigues solidàries d'aliments amb Soliguide",
+    "seoDescription": "Soliguide t'ajuda a trobar aliments a preus reduïts, mercats solidaris i cuines comunitàries a França. Geolocalitza't i troba ajuda alimentària!"
   },
   {
     "categoryId": "fountain",
     "label": "Font d'aigua",
     "slug": "fontaine",
     "synonyms": [
-      "fontaine boire eau soif robinet potable"
+      "aigua",
+      "font",
+      "aixeta",
+      "beure",
+      "hidratar",
+      "potable",
+      "gratuït",
+      "servei públic",
+      "set",
+      "calor",
+      "refrescar",
+      "punt d'aigua",
+      "aigua potable",
+      "obtenir aigua",
+      "trobar aigua"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Eau potable en accès libre."
+    "seoTitle": "Troba fonts d'aigua potable gratuïtes amb Soliguide",
+    "seoDescription": "Soliguide t'ajuda a trobar fonts d'aigua, punts d'aigua potable i aixetes públiques a fr. Hidrata't fàcilment gràcies a la geolocalització!"
   },
   {
     "categoryId": "solidarity_fridge",
     "label": "Nevera solidària",
     "slug": "frigo-solidaire",
     "synonyms": [
-      "manger mange conserver frais bouffe aliment faim frigo frigo solidaire"
+      "menjar gratis",
+      "aliments gratuïts",
+      "banc d'aliments",
+      "menjador social",
+      "recollida d'aliments",
+      "donació d'aliments",
+      "lluita contra el malbaratament",
+      "ajuda alimentària",
+      "assistència alimentària",
+      "aliments per a necessitats",
+      "menjar per a pobres",
+      "distribució d'aliments",
+      "supermercat solidari",
+      "cistella d'aliments",
+      "cuina solidària"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Frigo solidaire"
+    "seoTitle": "Nevera solidària: troba ajuda alimentària fàcilment amb Soliguide",
+    "seoDescription": "Soliguide t'ajuda a trobar neveres solidàries, bancs d'aliments i menjadors socials a prop teu. Accedeix a aliments gratuïts i lluita contra el malbaratament alimentari!"
   },
   {
     "categoryId": "shared_kitchen",
     "label": "Cuina comunitària",
     "slug": "cuisine-partagee",
     "synonyms": [
-      "cuisine cuisiner preparer partage partagee cuisine partagee"
+      "menjar comunitari",
+      "cuina col·lectiva",
+      "àpats compartits",
+      "tallers de cuina",
+      "receptes",
+      "alimentació",
+      "nutrició",
+      "convivència",
+      "intercanvi",
+      "aprenentatge",
+      "espai social",
+      "menjar assequible",
+      "ajuda alimentària",
+      "cuinar junts",
+      "reunions"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Cuisine partagée "
+    "seoTitle": "Cuina comunitària fàcil amb Soliguide: menjar i compartir a prop teu",
+    "seoDescription": "Soliguide t'ajuda a trobar cuines comunitàries. Gaudeix d'àpats compartits, tallers de cuina i aprenentatge a França. Troba llocs a prop teu!"
   },
   {
     "categoryId": "cooking_workshop",
     "label": "Taller de cuina",
     "slug": "atelier-cuisine",
     "synonyms": [
-      "atelier cuisine cuisiner partage preparer atelier cuisine cuire"
+      "cuina",
+      "receptes",
+      "menjar",
+      "alimentació",
+      "tallers de cuina",
+      "cursos de cuina",
+      "cuina econòmica",
+      "cuina saludable",
+      "aprendre a cuinar",
+      "cuinar barat",
+      "nutrició",
+      "alimentar-se",
+      "menjar equilibrat",
+      "cuinar junts",
+      "cuina social"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Atelier de cuisine"
+    "seoTitle": "Cerques un Taller de cuina? Soliguide t'ajuda a trobar-lo",
+    "seoDescription": "Amb Soliguide, troba tallers de cuina gratuïts, aprèn receptes econòmiques i menja sa. Geocolocalitza els serveis a prop teu a França!"
   },
   {
     "categoryId": "baby_parcel",
     "label": "Cistell per a nadons",
     "slug": "colis-bebe",
     "synonyms": [
-      "bebe nourrir nourisson colis colis bebe puericulture lait couche biberon maternite manger nourriture vetement"
+      "kit nadó",
+      "roba nadó",
+      "bolquers",
+      "llet infantil",
+      "productes higiene nadó",
+      "biberons",
+      "xumet",
+      "crema bolquers",
+      "tovalloletes",
+      "bodies",
+      "pantalons nadó",
+      "samarretes nadó",
+      "abric nadó",
+      "ajuda nadons",
+      "nounat"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Colis pour bébé"
+    "seoTitle": "Necessites un cistell per a nadons? Soliguide t'ajuda a trobar-lo",
+    "seoDescription": "Soliguide et permet trobar roba, bolquers o productes d'higiene per al teu nadó a fr. Geolocation per a una ajuda ràpida i fàcil."
   },
   {
     "categoryId": "food_voucher",
     "label": "Val / xec alimentari",
     "slug": "bon-alimentaire",
     "synonyms": [
-      "bon cheque ticket alimentaire gratuit aide"
+      "val alimentari",
+      "xec alimentari",
+      "cupons d'aliments",
+      "targeta moneder aliments",
+      "ajuda alimentària",
+      "menjar barat",
+      "compra solidària",
+      "supermercat social",
+      "distribució aliments",
+      "banc d'aliments",
+      "packs aliments",
+      "productes primera necessitat",
+      "ajuda per menjar",
+      "alimentació",
+      "mercat solidari"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Distribution de bon/chèque alimentaire"
+    "seoTitle": "Troba vals/xecs alimentaris amb Soliguide per a les teves compres",
+    "seoDescription": "Soliguide t'ajuda a trobar vals d'aliments, supermercats socials i distribucions gratuïtes. Geolocationa't per rebre assistència alimentària!"
   },
   {
     "categoryId": "community_garden",
     "label": "Hort comunitari",
     "slug": "jardin-solidaire",
     "synonyms": [
-      "fruits pousser jardin bio nature legumes jardin solidaire jardinage"
+      "hort urbà",
+      "jardí compartit",
+      "conrear",
+      "sembrar",
+      "recollir",
+      "fruites",
+      "verdures",
+      "agricultura urbana",
+      "permacultura",
+      "compostatge",
+      "llavors",
+      "eines de jardineria",
+      "espai verd",
+      "projecte comunitari",
+      "menjar sa"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Jardin solidaire"
+    "seoTitle": "Troba un hort comunitari a prop teu amb Soliguide",
+    "seoDescription": "Soliguide t'ajuda a trobar un hort comunitari per conrear, compartir i aprendre. Participa, crea llaços i menja sa a fr prop teu!"
   },
   {
     "categoryId": "counseling",
     "label": "Orientació",
     "slug": "conseil",
     "synonyms": [
-      "conseil conseils soutien accompagnement aide se faire aider conseiller numerique"
+      "assessorament",
+      "guia",
+      "informació",
+      "suport",
+      "ajuda legal",
+      "tràmits",
+      "formularis",
+      "drets",
+      "procediments",
+      "acompanyament",
+      "consell",
+      "recurs",
+      "orientar",
+      "informar",
+      "auxili"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Necessites orientació? Soliguide t'ajuda a trobar el camí",
+    "seoDescription": "Soliguide et guia! Troba assessorament jurídic, ajuda per omplir formularis i suport per a tràmits administratius. Tot a prop teu!"
   },
   {
     "categoryId": "legal_advice",
     "label": "Assessorament jurídic",
     "slug": "permanence-juridique",
     "synonyms": [
-      "proces permanence juridique amende avocat droits droit recours juge ldh droits de l homme ligue des droits de l homme acces au droit cnda ofpra asile sejour carte sejour divorce separation"
+      "advocat",
+      "llei",
+      "drets",
+      "legal",
+      "justícia",
+      "assessorament legal gratuït",
+      "ajuda jurídica",
+      "defensa",
+      "litigi",
+      "tribunal",
+      "informació legal",
+      "consultoria jurídica",
+      "dret",
+      "procés judicial",
+      "advocacia"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences juridiques (surendettement, demande d'asile, procès, etc.)."
+    "seoTitle": "Necessites assessorament jurídic? Troba ajuda amb Soliguide",
+    "seoDescription": "Soliguide t'ajuda a trobar assistència legal gratuïta. Consulta amb un advocat, informació sobre els teus drets i defensa jurídica. Troba centres a prop teu!"
   },
   {
     "categoryId": "social_accompaniment",
     "label": "Servei d'atenció i orientació social",
     "slug": "accompagnement-social",
     "synonyms": [
-      "accompagnement assistante sociale social travailleur social droits demarches femmes battues femme battue violence isolement isole solitude isolee partir separation divorce victime"
+      "acompanyament social",
+      "assessorament social",
+      "informació drets",
+      "ajuda social",
+      "treballador social",
+      "assistència social",
+      "orientació social",
+      "suport social",
+      "acollida social",
+      "centre social",
+      "serveis socials",
+      "CAS",
+      "CCAS",
+      "permanència social",
+      "ajuda administrativa"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Accompagement des personnes dans leur réinsertion (assistantes sociales, permanences, etc.)."
+    "seoTitle": "Necessites ajuda? Troba un Servei d'atenció i orientació social amb Soliguide",
+    "seoDescription": "Soliguide t'ajuda! Troba un assessor social, informació sobre drets, o acompanyament. A prop teu, a França. Localitza't!"
   },
   {
     "categoryId": "disability_advice",
     "label": "Suport a persones amb discapacitat",
     "slug": "conseil-handicap",
     "synonyms": [
-      "conseil handicap handicap aah conseils conseil handicape handicapee personne a mobilite reduite pmr"
+      "discapacitat",
+      "discapacitat física",
+      "discapacitat intel·lectual",
+      "ajuda discapacitat",
+      "serveis socials",
+      "associacions discapacitat",
+      "accessibilitat",
+      "autonomia",
+      "inclusió",
+      "acompanyament",
+      "drets",
+      "CFA",
+      "CDAPH",
+      "MDPH",
+      "PCH"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'accès aux droits pour les personnes en situation de handicap."
+    "seoTitle": "Troba suport per a persones amb discapacitat amb Soliguide",
+    "seoDescription": "Soliguide t'ajuda a trobar centres d'ajuda, associacions i serveis socials per a persones amb discapacitat. Acompanyament, defensa dels drets, activitats adaptades. A prop teu!"
   },
   {
     "categoryId": "administrative_assistance",
     "label": "Assessorament administratiu",
     "slug": "conseil-administratif",
     "synonyms": [
-      "conseil administratif conseils administratifs aide administrative demarches rsa cmu allocations papiers securite sociale caf cpampapier conseiller numerique"
+      "tràmits",
+      "gestions",
+      "papers",
+      "ajuda administrativa",
+      "informació drets",
+      "orientació jurídica",
+      "assessorament legal",
+      "defensa",
+      "justícia",
+      "formularis",
+      "documents",
+      "procediments",
+      "CITAM",
+      "CCAS",
+      "assistència social"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'aide administrative (RSA, CMU, allocations, chômage, etc.)."
+    "seoTitle": "Necessites assessorament administratiu? Soliguide t'ajuda",
+    "seoDescription": "Soliguide et permet trobar ajuda amb tràmits administratius, obtenir informació sobre drets i accedir a orientació jurídica. Troba serveis propers!"
   },
   {
     "categoryId": "parent_assistance",
     "label": "Assessorament familiar",
     "slug": "conseil-parents",
     "synonyms": [
-      "conseil parents conseil aux parents conseil parental mediation familiale mediation conflit adolescents enfants parent parentalite parents enfant ado adolescent couple couples"
+      "ajuda familiar",
+      "suport familiar",
+      "mediació familiar",
+      "teràpia familiar",
+      "orientació familiar",
+      "consell familiar",
+      "assessorament psicològic",
+      "problemes familiars",
+      "conflictes familiars",
+      "pares",
+      "fills",
+      "educació",
+      "criança",
+      "família",
+      "ajuda emocional"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permances d'aide pour les jeunes parents et les parents rencontrant des difficultés avec leurs enfants."
+    "seoTitle": "Necessites assessorament familiar? Soliguide t'ajuda a França",
+    "seoDescription": "Soliguide et mostra llocs per assessorament psicològic, mediació familiar o suport parental a França. Troba ajuda a prop teu!"
   },
   {
     "categoryId": "budget_advice",
     "label": "Assessorament pressupostari",
     "slug": "conseil-budget",
     "synonyms": [
-      "conseil budget conseil budget argent finance cresus"
+      "pressupost",
+      "finances personals",
+      "deutes",
+      "estalvi",
+      "compte bancari",
+      "ajuda financera",
+      "assessorament econòmic",
+      "gestió de pressupost",
+      "microcrèdit",
+      "crèdit social",
+      "CAF",
+      "Pôle emploi",
+      "CCAS",
+      "assistència social",
+      "riquesa"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Points conseil budget (PCB) proposent des conseils gratuits et personnalisés de gestion budgétaire "
+    "seoTitle": "Necessites assessorament pressupostari? Troba ajuda amb Soliguide",
+    "seoDescription": "Soliguide t'ajuda a trobar assessorament pressupostari a prop teu. Exemples: gestió de deutes, estalvi, obertura de compte bancari. Troba solucions!"
   },
   {
     "categoryId": "training_and_jobs",
     "label": "Formació i ocupació",
     "slug": "formation-emploi",
     "synonyms": [
-      "formation emploi travailler job travail boulot se former taf taff taffe apprendre lire etudier comprendre france travail pole emploi conseiller numerique"
+      "formació",
+      "ocupació",
+      "inserció",
+      "curs",
+      "aprenentatge",
+      "treball",
+      "pràctiques",
+      "CV",
+      "entrevista",
+      "orientació laboral",
+      "tallers",
+      "competències",
+      "habilitats",
+      "contracte",
+      "CCI"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Formació i ocupació amb Soliguide per a la teva integració",
+    "seoDescription": "Soliguide t'ajuda a trobar cursos, formació professional i tallers d'inserció a França. Geolocation pour toi. Accedeix a la formació près de tu!"
   },
   {
     "categoryId": "digital_tools_training",
     "label": "Taller de competències digitals",
     "slug": "formation-numerique",
     "synonyms": [
-      "formation numerique atelier numerique formation informatique ordinateur connexion se former technologie tech apprendre comprendre lire etudier conseiller numerique"
+      "formació digital",
+      "curs informàtica",
+      "alfabetització digital",
+      "aprendre ordinador",
+      "ús d'internet",
+      "maneig mòbil",
+      "ajuda digital",
+      "competències numériques",
+      "eines digitals",
+      "navegar per internet",
+      "correu electrònic",
+      "tràmits online",
+      "cercar feina online",
+      "xarxes socials",
+      "tallers gratuïts"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences ou ateliers visant à la maitrise d'outils informatiques."
+    "seoTitle": "Aprèn habilitats digitals amb Soliguide Tallers de competències digitals",
+    "seoDescription": "Soliguide t'ajuda a trobar tallers gratuïts per aprendre a usar un ordinador, internet o el mòbil. A prop teu, a França! Troba un taller ara."
   },
   {
     "categoryId": "job_coaching",
     "label": "Orientació i inserció laboral",
     "slug": "accompagnement-emploi",
     "synonyms": [
-      "accompagnement emploi travailler job pole emploi travail boulot se former etre accompagne taf taff taffe apprendre comprendre lire etudier france travail orientation"
+      "orientació laboral",
+      "inserció laboral",
+      "formació professional",
+      "recerca de feina",
+      "currículum vitae",
+      "entrevista de treball",
+      "assessorament professional",
+      "ajuda a l'ocupació",
+      "reorientació professional",
+      "oficina d'ocupació",
+      "Pôle Emploi",
+      "missió local",
+      "pla d'inserció",
+      "contracte d'inserció",
+      "tallers d'ocupació"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Aide au retour à l'emploi : ateliers de préparation aux entretiens, aide à la recherche d'emploi, atelier CV, etc."
+    "seoTitle": "Orientació i inserció laboral fàcil amb Soliguide",
+    "seoDescription": "Soliguide t'ajuda a trobar assessorament, formació professional i suport per a la recerca de feina a França. Troba'ns a prop teu!"
   },
   {
     "categoryId": "integration_through_economic_activity",
     "label": "Formació ocupacional",
     "slug": "insertion-activite-economique",
     "synonyms": [
-      "chantier de reinsertion chantier reinsertion travailler job insertion reinsertion siae iae se reinserer taf taff taffe apprendre comprendre lire etudier orientation"
+      "aprenentatge",
+      "curs",
+      "formació professional",
+      "inserció laboral",
+      "ocupació",
+      "treball",
+      "ofici",
+      "aprendre un ofici",
+      "desenvolupament professional",
+      "habilitats",
+      "CV",
+      "carta de presentació",
+      "entrevista de treball",
+      "pràctiques",
+      "capacitació"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Embauche de personnes en insertion."
+    "seoTitle": "Formació ocupacional fàcil amb Soliguide: troba el teu camí",
+    "seoDescription": "Amb Soliguide, accedeix a cursos de formació professional, tallers d'inserció laboral i orientació per a trobar feina. Tot a prop teu!"
   },
   {
     "categoryId": "tutoring",
     "label": "Suport escolar",
     "slug": "soutien-scolaire",
     "synonyms": [
-      "soutien scolaire aide au devoir etudes college lycee devoirs cours apprendre comprendre lire etudier"
+      "ajuda amb els deures",
+      "classes particulars",
+      "reforç escolar",
+      "acompanyament educatiu",
+      "material escolar",
+      "llibres gratuïts",
+      "ordinador",
+      "internet gratis",
+      "beca escolar",
+      "suport pedagògic",
+      "centres socials",
+      "biblioteques",
+      "professors voluntaris",
+      "orientació escolar"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Soutien scolaire gratuit (préciser le niveau dans la description)."
+    "seoTitle": "Troba suport escolar fàcilment amb Soliguide",
+    "seoDescription": "Amb Soliguide, localitza ajuda amb els deures, classes particulars o material escolar gratuït a França. Troba acompanyament educatiu prop teu!"
   },
   {
     "categoryId": "accomodation_and_housing",
     "label": "Allotjament i habitatge",
     "slug": "hebergement-et-logement",
     "synonyms": [
-      "hebergement dormir lit logement repos toit hebergement logement logement hebergement et logement hebergementetlogement domir"
+      "habitatge",
+      "allotjament",
+      "refugi",
+      "alberg",
+      "lloguer",
+      "emergència",
+      "social",
+      "CMAS",
+      "ajuda allotjament",
+      "sense sostre",
+      "SIAO",
+      "FSL",
+      "ALPA",
+      "lloguer assequible",
+      "domiciliació"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Necessites allotjament i habitatge? Soliguide t'ajuda a França",
+    "seoDescription": "Soliguide et guia a trobar allotjament d'emergència, albergs o habitatge social a França. Troba ajuda prop teu amb la nostra plataforma senzilla i gratuïta."
   },
   {
     "categoryId": "overnight_stop",
     "label": "Refugi nocturn",
     "slug": "halte-nuit",
     "synonyms": [
-      "halte de nuit halte nuit dormir se reposer alte de nui accueil nuit accueil de nuit accueil nuit"
+      "allotjament d'emergència",
+      "alberg nocturn",
+      "dormir al carrer",
+      "nit",
+      "refugi",
+      "aixopluc",
+      "llit",
+      "sopar",
+      "dutxa",
+      "roba",
+      "ajuda d'emergència",
+      "Centre d'acollida",
+      "places disponibles",
+      "protecció"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "La halte de nuit est un lieu d'accueil et de repos pour les personnes sans abri ouvert de 20h à 8h du matin, 7/7 jours."
+    "seoTitle": "Troba un refugi nocturn amb Soliguide per passar la nit al carrer",
+    "seoDescription": "Soliguide t'ajuda a trobar un refugi nocturn, un lloc per dutxar-te o menjar a fr. Busca a prop teu!"
   },
   {
     "categoryId": "emergency_accommodation",
     "label": "Allotjament d'emergència",
     "slug": "hebergement-urgence",
     "synonyms": [
-      "hebergement urgence dormir lit logement chu halte de nuit toit a la rue rue dehors accueil de nuit accueil nuit accueil nuit"
+      "refugi",
+      "alberg",
+      "dormir",
+      "sostre",
+      "acollida nocturna",
+      "llit",
+      "urgència habitacional",
+      "sense sostre",
+      "precarietat",
+      "allotjament temporal",
+      "centre d'acollida",
+      "assistència",
+      "ajuda d'emergència",
+      "places d'asil",
+      "hotel social"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Hébergement à court terme (à la nuitée), accessible directement."
+    "seoTitle": "Necessites allotjament d'emergència? Soliguide t'ajuda",
+    "seoDescription": "Soliguide t'ofereix adreces per trobar un refugi temporal, un llit d'urgència o un centre d'acollida. Troba ajuda a prop teu!"
   },
   {
     "categoryId": "long_term_accomodation",
     "label": "Habitatge social",
     "slug": "hebergement-long-terme",
     "synonyms": [
-      "hebergement dormir lit logement chrs repos toit"
+      "habitatge protegit",
+      "pis social",
+      "habitatge assequible",
+      "HLM",
+      "ajuts lloguer",
+      "FSL",
+      "ALF",
+      "APL",
+      "residència social",
+      "allotjament temporal",
+      "centre d'acollida",
+      "domiciliació",
+      "càritas habitatge",
+      "lloguer",
+      "emergència habitatge"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Possibilité d'hébergement à long terme, au sein de la structure ou d'une structure partenaire. Indiquer dans la description les modalités d'accès."
+    "seoTitle": "Troba habitatge social fàcilment amb Soliguide",
+    "seoDescription": "Soliguide t'ajuda a trobar habitatge social, residències i ajuts per pagar el lloguer a França. Busca serveis a prop teu!"
   },
   {
     "categoryId": "citizen_housing",
     "label": "Allotjament ciutadà",
     "slug": "hebergement-citoyen",
     "synonyms": [
-      "hebergement hebergement citoyen merci pour l invit singa"
+      "refugi",
+      "alberg",
+      "dormir",
+      "pernoctar",
+      "allotjament d'urgència",
+      "allotjament temporal",
+      "centre d'acollida",
+      "casa d'acollida",
+      "habitatge social",
+      "llit",
+      "dutxa",
+      "menjar",
+      "roba",
+      "CMAS per a la teva domiciliació",
+      "centre social"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Troba allotjament ciutadà amb Soliguide",
+    "seoDescription": "Soliguide et permet trobar un lloc on dormir, un refugi o un alberg a França. Localitza l'ajuda més propera i millora la teva situació."
   },
   {
     "categoryId": "access_to_housing",
     "label": "Assessorament i suport a l'habitatge",
     "slug": "conseil-logement",
     "synonyms": [
-      "hebergement dalo logement expulsion toit maison impayes factures chauffage conseil conseil logement"
+      "allotjament",
+      "habitatge",
+      "lloguer",
+      "emergència",
+      "temporal",
+      "social",
+      "ajuda lloguer",
+      "fiança",
+      "assegurances",
+      "drets",
+      "informació",
+      "advocat",
+      "assessorament legal",
+      "CCAS",
+      "HLM"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'accès au logement (logement social, DALO, etc.)."
+    "seoTitle": "Necessites assessorament i suport a l'habitatge? Soliguide t'ajuda",
+    "seoDescription": "Soliguide et guia per trobar allotjament d'urgència, ajuda amb el lloguer o informació sobre els teus drets a fr. Troba suport a prop teu!"
   },
   {
     "categoryId": "hygiene_and_wellness",
     "label": "Higiene i benestar",
     "slug": "hygiene",
     "synonyms": [
-      "hygiene laver douche bain se laver se doucher propre"
+      "dutxa",
+      "neteja",
+      "roba",
+      "sabó",
+      "xampú",
+      "dentifrici",
+      "raspall de dents",
+      "bugaderia",
+      "aigua calenta",
+      "servei de bugaderia",
+      "lleixiu",
+      "productes d'higiene femenina",
+      "compreses",
+      "tampons",
+      "desodorant"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Necessiteu ajuda amb la higiene i el benestar? Soliguide us orienta",
+    "seoDescription": "Soliguide us ajuda a trobar dutxes gratuïtes, bugaderies socials i accés a productes d'higiene. Trobeu serveis a prop vostre!"
   },
   {
     "categoryId": "shower",
     "label": "Dutxa",
     "slug": "douche",
     "synonyms": [
-      "douche laver se laver bain bain douche piscine propre sale cheveux"
+      "bany",
+      "neteja",
+      "higiene",
+      "rentar-se",
+      "aigua calenta",
+      "dutxar-se",
+      "sabó",
+      "xampú",
+      "gel de bany",
+      "espai d'higiene",
+      "centre d'acollida",
+      "vestidor",
+      "roba neta",
+      "kit d'higiene",
+      "servei de dutxa"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Necessites una dutxa? Troba ajuda amb Soliguide",
+    "seoDescription": "Soliguide t'ajuda a trobar dutxes gratuïtes, espais per rentar la roba i kits d'higiene a França. Troba els llocs propers gràcies a la geolocalització!"
   },
   {
     "categoryId": "hairdresser",
     "label": "Perruqueria",
     "slug": "coiffeur",
     "synonyms": [
-      "coiffeur cheveux"
+      "tall de cabell",
+      "perruqueria social",
+      "higiene personal",
+      "dutxa",
+      "neteja",
+      "rentar",
+      "pentinar",
+      "afaitar",
+      "tallar",
+      "cabell",
+      "barba",
+      "gratuït",
+      "preu baix",
+      "solidari",
+      "perruquer"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Troba perruqueries socials amb Soliguide, serveis per a tothom",
+    "seoDescription": "Soliguide t'ajuda a trobar perruqueries solidàries. Talla de cabells gratuïta, preus baixos, serveis d'higiene... Troba ajuda a prop teu!"
   },
   {
     "categoryId": "laundry",
     "label": "Bugaderia",
     "slug": "laverie",
     "synonyms": [
-      "laverie vetements vetement laver machine a laver pressing linge lave linge"
+      "rentar roba",
+      "rentar",
+      "netejar roba",
+      "bugaderia social",
+      "bugaderia autoservei",
+      "rentadora",
+      "assecadora",
+      "detergent",
+      "sabó",
+      "lleixiu",
+      "suavitzant",
+      "planxar",
+      "plegar roba",
+      "ajuda per rentar",
+      "preu baix"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Lave-linge en accès libre."
+    "seoTitle": "Bugaderia accessible per a tothom amb Soliguide",
+    "seoDescription": "Troba bugaderies socials prop teu amb Soliguide. Lliure accés, preus baixos, i programes d'aprenentatge a fr. Geolocation inclosa."
   },
   {
     "categoryId": "wellness",
     "label": "Benestar",
     "slug": "bien-etre",
     "synonyms": [
-      "bien etre coiffeur massage maquillage belle beau pedicure manicure manucire"
+      "suport emocional",
+      "ajuda psicològica",
+      "teràpia",
+      "acompanyament social",
+      "orientació",
+      "consell",
+      "autoestima",
+      "relaxació",
+      "mindfulness",
+      "ioga",
+      "meditació",
+      "benestar emocional",
+      "centres socials",
+      "associacions d'ajuda",
+      "CCAS"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Ateliers de bien-être : coiffeur, massage, sophrologie, etc. (à préciser dans la description)."
+    "seoTitle": "Benestar a prop teu amb Soliguide: suport i acompanyament",
+    "seoDescription": "Soliguide t'ajuda a trobar suport psicològic, assessorament social o activitats per millorar el teu benestar a França. Troba els serveis a prop teu!"
   },
   {
     "categoryId": "toilets",
     "label": "Lavabos",
     "slug": "toilettes",
     "synonyms": [
-      "toilettes sanisette pisser pipi wc caca chiotte toilet"
+      "higiene personal",
+      "dutxa pública",
+      "rentar roba",
+      "neteja",
+      "bany públic",
+      "serveis sanitaris",
+      "condicions dignes",
+      "aigua",
+      "sabó",
+      "paper higiènic",
+      "centre d'acollida",
+      "servei social",
+      "CPAS",
+      "Samu Social",
+      "Croix-Rouge"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Toilettes en accès libre."
+    "seoTitle": "Troba lavabos públics i serveis d'higiene amb Soliguide",
+    "seoDescription": "Soliguide t'ajuda a localitzar lavabos, dutxes i espais per rentar la roba a França. Troba llocs gratuïts i solidaris a prop teu!"
   },
   {
     "categoryId": "hygiene_products",
     "label": "Productes d'higiene",
     "slug": "produits-hygiene",
     "synonyms": [
-      "periodiques protections periodiques protection periodique regles regle tampon serviette hygienique serviette menstrues produits d hygiene hygiene cup culotte tampax"
+      "sabó",
+      "xampú",
+      "dentifrici",
+      "raspall de dents",
+      "paper higiènic",
+      "compreses",
+      "tampons",
+      "bolquers",
+      "dutxa",
+      "bugaderia",
+      "aigua calenta",
+      "neteja",
+      "cura personal",
+      "benestar",
+      "salut"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Distribution de produits d'hygiène (savons, dentifrice, tampons, serviettes hygiéniques, etc.)."
+    "seoTitle": "Troba productes d'higiene gratuïts amb Soliguide",
+    "seoDescription": "Soliguide t'ajuda a trobar dutxes gratuïtes, kits d'higiene i bugaderies socials a França. Accedeix a l'ajuda a prop teu amb Soliguide!"
   },
   {
     "categoryId": "face_masks",
     "label": "Mascaretes",
     "slug": "masques",
     "synonyms": [
-      "masque protection covid virus"
+      "mascareta",
+      "protecció",
+      "salut",
+      "covid",
+      "protegir-se",
+      "prevenir",
+      "gratuït",
+      "reutilitzable",
+      "tela",
+      "higiene",
+      "seguretat",
+      "epidèmia",
+      "pandèmia",
+      "farmàcia solidària",
+      "associació"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Masques de protection"
+    "seoTitle": "Necessites mascaretes? Soliguide t'ajuda a trobar-les",
+    "seoDescription": "Soliguide et mostra llocs a prop teu per aconseguir mascaretes gratuïtes, reutilitzables o de tela. Troba farmàcies solidàries i associacions ara!"
   },
   {
     "categoryId": "equipment",
     "label": "Material",
     "slug": "materiel",
     "synonyms": [
-      "materiel affaires mobilier"
+      "roba",
+      "aliments",
+      "mobles",
+      "higiene",
+      "productes",
+      "llibres",
+      "estris",
+      "vaixella",
+      "llençols",
+      "mantes",
+      "electrodomèstics",
+      "estufa",
+      "cuina",
+      "nevera",
+      "rentadora"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Necessites material? Soliguide t'ajuda a trobar el que necessites",
+    "seoDescription": "Soliguide et permet trobar roba, productes d'higiene o mobles a prop teu. Troba associacions que ofereixen ajuda material fàcilment, geolocalitzades!"
   },
   {
     "categoryId": "luggage_storage",
     "label": "Consigna",
     "slug": "bagagerie",
     "synonyms": [
-      "bagage bagagerie sac poser casier"
+      "guardarropia",
+      "guarda equipatge",
+      "armariets",
+      "taquilles",
+      "dipòsit d'equipatge",
+      "lloc per guardar coses",
+      "emmagatzematge temporal",
+      "espai per deixar objectes",
+      "consigna automàtica",
+      "consigna vigilada",
+      "consigna pública",
+      "consigna estació",
+      "consigna aeroport",
+      "consigna maletes",
+      "deixar pertinences"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Lieu permettant de conserver des bagages ou matériel."
+    "seoTitle": "Necessites una Consigna? Soliguide t'ajuda a trobar-ne!",
+    "seoDescription": "Soliguide et mostra on trobar consignes per guardar les teves pertinences a França. Troba opcions a París, Marsella, Lió i prop teu."
   },
   {
     "categoryId": "solidarity_store",
     "label": "Botiga solidària",
     "slug": "boutique-solidaire",
     "synonyms": [
-      "boutique solidaire meubles accessoires s habiller"
+      "roba solidària",
+      "botiga de segona mà",
+      "preus baixos",
+      "ajuda material",
+      "donacions de roba",
+      "recollida",
+      "reciclatge",
+      "inserció social",
+      "economia circular",
+      "vestits",
+      "calçat",
+      "mobles",
+      "electrodomèstics",
+      "vaixella"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Boutique vendant du matériel à prix solidaire."
+    "seoTitle": "Troba una botiga solidària fàcilment amb Soliguide",
+    "seoDescription": "Amb Soliguide, localitza fàcilment botigues solidàries a prop teu. Troba roba a preus baixos, mobles o electrodomèstics. Ajudes alimentàries disponibles també!"
   },
   {
     "categoryId": "clothing",
     "label": "Rober",
     "slug": "vetements",
     "synonyms": [
-      "vestiaire vetements t shirt pantalon robe vetir vestiboutique pull manteau habit s habiller"
+      "roba",
+      "vestits",
+      "peces de vestir",
+      "indumentària",
+      "abrics",
+      "pantalons",
+      "camises",
+      "faldilles",
+      "sabates",
+      "roba interior",
+      "mitjons",
+      "bufandes",
+      "guants",
+      "donació de roba",
+      "taller de costura"
     ],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Vêtements gratuits ou à prix symbolique. Préciser le sexe et/ou l'âge dans les conditions."
+    "seoTitle": "Necessites roba? Soliguide t'ajuda a trobar-ne",
+    "seoDescription": "Soliguide et permet trobar roba gratis, rebutjar donacions o aprendre a cosir a fr. Amb la teva ubicació, descobreix els recursos a prop!"
   },
   {
     "categoryId": "animal_assitance",
     "label": "Animals",
     "slug": "animaux",
-    "synonyms": [
-      "animaux animals chien chat croquettes animal"
-    ],
+    "synonyms": ["animaux animals chien chat croquettes animal"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -796,9 +1519,7 @@
     "categoryId": "vaccination",
     "label": "Vacunació",
     "slug": "vaccination",
-    "synonyms": [
-      "vaccination vaccin covid piqure rappel rappel de vaccin"
-    ],
+    "synonyms": ["vaccination vaccin covid piqure rappel rappel de vaccin"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -835,9 +1556,7 @@
     "categoryId": "health_specialists",
     "label": "Metge/essa especialista",
     "slug": "specialistes-medecine",
-    "synonyms": [
-      "specialistes specialiste"
-    ],
+    "synonyms": ["specialistes specialiste"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -848,9 +1567,7 @@
     "categoryId": "allergology",
     "label": "Al·lergologia",
     "slug": "allergologie",
-    "synonyms": [
-      "allergologie allergies"
-    ],
+    "synonyms": ["allergologie allergies"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -861,9 +1578,7 @@
     "categoryId": "cardiology",
     "label": "Cardiologia",
     "slug": "cardiologie",
-    "synonyms": [
-      "cardiologie coeur cardiaque cardio"
-    ],
+    "synonyms": ["cardiologie coeur cardiaque cardio"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -874,9 +1589,7 @@
     "categoryId": "dermatology",
     "label": "Dermatologia",
     "slug": "dermatologie",
-    "synonyms": [
-      "dermato dermatologie dermatologue peau bouton"
-    ],
+    "synonyms": ["dermato dermatologie dermatologue peau bouton"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -887,9 +1600,7 @@
     "categoryId": "echography",
     "label": "Ecografia",
     "slug": "echographie",
-    "synonyms": [
-      "echographie bebe enceinte"
-    ],
+    "synonyms": ["echographie bebe enceinte"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -900,9 +1611,7 @@
     "categoryId": "endocrinology",
     "label": "Endocrinologia",
     "slug": "endocrinologie",
-    "synonyms": [
-      "endocrinologie hormones tyroide"
-    ],
+    "synonyms": ["endocrinologie hormones tyroide"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -913,9 +1622,7 @@
     "categoryId": "gastroenterology",
     "label": "Gastroenterologia",
     "slug": "gastro-enterologie",
-    "synonyms": [
-      "gastro enterologue gastro enterologie kk caca"
-    ],
+    "synonyms": ["gastro enterologue gastro enterologie kk caca"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -939,9 +1646,7 @@
     "categoryId": "kinesitherapy",
     "label": "Fisioteràpia",
     "slug": "kinesitherapie",
-    "synonyms": [
-      "kinesitherapie reeducation blessure kine"
-    ],
+    "synonyms": ["kinesitherapie reeducation blessure kine"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -952,9 +1657,7 @@
     "categoryId": "mammography",
     "label": "Mamografia",
     "slug": "mammographie",
-    "synonyms": [
-      "mammographie radio seins"
-    ],
+    "synonyms": ["mammographie radio seins"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -965,9 +1668,7 @@
     "categoryId": "ophthalmology",
     "label": "Oftalmologia",
     "slug": "ophtalmologie",
-    "synonyms": [
-      "ophtalmologie ophtalmologue yeux voir lunette"
-    ],
+    "synonyms": ["ophtalmologie ophtalmologue yeux voir lunette"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -991,9 +1692,7 @@
     "categoryId": "nutrition",
     "label": "Nutrició",
     "slug": "nutrition",
-    "synonyms": [
-      "nutrition dietetique regime surpoids obesite perte de poids"
-    ],
+    "synonyms": ["nutrition dietetique regime surpoids obesite perte de poids"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -1004,9 +1703,7 @@
     "categoryId": "pedicure",
     "label": "Pedicura",
     "slug": "pedicure",
-    "synonyms": [
-      "pedicure pied pie soigner pieds soin podologue podologie"
-    ],
+    "synonyms": ["pedicure pied pie soigner pieds soin podologue podologie"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -1030,9 +1727,7 @@
     "categoryId": "pneumology",
     "label": "Pneumologia",
     "slug": "pneumologie",
-    "synonyms": [
-      "poumons respiration respirer bronches"
-    ],
+    "synonyms": ["poumons respiration respirer bronches"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -1043,9 +1738,7 @@
     "categoryId": "radiology",
     "label": "Radiologia",
     "slug": "radiologie",
-    "synonyms": [
-      "radiologie radiologue radiology rayonx fracture entorse"
-    ],
+    "synonyms": ["radiologie radiologue radiology rayonx fracture entorse"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -1056,9 +1749,7 @@
     "categoryId": "rheumatology",
     "label": "Reumatologia",
     "slug": "rhumatologie",
-    "synonyms": [
-      "rhumatologue rumatologie"
-    ],
+    "synonyms": ["rhumatologue rumatologie"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -1069,9 +1760,7 @@
     "categoryId": "urology",
     "label": "Urologia",
     "slug": "urologie",
-    "synonyms": [
-      "urologie urology"
-    ],
+    "synonyms": ["urologie urology"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -1095,9 +1784,7 @@
     "categoryId": "stomatology",
     "label": "Estomatologia",
     "slug": "stomatologie",
-    "synonyms": [
-      "stomatologie stomatologue estomac digestion ventre"
-    ],
+    "synonyms": ["stomatologie stomatologue estomac digestion ventre"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -1108,9 +1795,7 @@
     "categoryId": "osteopathy",
     "label": "Osteòpata",
     "slug": "osteo",
-    "synonyms": [
-      "ostheopathe osteo dos mal"
-    ],
+    "synonyms": ["ostheopathe osteo dos mal"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -1121,9 +1806,7 @@
     "categoryId": "acupuncture",
     "label": "Acupuntura",
     "slug": "acupuncture",
-    "synonyms": [
-      "acupuncture accupuncture bien etre"
-    ],
+    "synonyms": ["acupuncture accupuncture bien etre"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -1160,9 +1843,7 @@
     "categoryId": "wifi",
     "label": "Wifi",
     "slug": "wifi",
-    "synonyms": [
-      "wifi internet web connexion reseau"
-    ],
+    "synonyms": ["wifi internet web connexion reseau"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -1173,9 +1854,7 @@
     "categoryId": "electrical_outlets_available",
     "label": "Càrrega de dispositius",
     "slug": "prise",
-    "synonyms": [
-      "prise charger electricite chargeur recharge charge"
-    ],
+    "synonyms": ["prise charger electricite chargeur recharge charge"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -1186,9 +1865,7 @@
     "categoryId": "telephone_at_your_disposal",
     "label": "Telèfon",
     "slug": "telephone",
-    "synonyms": [
-      "appel gratuit telephone telephoner appeler appel"
-    ],
+    "synonyms": ["appel gratuit telephone telephoner appeler appel"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -1225,9 +1902,7 @@
     "categoryId": "carpooling",
     "label": "Vehicle compartit",
     "slug": "covoiturage",
-    "synonyms": [
-      "co voiturage partage de voiture"
-    ],
+    "synonyms": ["co voiturage partage de voiture"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -1238,9 +1913,7 @@
     "categoryId": "provision_of_vehicles",
     "label": "Provisió de vehicles",
     "slug": "vehicule",
-    "synonyms": [
-      "mise a disposition de vehicule voiture"
-    ],
+    "synonyms": ["mise a disposition de vehicule voiture"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -1251,9 +1924,7 @@
     "categoryId": "chauffeur_driven_transport",
     "label": "Transport amb conductor/a",
     "slug": "chauffeur",
-    "synonyms": [
-      "transport avec chauffeur chauffeur transport a la demande"
-    ],
+    "synonyms": ["transport avec chauffeur chauffeur transport a la demande"],
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
@@ -1422,11 +2093,7 @@
     "categoryId": null,
     "label": "France Services: guichet unique de services publics",
     "slug": "france-services",
-    "synonyms": [
-      "france service",
-      "maison france services",
-      "MFS"
-    ],
+    "synonyms": ["france service", "maison france services", "MFS"],
     "type": "ORGANIZATION",
     "lang": "ca",
     "country": "fr",
@@ -1437,11 +2104,7 @@
     "categoryId": null,
     "label": "CIMADE: service œcuménique d'entraide",
     "slug": "cimade",
-    "synonyms": [
-      "la cimade",
-      "CIMADE",
-      "service œcuménique d'entraide"
-    ],
+    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
     "type": "ORGANIZATION",
     "lang": "ca",
     "country": "fr",
@@ -1647,11 +2310,7 @@
     "categoryId": null,
     "label": "Centre socioculturel: structure d'animation et de lien social",
     "slug": "centre-socioculturel",
-    "synonyms": [
-      "centre socio culturel",
-      "csc",
-      "centre social"
-    ],
+    "synonyms": ["centre socio culturel", "csc", "centre social"],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "ca",
     "country": "fr",

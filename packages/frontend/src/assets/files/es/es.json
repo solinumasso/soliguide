@@ -4,684 +4,1410 @@
     "label": "Acogida",
     "slug": "accueil",
     "synonyms": [
-      "accueil cafe repos acceuil parler acueil accueil femme accueil femmes acueil femme violence harcelement partir"
+      "refugio",
+      "albergue",
+      "centro de día",
+      "ayuda social",
+      "asistencia",
+      "apoyo",
+      "ducha",
+      "lavandería",
+      "descanso",
+      "orientación",
+      "información",
+      "comida",
+      "ropa",
+      "cobijo",
+      "bienvenida"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Acogida: Soliguide te ayuda a encontrar un lugar seguro",
+    "seoDescription": "Soliguide te ayuda a encontrar un lugar para ducharte, lavar tu ropa o simplemente descansar. Encuentra centros de Acogida cerca de ti en España."
   },
   {
     "categoryId": "day_hosting",
     "label": "Centro de atención diurna",
     "slug": "accueil-jour",
     "synonyms": [
-      "accueil accueil de jour cafe se reposer se poser repos reposer femmes battues femme battue fem batue fem batu violence harcelement partir"
+      "centro de día",
+      "atención diurna",
+      "apoyo social",
+      "actividades para mayores",
+      "comida",
+      "ayuda para dependientes",
+      "envejecimiento activo",
+      "estimulación cognitiva",
+      "ocio",
+      "talleres",
+      "convivencia",
+      "rehabilitación",
+      "respiro familiar",
+      "cuidados diurnos",
+      "integración social"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Lieu d'accueil des bénéficaires proposant une pause pendant la journée."
+    "seoTitle": "Encuentra un centro de atención diurna con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar centros de atención diurna. Recibe apoyo social, actividades y comida. ¡Encuentra centros cerca de ti!"
   },
   {
     "categoryId": "rest_area",
     "label": "Área de descanso",
     "slug": "espace-repos",
     "synonyms": [
-      "espace de repos reposer dormir repos pause"
+      "descanso",
+      "dormir",
+      "refugio nocturno",
+      "albergue",
+      "ducha",
+      "lavandería social",
+      "aseo personal",
+      "higiene",
+      "centro de acogida",
+      "respiro",
+      "pausa",
+      "refugio",
+      "pernoctar",
+      "cama",
+      "bienestar"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Espaces de repos ouverts au public"
+    "seoTitle": "¿Necesitas un Área de descanso? Soliguide te ayuda a encontrarla",
+    "seoDescription": "Soliguide te muestra dónde encontrar un lugar seguro para descansar, ducharte o lavar tu ropa en España. ¡Encuentra estos servicios cerca de ti!"
   },
   {
     "categoryId": "babysitting",
     "label": "Servicio de canguraje",
     "slug": "garde-enfants",
     "synonyms": [
-      "garde enfant garderie enfant nounou assistance maternelle bebe creche"
+      "canguro",
+      "niñera",
+      "cuidado infantil",
+      "ludoteca",
+      "guardería",
+      "apoyo familiar",
+      "respiro familiar",
+      "conciliación familiar",
+      "cuidado de niños",
+      "atención infantil",
+      "crianza",
+      "ayuda con niños",
+      "espacio infantil",
+      "actividades infantiles",
+      "ocio infantil"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Activité d'un baby-sitter consistant à garder temporairement des enfants en l'abscence de leurs parents"
+    "seoTitle": "Encuentra servicio de canguraje con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar canguros, niñeras o ludotecas. Busca cerca de ti en España un respiro familiar, apoyo en la crianza o conciliación."
   },
   {
     "categoryId": "family_area",
     "label": "Espacio familiar",
     "slug": "espace-famille",
     "synonyms": [
-      "espace famille famille maman papa parents enfants"
+      "apoyo familiar",
+      "consejería familiar",
+      "ayuda a padres",
+      "orientación familiar",
+      "terapia familiar",
+      "reunificación familiar",
+      "cuidado infantil",
+      "actividades familiares",
+      "espacio seguro",
+      "protección infantil",
+      "mediación familiar",
+      "intervención familiar",
+      "recursos familiares",
+      "asesoramiento familiar",
+      "convivencia familiar"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Lieu d'accueil capable de recevoir des familles"
+    "seoTitle": "Encuentra un espacio familiar seguro con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar espacios familiares en España. Recibe apoyo psicológico, orientación legal y actividades para niños. ¡Localiza los recursos cerca de ti!"
   },
   {
     "categoryId": "information_point",
     "label": "Servicio de información y orientación",
     "slug": "point-information",
     "synonyms": [
-      "point information point d information information ukraine"
+      "asesoramiento",
+      "orientación social",
+      "información",
+      "trámites",
+      "ayuda legal",
+      "abogado gratuito",
+      "servicios sociales",
+      "guía social",
+      "recursos sociales",
+      "ayuda administrativa",
+      "consejo",
+      "apoyo",
+      "asistencia social",
+      "derechos",
+      "información ciudadana"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Point d'information"
+    "seoTitle": "Encuentra el servicio de información y orientación que necesitas con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar asesoramiento legal gratuito, información sobre trámites y orientación social. ¡Localiza los servicios cerca de ti en España!"
   },
   {
     "categoryId": "activities",
     "label": "Actividades",
     "slug": "activites",
     "synonyms": [
-      "activites sorties sport loisirs sortir jeux jeu loisir isolement isole solitude isolee"
+      "ocio",
+      "talleres",
+      "cursos",
+      "deporte",
+      "arte",
+      "manualidades",
+      "clases",
+      "formación",
+      "empleo",
+      "cultura",
+      "idiomas",
+      "español",
+      "música",
+      "baile",
+      "excursiones"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Encuentra actividades que te ayuden con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar actividades. Desde talleres de empleo, clases de español hasta actividades culturales cerca de ti. ¡Encuentra lo que necesitas!"
   },
   {
     "categoryId": "sport_activities",
     "label": "Actividades deportivas",
     "slug": "activites-sportives",
     "synonyms": [
-      "activites sportives sport foot basket danse rugby loisirs loisir"
+      "deporte",
+      "ejercicio",
+      "gimnasio",
+      "fútbol",
+      "baloncesto",
+      "natación",
+      "yoga",
+      "senderismo",
+      "carrera",
+      "actividad física",
+      "bienestar",
+      "salud",
+      "aire libre",
+      "competición",
+      "entrenamiento"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Activités sportives : foot, jogging, marche, etc."
+    "seoTitle": "Encuentra actividades deportivas con Soliguide que te ayudarán",
+    "seoDescription": "Soliguide te ayuda a encontrar gimnasios sociales, clases de yoga gratuitas y equipos deportivos. ¡Encuentra recursos cerca de ti en España!"
   },
   {
     "categoryId": "museums",
     "label": "Museo",
     "slug": "musee",
     "synonyms": [
-      "musee culture sortie peinture tableau se cultiver"
+      "arte",
+      "cultura",
+      "exposiciones",
+      "gratis",
+      "accesibilidad",
+      "historia",
+      "patrimonio",
+      "visitas guiadas",
+      "talleres",
+      "actividades",
+      "educación",
+      "ocio",
+      "inclusión",
+      "diversidad",
+      "colecciones"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Musée gratuit."
+    "seoTitle": "Descubre museos accesibles con Soliguide, tu guía solidaria",
+    "seoDescription": "Soliguide te ayuda a encontrar museos con entrada gratuita, visitas guiadas adaptadas y talleres inclusivos. ¡Encuentra opciones cerca de ti!"
   },
   {
     "categoryId": "libraries",
     "label": "Biblioteca",
     "slug": "bibliotheque",
     "synonyms": [
-      "bibliotheque livres culture mediatheque"
+      "libros",
+      "lectura",
+      "estudiar",
+      "internet gratis",
+      "ordenadores",
+      "talleres",
+      "cursos",
+      "aprender",
+      "información",
+      "diccionarios",
+      "enciclopedias",
+      "revistas",
+      "prensa",
+      "hemeroteca",
+      "sala de lectura"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Bibliothèque accessible en accès libre."
+    "seoTitle": "Encuentra una Biblioteca cerca de ti con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar bibliotecas en España. Accede a libros, internet gratuito y talleres. ¡Encuentra la biblioteca más cercana!"
   },
   {
     "categoryId": "other_activities",
     "label": "Actividades diversas",
     "slug": "activites-diverses",
     "synonyms": [
-      "activites diverses animation divertissement loisir s occuper culture activites enfants loisirs loisir"
+      "talleres",
+      "ocio",
+      "apoyo social",
+      "recreación",
+      "cursos",
+      "actividades grupales",
+      "manualidades",
+      "deporte",
+      "arte",
+      "música",
+      "encuentros",
+      "juegos",
+      "integración",
+      "voluntariado",
+      "eventos"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Activités diverses : ateliers, activités culturelles, etc. (précisez.)"
+    "seoTitle": "Descubre Actividades diversas con Soliguide, tu guía solidaria",
+    "seoDescription": "Soliguide te ayuda a encontrar talleres, actividades de ocio y apoyo social cerca de ti en España. ¡Geolocalización fácil y rápida!"
   },
   {
     "categoryId": "food",
     "label": "Alimentación",
     "slug": "alimentation-bouffe-boufe-manger-soupe-repas-aliment-manger-mange-repa-faim-diner-dejeuner-dejeunet-dine-se-nourrir-fin-portage-portage-de-repas-aide-alimentaire-comida-comer-resto-du-coeur",
     "synonyms": [
-      "alimentation bouffe boufe manger soupe repas aliment manger mange repa faim diner dejeuner dejeunet dine se nourrir fin portage portage de repas aide alimentaire comida comer"
+      "comida",
+      "alimentos",
+      "comedores sociales",
+      "bancos de alimentos",
+      "ayuda alimentaria",
+      "almuerzo",
+      "cena",
+      "desayuno",
+      "menú",
+      "nutrición",
+      "donación de alimentos",
+      "caridad",
+      "sopa",
+      "víveres",
+      "comida gratis"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Encuentra ayuda para Alimentación con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar comedores sociales, bancos de alimentos y entrega de comidas a domicilio cerca de ti. ¡Localiza recursos de alimentación ahora!"
   },
   {
     "categoryId": "food_distribution",
     "label": "Comedor social",
     "slug": "distribution-repas",
     "synonyms": [
-      "distribution alimentaire distribution de repas manger maraude bouffe soupe nourriture faim repas mange manger fin distribution aide alimentaire restauration assise comida comer"
+      "comedor social",
+      "comida gratis",
+      "alimentos",
+      "banco de alimentos",
+      "ayuda alimentaria",
+      "comida solidaria",
+      "menú solidario",
+      "sopas populares",
+      "refugio",
+      "comedor benéfico",
+      "asistencia alimentaria",
+      "donación alimentos",
+      "entrega comida",
+      "raciones comida",
+      "ayuda urgente"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Point d'arrêt d'une distribution alimentaire. Attention : Veuillez créer une structure par point de distribution."
+    "seoTitle": "Encuentra un comedor social cerca de ti con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar comedores sociales, bancos de alimentos y entrega de comidas a domicilio en España. ¡Localiza ayuda cerca de ti!"
   },
   {
     "categoryId": "food_packages",
     "label": "Banco de alimentos",
     "slug": "colis-alimentaire",
     "synonyms": [
-      "colis colis alimentaire manger mange fruits legumes panier repas aide alimentaire panier comida comer"
+      "alimentos",
+      "comida",
+      "ayuda alimentaria",
+      "comedores sociales",
+      "donación de alimentos",
+      "recogida de alimentos",
+      "banco de alimentos",
+      "necesidad alimentaria",
+      "nutrición",
+      "soporte alimentario",
+      "cesta de alimentos",
+      "productos básicos",
+      "comida gratis",
+      "alimentos no perecederos",
+      "asistencia alimentaria"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Distribution de colis contenant des denrées alimentaires (conserves, légumes, etc.)."
+    "seoTitle": "Encuentra un Banco de Alimentos cerca con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar bancos de alimentos, comedores sociales y ayuda alimentaria puntual. ¡Localiza los recursos cerca de ti!"
   },
   {
     "categoryId": "social_grocery_stores",
     "label": "Tienda solidaria de alimentos",
     "slug": "epicerie-sociale-solidaire",
     "synonyms": [
-      "epicerie sociale epicerie manger fruits legumes panier repas epicerie solidaire aide alimentaire"
+      "alimentos gratis",
+      "comida solidaria",
+      "banco de alimentos",
+      "mercado social",
+      "comedor social",
+      "ayuda alimentaria urgente",
+      "caridad alimentaria",
+      "donación de alimentos",
+      "alimentos a bajo costo",
+      "productos básicos",
+      "vales de comida",
+      "tarjeta monedero alimentos",
+      "recogida de alimentos",
+      "despensa solidaria",
+      "cestas de alimentos"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Les épiceries solidaires accueillent les personnes en précarité et leur permettent de faire des courses à prix solidaire."
+    "seoTitle": "Encuentra una tienda solidaria de alimentos con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar mercados sociales, bancos de alimentos y comedores sociales cerca de ti. ¡Localiza ayuda alimentaria en España!"
   },
   {
     "categoryId": "fountain",
     "label": "Fuente de agua",
     "slug": "fontaine",
     "synonyms": [
-      "fontaine boire eau soif robinet potable"
+      "agua potable",
+      "fuente pública",
+      "grifo",
+      "hidratación",
+      "beber",
+      "sed",
+      "agua gratis",
+      "puntos de agua",
+      "botella",
+      "llenar botella",
+      "agua del grifo",
+      "fuente callejera",
+      "canalización de agua",
+      "servicio de agua",
+      "acceso al agua"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Eau potable en accès libre."
+    "seoTitle": "Encuentra fuentes de agua potable gratuitas con Soliguide",
+    "seoDescription": "Soliguide te ayuda a localizar fuentes de agua potable gratuitas cerca de ti en España. Encuentra fuentes públicas, servicios de hidratación y puntos de recarga. ¡Infórmate!"
   },
   {
     "categoryId": "solidarity_fridge",
     "label": "Nevera solidaria",
     "slug": "frigo-solidaire",
     "synonyms": [
-      "manger mange conserver frais bouffe aliment faim frigo frigo solidaire"
+      "alimentos gratis",
+      "comida solidaria",
+      "banco de alimentos",
+      "comedores sociales",
+      "alimentos donados",
+      "ayuda alimentaria",
+      "recursos alimenticios",
+      "nevera comunitaria",
+      "comida accesible",
+      "donación de alimentos",
+      "recogida de alimentos",
+      "apoyo nutricional",
+      "alimentos para todos",
+      "nevera social",
+      "platos preparados"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Frigo solidaire"
+    "seoTitle": "Nevera solidaria cerca de ti con Soliguide, ¡encuentra ayuda!",
+    "seoDescription": "Con Soliguide, ubica neveras solidarias. Accede a comida gratuita, bancos de alimentos y comedores sociales cerca de ti. ¡Geolocalización fácil!"
   },
   {
     "categoryId": "shared_kitchen",
     "label": "Cocina comunitaria",
     "slug": "cuisine-partagee",
     "synonyms": [
-      "cuisine cuisiner preparer partage partagee cuisine partagee"
+      "comedor social",
+      "banco de alimentos",
+      "olla popular",
+      "comida gratis",
+      "alimentos",
+      "ayuda alimentaria",
+      "distribución de alimentos",
+      "comida comunitaria",
+      "almuerzo social",
+      "cena solidaria",
+      "desayuno gratis",
+      "recursos alimentarios",
+      "emergencia alimentaria",
+      "nutrición",
+      "sopa"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Cuisine partagée "
+    "seoTitle": "Encuentra una Cocina comunitaria cerca de ti con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar comedores sociales, bancos de alimentos y ollas populares. ¡Localiza recursos cerca de ti!"
   },
   {
     "categoryId": "cooking_workshop",
     "label": "Taller de cocina",
     "slug": "atelier-cuisine",
     "synonyms": [
-      "atelier cuisine cuisiner partage preparer atelier cuisine cuire"
+      "clases de cocina",
+      "cocina económica",
+      "recetas baratas",
+      "aprender a cocinar",
+      "alimentación saludable",
+      "nutrición",
+      "cocina para principiantes",
+      "cursos de cocina gratis",
+      "talleres gratuitos",
+      "banco de alimentos",
+      "comida solidaria",
+      "comedores sociales",
+      "menú económico",
+      "cocina casera",
+      "cocinar fácil"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Atelier de cuisine"
+    "seoTitle": "Encuentra un taller de cocina solidario con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar talleres de cocina gratuitos. Aprende a cocinar, comer sano y ahorrar. Encuentra comedores sociales, bancos de alimentos y más cerca de ti."
   },
   {
     "categoryId": "baby_parcel",
     "label": "Cesta para bebés",
     "slug": "colis-bebe",
     "synonyms": [
-      "bebe nourrir nourisson colis colis bebe puericulture lait couche biberon maternite manger nourriture vetement"
+      "canastilla bebé",
+      "pañales",
+      "leche maternizada",
+      "productos higiene bebé",
+      "ropa bebé gratis",
+      "alimentos bebé",
+      "ayuda embarazo",
+      "biberones",
+      "chupetes",
+      "potitos",
+      "crema pañal",
+      "toallitas bebé",
+      "cuna",
+      "carritos bebé",
+      "ayuda nacimiento"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Colis pour bébé"
+    "seoTitle": "Encuentra cestas para bebés con Soliguide en España",
+    "seoDescription": "Soliguide te ayuda a encontrar cestas para bebés, pañales gratis, leche de fórmula y más. Encuentra ayuda cerca de ti en España."
   },
   {
     "categoryId": "food_voucher",
     "label": "Vale/cheque alimentario",
     "slug": "bon-alimentaire",
     "synonyms": [
-      "bon cheque ticket alimentaire gratuit aide"
+      "cheque alimentario",
+      "vale de comida",
+      "ayuda alimentaria",
+      "tarjeta monedero",
+      "alimentos gratis",
+      "comedor social",
+      "banco de alimentos",
+      "Cruz Roja Española",
+      "Cáritas",
+      "comedores parroquiales",
+      "ayuda social",
+      "comida urgente",
+      "necesidad alimentaria",
+      "sin recursos",
+      "alimentos"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Distribution de bon/chèque alimentaire"
+    "seoTitle": "Encuentra vales/cheques alimentarios con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar vales/cheques alimentarios. Comedores sociales, bancos de alimentos y ayudas directas disponibles cerca de ti."
   },
   {
     "categoryId": "community_garden",
     "label": "Huerto comunitario",
     "slug": "jardin-solidaire",
     "synonyms": [
-      "fruits pousser jardin bio nature legumes jardin solidaire jardinage"
+      "huerto urbano",
+      "agricultura urbana",
+      "cultivo",
+      "jardín comunitario",
+      "sembrar",
+      "cosechar",
+      "plantar",
+      "hortalizas",
+      "verduras",
+      "frutas",
+      "abono",
+      "compost",
+      "ecológico",
+      "sostenible",
+      "permacultura"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Jardin solidaire"
+    "seoTitle": "Encuentra tu huerto comunitario cerca de ti con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar un lugar para cultivar, aprender sobre agricultura urbana y conectar con la comunidad. ¡Todo cerca de ti!"
   },
   {
     "categoryId": "counseling",
     "label": "Orientación",
     "slug": "conseil",
     "synonyms": [
-      "conseil conseils soutien accompagnement aide se faire aider conseiller numerique"
+      "asesoramiento",
+      "guía",
+      "consejo",
+      "información",
+      "ayuda",
+      "apoyo",
+      "orientación laboral",
+      "orientación social",
+      "orientación legal",
+      "servicios sociales",
+      "itinerarios de inserción",
+      "atención social",
+      "acompañamiento",
+      "derechos",
+      "trámites"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Encuentra servicios de orientación con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar asesoramiento legal gratuito, orientación laboral y apoyo social. ¡Encuentra los recursos cerca de ti!"
   },
   {
     "categoryId": "legal_advice",
     "label": "Asesoramiento jurídico",
     "slug": "permanence-juridique",
     "synonyms": [
-      "proces permanence juridique amende avocat droits droit recours juge ldh droits de l homme ligue des droits de l homme acces au droit cnda ofpra asile sejour carte sejour divorce separation"
+      "abogado gratuito",
+      "asistencia legal",
+      "consulta jurídica",
+      "defensa legal",
+      "orientación jurídica",
+      "derechos",
+      "asesoramiento legal",
+      "pro bono",
+      "justicia gratuita",
+      "representación legal",
+      "litigio",
+      "reclamación",
+      "apelación",
+      "bufete gratuito",
+      "ayuda jurídica"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Permanences juridiques (surendettement, demande d'asile, procès, etc.)."
+    "seoTitle": "Obtén asesoramiento jurídico gratuito con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar asesoramiento jurídico en España. Abogados gratuitos, orientación legal y defensa de tus derechos cerca de ti."
   },
   {
     "categoryId": "social_accompaniment",
     "label": "Servicio de atención y orientación social",
     "slug": "accompagnement-social",
     "synonyms": [
-      "accompagnement assistante sociale social travailleur social droits demarches femmes battues femme battue violence isolement isole solitude isolee partir separation divorce victime"
+      "ayuda social",
+      "orientación social",
+      "servicios sociales",
+      "asesoramiento",
+      "información",
+      "apoyo",
+      "trámites",
+      "vivienda",
+      "legal",
+      "familiar",
+      "empleo",
+      "recursos sociales",
+      "trabajador social",
+      "asistencia social",
+      "ayuda psicológica"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Accompagement des personnes dans leur réinsertion (assistantes sociales, permanences, etc.)."
+    "seoTitle": "Encuentra el servicio de atención y orientación social con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar asesoramiento legal gratuito, información sobre vivienda y apoyo para trámites. ¡Encuentra recursos cerca de ti!"
   },
   {
     "categoryId": "disability_advice",
     "label": "Apoyo a personas con discapacidad",
     "slug": "conseil-handicap",
     "synonyms": [
-      "conseil handicap handicap aah conseils conseil handicape handicapee personne a mobilite reduite pmr"
+      "discapacidad",
+      "diversidad funcional",
+      "movilidad reducida",
+      "accesibilidad",
+      "ayudas técnicas",
+      "adaptación vivienda",
+      "centro de día",
+      "residencia",
+      "asistencia domiciliaria",
+      "integración social",
+      "inserción laboral",
+      "derechos discapacidad",
+      "certificado discapacidad",
+      "dependencia",
+      "teleasistencia"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'accès aux droits pour les personnes en situation de handicap."
+    "seoTitle": "Soliguide te ayuda a encontrar apoyo para personas con discapacidad",
+    "seoDescription": "Soliguide te muestra centros de día, residencias y asistencia a domicilio. Encuentra servicios cerca de ti que mejoran tu calidad de vida."
   },
   {
     "categoryId": "administrative_assistance",
     "label": "Asesoramiento administrativo",
     "slug": "conseil-administratif",
     "synonyms": [
-      "conseil administratif conseils administratifs aide administrative demarches rsa cmu allocations papiers securite sociale caf cpampapier conseiller numerique"
+      "trámites",
+      "burocracia",
+      "documentación",
+      "extranjería",
+      "ayuda legal",
+      "asesoría jurídica",
+      "cita previa",
+      "seguridad social",
+      "certificado",
+      "empadronamiento",
+      "prestaciones",
+      "subsidios",
+      "ayudas sociales",
+      "administración pública",
+      "abogado"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'aide administrative (RSA, CMU, allocations, chômage, etc.)."
+    "seoTitle": "Consigue asesoramiento administrativo con Soliguide en España",
+    "seoDescription": "Soliguide te ayuda con trámites, extranjería y acceso a derechos en España. Encuentra ayuda cerca de ti. ¡Localiza los servicios!"
   },
   {
     "categoryId": "parent_assistance",
     "label": "Asesoramiento familiar",
     "slug": "conseil-parents",
     "synonyms": [
-      "conseil parents conseil aux parents conseil parental mediation familiale mediation conflit adolescents enfants parent parentalite parents enfant ado adolescent couple couples"
+      "apoyo familiar",
+      "orientación familiar",
+      "terapia familiar",
+      "mediación familiar",
+      "consejería familiar",
+      "ayuda psicológica familiar",
+      "problemas familiares",
+      "conflictos familiares",
+      "divorcio",
+      "separación",
+      "cuidado de niños",
+      "educación de hijos",
+      "violencia doméstica",
+      "asistencia familiar",
+      "recursos familiares"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Permances d'aide pour les jeunes parents et les parents rencontrant des difficultés avec leurs enfants."
+    "seoTitle": "Encuentra asesoramiento familiar con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar apoyo familiar. Recibe orientación legal, mediación familiar o terapia de pareja. Encuentra servicios cerca de ti en España."
   },
   {
     "categoryId": "budget_advice",
     "label": "Asesoramiento presupuestario",
     "slug": "conseil-budget",
     "synonyms": [
-      "conseil budget conseil budget argent finance cresus"
+      "gestión económica",
+      "finanzas personales",
+      "deudas",
+      "ahorro",
+      "presupuesto familiar",
+      "microcréditos",
+      "ayudas económicas",
+      "planificación financiera",
+      "educación financiera",
+      "economía doméstica",
+      "asesor financiero",
+      "orientación presupuestaria",
+      "recursos económicos",
+      "apoyo financiero",
+      "economista"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Points conseil budget (PCB) proposent des conseils gratuits et personnalisés de gestion budgétaire "
+    "seoTitle": "Obtén Asesoramiento Presupuestario con Soliguide: Tu guía solidaria",
+    "seoDescription": "Soliguide te ayuda a encontrar asesoramiento presupuestario en España. Aprende a gestionar tus finanzas, a solicitar microcréditos y obtener ayudas económicas cerca de ti."
   },
   {
     "categoryId": "training_and_jobs",
     "label": "Formación y empleo",
     "slug": "formation-emploi",
     "synonyms": [
-      "formation emploi travailler job travail boulot se former taf taff taffe apprendre lire etudier comprendre france travail pole emploi conseiller numerique"
+      "empleo",
+      "formación",
+      "cursos",
+      "talleres",
+      "orientación laboral",
+      "capacitación",
+      "búsqueda de empleo",
+      "entrevistas",
+      "currículum",
+      "inserción laboral",
+      "oficina de empleo",
+      "contrato",
+      "prácticas",
+      "becas",
+      "formación profesional"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Encuentra formación y empleo con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar cursos, talleres o ayuda para buscar trabajo. Encuentra orientación laboral, formación profesional y recursos cerca de ti."
   },
   {
     "categoryId": "digital_tools_training",
     "label": "Taller de competencias digitales",
     "slug": "formation-numerique",
     "synonyms": [
-      "formation numerique atelier numerique formation informatique ordinateur connexion se former technologie tech apprendre comprendre lire etudier conseiller numerique"
+      "alfabetización digital",
+      "habilidades digitales",
+      "cursos informática gratis",
+      "acceso internet",
+      "telecentro",
+      "ciberespacio",
+      "competencias básicas",
+      "brecha digital",
+      "formación online",
+      "ordenador",
+      "tableta",
+      "móvil",
+      "redes sociales",
+      "búsqueda empleo",
+      "administración electrónica"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Permanences ou ateliers visant à la maitrise d'outils informatiques."
+    "seoTitle": "Encuentra un taller de competencias digitales con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar talleres de informática gratuitos, cursos online y acceso a internet en centros cívicos cerca de ti."
   },
   {
     "categoryId": "job_coaching",
     "label": "Orientación e inserción laboral",
     "slug": "accompagnement-emploi",
     "synonyms": [
-      "accompagnement emploi travailler job pole emploi travail boulot se former etre accompagne taf taff taffe apprendre comprendre lire etudier france travail orientation"
+      "empleo",
+      "trabajo",
+      "formación",
+      "cursos",
+      "talleres",
+      "asesoramiento laboral",
+      "agencia de empleo",
+      "búsqueda de empleo",
+      "entrevista de trabajo",
+      "currículum vitae",
+      "orientación profesional",
+      "inserción laboral",
+      "capacitación",
+      "habilidades",
+      "oficina de empleo"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Aide au retour à l'emploi : ateliers de préparation aux entretiens, aide à la recherche d'emploi, atelier CV, etc."
+    "seoTitle": "Soliguide te ayuda con la orientación e inserción laboral",
+    "seoDescription": "Soliguide te ofrece recursos para encontrar empleo, formación o asesoramiento. ¡Localiza cursos, talleres y agencias de empleo cerca de ti en España!"
   },
   {
     "categoryId": "integration_through_economic_activity",
     "label": "Formación ocupacional",
     "slug": "insertion-activite-economique",
     "synonyms": [
-      "chantier de reinsertion chantier reinsertion travailler job insertion reinsertion siae iae se reinserer taf taff taffe apprendre comprendre lire etudier orientation"
+      "cursos gratuitos",
+      "talleres empleo",
+      "capacitación laboral",
+      "formación profesional",
+      "inserción laboral",
+      "aprendizaje",
+      "habilidades",
+      "competencias",
+      "orientación laboral",
+      "empleabilidad",
+      "oficios",
+      "entrenamiento",
+      "prácticas",
+      "becas formación",
+      "cursos SEPE"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Embauche de personnes en insertion."
+    "seoTitle": "Encuentra formación ocupacional con Soliguide para impulsar tu futuro",
+    "seoDescription": "Soliguide te ayuda a encontrar cursos de formación gratuitos, talleres de empleo y programas de capacitación laboral cerca de ti. ¡Geolocalización fácil!"
   },
   {
     "categoryId": "tutoring",
     "label": "Apoyo escolar",
     "slug": "soutien-scolaire",
     "synonyms": [
-      "soutien scolaire aide au devoir etudes college lycee devoirs cours apprendre comprendre lire etudier"
+      "clases de refuerzo",
+      "ayuda con los deberes",
+      "material escolar",
+      "libros de texto",
+      "becas escolares",
+      "comedores escolares",
+      "transporte escolar",
+      "actividades extraescolares",
+      "apoyo educativo",
+      "orientación escolar",
+      "tutorías",
+      "recursos educativos",
+      "subvenciones educativas",
+      "programa de apoyo escolar",
+      "educación"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Soutien scolaire gratuit (préciser le niveau dans la description)."
+    "seoTitle": "Encuentra apoyo escolar fácil con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar clases de refuerzo, material escolar y becas en España. Encuentra los centros cerca de ti. ¡Apoyo escolar con Soliguide!"
   },
   {
     "categoryId": "accomodation_and_housing",
     "label": "Alojamiento y vivienda",
     "slug": "hebergement-et-logement",
     "synonyms": [
-      "hebergement dormir lit logement repos toit hebergement logement logement hebergement et logement hebergementetlogement domir"
+      "alojamiento",
+      "vivienda",
+      "habitación",
+      "refugio",
+      "hogar",
+      "albergue",
+      "centro de acogida",
+      "piso",
+      "casa",
+      "residencia",
+      "dormitorio",
+      "techo",
+      "morada",
+      "cobijo",
+      "hospedaje"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Encuentra alojamiento y vivienda digna con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar albergues, centros de acogida o viviendas sociales en España. ¡Localiza recursos cerca de ti!"
   },
   {
     "categoryId": "overnight_stop",
     "label": "Refugio nocturno",
     "slug": "halte-nuit",
     "synonyms": [
-      "halte de nuit halte nuit dormir se reposer alte de nui accueil nuit accueil de nuit accueil nuit"
+      "albergue",
+      "dormir",
+      "refugiarse",
+      "cobijo",
+      "pernoctar",
+      "casa de acogida",
+      "centro de noche",
+      "sin techo",
+      "calle",
+      "ayuda nocturna",
+      "abrigo",
+      "cama",
+      "ducharse",
+      "comer",
+      "protección"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "La halte de nuit est un lieu d'accueil et de repos pour les personnes sans abri ouvert de 20h à 8h du matin, 7/7 jours."
+    "seoTitle": "Encuentra un refugio nocturno con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar un lugar seguro para dormir en España. Alojamiento temporal, centros de acogida, o albergues. ¡Encuentra ayuda cerca de ti!"
   },
   {
     "categoryId": "emergency_accommodation",
     "label": "Alojamiento de emergencia",
     "slug": "hebergement-urgence",
     "synonyms": [
-      "hebergement urgence dormir lit logement chu halte de nuit toit a la rue rue dehors accueil de nuit accueil nuit accueil nuit"
+      "albergue",
+      "refugio",
+      "hogar",
+      "dormir",
+      "techo",
+      "pernoctar",
+      "residencia",
+      "ayuda habitacional",
+      "casa de acogida",
+      "sin techo",
+      "emergencia social",
+      "asistencia social",
+      "servicios sociales",
+      "vivienda temporal",
+      "protección social"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Hébergement à court terme (à la nuitée), accessible directement."
+    "seoTitle": "Encuentra Alojamiento de emergencia con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar alojamiento de emergencia en España. Residencias, albergues y centros de acogida. ¡Localiza ayuda cerca de ti!"
   },
   {
     "categoryId": "long_term_accomodation",
     "label": "Vivienda social",
     "slug": "hebergement-long-terme",
     "synonyms": [
-      "hebergement dormir lit logement chrs repos toit"
+      "vivienda protegida",
+      "alquiler social",
+      "IVIMA",
+      "EMVS",
+      "ayuda alquiler",
+      "subsidio vivienda",
+      "oficina vivienda",
+      "pisos sociales",
+      "emergencia habitacional",
+      "desahucio",
+      "asesoramiento vivienda",
+      "derecho vivienda",
+      "parque público vivienda",
+      "bolsa alquiler",
+      "rehabilitación vivienda"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Possibilité d'hébergement à long terme, au sein de la structure ou d'une structure partenaire. Indiquer dans la description les modalités d'accès."
+    "seoTitle": "Encuentra vivienda social fácilmente con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar vivienda social, alquileres asequibles y asesoramiento. ¡Localiza los recursos cerca de ti!"
   },
   {
     "categoryId": "citizen_housing",
     "label": "Alojamiento ciudadano",
     "slug": "hebergement-citoyen",
     "synonyms": [
-      "hebergement hebergement citoyen merci pour l invit singa"
+      "vivienda compartida",
+      "habitación solidaria",
+      "alquiler social",
+      "hogar compartido",
+      "residencia temporal",
+      "co-housing",
+      "vivienda colaborativa",
+      "alojamiento alternativo",
+      "piso compartido",
+      "convivencia intergeneracional",
+      "programa de acogida",
+      "familias de acogida",
+      "recurso habitacional",
+      "ayuda habitacional",
+      "albergue ciudadano"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Encuentra Alojamiento Ciudadano con Soliguide, tu guía solidaria",
+    "seoDescription": "Soliguide te ayuda a encontrar alojamiento ciudadano. Busca pisos compartidos, habitaciones solidarias y alquileres sociales cerca de ti."
   },
   {
     "categoryId": "access_to_housing",
     "label": "Asesoramiento y apoyo a la vivienda",
     "slug": "conseil-logement",
     "synonyms": [
-      "hebergement dalo logement expulsion toit maison impayes factures chauffage conseil conseil logement"
+      "ayuda vivienda",
+      "alquiler",
+      "vivienda social",
+      "asesoramiento legal",
+      "derecho a la vivienda",
+      "emergencia habitacional",
+      "desalojo",
+      "hipoteca",
+      "subsidio alquiler",
+      "oficina de vivienda",
+      "asistencia vivienda",
+      "recursos habitacionales",
+      "alojamiento",
+      "sin hogar",
+      "infravivienda"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'accès au logement (logement social, DALO, etc.)."
+    "seoTitle": "Soliguide te ayuda con Asesoramiento y apoyo a la vivienda",
+    "seoDescription": "Encuentra con Soliguide asesoramiento legal gratuito, ayudas al alquiler o acceso a viviendas sociales. ¡Geolocaliza los servicios cerca de ti!"
   },
   {
     "categoryId": "hygiene_and_wellness",
     "label": "Higiene y bienestar",
     "slug": "hygiene",
     "synonyms": [
-      "hygiene laver douche bain se laver se doucher propre"
+      "ducha",
+      "aseo personal",
+      "lavandería",
+      "jabón",
+      "champú",
+      "cepillo de dientes",
+      "pasta de dientes",
+      "compresas",
+      "tampones",
+      "pañales",
+      "crema hidratante",
+      "desodorante",
+      "peine",
+      "afeitado",
+      "toalla"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Soliguide te ayuda con higiene y bienestar en España",
+    "seoDescription": "Soliguide te muestra dónde encontrar duchas públicas, lavanderías sociales o kits de higiene gratuitos cerca de ti en España. ¡Encuentra ayuda!"
   },
   {
     "categoryId": "shower",
     "label": "Ducha",
     "slug": "douche",
     "synonyms": [
-      "douche laver se laver bain bain douche piscine propre sale cheveux"
+      "aseo personal",
+      "higiene",
+      "limpieza",
+      "baño público",
+      "ducharse",
+      "limpio",
+      "centro de día",
+      "albergue",
+      "ropa limpia",
+      "bienestar",
+      "agua caliente",
+      "jabón",
+      "champú",
+      "toalla",
+      "refugio"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Encuentra una ducha gratis con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar duchas públicas, centros de higiene personal y lavanderías sociales cerca de ti. ¡Infórmate y mejora tu bienestar!"
   },
   {
     "categoryId": "hairdresser",
     "label": "Peluquería",
     "slug": "coiffeur",
     "synonyms": [
-      "coiffeur cheveux"
+      "cortes de pelo gratis",
+      "peluquería gratuita",
+      "arreglarse el pelo",
+      "lavado de cabello solidario",
+      "peinados económicos",
+      "cuidado capilar",
+      "afeitado social",
+      "belleza solidaria",
+      "imagen personal",
+      "bienestar",
+      "estética social",
+      "cambio de look",
+      "peluqueros solidarios",
+      "productos de higiene",
+      "asesoramiento de imagen"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Encuentra peluquería solidaria con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar peluquerías sociales cerca de ti. Accede a cortes gratuitos, talleres de imagen personal y afeitado solidario."
   },
   {
     "categoryId": "laundry",
     "label": "Lavandería",
     "slug": "laverie",
     "synonyms": [
-      "laverie vetements vetement laver machine a laver pressing linge lave linge"
+      "lavandería",
+      "lavanderías",
+      "lavandería social",
+      "lavandería autoservicio",
+      "lavar ropa",
+      "ropa limpia",
+      "higiene",
+      "aseo",
+      "colada",
+      "detergente",
+      "jabón",
+      "monedas",
+      "fichas",
+      "vales lavandería",
+      "ropa"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Lave-linge en accès libre."
+    "seoTitle": "Encuentra una lavandería cerca de ti con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar lavanderías sociales, autoservicio a bajo coste y vales para lavar tu ropa. ¡Localiza los servicios cerca de ti!"
   },
   {
     "categoryId": "wellness",
     "label": "Bienestar",
     "slug": "bien-etre",
     "synonyms": [
-      "bien etre coiffeur massage maquillage belle beau pedicure manicure manucire"
+      "bienestar",
+      "salud",
+      "apoyo emocional",
+      "ayuda psicológica",
+      "centros de día",
+      "asistencia social",
+      "calidad de vida",
+      "atención personal",
+      "cuidados personales",
+      "hábitos saludables",
+      "resiliencia",
+      "terapia",
+      "acompañamiento",
+      "consejería",
+      "orientación"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Ateliers de bien-être : coiffeur, massage, sophrologie, etc. (à préciser dans la description)."
+    "seoTitle": "Encuentra apoyo para tu bienestar con Soliguide",
+    "seoDescription": "Soliguide te ayuda a mejorar tu bienestar. Encuentra centros de día, asistencia psicológica gratuita y programas de apoyo social cerca de ti."
   },
   {
     "categoryId": "toilets",
     "label": "Aseos",
     "slug": "toilettes",
     "synonyms": [
-      "toilettes sanisette pisser pipi wc caca chiotte toilet"
+      "baños",
+      "servicios",
+      "retretes",
+      "duchas",
+      "lavandería",
+      "higiene",
+      "limpieza",
+      "agua",
+      "jabón",
+      "aseo personal",
+      "accesible",
+      "público",
+      "gratis",
+      "solidario",
+      "ropa limpia"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Toilettes en accès libre."
+    "seoTitle": "Encuentra aseos públicos cerca de ti con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar aseos gratuitos, duchas públicas y lavanderías sociales en España. ¡Localiza los servicios cerca de ti!"
   },
   {
     "categoryId": "hygiene_products",
     "label": "Productos de higiene",
     "slug": "produits-hygiene",
     "synonyms": [
-      "periodiques protections periodiques protection periodique regles regle tampon serviette hygienique serviette menstrues produits d hygiene hygiene cup culotte tampax"
+      "jabón",
+      "champú",
+      "gel de ducha",
+      "pasta de dientes",
+      "cepillo de dientes",
+      "compresas",
+      "tampones",
+      "desodorante",
+      "crema hidratante",
+      "pañales",
+      "toallitas húmedas",
+      "higiene íntima",
+      "productos de aseo",
+      "cuidado personal",
+      "aseo personal"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Distribution de produits d'hygiène (savons, dentifrice, tampons, serviettes hygiéniques, etc.)."
+    "seoTitle": "Encuentra productos de higiene personal con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar gel de ducha, champú o compresas. Localiza centros de distribución gratuita cerca de ti en España. ¡Infórmate ya!"
   },
   {
     "categoryId": "face_masks",
     "label": "Mascarillas",
     "slug": "masques",
     "synonyms": [
-      "masque protection covid virus"
+      "cubrebocas",
+      "protección facial",
+      "prevención",
+      "salud pública",
+      "gratis",
+      "donación",
+      "ayuda social",
+      "protección respiratoria",
+      "pandemia",
+      "covid",
+      "ong",
+      "farmacia social",
+      "distribución gratuita",
+      "mascarillas higiénicas",
+      "mascarillas reutilizables"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Masques de protection"
+    "seoTitle": "Encuentra mascarillas gratuitas cerca de ti con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar mascarillas gratuitas, puntos de distribución y organizaciones que las ofrecen en España. ¡Localiza la ayuda cerca de ti!"
   },
   {
     "categoryId": "equipment",
     "label": "Material",
     "slug": "materiel",
     "synonyms": [
-      "materiel affaires mobilier"
+      "ropa",
+      "alimentos",
+      "comida",
+      "pañales",
+      "productos de higiene",
+      "ayuda material",
+      "donaciones",
+      "banco de alimentos",
+      "ropero",
+      "calzado",
+      "mantas",
+      "artículos para el hogar",
+      "utensilios",
+      "comedores sociales",
+      "kits de emergencia"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Encuentra ayuda para conseguir Material con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar ropa, alimentos, pañales y otros materiales básicos. Encuentra bancos de alimentos, roperos solidarios cerca de ti en España."
   },
   {
     "categoryId": "luggage_storage",
     "label": "Consigna",
     "slug": "bagagerie",
     "synonyms": [
-      "bagage bagagerie sac poser casier"
+      "guardarropa",
+      "almacenaje",
+      "depósito de equipaje",
+      "taquillas",
+      "guardamuebles",
+      "consigna automática",
+      "consigna estaciones",
+      "consigna aeropuertos",
+      "guardar pertenencias",
+      "seguridad equipaje",
+      "consigna pública",
+      "consigna social",
+      "consigna solidaria",
+      "dejar maletas",
+      "custodia equipaje"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Lieu permettant de conserver des bagages ou matériel."
+    "seoTitle": "Encuentra consignas seguras con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar consignas para guardar tus pertenencias. Encuentra opciones gratuitas, de pago o solidarias cerca de ti en España."
   },
   {
     "categoryId": "solidarity_store",
     "label": "Tienda solidaria",
     "slug": "boutique-solidaire",
     "synonyms": [
-      "boutique solidaire meubles accessoires s habiller"
+      "ropa barata",
+      "muebles segunda mano",
+      "alimentos económicos",
+      "economato social",
+      "tienda de segunda mano",
+      "tienda de caridad",
+      "mercado social",
+      "ropero social",
+      "ayuda económica",
+      "donaciones",
+      "reutilización",
+      "reciclaje",
+      "inserción social",
+      "voluntariado",
+      "bazar solidario"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Boutique vendant du matériel à prix solidaire."
+    "seoTitle": "Encuentra una tienda solidaria cerca de ti con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar tiendas solidarias en España. Ropa, muebles, alimentos a bajo precio. Encuentra todo cerca de ti, ¡estamos aquí para ayudarte!"
   },
   {
     "categoryId": "clothing",
     "label": "Ropero",
     "slug": "vetements",
     "synonyms": [
-      "vestiaire vetements t shirt pantalon robe vetir vestiboutique pull manteau habit s habiller"
+      "ropa",
+      "vestimenta",
+      "indumentaria",
+      "prendas",
+      "abrigo",
+      "pantalón",
+      "camisa",
+      "zapatos",
+      "donación de ropa",
+      "ropero social",
+      "tienda solidaria",
+      "ropa usada",
+      "ropa de segunda mano",
+      "recogida de ropa",
+      "banco de ropa"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Vêtements gratuits ou à prix symbolique. Préciser le sexe et/ou l'âge dans les conditions."
+    "seoTitle": "Encuentra un ropero solidario con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar ropa gratis, donaciones de ropa y talleres de costura cerca de ti en España. ¡Localiza los recursos ahora!"
   },
   {
     "categoryId": "animal_assitance",
     "label": "Animales",
     "slug": "animaux",
-    "synonyms": [
-      "animaux animals chien chat croquettes animal"
-    ],
+    "synonyms": ["animaux animals chien chat croquettes animal"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -796,9 +1522,7 @@
     "categoryId": "vaccination",
     "label": "Vacunación",
     "slug": "vaccination",
-    "synonyms": [
-      "vaccination vaccin covid piqure rappel rappel de vaccin"
-    ],
+    "synonyms": ["vaccination vaccin covid piqure rappel rappel de vaccin"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -835,9 +1559,7 @@
     "categoryId": "health_specialists",
     "label": "Médico/a especialista",
     "slug": "specialistes-medecine",
-    "synonyms": [
-      "specialistes specialiste"
-    ],
+    "synonyms": ["specialistes specialiste"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -848,9 +1570,7 @@
     "categoryId": "allergology",
     "label": "Alergología",
     "slug": "allergologie",
-    "synonyms": [
-      "allergologie allergies"
-    ],
+    "synonyms": ["allergologie allergies"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -861,9 +1581,7 @@
     "categoryId": "cardiology",
     "label": "Cardiología",
     "slug": "cardiologie",
-    "synonyms": [
-      "cardiologie coeur cardiaque cardio"
-    ],
+    "synonyms": ["cardiologie coeur cardiaque cardio"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -874,9 +1592,7 @@
     "categoryId": "dermatology",
     "label": "Dermatología",
     "slug": "dermatologie",
-    "synonyms": [
-      "dermato dermatologie dermatologue peau bouton"
-    ],
+    "synonyms": ["dermato dermatologie dermatologue peau bouton"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -887,9 +1603,7 @@
     "categoryId": "echography",
     "label": "Ecografía",
     "slug": "echographie",
-    "synonyms": [
-      "echographie bebe enceinte"
-    ],
+    "synonyms": ["echographie bebe enceinte"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -900,9 +1614,7 @@
     "categoryId": "endocrinology",
     "label": "Endocrinología",
     "slug": "endocrinologie",
-    "synonyms": [
-      "endocrinologie hormones tyroide"
-    ],
+    "synonyms": ["endocrinologie hormones tyroide"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -913,9 +1625,7 @@
     "categoryId": "gastroenterology",
     "label": "Gastroenterología",
     "slug": "gastro-enterologie",
-    "synonyms": [
-      "gastro enterologue gastro enterologie kk caca"
-    ],
+    "synonyms": ["gastro enterologue gastro enterologie kk caca"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -939,9 +1649,7 @@
     "categoryId": "kinesitherapy",
     "label": "Fisioterapia",
     "slug": "kinesitherapie",
-    "synonyms": [
-      "kinesitherapie reeducation blessure kine"
-    ],
+    "synonyms": ["kinesitherapie reeducation blessure kine"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -952,9 +1660,7 @@
     "categoryId": "mammography",
     "label": "Mamografía",
     "slug": "mammographie",
-    "synonyms": [
-      "mammographie radio seins"
-    ],
+    "synonyms": ["mammographie radio seins"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -965,9 +1671,7 @@
     "categoryId": "ophthalmology",
     "label": "Oftalmología",
     "slug": "ophtalmologie",
-    "synonyms": [
-      "ophtalmologie ophtalmologue yeux voir lunette"
-    ],
+    "synonyms": ["ophtalmologie ophtalmologue yeux voir lunette"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -991,9 +1695,7 @@
     "categoryId": "nutrition",
     "label": "Nutrición",
     "slug": "nutrition",
-    "synonyms": [
-      "nutrition dietetique regime surpoids obesite perte de poids"
-    ],
+    "synonyms": ["nutrition dietetique regime surpoids obesite perte de poids"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -1004,9 +1706,7 @@
     "categoryId": "pedicure",
     "label": "Pedicura",
     "slug": "pedicure",
-    "synonyms": [
-      "pedicure pied pie soigner pieds soin podologue podologie"
-    ],
+    "synonyms": ["pedicure pied pie soigner pieds soin podologue podologie"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -1030,9 +1730,7 @@
     "categoryId": "pneumology",
     "label": "Neumología",
     "slug": "pneumologie",
-    "synonyms": [
-      "poumons respiration respirer bronches"
-    ],
+    "synonyms": ["poumons respiration respirer bronches"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -1043,9 +1741,7 @@
     "categoryId": "radiology",
     "label": "Radiología",
     "slug": "radiologie",
-    "synonyms": [
-      "radiologie radiologue radiology rayonx fracture entorse"
-    ],
+    "synonyms": ["radiologie radiologue radiology rayonx fracture entorse"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -1056,9 +1752,7 @@
     "categoryId": "rheumatology",
     "label": "Reumatología",
     "slug": "rhumatologie",
-    "synonyms": [
-      "rhumatologue rumatologie"
-    ],
+    "synonyms": ["rhumatologue rumatologie"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -1069,9 +1763,7 @@
     "categoryId": "urology",
     "label": "Urología",
     "slug": "urologie",
-    "synonyms": [
-      "urologie urology"
-    ],
+    "synonyms": ["urologie urology"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -1095,9 +1787,7 @@
     "categoryId": "stomatology",
     "label": "Estomatología",
     "slug": "stomatologie",
-    "synonyms": [
-      "stomatologie stomatologue estomac digestion ventre"
-    ],
+    "synonyms": ["stomatologie stomatologue estomac digestion ventre"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -1108,9 +1798,7 @@
     "categoryId": "osteopathy",
     "label": "Osteópata",
     "slug": "osteo",
-    "synonyms": [
-      "ostheopathe osteo dos mal"
-    ],
+    "synonyms": ["ostheopathe osteo dos mal"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -1121,9 +1809,7 @@
     "categoryId": "acupuncture",
     "label": "Acupuntura",
     "slug": "acupuncture",
-    "synonyms": [
-      "acupuncture accupuncture bien etre"
-    ],
+    "synonyms": ["acupuncture accupuncture bien etre"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -1160,9 +1846,7 @@
     "categoryId": "wifi",
     "label": "Wifi",
     "slug": "wifi",
-    "synonyms": [
-      "wifi internet web connexion reseau"
-    ],
+    "synonyms": ["wifi internet web connexion reseau"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -1173,9 +1857,7 @@
     "categoryId": "electrical_outlets_available",
     "label": "Carga de dispositivos",
     "slug": "prise",
-    "synonyms": [
-      "prise charger electricite chargeur recharge charge"
-    ],
+    "synonyms": ["prise charger electricite chargeur recharge charge"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -1186,9 +1868,7 @@
     "categoryId": "telephone_at_your_disposal",
     "label": "Teléfono",
     "slug": "telephone",
-    "synonyms": [
-      "appel gratuit telephone telephoner appeler appel"
-    ],
+    "synonyms": ["appel gratuit telephone telephoner appeler appel"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -1225,9 +1905,7 @@
     "categoryId": "carpooling",
     "label": "Vehículo compartido",
     "slug": "covoiturage",
-    "synonyms": [
-      "co voiturage partage de voiture"
-    ],
+    "synonyms": ["co voiturage partage de voiture"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -1238,9 +1916,7 @@
     "categoryId": "provision_of_vehicles",
     "label": "Provisión de vehículos",
     "slug": "vehicule",
-    "synonyms": [
-      "mise a disposition de vehicule voiture"
-    ],
+    "synonyms": ["mise a disposition de vehicule voiture"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -1251,9 +1927,7 @@
     "categoryId": "chauffeur_driven_transport",
     "label": "Transporte con conductor/a",
     "slug": "chauffeur",
-    "synonyms": [
-      "transport avec chauffeur chauffeur transport a la demande"
-    ],
+    "synonyms": ["transport avec chauffeur chauffeur transport a la demande"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "es",
@@ -1350,11 +2024,7 @@
     "categoryId": null,
     "label": "ACCEM: accueil et accompagnement des migrants et réfugiés",
     "slug": "accem",
-    "synonyms": [
-      "ACCEM",
-      "accem espagne",
-      "aide migrants espagne"
-    ],
+    "synonyms": ["ACCEM", "accem espagne", "aide migrants espagne"],
     "type": "ORGANIZATION",
     "lang": "es",
     "country": "es",
@@ -1381,11 +2051,7 @@
     "categoryId": null,
     "label": "Albergue: centre d’hébergement pour sans-abris",
     "slug": "albergue",
-    "synonyms": [
-      "albergue",
-      "refugio",
-      "hébergement social"
-    ],
+    "synonyms": ["albergue", "refugio", "hébergement social"],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "es",
     "country": "es",
@@ -1411,11 +2077,7 @@
     "categoryId": null,
     "label": "Centro de día: accueil de jour",
     "slug": "centro-de-dia",
-    "synonyms": [
-      "centro día",
-      "centre de jour",
-      "accueil de jour"
-    ],
+    "synonyms": ["centro día", "centre de jour", "accueil de jour"],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "es",
     "country": "es",

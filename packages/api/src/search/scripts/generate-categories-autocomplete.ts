@@ -23,7 +23,6 @@ import "../../config/database/connection";
 import { GoogleGenAI } from "@google/genai";
 import {
   AutoCompleteType,
-  CountryCodes,
   SearchSuggestion,
   SupportedLanguagesCode,
 } from "@soliguide/common";
@@ -92,8 +91,7 @@ class CategoryTranslationScript {
       );
       try {
         const langTranslation = await this.translateCategory(suggestion);
-        console.log({ langTranslation });
-        console.log({ sourceId: suggestion.sourceId, lang: suggestion.lang });
+        console.log({ suggestion, langTranslation });
 
         await SearchSuggestionModel.updateOne(
           { _id: suggestion._id },
@@ -176,59 +174,87 @@ class CategoryTranslationScript {
   }
 }`;
 
-    const langInstruction =
-      suggestion.lang && suggestion.lang !== SupportedLanguagesCode.FR
-        ? `\nIMPORTANT: Traduis tout dans la langue suivante: ${
-            LANGUAGE_NAMES[suggestion.lang]
-          }.`
-        : "";
+    return `Tu es un expert SEO + FALC pour Soliguide (plateforme de lieux solidaires).
 
-    const countryInstruction =
-      suggestion?.country !== CountryCodes.FR
-        ? `\nAdapte pour ${suggestion?.country} (organismes locaux, terminologie du pays).`
-        : "";
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 PARAMÈTRES OBLIGATOIRES - NE PAS MODIFIER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PAYS CIBLE: ${suggestion?.country}
+LANGUE DE TRADUCTION: ${LANGUAGE_NAMES[suggestion.lang]} (${suggestion.lang})
+ÉLÉMENT À TRAITER: "${suggestion.label}"
+TYPE: ${getContentTypeContext(suggestion.type)}
 
-    return `Expert SEO + FALC pour Soliguide (plateforme de lieux solidaires).
+⚠️ ATTENTION CRITIQUE ⚠️
+- TOUT le contenu JSON doit être écrit en ${LANGUAGE_NAMES[suggestion.lang]}
+- AUCUNE autre langue n'est acceptée dans la réponse
+- Si tu utilises une autre langue, la réponse sera rejetée
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-PUBLIC: Personnes précaires, sans-abri, réfugiés, professionnels sociaux
-CONTEXTE: ${getContentTypeContext(suggestion.type)}
-
-Nom: "${suggestion.label}"
-Description: "${suggestion.seoDescription || "Non définie"}"
-Pays: ${suggestion?.country}
-
-RÈGLES:
-- Mots simples, phrases courtes (max 22 mots)
-- Éviter jargon administratif
-- Utiliser "vous", ton bienveillant et direct
-- Être concret avec exemples
-
-OBLIGATIONS:
-- Titre: PUNCHY et DIRECT, adapter selon le contexte émotionnel. Utiliser "${
-      suggestion.label
-    }" naturellement. Mentionner "Soliguide". PAS de ":" dans le titre. Langage direct et engageant.
-- Description: "Soliguide" + 3 EXEMPLES CONCRETS d'aide + géolocalisation (150-160 chars)${
-      needsSynonyms ? "\n- Synonymes: 8-12 termes courants" : ""
+PUBLIC: Personnes précaires, sans-abri, réfugiés, professionnels sociaux du pays: ${
+      suggestion?.country
     }
 
-EXEMPLES DE TITRES:
-- Santé: "Trouvez des soins gratuits avec Soliguide"
-- Logement: "Trouvez de l'aide au logement avec Soliguide"
-- Addiction: "Problèmes d'addiction ? Des structures spécialisées sont là pour vous aider"
-- Alimentation: "Ne restez plus sans manger, Soliguide vous aide"
-- Emploi: "Décrochez un travail, formez-vous avec Soliguide"
-- Urgence sociale: "Besoin d'aide maintenant ? Soliguide vous trouve des solutions"
+RÈGLES RÉDACTIONNELLES:
+- Mots simples, phrases courtes (max 22 mots)
+- Éviter jargon administratif et stigmatisation
+- Utiliser "vous", ton bienveillant et direct
+- Être concret avec exemples locaux du pays ${suggestion?.country}
 
-EXEMPLES DE DESCRIPTIONS (3 ÉLÉMENTS CONCRETS):
-- "Soliguide trouve près de chez vous : médecin gratuit, dentiste solidaire, infirmerie. Soins accessibles sans avance de frais."
-- "Soliguide vous aide : hébergement d'urgence, logement social, aide au loyer. Solutions logement près de chez vous."
+CONSIGNES OBLIGATOIRES:
+1. LANGUE: Traduis 100% du contenu en ${LANGUAGE_NAMES[suggestion.lang]}
+2. LOCALISATION: Adapte pour ${
+      suggestion?.country
+    } (organismes, terminologie, exemples locaux du pays)
+3. TITRE:
+   - Doit mentionner "${suggestion.label}" dans une phrase naturelle
+   - Doit inclure "Soliguide"
+   - PAS de ":" dans le titre
+   - Pas de majuscule en milieu de phrase
+   - Ton empathique, PAS commercial
+4. DESCRIPTION:
+   - Inclure "Soliguide"
+   - Donner 3 EXEMPLES CONCRETS d'aide disponibles dans ${suggestion?.country}
+   - Mentionner la géolocalisation
+   - Entre 150-160 caractères
+${
+  needsSynonyms
+    ? `5. SYNONYMES:
+   - 15 mots courants ou exemples concrets en ${LANGUAGE_NAMES[suggestion.lang]}
+   - Éviter les répétitions (ex: repos, reposer, se reposer = une seule forme)`
+    : ""
+}
 
-EXEMPLES D'ÉTABLISSEMENTS:
+EXEMPLES DE STRUCTURE (à adapter en ${LANGUAGE_NAMES[suggestion.lang]}):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Titres:
+- "Trouvez des soins gratuits avec Soliguide"
+- "Trouvez de l'aide au logement avec Soliguide"
+- "Face à l'addiction, ne restez plus seuls. Découvrez les lieux d'aide sur Soliguide"
+- "Ne restez plus sans manger, Soliguide vous aide"
+
+Descriptions (3 exemples concrets):
+- "Trouver un médecin gratuit, un dentiste et toutes les aides médicales gratuites grâce au Soliguide"
+- "Soliguide vous propose des centaines de lieux pour manger, obtenir un colis alimentaire ou des chèques alimentation"
+
+Synonymes:
+- Accueil: accueil cafe repos parler femme harcelement discuter rencontrer
+- Espace de repos: reposer dormir repos pause
+
+Établissements (à adapter au pays ${suggestion?.country}):
 - "CCAS pour votre domiciliation"
-- "Maison de santé près de chez vous"${langInstruction}${countryInstruction}
+- "Maison de santé près de chez vous"
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-RÉPONDS UNIQUEMENT AVEC LE JSON BRUT, AUCUN TEXTE AVANT OU APRÈS. COMMENCE DIRECTEMENT PAR { ET TERMINE PAR } :
-${jsonFormat}`;
+🚨 VÉRIFICATION FINALE AVANT ENVOI 🚨
+✓ Tout le JSON est-il en ${LANGUAGE_NAMES[suggestion.lang]} ?
+✓ Les exemples sont-ils adaptés à ${suggestion?.country} ?
+✓ Le titre contient-il "${suggestion.label}" et "Soliguide" ?
+✓ La description fait-elle 150-160 caractères ?
+
+FORMAT DE RÉPONSE (JSON BRUT UNIQUEMENT):
+${jsonFormat}
+
+RÉPONDS UNIQUEMENT AVEC LE JSON. COMMENCE PAR { ET TERMINE PAR }. AUCUN TEXTE AVANT OU APRÈS.`;
   }
 
   private parseResponse(

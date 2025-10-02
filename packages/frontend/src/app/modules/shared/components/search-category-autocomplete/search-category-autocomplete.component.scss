@@ -47,6 +47,10 @@
   font-size: 1.1rem;
 }
 
+.aa-Label {
+  margin: 0 !important;
+}
+.aa-Input,
 .aa-PanelLayout {
   padding: 0 !important;
 }
@@ -58,12 +62,6 @@
 
 .search-input {
   min-width: 340px;
-
-  .aa-Label,
-  .aa-InputWrapperSuffix,
-  .aa-SubmitButton {
-    display: none !important;
-  }
 
   .aa-Form:focus-within,
   .aa-Form {

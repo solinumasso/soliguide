@@ -22,21 +22,21 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <div class="row">
     <div class="col-md-5 col-12">
       <div class="search-input">
-        <label for="address-search">
+        <span class="search-label">
           {{ "WHAT_ARE_YOU_LOOKING_FOR" | translate }}
-        </label>
+        </span>
         <app-search-category-autocomplete
+          [currentValue]="currentValue"
           [search]="search"
           (updateCategory)="updateCategory.emit()"
-          class="search-input"
         ></app-search-category-autocomplete>
       </div>
     </div>
     <div class="col-md-5 col-12">
       <div class="search-input">
-        <label for="address-search">
+        <span class="search-label">
           {{ "A_PROXIMITE" | translate }}
-        </label>
+        </span>
         <app-location-autocomplete
           [addressesOnly]="false"
           [currentAddress]="search?.location.label"

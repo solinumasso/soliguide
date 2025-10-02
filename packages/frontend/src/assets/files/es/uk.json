@@ -4,247 +4,513 @@
     "label": "Ласкаво просимо",
     "slug": "accueil",
     "synonyms": [
-      "accueil cafe repos acceuil parler acueil accueil femme accueil femmes acueil femme violence harcelement partir"
+      "допомога",
+      "підтримка",
+      "притулок",
+      "їжа",
+      "лікування",
+      "адміністрація",
+      "консультація",
+      "порада",
+      "супровід",
+      "безкоштовно",
+      "гуманітарний",
+      "волонтерство",
+      "солідарність",
+      "імміграція",
+      "біженці"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Ласкаво просимо! Soliguide допоможе вам знайти підтримку в Іспанії",
+    "seoDescription": "Soliguide знайде безкоштовне харчування, житло та медичну допомогу в Іспанії. Ласкаво просимо! Знайдіть пункти допомоги поруч з вами!"
   },
   {
     "categoryId": "day_hosting",
     "label": "Денний прийом",
     "slug": "accueil-jour",
     "synonyms": [
-      "accueil accueil de jour cafe se reposer se poser repos reposer femmes battues femme battue fem batue fem batu violence harcelement partir"
+      "денний центр",
+      "притулок",
+      "їжа",
+      "душ",
+      "одяг",
+      "консультація",
+      "адміністративна допомога",
+      "соціальна допомога",
+      "безкоштовно",
+      "Іспанія",
+      "Мадрид",
+      "Барселона",
+      "Валенсія",
+      "перепочинок",
+      "підтримка"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Lieu d'accueil des bénéficaires proposant une pause pendant la journée."
+    "seoTitle": "Знайдіть денний прийом та підтримку з Soliguide в Іспанії",
+    "seoDescription": "Soliguide допоможе знайти денний центр в Іспанії. Душ, їжа, консультації, перукар. Знайдіть найближчий центр безкоштовно!"
   },
   {
     "categoryId": "rest_area",
     "label": "зона відпочинку",
     "slug": "espace-repos",
     "synonyms": [
-      "espace de repos reposer dormir repos pause"
+      "відпочинок",
+      "перепочинок",
+      "відновити сили",
+      "душ",
+      "пральня",
+      "спокій",
+      "тиша",
+      "затишок",
+      "місце для сну",
+      "чай",
+      "кава",
+      "розмова",
+      "підтримка",
+      "безпечне місце",
+      "комфорт"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Espaces de repos ouverts au public"
+    "seoTitle": "Знайдіть зону відпочинку з Soliguide",
+    "seoDescription": "Soliguide допоможе знайти місця для відпочинку в Іспанії. Душ, пральня, кімната відпочинку – все поруч. Шукайте за геолокацією!"
   },
   {
     "categoryId": "babysitting",
     "label": "догляд за дитиною",
     "slug": "garde-enfants",
     "synonyms": [
-      "garde enfant garderie enfant nounou assistance maternelle bebe creche"
+      "дитячий садок",
+      "ясла",
+      "няня",
+      "центр раннього розвитку",
+      "дитячий клуб",
+      "догляд за дітьми",
+      "залишити дитину",
+      "вихователь",
+      "ігри з дітьми",
+      "розвиваючі заняття",
+      "денний догляд",
+      "садок неповного дня",
+      "група продовженого дня",
+      "дитячий майданчик",
+      "допомога сім'ям"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Activité d'un baby-sitter consistant à garder temporairement des enfants en l'abscence de leurs parents"
+    "seoTitle": "Знайдіть догляд за дитиною з Soliguide в Іспанії",
+    "seoDescription": "Soliguide допоможе знайти дитячі садки, нянь та центри раннього розвитку в Іспанії. Безкоштовні консультації для батьків та послуги догляду за дитиною поруч з вами!"
   },
   {
     "categoryId": "family_area",
     "label": "Сімейний район",
     "slug": "espace-famille",
     "synonyms": [
-      "espace famille famille maman papa parents enfants"
+      "сімейний",
+      "сім'я",
+      "діти",
+      "батьки",
+      "матері",
+      "батьки-одинаки",
+      "допомога сім'ям",
+      "консультації",
+      "підтримка дітей",
+      "сімейний психолог",
+      "материнство",
+      "дитинство",
+      "соціальна допомога сім'ям",
+      "криза сім'ї",
+      "захист дітей"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Lieu d'accueil capable de recevoir des familles"
+    "seoTitle": "Знайдіть підтримку для сім'ї з Soliguide: Сімейний район для вас",
+    "seoDescription": "Soliguide допоможе знайти: консультації для сімей, допомогу матерям-одиначкам, центри підтримки дітей. Знайдіть потрібне поруч з вами в Іспанії!"
   },
   {
     "categoryId": "information_point",
     "label": "Інформаційно-орієнтовний пункт",
     "slug": "point-information",
     "synonyms": [
-      "point information point d information information ukraine"
+      "інформація",
+      "консультація",
+      "порада",
+      "підтримка",
+      "допомога",
+      "права",
+      "обов'язки",
+      "адвокат",
+      "юрист",
+      "психолог",
+      "соціальний працівник",
+      "місцева влада",
+      "громадська організація",
+      "ЦСССДМ",
+      "Soliguide"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Point d'information"
+    "seoTitle": "Знайдіть інформаційно-орієнтовний пункт з Soliguide в Іспанії",
+    "seoDescription": "Soliguide допоможе знайти інформацію, консультації, підтримку в Іспанії. Безкоштовні юридичні консультації, психологічна допомога, соціальна підтримка. Знайдіть поруч!"
   },
   {
     "categoryId": "activities",
     "label": "Діяльність",
     "slug": "activites",
     "synonyms": [
-      "activites sorties sport loisirs sortir jeux jeu loisir isolement isole solitude isolee"
+      "допомога",
+      "підтримка",
+      "соціальна допомога",
+      "житло",
+      "їжа",
+      "одяг",
+      "медична допомога",
+      "консультація",
+      "юридична допомога",
+      "навчання",
+      "робота",
+      "транспорт",
+      "гігієна",
+      "сім'я",
+      "діти"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Знайдіть потрібну діяльність з Soliguide",
+    "seoDescription": "Soliguide допоможе знайти безкоштовного лікаря, житло, або харчування в Іспанії. Знаходьте потрібну діяльність поруч з вами!"
   },
   {
     "categoryId": "sport_activities",
     "label": "Спортивні заходи",
     "slug": "activites-sportives",
     "synonyms": [
-      "activites sportives sport foot basket danse rugby loisirs loisir"
+      "спорт",
+      "фітнес",
+      "гімнастика",
+      "йога",
+      "плавання",
+      "футбол",
+      "баскетбол",
+      "волейбол",
+      "теніс",
+      "біг",
+      "велоспорт",
+      "танці",
+      "аеробіка",
+      "тренажерний зал",
+      "спортивні клуби"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Activités sportives : foot, jogging, marche, etc."
+    "seoTitle": "Знайдіть спортивні заходи з Soliguide для підтримки вашого здоров'я",
+    "seoDescription": "Soliguide допоможе вам знайти безкоштовні спортивні заняття, фітнес-центри та спортивні клуби в Іспанії. Геолокація допоможе знайти найближчі місця."
   },
   {
     "categoryId": "museums",
     "label": "музей",
     "slug": "musee",
     "synonyms": [
-      "musee culture sortie peinture tableau se cultiver"
+      "музей",
+      "експозиція",
+      "історія",
+      "культура",
+      "мистецтво",
+      "галерея",
+      "виставка",
+      "безкоштовний вхід",
+      "археологія",
+      "архітектура",
+      "скульптура",
+      "живопис",
+      "тур",
+      "гід",
+      "екскурсія"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Musée gratuit."
+    "seoTitle": "Відкрийте для себе музеї безкоштовно з Soliguide",
+    "seoDescription": "Soliguide допоможе вам знайти безкоштовні музеї в Іспанії. Відвідайте виставки, дізнайтеся про історію та культуру. Знаходьте найближчі музеї за допомогою геолокації!"
   },
   {
     "categoryId": "libraries",
     "label": "Бібліотека",
     "slug": "bibliotheque",
     "synonyms": [
-      "bibliotheque livres culture mediatheque"
+      "книги",
+      "читання",
+      "навчання",
+      "інтернет",
+      "комп'ютер",
+      "Wi-Fi",
+      "освіта",
+      "саморозвиток",
+      "культура",
+      "знання",
+      "журнали",
+      "газети",
+      "література",
+      "бібліотекар",
+      "абонемент"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Bibliothèque accessible en accès libre."
+    "seoTitle": "Знайдіть найближчу бібліотеку за допомогою Soliguide",
+    "seoDescription": "Soliguide допоможе знайти бібліотеки в Іспанії. Безкоштовний доступ до книг, комп'ютерів та Wi-Fi. Знайдіть бібліотеку поруч з вами!"
   },
   {
     "categoryId": "other_activities",
     "label": "Різноманітні види діяльності",
     "slug": "activites-diverses",
     "synonyms": [
-      "activites diverses animation divertissement loisir s occuper culture activites enfants loisirs loisir"
+      "заняття",
+      "гуртки",
+      "спорт",
+      "дозвілля",
+      "навчання",
+      "майстерклас",
+      "курси",
+      "хобі",
+      "зустрічі",
+      "відпочинок",
+      "клуб",
+      "спілкування",
+      "розваги",
+      "танці",
+      "музика"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Activités diverses : ateliers, activités culturelles, etc. (précisez.)"
+    "seoTitle": "Soliguide допомагає знайти різноманітні види діяльності в Іспанії",
+    "seoDescription": "Soliguide показує безкоштовні курси, майстер-класи, клуби за інтересами та спортивні заходи в Іспанії. Знайдіть допомогу поруч з вами!"
   },
   {
     "categoryId": "food",
     "label": "Їжа",
     "slug": "alimentation-bouffe-boufe-manger-soupe-repas-aliment-manger-mange-repa-faim-diner-dejeuner-dejeunet-dine-se-nourrir-fin-portage-portage-de-repas-aide-alimentaire-comida-comer-resto-du-coeur",
     "synonyms": [
-      "alimentation bouffe boufe manger soupe repas aliment manger mange repa faim diner dejeuner dejeunet dine se nourrir fin portage portage de repas aide alimentaire comida comer"
+      "їжа",
+      "харчування",
+      "обід",
+      "вечеря",
+      "безкоштовна їжа",
+      "соціальна їдальня",
+      "продуктовий набір",
+      "гуманітарна допомога",
+      "допомога з харчуванням",
+      "суп",
+      "кафе",
+      "ресторан",
+      "бездомний",
+      "малозабезпечений",
+      "голод"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Знайдіть їжу та підтримку з Soliguide в Іспанії",
+    "seoDescription": "Soliguide допоможе знайти безкоштовні обіди, продуктові набори та соціальні їдальні поруч. Знайдіть необхідну допомогу, де б ви не були в Іспанії!"
   },
   {
     "categoryId": "food_distribution",
     "label": "Роздача страв",
     "slug": "distribution-repas",
     "synonyms": [
-      "distribution alimentaire distribution de repas manger maraude bouffe soupe nourriture faim repas mange manger fin distribution aide alimentaire restauration assise comida comer"
+      "безкоштовна їжа",
+      "суп",
+      "їдальня",
+      "пункт харчування",
+      "благодійна організація",
+      "волонтери",
+      "соціальна допомога",
+      "продукти",
+      "пакунок з їжею",
+      "гуманітарна допомога",
+      "обід",
+      "вечеря",
+      "сніданок",
+      "кафе",
+      "ресторан солідарності"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Point d'arrêt d'une distribution alimentaire. Attention : Veuillez créer une structure par point de distribution."
+    "seoTitle": "Де знайти безкоштовну роздачу страв з Soliguide в Іспанії",
+    "seoDescription": "Soliguide допоможе знайти безкоштовну їжу в Іспанії! Супи, їдальні, продуктові банки – все поруч. Знайдіть допомогу поблизу!"
   },
   {
     "categoryId": "food_packages",
     "label": "Продуктовий кошик",
     "slug": "colis-alimentaire",
     "synonyms": [
-      "colis colis alimentaire manger mange fruits legumes panier repas aide alimentaire panier comida comer"
+      "продуктовий кошик",
+      "їжа",
+      "харчування",
+      "їдальня",
+      "безкоштовна їжа",
+      "суп-кухня",
+      "продукти",
+      "допомога їжею",
+      "талони на харчування",
+      "благодійність",
+      "соціальна допомога",
+      "червоний хрест",
+      "карітас",
+      "банк їжі",
+      "гуманітарна допомога"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Distribution de colis contenant des denrées alimentaires (conserves, légumes, etc.)."
+    "seoTitle": "Знайдіть продуктові кошики з Soliguide – допомога поруч!",
+    "seoDescription": "Soliguide допоможе знайти продуктові кошики, безкоштовне харчування в їдальнях, талони на їжу в Іспанії. Знайдіть допомогу поруч!"
   },
   {
     "categoryId": "social_grocery_stores",
     "label": "Соціальний і солідарний продуктовий магазин",
     "slug": "epicerie-sociale-solidaire",
     "synonyms": [
-      "epicerie sociale epicerie manger fruits legumes panier repas epicerie solidaire aide alimentaire"
+      "соціальний магазин",
+      "солідарний магазин",
+      "продуктовий кошик",
+      "харчова допомога",
+      "продуктові ваучери",
+      "безкоштовні продукти",
+      "магазин за низькими цінами",
+      "фонд допомоги",
+      "благодійність",
+      "продукти для малозабезпечених",
+      "Caritas",
+      "Червоний Хрест",
+      "купити дешевше",
+      "їжа",
+      "харчування"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Les épiceries solidaires accueillent les personnes en précarité et leur permettent de faire des courses à prix solidaire."
+    "seoTitle": "Знайдіть соціальний і солідарний продуктовий магазин з Soliguide в Іспанії",
+    "seoDescription": "Soliguide допоможе знайти соціальний магазин, отримати продуктові ваучери чи безкоштовні харчові набори в Іспанії. Знайдіть допомогу поруч!"
   },
   {
     "categoryId": "fountain",
     "label": "Фонтан",
     "slug": "fontaine",
     "synonyms": [
-      "fontaine boire eau soif robinet potable"
+      "джерело",
+      "гідратація",
+      "підтримка води",
+      "доступ до води",
+      "питна вода",
+      "водопостачання",
+      "безпечна вода",
+      "чиста вода",
+      "благодійність",
+      "допомога нужденним",
+      "фінансова допомога",
+      "гранти",
+      "дотації",
+      "спонсорство",
+      "підтримка"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Eau potable en accès libre."
+    "seoTitle": "Шукаєте підтримку від «Фонтан»? Soliguide допоможе знайти рішення",
+    "seoDescription": "Soliguide знайде фонди, які надають воду, фінансування та необхідну підтримку. Геолокація допоможе знайти найближчу допомогу в es."
   },
   {
     "categoryId": "solidarity_fridge",
     "label": "Холодильник солідарності",
     "slug": "frigo-solidaire",
     "synonyms": [
-      "manger mange conserver frais bouffe aliment faim frigo frigo solidaire"
+      "безкоштовна їжа",
+      "безкоштовні продукти",
+      "продовольча допомога",
+      "гуманітарна допомога",
+      "благодійність",
+      "їжа для бідних",
+      "продуктові набори",
+      "пункти харчування",
+      "соціальна допомога",
+      "їдальня",
+      "суп кухня",
+      "обід",
+      "вечеря",
+      "сніданок",
+      "допомога продуктами"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Frigo solidaire"
+    "seoTitle": "Знайдіть «Холодильник солідарності» поруч із вами за допомогою Soliguide",
+    "seoDescription": "Soliguide допоможе знайти продукти харчування, безкоштовні обіди, продуктові набори в Іспанії. Знайдіть найближчі «Холодильники солідарності» на карті!"
   },
   {
     "categoryId": "shared_kitchen",
     "label": "Спільна кухня",
     "slug": "cuisine-partagee",
     "synonyms": [
-      "cuisine cuisiner preparer partage partagee cuisine partagee"
+      "кухня",
+      "спільний",
+      "готувати",
+      "їжа",
+      "продукти",
+      "рецепт",
+      "група",
+      "навчання",
+      "безкоштовно",
+      "допомога",
+      "соціальний",
+      "місце",
+      "зустріч",
+      "іспанія",
+      "разом"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Cuisine partagée "
+    "seoTitle": "Знайдіть спільну кухню з Soliguide, щоб приготувати їжу разом",
+    "seoDescription": "Soliguide допоможе знайти місця в Іспанії, де можна готувати разом, отримати продукти або навчитися готувати. Геолокація доступна!"
   },
   {
     "categoryId": "cooking_workshop",
     "label": "Кулінарна майстерня",
     "slug": "atelier-cuisine",
     "synonyms": [
-      "atelier cuisine cuisiner partage preparer atelier cuisine cuire"
+      "кулінарні курси",
+      "майстер-класи з кулінарії",
+      "навчання готувати",
+      "безкоштовна кулінарія",
+      "кулінарна школа",
+      "паелья",
+      "тапас",
+      "гаспачо",
+      "іспанська кухня",
+      "рецепти",
+      "поради кулінара",
+      "кулінарний гурток",
+      "їжа",
+      "кулінарний простір",
+      "майстерня смаку"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Atelier de cuisine"
+    "seoTitle": "Знайдіть кулінарну майстерню з Soliguide, щоб навчитися готувати",
+    "seoDescription": "Soliguide допоможе знайти безкоштовні кулінарні курси, майстер-класи в Іспанії. Навчіться готувати паелью, тапас та інші місцеві страви! Геолокація."
   },
   {
     "categoryId": "baby_parcel",
@@ -264,424 +530,870 @@
     "label": "Ваучер/чек на харчування",
     "slug": "bon-alimentaire",
     "synonyms": [
-      "bon cheque ticket alimentaire gratuit aide"
+      "талон на харчування",
+      "продуктовий ваучер",
+      "їдальня",
+      "допомога з харчуванням",
+      "безоплатне харчування",
+      "соціальна допомога",
+      "гуманітарна допомога",
+      "харчова підтримка",
+      "продукти",
+      "безоплатні продукти",
+      "купон на їжу",
+      "карта на харчування",
+      "грошова допомога на харчування",
+      "суп-кухня",
+      "місця харчування"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Distribution de bon/chèque alimentaire"
+    "seoTitle": "Soliguide допоможе знайти ваучери/чеки на харчування в Іспанії",
+    "seoDescription": "Soliguide знаходить місця, де ви можете отримати ваучери на харчування, продуктові набори або безкоштовне харчування в їдальнях Іспанії. Геолокація допоможе знайти найближче місце."
   },
   {
     "categoryId": "community_garden",
     "label": "Сад солідарності",
     "slug": "jardin-solidaire",
     "synonyms": [
-      "fruits pousser jardin bio nature legumes jardin solidaire jardinage"
+      "сад",
+      "город",
+      "овочі",
+      "фрукти",
+      "зелень",
+      "садівництво",
+      "земля",
+      "рослини",
+      "квіти",
+      "спільний сад",
+      "органічне землеробство",
+      "безкоштовні продукти",
+      "спілкування",
+      "зустрічі",
+      "допомога"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Jardin solidaire"
+    "seoTitle": "Знайдіть Сад солідарності поруч із вами з Soliguide",
+    "seoDescription": "Soliguide допоможе знайти Сад солідарності в Іспанії. Отримайте безкоштовні овочі, навчіться садівництву, поспілкуйтеся з іншими. Знайдіть найближчий до вас!"
   },
   {
     "categoryId": "counseling",
     "label": "Поради",
     "slug": "conseil",
     "synonyms": [
-      "conseil conseils soutien accompagnement aide se faire aider conseiller numerique"
+      "поради",
+      "консультація",
+      "підтримка",
+      "допомога",
+      "адвокат",
+      "лікар",
+      "соціальний працівник",
+      "юридична допомога",
+      "медична допомога",
+      "соціальна допомога",
+      "інформація",
+      "рекомендації",
+      "орієнтування",
+      "публічні служби",
+      "асоціації"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Поради та підтримка: знайти допомогу з Soliguide в Іспанії",
+    "seoDescription": "Soliguide допоможе знайти безкоштовного лікаря, юридичну консультацію чи соціальну допомогу в Іспанії. Знайдіть найближчі місця допомоги поруч з вами!"
   },
   {
     "categoryId": "legal_advice",
     "label": "Юридична контора",
     "slug": "permanence-juridique",
     "synonyms": [
-      "proces permanence juridique amende avocat droits droit recours juge ldh droits de l homme ligue des droits de l homme acces au droit cnda ofpra asile sejour carte sejour divorce separation"
+      "адвокат",
+      "юрист",
+      "консультація",
+      "правова допомога",
+      "безкоштовно",
+      "порада",
+      "суд",
+      "документи",
+      "права",
+      "захист",
+      "імміграція",
+      "притулок",
+      "житло",
+      "робота",
+      "сімейне право"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Permanences juridiques (surendettement, demande d'asile, procès, etc.)."
+    "seoTitle": "Потрібна юридична консультація? Soliguide допоможе знайти безкоштовну юридичну контору",
+    "seoDescription": "Soliguide допоможе знайти юристів в Іспанії. Безкоштовні консультації, допомога з документами та захист ваших прав. Знайдіть поруч!"
   },
   {
     "categoryId": "social_accompaniment",
     "label": "Соціальна підтримка",
     "slug": "accompagnement-social",
     "synonyms": [
-      "accompagnement assistante sociale social travailleur social droits demarches femmes battues femme battue violence isolement isole solitude isolee partir separation divorce victime"
+      "допомога",
+      "підтримка",
+      "соціальний захист",
+      "житло",
+      "їжа",
+      "одяг",
+      "медична допомога",
+      "юридична консультація",
+      "психологічна підтримка",
+      "притулок",
+      "консультація",
+      "служба соціального захисту",
+      "Caritas",
+      "Червоний Хрест",
+      "місцевий муніципалітет"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Accompagement des personnes dans leur réinsertion (assistantes sociales, permanences, etc.)."
+    "seoTitle": "Знайдіть соціальну підтримку з Soliguide в Іспанії",
+    "seoDescription": "Soliguide допоможе знайти безкоштовного лікаря, їжу, одяг та інші види соціальної допомоги в Іспанії. Геолокація для швидкого пошуку!"
   },
   {
     "categoryId": "disability_advice",
     "label": "Порада по інвалідності",
     "slug": "conseil-handicap",
     "synonyms": [
-      "conseil handicap handicap aah conseils conseil handicape handicapee personne a mobilite reduite pmr"
+      "інвалідність",
+      "порада",
+      "консультація",
+      "пільги",
+      "права",
+      "юридична допомога",
+      "підтримка",
+      "доступність",
+      "реабілітація",
+      "адаптація",
+      "оцінка",
+      "допомога",
+      "соціальна допомога",
+      "захист",
+      "безкоштовно"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'accès aux droits pour les personnes en situation de handicap."
+    "seoTitle": "Soliguide знайде вам пораду щодо інвалідності в Іспанії",
+    "seoDescription": "Soliguide допоможе знайти консультації з інвалідності, підтримку в отриманні пільг, та юридичні поради. Знайдіть найближчі місця безкоштовно!"
   },
   {
     "categoryId": "administrative_assistance",
     "label": "Рада директорів",
     "slug": "conseil-administratif",
     "synonyms": [
-      "conseil administratif conseils administratifs aide administrative demarches rsa cmu allocations papiers securite sociale caf cpampapier conseiller numerique"
+      "консультація",
+      "порада",
+      "адвокат",
+      "юрист",
+      "підтримка",
+      "допомога",
+      "соціальний працівник",
+      "психолог",
+      "права",
+      "обов'язки",
+      "захист",
+      "безкоштовно",
+      "служба",
+      "організація",
+      "інформація"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'aide administrative (RSA, CMU, allocations, chômage, etc.)."
+    "seoTitle": "Знайдіть підтримку в Рада директорів з Soliguide",
+    "seoDescription": "Soliguide допоможе знайти безкоштовні консультації, юридичну допомогу та соціальні служби в Іспанії. Шукайте поруч з вами!"
   },
   {
     "categoryId": "parent_assistance",
     "label": "Поради батькам",
     "slug": "conseil-parents",
     "synonyms": [
-      "conseil parents conseil aux parents conseil parental mediation familiale mediation conflit adolescents enfants parent parentalite parents enfant ado adolescent couple couples"
+      "батьки",
+      "діти",
+      "сім'я",
+      "виховання",
+      "консультування",
+      "підтримка",
+      "допомога сім'ям",
+      "психолог для дітей",
+      "розвиток дитини",
+      "сімейний консультант",
+      "поради психолога",
+      "групи підтримки",
+      "материнство",
+      "батьківство",
+      "адаптація"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Permances d'aide pour les jeunes parents et les parents rencontrant des difficultés avec leurs enfants."
+    "seoTitle": "Знайдіть поради батькам та підтримку з Soliguide в Іспанії",
+    "seoDescription": "Soliguide допоможе знайти поради батькам в Іспанії! Консультації, групи підтримки, психологічна допомога. Знайдіть потрібне поруч з вами!"
   },
   {
     "categoryId": "budget_advice",
     "label": "Консультація щодо бюджету",
     "slug": "conseil-budget",
     "synonyms": [
-      "conseil budget conseil budget argent finance cresus"
+      "бюджет",
+      "фінанси",
+      "поради",
+      "консультування",
+      "економія",
+      "борги",
+      "кредити",
+      "допомога",
+      "фінансове планування",
+      "пільги",
+      "субсидії",
+      "гроші",
+      "банк",
+      "фінансова грамотність",
+      "податки"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Points conseil budget (PCB) proposent des conseils gratuits et personnalisés de gestion budgétaire "
+    "seoTitle": "Потребуєте консультації з бюджету? Soliguide допоможе",
+    "seoDescription": "Soliguide знайде безкоштовні консультації з управління фінансами в Іспанії. Наприклад, допомога в складанні бюджету, поради щодо боргів, інформація про пільги. Знайдіть найближчий центр!"
   },
   {
     "categoryId": "training_and_jobs",
     "label": "Навчання та працевлаштування",
     "slug": "formation-emploi",
     "synonyms": [
-      "formation emploi travailler job travail boulot se former taf taff taffe apprendre lire etudier comprendre france travail pole emploi conseiller numerique"
+      "навчання",
+      "курси",
+      "тренінги",
+      "робота",
+      "працевлаштування",
+      "вакансії",
+      "резюме",
+      "співбесіда",
+      "професія",
+      "кваліфікація",
+      "мовні курси",
+      "перекваліфікація",
+      "допомога з працевлаштування",
+      "кар'єра",
+      "освіта"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Soliguide допоможе знайти можливості навчання та працевлаштування в Іспанії",
+    "seoDescription": "Soliguide пропонує інформацію про курси, тренінги та допомогу в пошуку роботи в Іспанії. Знайдіть безкоштовні курси іспанської, професійне навчання та консультації з працевлаштування поруч з вами!"
   },
   {
     "categoryId": "digital_tools_training",
     "label": "Цифрова майстерня",
     "slug": "formation-numerique",
     "synonyms": [
-      "formation numerique atelier numerique formation informatique ordinateur connexion se former technologie tech apprendre comprendre lire etudier conseiller numerique"
+      "комп'ютер",
+      "інтернет",
+      "цифрові навички",
+      "безкоштовні курси",
+      "навчання",
+      "смартфон",
+      "планшет",
+      "ремонт комп'ютера",
+      "доступ до інтернету",
+      "Wi-Fi",
+      "цифрова грамотність",
+      "онлайн-курси",
+      "комп'ютерні класи",
+      "інформаційні технології",
+      "e-mail"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Permanences ou ateliers visant à la maitrise d'outils informatiques."
+    "seoTitle": "Soliguide допоможе знайти цифрову майстерню для вас",
+    "seoDescription": "Soliguide знайде безкоштовні комп'ютерні курси, доступ до інтернету та допомогу з цифровими пристроями в Іспанії. Знайдіть допомогу поруч з вами!"
   },
   {
     "categoryId": "job_coaching",
     "label": "Підтримка працевлаштування",
     "slug": "accompagnement-emploi",
     "synonyms": [
-      "accompagnement emploi travailler job pole emploi travail boulot se former etre accompagne taf taff taffe apprendre comprendre lire etudier france travail orientation"
+      "робота",
+      "працевлаштування",
+      "вакансія",
+      "навчання",
+      "курси",
+      "резюме",
+      "співбесіда",
+      "поради",
+      "допомога",
+      "центр зайнятості",
+      "соціальний працівник",
+      "контракт",
+      "зарплата",
+      "пошук роботи",
+      "імміграція"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Aide au retour à l'emploi : ateliers de préparation aux entretiens, aide à la recherche d'emploi, atelier CV, etc."
+    "seoTitle": "Soliguide допоможе знайти підтримку працевлаштування в Іспанії",
+    "seoDescription": "Soliguide пропонує курси, консультації з пошуку роботи, допомогу з резюме та інші можливості. Знайдіть найближчі місця підтримки!"
   },
   {
     "categoryId": "integration_through_economic_activity",
     "label": "Інтеграція через економічну діяльність",
     "slug": "insertion-activite-economique",
     "synonyms": [
-      "chantier de reinsertion chantier reinsertion travailler job insertion reinsertion siae iae se reinserer taf taff taffe apprendre comprendre lire etudier orientation"
+      "працевлаштування",
+      "робота",
+      "навчання",
+      "курси",
+      "співбесіда",
+      "підтримка",
+      "поради",
+      "допомога",
+      "резюме",
+      "контракт",
+      "легалізація",
+      "інтеграція",
+      "адаптація",
+      "кар'єра",
+      "економічна незалежність"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Embauche de personnes en insertion."
+    "seoTitle": "Інтеграція через економічну діяльність: Soliguide допоможе знайти можливості",
+    "seoDescription": "Soliguide пропонує можливості в Іспанії: курси, співбесіди, допомога у пошуку роботи. Знайдіть найближчий центр підтримки! Геолокація."
   },
   {
     "categoryId": "tutoring",
     "label": "Репетиторство",
     "slug": "soutien-scolaire",
     "synonyms": [
-      "soutien scolaire aide au devoir etudes college lycee devoirs cours apprendre comprendre lire etudier"
+      "допомога в навчанні",
+      "підтримка освіти",
+      "заняття з репетитором",
+      "індивідуальні уроки",
+      "мовні курси",
+      "іспанська мова",
+      "підготовка до іспитів",
+      "математика",
+      "фізика",
+      "хімія",
+      "допомога школярам",
+      "допомога студентам",
+      "онлайн репетитор",
+      "безкоштовні курси",
+      "освітні центри"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Soutien scolaire gratuit (préciser le niveau dans la description)."
+    "seoTitle": "Репетиторство в Іспанії знайти легко з Soliguide",
+    "seoDescription": "Soliguide допоможе знайти репетиторів для дітей, мовні курси, підготовку до іспитів в Іспанії. Знаходьте потрібне поруч з вами!"
   },
   {
     "categoryId": "accomodation_and_housing",
     "label": "Проживання та житло",
     "slug": "hebergement-et-logement",
     "synonyms": [
-      "hebergement dormir lit logement repos toit hebergement logement logement hebergement et logement hebergementetlogement domir"
+      "житло",
+      "проживання",
+      "притулок",
+      "тимчасове житло",
+      "соціальне житло",
+      "квартира",
+      "будинок",
+      "дах",
+      "нічліг",
+      "допомога з житлом",
+      "оренда",
+      "безоплатне житло",
+      "аварійне житло",
+      "хостел",
+      "місце для ночівлі"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Soliguide допоможе знайти безкоштовне проживання та житло в Іспанії",
+    "seoDescription": "Soliguide знаходить притулки, тимчасове житло та соціальне житло в Іспанії! Знайдіть допомогу поруч із вами безкоштовно та швидко."
   },
   {
     "categoryId": "overnight_stop",
     "label": "Нічна зупинка",
     "slug": "halte-nuit",
     "synonyms": [
-      "halte de nuit halte nuit dormir se reposer alte de nui accueil nuit accueil de nuit accueil nuit"
+      "нічліг",
+      "притулок",
+      "тимчасове житло",
+      "ліжко",
+      "сон",
+      "безпечне місце",
+      "безкоштовний притулок",
+      "допомога безхатькам",
+      "соціальна допомога",
+      "надзвичайна ситуація",
+      "нічна підтримка",
+      "місце для сну",
+      "обігрівач",
+      "захист від холоду",
+      "карта допомоги"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "La halte de nuit est un lieu d'accueil et de repos pour les personnes sans abri ouvert de 20h à 8h du matin, 7/7 jours."
+    "seoTitle": "Нічна зупинка з Soliguide допоможе знайти притулок в Іспанії",
+    "seoDescription": "Soliguide допоможе знайти нічліг в Іспанії. Наприклад, безкоштовне харчування, душ, пральню. Знайдіть найближчу допомогу на карті!"
   },
   {
     "categoryId": "emergency_accommodation",
     "label": "Невідкладне розміщення",
     "slug": "hebergement-urgence",
     "synonyms": [
-      "hebergement urgence dormir lit logement chu halte de nuit toit a la rue rue dehors accueil de nuit accueil nuit accueil nuit"
+      "притулок",
+      "тимчасове житло",
+      "нічліг",
+      "прихисток",
+      "бездомний",
+      "невідкладна допомога",
+      "екстрене розміщення",
+      "житло для біженців",
+      "центр допомоги",
+      "соціальна служба",
+      "муніципалітет",
+      "червоний хрест",
+      "Caritas",
+      "FASAD",
+      "пошук житла"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Hébergement à court terme (à la nuitée), accessible directement."
+    "seoTitle": "З Soliguide знайти екстрене розміщення в Іспанії – це просто",
+    "seoDescription": "Soliguide допоможе знайти притулок, тимчасове житло, нічліг в Іспанії. Геолокація покаже найближчі варіанти допомоги."
   },
   {
     "categoryId": "long_term_accomodation",
     "label": "Довгострокове проживання",
     "slug": "hebergement-long-terme",
     "synonyms": [
-      "hebergement dormir lit logement chrs repos toit"
+      "житло",
+      "проживання",
+      "оренда",
+      "квартира",
+      "будинок",
+      "притулок",
+      "гуртожиток",
+      "соціальне житло",
+      "довготривале перебування",
+      "тимчасовий притулок",
+      "допомога з житлом",
+      "пільгове житло",
+      "житло для біженців",
+      "центр розміщення",
+      "нічліг"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Possibilité d'hébergement à long terme, au sein de la structure ou d'une structure partenaire. Indiquer dans la description les modalités d'accès."
+    "seoTitle": "Soliguide допоможе знайти довгострокове проживання в Іспанії",
+    "seoDescription": "Soliguide підкаже, де знайти житло, притулок, соціальне житло в Іспанії. Геолокація допоможе знайти варіанти поруч із вами."
   },
   {
     "categoryId": "citizen_housing",
     "label": "Житло громадян",
     "slug": "hebergement-citoyen",
     "synonyms": [
-      "hebergement hebergement citoyen merci pour l invit singa"
+      "житло",
+      "притулок",
+      "оренда",
+      "бездомний",
+      "безоплатне житло",
+      "соціальне житло",
+      "квартира",
+      "будинок",
+      "допомога з житлом",
+      "тимчасове житло",
+      "житло для біженців",
+      "асоціація",
+      "фонд",
+      "CCAS",
+      "помешкання"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Soliguide допоможе знайти житло для громадян в Іспанії",
+    "seoDescription": "Soliguide знаходить житло для громадян в Іспанії. Безкоштовне житло, притулки, допомога з орендою. Знайдіть допомогу поруч з вами!"
   },
   {
     "categoryId": "access_to_housing",
     "label": "Поради щодо розміщення",
     "slug": "conseil-logement",
     "synonyms": [
-      "hebergement dalo logement expulsion toit maison impayes factures chauffage conseil conseil logement"
+      "житло",
+      "притулок",
+      "оренда",
+      "адреса",
+      "нічліг",
+      "дім",
+      "квартира",
+      "кімната",
+      "тимчасове житло",
+      "соціальне житло",
+      "допомога з житлом",
+      "консультація з розміщення",
+      "бездомний",
+      "помешкання",
+      "знайти житло"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'accès au logement (logement social, DALO, etc.)."
+    "seoTitle": "Soliguide допоможе знайти поради щодо розміщення в Іспанії",
+    "seoDescription": "Soliguide допоможе знайти притулок, тимчасове житло або консультацію з питань оренди в Іспанії. Знайдіть найближчу організацію на карті!"
   },
   {
     "categoryId": "hygiene_and_wellness",
     "label": "Гігієна та самопочуття",
     "slug": "hygiene",
     "synonyms": [
-      "hygiene laver douche bain se laver se doucher propre"
+      "гігієна",
+      "душова",
+      "пральня",
+      "мило",
+      "шампунь",
+      "зубна паста",
+      "гребінець",
+      "самопочуття",
+      "чистота",
+      "одяг",
+      "прання",
+      "сушка",
+      "туалет",
+      "бездомний",
+      "біженець"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Soliguide допоможе знайти місця для гігієни та самопочуття в Іспанії",
+    "seoDescription": "З Soliguide легко знайти душові, пральні самообслуговування та безкоштовні засоби гігієни. Геолокація допоможе знайти найближче місце в Іспанії!"
   },
   {
     "categoryId": "shower",
     "label": "Душ",
     "slug": "douche",
     "synonyms": [
-      "douche laver se laver bain bain douche piscine propre sale cheveux"
+      "душ",
+      "гігієна",
+      "чистота",
+      "безкоштовно",
+      "соціальна допомога",
+      "ванна",
+      "помитися",
+      "санітарія",
+      "пункт гігієни",
+      "пральня",
+      "одяг",
+      "чистий одяг",
+      "мило",
+      "шампунь",
+      "гель для душу"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Знайдіть безкоштовний душ з Soliguide в Іспанії",
+    "seoDescription": "Soliguide допоможе знайти безкоштовний душ, пральню, засоби гігієни в Іспанії. Знайдіть найближчі місця на карті!"
   },
   {
     "categoryId": "hairdresser",
     "label": "перукар",
     "slug": "coiffeur",
     "synonyms": [
-      "coiffeur cheveux"
+      "стрижка",
+      "зачіска",
+      "перукарня",
+      "догляд за волоссям",
+      "безкоштовна стрижка",
+      "гігієна",
+      "чистота",
+      "краса",
+      "стиль",
+      "соціальна допомога",
+      "волонтери",
+      "благодійність",
+      "пункт гігієни",
+      "душ",
+      "миття голови"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Знайдіть перукаря безкоштовно з Soliguide",
+    "seoDescription": "Soliguide допоможе знайти безкоштовного перукаря, отримати консультацію та гігієнічні набори в Іспанії. Знайдіть потрібну допомогу поруч!"
   },
   {
     "categoryId": "laundry",
     "label": "прання",
     "slug": "laverie",
     "synonyms": [
-      "laverie vetements vetement laver machine a laver pressing linge lave linge"
+      "прання",
+      "пральня",
+      "безкоштовне прання",
+      "попрати одяг",
+      "догляд за одягом",
+      "чистий одяг",
+      "гігієна",
+      "соціальна допомога",
+      "пункт гігієни",
+      "центр допомоги",
+      "одяг",
+      "брудний одяг",
+      "санітарні умови",
+      "пральна машина",
+      "сушарка"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Lave-linge en accès libre."
+    "seoTitle": "Потрібне прання в Іспанії? Soliguide тут, щоб допомогти",
+    "seoDescription": "Soliguide показує, де знайти безкоштовні пральні, пункти гігієни та соціальні центри в Іспанії. Знайдіть найближче місце!"
   },
   {
     "categoryId": "wellness",
     "label": "самопочуття",
     "slug": "bien-etre",
     "synonyms": [
-      "bien etre coiffeur massage maquillage belle beau pedicure manicure manucire"
+      "психічне здоров'я",
+      "емоційний стан",
+      "психологічна допомога",
+      "консультація",
+      "терапія",
+      "група підтримки",
+      "самодопомога",
+      "відновлення",
+      "благополуччя",
+      "антистрес",
+      "релаксація",
+      "медитація",
+      "лікування тривоги",
+      "боротьба з депресією",
+      "емоційна підтримка"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Ateliers de bien-être : coiffeur, massage, sophrologie, etc. (à préciser dans la description)."
+    "seoTitle": "Покращте своє самопочуття з Soliguide в Іспанії",
+    "seoDescription": "Soliguide допоможе знайти психолога, групу підтримки, безкоштовні консультації. Шукайте поруч, щоб покращити самопочуття вже сьогодні!"
   },
   {
     "categoryId": "toilets",
     "label": "Ванна кімната",
     "slug": "toilettes",
     "synonyms": [
-      "toilettes sanisette pisser pipi wc caca chiotte toilet"
+      "душ",
+      "ванна",
+      "туалет",
+      "пральня",
+      "гігієна",
+      "чистота",
+      "помитися",
+      "одяг",
+      "безкоштовно",
+      "санітарія",
+      "мило",
+      "шампунь",
+      "вода",
+      "пункт гігієни",
+      "допомога"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Toilettes en accès libre."
+    "seoTitle": "Знайдіть безкоштовну ванну кімнату з Soliguide в Іспанії",
+    "seoDescription": "Soliguide допоможе знайти місця, де можна прийняти душ, помити одяг або скористатися туалетом в Іспанії. Геолокація доступна!"
   },
   {
     "categoryId": "hygiene_products",
     "label": "Засоби догляду",
     "slug": "produits-hygiene",
     "synonyms": [
-      "periodiques protections periodiques protection periodique regles regle tampon serviette hygienique serviette menstrues produits d hygiene hygiene cup culotte tampax"
+      "гігієна",
+      "мило",
+      "шампунь",
+      "зубна паста",
+      "зубна щітка",
+      "одяг",
+      "взуття",
+      "пральня",
+      "душ",
+      "туалет",
+      "жіночі гігієнічні засоби",
+      "підгузки",
+      "вологі серветки",
+      "крем для догляду",
+      "дезодорант"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Distribution de produits d'hygiène (savons, dentifrice, tampons, serviettes hygiéniques, etc.)."
+    "seoTitle": "Знайдіть засоби догляду з Soliguide в Іспанії",
+    "seoDescription": "Soliguide допоможе знайти безкоштовні засоби гігієни, одяг та пральню в Іспанії. Геолокація для пошуку поруч з вами!"
   },
   {
     "categoryId": "face_masks",
     "label": "Маски",
     "slug": "masques",
     "synonyms": [
-      "masque protection covid virus"
+      "маска",
+      "захист",
+      "безпека",
+      "гігієна",
+      "коронавірус",
+      "covid",
+      "захисна маска",
+      "респіратор",
+      "безкоштовно",
+      "допомога",
+      "пункт роздачі",
+      "волонтери",
+      "соціальна допомога",
+      "медична маска",
+      "захист дихання"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Masques de protection"
+    "seoTitle": "Soliguide допоможе знайти безкоштовні маски в Іспанії",
+    "seoDescription": "Soliguide підкаже, де отримати маски, засоби гігієни або одяг в Іспанії. Знайдіть пункти роздачі поруч з вами! Безкоштовна допомога."
   },
   {
     "categoryId": "equipment",
     "label": "Обладнання",
     "slug": "materiel",
     "synonyms": [
-      "materiel affaires mobilier"
+      "одяг",
+      "взуття",
+      "гігієна",
+      "засоби гігієни",
+      "мило",
+      "шампунь",
+      "зубна щітка",
+      "зубна паста",
+      "рушник",
+      "ковдра",
+      "постільна білизна",
+      "підгузки",
+      "дитяче харчування",
+      "інвалідний візок",
+      "милиці"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Знайдіть необхідне обладнання з Soliguide в Іспанії",
+    "seoDescription": "Soliguide допоможе знайти обладнання: одяг, взуття, гігієнічні набори в Іспанії. Геолокація покаже найближчі місця допомоги. Підтримка тут!"
   },
   {
     "categoryId": "luggage_storage",
     "label": "Камера зберігання",
     "slug": "bagagerie",
     "synonyms": [
-      "bagage bagagerie sac poser casier"
+      "зберігання багажу",
+      "тимчасове зберігання",
+      "камера схову",
+      "шафка для зберігання",
+      "зберегти речі",
+      "безкоштовне зберігання",
+      "безпечне зберігання",
+      "вокзал",
+      "аеропорт",
+      "центр міста",
+      "сумка",
+      "рюкзак",
+      "валізи",
+      "одяг",
+      "особисті речі"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Lieu permettant de conserver des bagages ou matériel."
+    "seoTitle": "Знайдіть камери зберігання речей з Soliguide в Іспанії",
+    "seoDescription": "Soliguide допоможе знайти камери зберігання в Барселоні, Мадриді та Валенсії. Безкоштовно зберігайте речі поруч з вами! Знаходьте потрібну допомогу!"
   },
   {
     "categoryId": "solidarity_store",
     "label": "Магазин «Солідарність».",
     "slug": "boutique-solidaire",
     "synonyms": [
-      "boutique solidaire meubles accessoires s habiller"
+      "Одяг",
+      "Їжа",
+      "Гігієна",
+      "Безкоштовно",
+      "Допомога",
+      "Солідарність",
+      "Пожертва",
+      "Гуманітарна допомога",
+      "Соціальна допомога",
+      "Центр допомоги",
+      "Отримати одяг",
+      "Отримати їжу",
+      "Отримати гігієну",
+      "Пункти роздачі",
+      "Волонтери"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Boutique vendant du matériel à prix solidaire."
+    "seoTitle": "Знайдіть Магазин «Солідарність» з Soliguide: допомога поруч!",
+    "seoDescription": "Soliguide допоможе знайти Магазин «Солідарність» в Іспанії. Отримайте одяг, їжу, предмети гігієни. Геолокація для швидкої допомоги!"
   },
   {
     "categoryId": "clothing",
     "label": "Одяг",
     "slug": "vetements",
     "synonyms": [
-      "vestiaire vetements t shirt pantalon robe vetir vestiboutique pull manteau habit s habiller"
+      "одяг",
+      "одяг безкоштовно",
+      "гуманітарна допомога одягом",
+      "одяг для жінок",
+      "одяг для чоловіків",
+      "одяг для дітей",
+      "одяг для немовлят",
+      "теплий одяг",
+      "зимовий одяг",
+      "одяг для співбесіди",
+      "пункт видачі одягу",
+      "благодійний магазин",
+      "пожертвувати одяг",
+      "зібрати одяг",
+      "одяг б/у"
     ],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Vêtements gratuits ou à prix symbolique. Préciser le sexe et/ou l'âge dans les conditions."
+    "seoTitle": "Потрібен одяг? Soliguide допоможе знайти підтримку в Іспанії",
+    "seoDescription": "Soliguide підкаже, де знайти одяг безкоштовно, отримати гуманітарну допомогу або одяг для співбесіди. Знайдіть потрібне місце поруч з вами в Іспанії!"
   },
   {
     "categoryId": "animal_assitance",
     "label": "Тварини",
     "slug": "animaux",
-    "synonyms": [
-      "animaux animals chien chat croquettes animal"
-    ],
+    "synonyms": ["animaux animals chien chat croquettes animal"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -796,9 +1508,7 @@
     "categoryId": "vaccination",
     "label": "Вакцинація",
     "slug": "vaccination",
-    "synonyms": [
-      "vaccination vaccin covid piqure rappel rappel de vaccin"
-    ],
+    "synonyms": ["vaccination vaccin covid piqure rappel rappel de vaccin"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -835,9 +1545,7 @@
     "categoryId": "health_specialists",
     "label": "спеціалісти",
     "slug": "specialistes-medecine",
-    "synonyms": [
-      "specialistes specialiste"
-    ],
+    "synonyms": ["specialistes specialiste"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -848,9 +1556,7 @@
     "categoryId": "allergology",
     "label": "алергологія",
     "slug": "allergologie",
-    "synonyms": [
-      "allergologie allergies"
-    ],
+    "synonyms": ["allergologie allergies"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -861,9 +1567,7 @@
     "categoryId": "cardiology",
     "label": "Кардіологія",
     "slug": "cardiologie",
-    "synonyms": [
-      "cardiologie coeur cardiaque cardio"
-    ],
+    "synonyms": ["cardiologie coeur cardiaque cardio"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -874,9 +1578,7 @@
     "categoryId": "dermatology",
     "label": "Дерматологія",
     "slug": "dermatologie",
-    "synonyms": [
-      "dermato dermatologie dermatologue peau bouton"
-    ],
+    "synonyms": ["dermato dermatologie dermatologue peau bouton"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -887,9 +1589,7 @@
     "categoryId": "echography",
     "label": "УЗД",
     "slug": "echographie",
-    "synonyms": [
-      "echographie bebe enceinte"
-    ],
+    "synonyms": ["echographie bebe enceinte"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -900,9 +1600,7 @@
     "categoryId": "endocrinology",
     "label": "Ендокринологія",
     "slug": "endocrinologie",
-    "synonyms": [
-      "endocrinologie hormones tyroide"
-    ],
+    "synonyms": ["endocrinologie hormones tyroide"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -913,9 +1611,7 @@
     "categoryId": "gastroenterology",
     "label": "Гастроентерологія",
     "slug": "gastro-enterologie",
-    "synonyms": [
-      "gastro enterologue gastro enterologie kk caca"
-    ],
+    "synonyms": ["gastro enterologue gastro enterologie kk caca"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -939,9 +1635,7 @@
     "categoryId": "kinesitherapy",
     "label": "Фізіотерапія",
     "slug": "kinesitherapie",
-    "synonyms": [
-      "kinesitherapie reeducation blessure kine"
-    ],
+    "synonyms": ["kinesitherapie reeducation blessure kine"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -952,9 +1646,7 @@
     "categoryId": "mammography",
     "label": "Мамографія",
     "slug": "mammographie",
-    "synonyms": [
-      "mammographie radio seins"
-    ],
+    "synonyms": ["mammographie radio seins"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -965,9 +1657,7 @@
     "categoryId": "ophthalmology",
     "label": "Офтальмологія",
     "slug": "ophtalmologie",
-    "synonyms": [
-      "ophtalmologie ophtalmologue yeux voir lunette"
-    ],
+    "synonyms": ["ophtalmologie ophtalmologue yeux voir lunette"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -991,9 +1681,7 @@
     "categoryId": "nutrition",
     "label": "Харчування",
     "slug": "nutrition",
-    "synonyms": [
-      "nutrition dietetique regime surpoids obesite perte de poids"
-    ],
+    "synonyms": ["nutrition dietetique regime surpoids obesite perte de poids"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -1004,9 +1692,7 @@
     "categoryId": "pedicure",
     "label": "Педикюр",
     "slug": "pedicure",
-    "synonyms": [
-      "pedicure pied pie soigner pieds soin podologue podologie"
-    ],
+    "synonyms": ["pedicure pied pie soigner pieds soin podologue podologie"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -1030,9 +1716,7 @@
     "categoryId": "pneumology",
     "label": "пульмонологія",
     "slug": "pneumologie",
-    "synonyms": [
-      "poumons respiration respirer bronches"
-    ],
+    "synonyms": ["poumons respiration respirer bronches"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -1043,9 +1727,7 @@
     "categoryId": "radiology",
     "label": "радіологія",
     "slug": "radiologie",
-    "synonyms": [
-      "radiologie radiologue radiology rayonx fracture entorse"
-    ],
+    "synonyms": ["radiologie radiologue radiology rayonx fracture entorse"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -1056,9 +1738,7 @@
     "categoryId": "rheumatology",
     "label": "Ревматологія",
     "slug": "rhumatologie",
-    "synonyms": [
-      "rhumatologue rumatologie"
-    ],
+    "synonyms": ["rhumatologue rumatologie"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -1069,9 +1749,7 @@
     "categoryId": "urology",
     "label": "Урологія",
     "slug": "urologie",
-    "synonyms": [
-      "urologie urology"
-    ],
+    "synonyms": ["urologie urology"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -1095,9 +1773,7 @@
     "categoryId": "stomatology",
     "label": "Стоматологія",
     "slug": "stomatologie",
-    "synonyms": [
-      "stomatologie stomatologue estomac digestion ventre"
-    ],
+    "synonyms": ["stomatologie stomatologue estomac digestion ventre"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -1108,9 +1784,7 @@
     "categoryId": "osteopathy",
     "label": "остеопат",
     "slug": "osteo",
-    "synonyms": [
-      "ostheopathe osteo dos mal"
-    ],
+    "synonyms": ["ostheopathe osteo dos mal"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -1121,9 +1795,7 @@
     "categoryId": "acupuncture",
     "label": "Акупунктура",
     "slug": "acupuncture",
-    "synonyms": [
-      "acupuncture accupuncture bien etre"
-    ],
+    "synonyms": ["acupuncture accupuncture bien etre"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -1160,9 +1832,7 @@
     "categoryId": "wifi",
     "label": "Бездротовий",
     "slug": "wifi",
-    "synonyms": [
-      "wifi internet web connexion reseau"
-    ],
+    "synonyms": ["wifi internet web connexion reseau"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -1173,9 +1843,7 @@
     "categoryId": "electrical_outlets_available",
     "label": "Розетка",
     "slug": "prise",
-    "synonyms": [
-      "prise charger electricite chargeur recharge charge"
-    ],
+    "synonyms": ["prise charger electricite chargeur recharge charge"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -1186,9 +1854,7 @@
     "categoryId": "telephone_at_your_disposal",
     "label": "Телефон",
     "slug": "telephone",
-    "synonyms": [
-      "appel gratuit telephone telephoner appeler appel"
-    ],
+    "synonyms": ["appel gratuit telephone telephoner appeler appel"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -1225,9 +1891,7 @@
     "categoryId": "carpooling",
     "label": "Спільне сполучення",
     "slug": "covoiturage",
-    "synonyms": [
-      "co voiturage partage de voiture"
-    ],
+    "synonyms": ["co voiturage partage de voiture"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -1238,9 +1902,7 @@
     "categoryId": "provision_of_vehicles",
     "label": "Надання транспортного засобу",
     "slug": "vehicule",
-    "synonyms": [
-      "mise a disposition de vehicule voiture"
-    ],
+    "synonyms": ["mise a disposition de vehicule voiture"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -1251,9 +1913,7 @@
     "categoryId": "chauffeur_driven_transport",
     "label": "Транспорт з водієм",
     "slug": "chauffeur",
-    "synonyms": [
-      "transport avec chauffeur chauffeur transport a la demande"
-    ],
+    "synonyms": ["transport avec chauffeur chauffeur transport a la demande"],
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
@@ -1350,11 +2010,7 @@
     "categoryId": null,
     "label": "ACCEM: accueil et accompagnement des migrants et réfugiés",
     "slug": "accem",
-    "synonyms": [
-      "ACCEM",
-      "accem espagne",
-      "aide migrants espagne"
-    ],
+    "synonyms": ["ACCEM", "accem espagne", "aide migrants espagne"],
     "type": "ORGANIZATION",
     "lang": "uk",
     "country": "es",
@@ -1381,11 +2037,7 @@
     "categoryId": null,
     "label": "Albergue: centre d’hébergement pour sans-abris",
     "slug": "albergue",
-    "synonyms": [
-      "albergue",
-      "refugio",
-      "hébergement social"
-    ],
+    "synonyms": ["albergue", "refugio", "hébergement social"],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "uk",
     "country": "es",
@@ -1411,11 +2063,7 @@
     "categoryId": null,
     "label": "Centro de día: accueil de jour",
     "slug": "centro-de-dia",
-    "synonyms": [
-      "centro día",
-      "centre de jour",
-      "accueil de jour"
-    ],
+    "synonyms": ["centro día", "centre de jour", "accueil de jour"],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "uk",
     "country": "es",

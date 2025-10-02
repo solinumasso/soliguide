@@ -4,684 +4,1409 @@
     "label": "Acogida",
     "slug": "accueil",
     "synonyms": [
-      "accueil cafe repos acceuil parler acueil accueil femme accueil femmes acueil femme violence harcelement partir"
+      "refugio",
+      "albergue",
+      "dormir",
+      "ducha",
+      "aseo",
+      "orientación",
+      "ayuda social",
+      "apoyo",
+      "información",
+      "descanso",
+      "lugar seguro",
+      "asilo",
+      "protección",
+      "cobijo",
+      "resguardo"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Encuentra un lugar de acogida con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar un lugar seguro en ad. Busca refugio nocturno, duchas o un espacio para informarte y descansar. ¡Encuentra ayuda cerca de ti!"
   },
   {
     "categoryId": "day_hosting",
     "label": "Centro de atención diurna",
     "slug": "accueil-jour",
     "synonyms": [
-      "accueil accueil de jour cafe se reposer se poser repos reposer femmes battues femme battue fem batue fem batu violence harcelement partir"
+      "centro de día",
+      "apoyo diurno",
+      "atención social",
+      "actividades diarias",
+      "acompañamiento",
+      "personas mayores",
+      "discapacidad",
+      "respiro familiar",
+      "estimulación cognitiva",
+      "terapia ocupacional",
+      "ocio",
+      "integración social",
+      "talleres",
+      "cuidado diario",
+      "ayuda"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Lieu d'accueil des bénéficaires proposant une pause pendant la journée."
+    "seoTitle": "Encuentra un centro de atención diurna con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar centros de atención diurna en ad. Recibe apoyo social, actividades y acompañamiento. ¡Localiza los servicios cerca de ti!"
   },
   {
     "categoryId": "rest_area",
     "label": "Área de descanso",
     "slug": "espace-repos",
     "synonyms": [
-      "espace de repos reposer dormir repos pause"
+      "descanso",
+      "dormir",
+      "refugio",
+      "calor",
+      "sueño",
+      "relajación",
+      "ducha",
+      "ropa",
+      "abrigo",
+      "aseo",
+      "higiene",
+      "cargar móvil",
+      "respirar",
+      "albergue",
+      "cama"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Espaces de repos ouverts au public"
+    "seoTitle": "Encuentra un área de descanso con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar un lugar para descansar en ad. Refúgiate del frío, recarga tu móvil o simplemente descansa un momento. ¡Geolocalización fácil!"
   },
   {
     "categoryId": "babysitting",
     "label": "Servicio de canguraje",
     "slug": "garde-enfants",
     "synonyms": [
-      "garde enfant garderie enfant nounou assistance maternelle bebe creche"
+      "canguro",
+      "niñera",
+      "guardería",
+      "cuidado infantil",
+      "cuidado de niños",
+      "ludoteca",
+      "espacio infantil",
+      "atención infantil",
+      "niños",
+      "infancia",
+      "apoyo familiar",
+      "conciliación familiar",
+      "crianza",
+      "tiempo libre",
+      "actividades infantiles"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Activité d'un baby-sitter consistant à garder temporairement des enfants en l'abscence de leurs parents"
+    "seoTitle": "Soliguide te ayuda a encontrar servicio de canguraje en Andorra",
+    "seoDescription": "Soliguide te facilita encontrar canguros, guarderías o ludotecas en Andorra. ¡Servicios cerca de ti para cuidar de tus hijos! Encuentra niñeras cerca."
   },
   {
     "categoryId": "family_area",
     "label": "Espacio familiar",
     "slug": "espace-famille",
     "synonyms": [
-      "espace famille famille maman papa parents enfants"
+      "apoyo familiar",
+      "orientación",
+      "consejería familiar",
+      "terapia familiar",
+      "niños",
+      "adolescentes",
+      "padres",
+      "madres",
+      "crianza",
+      "educación",
+      "convivencia",
+      "mediación familiar",
+      "reuniones familiares",
+      "actividades familiares",
+      "ocio familiar"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Lieu d'accueil capable de recevoir des familles"
+    "seoTitle": "Encuentra un espacio familiar seguro con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar espacios familiares en ad. Recibe apoyo psicológico, orientación familiar y actividades para niños. ¡Geolocalización disponible!"
   },
   {
     "categoryId": "information_point",
     "label": "Servicio de información y orientación",
     "slug": "point-information",
     "synonyms": [
-      "point information point d information information ukraine"
+      "información",
+      "orientación",
+      "asesoramiento",
+      "ayuda",
+      "guía",
+      "consejo",
+      "apoyo",
+      "legal",
+      "social",
+      "administrativo",
+      "vivienda",
+      "empleo",
+      "trámites",
+      "recursos",
+      "servicios"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Point d'information"
+    "seoTitle": "Encuentra el servicio de información y orientación que necesitas con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar información en ad. Por ejemplo: asesoramiento legal gratuito, orientación sobre vivienda o trámites administrativos. ¡Encuentra ayuda cerca de ti!"
   },
   {
     "categoryId": "activities",
     "label": "Actividades",
     "slug": "activites",
     "synonyms": [
-      "activites sorties sport loisirs sortir jeux jeu loisir isolement isole solitude isolee"
+      "ocio",
+      "talleres",
+      "cursos",
+      "deporte",
+      "cultura",
+      "arte",
+      "manualidades",
+      "juegos",
+      "encuentros",
+      "socializar",
+      "aprender",
+      "participar",
+      "bienestar",
+      "grupo",
+      "animación"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Encuentra actividades solidarias con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar talleres, cursos y actividades de ocio gratuitas en ad. ¡Mejora tu bienestar y conoce gente cerca de ti! Geolocalización."
   },
   {
     "categoryId": "sport_activities",
     "label": "Actividades deportivas",
     "slug": "activites-sportives",
     "synonyms": [
-      "activites sportives sport foot basket danse rugby loisirs loisir"
+      "deporte",
+      "ejercicio",
+      "gimnasio",
+      "fútbol",
+      "baloncesto",
+      "natación",
+      "senderismo",
+      "esquí",
+      "montaña",
+      "actividad física",
+      "salud",
+      "bienestar",
+      "aire libre",
+      "competición",
+      "juegos"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Activités sportives : foot, jogging, marche, etc."
+    "seoTitle": "Encuentra actividades deportivas en Andorra con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar lugares para hacer deporte en Andorra. Accede a gimnasios sociales, clases gratuitas y eventos deportivos cerca de ti."
   },
   {
     "categoryId": "museums",
     "label": "Museo",
     "slug": "musee",
     "synonyms": [
-      "musee culture sortie peinture tableau se cultiver"
+      "exposición",
+      "arte",
+      "cultura",
+      "historia",
+      "visita guiada",
+      "accesibilidad",
+      "actividades",
+      "taller",
+      "colección",
+      "patrimonio",
+      "edificio histórico",
+      "entrada gratuita",
+      "recorrido",
+      "audioguía",
+      "folleto informativo"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Musée gratuit."
+    "seoTitle": "Descubre museos accesibles con Soliguide",
+    "seoDescription": "Encuentra museos inclusivos en Andorra con Soliguide. Disfruta de visitas guiadas adaptadas, talleres y actividades para todos. ¡Geolocalización fácil!"
   },
   {
     "categoryId": "libraries",
     "label": "Biblioteca",
     "slug": "bibliotheque",
     "synonyms": [
-      "bibliotheque livres culture mediatheque"
+      "libros",
+      "lectura",
+      "estudio",
+      "ordenadores",
+      "internet",
+      "wifi gratuito",
+      "revistas",
+      "prensa",
+      "diccionarios",
+      "enciclopedias",
+      "salas de estudio",
+      "cursos",
+      "talleres",
+      "cuentos",
+      "aprender"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Bibliothèque accessible en accès libre."
+    "seoTitle": "Encuentra una Biblioteca cerca de ti con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar bibliotecas en ad. Accede a libros, ordenadores con internet o actividades culturales cerca de ti."
   },
   {
     "categoryId": "other_activities",
     "label": "Actividades diversas",
     "slug": "activites-diverses",
     "synonyms": [
-      "activites diverses animation divertissement loisir s occuper culture activites enfants loisirs loisir"
+      "talleres",
+      "ocio",
+      "recreación",
+      "apoyo social",
+      "actividades grupales",
+      "encuentros",
+      "convivencia",
+      "desarrollo personal",
+      "integración social",
+      "voluntariado",
+      "arte",
+      "música",
+      "deporte",
+      "cultura",
+      "animación"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Activités diverses : ateliers, activités culturelles, etc. (précisez.)"
+    "seoTitle": "Descubre Actividades diversas con Soliguide y obtén apoyo en Andorra",
+    "seoDescription": "Soliguide te ayuda a encontrar talleres, actividades recreativas y apoyo social en Andorra. Encuentra recursos cerca de ti."
   },
   {
     "categoryId": "food",
     "label": "Alimentación",
     "slug": "alimentation-bouffe-boufe-manger-soupe-repas-aliment-manger-mange-repa-faim-diner-dejeuner-dejeunet-dine-se-nourrir-fin-portage-portage-de-repas-aide-alimentaire-comida-comer-resto-du-coeur",
     "synonyms": [
-      "alimentation bouffe boufe manger soupe repas aliment manger mange repa faim diner dejeuner dejeunet dine se nourrir fin portage portage de repas aide alimentaire comida comer"
+      "comida",
+      "alimentos",
+      "comer",
+      "nutrición",
+      "cena",
+      "desayuno",
+      "almuerzo",
+      "banco de alimentos",
+      "comedor social",
+      "ayuda alimentaria",
+      "distribución de alimentos",
+      "alimentos gratis",
+      "sopas populares",
+      "productos básicos",
+      "víveres"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "No pases hambre, Soliguide te ayuda a encontrar Alimentación",
+    "seoDescription": "Con Soliguide, encuentra comedores sociales, bancos de alimentos y distribuciones de comida gratuita en ad. ¡Localiza ayuda cerca de ti!"
   },
   {
     "categoryId": "food_distribution",
     "label": "Comedor social",
     "slug": "distribution-repas",
     "synonyms": [
-      "distribution alimentaire distribution de repas manger maraude bouffe soupe nourriture faim repas mange manger fin distribution aide alimentaire restauration assise comida comer"
+      "comida gratis",
+      "alimentos",
+      "ayuda alimentaria",
+      "banco de alimentos",
+      "sopas populares",
+      "refugio",
+      "cena",
+      "desayuno",
+      "almuerzo",
+      "nutrición",
+      "menú",
+      "comedor comunitario",
+      "solidaridad alimentaria",
+      "distribución de alimentos",
+      "apoyo nutricional"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Point d'arrêt d'une distribution alimentaire. Attention : Veuillez créer une structure par point de distribution."
+    "seoTitle": "Comedor social: Encuentra ayuda alimentaria con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar comedores sociales en ad. Accede a comidas gratuitas, orientación y apoyo. ¡Geolocalización fácil!"
   },
   {
     "categoryId": "food_packages",
     "label": "Banco de alimentos",
     "slug": "colis-alimentaire",
     "synonyms": [
-      "colis colis alimentaire manger mange fruits legumes panier repas aide alimentaire panier comida comer"
+      "alimentos",
+      "comida",
+      "comer",
+      "ayuda alimentaria",
+      "cestas básicas",
+      "comedores sociales",
+      "banco de alimentos",
+      "nutrición",
+      "soporte alimentario",
+      "distribución de alimentos",
+      "donación de alimentos",
+      "asistencia alimentaria",
+      "caridad",
+      "urgencia alimentaria",
+      "necesidad alimentaria"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Distribution de colis contenant des denrées alimentaires (conserves, légumes, etc.)."
+    "seoTitle": "Encuentra un banco de alimentos en Andorra con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar bancos de alimentos, comedores sociales o entrega de cestas básicas cerca de ti en Andorra. ¡Localiza ayuda alimentaria!"
   },
   {
     "categoryId": "social_grocery_stores",
     "label": "Tienda solidaria de alimentos",
     "slug": "epicerie-sociale-solidaire",
     "synonyms": [
-      "epicerie sociale epicerie manger fruits legumes panier repas epicerie solidaire aide alimentaire"
+      "alimentos baratos",
+      "comida a bajo costo",
+      "tienda social",
+      "economato social",
+      "ayuda alimentaria",
+      "productos básicos",
+      "alimentos subsidiados",
+      "compra solidaria",
+      " cesta básica",
+      "alimentación accesible",
+      "solidaridad alimentaria",
+      "recursos alimentarios",
+      "apoyo nutricional",
+      "distribución de alimentos",
+      "víveres asequibles"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Les épiceries solidaires accueillent les personnes en précarité et leur permettent de faire des courses à prix solidaire."
+    "seoTitle": "Encuentra una tienda solidaria de alimentos cerca de ti con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar tiendas solidarias de alimentos en ad. Accede a alimentos a bajo precio, productos básicos y apoyo alimentario cerca de ti."
   },
   {
     "categoryId": "fountain",
     "label": "Fuente de agua",
     "slug": "fontaine",
     "synonyms": [
-      "fontaine boire eau soif robinet potable"
+      "agua potable",
+      "fuente pública",
+      "grifo",
+      "hidratación",
+      "agua gratis",
+      "beber agua",
+      "punto de agua",
+      "agua corriente",
+      "sed",
+      "rehidratarse",
+      "servicio de agua",
+      "fuente urbana",
+      "agua embotellada",
+      "vaso de agua",
+      "encontrar agua"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Eau potable en accès libre."
+    "seoTitle": "Encuentra una fuente de agua potable fácilmente con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar fuentes de agua gratuitas en ad. Localiza fuentes, grifos públicos y servicios que ofrecen agua potable cerca de ti."
   },
   {
     "categoryId": "solidarity_fridge",
     "label": "Nevera solidaria",
     "slug": "frigo-solidaire",
     "synonyms": [
-      "manger mange conserver frais bouffe aliment faim frigo frigo solidaire"
+      "alimentos gratis",
+      "comida solidaria",
+      "banco de alimentos",
+      "donación de comida",
+      "rescate de alimentos",
+      "comida para todos",
+      "apoyo alimentario",
+      "nevera comunitaria",
+      "alimentos donados",
+      "comida de caridad",
+      "ayuda alimenticia",
+      "comida para necesitados",
+      "comida urgente",
+      "alimentación gratuita",
+      "solidaridad alimentaria"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Frigo solidaire"
+    "seoTitle": "Nevera solidaria en Andorra: Encuentra ayuda con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar neveras solidarias en Andorra. Comida gratis, alimentos donados, apoyo alimentario cerca de ti. ¡Geolocalización fácil!"
   },
   {
     "categoryId": "shared_kitchen",
     "label": "Cocina comunitaria",
     "slug": "cuisine-partagee",
     "synonyms": [
-      "cuisine cuisiner preparer partage partagee cuisine partagee"
+      "comedor social",
+      "olla popular",
+      "banco de alimentos",
+      "alimentos gratis",
+      "comida gratuita",
+      "ayuda alimentaria",
+      "comida comunitaria",
+      "nutrición",
+      "alimentación",
+      "soporte alimentario",
+      "comida caliente",
+      "comida preparada",
+      "alimentos básicos",
+      "comer gratis",
+      "ayuda cocina"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Cuisine partagée "
+    "seoTitle": "Encuentra una Cocina comunitaria cerca de ti con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar comedores sociales, bancos de alimentos y ollas populares en ad. ¡Accede a comidas nutritivas y gratuitas cerca de ti!"
   },
   {
     "categoryId": "cooking_workshop",
     "label": "Taller de cocina",
     "slug": "atelier-cuisine",
     "synonyms": [
-      "atelier cuisine cuisiner partage preparer atelier cuisine cuire"
+      "clases de cocina",
+      "cocina fácil",
+      "recetas económicas",
+      "alimentación saludable",
+      "nutrición",
+      "comer bien",
+      "aprender a cocinar",
+      "talleres gratuitos",
+      "cocina para principiantes",
+      "cursos de cocina",
+      "cocinar en grupo",
+      "cocina social",
+      "cocina comunitaria",
+      "hacer la comida",
+      "menú semanal"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Atelier de cuisine"
+    "seoTitle": "Aprenda a cocinar con Soliguide: Talleres de cocina gratuitos",
+    "seoDescription": "Soliguide le ayuda a encontrar talleres de cocina en ad. Aprenda a cocinar sano, económico y participe en actividades grupales cerca de usted. ¡Geolocalización fácil!"
   },
   {
     "categoryId": "baby_parcel",
     "label": "Cesta para bebés",
     "slug": "colis-bebe",
     "synonyms": [
-      "bebe nourrir nourisson colis colis bebe puericulture lait couche biberon maternite manger nourriture vetement"
+      "canastilla bebé",
+      "productos bebé",
+      "pañales",
+      "leche infantil",
+      "alimentos bebé",
+      "ropa bebé",
+      "artículos puericultura",
+      "ayuda maternidad",
+      "apoyo familiar",
+      "Andorra la Vella",
+      "Escaldes-Engordany",
+      "Sant Julià de Lòria",
+      "Encamp",
+      "La Massana"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Colis pour bébé"
+    "seoTitle": "Encuentra una cesta para bebés con Soliguide en Andorra",
+    "seoDescription": "Soliguide te ayuda a encontrar cestas para bebés, pañales o leche infantil en Andorra. ¡Localiza los centros de ayuda cerca de ti!"
   },
   {
     "categoryId": "food_voucher",
     "label": "Vale/cheque alimentario",
     "slug": "bon-alimentaire",
     "synonyms": [
-      "bon cheque ticket alimentaire gratuit aide"
+      "cupón de alimentos",
+      "tarjeta de alimentos",
+      "ayuda alimentaria",
+      "comida gratis",
+      "banco de alimentos",
+      "supermercado solidario",
+      "alimentos básicos",
+      "comedores sociales",
+      "olla popular",
+      "distribución de alimentos",
+      "asistencia alimentaria",
+      "alimentos donados",
+      "productos de primera necesidad",
+      "almuerzo gratis",
+      "cena gratis"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Distribution de bon/chèque alimentaire"
+    "seoTitle": "Obtén tu vale/cheque alimentario fácilmente con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar dónde conseguir vales de comida, supermercados solidarios y comedores sociales en ad. ¡Localiza los recursos cerca de ti!"
   },
   {
     "categoryId": "community_garden",
     "label": "Huerto comunitario",
     "slug": "jardin-solidaire",
     "synonyms": [
-      "fruits pousser jardin bio nature legumes jardin solidaire jardinage"
+      "jardín comunitario",
+      "cultivo urbano",
+      "agricultura social",
+      "huerta ecológica",
+      "sembrar",
+      "cosechar",
+      "plantar",
+      "verduras",
+      "frutas",
+      "alimentos",
+      "tierra",
+      "abono",
+      "jardinería",
+      "horticultura",
+      "ecología"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Jardin solidaire"
+    "seoTitle": "Encuentra un huerto comunitario cerca de ti con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar huertos comunitarios en ad. Cultiva tus propios alimentos, aprende jardinería y conoce gente. ¡Geolocalización fácil!"
   },
   {
     "categoryId": "counseling",
     "label": "Orientación",
     "slug": "conseil",
     "synonyms": [
-      "conseil conseils soutien accompagnement aide se faire aider conseiller numerique"
+      "asesoramiento",
+      "ayuda",
+      "apoyo",
+      "guía",
+      "información",
+      "consejo",
+      "orientación legal",
+      "orientación laboral",
+      "trámites",
+      "administrativo",
+      "social",
+      "empleo",
+      "vivienda",
+      "familiar",
+      "personal"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Encuentra orientación y apoyo con Soliguide en Andorra",
+    "seoDescription": "Soliguide te ayuda a encontrar asesoramiento legal gratuito, orientación para empleo y trámites administrativos. ¡Encuentra ayuda cerca de ti en Andorra!"
   },
   {
     "categoryId": "legal_advice",
     "label": "Asesoramiento jurídico",
     "slug": "permanence-juridique",
     "synonyms": [
-      "proces permanence juridique amende avocat droits droit recours juge ldh droits de l homme ligue des droits de l homme acces au droit cnda ofpra asile sejour carte sejour divorce separation"
+      "abogado",
+      "ley",
+      "justicia",
+      "derecho",
+      "legal",
+      "tribunal",
+      "litigio",
+      "asesoramiento legal",
+      "defensa",
+      "jurídico",
+      "consulta jurídica",
+      "asistencia jurídica",
+      "proceso judicial",
+      "recurso",
+      "normativa"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Permanences juridiques (surendettement, demande d'asile, procès, etc.)."
+    "seoTitle": "Asesoramiento jurídico gratuito con Soliguide en Andorra",
+    "seoDescription": "Soliguide te ayuda a encontrar asesoramiento jurídico en Andorra. Abogados gratuitos, información legal y defensa de tus derechos, ¡todo cerca de ti!"
   },
   {
     "categoryId": "social_accompaniment",
     "label": "Servicio de atención y orientación social",
     "slug": "accompagnement-social",
     "synonyms": [
-      "accompagnement assistante sociale social travailleur social droits demarches femmes battues femme battue violence isolement isole solitude isolee partir separation divorce victime"
+      "ayuda social",
+      "orientación social",
+      "información social",
+      "apoyo social",
+      "asistencia social",
+      "trámites sociales",
+      "servicios sociales",
+      "trabajador social",
+      "consejo social",
+      "guía social",
+      "ayuda gubernamental",
+      "ayuda municipal",
+      "ayuda comunitaria",
+      "recursos sociales",
+      "bienestar social"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Accompagement des personnes dans leur réinsertion (assistantes sociales, permanences, etc.)."
+    "seoTitle": "Encuentra un Servicio de atención y orientación social con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar asistencia social en ad. Accede a información, orientación y apoyo en trámites. ¡Encuentra ayuda cerca de ti con Soliguide!"
   },
   {
     "categoryId": "disability_advice",
     "label": "Apoyo a personas con discapacidad",
     "slug": "conseil-handicap",
     "synonyms": [
-      "conseil handicap handicap aah conseils conseil handicape handicapee personne a mobilite reduite pmr"
+      "discapacidad",
+      "diversidad funcional",
+      "accesibilidad",
+      "ayuda técnica",
+      "residencia adaptada",
+      "centro de día",
+      "integración laboral",
+      "asistencia personal",
+      "barreras arquitectónicas",
+      "movilidad reducida",
+      "adaptación vivienda",
+      "subvenciones discapacidad",
+      "derechos discapacidad",
+      "inclusión social",
+      "apoyo familiar"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'accès aux droits pour les personnes en situation de handicap."
+    "seoTitle": "Encuentra apoyo para personas con discapacidad con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar centros de día, residencias adaptadas y asesoramiento especializado en Andorra. ¡Localiza los servicios cerca de ti!"
   },
   {
     "categoryId": "administrative_assistance",
     "label": "Asesoramiento administrativo",
     "slug": "conseil-administratif",
     "synonyms": [
-      "conseil administratif conseils administratifs aide administrative demarches rsa cmu allocations papiers securite sociale caf cpampapier conseiller numerique"
+      "ayuda legal",
+      "trámites",
+      "documentación",
+      "solicitud de ayudas",
+      "orientación jurídica",
+      "asistencia administrativa",
+      "información legal",
+      "gestiones",
+      "papeles",
+      "derechos",
+      "abogado gratuito",
+      "asesoramiento legal gratuito",
+      "consultas legales",
+      "defensoría",
+      "procedimientos"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'aide administrative (RSA, CMU, allocations, chômage, etc.)."
+    "seoTitle": "Soliguide le ofrece asesoramiento administrativo gratuito en Andorra",
+    "seoDescription": "Soliguide le ayuda con trámites, solicitud de ayudas y más. Encuentre apoyo legal y administrativo cerca de usted en Andorra."
   },
   {
     "categoryId": "parent_assistance",
     "label": "Asesoramiento familiar",
     "slug": "conseil-parents",
     "synonyms": [
-      "conseil parents conseil aux parents conseil parental mediation familiale mediation conflit adolescents enfants parent parentalite parents enfant ado adolescent couple couples"
+      "apoyo familiar",
+      "orientación familiar",
+      "mediación familiar",
+      "terapia familiar",
+      "consejo familiar",
+      "problemas familiares",
+      "conflictos familiares",
+      "ayuda psicológica familiar",
+      "psicólogo familiar",
+      "trabajo social familiar",
+      "servicios sociales familiares",
+      "integración familiar",
+      "reunificación familiar",
+      "cuidado familiar",
+      "soporte familiar"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Permances d'aide pour les jeunes parents et les parents rencontrant des difficultés avec leurs enfants."
+    "seoTitle": "Obtén asesoramiento familiar en Andorra con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar orientación familiar, mediación y apoyo psicológico. ¡Encuentra ayuda cerca de ti en Andorra!"
   },
   {
     "categoryId": "budget_advice",
     "label": "Asesoramiento presupuestario",
     "slug": "conseil-budget",
     "synonyms": [
-      "conseil budget conseil budget argent finance cresus"
+      "gestión de deudas",
+      "planificación financiera",
+      "presupuesto familiar",
+      "ahorro",
+      "gastos",
+      "ingresos",
+      "asesor financiero",
+      "educación financiera",
+      "taller de presupuesto",
+      "ayuda económica",
+      "microcrédito",
+      "economía doméstica",
+      "finanzas personales",
+      "recursos económicos",
+      "orientación financiera"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Points conseil budget (PCB) proposent des conseils gratuits et personnalisés de gestion budgétaire "
+    "seoTitle": "Obtenga asesoramiento presupuestario con Soliguide en Andorra",
+    "seoDescription": "Soliguide le ayuda con el asesoramiento presupuestario en Andorra. Encuentre ayuda para la gestión de deudas, planificación financiera y talleres gratuitos. ¡Localice los centros cerca de usted!"
   },
   {
     "categoryId": "training_and_jobs",
     "label": "Formación y empleo",
     "slug": "formation-emploi",
     "synonyms": [
-      "formation emploi travailler job travail boulot se former taf taff taffe apprendre lire etudier comprendre france travail pole emploi conseiller numerique"
+      "empleo",
+      "formación",
+      "cursos",
+      "capacitación",
+      "orientación laboral",
+      "talleres",
+      "inserción laboral",
+      "búsqueda de empleo",
+      "CV",
+      "entrevista",
+      "habilidades",
+      "profesional",
+      "aprendizaje",
+      "prácticas",
+      "trabajo"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Formación y empleo al alcance de tu mano con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar cursos de formación, orientación laboral y talleres de empleo en ad. ¡Localiza los recursos cerca de ti!"
   },
   {
     "categoryId": "digital_tools_training",
     "label": "Taller de competencias digitales",
     "slug": "formation-numerique",
     "synonyms": [
-      "formation numerique atelier numerique formation informatique ordinateur connexion se former technologie tech apprendre comprendre lire etudier conseiller numerique"
+      "alfabetización digital",
+      "formación digital",
+      "cursos online",
+      "manejo de internet",
+      "habilidades informáticas",
+      "competencias tecnológicas",
+      "uso de ordenador",
+      "navegación web",
+      "seguridad online",
+      "redes sociales",
+      "trámites online",
+      "aplicaciones móviles",
+      "correo electrónico",
+      "búsqueda de empleo online",
+      "teletrabajo"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Permanences ou ateliers visant à la maitrise d'outils informatiques."
+    "seoTitle": "Encuentra un taller de competencias digitales con Soliguide en Andorra",
+    "seoDescription": "Soliguide te ayuda a encontrar talleres digitales en Andorra. Aprende a usar el ordenador, internet y el móvil. ¡Geolocalización fácil!"
   },
   {
     "categoryId": "job_coaching",
     "label": "Orientación e inserción laboral",
     "slug": "accompagnement-emploi",
     "synonyms": [
-      "accompagnement emploi travailler job pole emploi travail boulot se former etre accompagne taf taff taffe apprendre comprendre lire etudier france travail orientation"
+      "empleo",
+      "trabajo",
+      "formación",
+      "capacitación",
+      "CV",
+      "currículum",
+      "entrevista",
+      "búsqueda de empleo",
+      "inserción laboral",
+      "orientación profesional",
+      "talleres de empleo",
+      "agencia de colocación",
+      "ayuda para encontrar trabajo",
+      "oportunidades laborales",
+      "oficina de empleo"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Aide au retour à l'emploi : ateliers de préparation aux entretiens, aide à la recherche d'emploi, atelier CV, etc."
+    "seoTitle": "Encuentra orientación e inserción laboral con Soliguide en Andorra",
+    "seoDescription": "Soliguide te ayuda a encontrar trabajo en Andorra. Recibe apoyo para buscar empleo, formarte o crear tu CV. ¡Encuentra recursos cerca de ti!"
   },
   {
     "categoryId": "integration_through_economic_activity",
     "label": "Formación ocupacional",
     "slug": "insertion-activite-economique",
     "synonyms": [
-      "chantier de reinsertion chantier reinsertion travailler job insertion reinsertion siae iae se reinserer taf taff taffe apprendre comprendre lire etudier orientation"
+      "cursos",
+      "talleres",
+      "capacitación",
+      "empleo",
+      "formación profesional",
+      "aprendizaje",
+      "habilidades",
+      "desarrollo",
+      "oficios",
+      "enseñanza",
+      "prácticas",
+      "inserción laboral",
+      "orientación",
+      "becas",
+      "subvenciones"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Embauche de personnes en insertion."
+    "seoTitle": "Encuentra formación ocupacional cerca de ti con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar cursos, talleres y programas de formación en ad. ¡Mejora tus habilidades y encuentra empleo! Encuentra centros cerca de ti."
   },
   {
     "categoryId": "tutoring",
     "label": "Apoyo escolar",
     "slug": "soutien-scolaire",
     "synonyms": [
-      "soutien scolaire aide au devoir etudes college lycee devoirs cours apprendre comprendre lire etudier"
+      "clases de refuerzo",
+      "ayuda con los deberes",
+      "talleres educativos",
+      "material escolar",
+      "becas escolares",
+      "apoyo educativo",
+      "recursos educativos",
+      "centro de estudios",
+      "aprendizaje",
+      "educación",
+      "profesores particulares",
+      "biblioteca",
+      "internet gratis",
+      "ordenador",
+      "estudiar"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Soutien scolaire gratuit (préciser le niveau dans la description)."
+    "seoTitle": "Encuentra apoyo escolar fácilmente con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar clases de refuerzo, talleres educativos y acceso a material escolar en ad. ¡Localiza los recursos cerca de ti!"
   },
   {
     "categoryId": "accomodation_and_housing",
     "label": "Alojamiento y vivienda",
     "slug": "hebergement-et-logement",
     "synonyms": [
-      "hebergement dormir lit logement repos toit hebergement logement logement hebergement et logement hebergementetlogement domir"
+      "alojamiento",
+      "vivienda",
+      "refugio",
+      "albergue",
+      "domicilio",
+      "habitación",
+      "techo",
+      "residencia",
+      "hogar",
+      "morada",
+      "apartamento",
+      "piso",
+      "casa",
+      "inquilino",
+      "arrendamiento"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Encuentra alojamiento y vivienda con Soliguide en Andorra",
+    "seoDescription": "Soliguide te ayuda a encontrar un hogar en Andorra. Accede a albergues, viviendas tuteladas y asesoramiento. ¡Geolocaliza los recursos cerca de ti!"
   },
   {
     "categoryId": "overnight_stop",
     "label": "Refugio nocturno",
     "slug": "halte-nuit",
     "synonyms": [
-      "halte de nuit halte nuit dormir se reposer alte de nui accueil nuit accueil de nuit accueil nuit"
+      "albergue nocturno",
+      "dormir",
+      "cama caliente",
+      "refugio temporal",
+      "alojamiento de emergencia",
+      "comida caliente",
+      "ducha",
+      "ropa",
+      "apoyo social",
+      "ayuda para personas sin hogar",
+      "centro de acogida",
+      "asistencia nocturna",
+      "protección nocturna",
+      "cobijo",
+      "resguardo"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "La halte de nuit est un lieu d'accueil et de repos pour les personnes sans abri ouvert de 20h à 8h du matin, 7/7 jours."
+    "seoTitle": "Encuentra un refugio nocturno con Soliguide en Andorra",
+    "seoDescription": "Soliguide te ayuda a encontrar refugios nocturnos en Andorra. Encuentra alojamiento temporal, comida caliente y apoyo social cerca de ti. ¡Geolocalización fácil!"
   },
   {
     "categoryId": "emergency_accommodation",
     "label": "Alojamiento de emergencia",
     "slug": "hebergement-urgence",
     "synonyms": [
-      "hebergement urgence dormir lit logement chu halte de nuit toit a la rue rue dehors accueil de nuit accueil nuit accueil nuit"
+      "albergue",
+      "refugio",
+      "dormir",
+      "noche",
+      "urgencia",
+      "temporal",
+      "techo",
+      "casa",
+      "protección",
+      "ayuda",
+      "social",
+      "pernoctar",
+      "caliente",
+      "abrigo",
+      "seguro"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Hébergement à court terme (à la nuitée), accessible directement."
+    "seoTitle": "Encuentra alojamiento de emergencia con Soliguide en Andorra",
+    "seoDescription": "Soliguide te ayuda a encontrar un lugar seguro en Andorra. Busca albergues, refugios nocturnos y centros de acogida cerca de ti. ¡Encuentra ayuda ya!"
   },
   {
     "categoryId": "long_term_accomodation",
     "label": "Vivienda social",
     "slug": "hebergement-long-terme",
     "synonyms": [
-      "hebergement dormir lit logement chrs repos toit"
+      "alquiler social",
+      "vivienda protegida",
+      "ayuda alquiler",
+      "subsidio vivienda",
+      "pisos sociales",
+      "vivienda asequible",
+      "emergencia habitacional",
+      "fondos vivienda",
+      "IVIMA",
+      "ayudas gobierno vivienda",
+      "oficina vivienda",
+      "acceso vivienda",
+      "derecho vivienda",
+      "asesoramiento vivienda",
+      "alojamiento"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Possibilité d'hébergement à long terme, au sein de la structure ou d'une structure partenaire. Indiquer dans la description les modalités d'accès."
+    "seoTitle": "Encuentra vivienda social fácilmente con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar opciones de vivienda social. Accede a alquileres subvencionados, programas de vivienda asequible y asesoramiento en Andorra."
   },
   {
     "categoryId": "citizen_housing",
     "label": "Alojamiento ciudadano",
     "slug": "hebergement-citoyen",
     "synonyms": [
-      "hebergement hebergement citoyen merci pour l invit singa"
+      "vivienda",
+      "alojamiento",
+      "hogar",
+      "residencia",
+      "domicilio",
+      "habitación",
+      "piso",
+      "refugio",
+      "protección",
+      "temporal",
+      "urgente",
+      "social",
+      "compartido",
+      "tutelado",
+      "acogida"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Encuentra alojamiento ciudadano digno con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar alojamiento ciudadano en ad. Ej: viviendas tuteladas, centros de acogida, pisos compartidos. ¡Encuentra ayuda cerca de ti!"
   },
   {
     "categoryId": "access_to_housing",
     "label": "Asesoramiento y apoyo a la vivienda",
     "slug": "conseil-logement",
     "synonyms": [
-      "hebergement dalo logement expulsion toit maison impayes factures chauffage conseil conseil logement"
+      "alquiler",
+      "vivienda",
+      "subvenciones",
+      "ayudas",
+      "trámites",
+      "inquilinos",
+      "propietarios",
+      "contrato",
+      "desalojo",
+      "emergencia habitacional",
+      "asesoramiento legal",
+      "recursos",
+      "derechos",
+      "habitación",
+      "hogar"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'accès au logement (logement social, DALO, etc.)."
+    "seoTitle": "Encuentra asesoramiento y apoyo a la vivienda con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar asistencia para la vivienda en ad. Infórmate sobre alquileres, subvenciones y trámites. ¡Encuentra ayuda cerca de ti!"
   },
   {
     "categoryId": "hygiene_and_wellness",
     "label": "Higiene y bienestar",
     "slug": "hygiene",
     "synonyms": [
-      "hygiene laver douche bain se laver se doucher propre"
+      "ducha",
+      "aseo personal",
+      "jabón",
+      "champú",
+      "lavandería",
+      "ropa limpia",
+      "productos de higiene femenina",
+      "cepillo de dientes",
+      "pasta dental",
+      "desodorante",
+      "afeitado",
+      "peine",
+      "toalla",
+      "agua caliente",
+      "salud"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Soliguide te ayuda con tu higiene y bienestar en ad",
+    "seoDescription": "Encuentra con Soliguide duchas gratuitas, acceso a lavandería y productos de higiene personal en Andorra. ¡Servicios cerca de ti!"
   },
   {
     "categoryId": "shower",
     "label": "Ducha",
     "slug": "douche",
     "synonyms": [
-      "douche laver se laver bain bain douche piscine propre sale cheveux"
+      "aseo personal",
+      "higiene",
+      "limpieza",
+      "baño",
+      "agua caliente",
+      "jabón",
+      "champú",
+      "gel de ducha",
+      "toalla",
+      "lavandería",
+      "lavado de ropa",
+      "productos de higiene",
+      "centro de día",
+      "refugio",
+      "albergue"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "¿Necesitas una ducha? Soliguide te ayuda a encontrarla",
+    "seoDescription": "Soliguide te muestra dónde encontrar duchas gratuitas, acceso a productos de higiene y lavandería en Andorra. ¡Encuentra ayuda cerca de ti!"
   },
   {
     "categoryId": "hairdresser",
     "label": "Peluquería",
     "slug": "coiffeur",
     "synonyms": [
-      "coiffeur cheveux"
+      "corte de pelo",
+      "peluquería social",
+      "estilismo",
+      "afeitado",
+      "peinado",
+      "higiene personal",
+      "productos de higiene",
+      "cuidado del cabello",
+      "belleza",
+      "bienestar",
+      "imagen personal",
+      "lavado de cabello",
+      "secado",
+      "tinte",
+      "gratuito"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Encuentra Peluquería solidaria con Soliguide en Andorra",
+    "seoDescription": "Soliguide te ayuda a encontrar peluquerías gratuitas o a bajo coste en Andorra. Encuentra cortes de pelo solidarios y productos de higiene. ¡Localiza ayuda cerca de ti!"
   },
   {
     "categoryId": "laundry",
     "label": "Lavandería",
     "slug": "laverie",
     "synonyms": [
-      "laverie vetements vetement laver machine a laver pressing linge lave linge"
+      "lavandería",
+      "lavado",
+      "ropa",
+      "limpieza",
+      "aseo",
+      "máquina de lavar",
+      "secadora",
+      "detergente",
+      "jabón",
+      "agua",
+      "gratis",
+      "económico",
+      "solidario",
+      "higiene",
+      "ropa limpia"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Lave-linge en accès libre."
+    "seoTitle": "Encuentra lavanderías solidarias con Soliguide en Andorra",
+    "seoDescription": "Soliguide te ayuda a encontrar lavanderías accesibles. Busca dónde lavar tu ropa gratis, con precios bajos o con máquinas accesibles en Andorra."
   },
   {
     "categoryId": "wellness",
     "label": "Bienestar",
     "slug": "bien-etre",
     "synonyms": [
-      "bien etre coiffeur massage maquillage belle beau pedicure manicure manucire"
+      "apoyo emocional",
+      "orientación social",
+      "integración",
+      "ayuda psicológica",
+      "terapia",
+      "consejería",
+      "bienestar emocional",
+      "salud mental",
+      "actividades sociales",
+      "grupos de apoyo",
+      "asistencia social",
+      "trabajador social",
+      "psicólogo",
+      "autoestima",
+      "calidad de vida"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Ateliers de bien-être : coiffeur, massage, sophrologie, etc. (à préciser dans la description)."
+    "seoTitle": "Bienestar a tu alcance con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar apoyo emocional, orientación social y actividades de integración en Andorra. ¡Localiza los recursos cerca de ti!"
   },
   {
     "categoryId": "toilets",
     "label": "Aseos",
     "slug": "toilettes",
     "synonyms": [
-      "toilettes sanisette pisser pipi wc caca chiotte toilet"
+      "baños",
+      "servicios",
+      "lavabos",
+      "retretes",
+      "duchas",
+      "higiene personal",
+      "limpieza",
+      "aseo público",
+      "agua",
+      "jabón",
+      "toallas",
+      "productos de higiene",
+      "accesibilidad",
+      "discapacidad",
+      "aseo adaptado"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Toilettes en accès libre."
+    "seoTitle": "Encuentra Aseos cerca de ti con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar aseos públicos y duchas accesibles en ad. Localiza servicios de higiene personal cerca de ti fácilmente."
   },
   {
     "categoryId": "hygiene_products",
     "label": "Productos de higiene",
     "slug": "produits-hygiene",
     "synonyms": [
-      "periodiques protections periodiques protection periodique regles regle tampon serviette hygienique serviette menstrues produits d hygiene hygiene cup culotte tampax"
+      "higiene",
+      "aseo",
+      "jabón",
+      "champú",
+      "pasta de dientes",
+      "cepillo de dientes",
+      "compresas",
+      "tampones",
+      "gel de ducha",
+      "desodorante",
+      "papel higiénico",
+      "productos femeninos",
+      "cuidado personal",
+      "limpieza",
+      "salud"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Distribution de produits d'hygiène (savons, dentifrice, tampons, serviettes hygiéniques, etc.)."
+    "seoTitle": "Encuentra productos de higiene personal con Soliguide en Andorra",
+    "seoDescription": "Soliguide te ayuda a encontrar centros que ofrecen productos de higiene gratis: jabón, champú, compresas... ¡Infórmate y localiza los servicios cerca de ti en Andorra!"
   },
   {
     "categoryId": "face_masks",
     "label": "Mascarillas",
     "slug": "masques",
     "synonyms": [
-      "masque protection covid virus"
+      "tapabocas",
+      "protección respiratoria",
+      "prevención covid",
+      "salud pública",
+      "farmacia solidaria",
+      "distribución gratuita",
+      "ayuda social",
+      "protección individual",
+      "oms",
+      "pandemia",
+      "covid-19",
+      "centro de salud",
+      "prevención enfermedades",
+      "respirador",
+      "material sanitario"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Masques de protection"
+    "seoTitle": "Encuentra mascarillas gratuitas con Soliguide en Andorra",
+    "seoDescription": "Soliguide te ayuda a encontrar mascarillas gratuitas. Centros de distribución, farmacias solidarias y organizaciones. ¡Localiza la ayuda cerca de ti en Andorra!"
   },
   {
     "categoryId": "equipment",
     "label": "Material",
     "slug": "materiel",
     "synonyms": [
-      "materiel affaires mobilier"
+      "ropa",
+      "vestimenta",
+      "calzado",
+      "pañales",
+      "higiene",
+      "productos de higiene",
+      "ducha",
+      "lavandería",
+      "artículos para bebé",
+      "bebé",
+      "niños",
+      "mantas",
+      "abrigo",
+      "material escolar",
+      "ayuda material"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Encuentre ayuda con Material gracias a Soliguide",
+    "seoDescription": "Soliguide le ayuda a encontrar ropa, pañales o artículos de higiene en ad. ¡Localice los lugares solidarios cerca de usted!"
   },
   {
     "categoryId": "luggage_storage",
     "label": "Consigna",
     "slug": "bagagerie",
     "synonyms": [
-      "bagage bagagerie sac poser casier"
+      "guardarropa",
+      "almacenamiento",
+      "depósito de equipaje",
+      "guardamuebles",
+      "taquilla",
+      "consigna automática",
+      "consigna pública",
+      "guardar objetos personales",
+      "dejar pertenencias",
+      "seguridad equipaje",
+      "estación de autobuses",
+      "estación de tren",
+      "aeropuerto",
+      "centro social",
+      "asociación"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Lieu permettant de conserver des bagages ou matériel."
+    "seoTitle": "Soliguide te ayuda a encontrar una consigna segura",
+    "seoDescription": "Con Soliguide, ubica fácilmente consignas para guardar tus pertenencias en ad. Encuentra opciones gratuitas o de bajo costo cerca de ti."
   },
   {
     "categoryId": "solidarity_store",
     "label": "Tienda solidaria",
     "slug": "boutique-solidaire",
     "synonyms": [
-      "boutique solidaire meubles accessoires s habiller"
+      "ropa solidaria",
+      "muebles segunda mano",
+      "electrodomésticos donados",
+      "tienda de caridad",
+      "economato social",
+      "segunda oportunidad",
+      "reutilización",
+      "donación de ropa",
+      "donación de muebles",
+      "precios bajos",
+      "ayuda económica",
+      "integración social",
+      "inserción laboral",
+      "voluntariado",
+      "reciclaje"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Boutique vendant du matériel à prix solidaire."
+    "seoTitle": "Encuentra una tienda solidaria cerca de ti con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar ropa, muebles o electrodomésticos a bajo precio en ad. Localiza tiendas solidarias cerca de ti ¡Infórmate ahora!"
   },
   {
     "categoryId": "clothing",
     "label": "Ropero",
     "slug": "vetements",
     "synonyms": [
-      "vestiaire vetements t shirt pantalon robe vetir vestiboutique pull manteau habit s habiller"
+      "ropa",
+      "vestimenta",
+      "prendas",
+      "abrigo",
+      "pantalones",
+      "camisas",
+      "zapatos",
+      "donación de ropa",
+      "ropa usada",
+      "tienda solidaria",
+      "banco de ropa",
+      "ropero comunitario",
+      "recogida de ropa",
+      "textil",
+      "indumentaria"
     ],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Vêtements gratuits ou à prix symbolique. Préciser le sexe et/ou l'âge dans les conditions."
+    "seoTitle": "Encuentra un Ropero solidario cerca de ti con Soliguide",
+    "seoDescription": "Soliguide te ayuda a encontrar ropa gratis, de segunda mano o donaciones. Encuentra tiendas solidarias en ad cerca de ti. ¡Localiza la ayuda!"
   },
   {
     "categoryId": "animal_assitance",
     "label": "Animales",
     "slug": "animaux",
-    "synonyms": [
-      "animaux animals chien chat croquettes animal"
-    ],
+    "synonyms": ["animaux animals chien chat croquettes animal"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -796,9 +1521,7 @@
     "categoryId": "vaccination",
     "label": "Vacunación",
     "slug": "vaccination",
-    "synonyms": [
-      "vaccination vaccin covid piqure rappel rappel de vaccin"
-    ],
+    "synonyms": ["vaccination vaccin covid piqure rappel rappel de vaccin"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -835,9 +1558,7 @@
     "categoryId": "health_specialists",
     "label": "Médico/a especialista",
     "slug": "specialistes-medecine",
-    "synonyms": [
-      "specialistes specialiste"
-    ],
+    "synonyms": ["specialistes specialiste"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -848,9 +1569,7 @@
     "categoryId": "allergology",
     "label": "Alergología",
     "slug": "allergologie",
-    "synonyms": [
-      "allergologie allergies"
-    ],
+    "synonyms": ["allergologie allergies"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -861,9 +1580,7 @@
     "categoryId": "cardiology",
     "label": "Cardiología",
     "slug": "cardiologie",
-    "synonyms": [
-      "cardiologie coeur cardiaque cardio"
-    ],
+    "synonyms": ["cardiologie coeur cardiaque cardio"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -874,9 +1591,7 @@
     "categoryId": "dermatology",
     "label": "Dermatología",
     "slug": "dermatologie",
-    "synonyms": [
-      "dermato dermatologie dermatologue peau bouton"
-    ],
+    "synonyms": ["dermato dermatologie dermatologue peau bouton"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -887,9 +1602,7 @@
     "categoryId": "echography",
     "label": "Ecografía",
     "slug": "echographie",
-    "synonyms": [
-      "echographie bebe enceinte"
-    ],
+    "synonyms": ["echographie bebe enceinte"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -900,9 +1613,7 @@
     "categoryId": "endocrinology",
     "label": "Endocrinología",
     "slug": "endocrinologie",
-    "synonyms": [
-      "endocrinologie hormones tyroide"
-    ],
+    "synonyms": ["endocrinologie hormones tyroide"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -913,9 +1624,7 @@
     "categoryId": "gastroenterology",
     "label": "Gastroenterología",
     "slug": "gastro-enterologie",
-    "synonyms": [
-      "gastro enterologue gastro enterologie kk caca"
-    ],
+    "synonyms": ["gastro enterologue gastro enterologie kk caca"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -939,9 +1648,7 @@
     "categoryId": "kinesitherapy",
     "label": "Fisioterapia",
     "slug": "kinesitherapie",
-    "synonyms": [
-      "kinesitherapie reeducation blessure kine"
-    ],
+    "synonyms": ["kinesitherapie reeducation blessure kine"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -952,9 +1659,7 @@
     "categoryId": "mammography",
     "label": "Mamografía",
     "slug": "mammographie",
-    "synonyms": [
-      "mammographie radio seins"
-    ],
+    "synonyms": ["mammographie radio seins"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -965,9 +1670,7 @@
     "categoryId": "ophthalmology",
     "label": "Oftalmología",
     "slug": "ophtalmologie",
-    "synonyms": [
-      "ophtalmologie ophtalmologue yeux voir lunette"
-    ],
+    "synonyms": ["ophtalmologie ophtalmologue yeux voir lunette"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -991,9 +1694,7 @@
     "categoryId": "nutrition",
     "label": "Nutrición",
     "slug": "nutrition",
-    "synonyms": [
-      "nutrition dietetique regime surpoids obesite perte de poids"
-    ],
+    "synonyms": ["nutrition dietetique regime surpoids obesite perte de poids"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -1004,9 +1705,7 @@
     "categoryId": "pedicure",
     "label": "Pedicura",
     "slug": "pedicure",
-    "synonyms": [
-      "pedicure pied pie soigner pieds soin podologue podologie"
-    ],
+    "synonyms": ["pedicure pied pie soigner pieds soin podologue podologie"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -1030,9 +1729,7 @@
     "categoryId": "pneumology",
     "label": "Neumología",
     "slug": "pneumologie",
-    "synonyms": [
-      "poumons respiration respirer bronches"
-    ],
+    "synonyms": ["poumons respiration respirer bronches"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -1043,9 +1740,7 @@
     "categoryId": "radiology",
     "label": "Radiología",
     "slug": "radiologie",
-    "synonyms": [
-      "radiologie radiologue radiology rayonx fracture entorse"
-    ],
+    "synonyms": ["radiologie radiologue radiology rayonx fracture entorse"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -1056,9 +1751,7 @@
     "categoryId": "rheumatology",
     "label": "Reumatología",
     "slug": "rhumatologie",
-    "synonyms": [
-      "rhumatologue rumatologie"
-    ],
+    "synonyms": ["rhumatologue rumatologie"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -1069,9 +1762,7 @@
     "categoryId": "urology",
     "label": "Urología",
     "slug": "urologie",
-    "synonyms": [
-      "urologie urology"
-    ],
+    "synonyms": ["urologie urology"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -1095,9 +1786,7 @@
     "categoryId": "stomatology",
     "label": "Estomatología",
     "slug": "stomatologie",
-    "synonyms": [
-      "stomatologie stomatologue estomac digestion ventre"
-    ],
+    "synonyms": ["stomatologie stomatologue estomac digestion ventre"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -1108,9 +1797,7 @@
     "categoryId": "osteopathy",
     "label": "Osteópata",
     "slug": "osteo",
-    "synonyms": [
-      "ostheopathe osteo dos mal"
-    ],
+    "synonyms": ["ostheopathe osteo dos mal"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -1121,9 +1808,7 @@
     "categoryId": "acupuncture",
     "label": "Acupuntura",
     "slug": "acupuncture",
-    "synonyms": [
-      "acupuncture accupuncture bien etre"
-    ],
+    "synonyms": ["acupuncture accupuncture bien etre"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -1160,9 +1845,7 @@
     "categoryId": "wifi",
     "label": "Wifi",
     "slug": "wifi",
-    "synonyms": [
-      "wifi internet web connexion reseau"
-    ],
+    "synonyms": ["wifi internet web connexion reseau"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -1173,9 +1856,7 @@
     "categoryId": "electrical_outlets_available",
     "label": "Carga de dispositivos",
     "slug": "prise",
-    "synonyms": [
-      "prise charger electricite chargeur recharge charge"
-    ],
+    "synonyms": ["prise charger electricite chargeur recharge charge"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -1186,9 +1867,7 @@
     "categoryId": "telephone_at_your_disposal",
     "label": "Teléfono",
     "slug": "telephone",
-    "synonyms": [
-      "appel gratuit telephone telephoner appeler appel"
-    ],
+    "synonyms": ["appel gratuit telephone telephoner appeler appel"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -1225,9 +1904,7 @@
     "categoryId": "carpooling",
     "label": "Vehículo compartido",
     "slug": "covoiturage",
-    "synonyms": [
-      "co voiturage partage de voiture"
-    ],
+    "synonyms": ["co voiturage partage de voiture"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -1238,9 +1915,7 @@
     "categoryId": "provision_of_vehicles",
     "label": "Provisión de vehículos",
     "slug": "vehicule",
-    "synonyms": [
-      "mise a disposition de vehicule voiture"
-    ],
+    "synonyms": ["mise a disposition de vehicule voiture"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -1251,9 +1926,7 @@
     "categoryId": "chauffeur_driven_transport",
     "label": "Transporte con conductor/a",
     "slug": "chauffeur",
-    "synonyms": [
-      "transport avec chauffeur chauffeur transport a la demande"
-    ],
+    "synonyms": ["transport avec chauffeur chauffeur transport a la demande"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -1303,9 +1976,7 @@
     "categoryId": "legal_protection",
     "label": "Protección jurídica",
     "slug": "protection-juridique",
-    "synonyms": [
-      "protection juridique pjj"
-    ],
+    "synonyms": ["protection juridique pjj"],
     "type": "CATEGORY",
     "lang": "es",
     "country": "ad",
@@ -1331,11 +2002,7 @@
     "categoryId": null,
     "label": "Càritas Andorrana: organisation caritative catholique",
     "slug": "caritas-andorra",
-    "synonyms": [
-      "caritas andorra",
-      "càritas",
-      "cáritas andorrana"
-    ],
+    "synonyms": ["caritas andorra", "càritas", "cáritas andorrana"],
     "type": "ORGANIZATION",
     "lang": "es",
     "country": "ad",
@@ -1376,11 +2043,7 @@
     "categoryId": null,
     "label": "Alberg de transeünts: hébergement d’urgence",
     "slug": "alberg-transeunts",
-    "synonyms": [
-      "alberg",
-      "albergue",
-      "hébergement andorre"
-    ],
+    "synonyms": ["alberg", "albergue", "hébergement andorre"],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "es",
     "country": "ad",
@@ -1391,11 +2054,7 @@
     "categoryId": null,
     "label": "Menjador social: restaurant solidaire",
     "slug": "menjador-social",
-    "synonyms": [
-      "menjador",
-      "cantine sociale",
-      "resto solidaire"
-    ],
+    "synonyms": ["menjador", "cantine sociale", "resto solidaire"],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "es",
     "country": "ad",
@@ -1421,11 +2080,7 @@
     "categoryId": null,
     "label": "Centre de Salut: établissement de soins médicaux",
     "slug": "centre-salut",
-    "synonyms": [
-      "centre salut",
-      "hospital nsa",
-      "clinique andorre"
-    ],
+    "synonyms": ["centre salut", "hospital nsa", "clinique andorre"],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "es",
     "country": "ad",

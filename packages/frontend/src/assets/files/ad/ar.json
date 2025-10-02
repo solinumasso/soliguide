@@ -4,684 +4,1410 @@
     "label": "إستقبال",
     "slug": "accueil",
     "synonyms": [
-      "accueil cafe repos acceuil parler acueil accueil femme accueil femmes acueil femme violence harcelement partir"
+      "ترحيب",
+      "استقبال",
+      "مأوى",
+      "إيواء",
+      "مركز إيواء",
+      "مساعدة",
+      "دعم",
+      "مكان آمن",
+      "ملجأ",
+      "مركز استماع",
+      "مساعدة اجتماعية",
+      "توجيه",
+      "معلومات",
+      "دعم نفسي",
+      "مكان دافئ"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "إيجاد مكان للاستقبال الدافئ مع Soliguide",
+    "seoDescription": "هل تبحث عن مكان للاستقبال في أندورا؟ Soliguide يساعدك. ابحث عن مأوى طارئ، مركز استماع، أو مكان آمن. تحديد الموقع الجغرافي للعثور على المساعدة."
   },
   {
     "categoryId": "day_hosting",
     "label": "الإستقبال النهاري",
     "slug": "accueil-jour",
     "synonyms": [
-      "accueil accueil de jour cafe se reposer se poser repos reposer femmes battues femme battue fem batue fem batu violence harcelement partir"
+      "مركز نهاري",
+      "استحمام",
+      "غسل ملابس",
+      "وجبة دافئة",
+      "راحة",
+      "دعم",
+      "مساعدة",
+      "توجيه",
+      "إرشاد",
+      "مكان آمن",
+      "مأوى مؤقت",
+      "دوش",
+      "ملابس نظيفة",
+      "طعام",
+      "أندورا"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Lieu d'accueil des bénéficaires proposant une pause pendant la journée."
+    "seoTitle": "العثور على مراكز الإستقبال النهاري مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في العثور على أماكن للاستحمام، وغسل الملابس، والحصول على وجبة دافئة في أندورا. تحديد الموقع الجغرافي للمساعدة."
   },
   {
     "categoryId": "rest_area",
     "label": "مكان للراحة",
     "slug": "espace-repos",
     "synonyms": [
-      "espace de repos reposer dormir repos pause"
+      "راحة",
+      "استحمام",
+      "غسل الملابس",
+      "مكان آمن",
+      "ملجأ",
+      "مساعدة",
+      "دعم",
+      "مأوى",
+      "نظافة",
+      "استرخاء",
+      "مكان هادئ",
+      "غرفة استراحة",
+      "تهوية",
+      "تجديد",
+      "تخلص من التوتر"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Espaces de repos ouverts au public"
+    "seoTitle": "Soliguide يساعدك في إيجاد مكان للراحة في أندورا",
+    "seoDescription": "Soliguide يوفر أماكن للراحة في أندورا. يمكنك الاستحمام, غسل ملابسك, أو أخذ قسط من الراحة. ابحث عن أقرب مكان للراحة الآن!"
   },
   {
     "categoryId": "babysitting",
     "label": "مجالسة الأطفال",
     "slug": "garde-enfants",
     "synonyms": [
-      "garde enfant garderie enfant nounou assistance maternelle bebe creche"
+      "رعاية الأطفال",
+      "حاضنة",
+      "روضة أطفال",
+      "نادي الأطفال",
+      "مساحة لعب",
+      "مربية أطفال",
+      "دار حضانة",
+      "مساعدة الوالدين",
+      "دعم الأسرة",
+      "أنشطة للأطفال",
+      "ترفيه للأطفال",
+      "أطفال",
+      "صغار",
+      "ألعاب",
+      "تعليم مبكر"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Activité d'un baby-sitter consistant à garder temporairement des enfants en l'abscence de leurs parents"
+    "seoTitle": "ابحث عن مجالسة الأطفال مع Soliguide",
+    "seoDescription": "يوفر Soliguide أماكن لرعاية الأطفال في أندورا. يمكنك العثور على حاضنات, نوادي الأطفال و مساحات لعب آمنة. تحديد الموقع الجغرافي سهل!"
   },
   {
     "categoryId": "family_area",
     "label": "منطقة الأسرة",
     "slug": "espace-famille",
     "synonyms": [
-      "espace famille famille maman papa parents enfants"
+      "دعم الأسرة",
+      "مساعدة الوالدين",
+      "رعاية الأطفال",
+      "روضة أطفال",
+      "طبيب أطفال",
+      "استشارة أسرية",
+      "مراكز الأم والطفل",
+      "أنشطة للأطفال",
+      "مجموعات دعم الوالدين",
+      "مساعدة مالية للأسر",
+      "خدمات اجتماعية للأسر",
+      "تأمين صحي للأطفال",
+      "تغذية الأطفال",
+      "صحة الأم",
+      "تطوير الطفل"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Lieu d'accueil capable de recevoir des familles"
+    "seoTitle": "ابحث عن دعم منطقة الأسرة مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في أندورا. استشر طبيب الأطفال، ابحث عن روضة أطفال، أو احصل على مساعدة للوالدين. تحديد الموقع الجغرافي متاح."
   },
   {
     "categoryId": "information_point",
     "label": "نقطة المعلومات والتوجيه",
     "slug": "point-information",
     "synonyms": [
-      "point information point d information information ukraine"
+      "معلومات",
+      "توجيه",
+      "مساعدة",
+      "حقوق",
+      "قانون",
+      "إدارة",
+      "دعم",
+      "استشارة",
+      "نصيحة",
+      "مستشار",
+      "محامي",
+      "خدمات اجتماعية",
+      "مساعدة اجتماعية",
+      "إجراءات",
+      "وثائق"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Point d'information"
+    "seoTitle": "ابحث عن نقطة المعلومات والتوجيه مع Soliguide في أندورا",
+    "seoDescription": "Soliguide يساعدك للعثور على معلومات حول حقوقك، المساعدة القانونية، أو الدعم الإداري. ابحث عن أماكن قريبة تقدم هذه الخدمات في أندورا."
   },
   {
     "categoryId": "activities",
     "label": "نشاطات",
     "slug": "activites",
     "synonyms": [
-      "activites sorties sport loisirs sortir jeux jeu loisir isolement isole solitude isolee"
+      "ترفيه",
+      "متعة",
+      "تسلية",
+      "مرح",
+      "تطوع",
+      "تطوعي",
+      "ورشة عمل",
+      "ورش",
+      "اجتماعية",
+      "اجتماعي",
+      "ثقافي",
+      "ثقافة",
+      "مساعدة",
+      "دعم",
+      "تنمية"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "اعثر على فعاليات مفيدة مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في أندورا للعثور على فعاليات مجانية، أنشطة ثقافية، أو ورش عمل. ابحث عن أماكن قريبة تقدم المساعدة التي تحتاجها."
   },
   {
     "categoryId": "sport_activities",
     "label": "نشاطات رياضية",
     "slug": "activites-sportives",
     "synonyms": [
-      "activites sportives sport foot basket danse rugby loisirs loisir"
+      "رياضة",
+      "تمارين",
+      "صحة",
+      "لياقة",
+      "نادي رياضي",
+      "تدريب",
+      "مدرب",
+      "ملعب",
+      "كرة القدم",
+      "كرة السلة",
+      "سباحة",
+      "ركض",
+      "مشي",
+      "يوجا",
+      "صالة ألعاب رياضية"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Activités sportives : foot, jogging, marche, etc."
+    "seoTitle": "اعثر على نشاطات رياضية مفيدة مع Soliguide",
+    "seoDescription": "Soliguide يساعدك! نوادٍ رياضية مدعومة، دورات تدريبية مجانية، وملاعب متاحة للجميع. ابحث عن أقرب مكان إليك في ad!"
   },
   {
     "categoryId": "museums",
     "label": "متحف",
     "slug": "musee",
     "synonyms": [
-      "musee culture sortie peinture tableau se cultiver"
+      "معرض فني",
+      "تاريخ",
+      "ثقافة",
+      "فن",
+      "معروضات",
+      "تراث",
+      "قطع اثرية",
+      "فنون جميلة",
+      "مرشد سياحي",
+      "جولة",
+      "فعاليات ثقافية",
+      "معلومات تاريخية",
+      "تذاكر دخول",
+      "تعليم",
+      "استكشاف"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Musée gratuit."
+    "seoTitle": "استكشف المتاحف بسهولة مع Soliguide",
+    "seoDescription": "يساعدك Soliguide في العثور على متاحف قريبة في أندورا، عروض ثقافية مجانية، وورش عمل فنية. اكتشف الأماكن التراثية بسهولة!"
   },
   {
     "categoryId": "libraries",
     "label": "مكتبة",
     "slug": "bibliotheque",
     "synonyms": [
-      "bibliotheque livres culture mediatheque"
+      "كتب",
+      "قراءة",
+      "معرفة",
+      "ثقافة",
+      "تعليم",
+      "دراسة",
+      "مكتبات عامة",
+      "قصص",
+      "روايات",
+      "مقالات",
+      "أبحاث",
+      "مذاكرة",
+      "محو الأمية",
+      "ورش عمل",
+      "أمسيات ثقافية"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Bibliothèque accessible en accès libre."
+    "seoTitle": "ابحث عن مكتبة قريبة منك مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في العثور على مكتبة للاستعارة، دروس محو الأمية، أو أنشطة ثقافية. ابحث عن أقرب مكان يقدم هذه الخدمات في ad الآن! تحديد الموقع الجغرافي."
   },
   {
     "categoryId": "other_activities",
     "label": "نشاطات مختلفة",
     "slug": "activites-diverses",
     "synonyms": [
-      "activites diverses animation divertissement loisir s occuper culture activites enfants loisirs loisir"
+      "ترفيه",
+      "هوايات",
+      "تطوع",
+      "ورشة عمل",
+      "ملابس",
+      "استحمام",
+      "دورة تكوينية",
+      "تكوين مهني",
+      "دعم",
+      "مساعدة",
+      "نشاط اجتماعي",
+      "تفاعل",
+      "مقابلة",
+      "تواصل",
+      "تبادل"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Activités diverses : ateliers, activités culturelles, etc. (précisez.)"
+    "seoTitle": "أنشطة مختلفة متاحة لك مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في العثور على مكان للاستحمام، الحصول على ملابس نظيفة أو المشاركة في ورش عمل. ابحث عن أماكن قريبة تقدم أنشطة مختلفة في أندورا."
   },
   {
     "categoryId": "food",
     "label": "طعام",
     "slug": "alimentation-bouffe-boufe-manger-soupe-repas-aliment-manger-mange-repa-faim-diner-dejeuner-dejeunet-dine-se-nourrir-fin-portage-portage-de-repas-aide-alimentaire-comida-comer-resto-du-coeur",
     "synonyms": [
-      "alimentation bouffe boufe manger soupe repas aliment manger mange repa faim diner dejeuner dejeunet dine se nourrir fin portage portage de repas aide alimentaire comida comer"
+      "وجبة",
+      "أكل",
+      "غذاء",
+      "تغذية",
+      "مساعدة غذائية",
+      "بنك الطعام",
+      "طرود غذائية",
+      "وجبة مجانية",
+      "مطعم خيري",
+      "توزيع غذائي",
+      "حساء شعبي",
+      "تبرعات غذائية",
+      "مخيم إعاشة",
+      "قسائم طعام",
+      "مطبخ مجتمعي"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "لا تبقى جائعًا، Soliguide يساعدك في العثور على طعام",
+    "seoDescription": "يساعدك Soliguide في العثور على أماكن للحصول على وجبات مجانية، وتوزيع طرود غذائية، وبنوك الطعام في ad. اعثر على أقرب مكان يقدم لك المساعدة!"
   },
   {
     "categoryId": "food_distribution",
     "label": "توزيع الوجبات",
     "slug": "distribution-repas",
     "synonyms": [
-      "distribution alimentaire distribution de repas manger maraude bouffe soupe nourriture faim repas mange manger fin distribution aide alimentaire restauration assise comida comer"
+      "وجبة مجانية",
+      "طعام",
+      "إعانة غذائية",
+      "مساعدة غذائية",
+      "بنك الطعام",
+      "وجبات ساخنة",
+      "حساء شعبي",
+      "مطعم مجتمعي",
+      "تغذية",
+      "مطبخ مجتمعي",
+      "معونة غذائية",
+      "وجبة",
+      "وجبة طعام",
+      "توزيع الطعام",
+      "وجبة رخيصة"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Point d'arrêt d'une distribution alimentaire. Attention : Veuillez créer une structure par point de distribution."
+    "seoTitle": "توزيع الوجبات بكل سهولة مع Soliguide في أندورا",
+    "seoDescription": "Soliguide يساعدك في إيجاد أماكن توزيع الوجبات المجانية في أندورا. ابحث عن وجبات ساخنة، بنوك الطعام، ومطابخ مجتمعية قريبة منك. تحديد الموقع الجغرافي سهل!"
   },
   {
     "categoryId": "food_packages",
     "label": "سلة الأغذية",
     "slug": "colis-alimentaire",
     "synonyms": [
-      "colis colis alimentaire manger mange fruits legumes panier repas aide alimentaire panier comida comer"
+      "طعام",
+      "مساعدة غذائية",
+      "توزيع غذائي",
+      "وجبات مجانية",
+      "قسائم شراء",
+      "مواد غذائية أساسية",
+      "تبرعات غذائية",
+      "جمعية خيرية",
+      "بنك الطعام",
+      "مساعدة محتاج",
+      "إعانة غذائية",
+      "دعم غذائي",
+      "تغذية",
+      "مطبخ مجتمعي",
+      "ميركاند"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Distribution de colis contenant des denrées alimentaires (conserves, légumes, etc.)."
+    "seoTitle": "ابحث عن سلة الأغذية مع Soliguide في أندورا",
+    "seoDescription": "Soliguide يساعدك! احصل على مواد غذائية أساسية، وجبات مجانية، أو قسائم شراء. ابحث عن أقرب مركز توزيع في أندورا الآن!"
   },
   {
     "categoryId": "social_grocery_stores",
     "label": "بقالة اجتماعية وتضامنية",
     "slug": "epicerie-sociale-solidaire",
     "synonyms": [
-      "epicerie sociale epicerie manger fruits legumes panier repas epicerie solidaire aide alimentaire"
+      "مواد غذائية",
+      "تضامن",
+      "مساعدة غذائية",
+      "وجبات",
+      "بأسعار مخفضة",
+      "دعم",
+      "جمعية خيرية",
+      "توزيع غذائي",
+      "طعام",
+      "تغذية",
+      "توفير",
+      "معونة",
+      "فقر",
+      "احتياجات",
+      "إعانة"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Les épiceries solidaires accueillent les personnes en précarité et leur permettent de faire des courses à prix solidaire."
+    "seoTitle": "البحث عن بقالة اجتماعية وتضامنية مع Soliguide في أندورا",
+    "seoDescription": "تجدون مع Soliguide بقالات اجتماعية وتضامنية في أندورا! مواد غذائية بأسعار مخفضة، دعم غذائي، ووجبات مجانية. تحديد الموقع الجغرافي للعثور عليها بسهولة."
   },
   {
     "categoryId": "fountain",
     "label": "نافورة مياه عامة",
     "slug": "fontaine",
     "synonyms": [
-      "fontaine boire eau soif robinet potable"
+      "ماء",
+      "مياه",
+      "شراب",
+      "نوافير",
+      "نبع",
+      "عين",
+      "ترطيب",
+      "ارتواء",
+      "عطش",
+      "مجاني",
+      "عام",
+      "نظيفة",
+      "مياه الشرب",
+      "بلدية",
+      "حديقة"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Eau potable en accès libre."
+    "seoTitle": "اعثر على نافورة مياه عامة بالقرب منك مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في إيجاد أماكن لشرب الماء مجانًا في أندورا. ابحث عن نوافير مياه عامة في الحدائق، والمراكز المجتمعية. تحديد الموقع الجغرافي."
   },
   {
     "categoryId": "solidarity_fridge",
     "label": "ثلاجة التضامن",
     "slug": "frigo-solidaire",
     "synonyms": [
-      "manger mange conserver frais bouffe aliment faim frigo frigo solidaire"
+      "ثلاجة",
+      "تضامن",
+      "تبرع",
+      "طعام",
+      "مجاني",
+      "مساعدة",
+      "غذاء",
+      "وجبات",
+      "احتياجات",
+      "معونة",
+      "مؤن",
+      "تغذية",
+      "إعانة",
+      "خيرية",
+      "توزيع"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Frigo solidaire"
+    "seoTitle": "ابحث عن ثلاجة التضامن مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في العثور على ثلاجة التضامن. احصل على طعام مجاني، وتبرعات غذائية، ومساعدات غذائية أخرى في المنطقة الخاصة بك ad."
   },
   {
     "categoryId": "shared_kitchen",
     "label": "مطبخ مشترك",
     "slug": "cuisine-partagee",
     "synonyms": [
-      "cuisine cuisiner preparer partage partagee cuisine partagee"
+      "مطبخ",
+      "طهي",
+      "وجبات",
+      "طعام",
+      "مساعدة غذائية",
+      "وصفات",
+      "دروس في الطبخ",
+      "مكان للاجتماع",
+      "تغذية",
+      "أكل",
+      "وصفة",
+      "وجبة رخيصة",
+      "وجبة مجانية",
+      "جمعية خيرية",
+      "حساء"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Cuisine partagée "
+    "seoTitle": "ابحث عن مطبخ مشترك مع Soliguide لمساعدتك",
+    "seoDescription": "يساعدك Soliguide في العثور على مطبخ مشترك في أندورا لطهي وجبات الطعام. ابحث عن مساعدة غذائية، دروس في الطبخ، أو مكان للاجتماع. تحديد الموقع الجغرافي!"
   },
   {
     "categoryId": "cooking_workshop",
     "label": "ورشة الطبخ",
     "slug": "atelier-cuisine",
     "synonyms": [
-      "atelier cuisine cuisiner partage preparer atelier cuisine cuire"
+      "ورشة عمل الطبخ",
+      "تعليم الطبخ",
+      "مطبخ اجتماعي",
+      "وجبات مجانية",
+      "وصفات سهلة",
+      "أكل صحي",
+      "دورة طبخ",
+      "تغذية",
+      "طعام",
+      "تنمية المهارات",
+      "وصفة",
+      "مكونات",
+      "أدوات المطبخ",
+      "طبخ منزلي",
+      "مساعدة غذائية"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Atelier de cuisine"
+    "seoTitle": "ورشة الطبخ مع Soliguide للعثور على أماكن الدعم في أندورا",
+    "seoDescription": "مع Soliguide، ابحث عن ورش الطبخ، تعلم وصفات جديدة، وتناول وجبات مغذية. تحديد الموقع الجغرافي لأقرب مركز في أندورا."
   },
   {
     "categoryId": "baby_parcel",
     "label": "حزمة الطفل",
     "slug": "colis-bebe",
     "synonyms": [
-      "bebe nourrir nourisson colis colis bebe puericulture lait couche biberon maternite manger nourriture vetement"
+      "مستلزمات الأطفال",
+      "ملابس أطفال",
+      "حفاضات",
+      "أغذية الأطفال",
+      "مساعدة مالية للأطفال",
+      "إعانات أسرية",
+      "دعم الأمومة",
+      "رعاية الأطفال",
+      "ألعاب أطفال",
+      "كتب أطفال",
+      "حضانات",
+      "مراكز الطفولة المبكرة",
+      "مستلزمات الرضع",
+      "مساعدة للوالدين",
+      "مساعدة للأمهات الجدد"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Colis pour bébé"
+    "seoTitle": "ابحث عن مساعدة لحزمة الطفل مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في أندورا. ابحث عن ملابس أطفال مجانية، حفاضات، أو مساعدة مالية. تحديد الموقع الجغرافي للعثور على أقرب مساعدة."
   },
   {
     "categoryId": "food_voucher",
     "label": "قسيمة الطعام / الشيك",
     "slug": "bon-alimentaire",
     "synonyms": [
-      "bon cheque ticket alimentaire gratuit aide"
+      "قسيمة طعام",
+      "شيك غذائي",
+      "مساعدة غذائية",
+      "طعام مجاني",
+      "وجبات مجانية",
+      "توزيع غذائي",
+      "بنك الطعام",
+      "معونة غذائية",
+      "دعم غذائي",
+      "تغذية",
+      "إعاشة",
+      "إطعام",
+      "مؤونة",
+      "ميركادونا",
+      "كارفور"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Distribution de bon/chèque alimentaire"
+    "seoTitle": "Soliguide يساعدك في الحصول على قسيمة الطعام / الشيك في أندورا",
+    "seoDescription": "Soliguide يجد لك أماكن للحصول على قسيمة طعام / شيك في أندورا. وجبات مجانية، مساعدة غذائية طارئة، توزيع مواد غذائية. تحديد المواقع الجغرافية."
   },
   {
     "categoryId": "community_garden",
     "label": "حديقة التضامن",
     "slug": "jardin-solidaire",
     "synonyms": [
-      "fruits pousser jardin bio nature legumes jardin solidaire jardinage"
+      "حديقة",
+      "تضامن",
+      "مساعدة",
+      "دعم",
+      "اجتماعي",
+      "غذائي",
+      "ملابس",
+      "أنشطة",
+      "ترفيه",
+      "لقاء",
+      "تواصل",
+      "مجاني",
+      "تطوع",
+      "مساحات خضراء",
+      "زراعة"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Jardin solidaire"
+    "seoTitle": "ابحث عن دعم في \"حديقة التضامن\" مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في أندورا! تجد هنا مساعدات غذائية، ملابس مجانية، وأنشطة اجتماعية في \"حديقة التضامن\". تحديد الموقع الجغرافي سهل!"
   },
   {
     "categoryId": "counseling",
     "label": "كن نصوح",
     "slug": "conseil",
     "synonyms": [
-      "conseil conseils soutien accompagnement aide se faire aider conseiller numerique"
+      "استشارة",
+      "دعم نفسي",
+      "مساعدة",
+      "نصيحة",
+      "إرشاد",
+      "علاج",
+      "صحة نفسية",
+      "مشاكل",
+      "تحديات",
+      "ضغوط",
+      "قلق",
+      "اكتئاب",
+      "مستشار",
+      "مختص",
+      "مساعدة نفسية"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "كن نصوح وتلقى الدعم اللازم مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في أندورا. ابحث عن استشارة نفسية مجانية، مجموعات دعم، أو خطوط مساعدة. تحديد الموقع الجغرافي للعثور على الموارد القريبة منك."
   },
   {
     "categoryId": "legal_advice",
     "label": "مكانة قانونية",
     "slug": "permanence-juridique",
     "synonyms": [
-      "proces permanence juridique amende avocat droits droit recours juge ldh droits de l homme ligue des droits de l homme acces au droit cnda ofpra asile sejour carte sejour divorce separation"
+      "قانون",
+      "حقوق",
+      "محام",
+      "مساعدة قانونية",
+      "استشارة قانونية",
+      "هجرة",
+      "لجوء",
+      "وثائق",
+      "تصريح إقامة",
+      "جنسية",
+      "محكمة",
+      "قضايا",
+      "دعم قانوني",
+      "مكتب المساعدة القانونية",
+      "مستشار قانوني"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Permanences juridiques (surendettement, demande d'asile, procès, etc.)."
+    "seoTitle": "احصل على المساعدة في مكانتك القانونية مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في أندورا: استشارات قانونية مجانية، دعم في إجراءات الهجرة، مساعدة في الحصول على وثائق. ابحث عن أقرب مكان يقدم لك الدعم!"
   },
   {
     "categoryId": "social_accompaniment",
     "label": "المرافقة الاجتماعية",
     "slug": "accompagnement-social",
     "synonyms": [
-      "accompagnement assistante sociale social travailleur social droits demarches femmes battues femme battue violence isolement isole solitude isolee partir separation divorce victime"
+      "مساعدة اجتماعية",
+      "دعم نفسي",
+      "توجيه إداري",
+      "إرشاد مهني",
+      "استشارة اجتماعية",
+      "مساعدة قانونية",
+      "دعم الأسرة",
+      "إعادة تأهيل",
+      "اندماج اجتماعي",
+      "مواكبة اجتماعية",
+      "مواكبة شخصية",
+      "تواصل اجتماعي",
+      "دعم معنوي",
+      "مساعدة مادية",
+      "مساعدة في التوظيف"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Accompagement des personnes dans leur réinsertion (assistantes sociales, permanences, etc.)."
+    "seoTitle": "دعم اجتماعي متاح لك مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في الحصول على الدعم الاجتماعي. ابحث عن استشارة نفسية، مساعدة في الإجراءات الإدارية، أو توجيه مهني. تحديد الموقع الجغرافي يسهل الوصول!"
   },
   {
     "categoryId": "disability_advice",
     "label": "مجلس الإعاقة",
     "slug": "conseil-handicap",
     "synonyms": [
-      "conseil handicap handicap aah conseils conseil handicape handicapee personne a mobilite reduite pmr"
+      "حقوق ذوي الإعاقة",
+      "دعم الإعاقة",
+      "مساعدة الإعاقة",
+      "مجلس الإعاقة",
+      "خدمات الإعاقة",
+      "الوصول إلى الخدمات",
+      "الرعاية",
+      "تسهيلات",
+      "تكييف",
+      "مرافق",
+      "المساعدة المالية للإعاقة",
+      "الاندماج",
+      "الدمج",
+      "التمكين",
+      "الدعم"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'accès aux droits pour les personnes en situation de handicap."
+    "seoTitle": "دعم حقوقك مع مجلس الإعاقة: دليلك إلى المساعدة مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في العثور على دعم مجلس الإعاقة في أندورا. ابحث عن معلومات حول حقوق الإعاقة، الدعم المالي، والوصول إلى الخدمات المتخصصة. تحديد الموقع الجغرافي سهل!"
   },
   {
     "categoryId": "administrative_assistance",
     "label": "اﺳﺘﺸﺎﺭاﺕ ﺇﺩاﺭﻳﺔ",
     "slug": "conseil-administratif",
     "synonyms": [
-      "conseil administratif conseils administratifs aide administrative demarches rsa cmu allocations papiers securite sociale caf cpampapier conseiller numerique"
+      "مساعدة إدارية",
+      "نصائح قانونية",
+      "دعم مالي",
+      "إدارة ميزانية",
+      "استشارات قانونية مجانية",
+      "مساعدة في العمل",
+      "بحث عن وظيفة",
+      "كتابة سيرة ذاتية",
+      "مقابلة عمل",
+      "حقوقك",
+      "واجباتك",
+      "قانون",
+      "محامي",
+      "مستشار",
+      "معلومات قانونية"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'aide administrative (RSA, CMU, allocations, chômage, etc.)."
+    "seoTitle": "Soliguide يساعدك في الحصول على اﺳﺘﺸﺎﺭاﺕ ﺇﺩاﺭﻳﺔ مجانية",
+    "seoDescription": "Soliguide يرشدك للحصول على اﺳﺘﺸﺎﺭاﺕ ﺇﺩاﺭﻳﺔ في أندورا. ابحث عن مساعدة قانونية مجانية، ونصائح في مجال العمل، ودعم في إدارة الميزانية بالقرب منك."
   },
   {
     "categoryId": "parent_assistance",
     "label": "الاستشارة للوالدين",
     "slug": "conseil-parents",
     "synonyms": [
-      "conseil parents conseil aux parents conseil parental mediation familiale mediation conflit adolescents enfants parent parentalite parents enfant ado adolescent couple couples"
+      "دعم الأبوة",
+      "إرشاد الوالدين",
+      "نصائح للأمهات",
+      "نصائح للآباء",
+      "تربية الأطفال",
+      "مشاكل الأطفال",
+      "حل النزاعات الأسرية",
+      "مساعدة نفسية للوالدين",
+      "استشارة أسرية",
+      "تنمية مهارات الوالدين",
+      "ورش عمل للوالدين",
+      "مجموعات دعم الوالدين",
+      "التغلب على صعوبات الأبوة",
+      "التعامل مع المراهقين",
+      "التواصل مع الأطفال"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Permances d'aide pour les jeunes parents et les parents rencontrant des difficultés avec leurs enfants."
+    "seoTitle": "Soliguide: ابحث عن الاستشارة للوالدين في أندورا",
+    "seoDescription": "Soliguide يساعدك في إيجاد دعم للوالدين. ابحث عن مراكز استماع، دورات تدريبية، مجموعات دعم. تحديد الموقع الجغرافي سهل!"
   },
   {
     "categoryId": "budget_advice",
     "label": "نصيحة الميزانية",
     "slug": "conseil-budget",
     "synonyms": [
-      "conseil budget conseil budget argent finance cresus"
+      "ميزانية",
+      "تخطيط مالي",
+      "إدارة الديون",
+      "نصيحة مالية",
+      "توفير المال",
+      "ادخار",
+      "قروض",
+      "ديون",
+      "مساعدة مالية",
+      "مستشار مالي",
+      "دعم مالي",
+      "تمويل",
+      "اقتصاد",
+      "صرف",
+      "تخطيط"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Points conseil budget (PCB) proposent des conseils gratuits et personnalisés de gestion budgétaire "
+    "seoTitle": "احصل على نصيحة الميزانية مع Soliguide لمساعدتك في أندورا",
+    "seoDescription": "Soliguide يساعدك! ابحث عن مساعدة لإدارة ميزانيتك، وخطط الادخار، ونصائح حول الديون في أندورا. تحديد الموقع الجغرافي للعثور على المساعدة."
   },
   {
     "categoryId": "training_and_jobs",
     "label": "اﻟﺘﺪﺭﻳﺐ ﻭ اﻟﺘﻮﻇﻴﻒ",
     "slug": "formation-emploi",
     "synonyms": [
-      "formation emploi travailler job travail boulot se former taf taff taffe apprendre lire etudier comprendre france travail pole emploi conseiller numerique"
+      "تدريب",
+      "توظيف",
+      "عمل",
+      "وظيفة",
+      "مهنة",
+      "مهارات",
+      "تأهيل",
+      "تطوير",
+      "فرص عمل",
+      "بحث عن عمل",
+      "سيرة ذاتية",
+      "مقابلة عمل",
+      "إرشاد مهني",
+      "دعم التوظيف",
+      "مركز التوظيف"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "ابحث عن فرص اﻟﺘﺪﺭﻳﺐ ﻭ اﻟﺘﻮﻇﻴﻒ مع Soliguide في أندورا",
+    "seoDescription": "يوفر Soliguide معلومات حول التدريب المهني، وورش العمل لإعداد السيرة الذاتية، وبرامج التوظيف في أندورا. ابحث عن أقرب مركز إليك الآن!"
   },
   {
     "categoryId": "digital_tools_training",
     "label": "اﻟﺘﺪﺭﻳﺐ اﻟﺮﻗﻤﻲ",
     "slug": "formation-numerique",
     "synonyms": [
-      "formation numerique atelier numerique formation informatique ordinateur connexion se former technologie tech apprendre comprendre lire etudier conseiller numerique"
+      "ﺗﻜﻨﻮﻟﻮﺟﻴﺎ",
+      "ﺍﻟﻮﺻﻮﻝ ﺇﻟﻰ ﺍﻹﻧﺘﺮﻧﺖ",
+      "ﺍﻟﺘﻌﻠﻴﻢ ﻋﻦ ﺑﻌﺪ",
+      "ﻣﻬﺎﺭﺍﺕ ﺍﻟﺤﺎﺳﻮﺏ",
+      "ﺗﺪﺭﻳﺐ ﻋﻠﻰ ﺍﻟﻜﻤﺒﻴﻮﺗﺮ",
+      "ﺗﻌﻠﻢ ﻋﻠﻰ ﺍﻹﻧﺘﺮﻧﺖ",
+      "ﻣﻌﻠﻮﻣﺎﺗﻴﺔ",
+      "ﻣﺴﺎﻋﺪﺓ ﺗﻜﻨﻮﻟﻮﺟﻴﺔ",
+      "ﻣﻘﻬﻰ ﺇﻧﺘﺮﻧﺖ",
+      "ﺍﻟﻮﺻﻮﻝ ﺇﻟﻰ ﺍﻟﺤﺎﺳﻮﺏ",
+      "ﻭﺭﺷﺔ ﻋﻤﻞ ﺭﻗﻤﻴﺔ",
+      "ﺗﻌﻠﻢ ﺍﻹﻧﺘﺮﻧﺖ",
+      "ﺩﻭﺭﺓ ﺗﻜﻨﻮﻟﻮﺟﻴﺎ",
+      "ﻛﻴﻔﻴﺔ ﺍﺳﺘﺨﺪﺍﻡ ﺍﻟﺤﺎﺳﻮﺏ",
+      "ﻛﻴﻔﻴﺔ ﺍﺳﺘﺨﺪﺍﻡ ﺍﻹﻧﺘﺮﻧﺖ"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Permanences ou ateliers visant à la maitrise d'outils informatiques."
+    "seoTitle": "اﻟﺘﺪﺭﻳﺐ اﻟﺮﻗﻤﻲ ﻣﺘﺎﺡ ﻟﻜﻢ ﻣﻊ Soliguide",
+    "seoDescription": "ﺗﻌﻠّﻤﻮا ﻣﻬﺎﺭﺍﺕ ﺭﻗﻤﻴﺔ ﺟﺪﻳﺪﺓ ﻣﻊ Soliguide. ﺩﻭﺭﺍﺕ ﺗﺪﺭﻳﺒﻴﺔ ﻋﻠﻰ ﺍﻹﻧﺘﺮﻧﺖ، ﺗﻌﻠّﻢ ﺍﺳﺘﺨﺪﺍﻡ ﺍﻟﻜﻤﺒﻴﻮﺗﺮ، ﻭﻣﺴﺎﻋﺪﺓ ﻓﻲ ﺇﻧﺸﺎﺀ ﺳﻴﺮﺓ ﺫﺍﺗﻴﺔ ﺭﻗﻤﻴﺔ ﺑﺎﻟﻘﺮﺏ ﻣﻨﻜﻢ ﻓﻲ ad."
   },
   {
     "categoryId": "job_coaching",
     "label": "المرافقة في العمل",
     "slug": "accompagnement-emploi",
     "synonyms": [
-      "accompagnement emploi travailler job pole emploi travail boulot se former etre accompagne taf taff taffe apprendre comprendre lire etudier france travail orientation"
+      "دعم التوظيف",
+      "مساعدة في البحث عن عمل",
+      "تدريب مهني",
+      "كتابة السيرة الذاتية",
+      "مقابلة عمل",
+      "ورش عمل",
+      "إعداد مهني",
+      "توجيه مهني",
+      "فرص عمل",
+      "باحث عن عمل",
+      "استشارة مهنية",
+      "خطة عمل",
+      "مهارات العمل",
+      "تطوير المهارات",
+      "دعم وظيفي"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Aide au retour à l'emploi : ateliers de préparation aux entretiens, aide à la recherche d'emploi, atelier CV, etc."
+    "seoTitle": "Soliguide تساعدك في الحصول على المرافقة في العمل في أندورا",
+    "seoDescription": "Soliguide تساعدك لإيجاد فرص عمل، كتابة سيرة ذاتية، و التدريب المهني في أندورا. ابحث عن أماكن قريبة تقدم المساعدة!"
   },
   {
     "categoryId": "integration_through_economic_activity",
     "label": "التكامل من خلال النشاط الاقتصادي",
     "slug": "insertion-activite-economique",
     "synonyms": [
-      "chantier de reinsertion chantier reinsertion travailler job insertion reinsertion siae iae se reinserer taf taff taffe apprendre comprendre lire etudier orientation"
+      "اندماج",
+      "توظيف",
+      "عمل",
+      "تدريب",
+      "ورشة",
+      "مشروع",
+      "مساعدة",
+      "دعم",
+      "اقتصاد",
+      "فرص",
+      "وظيفة",
+      "مقابلة",
+      "بحث",
+      "CV",
+      "مهارات"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Embauche de personnes en insertion."
+    "seoTitle": "Soliguide يساعدك على التكامل من خلال النشاط الاقتصادي",
+    "seoDescription": "Soliguide يساعدك في أندورا. ابحث عن ورش عمل تدريبية، فرص عمل مدعومة، ومساعدة في إنشاء مشروعك الخاص. تحديد الموقع الجغرافي للعثور على أقرب دعم."
   },
   {
     "categoryId": "tutoring",
     "label": "الدعم المدرسي",
     "slug": "soutien-scolaire",
     "synonyms": [
-      "soutien scolaire aide au devoir etudes college lycee devoirs cours apprendre comprendre lire etudier"
+      "دروس خصوصية",
+      "مساعدة مدرسية",
+      "واجبات منزلية",
+      "مذاكرة",
+      "مراجعة",
+      "كتب مدرسية مجانية",
+      "أقلام",
+      "دفاتر",
+      "ورش عمل تعليمية",
+      "تحسين المستوى",
+      "تطوير المهارات",
+      "تعليم إضافي",
+      "متابعة دراسية",
+      "نصائح دراسية",
+      "دعم تربوي"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Soutien scolaire gratuit (préciser le niveau dans la description)."
+    "seoTitle": "الدعم المدرسي في متناول يدك مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في العثور على دروس دعم، مواد دراسية مجانية، وورش عمل تعليمية في ad. ابحث عن أقرب مكان يقدم الدعم المدرسي!"
   },
   {
     "categoryId": "accomodation_and_housing",
     "label": "السكن والإسكان",
     "slug": "hebergement-et-logement",
     "synonyms": [
-      "hebergement dormir lit logement repos toit hebergement logement logement hebergement et logement hebergementetlogement domir"
+      "إيجار",
+      "سكن",
+      "مأوى",
+      "إسكان",
+      "منزل",
+      "شقة",
+      "استئجار",
+      "مساعدة مالية",
+      "دعم الإسكان",
+      "إيواء طارئ",
+      "مكان للإقامة",
+      "سكن مدعوم",
+      "مشاكل السكن",
+      "بحث عن سكن",
+      "أزمة سكن"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Soliguide يساعدك في الحصول على السكن والإسكان المناسب",
+    "seoDescription": "Soliguide يوفر أماكن للإيواء الطارئ، المساعدة في دفع الإيجار، و معلومات عن السكن المدعوم في أندورا. ابحث عن أقرب مكان لك!"
   },
   {
     "categoryId": "overnight_stop",
     "label": "توقف ليلي",
     "slug": "halte-nuit",
     "synonyms": [
-      "halte de nuit halte nuit dormir se reposer alte de nui accueil nuit accueil de nuit accueil nuit"
+      "مأوى طارئ",
+      "مكان آمن",
+      "مبيت ليلي",
+      "إيواء مؤقت",
+      "مركز إيواء",
+      "دعم ليلي",
+      "ملجأ",
+      "غرفة آمنة",
+      "مساعدة عاجلة",
+      "مساعدة فورية",
+      "استقبال ليلي",
+      "نوم",
+      "راحة",
+      "مأوى",
+      "أندورا"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "La halte de nuit est un lieu d'accueil et de repos pour les personnes sans abri ouvert de 20h à 8h du matin, 7/7 jours."
+    "seoTitle": "أماكن توقف ليلي آمنة مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في إيجاد مأوى طارئ، مكان للاستحمام، أو وجبة دافئة في أندورا. تحديد الموقع الجغرافي يسهل الوصول إلى المساعدة."
   },
   {
     "categoryId": "emergency_accommodation",
     "label": "الإيواء الطارئ",
     "slug": "hebergement-urgence",
     "synonyms": [
-      "hebergement urgence dormir lit logement chu halte de nuit toit a la rue rue dehors accueil de nuit accueil nuit accueil nuit"
+      "مأوى",
+      "ملجأ",
+      "إيواء",
+      "مبيت",
+      "مساعدة عاجلة",
+      "مركز استقبال",
+      "مكان آمن",
+      "مأوى مؤقت",
+      "إقامة طارئة",
+      "دار إيواء",
+      "مساعدة المشردين",
+      "مساعدة اللاجئين",
+      "سكن طارئ",
+      "دعم الإسكان",
+      "مأوى ليلي"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Hébergement à court terme (à la nuitée), accessible directement."
+    "seoTitle": "الإيواء الطارئ؟ Soliguide يساعدك في أندورا",
+    "seoDescription": "Soliguide يجد لك أماكن للإيواء الطارئ في أندورا! أماكن إقامة مؤقتة، مراكز استقبال، مساعدة عاجلة. ابحث عن أقرب مكان إليك!"
   },
   {
     "categoryId": "long_term_accomodation",
     "label": "الإيواء لمدة طويلة",
     "slug": "hebergement-long-terme",
     "synonyms": [
-      "hebergement dormir lit logement chrs repos toit"
+      "مأوى",
+      "سكن",
+      "مسكن",
+      "إقامة",
+      "بيت",
+      "منزل",
+      "ملجأ",
+      "مأوى طارئ",
+      "سكن مؤقت",
+      "شقة اجتماعية",
+      "مساعدة سكنية",
+      "دعم الإسكان",
+      "إيواء اجتماعي",
+      "مؤسسة إيواء",
+      "مركز إيواء"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Possibilité d'hébergement à long terme, au sein de la structure ou d'une structure partenaire. Indiquer dans la description les modalités d'accès."
+    "seoTitle": "اعثر على أماكن الإيواء لمدة طويلة مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في العثور على مأوى طارئ، مساكن مدعومة، أو شقق اجتماعية في أندورا. تحديد الموقع الجغرافي للعثور على المساعدة بالقرب منك."
   },
   {
     "categoryId": "citizen_housing",
     "label": "سكن المواطن",
     "slug": "hebergement-citoyen",
     "synonyms": [
-      "hebergement hebergement citoyen merci pour l invit singa"
+      "إيجار",
+      "مأوى",
+      "شقة",
+      "منزل",
+      "استئجار",
+      "مالك",
+      "مستأجر",
+      "دفع الإيجار",
+      "حقوق السكن",
+      "سكن طارئ",
+      "مساعدة مالية للإيجار",
+      "مشاكل الإسكان",
+      "بلا مأوى",
+      "البحث عن سكن",
+      "تسجيل السكن"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Soliguide يساعدك في العثور على سكن المواطن المناسب",
+    "seoDescription": "يساعدك Soliguide في العثور على أماكن للإقامة في أندورا. ابحث عن مساعدة للإيجار، سكن طارئ، أو معلومات عن حقوقك. تحديد الموقع الجغرافي سهل!"
   },
   {
     "categoryId": "access_to_housing",
     "label": "اﻟﺪﻋﻢ اﻟﺴﻜﻨﻲ",
     "slug": "conseil-logement",
     "synonyms": [
-      "hebergement dalo logement expulsion toit maison impayes factures chauffage conseil conseil logement"
+      "إﻳﻮاء",
+      "ﻣﺄوى",
+      "ﺳﻜﻦ",
+      "إﻳﺠﺎر",
+      "ﻣﺴﺎﻋﺪة ﻣﺎﻟﻴﺔ",
+      "ﻣﺸﺮﺩ",
+      "ﺑﻴﺖ",
+      "ﺷﻘﺔ",
+      "ﻣﻜﺎن ﻟﻠﻌﻴﺶ",
+      "دﻋﻢ ﻣﺎﻟﻲ ﻟﻠﺴﻜﻦ",
+      "ﺗﻜﺎﻟﻴﻒ اﻟﺴﻜﻦ",
+      "ﻣﺴﺎﻋﺪة اﻟﻤﺴﺎﻛﻦ",
+      "ﻣﻜﺎن آﻣﻦ",
+      "ﺣﻞ إﺳﻜﺎﻧﻲ",
+      "اﻟﺒﺤﺚ ﻋﻦ ﺳﻜﻦ"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'accès au logement (logement social, DALO, etc.)."
+    "seoTitle": "اﻟﺪﻋﻢ اﻟﺴﻜﻨﻲ ﻣﻊ Soliguide: اﻟﺤﻠﻮل اﻟﻤﺘﺎﺣﺔ ﻟﻚ ﻓﻲ أﻧﺪورا",
+    "seoDescription": "Soliguide ﻳﺴﺎﻋﺪك ﻓﻲ اﻟﺤﺼﻮل ﻋﻠﻰ اﻟﺪﻋﻢ اﻟﺴﻜﻨﻲ ﻓﻲ أﻧﺪورا. ﺳﻜﻦ ﻣﺆﻗﺖ، ﻣﺴﺎﻋﺪة ﻓﻲ ﺗﻜﺎﻟﻴﻒ اﻹﻳﺠﺎر، ﻣﺄوى ﻟﻠﻤﺸﺮﺩﻳﻦ. ﺟﺪ اﻟﻤﺴﺎﻋﺪة ﻗﺮﺑﻚ اﻵن!"
   },
   {
     "categoryId": "hygiene_and_wellness",
     "label": "النظافة والرفاهية",
     "slug": "hygiene",
     "synonyms": [
-      "hygiene laver douche bain se laver se doucher propre"
+      "نظافة",
+      "استحمام",
+      "دش",
+      "غسل الملابس",
+      "ملابس نظيفة",
+      "مغسلة",
+      "صابون",
+      "شامبو",
+      "معجون أسنان",
+      "فرشاة أسنان",
+      "حلاقة",
+      "حمام",
+      "صحة",
+      "راحة",
+      "رفاهية"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "النظافة والرفاهية: ابحث عن المساعدة مع Soliguide في أندورا",
+    "seoDescription": "Soliguide يساعدك في أندورا. استحم مجانًا، احصل على ملابس نظيفة، أو اغسل ملابسك. ابحث عن أقرب مكان يقدم خدمات النظافة والرفاهية بالقرب منك."
   },
   {
     "categoryId": "shower",
     "label": "الإستحمام",
     "slug": "douche",
     "synonyms": [
-      "douche laver se laver bain bain douche piscine propre sale cheveux"
+      "استحمام",
+      "دش",
+      "نظافة",
+      "تنظيف",
+      "ماء",
+      "صابون",
+      "شامبو",
+      "حمام عمومي",
+      "مركز إيواء",
+      "مأوى",
+      "مساعدة",
+      "مرفق صحي",
+      "غسل الجسم",
+      "نظافة شخصية",
+      "تطهير"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "الإستحمام بسهولة مع Soliguide في أندورا",
+    "seoDescription": "هل تبحث عن مكان للاستحمام؟ Soliguide يساعدك! ابحث عن حمامات عامة، مراكز إيواء توفر الاستحمام، ومرافق النظافة الشخصية. تحديد الموقع الجغرافي سهل!"
   },
   {
     "categoryId": "hairdresser",
     "label": "مصفف شعر",
     "slug": "coiffeur",
     "synonyms": [
-      "coiffeur cheveux"
+      "حلاقة",
+      "قص",
+      "تصفيف",
+      "شعر",
+      "حلاق",
+      "صالون",
+      "مجاني",
+      "رخيص",
+      "تجميل",
+      "مظهر",
+      "أناقة",
+      "تهذيب",
+      "تزيين",
+      "العناية بالشعر",
+      "مصفف شعر"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "ابحث عن خدمات تصفيف الشعر المجانية مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في العثور على حلاقين يقدمون خدمات مجانية أو بأسعار معقولة في أندورا. ابحث عن قص الشعر، حلاقة الذقن، وتصفيف الشعر بالقرب منك."
   },
   {
     "categoryId": "laundry",
     "label": "مغسلة الثياب",
     "slug": "laverie",
     "synonyms": [
-      "laverie vetements vetement laver machine a laver pressing linge lave linge"
+      "غسيل",
+      "ملابس",
+      "تنظيف",
+      "مغسلة",
+      "غسالة",
+      "تجفيف",
+      "منظفات",
+      "مسحوق غسيل",
+      "غسل الملابس",
+      "خدمة غسيل",
+      "مساعدة غسيل",
+      "مكان للغسيل",
+      "غسيل مجاني",
+      "ملابس نظيفة",
+      "كي الملابس"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Lave-linge en accès libre."
+    "seoTitle": "ابحث عن مغسلة الثياب بالقرب منك مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في العثور على مغاسل ملابس مجانية، خدمات غسيل للملابس المتسخة في ad، و مساعدة في مواد التنظيف. تحديد الموقع الجغرافي."
   },
   {
     "categoryId": "wellness",
     "label": "اﻟﺘﺮﻓﻴﺔ ﻋﻦ اﻟﻨﻔﺲ",
     "slug": "bien-etre",
     "synonyms": [
-      "bien etre coiffeur massage maquillage belle beau pedicure manicure manucire"
+      "اﺳﺘﺮﺧﺎء",
+      "ﺗﺴﻠﻴﺔ",
+      "ﺗﺮﻓﻴﻪ",
+      "ﺗﺮوﻳﺢ",
+      "ﻟﻌﺐ",
+      "ﻣﺮح",
+      "ﻧﺸﺎط ﺗﺮﻓﻴﻬﻲ",
+      "ﻓﻌﺎﻟﻴﺔ ﻣﺠﺘﻤﻌﻴﺔ",
+      "ﻧﺎدي",
+      "ﻟﻘﺎء اﺟﺘﻤﺎﻋﻲ",
+      "رﻳﺎﺿﺔ",
+      "ﻓﻦ",
+      "ﻣﻮﺳﻴﻘﻰ",
+      "ﺳﻴﻨﻤﺎ",
+      "ﻣﺴﺮح"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Ateliers de bien-être : coiffeur, massage, sophrologie, etc. (à préciser dans la description)."
+    "seoTitle": "اﺳﺘﺮﺧﺎء وﺗﺮﻓﻴﻪ ﻋﻦ اﻟﻨﻔﺲ ﻣﻊ Soliguide",
+    "seoDescription": "ﻳﺴﺎﻋﺪك Soliguide ﻓﻲ اﻟﻌﺜﻮر ﻋﻠﻰ أﻧﺸﻄﺔ ﺗﺮﻓﻴﻬﻴﺔ ﻓﻲ ad! اﺳﺘﻔﺪ ﻣﻦ ﻓﺮص اﻟﻤﺸﺎرﻛﺔ ﻓﻲ اﻷﻟﻌﺎب اﻟﻤﺠﺘﻤﻌﻴﺔ، وورش اﻟﻌﻤﻞ اﻟﻔﻨﻴﺔ واﻟﺮﻳﺎﺿﻴﺔ. اﺑﺤﺚ ﻋﻦ أﻗﺮب ﻣﺮﻛﺰ ﺗﺮﻓﻴﻬﻲ اﻵن!"
   },
   {
     "categoryId": "toilets",
     "label": "اﻟﻤﺮاﺣﻴﺾ",
     "slug": "toilettes",
     "synonyms": [
-      "toilettes sanisette pisser pipi wc caca chiotte toilet"
+      "مرحاض",
+      "حمامات",
+      "دورة مياه",
+      "مكان قضاء الحاجة",
+      "مرافق صحية",
+      "نظافة",
+      "صحة",
+      "تبول",
+      "تغوط",
+      "مكان عام",
+      "تسهيلات صحية",
+      "مرحاض عام",
+      "مرحاض نظيف",
+      "مرافق صحية عامة",
+      "موقع اﻟﻤﺮاﺣﻴﺾ"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Toilettes en accès libre."
+    "seoTitle": "ابحث عن اﻟﻤﺮاﺣﻴﺾ بالقرب منك مع Soliguide",
+    "seoDescription": "يساعدك Soliguide في العثور على اﻟﻤﺮاﺣﻴﺾ العامة والنظيفة في أندورا. اكتشف أماكن قريبة توفر مرافق صحية مجانية ومتاحة للجميع. استخدم Soliguide للعثور على اﻟﻤﺮاﺣﻴﺾ بسهولة."
   },
   {
     "categoryId": "hygiene_products",
     "label": "منتجات العناية",
     "slug": "produits-hygiene",
     "synonyms": [
-      "periodiques protections periodiques protection periodique regles regle tampon serviette hygienique serviette menstrues produits d hygiene hygiene cup culotte tampax"
+      "صابون",
+      "شامبو",
+      "فرشاة أسنان",
+      "معجون أسنان",
+      "مناديل مبللة",
+      "فوط صحية",
+      "حفاضات",
+      "نظافة شخصية",
+      "عناية شخصية",
+      "دوش",
+      "غسل",
+      "نظافة الجسم",
+      "مزيل عرق",
+      "مرطب",
+      "كريم"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Distribution de produits d'hygiène (savons, dentifrice, tampons, serviettes hygiéniques, etc.)."
+    "seoTitle": "ابحث عن منتجات العناية المجانية مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في العثور على الصابون، والشامبو، وفرشاة الأسنان، ومعجون الأسنان في أندورا. تحديد الموقع الجغرافي للعثور على المساعدة بالقرب منك."
   },
   {
     "categoryId": "face_masks",
     "label": "أقنعة",
     "slug": "masques",
     "synonyms": [
-      "masque protection covid virus"
+      "كمامات",
+      "حماية",
+      "وقاية",
+      "صحة",
+      "نظافة",
+      "تطهير",
+      "كوفيد",
+      "فيروس",
+      "مرض",
+      "توزيع مجاني",
+      "مساعدة مجانية",
+      "مساعدة طبية",
+      "أمن",
+      "سلامة",
+      "حاجز"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Masques de protection"
+    "seoTitle": "ابحث عن أقنعة مجانية مع Soliguide",
+    "seoDescription": "Soliguide يساعدك للعثور على أقنعة في أندورا. احصل على معلومات حول كيفية الحصول على أقنعة مجانية، وأماكن توزيعها بالقرب منك. تحديد الموقع الجغرافي."
   },
   {
     "categoryId": "equipment",
     "label": "معدات",
     "slug": "materiel",
     "synonyms": [
-      "materiel affaires mobilier"
+      "معدات طبية",
+      "ملابس",
+      "أدوات منزلية",
+      "مساعدة مادية",
+      "تبرعات",
+      "معونة",
+      "احتياجات أساسية",
+      "دعم",
+      "مستلزمات",
+      "أدوات",
+      "مؤن",
+      "أشياء",
+      "تجهيزات",
+      "لوازم",
+      "معدات"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "احصل على معدات ضرورية بمساعدة Soliguide",
+    "seoDescription": "Soliguide يساعدك في العثور على أماكن للحصول على معدات طبية، ملابس دافئة، أو أدوات منزلية أساسية. ابحث عن المساعدة الأقرب إليك في أندورا!."
   },
   {
     "categoryId": "luggage_storage",
     "label": "مكان تخزين الأمتعة",
     "slug": "bagagerie",
     "synonyms": [
-      "bagage bagagerie sac poser casier"
+      "خزائن",
+      "حقائب",
+      "أمتعة",
+      "تخزين مؤقت",
+      "أمان",
+      "حماية",
+      "وديعة",
+      "حفظ",
+      "مكان آمن",
+      "محطة قطار",
+      "مطار",
+      "فندق",
+      "نقل",
+      "سفر",
+      "تنقل"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Lieu permettant de conserver des bagages ou matériel."
+    "seoTitle": "مكان تخزين الأمتعة بسهولة مع Soliguide",
+    "seoDescription": "هل تبحث عن مكان آمن لتخزين أمتعتك في أندورا؟ Soliguide يساعدك! اعثر على خزائن آمنة، خدمات تخزين مؤقتة، وأماكن تخزين قريبة منك. تحديد الموقع الجغرافي سهل!"
   },
   {
     "categoryId": "solidarity_store",
     "label": "متجر تضامني",
     "slug": "boutique-solidaire",
     "synonyms": [
-      "boutique solidaire meubles accessoires s habiller"
+      "متجر",
+      "تضامن",
+      "مساعدة",
+      "ملابس",
+      "أدوات منزلية",
+      "طعام",
+      "تبرع",
+      "مستعمل",
+      "رخيص",
+      "تخفيض",
+      "تسوق",
+      "دعم",
+      "احتياجات",
+      "محتاج",
+      "مستفيد"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Boutique vendant du matériel à prix solidaire."
+    "seoTitle": "ابحث عن متاجر تضامنية بالقرب منك مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في العثور على متاجر تضامنية في ad. احصل على ملابس مستعملة، أدوات منزلية بأسعار رمزية، مواد غذائية. تحديد الموقع الجغرافي سهل!"
   },
   {
     "categoryId": "clothing",
     "label": "ملابس",
     "slug": "vetements",
     "synonyms": [
-      "vestiaire vetements t shirt pantalon robe vetir vestiboutique pull manteau habit s habiller"
+      "ملابس",
+      "ثياب",
+      "كسوة",
+      "ملابس مستعملة",
+      "تبرعات ملابس",
+      "ملابس مجانية",
+      "معونة ملابس",
+      "مساعدة في الملابس",
+      "احتياجات الملابس",
+      "مخزون الملابس",
+      "خزانة ملابس",
+      "توزيع ملابس",
+      "ملابس للأطفال",
+      "ملابس للرجال",
+      "ملابس للنساء"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
-    "seoTitle": "",
-    "seoDescription": "Vêtements gratuits ou à prix symbolique. Préciser le sexe et/ou l'âge dans les conditions."
+    "seoTitle": "جد ملابس مجانية مع Soliguide",
+    "seoDescription": "Soliguide يساعدك للعثور على ملابس في أندورا. ابحث عن تبرعات ملابس، محلات ملابس مستعملة. تحديد المواقع الجغرافية للمساعدة."
   },
   {
     "categoryId": "animal_assitance",
     "label": "حيوانات",
     "slug": "animaux",
-    "synonyms": [
-      "animaux animals chien chat croquettes animal"
-    ],
+    "synonyms": ["animaux animals chien chat croquettes animal"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -796,9 +1522,7 @@
     "categoryId": "vaccination",
     "label": "لقاحات",
     "slug": "vaccination",
-    "synonyms": [
-      "vaccination vaccin covid piqure rappel rappel de vaccin"
-    ],
+    "synonyms": ["vaccination vaccin covid piqure rappel rappel de vaccin"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -835,9 +1559,7 @@
     "categoryId": "health_specialists",
     "label": "أطباء مختصين",
     "slug": "specialistes-medecine",
-    "synonyms": [
-      "specialistes specialiste"
-    ],
+    "synonyms": ["specialistes specialiste"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -848,9 +1570,7 @@
     "categoryId": "allergology",
     "label": "حساسية",
     "slug": "allergologie",
-    "synonyms": [
-      "allergologie allergies"
-    ],
+    "synonyms": ["allergologie allergies"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -861,9 +1581,7 @@
     "categoryId": "cardiology",
     "label": "الأمراض القلبية",
     "slug": "cardiologie",
-    "synonyms": [
-      "cardiologie coeur cardiaque cardio"
-    ],
+    "synonyms": ["cardiologie coeur cardiaque cardio"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -874,9 +1592,7 @@
     "categoryId": "dermatology",
     "label": "الأمراض الجلدية",
     "slug": "dermatologie",
-    "synonyms": [
-      "dermato dermatologie dermatologue peau bouton"
-    ],
+    "synonyms": ["dermato dermatologie dermatologue peau bouton"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -887,9 +1603,7 @@
     "categoryId": "echography",
     "label": "التصوير بالموجات فوق الصوتية (إيكو)",
     "slug": "echographie",
-    "synonyms": [
-      "echographie bebe enceinte"
-    ],
+    "synonyms": ["echographie bebe enceinte"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -900,9 +1614,7 @@
     "categoryId": "endocrinology",
     "label": "أمراض الغدة",
     "slug": "endocrinologie",
-    "synonyms": [
-      "endocrinologie hormones tyroide"
-    ],
+    "synonyms": ["endocrinologie hormones tyroide"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -913,9 +1625,7 @@
     "categoryId": "gastroenterology",
     "label": "أمراض الجهاز الهضمي",
     "slug": "gastro-enterologie",
-    "synonyms": [
-      "gastro enterologue gastro enterologie kk caca"
-    ],
+    "synonyms": ["gastro enterologue gastro enterologie kk caca"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -939,9 +1649,7 @@
     "categoryId": "kinesitherapy",
     "label": "المعالجة الفيزيائية",
     "slug": "kinesitherapie",
-    "synonyms": [
-      "kinesitherapie reeducation blessure kine"
-    ],
+    "synonyms": ["kinesitherapie reeducation blessure kine"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -952,9 +1660,7 @@
     "categoryId": "mammography",
     "label": "التصوير الشعاعي للثدي",
     "slug": "mammographie",
-    "synonyms": [
-      "mammographie radio seins"
-    ],
+    "synonyms": ["mammographie radio seins"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -965,9 +1671,7 @@
     "categoryId": "ophthalmology",
     "label": "طب العيون",
     "slug": "ophtalmologie",
-    "synonyms": [
-      "ophtalmologie ophtalmologue yeux voir lunette"
-    ],
+    "synonyms": ["ophtalmologie ophtalmologue yeux voir lunette"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -991,9 +1695,7 @@
     "categoryId": "nutrition",
     "label": "إختصاص تغذية",
     "slug": "nutrition",
-    "synonyms": [
-      "nutrition dietetique regime surpoids obesite perte de poids"
-    ],
+    "synonyms": ["nutrition dietetique regime surpoids obesite perte de poids"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -1004,9 +1706,7 @@
     "categoryId": "pedicure",
     "label": "إختصاص العناية بالأقدام",
     "slug": "pedicure",
-    "synonyms": [
-      "pedicure pied pie soigner pieds soin podologue podologie"
-    ],
+    "synonyms": ["pedicure pied pie soigner pieds soin podologue podologie"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -1030,9 +1730,7 @@
     "categoryId": "pneumology",
     "label": "علم أمراض الرئة",
     "slug": "pneumologie",
-    "synonyms": [
-      "poumons respiration respirer bronches"
-    ],
+    "synonyms": ["poumons respiration respirer bronches"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -1043,9 +1741,7 @@
     "categoryId": "radiology",
     "label": "إختصاص الأشعة",
     "slug": "radiologie",
-    "synonyms": [
-      "radiologie radiologue radiology rayonx fracture entorse"
-    ],
+    "synonyms": ["radiologie radiologue radiology rayonx fracture entorse"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -1056,9 +1752,7 @@
     "categoryId": "rheumatology",
     "label": "أمراض المفاصل",
     "slug": "rhumatologie",
-    "synonyms": [
-      "rhumatologue rumatologie"
-    ],
+    "synonyms": ["rhumatologue rumatologie"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -1069,9 +1763,7 @@
     "categoryId": "urology",
     "label": "أمراض المجاري البولية",
     "slug": "urologie",
-    "synonyms": [
-      "urologie urology"
-    ],
+    "synonyms": ["urologie urology"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -1095,9 +1787,7 @@
     "categoryId": "stomatology",
     "label": "طب الأسنان واللثة",
     "slug": "stomatologie",
-    "synonyms": [
-      "stomatologie stomatologue estomac digestion ventre"
-    ],
+    "synonyms": ["stomatologie stomatologue estomac digestion ventre"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -1108,9 +1798,7 @@
     "categoryId": "osteopathy",
     "label": "تقويم العظام",
     "slug": "osteo",
-    "synonyms": [
-      "ostheopathe osteo dos mal"
-    ],
+    "synonyms": ["ostheopathe osteo dos mal"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -1121,9 +1809,7 @@
     "categoryId": "acupuncture",
     "label": "العلاج بالإبر",
     "slug": "acupuncture",
-    "synonyms": [
-      "acupuncture accupuncture bien etre"
-    ],
+    "synonyms": ["acupuncture accupuncture bien etre"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -1160,9 +1846,7 @@
     "categoryId": "wifi",
     "label": "اﻟﻮاﻱ ﻓﺎﻱ (ﺧﺪﻣﺎﺕ اﻹﻧﺘﺮﻧﺖ)",
     "slug": "wifi",
-    "synonyms": [
-      "wifi internet web connexion reseau"
-    ],
+    "synonyms": ["wifi internet web connexion reseau"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -1173,9 +1857,7 @@
     "categoryId": "electrical_outlets_available",
     "label": "مأخذ كهربائي",
     "slug": "prise",
-    "synonyms": [
-      "prise charger electricite chargeur recharge charge"
-    ],
+    "synonyms": ["prise charger electricite chargeur recharge charge"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -1186,9 +1868,7 @@
     "categoryId": "telephone_at_your_disposal",
     "label": "هاتف",
     "slug": "telephone",
-    "synonyms": [
-      "appel gratuit telephone telephoner appeler appel"
-    ],
+    "synonyms": ["appel gratuit telephone telephoner appeler appel"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -1225,9 +1905,7 @@
     "categoryId": "carpooling",
     "label": "استخدام السيارات",
     "slug": "covoiturage",
-    "synonyms": [
-      "co voiturage partage de voiture"
-    ],
+    "synonyms": ["co voiturage partage de voiture"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -1238,9 +1916,7 @@
     "categoryId": "provision_of_vehicles",
     "label": "توفير السيارة",
     "slug": "vehicule",
-    "synonyms": [
-      "mise a disposition de vehicule voiture"
-    ],
+    "synonyms": ["mise a disposition de vehicule voiture"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -1251,9 +1927,7 @@
     "categoryId": "chauffeur_driven_transport",
     "label": "النقل مع السائق",
     "slug": "chauffeur",
-    "synonyms": [
-      "transport avec chauffeur chauffeur transport a la demande"
-    ],
+    "synonyms": ["transport avec chauffeur chauffeur transport a la demande"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -1303,9 +1977,7 @@
     "categoryId": "legal_protection",
     "label": "الحماية القانونية",
     "slug": "protection-juridique",
-    "synonyms": [
-      "protection juridique pjj"
-    ],
+    "synonyms": ["protection juridique pjj"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "ad",
@@ -1331,11 +2003,7 @@
     "categoryId": null,
     "label": "Càritas Andorrana: organisation caritative catholique",
     "slug": "caritas-andorra",
-    "synonyms": [
-      "caritas andorra",
-      "càritas",
-      "cáritas andorrana"
-    ],
+    "synonyms": ["caritas andorra", "càritas", "cáritas andorrana"],
     "type": "ORGANIZATION",
     "lang": "ar",
     "country": "ad",
@@ -1376,11 +2044,7 @@
     "categoryId": null,
     "label": "Alberg de transeünts: hébergement d’urgence",
     "slug": "alberg-transeunts",
-    "synonyms": [
-      "alberg",
-      "albergue",
-      "hébergement andorre"
-    ],
+    "synonyms": ["alberg", "albergue", "hébergement andorre"],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "ar",
     "country": "ad",
@@ -1391,11 +2055,7 @@
     "categoryId": null,
     "label": "Menjador social: restaurant solidaire",
     "slug": "menjador-social",
-    "synonyms": [
-      "menjador",
-      "cantine sociale",
-      "resto solidaire"
-    ],
+    "synonyms": ["menjador", "cantine sociale", "resto solidaire"],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "ar",
     "country": "ad",
@@ -1421,11 +2081,7 @@
     "categoryId": null,
     "label": "Centre de Salut: établissement de soins médicaux",
     "slug": "centre-salut",
-    "synonyms": [
-      "centre salut",
-      "hospital nsa",
-      "clinique andorre"
-    ],
+    "synonyms": ["centre salut", "hospital nsa", "clinique andorre"],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "ar",
     "country": "ad",

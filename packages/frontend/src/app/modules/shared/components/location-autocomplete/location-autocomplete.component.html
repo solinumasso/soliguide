@@ -22,62 +22,73 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <input
     type="text"
     class="form-control"
-    #searchInput
     [ngbTypeahead]="searchLocation"
+    [inputFormatter]="formatter"
     [resultFormatter]="formatter"
     [resultTemplate]="resultTemplate"
     [placeholder]="placeholder"
-    (selectItem)="onSelectItem($event, searchInput)"
-    (focus)="onInputFocus(searchInput)"
     [editable]="false"
     [focusFirst]="true"
-    [showHint]="true"
+    [(ngModel)]="model"
+    (selectItem)="onSelectItem($event)"
   />
   <ng-template #resultTemplate let-r="result" let-t="term">
     <div
       class="d-flex align-items-center"
       *ngIf="r.geoType !== GeoTypes.POSITION; else positionTemplate"
     >
-      <img
-        src="/assets/images/maps/0.png"
-        alt=""
-        class="me-2"
-        style="width: 20px; height: 20px"
-      />
-      <div>
-        <strong>{{ getGeoTypeLabel(r.geoType) }}</strong> - {{ r.label }}
-      </div>
+      <fa-icon class="ms-1 me-3" [icon]="faMapPin" aria-hidden="true"></fa-icon>
+      <span class="text-truncate"
+        ><strong>{{ getGeoTypeLabel(r.geoType) }}</strong> - {{ r.label }}</span
+      >
     </div>
     <ng-template #positionTemplate>
       <div class="d-flex align-items-center">
-        <img
-          src="/assets/images/maps/0.png"
-          alt=""
-          class="me-2"
-          style="width: 20px; height: 20px"
-        />
-        <div>{{ r.label }}</div>
+        <fa-icon
+          class="ms-1 me-3"
+          [icon]="faMapPin"
+          aria-hidden="true"
+        ></fa-icon>
+        <span class="text-truncate">{{ r.label }}</span>
       </div>
     </ng-template>
   </ng-template>
 
-  <button
-    type="button"
-    *ngIf="!addressesOnly"
-    class="btn btn-outline-secondary position-absolute end-0 me-1"
-    style="z-index: 10; border: none; background: transparent"
-    [disabled]="locationLoading"
-    [attr.aria-label]="'GEOLOCATE_MYSELF' | translate"
-    (click)="getCurrentPosition()"
+  <div
+    class="btns position-absolute end-0 d-flex align-items-center"
+    style="z-index: 10"
   >
-    <fa-icon *ngIf="!locationLoading" [icon]="faLocationDot" aria-hidden="true">
-    </fa-icon>
-    <fa-icon
-      *ngIf="locationLoading"
-      [icon]="faCircleNotch"
-      [spin]="true"
-      aria-hidden="true"
+    <button
+      type="button"
+      *ngIf="model?.trim() !== ''"
+      class="btn btn-light me-1"
+      [attr.aria-label]="'CLEAR_LOCATION' | translate"
+      (click)="clearLocation()"
     >
-    </fa-icon>
-  </button>
+      <fa-icon [icon]="faXmark" aria-hidden="true"></fa-icon>
+    </button>
+
+    <button
+      type="button"
+      *ngIf="!addressesOnly"
+      class="btn btn-light me-1"
+      [disabled]="locationLoading"
+      [attr.aria-label]="'GEOLOCATE_MYSELF' | translate"
+      (click)="getCurrentPosition()"
+    >
+      <fa-icon
+        *ngIf="!locationLoading"
+        [icon]="faLocationDot"
+        aria-hidden="true"
+      >
+      </fa-icon>
+      <fa-icon
+        *ngIf="locationLoading"
+        [icon]="faCircleNotch"
+        [spin]="true"
+        aria-hidden="true"
+      >
+      </fa-icon>
+    </button>
+  </div>
 </div>

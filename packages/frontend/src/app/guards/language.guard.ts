@@ -36,8 +36,6 @@ export class LanguageGuard {
       return false;
     }
     if (isSupportedLanguage(route.params.lang)) {
-      console.log(route.params);
-      console.log("setCurrentLanguage 1 ");
       this.currentLanguageService.setCurrentLanguage(route.params.lang);
       return true;
     }

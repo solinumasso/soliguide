@@ -4,273 +4,567 @@
     "label": "کور",
     "slug": "accueil",
     "synonyms": [
-      "accueil cafe repos acceuil parler acueil accueil femme accueil femmes acueil femme violence harcelement partir"
+      "سرپناه",
+      "کور",
+      "ځای",
+      "اوسیدل",
+      "خیمه",
+      "کورنۍ",
+      "دوستانه",
+      "ملاتړ",
+      "مرسته",
+      "مشوره",
+      "معلومات",
+      "لارښوونه",
+      "خوندیتوب",
+      "امنیت",
+      "آرامښت"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "په سولیوګیډ کې د \"کور\" په برخه کې مرسته ومومئ",
+    "seoDescription": "سولیوګیډ تاسو سره د اوسېدو ځای، د اړتیا وړ توکو ترلاسه کولو، یا د ټولنیز کارمند سره لیدنه کې مرسته کوي. خپل ښار ومومئ!"
   },
   {
     "categoryId": "day_hosting",
     "label": "د ورځې استقبال",
     "slug": "accueil-jour",
     "synonyms": [
-      "accueil accueil de jour cafe se reposer se poser repos reposer femmes battues femme battue fem batue fem batu violence harcelement partir"
+      "استقبال",
+      "ورځنی استقبال",
+      "ځای",
+      "مرسته",
+      "ملاتړ",
+      "خبرې اترې",
+      "ارام",
+      "چای",
+      "قهوه",
+      "غرمه",
+      "ماښام",
+      "خوندیتوب",
+      "تودوخه",
+      "د مرستې مرکز",
+      " ټولنیز مرکز"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Lieu d'accueil des bénéficaires proposant une pause pendant la journée."
+    "seoTitle": "د ورځې استقبال د Soliguide سره ومومئ",
+    "seoDescription": "Soliguide تاسو سره د ورځې استقبال په ځایونو کې مرسته کوي. د بیلګې په توګه، تاسو کولی شئ یو ډاکټر، د غاښونو ډاکټر او نور وړیا روغتیایی مرستې ومومئ. خپل ځانګړی ځای ومومئ!"
   },
   {
     "categoryId": "rest_area",
     "label": "د استراحت ساحه",
     "slug": "espace-repos",
     "synonyms": [
-      "espace de repos reposer dormir repos pause"
+      "آرام",
+      "استراحت کول",
+      "ډډه کول",
+      "تنفس اخیستل",
+      "خوب کول",
+      "خوب ګاه",
+      "آرامه خونه",
+      "حمام",
+      "ټولنیز مرکز",
+      "ورزش",
+      "لوبغالی",
+      "ساه اخیستل",
+      "خوشحاله کیدل",
+      "ځان ساتنه",
+      "مرسته"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Espaces de repos ouverts au public"
+    "seoTitle": "د Soliguide سره د استراحت ساحه ومومئ",
+    "seoDescription": "په فرانسه کې د Soliguide سره د استراحت ساحې، د تشنابونو کارولو، او د اړتیا په وخت کې د مرستې موندلو ځایونه ومومئ. ځایی مرستې ومومئ!"
   },
   {
     "categoryId": "babysitting",
     "label": "د ماشومانو پالنه",
     "slug": "garde-enfants",
     "synonyms": [
-      "garde enfant garderie enfant nounou assistance maternelle bebe creche"
+      "د ماشومانو ساتنه",
+      "وړکتون",
+      "د ماشومانو پالنه",
+      "د لوبې ځای",
+      "ماشومان",
+      "کورنۍ",
+      "مرسته",
+      "فرانس",
+      "وړیا",
+      "خدمتونه",
+      "ګاونډ",
+      "نږدې",
+      "ځایونه",
+      "معلومات",
+      "ملاتړ"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Activité d'un baby-sitter consistant à garder temporairement des enfants en l'abscence de leurs parents"
+    "seoTitle": "د ماشومانو پالنه ومومئ په فرانس کې د سولګیډ سره",
+    "seoDescription": "د سولګیډ سره د ماشومانو پالنه ومومئ! د ماشومانو ساتنه، وړکتونونه، او د ماشومانو لپاره د لوبې ځایونه نږدې تاسو ته. په فرانس کې د مرستې موندلو لپاره سولګیډ وکاروئ."
   },
   {
     "categoryId": "family_area",
     "label": "د کورنۍ ساحه",
     "slug": "espace-famille",
     "synonyms": [
-      "espace famille famille maman papa parents enfants"
+      "کورنۍ",
+      "ښځه",
+      "ماشومان",
+      "طلاق",
+      "جنسي تیري",
+      "تاوتریخوالی",
+      "مشر",
+      "مشوره",
+      "ملاتړ",
+      "مرسته",
+      "قانوني لارښوونه",
+      "رواني ملاتړ",
+      "کورنۍ شخړې",
+      "د ماشومانو ساتنه",
+      "د بودیجې مدیریت"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Lieu d'accueil capable de recevoir des familles"
+    "seoTitle": "د Soliguide سره د کورنۍ ساحه کې مرسته ومومئ",
+    "seoDescription": "د Soliguide سره د کورنۍ ساحه کې مرسته ومومئ. د مثال په توګه، د کورنۍ شخړو لپاره مشوره، د ماشومانو ساتنه او د کورنۍ د بودیجې مدیریت. ستاسو په سیمه کې مرسته ومومئ!"
   },
   {
     "categoryId": "information_point",
     "label": "د معلوماتو او لارښوونو نقطه",
     "slug": "point-information",
     "synonyms": [
-      "point information point d information information ukraine"
+      "معلومات",
+      "لارښوونه",
+      "مرسته",
+      "ملاتړ",
+      " ټولنیز مرسته",
+      "استوګنه",
+      "دنده",
+      "حقوق",
+      "مشوره",
+      "مرکز",
+      "د ټولنې مرکز",
+      "ادارې",
+      "د اړیکو نقطه",
+      "پاملرنه",
+      "ملګرتیا"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Point d'information"
+    "seoTitle": "د Soliguide سره د معلوماتو او لارښوونو نقطې ومومئ",
+    "seoDescription": "Soliguide تاسو سره مرسته کوي د معلوماتو مرکزونه ومومئ. د مثال په توګه، د ټولنیزو مرستو موندل، د استوګنې په اړه معلومات ترلاسه کول، او دندې په اړه مشورې. خپل نږدې ځای ومومئ!"
   },
   {
     "categoryId": "activities",
     "label": "فعالیتونه",
     "slug": "activites",
     "synonyms": [
-      "activites sorties sport loisirs sortir jeux jeu loisir isolement isole solitude isolee"
+      "ټولنیز مرکز",
+      "ټولنه",
+      "ورزش",
+      "ګډون",
+      "کار",
+      "زده کړه",
+      "ملاتړ",
+      "فعالیت",
+      "ځای",
+      "موندل",
+      "مرسته",
+      "وړیا",
+      "ارزانه",
+      "ځوانان",
+      "زاړه"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "په Soliguide کې فعالیتونه ومومئ د مرستې لپاره",
+    "seoDescription": "Soliguide تاسو سره د فعالیتونو په موندلو کې مرسته کوي. د مثال په توګه: ټولنیز مرکزونه، سپورتي ټولنې، او حرفوي کارځایونه. په فرانسه کې مرسته ومومئ!"
   },
   {
     "categoryId": "sport_activities",
     "label": "د سپورت فعالیتونه",
     "slug": "activites-sportives",
     "synonyms": [
-      "activites sportives sport foot basket danse rugby loisirs loisir"
+      "لوبې",
+      "ورزش",
+      "ځغلول",
+      "لامبو وهل",
+      "سایکل چلول",
+      "فوټبال",
+      "باسکټبال",
+      "والیبال",
+      "ټینس",
+      "بیډمنټن",
+      "د سپورت جامې",
+      "د سپورت بوټان",
+      "د سپورټ جم",
+      "د سپورټ کلب",
+      "د سپورت ډګر"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Activités sportives : foot, jogging, marche, etc."
+    "seoTitle": "د Soliguide سره د سپورت فعالیتونه ومومئ",
+    "seoDescription": "په فرانسه کې د Soliguide سره وړیا د سپورت فعالیتونه، د سپورت سامانونه، او د سپورت روزونکي ومومئ. خپل ځای ته نږدې مرسته ومومئ!"
   },
   {
     "categoryId": "museums",
     "label": "موزیم",
     "slug": "musee",
     "synonyms": [
-      "musee culture sortie peinture tableau se cultiver"
+      "تاریخ",
+      "فرهنګ",
+      "هنر",
+      "تاریخي ځای",
+      "کلتوري میراث",
+      "لیدنه",
+      "تفریح",
+      "فعالیت",
+      "نندارتون",
+      "تاریخي موزیم",
+      "هنري موزیم",
+      "سیمه ایز موزیم",
+      "لرغون پوهنه",
+      "لرغوني اثار",
+      "ګالري"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Musée gratuit."
+    "seoTitle": "د سولګایډ سره موزیم ومومئ",
+    "seoDescription": "په فرانسه کې د موزیم موندلو کې د سولګایډ سره مرسته وکړئ. وړیا فعالیتونه، تاریخي ځایونه او کلتوري نندارتونونه. خپل ځای ته نږدې ومومئ!"
   },
   {
     "categoryId": "libraries",
     "label": "کتابتون",
     "slug": "bibliotheque",
     "synonyms": [
-      "bibliotheque livres culture mediatheque"
+      "کتاب",
+      "مطالعه",
+      "لوستل",
+      "لیکنه",
+      "انټرنیټ",
+      "کمپیوټر",
+      "ورکشاپ",
+      "زده کړه",
+      "معلومات",
+      "ادبیات",
+      "ساینس",
+      "تاریخ",
+      "جغرافیا",
+      "قاموس",
+      "پوهنغونډ"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Bibliothèque accessible en accès libre."
+    "seoTitle": "د Soliguide سره کتابتونونه ومومئ: مرسته او کتابونه په لاس کې",
+    "seoDescription": "په Soliguide کې کتابتونونه! وړیا کتابونه، انټرنیټ او د کارځای موندنې ورکشاپونه نږدې ومومئ. ستاسو سره مرسته کوو!"
   },
   {
     "categoryId": "other_activities",
     "label": "مختلف فعالیتونه",
     "slug": "activites-diverses",
     "synonyms": [
-      "activites diverses animation divertissement loisir s occuper culture activites enfants loisirs loisir"
+      "مرسته",
+      "فعالیتونه",
+      "خوراکي توکي",
+      "جامې",
+      "سرپناه",
+      "مشوره",
+      "ملاتړ",
+      "لارښوونه",
+      "ټولنیز مرکز",
+      "روغتیا",
+      "کانکورډیا",
+      "ورزش",
+      "کلتور",
+      "تفریح",
+      "تعلیم"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Activités diverses : ateliers, activités culturelles, etc. (précisez.)"
+    "seoTitle": "په Soliguide کې مختلف فعالیتونه ومومئ چې تاسو سره مرسته کوي",
+    "seoDescription": "Soliguide تاسو سره د بیلابیلو فعالیتونو په موندلو کې مرسته کوي، لکه د خوراکي توکو مرسته، د جامو ترلاسه کول، او د ټولنیزو مرکزونو ته لاسرسی. خپل ځای ومومئ!"
   },
   {
     "categoryId": "food",
     "label": "خواړه",
     "slug": "alimentation-bouffe-boufe-manger-soupe-repas-aliment-manger-mange-repa-faim-diner-dejeuner-dejeunet-dine-se-nourrir-fin-portage-portage-de-repas-aide-alimentaire-comida-comer-resto-du-coeur",
     "synonyms": [
-      "alimentation bouffe boufe manger soupe repas aliment manger mange repa faim diner dejeuner dejeunet dine se nourrir fin portage portage de repas aide alimentaire comida comer"
+      "ډوډۍ",
+      "خواړه",
+      "وړیا خواړه",
+      "د خوړو مرسته",
+      "د خوړو بانک",
+      "د ډوډۍ مرکز",
+      "د خوړو بسته",
+      "وړیا ډوډۍ",
+      "س soup kitchen",
+      "رستورانت",
+      "خوراکي توکي",
+      "د خوړو توزیع",
+      "بې وزلي",
+      "لوږه",
+      "تغذي"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "د Soliguide سره وړیا خواړه ومومئ",
+    "seoDescription": "Soliguide تاسو سره مرسته کوي خواړه ومومئ. د خوړو بانکونه، د وړیا ډوډۍ مرستې، او د خوراکي توکو ترلاسه کولو ځایونه ستاسو نږدې دي!"
   },
   {
     "categoryId": "food_distribution",
     "label": "د خواړو ویش",
     "slug": "distribution-repas",
     "synonyms": [
-      "distribution alimentaire distribution de repas manger maraude bouffe soupe nourriture faim repas mange manger fin distribution aide alimentaire restauration assise comida comer"
+      "ډوډۍ",
+      "وچ خواړه",
+      "تازه خواړه",
+      "سبزیجات",
+      "میوه",
+      "د خوراکي توکو کڅوړه",
+      "د خواړو مرسته",
+      "د خواړو بانک",
+      "کانټین",
+      "Restos du Coeur",
+      "سور صلیب",
+      "د ښاروالۍ ټولنیز عمل مرکز",
+      "CCAS",
+      "ویشل",
+      "وېشل"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Point d'arrêt d'une distribution alimentaire. Attention : Veuillez créer une structure par point de distribution."
+    "seoTitle": "د Soliguide سره خواړه ترلاسه کړئ د خواړو ویش",
+    "seoDescription": "Soliguide سره په فرانسه کې وړیا خواړه ومومئ: د خواړو توزیع، د خوراکي توکو مرستې، د خواړو بانکونه! ستاسو نږدې مرسته شتون لري."
   },
   {
     "categoryId": "food_packages",
     "label": "د خوړو کڅوړه",
     "slug": "colis-alimentaire",
     "synonyms": [
-      "colis colis alimentaire manger mange fruits legumes panier repas aide alimentaire panier comida comer"
+      "خواړه",
+      "وړیا خواړه",
+      "د خوړو مرسته",
+      "د خوړو بانک",
+      "بې وزلي",
+      "بې کوره",
+      "د خوراکي توکو کڅوړه",
+      "د خوراکي توکو واوچر",
+      "د خواړو مرکز",
+      "ټیټ عاید",
+      "ټولنیز مرسته",
+      "خیرات",
+      "د خوړو ویش",
+      "وړیا ډوډۍ",
+      "مرسته"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Distribution de colis contenant des denrées alimentaires (conserves, légumes, etc.)."
+    "seoTitle": "د Soliguide سره د خوړو کڅوړه ترلاسه کړئ",
+    "seoDescription": "Soliguide په فرانسه کې د خوراکي توکو مرستې لپاره ځایونه ښیي. وړیا خواړه، د خوراکي توکو کڅوړې، د خوراکي توکو واوچرونه او نور ډیر څه ومومئ. خپل ځای ومومئ!"
   },
   {
     "categoryId": "social_grocery_stores",
     "label": "ټولنیز او پیوستون ګروسري",
     "slug": "epicerie-sociale-solidaire",
     "synonyms": [
-      "epicerie sociale epicerie manger fruits legumes panier repas epicerie solidaire aide alimentaire"
+      "خوراکي توکي",
+      "خواړه",
+      "مړول",
+      "د خوړو مرسته",
+      "د خوړو بانک",
+      "وړیا خواړه",
+      "د خوړو ویش",
+      "سولیوګایډ",
+      "مرسته",
+      "خوراکي بسته",
+      "وړیا ګروسري",
+      "ګروسري ترلاسه کړئ",
+      "د خوراکي توکو ترلاسه کول",
+      "د خوړو د توکو راټولول",
+      "د خوړو لپاره عریضه"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Les épiceries solidaires accueillent les personnes en précarité et leur permettent de faire des courses à prix solidaire."
+    "seoTitle": "په سولیوګایډ کې ټولنیز او پیوستون ګروسري ومومئ",
+    "seoDescription": "سولیوګایډ تاسو سره د خوړو د ترلاسه کولو، وړیا خوړو د تر لاسه کولو، او د خوراکي توکو د بانکونو په موندلو کې مرسته کوي. زموږ د جغرافیایي موقعیت څخه ګټه واخلئ!"
   },
   {
     "categoryId": "fountain",
     "label": "د اوبو فواره",
     "slug": "fontaine",
     "synonyms": [
-      "fontaine boire eau soif robinet potable"
+      "اوبه",
+      "د اوبو فواره",
+      "څښاک",
+      "څښلو ځای",
+      "وړیا اوبه",
+      "د اوبو ډکول",
+      "تنده",
+      "تندې ماتول",
+      "د اوبو موندل",
+      "د اوبو پمپ",
+      "روغتیا",
+      "پاکې اوبه",
+      "اوبه څښل",
+      "د اوبو بوتل ډکول",
+      "د اوبو ځای"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Eau potable en accès libre."
+    "seoTitle": "Soliguide سره د اوبو څښلو ځایونه ومومئ",
+    "seoDescription": "Soliguide تاسو سره مرسته کوي د اوبو څښلو ځایونه ومومئ. په فرانس کې تاسو کولای شئ د اوبو فواره، وړیا اوبه، او د اوبو ډکولو ځایونه ومومئ. ستاسو په سیمه کې!"
   },
   {
     "categoryId": "solidarity_fridge",
     "label": "د پیوستون یخچال",
     "slug": "frigo-solidaire",
     "synonyms": [
-      "manger mange conserver frais bouffe aliment faim frigo frigo solidaire"
+      "د خوراکي توکو بانک",
+      "وړیا خواړه",
+      "بېوزلي",
+      "اړمن",
+      "خواړه",
+      "مساعدت",
+      "مرسته",
+      "سوله ایز ژوند",
+      "هوساینه",
+      "د خوړو مرسته",
+      "بې کوره",
+      "کډوال",
+      "ټولنیز کارکوونکی",
+      "د خوړو بسته",
+      "د خوړو کوپنونه"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Frigo solidaire"
+    "seoTitle": "د Soliguide سره د پیوستون یخچالونه ومومئ - اړو خلکو سره مرسته",
+    "seoDescription": "Soliguide تاسو ته د پیوستون یخچالونه درښيي، چیرې چې تاسو کولی شئ وړیا خواړه ترلاسه کړئ، د خواړو توزیع، او د اړتیا په وخت کې مرسته ومومئ. په فرانسه کې ستاسو په سیمه کې ومومئ!"
   },
   {
     "categoryId": "shared_kitchen",
     "label": "ګډ پخلنځي",
     "slug": "cuisine-partagee",
     "synonyms": [
-      "cuisine cuisiner preparer partage partagee cuisine partagee"
+      "ګډ پخلنځی",
+      "خواړه",
+      "مرسته",
+      "روغتون",
+      "خوراکي توکي",
+      "ملاتړ",
+      "فرانسه",
+      "مرکز",
+      "NGO",
+      "ټولنه",
+      "په ګډه پخلی کول",
+      "ویشل",
+      "خوړل",
+      "پخول",
+      "ځای"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Cuisine partagée "
+    "seoTitle": "د Soliguide سره ګډ پخلنځي ومومئ: ستاسو لپاره خواړه او ملاتړ",
+    "seoDescription": "Soliguide تاسو سره مرسته کوي چې په فرانسه کې ګډ پخلنځي ومومئ. د خواړو ټولګه، وړیا خواړه، او ټولنیز اړیکې. خپل نږدې ځایونه ومومئ!"
   },
   {
     "categoryId": "cooking_workshop",
     "label": "د پخلي ورکشاپ",
     "slug": "atelier-cuisine",
     "synonyms": [
-      "atelier cuisine cuisiner partage preparer atelier cuisine cuire"
+      "ډوډۍ پخول",
+      "کوچ",
+      "لارښود",
+      "خواړه",
+      "خوراک",
+      "سبزیان",
+      "غوښه",
+      "ماهي",
+      "د خوړو زده کړه",
+      "د خوراکي توکو مرسته",
+      "بېوزله",
+      "مهاجر",
+      "سرپناه",
+      "د خوراک مرکز",
+      "د CCAS خواړه"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Atelier de cuisine"
+    "seoTitle": "د Soliguide سره د پخلي ورکشاپ ومومئ",
+    "seoDescription": "د Soliguide سره په فرانسه کې د پخلي ورکشاپونه ومومئ. بېوزله خلکو سره مرسته، وړیا خواړه، او د پخلي لارښوونې ترلاسه کړئ. خپل ځای ته نږدې مرسته ومومئ!"
   },
   {
     "categoryId": "baby_parcel",
     "label": "د ماشوم کڅوړه",
     "slug": "colis-bebe",
     "synonyms": [
-      "bebe nourrir nourisson colis colis bebe puericulture lait couche biberon maternite manger nourriture vetement"
+      "د ماشوم کڅوړه",
+      "ماشوم",
+      "جامې",
+      "اړین توکي",
+      "فرانس",
+      "مرسته",
+      "خيرات",
+      "د ماشومانو مرسته",
+      "د ماشومانو لپاره جامې",
+      "د ماشومانو لپاره خواړه",
+      "ماشوم ته پاملرنه",
+      "د ماشوم پالنه",
+      "بې وزلي",
+      "د ماشومانو بې وزلي",
+      "Soliguide"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Colis pour bébé"
+    "seoTitle": "د Soliguide سره د ماشوم د کڅوړې مرسته ومومئ",
+    "seoDescription": "Soliguide تاسو سره د ماشوم لپاره د کڅوړې، د جامو، او اړینو توکو په موندلو کې مرسته کوي. خپل ځای ومومئ او نږدې مرسته ترلاسه کړئ!"
   },
   {
     "categoryId": "food_voucher",
     "label": "د خوړو واؤچر/چیک",
     "slug": "bon-alimentaire",
     "synonyms": [
-      "bon cheque ticket alimentaire gratuit aide"
+      "خوراکي توکي",
+      "خواړه",
+      "وړیا خواړه",
+      "د خوړو مرسته",
+      "د خوړو مرکز",
+      "ټولنیز خوراکي توکي",
+      "د خوړو بانک",
+      "بېوزله",
+      "مهاجر",
+      "بې ځایه شوي",
+      "وړیا ډوډۍ",
+      "د غرمې ډوډۍ",
+      "ماښام ډوډۍ",
+      "مرسته",
+      "غذایی مرسته"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Distribution de bon/chèque alimentaire"
+    "seoTitle": "د خوړو واؤچر/چیک موندلو لپاره Soliguide کاروئ",
+    "seoDescription": "د Soliguide سره وړیا خواړه، خوراکي توکي یا د خوړو واؤچر/چیک ترلاسه کړئ. د فرانسې په شاوخوا کې د خوړو بانکونه، ټولنیز خوراکي توکي ومومئ. موقعیت پر بنسټ لټون وکړئ!"
   },
   {
     "categoryId": "community_garden",
@@ -290,398 +584,815 @@
     "label": "مشوره",
     "slug": "conseil",
     "synonyms": [
-      "conseil conseils soutien accompagnement aide se faire aider conseiller numerique"
+      "سلامشوره",
+      "وکیل",
+      "حقوق",
+      "روغتیا",
+      "رواني روغتیا",
+      "کورنۍ",
+      "ماشومان",
+      "ښځې",
+      "زورزیاتی",
+      " ټولنیز کارکوونکی",
+      "مرسته",
+      "لارښوونه",
+      "معلومات",
+      "دوسیه",
+      "دفاع"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "په سولګیډ کې وړیا مشوره ومومئ",
+    "seoDescription": "سولګیډ تاسو سره د قانوني مشورې، روغتیايي مشورې او د کورنۍ لپاره د مرستې په ترلاسه کولو کې مرسته کوي. خپل نږدې ځایونه د جغرافیایي موقعیت سره ومومئ!"
   },
   {
     "categoryId": "legal_advice",
     "label": "قانوني دوام",
     "slug": "permanence-juridique",
     "synonyms": [
-      "proces permanence juridique amende avocat droits droit recours juge ldh droits de l homme ligue des droits de l homme acces au droit cnda ofpra asile sejour carte sejour divorce separation"
+      "وکیل",
+      "قانوني مشوره",
+      "قانوني مرسته",
+      "محکمه",
+      "حقوق",
+      "د قانون پوه",
+      "دولت",
+      "وکالت",
+      "مشاور",
+      "معاهده",
+      "مجلس",
+      "قانون",
+      "حق",
+      "عدالت",
+      "دفاع"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences juridiques (surendettement, demande d'asile, procès, etc.)."
+    "seoTitle": "د Soliguide سره قانوني مرستې ته لاسرسی ومومئ",
+    "seoDescription": "Soliguide تاسو ته قانوني مشورې، د قانوني مرستې لپاره لارښوونې، او د وړیا قانوني مشورو موندلو کې مرسته کوي. خپل ځای ومومئ!"
   },
   {
     "categoryId": "social_accompaniment",
     "label": "ټولنیز ملاتړ",
     "slug": "accompagnement-social",
     "synonyms": [
-      "accompagnement assistante sociale social travailleur social droits demarches femmes battues femme battue violence isolement isole solitude isolee partir separation divorce victime"
+      "مرسته",
+      "اجتماعي مرسته",
+      "همکاري",
+      "ملاتړ",
+      "روغتیا پالنه",
+      "خواړه",
+      "استوګنه",
+      "کور",
+      "ډاکټر",
+      "درملنه",
+      "NGO",
+      "جمعیت",
+      "نږدې",
+      "ځای",
+      "وړیا"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Accompagement des personnes dans leur réinsertion (assistantes sociales, permanences, etc.)."
+    "seoTitle": "د Soliguide سره ټولنیز ملاتړ ومومئ",
+    "seoDescription": "Soliguide تاسو سره مرسته کوي! وړیا روغتیا پالنه، خواړه، او د استوګنې موندلو لپاره. د خپل ځای ته نږدې ځایونه وګورئ."
   },
   {
     "categoryId": "disability_advice",
     "label": "د معلولیت مشوره",
     "slug": "conseil-handicap",
     "synonyms": [
-      "conseil handicap handicap aah conseils conseil handicape handicapee personne a mobilite reduite pmr"
+      "معلولیت",
+      "مشوره",
+      "مرسته",
+      "ملاتړ",
+      "حقوق",
+      " ټولنیز خدمتونه",
+      "ګروپ",
+      "سازمان",
+      "اداره",
+      "وړیا",
+      "لاسرسی",
+      "ځای",
+      "د معلولیت قانون",
+      "رواني روغتیا",
+      "جسماني روغتیا"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'accès aux droits pour les personnes en situation de handicap."
+    "seoTitle": "په Soliguide کې د معلولیت د مشورې ترلاسه کړئ",
+    "seoDescription": "په فرانسه کې د Soliguide سره وړیا د معلولیت مشوره، د مرستې ګروپونه، او ځانګړي ټولنیز خدمتونه ومومئ. خپل نږدې ځایونه په نقشه کې وګورئ!"
   },
   {
     "categoryId": "administrative_assistance",
     "label": "اداري شورا",
     "slug": "conseil-administratif",
     "synonyms": [
-      "conseil administratif conseils administratifs aide administrative demarches rsa cmu allocations papiers securite sociale caf cpampapier conseiller numerique"
+      "اداري مرسته",
+      "قانوني مشوره",
+      "ټولنیز خدمتونه",
+      "د قانوني حقونو معلومات",
+      "دوسیه جوړول",
+      "د غوښتنلیک ډکول",
+      "د اداري طرزالعملونه",
+      "د ټولنیزو چارو ریاست",
+      "د ټولنې مرکز",
+      "د حقوقي مرستې مرکز",
+      "وکیل",
+      "مشاور",
+      "معاونت",
+      "معلومات",
+      "لارښوونه"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'aide administrative (RSA, CMU, allocations, chômage, etc.)."
+    "seoTitle": "د سولیوګایډ سره د اداري شورا مرسته ومومئ",
+    "seoDescription": "په فرانسه کې د اداري شورا مرستې ته اړتیا لرئ؟ سولیوګایډ تاسو ته د ټولنیزو خدماتو، د قانوني مشورې او د اداري کړنو په برخه کې لارښوونه کوي. خپل نږدې ځای ومومئ!"
   },
   {
     "categoryId": "parent_assistance",
     "label": "د والدینو لپاره مشوره",
     "slug": "conseil-parents",
     "synonyms": [
-      "conseil parents conseil aux parents conseil parental mediation familiale mediation conflit adolescents enfants parent parentalite parents enfant ado adolescent couple couples"
+      "د ماشومانو ساتنه",
+      "روزنه",
+      "د کورنۍ ملاتړ",
+      "د ماشومانو ښه والی",
+      "د ماشومانو روغتیا",
+      "د ښوونځي ملاتړ",
+      "مشوره ورکول",
+      "ارواپوه",
+      " ټولنیز کارکوونکی",
+      "مرسته",
+      "د کورنۍ ستونزې",
+      "د مور او پلار ستونزې",
+      "د ځوانانو ستونزې",
+      "د کورنۍ منځګړتوب",
+      "د والدینو ملاتړ ډلې"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permances d'aide pour les jeunes parents et les parents rencontrant des difficultés avec leurs enfants."
+    "seoTitle": "د والدینو لپاره په فرانسه کې د Soliguide سره مرسته ومومئ",
+    "seoDescription": "Soliguide تاسو سره مرسته کوي چې د خپلو ماشومانو سره څنګه چلند وکړئ. په فرانسه کې د والدینو مشورې ترلاسه کړئ، د کورنۍ منځګړتوب او د مور او پلار ملاتړ ډلې ومومئ. خپل ځای ومومئ!"
   },
   {
     "categoryId": "budget_advice",
     "label": "د بودیجې مشوره",
     "slug": "conseil-budget",
     "synonyms": [
-      "conseil budget conseil budget argent finance cresus"
+      "د بودیجې پلان",
+      "د پور کمول",
+      "د لګښتونو اداره کول",
+      "مالي مشوره",
+      "وړیا مرسته",
+      "اجتماعي مرکز",
+      "د ټولنیزو کارکوونکو سره لیدنه",
+      "د بودیجې زده کړه",
+      "د مالي ستونزو حل",
+      "د کورنۍ لپاره مرسته",
+      "د بودیجې جوړول",
+      "د سپما لپاره لارښوونې",
+      "د مالي بحران سره مقابله",
+      "د لګښتونو کمول",
+      "د پور ورکولو لارې"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Points conseil budget (PCB) proposent des conseils gratuits et personnalisés de gestion budgétaire "
+    "seoTitle": "Soliguide سره د بودیجې مشورې لپاره مرسته ومومئ",
+    "seoDescription": "Soliguide تاسو سره د بودیجې مشورې، د پور کمولو او د لګښتونو پلان کولو کې مرسته کوي. د فرانسې په شاوخوا کې مرسته ومومئ!"
   },
   {
     "categoryId": "training_and_jobs",
     "label": "روزنه او کارموندنه",
     "slug": "formation-emploi",
     "synonyms": [
-      "formation emploi travailler job travail boulot se former taf taff taffe apprendre lire etudier comprendre france travail pole emploi conseiller numerique"
+      "روزنه",
+      "کاري فرصت",
+      "د دندې لټون",
+      "دندې",
+      "مرکه",
+      "غوښتنلیک",
+      "CV",
+      "حرفه",
+      "مسلک",
+      "د کار بازار",
+      "د کارموندنې مرکز",
+      "د مسلک مشوره",
+      "د مسلک روزنه",
+      "د کار زده کړه",
+      "د کار ګمارنې"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "په Soliguide کې د روزنې او کارموندنې لارې ومومئ",
+    "seoDescription": "Soliguide تاسو سره په فرانسه کې د روزنې موندلو، د دندو لپاره غوښتنلیک ډکولو او د مرکې لپاره چمتو کولو کې مرسته کوي. نږدې مرسته ومومئ!"
   },
   {
     "categoryId": "digital_tools_training",
     "label": "ډیجیټل ورکشاپ",
     "slug": "formation-numerique",
     "synonyms": [
-      "formation numerique atelier numerique formation informatique ordinateur connexion se former technologie tech apprendre comprendre lire etudier conseiller numerique"
+      "ډیجیټل",
+      "کمپیوټر",
+      "انټرنیټ",
+      "روزنه",
+      "ورکشاپ",
+      "مهارتونه",
+      "آنلاین",
+      "ایډیټ",
+      "کاریګري",
+      "وړیا",
+      "ګرځنده",
+      "ټابلیټ",
+      "شبکه",
+      "ارتباط",
+      "معلومات"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences ou ateliers visant à la maitrise d'outils informatiques."
+    "seoTitle": "د سولګیډ سره ډیجیټل ورکشاپ ومومئ د مرستې لپاره",
+    "seoDescription": "سولګیډ تاسو سره د ډیجیټل ورکشاپ موندلو کې مرسته کوي. د انټرنیټ لاسرسی, د کمپیوټر کارول او ډیجیټل روزنه ترلاسه کړئ. خپل نږدې ځای ومومئ!"
   },
   {
     "categoryId": "job_coaching",
     "label": "د کارموندنې لپاره ملاتړ",
     "slug": "accompagnement-emploi",
     "synonyms": [
-      "accompagnement emploi travailler job pole emploi travail boulot se former etre accompagne taf taff taffe apprendre comprendre lire etudier france travail orientation"
+      "د کار لټون",
+      "روزنه",
+      "CV",
+      "مرکه",
+      "د دندو وړاندیزونه",
+      "د کار دفتر",
+      "د کار ګمارنې مرکز",
+      "د مسلک لارښود",
+      "د کار موندنې مشاور",
+      "د کار مهارتونه",
+      "د کار بازار",
+      "د انټرنشپ فرصتونه",
+      "د کار تړون",
+      "د کار امتیازات",
+      "بې روزګاري"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Aide au retour à l'emploi : ateliers de préparation aux entretiens, aide à la recherche d'emploi, atelier CV, etc."
+    "seoTitle": "په Soliguide کې د کارموندنې لپاره مرسته ومومئ",
+    "seoDescription": "Soliguide تاسو سره په فرانسه کې د کار موندلو کې مرسته کوي! د کار په لټه کې روزنه، د CV لیکلو مرسته، او د مرکې لپاره چمتووالی ومومئ. خپل ځای ومومئ!"
   },
   {
     "categoryId": "integration_through_economic_activity",
     "label": "د اقتصادي فعالیتونو له لارې ادغام",
     "slug": "insertion-activite-economique",
     "synonyms": [
-      "chantier de reinsertion chantier reinsertion travailler job insertion reinsertion siae iae se reinserer taf taff taffe apprendre comprendre lire etudier orientation"
+      "دندې",
+      "روزنه",
+      "کاروبار",
+      "د کار پیدا کول",
+      "د مهارتونو زده کړه",
+      "مالي مرسته",
+      "مشوره",
+      "لارښوونه",
+      "د بیا پیلولو لیکل",
+      "مرکه",
+      "د کار بازار",
+      "د انټرنیټ لاسرسی",
+      "کمپیوټر",
+      "دفتر"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Embauche de personnes en insertion."
+    "seoTitle": "Soliguide سره د اقتصادي فعالیتونو له لارې ادغام لپاره لارې ومومئ",
+    "seoDescription": "Soliguide تاسو سره مرسته کوي د کار موندلو، د روزنې کورسونو، او د خپل کاروبار پیل کولو کې. نږدې د مرستې ځایونه ومومئ!"
   },
   {
     "categoryId": "tutoring",
     "label": "ښوونه",
     "slug": "soutien-scolaire",
     "synonyms": [
-      "soutien scolaire aide au devoir etudes college lycee devoirs cours apprendre comprendre lire etudier"
+      "زده کړه",
+      "ښوونځی",
+      "درس",
+      "ښوونکی",
+      "کتاب",
+      "قلم",
+      "سواد",
+      "ژبه",
+      "روزنه",
+      "مهارت",
+      "ديپلوم",
+      "مسلک",
+      "د سواد زده کړې مرکز",
+      "وړیا زده کړه",
+      "د ژبې ټولګي"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Soutien scolaire gratuit (préciser le niveau dans la description)."
+    "seoTitle": "د سولىګايد په مرسته وړیا زده کړه ومومئ - ښوونه",
+    "seoDescription": "د سولىګايد سره وړیا ښوونه ترلاسه کړئ! د مثال په توګه، په فرانس کې د سواد زده کړې ټولګي، د ژبې زده کړې مرسته او د مسلکي روزنې فرصتونه ومومئ. تاسو ته نږدې د حل لارې ومومئ!"
   },
   {
     "categoryId": "accomodation_and_housing",
     "label": "د استوګنې او استوګنې ځای",
     "slug": "hebergement-et-logement",
     "synonyms": [
-      "hebergement dormir lit logement repos toit hebergement logement logement hebergement et logement hebergementetlogement domir"
+      "سرپناه",
+      "استوګنه",
+      "کور",
+      "ځای",
+      "خوندي ځای",
+      "عارضي استوګنه",
+      "د شپې لپاره ځای",
+      "د بې کوره خلکو لپاره ځای",
+      "د استوګنې مرسته",
+      "د ټولنیز مرستې مرکز",
+      "CCAS",
+      "د استوګنې حق",
+      "د استوګنې موندل",
+      "د استوګنې لګښت",
+      "د استوګنې ستونزه"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "د استوګنې او استوګنې ځای موندلو لپاره Soliguide ستاسو سره مرسته کوي",
+    "seoDescription": "Soliguide په فرانسه کې تاسو سره د استوګنې په برخه کې مرسته کوي. د استوګنې عارضي ځای، د CCAS سره د مرستې غوښتنه، او د سرپناه موندلو لپاره لارښوونې ومومئ. جغرافیایی ځای پر بنسټ لټون وکړئ!"
   },
   {
     "categoryId": "overnight_stop",
     "label": "د شپې بند",
     "slug": "halte-nuit",
     "synonyms": [
-      "halte de nuit halte nuit dormir se reposer alte de nui accueil nuit accueil de nuit accueil nuit"
+      "د شپې بند",
+      "سرپناه",
+      "عاجل هستوګنه",
+      "بې کوره",
+      "خوب کول",
+      "د شپې ځای",
+      "استقبال",
+      "ژمی",
+      "ګرم ځای",
+      "سرپناه مرکز",
+      "اجتماعي مرسته",
+      "ویده کیدل",
+      "ځای",
+      "کور نلرل",
+      "د ټولنیزو خدمتونو"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "La halte de nuit est un lieu d'accueil et de repos pour les personnes sans abri ouvert de 20h à 8h du matin, 7/7 jours."
+    "seoTitle": "د شپې بند لپاره مرسته په Soliguide کې ومومئ",
+    "seoDescription": "Soliguide سره د شپې سرپناه، د عاجلې هستوګنې او وړیا استقبال ومومئ. خپل موقعیت ته نږدې مرسته ومومئ!"
   },
   {
     "categoryId": "emergency_accommodation",
     "label": "بیړنی استوګنځی",
     "slug": "hebergement-urgence",
     "synonyms": [
-      "hebergement urgence dormir lit logement chu halte de nuit toit a la rue rue dehors accueil de nuit accueil nuit accueil nuit"
+      "ژرندګی",
+      "ژرندګی مرکز",
+      "ویده کیدل",
+      "بې کوره",
+      "د لارې خلک",
+      "د شپې تېرول",
+      "اضطراري حالت",
+      "خوندي ځای",
+      "د ښځو لپاره ځای",
+      "کورنۍ تاوتریخوالی",
+      "مرسته",
+      "حل لارې",
+      "ژرندګی ځای",
+      "لنډمهاله استوګنه",
+      "د ټولنیزو خدماتو کارکونکی"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Hébergement à court terme (à la nuitée), accessible directement."
+    "seoTitle": "په Soliguide کې د بیړنی استوګنځی لپاره مرسته ومومئ",
+    "seoDescription": "Soliguide تاسو سره د بیړنی استوګنځی په موندلو کې مرسته کوي: لنډمهاله هستوګنځی، د شپې هستوګنځی، د ښځو لپاره خوندي ځایونه. په فرانسه کې د خپل ځای په شاوخوا کې مرسته ومومئ."
   },
   {
     "categoryId": "long_term_accomodation",
     "label": "د اوږدې مودې استوګنځي",
     "slug": "hebergement-long-terme",
     "synonyms": [
-      "hebergement dormir lit logement chrs repos toit"
+      "اوږدمهاله کور",
+      "سرپناه",
+      "استوګنځی",
+      "د هستوګنې مرسته",
+      "CCAS",
+      "ټولنیز کور",
+      "وړیا کور",
+      "ارزانه کور",
+      "د بې کوره خلکو لپاره کور",
+      "د مهاجرینو لپاره کور",
+      "د ښځو لپاره کور",
+      "د کورنۍ لپاره کور",
+      "د بیړنیو حالاتو کور",
+      "د ټولنیزو چارو کارکوونکی",
+      "د هستوګنې ټولنه"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Possibilité d'hébergement à long terme, au sein de la structure ou d'une structure partenaire. Indiquer dans la description les modalités d'accès."
+    "seoTitle": "د اوږدې مودې استوګنځي په اړه د Soliguide لارښود ومومئ",
+    "seoDescription": "Soliguide تاسو سره د اوږدې مودې استوګنځي په موندلو کې مرسته کوي. په فرانسه کې د CCAS، د هستوګنې ټولنې، او د مهاجرینو لپاره ځایونه ومومئ. خپل ځای معلوم کړئ!"
   },
   {
     "categoryId": "citizen_housing",
     "label": "د اتباعو استوګنځی",
     "slug": "hebergement-citoyen",
     "synonyms": [
-      "hebergement hebergement citoyen merci pour l invit singa"
+      "استوګنځی",
+      "کور",
+      "سرپناه",
+      "د اوسېدو ځای",
+      "کور پیدا کول",
+      "د کورنۍ لپاره ځای",
+      "بې کوره",
+      "بې سرپناه",
+      "د بې کوره خلکو لپاره مرسته",
+      "ژمی",
+      "د ژمي سرپناه",
+      "اداري مرسته",
+      "حقوقي مشوره",
+      "قانوني مرسته",
+      "CCAS"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "د Soliguide سره د اتباعو د استوګنځي په اړه مرسته ومومئ",
+    "seoDescription": "Soliguide تاسو سره د اتباعو د استوګنځي موندلو کې مرسته کوي! وړیا کورونه، اداري ملاتړ، او د قانوني مشورو لپاره ځایونه. نږدې ځایونه ومومئ!"
   },
   {
     "categoryId": "access_to_housing",
     "label": "د کور جوړولو مشوره",
     "slug": "conseil-logement",
     "synonyms": [
-      "hebergement dalo logement expulsion toit maison impayes factures chauffage conseil conseil logement"
+      "کور جوړول",
+      "کور",
+      "مشوره",
+      "مرسته",
+      "کور جوړولو مرسته",
+      "د کور پیسې",
+      "د کور جوړولو پروژې",
+      "حقونه",
+      "کرایه",
+      "د کرایې مرسته",
+      "د کور پور",
+      "د کور پور مرسته",
+      "د کور لپاره حل لارې",
+      "CCAS",
+      "کور جوړولو ټولنه"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'accès au logement (logement social, DALO, etc.)."
+    "seoTitle": "د Soliguide سره د کور جوړولو مشوره ومومئ",
+    "seoDescription": "Soliguide تاسو سره د کور جوړولو مشوره کې مرسته کوي. د کور لپاره د مرستې غوښتنه وکړئ، د کور جوړولو پروژې لپاره مالي مرستې ترلاسه کړئ، او په ټول fr کې خپل حقونه وپیژنئ."
   },
   {
     "categoryId": "hygiene_and_wellness",
     "label": "حفظ الصحه او هوساینه",
     "slug": "hygiene",
     "synonyms": [
-      "hygiene laver douche bain se laver se doucher propre"
+      "روغتیا",
+      "درملنه",
+      "ډاکټر",
+      "روغتون",
+      "درمل",
+      "صحي مشوره",
+      "د غاښونو ډاکټر",
+      "د سترګو ډاکټر",
+      "د رواني روغتیا مرسته",
+      "د نشې درملنه",
+      "روغتیایی مرکز",
+      "د روغتیا بیمه",
+      "اجتماعي روغتیا",
+      "مساعدت طبی",
+      "د روغتیا معاینه"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "د روغتیا ساتنه او هوساینه په Soliguide کې ومومئ",
+    "seoDescription": "په Soliguide کې وړیا ډاکټر، د غاښونو ډاکټر او ټولې روغتیایي مرستې ومومئ. د روغتیا مرکزونه او ټولنیز مرستې ستاسو په سیمه کې."
   },
   {
     "categoryId": "shower",
     "label": "شاور",
     "slug": "douche",
     "synonyms": [
-      "douche laver se laver bain bain douche piscine propre sale cheveux"
+      "تشناب",
+      "پاکوالی",
+      "حمام",
+      "د بدن مینځل",
+      "وړیا شاور",
+      "د لاس مینځل",
+      "د جامو مینځلو ځای",
+      "صابون",
+      "شیمپو",
+      "تولیه",
+      "ګرمې اوبه",
+      "حفظ الصحه",
+      "د حفظ الصحې کڅوړه",
+      "سرپناه",
+      "اجباري شاور"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "په Soliguide کې د شاور کولو ځایونه ومومئ",
+    "seoDescription": "Soliguide تاسو سره مرسته کوي چې د شاور کولو ځایونه، د جامو مینځلو ځایونه او د حفظ الصحې محصولات په فرانسه کې ومومئ. خپل موقعیت ته نږدې مرسته ومومئ!"
   },
   {
     "categoryId": "hairdresser",
     "label": "د ویښتانو پلورونکی",
     "slug": "coiffeur",
     "synonyms": [
-      "coiffeur cheveux"
+      "وېښتان",
+      "وېښتان مینځل",
+      "وېښتان جوړول",
+      "وېښتان رنګول",
+      "وېښتان پرې کول",
+      "ښکلا",
+      "ښکلا مرکز",
+      "ځان پالنه",
+      "مفت",
+      "وړیا",
+      "د ښځو لپاره",
+      "نارینه وو لپاره",
+      "ځوانان",
+      "ماشومان",
+      "معلولیت"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "د Soliguide سره وړیا ویښتانو پلورونکی ومومئ",
+    "seoDescription": "Soliguide تاسو سره مرسته کوي چې په فرانسه کې د ویښتانو پلورونکی ومومئ. د ویښتو وړیا مینځل، د ویښتو وړیا پرې کول او د ویښتو د پاملرنې نورو وړیا خدماتو ته لاسرسی ومومئ. په نږدې ځای کې یې ومومئ!"
   },
   {
     "categoryId": "laundry",
     "label": "لانډرومیټ",
     "slug": "laverie",
     "synonyms": [
-      "laverie vetements vetement laver machine a laver pressing linge lave linge"
+      "جامې مینځل",
+      "مینځل",
+      "وچول",
+      "د مینځلو ماشین",
+      "وچونکی",
+      "مینځلو ځای",
+      "مینځل وچول",
+      "ځانګړی ځای",
+      "سیمه ایز ځای",
+      "وړیا مینځل",
+      "ارزانه مینځل",
+      "د جامو پاکول",
+      "د مینځلو صابون",
+      "د مینځلو پوډر",
+      "اتوماتیک مینځل"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Lave-linge en accès libre."
+    "seoTitle": "د Soliguide سره د ځانګړي جامو مینځلو ځایونه ومومئ",
+    "seoDescription": "Soliguide تاسو ته د جامو مینځلو ځایونه، د مینځلو ماشینونه، او وچونکي وړاندې کوي. د خپل اوسېدو ځای ته نږدې مرسته ومومئ! په فرانسه کې د لاسرسي وړ مرستې ومومئ."
   },
   {
     "categoryId": "wellness",
     "label": "هوساینه",
     "slug": "bien-etre",
     "synonyms": [
-      "bien etre coiffeur massage maquillage belle beau pedicure manicure manucire"
+      "کور",
+      "کوربه",
+      "سرپناه",
+      "مرسته",
+      "ملاتړ",
+      "ډاډ",
+      "غور",
+      "محبت",
+      "هوساینه",
+      "خوشحاله اوسیدل",
+      "ښه ژوند",
+      "د ژوند ښه والی",
+      "خوندیتوب",
+      "امنیت",
+      "ارامتیا"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Ateliers de bien-être : coiffeur, massage, sophrologie, etc. (à préciser dans la description)."
+    "seoTitle": "د سولیوګاید سره هوساینه ومومئ - تاسو یوازې نه یاست!",
+    "seoDescription": "د سولیوګاید په مرسته په فرانسه کې د هوساینې ځایونه ومومئ! بېلګې: وړیا مشوره، د استراحت ځای، او ټولنیز فعالیتونه. تاسو ته نږدې ځایونه ومومئ!"
   },
   {
     "categoryId": "toilets",
     "label": "تشناب",
     "slug": "toilettes",
     "synonyms": [
-      "toilettes sanisette pisser pipi wc caca chiotte toilet"
+      "تشناب",
+      "تشنابونه",
+      "دستشویی",
+      "مرحاض",
+      "بیت الخلا",
+      "پاکوالی",
+      "نظافت",
+      "ځایونه",
+      "موقعیت",
+      "ښار",
+      "کلی",
+      "وړیا",
+      "عامه",
+      "مرسته",
+      "ضرورت"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Toilettes en accès libre."
+    "seoTitle": "په Soliguide کې تشناب ومومئ: ستاسو لپاره اسانه لارښود",
+    "seoDescription": "Soliguide تاسو سره مرسته کوي تشنابونه ومومئ. د عامه تشنابونو، وړیا تشنابونو او شخصي تشنابونو په اړه معلومات ومومئ. خپل ځای ومومئ!"
   },
   {
     "categoryId": "hygiene_products",
     "label": "د پاملرنې محصولات",
     "slug": "produits-hygiene",
     "synonyms": [
-      "periodiques protections periodiques protection periodique regles regle tampon serviette hygienique serviette menstrues produits d hygiene hygiene cup culotte tampax"
+      "روغتیا",
+      "درملنه",
+      "طبي مشوره",
+      "د درملو مرسته",
+      "نرسنګ",
+      "د غاښونو ډاکټر",
+      "رواني روغتیا",
+      "فزیکي درملنه",
+      "د سترګو لید",
+      "واکسین",
+      "د روغتیا مرکز",
+      "کلینیک",
+      "د روغتون بیړنۍ څانګه",
+      "د مخنیوي پاملرنه",
+      "د مور او ماشوم پاملرنه"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Distribution de produits d'hygiène (savons, dentifrice, tampons, serviettes hygiéniques, etc.)."
+    "seoTitle": "د Soliguide سره وړیا د پاملرنې محصولات ومومئ",
+    "seoDescription": "Soliguide تاسو سره د وړیا طبي مشورې، د درملو مرستې او د نرسنګ پاملرنې موندلو کې مرسته کوي. خپل ځای معلوم کړئ!"
   },
   {
     "categoryId": "face_masks",
     "label": "ماسکونه",
     "slug": "masques",
     "synonyms": [
-      "masque protection covid virus"
+      "ډاکټر",
+      "درملتون",
+      "روغتیا",
+      "مداوا",
+      "ویکسین",
+      "د غاښونو ډاکټر",
+      "اروايي روغتیا",
+      "کلینیک",
+      "روغتون",
+      "د سترګو ډاکټر",
+      "درمل",
+      "نسواري",
+      "بیمار",
+      "روغتیایی بیمه",
+      "مایکروب"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Masques de protection"
+    "seoTitle": "په سولګیډ کې ماسکونه ومومئ او روغ اوسئ",
+    "seoDescription": "سولګیډ تاسو سره د وړیا ډاکټرانو، درملتونونو، او د روغتیا مرکزونو په موندلو کې مرسته کوي. جغرافیایی موقعیت وګورئ!"
   },
   {
     "categoryId": "equipment",
     "label": "تجهیزات",
     "slug": "materiel",
     "synonyms": [
-      "materiel affaires mobilier"
+      "جامې",
+      "بوټان",
+      "کمبل",
+      "خیمه",
+      "د خوب کڅوړه",
+      "فرنیچر",
+      "د پخلنځي سامان",
+      "د ماشومانو جامې",
+      "د ماشومانو بوټان",
+      "د ماشومانو سامان",
+      "بایسکل",
+      "ویلچیر",
+      "واکر",
+      "عصا",
+      "د غوږ اوریدلو ماشین"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "د سولیګایډ سره تجهیزات ومومئ، په فرانس کې ستاسو لپاره مرسته",
+    "seoDescription": "سولیګایډ تاسو سره مرسته کوي چې تجهیزات ترلاسه کړئ. د بېلګې په توګه: جامې، بوټان، د ماشومانو لپاره شیان. خپل ځای ومومئ او مرسته ترلاسه کړئ!"
   },
   {
     "categoryId": "luggage_storage",
     "label": "د سامان ذخیره کول",
     "slug": "bagagerie",
     "synonyms": [
-      "bagage bagagerie sac poser casier"
+      "د سامان ذخیره کول",
+      "د بوجیو ساتنه",
+      "د شخصي شیانو ساتنه",
+      "ذخیره کولو ځای",
+      "وړیا ذخیره کول",
+      "ارزانه ذخیره کول",
+      "د بې کوره خلکو لپاره ذخیره کول",
+      "د مهاجرینو لپاره ذخیره کول",
+      "د جامو ذخیره کول",
+      "د خوراکي توکو ذخیره کول",
+      "د اسنادو ذخیره کول",
+      "د موقتي ذخیره کولو ځای",
+      "د مرستې سازمان",
+      "ټولنیز مرکز",
+      "خيريه بنسټ"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Lieu permettant de conserver des bagages ou matériel."
+    "seoTitle": "د Soliguide سره د سامان د ذخیره کولو مرسته ومومئ",
+    "seoDescription": "د Soliguide سره په فرانسه کې د سامانونو ذخیره کولو لپاره ځایونه ومومئ. د مثال په توګه د خیریه موسسو، ټولنیزو مرکزونو او نورو ځایونو څخه مرسته ترلاسه کړئ. نږدې ځایونه ومومئ!"
   },
   {
     "categoryId": "solidarity_store",
     "label": "د پیوستون هټۍ",
     "slug": "boutique-solidaire",
     "synonyms": [
-      "boutique solidaire meubles accessoires s habiller"
+      "وړیا جامې",
+      "جامې ورکول",
+      "ښه جامې",
+      "د کار لټون",
+      "د کار روزنه",
+      "اجتماعي مرکز",
+      "CCAS",
+      "خوراکي مرسته",
+      "وړیا خواړه",
+      "د اړتیا وړ خلکو سره مرسته",
+      "بې وزله خلک",
+      "کوچنيان",
+      "کورنۍ",
+      "د کار لپاره جامې",
+      "د بیا کار ځای"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Boutique vendant du matériel à prix solidaire."
+    "seoTitle": "د سولګایډ سره د پیوستون هټۍ ومومئ - تاسو یوازې نه یاست",
+    "seoDescription": "سولګایډ تاسو سره د پیوستون هټۍ موندلو کې مرسته کوي. وړیا جامې، د خوړو مرسته، او د کار موندنې کې مرسته ومومئ. ستاسو نږدې مرسته ومومئ!"
   },
   {
     "categoryId": "clothing",
     "label": "جامې",
     "slug": "vetements",
     "synonyms": [
-      "vestiaire vetements t shirt pantalon robe vetir vestiboutique pull manteau habit s habiller"
+      "جامې",
+      "کالي",
+      "لباس",
+      "پوښاک",
+      "د کارول شویو جامو پلورنځی",
+      "وړیا جامې",
+      "د جامو مرسته",
+      "ژمني جامې",
+      "اوړي جامې",
+      "ماشومانو جامې",
+      "د ښځو جامې",
+      "د نارینه وو جامې",
+      "د اړتیا وړ جامې",
+      "د جامو بانک",
+      "د خیریه جامو پلورنځی"
     ],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Vêtements gratuits ou à prix symbolique. Préciser le sexe et/ou l'âge dans les conditions."
+    "seoTitle": "د Soliguide سره جامې ومومئ - ستاسو لپاره مرسته",
+    "seoDescription": "د Soliguide سره په فرانسه کې جامې ومومئ! وړیا جامې، د کارول شویو جامو پلورنځي، د اړتیا وړ خلکو لپاره د جامو مرستې - ټول نږدې!"
   },
   {
     "categoryId": "animal_assitance",
     "label": "حیوانات",
     "slug": "animaux",
-    "synonyms": [
-      "animaux animals chien chat croquettes animal"
-    ],
+    "synonyms": ["animaux animals chien chat croquettes animal"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -796,9 +1507,7 @@
     "categoryId": "vaccination",
     "label": "واکسین کول",
     "slug": "vaccination",
-    "synonyms": [
-      "vaccination vaccin covid piqure rappel rappel de vaccin"
-    ],
+    "synonyms": ["vaccination vaccin covid piqure rappel rappel de vaccin"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -835,9 +1544,7 @@
     "categoryId": "health_specialists",
     "label": "متخصصین",
     "slug": "specialistes-medecine",
-    "synonyms": [
-      "specialistes specialiste"
-    ],
+    "synonyms": ["specialistes specialiste"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -848,9 +1555,7 @@
     "categoryId": "allergology",
     "label": "الرجولوژي",
     "slug": "allergologie",
-    "synonyms": [
-      "allergologie allergies"
-    ],
+    "synonyms": ["allergologie allergies"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -861,9 +1566,7 @@
     "categoryId": "cardiology",
     "label": "د زړه ناروغۍ",
     "slug": "cardiologie",
-    "synonyms": [
-      "cardiologie coeur cardiaque cardio"
-    ],
+    "synonyms": ["cardiologie coeur cardiaque cardio"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -874,9 +1577,7 @@
     "categoryId": "dermatology",
     "label": "د ډرماتولوژي",
     "slug": "dermatologie",
-    "synonyms": [
-      "dermato dermatologie dermatologue peau bouton"
-    ],
+    "synonyms": ["dermato dermatologie dermatologue peau bouton"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -887,9 +1588,7 @@
     "categoryId": "echography",
     "label": "الټراساؤنډ",
     "slug": "echographie",
-    "synonyms": [
-      "echographie bebe enceinte"
-    ],
+    "synonyms": ["echographie bebe enceinte"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -900,9 +1599,7 @@
     "categoryId": "endocrinology",
     "label": "Endocrinology",
     "slug": "endocrinologie",
-    "synonyms": [
-      "endocrinologie hormones tyroide"
-    ],
+    "synonyms": ["endocrinologie hormones tyroide"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -913,9 +1610,7 @@
     "categoryId": "gastroenterology",
     "label": "معدې",
     "slug": "gastro-enterologie",
-    "synonyms": [
-      "gastro enterologue gastro enterologie kk caca"
-    ],
+    "synonyms": ["gastro enterologue gastro enterologie kk caca"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -939,9 +1634,7 @@
     "categoryId": "kinesitherapy",
     "label": "فزیوتراپي",
     "slug": "kinesitherapie",
-    "synonyms": [
-      "kinesitherapie reeducation blessure kine"
-    ],
+    "synonyms": ["kinesitherapie reeducation blessure kine"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -952,9 +1645,7 @@
     "categoryId": "mammography",
     "label": "میموګرافي",
     "slug": "mammographie",
-    "synonyms": [
-      "mammographie radio seins"
-    ],
+    "synonyms": ["mammographie radio seins"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -965,9 +1656,7 @@
     "categoryId": "ophthalmology",
     "label": "د سترګو پوهه",
     "slug": "ophtalmologie",
-    "synonyms": [
-      "ophtalmologie ophtalmologue yeux voir lunette"
-    ],
+    "synonyms": ["ophtalmologie ophtalmologue yeux voir lunette"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -991,9 +1680,7 @@
     "categoryId": "nutrition",
     "label": "تغذیه",
     "slug": "nutrition",
-    "synonyms": [
-      "nutrition dietetique regime surpoids obesite perte de poids"
-    ],
+    "synonyms": ["nutrition dietetique regime surpoids obesite perte de poids"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -1004,9 +1691,7 @@
     "categoryId": "pedicure",
     "label": "پیډیکیور",
     "slug": "pedicure",
-    "synonyms": [
-      "pedicure pied pie soigner pieds soin podologue podologie"
-    ],
+    "synonyms": ["pedicure pied pie soigner pieds soin podologue podologie"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -1030,9 +1715,7 @@
     "categoryId": "pneumology",
     "label": "پلمونولوژي",
     "slug": "pneumologie",
-    "synonyms": [
-      "poumons respiration respirer bronches"
-    ],
+    "synonyms": ["poumons respiration respirer bronches"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -1043,9 +1726,7 @@
     "categoryId": "radiology",
     "label": "رادیولوژی",
     "slug": "radiologie",
-    "synonyms": [
-      "radiologie radiologue radiology rayonx fracture entorse"
-    ],
+    "synonyms": ["radiologie radiologue radiology rayonx fracture entorse"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -1056,9 +1737,7 @@
     "categoryId": "rheumatology",
     "label": "روماتولوژي",
     "slug": "rhumatologie",
-    "synonyms": [
-      "rhumatologue rumatologie"
-    ],
+    "synonyms": ["rhumatologue rumatologie"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -1069,9 +1748,7 @@
     "categoryId": "urology",
     "label": "یورولوژي",
     "slug": "urologie",
-    "synonyms": [
-      "urologie urology"
-    ],
+    "synonyms": ["urologie urology"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -1095,9 +1772,7 @@
     "categoryId": "stomatology",
     "label": "ستوماتولوژي",
     "slug": "stomatologie",
-    "synonyms": [
-      "stomatologie stomatologue estomac digestion ventre"
-    ],
+    "synonyms": ["stomatologie stomatologue estomac digestion ventre"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -1108,9 +1783,7 @@
     "categoryId": "osteopathy",
     "label": "اوستیوپیت",
     "slug": "osteo",
-    "synonyms": [
-      "ostheopathe osteo dos mal"
-    ],
+    "synonyms": ["ostheopathe osteo dos mal"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -1121,9 +1794,7 @@
     "categoryId": "acupuncture",
     "label": "اکوپنکچر",
     "slug": "acupuncture",
-    "synonyms": [
-      "acupuncture accupuncture bien etre"
-    ],
+    "synonyms": ["acupuncture accupuncture bien etre"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -1160,9 +1831,7 @@
     "categoryId": "wifi",
     "label": "بېسیم",
     "slug": "wifi",
-    "synonyms": [
-      "wifi internet web connexion reseau"
-    ],
+    "synonyms": ["wifi internet web connexion reseau"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -1173,9 +1842,7 @@
     "categoryId": "electrical_outlets_available",
     "label": "ساکټ",
     "slug": "prise",
-    "synonyms": [
-      "prise charger electricite chargeur recharge charge"
-    ],
+    "synonyms": ["prise charger electricite chargeur recharge charge"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -1186,9 +1853,7 @@
     "categoryId": "telephone_at_your_disposal",
     "label": "ټیلیفون",
     "slug": "telephone",
-    "synonyms": [
-      "appel gratuit telephone telephoner appeler appel"
-    ],
+    "synonyms": ["appel gratuit telephone telephoner appeler appel"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -1225,9 +1890,7 @@
     "categoryId": "carpooling",
     "label": "کارپول",
     "slug": "covoiturage",
-    "synonyms": [
-      "co voiturage partage de voiture"
-    ],
+    "synonyms": ["co voiturage partage de voiture"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -1238,9 +1901,7 @@
     "categoryId": "provision_of_vehicles",
     "label": "د وسایطو چمتو کول",
     "slug": "vehicule",
-    "synonyms": [
-      "mise a disposition de vehicule voiture"
-    ],
+    "synonyms": ["mise a disposition de vehicule voiture"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -1251,9 +1912,7 @@
     "categoryId": "chauffeur_driven_transport",
     "label": "د موټر چلوونکي سره ترانسپورت",
     "slug": "chauffeur",
-    "synonyms": [
-      "transport avec chauffeur chauffeur transport a la demande"
-    ],
+    "synonyms": ["transport avec chauffeur chauffeur transport a la demande"],
     "type": "CATEGORY",
     "lang": "ps",
     "country": "fr",
@@ -1422,11 +2081,7 @@
     "categoryId": null,
     "label": "France Services: guichet unique de services publics",
     "slug": "france-services",
-    "synonyms": [
-      "france service",
-      "maison france services",
-      "MFS"
-    ],
+    "synonyms": ["france service", "maison france services", "MFS"],
     "type": "ORGANIZATION",
     "lang": "ps",
     "country": "fr",
@@ -1437,11 +2092,7 @@
     "categoryId": null,
     "label": "CIMADE: service œcuménique d'entraide",
     "slug": "cimade",
-    "synonyms": [
-      "la cimade",
-      "CIMADE",
-      "service œcuménique d'entraide"
-    ],
+    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
     "type": "ORGANIZATION",
     "lang": "ps",
     "country": "fr",
@@ -1647,11 +2298,7 @@
     "categoryId": null,
     "label": "Centre socioculturel: structure d'animation et de lien social",
     "slug": "centre-socioculturel",
-    "synonyms": [
-      "centre socio culturel",
-      "csc",
-      "centre social"
-    ],
+    "synonyms": ["centre socio culturel", "csc", "centre social"],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "ps",
     "country": "fr",

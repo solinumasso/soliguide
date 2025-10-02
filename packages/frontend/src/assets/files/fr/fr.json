@@ -4,689 +4,1430 @@
     "label": "Accueil",
     "slug": "accueil",
     "synonyms": [
-      "accueil cafe repos acceuil parler acueil accueil femme accueil femmes acueil femme violence harcelement partir"
+      "orientation",
+      "information",
+      "écoute",
+      "soutien",
+      "première nécessité",
+      "accompagnement",
+      "orientation sociale",
+      "premiers soins",
+      "point d'eau",
+      "douche",
+      "relais",
+      "permanence",
+      "espace d'accueil",
+      "café social",
+      "lien social"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Besoin d'aide ? Soliguide vous oriente vers l'accueil",
+    "seoDescription": "Soliguide vous aide ! Trouvez un endroit pour vous reposer, prendre une douche, ou simplement discuter. Géolocalisez l'aide près de vous !"
   },
   {
     "categoryId": "day_hosting",
     "label": "Accueil de jour",
     "slug": "accueil-jour",
     "synonyms": [
-      "accueil accueil de jour cafe se reposer se poser repos reposer femmes battues femme battue fem batue fem batu violence harcelement partir"
+      "accueil de jour",
+      "maraude",
+      "halte de nuit",
+      "abri de jour",
+      "accueil",
+      "écoute",
+      "orientation",
+      "repas",
+      "douche",
+      "soins",
+      "infirmerie",
+      "accompagnement",
+      "insertion",
+      "urgence",
+      "précarité"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Lieu d'accueil des bénéficaires proposant une pause pendant la journée."
+    "seoTitle": "Votre accueil de jour avec Soliguide, c'est possible !",
+    "seoDescription": "Soliguide vous aide à trouver un accueil de jour ! Repos, écoute, soins infirmiers... Trouvez un lieu près de chez vous à Paris, Lyon, Marseille."
   },
   {
     "categoryId": "rest_area",
     "label": "Espace de repos",
     "slug": "espace-repos",
     "synonyms": [
-      "espace de repos reposer dormir repos pause"
+      "pause",
+      "répit",
+      "calme",
+      "détente",
+      "sommeil",
+      "dormir",
+      "sieste",
+      "accueil de jour",
+      "halte de nuit",
+      "bancs publics",
+      "abri",
+      "café solidaire",
+      "bibliothèque",
+      "parc",
+      "recharger téléphone"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Espaces de repos ouverts au public"
+    "seoTitle": "Où trouver un espace de repos avec Soliguide",
+    "seoDescription": "Besoin d'un espace de repos ? Soliguide vous aide à trouver un lieu pour vous poser, recharger votre téléphone ou faire une pause. Géolocalisation facile en France."
   },
   {
     "categoryId": "babysitting",
     "label": "Garde d'enfants",
     "slug": "garde-enfants",
     "synonyms": [
-      "garde enfant garderie enfant nounou assistance maternelle bebe creche"
+      "crèche",
+      "garderie",
+      "assistante maternelle",
+      "halte-garderie",
+      "centre petite enfance",
+      "nounou",
+      "garde à domicile",
+      "relais petite enfance",
+      "PMI",
+      "mode de garde",
+      "enfant",
+      "parent",
+      "famille",
+      "accueil enfant",
+      "éveil"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Activité d'un baby-sitter consistant à garder temporairement des enfants en l'abscence de leurs parents"
+    "seoTitle": "Garde d'enfants facilitée avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver une crèche, une garderie ou un relais d'assistantes maternelles près de chez vous. Géolocalisation facile et rapide."
   },
   {
     "categoryId": "family_area",
     "label": "Espace famille",
     "slug": "espace-famille",
     "synonyms": [
-      "espace famille famille maman papa parents enfants"
+      "parentalité",
+      "enfant",
+      "bébé",
+      "halte-garderie",
+      "lieu d'accueil enfant-parent",
+      "LAEP",
+      "soutien à la parentalité",
+      "conseils éducatifs",
+      "PMI",
+      "protection maternelle et infantile",
+      "assistante maternelle",
+      "garde d'enfants",
+      "famille",
+      "parents",
+      "jeunes parents"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Lieu d'accueil capable de recevoir des familles"
+    "seoTitle": "Votre Espace famille accessible avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver des haltes-garderies, des lieux parents-enfants et des conseils éducatifs près de chez vous. Service gratuit et géolocalisé."
   },
   {
     "categoryId": "information_point",
     "label": "Point d'information et d'orientation",
     "slug": "point-information",
     "synonyms": [
-      "point information point d information information ukraine"
+      "informations",
+      "orientation",
+      "conseils",
+      "accompagnement",
+      "droits",
+      "démarches administratives",
+      "services sociaux",
+      "CCAS",
+      "permanence sociale",
+      "accès aux droits",
+      "écrivain public",
+      "médiation",
+      "conseiller social",
+      "travailleur social",
+      "insertion"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Point d'information"
+    "seoTitle": "Besoin d'aide ? Trouvez un point d'information et d'orientation avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver un point d'information et d'orientation près de chez vous. Accès aux droits, démarches administratives, accompagnement social : trouvez l'aide qu'il vous faut."
   },
   {
     "categoryId": "activities",
     "label": "Activités",
     "slug": "activites",
     "synonyms": [
-      "activites sorties sport loisirs sortir jeux jeu loisir isolement isole solitude isolee"
+      "atelier",
+      "loisirs",
+      "sport",
+      "culture",
+      "animation",
+      "jeux",
+      "sorties",
+      "créatif",
+      "manuel",
+      "expression",
+      "rencontre",
+      "groupe",
+      "collectif",
+      "artistique",
+      "événement"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Participez à des activités près de chez vous grâce à Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver des activités ! Ateliers créatifs, sport, sorties culturelles... Découvrez les lieux et activités près de vous. C'est gratuit et géolocalisé !"
   },
   {
     "categoryId": "sport_activities",
     "label": "Activités sportives",
     "slug": "activites-sportives",
     "synonyms": [
-      "activites sportives sport foot basket danse rugby loisirs loisir"
+      "sport",
+      "activité physique",
+      "gymnastique",
+      "fitness",
+      "yoga",
+      "randonnée",
+      "natation",
+      "danse",
+      "athlétisme",
+      "football",
+      "basket",
+      "vélo",
+      "remise en forme",
+      "plein air",
+      "mouvement"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Activités sportives : foot, jogging, marche, etc."
+    "seoTitle": "Bougez avec Soliguide grâce aux activités sportives accessibles",
+    "seoDescription": "Avec Soliguide, trouvez des cours de sport gratuits, des associations sportives solidaires, ou des événements sportifs adaptés. Géolocalisez l'aide près de vous !"
   },
   {
     "categoryId": "museums",
     "label": "Musée",
     "slug": "musee",
     "synonyms": [
-      "musee culture sortie peinture tableau se cultiver"
+      "art",
+      "culture",
+      "exposition",
+      "galerie",
+      "histoire",
+      "peinture",
+      "sculpture",
+      "patrimoine",
+      "visite",
+      "gratuit",
+      "handicap",
+      "enfant",
+      "atelier",
+      "conférence",
+      "collection"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Musée gratuit."
+    "seoTitle": "Découvrez les musées accessibles avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver des musées gratuits, des visites guidées adaptées et des ateliers pour tous. Trouvez les lieux près de chez vous !"
   },
   {
     "categoryId": "libraries",
     "label": "Bibliothèque",
     "slug": "bibliotheque",
     "synonyms": [
-      "bibliotheque livres culture mediatheque"
+      "livre",
+      "lecture",
+      "emprunter",
+      "roman",
+      "bd",
+      "magazine",
+      "cd",
+      "dvd",
+      "internet",
+      "ordinateur",
+      "atelier",
+      "formation",
+      "culture",
+      "savoir",
+      "apprendre"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Bibliothèque accessible en accès libre."
+    "seoTitle": "Bibliothèque près de chez vous, trouvez de l'aide avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver une bibliothèque. Accédez à des livres, des ordinateurs et participez à des ateliers près de chez vous."
   },
   {
     "categoryId": "other_activities",
     "label": "Activités diverses",
     "slug": "activites-diverses",
     "synonyms": [
-      "activites diverses animation divertissement loisir s occuper culture activites enfants loisirs loisir"
+      "loisirs",
+      "culture",
+      "sport",
+      "atelier",
+      "créatif",
+      "événement",
+      "sortie",
+      "animation",
+      "divertissement",
+      "jeux",
+      "bibliothèque",
+      "cinéma",
+      "théâtre",
+      "musée",
+      "rencontre"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Activités diverses : ateliers, activités culturelles, etc. (précisez.)"
+    "seoTitle": "Quelles activités diverses trouver près de chez moi avec Soliguide ?",
+    "seoDescription": "Soliguide vous aide ! Ateliers créatifs, activités sportives, événements culturels... Trouvez des lieux pour vous divertir et vous épanouir près de chez vous."
   },
   {
     "categoryId": "food",
     "label": "Alimentation",
     "slug": "alimentation-bouffe-boufe-manger-soupe-repas-aliment-manger-mange-repa-faim-diner-dejeuner-dejeunet-dine-se-nourrir-fin-portage-portage-de-repas-aide-alimentaire-comida-comer-resto-du-coeur",
     "synonyms": [
-      "alimentation bouffe boufe manger soupe repas aliment manger mange repa faim diner dejeuner dejeunet dine se nourrir fin portage portage de repas aide alimentaire comida comer"
+      "repas",
+      "manger",
+      "nourriture",
+      "colis alimentaire",
+      "banque alimentaire",
+      "épicerie sociale",
+      "restaurant social",
+      "cantine solidaire",
+      "aide alimentaire",
+      "chèque alimentaire",
+      "ticket restaurant",
+      "invendus",
+      "distribution alimentaire",
+      "produits frais",
+      "abri de nuit"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Besoin d'aide pour l'alimentation ? Soliguide vous oriente",
+    "seoDescription": "Avec Soliguide, trouvez un repas chaud, une épicerie sociale ou un colis alimentaire près de chez vous. Géolocalisez l'aide alimentaire d'urgence !"
   },
   {
     "categoryId": "food_distribution",
     "label": "Distribution de repas",
     "slug": "distribution-repas",
     "synonyms": [
-      "distribution alimentaire distribution de repas manger maraude bouffe soupe nourriture faim repas mange manger fin distribution aide alimentaire restauration assise comida comer"
+      "repas",
+      "manger",
+      "nourriture",
+      "cantine sociale",
+      "soupe populaire",
+      "aide alimentaire",
+      "colis alimentaire",
+      "banque alimentaire",
+      "restaurant social",
+      "épicerie sociale",
+      "distribution alimentaire",
+      "repas gratuits",
+      "petit déjeuner",
+      "déjeuner",
+      "dîner"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Point d'arrêt d'une distribution alimentaire. Attention : Veuillez créer une structure par point de distribution."
+    "seoTitle": "Où trouver une distribution de repas avec Soliguide",
+    "seoDescription": "Avec Soliguide, trouvez un repas chaud, une aide alimentaire ou une épicerie sociale près de chez vous. Géolocalisez les lieux de distribution de repas !"
   },
   {
     "categoryId": "food_packages",
     "label": "Panier alimentaire",
     "slug": "colis-alimentaire",
     "synonyms": [
-      "colis colis alimentaire manger mange fruits legumes panier repas aide alimentaire panier comida comer"
+      "aide alimentaire",
+      "colis alimentaire",
+      "distribution alimentaire",
+      "repas gratuit",
+      "épicerie sociale",
+      "banque alimentaire",
+      "chèque alimentaire",
+      "ticket restaurant",
+      "resto du coeur",
+      "secours populaire",
+      "croix rouge",
+      "aide repas",
+      "alimentation",
+      "manger",
+      "nourriture"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Distribution de colis contenant des denrées alimentaires (conserves, légumes, etc.)."
+    "seoTitle": "Votre panier alimentaire facilité avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver des distributions alimentaires, épiceries sociales et bons alimentaires près de chez vous. Trouvez l'aide alimentaire qu'il vous faut !"
   },
   {
     "categoryId": "social_grocery_stores",
     "label": "Épicerie Sociale et Solidaire",
     "slug": "epicerie-sociale-solidaire",
     "synonyms": [
-      "epicerie sociale epicerie manger fruits legumes panier repas epicerie solidaire aide alimentaire"
+      "aide alimentaire",
+      "épicerie solidaire",
+      "panier solidaire",
+      "alimentation",
+      "courses",
+      "produits gratuits",
+      "produits pas chers",
+      "distribution alimentaire",
+      "banque alimentaire",
+      "repas",
+      "se nourrir",
+      "accès nourriture",
+      "cantine sociale",
+      "colis alimentaire",
+      "resto du coeur"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Les épiceries solidaires accueillent les personnes en précarité et leur permettent de faire des courses à prix solidaire."
+    "seoTitle": "Votre Épicerie Sociale et Solidaire facile d'accès avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver une épicerie sociale, un panier solidaire ou de l'aide alimentaire près de chez vous. Facilitez vos courses grâce à la géolocalisation."
   },
   {
     "categoryId": "fountain",
     "label": "Fontaine à eau",
     "slug": "fontaine",
     "synonyms": [
-      "fontaine boire eau soif robinet potable"
+      "eau potable",
+      "point d'eau",
+      "accès eau",
+      "boire",
+      "rafraîchissement",
+      "fontaine publique",
+      "fontaine gratuite",
+      "hydratation",
+      "robinet d'eau",
+      "eau robinet",
+      "seau",
+      "gourde",
+      "remplir gourde",
+      "oasis",
+      "désaltérer"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Eau potable en accès libre."
+    "seoTitle": "Trouver une fontaine à eau potable facilement avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver une fontaine à eau gratuite près de vous. Accès à l'eau potable, repérage facile, infos pratiques. Localisation immédiate !"
   },
   {
     "categoryId": "solidarity_fridge",
     "label": "Frigo solidaire",
     "slug": "frigo-solidaire",
     "synonyms": [
-      "manger mange conserver frais bouffe aliment faim frigo frigo solidaire"
+      "partage alimentaire",
+      "nourriture gratuite",
+      "accès nourriture",
+      "alimentation solidaire",
+      "anti gaspillage",
+      "don alimentaire",
+      "repas gratuit",
+      "frigo partagé",
+      "boîte à dons",
+      "dépôt alimentaire",
+      "prendre nourriture",
+      "donner nourriture",
+      "éviter le gaspillage",
+      "entraide alimentaire",
+      "associations alimentaires"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Frigo solidaire"
+    "seoTitle": "Trouvez un frigo solidaire près de chez vous avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver un frigo solidaire! Déposez ou prenez des aliments gratuitement. Repérez les lieux près de chez vous sur Soliguide. Facile et solidaire!"
   },
   {
     "categoryId": "shared_kitchen",
     "label": "Cuisine partagée",
     "slug": "cuisine-partagee",
     "synonyms": [
-      "cuisine cuisiner preparer partage partagee cuisine partagee"
+      "cuisine collective",
+      "atelier cuisine",
+      "repas partagé",
+      "jardin partagé",
+      "cours de cuisine",
+      "nourriture",
+      "entraide culinaire",
+      "préparation repas",
+      "échange recettes",
+      "partage savoir-faire",
+      "convivialité",
+      "lien social",
+      "manger ensemble",
+      "cuisine solidaire",
+      "collectif cuisine"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Cuisine partagée "
+    "seoTitle": "Cuisine partagée, trouvez votre espace convivial avec Soliguide",
+    "seoDescription": "Avec Soliguide, découvrez des cuisines partagées, ateliers culinaires solidaires, et jardins partagés près de chez vous. Trouvez facilement de l'aide !"
   },
   {
     "categoryId": "cooking_workshop",
     "label": "Atelier cuisine",
     "slug": "atelier-cuisine",
     "synonyms": [
-      "atelier cuisine cuisiner partage preparer atelier cuisine cuire"
+      "cours de cuisine",
+      "cuisine solidaire",
+      "nutrition",
+      "repas",
+      "alimentaire",
+      "recettes",
+      "apprentissage cuisine",
+      "diététique",
+      "anti-gaspi",
+      "économique",
+      "ingrédients",
+      "préparation",
+      "chef",
+      "cuisinier",
+      "manger"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Atelier de cuisine"
+    "seoTitle": "Participez à un atelier cuisine près de chez vous avec Soliguide",
+    "seoDescription": "Avec Soliguide, trouvez des ateliers cuisine gratuits, apprenez à cuisiner des plats économiques et bénéficiez de conseils nutritionnels près de chez vous."
   },
   {
     "categoryId": "baby_parcel",
     "label": "Colis bébé",
     "slug": "colis-bebe",
     "synonyms": [
-      "bebe nourrir nourisson colis colis bebe puericulture lait couche biberon maternite manger nourriture vetement"
+      "bébé",
+      "nourrisson",
+      "enfant",
+      "couches",
+      "lait infantile",
+      "vêtements bébé",
+      "puériculture",
+      "alimentation bébé",
+      "produits de soin bébé",
+      "layette",
+      "relais bébé",
+      "PMI",
+      "protection maternelle infantile",
+      "dons bébé",
+      "aide matérielle bébé"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Colis pour bébé"
+    "seoTitle": "Besoin d'un colis bébé ? Soliguide vous aide",
+    "seoDescription": "Soliguide vous aide à trouver couches, lait infantile, vêtements... Géolocalisez les associations et structures qui offrent des colis bébé près de chez vous."
   },
   {
     "categoryId": "food_voucher",
     "label": "Bon / chèque alimentaire",
     "slug": "bon-alimentaire",
     "synonyms": [
-      "bon cheque ticket alimentaire gratuit aide"
+      "ticket restaurant",
+      "aide alimentaire",
+      "chèque d'accompagnement personnalisé",
+      "coupon repas",
+      "carte alimentation",
+      "colis alimentaire",
+      "distribution repas",
+      "épicerie sociale",
+      "banque alimentaire",
+      "resto du coeur",
+      "secours populaire",
+      "croix rouge",
+      "CCAS",
+      "RSA",
+      "urgences sociales"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Distribution de bon/chèque alimentaire"
+    "seoTitle": "Bons et chèques alimentaires, Soliguide vous informe",
+    "seoDescription": "Soliguide vous aide à trouver des distributions alimentaires, des épiceries sociales ou des bons alimentaires près de chez vous. Localisez l'aide utile !"
   },
   {
     "categoryId": "community_garden",
     "label": "Jardin solidaire",
     "slug": "jardin-solidaire",
     "synonyms": [
-      "fruits pousser jardin bio nature legumes jardin solidaire jardinage"
+      "jardinage",
+      "potager",
+      "cultiver",
+      "légumes",
+      "fruits",
+      "graines",
+      "partage",
+      "collectif",
+      "nature",
+      "environnement",
+      "activité plein air",
+      "animation",
+      "ressourcerie",
+      "compost",
+      "permaculture"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Jardin solidaire"
+    "seoTitle": "Un jardin solidaire près de chez vous grâce à Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver des jardins partagés, des ateliers de jardinage et des récoltes solidaires près de chez vous. Géolocalisez-vous !"
   },
   {
     "categoryId": "counseling",
     "label": "Conseil",
     "slug": "conseil",
     "synonyms": [
-      "conseil conseils soutien accompagnement aide se faire aider conseiller numerique"
+      "orientation",
+      "information",
+      "aide juridique",
+      "conseiller",
+      "permanence",
+      "accès aux droits",
+      "assistance administrative",
+      "écrivain public",
+      "médiateur",
+      "défenseur des droits",
+      "informations",
+      "conseils",
+      "accompagnement social",
+      "tuteur",
+      "curateur"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Besoin d'un conseil ? Soliguide vous oriente",
+    "seoDescription": "Soliguide vous aide à trouver des conseils juridiques gratuits, des permanences d'accès aux droits ou de l'aide administrative. Découvrez les lieux près de chez vous !"
   },
   {
     "categoryId": "legal_advice",
     "label": "Permanence juridique",
     "slug": "permanence-juridique",
     "synonyms": [
-      "proces permanence juridique amende avocat droits droit recours juge ldh droits de l homme ligue des droits de l homme acces au droit cnda ofpra asile sejour carte sejour divorce separation"
+      "aide juridique",
+      "conseil juridique",
+      "accès au droit",
+      "avocat gratuit",
+      "permanence juridique gratuite",
+      "consultation juridique",
+      "défenseur des droits",
+      "information juridique",
+      "sos avocat",
+      "maison de justice et du droit",
+      "tribunal",
+      "conciliation",
+      "médiation",
+      "aide juridictionnelle",
+      "pro bono"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences juridiques (surendettement, demande d'asile, procès, etc.)."
+    "seoTitle": "Permanence juridique gratuite grâce à Soliguide",
+    "seoDescription": "Besoin d'aide juridique ? Soliguide vous géolocalise ! Avocats gratuits, conseils juridiques, accès au droit... Trouvez l'aide qu'il vous faut près de chez vous."
   },
   {
     "categoryId": "social_accompaniment",
     "label": "Accompagnement social",
     "slug": "accompagnement-social",
     "synonyms": [
-      "accompagnement assistante sociale social travailleur social droits demarches femmes battues femme battue violence isolement isole solitude isolee partir separation divorce victime"
+      "aide sociale",
+      "accompagnement",
+      "démarches administratives",
+      "accès aux droits",
+      "écrivain public",
+      "conseil juridique",
+      "assistance sociale",
+      "soutien",
+      "informations",
+      "orientation",
+      "permanence",
+      "accompagnement personnalisé",
+      "insertion",
+      "solidarité",
+      "médiation"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Accompagement des personnes dans leur réinsertion (assistantes sociales, permanences, etc.)."
+    "seoTitle": "Besoin d'accompagnement social ? Soliguide vous aide",
+    "seoDescription": "Soliguide vous aide dans vos démarches ! Accès aux droits, écrivain public, conseils juridiques… Trouvez l'aide sociale près de chez vous, géolocalisée."
   },
   {
     "categoryId": "disability_advice",
     "label": "Conseil handicap",
     "slug": "conseil-handicap",
     "synonyms": [
-      "conseil handicap handicap aah conseils conseil handicape handicapee personne a mobilite reduite pmr"
+      "MDPH",
+      "maison départementale des personnes handicapées",
+      "allocation adulte handicapé",
+      "AAH",
+      "prestation de compensation du handicap",
+      "PCH",
+      "orientation professionnelle",
+      "insertion",
+      "emploi",
+      "aides techniques",
+      "matériel adapté",
+      "accessibilité",
+      "droits handicap",
+      "inclusion",
+      "autonomie"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'accès aux droits pour les personnes en situation de handicap."
+    "seoTitle": "Besoin d'un conseil handicap ? Soliguide vous aide",
+    "seoDescription": "Soliguide vous informe et vous oriente. Accès aux droits, aides techniques, MDPH... Trouvez un accompagnement près de chez vous !"
   },
   {
     "categoryId": "administrative_assistance",
     "label": "Conseil administratif",
     "slug": "conseil-administratif",
     "synonyms": [
-      "conseil administratif conseils administratifs aide administrative demarches rsa cmu allocations papiers securite sociale caf cpampapier conseiller numerique"
+      "démarches administratives",
+      "aide administrative",
+      "accès aux droits",
+      "écrivain public",
+      "conseiller juridique",
+      "permanence juridique",
+      "accompagnement administratif",
+      "assistante sociale",
+      "formulaires",
+      "CAF",
+      "CPAM",
+      "impôts",
+      "préfecture",
+      "associations",
+      "Solidarité"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'aide administrative (RSA, CMU, allocations, chômage, etc.)."
+    "seoTitle": "Besoin d'un conseil administratif ? Soliguide vous aide",
+    "seoDescription": "Soliguide vous aide à trouver des conseils administratifs près de chez vous ! Accès aux droits, aide juridique, écrivain public... Trouvez l'aide qu'il vous faut."
   },
   {
     "categoryId": "parent_assistance",
     "label": "Conseil aux parents",
     "slug": "conseil-parents",
     "synonyms": [
-      "conseil parents conseil aux parents conseil parental mediation familiale mediation conflit adolescents enfants parent parentalite parents enfant ado adolescent couple couples"
+      "parentalité",
+      "éducation",
+      "enfant",
+      "famille",
+      "soutien parental",
+      "aide aux parents",
+      "difficultés parentales",
+      "guidance parentale",
+      "ateliers parents",
+      "conseil familial",
+      "médiation familiale",
+      "accompagnement parental",
+      "écoute parents",
+      "école des parents",
+      "centre social"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permances d'aide pour les jeunes parents et les parents rencontrant des difficultés avec leurs enfants."
+    "seoTitle": "Besoin de conseil aux parents ? Soliguide vous aide",
+    "seoDescription": "Soliguide vous guide vers des conseils éducatifs, des ateliers parents-enfants et des groupes de parole. Trouvez de l'aide près de chez vous !"
   },
   {
     "categoryId": "budget_advice",
     "label": "Conseil budget",
     "slug": "conseil-budget",
     "synonyms": [
-      "conseil budget conseil budget argent finance cresus"
+      "budget",
+      "gérer son argent",
+      "finances personnelles",
+      "dépenses",
+      "revenus",
+      "économies",
+      "endettement",
+      "surendettement",
+      "CAF",
+      "CPAS",
+      "banque",
+      "microcrédit",
+      "accompagnement budgétaire",
+      "conseiller financier",
+      "aides financières"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Points conseil budget (PCB) proposent des conseils gratuits et personnalisés de gestion budgétaire "
+    "seoTitle": "Besoin d'un conseil budget ? Soliguide vous aide",
+    "seoDescription": "Soliguide vous aide à trouver des conseils budget gratuits, des aides pour gérer vos dettes, ou des ateliers pour mieux gérer votre argent près de chez vous."
   },
   {
     "categoryId": "training_and_jobs",
     "label": "Formation et emploi",
     "slug": "formation-emploi",
     "synonyms": [
-      "formation emploi travailler job travail boulot se former taf taff taffe apprendre lire etudier comprendre france travail pole emploi conseiller numerique"
+      "emploi",
+      "formation",
+      "insertion",
+      "apprentissage",
+      "stage",
+      "CV",
+      "lettre de motivation",
+      "entretien d'embauche",
+      "orientation professionnelle",
+      "Pôle emploi",
+      "mission locale",
+      "AFPA",
+      "centre de formation",
+      "recherche d'emploi",
+      "qualification"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Formation et emploi, Soliguide vous accompagne vers l'insertion",
+    "seoDescription": "Soliguide vous aide à trouver des formations qualifiantes, des ateliers d'insertion et des conseils pour votre recherche d'emploi. Découvrez les lieux proches de vous !"
   },
   {
     "categoryId": "digital_tools_training",
     "label": "Atelier numérique",
     "slug": "formation-numerique",
     "synonyms": [
-      "formation numerique atelier numerique formation informatique ordinateur connexion se former technologie tech apprendre comprendre lire etudier conseiller numerique"
+      "informatique",
+      "ordinateur",
+      "internet",
+      "web",
+      "numérique",
+      "formation",
+      "initiation",
+      "découverte",
+      "outils numériques",
+      "accès internet",
+      "cyber espace",
+      "compétences numériques",
+      "inclusion numérique",
+      "tablette",
+      "smartphone"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences ou ateliers visant à la maitrise d'outils informatiques."
+    "seoTitle": "Besoin d'un atelier numérique ? Soliguide vous aide",
+    "seoDescription": "Avec Soliguide, trouvez un atelier numérique près de chez vous ! Apprenez l'informatique, utilisez un ordinateur ou bénéficiez d'une initiation au web. Géolocalisation facile !"
   },
   {
     "categoryId": "job_coaching",
     "label": "Accompagnement à l'emploi",
     "slug": "accompagnement-emploi",
     "synonyms": [
-      "accompagnement emploi travailler job pole emploi travail boulot se former etre accompagne taf taff taffe apprendre comprendre lire etudier france travail orientation"
+      "recherche emploi",
+      "formation professionnelle",
+      "CV",
+      "lettre motivation",
+      "entretien embauche",
+      "Pôle Emploi",
+      "mission locale",
+      "conseil emploi",
+      "orientation professionnelle",
+      "insertion professionnelle",
+      "bilan compétences",
+      "coaching emploi",
+      "tremplin emploi",
+      "contrat d'apprentissage",
+      "stage"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Aide au retour à l'emploi : ateliers de préparation aux entretiens, aide à la recherche d'emploi, atelier CV, etc."
+    "seoTitle": "Accompagnement à l'emploi, Soliguide vous guide vers le travail",
+    "seoDescription": "Soliguide vous aide à trouver un emploi ! Découvrez des ateliers CV, des simulations d'entretien et des formations. Trouvez l'aide près de chez vous !"
   },
   {
     "categoryId": "integration_through_economic_activity",
     "label": "Insertion par l'activité économique",
     "slug": "insertion-activite-economique",
     "synonyms": [
-      "chantier de reinsertion chantier reinsertion travailler job insertion reinsertion siae iae se reinserer taf taff taffe apprendre comprendre lire etudier orientation"
+      "chantier d'insertion",
+      "entreprise d'insertion",
+      "IAE",
+      "travail",
+      "emploi",
+      "formation",
+      "qualification",
+      "CDD insertion",
+      "accompagnement",
+      "retour à l'emploi",
+      "première expérience",
+      "bénévolat",
+      "stage",
+      "recherche d'emploi",
+      "aide sociale"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Embauche de personnes en insertion."
+    "seoTitle": "L'insertion par l'activité économique, votre tremplin avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver des chantiers d'insertion, des entreprises sociales ou des ateliers et chantiers d'insertion. Trouvez les lieux près de chez vous !"
   },
   {
     "categoryId": "tutoring",
     "label": "Soutien scolaire",
     "slug": "soutien-scolaire",
     "synonyms": [
-      "soutien scolaire aide au devoir etudes college lycee devoirs cours apprendre comprendre lire etudier"
+      "aide aux devoirs",
+      "cours de rattrapage",
+      "accompagnement scolaire",
+      "tutorat",
+      "mentorat",
+      "apprentissage",
+      "révisions",
+      "soutien éducatif",
+      "école ouverte",
+      "CLAE",
+      "centres sociaux",
+      "professeur particulier",
+      "bénévoles",
+      "primaire",
+      "collège"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Soutien scolaire gratuit (préciser le niveau dans la description)."
+    "seoTitle": "Besoin de soutien scolaire ? Soliguide vous aide",
+    "seoDescription": "Trouvez du soutien scolaire près de chez vous avec Soliguide. Aide aux devoirs, cours de rattrapage, mentorat... Localisez les structures adaptées !"
   },
   {
     "categoryId": "accomodation_and_housing",
     "label": "Hébergement et logement",
     "slug": "hebergement-et-logement",
     "synonyms": [
-      "hebergement dormir lit logement repos toit hebergement logement logement hebergement et logement hebergementetlogement domir"
+      "abri",
+      "logement",
+      "urgence",
+      "hébergement",
+      "domicile",
+      "toit",
+      "insertion",
+      "social",
+      "accompagnement",
+      "foyer",
+      "asile",
+      "squat",
+      "rue",
+      "CHS",
+      "CHRS"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Hébergement et logement d'urgence, Soliguide vous informe",
+    "seoDescription": "Besoin d'un hébergement ? Soliguide vous indique où trouver un logement d'urgence, un centre d'hébergement ou un accompagnement vers un logement en fr. Service géolocalisé."
   },
   {
     "categoryId": "overnight_stop",
     "label": "Halte de nuit",
     "slug": "halte-nuit",
     "synonyms": [
-      "halte de nuit halte nuit dormir se reposer alte de nui accueil nuit accueil de nuit accueil nuit"
+      "accueil de nuit",
+      "hébergement d'urgence",
+      "abri de nuit",
+      "centre d'hébergement",
+      "maraude",
+      "repas chaud",
+      "douche",
+      "laverie",
+      "écoute",
+      "orientation",
+      "aide sociale",
+      "urgence sociale",
+      "sans-abri",
+      "SIAO",
+      "115"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "La halte de nuit est un lieu d'accueil et de repos pour les personnes sans abri ouvert de 20h à 8h du matin, 7/7 jours."
+    "seoTitle": "Besoin d'une halte de nuit ? Soliguide vous aide",
+    "seoDescription": "Soliguide vous indique les haltes de nuit près de vous. Trouvez un lit, un repas chaud, et un accueil chaleureux. Géolocalisation facile en France."
   },
   {
     "categoryId": "emergency_accommodation",
     "label": "Hébergement d'urgence",
     "slug": "hebergement-urgence",
     "synonyms": [
-      "hebergement urgence dormir lit logement chu halte de nuit toit a la rue rue dehors accueil de nuit accueil nuit accueil nuit"
+      "urgence",
+      "nuit",
+      "abri",
+      "sans-abri",
+      "SIAO",
+      "115",
+      "accueil",
+      "insertion",
+      "asile",
+      "refuge",
+      "squat",
+      "maraude",
+      "mise à l'abri",
+      "froid",
+      "précarité"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Hébergement à court terme (à la nuitée), accessible directement."
+    "seoTitle": "Hébergement d'urgence, Soliguide vous oriente",
+    "seoDescription": "Soliguide vous aide à trouver un lit d'urgence, un accueil de nuit ou un centre d'hébergement. Trouvez les lieux proches de vous !"
   },
   {
     "categoryId": "long_term_accomodation",
     "label": "Hébergement à long terme",
     "slug": "hebergement-long-terme",
     "synonyms": [
-      "hebergement dormir lit logement chrs repos toit"
+      "logement social",
+      "foyer",
+      "résidence sociale",
+      "CHRS",
+      "centre d'hébergement",
+      "insertion",
+      "asile",
+      "demande de logement",
+      "accompagnement social",
+      "urgence logement",
+      "mal logement",
+      "sans domicile",
+      "SIAO",
+      "115",
+      "accueil de nuit"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Possibilité d'hébergement à long terme, au sein de la structure ou d'une structure partenaire. Indiquer dans la description les modalités d'accès."
+    "seoTitle": "Soliguide vous aide à trouver un hébergement à long terme",
+    "seoDescription": "Soliguide vous oriente vers des logements sociaux, foyers, résidences sociales. Trouvez une solution d'hébergement durable près de chez vous !"
   },
   {
     "categoryId": "citizen_housing",
     "label": "Hébergement citoyen",
     "slug": "hebergement-citoyen",
     "synonyms": [
-      "hebergement hebergement citoyen merci pour l invit singa"
+      "accueil familial",
+      "logement solidaire",
+      "hébergement d'urgence",
+      "solidarité logement",
+      "chez l'habitant",
+      "cohabitation",
+      "bénévolat logement",
+      "soutien moral",
+      "accompagnement social",
+      "insertion sociale",
+      "solution logement",
+      "logement temporaire",
+      "aide au logement",
+      "France hébergement",
+      "réseau solidaire"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Hébergement citoyen, Soliguide vous informe et vous aide",
+    "seoDescription": "Soliguide vous aide à trouver un hébergement chez l'habitant, un accompagnement social ou un logement temporaire. Trouvez des solutions près de chez vous !"
   },
   {
     "categoryId": "access_to_housing",
     "label": "Conseil logement",
     "slug": "conseil-logement",
     "synonyms": [
-      "hebergement dalo logement expulsion toit maison impayes factures chauffage conseil conseil logement"
+      "aide au logement",
+      "conseils juridiques logement",
+      "accompagnement social logement",
+      "demande de logement social",
+      "accès au logement",
+      "difficultés logement",
+      "problèmes de logement",
+      "expulsion",
+      "droit au logement",
+      "mal logement",
+      "permanence logement",
+      "ADIL",
+      "assistante sociale logement",
+      "travailleur social logement",
+      "accompagnement relogement"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'accès au logement (logement social, DALO, etc.)."
+    "seoTitle": "Besoin d'un conseil logement ? Soliguide vous aide",
+    "seoDescription": "Soliguide vous aide à trouver un accompagnement juridique, des conseils personnalisés ou un accompagnement pour votre demande de logement social. Trouvez les lieux près de chez vous."
   },
   {
     "categoryId": "hygiene_and_wellness",
     "label": "Hygiène et bien-être",
     "slug": "hygiene",
     "synonyms": [
-      "hygiene laver douche bain se laver se doucher propre"
+      "douche",
+      "laverie",
+      "hygiène",
+      "bien-être",
+      "savon",
+      "shampoing",
+      "serviette",
+      "vêtements propres",
+      "propreté",
+      "soins",
+      "corps",
+      "dents",
+      "rasoir",
+      "brosse à dents",
+      "déodorant"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Hygiène et bien-être, Soliguide vous oriente vers les lieux d'aide",
+    "seoDescription": "Avec Soliguide, trouvez une douche gratuite, des kits d'hygiène ou une laverie solidaire près de chez vous. Accès géolocalisé aux services essentiels."
   },
   {
     "categoryId": "shower",
     "label": "Douche",
     "slug": "douche",
     "synonyms": [
-      "douche laver se laver bain bain douche piscine propre sale cheveux"
+      "laver",
+      "hygiène",
+      "propreté",
+      "eau",
+      "savon",
+      "shampoing",
+      "serviette",
+      "bain",
+      "salle de bain",
+      "accès à l'eau",
+      "se laver",
+      "linge",
+      "lessive",
+      "lavomatique",
+      "rester propre"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Trouver une douche gratuite, c'est possible avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver une douche, un endroit pour laver votre linge ou des produits d'hygiène. Géolocalisez les lieux solidaires près de vous !"
   },
   {
     "categoryId": "hairdresser",
     "label": "Coiffeur",
     "slug": "coiffeur",
     "synonyms": [
-      "coiffeur cheveux"
+      "coupe de cheveux",
+      "coiffure solidaire",
+      "coiffeur social",
+      "salon de coiffure gratuit",
+      "atelier coiffure",
+      "bon coiffure",
+      "coupe gratuite",
+      "relooking",
+      "soins capillaires",
+      "coiffage",
+      "barbier",
+      "perruquier",
+      "centre social",
+      "insertion professionnelle",
+      "estime de soi"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Besoin d'un coiffeur solidaire ? Trouvez de l'aide avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver un coiffeur social, des ateliers de coupe et des bons de réduction pour la coiffure. Trouvez les lieux près de chez vous !"
   },
   {
     "categoryId": "laundry",
     "label": "Laverie",
     "slug": "laverie",
     "synonyms": [
-      "laverie vetements vetement laver machine a laver pressing linge lave linge"
+      "lavomatique sociale",
+      "laverie automatique solidaire",
+      "machine à laver",
+      "sèche-linge",
+      "linge propre",
+      "jetons laverie",
+      "aide au lavage",
+      "accès hygiène",
+      "hygiène linge",
+      "point d'eau",
+      "centre d'hébergement",
+      "domicile",
+      "vêtements propres",
+      "propreté"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Lave-linge en accès libre."
+    "seoTitle": "Laverie solidaire près de chez vous avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver une laverie sociale, des jetons de lavage gratuits, ou un accompagnement. Localisez facilement l'aide qu'il vous faut!"
   },
   {
     "categoryId": "wellness",
     "label": "Bien-être",
     "slug": "bien-etre",
     "synonyms": [
-      "bien etre coiffeur massage maquillage belle beau pedicure manicure manucire"
+      "santé",
+      "moral",
+      "soutien psychologique",
+      "écoute",
+      "aide psychologique",
+      "thérapie",
+      "relaxation",
+      "sophrologie",
+      "médecin",
+      "infirmier",
+      "bien être",
+      "équilibre",
+      "harmonie",
+      "épanouissement",
+      "ressourcement"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Ateliers de bien-être : coiffeur, massage, sophrologie, etc. (à préciser dans la description)."
+    "seoTitle": "Améliorez votre bien-être avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver des lieux pour prendre soin de vous près de chez vous. Accédez à des soins, des conseils et du soutien psychologique."
   },
   {
     "categoryId": "toilets",
     "label": "Toilettes",
     "slug": "toilettes",
     "synonyms": [
-      "toilettes sanisette pisser pipi wc caca chiotte toilet"
+      "wc",
+      "sanitaires",
+      "toilettes publiques",
+      "toilettes gratuites",
+      "urinoir",
+      "douche",
+      "laverie",
+      "hygiène",
+      "propreté",
+      "nettoyage",
+      "salle de bain",
+      "se laver",
+      "défécation",
+      "uriner",
+      "besoins naturels"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Toilettes en accès libre."
+    "seoTitle": "Où trouver des toilettes publiques ? Soliguide vous aide",
+    "seoDescription": "Soliguide vous aide à trouver des toilettes publiques, des douches gratuites ou des laveries près de vous. Accès facile et géolocalisé en France."
   },
   {
     "categoryId": "hygiene_products",
     "label": "Produits d'hygiène",
     "slug": "produits-hygiene",
     "synonyms": [
-      "periodiques protections periodiques protection periodique regles regle tampon serviette hygienique serviette menstrues produits d hygiene hygiene cup culotte tampax"
+      "savon",
+      "shampoing",
+      "dentifrice",
+      "brosse à dents",
+      "serviettes hygiéniques",
+      "tampons",
+      "rasoir",
+      "mousse à raser",
+      "gel douche",
+      "déodorant",
+      "lingettes",
+      "papier toilette",
+      "laverie",
+      "douche",
+      "hygiène"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Distribution de produits d'hygiène (savons, dentifrice, tampons, serviettes hygiéniques, etc.)."
+    "seoTitle": "Besoin de produits d'hygiène ? Soliguide vous aide",
+    "seoDescription": "Soliguide vous aide à trouver des douches gratuites, kits d'hygiène et laveries sociales près de chez vous. Accès facile à l'hygiène pour tous en fr !"
   },
   {
     "categoryId": "face_masks",
     "label": "Masques",
     "slug": "masques",
     "synonyms": [
-      "masque protection covid virus"
+      "protection",
+      "covid",
+      "covid-19",
+      "épidémie",
+      "prévention",
+      "barrière",
+      "tissu",
+      "chirurgical",
+      "ffp2",
+      "lavable",
+      "gratuit",
+      "pharmacie",
+      "association",
+      "distribution",
+      "solidaire"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Masques de protection"
+    "seoTitle": "Besoin de masques ? Soliguide vous aide à trouver où en obtenir",
+    "seoDescription": "Soliguide vous indique où trouver des masques gratuits, des distributions solidaires et des conseils près de chez vous. Géolocalisation facile et rapide."
   },
   {
     "categoryId": "equipment",
     "label": "Matériel",
     "slug": "materiel",
     "synonyms": [
-      "materiel affaires mobilier"
+      "vêtements",
+      "meubles",
+      "électroménager",
+      "dons",
+      "objets",
+      "vaisselle",
+      "literie",
+      "couverture",
+      "fournitures scolaires",
+      "hygiène",
+      "bébé",
+      "enfant",
+      "outils",
+      "récupération",
+      "ressourcerie"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Besoin de matériel ? Soliguide vous oriente",
+    "seoDescription": "Soliguide vous aide à trouver des vêtements, des meubles ou de l'électroménager. Découvrez les lieux d'aide près de chez vous et facilitez votre quotidien."
   },
   {
     "categoryId": "luggage_storage",
     "label": "Bagagerie",
     "slug": "bagagerie",
     "synonyms": [
-      "bagage bagagerie sac poser casier"
+      "consigne",
+      "déposer affaires",
+      "garder valise",
+      "casier",
+      "stockage temporaire",
+      "bagage",
+      "effets personnels",
+      "ranger sac",
+      "sécurité affaires",
+      "abri bagage",
+      "laverie automatique",
+      "gare",
+      "aéroport",
+      "voyage",
+      "transit"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Lieu permettant de conserver des bagages ou matériel."
+    "seoTitle": "Besoin d'une bagagerie ? Soliguide vous aide à trouver des solutions",
+    "seoDescription": "Soliguide vous aide à trouver une bagagerie gratuite, un endroit sécurisé pour vos affaires ou un casier. Trouvez ces lieux près de vous !"
   },
   {
     "categoryId": "solidarity_store",
     "label": "Boutique solidaire",
     "slug": "boutique-solidaire",
     "synonyms": [
-      "boutique solidaire meubles accessoires s habiller"
+      "vêtements pas cher",
+      "meubles solidaires",
+      "Emmaüs",
+      "friperie solidaire",
+      "dons vêtements",
+      "ressourcerie",
+      "objets seconde main",
+      "vaisselle solidaire",
+      "textile solidaire",
+      "magasin solidaire",
+      "vêtements gratuits",
+      "équipement maison solidaire",
+      "recyclerie",
+      "achats solidaires",
+      "Seconde main"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Boutique vendant du matériel à prix solidaire."
+    "seoTitle": "Boutique solidaire, s'habiller à petit prix avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver une boutique solidaire ! Vêtements, meubles, objets du quotidien... Trouvez près de chez vous !"
   },
   {
     "categoryId": "clothing",
     "label": "Vêtements",
     "slug": "vetements",
     "synonyms": [
-      "vestiaire vetements t shirt pantalon robe vetir vestiboutique pull manteau habit s habiller"
+      "vêtement",
+      "habit",
+      "friperie",
+      "dressing solidaire",
+      "don de vêtements",
+      "collecte de vêtements",
+      "recyclerie",
+      "ressourcerie",
+      "vestiaire",
+      "linge",
+      "se vêtir",
+      "s'habiller",
+      "mode solidaire",
+      "vêtements gratuits",
+      "aider à s'habiller"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Vêtements gratuits ou à prix symbolique. Préciser le sexe et/ou l'âge dans les conditions."
+    "seoTitle": "Besoin de vêtements ? Trouvez de l'aide avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver des vêtements près de chez vous. Dons, vestiaires solidaires, ateliers de couture... Trouvez l'aide qu'il vous faut !"
   },
   {
     "categoryId": "animal_assitance",
     "label": "Animaux",
     "slug": "animaux",
     "synonyms": [
-      "animaux animals chien chat croquettes animal"
+      "vétérinaire solidaire",
+      "soin animal",
+      "nourriture animaux",
+      "association animaux",
+      "aide financière animaux",
+      "garde animaux",
+      "famille d'accueil animaux",
+      "vaccination animaux",
+      "identification animaux",
+      "stérilisation animaux",
+      "animaux de compagnie",
+      "chien",
+      "chat",
+      "NAC",
+      "protection animale"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
-    "seoTitle": "",
-    "seoDescription": "Aide aux animaux de compagnie"
+    "seoTitle": "Aide pour animaux, trouvez des solutions avec Soliguide",
+    "seoDescription": "Soliguide vous aide à prendre soin de vos animaux. Trouvez vétérinaires solidaires, associations et aides financières près de chez vous grâce à la géolocalisation."
   },
   {
     "categoryId": "health",
@@ -796,9 +1537,7 @@
     "categoryId": "vaccination",
     "label": "Vaccination",
     "slug": "vaccination",
-    "synonyms": [
-      "vaccination vaccin covid piqure rappel rappel de vaccin"
-    ],
+    "synonyms": ["vaccination vaccin covid piqure rappel rappel de vaccin"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -835,9 +1574,7 @@
     "categoryId": "health_specialists",
     "label": "Spécialistes",
     "slug": "specialistes-medecine",
-    "synonyms": [
-      "specialistes specialiste"
-    ],
+    "synonyms": ["specialistes specialiste"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -848,9 +1585,7 @@
     "categoryId": "allergology",
     "label": "Allergologie",
     "slug": "allergologie",
-    "synonyms": [
-      "allergologie allergies"
-    ],
+    "synonyms": ["allergologie allergies"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -861,9 +1596,7 @@
     "categoryId": "cardiology",
     "label": "Cardiologie",
     "slug": "cardiologie",
-    "synonyms": [
-      "cardiologie coeur cardiaque cardio"
-    ],
+    "synonyms": ["cardiologie coeur cardiaque cardio"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -874,9 +1607,7 @@
     "categoryId": "dermatology",
     "label": "Dermatologie",
     "slug": "dermatologie",
-    "synonyms": [
-      "dermato dermatologie dermatologue peau bouton"
-    ],
+    "synonyms": ["dermato dermatologie dermatologue peau bouton"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -887,9 +1618,7 @@
     "categoryId": "echography",
     "label": "Échographie",
     "slug": "echographie",
-    "synonyms": [
-      "echographie bebe enceinte"
-    ],
+    "synonyms": ["echographie bebe enceinte"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -900,9 +1629,7 @@
     "categoryId": "endocrinology",
     "label": "Endocrinologie",
     "slug": "endocrinologie",
-    "synonyms": [
-      "endocrinologie hormones tyroide"
-    ],
+    "synonyms": ["endocrinologie hormones tyroide"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -913,9 +1640,7 @@
     "categoryId": "gastroenterology",
     "label": "Gastro-entérologie",
     "slug": "gastro-enterologie",
-    "synonyms": [
-      "gastro enterologue gastro enterologie kk caca"
-    ],
+    "synonyms": ["gastro enterologue gastro enterologie kk caca"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -939,9 +1664,7 @@
     "categoryId": "kinesitherapy",
     "label": "Kinésithérapie",
     "slug": "kinesitherapie",
-    "synonyms": [
-      "kinesitherapie reeducation blessure kine"
-    ],
+    "synonyms": ["kinesitherapie reeducation blessure kine"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -952,9 +1675,7 @@
     "categoryId": "mammography",
     "label": "Mammographie",
     "slug": "mammographie",
-    "synonyms": [
-      "mammographie radio seins"
-    ],
+    "synonyms": ["mammographie radio seins"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -965,9 +1686,7 @@
     "categoryId": "ophthalmology",
     "label": "Ophtalmologie",
     "slug": "ophtalmologie",
-    "synonyms": [
-      "ophtalmologie ophtalmologue yeux voir lunette"
-    ],
+    "synonyms": ["ophtalmologie ophtalmologue yeux voir lunette"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -991,9 +1710,7 @@
     "categoryId": "nutrition",
     "label": "Nutrition",
     "slug": "nutrition",
-    "synonyms": [
-      "nutrition dietetique regime surpoids obesite perte de poids"
-    ],
+    "synonyms": ["nutrition dietetique regime surpoids obesite perte de poids"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -1004,9 +1721,7 @@
     "categoryId": "pedicure",
     "label": "Pédicure",
     "slug": "pedicure",
-    "synonyms": [
-      "pedicure pied pie soigner pieds soin podologue podologie"
-    ],
+    "synonyms": ["pedicure pied pie soigner pieds soin podologue podologie"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -1030,9 +1745,7 @@
     "categoryId": "pneumology",
     "label": "Pneumologie",
     "slug": "pneumologie",
-    "synonyms": [
-      "poumons respiration respirer bronches"
-    ],
+    "synonyms": ["poumons respiration respirer bronches"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -1043,9 +1756,7 @@
     "categoryId": "radiology",
     "label": "Radiologie",
     "slug": "radiologie",
-    "synonyms": [
-      "radiologie radiologue radiology rayonx fracture entorse"
-    ],
+    "synonyms": ["radiologie radiologue radiology rayonx fracture entorse"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -1056,9 +1767,7 @@
     "categoryId": "rheumatology",
     "label": "Rhumatologie",
     "slug": "rhumatologie",
-    "synonyms": [
-      "rhumatologue rumatologie"
-    ],
+    "synonyms": ["rhumatologue rumatologie"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -1069,9 +1778,7 @@
     "categoryId": "urology",
     "label": "Urologie",
     "slug": "urologie",
-    "synonyms": [
-      "urologie urology"
-    ],
+    "synonyms": ["urologie urology"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -1095,9 +1802,7 @@
     "categoryId": "stomatology",
     "label": "Stomatologie",
     "slug": "stomatologie",
-    "synonyms": [
-      "stomatologie stomatologue estomac digestion ventre"
-    ],
+    "synonyms": ["stomatologie stomatologue estomac digestion ventre"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -1108,9 +1813,7 @@
     "categoryId": "osteopathy",
     "label": "Ostéopathe",
     "slug": "osteo",
-    "synonyms": [
-      "ostheopathe osteo dos mal"
-    ],
+    "synonyms": ["ostheopathe osteo dos mal"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -1121,9 +1824,7 @@
     "categoryId": "acupuncture",
     "label": "Acupuncture",
     "slug": "acupuncture",
-    "synonyms": [
-      "acupuncture accupuncture bien etre"
-    ],
+    "synonyms": ["acupuncture accupuncture bien etre"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -1160,9 +1861,7 @@
     "categoryId": "wifi",
     "label": "Wifi",
     "slug": "wifi",
-    "synonyms": [
-      "wifi internet web connexion reseau"
-    ],
+    "synonyms": ["wifi internet web connexion reseau"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -1173,9 +1872,7 @@
     "categoryId": "electrical_outlets_available",
     "label": "Prise",
     "slug": "prise",
-    "synonyms": [
-      "prise charger electricite chargeur recharge charge"
-    ],
+    "synonyms": ["prise charger electricite chargeur recharge charge"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -1186,9 +1883,7 @@
     "categoryId": "telephone_at_your_disposal",
     "label": "Téléphone",
     "slug": "telephone",
-    "synonyms": [
-      "appel gratuit telephone telephoner appeler appel"
-    ],
+    "synonyms": ["appel gratuit telephone telephoner appeler appel"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -1225,9 +1920,7 @@
     "categoryId": "carpooling",
     "label": "Co-voiturage",
     "slug": "covoiturage",
-    "synonyms": [
-      "co voiturage partage de voiture"
-    ],
+    "synonyms": ["co voiturage partage de voiture"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -1238,9 +1931,7 @@
     "categoryId": "provision_of_vehicles",
     "label": "Mise à disposition de véhicule",
     "slug": "vehicule",
-    "synonyms": [
-      "mise a disposition de vehicule voiture"
-    ],
+    "synonyms": ["mise a disposition de vehicule voiture"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -1251,9 +1942,7 @@
     "categoryId": "chauffeur_driven_transport",
     "label": "Transport avec chauffeur",
     "slug": "chauffeur",
-    "synonyms": [
-      "transport avec chauffeur chauffeur transport a la demande"
-    ],
+    "synonyms": ["transport avec chauffeur chauffeur transport a la demande"],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "fr",
@@ -1422,11 +2111,7 @@
     "categoryId": null,
     "label": "France Services: guichet unique de services publics",
     "slug": "france-services",
-    "synonyms": [
-      "france service",
-      "maison france services",
-      "MFS"
-    ],
+    "synonyms": ["france service", "maison france services", "MFS"],
     "type": "ORGANIZATION",
     "lang": "fr",
     "country": "fr",
@@ -1437,11 +2122,7 @@
     "categoryId": null,
     "label": "CIMADE: service œcuménique d'entraide",
     "slug": "cimade",
-    "synonyms": [
-      "la cimade",
-      "CIMADE",
-      "service œcuménique d'entraide"
-    ],
+    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
     "type": "ORGANIZATION",
     "lang": "fr",
     "country": "fr",
@@ -1647,11 +2328,7 @@
     "categoryId": null,
     "label": "Centre socioculturel: structure d'animation et de lien social",
     "slug": "centre-socioculturel",
-    "synonyms": [
-      "centre socio culturel",
-      "csc",
-      "centre social"
-    ],
+    "synonyms": ["centre socio culturel", "csc", "centre social"],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "fr",
     "country": "fr",

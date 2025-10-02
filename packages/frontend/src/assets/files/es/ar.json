@@ -4,684 +4,1410 @@
     "label": "إستقبال",
     "slug": "accueil",
     "synonyms": [
-      "accueil cafe repos acceuil parler acueil accueil femme accueil femmes acueil femme violence harcelement partir"
+      "환대",
+      "환영",
+      "구제",
+      "안내",
+      "지원",
+      "동반",
+      "듣기",
+      "토론",
+      "만남",
+      "카페",
+      "휴식",
+      "대화",
+      "도움",
+      "피난처",
+      "방향"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "إستقبال: 솔기가이드가 스페인에서 당신을 환영합니다",
+    "seoDescription": "솔기가이드는 스페인에서 환영을 받습니다. 쉼터를 찾고, 안내를 받거나, 음식을 구할 수 있는 곳을 찾으십시오. 귀하의 지역에서 사용 가능합니다."
   },
   {
     "categoryId": "day_hosting",
     "label": "الإستقبال النهاري",
     "slug": "accueil-jour",
     "synonyms": [
-      "accueil accueil de jour cafe se reposer se poser repos reposer femmes battues femme battue fem batue fem batu violence harcelement partir"
+      "مكان للاستراحة",
+      "دوش",
+      "غسيل الملابس",
+      "وجبات مجانية",
+      "مساعدة فورية",
+      "مأوى مؤقت",
+      "مركز اجتماعي",
+      "وجبة دافئة",
+      "مكان آمن",
+      "ملابس نظيفة",
+      "دعم اجتماعي",
+      "إعادة تأهيل",
+      "مساحة للراحة",
+      "مساعدة عاجلة",
+      "الراحة"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Lieu d'accueil des bénéficaires proposant une pause pendant la journée."
+    "seoTitle": "اعثر على مراكز الإستقبال النهاري مع Soliguide",
+    "seoDescription": "يوفر Soliguide أماكن للإستقبال النهاري في إسبانيا. يمكنك الاستحمام، غسل الملابس أو الحصول على وجبة. تحديد الموقع الجغرافي سهل!"
   },
   {
     "categoryId": "rest_area",
     "label": "مكان للراحة",
     "slug": "espace-repos",
     "synonyms": [
-      "espace de repos reposer dormir repos pause"
+      "راحة",
+      "استراحة",
+      "مأوى",
+      "ملجأ",
+      "مكان آمن",
+      "مركز استقبال",
+      "مركز إيواء",
+      "استحمام",
+      "دش",
+      "غسل",
+      "نظافة",
+      "مكان للراحة",
+      "مبيت",
+      "إقامة مؤقتة",
+      "تهدئة"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Espaces de repos ouverts au public"
+    "seoTitle": "ابحث عن مكان للراحة مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في إيجاد مكان للاستراحة في إسبانيا. ابحث عن مأوى طارئ، مركز نهاري، أو مكان للاستحمام. تحديد الموقع الجغرافي للعثور على أقرب مكان."
   },
   {
     "categoryId": "babysitting",
     "label": "مجالسة الأطفال",
     "slug": "garde-enfants",
     "synonyms": [
-      "garde enfant garderie enfant nounou assistance maternelle bebe creche"
+      "رعاية أطفال",
+      "حضانة",
+      "روضة أطفال",
+      "مربية أطفال",
+      "مساعدة مالية لرعاية الأطفال",
+      "إعانة رعاية أطفال",
+      "مراكز رعاية نهارية",
+      "مراكز الطفولة المبكرة",
+      "خدمات رعاية الأطفال",
+      "مجالسة الأطفال في المنزل",
+      "مقدم رعاية أطفال مؤهل",
+      "تكاليف رعاية الأطفال",
+      "برامج رعاية الأطفال",
+      "دعم رعاية الأطفال",
+      "بحث عن مربية"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Activité d'un baby-sitter consistant à garder temporairement des enfants en l'abscence de leurs parents"
+    "seoTitle": "ابحث عن مجالسة الأطفال مع Soliguide لمساعدتك",
+    "seoDescription": "يوفر Soliguide أماكن لرعاية الأطفال في إسبانيا. ابحث عن حضانة، مربية أو مساعدة مالية لرعاية الأطفال بالقرب منك."
   },
   {
     "categoryId": "family_area",
     "label": "منطقة الأسرة",
     "slug": "espace-famille",
     "synonyms": [
-      "espace famille famille maman papa parents enfants"
+      "دعم",
+      "الأسرة",
+      "الأطفال",
+      "الأمهات",
+      "الآباء",
+      "رعاية",
+      "مساعدة",
+      "استشارة",
+      "إرشاد",
+      "تمويل",
+      "منح",
+      "إعانات",
+      "أنشطة",
+      "ترفيه",
+      "مجانية"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Lieu d'accueil capable de recevoir des familles"
+    "seoTitle": "ابحث عن دعم في منطقة الأسرة مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في إسبانيا! دعم للأمهات العازبات، أنشطة للأطفال، ومجموعات دعم للوالدين. ابحث عن أقرب مكان لك!"
   },
   {
     "categoryId": "information_point",
     "label": "نقطة المعلومات والتوجيه",
     "slug": "point-information",
     "synonyms": [
-      "point information point d information information ukraine"
+      "معلومات",
+      "توجيه",
+      "مساعدة اجتماعية",
+      "خدمات اجتماعية",
+      "استشارة",
+      "نصيحة",
+      "إرشاد",
+      "دعم",
+      "مراكز معلومات",
+      "بلدية",
+      "منظمات غير حكومية",
+      "مساعدة قانونية",
+      "حقوق",
+      "إجراءات إدارية",
+      "محام"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Point d'information"
+    "seoTitle": "Soliguide يساعدك في العثور على نقطة المعلومات والتوجيه المناسبة",
+    "seoDescription": "Soliguide يساعدك في إسبانيا. ابحث عن معلومات حول المساعدة الاجتماعية، والإجراءات الإدارية، والخدمات المتوفرة بالقرب منك. ابحث جغرافيا!"
   },
   {
     "categoryId": "activities",
     "label": "نشاطات",
     "slug": "activites",
     "synonyms": [
-      "activites sorties sport loisirs sortir jeux jeu loisir isolement isole solitude isolee"
+      "فعاليات",
+      "أنشطة ترفيهية",
+      "ورش عمل",
+      "دروس لغة",
+      "دورات تدريبية",
+      "تطوع",
+      "مساعدة",
+      "دعم اجتماعي",
+      "تنمية مهارات",
+      "ثقافة",
+      "ترفيه",
+      "تعليم",
+      "لقاءات",
+      "تفاعل اجتماعي",
+      "مجتمع"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "أنشطة مفيدة تجدها مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في إيجاد أنشطة متنوعة! دروس لغة، ورش عمل، فعاليات ثقافية. تحديد الموقع الجغرافي للعثور على الأقرب إليك. ابحث الآن!"
   },
   {
     "categoryId": "sport_activities",
     "label": "نشاطات رياضية",
     "slug": "activites-sportives",
     "synonyms": [
-      "activites sportives sport foot basket danse rugby loisirs loisir"
+      "رياضة",
+      "تمارين",
+      "صحة",
+      "لياقة بدنية",
+      "نادي رياضي",
+      "ملاعب",
+      "مدرب",
+      "فريق",
+      "مباراة",
+      "ركض",
+      "سباحة",
+      "كرة القدم",
+      "كرة السلة",
+      "يوجا",
+      "تمارين رياضية"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Activités sportives : foot, jogging, marche, etc."
+    "seoTitle": "اعثر على نشاطات رياضية مجانية مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في إيجاد نوادي رياضية شعبية، دروس رياضية بأسعار مخفضة، ومجموعات رياضية مجانية في اسبانيا. ابحث عن أقرب مكان!"
   },
   {
     "categoryId": "museums",
     "label": "متحف",
     "slug": "musee",
     "synonyms": [
-      "musee culture sortie peinture tableau se cultiver"
+      "معرض",
+      "فن",
+      "ثقافة",
+      "تاريخ",
+      "معرفة",
+      "تعليم",
+      "ترفيه",
+      "جولة",
+      "مرشد",
+      "فعاليات",
+      "ورشة عمل",
+      "أنشطة",
+      "مجاني",
+      "دعم",
+      "إسبانيا"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Musée gratuit."
+    "seoTitle": "ابحث عن متاحف مجانية وداعمة مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في إيجاد متاحف توفر أنشطة ثقافية مجانية، ورش عمل فنية، وجولات إرشادية لذوي الدخل المحدود في إسبانيا. تحديد الموقع الجغرافي سهل!"
   },
   {
     "categoryId": "libraries",
     "label": "مكتبة",
     "slug": "bibliotheque",
     "synonyms": [
-      "bibliotheque livres culture mediatheque"
+      "كتب",
+      "قراءة",
+      "معرفة",
+      "تعليم",
+      "دراسة",
+      "بحث",
+      "إنترنت مجاني",
+      "ورش عمل",
+      "فعاليات ثقافية",
+      "مساحات عمل",
+      "أطفال",
+      "بالغين",
+      "شباب",
+      "لغة",
+      "أدب"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Bibliothèque accessible en accès libre."
+    "seoTitle": "ابحث عن مكتبة قريبة منك مع Soliguide",
+    "seoDescription": "يساعدك Soliguide في إيجاد مكتبات توفر كتبًا مجانية، وخدمات الإنترنت، وورش عمل تعليمية. ابحث عن مكتبة قريبة منك الآن!"
   },
   {
     "categoryId": "other_activities",
     "label": "نشاطات مختلفة",
     "slug": "activites-diverses",
     "synonyms": [
-      "activites diverses animation divertissement loisir s occuper culture activites enfants loisirs loisir"
+      "ترفيه",
+      "تواصل",
+      "اجتماع",
+      "تكوين",
+      "ورشة عمل",
+      "لغة",
+      "دورة",
+      "مساعدة",
+      "دعم",
+      "تطوير",
+      "مهارات",
+      "مرح",
+      "تبادل",
+      "ثقافة",
+      "اندماج"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Activités diverses : ateliers, activités culturelles, etc. (précisez.)"
+    "seoTitle": "أنشطة مختلفة متاحة لك مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في إيجاد أنشطة مختلفة. ابحث عن دروس لغة مجانية، ورش عمل، ومساحات للأنشطة الاجتماعية. اكتشف أماكن قريبة منك في إسبانيا!"
   },
   {
     "categoryId": "food",
     "label": "طعام",
     "slug": "alimentation-bouffe-boufe-manger-soupe-repas-aliment-manger-mange-repa-faim-diner-dejeuner-dejeunet-dine-se-nourrir-fin-portage-portage-de-repas-aide-alimentaire-comida-comer-resto-du-coeur",
     "synonyms": [
-      "alimentation bouffe boufe manger soupe repas aliment manger mange repa faim diner dejeuner dejeunet dine se nourrir fin portage portage de repas aide alimentaire comida comer"
+      "وجبات",
+      "أكل",
+      "غذاء",
+      "معونة غذائية",
+      "مساعدة غذائية",
+      "تبرعات غذائية",
+      "بنك الطعام",
+      "وجبة مجانية",
+      "حساء",
+      "مطعم خيري",
+      "توزيع الطعام",
+      "طرود غذائية",
+      "قسائم طعام",
+      "مطبخ",
+      "تغذية"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "ابحث عن الطعام الذي تحتاجه مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في إيجاد أماكن للحصول على وجبات مجانية، طرود غذائية، أو قسائم شراء طعام في إسبانيا. تحديد الموقع الجغرافي للعثور على المساعدة الأقرب إليك."
   },
   {
     "categoryId": "food_distribution",
     "label": "توزيع الوجبات",
     "slug": "distribution-repas",
     "synonyms": [
-      "distribution alimentaire distribution de repas manger maraude bouffe soupe nourriture faim repas mange manger fin distribution aide alimentaire restauration assise comida comer"
+      "وجبات",
+      "طعام",
+      "غذاء",
+      "مساعدة غذائية",
+      "وجبة مجانية",
+      "حساء",
+      "مطعم خيري",
+      "بنك الطعام",
+      "توزيع المواد الغذائية",
+      "تبرعات غذائية",
+      "مطبخ مجتمعي",
+      "وجبات جاهزة",
+      "مائدة مفتوحة",
+      "مواد غذائية أساسية",
+      "جمعية خيرية"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Point d'arrêt d'une distribution alimentaire. Attention : Veuillez créer une structure par point de distribution."
+    "seoTitle": "Soliguide يساعدك في الحصول على توزيع الوجبات المجانية",
+    "seoDescription": "Soliguide تجد لك أماكن لتوزيع الوجبات في إسبانيا! وجبات ساخنة، بنوك الطعام، ومطاعم خيرية قريبة منك. ابحث الآن جغرافياً!"
   },
   {
     "categoryId": "food_packages",
     "label": "سلة الأغذية",
     "slug": "colis-alimentaire",
     "synonyms": [
-      "colis colis alimentaire manger mange fruits legumes panier repas aide alimentaire panier comida comer"
+      "مساعدة غذائية",
+      "طعام مجاني",
+      "وجبات",
+      "تبرعات غذائية",
+      "بنك الطعام",
+      "جمعية خيرية غذائية",
+      "معونة غذائية",
+      "دعم غذائي",
+      "مساعدة في الطعام",
+      "توزيع الطعام",
+      "مواد غذائية",
+      "معلبات",
+      "أرز",
+      "معكرونة",
+      "زيت"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Distribution de colis contenant des denrées alimentaires (conserves, légumes, etc.)."
+    "seoTitle": "اعثر على سلة الأغذية المناسبة لك مع Soliguide",
+    "seoDescription": "يوفر Soliguide أماكن للحصول على سلة الأغذية في إسبانيا، أو وجبات مجانية، أو قسائم طعام. ابحث عن أقرب مكان إليك الآن!"
   },
   {
     "categoryId": "social_grocery_stores",
     "label": "بقالة اجتماعية وتضامنية",
     "slug": "epicerie-sociale-solidaire",
     "synonyms": [
-      "epicerie sociale epicerie manger fruits legumes panier repas epicerie solidaire aide alimentaire"
+      "بقالة تضامنية",
+      "مخزن اجتماعي",
+      "توزيع غذائي",
+      "مساعدة غذائية",
+      "مواد غذائية مدعومة",
+      "سلة غذائية",
+      "منتجات بأسعار مخفضة",
+      "ورشة عمل تغذية",
+      "طعام صحي",
+      "تغذية متوازنة",
+      "توفير المال",
+      "دعم غذائي",
+      "محل بقالة اجتماعي",
+      "منتجات محلية",
+      "جمعية خيرية"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Les épiceries solidaires accueillent les personnes en précarité et leur permettent de faire des courses à prix solidaire."
+    "seoTitle": "اعثر على بقالة اجتماعية وتضامنية قريبة منك مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في إيجاد بقالة اجتماعية وتضامنية. احصل على مواد غذائية بأسعار مخفضة، وشارك في ورش عمل حول التغذية، وتعرّف على منتجات محلية."
   },
   {
     "categoryId": "fountain",
     "label": "نافورة مياه عامة",
     "slug": "fontaine",
     "synonyms": [
-      "fontaine boire eau soif robinet potable"
+      "ماء",
+      "شراب",
+      "مياه شرب",
+      "نافورة",
+      "ترطيب",
+      "انتعاش",
+      "مياه عامة",
+      "مجاني",
+      "مساعدة",
+      "عطش",
+      "تبريد",
+      "صحة",
+      "نظافة",
+      "اسبانيا",
+      "مياه نظيفة"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Eau potable en accès libre."
+    "seoTitle": "ابحث عن نافورة مياه عامة بسهولة مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في إيجاد نافورة مياه عامة، مكان للاستحمام، أو الحصول على مياه للشرب في اسبانيا. تحديد الموقع الجغرافي للعثور على المساعدة."
   },
   {
     "categoryId": "solidarity_fridge",
     "label": "ثلاجة التضامن",
     "slug": "frigo-solidaire",
     "synonyms": [
-      "manger mange conserver frais bouffe aliment faim frigo frigo solidaire"
+      "تبرع بالطعام",
+      "وجبات مجانية",
+      "طعام للمحتاجين",
+      "مساعدة غذائية",
+      "بنك الطعام",
+      "تبرعات غذائية",
+      "مطبخ خيري",
+      "مساعدة غذائية عاجلة",
+      "ثلاجة مجتمعية",
+      "طعام فائض",
+      "توزيع الطعام",
+      "مكافحة الجوع",
+      "دعم غذائي",
+      "جمعية خيرية للطعام",
+      "مساعدة غذائية في حالات الطوارئ"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Frigo solidaire"
+    "seoTitle": "ابحث عن ثلاجة التضامن مع Soliguide في إسبانيا لمساعدة المحتاجين",
+    "seoDescription": "Soliguide يساعدك للعثور على ثلاجات التضامن في إسبانيا. احصل على طعام مجاني، وجبات ساخنة، ومساعدات غذائية. ابحث عن أقرب مكان إليك الآن!"
   },
   {
     "categoryId": "shared_kitchen",
     "label": "مطبخ مشترك",
     "slug": "cuisine-partagee",
     "synonyms": [
-      "cuisine cuisiner preparer partage partagee cuisine partagee"
+      "مطبخ",
+      "طبخ",
+      "وجبات",
+      "طعام",
+      "مجاني",
+      "مجتمع",
+      "أكل",
+      "مساعدة غذائية",
+      "دورة طبخ",
+      "وصفات",
+      "تغذية",
+      "توفير المال",
+      "مكان للطبخ",
+      "مطبخ اجتماعي",
+      "وجبة رخيصة"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Cuisine partagée "
+    "seoTitle": "ابحث عن مطبخ مشترك مع Soliguide للحصول على وجبات مجانية",
+    "seoDescription": "Soliguide يساعدك في إيجاد أماكن تقدم وجبات، مطابخ مجتمعية، أو دروس طهي في es. ابحث عن أقرب مكان لك الآن!"
   },
   {
     "categoryId": "cooking_workshop",
     "label": "ورشة الطبخ",
     "slug": "atelier-cuisine",
     "synonyms": [
-      "atelier cuisine cuisiner partage preparer atelier cuisine cuire"
+      "ورشة الطبخ",
+      "دروس الطبخ",
+      "وصفات سهلة",
+      "نصائح تغذية",
+      "تعليم الطبخ",
+      "مطبخ",
+      "وجبات",
+      "أكل صحي",
+      "تدريب الطبخ",
+      "مساعدة غذائية",
+      "تغذية",
+      "طعام",
+      "مهارات الطبخ",
+      "مدرسة الطبخ",
+      "أطباق"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Atelier de cuisine"
+    "seoTitle": "ورشة الطبخ مجاناً مع Soliguide لمساعدتك",
+    "seoDescription": "Soliguide يساعدك! تعلم الطبخ في ورش عمل مجانية في إسبانيا. ابحث عن دروس طبخ، وصفات سهلة، ونصائح تغذية. تحديد الموقع الجغرافي للعثور على المساعدة."
   },
   {
     "categoryId": "baby_parcel",
     "label": "حزمة الطفل",
     "slug": "colis-bebe",
     "synonyms": [
-      "bebe nourrir nourisson colis colis bebe puericulture lait couche biberon maternite manger nourriture vetement"
+      "حزمة الطفل",
+      "ملابس أطفال",
+      "أغذية أطفال",
+      "مستلزمات الرضع",
+      "حفاضات",
+      "حليب الأطفال",
+      "لعب أطفال",
+      "رعاية الأطفال",
+      "دعم الأمومة",
+      "مساعدة مالية للأطفال",
+      "مراكز رعاية الأم والطفل",
+      "مساعدة الأسر",
+      "مستلزمات الأطفال حديثي الولادة",
+      "مراكز توزيع الملابس للأطفال",
+      "دعم غذائي للأطفال"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Colis pour bébé"
+    "seoTitle": "ابحث عن مساعدة لحزمة الطفل مع Soliguide",
+    "seoDescription": "يساعدك Soliguide في إيجاد حزمة الطفل. احصل على ملابس أطفال مجانية، أغذية الأطفال، ومستلزمات الرضع في إسبانيا. ابحث عن أقرب مكان يقدم هذه المساعدات!"
   },
   {
     "categoryId": "food_voucher",
     "label": "قسيمة الطعام / الشيك",
     "slug": "bon-alimentaire",
     "synonyms": [
-      "bon cheque ticket alimentaire gratuit aide"
+      "قسيمة طعام",
+      "شيك غذائي",
+      "بطاقة طعام",
+      "مساعدة غذائية",
+      "دعم غذائي",
+      "معونة غذائية",
+      "بنك الطعام",
+      "توزيع الطعام",
+      "وجبات مجانية",
+      "مطابخ الحساء",
+      "طعام طارئ",
+      "وجبة ساخنة",
+      "مواد غذائية",
+      "جمعيات خيرية للطعام",
+      "تبرعات غذائية"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Distribution de bon/chèque alimentaire"
+    "seoTitle": "احصل على قسيمة الطعام / الشيك مع Soliguide لمساعدتك في إسبانيا",
+    "seoDescription": "Soliguide يساعدك للعثور على أماكن للحصول على قسائم الطعام / الشيكات في إسبانيا. ابحث عن بنوك الطعام، المساعدة الغذائية الطارئة، ومطابخ الحساء بالقرب منك."
   },
   {
     "categoryId": "community_garden",
     "label": "حديقة التضامن",
     "slug": "jardin-solidaire",
     "synonyms": [
-      "fruits pousser jardin bio nature legumes jardin solidaire jardinage"
+      "حديقة مجتمعية",
+      "مساحة خضراء",
+      "مشاركة",
+      "نشاطات",
+      "تفاعل اجتماعي",
+      "راحة",
+      "استرخاء",
+      "طبيعة",
+      "زراعة",
+      "بستنة",
+      "ورش عمل",
+      "تطوع",
+      "لقاء",
+      "تواصل",
+      "دعم"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Jardin solidaire"
+    "seoTitle": "ابحث عن حدائق التضامن مع Soliguide لمساعدتك",
+    "seoDescription": "Soliguide يساعدك! احصل على مكان للاسترخاء، وشارك في الأنشطة المجتمعية، وتعرّف على أشخاص جدد في حدائق التضامن في منطقتك بإسبانيا."
   },
   {
     "categoryId": "counseling",
     "label": "كن نصوح",
     "slug": "conseil",
     "synonyms": [
-      "conseil conseils soutien accompagnement aide se faire aider conseiller numerique"
+      "نصيحة",
+      "إرشاد",
+      "دعم نفسي",
+      "مساعدة نفسية",
+      "مستشار",
+      "معالج",
+      "طبيب نفسي",
+      "مجموعات دعم",
+      "خطوط مساعدة",
+      "صحة نفسية",
+      "راحة",
+      "اطمئنان",
+      "توجيه",
+      "تشجيع",
+      "مواساة"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "كن نصوحًا وتلقى المساعدة مع Soliguide",
+    "seoDescription": "Soliguide يساعدك. ابحث عن استشارة نفسية مجانية، مجموعات دعم، أو خطوط مساعدة. تحديد الموقع الجغرافي للعثور على الدعم في es."
   },
   {
     "categoryId": "legal_advice",
     "label": "مكانة قانونية",
     "slug": "permanence-juridique",
     "synonyms": [
-      "proces permanence juridique amende avocat droits droit recours juge ldh droits de l homme ligue des droits de l homme acces au droit cnda ofpra asile sejour carte sejour divorce separation"
+      "قانون",
+      "حقوق",
+      "محامي",
+      "استشارة قانونية",
+      "مساعدة قانونية مجانية",
+      "هجرة",
+      "لجوء",
+      "إقامة",
+      "وثائق",
+      "ترجمة",
+      "محكمة",
+      "مركز قانوني",
+      "دفاع",
+      "مستشار قانوني",
+      "مكتب مساعدة قانونية"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Permanences juridiques (surendettement, demande d'asile, procès, etc.)."
+    "seoTitle": "مكانتك القانونية مضمونة مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في الحصول على المساعدة القانونية في إسبانيا! استشارات قانونية مجانية، دعم في إجراءات الهجرة، وخدمات ترجمة. ابحث عن أقرب مكان إليك!"
   },
   {
     "categoryId": "social_accompaniment",
     "label": "المرافقة الاجتماعية",
     "slug": "accompagnement-social",
     "synonyms": [
-      "accompagnement assistante sociale social travailleur social droits demarches femmes battues femme battue violence isolement isole solitude isolee partir separation divorce victime"
+      "دعم اجتماعي",
+      "مساعدة اجتماعية",
+      "توجيه",
+      "إرشاد",
+      "دعم نفسي",
+      "أنشطة اجتماعية",
+      "تواصل اجتماعي",
+      "مواكبة",
+      "رفقة",
+      "معاونة",
+      "مساعدة في الإجراءات",
+      "جمعيات خيرية",
+      "منظمات غير حكومية",
+      "مراكز اجتماعية",
+      "تضامن"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Accompagement des personnes dans leur réinsertion (assistantes sociales, permanences, etc.)."
+    "seoTitle": "ابحث عن المرافقة الاجتماعية بسهولة مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في إيجاد الدعم الاجتماعي. أمثلة: مساعدة في التوجيه نحو الخدمات, دعم نفسي, أو أنشطة اجتماعية. تجد كل ذلك بالقرب منك في إسبانيا!"
   },
   {
     "categoryId": "disability_advice",
     "label": "مجلس الإعاقة",
     "slug": "conseil-handicap",
     "synonyms": [
-      "conseil handicap handicap aah conseils conseil handicape handicapee personne a mobilite reduite pmr"
+      "إعاقة",
+      "حقوق",
+      "دعم",
+      "مساعدة",
+      "تأهيل",
+      "خدمات",
+      "مجلس",
+      "معلومات",
+      "قانون",
+      "احتياجات خاصة",
+      "إمكانية الوصول",
+      "اندماج",
+      "تمويل",
+      "رعاية",
+      "منظمات"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'accès aux droits pour les personnes en situation de handicap."
+    "seoTitle": "اعثر على دعم مجلس الإعاقة مع Soliguide",
+    "seoDescription": "Soliguide يساعدك للعثور على معلومات عن حقوقك، وخدمات إعادة التأهيل، ومراكز الدعم المتخصصة في إسبانيا. ابحث عن أماكن قريبة تقدم المساعدة!"
   },
   {
     "categoryId": "administrative_assistance",
     "label": "اﺳﺘﺸﺎﺭاﺕ ﺇﺩاﺭﻳﺔ",
     "slug": "conseil-administratif",
     "synonyms": [
-      "conseil administratif conseils administratifs aide administrative demarches rsa cmu allocations papiers securite sociale caf cpampapier conseiller numerique"
+      "مساعدة قانونية",
+      "محام مجاني",
+      "استشارة قانونية مجانية",
+      "حقوق",
+      "قانون",
+      "دعم قانوني",
+      "منظمة حقوقية",
+      "مكتب استشارات",
+      "معلومات قانونية",
+      "استشارة إدارية",
+      "إجراءات إدارية",
+      "تسوية النزاعات",
+      "دعم إداري",
+      "خدمات قانونية",
+      "مكتب المساعدة القانونية"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'aide administrative (RSA, CMU, allocations, chômage, etc.)."
+    "seoTitle": "ابحث عن اﺳﺘﺸﺎﺭاﺕ ﺇﺩاﺭﻳﺔ مجانية مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في إيجاد محامين مجانيين، منظمات غير حكومية للاستشارات القانونية في إسبانيا. تحديد الموقع الجغرافي للعثور على المساعدة."
   },
   {
     "categoryId": "parent_assistance",
     "label": "الاستشارة للوالدين",
     "slug": "conseil-parents",
     "synonyms": [
-      "conseil parents conseil aux parents conseil parental mediation familiale mediation conflit adolescents enfants parent parentalite parents enfant ado adolescent couple couples"
+      "استشارة",
+      "نفسي",
+      "دعم",
+      "تربوي",
+      "والدين",
+      "أبوة",
+      "أمومة",
+      "طفل",
+      "أطفال",
+      "أسرة",
+      "عائلة",
+      "مساعدة",
+      "إرشاد",
+      "نصيحة",
+      "حلول"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Permances d'aide pour les jeunes parents et les parents rencontrant des difficultés avec leurs enfants."
+    "seoTitle": "ابحث عن الاستشارة للوالدين مع Soliguide",
+    "seoDescription": "Soliguide تساعدك لإيجاد استشارة نفسية، دعم تربوي، ومجموعات دعم للوالدين في إسبانيا. تحديد الموقع الجغرافي متاح."
   },
   {
     "categoryId": "budget_advice",
     "label": "نصيحة الميزانية",
     "slug": "conseil-budget",
     "synonyms": [
-      "conseil budget conseil budget argent finance cresus"
+      "ميزانية",
+      "نصيحة مالية",
+      "إدارة الديون",
+      "تخطيط مالي",
+      "مساعدة اقتصادية",
+      "استشارة اقتصادية",
+      "إدارة الميزانية",
+      "توفير المال",
+      "مشاكل مالية",
+      "ديون",
+      "مستشار مالي",
+      "صعوبات مالية",
+      "حلول مالية",
+      "مساعدة في الديون",
+      "تمويل"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Points conseil budget (PCB) proposent des conseils gratuits et personnalisés de gestion budgétaire "
+    "seoTitle": "احصل على نصيحة الميزانية المناسبة مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في إسبانيا. احصل على نصيحة بشأن الديون، الميزانية، أو إدارة الأموال. ابحث عن أماكن قريبة تقدم هذه الخدمات مجاناً!"
   },
   {
     "categoryId": "training_and_jobs",
     "label": "اﻟﺘﺪﺭﻳﺐ ﻭ اﻟﺘﻮﻇﻴﻒ",
     "slug": "formation-emploi",
     "synonyms": [
-      "formation emploi travailler job travail boulot se former taf taff taffe apprendre lire etudier comprendre france travail pole emploi conseiller numerique"
+      "ﺗﻮﻇﻴﻒ",
+      "ﻋﻤﻞ",
+      "ﺗﺪﺭﻳﺐ ﻣﻬﻨﻲ",
+      "ﻣﺴﺎﻋﺪﺓ ﻓﻲ اﻟﺒﺤﺚ ﻋﻦ ﻋﻤﻞ",
+      "ﻣﻘﺎﺑﻠﺔ ﻋﻤﻞ",
+      "ﺳﻴﺮﺓ ﺫﺍﺗﻴﺔ",
+      "ﺧﻄﺎﺏ ﺗﻘﺪﻳﻤﻲ",
+      "ﺩﻭﺭﺍﺕ ﺗﺪﺭﻳﺒﻴﺔ",
+      "ﻓﺮﺹ ﻋﻤﻞ",
+      "ﺳﻮﻕ اﻟﻌﻤﻞ",
+      "ﺍﻟﺒﻄﺎﻟﺔ",
+      "اﻟﺒﺤﺚ ﻋﻦ ﻭﻇﻴﻔﺔ",
+      "ﺗﻄﻮﻳﺮ اﻟﻤﻬﺎﺭﺍﺕ",
+      "ﺇﺩﻣﺎﺝ ﻣﻬﻨﻲ",
+      "ﺗﺄﻫﻴﻞ ﻟﺴﻮﻕ اﻟﻌﻤﻞ"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "اﻟﺘﺪﺭﻳﺐ ﻭ اﻟﺘﻮﻇﻴﻒ ﻣﻊ Soliguide: اﺣﺼﻞ ﻋﻠﻰ اﻟﻤﺴﺎﻋﺪﺓ ﻓﻲ ﺇﺳﺒﺎﻧﻴﺎ",
+    "seoDescription": "Soliguide ﻳﺴﺎﻋﺪﻙ ﻓﻲ إﺳﺒﺎﻧﻴﺎ. ﺑﺤﺚ ﻋﻦ ﺑﺮﺍﻣﺞ اﻟﺘﺪﺭﻳﺐ اﻟﻤﻬﻨﻲ، ﻣﺴﺎﻋﺪﺓ ﻓﻲ اﻟﺒﺤﺚ ﻋﻦ ﻋﻤﻞ ﻭﻣﺸﺎﺭﻳﻊ ﺩﻋﻢ اﻟﺘﻮﻇﻴﻒ. ﺟﺪ ﺃﻣﺎﻛﻦ ﻗﺮﻳﺒﺔ ﻣﻨﻚ!"
   },
   {
     "categoryId": "digital_tools_training",
     "label": "اﻟﺘﺪﺭﻳﺐ اﻟﺮﻗﻤﻲ",
     "slug": "formation-numerique",
     "synonyms": [
-      "formation numerique atelier numerique formation informatique ordinateur connexion se former technologie tech apprendre comprendre lire etudier conseiller numerique"
+      "ﺗﻌﻠﻴﻢ",
+      "ﺣﺎﺳﻮﺏ",
+      "اﻧﺘﺮﻧﺖ",
+      "ﻣﻬﺎﺭاﺕ ﺭﻗﻤﻴﺔ",
+      "ﺗﻜﻨﻮﻟﻮﺟﻴﺎ",
+      "ﺩﻭﺭﺓ ﺗﺪﺭﻳﺒﻴﺔ",
+      "ﻭﻳﺐ",
+      "ﺗﺼﻤﻴﻢ",
+      "ﺑﺮﻣﺠﺔ",
+      "ﺗﻄﺒﻴﻘﺎﺕ",
+      "ﻫﺎﺗﻒ ذﻛﻲ",
+      "ﺗﺴﻮﻳﻖ رﻗﻤﻲ",
+      "ﺗﻌﻠﻢ ﻋﻦ ﺑﻌﺪ",
+      "ﻣﺴﺎﻋﺪﺓ رﻗﻤﻴﺔ",
+      "ﻣﻌﻠﻮﻣﺎﺗﻴﺔ"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Permanences ou ateliers visant à la maitrise d'outils informatiques."
+    "seoTitle": "اﻟﺘﺪﺭﻳﺐ اﻟﺮﻗﻤﻲ ﻣﻊ Soliguide: ﺗﻌﻠﻢ ﻣﻬﺎﺭاﺕ ﺟﺪﻳﺪﺓ",
+    "seoDescription": "اﻟﻌﺜﻮﺭ ﻋﻠﻰ ﺩﻭﺭاﺕ ﺗﺪﺭﻳﺒﻴﺔ ﻋﻠﻰ اﻹﻧﺘﺮﻧﺖ ﻓﻲ ﺇﺳﺒﺎﻧﻴﺎ ﻣﻊ Soliguide. ﺗﺪﺭﻳﺐ ﻋﻠﻰ اﻟﺤﺎﺳﻮﺏ، ﺗﺼﻤﻴﻢ ﻭﻳﺐ، ﻭﺩﻭﺭاﺕ ﻓﻲ اﻟﺘﺴﻮﻳﻖ اﻟﺮﻗﻤﻲ. ﻣﺴﺎﻋﺪﺓ ﻗﺮﻳﺒﺔ ﻣﻨﻚ!"
   },
   {
     "categoryId": "job_coaching",
     "label": "المرافقة في العمل",
     "slug": "accompagnement-emploi",
     "synonyms": [
-      "accompagnement emploi travailler job pole emploi travail boulot se former etre accompagne taf taff taffe apprendre comprendre lire etudier france travail orientation"
+      "بحث عن عمل",
+      "وظيفة",
+      "تدريب مهني",
+      "كتابة سيرة ذاتية",
+      "مقابلة عمل",
+      "دعم التوظيف",
+      "مساعدة في التوظيف",
+      "تأهيل مهني",
+      "فرص عمل",
+      "مكتب التوظيف",
+      "المركز الاجتماعي",
+      "إدماج مهني",
+      "عقد عمل",
+      "دعم مالي",
+      "إعانة بطالة"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Aide au retour à l'emploi : ateliers de préparation aux entretiens, aide à la recherche d'emploi, atelier CV, etc."
+    "seoTitle": "Soliguide يساعدك في المرافقة في العمل بإسبانيا",
+    "seoDescription": "Soliguide يوفر أماكن للمساعدة في الحصول على وظيفة، كتابة السيرة الذاتية، أو التدريب المهني في إسبانيا. ابحث عن أقرب مكان الآن!"
   },
   {
     "categoryId": "integration_through_economic_activity",
     "label": "التكامل من خلال النشاط الاقتصادي",
     "slug": "insertion-activite-economique",
     "synonyms": [
-      "chantier de reinsertion chantier reinsertion travailler job insertion reinsertion siae iae se reinserer taf taff taffe apprendre comprendre lire etudier orientation"
+      "اندماج",
+      "توظيف",
+      "عمل",
+      "وظيفة",
+      "تدريب مهني",
+      "ورشة عمل",
+      "ريادة الأعمال",
+      "دعم مالي",
+      "مساعدة",
+      "فرص",
+      "تأهيل",
+      "مهارات",
+      "تطوير",
+      "اقتصاد",
+      "نشاط"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Embauche de personnes en insertion."
+    "seoTitle": "دعم التكامل من خلال النشاط الاقتصادي مع Soliguide",
+    "seoDescription": "Soliguide يساعدك على الاندماج الاقتصادي. ابحث عن دورات تدريبية مهنية، وورش عمل، وبرامج دعم ريادة الأعمال. تحديد المواقع الجغرافية للعثور على أقرب مساعدة."
   },
   {
     "categoryId": "tutoring",
     "label": "الدعم المدرسي",
     "slug": "soutien-scolaire",
     "synonyms": [
-      "soutien scolaire aide au devoir etudes college lycee devoirs cours apprendre comprendre lire etudier"
+      "دروس تقوية",
+      "مساعدة مدرسية",
+      "واجبات منزلية",
+      "مواد دراسية",
+      "كتب مدرسية",
+      "أقلام رصاص",
+      "مذاكرة",
+      "امتحانات",
+      "تعليم مجاني",
+      "مدرسة مجانية",
+      "مساعدة الأطفال",
+      "دعم تعليمي",
+      "برامج تعليمية",
+      "معلم متطوع",
+      "مكتبة"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Soutien scolaire gratuit (préciser le niveau dans la description)."
+    "seoTitle": "الدعم المدرسي المجاني مع Soliguide لمساعدة الأطفال في إسبانيا",
+    "seoDescription": "Soliguide يساعدك في إيجاد دروس تقوية مجانية، وواجبات منزلية، ومواد دراسية في إسبانيا. ابحث عن أقرب مكان يقدم الدعم المدرسي!"
   },
   {
     "categoryId": "accomodation_and_housing",
     "label": "السكن والإسكان",
     "slug": "hebergement-et-logement",
     "synonyms": [
-      "hebergement dormir lit logement repos toit hebergement logement logement hebergement et logement hebergementetlogement domir"
+      "سكن",
+      "إسكان",
+      "مأوى",
+      "إيجار",
+      "دفع الإيجار",
+      "منزل",
+      "شقة",
+      "غرفة",
+      "مساعدة مالية للسكن",
+      "حقوق السكن",
+      "مأوى طارئ",
+      "بلا مأوى",
+      "تأمين السكن",
+      "مفتاح السكن",
+      "العيش"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "ابحث عن مساعدة في السكن والإسكان مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في إيجاد سكن طارئ، مساعدة في دفع الإيجار، أو معلومات عن حقوقك في السكن في إسبانيا. اعثر على أماكن قريبة منك!"
   },
   {
     "categoryId": "overnight_stop",
     "label": "توقف ليلي",
     "slug": "halte-nuit",
     "synonyms": [
-      "halte de nuit halte nuit dormir se reposer alte de nui accueil nuit accueil de nuit accueil nuit"
+      "مأوى ليلي",
+      "مأوى طارئ",
+      "مركز إيواء",
+      "مبيت",
+      "مكان آمن",
+      "النوم",
+      "مأوى مؤقت",
+      "مساعدة المشردين",
+      "مكان دافئ",
+      "وجبة مجانية",
+      "الاستحمام",
+      "غسل الملابس",
+      "دعم اجتماعي",
+      "مكان لغسل الملابس",
+      "مكان للنوم"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "La halte de nuit est un lieu d'accueil et de repos pour les personnes sans abri ouvert de 20h à 8h du matin, 7/7 jours."
+    "seoTitle": "اعثر على مكان توقف ليلي آمن مع Soliguide",
+    "seoDescription": "Soliguide يساعدك للعثور على مأوى طارئ، مكان للاستحمام أو وجبة دافئة في es. ابحث عن أقرب مكان بالقرب منك!"
   },
   {
     "categoryId": "emergency_accommodation",
     "label": "الإيواء الطارئ",
     "slug": "hebergement-urgence",
     "synonyms": [
-      "hebergement urgence dormir lit logement chu halte de nuit toit a la rue rue dehors accueil de nuit accueil nuit accueil nuit"
+      "مأوى",
+      "مأوى طارئ",
+      "إيواء مؤقت",
+      "مساعدة اللاجئين",
+      "مركز إيواء",
+      "مساعدة عاجلة",
+      "مكان آمن",
+      "دعم السكن",
+      "السكن الطارئ",
+      "المبيت",
+      "الإقامة",
+      "ملجأ",
+      "دار إيواء",
+      "منزل مؤقت",
+      "أزمة السكن"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Hébergement à court terme (à la nuitée), accessible directement."
+    "seoTitle": "الإيواء الطارئ: تجد المساعدة مع Soliguide في إسبانيا",
+    "seoDescription": "Soliguide يساعدك في إسبانيا. إيواء مؤقت، مراكز إيواء للاجئين، مساعدة عاجلة. ابحث عن أقرب مكان يقدم لك المساعدة المجانية. تحديد الموقع الجغرافي."
   },
   {
     "categoryId": "long_term_accomodation",
     "label": "الإيواء لمدة طويلة",
     "slug": "hebergement-long-terme",
     "synonyms": [
-      "hebergement dormir lit logement chrs repos toit"
+      "مأوى",
+      "مسكن",
+      "إقامة",
+      "شقة",
+      "بيت",
+      "سكن اجتماعي",
+      "إيواء طارئ",
+      "مركز إيواء",
+      "دار الضيافة",
+      "سكن مدعوم",
+      "مساعدة في السكن",
+      "دعم الإسكان",
+      "مشكلة سكن",
+      "أزمة سكن",
+      "الحصول على سكن"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Possibilité d'hébergement à long terme, au sein de la structure ou d'une structure partenaire. Indiquer dans la description les modalités d'accès."
+    "seoTitle": "الإيواء لمدة طويلة مع Soliguide دليلكم لإيجاد المساعدة",
+    "seoDescription": "Soliguide يساعدكم في إيجاد أماكن للإيواء الطويل الأمد في إسبانيا. ابحث عن مأوى، مسكن اجتماعي أو شقق مدعومة قريبة منكم."
   },
   {
     "categoryId": "citizen_housing",
     "label": "سكن المواطن",
     "slug": "hebergement-citoyen",
     "synonyms": [
-      "hebergement hebergement citoyen merci pour l invit singa"
+      "إيجار",
+      "مسكن",
+      "منزل",
+      "شقة",
+      "مساعدة سكنية",
+      "دعم الإسكان",
+      "مأوى",
+      "ملجأ",
+      "سكن طارئ",
+      "سكن اجتماعي",
+      "تملك منزل",
+      "قروض سكنية",
+      "صندوق الإسكان",
+      "وكالة الإسكان",
+      "بدل الإيجار"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "Soliguide يساعدك في العثور على سكن المواطن",
+    "seoDescription": "يساعدك Soliguide في إيجاد مسكن! ابحث عن مساعدات للإيجار، سكن طارئ، أو دعم لإيجاد منزل في إسبانيا. تحديد الموقع الجغرافي سهل!"
   },
   {
     "categoryId": "access_to_housing",
     "label": "اﻟﺪﻋﻢ اﻟﺴﻜﻨﻲ",
     "slug": "conseil-logement",
     "synonyms": [
-      "hebergement dalo logement expulsion toit maison impayes factures chauffage conseil conseil logement"
+      "ﺳﻜﻦ",
+      "ﻣﺄﻭﻯ",
+      "إﻳﻮاء",
+      "ﻣﺴﻜﻦ",
+      "ﻣﻨﺰﻝ",
+      "ﺷﻘﺔ",
+      "اﻹﻳﺠﺎر",
+      "ﻛﺮاء",
+      "ﻣﺸﻜﻼت ﺳﻜﻨﻴﺔ",
+      "ﻣﻜﺎﻥ ﻟﻠﻨﻮﻡ",
+      "ﺳﻜﻦ ﻃﺎﺭئ",
+      "ﻣﺮﻛﺰ إﻳﻮاء",
+      "ﻣﺴﺎﻋﺪﺓ ﻓﻲ اﻹﻳﺠﺎر",
+      "ﺻﻌﻮﺑﺎت ﻓﻲ اﻟﺴﻜﻦ",
+      "ﻣﺄﻭﻯ ﻣﺆﻗﺖ"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Permanences d'accès au logement (logement social, DALO, etc.)."
+    "seoTitle": "اﻟﺪﻋﻢ اﻟﺴﻜﻨﻲ ﻣﻊ Soliguide ﻳﺴﺎﻋﺪك ﻓﻲ إﺳﺒﺎﻧﻴﺎ",
+    "seoDescription": "اﺑﺤﺚ ﻋﻦ اﻟﻤﺴﺎﻋﺪة ﻓﻲ اﻟﺴﻜﻦ ﻣﻊ Soliguide ﻓﻲ إﺳﺒﺎﻧﻴﺎ. ﻣﺜﺎل: ﻣﺴﺎﻋﺪة ﻓﻲ اﻹﻳﺠﺎر، ﺳﻜﻦ ﻃﺎﺭئ، ﻣﺮاﻛﺰ إﻳﻮاء. ﺟﺪ ﺃﻗﺮﺏ ﻣﺮﻛﺰ ﺇﻟﻴﻚ!"
   },
   {
     "categoryId": "hygiene_and_wellness",
     "label": "النظافة والرفاهية",
     "slug": "hygiene",
     "synonyms": [
-      "hygiene laver douche bain se laver se doucher propre"
+      "نظافة",
+      "استحمام",
+      "ملابس",
+      "غسيل",
+      "صابون",
+      "شامبو",
+      "فرشاة أسنان",
+      "معجون أسنان",
+      "حلاقة",
+      "حفاضات",
+      "فوط صحية",
+      "مساعدة",
+      "دعم",
+      "رفاهية",
+      "صحة"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "النظافة والرفاهية: ابحث عن المساعدة مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في إيجاد أماكن للاستحمام، والحصول على ملابس نظيفة، أو منتجات النظافة الشخصية في es. تحديد الموقع الجغرافي للعثور على أقرب مركز."
   },
   {
     "categoryId": "shower",
     "label": "الإستحمام",
     "slug": "douche",
     "synonyms": [
-      "douche laver se laver bain bain douche piscine propre sale cheveux"
+      "إستحمام",
+      "دش",
+      "حمّام",
+      "نظافة",
+      "تنظيف",
+      "ماء",
+      "صابون",
+      "شامبو",
+      "مناشف",
+      "مكان للإستحمام",
+      "مراكز الإستحمام المجانية",
+      "دورات مياه عامة",
+      "مساعدة",
+      "نظافة شخصية",
+      "مغسلة"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "احصل على مكان للإستحمام مجانًا مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في إيجاد أماكن للاستحمام في إسبانيا. ابحث عن مراكز الإستحمام المجانية ودورات المياه العامة القريبة منك. حدد موقعك الجغرافي الآن!"
   },
   {
     "categoryId": "hairdresser",
     "label": "مصفف شعر",
     "slug": "coiffeur",
     "synonyms": [
-      "coiffeur cheveux"
+      "حلاقة",
+      "تجميل",
+      "قص شعر",
+      "تسريحة",
+      "صبغة",
+      "شعر",
+      "صالون",
+      "حلاق",
+      "مظهر",
+      "أناقة",
+      "تصفيف",
+      "مشط",
+      "مقص",
+      "مصفف",
+      "عناية بالشعر"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "تجد خدمات مصفف شعر مجانية مع Soliguide",
+    "seoDescription": "يساعدك Soliguide في إيجاد خدمات تصفيف الشعر بأسعار معقولة أو مجانية. ابحث عن صالونات تجميل تقدم تخفيضات، دورات تكوينية في تصفيف الشعر، أو خدمات مجانية. تحديد الموقع الجغرافي."
   },
   {
     "categoryId": "laundry",
     "label": "مغسلة الثياب",
     "slug": "laverie",
     "synonyms": [
-      "laverie vetements vetement laver machine a laver pressing linge lave linge"
+      "غسيل",
+      "ملابس",
+      "نظافة",
+      "غسالة",
+      "تجفيف",
+      "كي",
+      "منظف",
+      "مساعدة",
+      "دعم",
+      "مكان للغسيل",
+      "مغسلة عامة",
+      "مغسلة مجانية",
+      "مغسلة اجتماعية",
+      "غسيل ذاتي",
+      "غسيل وتجفيف"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Lave-linge en accès libre."
+    "seoTitle": "ابحث عن مغسلة الثياب المناسبة لك مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في العثور على مغاسل ملابس مجانية أو بتكلفة منخفضة في إسبانيا. ابحث عن أقرب مكان لغسل ملابسك وتجفيفها وكويها. كل هذا قريب منك!"
   },
   {
     "categoryId": "wellness",
     "label": "اﻟﺘﺮﻓﻴﺔ ﻋﻦ اﻟﻨﻔﺲ",
     "slug": "bien-etre",
     "synonyms": [
-      "bien etre coiffeur massage maquillage belle beau pedicure manicure manucire"
+      "ﺗﺮﻓﻴﻪ",
+      "اﺳﺘﺮﺧﺎء",
+      "ﺃﻧﺸﻄﺔ ﺗﺮﻓﻴﻬﻴﺔ",
+      "ﺃﻧﺸﻄﺔ ﻣﺠﺎﻧﻴﺔ",
+      "ﺩﻋﻢ ﻧﻔﺴﻲ",
+      "ﺃﻣﺎﻛﻦ ﻟﻼﺳﺘﺮﺧﺎء",
+      "ﺩﻭﺭاﺕ ﺗﺪﺭﻳﺒﻴﺔ",
+      "ﻣﺴﺎﻋﺪﺓ ﻧﻔﺴﻴﺔ",
+      "ﺻﺤﺔ ﻧﻔﺴﻴﺔ",
+      "ﺗﺮﻓﻴﻪ ﻋﺎﺋﻠﻲ",
+      "ﺃﻣﺎﻛﻦ ﻟﻠﻌﺎﺋﻼﺕ",
+      "ﺃﻧﺸﻄﺔ ﻟﻸﻃﻔﺎﻝ",
+      "ﻧﻮاﺩﻱ اﺟﺘﻤﺎﻋﻴﺔ",
+      "ﺃﻣﺎﻛﻦ ﺁﻣﻨﺔ",
+      "ﺗﺮﻭﻳﺢ ﻋﻦ اﻟﻨﻔﺲ"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Ateliers de bien-être : coiffeur, massage, sophrologie, etc. (à préciser dans la description)."
+    "seoTitle": "اﻟﺘﺮﻓﻴﺔ ﻋﻦ اﻟﻨﻔﺲ ﻣﻊ Soliguide: ﻟﺘﺠﺪ ﺃﻣﺎﻛﻦ ﺗﺮﻓﻴﻬﻴﺔ ﻭﺩﻋﻢ ﻧﻔﺴﻲ",
+    "seoDescription": "Soliguide ﻳﺴﺎﻋﺪﻙ ﻓﻲ ﺇﻳﺠﺎﺩ ﺃﻣﺎﻛﻦ ﻟﻠﺘﺮﻓﻴﻪ ﻋﻦ اﻟﻨﻔﺲ ﻓﻲ ﺇﺳﺒﺎﻧﻴﺎ. ﻳﻮﻓﺮ لك ﺃﻧﺸﻄﺔ ﻣﺠﺎﻧﻴﺔ, ﺩﻭﺭاﺕ ﺗﺪﺭﻳﺒﻴﺔ, ﻭﺃﻣﺎﻛﻦ ﻟﻼﺳﺘﺮﺧﺎء ﻗﺮﻳﺒًﺎ ﻣﻨﻚ."
   },
   {
     "categoryId": "toilets",
     "label": "اﻟﻤﺮاﺣﻴﺾ",
     "slug": "toilettes",
     "synonyms": [
-      "toilettes sanisette pisser pipi wc caca chiotte toilet"
+      "دورة ﻣﻴﺎه",
+      "ﺣﻤﺎم",
+      "ﻣﺮﺣﺎض ﻋﺎم",
+      "ﻣﺮﺣﺎض ﻣﺠﺎﻧﻲ",
+      "ﻣﺮﺣﺎض ﻟﻠﻌﺎﺟﺰﻳﻦ",
+      "ﻣﺮﺣﺎض ﻗﺮﻳﺐ",
+      "ﻣﺮﺣﺎض ﻣﺤﻄﺔ",
+      "ﻣﺮﺣﺎض ﺳﻮق",
+      "ﻣﺮﺣﺎض ﻣﺘﺤﻒ",
+      "ﻣﺮﺣﺎض ﺣﺪﻳﻘﺔ",
+      "ﺗﻨﻈﻴﻒ",
+      "ﻧﻈﺎﻓﺔ",
+      "اﺳﺘﺨﺪام اﻟﺤﻤﺎم",
+      "ﻣﺮﺣﺎض ﻣﺮﻛﺰ ﺗﺠﺎﺭﻱ",
+      "ﺧﺮﻳﻄﺔ اﻟﻤﺮاﺣﻴﺾ"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Toilettes en accès libre."
+    "seoTitle": "اﻋﺜﺮ ﻋﻠﻰ اﻟﻤﺮاﺣﻴﺾ اﻟﻌﺎﻣﺔ اﻟﻤﺠﺎﻧﻴﺔ ﻣﻊ Soliguide",
+    "seoDescription": "ﻳﺴﺎﻋﺪك Soliguide ﻓﻲ اﻟﻌﺜﻮر ﻋﻠﻰ اﻟﻤﺮاﺣﻴﺾ اﻟﻌﺎﻣﺔ ﻓﻲ إﺳﺒﺎﻧﻴﺎ. اﻋﺜﺮ ﻋﻠﻰ ﻣﺮﺣﺎض ﻗﺮﻳﺐ ﻣﻦ ﻣﺤﻄﺔ اﻟﺤﺎﻓﻼت أو ﻓﻲ ﻣﺮﻛﺰ اﻟﻤﺪﻳﻨﺔ ﻣﻊ Soliguide."
   },
   {
     "categoryId": "hygiene_products",
     "label": "منتجات العناية",
     "slug": "produits-hygiene",
     "synonyms": [
-      "periodiques protections periodiques protection periodique regles regle tampon serviette hygienique serviette menstrues produits d hygiene hygiene cup culotte tampax"
+      "صابون",
+      "شامبو",
+      "معجون أسنان",
+      "فرشاة أسنان",
+      "نظافة شخصية",
+      "نظافة الجسم",
+      "عناية شخصية",
+      "مستلزمات نظافة",
+      "دش",
+      "استحمام",
+      "غسل",
+      "تنظيف",
+      "مساعدة",
+      "توزيع",
+      "مجاني"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Distribution de produits d'hygiène (savons, dentifrice, tampons, serviettes hygiéniques, etc.)."
+    "seoTitle": "ابحث عن منتجات العناية مجاناً مع Soliguide",
+    "seoDescription": "Soliguide يساعدك للعثور على الصابون، والشامبو، ومعجون الأسنان مجاناً. ابحث عن أقرب مكان يقدم هذه المنتجات في إسبانيا!"
   },
   {
     "categoryId": "face_masks",
     "label": "أقنعة",
     "slug": "masques",
     "synonyms": [
-      "masque protection covid virus"
+      "كمامات",
+      "وقاية",
+      "حماية",
+      "صحة",
+      "فيروس",
+      "صيدلية",
+      "مجانًا",
+      "توزيع",
+      "منظمة",
+      "جمعية",
+      "أزمة صحية",
+      "إجراءات وقائية",
+      "وباء",
+      "قناع طبي",
+      "قناع واقي"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Masques de protection"
+    "seoTitle": "اعثر على أقنعة مجانية مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في الحصول على أقنعة مجانية في إسبانيا. ابحث عن صيدليات توفر أقنعة، أو منظمات غير ربحية توزعها، أو مبادرات مجتمعية قريبة منك."
   },
   {
     "categoryId": "equipment",
     "label": "معدات",
     "slug": "materiel",
     "synonyms": [
-      "materiel affaires mobilier"
+      "ملابس",
+      "أحذية",
+      "أدوات نظافة",
+      "صابون",
+      "شامبو",
+      "فرشاة أسنان",
+      "معجون أسنان",
+      "حفاضات",
+      "أجهزة طبية",
+      "كرسي متحرك",
+      "عكازات",
+      "نظارات",
+      "عدسات لاصقة",
+      "بطانيات",
+      "أغطية"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": ""
+    "seoTitle": "تحتاج معدات؟ سوليكيد يساعدك في إسبانيا",
+    "seoDescription": "سوليكيد يجد لك أماكن للحصول على معدات. مثل: ملابس مجانية، أدوات نظافة، أو أجهزة طبية. ابحث عن أقرب مكان إليك في إسبانيا!"
   },
   {
     "categoryId": "luggage_storage",
     "label": "مكان تخزين الأمتعة",
     "slug": "bagagerie",
     "synonyms": [
-      "bagage bagagerie sac poser casier"
+      "تخزين",
+      "أمتعة",
+      "حقائب",
+      "خزائن",
+      "أمانات",
+      "حفظ",
+      "تأمين",
+      "وديعة",
+      "مجانًا",
+      "مساعدة",
+      "محطة قطار",
+      "محطة حافلات",
+      "مطار",
+      "كاراكاس",
+      "مدريد"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Lieu permettant de conserver des bagages ou matériel."
+    "seoTitle": "هل تبحث عن مكان تخزين الأمتعة في إسبانيا؟ Soliguide هنا لمساعدتك",
+    "seoDescription": "Soliguide يساعدك في العثور على أماكن لتخزين الأمتعة مجانًا في إسبانيا. ابحث عن مساعدة من الصليب الأحمر الإسباني, Cáritas أو خدمات البلدية القريبة منك."
   },
   {
     "categoryId": "solidarity_store",
     "label": "متجر تضامني",
     "slug": "boutique-solidaire",
     "synonyms": [
-      "boutique solidaire meubles accessoires s habiller"
+      "متجر",
+      "تضامن",
+      "ملابس",
+      "أثاث",
+      "طعام",
+      "مساعدة",
+      "تبرع",
+      "مستعمل",
+      "أسعار مخفضة",
+      "احتياجات",
+      "دعم",
+      "مؤونة",
+      "توزيع",
+      "إسبانيا",
+      "محلي"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Boutique vendant du matériel à prix solidaire."
+    "seoTitle": "ابحث عن متاجر تضامنية مع Soliguide في إسبانيا",
+    "seoDescription": "Soliguide يساعدك في إسبانيا! تجد هنا ملابس مستعملة، أثاث منزلي، أو مواد غذائية بأسعار رمزية. تحديد الموقع الجغرافي للعثور على الأقرب إليك."
   },
   {
     "categoryId": "clothing",
     "label": "ملابس",
     "slug": "vetements",
     "synonyms": [
-      "vestiaire vetements t shirt pantalon robe vetir vestiboutique pull manteau habit s habiller"
+      "ملابس",
+      "كسوة",
+      "ثياب",
+      "ملابس مستعملة",
+      "تبرعات ملابس",
+      "مخزن ملابس خيري",
+      "معونة ملابس",
+      "ملابس للأطفال",
+      "ملابس للرجال",
+      "ملابس للنساء",
+      "ملابس شتوية",
+      "ملابس صيفية",
+      "أحذية",
+      "سترات",
+      "بنطلونات"
     ],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
-    "seoTitle": "",
-    "seoDescription": "Vêtements gratuits ou à prix symbolique. Préciser le sexe et/ou l'âge dans les conditions."
+    "seoTitle": "ابحث عن ملابس مجانية مع Soliguide",
+    "seoDescription": "Soliguide يساعدك في إيجاد ملابس مستعملة، محلات تبرع بالملابس، ومخازن الملابس الخيرية في إسبانيا. حدد موقعك وابحث عن المساعدة!"
   },
   {
     "categoryId": "animal_assitance",
     "label": "حيوانات",
     "slug": "animaux",
-    "synonyms": [
-      "animaux animals chien chat croquettes animal"
-    ],
+    "synonyms": ["animaux animals chien chat croquettes animal"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -796,9 +1522,7 @@
     "categoryId": "vaccination",
     "label": "لقاحات",
     "slug": "vaccination",
-    "synonyms": [
-      "vaccination vaccin covid piqure rappel rappel de vaccin"
-    ],
+    "synonyms": ["vaccination vaccin covid piqure rappel rappel de vaccin"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -835,9 +1559,7 @@
     "categoryId": "health_specialists",
     "label": "أطباء مختصين",
     "slug": "specialistes-medecine",
-    "synonyms": [
-      "specialistes specialiste"
-    ],
+    "synonyms": ["specialistes specialiste"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -848,9 +1570,7 @@
     "categoryId": "allergology",
     "label": "حساسية",
     "slug": "allergologie",
-    "synonyms": [
-      "allergologie allergies"
-    ],
+    "synonyms": ["allergologie allergies"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -861,9 +1581,7 @@
     "categoryId": "cardiology",
     "label": "الأمراض القلبية",
     "slug": "cardiologie",
-    "synonyms": [
-      "cardiologie coeur cardiaque cardio"
-    ],
+    "synonyms": ["cardiologie coeur cardiaque cardio"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -874,9 +1592,7 @@
     "categoryId": "dermatology",
     "label": "الأمراض الجلدية",
     "slug": "dermatologie",
-    "synonyms": [
-      "dermato dermatologie dermatologue peau bouton"
-    ],
+    "synonyms": ["dermato dermatologie dermatologue peau bouton"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -887,9 +1603,7 @@
     "categoryId": "echography",
     "label": "التصوير بالموجات فوق الصوتية (إيكو)",
     "slug": "echographie",
-    "synonyms": [
-      "echographie bebe enceinte"
-    ],
+    "synonyms": ["echographie bebe enceinte"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -900,9 +1614,7 @@
     "categoryId": "endocrinology",
     "label": "أمراض الغدة",
     "slug": "endocrinologie",
-    "synonyms": [
-      "endocrinologie hormones tyroide"
-    ],
+    "synonyms": ["endocrinologie hormones tyroide"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -913,9 +1625,7 @@
     "categoryId": "gastroenterology",
     "label": "أمراض الجهاز الهضمي",
     "slug": "gastro-enterologie",
-    "synonyms": [
-      "gastro enterologue gastro enterologie kk caca"
-    ],
+    "synonyms": ["gastro enterologue gastro enterologie kk caca"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -939,9 +1649,7 @@
     "categoryId": "kinesitherapy",
     "label": "المعالجة الفيزيائية",
     "slug": "kinesitherapie",
-    "synonyms": [
-      "kinesitherapie reeducation blessure kine"
-    ],
+    "synonyms": ["kinesitherapie reeducation blessure kine"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -952,9 +1660,7 @@
     "categoryId": "mammography",
     "label": "التصوير الشعاعي للثدي",
     "slug": "mammographie",
-    "synonyms": [
-      "mammographie radio seins"
-    ],
+    "synonyms": ["mammographie radio seins"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -965,9 +1671,7 @@
     "categoryId": "ophthalmology",
     "label": "طب العيون",
     "slug": "ophtalmologie",
-    "synonyms": [
-      "ophtalmologie ophtalmologue yeux voir lunette"
-    ],
+    "synonyms": ["ophtalmologie ophtalmologue yeux voir lunette"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -991,9 +1695,7 @@
     "categoryId": "nutrition",
     "label": "إختصاص تغذية",
     "slug": "nutrition",
-    "synonyms": [
-      "nutrition dietetique regime surpoids obesite perte de poids"
-    ],
+    "synonyms": ["nutrition dietetique regime surpoids obesite perte de poids"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -1004,9 +1706,7 @@
     "categoryId": "pedicure",
     "label": "إختصاص العناية بالأقدام",
     "slug": "pedicure",
-    "synonyms": [
-      "pedicure pied pie soigner pieds soin podologue podologie"
-    ],
+    "synonyms": ["pedicure pied pie soigner pieds soin podologue podologie"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -1030,9 +1730,7 @@
     "categoryId": "pneumology",
     "label": "علم أمراض الرئة",
     "slug": "pneumologie",
-    "synonyms": [
-      "poumons respiration respirer bronches"
-    ],
+    "synonyms": ["poumons respiration respirer bronches"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -1043,9 +1741,7 @@
     "categoryId": "radiology",
     "label": "إختصاص الأشعة",
     "slug": "radiologie",
-    "synonyms": [
-      "radiologie radiologue radiology rayonx fracture entorse"
-    ],
+    "synonyms": ["radiologie radiologue radiology rayonx fracture entorse"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -1056,9 +1752,7 @@
     "categoryId": "rheumatology",
     "label": "أمراض المفاصل",
     "slug": "rhumatologie",
-    "synonyms": [
-      "rhumatologue rumatologie"
-    ],
+    "synonyms": ["rhumatologue rumatologie"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -1069,9 +1763,7 @@
     "categoryId": "urology",
     "label": "أمراض المجاري البولية",
     "slug": "urologie",
-    "synonyms": [
-      "urologie urology"
-    ],
+    "synonyms": ["urologie urology"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -1095,9 +1787,7 @@
     "categoryId": "stomatology",
     "label": "طب الأسنان واللثة",
     "slug": "stomatologie",
-    "synonyms": [
-      "stomatologie stomatologue estomac digestion ventre"
-    ],
+    "synonyms": ["stomatologie stomatologue estomac digestion ventre"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -1108,9 +1798,7 @@
     "categoryId": "osteopathy",
     "label": "تقويم العظام",
     "slug": "osteo",
-    "synonyms": [
-      "ostheopathe osteo dos mal"
-    ],
+    "synonyms": ["ostheopathe osteo dos mal"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -1121,9 +1809,7 @@
     "categoryId": "acupuncture",
     "label": "العلاج بالإبر",
     "slug": "acupuncture",
-    "synonyms": [
-      "acupuncture accupuncture bien etre"
-    ],
+    "synonyms": ["acupuncture accupuncture bien etre"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -1160,9 +1846,7 @@
     "categoryId": "wifi",
     "label": "اﻟﻮاﻱ ﻓﺎﻱ (ﺧﺪﻣﺎﺕ اﻹﻧﺘﺮﻧﺖ)",
     "slug": "wifi",
-    "synonyms": [
-      "wifi internet web connexion reseau"
-    ],
+    "synonyms": ["wifi internet web connexion reseau"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -1173,9 +1857,7 @@
     "categoryId": "electrical_outlets_available",
     "label": "مأخذ كهربائي",
     "slug": "prise",
-    "synonyms": [
-      "prise charger electricite chargeur recharge charge"
-    ],
+    "synonyms": ["prise charger electricite chargeur recharge charge"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -1186,9 +1868,7 @@
     "categoryId": "telephone_at_your_disposal",
     "label": "هاتف",
     "slug": "telephone",
-    "synonyms": [
-      "appel gratuit telephone telephoner appeler appel"
-    ],
+    "synonyms": ["appel gratuit telephone telephoner appeler appel"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -1225,9 +1905,7 @@
     "categoryId": "carpooling",
     "label": "استخدام السيارات",
     "slug": "covoiturage",
-    "synonyms": [
-      "co voiturage partage de voiture"
-    ],
+    "synonyms": ["co voiturage partage de voiture"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -1238,9 +1916,7 @@
     "categoryId": "provision_of_vehicles",
     "label": "توفير السيارة",
     "slug": "vehicule",
-    "synonyms": [
-      "mise a disposition de vehicule voiture"
-    ],
+    "synonyms": ["mise a disposition de vehicule voiture"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -1251,9 +1927,7 @@
     "categoryId": "chauffeur_driven_transport",
     "label": "النقل مع السائق",
     "slug": "chauffeur",
-    "synonyms": [
-      "transport avec chauffeur chauffeur transport a la demande"
-    ],
+    "synonyms": ["transport avec chauffeur chauffeur transport a la demande"],
     "type": "CATEGORY",
     "lang": "ar",
     "country": "es",
@@ -1350,11 +2024,7 @@
     "categoryId": null,
     "label": "ACCEM: accueil et accompagnement des migrants et réfugiés",
     "slug": "accem",
-    "synonyms": [
-      "ACCEM",
-      "accem espagne",
-      "aide migrants espagne"
-    ],
+    "synonyms": ["ACCEM", "accem espagne", "aide migrants espagne"],
     "type": "ORGANIZATION",
     "lang": "ar",
     "country": "es",
@@ -1381,11 +2051,7 @@
     "categoryId": null,
     "label": "Albergue: centre d’hébergement pour sans-abris",
     "slug": "albergue",
-    "synonyms": [
-      "albergue",
-      "refugio",
-      "hébergement social"
-    ],
+    "synonyms": ["albergue", "refugio", "hébergement social"],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "ar",
     "country": "es",
@@ -1411,11 +2077,7 @@
     "categoryId": null,
     "label": "Centro de día: accueil de jour",
     "slug": "centro-de-dia",
-    "synonyms": [
-      "centro día",
-      "centre de jour",
-      "accueil de jour"
-    ],
+    "synonyms": ["centro día", "centre de jour", "accueil de jour"],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "ar",
     "country": "es",

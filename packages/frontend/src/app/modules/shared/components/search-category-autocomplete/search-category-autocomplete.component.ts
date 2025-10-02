@@ -43,6 +43,7 @@ import {
   takeUntil,
   filter,
   take,
+  combineLatest,
 } from "rxjs";
 import {
   faEllipsisH,
@@ -104,26 +105,6 @@ export class SearchCategoryAutocompleteComponent
   private readonly subscription = new Subscription();
   private readonly searchCancelSubject = new Subject<void>();
 
-  private readonly AVAILABLES_LOGOS = [
-    "restos-du-coeur",
-    "france-travail",
-    "secours-catholique",
-    // "croix-rouge",
-    "cruz-roja",
-    "secours-populaire",
-    // "emmaus",
-    "caf",
-    "france-travail",
-    // "france-services",
-    //  "cimade",
-    //  "cidff",
-    //  "adil",
-    "cpam",
-    "pimms",
-    "armee-du-salut",
-    // "banque-alimentaire",
-  ];
-
   constructor(
     private readonly searchBarService: SearchBarService,
     private readonly translateService: TranslateService,
@@ -139,6 +120,7 @@ export class SearchCategoryAutocompleteComponent
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
     if (changes?.search && this.setQuery) {
       const currentSearchValue = this.getCurrentSearchValue(
         changes.search.currentValue
@@ -146,23 +128,39 @@ export class SearchCategoryAutocompleteComponent
 
       this.setQuery(currentSearchValue);
     }
+    if (
+      changes?.currentValue &&
+      this.setQuery &&
+      changes.currentValue.currentValue
+    ) {
+      this.setQuery(changes.currentValue.currentValue);
+    }
   }
   // Check if the service is already initialized
   ngAfterViewInit(): void {
-    if (this.searchBarService.isReady()) {
-      this.setupAutocomplete();
-      this.setInitialValue();
-    } else {
-      this.searchBarService.initialization$
-        .pipe(
+    const searchBarReady$ = this.searchBarService.isReady()
+      ? of(true)
+      : this.searchBarService.initialization$.pipe(
           filter((isReady) => isReady),
           take(1)
-        )
-        .subscribe(() => {
-          this.setupAutocomplete();
-          this.setInitialValue();
-        });
+        );
 
+    const translationsReady$ = this.translateService
+      .get("PLACEHOLDER_SEARCH")
+      .pipe(
+        map(() => true),
+        take(1)
+      );
+
+    combineLatest([searchBarReady$, translationsReady$])
+      .pipe(take(1))
+      .subscribe(() => {
+        console.warn("combine");
+        this.setupAutocomplete();
+        this.setInitialValue();
+      });
+
+    if (!this.searchBarService.isReady()) {
       this.searchBarService.initialize();
     }
   }
@@ -196,14 +194,29 @@ export class SearchCategoryAutocompleteComponent
   }
 
   private setupAutocomplete(): void {
+    const getPlaceholder = () =>
+      this.translateService.instant("PLACEHOLDER_SEARCH") || "Rechercher...";
+
+    this.subscription.add(
+      this.translateService.onLangChange.subscribe(() => {
+        console.log("Changement de langue détecté");
+        const inputEl =
+          this.autocompleteContainerCategories.nativeElement.querySelector(
+            "input"
+          );
+        if (inputEl) {
+          inputEl.placeholder = getPlaceholder();
+          console.log("Nouveau placeholder:", inputEl.placeholder);
+        }
+      })
+    );
+
     if (this.autocompleteContainerCategories) {
       const { destroy, setQuery } = autocomplete({
-        detachedMediaQuery: "",
-        placeholder:
-          this.translateService.instant("SEARCH_PLACEHOLDER") ||
-          "Rechercher...",
+        placeholder: getPlaceholder(),
         container: this.autocompleteContainerCategories.nativeElement,
         openOnFocus: true,
+
         onReset: () => {
           this.clearSearch.emit();
         },
@@ -269,27 +282,27 @@ export class SearchCategoryAutocompleteComponent
     let iconContent;
 
     const sourceLogos = `/assets/images/organizations-logos/${THEME_CONFIGURATION.country}`;
-
+    const AVAILABLES_LOGOS = [
+      "restos-du-coeur",
+      "france-travail",
+      "secours-catholique",
+      "cruz-roja",
+      "secours-populaire",
+      "caf",
+      "france-travail",
+      "cpam",
+      "pimms",
+      "armee-du-salut",
+    ];
     switch (item.type) {
-      case AutoCompleteType.CATEGORY: {
-        const hasSvgLogo = this.AVAILABLES_LOGOS.includes(item.categoryId);
-
-        if (hasSvgLogo) {
-          const categoryLogoPath = `/assets/images/categories/${item.categoryId}.svg`;
-          iconContent = html`<img
-            src="${categoryLogoPath}"
-            class="aa-category-icon"
-            alt="Catégorie"
-            title="Catégorie"
-          />`;
-        } else {
+      case AutoCompleteType.CATEGORY:
+        {
           iconContent = html`<span
             class="category-icon category-icon-${item.categoryId}_outlined"
             title="Catégorie"
           ></span>`;
         }
         break;
-      }
       case AutoCompleteType.EXPRESSION:
         iconContent = html`<span
           class="category-icon category-icon-expression"
@@ -297,7 +310,7 @@ export class SearchCategoryAutocompleteComponent
         ></span>`;
         break;
       case AutoCompleteType.ESTABLISHMENT_TYPE: {
-        const hasLogo = this.AVAILABLES_LOGOS.includes(item.slug);
+        const hasLogo = AVAILABLES_LOGOS.includes(item.slug);
         if (hasLogo) {
           iconContent = html`<img
             src="${sourceLogos}/${item.slug}.svg"
@@ -307,14 +320,14 @@ export class SearchCategoryAutocompleteComponent
           />`;
         } else {
           iconContent = html`<span
-            class="category-icon category-icon-establishment"
+            class="category-icon category-icon-accomodation_and_housing"
             title="Type d'établissement"
           ></span>`;
         }
         break;
       }
       case AutoCompleteType.ORGANIZATION: {
-        const hasLogo = this.AVAILABLES_LOGOS.includes(item.slug);
+        const hasLogo = AVAILABLES_LOGOS.includes(item.slug);
         if (hasLogo) {
           iconContent = html`<img
             src="${sourceLogos}/${item.slug}.svg"
@@ -324,7 +337,7 @@ export class SearchCategoryAutocompleteComponent
           />`;
         } else {
           iconContent = html`<span
-            class="category-icon category-icon-organization"
+            class="category-icon category-icon-accomodation_and_housing"
             title="Organisation"
           ></span>`;
         }
@@ -418,20 +431,18 @@ export class SearchCategoryAutocompleteComponent
           },
           getItemInputValue: () => sanitizedQuery,
           templates: {
-            item: ({ html }) => html`<button class="aa-ItemLink" type="button">
-              <div class="aa-CategoryIcon">
-                <span class="aa-icon-wrapper">
-                  <img
-                    src="/assets/images/symbols/list.svg"
-                    class="aa-category-icon"
-                    alt="Recherche"
-                    title="Recherche"
-                  />
-                </span>
-              </div>
-              <div class="aa-ItemContent">
-                <div class="aa-ItemContentTitle">${sanitizedQuery}</div>
-              </div>
+            item: ({ html }) => html` <button class="aa-ItemLink" type="button">
+              <span class="aa-CategoryIcon">
+                <img
+                  src="/assets/images/symbols/list.svg"
+                  class="aa-category-icon"
+                  alt="Recherche"
+                  title="Recherche"
+                />
+              </span>
+              <span class="aa-ItemContent">
+                <span class="aa-ItemContentTitle">${sanitizedQuery}</span>
+              </span>
             </button>`,
             header: ({ html }) =>
               html`<div class="aa-SourceHeader">

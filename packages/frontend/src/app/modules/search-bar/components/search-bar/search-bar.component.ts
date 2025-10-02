@@ -32,6 +32,7 @@ import { PosthogService } from "../../../analytics/services/posthog.service";
 })
 export class SearchBarComponent {
   @Input() public search!: Search;
+  @Input() public currentValue!: string;
   // Selected category
   @Output()
   public readonly updateCategory = new EventEmitter<void>();
