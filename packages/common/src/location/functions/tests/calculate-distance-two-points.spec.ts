@@ -55,7 +55,7 @@ describe("calculateDistanceBetweenTwoPoints", () => {
       TOUR_EIFFEL.lng
     );
 
-    expect(distance).toBeLessThan(0.1); // Less than 100 meters
+    expect(distance).toBe(0);
   });
 
   it("should calculate correct distance between Tour Eiffel and Notre-Dame", () => {

@@ -55,12 +55,7 @@ const computeDistance = (
   const [searchLat, searchLong] = locationParams.coordinates;
   const [placeLat, placeLong] = place.position.location.coordinates;
 
-  const distance =
-    searchLat === placeLat && searchLong === placeLong
-      ? 0
-      : calculateDistanceBetweenTwoPoints(searchLat, searchLong, placeLat, placeLong);
-
-  return distance;
+  return calculateDistanceBetweenTwoPoints(searchLat, searchLong, placeLat, placeLong);
 };
 
 /**
@@ -92,6 +87,7 @@ const buildSearchResultItem = (
       orientation: onOrientation,
       campaign: computeCampaignBanner(place)
     },
+    ...('crossingPointIndex' in place ? { crossingPointIndex: place.crossingPointIndex } : {}),
     dataForLogs: {
       // eslint-disable-next-line no-underscore-dangle
       id: place?._id,
@@ -102,7 +98,6 @@ const buildSearchResultItem = (
     distance,
     id: place.lieu_id,
     name: place.name,
-    ...('crossingPointIndex' in place ? { crossingPointIndex: place.crossingPointIndex } : {}),
     phones: [
       ...place.entity.phones.map((phone: CommonPhone) => ({
         ...phone,
@@ -135,15 +130,12 @@ const extractCrossingPointsFromItineraryPlace = (
   return place.parcours.flatMap((crossingPoint, index) => {
     // Handle case where coordinates are identical to avoid NaN from calculateDistanceBetweenTwoPoints
     const [crossingPointLat, crossingPointLon] = crossingPoint.position.location.coordinates;
-    const distance =
-      searchLat === crossingPointLat && searchLong === crossingPointLon
-        ? 0
-        : calculateDistanceBetweenTwoPoints(
-            searchLat,
-            searchLong,
-            crossingPointLat,
-            crossingPointLon
-          );
+    const distance = calculateDistanceBetweenTwoPoints(
+      searchLat,
+      searchLong,
+      crossingPointLat,
+      crossingPointLon
+    );
 
     if (distance > locationParams.distance) return [];
 

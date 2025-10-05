@@ -41,7 +41,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
 
   export let place: LightPlace;
-  const href = `${$routes.ROUTE_PLACES}/${place.url}`;
+  $: href = `${$routes.ROUTE_PLACES}/${place.url}`;
 </script>
 
 <Card>
