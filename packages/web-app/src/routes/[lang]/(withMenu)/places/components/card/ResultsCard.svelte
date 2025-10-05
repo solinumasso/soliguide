@@ -142,7 +142,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       <div class="card-body-adress">
         <span class="card-body-adress-text">
           <Text type="text1Medium">{place.address}</Text>
-          {#if place.searchGeoType === GeoTypes.POSITION}
+          {#if place.searchGeoType === GeoTypes.POSITION && !isDisabled}
             <div class="card-body-adress-distance">
               <span class="card-body-adress-distance-icon"
                 ><PinDrop aria-hidden="true" size={'12'} /></span
@@ -155,7 +155,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           iconPosition="iconOnly"
           type="primaryOutline"
           href={getMapLink(place.address)}
-          disabled={place.banners.orientation}
+          disabled={isDisabled}
           ><NearMe
             slot="icon"
             on:click={() => {
