@@ -59,7 +59,7 @@ describe("E2E - Location autocomplete endpoints", () => {
   });
 
   describe("/autocomplete/FR", () => {
-    it(`/GET autocomplete/FR: should return France with two characters. Should not return addresses (not available before 3 characters)`, async () =>
+    it("/GET autocomplete/FR: should return France with two characters. Should not return addresses (not available before 3 characters)", async () =>
       await app
         .inject({
           method: "GET",
@@ -87,7 +87,7 @@ describe("E2E - Location autocomplete endpoints", () => {
 
           expect(isAdressesInsideResults).toBeUndefined();
         }));
-    it(`/GET autocomplete/FR: should return France`, async () =>
+    it("/GET autocomplete/FR: should return France", async () =>
       await app
         .inject({
           method: "GET",
@@ -109,7 +109,7 @@ describe("E2E - Location autocomplete endpoints", () => {
           });
         }));
 
-    it(`/GET autocomplete/FR/bretagne: should return a region first, then a city`, async () =>
+    it("/GET autocomplete/FR/bretagne: should return a region first, then a city", async () =>
       await app
         .inject({
           method: "GET",
@@ -136,7 +136,7 @@ describe("E2E - Location autocomplete endpoints", () => {
           });
         }));
 
-    it(`/GET autocomplete/FR/seine saint denis: should return a department`, async () =>
+    it("/GET autocomplete/FR/seine saint denis: should return a department", async () =>
       await app
         .inject({
           method: "GET",
@@ -167,7 +167,7 @@ describe("E2E - Location autocomplete endpoints", () => {
           });
         }));
 
-    it(`/GET autocomplete/FR/saint-denis-97400: should return Saint-Denis in 'Réunion' `, async () =>
+    it("/GET autocomplete/FR/saint-denis-97400: should return Saint-Denis in Réunion", async () =>
       await app
         .inject({
           method: "GET",
@@ -203,7 +203,79 @@ describe("E2E - Location autocomplete endpoints", () => {
           });
         }));
 
-    it(`/GET autocomplete/FR/cote d'armor: should return department "Côtes d'armor" first`, async () =>
+    it("/GET autocomplete/FR/mamoudzou-97600: should return Mamoudzou in Mayotte", async () =>
+      await app
+        .inject({
+          method: "GET",
+          url: "/autocomplete/FR/all/mamoudzou-97600",
+        })
+        .then((response) => {
+          const body = response.json();
+          expect(response.statusCode).toEqual(200);
+          expect(body[0]).toEqual({
+            label: "Mamoudzou (97600)",
+            coordinates: [45.208565, -12.792835],
+            postalCode: "97600",
+            cityCode: "97611",
+            city: "Mamoudzou",
+            name: "Mamoudzou",
+            country: "fr",
+            geoType: "ville",
+            slugs: {
+              ville: "mamoudzou",
+              departement: "mayotte",
+              pays: "fr",
+              department: "mayotte",
+              country: "fr",
+              region: "mayotte",
+              city: "mamoudzou",
+            },
+            geoValue: "mamoudzou-97600",
+            departmentCode: "976",
+            department: "Mayotte",
+            region: "Mayotte",
+            regionCode: "06",
+            timeZone: "Indian/Mayotte",
+          });
+        }));
+
+    it("/GET autocomplete/FR/ajaccio-20000: should return Ajaccio in 'Corse'", async () =>
+      await app
+        .inject({
+          method: "GET",
+          url: "/autocomplete/FR/all/ajaccio-20000",
+        })
+        .then((response) => {
+          const body = response.json();
+          expect(response.statusCode).toEqual(200);
+          expect(body[0]).toEqual({
+            label: "Ajaccio (20000)",
+            coordinates: [8.715325, 41.93368],
+            postalCode: "20000",
+            cityCode: "2A004",
+            city: "Ajaccio",
+            name: "Ajaccio",
+            country: "fr",
+            geoType: "ville",
+            slugs: {
+              ville: "ajaccio",
+              departement: "corse-du-sud",
+              pays: "fr",
+              department: "corse-du-sud",
+              country: "fr",
+              region: "corse",
+              city: "ajaccio",
+            },
+            geoValue: "ajaccio-20000",
+            departmentCode: "2A",
+            department: "Corse-du-Sud",
+            region: "Corse",
+            regionCode: "94",
+            timeZone: "Europe/Paris",
+          });
+        }));
+
+    it("/GET autocomplete/FR/cote d'armor: should return department Côtes d'armor first", async () =>
       await app
         .inject({
           method: "GET",
@@ -234,7 +306,7 @@ describe("E2E - Location autocomplete endpoints", () => {
           });
         }));
 
-    it(`/GET autocomplete/FR/cote d'armor: should return department "Côte d'or" first`, async () =>
+    it("/GET autocomplete/FR/cote d'or: should return department Côte d'or first", async () =>
       await app
         .inject({
           method: "GET",
@@ -265,7 +337,7 @@ describe("E2E - Location autocomplete endpoints", () => {
           });
         }));
 
-    it(`/GET autocomplete/FR/paris: should return department & city`, async () =>
+    it("/GET autocomplete/FR/paris: should return department & city", async () =>
       await app
         .inject({
           method: "GET",
@@ -322,7 +394,7 @@ describe("E2E - Location autocomplete endpoints", () => {
           });
         }));
 
-    it(`/GET autocomplete/FR/palavas les flots: should return a city`, async () =>
+    it("/GET autocomplete/FR/palavas les flots: should return a city", async () =>
       await app
         .inject({
           method: "GET",
@@ -359,7 +431,7 @@ describe("E2E - Location autocomplete endpoints", () => {
           });
         }));
 
-    it(`/GET autocomplete/FR/2 boulevard de l'europe poissy: should return an address`, async () =>
+    it("/GET autocomplete/FR/2 boulevard de l'europe poissy: should return an address", async () =>
       await app
         .inject({
           method: "GET",
@@ -395,7 +467,7 @@ describe("E2E - Location autocomplete endpoints", () => {
           });
         }));
 
-    it(`/GET autocomplete/FR/29-9 Rue de la Gare, 52100 Saint-Eulien: address with department different than postal code`, async () =>
+    it("/GET autocomplete/FR/29-9 Rue de la Gare, 52100 Saint-Eulien: address with department different than postal code", async () =>
       await app
         .inject({
           method: "GET",
@@ -432,43 +504,7 @@ describe("E2E - Location autocomplete endpoints", () => {
           });
         }));
 
-    it(`/GET autocomplete/FR/75013: borough`, async () =>
-      await app
-        .inject({
-          method: "GET",
-          url: "/autocomplete/FR/all/75013",
-        })
-        .then((response) => {
-          const body = response.json();
-          expect(response.statusCode).toEqual(200);
-
-          expect(body[0]).toEqual({
-            coordinates: [2.365001, 48.830193],
-            city: "Paris",
-            cityCode: "75113",
-            country: CountryCodes.FR,
-            department: "Paris",
-            departmentCode: "75",
-            geoType: GeoTypes.BOROUGH,
-            label: "Paris 13e Arrondissement",
-            name: "Paris 13e Arrondissement",
-            postalCode: "75013",
-            region: "Île-de-France",
-            regionCode: "11",
-            geoValue: "paris-75013",
-            slugs: {
-              ville: "paris",
-              departement: "paris",
-              pays: "fr",
-              department: "paris",
-              country: "fr",
-              region: "ile-de-france",
-              city: "paris",
-            },
-            timeZone: "Europe/Paris",
-          });
-        }));
-    it(`/GET autocomplete: should return 404`, async () =>
+    it("/GET autocomplete: should return 404", async () =>
       await app
         .inject({
           method: "GET",
