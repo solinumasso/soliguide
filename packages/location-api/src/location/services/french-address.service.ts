@@ -67,6 +67,8 @@ export class FrenchAddressService {
     latitude?: number,
     longitude?: number
   ) {
+    search = this.normalizeGeoValueSearch(search);
+
     const params: FrenchAutocompleteParams = this.getParams(
       search,
       latitude,
@@ -371,5 +373,25 @@ export class FrenchAddressService {
     }
 
     return Array.from(uniqueLocations.values());
+  }
+
+  /**
+   * Convert the old search by district with a new format for Paris, Marseille and Lyon
+   * ex: paris-75001 => 75001-paris
+   */
+  public normalizeGeoValueSearch(search: string): string {
+    const CITY_POSTAL_REGEX = /^(.+)\s+(\d{5})$/i;
+    const match = search.match(CITY_POSTAL_REGEX);
+    if (!match) return search;
+
+    const city = match[1].trim();
+    const postal = match[2].trim();
+
+    const SPECIAL_CITIES = new Set(["paris", "marseille", "lyon"]);
+    if (SPECIAL_CITIES.has(city.toLowerCase())) {
+      return `${postal} ${city}`;
+    }
+
+    return search;
   }
 }

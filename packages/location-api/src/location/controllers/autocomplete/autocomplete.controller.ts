@@ -239,7 +239,6 @@ export class AutocompleteController {
     const service = this.getService(country);
 
     search = cleanSearchValue(country, search);
-
     try {
       return await service.searchForLocation(
         country,
