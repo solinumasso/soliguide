@@ -167,8 +167,6 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
       newValue: this.orgaForm.value,
     });
 
-    console.log(this.organisation);
-
     const formValue = {
       ...this.orgaForm.value,
       areas: {
