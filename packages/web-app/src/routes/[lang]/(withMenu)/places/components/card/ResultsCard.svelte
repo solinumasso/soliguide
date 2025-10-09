@@ -208,7 +208,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </Card>
 
 <style lang="scss">
-  $cardHeaderHeight: 130px;
+  $cardHeaderHeight: 90px;
   .card-title {
     display: flex;
     align-items: center;
@@ -225,12 +225,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     height: $cardHeaderHeight;
     display: flex;
     flex-direction: column;
-    gap: var(--spacingSM);
+    gap: var(--spacing3XS);
   }
 
   .card-header-source {
     position: absolute;
-    bottom: 4px;
+    bottom: -14px;
     right: 0;
     white-space: nowrap;
     overflow: hidden;
@@ -252,7 +252,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: var(--spacing3XS);
+    gap: var(--spacingXS);
   }
 
   .card-infos-right {
