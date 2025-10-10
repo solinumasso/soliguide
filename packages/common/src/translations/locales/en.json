@@ -671,6 +671,8 @@
   "FAMILLES": "families",
   "FAMILY_AREA": "Family area",
   "FAMILY_SITUATION": "Family situation",
+  "FAVORITES_COUNT_one": "{{count}} favorite saved",
+  "FAVORITES_COUNT_other": "{{count}} favorites saved",
   "FAVORITES_DESCRIPTION": "Add your favorite places to find them more easily!",
   "FAVORITES_EMPTY_LIST": "Your list of favorite places is empty.<br>Tap the heart icon of a place to add it to your favorites.",
   "FAVORITES_LIMIT_REACHED_BANNER": "Your favorites list is full. Delete some to make room for new ones.",

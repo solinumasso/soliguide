@@ -670,6 +670,8 @@
   "FAMILLES": "کورنۍ",
   "FAMILY_AREA": "د کورنۍ ساحه",
   "FAMILY_SITUATION": "د کورنۍ وضعیت",
+  "FAVORITES_COUNT_one": "{{count}} خوښ ځای خوندي شو",
+  "FAVORITES_COUNT_other": "{{count}} خوښې ځایونه خوندي شول",
   "FAVORITES_DESCRIPTION": "خپل د خوښې ځایونه اضافه کړئ ترڅو دوی په اسانۍ سره ومومئ!",
   "FAVORITES_EMPTY_LIST": "ستاسو د خوښې ځایونو لیست خالي دی.<br>د یو ځای د زړه په نښه کلیک وکړئ ترڅو هغه په خپلو خوښې ځایونو کې اضافه کړئ.",
   "FAVORITES_LIMIT_REACHED_BANNER": "ستاسو د خوښې لیست ډک دی. د نویو لپاره د ځای جوړولو لپاره ځینې حذف کړئ.",

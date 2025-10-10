@@ -671,6 +671,8 @@
   "FAMILLES": "famílies",
   "FAMILY_AREA": "Espai familiar",
   "FAMILY_SITUATION": "Situació familiar",
+  "FAVORITES_COUNT_one": "{{count}} favorit desat",
+  "FAVORITES_COUNT_other": "{{count}} favorits desats",
   "FAVORITES_DESCRIPTION": "Afegeix els teus llocs preferits per trobar-los més fàcilment!",
   "FAVORITES_EMPTY_LIST": "La teva llista de llocs preferits és buida.<br>Toca la icona del cor d'un lloc per afegir-lo als teus preferits.",
   "FAVORITES_LIMIT_REACHED_BANNER": "La teva llista de preferits és plena. Elimina'n alguns per fer espai per a nous.",
