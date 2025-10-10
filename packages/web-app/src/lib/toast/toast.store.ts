@@ -20,10 +20,10 @@
  */
 import { get, writable } from 'svelte/store';
 import type { I18nStore } from '$lib/client/types';
-import type { types as DSTypes } from '@soliguide/design-system';
+import { generateId, type types as DSTypes } from '@soliguide/design-system';
 
 export interface ToastNotification {
-  id: number;
+  id: string;
   description: string;
   variant: DSTypes.ToastVariant;
   withIcon?: boolean;
@@ -38,7 +38,7 @@ const toastStore = writable<ToastNotification[]>([]);
 export const showToast = (
   toast: Omit<ToastNotification, 'id'>,
   replaceCurrent = false
-): number => {
+): string => {
   const defaults: Omit<ToastNotification, 'id' | 'description' | 'variant'> = {
     withIcon: true,
     dismissible: true,
@@ -48,7 +48,7 @@ export const showToast = (
   };
 
   const toastWithDefaults: ToastNotification = {
-    id: Date.now() + Math.floor(Math.random() * 1000),
+    id: generateId(),
     ...defaults,
     ...toast
   };
@@ -60,7 +60,7 @@ export const showToast = (
   return toastWithDefaults.id;
 };
 
-export const removeToast = (id: number): void => {
+export const removeToast = (id: string): void => {
   toastStore.update((items) => items.filter((item) => item.id !== id));
 };
 
