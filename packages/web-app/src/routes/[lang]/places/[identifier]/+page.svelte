@@ -27,6 +27,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import { Topbar, InfoBlock, IconFavoriteOff, IconFavoriteOn, type types as DSTypes } from '@soliguide/design-system';
   import { favorites, toggleFavorite } from '$lib/client/favorites';
+  import { notifyFavoriteChange } from '$lib/toast/toast.store';
   import {
     PlaceInfoSection,
     PlaceDescriptionSection,
@@ -125,13 +126,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <!-- <script src="https://tally.so/widgets/embed.js"></script> -->
 </svelte:head>
 
-<Topbar 
-  type="reversedGradient" 
+<Topbar
+  type="reversedGradient"
   actions={topbarActions}
   on:navigate={goBack}
   on:favorite={() => {
     if ($pageStore.placeDetails.id) {
-      toggleFavorite($pageStore.placeDetails.id);
+      const status = toggleFavorite($pageStore.placeDetails.id);
+      notifyFavoriteChange(status, i18n);
     }
   }}
 />
