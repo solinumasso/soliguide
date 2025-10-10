@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { writable } from 'svelte/store';
+import { get, writable } from 'svelte/store';
 import { getStorageItem, setStorageItem } from './storage';
 
 const STORAGE_KEY_FAVORITES = 'favorites';
@@ -46,11 +46,16 @@ export const removeFavorite = (id: number) => {
   favoriteIds.update(ids => ids.filter(fId => fId !== id));
 };
 
-export const toggleFavorite = (id: number) => {
-  favoriteIds.update(ids => {
-    const exists = ids.includes(id);
-    return exists ? ids.filter(fId => fId !== id) : [...ids, id];
-  });
+export const toggleFavorite = (id: number): 'added' | 'removed' => {
+  const currentIds = get(favoriteIds);
+
+  if (currentIds.includes(id)) {
+    favoriteIds.set(currentIds.filter((favoriteId) => favoriteId !== id));
+    return 'removed';
+  }
+
+  favoriteIds.set([...currentIds, id]);
+  return 'added';
 };
 
 export { favoriteIds as favorites };

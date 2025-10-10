@@ -46,6 +46,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { searchService } from '$lib/services';
 
   import { favorites, toggleFavorite } from '$lib/client/favorites';
+  import { notifyFavoriteChange } from '$lib/toast/toast.store';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import type { SearchResultItem } from '$lib/models/types';
 
@@ -117,7 +118,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               checked={isFavorite}
               aria-label={$i18n.t('TOGGLE_FAVORITES')}
               on:change={() => {
-                toggleFavorite(place.id);
+                const status = toggleFavorite(place.id);
+                notifyFavoriteChange(status, i18n);
               }}
             />
           </div>
