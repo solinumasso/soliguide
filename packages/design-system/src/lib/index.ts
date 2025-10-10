@@ -83,6 +83,7 @@ import { Accordion, AccordionGroup } from './components/dataDisplay/Accordion/in
 import BasicCard from './components/dataDisplay/BasicCard.svelte';
 import TextClamper from './components/dataDisplay/TextClamper.svelte';
 import InfoBlock from './components/dataDisplay/InfoBlock.svelte';
+import Toast from './components/dataDisplay/Toast.svelte';
 import Tile from './components/Tile.svelte';
 
 import Modal from './components/feedback/Modal.svelte';
@@ -116,8 +117,6 @@ export {
   Blind,
   BusinessCenter,
   Button,
-  Button,
-  ButtonLink,
   ButtonLink,
   Cake,
   Card,
@@ -127,7 +126,6 @@ export {
   changeDesignSystemLocale,
   CheckMark,
   CleanHands,
-  ComponentUsingTranslation,
   ComponentUsingTranslation,
   ConfirmationNumber,
   Countertops,
@@ -160,7 +158,6 @@ export {
   InfoBlock,
   InfoIcon,
   InputText,
-  InputText,
   Link,
   ListItem,
   Menu,
@@ -177,9 +174,10 @@ export {
   Text,
   TextClamper,
   ThemeContext,
-  ThermostatAuto
+  ThermostatAuto,
   Tile,
+  Toast,
   ToggleButton,
   ToggleSwitch,
-  Topbar,
+  Topbar
 };
