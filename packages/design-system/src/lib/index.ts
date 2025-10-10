@@ -150,6 +150,7 @@ import { Accordion, AccordionGroup } from './components/dataDisplay/Accordion/in
 import BasicCard from './components/dataDisplay/BasicCard.svelte';
 import TextClamper from './components/dataDisplay/TextClamper.svelte';
 import InfoBlock from './components/dataDisplay/InfoBlock.svelte';
+import Toast from './components/dataDisplay/Toast.svelte';
 import Tile from './components/Tile.svelte';
 
 import Modal from './components/feedback/Modal.svelte';
@@ -296,6 +297,7 @@ export {
   BasicCard,
   TextClamper,
   InfoBlock,
+  Toast,
   changeDesignSystemLocale,
   getDesignSystemLocale,
   Badge,
