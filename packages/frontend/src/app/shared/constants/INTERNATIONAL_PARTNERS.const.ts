@@ -66,12 +66,6 @@ export const ALL_LOGOS: LogoWithLink[] = [
     size: "large",
   },
   {
-    path: `${LOGOS_BASE_PATH}/generalitat-catalunya.jpg`,
-    alt: "Departament de Drets Socials i Inclúsió",
-    link: "https://dretssocials.gencat.cat/ca/inici/",
-    size: "large",
-  },
-  {
     path: `${LOGOS_BASE_PATH}/poctefa.svg`,
     alt: "Interreg POCTEFA",
     link: "https://www.poctefa.eu/",
@@ -81,6 +75,12 @@ export const ALL_LOGOS: LogoWithLink[] = [
     path: `${LOGOS_BASE_PATH}/diputació-de-tarragona.svg`,
     alt: "Diputació de Tarragona",
     link: "https://www.dipta.cat/",
+    size: "small",
+  },
+  {
+    path: `${LOGOS_BASE_PATH}/generalitat-catalunya.jpg`,
+    alt: "Departament de Drets Socials i Inclúsió",
+    link: "https://dretssocials.gencat.cat/ca/inici/",
     size: "small",
   },
 ];
@@ -113,7 +113,15 @@ export const LOGOS_BY_COUNTRY: Partial<Record<CountryCodes, string[]>> = {
 };
 
 export const FUNDERS_BY_COUNTRY: Partial<Record<CountryCodes, string[]>> = {
-  [CountryCodes.ES]: ["Interreg POCTEFA", "Diputació de Tarragona"],
-  [CountryCodes.AD]: ["Interreg POCTEFA", "Diputació de Tarragona"],
+  [CountryCodes.ES]: [
+    "Interreg POCTEFA",
+    "Diputació de Tarragona",
+    "Departament de Drets Socials i Inclúsió",
+  ],
+  [CountryCodes.AD]: [
+    "Interreg POCTEFA",
+    "Diputació de Tarragona",
+    "Departament de Drets Socials i Inclúsió",
+  ],
   [CountryCodes.FR]: [],
 };
