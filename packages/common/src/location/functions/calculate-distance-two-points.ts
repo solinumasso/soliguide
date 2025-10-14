@@ -54,6 +54,10 @@ export const calculateDistanceBetweenTwoPoints = (
     );
   }
 
+  if (latFrom === latTo && lngFrom === lngTo) {
+    return 0;
+  }
+
   const radlat1 = (Math.PI * latFrom) / 180;
   const radlat2 = (Math.PI * latTo) / 180;
   const theta = lngFrom - lngTo;

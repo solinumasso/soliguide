@@ -76,6 +76,8 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
   public readonly RELATIONS = RELATIONS;
   public readonly THEME_CONFIGURATION = THEME_CONFIGURATION;
 
+  private countryCode: string;
+
   constructor(
     private readonly authService: AuthService,
     private readonly formBuilder: UntypedFormBuilder,
@@ -92,6 +94,7 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
     this.loading = false;
     this.me = null;
     this.organisation = new Organisation();
+    this.countryCode = this.THEME_CONFIGURATION.country;
   }
 
   public ngOnInit(): void {
@@ -134,7 +137,7 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
         ],
       ],
       territories: [
-        this.organisation.territories,
+        this.organisation?.areas?.[this.countryCode]?.departments ?? [],
         this.me.admin ? [Validators.required] : [],
       ],
       description: [this.organisation.description, []],
@@ -150,7 +153,7 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
         this.organisation.relations,
         this.me.admin ? [Validators.required] : [],
       ],
-      country: [THEME_CONFIGURATION.country],
+      country: [this.countryCode],
     });
   };
 
@@ -164,6 +167,17 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
       newValue: this.orgaForm.value,
     });
 
+    const formValue = {
+      ...this.orgaForm.value,
+      areas: {
+        ...structuredClone(this.organisation.areas),
+        [this.countryCode]: {
+          ...structuredClone(this.organisation.areas[this.countryCode]),
+          departments: this.orgaForm.value.territories,
+        },
+      },
+    };
+
     this.submitted = true;
 
     if (this.orgaForm.invalid) {
@@ -175,7 +189,7 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
 
     this.subscription.add(
       this.organisationService
-        .create(this.organisation._id, this.orgaForm.value)
+        .create(this.organisation._id, formValue)
         .subscribe({
           next: (organisation: Organisation) => {
             this.submitted = false;

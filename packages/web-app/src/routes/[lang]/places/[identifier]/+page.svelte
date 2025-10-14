@@ -38,12 +38,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import type { PageData } from './$types';
   import { getPlaceDetailsPageController } from './pageController';
   import CampaignBanner from './components/CampaignBanner.svelte';
+  import PlaceItinerarySection from './components/PlaceItinerarySection.svelte';
 
   export let data: PageData;
-
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
   const pageStore = getPlaceDetailsPageController();
-  pageStore.init(data);
+
+  // initialize and update on data change (necessary for reloading when query params change)
+  $: {
+    pageStore.init(data);
+  }
 
   setContext('PLACE_CONTROLLER_CTX_KEY', pageStore);
   setContext('CAPTURE_FCTN_CTX_KEY', pageStore.captureEvent);
@@ -137,7 +141,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         tempInfo={$pageStore.placeDetails.tempInfo}
         closureDisplayMode={$pageStore.closureDisplayMode}
         hoursDisplayMode={$pageStore.hoursDisplayMode}
+        placeType={$pageStore.placeDetails.placeType}
       />
+
       <PlaceServices
         services={$pageStore.placeDetails.services}
         currentDay={$pageStore.currentDay}
@@ -147,6 +153,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         address={$pageStore.placeDetails.address}
         onOrientation={$pageStore.placeDetails.onOrientation}
       />
+
+      <PlaceItinerarySection place={$pageStore.placeDetails} />
 
       <PlaceContact
         phones={$pageStore.placeDetails.phones}

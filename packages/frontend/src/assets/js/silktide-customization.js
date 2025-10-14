@@ -32,6 +32,14 @@ window.silktideConfig = {
       description:
         "<p>These cookies are necessary for the website to function properly and cannot be switched off. They help with things like logging in and setting your privacy preferences.</p>",
       required: true,
+      onAccept: function () {
+        gtag("consent", "update", {
+          security_storage: "granted",
+        });
+        dataLayer.push({
+          event: "consent_accepted_necessary",
+        });
+      },
     },
     {
       id: "analytics",
@@ -42,9 +50,15 @@ window.silktideConfig = {
       onAccept: function () {
         gtag("consent", "update", {
           analytics_storage: "granted",
+          ad_storage: "granted",
+          ad_user_data: "granted",
+          ad_personalization: "granted",
         });
         dataLayer.push({
           event: "consent_accepted_analytics",
+        });
+        dataLayer.push({
+          event: "consent_accepted_advertising",
         });
 
         document.dispatchEvent(
@@ -59,6 +73,9 @@ window.silktideConfig = {
       onReject: function () {
         gtag("consent", "update", {
           analytics_storage: "denied",
+          ad_storage: "denied",
+          ad_user_data: "denied",
+          ad_personalization: "denied",
         });
 
         document.dispatchEvent(

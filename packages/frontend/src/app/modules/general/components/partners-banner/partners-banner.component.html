@@ -21,7 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <section id="logos-partners" *ngIf="logos.length" class="bg-white py-4">
   <div class="container px-4">
     <div class="row g-5 align-items-start">
-      <div class="col-12 col-lg-7 pe-lg-5" *ngIf="getDeployerLogos().length">
+      <div class="col-12 col-lg-6 pe-lg-5" *ngIf="getDeployerLogos().length">
         <div class="section">
           <h3 class="text-primary mb-3">
             {{ "SOLIGUIA_INITIATIVE" | translate }}
@@ -39,6 +39,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                   [src]="logo.path"
                   [alt]="logo.alt"
                   class="logo-img w-100"
+                  [ngClass]="{
+                    'large-size': logo.size === 'large',
+                    'small-size': logo.size === 'small'
+                  }"
                 />
               </a>
             </div>
@@ -46,7 +50,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         </div>
       </div>
 
-      <div class="col-12 col-lg-5 ps-lg-5" *ngIf="getFunderLogos().length">
+      <div class="col-12 col-lg-6 ps-lg-5" *ngIf="getFunderLogos().length">
         <div class="section">
           <h3 class="text-primary mb-3">
             {{ "WITH_THE_SUPPORT_OF" | translate }}
@@ -60,7 +64,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               class="logo-link"
               [attr.aria-label]="'Visit ' + logo.alt + ' website'"
             >
-              <img [src]="logo.path" [alt]="logo.alt" class="logo-img" />
+              <img
+                [src]="logo.path"
+                [alt]="logo.alt"
+                class="logo-img"
+                [ngClass]="{
+                  'large-size': logo.size === 'large',
+                  'small-size': logo.size === 'small'
+                }"
+              />
             </a>
           </div>
         </div>

@@ -25,9 +25,7 @@ import {
   GeoTypes,
   Categories,
   SupportedLanguagesCode,
-  CountryCodes,
-  FR_DEPARTMENT_CODES,
-  FR_REGION_CODES
+  CommonPlacePosition
 } from '@soliguide/common';
 
 const serviceResult = {
@@ -43,14 +41,8 @@ const serviceResult = {
       dataForLogs: {
         id: '5a58c0c7c1797fe45e377324',
         lieuId: 154,
-        position: {
-          country: CountryCodes.FR,
-          department: 'Paris',
-          departmentCode: FR_DEPARTMENT_CODES['75'],
-          distance: 478.42644975047216,
-          region: 'Île-de-France',
-          regionCode: FR_REGION_CODES['11']
-        }
+        distance: 478.42644975047216,
+        position: new CommonPlacePosition()
       },
       distance: 478.42644975047216,
       services: ['food_distribution'],

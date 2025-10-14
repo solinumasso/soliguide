@@ -19,25 +19,28 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import {
-  PlaceStatus,
-  PlaceType,
-  PlaceVisibility,
+  ADMINISTRATIVE_DEFAULT_VALUES,
   Categories,
-  ServiceStyleType,
-  PlaceClosedHolidays,
-  ServiceSaturation,
   CountryCodes,
+  FAMILY_DEFAULT_VALUES,
   FR_DEPARTMENT_CODES,
   FR_REGION_CODES,
   FR_TIMEZONES,
+  GENDER_DEFAULT_VALUES,
+  GeoTypes,
+  OTHER_DEFAULT_VALUES,
+  PlaceClosedHolidays,
   PlaceOpeningStatus,
+  PlaceStatus,
+  PlaceType,
+  PlaceVisibility,
+  ServiceSaturation,
+  ServiceStyleType,
   SupportedLanguagesCode,
   type ApiPlace,
-  OTHER_DEFAULT_VALUES,
-  GENDER_DEFAULT_VALUES,
-  FAMILY_DEFAULT_VALUES,
-  ADMINISTRATIVE_DEFAULT_VALUES,
-  TempInfoStatus
+  type CommonPlaceParcours,
+  TempInfoStatus,
+  CommonPlacePosition
 } from '@soliguide/common';
 import type { SearchResultItem } from './types';
 
@@ -325,13 +328,36 @@ const samplePlaceTransformed: SearchResultItem = Object.freeze({
   dataForLogs: {
     id: '5a58c0c7c1797fe45e377324',
     lieuId: 154,
+    distance: 478.42644975047216,
     position: {
-      country: CountryCodes.FR,
-      department: 'Paris',
-      departmentCode: FR_DEPARTMENT_CODES[75],
-      distance: 478.42644975047216,
+      adresse: '1 Rue Montmartre, 75001 Paris',
+      codePostal: '75001',
+      complementAdresse: '',
+      departement: 'Paris',
+      departementCode: '75',
+      location: { coordinates: [2.345897, 48.86323609999999], type: 'Point' },
+      pays: 'fr',
       region: 'Île-de-France',
-      regionCode: FR_REGION_CODES['11']
+      slugs: {
+        ville: 'paris',
+        departement: 'paris',
+        pays: 'fr',
+        department: 'paris',
+        country: 'fr',
+        region: 'ile-de-france',
+        city: 'paris'
+      },
+      ville: 'Paris',
+      address: '1 Rue Montmartre, 75001 Paris',
+      additionalInformation: '',
+      city: 'Paris',
+      postalCode: '75001',
+      cityCode: '75001',
+      department: 'Paris',
+      departmentCode: FR_DEPARTMENT_CODES['75'],
+      country: CountryCodes.FR,
+      regionCode: FR_REGION_CODES['11'],
+      timeZone: FR_TIMEZONES[4]
     }
   },
   distance: 478.42644975047216,
@@ -345,6 +371,7 @@ const samplePlaceTransformed: SearchResultItem = Object.freeze({
       phoneNumber: '01 42 36 31 05'
     }
   ],
+  searchGeoType: GeoTypes.POSITION,
   seoUrl: 'soupe-saint-eustache-paris-154',
   services: [Categories.FOOD_DISTRIBUTION],
   sources: [],
@@ -738,37 +765,35 @@ const sampleItinerary: ApiPlace = Object.freeze({
       },
       photos: [],
       position: {
-        adresse: '58 Bd Saint-Marcel, 75005 Paris',
-        codePostal: '75005',
-        complementAdresse: 'Point de départ de la maraude',
-        departement: 'Paris',
-        departementCode: '75',
         location: {
-          coordinates: [2.3554445, 48.8381335],
+          coordinates: [2.362892, 48.833218],
           type: 'Point'
         },
+        adresse: 'Nationale, 75013 Paris 13e Arrondissement',
+        codePostal: '75013',
+        complementAdresse: "Point d'arrivée de la maraude",
+        departement: 'Paris',
+        departementCode: '75',
         pays: 'fr',
+        ville: 'Paris 13e Arrondissement',
         region: 'Île-de-France',
-        slugs: {
-          ville: 'paris',
-          departement: 'paris',
-          pays: 'fr',
-          department: 'paris',
-          country: 'fr',
-          region: 'ile-de-france',
-          city: 'paris'
-        },
-        ville: 'Paris',
-        address: '58 Bd Saint-Marcel, 75005 Paris',
-        additionalInformation: 'Point de départ de la maraude',
-        city: 'Paris',
-        postalCode: '75005',
-        cityCode: '75005',
+        additionalInformation: "Point d'arrivée de la maraude",
+        address: 'Nationale, 75013 Paris 13e Arrondissement',
+        city: 'Paris 13e Arrondissement',
+        cityCode: '75013',
+        postalCode: '75013',
         department: 'Paris',
         departmentCode: FR_DEPARTMENT_CODES['75'],
         country: CountryCodes.FR,
         regionCode: FR_REGION_CODES['11'],
-        timeZone: FR_TIMEZONES[4]
+        timeZone: FR_TIMEZONES[4],
+        slugs: {
+          departement: 'paris',
+          country: 'fr',
+          department: 'paris',
+          city: 'paris-13e-arrondissement',
+          region: 'ile-de-france'
+        }
       }
     },
     {
@@ -1227,21 +1252,100 @@ const sampleItinerary: ApiPlace = Object.freeze({
   }
 });
 
+const sampleItineraryCrossingPoint: CommonPlaceParcours = {
+  description: 'Gare routière de Versailles',
+  hours: {
+    closedHolidays: 'UNKNOWN',
+    description: '',
+    friday: {
+      open: false,
+      timeslot: []
+    },
+    monday: {
+      open: false,
+      timeslot: []
+    },
+    saturday: {
+      open: true,
+      timeslot: [
+        {
+          end: 2230,
+          start: 2000
+        }
+      ]
+    },
+    sunday: {
+      open: false,
+      timeslot: []
+    },
+    thursday: {
+      open: false,
+      timeslot: []
+    },
+    tuesday: {
+      open: true,
+      timeslot: [
+        {
+          end: 2230,
+          start: 2000
+        }
+      ]
+    },
+    wednesday: {
+      open: true,
+      timeslot: [
+        {
+          end: 2230,
+          start: 2000
+        }
+      ]
+    }
+  },
+  photos: [],
+  position: {
+    adresse: '2 Rue Alexis de Tocqueville, 78000 Versailles',
+    codePostal: '78000',
+    complementAdresse: null,
+    departement: 'Yvelines',
+    departementCode: '78',
+    location: {
+      coordinates: [2.1322597, 48.7952117],
+      type: 'Point'
+    },
+    pays: 'fr',
+    region: 'Île-de-France',
+    slugs: {
+      ville: 'versailles',
+      departement: 'yvelines',
+      pays: 'fr',
+      department: 'yvelines',
+      country: 'fr',
+      region: 'ile-de-france',
+      city: 'versailles'
+    },
+    ville: 'Versailles',
+    address: '2 Rue Alexis de Tocqueville, 78000 Versailles',
+    additionalInformation: '',
+    city: 'Versailles',
+    postalCode: '78000',
+    cityCode: '78000',
+    department: 'Yvelines',
+    departmentCode: FR_DEPARTMENT_CODES['78'],
+    country: CountryCodes.FR,
+    regionCode: FR_REGION_CODES['11'],
+    timeZone: FR_TIMEZONES[4]
+  }
+};
+
 const sampleItineraryTransformed: SearchResultItem[] = [
   {
-    address: '58 Bd Saint-Marcel, 75005 Paris - Point de départ de la maraude',
+    address: "Nationale, 75013 Paris 13e Arrondissement - Point d'arrivée de la maraude",
     banners: { orientation: false, holidays: PlaceClosedHolidays.UNKNOWN, campaign: null },
     dataForLogs: {
       id: '30965',
       lieuId: 30965,
-      position: {
-        country: CountryCodes.FR,
-        department: 'Paris',
-        departmentCode: FR_DEPARTMENT_CODES['75'],
-        distance: 403.7915416747283,
-        region: 'Île-de-France',
-        regionCode: FR_REGION_CODES['11']
-      }
+      distance: 403.7915416747283,
+      position: new CommonPlacePosition()
     },
     distance: 403.7915416747283,
     id: 30965,
@@ -1254,12 +1358,13 @@ const sampleItineraryTransformed: SearchResultItem[] = [
         phoneNumber: '07 69 06 74 44'
       }
     ],
+    searchGeoType: GeoTypes.POSITION,
     seoUrl: 'maraude-balades-des-lucioles-13e-paris-30965',
     services: [Categories.FOOD_DISTRIBUTION, Categories.HYGIENE_PRODUCTS, Categories.CLOTHING],
     sources: [],
     status: PlaceOpeningStatus.OPEN,
     tempInfo: { hours: null, message: null, closure: null },
-    todayInfo: { openingHours: [{ end: '2215', start: '1950' }] }
+    todayInfo: { openingHours: [{ end: '2000', start: '1950' }] }
   },
   {
     address: "Pl. Louis-Armand, 75012 Paris - Point d'arrivée de la maraude",
@@ -1267,14 +1372,8 @@ const sampleItineraryTransformed: SearchResultItem[] = [
     dataForLogs: {
       id: '30965',
       lieuId: 30965,
-      position: {
-        country: CountryCodes.FR,
-        department: 'Paris',
-        departmentCode: FR_DEPARTMENT_CODES['75'],
-        distance: 403.7915416747283,
-        region: 'Île-de-France',
-        regionCode: FR_REGION_CODES['11']
-      }
+      distance: 403.7915416747283,
+      position: new CommonPlacePosition()
     },
     distance: 403.7915416747283,
     id: 30965,
@@ -1287,13 +1386,20 @@ const sampleItineraryTransformed: SearchResultItem[] = [
         phoneNumber: '07 69 06 74 44'
       }
     ],
+    searchGeoType: GeoTypes.POSITION,
     seoUrl: 'maraude-balades-des-lucioles-13e-paris-30965',
     services: [Categories.FOOD_DISTRIBUTION, Categories.HYGIENE_PRODUCTS, Categories.CLOTHING],
     sources: [],
     status: PlaceOpeningStatus.OPEN,
     tempInfo: { hours: null, message: null, closure: null },
-    todayInfo: { openingHours: [{ end: '2215', start: '1950' }] }
+    todayInfo: { openingHours: [{ end: '2215', start: '2200' }] }
   }
 ];
 
-export { samplePlace, samplePlaceTransformed, sampleItinerary, sampleItineraryTransformed };
+export {
+  sampleItinerary,
+  sampleItineraryCrossingPoint,
+  sampleItineraryTransformed,
+  samplePlace,
+  samplePlaceTransformed
+};

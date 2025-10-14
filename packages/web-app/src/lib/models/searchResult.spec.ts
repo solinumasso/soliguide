@@ -21,10 +21,11 @@
 import { describe, expect, it, vi } from 'vitest';
 import { buildSearchResult, buildSearchResultWithParcours } from './searchResult';
 import {
-  samplePlace,
-  samplePlaceTransformed,
   sampleItinerary,
-  sampleItineraryTransformed
+  sampleItineraryCrossingPoint,
+  sampleItineraryTransformed,
+  samplePlace,
+  samplePlaceTransformed
 } from './searchResultData.mock';
 
 import {
@@ -36,10 +37,11 @@ import {
 } from '@soliguide/common';
 import type { SearchLocationParams, SearchResultItem } from './types';
 
+// This location is in Paris and at less than 10km of localisations in samplePlace and parcours in sampleItinerary
 const sampleLocationParams: SearchLocationParams = {
   geoType: GeoTypes.POSITION,
-  coordinates: [1, 2],
-  distance: 50
+  coordinates: [2.34, 48.85],
+  distance: 10
 };
 
 const category = Categories.FOOD;
@@ -86,24 +88,29 @@ describe('Search Result', () => {
     });
 
     describe('Computation of the distance', () => {
-      it('When the geoType is position and the place status is not permanently closed or draft, and the place has a position, we display it', () => {
+      it('GeoType must be the same as user search', () => {
+        const geoTypeToSearch = GeoTypes.CITY;
+
         const result = buildSearchResult(
           { nbResults: 1, places: [samplePlace] },
-          { ...sampleLocationParams, geoType: GeoTypes.CITY },
+          { ...sampleLocationParams, geoType: geoTypeToSearch },
           category
         );
         const [resultItem] = result.places;
-        expect(resultItem.distance).toStrictEqual(-1);
+        expect(resultItem.searchGeoType).toStrictEqual(geoTypeToSearch);
       });
 
-      it('Otherwise, the distance is not shown', () => {
+      it('ResultItem must be having a distance even if not provided by the API', () => {
+        // eslint-disable-next-line
+        const { distance, ...samplePlaceWithoutDistance } = samplePlace;
+
         const result = buildSearchResult(
-          { nbResults: 1, places: [samplePlace] },
+          { nbResults: 1, places: [samplePlaceWithoutDistance] },
           sampleLocationParams,
           category
         );
         const [resultItem] = result.places;
-        expect(resultItem.distance).toStrictEqual(samplePlaceTransformed.distance);
+        expect(resultItem.distance).toBeGreaterThanOrEqual(0);
       });
     });
     describe('Computation of the address', () => {
@@ -557,6 +564,7 @@ describe('Search Result', () => {
         sampleLocationParams,
         category
       );
+
       expect(result.places.length).toBe(2);
     });
 
@@ -568,6 +576,7 @@ describe('Search Result', () => {
         sampleLocationParams,
         category
       );
+
       expect(result.places[0].todayInfo).toStrictEqual(sampleItineraryTransformed[0].todayInfo);
       expect(result.places[1].todayInfo).toStrictEqual(sampleItineraryTransformed[1].todayInfo);
     });
@@ -579,13 +588,13 @@ describe('Search Result', () => {
         sampleLocationParams,
         category
       );
-      expect(result.places[0].address).toStrictEqual(sampleItineraryTransformed[0].address);
-      expect(result.places[1].address).toStrictEqual(sampleItineraryTransformed[1].address);
+      expect(result.places[0].address).toContain(sampleItineraryTransformed[0].address);
+      expect(result.places[1].address).toContain(sampleItineraryTransformed[1].address);
     });
   });
 
   describe('Combination of places and itineraries', () => {
-    it('With 2 places and 1 itinerary having 2 steps, we end up with 3 results', () => {
+    it('With 1 places and 1 itinerary having 2 steps, we end up with 3 results', () => {
       const result = buildSearchResultWithParcours(
         { nbResults: 1, places: [samplePlace] },
         { nbResults: 1, places: [sampleItinerary] },
@@ -608,7 +617,19 @@ describe('Search Result', () => {
     });
 
     it('If a place is out of range, it is not included in the results', () => {
-      // Cannot tell without distances
+      const sampleItineraryWithOnePointOutOfRange = {
+        ...sampleItinerary,
+        parcours: [...sampleItinerary.parcours, sampleItineraryCrossingPoint]
+      };
+
+      const result = buildSearchResultWithParcours(
+        { nbResults: 1, places: [] },
+        { nbResults: 1, places: [sampleItineraryWithOnePointOutOfRange] },
+        sampleLocationParams,
+        category
+      );
+
+      expect(result.places.length).toBe(2);
     });
   });
 });

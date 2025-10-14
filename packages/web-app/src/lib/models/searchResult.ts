@@ -18,46 +18,57 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {
-  PlaceStatus,
-  GeoTypes,
-  computePlaceOpeningStatus,
-  type ApiPlace,
-  CountryCodes,
-  Categories,
-  type Phone as CommonPhone,
-  type ApiSearchResults
-} from '@soliguide/common';
+import { categoryService } from '$lib/services/categoryService';
 import { sort } from '$lib/ts';
 import {
-  computeTodayInfo,
-  computeAddress,
-  buildSources,
-  computeTempInfo,
-  computeCampaignBanner
-} from './place';
-import type { SearchLocationParams, SearchResult, SearchResultItem } from './types';
+  type ApiPlace,
+  type ApiSearchResults,
+  Categories,
+  type Phone as CommonPhone,
+  CountryCodes,
+  calculateDistanceBetweenTwoPoints,
+  computePlaceOpeningStatus
+} from '@soliguide/common';
 import { sortServicesByRelevance } from '../utils';
-import { categoryService } from '$lib/services/categoryService';
+import {
+  buildSources,
+  computeAddress,
+  computeCampaignBanner,
+  computeTempInfo,
+  computeTodayInfo
+} from './place';
+import type {
+  ApiPlaceWithCrossingPointIndex,
+  SearchLocationParams,
+  SearchResult,
+  SearchResultItem
+} from './types';
+
+const computeDistance = (
+  place: ApiPlace | ApiPlaceWithCrossingPointIndex,
+  locationParams: SearchLocationParams
+): number => {
+  if (typeof place.distance === 'number') {
+    return place.distance;
+  }
+
+  const [searchLat, searchLong] = locationParams.coordinates;
+  const [placeLat, placeLong] = place.position.location.coordinates;
+
+  return calculateDistanceBetweenTwoPoints(searchLat, searchLong, placeLat, placeLong);
+};
 
 /**
  * Transformation
  */
 const buildSearchResultItem = (
-  place: ApiPlace,
+  place: ApiPlace | ApiPlaceWithCrossingPointIndex,
   locationParams: SearchLocationParams,
   categorySearched: Categories
 ): SearchResultItem => {
   const onOrientation = Boolean(place.modalities.orientation.checked);
 
-  const distance =
-    locationParams.geoType === GeoTypes.POSITION &&
-    place.status !== PlaceStatus.PERMANENTLY_CLOSED &&
-    place.status !== PlaceStatus.DRAFT &&
-    typeof place.distance === 'number' &&
-    !onOrientation
-      ? place.distance
-      : -1;
+  const distance = computeDistance(place, locationParams);
 
   const status = computePlaceOpeningStatus(place);
 
@@ -76,18 +87,13 @@ const buildSearchResultItem = (
       orientation: onOrientation,
       campaign: computeCampaignBanner(place)
     },
+    ...('crossingPointIndex' in place ? { crossingPointIndex: place.crossingPointIndex } : {}),
     dataForLogs: {
       // eslint-disable-next-line no-underscore-dangle
       id: place?._id,
       lieuId: place.lieu_id,
-      position: {
-        country: place?.country,
-        department: place.position.department,
-        departmentCode: place.position?.departmentCode,
-        distance,
-        region: place.position.region,
-        regionCode: place.position?.regionCode
-      }
+      distance,
+      position: place.position
     },
     distance,
     id: place.lieu_id,
@@ -98,6 +104,7 @@ const buildSearchResultItem = (
         countryCode: phone.countryCode as CountryCodes
       }))
     ],
+    searchGeoType: locationParams.geoType,
     seoUrl: place.seo_url,
     services: sortedServices
       .map((service) => service?.category)
@@ -110,17 +117,38 @@ const buildSearchResultItem = (
 };
 
 /**
- * Transforms a itinerary steps into Places by hoisting their data
+ * Transforms itinerary crossing points into Places by hoisting their data
+ * Calculate their distance from the search location
+ * Also filter crossing points that are out of the search radius
  */
-const extractStepsFromItineraryPlace = (place: ApiPlace): ApiPlace[] => {
-  // We have description, hours, photos and position to extract
-  return place.parcours.map((step) => {
-    return {
-      ...place,
-      hours: step.hours,
-      position: step.position,
-      parcours: []
-    };
+const extractCrossingPointsFromItineraryPlace = (
+  place: ApiPlace,
+  locationParams: SearchLocationParams
+): ApiPlaceWithCrossingPointIndex[] => {
+  const [searchLat, searchLong] = locationParams.coordinates;
+
+  return place.parcours.flatMap((crossingPoint, index) => {
+    // Handle case where coordinates are identical to avoid NaN from calculateDistanceBetweenTwoPoints
+    const [crossingPointLat, crossingPointLon] = crossingPoint.position.location.coordinates;
+    const distance = calculateDistanceBetweenTwoPoints(
+      searchLat,
+      searchLong,
+      crossingPointLat,
+      crossingPointLon
+    );
+
+    if (distance > locationParams.distance) return [];
+
+    return [
+      {
+        ...place,
+        distance: distance * 1000, // in meters
+        newhours: crossingPoint.hours,
+        position: crossingPoint.position,
+        parcours: [],
+        crossingPointIndex: index
+      }
+    ];
   });
 };
 
@@ -148,18 +176,21 @@ const buildSearchResultWithParcours = (
   const placesResultItems = placesResult.places.map((place) =>
     buildSearchResultItem(place, searchLocationParams, category)
   );
+
+  // We extract itinerary crossing points and build a "place" for each one of them
   const itineraryResultItems = itineraryResult.places.flatMap((place) => {
-    const extractedSteps = extractStepsFromItineraryPlace(place);
-    return extractedSteps.map((extractedStep) =>
-      buildSearchResultItem(extractedStep, searchLocationParams, category)
+    const extractedCrossingPoints = extractCrossingPointsFromItineraryPlace(
+      place,
+      searchLocationParams
+    );
+    return extractedCrossingPoints.map((extractedCrossingPoint) =>
+      buildSearchResultItem(extractedCrossingPoint, searchLocationParams, category)
     );
   });
-
   const sortedPlaces = sortPlacesByDistance([...placesResultItems, ...itineraryResultItems]);
 
   return {
-    // NB: Impossible to calculate nbResults of itineraries, we should have the sum of nb steps of each
-    nbResults: placesResult.nbResults + itineraryResult.nbResults,
+    nbResults: placesResult.nbResults + itineraryResultItems.length,
     places: sortedPlaces
   };
 };

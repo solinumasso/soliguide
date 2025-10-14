@@ -38,7 +38,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { TodayInfo, PlaceStatus } from '$lib/components';
   import PhoneButton from '$lib/components/PhoneButton.svelte';
   import ResultsCardServices from './ResultsCardServices.svelte';
-  import { kmOrMeters, TempInfoStatus } from '@soliguide/common';
+  import { GeoTypes, kmOrMeters, TempInfoStatus } from '@soliguide/common';
   import { getSearchResultPageController } from '../../pageController';
   import { searchService } from '$lib/services';
 
@@ -63,14 +63,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   };
 
   const isDisabled = place.banners.orientation;
+  const urlWithItinerary = `${typeof place.crossingPointIndex === 'number' ? `&crossingPointIndex=${place.crossingPointIndex}` : ''}`;
+  const href = `${$routes.ROUTE_PLACES}/${place.seoUrl}?categorySearched=${category}${urlWithItinerary}`;
 </script>
 
 <Card>
-  <a
-    {id}
-    class="card-link"
-    href={`${$routes.ROUTE_PLACES}/${place.seoUrl}?categorySearched=${category}`}
-  >
+  <a {id} class="card-link" {href}>
     <CardHeader
       on:click={() => {
         captureEvent('card-header-click', { placeId: place.id });
@@ -144,7 +142,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       <div class="card-body-adress">
         <span class="card-body-adress-text">
           <Text type="text1Medium">{place.address}</Text>
-          {#if place.distance > 0}
+          {#if place.searchGeoType === GeoTypes.POSITION && !isDisabled}
             <div class="card-body-adress-distance">
               <span class="card-body-adress-distance-icon"
                 ><PinDrop aria-hidden="true" size={'12'} /></span
@@ -157,7 +155,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           iconPosition="iconOnly"
           type="primaryOutline"
           href={getMapLink(place.address)}
-          disabled={place.banners.orientation}
+          disabled={isDisabled}
           ><NearMe
             slot="icon"
             on:click={() => {
