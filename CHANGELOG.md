@@ -1,3 +1,22 @@
+# [4.101.0](https://github.com/solinumasso/soliguide/compare/v4.100.2...v4.101.0) (2025-10-14)
+
+
+### Bug Fixes
+
+* fix areas in orga and users ([2d24827](https://github.com/solinumasso/soliguide/commit/2d24827c047bc14d2e4c1c6a6bf740fae2644e17))
+* **frontend:** fix soliguia logo ([e709110](https://github.com/solinumasso/soliguide/commit/e709110ac3c8674fb599c14de6986fd634da6667))
+* **frontend:** fix soliguia logo ([09b4edd](https://github.com/solinumasso/soliguide/commit/09b4edd3e7485769610e629f2d59eb15b4ebdc2c))
+* stop error message when delete temp message [#757](https://github.com/solinumasso/soliguide/issues/757) ([7fdeab9](https://github.com/solinumasso/soliguide/commit/7fdeab95da7eb159f95ccaec95b6fa16354a1d7d))
+
+
+### Features
+
+* allow change territory [#455](https://github.com/solinumasso/soliguide/issues/455) ([24245bc](https://github.com/solinumasso/soliguide/commit/24245bce4dc628d1432f729e46ef300a7d177d48))
+* **frontend:** add ads_storage to the cookie banner [#948](https://github.com/solinumasso/soliguide/issues/948) ([5111bb1](https://github.com/solinumasso/soliguide/commit/5111bb116557cb65b6f0cfb3522a8e30ed5fb4cc))
+* **web-app:** add parcours mobile into search results [#134](https://github.com/solinumasso/soliguide/issues/134) ([bdda9cc](https://github.com/solinumasso/soliguide/commit/bdda9ccbd6f62c5708eb55db4e33f9a3882d9cc7))
+* **web-app:** add position data in go-to and phone-click events [#908](https://github.com/solinumasso/soliguide/issues/908) ([cf988c0](https://github.com/solinumasso/soliguide/commit/cf988c0ae6159191ebeabb311ddb40aa3dc69da7))
+* **web-app:** hide distance in orientation [#908](https://github.com/solinumasso/soliguide/issues/908) ([d0f5313](https://github.com/solinumasso/soliguide/commit/d0f5313386a406b00adb17a5663b1281e8c8f9bd))
+
 ## [4.100.2](https://github.com/solinumasso/soliguide/compare/v4.100.1...v4.100.2) (2025-09-26)
 
 
