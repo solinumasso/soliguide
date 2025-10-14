@@ -172,6 +172,7 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
       areas: {
         ...structuredClone(this.organisation.areas),
         [this.countryCode]: {
+          ...structuredClone(this.organisation.areas[this.countryCode]),
           departments: this.orgaForm.value.territories,
         },
       },
