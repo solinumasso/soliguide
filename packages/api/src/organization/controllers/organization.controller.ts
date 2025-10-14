@@ -86,7 +86,7 @@ export const createOrganization = async (
  * @param      {object} user User qui recherche
  */
 export const searchOrga = async (
-  query: any,
+  query: mongoose.FilterQuery<ApiOrganization>,
   user: UserPopulateType
 ): Promise<SearchResults<OrganizationPopulate>> => {
   const mongoSearchQuery = await createOrgaSearchQuery(query, user);

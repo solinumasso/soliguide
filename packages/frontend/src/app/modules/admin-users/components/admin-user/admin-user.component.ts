@@ -179,6 +179,7 @@ export class AdminUserComponent implements OnInit, OnDestroy {
       areas: {
         ...structuredClone(this.user.areas),
         [this.countryCode]: {
+          ...structuredClone(this.user.areas[this.countryCode]),
           departments: this.updateForm.value.territories,
         },
       },
