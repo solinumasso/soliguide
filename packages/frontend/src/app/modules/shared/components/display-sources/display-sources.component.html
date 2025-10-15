@@ -23,9 +23,18 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <span>{{ "SOURCE" | translate }}</span>
     <ng-container *ngFor="let source of sources; let last = last">
       <ng-container *ngIf="source?.toDisplay">
+        @if (source.externalUrl) {
+        <a
+          class="ms-1 source__link"
+          [href]="source.externalUrl"
+          target="_blank"
+          >{{ EXTERNAL_SOURCE_MAPPING[source.name].label }}</a
+        >
+        } @else {
         <strong class="ms-1">{{
           EXTERNAL_SOURCE_MAPPING[source.name].label
         }}</strong>
+        }
         <ng-container
           *ngIf="
             EXTERNAL_SOURCE_MAPPING[source.name].licenseLink &&

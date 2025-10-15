@@ -522,9 +522,10 @@ describe('Search Result', () => {
             {
               label: 'toDisplay1',
               licenseLabel: 'LicenceLabel1',
-              licenseLink: 'https://licenceLink1'
+              licenseLink: 'https://licenceLink1',
+              url: ''
             },
-            { label: 'toDisplay2', licenseLabel: '', licenseLink: '' }
+            { label: 'toDisplay2', licenseLabel: '', licenseLink: '', url: '' }
           ]
         };
 

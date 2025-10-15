@@ -38,6 +38,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { TodayInfo, PlaceStatus } from '$lib/components';
   import PhoneButton from '$lib/components/PhoneButton.svelte';
   import ResultsCardServices from './ResultsCardServices.svelte';
+  import DisplaySource from '$lib/components/DisplaySource.svelte';
   import { GeoTypes, kmOrMeters, TempInfoStatus } from '@soliguide/common';
   import { getSearchResultPageController } from '../../pageController';
   import { searchService } from '$lib/services';
@@ -77,17 +78,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       <div class="card-header-container">
         {#if place?.sources.length}
           <div class="card-header-source">
-            <Text type="caption2" color="inverse">
-              {$i18n.t('SOURCE')}
-              {#each place.sources as source, index}
-                {source.label}
-                {#if source.licenseLabel && source.licenseLink}(<a
-                    href={source.licenseLink}
-                    target="_blank">{source.licenseLabel}</a
-                  >){/if}{#if index < place.sources.length - 1}<span>, </span>
-                {/if}
-              {/each}
-            </Text>
+            <DisplaySource sources={place.sources} color="inverse" />
           </div>
         {/if}
 
@@ -214,10 +205,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
-  }
-
-  .card-header-source a {
-    text-decoration: revert;
   }
 
   .card-header-infos-container {

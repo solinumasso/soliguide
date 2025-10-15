@@ -62,6 +62,7 @@ export interface Source {
   label: string;
   licenseLabel: string;
   licenseLink: string;
+  url: string;
 }
 
 export interface SearchResultTempInfo {

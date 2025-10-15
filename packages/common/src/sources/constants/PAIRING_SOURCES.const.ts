@@ -27,3 +27,5 @@ export const EXTERNAL_UPDATES_ONLY_SOURCES = [
   PairingSources.CRF,
   PairingSources.CROUS_PDL,
 ];
+
+export const SOURCES_DISPLAY_EXTERNAL_LINK = [PairingSources.ALISOL];
