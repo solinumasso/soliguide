@@ -20,7 +20,7 @@
  */
 // scripts/translateCategories.ts
 import "../../config/database/connection";
-import { GoogleGenAI } from "@google/genai";
+// import { GoogleGenAI } from "@google/genai";
 import {
   AutoCompleteType,
   SearchSuggestion,
@@ -28,6 +28,7 @@ import {
 } from "@soliguide/common";
 import { ModelWithId, CONFIG } from "../../_models";
 import { SearchSuggestionModel } from "../models/search-suggestion.model";
+import Anthropic from "@anthropic-ai/sdk";
 
 interface TranslationResult {
   sourceId: string;
@@ -66,16 +67,20 @@ const LANGUAGE_NAMES: Record<SupportedLanguagesCode, string> = {
 };
 
 class CategoryTranslationScript {
-  private readonly genAI: GoogleGenAI;
+  // private readonly genAI: GoogleGenAI;
   private readonly results: TranslationResult[] = [];
+  private anthropic: Anthropic;
 
   constructor() {
     if (!CONFIG.GEMINI_API_KEY) {
       return;
     }
-    this.genAI = new GoogleGenAI({
-      apiKey: CONFIG.GEMINI_API_KEY,
+    this.anthropic = new Anthropic({
+      apiKey: process.env.ANTHROPIC_API_KEY, // Ou votre méthode de config
     });
+    // this.genAI = new GoogleGenAI({
+    //   apiKey: CONFIG.GEMINI_API_KEY,
+    // });
   }
 
   async run() {
@@ -87,11 +92,10 @@ class CategoryTranslationScript {
       console.log(
         `\n🌍 Translating: ${suggestion.label} into ${
           LANGUAGE_NAMES[suggestion.lang]
-        }`
+        } - Country ${suggestion.country}`
       );
       try {
         const langTranslation = await this.translateCategory(suggestion);
-        console.log({ suggestion, langTranslation });
 
         await SearchSuggestionModel.updateOne(
           { _id: suggestion._id },
@@ -137,124 +141,138 @@ class CategoryTranslationScript {
   private async translateCategory(
     suggestion: SearchSuggestionForTranslation
   ): Promise<TranslationResult> {
+    // const response = await this.genAI.models.generateContent({
+    //   model: "gemini-2.0-flash-001",
+    //   contents: prompt,
+    // });
+
     const prompt = this.buildPrompt(suggestion);
 
-    const response = await this.genAI.models.generateContent({
-      model: "gemini-2.0-flash-001",
-      contents: prompt,
-    });
+    try {
+      const response = await this.anthropic.messages.create({
+        model: "claude-sonnet-4-20250514", // Ou "claude-sonnet-4-5-20250929" (le plus intelligent)
+        max_tokens: 1024,
+        temperature: 0.3, // Plus bas = plus cohérent pour du JSON structuré
+        messages: [
+          {
+            role: "user",
+            content: prompt,
+          },
+        ],
+      });
 
-    if (response) {
-      const text = response.text as string;
-      return this.parseResponse(text, suggestion);
-    } else {
-      throw new Error("No response from model");
+      // Extraction du contenu
+      const content = response.content[0];
+      if (content.type === "text") {
+        const jsonText = content.text.trim();
+        return this.parseResponse(jsonText, suggestion);
+      }
+
+      throw new Error("Format de réponse inattendu");
+    } catch (error) {
+      console.error("Erreur génération Claude:", error);
+      throw error;
     }
   }
 
   private buildPrompt(suggestion: SearchSuggestionForTranslation): string {
+    const { label, country, lang, type } = suggestion;
+    const language = LANGUAGE_NAMES[lang];
+    const needsSynonyms = type === AutoCompleteType.CATEGORY;
+
     const getContentTypeContext = (type: AutoCompleteType): string => {
-      switch (type) {
-        case AutoCompleteType.ORGANIZATION:
-          return `ORGANISME spécifique (${suggestion.label}) - utilisateurs cherchent cette organisation près de chez eux`;
-        case AutoCompleteType.ESTABLISHMENT_TYPE:
-          return `TYPE D'ÉTABLISSEMENT (${suggestion.label}) - utilisateurs cherchent ce type d'établissement près de chez eux`;
-        case AutoCompleteType.CATEGORY:
-          return `CATÉGORIE d'aide sociale (${suggestion.label}) - utilisateurs cherchent de l'aide dans ce domaine`;
-        default:
-          return `RECHERCHE LIBRE (${suggestion.label}) - informations sur ce sujet`;
-      }
+      const contexts: { [key in AutoCompleteType]?: string } = {
+        [AutoCompleteType.ORGANIZATION]: "ORGANISME spécifique",
+        [AutoCompleteType.ESTABLISHMENT_TYPE]: "TYPE D'ÉTABLISSEMENT",
+        [AutoCompleteType.CATEGORY]: "CATÉGORIE d'aide sociale",
+      };
+      const context = contexts[type] || "RECHERCHE LIBRE";
+      const usage =
+        type === AutoCompleteType.CATEGORY
+          ? "utilisateurs cherchent de l'aide dans ce domaine"
+          : type === AutoCompleteType.ORGANIZATION ||
+            type === AutoCompleteType.ESTABLISHMENT_TYPE
+          ? "utilisateurs cherchent ce lieu près de chez eux"
+          : "informations sur ce sujet";
+
+      return `${context} (${label}) - ${usage}`;
     };
 
-    const needsSynonyms = suggestion.type === AutoCompleteType.CATEGORY;
-    const jsonFormat = `{
+    const jsonFormat = needsSynonyms
+      ? `{
   "seoTitle": "Titre SEO optimisé",
-  "seoDescription": "Description 150-160 chars avec géolocalisation"${
-    needsSynonyms ? ',\n  "synonyms": ["terme1", "terme2"]' : ""
-  }
+  "seoDescription": "Description 150-160 chars",
+  "synonyms": ["terme1", "terme2"]
+}`
+      : `{
+  "seoTitle": "Titre SEO optimisé",
+  "seoDescription": "Description 150-160 chars"
 }`;
 
-    return `Tu es un expert SEO + FALC pour Soliguide (plateforme de lieux solidaires).
-
+    return `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 PARAMÈTRES OBLIGATOIRES
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🎯 PARAMÈTRES OBLIGATOIRES - NE PAS MODIFIER
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-PAYS CIBLE: ${suggestion?.country}
-LANGUE DE TRADUCTION: ${LANGUAGE_NAMES[suggestion.lang]} (${suggestion.lang})
-ÉLÉMENT À TRAITER: "${suggestion.label}"
-TYPE: ${getContentTypeContext(suggestion.type)}
+PAYS: ${country}
+LANGUE: ${language} (${lang})
+ÉLÉMENT: "${label}"
+TYPE: ${getContentTypeContext(type)}
 
-⚠️ ATTENTION CRITIQUE ⚠️
-- TOUT le contenu JSON doit être écrit en ${LANGUAGE_NAMES[suggestion.lang]}
-- AUCUNE autre langue n'est acceptée dans la réponse
-- Si tu utilises une autre langue, la réponse sera rejetée
+⚠️ CRITIQUE: TOUT le JSON doit être en ${language}, aucune autre langue acceptée.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-PUBLIC: Personnes précaires, sans-abri, réfugiés, professionnels sociaux du pays: ${
-      suggestion?.country
-    }
+PUBLIC: Personnes précaires, sans-abri, réfugiés, professionnels sociaux en ${country}
 
-RÈGLES RÉDACTIONNELLES:
-- Mots simples, phrases courtes (max 22 mots)
-- Éviter jargon administratif et stigmatisation
-- Utiliser "vous", ton bienveillant et direct
-- Être concret avec exemples locaux du pays ${suggestion?.country}
+📋 NORME OBLIGATOIRE: ISO 24495-1:2023 - Langage clair et simple
+- Phrases courtes (max 22 mots), mots simples
+- Ton bienveillant, "vous", sans jargon ni stigmatisation
+- Exemples concrets et locaux (${country})
 
-CONSIGNES OBLIGATOIRES:
-1. LANGUE: Traduis 100% du contenu en ${LANGUAGE_NAMES[suggestion.lang]}
-2. LOCALISATION: Adapte pour ${
-      suggestion?.country
-    } (organismes, terminologie, exemples locaux du pays)
-3. TITRE:
-   - Doit mentionner "${suggestion.label}" dans une phrase naturelle
-   - Doit inclure "Soliguide"
-   - PAS de ":" dans le titre
-   - Pas de majuscule en milieu de phrase
-   - Ton empathique, PAS commercial
-4. DESCRIPTION:
-   - Inclure "Soliguide"
-   - Donner 3 EXEMPLES CONCRETS d'aide disponibles dans ${suggestion?.country}
-   - Mentionner la géolocalisation
-   - Entre 150-160 caractères
+CONSIGNES SEO:
+1. TITRE (empathique, non commercial)
+   • Inclure "${label}" + "Soliguide" naturellement
+   • Pas de ":" ni majuscule en milieu de phrase
+
+2. DESCRIPTION (150-160 caractères)
+   • Inclure "Soliguide"
+   • 3 exemples concrets d'aide en ${country}
 ${
   needsSynonyms
-    ? `5. SYNONYMES:
-   - 15 mots courants ou exemples concrets en ${LANGUAGE_NAMES[suggestion.lang]}
-   - Éviter les répétitions (ex: repos, reposer, se reposer = une seule forme)`
+    ? `
+3. SYNONYMES (15 mots en ${language})
+   • Termes concrets illustrant le service
+   • Pas de répétition (ex: repos, reposer → une seule forme)
+   • Éviter: social, aide, accompagnement (trop génériques)
+   • Ex. accueil: cafe repos parler femme harcelement discuter rencontrer`
     : ""
 }
 
-EXEMPLES DE STRUCTURE (à adapter en ${LANGUAGE_NAMES[suggestion.lang]}):
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EXEMPLES (à adapter en ${language}):
+
 Titres:
 - "Trouvez des soins gratuits avec Soliguide"
-- "Trouvez de l'aide au logement avec Soliguide"
 - "Face à l'addiction, ne restez plus seuls. Découvrez les lieux d'aide sur Soliguide"
-- "Ne restez plus sans manger, Soliguide vous aide"
 
-Descriptions (3 exemples concrets):
-- "Trouver un médecin gratuit, un dentiste et toutes les aides médicales gratuites grâce au Soliguide"
+Descriptions:
 - "Soliguide vous propose des centaines de lieux pour manger, obtenir un colis alimentaire ou des chèques alimentation"
-
+${
+  needsSynonyms
+    ? `
 Synonymes:
-- Accueil: accueil cafe repos parler femme harcelement discuter rencontrer
-- Espace de repos: reposer dormir repos pause
+- Espace de repos: reposer dormir repos pause`
+    : ""
+}
 
-Établissements (à adapter au pays ${suggestion?.country}):
+Établissements ${country}:
 - "CCAS pour votre domiciliation"
 - "Maison de santé près de chez vous"
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🚨 VÉRIFICATION FINALE AVANT ENVOI 🚨
-✓ Tout le JSON est-il en ${LANGUAGE_NAMES[suggestion.lang]} ?
-✓ Les exemples sont-ils adaptés à ${suggestion?.country} ?
-✓ Le titre contient-il "${suggestion.label}" et "Soliguide" ?
-✓ La description fait-elle 150-160 caractères ?
+✓ JSON 100% en ${language} | ✓ Exemples locaux ${country} | ✓ ISO 24495-1:2023
 
-FORMAT DE RÉPONSE (JSON BRUT UNIQUEMENT):
 ${jsonFormat}
 
-RÉPONDS UNIQUEMENT AVEC LE JSON. COMMENCE PAR { ET TERMINE PAR }. AUCUN TEXTE AVANT OU APRÈS.`;
+RÉPONDS UNIQUEMENT AVEC LE JSON. COMMENCE PAR { ET TERMINE PAR }`;
   }
 
   private parseResponse(
@@ -274,8 +292,6 @@ RÉPONDS UNIQUEMENT AVEC LE JSON. COMMENCE PAR { ET TERMINE PAR }. AUCUN TEXTE A
 
       const jsonText = cleanText.substring(firstBrace, lastBrace + 1);
       const parsed = JSON.parse(jsonText);
-
-      console.log("✅ Parsed JSON:", parsed);
 
       if (!parsed.seoTitle || !parsed.seoDescription) {
         throw new Error(

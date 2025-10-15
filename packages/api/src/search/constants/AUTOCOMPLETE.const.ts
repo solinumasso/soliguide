@@ -39,7 +39,7 @@ export const AUTOCOMPLETE_ORGANIZATIONS: {
 } = {
   [CountryCodes.FR]: [
     {
-      label: "Restos du Cœur: association d'aide alimentaire et d'insertion",
+      label: "Restos du Cœur",
       slug: "restos du coeur",
       synonyms: [
         "resto du coeur",
@@ -56,7 +56,7 @@ export const AUTOCOMPLETE_ORGANIZATIONS: {
       ],
     },
     {
-      label: "Secours Catholique: organisation caritative catholique",
+      label: "Secours Catholique",
       slug: "secours catholique",
       synonyms: [
         "secours cato",
@@ -66,7 +66,7 @@ export const AUTOCOMPLETE_ORGANIZATIONS: {
       ],
     },
     {
-      label: "Croix Rouge: organisation humanitaire internationale",
+      label: "Croix-Rouge française",
       slug: "croix rouge",
       synonyms: [
         "croix-rouge",
@@ -78,7 +78,7 @@ export const AUTOCOMPLETE_ORGANIZATIONS: {
       ],
     },
     {
-      label: "SPF: secours populaire français",
+      label: "Secours Populaire Français",
       slug: "secours populaire",
       synonyms: [
         "SPF",
@@ -88,7 +88,7 @@ export const AUTOCOMPLETE_ORGANIZATIONS: {
       ],
     },
     {
-      label: "Emmaüs: mouvement de lutte contre la pauvreté et l'exclusion",
+      label: "Emmaüs",
       slug: "emmaus",
       synonyms: [
         "emmaüs",
@@ -109,12 +109,12 @@ export const AUTOCOMPLETE_ORGANIZATIONS: {
       ],
     },
     {
-      label: "France Services: guichet unique de services publics",
+      label: "Maisons France Services",
       slug: "france services",
       synonyms: ["france service", "maison france services", "MFS"],
     },
     {
-      label: "CIMADE: service œcuménique d'entraide",
+      label: "La CIMADE",
       slug: "cimade",
       synonyms: ["la cimade", "CIMADE", "service œcuménique d'entraide"],
     },
@@ -171,18 +171,14 @@ export const AUTOCOMPLETE_ORGANIZATIONS: {
       synonyms: [
         "pole emploi",
         "pôle emploi",
-        "agence pole emploi",
-        "PE",
         "anpe",
-        "agence france travail",
-        "FT",
         "pôle-emploi",
         "pole-emploi",
         "france-travail",
       ],
     },
     {
-      label: "Banque Alimentaire: réseau de distribution alimentaire",
+      label: "Banque Alimentaire",
       slug: "banque alimentaire",
       synonyms: [
         "banques alimentaires",
@@ -191,7 +187,7 @@ export const AUTOCOMPLETE_ORGANIZATIONS: {
       ],
     },
     {
-      label: "Médecins Sans Frontières: aide médicale humanitaire",
+      label: "Médecins Sans Frontières",
       slug: "msf",
       synonyms: [
         "médecins sans frontières",
@@ -201,8 +197,7 @@ export const AUTOCOMPLETE_ORGANIZATIONS: {
       ],
     },
     {
-      label:
-        "Petits Frères des Pauvres: accompagnement des personnes âgées isolées",
+      label: "Petits Frères des Pauvres",
       slug: "petits freres des pauvres",
       synonyms: [
         "petits frères des pauvres",
@@ -211,7 +206,7 @@ export const AUTOCOMPLETE_ORGANIZATIONS: {
       ],
     },
     {
-      label: "Secours Islamique France: aide humanitaire et sociale",
+      label: "Secours Islamique France",
       slug: "secours islamique",
       synonyms: [
         "secours islamique france",
@@ -221,8 +216,7 @@ export const AUTOCOMPLETE_ORGANIZATIONS: {
       ],
     },
     {
-      label:
-        "Fondation pour le Logement des Défavorisés: lutte contre le mal-logement",
+      label: "Fondation pour le Logement des Défavorisés",
       slug: "fondation pour le logement",
       synonyms: [
         "fondation pour le logement des défavorisés",
@@ -336,7 +330,7 @@ export const AUTOCOMPLETE_ESTABLISHMENT_TYPES: {
       ],
     },
     {
-      label: "Centre socioculturel: structure d'animation et de lien social",
+      label: "Centre socioculturel",
       slug: "centre socioculturel",
       synonyms: ["centre socio culturel", "csc", "centre social"],
     },
@@ -361,24 +355,6 @@ export const AUTOCOMPLETE_ESTABLISHMENT_TYPES: {
         "centre pmi",
         "centre de protection maternelle et infantile",
         "bébé",
-      ],
-    },
-    {
-      label:
-        "Maison de l'autonomie: accompagnement des personnes âgées et handicapées",
-      slug: "maison de l'autonomie",
-      synonyms: [
-        "mda",
-        "maison des personnes handicapées",
-        "autonomie",
-        "mdph",
-        "aah",
-        "handicap",
-        "handicapé",
-        "âgées",
-        "personnes âgées",
-        "agé",
-        "agées",
       ],
     },
     {
@@ -412,11 +388,12 @@ export const AUTOCOMPLETE_ESTABLISHMENT_TYPES: {
       ],
     },
     {
-      label: "Mission locale: accompagnement des jeunes vers l'emploi",
+      label: "Mission locale",
       slug: "mission locale",
       synonyms: [
         "missions locales",
         "ML",
+        "MIJ",
         "mission locale jeunes",
         "antenne mission locale",
       ],
@@ -472,7 +449,7 @@ export const AUTOCOMPLETE_ESTABLISHMENT_TYPES: {
       ],
     },
     {
-      label: "Hôpital: établissement de soins médicaux",
+      label: "Hôpital",
       slug: "hopital",
       synonyms: [
         "hôpital",
