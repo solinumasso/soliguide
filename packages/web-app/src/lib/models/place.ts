@@ -30,6 +30,7 @@ import {
   PlaceOpeningStatus,
   checkIfSourceMustBeDisplayed,
   computeTempIsActive,
+  getSourceUrl,
   isFromExternalSource
 } from '@soliguide/common';
 import {
@@ -122,7 +123,8 @@ export const buildSources = (sources?: CommonPlaceSource[]): Source[] =>
               label: EXTERNAL_SOURCE_MAPPING[source.name as PairingSources].label ?? '',
               licenseLabel:
                 EXTERNAL_SOURCE_MAPPING[source.name as PairingSources].licenseLabel ?? '',
-              licenseLink: EXTERNAL_SOURCE_MAPPING[source.name as PairingSources].licenseLink ?? ''
+              licenseLink: EXTERNAL_SOURCE_MAPPING[source.name as PairingSources].licenseLink ?? '',
+              url: getSourceUrl(source)
             }
           ];
         }

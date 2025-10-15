@@ -23,6 +23,7 @@ import {
   type CommonPlaceSource,
   checkIfSourceMustBeDisplayed,
   PlaceSourceId,
+  getSourceUrl,
 } from "@soliguide/common";
 
 export class PlaceSource {
@@ -30,6 +31,7 @@ export class PlaceSource {
   public ids: PlaceSourceId[];
   public isOrigin: boolean;
   public license?: string;
+  public externalUrl: string;
   public toDisplay?: boolean;
 
   constructor(source: CommonPlaceSource) {
@@ -42,5 +44,6 @@ export class PlaceSource {
     }
 
     this.toDisplay = checkIfSourceMustBeDisplayed(source.name, source.isOrigin);
+    this.externalUrl = getSourceUrl(source);
   }
 }

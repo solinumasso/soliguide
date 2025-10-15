@@ -24,6 +24,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import Star from 'svelte-google-materialdesign-icons/Star.svelte';
   import { AppIcon, Tag, Text, TextClamper } from '@soliguide/design-system';
   import PlaceDetailsSection from './PlaceDetailsSection.svelte';
+  import DisplaySource from '$lib/components/DisplaySource.svelte';
 
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import { formatToDateWithFullMonth } from '$lib/client';
@@ -104,17 +105,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       </div>
       {#if sources.length}
         <div class="card-header-source">
-          <Text type="caption2" color="neutral">
-            {$i18n.t('SOURCE')}
-            {#each sources as source, index}
-              {source.label}
-              {#if source.licenseLabel && source.licenseLink}(<a
-                  href={source.licenseLink}
-                  target="_blank">{source.licenseLabel}</a
-                >){/if}{#if index < sources.length - 1}<span>, </span>
-              {/if}
-            {/each}
-          </Text>
+          <DisplaySource {sources} />
         </div>
       {/if}
     </div>
@@ -182,9 +173,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   .card-header-source {
     text-align: center;
-  }
-
-  .card-header-source a {
-    text-decoration: revert;
   }
 </style>
