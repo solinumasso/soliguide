@@ -18,10 +18,10 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Injectable } from "@angular/core";
 import { Station } from "@soliguide/common";
+import { Observable } from "rxjs";
 import { environment } from "../../../../environments/environment";
 
 @Injectable({

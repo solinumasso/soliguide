@@ -29,7 +29,7 @@ import {
 } from "@soliguide/common";
 import axios from "axios";
 import { format, isSameDay } from "date-fns";
-import { AXIOX_CONFIG, CONFIG } from "../../_models";
+import { AXIOS_CONFIG, CONFIG } from "../../_models";
 import { logger } from "../../general/logger";
 
 export class HolidaysService {
@@ -76,7 +76,7 @@ export class HolidaysService {
           this.lastUpdate = new Date();
           const { data } = await axios.get<PublicHoliday[]>(
             `${this.apiBaseUrl}${country}/${formattedDate}`,
-            { ...AXIOX_CONFIG }
+            { ...AXIOS_CONFIG }
           );
           return [country, data];
         } catch (error) {

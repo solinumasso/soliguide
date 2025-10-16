@@ -18,12 +18,19 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Controller, Get, Param, ParseIntPipe } from "@nestjs/common";
-import { ApiParam, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { HereTransportsService } from "../services/here-transports.service";
+import {
+  Controller,
+  Get,
+  Param,
+  ParseBoolPipe,
+  ParseIntPipe,
+  Query,
+} from "@nestjs/common";
+import { ApiParam, ApiQuery, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { CachePrefix, UseCacheManager } from "../../cache-manager";
 import { ParseLatitudePipe, ParseLongitudePipe } from "../../location/pipes";
 import { StationRef } from "../classes/StationRef.class";
-import { CachePrefix, UseCacheManager } from "../../cache-manager";
+import { HereTransportsService } from "../services/here-transports.service";
 
 @ApiTags("soliguide-transports")
 @Controller("transports")
@@ -51,6 +58,13 @@ export class TransportsController {
     type: Number,
     example: 100,
   })
+  @ApiQuery({
+    name: "refresh",
+    required: false,
+    description: "Set to 'true' to force refresh and bypass cache",
+    type: String,
+    example: "true",
+  })
   @ApiResponse({
     status: 200,
     type: StationRef,
@@ -66,7 +80,10 @@ export class TransportsController {
     @Param("longitude", new ParseLongitudePipe()) longitude: number,
     // Required for cache management through @UseCacheManager decorator
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    @Param("placeId", new ParseIntPipe()) _placeId?: number
+    @Param("placeId", new ParseIntPipe()) _placeId?: number,
+    // Used by CacheManagerInterceptor to bypass cache when refresh=true
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    @Query("refresh", new ParseBoolPipe({ optional: true })) _refresh?: boolean
   ) {
     return await this.transportService.getTransports(latitude, longitude);
   }

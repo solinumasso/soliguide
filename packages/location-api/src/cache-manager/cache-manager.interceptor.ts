@@ -20,16 +20,16 @@
  */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
+  CallHandler,
+  ExecutionContext,
   Injectable,
   NestInterceptor,
-  ExecutionContext,
-  CallHandler,
 } from "@nestjs/common";
+import { Reflector } from "@nestjs/core";
+import { slugString } from "@soliguide/common";
 import { Observable, tap } from "rxjs";
 import { CacheManagerService } from "./services/cache-manager.service";
-import { Reflector } from "@nestjs/core";
 import { CACHE_PREFIX_KEY } from "./use-cache-manager.decorator";
-import { slugString } from "@soliguide/common";
 
 @Injectable()
 export class CacheManagerInterceptor implements NestInterceptor {
@@ -75,6 +75,8 @@ export class CacheManagerInterceptor implements NestInterceptor {
 
     const { prefix, conditionalParam } = cacheOptions;
 
+    const forceRefresh = request.query.refresh === "true";
+
     let cacheKey: string;
 
     if (conditionalParam) {
@@ -92,7 +94,7 @@ export class CacheManagerInterceptor implements NestInterceptor {
     }
 
     const cachedData = await this.cacheManager.getCachedData(cacheKey);
-    if (cachedData) {
+    if (cachedData && !forceRefresh) {
       return new Observable((subscriber) => {
         subscriber.next(cachedData);
         subscriber.complete();

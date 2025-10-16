@@ -18,11 +18,11 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Module } from "@nestjs/common";
-import { HereTransportsService } from "./services/here-transports.service";
 import { HttpModule } from "@nestjs/axios";
-import { TransportsController } from "./controllers/transports.controller";
+import { Module } from "@nestjs/common";
 import { CacheManagerService } from "../cache-manager/services/cache-manager.service";
+import { TransportsController } from "./controllers/transports.controller";
+import { HereTransportsService } from "./services/here-transports.service";
 
 @Module({
   controllers: [TransportsController],
