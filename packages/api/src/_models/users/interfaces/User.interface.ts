@@ -18,27 +18,27 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import mongoose from "mongoose";
 import {
-  SupportedLanguagesCode,
-  CommonUser,
   AnyDepartmentCode,
+  CommonUser,
+  SoliguideCountries,
+  SupportedLanguagesCode,
   UserStatus,
   UserStatusNotLogged,
   UserTypeLogged,
-  SoliguideCountries,
 } from "@soliguide/common";
+import mongoose from "mongoose";
 
 import type { AirtableSyncType } from "../../airtable";
-import { InvitationPopulate } from "./Invitation.interface";
+import { ModelWithId } from "../../mongo";
+import { OrganizationPopulate } from "../../organization";
+import { Origin } from "../enums";
 import type {
   UserCampaignEmails,
   UserRight,
   UserRightOrganizationPopulate,
 } from "../types";
-import { ModelWithId } from "../../mongo";
-import { OrganizationPopulate } from "../../organization";
-import { Origin } from "../enums";
+import { InvitationPopulate } from "./Invitation.interface";
 
 export interface User extends Omit<CommonUser, "_id"> {
   _id?: mongoose.Types.ObjectId;

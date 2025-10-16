@@ -41,15 +41,15 @@ import { FormTypePublicsFicheComponent } from "./components/_shared/type-publics
 import { UploadDocComponent } from "./components/_shared/upload-doc/upload-doc.component";
 import { UploadPhotosComponent } from "./components/_shared/upload-photos/upload-photos.component";
 
-import { EditContactsFormComponent } from "./components/edit-contacts-form/edit-contacts-form.component";
 import { AddContactModalComponent } from "./components/edit-contacts-form/add-contact-modal/add-contact-modal.component";
+import { EditContactsFormComponent } from "./components/edit-contacts-form/edit-contacts-form.component";
 
 import { FormHorairesComponent } from "./components/horaires/form-horaires.component";
 
 import { HorairesFormTableComponent } from "./components/horaires-form-table/horaires-form-table.component";
 
-import { PlaceFormPhonesComponent } from "./components/infos/place-form-phones/place-form-phones.component";
 import { InfosComponent } from "./components/infos/infos.component";
+import { PlaceFormPhonesComponent } from "./components/infos/place-form-phones/place-form-phones.component";
 
 import { FormMenuPlaceComponent } from "./components/menu/menu.component";
 
@@ -61,20 +61,20 @@ import { ModalitiesToggleComponent } from "./components/modalities-toggle/modali
 import { PhotosComponent } from "./components/photos/photos.component";
 
 import { LieuPositionFormComponent } from "./components/place-emplacement-form/lieu-position-form/lieu-position-form.component";
-import { ParcoursPositionFormComponent } from "./components/place-emplacement-form/parcours-position-form/parcours-position-form.component";
 import { JourPassageFormComponent } from "./components/place-emplacement-form/parcours-position-form/jour-passage/jour-passage.component";
+import { ParcoursPositionFormComponent } from "./components/place-emplacement-form/parcours-position-form/parcours-position-form.component";
 import { FormPointPassageComponent } from "./components/place-emplacement-form/parcours-position-form/point-passage/point-passage.component";
 import { PlaceEmplacementFormComponent } from "./components/place-emplacement-form/place-emplacement-form.component";
 
 import { LanguagesFormInputComponent } from "./components/publics-form/languages-form-input/languages-form-input.component";
 import { PublicsFormComponent } from "./components/publics-form/publics-form.component";
 
-import { FormChooseSubCategoryComponent } from "./components/services/single-service/choose-category/choose-subcategory/choose-subcategory.component";
-import { ChooseSubCategoryChecklistComponent } from "./components/services/single-service/choose-category/choose-subcategory-checklist/choose-subcategory-checklist.component";
+import { FormServicesFicheComponent } from "./components/services/services.component";
 import { FormChooseCategoryFicheComponent } from "./components/services/single-service/choose-category/choose-category.component";
+import { ChooseSubCategoryChecklistComponent } from "./components/services/single-service/choose-category/choose-subcategory-checklist/choose-subcategory-checklist.component";
+import { FormChooseSubCategoryComponent } from "./components/services/single-service/choose-category/choose-subcategory/choose-subcategory.component";
 import { FormSaturationFicheComponent } from "./components/services/single-service/saturation/saturation.component";
 import { FormSingleServiceFicheComponent } from "./components/services/single-service/single-service.component";
-import { FormServicesFicheComponent } from "./components/services/services.component";
 
 import { FormServicesComponent } from "./components/services-form/form-services.component";
 
@@ -84,8 +84,8 @@ import { ForbiddenValidatorDirective } from "./directives/forbidden-words-in-pub
 
 import { FormPlaceRoutingModule } from "./form-place-routing.module";
 
-import { AdminPlaceService } from "./services/admin-place.service";
 import { AdminPlaceContactsService } from "./services/admin-place-contacts.service";
+import { AdminPlaceService } from "./services/admin-place.service";
 import { UploadService } from "./services/upload.service";
 
 import { AdminPlaceSharedModule } from "../admin-place-shared/admin-place-shared.module";
@@ -96,16 +96,16 @@ import { SharedModule } from "../shared/shared.module";
 
 import { UsersModule } from "../users/users.module";
 
-import { PendingChangesGuard } from "../../guards/pending-changes.guard";
 import { HttpClientJsonpModule } from "@angular/common/http";
+import { PendingChangesGuard } from "../../guards/pending-changes.guard";
 import { AddressInputComponent } from "./components/_shared/address-input/address-input.component";
 
+import { DisplayHorairesComponent } from "../place/standalone-components/display-horaires/horaires.component";
+import { SearchMapComponent } from "../place/standalone-components/search-map/search-map.component";
 import { FormatInternationalPhoneNumberPipe } from "../shared";
 import { FormIntlPhoneInputComponent } from "../shared/components/form-phone-input/form-intl-phone-input.component";
 import { FormPhoneInputComponent } from "../shared/components/form-phone/form-phone-input.component";
 import { LocationAutocompleteComponent } from "../shared/components/location-autocomplete/location-autocomplete.component";
-import { SearchMapComponent } from "../place/standalone-components/search-map/search-map.component";
-import { DisplayHorairesComponent } from "../place/standalone-components/display-horaires/horaires.component";
 
 @NgModule({
   declarations: [
