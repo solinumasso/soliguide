@@ -34,9 +34,9 @@ function mergeCountryAreaTerritories<CountryCode extends SoliguideCountries>(
   area2: CountryAreaTerritories<CountryCode>
 ): CountryAreaTerritories<CountryCode> {
   return new CountryAreaTerritories<CountryCode>({
-    departments: mergeArrays(area1.departments, area2.departments),
-    regions: mergeArrays(area1.regions, area2.regions),
-    cities: mergeArrays(area1.cities, area2.cities),
+    departments: mergeArrays(area1.departments ?? [], area2.departments ?? []),
+    regions: mergeArrays(area1.regions ?? [], area2.regions ?? []),
+    cities: mergeArrays(area1.cities ?? [], area2.cities ?? []),
   });
 }
 
