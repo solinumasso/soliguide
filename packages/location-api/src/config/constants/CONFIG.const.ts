@@ -20,7 +20,7 @@
  */
 
 import * as Joi from "joi";
-import { THREE_MONTHS_IN_MS } from "./TTL.const";
+import { MONTH_30_IN_MS } from "./TTL.const";
 
 export const CONFIG_VALIDATOR = Joi.object({
   PORT: Joi.number().default(3000),
@@ -32,5 +32,5 @@ export const CONFIG_VALIDATOR = Joi.object({
   HERE_API_KEY: Joi.string().required(),
   SOLIGUIDE_DOMAINS: Joi.string(),
   REDIS_URL: Joi.string().uri().optional(),
-  REDIS_TTL: Joi.number().default(THREE_MONTHS_IN_MS),
+  REDIS_TTL: Joi.number().default(MONTH_30_IN_MS),
 });

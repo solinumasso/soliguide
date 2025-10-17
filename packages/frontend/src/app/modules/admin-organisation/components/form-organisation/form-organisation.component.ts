@@ -167,23 +167,23 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
       newValue: this.orgaForm.value,
     });
 
-    const formValue = {
-      ...this.orgaForm.value,
-      areas: {
-        ...structuredClone(this.organisation.areas),
-        [this.countryCode]: {
-          ...structuredClone(this.organisation.areas[this.countryCode]),
-          departments: this.orgaForm.value.territories,
-        },
-      },
-    };
-
-    this.submitted = true;
-
     if (this.orgaForm.invalid) {
       this.toastr.error(this.translateService.instant("INCORRECT_FIELDS"));
       return;
     }
+
+    const areas = this.organisation.areas
+      ? structuredClone(this.organisation.areas)
+      : { [this.countryCode]: { departments: [], cities: [], regions: [] } };
+
+    areas[this.countryCode].departments = this.orgaForm.value.territories;
+
+    const formValue = {
+      ...this.orgaForm.value,
+      areas,
+    };
+
+    this.submitted = true;
 
     this.loading = true;
 
