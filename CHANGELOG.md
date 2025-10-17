@@ -1,3 +1,21 @@
+# [4.102.0](https://github.com/solinumasso/soliguide/compare/v4.101.0...v4.102.0) (2025-10-17)
+
+
+### Bug Fixes
+
+* fix areas in orga and users ([804a8d2](https://github.com/solinumasso/soliguide/commit/804a8d2eeed7028c399d7a3e2313d38cd7ac6fc8))
+* **frontend:** fix create orga and user ([5df5765](https://github.com/solinumasso/soliguide/commit/5df57655ad3b391231e2cf3cead21b436deeeed3))
+* **frontend:** fix soliguia logo ([480c4bd](https://github.com/solinumasso/soliguide/commit/480c4bd0d65671568c227d4b6ae47d8c5d43a080))
+* **frontend:** fix soliguia logo ([4f9bb4c](https://github.com/solinumasso/soliguide/commit/4f9bb4c2951c0c7a17672a24acab7369e542ba22))
+* **location-api:** search for district [#822](https://github.com/solinumasso/soliguide/issues/822) ([a4102c1](https://github.com/solinumasso/soliguide/commit/a4102c1faee14d78a1e30b0da7fa3b3e6fb373f9))
+* stop error message when delete temp message [#757](https://github.com/solinumasso/soliguide/issues/757) ([3842d45](https://github.com/solinumasso/soliguide/commit/3842d4501a651a1583dc9a88ddbce82bfd48bf14))
+
+
+### Features
+
+* **frontend:** add ads_storage to the cookie banner [#948](https://github.com/solinumasso/soliguide/issues/948) ([1a6a3df](https://github.com/solinumasso/soliguide/commit/1a6a3df9a894df0b6961b081f2f17e0f5fe037b9))
+* **location-api:** reduce cache duration update ([eb06894](https://github.com/solinumasso/soliguide/commit/eb068947f19852ae8404354edf6a39a92938c36e))
+
 # [4.101.0](https://github.com/solinumasso/soliguide/compare/v4.100.2...v4.101.0) (2025-10-14)
 
 
