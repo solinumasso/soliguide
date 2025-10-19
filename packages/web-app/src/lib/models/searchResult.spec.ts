@@ -35,7 +35,7 @@ import {
   PlaceStatus,
   type ApiPlace
 } from '@soliguide/common';
-import type { SearchLocationParams, SearchResultItem } from './types';
+import type { SearchLocationParams, SearchResultPlaceCard } from './types';
 
 // This location is in Paris and at less than 10km of localisations in samplePlace and parcours in sampleItinerary
 const sampleLocationParams: SearchLocationParams = {
@@ -124,7 +124,7 @@ describe('Search Result', () => {
             city: 'Superville'
           }
         };
-        const modifiedPlaceResult: SearchResultItem = {
+        const modifiedPlaceResult: SearchResultPlaceCard = {
           ...samplePlaceTransformed,
           address: '12345, Superville'
         };
@@ -150,7 +150,7 @@ describe('Search Result', () => {
             address: '1 rue du marché, 12345 Cityname'
           }
         };
-        const modifiedPlaceResult: SearchResultItem = {
+        const modifiedPlaceResult: SearchResultPlaceCard = {
           ...samplePlaceTransformed,
           address: '1 rue du marché, 12345 Cityname'
         };
@@ -173,7 +173,7 @@ describe('Search Result', () => {
           }
         };
 
-        const modifiedPlaceResult: SearchResultItem = {
+        const modifiedPlaceResult: SearchResultPlaceCard = {
           ...samplePlaceTransformed,
           address: `${modifiedPlace.position.address} - ${modifiedPlace.position.additionalInformation}`
         };
@@ -198,7 +198,7 @@ describe('Search Result', () => {
             closure: { ...samplePlace.tempInfos.closure, actif: true }
           }
         };
-        const modifiedPlaceResult: SearchResultItem = {
+        const modifiedPlaceResult: SearchResultPlaceCard = {
           ...samplePlaceTransformed,
           status: PlaceOpeningStatus.TEMPORARILY_CLOSED
         };
@@ -231,7 +231,7 @@ describe('Search Result', () => {
             closure: { ...samplePlace.tempInfos.closure, actif: false }
           }
         };
-        const modifiedPlaceResult: SearchResultItem = {
+        const modifiedPlaceResult: SearchResultPlaceCard = {
           ...samplePlaceTransformed,
           status: PlaceOpeningStatus.CLOSED
         };
@@ -263,7 +263,7 @@ describe('Search Result', () => {
             closure: { ...samplePlace.tempInfos.closure, actif: false }
           }
         };
-        const modifiedPlaceResult: SearchResultItem = {
+        const modifiedPlaceResult: SearchResultPlaceCard = {
           ...samplePlaceTransformed,
           status: PlaceOpeningStatus.PARTIALLY_OPEN
         };
@@ -287,7 +287,7 @@ describe('Search Result', () => {
             closure: { ...samplePlace.tempInfos.closure, actif: false }
           }
         };
-        const modifiedPlaceResult: SearchResultItem = {
+        const modifiedPlaceResult: SearchResultPlaceCard = {
           ...samplePlaceTransformed,
           status: PlaceOpeningStatus.OPEN
         };
@@ -321,7 +321,7 @@ describe('Search Result', () => {
             closure: { ...samplePlace.tempInfos.closure, actif: false }
           }
         };
-        const modifiedPlaceResult: SearchResultItem = {
+        const modifiedPlaceResult: SearchResultPlaceCard = {
           ...samplePlaceTransformed,
           status: PlaceOpeningStatus.UNKNOWN
         };
@@ -352,7 +352,7 @@ describe('Search Result', () => {
             monday: { open: true, timeslot: [{ start: 902, end: 1901 }] }
           }
         };
-        const modifiedPlaceResult: SearchResultItem = {
+        const modifiedPlaceResult: SearchResultPlaceCard = {
           ...samplePlaceTransformed,
           status: PlaceOpeningStatus.OPEN,
           todayInfo: { openingHours: [{ start: '0902', end: '1901' }] }
@@ -386,7 +386,7 @@ describe('Search Result', () => {
             closure: { ...samplePlace.tempInfos.closure, actif: false }
           }
         };
-        const modifiedPlaceResult: SearchResultItem = {
+        const modifiedPlaceResult: SearchResultPlaceCard = {
           ...samplePlaceTransformed,
           status: PlaceOpeningStatus.PARTIALLY_OPEN,
           todayInfo: { openingHours: [{ end: '2015', start: '1930' }] }
@@ -414,7 +414,7 @@ describe('Search Result', () => {
             }
           }
         };
-        const modifiedPlaceResult: SearchResultItem = {
+        const modifiedPlaceResult: SearchResultPlaceCard = {
           ...samplePlaceTransformed,
           status: PlaceOpeningStatus.TEMPORARILY_CLOSED,
           todayInfo: {
@@ -516,7 +516,7 @@ describe('Search Result', () => {
             }
           ]
         };
-        const modifiedPlaceResult: SearchResultItem = {
+        const modifiedPlaceResult: SearchResultPlaceCard = {
           ...samplePlaceTransformed,
           sources: [
             {

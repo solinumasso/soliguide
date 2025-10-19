@@ -42,7 +42,7 @@ import {
   TempInfoStatus,
   CommonPlacePosition
 } from '@soliguide/common';
-import type { SearchResultItem } from './types';
+import type { SearchResultPlaceCard } from './types';
 
 const samplePlace: ApiPlace = Object.freeze({
   _id: '5a58c0c7c1797fe45e377324',
@@ -394,7 +394,7 @@ const samplePlace: ApiPlace = Object.freeze({
   }
 });
 
-const samplePlaceTransformed: SearchResultItem = Object.freeze({
+const samplePlaceTransformed: SearchResultPlaceCard = Object.freeze({
   address: '1 Rue Montmartre, 75001 Paris',
   banners: { orientation: false, holidays: PlaceClosedHolidays.UNKNOWN, campaign: null },
   dataForLogs: {
@@ -1481,7 +1481,7 @@ const sampleItineraryCrossingPoint: CommonPlaceParcours = {
   }
 };
 
-const sampleItineraryTransformed: SearchResultItem[] = [
+const sampleItineraryTransformed: SearchResultPlaceCard[] = [
   {
     address: "Nationale, 75013 Paris 13e Arrondissement - Point d'arrivée de la maraude",
     banners: { orientation: false, holidays: PlaceClosedHolidays.UNKNOWN, campaign: null },
