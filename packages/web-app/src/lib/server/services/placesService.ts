@@ -25,7 +25,7 @@ import { buildSearchResultWithParcours } from '$lib/models/searchResult';
 import { buildLookupResult } from '$lib/models/lookupResult';
 import { buildPlaceDetails } from '$lib/models/placeDetails';
 import type { RequestOptions, SearchParams } from './types';
-import type { PlaceDetails, SearchResult } from '$lib/models/types';
+import type { PlaceDetails, SearchFavorisResult, SearchResult } from '$lib/models/types';
 import type { PlaceDetailsParams } from '$lib/services/types';
 
 const apiUrl = env.API_URL;
@@ -95,7 +95,7 @@ export default (fetcher = fetch) => {
     { identifier, lang }: PlaceDetailsParams,
     commonHeaders: RequestOptions,
     categorySearched: Categories,
-    parcourIndex?: number
+    crossingPointIndex?: number
   ): Promise<PlaceDetails> => {
     const url = `${apiUrl}place/${identifier}/${lang}`;
 
@@ -109,7 +109,7 @@ export default (fetcher = fetch) => {
       headers
     });
 
-    return buildPlaceDetails(placeResult, categorySearched, parcourIndex);
+    return buildPlaceDetails(placeResult, categorySearched, crossingPointIndex);
   };
 
   /**
@@ -124,7 +124,7 @@ export default (fetcher = fetch) => {
       ids: number[];
     },
     commonHeaders: RequestOptions
-  ): Promise<SearchResult> => {
+  ): Promise<SearchFavorisResult> => {
     const url = `${apiUrl}place/lookup/${lang}`;
 
     const headers = {
