@@ -83,7 +83,7 @@ export interface DataForLogs {
   distance: number;
 }
 
-export interface SearchResultItem {
+export interface LightPlaceCard {
   address: string;
   banners: {
     holidays: PlaceClosedHolidays;
@@ -91,13 +91,9 @@ export interface SearchResultItem {
     campaign: PlaceCampaignBannerMessage | null;
   };
   crossingPointIndex?: number;
-  dataForLogs: DataForLogs;
-  distance: number;
   id: number;
   name: string;
-  parcourIndex?: number;
   phones: Phone[];
-  searchGeoType: string;
   seoUrl: string;
   services: Categories[];
   sources: Source[];
@@ -106,9 +102,22 @@ export interface SearchResultItem {
   tempInfo: SearchResultTempInfo;
 }
 
-export interface SearchResult {
+export interface SearchResultPlaceCard extends LightPlaceCard {
+  dataForLogs: DataForLogs;
+  distance: number;
+  searchGeoType: string;
+}
+
+export interface SearchResultNumber {
   nbResults: number;
-  places: SearchResultItem[];
+}
+
+export interface SearchResult extends SearchResultNumber {
+  places: SearchResultPlaceCard[];
+}
+
+export interface SearchFavorisResult extends SearchResultNumber {
+  places: LightPlaceCard[];
 }
 
 // Work in progress fiche détaillée
