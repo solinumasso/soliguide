@@ -41,9 +41,10 @@ import {
 } from './place';
 import type {
   ApiPlaceWithCrossingPointIndex,
+  LightPlaceCard,
   SearchLocationParams,
   SearchResult,
-  SearchResultItem
+  SearchResultPlaceCard
 } from './types';
 
 const computeDistance = (
@@ -63,15 +64,13 @@ const computeDistance = (
 /**
  * Base function to build result item with common logic
  */
-const buildBaseResultItem = (
+const buildLightPlaceCard = (
   place: ApiPlace | ApiPlaceWithCrossingPointIndex,
   categorySearched: Categories | null
   locationParams: SearchLocationParams | null | undefined,
   servicesAll: CommonNewPlaceService[]
-): SearchResultItem => {
+): LightPlaceCard => {
   const onOrientation = Boolean(place.modalities.orientation.checked);
-
-  const distance = locationParams ? computeDistance(place, locationParams) : 10000;
 
   const status = computePlaceOpeningStatus(place);
 
@@ -83,14 +82,6 @@ const buildBaseResultItem = (
       campaign: computeCampaignBanner(place)
     },
     ...('crossingPointIndex' in place ? { crossingPointIndex: place.crossingPointIndex } : {}),
-    dataForLogs: {
-      // eslint-disable-next-line no-underscore-dangle
-      id: place?._id,
-      lieuId: place.lieu_id,
-      distance,
-      position: place.position
-    },
-    distance,
     id: place.lieu_id,
     name: place.name,
     phones: [
@@ -99,7 +90,6 @@ const buildBaseResultItem = (
         countryCode: phone.countryCode as CountryCodes
       }))
     ],
-    searchGeoType: locationParams?.geoType ?? GeoTypes.UNKNOWN,
     seoUrl: place.seo_url,
     services: servicesAll
       .map((service) => service?.category)
@@ -114,11 +104,11 @@ const buildBaseResultItem = (
 /**
  * Transformation for search results with category-based service sorting
  */
-const buildSearchResultItem = (
+const buildSearchResultPlaceCard = (
   place: ApiPlace,
   locationParams: SearchLocationParams,
   categorySearched: Categories
-): SearchResultItem => {
+): SearchResultPlaceCard => {
   const allCategoriesByTheme = categoryService.getAllCategories();
 
   const sortedServices = sortServicesByRelevance(
@@ -127,7 +117,20 @@ const buildSearchResultItem = (
     allCategoriesByTheme
   );
 
-  return buildBaseResultItem(place, locationParams, sortedServices);
+  const distance = computeDistance(place, locationParams);
+
+  return {
+    ...buildLightPlaceCard(place, sortedServices),
+    dataForLogs: {
+      // eslint-disable-next-line no-underscore-dangle
+      id: place?._id,
+      lieuId: place.lieu_id,
+      distance,
+      position: place.position
+    },
+    distance,
+    searchGeoType: locationParams?.geoType ?? GeoTypes.UNKNOWN
+  };
 };
 
 /**
@@ -170,10 +173,11 @@ const extractCrossingPointsFromItineraryPlace = (
  * Sort by distance ascending.
  * If an item is out of range, it is removed
  */
-const sortPlacesByDistance = (places: SearchResultItem[]): SearchResultItem[] => {
+const sortPlacesByDistance = (places: SearchResultPlaceCard[]): SearchResultPlaceCard[] => {
   return sort(
     places,
-    (place1: SearchResultItem, place2: SearchResultItem) => place1.distance - place2.distance
+    (place1: SearchResultPlaceCard, place2: SearchResultPlaceCard) =>
+      place1.distance - place2.distance
   );
 };
 
@@ -188,7 +192,7 @@ const buildSearchResultWithParcours = (
   category: Categories | null
 ): SearchResult => {
   const placesResultItems = placesResult.places.map((place) =>
-    buildSearchResultItem(place, searchLocationParams, category)
+    buildSearchResultPlaceCard(place, searchLocationParams, category)
   );
 
   // We extract itinerary crossing points and build a "place" for each one of them
@@ -198,7 +202,7 @@ const buildSearchResultWithParcours = (
       searchLocationParams
     );
     return extractedCrossingPoints.map((extractedCrossingPoint) =>
-      buildSearchResultItem(extractedCrossingPoint, searchLocationParams, category)
+      buildSearchResultPlaceCard(extractedCrossingPoint, searchLocationParams, category)
     );
   });
   const sortedPlaces = sortPlacesByDistance([...placesResultItems, ...itineraryResultItems]);
@@ -218,7 +222,7 @@ const buildSearchResult = (
   category: Categories | null
 ): SearchResult => {
   const placesResultItems = placesResult.places.map((place) =>
-    buildSearchResultItem(place, searchLocationParams, category)
+    buildSearchResultPlaceCard(place, searchLocationParams, category)
   );
 
   return {
@@ -227,4 +231,4 @@ const buildSearchResult = (
   };
 };
 
-export { buildSearchResult, buildSearchResultWithParcours, buildBaseResultItem };
+export { buildSearchResult, buildSearchResultWithParcours, buildLightPlaceCard };

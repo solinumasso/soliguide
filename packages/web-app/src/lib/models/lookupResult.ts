@@ -18,21 +18,17 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {
-  type ApiSearchResults
-} from '@soliguide/common';
-import { buildBaseResultItem } from './searchResult';
-import type { SearchResult } from './types';
+import { type ApiSearchResults } from '@soliguide/common';
+import { buildLightPlaceCard } from './searchResult';
+import type { SearchFavorisResult } from './types';
 
 /**
  * Builds a lookup result from a places query (for favorites)
  * Does not sort services by category relevance since there's no search context
  */
-const buildLookupResult = (
-  placesResult: ApiSearchResults
-): SearchResult => {
+const buildLookupResult = (placesResult: ApiSearchResults): SearchFavorisResult => {
   const placesResultItems = placesResult.places.map((place) =>
-    buildBaseResultItem(place, null, place.services_all)
+    buildLightPlaceCard(place, place.services_all)
   );
 
   return {

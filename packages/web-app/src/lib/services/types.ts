@@ -75,7 +75,7 @@ export interface PlacesService {
   placeDetails(
     params: PlaceDetailsParams,
     categorySearched: Categories,
-    parcourIndex?: number
+    crossingPointIndex?: number
   ): Promise<PlaceDetails>;
 }
 
