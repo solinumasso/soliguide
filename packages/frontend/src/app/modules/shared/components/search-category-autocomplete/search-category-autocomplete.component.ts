@@ -288,10 +288,10 @@ export class SearchCategoryAutocompleteComponent
       "secours-catholique",
       "cruz-roja",
       "secours-populaire",
+      "mdm",
       "caf",
       "france-travail",
       "cpam",
-      "pimms",
       "armee-du-salut",
     ];
     switch (item.type) {
@@ -358,6 +358,7 @@ export class SearchCategoryAutocompleteComponent
       </div>
     </button>`;
   }
+
   private getSources({ query }: { query: string }) {
     this.searchCancelSubject.next();
     const sanitizedQuery = query.trim();
@@ -381,79 +382,169 @@ export class SearchCategoryAutocompleteComponent
           }),
           map((fuseResults) => {
             this.searching = false;
-            return fuseResults.slice(0, 6).map((result) => result.item);
+            return fuseResults.slice(0, 10).map((result) => result.item);
           })
         )
       );
 
       sources.push(
-        suggestions$.then((suggestions: SearchSuggestion[]) => ({
-          sourceId: "suggestions",
-          getItems() {
-            return suggestions;
-          },
-          onSelect: ({ item, event }) => {
-            const keyUsed =
-              event.type === "keydown" ? "enter-pressed" : "mouse-clicked";
-            this.handleSelect(
-              item as SearchSuggestion,
-              sanitizedQuery,
-              keyUsed
-            );
-            return (item as SearchSuggestion).label;
-          },
-          getItemInputValue: ({ item }) => (item as SearchSuggestion).label,
-          templates: {
-            item: (context) => this.renderItem(context),
-          },
-        }))
-      );
-    }
+        suggestions$.then((suggestions: SearchSuggestion[]) => {
+          const categorySuggestions = suggestions.filter(
+            (s) => s.type === AutoCompleteType.CATEGORY
+          );
+          const establishmentSuggestions = suggestions.filter(
+            (s) => s.type === AutoCompleteType.ESTABLISHMENT_TYPE
+          );
+          const organizationSuggestions = suggestions.filter(
+            (s) => s.type === AutoCompleteType.ORGANIZATION
+          );
 
-    if (sanitizedQuery.length > 0) {
-      sources.push(
-        Promise.resolve({
-          sourceId: "expression-search",
-          getItems() {
-            return [
-              {
-                type: AutoCompleteType.EXPRESSION,
-                label: sanitizedQuery,
-                categoryId: null,
-              } as SearchSuggestion,
-            ];
-          },
-          onSelect: ({ item, event }) => {
-            const keyUsed =
-              event.type === "keydown" ? "enter-pressed" : "mouse-clicked";
-            this.searchByWord(item, keyUsed);
-            return sanitizedQuery;
-          },
-          getItemInputValue: () => sanitizedQuery,
-          templates: {
-            item: ({ html }) => html` <button class="aa-ItemLink" type="button">
-              <span class="aa-CategoryIcon">
-                <img
-                  src="/assets/images/symbols/list.svg"
-                  class="aa-category-icon"
-                  alt="Recherche"
-                  title="Recherche"
-                />
-              </span>
-              <span class="aa-ItemContent">
-                <span class="aa-ItemContentTitle">${sanitizedQuery}</span>
-              </span>
-            </button>`,
-            header: ({ html }) =>
-              html`<div class="aa-SourceHeader">
-                ${this.translateService.instant("SEARCH_EXPRESSION")}
-              </div>`,
-          },
+          const allSources = [];
+
+          if (categorySuggestions.length > 0) {
+            allSources.push({
+              sourceId: "categories-services",
+              getItems() {
+                return categorySuggestions;
+              },
+              onSelect: ({ item, event }) => {
+                const keyUsed =
+                  event.type === "keydown" ? "enter-pressed" : "mouse-clicked";
+                this.handleSelect(
+                  item as SearchSuggestion,
+                  sanitizedQuery,
+                  keyUsed
+                );
+                return (item as SearchSuggestion).label;
+              },
+              getItemInputValue: ({ item }) => (item as SearchSuggestion).label,
+              templates: {
+                header: ({ html }) =>
+                  html`${this.translateService.instant("CATEGORIES_SERVICES") ||
+                  "Catégories & services"}`,
+                item: (context) => this.renderItem(context),
+              },
+            });
+          }
+
+          // Source pour "Types d'établissement"
+          if (establishmentSuggestions.length > 0) {
+            allSources.push({
+              sourceId: "establishment-types",
+              getItems() {
+                return establishmentSuggestions;
+              },
+              onSelect: ({ item, event }) => {
+                const keyUsed =
+                  event.type === "keydown" ? "enter-pressed" : "mouse-clicked";
+                this.handleSelect(
+                  item as SearchSuggestion,
+                  sanitizedQuery,
+                  keyUsed
+                );
+                return (item as SearchSuggestion).label;
+              },
+              getItemInputValue: ({ item }) => (item as SearchSuggestion).label,
+              templates: {
+                header: ({ html }) =>
+                  html`${this.translateService.instant("ESTABLISHMENT_TYPES") ||
+                  "Types d'établissement"}`,
+                item: (context) => this.renderItem(context),
+              },
+            });
+          }
+
+          // Source pour "Associations & organisations"
+          if (organizationSuggestions.length > 0) {
+            allSources.push({
+              sourceId: "organizations",
+              getItems() {
+                return organizationSuggestions;
+              },
+              onSelect: ({ item, event }) => {
+                const keyUsed =
+                  event.type === "keydown" ? "enter-pressed" : "mouse-clicked";
+                this.handleSelect(
+                  item as SearchSuggestion,
+                  sanitizedQuery,
+                  keyUsed
+                );
+                return (item as SearchSuggestion).label;
+              },
+              getItemInputValue: ({ item }) => (item as SearchSuggestion).label,
+              templates: {
+                header: ({ html }) =>
+                  html`${this.translateService.instant(
+                    "ASSOCIATIONS_ORGANIZATIONS"
+                  ) || "Associations & organisations"}`,
+                item: (context) => this.renderItem(context),
+              },
+            });
+          }
+
+          return allSources;
         })
       );
     }
 
-    return Promise.all(sources);
+    // Ajouter la recherche d'expression à la fin
+    if (sanitizedQuery.length > 0) {
+      sources.push(
+        Promise.resolve([
+          {
+            sourceId: "expression-search",
+            getItems() {
+              return [
+                {
+                  type: AutoCompleteType.EXPRESSION,
+                  label: sanitizedQuery,
+                  categoryId: null,
+                } as SearchSuggestion,
+              ];
+            },
+            onSelect: ({ item, event }) => {
+              const keyUsed =
+                event.type === "keydown" ? "enter-pressed" : "mouse-clicked";
+              this.searchByWord(item, keyUsed);
+              return sanitizedQuery;
+            },
+            getItemInputValue: () => sanitizedQuery,
+            templates: {
+              item: ({ html }) =>
+                html` <button class="aa-ItemLink" type="button">
+                  <span class="aa-CategoryIcon">
+                    <img
+                      src="/assets/images/symbols/list.svg"
+                      class="aa-category-icon"
+                      alt="Recherche"
+                      title="Recherche"
+                    />
+                  </span>
+                  <span class="aa-ItemContent">
+                    <span class="aa-ItemContentTitle">${sanitizedQuery}</span>
+                  </span>
+                </button>`,
+              header: ({ html }) =>
+                html`${this.translateService.instant("SEARCH_EXPRESSION") ||
+                "Recherche libre"}`,
+            },
+          },
+        ])
+      );
+    }
+
+    // Aplatir les sources
+    return Promise.all(sources).then((results) => {
+      const flattenedSources = [];
+      results.forEach((result) => {
+        if (Array.isArray(result)) {
+          flattenedSources.push(...result);
+        } else {
+          flattenedSources.push(result);
+        }
+      });
+      return flattenedSources;
+    });
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

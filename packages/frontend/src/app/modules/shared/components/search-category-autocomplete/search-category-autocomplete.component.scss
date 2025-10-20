@@ -55,6 +55,17 @@
   padding: 0 !important;
 }
 
+.aa-SourceHeader {
+  padding: 0.6rem 0.5rem;
+  font-weight: 600;
+  margin: 0;
+  font-size: 1rem;
+  border-bottom: 1px solid rgb(116, 116, 116);
+}
+.aa-Panel,
+.aa-PanelLayout {
+  z-index: 40000;
+}
 .aa-Item {
   padding: 0.3rem 0.2rem;
   border-bottom: 1px solid rgb(211, 211, 211);

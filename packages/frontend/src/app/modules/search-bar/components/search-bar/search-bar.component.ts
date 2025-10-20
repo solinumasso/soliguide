@@ -48,6 +48,7 @@ export class SearchBarComponent {
   constructor(private readonly posthogService: PosthogService) {}
 
   public localLaunchSearch() {
+    console.log("localLaunchSearch");
     this.launchSearch.emit();
     this.captureEvent("search-input", { search: this.search });
   }

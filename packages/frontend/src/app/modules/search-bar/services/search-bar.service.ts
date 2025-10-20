@@ -161,16 +161,15 @@ export class SearchBarService implements OnDestroy {
       shouldSort: true,
       findAllMatches: false,
       keys: [
-        { name: "label", weight: 4 },
+        { name: "label", weight: 10 },
         { name: "synonyms", weight: 1 },
       ],
       location: 0,
-      threshold: 0.3,
-      distance: 30,
+      threshold: 0.1,
+      distance: 100,
       ignoreLocation: true,
       useExtendedSearch: false,
       ignoreFieldNorm: true,
-      fieldNormWeight: 1,
     };
   }
 
