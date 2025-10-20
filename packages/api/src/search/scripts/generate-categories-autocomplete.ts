@@ -20,15 +20,16 @@
  */
 // scripts/translateCategories.ts
 import "../../config/database/connection";
-// import { GoogleGenAI } from "@google/genai";
 import {
   AutoCompleteType,
   SearchSuggestion,
+  SOLIGUIDE_COUNTRIES,
   SupportedLanguagesCode,
 } from "@soliguide/common";
-import { ModelWithId, CONFIG } from "../../_models";
+import { ModelWithId } from "../../_models";
 import { SearchSuggestionModel } from "../models/search-suggestion.model";
 import Anthropic from "@anthropic-ai/sdk";
+import { Command } from "commander";
 
 interface TranslationResult {
   sourceId: string;
@@ -49,6 +50,7 @@ type SearchSuggestionForTranslation = ModelWithId<
     | "categoryId"
     | "lang"
     | "country"
+    | "seoTitle"
   >
 >;
 
@@ -66,27 +68,57 @@ const LANGUAGE_NAMES: Record<SupportedLanguagesCode, string> = {
   [SupportedLanguagesCode.FR]: "français",
 };
 
+interface ScriptOptions {
+  country: string;
+  lang: string;
+  type: string;
+  clean: boolean;
+}
+
 class CategoryTranslationScript {
-  // private readonly genAI: GoogleGenAI;
   private readonly results: TranslationResult[] = [];
   private anthropic: Anthropic;
+  private readonly options: ScriptOptions;
 
-  constructor() {
-    if (!CONFIG.GEMINI_API_KEY) {
-      return;
+  constructor(options: ScriptOptions) {
+    this.options = options;
+
+    if (!process.env.ANTHROPIC_API_KEY) {
+      throw new Error(
+        "❌ ANTHROPIC_API_KEY is not set in environment variables"
+      );
     }
+
     this.anthropic = new Anthropic({
-      apiKey: process.env.ANTHROPIC_API_KEY, // Ou votre méthode de config
+      apiKey: process.env.ANTHROPIC_API_KEY,
     });
-    // this.genAI = new GoogleGenAI({
-    //   apiKey: CONFIG.GEMINI_API_KEY,
-    // });
   }
 
   async run() {
     console.log("🚀 Starting automatic category translation...");
+    console.log("📋 Parameters:");
+    console.log(`  - Country: ${this.options.country}`);
+    console.log(`  - Language: ${this.options.lang}`);
+    console.log(`  - Type: ${this.options.type}`);
+    console.log(`  - Clean mode: ${this.options.clean}`);
+    console.log("");
+
+    // If clean mode, clean existing data first
+    if (this.options.clean) {
+      await this.cleanExistingTranslations();
+    }
 
     const categories = await this.getCategories();
+
+    if (categories.length === 0) {
+      console.log("✅ No categories to translate with the given criteria");
+      return;
+    }
+
+    console.log(`📊 Found ${categories.length} categories to translate\n`);
+
+    let successCount = 0;
+    let errorCount = 0;
 
     for (const suggestion of categories) {
       console.log(
@@ -108,8 +140,13 @@ class CategoryTranslationScript {
         );
 
         this.results.push(langTranslation);
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        successCount++;
+        console.log(`  ✅ Successfully translated`);
+
+        // Add delay to avoid rate limiting
+        await this.delay(1000);
       } catch (error: any) {
+        errorCount++;
         console.error(
           `  ❌ Error while translating ${suggestion.label} into ${
             LANGUAGE_NAMES[suggestion.lang]
@@ -118,16 +155,75 @@ class CategoryTranslationScript {
         );
       }
     }
+
+    console.log("\n" + "=".repeat(50));
+    console.log("📊 Translation Summary:");
+    console.log(`  ✅ Success: ${successCount}`);
+    console.log(`  ❌ Errors: ${errorCount}`);
+    console.log(`  📝 Total processed: ${categories.length}`);
+    console.log("=".repeat(50));
   }
 
-  private async getCategories(): Promise<
-    Array<SearchSuggestionForTranslation>
-  > {
-    const categories = await SearchSuggestionModel.find({ seoTitle: "" });
+  private buildMongoQuery(forCleaning: boolean = false): any {
+    const query: any = {};
+
+    // Only filter by seoTitle if not cleaning (we want untranslated items)
+    if (!forCleaning) {
+      query.$or = [{ seoTitle: "" }, { seoTitle: { $exists: false } }];
+    }
+
+    // Add type filters if necessary
+    if (this.options.type !== "all") {
+      const typeMap: Record<string, AutoCompleteType> = {
+        categories: AutoCompleteType.CATEGORY,
+        establishments: AutoCompleteType.ESTABLISHMENT_TYPE,
+        organizations: AutoCompleteType.ORGANIZATION,
+      };
+
+      if (typeMap[this.options.type]) {
+        query.type = typeMap[this.options.type];
+      }
+    }
+
+    // Add country filters if necessary
+    if (this.options.country !== "all") {
+      query.country = this.options.country;
+    }
+
+    // Add language filters if necessary
+    if (this.options.lang !== "all") {
+      query.lang = this.options.lang;
+    }
+
+    return query;
+  }
+
+  private async cleanExistingTranslations(): Promise<void> {
+    console.log("🧹 Cleaning existing translations...");
+
+    // Build query for cleaning - select ALL items matching country/lang filters
+    const query = this.buildMongoQuery(true);
+
+    const result = await SearchSuggestionModel.updateMany(query, {
+      $set: {
+        seoTitle: "",
+        seoDescription: "",
+      },
+    });
+
+    console.log(`  ✅ Cleaned ${result.modifiedCount} existing translations\n`);
+  }
+
+  private async getCategories(): Promise<SearchSuggestionForTranslation[]> {
+    // Build query - will filter by empty seoTitle (items to translate)
+    const query = this.buildMongoQuery(false);
+
+    const categories = await SearchSuggestionModel.find(query);
 
     return categories.map((doc) => ({
       sourceId: doc.sourceId,
       label: doc.label,
+      seoTitle: doc.seoTitle || "",
       seoDescription: doc.seoDescription || "",
       synonyms: doc.synonyms || [],
       type: doc.type,
@@ -141,18 +237,13 @@ class CategoryTranslationScript {
   private async translateCategory(
     suggestion: SearchSuggestionForTranslation
   ): Promise<TranslationResult> {
-    // const response = await this.genAI.models.generateContent({
-    //   model: "gemini-2.0-flash-001",
-    //   contents: prompt,
-    // });
-
     const prompt = this.buildPrompt(suggestion);
 
     try {
       const response = await this.anthropic.messages.create({
-        model: "claude-sonnet-4-20250514", // Ou "claude-sonnet-4-5-20250929" (le plus intelligent)
+        model: "claude-sonnet-4-20250514",
         max_tokens: 1024,
-        temperature: 0.3, // Plus bas = plus cohérent pour du JSON structuré
+        temperature: 0.3,
         messages: [
           {
             role: "user",
@@ -161,16 +252,16 @@ class CategoryTranslationScript {
         ],
       });
 
-      // Extraction du contenu
+      // Extract content
       const content = response.content[0];
       if (content.type === "text") {
         const jsonText = content.text.trim();
         return this.parseResponse(jsonText, suggestion);
       }
 
-      throw new Error("Format de réponse inattendu");
+      throw new Error("Unexpected response format");
     } catch (error) {
-      console.error("Erreur génération Claude:", error);
+      console.error("Claude generation error:", error);
       throw error;
     }
   }
@@ -322,7 +413,7 @@ RÉPONDS UNIQUEMENT AVEC LE JSON. COMMENCE PAR { ET TERMINE PAR }`;
 
       return result;
     } catch (error: any) {
-      console.error("❌ Raw Gemini response:", text);
+      console.error("❌ Raw Claude response:", text);
       console.error("❌ Parsing error:", error.message);
       throw new Error(`Failed to parse JSON: ${error.message}`);
     }
@@ -333,19 +424,113 @@ RÉPONDS UNIQUEMENT AVEC LE JSON. COMMENCE PAR { ET TERMINE PAR }`;
   }
 }
 
-async function main() {
-  try {
-    const script = new CategoryTranslationScript();
-    await script.run();
-    process.exit(0);
-  } catch (error) {
-    console.error("❌ Fatal error:", error);
-    process.exit(1);
-  }
+// Configure commander
+const program = new Command();
+
+program
+  .name("translate-categories")
+  .description("Translate Soliguide categories with AI")
+  .version("1.0.0")
+  .requiredOption(
+    "-c, --country <country>",
+    "Country code (FR, ES, etc.) or 'all' for all countries"
+  )
+  .requiredOption(
+    "-l, --lang <lang>",
+    "Language code (fr, en, es, etc.) or 'all' for all languages"
+  )
+  .requiredOption(
+    "-t, --type <type>",
+    "Type to translate: categories, establishments, organizations, or all"
+  )
+  .option("--clean", "Clean existing translations before starting", false)
+  .action(async (options) => {
+    try {
+      // Validate type
+      const validTypes = [
+        "categories",
+        "establishments",
+        "organizations",
+        "all",
+      ];
+      if (!validTypes.includes(options.type)) {
+        console.error(`❌ Invalid type: ${options.type}`);
+        console.error(`Valid options: ${validTypes.join(", ")}`);
+        process.exit(1);
+      }
+
+      if (options.country !== "all") {
+        if (!SOLIGUIDE_COUNTRIES.includes(options.country)) {
+          console.error(`❌ Invalid country: ${options.country}`);
+          console.error(
+            `Valid options: ${SOLIGUIDE_COUNTRIES.join(", ")}, all`
+          );
+          process.exit(1);
+        }
+      }
+
+      if (options.lang !== "all") {
+        const validLangs = Object.values(SupportedLanguagesCode);
+        if (!validLangs.includes(options.lang)) {
+          console.error(`❌ Invalid language: ${options.lang}`);
+          console.error(`Valid options: ${validLangs.join(", ")}, all`);
+          process.exit(1);
+        }
+      }
+
+      const script = new CategoryTranslationScript({
+        country: options.country,
+        lang: options.lang,
+        type: options.type,
+        clean: options.clean,
+      });
+
+      await script.run();
+      process.exit(0);
+    } catch (error) {
+      console.error("❌ Fatal error:", error);
+      process.exit(1);
+    }
+  });
+
+program.addHelpText(
+  "after",
+  `
+Required Parameters:
+  --country, -c    Country code (required)
+  --lang, -l       Language code (required)
+  --type, -t       Type to translate (required)
+
+Valid country codes: ${SOLIGUIDE_COUNTRIES.join(", ")}, all
+Valid language codes: ${Object.values(SupportedLanguagesCode).join(", ")}, all
+Valid types: categories, establishments, organizations, all
+
+Examples:
+  $ tsx scripts/translateCategories.ts --country FR --lang en --type categories
+    Translate all French categories to English
+
+  $ tsx scripts/translateCategories.ts --country all --lang es --type organizations
+    Translate organizations from all countries to Spanish
+
+  $ tsx scripts/translateCategories.ts --country all --lang all --type all --clean
+    Clean all existing translations and retranslate everything
+
+  $ tsx scripts/translateCategories.ts --country FR --lang fr --type establishments --clean
+    Clean and retranslate all French establishments in French
+`
+);
+
+// Display help if no arguments provided
+if (process.argv.length === 2) {
+  program.help();
 }
 
-if (require.main === module) {
-  main();
+// Parse arguments
+try {
+  program.parse(process.argv);
+} catch (error) {
+  // Commander will automatically display error and help for missing required options
+  process.exit(1);
 }
 
 export { CategoryTranslationScript };
