@@ -782,23 +782,334 @@ export const CAMPAIGN_EMAILS_CONTENT: AllCampaignEmailTemplatesContent = {
       subject: "💪 Terminez votre mise à jour sur Soliguide",
     },
   },
+  END_YEAR_2025: {
+    CAMPAGNE_COMPTES_PRO: {
+      content: `<p>Bonjour,</p>
+      <p>
+        À l’approche des vacances de fin d’année, une partie des <strong>structures ferment</strong> et les
+        <strong>publics ne savent plus vers qui se tourner</strong>.
+      </p>
+      <p>
+        C'est exactement ce qu'on veut éviter. <strong>Vos dates de fermeture</strong>, c'est comme un
+        <strong>GPS pour nos usagers</strong> : sans elles, ils risquent de tourner en rond au moment où ils en ont le plus besoin.
+      </p>
+      <p>
+        Pour éviter les erreurs d’orientation, merci de nous
+        <a target="_blank" rel="noopener noreferrer" href="https://soliguide.fr/fr/campaign?utm_source=soliguide&utm_medium=$email&utm_campaign=%CAMPAIGN_NAME%&utm_term=%EMAIL_TYPE%&utm_content=changes&utm_user_ic=%USER_ID%"><strong>partager vos modifications saisonnières</strong><a/>.</p>
+      <p><strong>Pourquoi c'est important ?</strong></p>
+      <p>
+        ✅ <strong>Pour les usagers :</strong> Des <strong>informations fiables</strong> = moins de déplacements inutiles, moins de découragement.<br>
+        ✅ <strong>Pour le Soliguide :</strong> Une orientation précise vers les structures ouvertes, quand elles en ont besoin.<br>
+        ✅ <strong>Pour nous tous :</strong> Un Soliguide <strong>100% fiable</strong>, où chaque recherche aboutit à une solution.
+      </p>
+      <p><strong>🚀 Votre mission :</strong></p>
+      <p>
+        <a target="_blank" rel="noopener noreferrer" href="https://soliguide.fr/fr/campaign?utm_source=soliguide&utm_medium=$email&utm_campaign=%CAMPAIGN_NAME%&utm_term=%EMAIL_TYPE%&utm_content=changes&utm_user_ic=%USER_ID%">
+          <strong><u>1️⃣ Cliquez sur ce lien</u></strong>
+        </a><br>
+        2️⃣ <strong>Complétez vos modifications saisonnières</strong> en 2 min<br>
+        3️⃣ <strong>Validez</strong> et devenez officiellement un·e héro·ïne de l'orientation solidaire 🦸
+      </p>
+      <p>
+        Petit rappel : Même si vous nous avez déjà envoyé vos modifications, une vérification rapide ne fait pas de mal.
+      </p>
+      <p><strong>Besoin d’un coup de pouce pour mettre à jour vos infos ?</strong></p>
+      <p>On est là pour vous aider ! 👇</p>
+      <p>
+        <a href="mailto:%EMAIL_SOLIGUIDE%?body=Bonjour%20l%E2%80%99%C3%A9quipe%20Soliguide%2C%0A%0AJe%20sollicite%20votre%20assistance%20pour%20la%20mise%20%C3%A0%20jour%20de%20la%20fiche%20%5Bins%C3%A9rez%20le%20lien%20de%20la%20fiche%5D.%0A%0APouvez-vous%20me%20recontacter%20par%20t%C3%A9l%C3%A9phone%20%2F%20visio%20%5Benlever%20la%20mention%20inutile%5D%20%3F%0A%0AJe%20suis%20disponible%20le%20%5Bindiquez%20le%20jour%5D%20%C3%A0%20%5Bindiquez%20l%E2%80%99heure%5D.">
+          <strong>📅 Prenez rendez-vous</strong>
+        </a> avec un agent Soliguide pour vous aider dans cette mise à jour.<br>
+        🎓
+        <a target="_blank" rel="noopener noreferrer"
+          href="https://zoom.us/webinar/register/7216898420109/WN_gn7lx7IsTneAkRo5DW2qtQ#/registration">
+          <strong>Participez au prochain Webinaire</strong>
+        </a> pour maîtriser Soliguide en 30 minutes chrono.<br>
+        📚
+        <a target="_blank" rel="noopener noreferrer"
+          href="https://www.solinum.org/wp-content/uploads/2021/12/Tutoriel-utilisation-des-comptes-professionnels-Soliguide.pdf">
+          <strong>Découvrez nos tutoriels en ligne</strong>
+        </a>
+      </p>
+      <p>
+        <strong>Vous n’êtes pas la personne en charge des mises à jour ?</strong><br>
+        Pas de souci ! 👌
+        <a href="mailto:%EMAIL_SOLIGUIDE%?body=Bonjour%20l%E2%80%99%C3%A9quipe%20Soliguide%2C%0A%0AVous%20m%E2%80%99avez%20contact%C3%A9%20dans%20le%20cadre%20de%20la%20mise%20%C3%A0%20jour%20de%20Soliguide.%0A%0AJe%20ne%20suis%20pas%20la%20bonne%20personne%20%C3%A0%20contacter%20pour%20mettre%20%C3%A0%20jour%20les%20fiches%20de%20notre%20structure%20sur%20Soliguide.%0AJe%20vous%20invite%20%C3%A0%20vous%20rapprocher%20de%20%5Brenseignez%20le%20nom%20de%20la%20personne%5D%20%5Brenseignez%20son%20adresse%20mail%5D.">
+          <strong>Transmettez-nous simplement les coordonnées</strong>
+        </a> de la bonne personne par mail — on s’occupe du reste.
+      </p>
+      <p>
+        Merci pour votre engagement – <strong>vous faites partie des structures qui rendent le Soliguide 100% fiable ! 🎯</strong>
+      </p>
+      <p>L’équipe Soliguide 🧭</p>
+      `,
+      subject:
+        "🦸 Fermetures fin d’année 2025 : votre contribution pour un Soliguide sans faille",
+    },
+    CAMPAGNE_INVITATIONS: {
+      content: `<p>Bonjour,</p>
+        <p>
+          Votre organisation est répertoriée sur <a target="_blank" rel="noopener noreferrer" href="https://soliguide.fr/"><strong>Soliguide</strong></a>.
+        </p>
+        <p>Mais vous n’avez <strong>pas encore finalisé la création de votre compte professionnel gratuit</strong>.</p>
+        <p>🦸 Le compte pro c’est l’assurance de <strong>gérer vos informations sur Soliguide pour éviter les erreurs d’orientation.</strong></p>
+        <p><strong>🎯 L'objectif de Soliguide :</strong> Que chaque personne en recherche d'aide trouve <strong>une porte ouverte</strong>, <strong>pas une porte close</strong>.</p>
+        <p><strong>🛑 Le problème :</strong> Sans vos modifications saisonnières (dates de fermetures, modifications de services,…), on ne <strong>peut pas garantir cette orientation.</strong></p>
+        <p><strong>🔑 La solution (simple et rapide)</strong> :</p>
+        <p>
+          <a target="_blank" rel="noopener noreferrer" href="https://lien_invitation?utm_source=soliguide&utm_medium=$email&utm_campaign=%CAMPAIGN_NAME%&utm_term=%EMAIL_TYPE%&utm_content=create_account&utm_user_ic=%USER_ID%"><strong>1️⃣ Créez votre compte Soliguide</strong></a>
+          <br>
+          2️⃣ <strong>Complétez vos modifications saisonnières</strong> en 2 min<br>
+          3️⃣ <strong>C'est tout</strong> → Vos infos sont immédiatement visibles par ceux qui en ont besoin
+        </p>
+        <p><strong>Pourquoi c'est important ?</strong></p>
+        <p>
+          ✅ <strong>Pour les usagers</strong> : Des <strong>informations fiables</strong> = moins de déplacements inutiles, plus d'accès aux droits.<br>
+          ✅ <strong>Pour vous</strong> : Un <strong>outil autonome</strong> qui vous évite les relances et les échanges de mails.<br>
+          ✅ <strong>Pour nous tous</strong> : Un Soliguide <strong>100% fiable</strong>, où chaque recherche aboutit à une solution.
+        </p>
+        <p>
+          "Ce compte n'est pas une tâche de plus, mais un moyen de <strong>simplifier votre quotidien</strong> tout en
+          <strong>améliorant l'accès aux droits</strong> pour ceux qui en ont besoin."
+        </p>
+        <p>
+          👉 <strong><a target="_blank" rel="noopener noreferrer"
+            href="https://lien_invitation?utm_source=soliguide&utm_medium=$email&utm_campaign=%CAMPAIGN_NAME%&utm_term=%EMAIL_TYPE%&utm_content=create_account&utm_user_ic=%USER_ID%">
+            Je crée mon compte maintenant
+          </a></strong>
+        </p>
+        <p><strong>Besoin d’un coup de pouce pour mettre à jour vos infos ?</strong></p>
+        <p>On est là pour vous aider ! 👇</p>
+        <p>
+          <a href="mailto:%EMAIL_SOLIGUIDE%?body=Bonjour%20l%E2%80%99%C3%A9quipe%20Soliguide%2C%0A%0AJe%20sollicite%20votre%20assistance%20pour%20la%20mise%20%C3%A0%20jour%20de%20la%20fiche%20%5Bins%C3%A9rez%20le%20lien%20de%20la%20fiche%5D.%0A%0APouvez-vous%20me%20recontacter%20par%20t%C3%A9l%C3%A9phone%20%2F%20visio%20%5Benlever%20la%20mention%20inutile%5D%20%3F%0A%0AJe%20suis%20disponible%20le%20%5Bindiquez%20le%20jour%5D%20%C3%A0%20%5Bindiquez%20l%E2%80%99heure%5D."><strong>📅 Prenez rendez-vous</strong></a> avec un agent Soliguide pour vous aider dans cette mise à jour.<br>
+          🎓 <a target="_blank" rel="noopener noreferrer" href="https://zoom.us/webinar/register/7216898420109/WN_gn7lx7IsTneAkRo5DW2qtQ#/registration"><strong>Participez au prochain Webinaire</strong></a> pour maîtriser Soliguide en 30 minutes chrono.<br>
+          📚 <a target="_blank" rel="noopener noreferrer"
+            href="https://www.solinum.org/wp-content/uploads/2021/12/Tutoriel-utilisation-des-comptes-professionnels-Soliguide.pdf"><strong>Découvrez nos tutoriels en ligne</strong></a>
+        </p>
+        <p>
+          <strong>Vous n’êtes pas la personne en charge des mises à jour ?</strong><br>
+          Pas de souci ! 👌 <a href="mailto:%EMAIL_SOLIGUIDE%?body=Bonjour%20l%E2%80%99%C3%A9quipe%20Soliguide%2C%0A%0AVous%20m%E2%80%99avez%20contact%C3%A9%20dans%20le%20cadre%20de%20la%20mise%20%C3%A0%20jour%20de%20Soliguide.%0A%0AJe%20ne%20suis%20pas%20la%20bonne%20personne%20%C3%A0%20contacter%20pour%20mettre%20%C3%A0%20jour%20les%20fiches%20de%20notre%20structure%20sur%20Soliguide.%0AJe%20vous%20invite%20%C3%A0%20vous%20rapprocher%20de%20%5Brenseignez%20le%20nom%20de%20la%20personne%5D%20%5Brenseignez%20son%20adresse%20mail%5D."><strong>Transmettez-nous simplement les coordonnées</strong></a> de la bonne personne par mail — on s’occupe du reste.
+        </p>
+        <p>
+          Merci pour votre engagement – <strong>c'est grâce à des structures comme la vôtre que le Soliguide reste un outil fiable
+          pour celles et ceux qui comptent dessus 🙏</strong>
+        </p>
+        <p>L’équipe Soliguide 🧭</p>
+        `,
+      subject:
+        "📅 Votre compte Soliguide est presque prêt pour signaler vos fermetures saisonnières en 2 min",
+    },
+    RELANCE_CAMPAGNE_COMPTES_PRO: {
+      content: `<p>Bonjour,</p>
+      <p>
+        <strong>Ensemble</strong>, nous avons un objectif commun :
+        <strong>s’assurer que chaque personne en difficulté trouve une porte ouverte !</strong>
+        Nous informer de votre <strong>fonctionnement pour ces vacances</strong> y contribue fortement.
+      </p>
+      <p>
+        <strong>Prenez 2 minutes pour renseigner vos modifications saisonnières et éviter toute mauvaise orientation.</strong>
+      </p>
+      <p>
+        <strong>La solution ? 👉
+        <a target="_blank" rel="noopener noreferrer" href="https://soliguide.fr/fr/campaign?utm_source=soliguide&utm_medium=$email&utm_campaign=%CAMPAIGN_NAME%&utm_term=%EMAIL_TYPE%&utm_content=changes&utm_user_ic=%USER_ID%">
+          Je renseigne mes modifications saisonnières en 2 min ⏱️
+        </a></strong>
+      </p>
+      <p>
+        Et même si rien ne change, merci de nous le préciser !
+      </p>
+      <p><strong>Pourquoi c’est important ?</strong></p>
+      <p>
+        ✅ <strong>Pour les usagers :</strong> Des infos à jour = <strong>moins de déplacements inutiles</strong> 🚶‍♂️<br>
+        ✅ <strong>Pour nous tous :</strong> Un Soliguide <strong>100 % fiable 🧭</strong>, où chaque recherche aboutit
+      </p>
+      <p><strong>Besoin d’un coup de pouce pour mettre à jour vos infos ?</strong></p>
+      <p>On est là pour vous aider ! 👇</p>
+      <p>
+        <a href="mailto:%EMAIL_SOLIGUIDE%?body=Bonjour%20l%E2%80%99%C3%A9quipe%20Soliguide%2C%0A%0AJe%20sollicite%20votre%20assistance%20pour%20la%20mise%20%C3%A0%20jour%20de%20la%20fiche%20%5Bins%C3%A9rez%20le%20lien%20de%20la%20fiche%5D.%0A%0APouvez-vous%20me%20recontacter%20par%20t%C3%A9l%C3%A9phone%20%2F%20visio%20%5Benlever%20la%20mention%20inutile%5D%20%3F%0A%0AJe%20suis%20disponible%20le%20%5Bindiquez%20le%20jour%5D%20%C3%A0%20%5Bindiquez%20l%E2%80%99heure%5D.">
+          <strong>📅 Prenez rendez-vous</strong>
+        </a> avec un agent Soliguide pour vous aider dans cette mise à jour<br>
+        <a target="_blank" rel="noopener noreferrer"
+          href="https://zoom.us/webinar/register/7216898420109/WN_gn7lx7IsTneAkRo5DW2qtQ#/registration">
+          <strong>🎓 Participez au prochain Webinaire</strong>
+        </a> pour maîtriser Soliguide en 30 minutes chrono<br>
+        <a target="_blank" rel="noopener noreferrer"
+          href="https://soliguide.fr/fr/aide?utm_source=soliguide&utm_medium=$email&utm_campaign=%CAMPAIGN_NAME%&utm_term=%EMAIL_TYPE%&utm_location=chore_message&utm_user_ic=%USER_ID%">
+          <strong>📚 Découvrez nos tutoriels en ligne</strong>
+        </a>
+      </p>
+      <p>
+        <strong>Vous n’êtes pas la personne en charge des mises à jour ?</strong><br>
+        Pas de souci ! 👌
+        <a href="mailto:%EMAIL_SOLIGUIDE%?body=Bonjour%20l%E2%80%99%C3%A9quipe%20Soliguide%2C%0A%0AVous%20m%E2%80%99avez%20contact%C3%A9%20dans%20le%20cadre%20de%20la%20mise%20%C3%A0%20jour%20de%20Soliguide.%0A%0AJe%20ne%20suis%20pas%20la%20bonne%20personne%20%C3%A0%20contacter%20pour%20mettre%20%C3%A0%20jour%20les%20fiches%20de%20notre%20structure%20sur%20Soliguide.%0AJe%20vous%20invite%20%C3%A0%20vous%20rapprocher%20de%20%5Brenseignez%20le%20nom%20de%20la%20personne%5D%20%5Brenseignez%20son%20adresse%20mail%5D.">
+          <strong>Transmettez-nous simplement les coordonnées</strong>
+        </a> de la bonne personne par mail — on s’occupe du reste.
+      </p>
+      <p>L’équipe Soliguide 🧭</p>
+      `,
+      subject:
+        "⏳✨ Fermetures 2025 : le suspense est insoutenable… À vous de jouer !",
+    },
+    RELANCE_CAMPAGNE_INVITATIONS: {
+      content: `<p>Bonjour,</p>
+      <p>
+        Votre organisation est répertoriée sur
+        <a target="_blank" rel="noopener noreferrer" href="https://soliguide.fr/"><strong>Soliguide</strong></a>.
+      </p>
+      <p>
+      Mais vous ne nous avez pas encore informé de votre <strong>fonctionnement pour ces vacances.</strong>
+      </p>
+      <p>
+        Même si <strong>rien ne change</strong> pour cette saison de vacances (horaires, services, etc.),
+        <strong>votre confirmation est indispensable</strong> pour :
+      </p>
+      <p>
+        ✅ <strong>Garantir des informations fiables</strong> aux usagers<br>
+        ✅ <strong>Éviter toute confusion</strong> (ex. : fermeture non signalée)<br>
+        ✅ <strong>Maintenir votre visibilité</strong> sur Soliguide<br>
+      </p>
+      <p><strong>Comment faire ?</strong></p>
+      <p>C’est très simple :</p>
+      <p>
+         <a target="_blank" rel="noopener noreferrer"
+           href="https://lien_invitation?utm_source=soliguide&utm_medium=$email&utm_campaign=%CAMPAIGN_NAME%&utm_term=%EMAIL_TYPE%&utm_content=create_account&utm_user_ic=%USER_ID%">
+           <strong>1️⃣ Créez votre compte Soliguide</strong>
+         </a><br>
+         <a target="_blank" rel="noopener noreferrer"
+           href="https://lien_invitation?utm_source=soliguide&utm_medium=$email&utm_campaign=%CAMPAIGN_NAME%&utm_term=%EMAIL_TYPE%&utm_content=update_structures&utm_user_ic=%USER_ID%">
+           <strong>2️⃣ Complétez vos modifications saisonnières</strong>
+         </a> en 2 min<br>
+         <strong>3️⃣ Validez</strong> → Vos infos sont immédiatement visibles par ceux qui en ont besoin en 2 clics (même pour confirmer qu’il n’y a aucun changement)
+      </p>
+      <p>
+        👉 <strong><a target="_blank" rel="noopener noreferrer"
+          href="https://lien_invitation?utm_source=soliguide&utm_medium=$email&utm_campaign=%CAMPAIGN_NAME%&utm_term=%EMAIL_TYPE%&utm_content=create_account&utm_user_ic=%USER_ID%">
+          Je crée mon compte maintenant
+        </a> – et je coche une tâche de ma to-do list !</strong>
+      </p>
+      <p>
+        Merci pour votre réactivité – <strong>c’est grâce à vous que le Soliguide reste un outil efficace</strong> pour les personnes en difficulté 🙌.
+      </p>
+      <p><strong>Besoin d’un coup de pouce pour mettre à jour vos infos ?</strong></p>
+      <p>On est là pour vous aider ! 👇</p>
+      <p>
+          <a href="mailto:%EMAIL_SOLIGUIDE%?body=Bonjour%20l%E2%80%99%C3%A9quipe%20Soliguide%2C%0A%0AJe%20sollicite%20votre%20assistance%20pour%20la%20mise%20%C3%A0%20jour%20de%20la%20fiche%20%5Bins%C3%A9rez%20le%20lien%20de%20la%20fiche%5D.%0A%0APouvez-vous%20me%20recontacter%20par%20t%C3%A9l%C3%A9phone%20%2F%20visio%20%5Benlever%20la%20mention%20inutile%5D%20%3F%0A%0AJe%20suis%20disponible%20le%20%5Bindiquez%20le%20jour%5D%20%C3%A0%20%5Bindiquez%20l%E2%80%99heure%5D.">
+            <strong>📅 Prenez rendez-vous</strong>
+          </a> avec un agent Soliguide pour vous aider dans cette mise à jour<br>
+          <a target="_blank" rel="noopener noreferrer"
+            href="https://zoom.us/webinar/register/7216898420109/WN_gn7lx7IsTneAkRo5DW2qtQ#/registration">
+            <strong>🎓 Participez au prochain Webinaire</strong>
+          </a> pour maîtriser Soliguide en 30 minutes chrono<br>
+          <a target="_blank" rel="noopener noreferrer"
+            href="https://soliguide.fr/fr/aide?utm_source=soliguide&utm_medium=$email&utm_campaign=%CAMPAIGN_NAME%&utm_term=%EMAIL_TYPE%&utm_location=chore_message&utm_user_ic=%USER_ID%">
+            <strong>📚 Découvrez nos tutoriels en ligne</strong>
+          </a>
+      </p>
+      <p>
+        <strong>Vous n’êtes pas la personne en charge des mises à jour ?</strong><br>
+        Pas de souci ! 👌
+        <a href="mailto:%EMAIL_SOLIGUIDE%?body=Bonjour%20l%E2%80%99%C3%A9quipe%20Soliguide%2C%0A%0AVous%20m%E2%80%99avez%20contact%C3%A9%20dans%20le%20cadre%20de%20la%20mise%20%C3%A0%20jour%20de%20Soliguide.%0A%0AJe%20ne%20suis%20pas%20la%20bonne%20personne%20%C3%A0%20contacter%20pour%20mettre%20%C3%A0%20jour%20les%20fiches%20de%20notre%20structure%20sur%20Soliguide.%0AJe%20vous%20invite%20%C3%A0%20vous%20rapprocher%20de%20%5Brenseignez%20le%20nom%20de%20la%20personne%5D%20%5Brenseignez%20son%20adresse%20mail%5D.">
+          <strong>Transmettez-nous simplement les coordonnées</strong>
+        </a> de la bonne personne par mail — on s’occupe du reste.
+      </p>
+      <p>L’équipe Soliguide 🧭</p>
+      `,
+      subject:
+        "🔑 Votre compte Soliguide : la clé pour des fermetures 2025 sans stress",
+    },
+    RELANCE_TERMINER_MAJ: {
+      content: `<p>Bonjour,</p>
+    <p>
+      Vous avez <strong>déjà entamé</strong> la modification de vos informations saisonnières sur Soliguide –
+      <strong>merci pour ce premier pas !</strong> 🙌
+      Pour que <strong>chaque personne trouve une porte ouverte</strong>, il ne vous reste
+      <strong>plus qu’à finaliser</strong> ces renseignements.
+    </p>
+    <p>
+      <strong>Finalisez en 2 min chrono :</strong> 👉
+      <strong>
+        <a target="_blank" rel="noopener noreferrer"
+          href="https://soliguide.fr/fr/campaign?utm_source=soliguide&utm_medium=$email&utm_campaign=%CAMPAIGN_NAME%&utm_term=%EMAIL_TYPE%&utm_content=changes&utm_user_ic=%USER_ID%">
+          Reprendre ma modification là où je me suis arrêté·e
+        </a>
+      </strong>
+    </p>
+    <p><strong>Pourquoi c’est important ?</strong></p>
+    <p>
+      ✅ <strong>Pour les usagers :</strong> Des infos à jour = <strong>moins de déplacements inutiles</strong> 🚶‍♂️<br>
+      ✅ <strong>Pour vous :</strong> Plus de relances après cette étape !<br>
+      ✅ <strong>Pour le réseau :</strong> Un Soliguide <strong>100 % fiable</strong> pour celles et ceux qui comptent dessus.
+    </p>
+    <p>
+      <em>
+        Un grand merci pour votre engagement – <strong>vous êtes à 90 % du but !</strong> 🎯
+        On compte sur vous pour boucler ces dernières infos."
+      </em>
+    </p>
+    <p><strong>Besoin d’un coup de pouce pour mettre à jour vos infos ?</strong></p>
+    <p>On est là pour vous aider ! 👇</p>
+    <p>
+      <a href="mailto:%EMAIL_SOLIGUIDE%?body=Bonjour%20l%E2%80%99%C3%A9quipe%20Soliguide%2C%0A%0AJe%20sollicite%20votre%20assistance%20pour%20la%20mise%20%C3%A0%20jour%20de%20la%20fiche%20%5Bins%C3%A9rez%20le%20lien%20de%20la%20fiche%5D.%0A%0APouvez-vous%20me%20recontacter%20par%20t%C3%A9l%C3%A9phone%20%2F%20visio%20%5Benlever%20la%20mention%20inutile%5D%20%3F%0A%0AJe%20suis%20disponible%20le%20%5Bindiquez%20le%20jour%5D%20%C3%A0%20%5Bindiquez%20l%E2%80%99heure%5D.">
+        <strong>📅 Prenez rendez-vous</strong>
+      </a> avec un agent Soliguide pour vous aider dans cette mise à jour<br>
+      <a target="_blank" rel="noopener noreferrer"
+        href="https://zoom.us/webinar/register/7216898420109/WN_gn7lx7IsTneAkRo5DW2qtQ#/registration">
+        <strong>🎓 Participez au prochain Webinaire</strong>
+      </a> pour maîtriser Soliguide en 30 minutes chrono<br>
+      <a target="_blank" rel="noopener noreferrer"
+        href="https://soliguide.fr/fr/aide?utm_source=soliguide&utm_medium=$email&utm_campaign=%CAMPAIGN_NAME%&utm_term=%EMAIL_TYPE%&utm_location=chore_message&utm_user_ic=%USER_ID%">
+        <strong>📚 Découvrez nos tutoriels en ligne</strong>
+      </a>
+    </p>
+    <p>L’équipe Soliguide 🧭</p>`,
+      subject:
+        "🏗️ Vous avez presque fini ! Finalisez vos fermetures 2025 en 1 min",
+    },
+  },
 };
 
 export const REMIND_ME_CAMPAIGN_MAILS_CONTENT: CampaignEmailTemplatesContent = {
   REMIND_ME: {
-    content: `<p>Bonjour, </p>
-    <p>Vous avez indiqué que vous vouliez être rappelé pour mettre à jour vos structures sur Soliguide à cette date.</p>
-    <p>Vous pouvez cliquer sur <a href="https://soliguide.fr/fr/campaign?utm_source=soliguide&utm_medium=$email&utm_campaign=%CAMPAIGN_NAME%&utm_term=%EMAIL_TYPE%&utm_content=remind_me&utm_user_ic=%USER_ID%">ce lien</a> pour les mettre à jour.</p>
-    <p>Merci pour votre aide.</p>
-    <p>Nous vous souhaitons une excellente journ&eacute;e.</p>
-    <p>%NOM_SOLIGUIDE%</p>
-    <p>
-      <i>Une question ? un problème ? écrivez-nous à </i><strong>%EMAIL_SOLIGUIDE%</strong><i>. Des tutoriels sont disponibles sur </i
-      ><a target="_blank" rel="noopener noreferrer" href="https://www.solinum.org/wp-content/uploads/2021/12/Tutoriel-utilisation-des-comptes-professionnels-Soliguide.pdf"
-        ><i><strong>la page aide</strong></i></a
-      ><i> de votre espace. </i>
-    </p>
-    ${RGPD_FOOTER}`,
-    subject: "Rappel de mise à jour de vos structures",
+    content: `<p>Bonjour,</p>
+      <p>
+        Comme vous nous l’aviez demandé, <strong>voici votre rappel</strong> pour mettre à jour les informations de votre structure sur
+        Soliguide. 🙌
+      </p>
+      <p><strong>🚀 Votre mission :</strong></p>
+      <p>
+        <a target="_blank" rel="noopener noreferrer" href="https://soliguide.fr/fr/campaign?utm_source=soliguide&utm_medium=$email&utm_campaign=%CAMPAIGN_NAME%&utm_term=%EMAIL_TYPE%&utm_content=changes&utm_user_ic=%USER_ID%">
+          <strong>1️⃣ Cliquez sur ce lien</strong>
+        </a><br>
+        <strong>2️⃣ Complétez vos modifications saisonnières</strong> en 2 min<br>
+        <strong>3️⃣ Validez</strong> et devenez officiellement un·e héro·ïne de l'orientation solidaire 🦸
+      </p>
+      <p>Et même si rien ne change, <strong>merci de nous le préciser !</strong></p>
+      <p><strong>Pourquoi c'est important ?</strong></p>
+      <p>
+        ✅ <strong>Pour les usagers :</strong> Des <strong>informations fiables</strong> = moins de déplacements inutiles, moins de découragement.<br>
+        ✅ <strong>Pour le Soliguide :</strong> Une orientation précise vers les structures ouvertes, quand elles en ont besoin.<br>
+        ✅ <strong>Pour nous tous :</strong> Un Soliguide <strong>100 % fiable</strong>, où chaque recherche aboutit à une solution.
+      </p>
+      <p><strong>Besoin d’un coup de pouce pour mettre à jour vos infos ?</strong></p>
+      <p>On est là pour vous aider ! 👇</p>
+      <p>
+        <a href="mailto:%EMAIL_SOLIGUIDE%?body=Bonjour%20l%E2%80%99%C3%A9quipe%20Soliguide%2C%0A%0AJe%20sollicite%20votre%20assistance%20pour%20la%20mise%20%C3%A0%20jour%20de%20la%20fiche%20%5Bins%C3%A9rez%20le%20lien%20de%20la%20fiche%5D.%0A%0APouvez-vous%20me%20recontacter%20par%20t%C3%A9l%C3%A9phone%20%2F%20visio%20%5Benlever%20la%20mention%20inutile%5D%20%3F%0A%0AJe%20suis%20disponible%20le%20%5Bindiquez%20le%20jour%5D%20%C3%A0%20%5Bindiquez%20l%E2%80%99heure%5D.">
+          <strong>📅 Prenez rendez-vous</strong>
+        </a> avec un agent Soliguide pour vous aider dans cette mise à jour<br>
+        <a target="_blank" rel="noopener noreferrer"
+          href="https://zoom.us/webinar/register/7216898420109/WN_gn7lx7IsTneAkRo5DW2qtQ#/registration">
+          <strong>🎓 Participez au prochain Webinaire</strong>
+        </a> pour maîtriser Soliguide en 30 minutes chrono<br>
+        <a target="_blank" rel="noopener noreferrer"
+          href="https://soliguide.fr/fr/aide?utm_source=soliguide&utm_medium=$email&utm_campaign=%CAMPAIGN_NAME%&utm_term=%EMAIL_TYPE%&utm_location=chore_message&utm_user_ic=%USER_ID%">
+          <strong>📚 Découvrez nos tutoriels en ligne</strong>
+        </a>
+      </p>
+      <p>
+        Merci pour votre engagement – <strong>vous faites partie des structures qui rendent le Soliguide 100 % fiable !</strong> 🎯
+      </p>
+      <p>L’équipe Soliguide 🧭</p>
+      `,
+    subject:
+      "📅 C’est le moment ! Renseignez vos fermetures sur Soliguide en 2 min",
   },
 };
