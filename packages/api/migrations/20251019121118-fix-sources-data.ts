@@ -18,17 +18,34 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-export enum CampaignName {
-  MAJ_ETE_2022 = "MAJ_ETE_2022",
-  MAJ_ETE_2023 = "MAJ_ETE_2023",
-  MAJ_ETE_2024 = "MAJ_ETE_2024",
-  MAJ_HIVER_2022 = "MAJ_HIVER_2022",
-  MAJ_HIVER_2023 = "MAJ_HIVER_2023",
-  END_YEAR_2024 = "END_YEAR_2024",
-  MID_YEAR_2025 = "MID_YEAR_2025",
-  END_YEAR_2025 = "END_YEAR_2025",
-}
+import { Db } from "mongodb";
 
-export enum AllCampaign {
-  ALL_CAMPAIGN = "ALL_CAMPAIGN",
-}
+import { logger } from "../src/general/logger";
+
+const message =
+  "Add empty sources array to places that don't have sources property";
+
+export const up = async (db: Db) => {
+  logger.info(`[MIGRATION] - ${message}`);
+
+  const placesWithoutSources = await db.collection("lieux").countDocuments({
+    sources: { $exists: false },
+  });
+
+  logger.info(
+    `[MIGRATION] Found ${placesWithoutSources} places without sources property`
+  );
+
+  const result = await db
+    .collection("lieux")
+    .updateMany({ sources: { $exists: false } }, { $set: { sources: [] } });
+
+  logger.info(
+    `[MIGRATION] Updated ${result.modifiedCount} places with empty sources array`
+  );
+};
+
+export const down = () => {
+  logger.info(`[ROLLBACK] - ${message}`);
+  logger.info("NO ROLLBACK POSSIBLE");
+};

@@ -114,9 +114,9 @@ router.post(
 /**
  * @swagger
  *
- * /emailing/generate-launch-campaign-emails
+ * /emailing/generate-campaign-emails
  *   post:
- *     description: generates launch campaign emails
+ *     description: generates campaign emails
  *     tags: [Emailing]
  *     produces:
  *       - application/json
