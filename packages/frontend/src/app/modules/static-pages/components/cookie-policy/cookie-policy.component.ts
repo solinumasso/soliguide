@@ -18,19 +18,19 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Component, OnInit } from "@angular/core";
-import { SeoService } from "../../../shared/services";
 import { NgComponentOutlet } from "@angular/common";
-import { CurrentLanguageService } from "../../../general/services/current-language.service";
-import { CookiePolicyService } from "../../services/cookie-policy.service";
-import { StaticPagesComponentAbstract } from "../static-pages-component.abstract";
+import { Component, OnInit } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { THEME_CONFIGURATION } from "../../../../models";
+import { CurrentLanguageService } from "../../../general/services/current-language.service";
+import { SeoService } from "../../../shared/services";
+import { CookiePolicyService } from "../../services/cookie-policy.service";
+import { StaticPagesComponentAbstract } from "../static-pages-component.abstract";
 
 @Component({
   standalone: true,
   imports: [NgComponentOutlet],
-  selector: "app-data-processing-agreement",
+  selector: "app-cookie-policy",
   template: '<ng-container *ngComponentOutlet="currentTemplate" />',
 })
 export class CookiePolicyComponent
