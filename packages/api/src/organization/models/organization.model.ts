@@ -21,8 +21,8 @@
 
 import { ApiOrganization, CampaignStatus, RELATIONS } from "@soliguide/common";
 import mongoose, { model } from "mongoose";
-import { PhoneSchema } from "../../place/models";
 import { ModelWithId } from "../../_models";
+import { PhoneSchema } from "../../place/models";
 
 /**
  * @swagger
@@ -168,6 +168,28 @@ const OrganizationSchema = new mongoose.Schema<ModelWithId<ApiOrganization>>(
         },
       },
       MID_YEAR_2025: {
+        autonomyRate: { default: 0, type: Number },
+        endDate: {
+          default: null,
+          type: Date,
+        },
+        startDate: {
+          default: null,
+          type: Date,
+        },
+        status: {
+          default: CampaignStatus.TO_DO,
+          enum: CampaignStatus,
+          type: String,
+          uppercase: true,
+        },
+        toUpdate: {
+          default: false,
+          required: true,
+          type: Boolean,
+        },
+      },
+      END_YEAR_2025: {
         autonomyRate: { default: 0, type: Number },
         endDate: {
           default: null,

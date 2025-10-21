@@ -21,13 +21,13 @@
 import {
   type ApiPlace,
   CommonOpeningHours,
+  CommonPlaceEntity,
   Modalities,
   PlaceStatus,
   PlaceType,
   PlaceUpdateCampaign,
   PlaceVisibility,
   Publics,
-  CommonPlaceEntity,
   SOLIGUIDE_COUNTRIES,
   SUPPORTED_LANGUAGES,
 } from "@soliguide/common";
@@ -40,17 +40,17 @@ import { PlaceUpdateCampaignSchema } from "./placeUpdateCampaign.model";
 import { PublicsSchema } from "./publics.model";
 
 import {
-  AirtableSyncSchema,
   AIRTABLE_SYNC_DEFAULT,
+  AirtableSyncSchema,
 } from "../../airtable/models/airtableSync.model";
-import { OpeningHoursSchema } from "./opening-hours.model";
 import { TEMP_INFO } from "./default_values/TEMP_INFO.const";
+import { EntitySchema } from "./entity.model";
+import { OpeningHoursSchema } from "./opening-hours.model";
 import { ParcoursSchema } from "./parcours.model";
 import { PositionSchema } from "./position.model";
 import { ServiceSchema } from "./service.model";
 import { SourceSchema } from "./source.model";
 import { TempInfoSchema } from "./temp-info.model";
-import { EntitySchema } from "./entity.model";
 
 const PlaceSchema = new mongoose.Schema(
   {
@@ -88,6 +88,10 @@ const PlaceSchema = new mongoose.Schema(
         type: PlaceUpdateCampaignSchema,
       },
       MID_YEAR_2025: {
+        default: new PlaceUpdateCampaign(),
+        type: PlaceUpdateCampaignSchema,
+      },
+      END_YEAR_2025: {
         default: new PlaceUpdateCampaign(),
         type: PlaceUpdateCampaignSchema,
       },

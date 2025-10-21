@@ -20,12 +20,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <div class="alert alert-warning" *ngIf="shouldShowExternalBanner">
   <div class="my-2 fw-bold text-center">
-    {{
-      "EXTERNAL_SOURCE_CAMPAIGN_BANNER"
-        | translate
-          : {
-              brandName: THEME_CONFIGURATION.brandName
-            }
-    }}
+    {{ "EXTERNAL_SOURCE_CAMPAIGN_BANNER" | translate }}
   </div>
 </div>
