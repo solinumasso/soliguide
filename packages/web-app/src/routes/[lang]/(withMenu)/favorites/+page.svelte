@@ -24,13 +24,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
   import { ROUTES_CTX_KEY } from '$lib/client';
-  import { favorites } from '$lib/client/favorites';
+  import { favorites, FAVORITES_LIMIT } from '$lib/client/favorites';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import { themeStore } from '$lib/theme';
   import type { ThemeDefinition } from '$lib/theme/types';
   import { SupportedLanguagesCode } from '@soliguide/common';
-  import { Button, Text, PageLoader } from '@soliguide/design-system';
+  import { Button, Text, PageLoader, InfoBlock } from '@soliguide/design-system';
   import ResultsCard from '../places/components/card/ResultsCard.svelte';
   import pageStore from './index';
   
@@ -47,6 +47,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   });
 
   $: pageStore.syncWithFavorites($favorites);
+  $: isFavoritesLimitReached = $favorites.length >= FAVORITES_LIMIT;
 </script>
 
 <svelte:head>
@@ -94,6 +95,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         </div>
       {:else}
         <div class="list">
+          {#if isFavoritesLimitReached}
+            <div class="favorites-limit-banner">
+              <InfoBlock
+                withIcon={true}
+                variant="error"
+                text={$i18n.t('FAVORITES_LIMIT_REACHED_BANNER')}
+              />
+            </div>
+          {/if}
           {#each $pageStore.favoritePlaces as place}
             <div class="card-wrapper">
               <ResultsCard {place} id={place.id?.toString()} category={''} />
@@ -125,6 +135,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     flex-direction: column;
     gap: var(--spacingXL);
     width: 100%;
+  }
+
+  .favorites-limit-banner {
+    margin-bottom: var(--spacingLG);
   }
 
   .no-results {
