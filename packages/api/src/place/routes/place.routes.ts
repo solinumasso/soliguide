@@ -21,6 +21,7 @@
 import express, { type NextFunction } from "express";
 import {
   CountryCodes,
+  FAVORITES_LIMIT,
   SoliguideCountries,
   SUPPORTED_LANGUAGES_BY_COUNTRY,
   SupportedLanguagesCode,
@@ -143,12 +144,18 @@ router.post(
   async (req: ExpressRequest, res: ExpressResponse) => {
     try {
       const { ids } = req.bodyValidated;
+      const uniqueIds = Array.from(new Set<number>(ids));
+      const limitedIds = uniqueIds.slice(0, FAVORITES_LIMIT);
       
-      const places = await getPlacesByIds(ids);
+      const places = await getPlacesByIds(limitedIds);
+      const placeById = new Map(places.map((place) => [place.lieu_id, place]));
+      const orderedPlaces = limitedIds
+        .map((id) => placeById.get(id))
+        .filter((place): place is typeof places[number] => place !== undefined);
 
       const lookupResults: ApiSearchResults = {
-        nbResults: places.length,
-        places
+        nbResults: orderedPlaces.length,
+        places: orderedPlaces,
       };
 
       const country = req.bodyValidated?.country ?? CountryCodes.FR;

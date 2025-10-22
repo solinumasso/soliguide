@@ -21,7 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <script lang="ts">
   import { Toast } from '@soliguide/design-system';
   import { fly } from 'svelte/transition';
-  import { removeToast, toasts } from '$lib/toast/toast.store';
+  import { removeToast, toastRenderKey, toasts } from '$lib/toast/toast.store';
 
   const createVerticalFlyConfig = (offset: number) => ({
     duration: 200,
@@ -34,21 +34,47 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </script>
 
 <div class="toast-container">
-  {#each $toasts as toast (toast.id)}
-    {@const { id, variant, description, withIcon, dismissible, autoDismiss, showLoader, loaderDuration } = toast}
-    <div class="toast-wrapper" in:fly={toastEnterTransition} out:fly={toastLeaveTransition}>
-      <Toast
-        variant={variant}
-        description={description}
-        withIcon={withIcon}
-        dismissible={dismissible}
-        autoDismiss={autoDismiss}
-        showLoader={showLoader}
-        loaderDuration={loaderDuration}
-        on:close={() => removeToast(id)}
-      />
-    </div>
-  {/each}
+  {#key $toastRenderKey}
+    {#each $toasts as toast (toast.id)}
+      {@const {
+        id,
+        variant,
+        description,
+        withIcon,
+        dismissible,
+        autoDismiss,
+        showLoader,
+        loaderDuration,
+        withButton,
+        withButtonLink,
+        buttonLabel,
+        buttonLinkLabel,
+        buttonLinkHref,
+        buttonAction: toastButtonAction
+      } = toast}
+      <div class="toast-wrapper" in:fly={toastEnterTransition} out:fly={toastLeaveTransition}>
+        <Toast
+          variant={variant}
+          description={description}
+          withIcon={withIcon}
+          dismissible={dismissible}
+          autoDismiss={autoDismiss}
+          showLoader={showLoader}
+          loaderDuration={loaderDuration}
+          withButton={withButton}
+          withButtonLink={withButtonLink}
+          buttonLabel={buttonLabel ?? ''}
+          buttonLinkLabel={buttonLinkLabel ?? ''}
+          buttonLinkHref={buttonLinkHref ?? ''}
+          buttonAction={() => {
+            toastButtonAction?.();
+            removeToast(id);
+          }}
+          on:close={() => removeToast(id)}
+        />
+      </div>
+    {/each}
+  {/key}
 </div>
 
 <style lang="scss">

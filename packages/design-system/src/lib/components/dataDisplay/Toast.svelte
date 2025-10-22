@@ -24,6 +24,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import Close from 'svelte-google-materialdesign-icons/Close.svelte';
   import InfoIcon from '$lib/components/InfoIcon.svelte';
   import Button from '$lib/components/buttons/Button.svelte';
+  import ButtonLink from '$lib/components/buttons/ButtonLink.svelte';
   import DOMPurify from 'dompurify';
   import i18n from '$lib/i18n';
   import type { ToastVariant } from '$lib/types/Toast';
@@ -43,6 +44,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let autoDismiss = true;
   export let showLoader = true;
   export let loaderDuration: number | null = null;
+  export let withButton = false;
+  export let withButtonLink = false;
+  export let buttonLabel = '';
+  export let buttonLinkLabel = '';
+  export let buttonLinkHref = '';
+  /* eslint-disable-next-line @typescript-eslint/no-empty-function */
+  export let buttonAction = () => {};
 
   const dispatch = createEventDispatcher<{ close: void }>();
 
@@ -89,6 +97,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   onDestroy(clearDismissTimer);
 
   $: shouldShowLoader = showLoader && autoDismiss;
+  $: showButton = withButton;
+  $: showButtonLink = withButtonLink;
 </script>
 
 <article class={toastClass} role="status" aria-live="polite" aria-atomic="true">
@@ -106,6 +116,20 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           {@html DOMPurify.sanitize(description)}
         </Text>
       </div>
+      {#if showButton}
+        <div class="toast-action">
+          <Button type="neutralOutlined" size="xsmall" on:click={buttonAction}>
+            {buttonLabel}
+          </Button>
+        </div>
+      {/if}
+      {#if showButtonLink}
+        <div class="toast-action">
+          <ButtonLink type="neutralOutlined" href={buttonLinkHref} size="xsmall">
+            {buttonLinkLabel}
+          </ButtonLink>
+        </div>
+      {/if}
     </div>
 
     {#if dismissible}
@@ -148,13 +172,22 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   .toast-column-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: var(--spacing3XS);
     flex: 1 1 auto;
+    align-items: center;
+    text-align: center;
+  }
+
+  .toast-action {
+    display: flex;
+    margin-top: var(--spacing3XS);
+    justify-content: center;
   }
 
   .toast-main {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     gap: var(--spacingXS);
     width: 100%;
     padding: var(--spacingSM) var(--spacingSM) var(--spacingXS);
@@ -163,7 +196,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   .toast-left-panel {
     display: flex;
     padding: var(--spacing3XS);
-    align-items: center;
+    align-items: flex-start;
+    align-self: flex-start;
   }
 
   .toast-close {
@@ -171,6 +205,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     padding: var(--spacing3XS);
     align-items: flex-start;
     margin-left: auto;
+    align-self: flex-start;
   }
 
   .toast-loader {
