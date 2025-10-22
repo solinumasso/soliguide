@@ -84,13 +84,13 @@ export default (fetcher = fetch) => {
     }
   ): Promise<SearchResult> => {
     if (!isValidStringEnumValue(SupportedLanguagesCode, lang)) {
-      throw Error(`Bad request, lang ${lang} is invalid`);
+      throw new Error(`Bad request, lang ${lang} is invalid`);
     }
     if (!Array.isArray(ids) || ids.length === 0) {
-      throw Error('Bad request, ids must be a non-empty array');
+      throw new Error('Bad request, ids must be a non-empty array');
     }
     if (ids.some(id => typeof id !== 'number' || id <= 0)) {
-      throw Error('Bad request, all ids must be positive numbers');
+      throw new Error('Bad request, all ids must be positive numbers');
     }
     
     return fetcher(`/api/${lang}/places/lookup`, {

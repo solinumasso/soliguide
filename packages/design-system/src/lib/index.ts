@@ -26,7 +26,6 @@ import PageLoader from './components/PageLoader.svelte';
 import ComponentUsingTranslation from './components/ComponentUsingTranslation.svelte';
 import ThemeContext from './theme/ThemeContext.svelte';
 import ToggleButton from './components/ToggleButton.svelte';
-import ActionButton from './components/ActionButton.svelte';
 import AppIcon from './components/AppIcon.svelte';
 import InfoIcon from './components/InfoIcon.svelte';
 import Link from './components/Link.svelte';
@@ -81,8 +80,6 @@ import {
   Healing,
   Home,
   HomeWork,
-  IconFavoriteOff,
-  IconFavoriteOn,
   IconHomeOff,
   IconHomeOn,
   IconSearchOff,
@@ -150,7 +147,6 @@ import { Accordion, AccordionGroup } from './components/dataDisplay/Accordion/in
 import BasicCard from './components/dataDisplay/BasicCard.svelte';
 import TextClamper from './components/dataDisplay/TextClamper.svelte';
 import InfoBlock from './components/dataDisplay/InfoBlock.svelte';
-import Toast from './components/dataDisplay/Toast.svelte';
 import Tile from './components/Tile.svelte';
 
 import Modal from './components/feedback/Modal.svelte';
@@ -169,7 +165,6 @@ export type { types };
 export {
   Button,
   ButtonLink,
-  ActionButton,
   ComponentUsingTranslation,
   InputText,
   FormControl,
@@ -219,8 +214,6 @@ export {
   Healing,
   Home,
   HomeWork,
-  IconFavoriteOff,
-  IconFavoriteOn,
   IconHomeOff,
   IconHomeOn,
   IconSearchOff,
@@ -297,7 +290,6 @@ export {
   BasicCard,
   TextClamper,
   InfoBlock,
-  Toast,
   changeDesignSystemLocale,
   getDesignSystemLocale,
   Badge,
@@ -307,3 +299,7 @@ export {
   Modal,
   Link
 };
+
+export { default as ActionButton } from './components/ActionButton.svelte';
+export { IconFavoriteOff, IconFavoriteOn } from './components/icons';
+export { default as Toast } from './components/dataDisplay/Toast.svelte';
