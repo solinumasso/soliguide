@@ -48,14 +48,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { favorites, toggleFavorite } from '$lib/client/favorites';
   import { notifyFavoriteChange } from '$lib/toast/toast.store';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
-  import type { SearchResultItem } from '$lib/models/types';
+  import type { SearchResultPlaceCard } from '$lib/models/types';
 
   const { captureEvent } = getSearchResultPageController(searchService);
 
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
 
-  export let place: SearchResultItem;
+  export let place: SearchResultPlaceCard;
   export let id: string;
   export let category: string;
 
