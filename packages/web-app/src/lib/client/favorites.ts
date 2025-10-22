@@ -18,10 +18,12 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import { FAVORITES_LIMIT as COMMON_FAVORITES_LIMIT } from '@soliguide/common';
 import { get, writable } from 'svelte/store';
 import { getStorageItem, setStorageItem } from './storage';
 
 const STORAGE_KEY_FAVORITES = 'favorites';
+export const FAVORITES_LIMIT = COMMON_FAVORITES_LIMIT;
 
 export const getFavoriteIds = (): number[] => {
   try {
@@ -39,14 +41,20 @@ export const setFavoriteIds = (favoriteIds: number[]) => {
 export const favoriteIds = writable<number[]>(getFavoriteIds());
 
 export const addFavorite = (id: number) => {
-  favoriteIds.update(ids => ids.includes(id) ? ids : [...ids, id]);
+  favoriteIds.update((ids) => {
+    if (ids.includes(id)) return ids;
+    if (ids.length >= FAVORITES_LIMIT) return ids;
+    return [...ids, id];
+  });
 };
 
 export const removeFavorite = (id: number) => {
   favoriteIds.update(ids => ids.filter(fId => fId !== id));
 };
 
-export const toggleFavorite = (id: number): 'added' | 'removed' => {
+export type FavoriteToggleStatus = 'added' | 'removed' | 'limitReached';
+
+export const toggleFavorite = (id: number): FavoriteToggleStatus => {
   const currentIds = get(favoriteIds);
 
   if (currentIds.includes(id)) {
@@ -54,7 +62,13 @@ export const toggleFavorite = (id: number): 'added' | 'removed' => {
     return 'removed';
   }
 
-  favoriteIds.set([...currentIds, id]);
+  if (currentIds.length >= FAVORITES_LIMIT) {
+    return 'limitReached';
+  }
+
+  const newIds = [...currentIds, id];
+  favoriteIds.set(newIds);
+
   return 'added';
 };
 
