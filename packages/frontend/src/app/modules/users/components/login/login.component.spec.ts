@@ -29,8 +29,7 @@ import {
   waitForAsync,
 } from "@angular/core/testing";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { Router } from "@angular/router";
-import { RouterTestingModule } from "@angular/router/testing";
+import { Router, RouterModule } from "@angular/router";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
@@ -78,7 +77,7 @@ describe("LoginComponent", () => {
         HttpClientTestingModule,
         NgbModule,
         ReactiveFormsModule,
-        RouterTestingModule.withRoutes([
+        RouterModule.forRoot([
           {
             path: `${THEME_CONFIGURATION.defaultLanguage}/organisations/${USER_PRO_MOCK.organizations[0].organization_id}`,
             redirectTo: "",
