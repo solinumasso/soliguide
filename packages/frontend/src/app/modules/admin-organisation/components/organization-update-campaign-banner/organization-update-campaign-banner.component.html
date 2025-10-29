@@ -18,30 +18,42 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
+@if(organisation && needUpdated && campaignIsActive && canEdit) {
 <div *ngIf="organisation && needUpdated && campaignIsActive && canEdit">
   <div class="alert alert-warning py-3">
-    <div class="row align-items-center justify-content-between" *ngIf="me.pro">
-      <div class="col-md-9 fw-bold">
-        {{
-          "SOLIGUIDE_TO_UPDATE_CAMPAIGN_NAME"
-            | translate
-              : {
-                  brandName: THEME_CONFIGURATION.brandName
-                }
-        }}
+    @if(me.pro){
+    <div class="row align-items-center justify-content-between">
+      <div class="col-md-9">
+        <strong class="fw-bold">
+          {{ "STRUCTURE_NEED_UPDATE" | translate }}
+        </strong>
+        <p [innerHtml]="'STRUCTURE_TERMINATE_UPDATE' | translate"></p>
       </div>
-      <div class="d-grid gap-2 col-md-3 align-self-end">
-        <a class="btn btn-primary" [routerLink]="[routePrefix, 'campaign']">
-          {{ "UPDATE_CAMPAIGN_NAME" | translate }}
+      <div class="col-md-3 text-end">
+        <a
+          class="btn btn-block btn-secondary"
+          [routerLink]="[
+            routePrefix,
+            'campaign',
+            'orga',
+            organisation.organization_id
+          ]"
+          (click)="
+            captureEvent('click-complete-campaign-update-banner-button', {
+              campaign: CAMPAIGN_DEFAULT_NAME
+            })
+          "
+        >
+          {{ "ENTER_SEASONAL_CHANGES" | translate }}
         </a>
       </div>
     </div>
-
+    } @else if (!me.pro) {
     <div class="row align-items-center justify-content-between" *ngIf="!me.pro">
       <div class="col-md-9 fw-bold">
-        {{ "STRUCTURE_NEED_UPDATE" | translate }}
+        {{ "ONLINE_STRUCTURES_NOT_UPDATED" | translate }}
         <br />
-        {{ "STRUCTURE_TERMINATE_UPDATE" | translate }}
+        {{ "UPDATE_STRUCTURE_TO_ENSURE_DATA_QUALITY" | translate }}
       </div>
       <div class="col-md-3 text-end">
         <a
@@ -62,5 +74,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         </a>
       </div>
     </div>
+    }
   </div>
 </div>
+}

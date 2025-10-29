@@ -156,6 +156,6 @@ export const computeCampaignBanner = (placeResult: ApiPlace): PlaceCampaignBanne
   }
 
   return isExternal
-    ? PlaceCampaignBannerMessage.WEBAPP_EXTERNAL_SOURCE_CAMPAIGN_BANNER
+    ? PlaceCampaignBannerMessage.EXTERNAL_SOURCE_CAMPAIGN_BANNER
     : PlaceCampaignBannerMessage.WEBAPP_CAMPAIGN_BANNER_MESSAGE;
 };
