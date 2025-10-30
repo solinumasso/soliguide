@@ -18,32 +18,27 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import type { SupportedLanguagesCode, SoliguideCountries, Themes } from '@soliguide/common';
+import type { SupportedLanguagesCode } from '@soliguide/common';
+import type { SearchResultPlaceCard } from '$lib/models/types';
+import type { Writable } from 'svelte/store';
 
-export interface ThemeDefinition {
-  name: Themes;
-  brandName: string;
-  country: SoliguideCountries;
-  defaultLanguage: SupportedLanguagesCode;
-  supportedLanguages: SupportedLanguagesCode[];
-  media: {
-    homeIllustration: string;
-    favoritesIllustration: string;
-    logos: {
-      inline: string;
-      original: string;
-      symbol: string;
-    };
-  };
-  links: {
-    fichesPratiques: string;
-    solinumSite: string;
-    becomeTranslator: string;
-    cookiePolicy: string;
-    privacyPolicy: string;
-    dataProtectionAgreement: string;
-    legalNotice: string;
-    termsAndConditions: string;
-  };
-  chatWebsiteId: string | undefined | null;
+export interface PageState {
+  loading: boolean;
+  favoritePlaces: SearchResultPlaceCard[];
+  error: string | null;
+  lang: SupportedLanguagesCode;
+}
+
+export interface CachedFavoritesData {
+  favoriteIds: number[];
+  places: SearchResultPlaceCard[];
+  lang: string;
+  timestamp: number;
+}
+
+export interface FavoritesPageController {
+  loadFavoritePlaces: (favoriteIds: number[]) => Promise<void>;
+  setPlaces: (places: SearchResultPlaceCard[]) => void;
+  syncWithFavorites: (favoriteIds: number[]) => void;
+  subscribe: Writable<PageState>['subscribe'];
 }

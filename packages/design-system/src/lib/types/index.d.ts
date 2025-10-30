@@ -39,6 +39,8 @@ import type { SpinnerSize, SpinnerType } from './Spinner';
 import type { LinkSize, LinkColor } from './Link';
 import type { VariationType } from './Icons';
 import type { TileVariant } from './Tile';
+import type { ToastVariant } from './Toast';
+import type { TopbarAction, TopbarActionType, TopbarActionEventKey } from './TopbarAction';
 
 export type {
   ButtonType,
@@ -75,5 +77,9 @@ export type {
   LinkSize,
   LinkColor,
   VariationType,
-  TileVariant
+  TileVariant,
+  ToastVariant,
+  TopbarAction,
+  TopbarActionType,
+  TopbarActionEventKey
 };

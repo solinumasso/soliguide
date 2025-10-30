@@ -299,3 +299,7 @@ export {
   Modal,
   Link
 };
+
+export { default as ActionButton } from './components/ActionButton.svelte';
+export { IconFavoriteOff, IconFavoriteOn } from './components/icons';
+export { default as Toast } from './components/dataDisplay/Toast.svelte';
