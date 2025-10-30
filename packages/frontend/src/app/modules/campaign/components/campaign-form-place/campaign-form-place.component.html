@@ -18,7 +18,8 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
-<div class="container my-4" *ngIf="place">
+@if (place) {
+<div class="container my-4">
   <div class="row">
     <div class="col-9 my-3">
       <h1 class="form-title">
@@ -120,30 +121,23 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     </div>
   </div>
 
-  <app-campaign-form-closed
-    *ngIf="place.campaigns.runningCampaign.currentStep === 0"
-    [(place)]="place"
-  ></app-campaign-form-closed>
-
-  <app-campaign-form-hours
-    *ngIf="place.campaigns.runningCampaign.currentStep === 1"
-    [(place)]="place"
-  ></app-campaign-form-hours>
-
+  @if (place.campaigns.runningCampaign.currentStep === 0) {
+  <app-campaign-form-closed [(place)]="place"></app-campaign-form-closed>
+  } @else if (place.campaigns.runningCampaign.currentStep === 1) {
+  <app-campaign-form-hours [(place)]="place"></app-campaign-form-hours>
+  } @else if (place.campaigns.runningCampaign.currentStep === 2) {
   <app-campaign-form-services
-    *ngIf="place.campaigns.runningCampaign.currentStep === 2"
     [place]="place"
     (updatePlace)="updatePlace($event)"
   ></app-campaign-form-services>
-
+  } @else if (place.campaigns.runningCampaign.currentStep === 3) {
   <app-campaign-form-infos
-    *ngIf="place.campaigns.runningCampaign.currentStep === 3"
     [(place)]="place"
     [orgaId]="orgaId"
     [isAdmin]="me.admin"
   ></app-campaign-form-infos>
-
-  <div class="row" *ngIf="place.campaigns.runningCampaign.currentStep > 3">
+  } @else if (place.campaigns.runningCampaign.currentStep > 3) {
+  <div class="row">
     <div class="col-md-12 my-4">
       <div class="form-container row justify-content-center">
         <div class="col-12 text-center">
@@ -237,4 +231,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       <br />
     </div>
   </div>
+  }
 </div>
+}
