@@ -60,6 +60,7 @@ import { DisplayHolidaysComponent } from "../place/standalone-components/display
     DisplayTempBannerComponent,
     DisplayHolidaysComponent,
   ],
+  exports: [PlaceComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [PlaceService],
 })
