@@ -30,6 +30,7 @@ import {
   CountryCodes,
   getPosition,
   SupportedLanguagesCode,
+  Phone,
 } from "@soliguide/common";
 
 import { AT_FIELDS_IDS } from "../constants";
@@ -104,6 +105,20 @@ const generateContentForPlace = (
 
   if (isCreation) {
     delete content.id;
+  }
+
+  if (place.entity?.mail) {
+    content.fields[AT_FIELDS_IDS[AirtableEntityType.PLACE].mail] =
+      place.entity.mail;
+  }
+
+  if (place.entity.phones.length > 0 && place.entity.phones[0]?.phoneNumber) {
+    const phones = place.entity.phones
+      .map((phone: Phone) => parsePhoneNumber(phone, CountryCodes.FR))
+      .filter(Boolean)
+      .join("\n");
+
+    content.fields[AT_FIELDS_IDS[AirtableEntityType.PLACE].phone] = phones;
   }
 
   if (
