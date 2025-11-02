@@ -22,38 +22,38 @@ import { TerritoriesNotif } from "../types";
 
 export const TERRITORIES_NOTIF: TerritoriesNotif = {
   "01": {
-    senderEmail: "ain@solinum.org",
+    senderEmail: "aura@solinum.org",
     senderFirstName: "L'équipe Soliguide Ain",
     senderName: "Solinum Ain",
   },
   "02": {
-    senderEmail: "contact@solinum.org",
+    senderEmail: "hauts-de-france@solinum.org",
     senderFirstName: "L'équipe Soliguide Aisne",
     senderName: "Solinum Aisne",
   },
   "03": {
-    senderEmail: "contact@solinum.org",
+    senderEmail: "aura@solinum.org",
     senderFirstName: "L'équipe Soliguide Allier",
     senderName: "Solinum Allier",
   },
   "04": {
-    senderEmail: "alpesdehauteprovence@solinum.org",
+    senderEmail: "paca-corse@solinum.org",
     senderFirstName: "L'équipe Soliguide Alpes-de-Haute-Provence",
     senderName: "Solinum Alpes-de-Haute-Provence",
   },
   "05": {
-    senderEmail: "hautesalpes@solinum.org",
+    senderEmail: "leo.jenty@solinum.org",
     senderFirstName: "L'équipe Soliguide Hautes-Alpes",
     senderName: "Solinum Hautes-Alpes",
   },
   "06": {
     senderEmail: "alpesmaritimes@solinum.org",
-    senderFirstName: "Perrine de Soliguide",
+    senderFirstName: "L'équipe Soliguide Alpes-Maritimes",
     senderName: "Solinum Alpes-Maritimes",
   },
   "07": {
     senderEmail: "ardeche@solinum.org",
-    senderFirstName: "Manal de Soliguide",
+    senderFirstName: "L'équipe Soliguide Ardèche",
     senderName: "Solinum Ardèche",
   },
   "08": {
@@ -83,7 +83,7 @@ export const TERRITORIES_NOTIF: TerritoriesNotif = {
   },
   "13": {
     senderEmail: "bouchesdurhone@solinum.org",
-    senderFirstName: "Léna de Soliguide",
+    senderFirstName: "L'équipe Soliguide Bouches-du-Rhône",
     senderName: "Solinum Bouches-du-Rhône",
   },
   "14": {
@@ -98,7 +98,7 @@ export const TERRITORIES_NOTIF: TerritoriesNotif = {
   },
   "16": {
     senderEmail: "charente@solinum.org",
-    senderFirstName: "Sarah de Soliguide",
+    senderFirstName: "L'équipe Soliguide Charente",
     senderName: "Solinum Charente",
   },
   "17": {
@@ -108,7 +108,7 @@ export const TERRITORIES_NOTIF: TerritoriesNotif = {
   },
   "18": {
     senderEmail: "cher@soliguide.fr",
-    senderFirstName: "Tiphaine, Zoé et Antoine de Soliguide",
+    senderFirstName: "L'équipe Soliguide Cher",
     senderName: "Solinum Cher",
   },
   "19": {
@@ -117,7 +117,7 @@ export const TERRITORIES_NOTIF: TerritoriesNotif = {
     senderName: "Solinum Corrèze",
   },
   "2A": {
-    senderEmail: "corsedusud@solinum.org",
+    senderEmail: "paca-corse@solinum.org",
     senderFirstName: "L'équipe Soliguide Corse-du-Sud",
     senderName: "Solinum Corse-du-Sud",
   },
@@ -127,13 +127,13 @@ export const TERRITORIES_NOTIF: TerritoriesNotif = {
     senderName: "Solinum Haute-Corse",
   },
   "21": {
-    senderEmail: "cotedor@soliguide.fr",
-    senderFirstName: "Agathe de Soliguide",
+    senderEmail: "cotedor@solinum.org",
+    senderFirstName: "L'équipe Soliguide Côte-d'Or",
     senderName: "Solinum Côte-d'Or",
   },
   "22": {
     senderEmail: "cotesdarmor@soliguide.fr",
-    senderFirstName: "François de Soliguide",
+    senderFirstName: "L'équipe Soliguide Côtes-d'Armor",
     senderName: "Solinum Côtes-d'Armor",
   },
   "23": {
@@ -143,7 +143,7 @@ export const TERRITORIES_NOTIF: TerritoriesNotif = {
   },
   "24": {
     senderEmail: "dordogne@solinum.org",
-    senderFirstName: "Anna de Soliguide",
+    senderFirstName: "L'équipe Soliguide Dordogne",
     senderName: "Solinum Dordogne",
   },
   "25": {
@@ -152,7 +152,7 @@ export const TERRITORIES_NOTIF: TerritoriesNotif = {
     senderName: "Solinum Doubs",
   },
   "26": {
-    senderEmail: "drome@solinum.org",
+    senderEmail: "aura@solinum.org",
     senderFirstName: "L'équipe Soliguide Drôme",
     senderName: "Solinum Drôme",
   },
@@ -167,18 +167,18 @@ export const TERRITORIES_NOTIF: TerritoriesNotif = {
     senderName: "Solinum Eure-et-Loir",
   },
   "29": {
-    senderEmail: "finistere@solinum.org",
+    senderEmail: "bretagne@solinum.org",
     senderFirstName: "L'équipe Soliguide Finistère",
     senderName: "Solinum Finistère",
   },
   "30": {
     senderEmail: "gard@solinum.org",
-    senderFirstName: "Robin de Soliguide",
+    senderFirstName: "L'équipe Soliguide Gard",
     senderName: "Solinum Gard",
   },
   "31": {
     senderEmail: "hautegaronne@solinum.org",
-    senderFirstName: "Maud de Soliguide",
+    senderFirstName: "L'équipe Soliguide Haute-Garonne",
     senderName: "Solinum Haute-Garonne",
   },
   "32": {
@@ -193,26 +193,26 @@ export const TERRITORIES_NOTIF: TerritoriesNotif = {
   },
   "34": {
     senderEmail: "herault@solinum.org",
-    senderFirstName: "Andrea de Soliguide",
+    senderFirstName: "L'équipe Soliguide Hérault",
     senderName: "Solinum Hérault",
   },
   "35": {
-    senderEmail: "illeetvilaine@solinum.org",
+    senderEmail: "bretagne@solinum.org",
     senderFirstName: "L'équipe Soliguide Ille-et-Vilaine",
     senderName: "Solinum Ille-et-Vilaine",
   },
   "36": {
     senderEmail: "indre@soliguide.fr",
-    senderFirstName: "Marie de Soliguide",
+    senderFirstName: "L'équipe Soliguide Indre",
     senderName: "Solinum Indre",
   },
   "37": {
-    senderEmail: "indreetloire@solinum.org",
+    senderEmail: "indreetloire@soliguide.fr",
     senderFirstName: "L'équipe Soliguide Indre-et-Loire",
     senderName: "Solinum Indre-et-Loire",
   },
   "38": {
-    senderEmail: "isere@solinum.org",
+    senderEmail: "aura@solinum.org",
     senderFirstName: "L'équipe Soliguide Isère",
     senderName: "Solinum Isère",
   },
@@ -237,17 +237,17 @@ export const TERRITORIES_NOTIF: TerritoriesNotif = {
     senderName: "Solinum Loire",
   },
   "43": {
-    senderEmail: "hauteloire@solinum.org",
+    senderEmail: "aura@solinum.org",
     senderFirstName: "L'équipe Soliguide Haute-Loire",
     senderName: "Solinum Haute-Loire",
   },
   "44": {
-    senderEmail: "loireatlantique@solinum.org",
+    senderEmail: "pays-de-la-loire@solinum.org",
     senderFirstName: "L'équipe Soliguide Loire-Atlantique",
     senderName: "Solinum Loire-Atlantique",
   },
   "45": {
-    senderEmail: "loiret@solinum.org",
+    senderEmail: "centre-val-de-loire@solinum.org",
     senderFirstName: "L'équipe Soliguide Loiret",
     senderName: "Solinum Loiret",
   },
@@ -267,7 +267,7 @@ export const TERRITORIES_NOTIF: TerritoriesNotif = {
     senderName: "Solinum Lozère",
   },
   "49": {
-    senderEmail: "maineetloire@solinum.org",
+    senderEmail: "pays-de-la-loire@solinum.org",
     senderFirstName: "L'équipe Soliguide Maine-et-Loire",
     senderName: "Solinum Maine-et-Loire",
   },
@@ -287,7 +287,7 @@ export const TERRITORIES_NOTIF: TerritoriesNotif = {
     senderName: "Solinum Haute-Marne",
   },
   "53": {
-    senderEmail: "mayenne@solinum.org",
+    senderEmail: "pays-de-la-loire@solinum.org",
     senderFirstName: "L'équipe Soliguide Mayenne",
     senderName: "Solinum Mayenne",
   },
@@ -303,7 +303,7 @@ export const TERRITORIES_NOTIF: TerritoriesNotif = {
   },
   "56": {
     senderEmail: "morbihan@solinum.org",
-    senderFirstName: "Mathilde de Soliguide",
+    senderFirstName: "L'équipe Soliguide Morbihan",
     senderName: "Solinum Morbihan",
   },
   "57": {
@@ -318,7 +318,7 @@ export const TERRITORIES_NOTIF: TerritoriesNotif = {
   },
   "59": {
     senderEmail: "nord@solinum.org",
-    senderFirstName: "Gabrielle de Soliguide",
+    senderFirstName: "L'équipe Soliguide Nord",
     senderName: "Solinum Nord",
   },
   "60": {
@@ -338,7 +338,7 @@ export const TERRITORIES_NOTIF: TerritoriesNotif = {
   },
   "63": {
     senderEmail: "puydedome@soliguide.fr",
-    senderFirstName: "Fanta et Cécile de Soliguide",
+    senderFirstName: "L'équipe Soliguide Puy-de-Dôme",
     senderName: "Solinum Puy-de-Dôme",
   },
   "64": {
@@ -357,17 +357,17 @@ export const TERRITORIES_NOTIF: TerritoriesNotif = {
     senderName: "Solinum Pyrénées-Orientales",
   },
   "67": {
-    senderEmail: "basrhin@solinum.org",
-    senderFirstName: "Philippe de Soliguide",
+    senderEmail: "alsace@solinum.org",
+    senderFirstName: "L'équipe Soliguide Bas-Rhin",
     senderName: "Solinum Bas-Rhin",
   },
   "68": {
-    senderEmail: "hautrhin@solinum.org",
-    senderFirstName: "Laetitia de Soliguide",
+    senderEmail: "alsace@solinum.org",
+    senderFirstName: "L'équipe Soliguide Haut-Rhin",
     senderName: "Solinum Haut-Rhin",
   },
   "69": {
-    senderEmail: "rhone@solinum.org",
+    senderEmail: "aura@solinum.org",
     senderFirstName: "L'équipe Soliguide Rhône",
     senderName: "Solinum Rhône",
   },
@@ -382,39 +382,39 @@ export const TERRITORIES_NOTIF: TerritoriesNotif = {
     senderName: "Solinum Saône-et-Loire",
   },
   "72": {
-    senderEmail: "sarthe@solinum.org",
+    senderEmail: "pays-de-la-loire@solinum.org",
     senderFirstName: "L'équipe Soliguide Sarthe",
     senderName: "Solinum Sarthe",
   },
   "73": {
-    senderEmail: "savoie@solinum.org",
+    senderEmail: "aura@solinum.org",
     senderFirstName: "L'équipe Soliguide Savoie",
     senderName: "Solinum Savoie",
   },
   "74": {
     senderEmail: "annecy@soliguide.fr",
-    senderFirstName: "Florence de Soliguide",
+    senderFirstName: "L'équipe Soliguide Haute-Savoie",
     senderName: "Solinum Haute-Savoie",
   },
   "75": {
-    senderEmail: "soliguide.idf@solinum.org",
-    senderFirstName: "Alexine de Soliguide",
-    senderName: "Soliguide Île-de-France",
+    senderEmail: "paris@solinum.org",
+    senderFirstName: "L'équipe Soliguide Paris",
+    senderName: "Solinum Paris",
   },
   "76": {
     senderEmail: "seinemaritime@solinum.org",
-    senderFirstName: "Amandine de Soliguide",
+    senderFirstName: "L'équipe Soliguide Seine-Maritime",
     senderName: "Solinum Seine-Maritime",
   },
   "77": {
-    senderEmail: "soliguide.idf@solinum.org",
-    senderFirstName: "Kevin de Soliguide",
-    senderName: "Soliguide Île-de-France",
+    senderEmail: "seineetmarne@solinum.org",
+    senderFirstName: "L'équipe Soliguide Seine-et-Marne",
+    senderName: "Solinum Seine-et-Marne",
   },
   "78": {
-    senderEmail: "soliguide.idf@solinum.org",
-    senderFirstName: "Cassandre de Soliguide",
-    senderName: "Soliguide Île-de-France",
+    senderEmail: "yvelines@solinum.org",
+    senderFirstName: "L'équipe Soliguide Yvelines",
+    senderName: "Solinum Yvelines",
   },
   "79": {
     senderEmail: "deuxsevres@solinum.org",
@@ -442,23 +442,23 @@ export const TERRITORIES_NOTIF: TerritoriesNotif = {
     senderName: "Solinum Var",
   },
   "84": {
-    senderEmail: "vaucluse@solinum.org",
+    senderEmail: "leo.jenty@solinum.org",
     senderFirstName: "L'équipe Soliguide Vaucluse",
     senderName: "Solinum Vaucluse",
   },
   "85": {
-    senderEmail: "vendee@solinum.org",
+    senderEmail: "pays-de-la-loire@solinum.org",
     senderFirstName: "L'équipe Soliguide Vendée",
     senderName: "Solinum Vendée",
   },
   "86": {
     senderEmail: "vienne@solinum.org",
-    senderFirstName: "Antoine de Soliguide",
+    senderFirstName: "L'équipe Soliguide Vienne",
     senderName: "Solinum Vienne",
   },
   "87": {
     senderEmail: "hautevienne@solinum.org",
-    senderFirstName: "Anna de Soliguide",
+    senderFirstName: "L'équipe Soliguide Haute-Vienne",
     senderName: "Solinum Haute-Vienne",
   },
   "88": {
@@ -477,29 +477,29 @@ export const TERRITORIES_NOTIF: TerritoriesNotif = {
     senderName: "Solinum Territoire de Belfort",
   },
   "91": {
-    senderEmail: "soliguide.idf@solinum.org",
-    senderFirstName: "Gaëlle de Soliguide",
-    senderName: "Soliguide Île-de-France",
+    senderEmail: "essonne@solinum.org",
+    senderFirstName: "L'équipe Soliguide Essonne",
+    senderName: "Solinum Essonne",
   },
   "92": {
-    senderEmail: "soliguide.idf@solinum.org",
-    senderFirstName: "Cassandre de Soliguide",
-    senderName: "Soliguide Île-de-France",
+    senderEmail: "hautsdeseine@solinum.org",
+    senderFirstName: "L'équipe Soliguide Hauts-de-Seine",
+    senderName: "Solinum Hauts-de-Seine",
   },
   "93": {
-    senderEmail: "soliguide.idf@solinum.org",
-    senderFirstName: "Léo de Soliguide",
-    senderName: "Soliguide Île-de-France",
+    senderEmail: "seinesaintdenis@solinum.org",
+    senderFirstName: "L'équipe Soliguide Seine-Saint-Denis",
+    senderName: "Solinum Seine-Saint-Denis",
   },
   "94": {
-    senderEmail: "soliguide.idf@solinum.org",
-    senderFirstName: "Gaëlle de Soliguide",
-    senderName: "Soliguide Île-de-France",
+    senderEmail: "valdemarne@solinum.org",
+    senderFirstName: "L'équipe Soliguide Val-de-Marne",
+    senderName: "Solinum Val-de-Marne",
   },
   "95": {
-    senderEmail: "soliguide.idf@solinum.org",
-    senderFirstName: "Inti de Soliguide",
-    senderName: "Soliguide Île-de-France",
+    senderEmail: "valdoise@solinum.org",
+    senderFirstName: "L'équipe Soliguide Val-d'Oise",
+    senderName: "Solinum Val-d'Oise",
   },
   "971": {
     senderEmail: "guadeloupe@solinum.org",
@@ -518,18 +518,18 @@ export const TERRITORIES_NOTIF: TerritoriesNotif = {
   },
   "974": {
     senderEmail: "lareunion@solinum.org",
-    senderFirstName: "Ariane de Soliguide",
+    senderFirstName: "L'équipe Soliguide La Réunion",
     senderName: "Solinum La Réunion",
-  },
-  "976": {
-    senderEmail: "mayotte@solinum.org",
-    senderFirstName: "L'équipe Soliguide Mayotte",
-    senderName: "Solinum Mayotte",
   },
   "975": {
     senderEmail: "contact@solinum.org",
     senderFirstName: "L'équipe Soliguide Saint-Pierre-et-Miquelon",
     senderName: "Solinum Saint-Pierre-et-Miquelon",
+  },
+  "976": {
+    senderEmail: "mayotte@solinum.org",
+    senderFirstName: "L'équipe Soliguide Mayotte",
+    senderName: "Solinum Mayotte",
   },
   "977": {
     senderEmail: "contact@solinum.org",

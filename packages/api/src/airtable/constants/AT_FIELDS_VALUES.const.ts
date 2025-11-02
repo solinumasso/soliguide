@@ -24,6 +24,7 @@ import {
   CampaignStatus,
   KeyStringValueString,
   KeyUserStatusValueString,
+  PairingSources,
   PlaceStatus,
 } from "@soliguide/common";
 
@@ -104,4 +105,12 @@ export const PLACE_CAMPAIGN_SOURCE: Record<CampaignSource, string> = {
   EMAIL: "Email",
   CHAT: "Tchat",
   VISIT: "Visite",
+} as const;
+
+export const PLACE_EXTERNAL_SOURCES: Record<PairingSources | string, string> = {
+  [PairingSources.DORA]: "Dora",
+  [PairingSources.CRF]: "Croix-Rouge française",
+  [PairingSources.ALISOL]: "Alisol",
+  [PairingSources.CROUS_PDL]: "Crous Pays de la Loire",
+  restos: "Restos du Cœur",
 } as const;
