@@ -51,6 +51,7 @@ import { FormPlaceModule } from "../form-place/form-place.module";
 import { PlaceModule } from "../place/place.module";
 import { SharedModule } from "../shared/shared.module";
 import { DisplayHorairesComponent } from "../place/standalone-components/display-horaires/horaires.component";
+import { PlacePageModule } from "../place-page/place-page.module";
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { DisplayHorairesComponent } from "../place/standalone-components/display
     FormsModule,
     NgbModule,
     PlaceModule,
+    PlacePageModule,
     DisplayHorairesComponent,
     ReactiveFormsModule,
     SharedModule,

@@ -30,7 +30,7 @@ describe("getSenderData", () => {
 
   // Test for valid territory code
   test("returns correct values for a valid territory", () => {
-    expect(getSenderData("01", "senderEmail")).toBe("ain@solinum.org");
+    expect(getSenderData("01", "senderEmail")).toBe("aura@solinum.org");
     expect(getSenderData("01", "senderFirstName")).toBe(
       "L'équipe Soliguide Ain"
     );

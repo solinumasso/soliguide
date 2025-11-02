@@ -115,9 +115,6 @@ export class CampaignFormServicesComponent implements OnInit {
         .setNoChangeForSection(this.place.lieu_id, "services")
         .subscribe({
           next: (place: Place) => {
-            this.toastr.success(
-              this.translateService.instant("INFORMATION_SAVED_SUCCESSFULLY")
-            );
             this.place = place;
             this.updatePlace.emit(this.place);
             this.loading = false;
