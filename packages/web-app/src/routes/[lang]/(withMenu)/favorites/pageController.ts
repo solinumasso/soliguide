@@ -22,6 +22,8 @@ import { writable, get } from 'svelte/store';
 import { SupportedLanguagesCode } from '@soliguide/common';
 import placesService from '$lib/services/placesService';
 import { favoriteKey, favoriteMatches, type FavoriteItem } from '$lib/models/favorite';
+import { posthogService } from '$lib/services/posthogService';
+import type { PosthogCaptureFunction } from '$lib/services/types';
 import type { PageState, CachedFavoritesData } from './types';
 
 const initialState: PageState = {
@@ -38,6 +40,9 @@ const favoritesEqual = (arr1: FavoriteItem[], arr2: FavoriteItem[]): boolean => 
 export const getFavoritesPageController = () => {
   const myPageStore = writable(initialState);
   const cachedDataStore = writable<CachedFavoritesData | null>(null);
+  const captureEvent: PosthogCaptureFunction = (eventName, properties) => {
+    posthogService.capture(`favorites-${eventName}`, properties);
+  };
 
   const isCacheValid = (favorites: FavoriteItem[], currentLang: SupportedLanguagesCode): boolean => {
     const cached = get(cachedDataStore);
@@ -129,6 +134,7 @@ export const getFavoritesPageController = () => {
   return {
     loadFavoritePlaces,
     syncWithFavorites,
-    subscribe: myPageStore.subscribe
+    subscribe: myPageStore.subscribe,
+    captureEvent
   };
 };
