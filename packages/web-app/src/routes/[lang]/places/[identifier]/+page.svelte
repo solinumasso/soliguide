@@ -42,6 +42,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { getPlaceDetailsPageController } from './pageController';
   import CampaignBanner from './components/CampaignBanner.svelte';
   import PlaceItinerarySection from './components/PlaceItinerarySection.svelte';
+  import { favoriteMatches } from '$lib/models/favorite';
 
   export let data: PageData;
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
@@ -105,8 +106,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     }
   };
 
-  $: favoriteIdsSet = new Set($favorites);
-  $: isFavorite = $pageStore.placeDetails.id ? favoriteIdsSet.has($pageStore.placeDetails.id) : false;
+  $: isFavorite = $favorites.some((favorite) =>
+    favoriteMatches(
+      favorite,
+      $pageStore.placeDetails.id,
+      $pageStore.placeDetails.crossingPointIndex
+    )
+  );
 
   $: favoriteAction = {
     label: $i18n.t('TOGGLE_FAVORITES'),
@@ -132,7 +138,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   on:navigate={goBack}
   on:favorite={() => {
     if ($pageStore.placeDetails.id) {
-      const status = toggleFavorite($pageStore.placeDetails.id);
+      const status = toggleFavorite(
+        $pageStore.placeDetails.id,
+        $pageStore.placeDetails.crossingPointIndex
+      );
       notifyFavoriteChange(status, i18n);
     }
   }}

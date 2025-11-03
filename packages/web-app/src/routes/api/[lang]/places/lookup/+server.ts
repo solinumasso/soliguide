@@ -26,16 +26,15 @@ import { getHeaders } from '$lib/server/services/headers';
  * Lookup places by IDs
  */
 export const POST = async (requestEvent: RequestEvent): Promise<Response> => {
-  const { ids } = await requestEvent.request.json();
-  const { lang } = requestEvent.params;
+  const requestBody = await requestEvent.request.json();
+  const favorites = Array.isArray(requestBody?.favorites) ? requestBody.favorites : [];
 
   const headers = getHeaders(requestEvent);
-
   const searchService = getSearchService();
   const result = await searchService.lookup(
     {
-      lang: lang ?? '',
-      ids
+      lang: requestEvent.params.lang ?? '',
+      favorites
     },
     headers
   );

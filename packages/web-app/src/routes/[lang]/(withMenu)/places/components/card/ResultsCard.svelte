@@ -50,6 +50,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { notifyFavoriteChange } from '$lib/toast/toast.store';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import type { SearchResultPlaceCard } from '$lib/models/types';
+  import { favoriteMatches } from '$lib/models/favorite';
 
   const { captureEvent } = getSearchResultPageController(searchService);
 
@@ -72,8 +73,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   const urlWithItinerary = `${typeof place.crossingPointIndex === 'number' ? `&crossingPointIndex=${place.crossingPointIndex}` : ''}`;
   const href = `${$routes.ROUTE_PLACES}/${place.seoUrl}?categorySearched=${category}${urlWithItinerary}`;
 
-  $: favoriteIdsSet = new Set($favorites);
-  $: isFavorite = favoriteIdsSet.has(place.id);
+  $: isFavorite = $favorites.some((favorite) =>
+    favoriteMatches(favorite, place.id, place.crossingPointIndex)
+  );
 </script>
 
 <Card>
@@ -119,7 +121,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               checked={isFavorite}
               aria-label={$i18n.t('TOGGLE_FAVORITES')}
               on:change={() => {
-                const status = toggleFavorite(place.id);
+                const status = toggleFavorite(place.id, place.crossingPointIndex);
                 notifyFavoriteChange(status, i18n);
               }}
             />
