@@ -142,6 +142,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         $pageStore.placeDetails.id,
         $pageStore.placeDetails.crossingPointIndex
       );
+      pageStore.captureEvent('manage-favorite', {
+        action: status === 'added' ? 'add' : 'remove',
+        placeId: $pageStore.placeDetails.id
+      });
       notifyFavoriteChange(status, i18n);
     }
   }}

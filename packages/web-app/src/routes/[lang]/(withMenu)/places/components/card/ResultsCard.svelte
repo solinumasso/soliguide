@@ -43,16 +43,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import ResultsCardServices from './ResultsCardServices.svelte';
   import DisplaySource from '$lib/components/DisplaySource.svelte';
   import { GeoTypes, kmOrMeters, TempInfoStatus } from '@soliguide/common';
-  import { getSearchResultPageController } from '../../pageController';
-  import { searchService } from '$lib/services';
 
   import { favorites, toggleFavorite } from '$lib/client/favorites';
   import { notifyFavoriteChange } from '$lib/toast/toast.store';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import type { SearchResultPlaceCard } from '$lib/models/types';
   import { favoriteMatches } from '$lib/models/favorite';
+  import type { PosthogCaptureFunction } from '$lib/services/types';
 
-  const { captureEvent } = getSearchResultPageController(searchService);
+  const captureEvent = getContext('CAPTURE_FCTN_CTX_KEY') as PosthogCaptureFunction;
 
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
@@ -122,6 +121,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               aria-label={$i18n.t('TOGGLE_FAVORITES')}
               on:change={() => {
                 const status = toggleFavorite(place.id, place.crossingPointIndex);
+                if (status === 'added' || status === 'removed') {
+                  captureEvent('manage-favorite', {
+                    action: status === 'added' ? 'add' : 'remove',
+                    placeId: place.id
+                  });
+                }
                 notifyFavoriteChange(status, i18n);
               }}
             />

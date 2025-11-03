@@ -134,6 +134,7 @@ interface PosthogProperties {
   clickedItem?: string;
   isDisabled?: boolean;
   place?: DataForLogs;
+  action?: string;
 }
 
 export interface ZendeskState {
