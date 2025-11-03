@@ -27,6 +27,7 @@ import { buildPlaceDetails } from '$lib/models/placeDetails';
 import type { RequestOptions, SearchParams } from './types';
 import type { PlaceDetails, SearchFavorisResult, SearchResult } from '$lib/models/types';
 import type { PlaceDetailsParams } from '$lib/services/types';
+import type { FavoriteItem } from '$lib/models/favorite';
 
 const apiUrl = env.API_URL;
 
@@ -118,13 +119,22 @@ export default (fetcher = fetch) => {
   const lookup = async (
     {
       lang,
-      ids
+      favorites
     }: {
       lang: string;
-      ids: number[];
+      favorites: FavoriteItem[];
     },
     commonHeaders: RequestOptions
   ): Promise<SearchFavorisResult> => {
+    if (!Array.isArray(favorites) || favorites.length === 0) {
+      return {
+        nbResults: 0,
+        places: []
+      };
+    }
+
+    const ids = [...new Set(favorites.map(({ lieuId }) => lieuId))];
+
     const url = `${apiUrl}place/lookup/${lang}`;
 
     const headers = {
@@ -141,7 +151,7 @@ export default (fetcher = fetch) => {
       headers
     });
 
-    return buildLookupResult(placesResult);
+    return buildLookupResult(placesResult, favorites);
   };
 
   return {

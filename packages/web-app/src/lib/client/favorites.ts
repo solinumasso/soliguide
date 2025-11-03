@@ -20,60 +20,110 @@
  */
 import { FAVORITES_LIMIT as COMMON_FAVORITES_LIMIT } from '@soliguide/common';
 import { get, writable } from 'svelte/store';
+import { favoriteKey, type FavoriteItem } from '$lib/models/favorite';
 import { getStorageItem, setStorageItem } from './storage';
 
 const STORAGE_KEY_FAVORITES = 'favorites';
 export const FAVORITES_LIMIT = COMMON_FAVORITES_LIMIT;
 
-export const getFavoriteIds = (): number[] => {
+export type FavoriteToggleStatus = 'added' | 'removed' | 'limitReached';
+
+const loadFavorites = (): FavoriteItem[] => {
   try {
     const raw = getStorageItem(STORAGE_KEY_FAVORITES);
-    return raw ? JSON.parse(raw) : [];
+    if (!raw) return [];
+
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+
+    return parsed as FavoriteItem[];
   } catch {
     return [];
   }
 };
 
-export const setFavoriteIds = (favoriteIds: number[]) => {
-  setStorageItem(STORAGE_KEY_FAVORITES, JSON.stringify(favoriteIds));
+const persistFavorites = (favorites: FavoriteItem[]): FavoriteItem[] => {
+  const limited = favorites.slice(0, FAVORITES_LIMIT);
+  setStorageItem(STORAGE_KEY_FAVORITES, JSON.stringify(limited));
+  return limited;
 };
 
-export const favoriteIds = writable<number[]>(getFavoriteIds());
+const buildReference = (lieuId: number, crossingPointIndex?: number): FavoriteItem =>
+  typeof crossingPointIndex === 'number' && crossingPointIndex >= 0
+    ? { lieuId, crossingPointIndex }
+    : { lieuId };
 
-export const addFavorite = (id: number) => {
-  favoriteIds.update((ids) => {
-    if (ids.includes(id)) return ids;
-    if (ids.length >= FAVORITES_LIMIT) return ids;
-    return [...ids, id];
-  });
-};
+const computeToggle = (
+  favorites: FavoriteItem[],
+  reference: FavoriteItem
+): [FavoriteToggleStatus, FavoriteItem[]] => {
+  const key = favoriteKey(reference);
 
-export const removeFavorite = (id: number) => {
-  favoriteIds.update(ids => ids.filter(fId => fId !== id));
-};
-
-export type FavoriteToggleStatus = 'added' | 'removed' | 'limitReached';
-
-export const toggleFavorite = (id: number): FavoriteToggleStatus => {
-  const currentIds = get(favoriteIds);
-
-  if (currentIds.includes(id)) {
-    favoriteIds.set(currentIds.filter((favoriteId) => favoriteId !== id));
-    return 'removed';
+  if (favorites.some((entry) => favoriteKey(entry) === key)) {
+    return ['removed', favorites.filter((entry) => favoriteKey(entry) !== key)];
   }
 
-  if (currentIds.length >= FAVORITES_LIMIT) {
-    return 'limitReached';
+  if (favorites.length >= FAVORITES_LIMIT) {
+    return ['limitReached', favorites];
   }
 
-  const newIds = [...currentIds, id];
-  favoriteIds.set(newIds);
-
-  return 'added';
+  return ['added', [...favorites, reference]];
 };
 
-export { favoriteIds as favorites };
+const createFavoritesStore = () => {
+  const store = writable<FavoriteItem[]>(persistFavorites(loadFavorites()));
 
-favoriteIds.subscribe((val) => {
-  setFavoriteIds(val);
-});
+  const add = (favorite: FavoriteItem): void => {
+    store.update((current) => {
+      const key = favoriteKey(favorite);
+      if (current.some((entry) => favoriteKey(entry) === key) || current.length >= FAVORITES_LIMIT) {
+        return current;
+      }
+
+      return persistFavorites([...current, favorite]);
+    });
+  };
+
+  const remove = (favorite: FavoriteItem): void => {
+    store.update((current) => {
+      const key = favoriteKey(favorite);
+      const filtered = current.filter((entry) => favoriteKey(entry) !== key);
+      return filtered.length === current.length ? current : persistFavorites(filtered);
+    });
+  };
+
+  const toggle = (lieuId: number, crossingPointIndex?: number): FavoriteToggleStatus => {
+    const reference = buildReference(lieuId, crossingPointIndex);
+    const [status, nextFavorites] = computeToggle(get(store), reference);
+
+    if (status !== 'limitReached') {
+      store.update(() => persistFavorites(nextFavorites));
+    }
+
+    return status;
+  };
+
+  return {
+    subscribe: store.subscribe,
+    add,
+    remove,
+    toggle
+  };
+};
+
+const favoritesStore = createFavoritesStore();
+
+export const addFavorite = (favorite: FavoriteItem): void => {
+  favoritesStore.add(favorite);
+};
+
+export const removeFavorite = (favorite: FavoriteItem): void => {
+  favoritesStore.remove(favorite);
+};
+
+export const toggleFavorite = (lieuId: number, crossingPointIndex?: number): FavoriteToggleStatus =>
+  favoritesStore.toggle(lieuId, crossingPointIndex);
+
+export const favorites = {
+  subscribe: favoritesStore.subscribe
+};

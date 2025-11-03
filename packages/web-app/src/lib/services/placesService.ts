@@ -21,8 +21,9 @@
 import { fetch } from '$lib/client';
 import { Categories, GeoTypes, SupportedLanguagesCode } from '@soliguide/common';
 import { posthogService } from '$lib/services/posthogService';
+import type { FavoriteItem } from '$lib/models/favorite';
 import type { PlaceDetailsParams, SearchOptions, SearchParams } from './types';
-import type { PlaceDetails, SearchResult } from '$lib/models/types';
+import type { PlaceDetails, SearchFavorisResult, SearchResult } from '$lib/models/types';
 import { isValidStringEnumValue } from '$lib/ts';
 
 export default (fetcher = fetch) => {
@@ -78,24 +79,34 @@ export default (fetcher = fetch) => {
   };
 
   const lookupPlaces = (
-    { lang, ids }: { 
-      lang: SupportedLanguagesCode; 
-      ids: number[];
+    {
+      lang,
+      favorites
+    }: {
+      lang: SupportedLanguagesCode;
+      favorites: FavoriteItem[];
     }
-  ): Promise<SearchResult> => {
+  ): Promise<SearchFavorisResult> => {
     if (!isValidStringEnumValue(SupportedLanguagesCode, lang)) {
       throw new Error(`Bad request, lang ${lang} is invalid`);
     }
-    if (!Array.isArray(ids) || ids.length === 0) {
-      throw new Error('Bad request, ids must be a non-empty array');
+    if (!Array.isArray(favorites) || favorites.length === 0) {
+      throw new Error('Bad request, favorites must be a non-empty array');
     }
-    if (ids.some(id => typeof id !== 'number' || id <= 0)) {
-      throw new Error('Bad request, all ids must be positive numbers');
+    if (
+      favorites.some(
+        (favorite) =>
+          typeof favorite?.lieuId !== 'number' ||
+          favorite.lieuId <= 0 ||
+          Number.isNaN(favorite.lieuId)
+      )
+    ) {
+      throw new Error('Bad request, all lieuId must be positive numbers');
     }
-    
-    return fetcher(`/api/${lang}/places/lookup`, {
+
+    return fetcher<SearchFavorisResult>(`/api/${lang}/places/lookup`, {
       method: 'POST',
-      body: JSON.stringify({ ids }),
+      body: JSON.stringify({ favorites }),
       headers: posthogService.getHeaders() as unknown as Record<string, string>
     });
   };
