@@ -19,7 +19,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <script lang="ts">
-  import { onMount, getContext } from 'svelte';
+  import { onMount, getContext, setContext } from 'svelte';
   import { get } from 'svelte/store';
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
@@ -38,7 +38,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   const theme: ThemeDefinition = get(themeStore.getTheme());
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
 
+  setContext('CAPTURE_FCTN_CTX_KEY', pageStore.captureEvent);
+
   const goSearch = () => {
+    pageStore.captureEvent('launch-search');
     goto($routes.ROUTE_SEARCH);
   };
 
