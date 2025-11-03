@@ -117,7 +117,7 @@ export interface SearchResult extends SearchResultNumber {
 }
 
 export interface SearchFavorisResult extends SearchResultNumber {
-  places: LightPlaceCard[];
+  places: SearchResultPlaceCard[];
 }
 
 // Work in progress fiche détaillée
@@ -201,6 +201,7 @@ export interface PlaceDetails {
   id: number;
   address: string;
   campaignBanner: PlaceCampaignBannerMessage | null;
+  crossingPointIndex?: number;
   description: string;
   email: string;
   facebook: string;
