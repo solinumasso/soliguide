@@ -21,6 +21,7 @@
 import { writable, get } from 'svelte/store';
 import { SupportedLanguagesCode } from '@soliguide/common';
 import placesService from '$lib/services/placesService';
+import { favoriteKey, favoriteMatches, type FavoriteItem } from '$lib/models/favorite';
 import type { PageState, CachedFavoritesData } from './types';
 
 const initialState: PageState = {
@@ -30,19 +31,19 @@ const initialState: PageState = {
   lang: SupportedLanguagesCode.FR
 };
 
-const arraysEqual = (arr1: number[], arr2: number[]): boolean => {
-  return arr1.length === arr2.length && arr1.every((val, index) => val === arr2[index]);
+const favoritesEqual = (arr1: FavoriteItem[], arr2: FavoriteItem[]): boolean => {
+  return arr1.length === arr2.length && arr1.every((favorite, index) => favoriteKey(favorite) === favoriteKey(arr2[index]));
 };
 
 export const getFavoritesPageController = () => {
   const myPageStore = writable(initialState);
   const cachedDataStore = writable<CachedFavoritesData | null>(null);
 
-  const isCacheValid = (favoriteIds: number[], currentLang: SupportedLanguagesCode): boolean => {
+  const isCacheValid = (favorites: FavoriteItem[], currentLang: SupportedLanguagesCode): boolean => {
     const cached = get(cachedDataStore);
     if (!cached) return false;
     if (currentLang !== cached.lang) return false;
-    if (!arraysEqual(favoriteIds, cached.favoriteIds)) return false;
+    if (!favoritesEqual(favorites, cached.favorites)) return false;
     
     const now = new Date();
     const cacheDate = new Date(cached.timestamp);
@@ -62,10 +63,10 @@ export const getFavoritesPageController = () => {
     }
   };
 
-  const syncWithFavorites = (favoriteIds: number[]): void => {
+  const syncWithFavorites = (favorites: FavoriteItem[]): void => {
     const currentState = get(myPageStore);
-    const stillFavorites = currentState.favoritePlaces.filter(place => 
-      favoriteIds.includes(place.id)
+    const stillFavorites = currentState.favoritePlaces.filter((place) =>
+      favorites.some((favorite) => favoriteMatches(favorite, place.id, place.crossingPointIndex))
     );
     
     myPageStore.update(state => ({
@@ -74,8 +75,11 @@ export const getFavoritesPageController = () => {
     }));
   };
 
-  const loadFavoritePlaces = async (favoriteIds: number[], lang?: SupportedLanguagesCode): Promise<void> => {
-    if (favoriteIds.length === 0) {
+  const loadFavoritePlaces = async (
+    favorites: FavoriteItem[],
+    lang?: SupportedLanguagesCode
+  ): Promise<void> => {
+    if (favorites.length === 0) {
       myPageStore.set({ ...initialState });
       cachedDataStore.set(null);
       return;
@@ -83,7 +87,7 @@ export const getFavoritesPageController = () => {
 
     const currentLang = lang || SupportedLanguagesCode.FR;
 
-    if (isCacheValid(favoriteIds, currentLang)) {
+    if (isCacheValid(favorites, currentLang)) {
       useCachedData(currentLang);
       return;
     }
@@ -97,11 +101,11 @@ export const getFavoritesPageController = () => {
     try {
       const result = await placesService().lookupPlaces({
         lang: currentLang,
-        ids: favoriteIds
+        favorites
       });
 
       cachedDataStore.set({
-        favoriteIds: [...favoriteIds],
+        favorites: [...favorites],
         places: result.places,
         lang: currentLang,
         timestamp: Date.now()

@@ -19,6 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import type { SupportedLanguagesCode } from '@soliguide/common';
+import type { FavoriteItem } from '$lib/models/favorite';
 import type { SearchResultPlaceCard } from '$lib/models/types';
 import type { Writable } from 'svelte/store';
 
@@ -30,15 +31,14 @@ export interface PageState {
 }
 
 export interface CachedFavoritesData {
-  favoriteIds: number[];
+  favorites: FavoriteItem[];
   places: SearchResultPlaceCard[];
   lang: string;
   timestamp: number;
 }
 
 export interface FavoritesPageController {
-  loadFavoritePlaces: (favoriteIds: number[]) => Promise<void>;
-  setPlaces: (places: SearchResultPlaceCard[]) => void;
-  syncWithFavorites: (favoriteIds: number[]) => void;
+  loadFavoritePlaces: (favorites: FavoriteItem[], lang?: SupportedLanguagesCode) => Promise<void>;
+  syncWithFavorites: (favorites: FavoriteItem[]) => void;
   subscribe: Writable<PageState>['subscribe'];
 }
