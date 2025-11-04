@@ -1,3 +1,17 @@
+# [4.103.0](https://github.com/solinumasso/soliguide/compare/v4.102.0...v4.103.0) (2025-11-04)
+
+
+### Features
+
+* **api:** add mail and phone to sync AT ([de4e3a6](https://github.com/solinumasso/soliguide/commit/de4e3a6b8c1db6b7a675713e9c56e87cc187bc13))
+* **api:** delete old migrations ([c1ececa](https://github.com/solinumasso/soliguide/commit/c1ececad275d6348ff9214c9362682b4b24042ff))
+* **api:** enforce node version to 22 ([e179f50](https://github.com/solinumasso/soliguide/commit/e179f5003836a590cf754615029c4c69093f3662))
+* **frontend:** duplicate maj and edit mail templates ([09184b9](https://github.com/solinumasso/soliguide/commit/09184b93b965ca0823e0f293105cf80fccbbb616))
+* **frontend:** modify banner and buttons wording form campaign ([670c997](https://github.com/solinumasso/soliguide/commit/670c997363f0899c821a6875a1e897c773509f89))
+* **frontend:** modify campaign form wording ([ad7bc21](https://github.com/solinumasso/soliguide/commit/ad7bc21d10602b3d2f1286f540b0822d9a1a4b28))
+* **frontend:** upgrade MAJ form ([0bda175](https://github.com/solinumasso/soliguide/commit/0bda175c974ca7e58d061679655129a3718e843c))
+* **web-app:** redirect to source website when needed ([d411f76](https://github.com/solinumasso/soliguide/commit/d411f7634171c6389ddd1657ebb1e53cd87ebdf6))
+
 # [4.102.0](https://github.com/solinumasso/soliguide/compare/v4.101.0...v4.102.0) (2025-10-17)
 
 
