@@ -19,17 +19,10 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <script lang="ts">
-export let disabled = false;
+  export let disabled = false;
 </script>
 
-<section
-  class="card-header"
-  class:disabled
-  on:click
-  role="button"
-  tabindex="0"
-  on:keydown
->
+<section class="card-header" class:disabled on:click role="button" tabindex="0" on:keydown>
   <slot />
 </section>
 

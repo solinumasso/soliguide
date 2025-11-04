@@ -34,7 +34,10 @@ const initialState: PageState = {
 };
 
 const favoritesEqual = (arr1: FavoriteItem[], arr2: FavoriteItem[]): boolean => {
-  return arr1.length === arr2.length && arr1.every((favorite, index) => favoriteKey(favorite) === favoriteKey(arr2[index]));
+  return (
+    arr1.length === arr2.length &&
+    arr1.every((favorite, index) => favoriteKey(favorite) === favoriteKey(arr2[index]))
+  );
 };
 
 export const getFavoritesPageController = () => {
@@ -44,12 +47,15 @@ export const getFavoritesPageController = () => {
     posthogService.capture(`favorites-${eventName}`, properties);
   };
 
-  const isCacheValid = (favorites: FavoriteItem[], currentLang: SupportedLanguagesCode): boolean => {
+  const isCacheValid = (
+    favorites: FavoriteItem[],
+    currentLang: SupportedLanguagesCode
+  ): boolean => {
     const cached = get(cachedDataStore);
     if (!cached) return false;
     if (currentLang !== cached.lang) return false;
     if (!favoritesEqual(favorites, cached.favorites)) return false;
-    
+
     const now = new Date();
     const cacheDate = new Date(cached.timestamp);
     return now.toDateString() === cacheDate.toDateString();
@@ -58,7 +64,7 @@ export const getFavoritesPageController = () => {
   const useCachedData = (currentLang: SupportedLanguagesCode): void => {
     const cached = get(cachedDataStore);
     if (cached) {
-      myPageStore.update(state => ({
+      myPageStore.update((state) => ({
         ...state,
         favoritePlaces: cached.places,
         loading: false,
@@ -73,8 +79,8 @@ export const getFavoritesPageController = () => {
     const stillFavorites = currentState.favoritePlaces.filter((place) =>
       favorites.some((favorite) => favoriteMatches(favorite, place.id, place.crossingPointIndex))
     );
-    
-    myPageStore.update(state => ({
+
+    myPageStore.update((state) => ({
       ...state,
       favoritePlaces: stillFavorites
     }));
@@ -97,7 +103,7 @@ export const getFavoritesPageController = () => {
       return;
     }
 
-    myPageStore.update(state => ({
+    myPageStore.update((state) => ({
       ...state,
       loading: true,
       error: null
@@ -116,14 +122,14 @@ export const getFavoritesPageController = () => {
         timestamp: Date.now()
       });
 
-      myPageStore.update(state => ({
+      myPageStore.update((state) => ({
         ...state,
         favoritePlaces: result.places,
         loading: false,
         lang: currentLang
       }));
     } catch {
-      myPageStore.update(state => ({
+      myPageStore.update((state) => ({
         ...state,
         error: 'Error loading favorites',
         loading: false

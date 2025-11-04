@@ -49,10 +49,7 @@ interface ToastState {
 
 const toastState = writable<ToastState>({ items: [], renderKey: 0 });
 
-export const showToast = (
-  toast: Omit<ToastNotification, 'id'>,
-  replaceCurrent = false
-): string => {
+export const showToast = (toast: Omit<ToastNotification, 'id'>, replaceCurrent = false): string => {
   const defaults: Omit<ToastNotification, 'id' | 'description' | 'variant'> = {
     withIcon: true,
     dismissible: true,
@@ -100,33 +97,36 @@ export const toasts = derived(toastState, ($state) => $state.items);
 
 export const toastRenderKey = derived(toastState, ($state) => $state.renderKey);
 
-export const notifyFavoriteChange = (
-  status: FavoriteToggleStatus,
-  i18nStore: I18nStore
-): void => {
+export const notifyFavoriteChange = (status: FavoriteToggleStatus, i18nStore: I18nStore): void => {
   const i18n = get(i18nStore);
   const isAdded = status === 'added';
   const isLimitReached = status === 'limitReached';
 
   if (isLimitReached) {
     const routes = getRoutes(i18n.language);
-    showToast({
-      description: i18n.t('FAVORITES_TOAST_LIMIT_REACHED'),
-      variant: 'error',
-      autoDismiss: true,
-      showLoader: true,
-      loaderDuration: 6000,
-      withButton: true,
-      buttonLabel: i18n.t('FAVORITES_TOAST_LIMIT_ACTION'),
-      buttonAction: () => {
-        goto(routes.ROUTE_FAVORITES);
-      }
-    }, true);
+    showToast(
+      {
+        description: i18n.t('FAVORITES_TOAST_LIMIT_REACHED'),
+        variant: 'error',
+        autoDismiss: true,
+        showLoader: true,
+        loaderDuration: 6000,
+        withButton: true,
+        buttonLabel: i18n.t('FAVORITES_TOAST_LIMIT_ACTION'),
+        buttonAction: () => {
+          goto(routes.ROUTE_FAVORITES);
+        }
+      },
+      true
+    );
     return;
   }
 
-  showToast({
-    description: i18n.t(isAdded ? 'FAVORITES_TOAST_ADDED' : 'FAVORITES_TOAST_REMOVED'),
-    variant: isAdded ? 'success' : 'warning'
-  }, true);
+  showToast(
+    {
+      description: i18n.t(isAdded ? 'FAVORITES_TOAST_ADDED' : 'FAVORITES_TOAST_REMOVED'),
+      variant: isAdded ? 'success' : 'warning'
+    },
+    true
+  );
 };
