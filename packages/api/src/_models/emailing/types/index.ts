@@ -27,4 +27,3 @@ export * from "./EmailCallToActionData.type";
 export * from "./EmailData.type";
 export * from "./EmailEvents.type";
 export * from "./EmailTemplateContent.type";
-export * from "./PartnerCampaignEmailTemplatesContent.type";

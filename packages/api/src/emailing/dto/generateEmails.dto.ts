@@ -25,7 +25,6 @@ import { CampaignEmailNameToSync } from "../../_models";
 import { territoriesDto } from "../../_utils/dto/territories.dto";
 
 import { CHECK_STRING_NULL } from "../../config/expressValidator.config";
-import { Partners } from "../../partners";
 
 export const generateEmailsDto = [
   body("emailType")
@@ -33,8 +32,4 @@ export const generateEmailsDto = [
     .isIn(Object.values(CampaignEmailNameToSync)),
 
   ...territoriesDto,
-
-  body("partner")
-    .if(body("partner").exists(CHECK_STRING_NULL))
-    .isIn(Object.values(Partners)),
 ];

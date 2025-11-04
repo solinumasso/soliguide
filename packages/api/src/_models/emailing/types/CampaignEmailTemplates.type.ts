@@ -21,14 +21,12 @@
 
 import { CampaignName, AnyDepartmentCode } from "@soliguide/common";
 import { CampaignEmailTemplatesContent } from "./CampaignEmailTemplatesContent.type";
-import { Partners } from "../../../partners";
 
 export type CampaignEmailTemplates = {
   campaign: CampaignName;
   confirm: boolean;
   confirmDate: Date | null;
   emails: CampaignEmailTemplatesContent;
-  partner?: Partners;
   senderEmail: string;
   senderName: string;
   territory: AnyDepartmentCode;
