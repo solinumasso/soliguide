@@ -25,6 +25,7 @@ import type {
   CommonPlacePosition,
   CountryCodes,
   PlaceClosedHolidays,
+  PlaceStatus,
   PlaceOpeningStatus,
   PlaceType,
   TempInfoStatus
@@ -98,6 +99,7 @@ export interface LightPlaceCard {
   services: Categories[];
   sources: Source[];
   status: PlaceOpeningStatus;
+  placeStatus: PlaceStatus;
   todayInfo: TodayInfo;
   tempInfo: SearchResultTempInfo;
 }
