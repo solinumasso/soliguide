@@ -94,6 +94,7 @@ const buildLightPlaceCard = (
       .filter((category) => typeof category !== 'undefined'),
     sources: buildSources(place.sources),
     status,
+    placeStatus: place.status,
     todayInfo: computeTodayInfo(place, status),
     tempInfo: computeTempInfo(place.tempInfos)
   };
