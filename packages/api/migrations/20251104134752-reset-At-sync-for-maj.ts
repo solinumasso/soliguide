@@ -19,7 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { Db } from "mongodb";
-import { logger } from "../../../src/general/logger";
+import { logger } from "../src/general/logger";
 
 const message =
   "Reinitialize AT sync: set lastSync to null for excluded entities in lieux and users collections";
