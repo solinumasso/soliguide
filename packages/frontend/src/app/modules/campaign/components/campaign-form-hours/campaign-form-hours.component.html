@@ -34,7 +34,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <fieldset>
               <div class="col-12">
                 <legend class="label required">
-                  {{ "OPENING_HOURS_ON_PUBLIC_HOLIDAYS" | translate }}
+                  {{ "FORM_HOURS_QUESTION" | translate }}
                 </legend>
                 <div class="text-primary">
                   <div>
@@ -101,9 +101,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <form [formGroup]="tempInfosForm">
               <div class="row" *ngIf="noChanges === false">
                 <div class="form-group col-12">
-                  <label class="form-label" for="description">{{
-                    contextData.descriptionLabel | translate
-                  }}</label>
+                  <label class="form-label" for="description"
+                    >{{ contextData.descriptionLabel | translate
+                    }}<span class="ms-1">{{
+                      "FACULTATIVE" | translate
+                    }}</span></label
+                  >
                   <ckeditor
                     formControlName="description"
                     ngDefaultControl

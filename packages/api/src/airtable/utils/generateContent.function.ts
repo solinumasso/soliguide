@@ -30,6 +30,9 @@ import {
   CountryCodes,
   getPosition,
   SupportedLanguagesCode,
+  Phone,
+  CommonPlaceSource,
+  PairingSources,
 } from "@soliguide/common";
 
 import { AT_FIELDS_IDS } from "../constants";
@@ -37,6 +40,7 @@ import { AT_FIELDS_IDS } from "../constants";
 import {
   EMAIL_STATUS,
   PLACE_AUTONOMY_MAJ,
+  PLACE_EXTERNAL_SOURCES,
   PLACE_OPENING_STATUS,
   PLACE_STATUS,
   PLACE_STATUS_MAJ,
@@ -66,6 +70,22 @@ const formatOrga = (frontUrl: string, organisations: any[]): string => {
     }, "");
   }
   return "";
+};
+
+const formatSources = (sources: CommonPlaceSource[] | undefined): string[] => {
+  if (!sources || sources.length === 0) {
+    return [];
+  }
+
+  return sources
+    .map((source: CommonPlaceSource) => {
+      if (source.name in PLACE_EXTERNAL_SOURCES) {
+        return PLACE_EXTERNAL_SOURCES[source.name as PairingSources | string];
+      }
+
+      return undefined;
+    })
+    .filter((sourceName): sourceName is string => Boolean(sourceName));
 };
 
 const generateContentForPlace = (
@@ -99,11 +119,32 @@ const generateContentForPlace = (
       [AT_FIELDS_IDS[AirtableEntityType.PLACE].city]: position?.city,
       [AT_FIELDS_IDS[AirtableEntityType.PLACE].visibility]:
         PLACE_VISIBILITY[place.visibility as PlaceVisibility],
+      [AT_FIELDS_IDS[AirtableEntityType.PLACE].toUpdate]:
+        place.campaigns[CAMPAIGN_DEFAULT_NAME].toUpdate,
+      [AT_FIELDS_IDS[AirtableEntityType.PLACE].sources]: formatSources(
+        place.sources
+      ),
     },
   } as AirtableRecordType;
 
   if (isCreation) {
     delete content.id;
+  }
+
+  if (place.entity?.mail) {
+    content.fields[AT_FIELDS_IDS[AirtableEntityType.PLACE].mail] =
+      place.entity.mail;
+  }
+
+  if (place.entity.phones.length > 0 && place.entity.phones[0]?.phoneNumber) {
+    const phones = place.entity.phones
+      .map((phone: Phone) =>
+        parsePhoneNumber(phone, phone.countryCode as CountryCodes)
+      )
+      .filter(Boolean)
+      .join("\n");
+
+    content.fields[AT_FIELDS_IDS[AirtableEntityType.PLACE].phone] = phones;
   }
 
   if (

@@ -62,6 +62,7 @@ export interface Source {
   label: string;
   licenseLabel: string;
   licenseLink: string;
+  url: string;
 }
 
 export interface SearchResultTempInfo {
@@ -72,7 +73,7 @@ export interface SearchResultTempInfo {
 
 export enum PlaceCampaignBannerMessage {
   WEBAPP_CAMPAIGN_BANNER_MESSAGE = 'WEBAPP_CAMPAIGN_BANNER_MESSAGE',
-  WEBAPP_EXTERNAL_SOURCE_CAMPAIGN_BANNER = 'WEBAPP_EXTERNAL_SOURCE_CAMPAIGN_BANNER'
+  EXTERNAL_SOURCE_CAMPAIGN_BANNER = 'EXTERNAL_SOURCE_CAMPAIGN_BANNER'
 }
 
 export interface DataForLogs {

@@ -19,8 +19,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { PairingSources } from "../enums";
-import { ApiPlace } from "../../place";
-import { EXTERNAL_UPDATES_ONLY_SOURCES, PAIRING_SOURCES } from "../constants";
+import { ApiPlace, CommonPlaceSource } from "../../place";
+import {
+  EXTERNAL_UPDATES_ONLY_SOURCES,
+  PAIRING_SOURCES,
+  SOURCES_DISPLAY_EXTERNAL_LINK,
+} from "../constants";
 
 export const checkIfSourceMustBeDisplayed = (
   sourceName: string,
@@ -37,4 +41,11 @@ export const isFromExternalSource = (place: ApiPlace): boolean => {
   return place.sources.some((source) =>
     checkIfSourceMustBeDisplayed(source.name, source.isOrigin)
   );
+};
+
+export const getSourceUrl = (source: CommonPlaceSource): string => {
+  if (SOURCES_DISPLAY_EXTERNAL_LINK.includes(source.name as PairingSources)) {
+    return source.ids.find((id) => id?.url)?.url ?? "";
+  }
+  return "";
 };

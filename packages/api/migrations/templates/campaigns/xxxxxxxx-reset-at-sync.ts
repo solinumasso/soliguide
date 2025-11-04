@@ -19,7 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { Db } from "mongodb";
-import { logger } from "../src/general/logger";
+import { logger } from "../../../src/general/logger";
 
 const message =
   "Reinitialize AT sync: set lastSync to null for excluded entities in lieux and users collections";
@@ -32,16 +32,18 @@ export const up = async (db: Db) => {
   logger.info(`[MIGRATION] - ${message}`);
 
   const filter = {
-    "atSync.excluded": false,
+    "atSync.excluded": { $ne: false },
   };
 
   const update = {
     $set: { "atSync.lastSync": null },
   };
 
+  // Étape 1 : Collection lieux
   const lieuxResult = await db.collection("lieux").updateMany(filter, update);
   logger.info(`[MIGRATION] - ${lieuxResult.modifiedCount} lieux updated`);
 
+  // Étape 2 : Collection users
   const usersResult = await db.collection("users").updateMany(filter, update);
   logger.info(`[MIGRATION] - ${usersResult.modifiedCount} users updated`);
 };

@@ -26,7 +26,7 @@ export const TEMP_INFOS_CONTEXT: {
 } = {
   closure: {
     descriptionLabel: "TEMP_CLOSURE_DESCRIPTION_LABEL",
-    descriptionPlaceHolder: "ENTER_REASON_FOR_CLOSING",
+    descriptionPlaceHolder: "TEMP_CLOSURE_REASON_FOR_CLOSING",
     title: "TEMP_CLOSURE_TITLE",
     alreadyPlannedTitle: "TEMP_CLOSURE_ALREADY_PLANNED_TITLE",
     nonePlannedValue: "TEMP_CLOSURE_NONE_PLANNED_VALUE",

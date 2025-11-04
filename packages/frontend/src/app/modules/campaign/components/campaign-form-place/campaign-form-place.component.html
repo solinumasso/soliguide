@@ -18,7 +18,8 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
-<div class="container my-4" *ngIf="place">
+@if (place) {
+<div class="container my-4">
   <div class="row">
     <div class="col-9 my-3">
       <h1 class="form-title">
@@ -35,7 +36,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       </a>
     </div>
   </div>
-
+  @if (!(place.campaigns.runningCampaign.currentStep === 4)) {
   <div class="py-4">
     <div class="row justify-content-md-center align-items-center">
       <button
@@ -119,31 +120,23 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       </button>
     </div>
   </div>
-
-  <app-campaign-form-closed
-    *ngIf="place.campaigns.runningCampaign.currentStep === 0"
-    [(place)]="place"
-  ></app-campaign-form-closed>
-
-  <app-campaign-form-hours
-    *ngIf="place.campaigns.runningCampaign.currentStep === 1"
-    [(place)]="place"
-  ></app-campaign-form-hours>
-
+  } @if (place.campaigns.runningCampaign.currentStep === 0) {
+  <app-campaign-form-closed [(place)]="place"></app-campaign-form-closed>
+  } @else if (place.campaigns.runningCampaign.currentStep === 1) {
+  <app-campaign-form-hours [(place)]="place"></app-campaign-form-hours>
+  } @else if (place.campaigns.runningCampaign.currentStep === 2) {
   <app-campaign-form-services
-    *ngIf="place.campaigns.runningCampaign.currentStep === 2"
     [place]="place"
     (updatePlace)="updatePlace($event)"
   ></app-campaign-form-services>
-
+  } @else if (place.campaigns.runningCampaign.currentStep === 3) {
   <app-campaign-form-infos
-    *ngIf="place.campaigns.runningCampaign.currentStep === 3"
     [(place)]="place"
     [orgaId]="orgaId"
     [isAdmin]="me.admin"
   ></app-campaign-form-infos>
-
-  <div class="row" *ngIf="place.campaigns.runningCampaign.currentStep > 3">
+  } @else if (place.campaigns.runningCampaign.currentStep > 3) {
+  <div class="row">
     <div class="col-md-12 my-4">
       <div class="form-container row justify-content-center">
         <div class="col-12 text-center">
@@ -153,50 +146,27 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             alt="Structure mise à jour"
           />
 
-          <h4>
+          <h4 class="fw-bold">
             {{ "COMPLETED_UPDATE_CAMPAIGN" | translate }}
           </h4>
         </div>
 
-        <div *ngIf="me.admin" class="col-3 my-3">
-          <app-campaign-source-update
-            [place]="place"
-            [placeIndex]="place.lieu_id"
-            [disabled]="
-              !place.campaigns.runningCampaign.general.endDate ||
-              place.campaigns.runningCampaign.autonomy === 'AUTONOMOUS'
-            "
-          ></app-campaign-source-update>
-          <div
-            class="warning-feedback-badge"
-            *ngIf="
-              place.campaigns.runningCampaign.source === CampaignSource.INTERNET
-            "
-          >
-            <fa-icon
-              [icon]="['fas', 'circle-exclamation']"
-              aria-hidden="true"
-            ></fa-icon>
-            <p class="my-0">
-              {{ "SOURCE_IS_NOT_RELIABLE" | translate }}
-            </p>
-          </div>
-        </div>
-
-        <div class="col-12 my-3 text-center">
+        <div class="col-12 mb-4 text-center">
           {{ "CAN_CHANGE_UPDATE_INFORMATION" | translate }}
         </div>
 
         <div class="col-12 text-center">
-          <a
-            [routerLink]="[routePrefix, 'manage-place', place.lieu_id]"
+          <button
             class="btn btn-outline-primary btn-lg me-5"
-            (click)="captureEvent({ name: 'click-go-back-to-form' })"
+            (click)="
+              updateStep(0); captureEvent({ name: 'click-go-back-to-form' })
+            "
+            type="button"
           >
             {{ "BACK_TO_EDITION" | translate }}
-          </a>
+          </button>
           <a
-            class="btn btn-primary btn-lg"
+            class="btn btn-secondary btn-lg"
             [routerLink]="[routePrefix, 'campaign']"
             (click)="
               captureEvent({ name: 'click-update-my-other-places-button' })
@@ -205,23 +175,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             {{ "UPDATE_MY_OTHER_PLACES" | translate }}
           </a>
         </div>
-        <i class="col-12 my-3 text-center">
-          {{ "CAMPAIGN_GUIDALIM_MESSAGE" | translate }}
-        </i>
       </div>
 
       <div class="row align-items-center">
         <div class="col-12">
           <h1 class="form-title">{{ "PLACE_OVERVIEW" | translate }}</h1>
           <div class="limite"></div>
-          <div class="form-step-description">
-            {{
-              "CHECKING_YOUR_INFORMATION_FOR_THE_CAMPAIGN_UPDATE"
-                | translate
-                  : {
-                      brandName: THEME_CONFIGURATION.brandName
-                    }
-            }}
+          <div class="form-container text-center">
+            <p
+              [innerHTML]="'CHECKING_YOUR_PERMANENT_INFORMATIONS' | translate"
+            ></p>
           </div>
         </div>
 
@@ -237,4 +200,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       <br />
     </div>
   </div>
+  }
 </div>
+}

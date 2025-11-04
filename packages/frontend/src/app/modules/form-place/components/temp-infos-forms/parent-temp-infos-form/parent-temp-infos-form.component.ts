@@ -345,6 +345,8 @@ export class ParentTempInfosFormComponent implements OnInit, OnDestroy {
   public saveTempInfosForCampaign = (section: CampaignFormSection): void => {
     this.submitted = true;
 
+    const isLastStep = section === "tempMessage";
+
     if (this.noChanges === true) {
       this.captureEvent("click-save", {
         changes: false,
@@ -356,9 +358,13 @@ export class ParentTempInfosFormComponent implements OnInit, OnDestroy {
           .setNoChangeForSection(this.place.lieu_id, section)
           .subscribe({
             next: (place: Place) => {
-              this.toastr.success(
-                this.translateService.instant("INFORMATION_SAVED_SUCCESSFULLY")
-              );
+              if (isLastStep) {
+                this.toastr.success(
+                  this.translateService.instant(
+                    "INFORMATION_SAVED_SUCCESSFULLY"
+                  )
+                );
+              }
               this.place = place;
               this.placeChange.emit(this.place);
               this.loading = false;
@@ -413,9 +419,11 @@ export class ParentTempInfosFormComponent implements OnInit, OnDestroy {
               this.place = new Place(response.place, true);
               this.placeChange.emit(this.place);
               this.tempInfosForm.reset();
-              this.toastr.success(
-                this.translateService.instant("SUCCESSFUL_ADDITION")
-              );
+              if (isLastStep) {
+                this.toastr.success(
+                  this.translateService.instant("SUCCESSFUL_ADDITION")
+                );
+              }
               this.loading = false;
               this.submitted = false;
             },

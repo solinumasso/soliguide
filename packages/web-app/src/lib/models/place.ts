@@ -30,6 +30,7 @@ import {
   PlaceOpeningStatus,
   checkIfSourceMustBeDisplayed,
   computeTempIsActive,
+  getSourceUrl,
   isFromExternalSource
 } from '@soliguide/common';
 import {
@@ -122,7 +123,8 @@ export const buildSources = (sources?: CommonPlaceSource[]): Source[] =>
               label: EXTERNAL_SOURCE_MAPPING[source.name as PairingSources].label ?? '',
               licenseLabel:
                 EXTERNAL_SOURCE_MAPPING[source.name as PairingSources].licenseLabel ?? '',
-              licenseLink: EXTERNAL_SOURCE_MAPPING[source.name as PairingSources].licenseLink ?? ''
+              licenseLink: EXTERNAL_SOURCE_MAPPING[source.name as PairingSources].licenseLink ?? '',
+              url: getSourceUrl(source)
             }
           ];
         }
@@ -154,6 +156,6 @@ export const computeCampaignBanner = (placeResult: ApiPlace): PlaceCampaignBanne
   }
 
   return isExternal
-    ? PlaceCampaignBannerMessage.WEBAPP_EXTERNAL_SOURCE_CAMPAIGN_BANNER
+    ? PlaceCampaignBannerMessage.EXTERNAL_SOURCE_CAMPAIGN_BANNER
     : PlaceCampaignBannerMessage.WEBAPP_CAMPAIGN_BANNER_MESSAGE;
 };

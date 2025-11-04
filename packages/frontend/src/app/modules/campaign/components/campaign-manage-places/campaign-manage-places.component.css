@@ -32,3 +32,7 @@
   display: inline-block;
   vertical-align: middle;
 }
+
+.banner {
+  background-color: #fef9c3;
+}

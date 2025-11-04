@@ -18,25 +18,43 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import { AllCampaign, FR_DEPARTMENT_CODES } from "@soliguide/common";
 import { Db } from "mongodb";
-
 import { logger } from "../src/general/logger";
+import { REMIND_ME_CAMPAIGN_MAILS_CONTENT } from "../src/_models";
+import { getSenderData } from "../src/emailing/utils/getSenderData";
 
-const message = "Fix wrong tempClosure description in restos nord";
+const message = "Update Remind-Me mails templates";
 
 export const down = () => {
-  logger.info("[ROLLBACK IMPOSSIBLE]");
+  logger.info("ROLLBACK IMPOSSIBLE");
 };
 
 export const up = async (db: Db) => {
   logger.info(`[MIGRATION] - ${message}`);
+  await db
+    .collection("emailsTemplates")
+    .deleteMany({ campaign: "ALL_CAMPAIGN" });
 
-  const result = await db
-    .collection("lieux")
-    .updateMany(
-      { "tempInfos.closure.description": "<p>-----</p>" },
-      { $set: { "tempInfos.closure.description": null } }
-    );
+  const emailsTemplates = [];
 
-  logger.info(`${result} modified documents`);
+  const FR_DEPARTMENTS_CODES_WITHOUT_DOM_TOM = FR_DEPARTMENT_CODES.filter(
+    (dprt) => dprt.length < 3
+  );
+
+  for (const territory of FR_DEPARTMENTS_CODES_WITHOUT_DOM_TOM) {
+    emailsTemplates.push({
+      confirm: false,
+      campaign: AllCampaign.ALL_CAMPAIGN,
+      confirmDate: null,
+      emails: REMIND_ME_CAMPAIGN_MAILS_CONTENT,
+      senderEmail: getSenderData(territory, "senderEmail"),
+      senderName: getSenderData(territory, "senderName"),
+      territory,
+    });
+  }
+
+  if (emailsTemplates.length) {
+    await db.collection("emailsTemplates").insertMany(emailsTemplates);
+  }
 };

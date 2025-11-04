@@ -26,4 +26,6 @@ export const EMAILS_FOR_TESTS = [
   "sophie@solinum.org",
   "ievgeniia@solinum.org",
   "younes@solinum.org",
+  "audrey.sebille@solinum.org",
+  "gabriel@solinum.org",
 ];

@@ -21,8 +21,7 @@
 import {
   CAMPAIGN_DEFAULT_NAME,
   CampaignStatus,
-  PAIRING_SOURCES,
-  PairingSources,
+  EXTERNAL_UPDATES_ONLY_SOURCES,
   PlaceStatus,
   PlaceUpdateCampaign,
 } from "@soliguide/common";
@@ -32,7 +31,7 @@ import { logger } from "../src/general/logger";
 import { CAMPAIGN_EMAILS_CONTENT_FOR_USERS } from "../src/user/models/default_values";
 
 const message =
-  "Add default value for users, orga and places for mid year update of 2025";
+  "Add default value for users, orga and places for end year update 2025";
 
 export const down = async (db: Db) => {
   logger.info(`[ROLLBACK] - ${message}`);
@@ -65,17 +64,8 @@ export const up = async (db: Db) => {
   );
 
   const externalSourceOriginFilter = {
-    $or: [
-      { name: PairingSources.CRF },
-      {
-        name: {
-          $in: PAIRING_SOURCES.filter(
-            (source) => source !== PairingSources.CRF
-          ),
-        },
-        isOrigin: true,
-      },
-    ],
+    name: { $nin: EXTERNAL_UPDATES_ONLY_SOURCES },
+    isOrigin: false,
   };
 
   logger.info("[MIGRATION] [RESET] Add 'toUpdate' to places online & offline");
@@ -83,12 +73,10 @@ export const up = async (db: Db) => {
     {
       status: { $in: [PlaceStatus.ONLINE, PlaceStatus.OFFLINE] },
       $or: [
-        { sources: { $exists: false } },
+        { sources: { $eq: [] } },
         {
           sources: {
-            $not: {
-              $elemMatch: externalSourceOriginFilter,
-            },
+            $elemMatch: externalSourceOriginFilter,
           },
         },
       ],
@@ -148,7 +136,6 @@ export const up = async (db: Db) => {
       },
     }
   );
-
   logger.info(
     `[MIGRATION] [RESET] Reset 'campaigns.${CAMPAIGN_DEFAULT_NAME}' in users`
   );

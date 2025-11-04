@@ -21,34 +21,42 @@
 import { Db } from "mongodb";
 
 import { logger } from "../src/general/logger";
-import { setIsOpenToday } from "../src/place/services/isOpenToday.service";
+import {
+  CAMPAIGN_DEFAULT_NAME,
+  CountryCodes,
+  DEPARTMENT_CODES,
+} from "@soliguide/common";
 
-const message = "Set isOpenToday for places and services";
+import { CAMPAIGN_EMAILS_CONTENT } from "../src/_models";
+import { getSenderData } from "../src/emailing/utils/getSenderData";
 
-export const up = async () => {
-  try {
-    logger.info("JOB - SET IS_OPEN_TODAY FOR PLACES\tSTART");
-
-    await setIsOpenToday();
-
-    logger.info("JOB - SET IS_OPEN_TODAY FOR PLACES\tEND");
-  } catch (e) {
-    logger.error(e);
-  }
-};
+const message = "Generate campaign mails templates";
 
 export const down = async (db: Db) => {
   logger.info(`[ROLLBACK] - ${message}`);
-
   await db
-    .collection("lieux")
-    .updateMany({ isOpenToday: true }, { $set: { isOpenToday: false } });
+    .collection("emailsTemplates")
+    .deleteMany({ campaign: CAMPAIGN_DEFAULT_NAME });
+};
 
-  await db
-    .collection("lieux")
-    .updateMany(
-      { "services_all.isOpenToday": true },
-      { $set: { "services_all.$[elem].isOpenToday": false } },
-      { arrayFilters: [{ "elem.isOpenToday": true }] }
-    );
+export const up = async (db: Db) => {
+  logger.info(`[MIGRATION] - ${message}`);
+
+  const emailsTemplates = [];
+
+  for (const territory of DEPARTMENT_CODES[CountryCodes.FR]) {
+    emailsTemplates.push({
+      campaign: CAMPAIGN_DEFAULT_NAME,
+      confirm: false,
+      confirmDate: null,
+      emails: CAMPAIGN_EMAILS_CONTENT[CAMPAIGN_DEFAULT_NAME],
+      senderEmail: getSenderData(territory, "senderEmail"),
+      senderName: getSenderData(territory, "senderName"),
+      territory,
+    });
+  }
+
+  if (emailsTemplates.length) {
+    await db.collection("emailsTemplates").insertMany(emailsTemplates);
+  }
 };

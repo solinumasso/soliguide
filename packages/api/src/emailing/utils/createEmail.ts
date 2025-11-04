@@ -84,7 +84,7 @@ const generateBaseCampaignEmail = (
   content = content.replace(/%USER_ID%/gm, user.user_id.toString());
   content = content.replace(
     /%EMAIL_SOLIGUIDE%/gm,
-    `<a href="mailto:${emailTemplate.senderEmail}">${emailTemplate.senderEmail}</a>`
+    `${emailTemplate.senderEmail}`
   );
   content = content.replace(/%NOM_SOLIGUIDE%/gm, emailTemplate.senderName);
 

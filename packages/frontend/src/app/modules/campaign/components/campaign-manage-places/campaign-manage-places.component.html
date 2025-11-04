@@ -23,8 +23,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <div class="col-10 offset-1">
       <h1 class="title">{{ "ALL_YOUR_STRUCTURES" | translate }}</h1>
       <div class="limite"></div>
+      @if (me.admin && !orgaId) {
       <div class="alert-maj p-4 my-3">
-        <div *ngIf="me.admin && !orgaId" class="col-12">
+        <div class="col-12">
           {{
             "MEMBER_OF_THE_SOLIGUIDE_TEAM_CAN_UPDATE"
               | translate
@@ -53,19 +54,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             </li>
           </ul>
         </div>
-
-        <div class="col-md-12 px-0" *ngIf="orgaId">
-          {{
-            "SOLIGUIDE_OFFERS_TO_UPDATE_YOUR_INFORMATION"
-              | translate
-                : {
-                    brandName: THEME_CONFIGURATION.brandName
-                  }
-          }}
-          <br />
-        </div>
       </div>
-      <div *ngIf="places.length" class="form-container py-3">
+      } @if (orgaId) {
+      <div class="alert-maj banner p-4 my-3">
+        <div
+          [innerHtml]="'SEASONAL_CAMPAIGN_UPDATE_MANAGE_BANNER' | translate"
+          class="col-md-12 px-0 text-center"
+        ></div>
+      </div>
+      } @if (places.length) {
+      <div class="form-container py-3">
         <div
           *ngFor="let place of places; let i = index"
           [id]="'place-' + place.lieu_id"
@@ -91,18 +89,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 <fa-icon [icon]="['fas', 'pencil-alt']" aria-hidden="true">
                 </fa-icon>
               </a>
-
-              <span
-                *ngIf="place.status !== PlaceStatus.ONLINE"
-                class="me-2 badge"
-                [ngClass]="{
-                  'bg-warning':
-                    place.status === PlaceStatus.DRAFT ||
-                    place.status === PlaceStatus.OFFLINE,
-                  'bg-danger': place.status === PlaceStatus.PERMANENTLY_CLOSED
-                }"
-                >{{ place.status | translate }}</span
-              >
 
               <div
                 class="fw-bold"
@@ -199,21 +185,21 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     place.lieu_id
                   ]"
                   [queryParams]="{ orgaid: orgaId }"
-                  class="btn btn-primary btn-block my-2"
+                  class="btn btn-secondary btn-block my-2"
                   (click)="
                     captureEvent('click-update-place-button', {
                       placeId: place.lieu_id
                     })
                   "
                 >
-                  {{ "UPDATING_MY_STRUCTURE" | translate }} </a
+                  {{ "ENTER_SEASONAL_CHANGES" | translate }} </a
                 ><br />
                 <button
                   type="button"
-                  class="btn btn-secondary btn-block my-2"
+                  class="btn btn-outline-secondary btn-block my-2"
                   (click)="openModal(place, noChangeModal, 'no-change')"
                 >
-                  {{ "NO_CHANGE_TO_MAKE" | translate }}
+                  {{ "NO_CHANGE_THIS_SEASON" | translate }}
                 </button>
                 <br />
                 <button
@@ -244,6 +230,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           <hr *ngIf="i + 1 < places.length" class="my-3" />
         </div>
       </div>
+      }
     </div>
   </div>
 

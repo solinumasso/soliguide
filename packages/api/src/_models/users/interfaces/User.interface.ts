@@ -51,6 +51,7 @@ export interface User extends Omit<CommonUser, "_id"> {
     END_YEAR_2024: UserCampaignEmails;
     MAJ_ETE_2024: UserCampaignEmails;
     MID_YEAR_2025: UserCampaignEmails;
+    END_YEAR_2025: UserCampaignEmails;
     UKRAINE_2022: UserCampaignEmails;
   };
   invitations: mongoose.Types.ObjectId[];

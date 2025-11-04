@@ -21,31 +21,31 @@
 import { Db } from "mongodb";
 
 import { logger } from "../src/general/logger";
-import { CampaignName } from "@soliguide/common/dist/cjs/campaign/enums/CampaignName.enum";
 
-const message = "Updtate IDF mail and name contact in campaign templates";
-
-export const down = async () => {
-  logger.info(`[ROLLBACK] - ${message}`);
-};
+const message =
+  "Add empty sources array to places that don't have sources property";
 
 export const up = async (db: Db) => {
   logger.info(`[MIGRATION] - ${message}`);
 
-  const idfDepartments = ["75", "77", "78", "91", "92", "93", "94", "95"];
+  const placesWithoutSources = await db.collection("lieux").countDocuments({
+    sources: { $exists: false },
+  });
 
-  await db.collection("emailsTemplates").updateMany(
-    {
-      campaign: CampaignName.MID_YEAR_2025,
-      territory: { $in: idfDepartments },
-    },
-    {
-      $set: {
-        senderEmail: "soliguide.idf@solinum.org",
-        senderName: "Soliguide Île-de-France",
-      },
-    }
+  logger.info(
+    `[MIGRATION] Found ${placesWithoutSources} places without sources property`
   );
 
-  logger.info(`[MIGRATION] - IDF mail and name contact updated in templates`);
+  const result = await db
+    .collection("lieux")
+    .updateMany({ sources: { $exists: false } }, { $set: { sources: [] } });
+
+  logger.info(
+    `[MIGRATION] Updated ${result.modifiedCount} places with empty sources array`
+  );
+};
+
+export const down = () => {
+  logger.info(`[ROLLBACK] - ${message}`);
+  logger.info("NO ROLLBACK POSSIBLE");
 };

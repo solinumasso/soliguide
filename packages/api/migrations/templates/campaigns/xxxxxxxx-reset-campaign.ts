@@ -63,20 +63,18 @@ export const up = async (db: Db) => {
     }
   );
 
-  const externalSourceOriginFilter = {
-    name: { $nin: EXTERNAL_UPDATES_ONLY_SOURCES },
-    isOrigin: false,
-  };
-
   logger.info("[MIGRATION] [RESET] Add 'toUpdate' to places online & offline");
   await db.collection("lieux").updateMany(
     {
       status: { $in: [PlaceStatus.ONLINE, PlaceStatus.OFFLINE] },
       $or: [
-        { sources: { $exists: false } },
+        { sources: { $eq: [] } },
         {
           sources: {
-            $elemMatch: externalSourceOriginFilter,
+            $elemMatch: {
+              name: { $nin: EXTERNAL_UPDATES_ONLY_SOURCES },
+              isOrigin: false,
+            },
           },
         },
       ],
@@ -86,17 +84,6 @@ export const up = async (db: Db) => {
         [`campaigns.${CAMPAIGN_DEFAULT_NAME}.toUpdate`]: true,
       },
     }
-  );
-
-  const excludedCount = await db.collection("lieux").countDocuments({
-    status: { $in: [PlaceStatus.ONLINE, PlaceStatus.OFFLINE] },
-    sources: {
-      $elemMatch: externalSourceOriginFilter,
-    },
-  });
-
-  logger.info(
-    `[MIGRATION] [SKIPPED] ${excludedCount} external-source places were excluded from 'toUpdate'`
   );
 
   logger.info(

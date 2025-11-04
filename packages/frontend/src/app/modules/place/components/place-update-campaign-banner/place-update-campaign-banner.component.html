@@ -29,24 +29,18 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 >
   <div class="alert alert-warning">
     <div class="my-2 fw-bold text-center">
-      {{
-        "SOLIGUIDE_TO_UPDATE_CAMPAIGN_NAME"
-          | translate
-            : {
-                brandName: THEME_CONFIGURATION.brandName
-              }
-      }}
+      <div [innerHTML]="'TO_UPDATE_CAMPAIGN_BANNER' | translate"></div>
       <div class="container-md mx-auto">
         <button
           type="button"
-          class="btn btn-large col-8 btn-primary mt-3 btn-maj"
+          class="btn btn-large col-8 btn-outline-primary mt-3 btn-maj"
           (click)="openNoChangeModal()"
         >
-          {{ "NO_CHANGE" | translate }}
+          {{ "NO_CHANGE_THIS_SEASON" | translate }}
         </button>
         <a
           target="_blank"
-          class="btn btn-large col-8 btn-secondary mt-3 btn-maj"
+          class="btn btn-large text-black col-8 btn-secondary mt-3 btn-maj"
           href="{{ routePrefix }}/campaign/fiche/{{ place.lieu_id }}"
           (click)="
             captureEvent({
@@ -54,7 +48,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             })
           "
         >
-          {{ "TO_UPDATE" | translate }}
+          {{ "FILL_SEASONAL_CHANGES" | translate }}
         </a>
       </div>
     </div>

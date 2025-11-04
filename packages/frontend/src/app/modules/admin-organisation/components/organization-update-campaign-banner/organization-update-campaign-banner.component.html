@@ -18,49 +18,46 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
-<div *ngIf="organisation && needUpdated && campaignIsActive && canEdit">
-  <div class="alert alert-warning py-3">
-    <div class="row align-items-center justify-content-between" *ngIf="me.pro">
-      <div class="col-md-9 fw-bold">
-        {{
-          "SOLIGUIDE_TO_UPDATE_CAMPAIGN_NAME"
-            | translate
-              : {
-                  brandName: THEME_CONFIGURATION.brandName
-                }
-        }}
-      </div>
-      <div class="d-grid gap-2 col-md-3 align-self-end">
-        <a class="btn btn-primary" [routerLink]="[routePrefix, 'campaign']">
-          {{ "UPDATE_CAMPAIGN_NAME" | translate }}
-        </a>
-      </div>
-    </div>
-
-    <div class="row align-items-center justify-content-between" *ngIf="!me.pro">
-      <div class="col-md-9 fw-bold">
+@if(organisation && needUpdated && campaignIsActive && canEdit) {
+<div class="alert alert-warning py-3">
+  <div class="row align-items-center justify-content-between">
+    <div class="col-md-8">
+      <strong class="fw-bold">
         {{ "STRUCTURE_NEED_UPDATE" | translate }}
-        <br />
-        {{ "STRUCTURE_TERMINATE_UPDATE" | translate }}
-      </div>
-      <div class="col-md-3 text-end">
-        <a
-          class="btn btn-block btn-primary"
-          [routerLink]="[
-            routePrefix,
-            'campaign',
-            'orga',
-            organisation.organization_id
-          ]"
-          (click)="
-            captureEvent('click-complete-campaign-update-banner-button', {
-              campaign: CAMPAIGN_DEFAULT_NAME
-            })
-          "
-        >
-          {{ "COMPLETE_UPDATE" | translate }}
-        </a>
-      </div>
+      </strong>
+      <p [innerHtml]="'STRUCTURE_TERMINATE_UPDATE' | translate"></p>
+    </div>
+    <div class="col-md-4 text-end">
+      @if (me?.pro) {
+      <a
+        class="btn btn-block btn-secondary text-black"
+        [routerLink]="[routePrefix, 'campaign']"
+        (click)="
+          captureEvent('click-complete-campaign-update-banner-button', {
+            campaign: CAMPAIGN_DEFAULT_NAME
+          })
+        "
+      >
+        {{ "ENTER_SEASONAL_CHANGES" | translate }} </a
+      >} @else {
+      <a
+        class="btn btn-block btn-primary text-black"
+        [routerLink]="[
+          routePrefix,
+          'campaign',
+          'orga',
+          organisation.organization_id
+        ]"
+        (click)="
+          captureEvent('click-complete-campaign-update-banner-button', {
+            campaign: CAMPAIGN_DEFAULT_NAME
+          })
+        "
+      >
+        {{ "ENTER_SEASONAL_CHANGES" | translate }}
+      </a>
+      }
     </div>
   </div>
 </div>
+}
