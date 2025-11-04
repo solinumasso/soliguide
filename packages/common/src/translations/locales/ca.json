@@ -687,6 +687,7 @@
   "FAVORITES_TOAST_LIMIT_ACTION": "Edita els meus preferits",
   "FAVORITES_TOAST_LIMIT_REACHED": "No es pot afegir un preferit. Has arribat al límit màxim.",
   "FAVORITES_TOAST_REMOVED": "Preferit eliminat",
+  "FAVORITES_UNAVAILABLE_BANNER": "Alguns llocs desats als teus favorits ja no estan disponibles.",
   "FAX": "Fax",
   "FERMETURE_TEMPORAIRE": "Tancament temporal:",
   "FICHES_PRATIQUES": "Fitxes pràctiques",

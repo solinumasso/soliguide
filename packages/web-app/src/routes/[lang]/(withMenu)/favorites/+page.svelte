@@ -29,7 +29,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import { themeStore } from '$lib/theme';
   import type { ThemeDefinition } from '$lib/theme/types';
-  import { SupportedLanguagesCode } from '@soliguide/common';
+  import { PlaceStatus, SupportedLanguagesCode } from '@soliguide/common';
   import { Button, Text, PageLoader, InfoBlock } from '@soliguide/design-system';
   import ResultsCard from '../places/components/card/ResultsCard.svelte';
   import pageStore from './index';
@@ -39,6 +39,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
 
   setContext('CAPTURE_FCTN_CTX_KEY', pageStore.captureEvent);
+
+  let showUnavailableBanner = true;
+  let showLimitBanner = true;
 
   const goSearch = () => {
     pageStore.captureEvent('launch-search');
@@ -51,6 +54,20 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   $: pageStore.syncWithFavorites($favorites);
   $: isFavoritesLimitReached = $favorites.length >= FAVORITES_LIMIT;
+  $: hasUnavailableFavorites = $pageStore.favoritePlaces.some(
+    (favoritePlace) =>
+      favoritePlace.placeStatus === PlaceStatus.DRAFT ||
+      favoritePlace.placeStatus === PlaceStatus.OFFLINE ||
+      favoritePlace.placeStatus === PlaceStatus.PERMANENTLY_CLOSED
+  );
+  $: if (!hasUnavailableFavorites) {
+    showUnavailableBanner = true;
+  }
+  $: if (!isFavoritesLimitReached) {
+    showLimitBanner = true;
+  }
+  $: shouldDisplayUnavailableBanner = hasUnavailableFavorites && showUnavailableBanner;
+  $: shouldDisplayLimitBanner = isFavoritesLimitReached && showLimitBanner;
 </script>
 
 <svelte:head>
@@ -97,13 +114,30 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           </div>
         </div>
       {:else}
+        {#if shouldDisplayUnavailableBanner}
+          <div class="favorites-banner">
+            <InfoBlock
+              withIcon={true}
+              variant="warning"
+              text={$i18n.t('FAVORITES_UNAVAILABLE_BANNER')}
+              dismissible
+              on:close={() => {
+                showUnavailableBanner = false;
+              }}
+            />
+          </div>
+        {/if}
         <div class="list">
-          {#if isFavoritesLimitReached}
-            <div class="favorites-limit-banner">
+          {#if shouldDisplayLimitBanner}
+            <div class="favorites-banner">
               <InfoBlock
                 withIcon={true}
                 variant="error"
                 text={$i18n.t('FAVORITES_LIMIT_REACHED_BANNER')}
+                dismissible
+                on:close={() => {
+                  showLimitBanner = false;
+                }}
               />
             </div>
           {/if}
@@ -140,7 +174,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     width: 100%;
   }
 
-  .favorites-limit-banner {
+  .favorites-banner {
     margin-bottom: var(--spacingLG);
   }
 
