@@ -45,6 +45,8 @@ export const ENV_SCHEMA: JSONSchemaType<Config> = {
     "AT_FIELD_PLACE_MAIL",
     "AT_FIELD_PLACE_TO_UPDATE",
     "AT_FIELD_PLACE_SOURCES",
+    "AT_FIELD_PLACE_WEBSITE",
+    "AT_FIELD_PLACE_ADDRESS",
     "AT_FIELD_PLACE_CAMPAIGN_STATUS_MAJ",
     "AT_FIELD_PLACE_CAMPAIGN_AUTONOMY",
     "AT_FIELD_PLACE_CAMPAIGN_REMIND_DATE",
@@ -231,6 +233,12 @@ export const ENV_SCHEMA: JSONSchemaType<Config> = {
       type: "string",
     },
     AT_FIELD_PLACE_SOURCES: {
+      type: "string",
+    },
+    AT_FIELD_PLACE_WEBSITE: {
+      type: "string",
+    },
+    AT_FIELD_PLACE_ADDRESS: {
       type: "string",
     },
     AT_FIELD_PLACE_CAMPAIGN_STATUS_MAJ: {
