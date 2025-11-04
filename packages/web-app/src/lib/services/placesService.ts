@@ -78,15 +78,13 @@ export default (fetcher = fetch) => {
     });
   };
 
-  const lookupPlaces = (
-    {
-      lang,
-      favorites
-    }: {
-      lang: SupportedLanguagesCode;
-      favorites: FavoriteItem[];
-    }
-  ): Promise<SearchFavorisResult> => {
+  const lookupPlaces = ({
+    lang,
+    favorites
+  }: {
+    lang: SupportedLanguagesCode;
+    favorites: FavoriteItem[];
+  }): Promise<SearchFavorisResult> => {
     if (!isValidStringEnumValue(SupportedLanguagesCode, lang)) {
       throw new Error(`Bad request, lang ${lang} is invalid`);
     }

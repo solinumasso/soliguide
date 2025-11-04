@@ -25,7 +25,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import { ROUTES_CTX_KEY } from '$lib/client/index';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
-  import { Topbar, InfoBlock, IconFavoriteOff, IconFavoriteOn, type types as DSTypes } from '@soliguide/design-system';
+  import {
+    Topbar,
+    InfoBlock,
+    IconFavoriteOff,
+    IconFavoriteOn,
+    type types as DSTypes
+  } from '@soliguide/design-system';
   import { favorites, toggleFavorite } from '$lib/client/favorites';
   import { notifyFavoriteChange } from '$lib/toast/toast.store';
   import {
@@ -98,7 +104,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   const goBack = () => {
     pageStore.captureEvent('go-back', { fromPlace: $pageStore.placeDetails.id });
-    
+
     if (previousRoute === `/${$page.params.lang}/favorites`) {
       goto(`/${$page.params.lang}/favorites`);
     } else {
@@ -118,7 +124,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     label: $i18n.t('TOGGLE_FAVORITES'),
     type: 'toggle' as DSTypes.TopbarActionType,
     icon: isFavorite ? IconFavoriteOn : IconFavoriteOff,
-    ...(isFavorite ? {} : { iconColor: "var(--color-textInverse)" }),
+    ...(isFavorite ? {} : { iconColor: 'var(--color-textInverse)' }),
     eventKey: 'favorite' as DSTypes.TopbarActionEventKey,
     active: isFavorite
   };

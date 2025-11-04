@@ -23,7 +23,10 @@ import type { FavoriteItem } from '$lib/models/favorite';
 import { buildLightPlaceCard } from './searchResult';
 import type { SearchFavorisResult, SearchResultPlaceCard } from './types';
 
-const buildFavoritePlaceCard = (place: ApiPlace, favorite: FavoriteItem): SearchResultPlaceCard | null => {
+const buildFavoritePlaceCard = (
+  place: ApiPlace,
+  favorite: FavoriteItem
+): SearchResultPlaceCard | null => {
   const crossingPoint =
     typeof favorite.crossingPointIndex === 'number'
       ? place.parcours?.[favorite.crossingPointIndex]
