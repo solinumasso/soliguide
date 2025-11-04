@@ -763,6 +763,7 @@
   "FAVORITES_TOAST_LIMIT_ACTION": "Edit my favorites",
   "FAVORITES_TOAST_LIMIT_REACHED": "Unable to add a favorite. You have reached the maximum limit.",
   "FAVORITES_TOAST_REMOVED": "Favorite removed",
+  "FAVORITES_UNAVAILABLE_BANNER": "Some places saved in your favorites are now unavailable.",
   "FAX": "Fax",
   "FERMETURE_TEMPORAIRE": "Temporary closure:",
   "FICHES_PRATIQUES": "Practical sheets",

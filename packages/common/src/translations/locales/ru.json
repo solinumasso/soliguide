@@ -763,6 +763,7 @@
   "FAVORITES_TOAST_LIMIT_ACTION": "Редактировать избранное",
   "FAVORITES_TOAST_LIMIT_REACHED": "Не удалось добавить в избранное. Вы достигли максимального лимита.",
   "FAVORITES_TOAST_REMOVED": "Избранное удалено",
+  "FAVORITES_UNAVAILABLE_BANNER": "Некоторые места из ваших избранных теперь недоступны.",
   "FAX": "Факс",
   "FERMETURE_TEMPORAIRE": "Временное закрытие:",
   "FICHES_PRATIQUES": "Практические листы",

@@ -443,6 +443,7 @@ const samplePlaceTransformed: SearchResultPlaceCard = Object.freeze({
   services: [Categories.FOOD_DISTRIBUTION],
   sources: [],
   status: PlaceOpeningStatus.TEMPORARILY_CLOSED,
+  placeStatus: PlaceStatus.ONLINE,
   tempInfo: { hours: null, message: null, closure: TempInfoStatus.CURRENT },
   todayInfo: {
     closingDays: { end: '2024-11-30T23:59:59.000Z', start: '2024-04-01T00:00:00.000Z' }
@@ -1496,6 +1497,7 @@ const sampleItineraryTransformed: SearchResultPlaceCard[] = [
     services: [Categories.FOOD_DISTRIBUTION, Categories.HYGIENE_PRODUCTS, Categories.CLOTHING],
     sources: [],
     status: PlaceOpeningStatus.OPEN,
+    placeStatus: PlaceStatus.ONLINE,
     tempInfo: { hours: null, message: null, closure: null },
     todayInfo: { openingHours: [{ end: '2000', start: '1950' }] }
   },
@@ -1524,6 +1526,7 @@ const sampleItineraryTransformed: SearchResultPlaceCard[] = [
     services: [Categories.FOOD_DISTRIBUTION, Categories.HYGIENE_PRODUCTS, Categories.CLOTHING],
     sources: [],
     status: PlaceOpeningStatus.OPEN,
+    placeStatus: PlaceStatus.ONLINE,
     tempInfo: { hours: null, message: null, closure: null },
     todayInfo: { openingHours: [{ end: '2215', start: '2200' }] }
   }

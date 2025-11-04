@@ -763,6 +763,7 @@
   "FAVORITES_TOAST_LIMIT_ACTION": "تعديل مفضلتي",
   "FAVORITES_TOAST_LIMIT_REACHED": "تعذر إضافة مفضلة. لقد وصلت إلى الحد الأقصى.",
   "FAVORITES_TOAST_REMOVED": "تمت إزالة المفضلة",
+  "FAVORITES_UNAVAILABLE_BANNER": "بعض الأماكن المحفوظة في المفضلة لديك لم تعد متاحة الآن.",
   "FAX": "فاكس",
   "FERMETURE_TEMPORAIRE": "إغلاق مؤقت:",
   "FICHES_PRATIQUES": "أوراق عملية",

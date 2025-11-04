@@ -25,6 +25,7 @@ import {
   CountryCodes,
   PlaceClosedHolidays,
   PlaceOpeningStatus,
+  PlaceStatus,
   PlaceType
 } from '@soliguide/common';
 import type { PlaceDetailsParams, SearchOptions, SearchParams } from './types';
@@ -64,6 +65,7 @@ export const searchResultMock: SearchResult = {
       services: [Categories.FOOD_DISTRIBUTION],
       sources: [],
       status: PlaceOpeningStatus.OPEN,
+      placeStatus: PlaceStatus.ONLINE,
       todayInfo: { openingHours: [] },
       tempInfo: { hours: null, message: null, closure: null }
     },
@@ -96,6 +98,7 @@ export const searchResultMock: SearchResult = {
       services: [Categories.FOOD_DISTRIBUTION],
       sources: [],
       status: PlaceOpeningStatus.OPEN,
+      placeStatus: PlaceStatus.ONLINE,
       tempInfo: { hours: null, message: null, closure: null },
       todayInfo: {
         openingHours: [
@@ -128,6 +131,7 @@ export const searchResultMock: SearchResult = {
       services: [Categories.FOOD_DISTRIBUTION, Categories.ACTIVITIES],
       sources: [],
       status: PlaceOpeningStatus.TEMPORARILY_CLOSED,
+      placeStatus: PlaceStatus.ONLINE,
       tempInfo: { hours: null, message: null, closure: null },
       todayInfo: {
         closingDays: {
@@ -161,6 +165,7 @@ export const searchResultMock: SearchResult = {
       services: [Categories.ACTIVITIES],
       sources: [],
       status: PlaceOpeningStatus.TEMPORARILY_CLOSED,
+      placeStatus: PlaceStatus.ONLINE,
       tempInfo: { hours: null, message: null, closure: null },
       todayInfo: {
         closingDays: { end: '2024-11-30T23:59:59.000Z', start: '2024-04-01T00:00:00.000Z' }
