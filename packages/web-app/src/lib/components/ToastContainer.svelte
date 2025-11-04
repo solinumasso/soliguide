@@ -54,15 +54,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       } = toast}
       <div class="toast-wrapper" in:fly={toastEnterTransition} out:fly={toastLeaveTransition}>
         <Toast
-          variant={variant}
-          description={description}
-          withIcon={withIcon}
-          dismissible={dismissible}
-          autoDismiss={autoDismiss}
-          showLoader={showLoader}
-          loaderDuration={loaderDuration}
-          withButton={withButton}
-          withButtonLink={withButtonLink}
+          {variant}
+          {description}
+          {withIcon}
+          {dismissible}
+          {autoDismiss}
+          {showLoader}
+          {loaderDuration}
+          {withButton}
+          {withButtonLink}
           buttonLabel={buttonLabel ?? ''}
           buttonLinkLabel={buttonLinkLabel ?? ''}
           buttonLinkHref={buttonLinkHref ?? ''}

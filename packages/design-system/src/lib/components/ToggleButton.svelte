@@ -83,7 +83,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <span class="btn-content-container">
     {#if !!icon}
       <span class="btn-icon-container">
-        <svelte:component this={icon} class="icon" aria-hidden="true" {...iconColor ? { color: iconColor } : {}} />
+        <svelte:component
+          this={icon}
+          class="icon"
+          aria-hidden="true"
+          {...iconColor ? { color: iconColor } : {}}
+        />
       </span>
     {/if}
     {#if !iconOnly}

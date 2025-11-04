@@ -80,12 +80,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       autoDismiss={false}
       showLoader={false}
     />
-    <Toast
-      {...defaultArgs}
-      variant="error"
-      description="Toast without icon"
-      withIcon={false}
-    />
+    <Toast {...defaultArgs} variant="error" description="Toast without icon" withIcon={false} />
   </div>
 </Story>
 
