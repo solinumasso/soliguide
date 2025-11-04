@@ -33,7 +33,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { Button, Text, PageLoader, InfoBlock } from '@soliguide/design-system';
   import ResultsCard from '../places/components/card/ResultsCard.svelte';
   import pageStore from './index';
-  
+
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
   const theme: ThemeDefinition = get(themeStore.getTheme());
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
@@ -202,5 +202,4 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   .no-results-button {
     margin-top: var(--spacingMD);
   }
-
 </style>

@@ -42,7 +42,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import PhoneButton from '$lib/components/PhoneButton.svelte';
   import ResultsCardServices from './ResultsCardServices.svelte';
   import DisplaySource from '$lib/components/DisplaySource.svelte';
-  import { GeoTypes, kmOrMeters, TempInfoStatus, PlaceStatus as PlaceStatusEnum } from '@soliguide/common';
+  import {
+    GeoTypes,
+    kmOrMeters,
+    TempInfoStatus,
+    PlaceStatus as PlaceStatusEnum
+  } from '@soliguide/common';
 
   import { favorites, toggleFavorite } from '$lib/client/favorites';
   import { notifyFavoriteChange } from '$lib/toast/toast.store';
@@ -104,12 +109,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       }}
     >
       <div class="card-header-container">
-          <div class="card-header-infos-container">
+        <div class="card-header-infos-container">
           <div class="card-infos-left">
-              <PlaceStatus
-                openingStatus={place.status}
-                placeStatus={place.placeStatus}
-              />
+            <PlaceStatus openingStatus={place.status} placeStatus={place.placeStatus} />
             <div>
               <TodayInfo todayInfo={place.todayInfo}>
                 {#if place.tempInfo.hours === TempInfoStatus.CURRENT && place.tempInfo.message !== TempInfoStatus.CURRENT}

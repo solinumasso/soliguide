@@ -37,9 +37,9 @@ import {
   getFilteredData,
 } from "../../middleware";
 import type { ExpressRequest, ExpressResponse } from "../../_models";
-import { 
+import {
   getTranslatedPlace,
-  getTranslatedPlacesForSearch 
+  getTranslatedPlacesForSearch,
 } from "../../translations/controllers/translation.controller";
 import { cleanPlaceCategorySpecificFields } from "../utils";
 import { getPlacesByIds } from "../services/place.service";
@@ -146,12 +146,14 @@ router.post(
       const { ids } = req.bodyValidated;
       const uniqueIds = Array.from(new Set<number>(ids));
       const limitedIds = uniqueIds.slice(0, FAVORITES_LIMIT);
-      
+
       const places = await getPlacesByIds(limitedIds);
       const placeById = new Map(places.map((place) => [place.lieu_id, place]));
       const orderedPlaces = limitedIds
         .map((id) => placeById.get(id))
-        .filter((place): place is typeof places[number] => place !== undefined);
+        .filter(
+          (place): place is (typeof places)[number] => place !== undefined
+        );
 
       const lookupResults: ApiSearchResults = {
         nbResults: orderedPlaces.length,

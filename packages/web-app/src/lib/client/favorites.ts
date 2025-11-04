@@ -76,7 +76,10 @@ const createFavoritesStore = () => {
   const add = (favorite: FavoriteItem): void => {
     store.update((current) => {
       const key = favoriteKey(favorite);
-      if (current.some((entry) => favoriteKey(entry) === key) || current.length >= FAVORITES_LIMIT) {
+      if (
+        current.some((entry) => favoriteKey(entry) === key) ||
+        current.length >= FAVORITES_LIMIT
+      ) {
         return current;
       }
 
