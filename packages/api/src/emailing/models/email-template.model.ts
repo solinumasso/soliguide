@@ -25,7 +25,6 @@ import { ALL_DEPARTMENT_CODES, CAMPAIGN_DEFAULT_NAME } from "@soliguide/common";
 import { EmailTemplateContentSchema } from "./subschemas/email-template-content.model";
 
 import { CampaignEmailTemplates, CAMPAIGN_EMAILS_CONTENT } from "../../_models";
-import { Partners } from "../../partners";
 
 const EmailTemplateSchema: mongoose.Schema<CampaignEmailTemplates> =
   new mongoose.Schema(
@@ -47,8 +46,6 @@ const EmailTemplateSchema: mongoose.Schema<CampaignEmailTemplates> =
           REMIND_ME: EmailTemplateContentSchema,
         },
       },
-
-      partner: { enum: Partners, type: String },
 
       // Sender name
       senderEmail: { default: null, type: String },
