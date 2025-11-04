@@ -42,7 +42,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import PhoneButton from '$lib/components/PhoneButton.svelte';
   import ResultsCardServices from './ResultsCardServices.svelte';
   import DisplaySource from '$lib/components/DisplaySource.svelte';
-  import { GeoTypes, kmOrMeters, TempInfoStatus } from '@soliguide/common';
+  import { GeoTypes, kmOrMeters, TempInfoStatus, PlaceStatus as PlaceStatusEnum } from '@soliguide/common';
 
   import { favorites, toggleFavorite } from '$lib/client/favorites';
   import { notifyFavoriteChange } from '$lib/toast/toast.store';
@@ -60,10 +60,18 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let id: string;
   export let category: string;
 
+  $: isPlaceUnavailable =
+    place.placeStatus === PlaceStatusEnum.DRAFT ||
+    place.placeStatus === PlaceStatusEnum.OFFLINE ||
+    place.placeStatus === PlaceStatusEnum.PERMANENTLY_CLOSED;
+
   /**
    * Redirect user to place he clicked on
    */
   const gotoPlace = (seoUrl: string, categorySearched: string) => {
+    if (isPlaceUnavailable) {
+      return;
+    }
     captureEvent('card-info-click', { placeId: place.id });
     goto(`${$routes.ROUTE_PLACES}/${seoUrl}?categorySearched=${categorySearched}`);
   };
@@ -78,16 +86,29 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </script>
 
 <Card>
-  <a {id} class="card-link" {href}>
+  <a
+    {id}
+    class="card-link"
+    {href}
+    aria-disabled={isPlaceUnavailable}
+    on:click|preventDefault={() => gotoPlace(place.seoUrl, category)}
+  >
     <CardHeader
+      disabled={isPlaceUnavailable}
       on:click={() => {
+        if (isPlaceUnavailable) {
+          return;
+        }
         captureEvent('card-header-click', { placeId: place.id });
       }}
     >
       <div class="card-header-container">
-        <div class="card-header-infos-container">
+          <div class="card-header-infos-container">
           <div class="card-infos-left">
-            <PlaceStatus status={place.status} />
+              <PlaceStatus
+                openingStatus={place.status}
+                placeStatus={place.placeStatus}
+              />
             <div>
               <TodayInfo todayInfo={place.todayInfo}>
                 {#if place.tempInfo.hours === TempInfoStatus.CURRENT && place.tempInfo.message !== TempInfoStatus.CURRENT}
@@ -182,11 +203,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           iconPosition="iconOnly"
           type="primaryOutline"
           href={getMapLink(place.address)}
-          disabled={isDisabled}
+          disabled={isDisabled || isPlaceUnavailable}
           ><NearMe
             slot="icon"
             on:click={() => {
-              if (!isDisabled) {
+              if (!isDisabled && !isPlaceUnavailable) {
                 captureEvent('go-to-click', { place: { ...place.dataForLogs } });
               }
             }}
@@ -200,7 +221,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <div class="card-footer">
       <PhoneButton
         type="neutralOutlined"
-        phones={place.phones}
+        phones={isPlaceUnavailable ? [] : place.phones}
         on:click={() => {
           captureEvent('phone-click', { place: { ...place.dataForLogs } });
         }}
@@ -210,6 +231,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         on:click={() => gotoPlace(place.seoUrl, category)}
         size="small"
         type="primaryGradientFill"
+        aria-disabled={isPlaceUnavailable}
+        disabled={isPlaceUnavailable}
         >{$i18n.t('PLUS_INFOS')}
       </Button>
     </div>
@@ -227,6 +250,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   .card-link {
     text-decoration: none;
+  }
+
+  .card-link[aria-disabled='true'] {
+    cursor: default;
   }
 
   .card-header-container {

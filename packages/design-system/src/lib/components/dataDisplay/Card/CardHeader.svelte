@@ -18,7 +18,18 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
-<section class="card-header" on:click role="button" tabindex="0" on:keydown>
+<script lang="ts">
+export let disabled = false;
+</script>
+
+<section
+  class="card-header"
+  class:disabled
+  on:click
+  role="button"
+  tabindex="0"
+  on:keydown
+>
   <slot />
 </section>
 
@@ -35,6 +46,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     }
     &:active {
       background: var(--color-interactionHighlightSecondaryPress);
+    }
+
+    &.disabled {
+      background: var(--color-overlayStrong);
+      cursor: default;
+    }
+
+    &.disabled:hover,
+    &.disabled:active {
+      background: var(--color-OverlayStrong);
     }
   }
 </style>

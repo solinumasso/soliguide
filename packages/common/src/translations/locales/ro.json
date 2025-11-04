@@ -687,6 +687,7 @@
   "FAVORITES_TOAST_LIMIT_ACTION": "Editare preferințe",
   "FAVORITES_TOAST_LIMIT_REACHED": "Nu se poate adăuga o preferință. Ați atins limita maximă.",
   "FAVORITES_TOAST_REMOVED": "Preferință eliminată",
+  "FAVORITES_UNAVAILABLE_BANNER": "Unele locuri salvate la favorite nu mai sunt disponibile.",
   "FAX": "Fax",
   "FERMETURE_TEMPORAIRE": "Închidere temporară:",
   "FICHES_PRATIQUES": "Fișe practice",

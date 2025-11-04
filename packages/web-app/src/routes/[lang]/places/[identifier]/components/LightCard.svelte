@@ -54,7 +54,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           </div>
 
           <div class="card-header-infos-container">
-            <PlaceStatus status={place.status} />
+            <PlaceStatus openingStatus={place.status} />
             <TodayInfo todayInfo={place.todayInfo} />
           </div>
         </div>

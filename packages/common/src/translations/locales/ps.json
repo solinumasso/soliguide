@@ -687,6 +687,7 @@
   "FAVORITES_TOAST_LIMIT_ACTION": "زما د خوښې وړ ایډیټ کړئ",
   "FAVORITES_TOAST_LIMIT_REACHED": "د خوښې اضافه کولو توان نلري. تاسو اعظمي حد ته رسیدلي یاست.",
   "FAVORITES_TOAST_REMOVED": "د خوښې وړ لرې شو",
+  "FAVORITES_UNAVAILABLE_BANNER": "ځینې ځایونه چې په خوښو کې مو خوندي کړي دي نور شتون نه لري.",
   "FAX": "فکس",
   "FERMETURE_TEMPORAIRE": "لنډمهاله بندول:",
   "FICHES_PRATIQUES": "عملي پاڼې",

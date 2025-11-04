@@ -52,7 +52,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <header class="card-header">
   <div class="details-container">
     <div class="tag-hours-container">
-      <PlaceStatus {status} />
+      <PlaceStatus openingStatus={status} />
       {#if !isObjectEmpty(todayInfo)}
         <TodayInfo {todayInfo}>
           {#if tempInfo.hours?.status === TempInfoStatus.CURRENT && !tempInfo.message}

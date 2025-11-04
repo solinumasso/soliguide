@@ -687,6 +687,7 @@
   "FAVORITES_TOAST_LIMIT_ACTION": "ویرایش موارد دلخواه من",
   "FAVORITES_TOAST_LIMIT_REACHED": "امکان افزودن مورد علاقه وجود ندارد. شما به حداکثر تعداد مجاز رسیده‌اید.",
   "FAVORITES_TOAST_REMOVED": "مورد علاقه حذف شد",
+  "FAVORITES_UNAVAILABLE_BANNER": "برخی مکان‌هایی که در علاقه‌مندی‌ها ذخیره کرده‌اید دیگر در دسترس نیستند.",
   "FAX": "فکس",
   "FERMETURE_TEMPORAIRE": "تعطیلی موقت:",
   "FICHES_PRATIQUES": "برگه های کاربردی",

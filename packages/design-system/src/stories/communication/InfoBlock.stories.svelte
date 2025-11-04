@@ -53,6 +53,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       },
       withClamp: {
         control: { type: 'boolean' }
+      },
+      dismissible: {
+        control: { type: 'boolean' }
       }
     },
     args: defaultArgs
@@ -99,6 +102,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <InfoBlock {...defaultArgs} withIcon={false} title="No icon but title" />
     <InfoBlock {...defaultArgs} withIcon={true} title="Icon and title" />
     <InfoBlock {...defaultArgs} withIcon={true} />
+  </div>
+</Story>
+
+<Story name="InfoBlock dismissible" parameters={{ controls: { disable: true } }}>
+  <div class="story-row">
+    <InfoBlock
+      {...defaultArgs}
+      variant="warning"
+      dismissible
+      text="This InfoBlock can be dismissed via the close button."
+    />
   </div>
 </Story>
 
