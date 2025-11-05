@@ -117,6 +117,7 @@ const generateContentForPlace = (
         PLACE_STATUS[place.status as PlaceStatus],
       [AT_FIELDS_IDS[AirtableEntityType.PLACE].territory]: territory,
       [AT_FIELDS_IDS[AirtableEntityType.PLACE].city]: position?.city,
+      [AT_FIELDS_IDS[AirtableEntityType.PLACE].address]: position?.address,
       [AT_FIELDS_IDS[AirtableEntityType.PLACE].visibility]:
         PLACE_VISIBILITY[place.visibility as PlaceVisibility],
       [AT_FIELDS_IDS[AirtableEntityType.PLACE].toUpdate]:
@@ -124,16 +125,14 @@ const generateContentForPlace = (
       [AT_FIELDS_IDS[AirtableEntityType.PLACE].sources]: formatSources(
         place.sources
       ),
+      [AT_FIELDS_IDS[AirtableEntityType.PLACE].website]:
+        place.entity?.website || "",
+      [AT_FIELDS_IDS[AirtableEntityType.PLACE].mail]: place.entity?.mail || "",
     },
   } as AirtableRecordType;
 
   if (isCreation) {
     delete content.id;
-  }
-
-  if (place.entity?.mail) {
-    content.fields[AT_FIELDS_IDS[AirtableEntityType.PLACE].mail] =
-      place.entity.mail;
   }
 
   if (place.entity.phones.length > 0 && place.entity.phones[0]?.phoneNumber) {
@@ -145,6 +144,8 @@ const generateContentForPlace = (
       .join("\n");
 
     content.fields[AT_FIELDS_IDS[AirtableEntityType.PLACE].phone] = phones;
+  } else {
+    content.fields[AT_FIELDS_IDS[AirtableEntityType.PLACE].phone] = "";
   }
 
   if (

@@ -43,7 +43,7 @@ import { DEFAULT_SEARCH_OPTIONS } from "../../_utils/constants";
 import { hashPassword } from "../../_utils";
 import { getMongoId } from "../../_utils/functions/mongo";
 import { getUserRightsWithParams } from "./userRights.service";
-import { PARTNERS_EMAIL_DOMAIN, Partners } from "../../partners";
+import { PARTNERS_EMAIL_DOMAIN } from "../../partners";
 import { mergeOperationalAreas } from "../utils";
 
 export const getUserByParams = (
@@ -290,8 +290,7 @@ export const updateUsersTerritories = async (
  */
 export const findUsersToEmail = (
   territories: AnyDepartmentCode[],
-  emailType: string,
-  partner?: Partners
+  emailType: string
 ) => {
   const isInvitation = emailType?.includes("INVITATION");
 
@@ -305,17 +304,13 @@ export const findUsersToEmail = (
           },
         },
       ],
-      ...(partner
-        ? { mail: { $regex: PARTNERS_EMAIL_DOMAIN[partner], $options: "i" } }
-        : {
-            $and: Object.values(PARTNERS_EMAIL_DOMAIN).map((domain: string) => {
-              return {
-                mail: {
-                  $not: { $regex: domain, $options: "i" },
-                },
-              };
-            }),
-          }),
+      $and: Object.values(PARTNERS_EMAIL_DOMAIN).map((domain: string) => {
+        return {
+          mail: {
+            $not: { $regex: domain, $options: "i" },
+          },
+        };
+      }),
       ...(isInvitation
         ? { "invitations.0": { $exists: true } }
         : { "organizations.0": { $exists: true } }),
@@ -334,8 +329,7 @@ export const findUsersToEmail = (
 export const findUsersToContactAgain = (
   territories: AnyDepartmentCode[],
   emailType: string,
-  reminderAllowed = false,
-  partner?: Partners
+  reminderAllowed = false
 ) => {
   const isInvitation = emailType?.includes("INVITATION");
 
@@ -350,19 +344,13 @@ export const findUsersToContactAgain = (
             },
           },
         ],
-        ...(partner
-          ? { mail: { $regex: PARTNERS_EMAIL_DOMAIN[partner], $options: "i" } }
-          : {
-              $and: Object.values(PARTNERS_EMAIL_DOMAIN).map(
-                (domain: string) => {
-                  return {
-                    mail: {
-                      $not: { $regex: domain, $options: "i" },
-                    },
-                  };
-                }
-              ),
-            }),
+        $and: Object.values(PARTNERS_EMAIL_DOMAIN).map((domain: string) => {
+          return {
+            mail: {
+              $not: { $regex: domain, $options: "i" },
+            },
+          };
+        }),
         ...(isInvitation
           ? {
               "invitations.0": { $exists: true },

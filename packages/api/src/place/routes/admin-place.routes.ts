@@ -54,14 +54,14 @@ import { syncEntityDeletion } from "../../airtable/controllers/airtable.controll
 import { setEntityExcludedOrNotAndNext } from "../../airtable/services/airtableEntity.service";
 
 import {
-  checkRights,
-  getFilteredData,
   canAddPlace,
   canDeletePlace,
   canEditPlace,
-  getPlaceFromUrl,
   canGetOrga,
+  checkRights,
+  getFilteredData,
   getOrgaFromUrl,
+  getPlaceFromUrl,
   handleLanguage,
 } from "../../middleware";
 
@@ -69,31 +69,32 @@ import { setObsoletePlaceChanges } from "../../place-changes/controllers/place-c
 import { rebuildTempServiceClosure } from "../../temp-info/controllers/temp-service-closure.controller";
 import { generateElementsToTranslate } from "../../translations/controllers/translation.controller";
 import {
+  addPlace,
   checkDuplicatesByAddressAndPlaceId,
   checkInOrga,
-  patchPosition,
-  patchContacts,
-  patchPhotos,
-  patchStatus,
-  patchVisibility,
-  patchModalities,
-  patchServices,
-  setNoChangeForPlace,
-  duplicatePlace,
   deletePlace,
-  patchParcours,
+  deleteSource,
+  duplicatePlace,
   patchCampaignSource,
-  addPlace,
+  patchContacts,
   patchHours,
   patchInfos,
+  patchModalities,
+  patchParcours,
+  patchPhotos,
+  patchPosition,
   patchPublics,
+  patchServices,
+  patchStatus,
   patchUpdateDate,
+  patchVisibility,
   putSource,
-  deleteSource,
+  setNoChangeForPlace,
 } from "../controllers";
 
 import { sendPlaceChangesToMq } from "../../place-changes/middlewares/send-place-changes-to-mq.middleware";
 import { forceChangesDto } from "../dto/forceChanges.dto";
+import { refreshTransportsCache } from "../services/transports.service";
 
 const router = express.Router();
 
@@ -318,6 +319,7 @@ router.patch(
       return res.status(400).json({ message: "PATCH_POSITION_IMPOSSIBLE" });
     }
   },
+  refreshTransportsCache,
   generateElementsToTranslate,
   setEntityExcludedOrNotAndNext,
   sendPlaceChangesToMq

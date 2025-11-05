@@ -19,6 +19,5 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 export enum Partners {
-  RESTOS = "RESTOS",
   CROIX_ROUGE = "CROIX_ROUGE",
 }

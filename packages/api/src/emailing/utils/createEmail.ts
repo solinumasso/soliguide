@@ -32,9 +32,7 @@ import {
   CampaignEmailName,
   EmailData,
   ModelWithId,
-  PARTNER_CC,
 } from "../../_models";
-import { Partners } from "../../partners";
 
 const generateBaseCampaignEmail = (
   frontUrl: string,
@@ -42,8 +40,7 @@ const generateBaseCampaignEmail = (
   emailType: CampaignEmailName,
   user: User,
   invitationToken: string,
-  organization_id = -1,
-  partner?: Partners
+  organization_id = -1
 ): EmailData => {
   if (!emailTemplate) {
     throw new Error("Email Template not found");
@@ -72,10 +69,6 @@ const generateBaseCampaignEmail = (
     // The email to contact
     to: user.mail,
   };
-
-  if (partner && PARTNER_CC[partner]) {
-    baseCampaignEmail.cc = PARTNER_CC[partner];
-  }
 
   let content = emailToSend.content;
 
@@ -126,7 +119,6 @@ const generateBaseCampaignEmail = (
  * @param organization_id
  * @param territory
  * @param user
- * @param partner
  */
 const generateEmail = async (
   frontUrl: string,
@@ -135,8 +127,7 @@ const generateEmail = async (
   emailType: CampaignEmailName,
   organization_id: number,
   territory: AnyDepartmentCode,
-  user: User,
-  partner?: Partners
+  user: User
 ): Promise<{ emailData: EmailData; template: CampaignEmailTemplates }> => {
   if (emailType.includes("INVITATION") && !invitationToken) {
     // No invitation given for an invitation email
@@ -147,7 +138,6 @@ const generateEmail = async (
   const template = (await findEmailTemplates({
     campaign,
     territory,
-    partner,
   })) as CampaignEmailTemplates;
 
   if (!template) {
@@ -162,8 +152,7 @@ const generateEmail = async (
     emailType,
     user,
     invitationToken,
-    organization_id,
-    partner
+    organization_id
   );
 
   return { emailData, template };
@@ -177,8 +166,7 @@ export const createEmail = async (
   organization: mongoose.Types.ObjectId | any,
   organization_id: number,
   territory: AnyDepartmentCode,
-  user: ModelWithId<User>,
-  partner?: Partners
+  user: ModelWithId<User>
 ): Promise<Partial<CampaignEmails>> => {
   let generatedEmail;
   try {
@@ -189,8 +177,7 @@ export const createEmail = async (
       emailType,
       organization_id,
       territory,
-      user,
-      partner
+      user
     );
   } catch (e) {
     return Promise.reject(e);

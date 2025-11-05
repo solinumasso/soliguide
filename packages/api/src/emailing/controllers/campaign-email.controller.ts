@@ -82,7 +82,6 @@ export const generateCampaignEmails = async (
 ) => {
   const emailType = bodyValidated.emailType;
   const territories = bodyValidated.territories;
-  const partner = bodyValidated.partner;
 
   let nSavedEmails = 0;
 
@@ -90,14 +89,9 @@ export const generateCampaignEmails = async (
   let users: UserPopulateType[] = [];
 
   if (emailType?.includes("RELANCE")) {
-    users = await findUsersToContactAgain(
-      territories,
-      emailType,
-      false,
-      partner
-    );
+    users = await findUsersToContactAgain(territories, emailType, false);
   } else if (emailType?.includes("CAMPAGNE")) {
-    users = await findUsersToEmail(territories, emailType, partner);
+    users = await findUsersToEmail(territories, emailType);
   }
 
   if (!users?.length) {
@@ -181,8 +175,7 @@ export const generateCampaignEmails = async (
               organization,
               organization_id,
               territory,
-              user,
-              partner
+              user
             )
           );
 
@@ -211,8 +204,7 @@ export const generateCampaignEmails = async (
             organization,
             organization_id,
             territory,
-            user,
-            partner
+            user
           )
         );
 

@@ -25,7 +25,6 @@ import { User } from "../../users";
 import { EmailEvents } from "./EmailEvents.type";
 import { CampaignEmailName } from "./CampaignEmailName.type";
 import { EmailData } from "./EmailData.type";
-import { Partners } from "../../../partners";
 
 export type CampaignEmails = {
   airtable: {
@@ -73,5 +72,4 @@ export type CampaignEmails = {
 export type BodyValidatedCampaignEmails = {
   emailType: CampaignEmailName;
   territories: AnyDepartmentCode[];
-  partner?: Partners;
 };
