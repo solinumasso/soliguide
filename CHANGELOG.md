@@ -1,3 +1,16 @@
+# [4.104.0](https://github.com/solinumasso/soliguide/compare/v4.103.0...v4.104.0) (2025-11-05)
+
+
+### Bug Fixes
+
+* **maj:** synchro AT maj and monitoring + removing restos from excluded mails ([d875c4f](https://github.com/solinumasso/soliguide/commit/d875c4fff18b51dc50a2d55915490a0429eb0fc1))
+
+
+### Features
+
+* **api:** delete partner form mail generation and templates ([9ab2e68](https://github.com/solinumasso/soliguide/commit/9ab2e68749626d7893188917a6d1d1b622da4a46))
+* **frontend:** refresh transport cache when update address ([64ea9fd](https://github.com/solinumasso/soliguide/commit/64ea9fdf1ac214e3b84e584cbcbf0232f7a8b672))
+
 # [4.103.0](https://github.com/solinumasso/soliguide/compare/v4.102.0...v4.103.0) (2025-11-04)
 
 
