@@ -1,3 +1,15 @@
+# [4.105.0](https://github.com/solinumasso/soliguide/compare/v4.104.0...v4.105.0) (2025-11-06)
+
+
+### Bug Fixes
+
+* **frontend:** change color button page my organisation ([3f2712a](https://github.com/solinumasso/soliguide/commit/3f2712ad12d826c22337655713f78c658a7d1380))
+
+
+### Features
+
+* **frontend:** select source at end maj form ([dc95ca3](https://github.com/solinumasso/soliguide/commit/dc95ca3488012c29415ff0cd50fc561257a3ff16))
+
 # [4.104.0](https://github.com/solinumasso/soliguide/compare/v4.103.0...v4.104.0) (2025-11-05)
 
 
