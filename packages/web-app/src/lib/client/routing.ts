@@ -31,7 +31,8 @@ export const getRoutes = (lang: string): Routing => {
     ROUTE_SEARCH: `/${lang}/search`,
     ROUTE_PLACES: `/${lang}/places`,
     ROUTE_MORE_OPTIONS: `/${lang}/more-options`,
-    ROUTE_TALK: `/${lang}/talk`
+    ROUTE_TALK: `/${lang}/talk`,
+    ROUTE_FAVORITES: `/${lang}/favorites`
   };
 };
 

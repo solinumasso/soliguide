@@ -43,6 +43,7 @@ const defaultTheme: ThemeDefinition = {
   supportedLanguages: SUPPORTED_LANGUAGES,
   media: {
     homeIllustration: 'soliguide_illustration_home.svg',
+    favoritesIllustration: 'soliguide_illustration_favorites.svg',
     logos: {
       inline: 'soliguide-inline.svg',
       original: 'soliguide.svg',
