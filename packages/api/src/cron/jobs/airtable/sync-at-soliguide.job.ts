@@ -30,6 +30,10 @@ import { syncAirtableRecords } from "../../../airtable/controllers/airtable.cont
 (async () => {
   try {
     logger.info("JOB - SYNC AT WITH SOLIGUIDE\tSTART");
+
+    let totalSyncedEntities = 0;
+    const syncResults: { [key: string]: number } = {};
+
     try {
       for (const airtableEntityType in AirtableEntityType) {
         const now = new Date();
@@ -37,6 +41,10 @@ import { syncAirtableRecords } from "../../../airtable/controllers/airtable.cont
         const entitiesToSync = await getEntitiesToSync(
           airtableEntityType as AirtableEntityType
         );
+
+        const entityCount = entitiesToSync.length;
+        totalSyncedEntities += entityCount;
+        syncResults[airtableEntityType] = entityCount;
 
         const frontUrl = CONFIG.SOLIGUIDE_FR_URL;
 
@@ -47,6 +55,13 @@ import { syncAirtableRecords } from "../../../airtable/controllers/airtable.cont
           now
         );
       }
+
+      // Log du résumé de la synchronisation
+      logger.info(
+        `[AIRTABLE SYNC] SUMMARY - Total entities synchronized: ${totalSyncedEntities} (Places: ${
+          syncResults.PLACE || 0
+        }, Users: ${syncResults.USER || 0})`
+      );
 
       if (parentPort) parentPort.postMessage("done");
     } catch (e) {
