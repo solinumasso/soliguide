@@ -150,7 +150,32 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             {{ "COMPLETED_UPDATE_CAMPAIGN" | translate }}
           </h4>
         </div>
-
+        @if (me.admin) {
+        <div class="col-3 my-3">
+          <app-campaign-source-update
+            [place]="place"
+            [placeIndex]="place.lieu_id"
+            [disabled]="
+              !place.campaigns.runningCampaign.general.endDate ||
+              place.campaigns.runningCampaign.autonomy === 'AUTONOMOUS'
+            "
+          ></app-campaign-source-update>
+          <div
+            class="warning-feedback-badge"
+            *ngIf="
+              place.campaigns.runningCampaign.source === CampaignSource.INTERNET
+            "
+          >
+            <fa-icon
+              [icon]="['fas', 'circle-exclamation']"
+              aria-hidden="true"
+            ></fa-icon>
+            <p class="my-0">
+              {{ "SOURCE_IS_NOT_RELIABLE" | translate }}
+            </p>
+          </div>
+        </div>
+        }
         <div class="col-12 mb-4 text-center">
           {{ "CAN_CHANGE_UPDATE_INFORMATION" | translate }}
         </div>
@@ -163,7 +188,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             "
             type="button"
           >
-            {{ "BACK_TO_EDITION" | translate }}
+            {{ "MODIFY_SEASONAL_UPDATE" | translate }}
           </button>
           <a
             class="btn btn-secondary btn-lg"
