@@ -33,6 +33,7 @@ import { Subscription } from "rxjs";
 import type { SupportedLanguagesCode, CommonUser } from "@soliguide/common";
 
 import { InviteUserService } from "../../../admin-organisation/services/invite-user.service";
+import { AdminUsersService } from "../../../admin-users/services/admin-users.service";
 import { CurrentLanguageService } from "../../../general/services/current-language.service";
 import type { Invitation } from "../../../users/classes";
 
@@ -44,7 +45,7 @@ import { OriginService } from "../../../shared/services";
 })
 export class DisplayInvitationComponent implements OnInit, OnDestroy {
   @Input() public invitations: Invitation[];
-
+  @Input() public userMail: string;
   @Input() public indexTable: number;
   @Input() public tableName: "users" | "orgas";
 
@@ -61,6 +62,7 @@ export class DisplayInvitationComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly inviteUserService: InviteUserService,
+    private readonly adminUsersService: AdminUsersService,
     private readonly toastr: ToastrService,
     private readonly currentLanguageService: CurrentLanguageService,
     private readonly translateService: TranslateService,
@@ -160,6 +162,35 @@ export class DisplayInvitationComponent implements OnInit, OnDestroy {
   public showSuccessMessage() {
     this.toastr.success(
       this.translateService.instant("LINK_COPIED_SUCCESSFULLY")
+    );
+  }
+
+  public generateResetPasswordLink(userEmail: string): void {
+    if (!userEmail) {
+      this.toastr.error("Email utilisateur non trouvé");
+      return;
+    }
+
+    this.loading = true;
+    this.subscription.add(
+      this.adminUsersService.generateResetPasswordToken(userEmail).subscribe({
+        next: (response: { passwordToken: string }) => {
+          this.loading = false;
+          const resetLink = `${this.frontendUrl}${this.currentLanguage}/reset-password/${response.passwordToken}`;
+
+          navigator.clipboard.writeText(resetLink).then(() => {
+            this.toastr.success(
+              "Lien de réinitialisation copié dans le presse-papier"
+            );
+          });
+        },
+        error: () => {
+          this.loading = false;
+          this.toastr.error(
+            "Erreur lors de la génération du lien de réinitialisation"
+          );
+        },
+      })
     );
   }
 }

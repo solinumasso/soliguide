@@ -67,4 +67,13 @@ export class AdminUsersService {
       `${this.endPoint}createDevToken/${userObjectId}`
     );
   }
+
+  public generateResetPasswordToken(
+    userEmail: string
+  ): Observable<{ passwordToken: string }> {
+    return this.http.post<{ passwordToken: string }>(
+      `${environment.apiUrl}users/forgot-password`,
+      { mail: userEmail, isAdminRequest: true }
+    );
+  }
 }
