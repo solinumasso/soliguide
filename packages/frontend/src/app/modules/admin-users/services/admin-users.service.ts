@@ -28,6 +28,7 @@ import { SearchUsersObject } from "../classes/SearchUsers.class";
 import { environment } from "../../../../environments/environment";
 import { ApiMessage } from "../../../models";
 import { CommonUser, SearchResults } from "@soliguide/common";
+import { PasswordTokenResponse } from "src/app/models/manage-search/interfaces";
 
 @Injectable({
   providedIn: "root",
@@ -65,6 +66,15 @@ export class AdminUsersService {
   public createDevToken(userObjectId: string): Observable<string> {
     return this.http.get<string>(
       `${this.endPoint}createDevToken/${userObjectId}`
+    );
+  }
+
+  public generateResetPasswordToken(
+    userEmail: string
+  ): Observable<PasswordTokenResponse> {
+    return this.http.post<PasswordTokenResponse>(
+      `${environment.apiUrl}users/forgot-password`,
+      { mail: userEmail, isAdminRequest: true }
     );
   }
 }

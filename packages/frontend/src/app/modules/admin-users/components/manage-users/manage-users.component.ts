@@ -58,6 +58,7 @@ import {
   globalConstants,
 } from "../../../../shared";
 import { THEME_CONFIGURATION } from "../../../../models";
+import { OriginService } from "../../../shared/services";
 
 @Component({
   animations: [fadeInOut],
@@ -92,7 +93,8 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
     private readonly titleService: Title,
     private readonly toastr: ToastrService,
     private readonly currentLanguageService: CurrentLanguageService,
-    private readonly translateService: TranslateService
+    private readonly translateService: TranslateService,
+    private readonly originService: OriginService
   ) {
     this.loading = false;
     this.users = [];
@@ -216,5 +218,40 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
   public cancelDelete(): void {
     this.modalService.dismissAll();
     this.selectedUser = null;
+  }
+
+  public generateResetPasswordLink(userMail: string): void {
+    if (!userMail) {
+      this.toastr.error(this.translateService.instant("USER_MAIL_NOT_FOUND"));
+      return;
+    }
+
+    this.subscription.add(
+      this.adminUsersService.generateResetPasswordToken(userMail).subscribe({
+        next: (response: { passwordToken: string }) => {
+          const resetLink = `${this.originService.getFrontendUrl()}${
+            this.currentLanguageService.currentLanguage
+          }/reset-password/${response.passwordToken}`;
+
+          navigator.clipboard
+            .writeText(resetLink)
+            .then(() => {
+              this.toastr.success(
+                this.translateService.instant("LINK_COPIED_SUCCESSFULLY")
+              );
+            })
+            .catch(() => {
+              this.toastr.error(
+                this.translateService.instant("ERROR_COPYING_LINK")
+              );
+            });
+        },
+        error: () => {
+          this.toastr.error(
+            this.translateService.instant("ERROR_GENERATING_RESET_LINK")
+          );
+        },
+      })
+    );
   }
 }
