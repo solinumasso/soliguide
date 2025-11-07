@@ -29,6 +29,7 @@ import * as UserController from "../controllers/user.controller";
 import {
   changeMyOrgaDto,
   emailValidDto,
+  forgotPasswordDto,
   patchMyAccountDto,
   patchUserDto,
   patchUserFromContactDto,
@@ -207,7 +208,7 @@ router.post(
  *
  * /users/forgot-password:
  *   post:
- *     description: send an email to make a user change his/her password
+ *     description: send an email to make a user change his/her password OR generate a reset token for admin use
  *     tags: [Users]
  *     produces:
  *       - application/json
@@ -216,31 +217,49 @@ router.post(
  *         in: formData
  *         required: true
  *         type: string
+ *       - name: isAdminRequest
+ *         in: formData
+ *         required: false
+ *         type: boolean
+ *         description: Set to true to bypass email sending (admin use)
  *     responses:
  *       200:
- *         description: MAIL_SENT
+ *         description: MAIL_SENT or passwordToken
  *       400 :
  *         description: BAD_REQUEST
  */
 router.post(
   "/forgot-password",
-  emailValidDto,
+  forgotPasswordDto,
   getFilteredData,
   async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
     try {
+      const { mail, isAdminRequest } = req.bodyValidated;
+
+      if (isAdminRequest && !req.isAdmin) {
+        return res.status(500).json({ message: "BAD_REQUEST" });
+      }
+
       const selectedUser = await PasswordController.generateResetPasswordToken(
-        req.bodyValidated.mail
+        mail
       );
 
       if (!selectedUser) {
         req.log.error({
-          email: req.bodyValidated,
+          email: mail,
           message: "TENTATIVE_RESET_PASSWORD_ACCOUNT",
         });
         return res.status(200).json({ message: "EMAIL_RESET_PASSWORD_OK" });
       }
       req.selectedUser = selectedUser;
-      return next();
+
+      if (isAdminRequest) {
+        return res
+          .status(200)
+          .json({ passwordToken: selectedUser.passwordToken });
+      } else {
+        next();
+      }
     } catch (e) {
       req.log.error(e);
       return res.status(500).json({ message: "RESET_PASSWORD_IMPOSSIBLE" });

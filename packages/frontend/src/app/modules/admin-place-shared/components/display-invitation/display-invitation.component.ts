@@ -43,10 +43,9 @@ import { OriginService } from "../../../shared/services";
   templateUrl: "./display-invitation.component.html",
 })
 export class DisplayInvitationComponent implements OnInit, OnDestroy {
-  @Input() public invitations: Invitation[];
-
-  @Input() public indexTable: number;
-  @Input() public tableName: "users" | "orgas";
+  @Input({ required: true }) public invitations: Invitation[];
+  @Input({ required: true }) public indexTable: number;
+  @Input({ required: true }) public tableName: "users" | "orgas";
 
   @Output() public readonly updateTable = new EventEmitter<{
     index: number;
