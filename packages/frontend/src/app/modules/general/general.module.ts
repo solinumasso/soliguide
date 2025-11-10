@@ -22,13 +22,9 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-
 import { TranslateModule } from "@ngx-translate/core";
-
 import { CountUpModule } from "ngx-countup";
 
 import { AideComponent } from "./components/aide/aide.component";
@@ -49,6 +45,7 @@ import { HomeTerritoriesStatsComponent } from "./components/home-territiries-sta
 import { SearchBarModule } from "../search-bar/search-bar.module";
 import { SolidataComponent } from "./components/solidata/solidata.component";
 import { PartnersBannerComponent } from "./components/partners-banner/partners-banner.component";
+import { SearchCategoryAutocompleteComponent } from "../shared/components/search-category-autocomplete/search-category-autocomplete.component";
 
 @NgModule({
   declarations: [
@@ -83,6 +80,7 @@ import { PartnersBannerComponent } from "./components/partners-banner/partners-b
     ReactiveFormsModule,
     RouterModule.forRoot([]),
     SearchBarModule,
+    SearchCategoryAutocompleteComponent,
     SharedModule,
     TranslateModule,
   ],

@@ -107,9 +107,9 @@ import categories from "./categories/routes/categories.routes";
 // Soligare
 import soligare from "./soligare/routes/soligare.routes";
 
-// Jobs
-import { importCategories } from "./place/utils";
 import { serve, setup } from "swagger-ui-express";
+import autocompleteSuggestionService from "./search/services/search-suggestions.service";
+import { CountryCodes, SupportedLanguagesCode } from "@soliguide/common";
 
 const _app = express();
 
@@ -268,6 +268,10 @@ _app.use((req: Request, res: Response) => {
 });
 
 (async () => {
+  await autocompleteSuggestionService.loadSuggestions(
+    CountryCodes.FR,
+    SupportedLanguagesCode.FR
+  );
   if (CONFIG.ENV !== "test" && CONFIG.CRON_ENABLED) {
     await import("./cron/cron-manager");
   }
@@ -278,10 +282,6 @@ _app.use((req: Request, res: Response) => {
 
   if (CONFIG.ENV !== "prod" && CONFIG.RESTORE_SYNC) {
     await restoreSynchro();
-  }
-
-  if (CONFIG.ENV === "prod" || CONFIG.ENV === "preprod") {
-    await importCategories();
   }
 })();
 

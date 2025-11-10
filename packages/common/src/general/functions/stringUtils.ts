@@ -69,6 +69,32 @@ export const slugString = (
   });
 };
 
+export const getSeoSlug = (
+  str: string,
+  language?: SupportedLanguagesCode
+): string => {
+  if (!str) {
+    str = "";
+  }
+  const locale = language ?? defaultSlugOptions.locale;
+  let result = decode(str, { level: "html5" });
+  result = striptags(result);
+  return slug(result, {
+    ...defaultSlugOptions,
+    replacement: "-",
+    locale,
+    charmap: {
+      ...slug.charmap,
+      "-": "-",
+      "/": " ",
+      "’": " ",
+      "'": " ",
+      "°": " ",
+      ".": " ",
+    },
+  });
+};
+
 export const slugLocation = (str: string | null): string => {
   if (!str) {
     return "";
