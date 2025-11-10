@@ -18,5 +18,11 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+<<<<<<<< HEAD:packages/frontend/src/app/models/manage-search/interfaces/index.ts
 //@index('./*', f => `export * from '${f.path}'`)
 export * from "./passwordToken.interface";
+========
+// @index('./*', f => `export * from '${f.path}'`)
+export * from "./generate-categories-autocomplete";
+export * from "./generate-categories-json";
+>>>>>>>> dbc569fa7 (feat(api): add autocomplete #624):packages/api/src/search/scripts/index.ts

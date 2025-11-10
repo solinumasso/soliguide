@@ -103,7 +103,7 @@ export class LocationAutocompleteComponent
   @Output()
   public readonly clearAddress = new EventEmitter<void>();
 
-  @Input() public search: Search;
+  @Input() public search!: Search;
 
   public locationLoading = false;
   public model: string = "";
