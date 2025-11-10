@@ -25,6 +25,7 @@ import {
 } from "@soliguide/common";
 import * as AutoCompleteService from "../services/auto-complete.service";
 
+// @deprecated
 export const searchTerm = async (
   rawTerm: string
 ): Promise<SearchAutoComplete> => {

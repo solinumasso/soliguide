@@ -54,6 +54,7 @@ import {
   CountryCodes,
   LocationAreas,
   ManageSearchOptions,
+  SearchResults,
 } from "@soliguide/common";
 
 import { AdminSearchPlaces } from "../../classes";
@@ -67,7 +68,6 @@ import {
   ORGA_CAMPAIGN_STATUS,
   PLACE_CAMPAIGN_STATUS,
   type Place,
-  type SearchResults,
   THEME_CONFIGURATION,
 } from "../../../../models";
 
@@ -209,8 +209,8 @@ export class ManagePlacesComponent implements OnInit, OnDestroy {
           this.managePlacesService
             .launchSearch(search, "admin-search")
             .subscribe({
-              next: (response: SearchResults) => {
-                this.places = response.places;
+              next: (response: SearchResults<Place>) => {
+                this.places = response.results;
                 this.nbResults = response.nbResults;
                 this.loading = false;
                 this.hasFilter = this.getHasFilter();

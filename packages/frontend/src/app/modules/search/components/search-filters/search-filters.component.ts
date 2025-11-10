@@ -42,8 +42,8 @@ import {
 } from "@soliguide/common";
 import type { PosthogProperties } from "@soliguide/common-angular";
 
-import type { Search } from "../../interfaces";
-import type { SearchFilterParams, LanguagesArray } from "../../../../models";
+import type { Search, SearchFilterParams } from "../../interfaces";
+import type { LanguagesArray } from "../../../../models";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { InputLanguagesService } from "../../../shared/services/input-languages/input-languages.service";
 
@@ -53,12 +53,12 @@ import { InputLanguagesService } from "../../../shared/services/input-languages/
   styleUrls: ["./search-filters.component.css"],
 })
 export class SearchFiltersComponent implements OnInit {
-  @Input() public search!: Search;
-  @Input() public parcoursSearch!: Search;
-  @Input() public searchSubject!: Subject<Search>;
-  @Input() public parcoursSearchSubject!: Subject<Search>;
-  @Input() public filters!: SearchFilterParams;
-  @Input() public showFilters: boolean;
+  @Input({ required: true }) public search!: Search;
+  @Input({ required: true }) public parcoursSearch!: Search;
+  @Input({ required: true }) public searchSubject!: Subject<Search>;
+  @Input({ required: true }) public parcoursSearchSubject!: Subject<Search>;
+  @Input({ required: true }) public filters!: SearchFilterParams;
+  @Input({ required: true }) public showFilters: boolean;
 
   public readonly ALL_PUBLICS = ALL_PUBLICS;
   public readonly PUBLICS_LABELS = PUBLICS_LABELS;

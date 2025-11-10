@@ -26,8 +26,9 @@ import {
   type AnyDepartmentCode,
   ManageSearchOptions,
 } from "@soliguide/common";
-import { ManageSearch, type OrgaCampaignStatus } from "../../../models";
+import { type OrgaCampaignStatus } from "../../../models";
 import { User } from "../../users/classes";
+import { ManageSearch } from "../../manage-common/classes";
 
 export class SearchOrgaObject extends ManageSearch {
   public name: string | null;

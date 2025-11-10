@@ -19,8 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-
-import { SearchFilterParams } from "../../../../models/search-places";
+import { SearchFilterParams } from "../../interfaces";
 
 @Component({
   selector: "app-temp-open-filter",
@@ -31,7 +30,7 @@ import { SearchFilterParams } from "../../../../models/search-places";
   ],
 })
 export class TempOpenFilterComponent implements OnInit {
-  @Input() public filters: SearchFilterParams;
+  @Input({ required: true }) public filters: SearchFilterParams;
 
   public openTodayChecked: boolean;
 
@@ -40,11 +39,11 @@ export class TempOpenFilterComponent implements OnInit {
   constructor() {}
 
   public ngOnInit(): void {
-    this.openTodayChecked = this.filters.openToday ? true : false;
+    this.openTodayChecked = !!this.filters.openToday;
   }
 
   public emitFilters = () => {
-    this.openTodayChecked = this.openTodayChecked ? false : true;
+    this.openTodayChecked = !this.openTodayChecked;
     this.filtersChange.emit();
   };
 }

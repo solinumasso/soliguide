@@ -21,24 +21,26 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <div id="form_recherche">
   <div class="row">
     <div class="col-md-5 col-12">
-      <app-search-category-autocomplete
-        [search]="search"
-        (updateCategory)="updateCategory.emit()"
-        (updateSearchTerm)="updateSearchTerm.emit()"
-        (click)="captureEvent('category-input')"
-        class="search-input"
-      ></app-search-category-autocomplete>
+      <div class="search-input">
+        <span class="search-label">
+          {{ "WHAT_ARE_YOU_LOOKING_FOR" | translate }}
+        </span>
+        <app-search-category-autocomplete
+          [currentValue]="currentValue"
+          [search]="search"
+          (updateCategory)="updateCategory.emit()"
+        ></app-search-category-autocomplete>
+      </div>
     </div>
     <div class="col-md-5 col-12">
       <div class="search-input">
-        <label for="address-search">
+        <span class="search-label">
           {{ "A_PROXIMITE" | translate }}
-        </label>
+        </span>
         <app-location-autocomplete
           [addressesOnly]="false"
           [currentAddress]="search?.location.label"
           (updateLocation)="updateLocation.emit($event)"
-          (click)="captureEvent('location-input')"
         ></app-location-autocomplete>
       </div>
     </div>
