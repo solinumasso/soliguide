@@ -26,7 +26,7 @@ import {
   SERVICE_CATEGORIES_API_ALL_V2,
   SERVICE_CATEGORIES_API_ES,
   SERVICE_CATEGORIES_API_FR,
-} from "../constants/servive-categories.const";
+} from "../constants/service-categories.const";
 import { TypeCategoriesService } from "../types/categories-service.type";
 import { TypeCategoriesServiceNotFromThemeEnum } from "../enums/type-categories-service-not-from-theme.enum";
 

@@ -27,18 +27,15 @@ import {
   SimpleChanges,
 } from "@angular/core";
 
-import { Subscription } from "rxjs";
-
-import { SEARCH_OPTIONAL_PARAMS } from "../../constants";
 import { Search } from "../../interfaces";
 
 import { CurrentLanguageService } from "../../../general/services/current-language.service";
-import { SearchFilterParams } from "../../../../models/search-places";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import {
   FlatCategoriesTreeNode,
   getCategoriesService,
 } from "@soliguide/common";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-search-nav",
@@ -54,9 +51,7 @@ export class SearchNavComponent implements OnInit, OnDestroy, OnChanges {
 
   public categoryParentNode: FlatCategoriesTreeNode;
 
-  public searchParams: SearchFilterParams;
-
-  @Input() public search!: Search;
+  @Input({ required: true }) public search: Search;
 
   constructor(
     private readonly currentLanguageService: CurrentLanguageService,
@@ -67,64 +62,48 @@ export class SearchNavComponent implements OnInit, OnDestroy, OnChanges {
 
   public ngOnInit(): void {
     this.subscription.add(
-      this.currentLanguageService.subscribe(
-        () => (this.routePrefix = this.currentLanguageService.routePrefix)
-      )
+      this.currentLanguageService.subscribe(() => {
+        this.routePrefix = this.currentLanguageService.routePrefix;
+      })
+    );
+    this.updateCategoryNode();
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes["search"]) {
+      if (this.search) {
+        this.updateCategoryNode();
+      }
+    }
+  }
+
+  private updateCategoryNode(): void {
+    if (!this.search.category) {
+      this.categoryParentNode = null;
+      return;
+    }
+
+    const categoriesService = getCategoriesService();
+    const parentCategories = categoriesService.getParentsCategories(
+      this.search.category
     );
 
-    const categoryParent = getCategoriesService().getParentsCategories(
-      this.search.category
-    )[0];
+    const categoryParent = parentCategories[0];
 
-    this.categoryParentNode = categoryParent
-      ? getCategoriesService().getFlatCategoryTreeNode(categoryParent)
-      : this.search.category
-      ? getCategoriesService().getFlatCategoryTreeNode(this.search.category)
-      : null;
+    if (categoryParent) {
+      this.categoryParentNode =
+        categoriesService.getFlatCategoryTreeNode(categoryParent);
+      return;
+    }
+
+    this.categoryParentNode = categoriesService.getFlatCategoryTreeNode(
+      this.search.category
+    );
   }
 
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-
-  public ngOnChanges(changes: SimpleChanges): void {
-    for (const change in changes) {
-      if (change === "search") {
-        this.buildQueryParams();
-      }
-    }
-  }
-
-  private readonly buildQueryParams = (): void => {
-    this.searchParams = {};
-
-    for (const param of SEARCH_OPTIONAL_PARAMS) {
-      if (this.search[param]) {
-        if (typeof this.search[param] === "object") {
-          for (const key of Object.keys(this.search[param])) {
-            this.searchParams[key] = Array.isArray(this.search[param][key])
-              ? this.search[param][key][0]
-              : this.search[param][key];
-          }
-        } else if (
-          typeof this.search[param] === "string" ||
-          typeof this.search[param] === "boolean"
-        ) {
-          this.searchParams[param] = this.search[param];
-        }
-      }
-    }
-
-    const categoryParent = getCategoriesService().getParentsCategories(
-      this.search.category
-    )[0];
-
-    this.categoryParentNode = categoryParent
-      ? getCategoriesService().getFlatCategoryTreeNode(categoryParent)
-      : this.search.category
-      ? getCategoriesService().getFlatCategoryTreeNode(this.search.category)
-      : null;
-  };
 
   public captureEvent(eventName: string) {
     this.posthogService.capture(`search-nav-${eventName}`, {

@@ -21,7 +21,12 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-import { ApiPlace, ApiSearchResults, ExportParams } from "@soliguide/common";
+import {
+  ApiPlace,
+  ApiSearchResults,
+  ExportParams,
+  SearchResults,
+} from "@soliguide/common";
 
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
@@ -30,7 +35,6 @@ import { AdminSearchPlaces } from "../classes";
 
 import { ApiMessage } from "../../../models/api";
 import { Place } from "../../../models/place/classes";
-import { SearchResults } from "../../../models/search-places";
 
 import { environment } from "../../../../environments/environment";
 
@@ -66,7 +70,7 @@ export class ManagePlacesService {
   public launchSearch(
     search: AdminSearchPlaces,
     context: "admin-search" | "admin-search-to-add-place-in-orga"
-  ): Observable<SearchResults> {
+  ): Observable<SearchResults<Place>> {
     return this.http
       .post<ApiSearchResults>(
         `${environment.apiUrl}new-search/${context}`,
@@ -74,17 +78,21 @@ export class ManagePlacesService {
       )
       .pipe(
         map((response: ApiSearchResults) => {
-          const result: SearchResults = {
+          const result: SearchResults<Place> = {
             nbResults: 0,
-            places: [],
+            results: [],
           };
+
+          if (!response.nbResults) {
+            return result;
+          }
+
           if (response.nbResults > 0) {
             result.nbResults = response.nbResults;
-            result.places = response.places.map(
+            result.results = response.places.map(
               (item) => new Place(item, false)
             );
           }
-
           return result;
         })
       );

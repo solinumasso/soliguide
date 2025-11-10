@@ -21,16 +21,13 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-import { ApiSearchResults } from "@soliguide/common";
+import { ApiSearchResults, SearchResults } from "@soliguide/common";
 
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-
 import { Search } from "../interfaces";
-
 import { CurrentLanguageService } from "../../general/services/current-language.service";
-
-import { Place, SearchResults } from "../../../models";
+import { Place } from "../../../models";
 
 import { environment } from "../../../../environments/environment";
 
@@ -45,14 +42,14 @@ export class SearchService {
     private readonly currentLanguageService: CurrentLanguageService
   ) {}
 
-  public launchSearch(search: Search): Observable<SearchResults> {
+  public launchSearch(search: Search): Observable<SearchResults<Place>> {
     const url = this.ep + this.currentLanguageService.currentLanguage;
 
     return this.http.post<ApiSearchResults>(`${url}`, search).pipe(
       map((response: ApiSearchResults) => {
-        const result: SearchResults = {
+        const result: SearchResults<Place> = {
           nbResults: 0,
-          places: [],
+          results: [],
         };
 
         if (!response.nbResults) {
@@ -61,7 +58,9 @@ export class SearchService {
 
         if (response.nbResults > 0) {
           result.nbResults = response.nbResults;
-          result.places = response.places.map((item) => new Place(item, false));
+          result.results = response.places.map(
+            (item) => new Place(item, false)
+          );
         }
         return result;
       })

@@ -23,8 +23,8 @@ import {
   TranslatedFieldStatus,
 } from "@soliguide/common";
 
-import { ManageSearch } from "../../../models/manage-search/classes/ManageSearch.class";
 import { User } from "../../users/classes";
+import { ManageSearch } from "../../manage-common/classes";
 
 export class SearchTranslatedFields extends ManageSearch {
   public createdAt?: Date;
