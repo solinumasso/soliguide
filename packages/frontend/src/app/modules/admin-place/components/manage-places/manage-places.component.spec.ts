@@ -46,7 +46,7 @@ import { PosthogService } from "../../../analytics/services/posthog.service";
 
 const MOCK_SEARCH_RESULTS = {
   nbResults: 1,
-  places: [ONLINE_PLACE_MOCK],
+  results: [ONLINE_PLACE_MOCK],
 };
 
 describe("ManagePlacesComponent", () => {

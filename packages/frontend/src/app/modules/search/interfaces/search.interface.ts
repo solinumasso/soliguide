@@ -19,12 +19,14 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import {
+  AutoCompleteType,
   Categories,
   GeoPosition,
   PlaceType,
   SearchFilterClosure,
   SearchModalities,
   SearchPublics,
+  SearchSuggestion,
   SoliguideCountries,
   SupportedLanguagesCode,
 } from "@soliguide/common";
@@ -83,5 +85,39 @@ export class Search {
         this.word = null;
       }
     }
+  }
+
+  public resetSearchTerms(): void {
+    this.category = null;
+    this.word = null;
+    this.label = null;
+  }
+
+  public setCategory(categoryId: Categories, label?: string): void {
+    this.category = categoryId;
+    this.word = null;
+    if (label) {
+      this.label = label;
+    }
+  }
+
+  public setWord(word: string, label?: string): void {
+    this.word = word;
+    this.category = null;
+    if (label) {
+      this.label = label;
+    }
+  }
+
+  public applySearchSuggestion(suggestion: SearchSuggestion): void {
+    console.warn("applySearchSuggestion");
+    this.resetSearchTerms();
+
+    if (suggestion.type === AutoCompleteType.CATEGORY) {
+      this.category = suggestion.categoryId;
+    } else {
+      this.word = suggestion.slug;
+    }
+    this.label = suggestion.label;
   }
 }
