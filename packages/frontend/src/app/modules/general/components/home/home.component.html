@@ -38,6 +38,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   </div>
 
   <app-search-bar
+    [currentValue]="searchInputValue"
     (updateLocation)="updateLocation($event)"
     (launchSearch)="launchSearch()"
     [search]="search"

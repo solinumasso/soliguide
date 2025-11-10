@@ -33,7 +33,7 @@ import {
   faXTwitter,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
-import { faClock, faStar } from "@fortawesome/free-regular-svg-icons";
+import { faClock, faHeart, faStar } from "@fortawesome/free-regular-svg-icons";
 import {
   faAngleDown,
   faAngleLeft,
@@ -60,6 +60,7 @@ import {
   faDoorOpen,
   faDownload,
   faEdit,
+  faEllipsisH,
   faEnvelope,
   faEnvelopeOpenText,
   faEuroSign,
@@ -84,6 +85,7 @@ import {
   faLock,
   faMap,
   faMapMarker,
+  faMapPin,
   faPaperclip,
   faPaperPlane,
   faPauseCircle,
@@ -180,6 +182,7 @@ export const FA_ICONS: IconDefinition[] = [
   faLock,
   faMap,
   faMapMarker,
+  faMapPin,
   faPaperclip,
   faPaperPlane,
   faPauseCircle,
@@ -226,4 +229,7 @@ export const FA_ICONS: IconDefinition[] = [
   faWheelchair,
   faXTwitter,
   faYoutube,
+  faEllipsisH,
+  faBuilding,
+  faHeart,
 ];

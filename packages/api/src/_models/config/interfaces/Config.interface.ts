@@ -42,6 +42,7 @@ export interface Config {
 
   // Google
   GOOGLE_PROJECT_ID?: string;
+  GEMINI_API_KEY?: string;
   GOOGLE_API_KEY?: string;
 
   // Emails & Mailgun
@@ -112,9 +113,6 @@ export interface Config {
   // Dev / local
   DEV_ANON: boolean;
   DEV_ANON_PASSWORD_FOR_ALL: string;
-
-  // Google Docs for events and synonyms
-  SYNONYMS_GOOGLE_DOCS_LINK?: string;
 
   // RabbitMQ
   AMQP_URL?: string;

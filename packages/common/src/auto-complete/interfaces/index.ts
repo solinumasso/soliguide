@@ -20,4 +20,5 @@
  */
 // @index('./*', f => `export * from '${f.path}'`)
 export * from "./AutoComplete.interface";
+export * from "./search-suggestion.interface";
 export * from "./SearchAutoComplete.interface";
