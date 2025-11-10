@@ -18,12 +18,12 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { ModelWithId } from "../../_models";
+
 import "../../config/database/connection";
 
 import mongoose from "mongoose";
 
-import { ApiPlacePhoto } from "../../_models";
+import { ApiPlacePhoto, ModelWithId } from "../../_models";
 
 import { DocsModel, PhotoModel } from "../../place/models";
 

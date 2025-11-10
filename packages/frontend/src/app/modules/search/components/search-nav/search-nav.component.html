@@ -19,7 +19,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <div [class]="'CSS_CLASS_FOR_LANGUAGE_SIZE' | translate">
-  <ul class="nav_categories" *ngIf="!search.category">
+  <ul class="nav_categories" *ngIf="search && !search.category">
     <li
       *ngFor="let categoryWithChildren of CATEGORIES_ROOTS"
       [ngClass]="{ active: search.category === categoryWithChildren }"
@@ -28,10 +28,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         [routerLink]="[
           routePrefix,
           'search',
-          search.location.geoValue,
+          search.location?.geoValue,
           categoryWithChildren
         ]"
-        [queryParams]="searchParams"
+        queryParamsHandling="preserve"
         (click)="
           captureEvent('click-category' + categoryWithChildren.toUpperCase())
         "
@@ -43,13 +43,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   <ul
     class="subCats nav_categories"
-    *ngIf="search.category && categoryParentNode"
+    *ngIf="search && search.category && categoryParentNode"
   >
     <li>
       <a
         [attr.aria-label]="'BACK_TO_PREVIOUS_CATEGORY' | translate"
-        [routerLink]="[routePrefix, 'search', search.location.geoValue]"
-        [queryParams]="searchParams"
+        [routerLink]="[routePrefix, 'search', search.location?.geoValue]"
+        queryParamsHandling="preserve"
         (click)="captureEvent('click-back-to-previous-category')"
       >
         <fa-icon aria-hidden="true" [icon]="['fas', 'arrow-left']"></fa-icon>
@@ -60,10 +60,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         [routerLink]="[
           routePrefix,
           'search',
-          search.location.geoValue,
+          search.location?.geoValue,
           categoryParentNode.id
         ]"
-        [queryParams]="searchParams"
+        queryParamsHandling="preserve"
         (click)="captureEvent('click-category' + categoryParentNode.id)"
       >
         {{ categoryParentNode.id | uppercase | translate }}
@@ -76,10 +76,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           [routerLink]="[
             routePrefix,
             'search',
-            search.location.geoValue,
+            search.location?.geoValue,
             categoryId.id
           ]"
-          [queryParams]="searchParams"
+          queryParamsHandling="preserve"
           (click)="captureEvent('click-service-' + categoryId.id)"
         >
           {{ categoryId.id | uppercase | translate }}

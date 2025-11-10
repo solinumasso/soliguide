@@ -25,33 +25,27 @@ import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { RouterTestingModule } from "@angular/router/testing";
-
 import { SharedModule } from "../../../shared/shared.module";
-
 import { TranslateModule } from "@ngx-translate/core";
-
 import { ToastrModule } from "ngx-toastr";
 
 import { of } from "rxjs";
 
 import { AddPlaceToOrgaComponent } from "./add-place-to-orga.component";
-
 import { OrganisationService } from "../../services/organisation.service";
-
 import { ManagePlacesService } from "../../../admin-place/services/manage-places.service";
-
-import { SearchResults } from "../../../../models/search-places";
-
 import {
   CommonPosthogMockService,
   ORGANIZATION_MOCK,
   ONLINE_PLACE_MOCK,
 } from "../../../../../../mocks";
 import { PosthogService } from "../../../analytics/services/posthog.service";
+import { Place } from "../../../../models";
+import { SearchResults } from "@soliguide/common";
 
-const searchResult: SearchResults = {
+const searchResult: SearchResults<Place> = {
   nbResults: 1,
-  places: [ONLINE_PLACE_MOCK],
+  results: [ONLINE_PLACE_MOCK],
 };
 
 describe("AddPlaceToOrgaComponent", () => {

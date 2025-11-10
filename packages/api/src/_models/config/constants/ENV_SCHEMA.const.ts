@@ -159,6 +159,10 @@ export const ENV_SCHEMA: JSONSchemaType<Config> = {
       type: "string",
       nullable: true,
     },
+    GEMINI_API_KEY: {
+      type: "string",
+      nullable: true,
+    },
     DEFAULT_SENDER_EMAIL: {
       type: "string",
       default: "tech@solinum.org",
@@ -344,10 +348,6 @@ export const ENV_SCHEMA: JSONSchemaType<Config> = {
     DEV_ANON_PASSWORD_FOR_ALL: {
       type: "string",
       default: "soliguide",
-    },
-    SYNONYMS_GOOGLE_DOCS_LINK: {
-      type: "string",
-      nullable: true,
     },
     RGPD_EMAIL: {
       type: "string",

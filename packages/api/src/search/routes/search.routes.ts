@@ -40,6 +40,7 @@ import {
   searchAdminForOrgasDto,
   autoCompleteSearchDto,
   searchDto,
+  searchSuggestionDto,
 } from "../dto";
 
 import type { ExpressRequest, ExpressResponse } from "../../_models";
@@ -55,6 +56,10 @@ import {
 } from "../../middleware";
 
 import { getTranslatedPlacesForSearch } from "../../translations/controllers/translation.controller";
+import SearchSuggestionsController from "../controllers/search-suggestions.controller";
+import { createCache } from "cache-manager";
+
+const searchSuggestionsCache = createCache({ ttl: 30 * 24 * 60 * 60 });
 
 const router = Router();
 
@@ -134,14 +139,7 @@ router.post(
   }
 );
 
-/**
- * @swagger
- *
- * /new-search/auto-complete/:term:
- *   get:
- *     description: Get suggested category or word
- *     tags: [SearchPlace]
- */
+// @deprecated
 router.get(
   "/auto-complete/:term",
   isNotApiUser,
@@ -152,6 +150,34 @@ router.get(
       const autocompleteResults = await searchTerm(req.bodyValidated.term);
 
       res.status(200).json(autocompleteResults);
+    } catch (e) {
+      req.log.error(e, "AUTOCOMPLETE_FAILED");
+      res.status(500).json({ message: "AUTOCOMPLETE_FAILED" });
+    }
+  }
+);
+
+router.get(
+  "/search-suggestions/:country/:term",
+  isNotApiUser,
+  searchSuggestionDto("term"),
+  getFilteredData,
+  async (req: ExpressRequest, res: ExpressResponse) => {
+    const cacheKey = `search:${req.bodyValidated.term}`;
+    const results = await searchSuggestionsCache.get(cacheKey);
+    console.log({ cacheKey, results });
+    if (results) {
+      return res.status(200).json(results);
+    }
+    try {
+      const autocompleteResults = SearchSuggestionsController.autoComplete(
+        req.bodyValidated.term,
+        req.bodyValidated.country,
+        req.bodyValidated.lang
+      );
+      searchSuggestionsCache.set(cacheKey, autocompleteResults);
+
+      return res.status(200).json(autocompleteResults);
     } catch (e) {
       req.log.error(e, "AUTOCOMPLETE_FAILED");
       res.status(500).json({ message: "AUTOCOMPLETE_FAILED" });
