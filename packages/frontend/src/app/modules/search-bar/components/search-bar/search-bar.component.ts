@@ -32,12 +32,10 @@ import { PosthogService } from "../../../analytics/services/posthog.service";
 })
 export class SearchBarComponent {
   @Input() public search!: Search;
+  @Input() public currentValue!: string;
   // Selected category
   @Output()
   public readonly updateCategory = new EventEmitter<void>();
-  // Searched term
-  @Output()
-  public readonly updateSearchTerm = new EventEmitter<void>();
   // Searched location
   @Output()
   public readonly updateLocation =
@@ -50,6 +48,7 @@ export class SearchBarComponent {
   constructor(private readonly posthogService: PosthogService) {}
 
   public localLaunchSearch() {
+    console.log("localLaunchSearch");
     this.launchSearch.emit();
     this.captureEvent("search-input", { search: this.search });
   }
