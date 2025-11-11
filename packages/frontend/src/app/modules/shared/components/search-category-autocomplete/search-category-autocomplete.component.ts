@@ -82,7 +82,7 @@ export class SearchCategoryAutocompleteComponent
   public currentValue: string = "";
 
   @Input({ required: true })
-  public search!: Search;
+  public search: Search;
 
   @Output()
   public readonly updateCategory = new EventEmitter<void>();
