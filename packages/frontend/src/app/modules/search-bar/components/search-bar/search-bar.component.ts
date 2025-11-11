@@ -31,7 +31,7 @@ import { PosthogService } from "../../../analytics/services/posthog.service";
   styleUrls: ["./search-bar.component.scss"],
 })
 export class SearchBarComponent {
-  @Input() public search!: Search;
+  @Input({ required: true }) public search: Search;
   @Input() public currentValue!: string;
   // Selected category
   @Output()
