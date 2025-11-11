@@ -18,23 +18,77 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
-<div #autocompleteContainer id="autocomplete"></div>
+<div class="d-flex align-items-center position-relative">
+  <input
+    type="text"
+    class="form-control"
+    [ngbTypeahead]="searchLocation"
+    [inputFormatter]="formatter"
+    [resultFormatter]="formatter"
+    [resultTemplate]="resultTemplate"
+    [placeholder]="placeholder"
+    [editable]="false"
+    [focusFirst]="true"
+    [(ngModel)]="model"
+    (selectItem)="onSelectItem($event)"
+  />
+  <ng-template #resultTemplate let-r="result" let-t="term">
+    <div
+      class="d-flex align-items-center"
+      *ngIf="r.geoType !== GeoTypes.POSITION; else positionTemplate"
+    >
+      <fa-icon class="ms-1 me-3" [icon]="faMapPin" aria-hidden="true"></fa-icon>
+      <span class="text-truncate"
+        ><strong>{{ getGeoTypeLabel(r.geoType) }}</strong> - {{ r.label }}</span
+      >
+    </div>
+    <ng-template #positionTemplate>
+      <div class="d-flex align-items-center">
+        <fa-icon
+          class="ms-1 me-3"
+          [icon]="faMapPin"
+          aria-hidden="true"
+        ></fa-icon>
+        <span class="text-truncate">{{ r.label }}</span>
+      </div>
+    </ng-template>
+  </ng-template>
 
-<button
-  type="button"
-  *ngIf="!addressesOnly"
-  class="search-input-button"
-  [disabled]="locationLoading"
-  [attr.aria-label]="'GEOLOCATE_MYSELF' | translate"
-  (click)="getCurrentPosition()"
->
-  <fa-icon *ngIf="!locationLoading" [icon]="faLocationDot" aria-hidden="true">
-  </fa-icon>
-  <fa-icon
-    *ngIf="locationLoading"
-    [icon]="faCircleNotch"
-    [spin]="true"
-    aria-hidden="true"
+  <div
+    class="btns position-absolute end-0 d-flex align-items-center"
+    style="z-index: 10"
   >
-  </fa-icon>
-</button>
+    <button
+      type="button"
+      *ngIf="model?.trim() !== ''"
+      class="btn btn-light me-1"
+      [attr.aria-label]="'CLEAR_LOCATION' | translate"
+      (click)="clearLocation()"
+    >
+      <fa-icon [icon]="faXmark" aria-hidden="true"></fa-icon>
+    </button>
+
+    <button
+      type="button"
+      *ngIf="!addressesOnly"
+      class="btn btn-light me-1"
+      [disabled]="locationLoading"
+      [attr.aria-label]="'GEOLOCATE_MYSELF' | translate"
+      (click)="getCurrentPosition()"
+    >
+      <fa-icon
+        *ngIf="!locationLoading"
+        [icon]="faLocationDot"
+        aria-hidden="true"
+      >
+      </fa-icon>
+      <fa-icon
+        *ngIf="locationLoading"
+        [icon]="faCircleNotch"
+        [spin]="true"
+        aria-hidden="true"
+      >
+      </fa-icon>
+    </button>
+  </div>
+</div>
