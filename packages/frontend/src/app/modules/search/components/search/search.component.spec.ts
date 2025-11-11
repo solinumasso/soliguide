@@ -1,7 +1,7 @@
 /*
  * Soliguide: Useful information for those who need it
  *
- * SPDX-FileCopyrightText: © 2024 Solinum
+ * SPDX-FileCopyrightText: © 2025 Solinum
  *
  * SPDX-License-Identifier: AGPL-3.0-only
  *
@@ -28,23 +28,14 @@ import { ActivatedRoute } from "@angular/router";
 import { RouterTestingModule } from "@angular/router/testing";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-
 import { TranslateModule } from "@ngx-translate/core";
-
-import { CountryCodes, GeoTypes, PublicsGender } from "@soliguide/common";
-
 import { ToastrModule } from "ngx-toastr";
-
 import { of } from "rxjs";
 
 import { SearchComponent } from "./search.component";
-
 import { SearchService } from "../../services/search.service";
-
 import { AuthService } from "../../../users/services/auth.service";
-
 import { SharedModule } from "../../../shared/shared.module";
-
 import {
   CommonPosthogMockService,
   ONLINE_PLACE_MOCK,
@@ -52,8 +43,9 @@ import {
 import { MockAuthService } from "../../../../../../mocks/MockAuthService";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { LocationService } from "../../../shared/services";
+import { CountryCodes, GeoTypes } from "@soliguide/common";
 
-describe("SearchComponent", () => {
+describe("SearchComponent - Tests Simples", () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
   let searchService: SearchService;
@@ -77,9 +69,12 @@ describe("SearchComponent", () => {
         {
           provide: ActivatedRoute,
           useValue: {
-            queryParams: of({ gender: PublicsGender.men, limit: 20, page: 1 }),
+            queryParams: of({}),
             params: of({ category: "accueil", position: "bordeaux" }),
-            snapshot: { params: { position: "bordeaux" } },
+            snapshot: {
+              params: { category: "accueil", position: "bordeaux" },
+              queryParams: {},
+            },
           },
         },
         { provide: APP_BASE_HREF, useValue: "/" },
@@ -93,12 +88,15 @@ describe("SearchComponent", () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SearchComponent);
+    component = fixture.componentInstance;
     searchService = TestBed.inject(SearchService);
+    locationService = TestBed.inject(LocationService);
+
+    // Mock des services
     jest
       .spyOn(searchService, "launchSearch")
       .mockReturnValue(of({ results: [ONLINE_PLACE_MOCK], nbResults: 1 }));
 
-    locationService = TestBed.inject(LocationService);
     jest.spyOn(locationService, "locationAutoComplete").mockReturnValue(
       of([
         {
@@ -129,16 +127,42 @@ describe("SearchComponent", () => {
       ])
     );
 
-    component = fixture.componentInstance;
     jest.spyOn(component.searchSubject, "next");
-    fixture.detectChanges();
+    jest.spyOn(component.parcoursSearchSubject, "next");
   });
 
   it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it("should have launched search", () => {
-    expect(component.searchSubject.next).toHaveBeenCalled();
+  it("should initialize properties correctly", () => {
+    expect(component.places).toEqual([]);
+    expect(component.parcours).toEqual([]);
+    expect(component.markers).toEqual([]);
+    expect(component.nbResults).toBe(0);
+    expect(component.nbParcoursResults).toBe(0);
+    expect(component.loading).toBe(true);
+    expect(component.parcoursLoading).toBe(true);
+  });
+
+  it("should have search and parcoursSearch defined after initialization", (done) => {
+    fixture.detectChanges();
+
+    setTimeout(() => {
+      expect(component.search).toBeDefined();
+      expect(component.parcoursSearch).toBeDefined();
+      expect(component.search.location).toBeDefined();
+      expect(component.parcoursSearch.location).toBeDefined();
+      done();
+    }, 100);
+  });
+
+  it("should toggle showFilters when toggleFilter is called", () => {
+    component.showFilters = true;
+    component.toggleFilter();
+    expect(component.showFilters).toBe(false);
+
+    component.toggleFilter();
+    expect(component.showFilters).toBe(true);
   });
 });

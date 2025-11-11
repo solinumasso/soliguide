@@ -46,7 +46,7 @@ import { filterDepartments } from "../../../../shared";
 })
 export class SelectTerritoriesComponent implements OnInit {
   @Input() public isRequired!: boolean;
-  @Input({ required: true }) public label!: string;
+  @Input({ required: true }) public label: string;
   @Input() public submitted!: boolean;
   @Input() public territories!: string[];
   @Input() public territoriesFormControl!: AbstractControl;

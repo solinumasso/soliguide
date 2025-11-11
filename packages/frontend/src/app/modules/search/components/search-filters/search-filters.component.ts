@@ -53,8 +53,8 @@ import { InputLanguagesService } from "../../../shared/services/input-languages/
   styleUrls: ["./search-filters.component.css"],
 })
 export class SearchFiltersComponent implements OnInit {
-  @Input({ required: true }) public search!: Search;
-  @Input({ required: true }) public parcoursSearch!: Search;
+  @Input({ required: true }) public search: Search;
+  @Input({ required: true }) public parcoursSearch: Search;
   @Input({ required: true }) public searchSubject!: Subject<Search>;
   @Input({ required: true }) public parcoursSearchSubject!: Subject<Search>;
   @Input({ required: true }) public filters!: SearchFilterParams;

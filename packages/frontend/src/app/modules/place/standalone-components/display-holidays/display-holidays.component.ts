@@ -43,7 +43,7 @@ export class DisplayHolidaysComponent implements OnInit {
   private readonly subscription: Subscription = new Subscription();
   public readonly PlaceClosedHolidays = PlaceClosedHolidays;
 
-  @Input() public search!: Search;
+  @Input() public search: Search;
   @Input() public place!: Place;
 
   constructor(private readonly holidayService: HolidaysService) {}
