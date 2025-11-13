@@ -154,7 +154,13 @@ export const generateCampaignEmails = async (
       continue;
     }
 
-    const territory = getOneCurrentDepartment(user.territories, territories);
+    const userTerritories = user?.areas?.fr?.departments ?? [];
+    if (userTerritories?.length === 0) {
+      console.log("No territories found for " + user._id);
+      continue;
+    }
+
+    const territory = getOneCurrentDepartment(userTerritories, territories);
 
     if (territory) {
       // 4. If so, we generate an email for this user

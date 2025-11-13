@@ -381,6 +381,7 @@ export const findUsersToContactAgain = (
         name: 1,
         organizations: 1,
         territories: 1,
+        areas: 1,
         user_id: 1,
       },
     },
