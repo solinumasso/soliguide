@@ -72,7 +72,7 @@ export class HereApiService {
       q: search,
       in: `countryCode:${countryIso}`,
       apiKey: this.configService.get<string>("HERE_API_KEY"),
-      lang: "CA",
+      lang: this.getLanguageFromCountry(country),
       types: HERE_API_RESULTS_TYPES.join(","),
     };
 
@@ -147,8 +147,23 @@ export class HereApiService {
     return GeoTypes.POSITION;
   }
 
+  /**
+   * Maps country code to language code for HERE API
+   * @param country - The country code
+   * @returns The language code to use for HERE API requests
+   */
+  private getLanguageFromCountry(country: CountryCodes): string {
+    const countryToLanguageMap: Record<string, string> = {
+      [CountryCodes.FR]: "fr",
+      [CountryCodes.ES]: "es",
+      [CountryCodes.AD]: "ca", // Catalan is the official language of Andorra
+    };
+
+    return countryToLanguageMap[country] || "fr"; // Default to French
+  }
+
   public async reverse(
-    _country: CountryCodes,
+    country: CountryCodes,
     latitude: number,
     longitude: number
   ): Promise<LocationAutoCompleteAddress[]> {
@@ -157,7 +172,7 @@ export class HereApiService {
     const params = {
       at: `${latitude},${longitude}`,
       apiKey: this.configService.get<string>("HERE_API_KEY"),
-      lang: "CA", // TODO get from country
+      lang: this.getLanguageFromCountry(country),
       types: HERE_API_RESULTS_TYPES.join(","),
     };
     return await firstValueFrom(
