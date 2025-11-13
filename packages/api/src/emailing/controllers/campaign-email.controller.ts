@@ -25,6 +25,7 @@ import {
   type CampaignNameAndAll,
   AllCampaign,
   UserRightStatus,
+  CountryCodes,
 } from "@soliguide/common";
 
 import { insertMany as insertManyEmailsCampaign } from "../services/email-campaign.service";
@@ -103,6 +104,7 @@ export const generateCampaignEmails = async (
   const placesToUpdate = await findPlacesToUpdateWithParams({
     [`campaigns.${CAMPAIGN_DEFAULT_NAME}.toUpdate`]: true,
     [`campaigns.${CAMPAIGN_DEFAULT_NAME}.general.updated`]: false,
+    country: CountryCodes.FR,
     $or: [
       { [`campaigns.${CAMPAIGN_DEFAULT_NAME}.remindMeDate`]: null },
       {
