@@ -34,6 +34,7 @@ import { checkRights, getFilteredData } from "../../middleware";
 
 import { ExpressRequest, ExpressResponse } from "../../_models";
 import { UserStatus } from "@soliguide/common";
+import { campaignState } from "../utils/campaignState";
 
 const router = express.Router();
 
@@ -132,20 +133,25 @@ router.post(
   generateEmailsDto,
   getFilteredData,
   async (req: ExpressRequest, res: ExpressResponse) => {
-    try {
-      const frontUrl = req.requestInformation.frontendUrl;
+    if (!campaignState.isGenerating) {
+      try {
+        campaignState.isGenerating = true;
+        const frontUrl = req.requestInformation.frontendUrl;
 
-      const bodyValidated = req.bodyValidated;
-      const response = await generateCampaignEmails(
-        bodyValidated,
-        frontUrl,
-        req.log
-      );
+        const bodyValidated = req.bodyValidated;
+        const response = await generateCampaignEmails(
+          bodyValidated,
+          frontUrl,
+          req.log
+        );
 
-      return res.status(200).json(response);
-    } catch (e) {
-      req.log.error(e, "GENERATE_CAMPAIGN_EMAILS_CONTENT_FAILED");
-      return res.status(500).json("GENERATE_CAMPAIGN_EMAILS_CONTENT_FAILED");
+        return res.status(200).json(response);
+      } catch (e) {
+        req.log.error(e, "GENERATE_CAMPAIGN_EMAILS_CONTENT_FAILED");
+        return res.status(500).json("GENERATE_CAMPAIGN_EMAILS_CONTENT_FAILED");
+      } finally {
+        campaignState.isGenerating = false;
+      }
     }
   }
 );
