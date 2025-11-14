@@ -68,13 +68,17 @@ export const getExpectedStatus = (
   }
 
   if (allowedUsers.indexOf(user) !== -1) {
-    return status === ExpectedStatus.SUCCESS
-      ? 200
-      : status === ExpectedStatus.ERROR
-      ? 500
-      : 400;
+    switch (status) {
+      case ExpectedStatus.SUCCESS:
+        return 200;
+      case ExpectedStatus.ERROR:
+        return 500;
+      case ExpectedStatus.PROCESSING:
+        return 202;
+      default:
+        return 400;
+    }
   }
-
   return 403;
 };
 

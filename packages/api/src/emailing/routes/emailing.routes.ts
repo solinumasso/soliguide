@@ -59,7 +59,7 @@ router.post(
       const elapsed = Date.now() - (generationStartedAt || 0);
       const elapsedMinutes = Math.floor(elapsed / 1000 / 60);
       return res.status(409).json({
-        error: `Génération en cours depuis ${elapsedMinutes}min`,
+        error: `GENERATION IN PROGRESS FOR ${elapsedMinutes}min`,
       });
     }
 
@@ -68,7 +68,7 @@ router.post(
     const frontUrl = req.requestInformation.frontendUrl;
     const bodyValidated = req.bodyValidated;
 
-    res.status(202).json({ message: "Génération lancée" });
+    res.status(202).json({ message: "GENERATION STARTED" });
 
     generateCampaignEmails(bodyValidated, frontUrl, req.log)
       .catch((e) => {
