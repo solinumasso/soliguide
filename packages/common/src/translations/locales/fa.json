@@ -750,6 +750,8 @@
   "GENERAL_INFORMATION_OF": "اطلاعات کلی از",
   "GENERAL_OPENING_HOURS": "ساعات کاری عمومی",
   "GENERAL_PRACTITIONER": "پزشک عمومی",
+  "GENERATE_AND_COPY_LINK_RESET_PASSWORD": "Generate and copy the Password Reset link",
+  "GENERATE_LINK_RESET_PASSWORD": "Generate link Reset Password",
   "GENERATE_TOKEN": "توکن را تولید کنید",
   "GENERATION_IN_PROGRESS": "نسل فعلی…",
   "GEOGRAPHICAL_DELIMITATION": "تحدید حدود جغرافیایی",
