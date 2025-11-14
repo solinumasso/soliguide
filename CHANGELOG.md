@@ -1,3 +1,10 @@
+# [4.106.0](https://github.com/solinumasso/soliguide/compare/v4.105.1...v4.106.0) (2025-11-14)
+
+
+### Features
+
+* **api:** reset AT sync ([beac531](https://github.com/solinumasso/soliguide/commit/beac5313de842fc779b3ba80a4e889bdba4f79eb))
+
 ## [4.105.1](https://github.com/solinumasso/soliguide/compare/v4.105.0...v4.105.1) (2025-11-14)
 
 
