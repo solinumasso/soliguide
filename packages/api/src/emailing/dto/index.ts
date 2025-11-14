@@ -19,7 +19,4 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 // @index('./*', f => `export * from '${f.path}'`)
-export * from "./editEmail.dto";
 export * from "./generateEmails.dto";
-export * from "./emailingSearch.dto";
-export * from "./sendEmails.dto";

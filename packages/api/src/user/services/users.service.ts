@@ -316,7 +316,7 @@ export const findUsersToEmail = (
         : { "organizations.0": { $exists: true } }),
 
       status: UserStatus.PRO,
-      territories: { $in: territories },
+      "areas.fr.departments": { $in: territories },
     },
     {
       page: 1,
@@ -363,7 +363,7 @@ export const findUsersToContactAgain = (
                 true,
             }),
         status: UserStatus.PRO,
-        territories: { $in: territories },
+        "areas.fr.departments": { $in: territories },
         ...(emailType?.includes("TERMINER")
           ? {
               [`campaigns.${CAMPAIGN_DEFAULT_NAME}.RELANCE_CAMPAGNE_COMPTES_PRO.ready`]:
@@ -381,6 +381,7 @@ export const findUsersToContactAgain = (
         name: 1,
         organizations: 1,
         territories: 1,
+        areas: 1,
         user_id: 1,
       },
     },

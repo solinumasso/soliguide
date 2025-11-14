@@ -83,16 +83,6 @@ const bree = new Bree({
       ),
     },
     {
-      interval: "every 1 hours",
-      name: "[AIRTABLE] Synchronizes places opening status",
-      path: join(
-        __dirname,
-        "jobs",
-        "airtable",
-        `sync-place-opening-closing.job${defaultExtension}`
-      ),
-    },
-    {
       interval: "at 4:00 am",
       name: "[AIRTABLE] Synchronizes places closing status",
       path: join(

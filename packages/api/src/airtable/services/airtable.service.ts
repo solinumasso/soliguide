@@ -69,17 +69,33 @@ export const updateRecords = async (
   const table = getAtTable(airtableEntityType);
 
   try {
-    const q = Math.floor(content.length / 10);
-    const r = content.length % 10;
+    // Deduplicate records by ID, keeping the last occurrence
+    const uniqueContent = content.reduce(
+      (acc: AirtableEntity, record: AirtableRecordType) => {
+        const existingIndex = acc.findIndex(
+          (item: AirtableRecordType) => item.id === record.id
+        );
+        if (existingIndex !== -1) {
+          acc[existingIndex] = record;
+        } else {
+          acc.push(record);
+        }
+        return acc;
+      },
+      []
+    );
+
+    const q = Math.floor(uniqueContent.length / 10);
+    const r = uniqueContent.length % 10;
 
     let i = 0;
 
     for (i; i < q; i++) {
-      await table.update(content.slice(i * 10, (i + 1) * 10));
+      await table.update(uniqueContent.slice(i * 10, (i + 1) * 10));
     }
 
     if (r) {
-      await table.update(content.slice(i * 10, (i + 1) * 10));
+      await table.update(uniqueContent.slice(i * 10, (i + 1) * 10));
     }
   } catch (e) {
     logger.error(content, `AT_UPDATE for ${airtableEntityType}`);

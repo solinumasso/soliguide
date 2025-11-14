@@ -22,7 +22,6 @@
 export * from "./PLACE_CHANGES_MOCK.mock";
 export * from "./CommonPosthogMockService.mock";
 export * from "./INVITATION.mock";
-export * from "./EMAIL.mock";
 export * from "./MockAuthService";
 export * from "./MockCookieManagerService";
 export * from "./ORGANIZATION.mock";

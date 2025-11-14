@@ -21,14 +21,8 @@
 import express from "express";
 
 import { generateCampaignEmails } from "../controllers/campaign-email.controller";
-import {
-  findOneEmail,
-  searchEmail,
-} from "../controllers/email-manager.controller";
 
-import { generateEmailsDto, emailingSearchDto, sendEmailsDto } from "../dto";
-
-import { sendCampaignEmails } from "../senders";
+import { generateEmailsDto } from "../dto";
 
 import { checkRights, getFilteredData } from "../../middleware";
 
@@ -36,80 +30,6 @@ import { ExpressRequest, ExpressResponse } from "../../_models";
 import { UserStatus } from "@soliguide/common";
 
 const router = express.Router();
-
-/**
- * @swagger
- * tags:
- *   name: Emailing
- *   description: All routes related to emails for the update campaign
- */
-
-/**
- * @swagger
- *
- * /emailing/search
- *   post:
- *     description: get emails
- *     tags: [Emailing]
- *     produces:
- *       - application/json
- *     responses:
- *       200:
- *         description:
- *       500 :
- *         description:
- */
-router.post(
-  "/search",
-  checkRights([UserStatus.ADMIN_SOLIGUIDE, UserStatus.ADMIN_TERRITORY]),
-  emailingSearchDto,
-  getFilteredData,
-  async (req: ExpressRequest, res: ExpressResponse) => {
-    try {
-      const response = await searchEmail(req.bodyValidated, req?.user);
-      return res.status(200).json(response);
-    } catch (e) {
-      req.log.error(e, "SEARCH_EMAIL_FAILED");
-      return res.status(500).json("SEARCH_EMAIL_FAILED");
-    }
-  }
-);
-
-/**
- * @swagger
- *
- * /emailing/send-campaign-emails
- *   post:
- *     description: send campaign emails
- *     tags: [Emailing]
- *     produces:
- *       - application/json
- *     responses:
- *       200:
- *         description:
- *       500 :
- *         description:
- */
-router.post(
-  "/send-campaign-mails",
-  checkRights([UserStatus.ADMIN_SOLIGUIDE]),
-  sendEmailsDto,
-  getFilteredData,
-  async (req: ExpressRequest, res: ExpressResponse) => {
-    try {
-      const response = await sendCampaignEmails(
-        req.bodyValidated.typeMail,
-        req.bodyValidated.limit,
-        req.log
-      );
-
-      return res.status(200).json(response);
-    } catch (e) {
-      req.log.error(e, "SEND_CAMPAIGN_EMAILS_CONTENT_FAILED");
-      return res.status(500).json("SEND_CAMPAIGN_EMAILS_CONTENT_FAILED");
-    }
-  }
-);
 
 /**
  * @swagger
@@ -126,56 +46,38 @@ router.post(
  *       500 :
  *         description:
  */
+let isGenerating = false;
+let generationStartedAt: number | null = null;
+
 router.post(
   "/generate-campaign-emails",
   checkRights([UserStatus.ADMIN_SOLIGUIDE]),
   generateEmailsDto,
   getFilteredData,
   async (req: ExpressRequest, res: ExpressResponse) => {
-    try {
-      const frontUrl = req.requestInformation.frontendUrl;
-
-      const bodyValidated = req.bodyValidated;
-      const response = await generateCampaignEmails(
-        bodyValidated,
-        frontUrl,
-        req.log
-      );
-
-      return res.status(200).json(response);
-    } catch (e) {
-      req.log.error(e, "GENERATE_CAMPAIGN_EMAILS_CONTENT_FAILED");
-      return res.status(500).json("GENERATE_CAMPAIGN_EMAILS_CONTENT_FAILED");
+    if (isGenerating) {
+      const elapsed = Date.now() - (generationStartedAt || 0);
+      const elapsedMinutes = Math.floor(elapsed / 1000 / 60);
+      return res.status(409).json({
+        error: `GENERATION IN PROGRESS FOR ${elapsedMinutes}min`,
+      });
     }
-  }
-);
 
-/**
- * @swagger
- *
- * /emailing/:emailObjectId
- *   get:
- *     description: gets a particular email
- *     tags: [Emailing]
- *     produces:
- *       - application/json
- *     responses:
- *       200:
- *         description:
- *       500 :
- *         description:
- */
-router.get(
-  "/:emailObjectId",
-  checkRights([UserStatus.ADMIN_SOLIGUIDE, UserStatus.ADMIN_TERRITORY]),
-  async (req: ExpressRequest, res: ExpressResponse) => {
-    try {
-      const response = await findOneEmail(req.params.emailObjectId);
-      return res.status(200).json(response);
-    } catch (e) {
-      req.log.error(e, "EMAIL_NOT_FOUND");
-      return res.status(500).json("EMAIL_NOT_FOUND");
-    }
+    isGenerating = true;
+    generationStartedAt = Date.now();
+    const frontUrl = req.requestInformation.frontendUrl;
+    const bodyValidated = req.bodyValidated;
+
+    res.status(202).json({ message: "GENERATION STARTED" });
+
+    generateCampaignEmails(bodyValidated, frontUrl, req.log)
+      .catch((e) => {
+        req.log.error(e, "GENERATE_CAMPAIGN_EMAILS_CONTENT_FAILED");
+      })
+      .finally(() => {
+        isGenerating = false;
+        generationStartedAt = null;
+      });
   }
 );
 

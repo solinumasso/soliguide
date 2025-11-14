@@ -183,14 +183,6 @@ export const routes: Routes = [
       ),
   },
   {
-    path: ":lang/manage-emails",
-    canActivate: [LanguageGuard, AdminSoliguideGuard],
-    loadChildren: () =>
-      import("./modules/emails/manage-emails.module").then(
-        (mod) => mod.EmailsModule
-      ),
-  },
-  {
     path: ":lang/admin-users",
     canActivate: [LanguageGuard, AuthGuard, ProGuard],
     loadChildren: () =>

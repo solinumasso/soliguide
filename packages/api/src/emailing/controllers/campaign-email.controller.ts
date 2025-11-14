@@ -25,6 +25,7 @@ import {
   type CampaignNameAndAll,
   AllCampaign,
   UserRightStatus,
+  CountryCodes,
 } from "@soliguide/common";
 
 import { insertMany as insertManyEmailsCampaign } from "../services/email-campaign.service";
@@ -103,6 +104,7 @@ export const generateCampaignEmails = async (
   const placesToUpdate = await findPlacesToUpdateWithParams({
     [`campaigns.${CAMPAIGN_DEFAULT_NAME}.toUpdate`]: true,
     [`campaigns.${CAMPAIGN_DEFAULT_NAME}.general.updated`]: false,
+    country: CountryCodes.FR,
     $or: [
       { [`campaigns.${CAMPAIGN_DEFAULT_NAME}.remindMeDate`]: null },
       {
@@ -152,7 +154,13 @@ export const generateCampaignEmails = async (
       continue;
     }
 
-    const territory = getOneCurrentDepartment(user.territories, territories);
+    const userTerritories = user?.areas?.fr?.departments ?? [];
+    if (userTerritories?.length === 0) {
+      console.log("No territories found for " + user._id);
+      continue;
+    }
+
+    const territory = getOneCurrentDepartment(userTerritories, territories);
 
     if (territory) {
       // 4. If so, we generate an email for this user
