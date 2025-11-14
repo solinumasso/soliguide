@@ -112,6 +112,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         >
           <fa-icon aria-hidden="true" [icon]="['fas', 'link']"></fa-icon>
         </button>
+        <button
+          [disabled]="loading"
+          [attr.aria-label]="'GENERATE_LINK_RESET_PASSWORD' | translate"
+          [ngbTooltip]="'GENERATE_AND_COPY_LINK_RESET_PASSWORD' | translate"
+          type="button"
+          class="btn btn-sm btn-warning ms-2"
+          (click)="generateResetPasswordLink(userMail)"
+        >
+          <fa-icon aria-hidden="true" [icon]="['fas', 'lock']"></fa-icon>
+        </button>
       </div>
     </li>
   </ng-container>

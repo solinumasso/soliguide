@@ -43,6 +43,7 @@ export interface CommonUser {
   user_id: number;
   categoriesLimitations?: Categories[];
   devToken: string | null;
+  passwordToken?: string | null;
   territories: AnyDepartmentCode[];
   translator: boolean;
   verifiedAt: Date | null;
