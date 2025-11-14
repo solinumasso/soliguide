@@ -35,6 +35,7 @@ export enum TestAccounts {
 export enum ExpectedStatus {
   FAIL = "fail",
   SUCCESS = "success",
+  PROCESSING = "processing",
   NOT_FOUND = "not-found",
   ERROR = "error",
 }

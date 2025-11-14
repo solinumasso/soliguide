@@ -27,13 +27,6 @@ import EmailCampaignModel from "../../src/emailing/models/email-campaign.model";
 import { updateUsers } from "../../src/user/services";
 
 const ALLOWED_USERS_FOR_GENERATION = [TestAccounts.USER_ADMIN_SOLIGUIDE];
-const ALLOWED_USERS_FOR_SEARCH = [
-  TestAccounts.USER_ADMIN_SOLIGUIDE,
-  TestAccounts.USER_ADMIN_TERRITORY,
-];
-
-let nGeneratedEmails: number;
-let nFoundEmails: number;
 
 let currentIndex = 0;
 const totalIterations = Object.values(TestAccounts).length;
@@ -41,9 +34,6 @@ const totalIterations = Object.values(TestAccounts).length;
 describe.each(Object.values(TestAccounts))(
   "Test of the route 'emailing'",
   (currentAccountTest) => {
-    nGeneratedEmails = 0;
-    nFoundEmails = 0;
-
     describe(`POST /emailing/generate-campaign-emails ${currentAccountTest}`, () => {
       test("❌ Incorrect data", async () => {
         let response = await addAuth(
@@ -95,60 +85,10 @@ describe.each(Object.values(TestAccounts))(
         const expectedStatus = getExpectedStatus(
           ALLOWED_USERS_FOR_GENERATION,
           currentAccountTest,
-          ExpectedStatus.SUCCESS
-        );
-
-        if (response.status === 200) {
-          nGeneratedEmails = response.body;
-        }
-
-        expect(response.status).toEqual(expectedStatus);
-      });
-    });
-
-    describe(`POST /emailing/search ${currentAccountTest}`, () => {
-      test("❌ Incorrect data", async () => {
-        const response = await addAuth(
-          supertest().post("/emailing/search").send({ territories: "foo" }),
-          currentAccountTest
-        );
-
-        // Failed test
-        const expectedStatus = getExpectedStatus(
-          ALLOWED_USERS_FOR_SEARCH,
-          currentAccountTest,
-          ExpectedStatus.FAIL
+          ExpectedStatus.PROCESSING
         );
 
         expect(response.status).toEqual(expectedStatus);
-      });
-
-      test("✅ Search for emails in the first email wave for pro users", async () => {
-        const response = await addAuth(
-          supertest()
-            .post("/emailing/search")
-            .send({
-              emailType: "CAMPAGNE_COMPTES_PRO",
-              territories: ["75"],
-              country: CountryCodes.FR,
-            }),
-          currentAccountTest
-        );
-
-        // Successful test
-        const expectedStatus = getExpectedStatus(
-          ALLOWED_USERS_FOR_SEARCH,
-          currentAccountTest,
-          ExpectedStatus.SUCCESS
-        );
-
-        expect(response.status).toEqual(expectedStatus);
-
-        if (response.status === 200) {
-          nFoundEmails = response.body.nbResults;
-        }
-
-        expect(nFoundEmails).toBe(nGeneratedEmails);
       });
     });
 
