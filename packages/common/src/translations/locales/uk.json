@@ -750,6 +750,8 @@
   "GENERAL_INFORMATION_OF": "Загальні відомості від",
   "GENERAL_OPENING_HOURS": "Загальні години роботи",
   "GENERAL_PRACTITIONER": "Лікар загальної практики",
+  "GENERATE_AND_COPY_LINK_RESET_PASSWORD": "Створення та копіювання посилання на скидання пароля",
+  "GENERATE_LINK_RESET_PASSWORD": "Скинути пароль посилання",
   "GENERATE_TOKEN": "Згенеруйте токен",
   "GENERATION_IN_PROGRESS": "Сучасне покоління…",
   "GEOGRAPHICAL_DELIMITATION": "Географічне розмежування",

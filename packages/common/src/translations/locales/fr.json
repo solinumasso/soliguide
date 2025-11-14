@@ -750,6 +750,8 @@
   "GENERAL_INFORMATION_OF": "Informations générales de",
   "GENERAL_OPENING_HOURS": "Horaires généraux",
   "GENERAL_PRACTITIONER": "Médecin généraliste",
+  "GENERATE_AND_COPY_LINK_RESET_PASSWORD": "Générer et copier le lien de réinitialisation de mot de passe",
+  "GENERATE_LINK_RESET_PASSWORD": "Générer lien réinitialisation mot de passe",
   "GENERATE_TOKEN": "Générer le token",
   "GENERATION_IN_PROGRESS": "Génération en cours…",
   "GEOGRAPHICAL_DELIMITATION": "Délimitation géographique",
