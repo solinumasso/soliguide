@@ -1,3 +1,16 @@
+## [4.105.1](https://github.com/solinumasso/soliguide/compare/v4.105.0...v4.105.1) (2025-11-14)
+
+
+### Bug Fixes
+
+* **api:** AT synchro for users multiple same records batch ([e23109e](https://github.com/solinumasso/soliguide/commit/e23109e9a9dc5fc86ff4dc8701866e7cf9c9fe28))
+* **api:** delete useless code, fix generation of emails [#1](https://github.com/solinumasso/soliguide/issues/1) ([de8582f](https://github.com/solinumasso/soliguide/commit/de8582f12979e4db0e547d5751a8e0a82beecb7e))
+* **api:** exclude spain/andorra users from campaign ([e374563](https://github.com/solinumasso/soliguide/commit/e374563146596403f76438bef853181158e57bf4))
+* **api:** fix migrations & test dump [#1](https://github.com/solinumasso/soliguide/issues/1) ([76e8fad](https://github.com/solinumasso/soliguide/commit/76e8fadbfc2d0c19680f4914924213ff4dfa5451))
+* **api:** update dump for seasonnal update [#1](https://github.com/solinumasso/soliguide/issues/1) ([9caf148](https://github.com/solinumasso/soliguide/commit/9caf1483fb13bbcce311a4ba5f23d7c22df1330f))
+* **api:** wrong status code e2e mailing ([1ac51e6](https://github.com/solinumasso/soliguide/commit/1ac51e6a2b32b4460bfa8be0c4456086305450b2))
+* button instead of link [#710](https://github.com/solinumasso/soliguide/issues/710) ([c60f3b5](https://github.com/solinumasso/soliguide/commit/c60f3b5f8433c2f6f6aac7c463553cc7bbee9aaa))
+
 # [4.105.0](https://github.com/solinumasso/soliguide/compare/v4.104.0...v4.105.0) (2025-11-06)
 
 
