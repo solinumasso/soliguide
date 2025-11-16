@@ -241,17 +241,33 @@ jobs:
             --value '${{ secrets.AMQP_URL }}'
 
       - name: Create the API custom domain in Qovery
-        if: steps.create_environment.outcome == 'success'
+        if: inputs.deploy_api && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
         id: api_domain
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
         run: |
-          qovery container domain create \
-            --organization "$QOVERY_ORGANIZATION_NAME" \
-            --project "$QOVERY_PROJECT_NAME" \
-            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
-            --container "API" \
-            --domain "api.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
+          # Function to create domain if it doesn't exist
+          create_domain_if_not_exists() {
+            local domain=$1
+            if ! qovery container domain list \
+              --organization "$QOVERY_ORGANIZATION_NAME" \
+              --project "$QOVERY_PROJECT_NAME" \
+              --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+              --container "API" \
+              --json | jq -e --arg domain "$domain" '.[] | select(.domain == $domain)' > /dev/null; then
+              echo "Creating domain: $domain"
+              qovery container domain create \
+                --organization "$QOVERY_ORGANIZATION_NAME" \
+                --project "$QOVERY_PROJECT_NAME" \
+                --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+                --container "API" \
+                --domain "$domain"
+            else
+              echo "Domain already exists: $domain"
+            fi
+          }
+
+          create_domain_if_not_exists "api.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
 
           VALIDATION_DOMAIN=$(qovery container domain list \
             --organization "$QOVERY_ORGANIZATION_NAME" \
@@ -266,7 +282,7 @@ jobs:
           echo "validation_domain=$VALIDATION_DOMAIN" >> "$GITHUB_OUTPUT"
 
       - name: Create DNS record for the API
-        if: steps.create_environment.outcome == 'success'
+        if: steps.api_domain.outcome == 'success'
         uses: solinumasso/gcore-dns-action@v1
         with:
           api-key: ${{ secrets.GCORE_API_KEY }}
@@ -289,17 +305,33 @@ jobs:
             --tag "$SOLIGUIDE_TAG"
 
       - name: Create the Design system custom domain in Qovery
-        if: steps.create_environment.outcome == 'success'
+        if: inputs.deploy_design-system && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
         id: design-system_domain
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
         run: |
-          qovery container domain create \
-            --organization "$QOVERY_ORGANIZATION_NAME" \
-            --project "$QOVERY_PROJECT_NAME" \
-            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
-            --container "Design System" \
-            --domain "design-system.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
+          # Function to create domain if it doesn't exist
+          create_domain_if_not_exists() {
+            local domain=$1
+            if ! qovery container domain list \
+              --organization "$QOVERY_ORGANIZATION_NAME" \
+              --project "$QOVERY_PROJECT_NAME" \
+              --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+              --container "Design System" \
+              --json | jq -e --arg domain "$domain" '.[] | select(.domain == $domain)' > /dev/null; then
+              echo "Creating domain: $domain"
+              qovery container domain create \
+                --organization "$QOVERY_ORGANIZATION_NAME" \
+                --project "$QOVERY_PROJECT_NAME" \
+                --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+                --container "Design System" \
+                --domain "$domain"
+            else
+              echo "Domain already exists: $domain"
+            fi
+          }
+
+          create_domain_if_not_exists "design-system.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
 
           VALIDATION_DOMAIN=$(qovery container domain list \
             --organization "$QOVERY_ORGANIZATION_NAME" \
@@ -314,7 +346,7 @@ jobs:
           echo "validation_domain=$VALIDATION_DOMAIN" >> "$GITHUB_OUTPUT"
 
       - name: Create DNS record for the Design system
-        if: steps.create_environment.outcome == 'success'
+        if: steps.design-system_domain.outcome == 'success'
         uses: solinumasso/gcore-dns-action@v1
         with:
           api-key: ${{ secrets.GCORE_API_KEY }}
@@ -337,17 +369,33 @@ jobs:
             --tag "$SOLIGUIDE_TAG"
 
       - name: Create the Location API custom domain in Qovery
-        if: steps.create_environment.outcome == 'success'
+        if: inputs.deploy_location-api && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
         id: location-api_domain
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
         run: |
-          qovery container domain create \
-            --organization "$QOVERY_ORGANIZATION_NAME" \
-            --project "$QOVERY_PROJECT_NAME" \
-            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
-            --container "Location API" \
-            --domain "location-api.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
+          # Function to create domain if it doesn't exist
+          create_domain_if_not_exists() {
+            local domain=$1
+            if ! qovery container domain list \
+              --organization "$QOVERY_ORGANIZATION_NAME" \
+              --project "$QOVERY_PROJECT_NAME" \
+              --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+              --container "Location API" \
+              --json | jq -e --arg domain "$domain" '.[] | select(.domain == $domain)' > /dev/null; then
+              echo "Creating domain: $domain"
+              qovery container domain create \
+                --organization "$QOVERY_ORGANIZATION_NAME" \
+                --project "$QOVERY_PROJECT_NAME" \
+                --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+                --container "Location API" \
+                --domain "$domain"
+            else
+              echo "Domain already exists: $domain"
+            fi
+          }
+
+          create_domain_if_not_exists "location-api.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
 
           VALIDATION_DOMAIN=$(qovery container domain list \
             --organization "$QOVERY_ORGANIZATION_NAME" \
@@ -362,7 +410,7 @@ jobs:
           echo "validation_domain=$VALIDATION_DOMAIN" >> "$GITHUB_OUTPUT"
 
       - name: Create DNS record for the Location API
-        if: steps.create_environment.outcome == 'success'
+        if: steps.location-api_domain.outcome == 'success'
         uses: solinumasso/gcore-dns-action@v1
         with:
           api-key: ${{ secrets.GCORE_API_KEY }}
@@ -385,17 +433,33 @@ jobs:
             --tag "$SOLIGUIDE_TAG"
 
       - name: Create Soligare custom domain in Qovery
-        if: steps.create_environment.outcome == 'success'
+        if: inputs.deploy_soligare && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
         id: soligare_domain
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
         run: |
-          qovery container domain create \
-            --organization "$QOVERY_ORGANIZATION_NAME" \
-            --project "$QOVERY_PROJECT_NAME" \
-            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
-            --container "Soligare" \
-            --domain "soligare.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
+          # Function to create domain if it doesn't exist
+          create_domain_if_not_exists() {
+            local domain=$1
+            if ! qovery container domain list \
+              --organization "$QOVERY_ORGANIZATION_NAME" \
+              --project "$QOVERY_PROJECT_NAME" \
+              --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+              --container "Soligare" \
+              --json | jq -e --arg domain "$domain" '.[] | select(.domain == $domain)' > /dev/null; then
+              echo "Creating domain: $domain"
+              qovery container domain create \
+                --organization "$QOVERY_ORGANIZATION_NAME" \
+                --project "$QOVERY_PROJECT_NAME" \
+                --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+                --container "Soligare" \
+                --domain "$domain"
+            else
+              echo "Domain already exists: $domain"
+            fi
+          }
+
+          create_domain_if_not_exists "soligare.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
 
           VALIDATION_DOMAIN=$(qovery container domain list \
             --organization "$QOVERY_ORGANIZATION_NAME" \
@@ -410,7 +474,7 @@ jobs:
           echo "validation_domain=$VALIDATION_DOMAIN" >> "$GITHUB_OUTPUT"
 
       - name: Create DNS record for Soligare
-        if: steps.create_environment.outcome == 'success'
+        if: steps.soligare_domain.outcome == 'success'
         uses: solinumasso/gcore-dns-action@v1
         with:
           api-key: ${{ secrets.GCORE_API_KEY }}
@@ -433,17 +497,33 @@ jobs:
             --tag "$SOLIGUIDE_TAG"
 
       - name: Create Web app custom domain in Qovery
-        if: steps.create_environment.outcome == 'success'
+        if: inputs.deploy_web-app && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
         id: web-app_domain
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
         run: |
-          qovery container domain create \
-            --organization "$QOVERY_ORGANIZATION_NAME" \
-            --project "$QOVERY_PROJECT_NAME" \
-            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
-            --container "Web App" \
-            --domain "app.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
+          # Function to create domain if it doesn't exist
+          create_domain_if_not_exists() {
+            local domain=$1
+            if ! qovery container domain list \
+              --organization "$QOVERY_ORGANIZATION_NAME" \
+              --project "$QOVERY_PROJECT_NAME" \
+              --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+              --container "Web App" \
+              --json | jq -e --arg domain "$domain" '.[] | select(.domain == $domain)' > /dev/null; then
+              echo "Creating domain: $domain"
+              qovery container domain create \
+                --organization "$QOVERY_ORGANIZATION_NAME" \
+                --project "$QOVERY_PROJECT_NAME" \
+                --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+                --container "Web App" \
+                --domain "$domain"
+            else
+              echo "Domain already exists: $domain"
+            fi
+          }
+
+          create_domain_if_not_exists "app.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
 
           VALIDATION_DOMAIN=$(qovery container domain list \
             --organization "$QOVERY_ORGANIZATION_NAME" \
@@ -458,7 +538,7 @@ jobs:
           echo "validation_domain=$VALIDATION_DOMAIN" >> "$GITHUB_OUTPUT"
 
       - name: Create DNS record for Web app
-        if: steps.create_environment.outcome == 'success'
+        if: steps.web-app_domain.outcome == 'success'
         uses: solinumasso/gcore-dns-action@v1
         with:
           api-key: ${{ secrets.GCORE_API_KEY }}
@@ -624,17 +704,33 @@ jobs:
             --tag "${SOLIGUIDE_TAG}-widget"
 
       - name: Create Widget custom domain in Qovery
-        if: steps.create_environment.outcome == 'success'
+        if: inputs.deploy_widget && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
         id: widget_domain
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
         run: |
-          qovery container domain create \
-            --organization "$QOVERY_ORGANIZATION_NAME" \
-            --project "$QOVERY_PROJECT_NAME" \
-            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
-            --container "Widget Proxy" \
-            --domain "widget.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
+          # Function to create domain if it doesn't exist
+          create_domain_if_not_exists() {
+            local domain=$1
+            if ! qovery container domain list \
+              --organization "$QOVERY_ORGANIZATION_NAME" \
+              --project "$QOVERY_PROJECT_NAME" \
+              --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+              --container "Widget Proxy" \
+              --json | jq -e --arg domain "$domain" '.[] | select(.domain == $domain)' > /dev/null; then
+              echo "Creating domain: $domain"
+              qovery container domain create \
+                --organization "$QOVERY_ORGANIZATION_NAME" \
+                --project "$QOVERY_PROJECT_NAME" \
+                --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+                --container "Widget Proxy" \
+                --domain "$domain"
+            else
+              echo "Domain already exists: $domain"
+            fi
+          }
+
+          create_domain_if_not_exists "widget.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
 
           VALIDATION_DOMAIN=$(qovery container domain list \
             --organization "$QOVERY_ORGANIZATION_NAME" \
@@ -649,7 +745,7 @@ jobs:
           echo "validation_domain=$VALIDATION_DOMAIN" >> "$GITHUB_OUTPUT"
 
       - name: Create DNS record for Widget
-        if: steps.create_environment.outcome == 'success'
+        if: steps.widget_domain.outcome == 'success'
         uses: solinumasso/gcore-dns-action@v1
         with:
           api-key: ${{ secrets.GCORE_API_KEY }}

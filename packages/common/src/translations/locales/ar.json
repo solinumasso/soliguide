@@ -750,6 +750,8 @@
   "GENERAL_INFORMATION_OF": "معلومات عامة من",
   "GENERAL_OPENING_HOURS": "ساعات عامة",
   "GENERAL_PRACTITIONER": "طبيب عام",
+  "GENERATE_AND_COPY_LINK_RESET_PASSWORD": "تولد وتنسخ وصلة إعادة صياغة كلمة السر",
+  "GENERATE_LINK_RESET_PASSWORD": "إعادة صياغة كلمة السر",
   "GENERATE_TOKEN": "قم بإنشاء الرمز المميز",
   "GENERATION_IN_PROGRESS": "الجيل الحالي…",
   "GEOGRAPHICAL_DELIMITATION": "الترسيم الجغرافي",
