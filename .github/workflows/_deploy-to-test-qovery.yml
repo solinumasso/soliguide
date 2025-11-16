@@ -488,55 +488,43 @@ jobs:
             --tag "${SOLIGUIDE_TAG}-frontend"
 
       - name: Create Frontend custom domains in Qovery
-        if: steps.create_environment.outcome == 'success'
+        if: inputs.deploy_frontend && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
         id: frontend_domain
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
         run: |
-          # soliguide_fr
-          qovery container domain create \
-            --organization "$QOVERY_ORGANIZATION_NAME" \
-            --project "$QOVERY_PROJECT_NAME" \
-            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
-            --container "Frontend Proxy" \
-            --domain "fr.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
+          # Function to create domain if it doesn't exist
+          create_domain_if_not_exists() {
+            local domain=$1
+            if ! qovery container domain list \
+              --organization "$QOVERY_ORGANIZATION_NAME" \
+              --project "$QOVERY_PROJECT_NAME" \
+              --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+              --container "Frontend Proxy" \
+              --json | jq -e --arg domain "$domain" '.[] | select(.domain == $domain)' > /dev/null; then
+              echo "Creating domain: $domain"
+              qovery container domain create \
+                --organization "$QOVERY_ORGANIZATION_NAME" \
+                --project "$QOVERY_PROJECT_NAME" \
+                --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+                --container "Frontend Proxy" \
+                --domain "$domain"
+            else
+              echo "Domain already exists: $domain"
+            fi
+          }
 
-          qovery container domain create \
-            --organization "$QOVERY_ORGANIZATION_NAME" \
-            --project "$QOVERY_PROJECT_NAME" \
-            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
-            --container "Frontend Proxy" \
-            --domain "www.fr.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
+          # soliguide_fr
+          create_domain_if_not_exists "fr.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
+          create_domain_if_not_exists "www.fr.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
 
           # soliguia_es
-          qovery container domain create \
-            --organization "$QOVERY_ORGANIZATION_NAME" \
-            --project "$QOVERY_PROJECT_NAME" \
-            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
-            --container "Frontend Proxy" \
-            --domain "es.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
-
-          qovery container domain create \
-            --organization "$QOVERY_ORGANIZATION_NAME" \
-            --project "$QOVERY_PROJECT_NAME" \
-            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
-            --container "Frontend Proxy" \
-            --domain "www.es.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
+          create_domain_if_not_exists "es.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
+          create_domain_if_not_exists "www.es.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
 
           # soliguia_ad
-          qovery container domain create \
-            --organization "$QOVERY_ORGANIZATION_NAME" \
-            --project "$QOVERY_PROJECT_NAME" \
-            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
-            --container "Frontend Proxy" \
-            --domain "ad.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
-
-          qovery container domain create \
-            --organization "$QOVERY_ORGANIZATION_NAME" \
-            --project "$QOVERY_PROJECT_NAME" \
-            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
-            --container "Frontend Proxy" \
-            --domain "www.ad.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
+          create_domain_if_not_exists "ad.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
+          create_domain_if_not_exists "www.ad.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
 
           VALIDATION_DOMAIN=$(qovery container domain list \
             --organization "$QOVERY_ORGANIZATION_NAME" \
@@ -551,7 +539,7 @@ jobs:
           echo "validation_domain=$VALIDATION_DOMAIN" >> "$GITHUB_OUTPUT"
 
       - name: Create DNS record for Frontend soliguide_fr
-        if: steps.create_environment.outcome == 'success'
+        if: steps.frontend_domain.outcome == 'success'
         uses: solinumasso/gcore-dns-action@v1
         with:
           api-key: ${{ secrets.GCORE_API_KEY }}
@@ -562,7 +550,7 @@ jobs:
           type: CNAME
 
       - name: Create DNS record for Frontend www soliguide_fr
-        if: steps.create_environment.outcome == 'success'
+        if: steps.frontend_domain.outcome == 'success'
         uses: solinumasso/gcore-dns-action@v1
         with:
           api-key: ${{ secrets.GCORE_API_KEY }}
@@ -573,7 +561,7 @@ jobs:
           type: CNAME
 
       - name: Create DNS record for Frontend soliguia_es
-        if: steps.create_environment.outcome == 'success'
+        if: steps.frontend_domain.outcome == 'success'
         uses: solinumasso/gcore-dns-action@v1
         with:
           api-key: ${{ secrets.GCORE_API_KEY }}
@@ -584,7 +572,7 @@ jobs:
           type: CNAME
 
       - name: Create DNS record for Frontend www soliguia_es
-        if: steps.create_environment.outcome == 'success'
+        if: steps.frontend_domain.outcome == 'success'
         uses: solinumasso/gcore-dns-action@v1
         with:
           api-key: ${{ secrets.GCORE_API_KEY }}
@@ -595,7 +583,7 @@ jobs:
           type: CNAME
 
       - name: Create DNS record for Frontend soliguia_ad
-        if: steps.create_environment.outcome == 'success'
+        if: steps.frontend_domain.outcome == 'success'
         uses: solinumasso/gcore-dns-action@v1
         with:
           api-key: ${{ secrets.GCORE_API_KEY }}
@@ -606,7 +594,7 @@ jobs:
           type: CNAME
 
       - name: Create DNS record for Frontend www soliguia_ad
-        if: steps.create_environment.outcome == 'success'
+        if: steps.frontend_domain.outcome == 'success'
         uses: solinumasso/gcore-dns-action@v1
         with:
           api-key: ${{ secrets.GCORE_API_KEY }}
