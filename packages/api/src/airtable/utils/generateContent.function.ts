@@ -80,7 +80,7 @@ const formatSources = (sources: CommonPlaceSource[] | undefined): string[] => {
   return sources
     .map((source: CommonPlaceSource) => {
       if (source.name in PLACE_EXTERNAL_SOURCES) {
-        return PLACE_EXTERNAL_SOURCES[source.name as PairingSources | string];
+        return PLACE_EXTERNAL_SOURCES[source.name as PairingSources];
       }
 
       return undefined;

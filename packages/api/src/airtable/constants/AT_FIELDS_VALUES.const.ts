@@ -107,10 +107,12 @@ export const PLACE_CAMPAIGN_SOURCE: Record<CampaignSource, string> = {
   VISIT: "Visite",
 } as const;
 
-export const PLACE_EXTERNAL_SOURCES: Record<PairingSources | string, string> = {
-  [PairingSources.DORA]: "Dora",
-  [PairingSources.CRF]: "Croix-Rouge française",
+export const PLACE_EXTERNAL_SOURCES: Record<PairingSources, string> = {
   [PairingSources.ALISOL]: "Alisol",
+  [PairingSources.CD59]: "Conseil Départemental du 59",
+  [PairingSources.CRF]: "Croix-Rouge française",
   [PairingSources.CROUS_PDL]: "Crous Pays de la Loire",
-  restos: "Restos du Cœur",
+  [PairingSources.DORA]: "Dora",
+  [PairingSources.RESTOS]: "Restos du Cœur",
+  [PairingSources.SSVP]: "Société Saint Vincent de Paul",
 } as const;
