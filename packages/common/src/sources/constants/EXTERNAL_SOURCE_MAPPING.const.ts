@@ -19,10 +19,15 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { PairingSources } from "../enums";
+import { ExternalSourceToDisplay } from "../types";
 
 export const EXTERNAL_SOURCE_MAPPING: Record<
-  PairingSources,
-  { label: string; licenseLink?: string; licenseLabel?: string }
+  ExternalSourceToDisplay,
+  {
+    label: string;
+    licenseLink?: string;
+    licenseLabel?: string;
+  }
 > = {
   [PairingSources.DORA]: {
     label: "DORA via data·inclusion",
