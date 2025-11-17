@@ -607,6 +607,7 @@
   "EQUIPMENT_CLOTHING": "Matériel, vêtements",
   "ERROR_ACCESS_CONDITIONS": "Il y a une erreur dans les modalités d'accès de votre structure.",
   "ERROR_ADD_PLACE_TO_ORGA": "Une erreur s'est produite lors de l'ajout de la structure, veuillez réessayer ultérieurement.",
+  "ERROR_COPYING_LINK": "Erreur lors de la copie du lien",
   "ERROR_EDITING_PHOTOS": "Une erreur est survenue lors de l'édition des photos",
   "ERROR_GENERATING_RESET_LINK": "Erreur lors de la génération du lien de réinitialisation",
   "ERROR_HOURS": "Il y a une erreur dans les horaires de votre structure",
