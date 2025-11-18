@@ -18,16 +18,12 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-// @index('./*', f => `export * from '${f.path}'`)
-export * from "./changeMyOrga.dto";
-export * from "./displayContactPro.dto";
-export * from "./emailValid.dto";
-export * from "./forgotPassword.dto";
-export * from "./inviteUser.dto";
-export * from "./userRights.dto";
-export * from "./patchUser.dto";
-export * from "./pwdReset.dto";
-export * from "./searchUser.dto";
-export * from "./signin.dto";
-export * from "./signup.dto";
-export * from "./changeUserTerritory.dto";
+import { body } from "express-validator";
+import { emailValidDto } from "./emailValid.dto";
+
+export const forgotPasswordDto = [
+  ...emailValidDto,
+
+  // Param to specify if the request is made from the manage admin interface
+  body("isAdminRequest").optional({ nullable: true }).isBoolean(),
+];

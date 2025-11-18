@@ -307,19 +307,29 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           </td>
 
           <td>
+            <button
+              [disabled]="loading"
+              [attr.aria-label]="'GENERATE_LINK_RESET_PASSWORD' | translate"
+              [ngbTooltip]="'GENERATE_AND_COPY_LINK_RESET_PASSWORD' | translate"
+              type="button"
+              class="btn btn-sm btn-warning"
+              (click)="generateResetPasswordLink(user.mail)"
+            >
+              <fa-icon aria-hidden="true" [icon]="['fas', 'lock']"></fa-icon>
+            </button>
             <a
               [routerLink]="[routePrefix, 'admin-users', user._id]"
               [title]="'EDIT_USER' | translate"
               [ngbTooltip]="'EDIT_USER' | translate"
               target="_blank"
-              class="btn btn-sm btn-primary ms-2"
+              class="btn btn-sm btn-primary mx-2"
             >
               <fa-icon aria-hidden="true" [icon]="['fas', 'pencil-alt']">
               </fa-icon>
             </a>
             <button
               type="button"
-              class="btn btn-danger btn-sm mx-1 text-white"
+              class="btn btn-danger btn-sm text-white"
               [title]="'DELETE_USER' | translate"
               (click)="openDeleteModal(user)"
             >

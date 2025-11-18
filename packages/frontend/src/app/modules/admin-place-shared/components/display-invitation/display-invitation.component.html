@@ -27,6 +27,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       *ngIf="invitation.pending && invitation.user"
     >
       <div>
+        @if (tableName === 'orgas') {
         <a
           [title]="
             'Modifier le compte de ' +
@@ -34,7 +35,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             ' ' +
             invitation.user.lastname
           "
-          *ngIf="tableName === 'orgas'"
           [ngbTooltip]="invitation.user.mail"
           [routerLink]="[routePrefix, 'admin-users', invitation.user._id]"
           routerLinkActive="router-link-active"
@@ -45,8 +45,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               | limitTo : "30"
           }}
         </a>
+        } @else if (tableName === 'users') {
         <a
-          *ngIf="tableName === 'users'"
           [ngbTooltip]="
             'SEE_ORGANIZATION_NAME'
               | translate : { organizationName: invitation.organizationName }
@@ -62,8 +62,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             invitation.organization_id
           ]"
         >
-          {{ invitation.organizationName | limitTo : "20" }}
-        </a>
+          {{ invitation.organizationName | limitTo : "20" }} </a
+        >}
       </div>
       <div>
         <button
