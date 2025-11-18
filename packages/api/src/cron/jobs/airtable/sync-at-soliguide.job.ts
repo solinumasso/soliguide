@@ -47,15 +47,14 @@ import { syncAirtableRecords } from "../../../airtable/controllers/airtable.cont
           now
         );
       }
-
-      if (parentPort) parentPort.postMessage("done");
     } catch (e) {
       logger.warn("FAIL SYNCHRO AT WITH SOLIGUIDE");
       logger.error(e);
-      if (parentPort) parentPort.postMessage("error");
     }
   } catch (e) {
     logger.error(e);
     if (parentPort) parentPort.postMessage("Error while running job");
   }
+
+  if (parentPort) parentPort.postMessage("done");
 })();

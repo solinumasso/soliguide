@@ -132,10 +132,10 @@ import { TranslatedFieldModel } from "../../../translations/models/translatedFie
     await delay(500);
 
     logger.info("JOB - UNSET OBSOLETE TEMPORARY INFORMATION FOR PLACES - END");
-
-    if (parentPort) parentPort.postMessage("done");
   } catch (e) {
     logger.error(e);
     if (parentPort) parentPort.postMessage("Error while running job");
   }
+
+  if (parentPort) parentPort.postMessage("done");
 })();

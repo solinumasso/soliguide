@@ -35,10 +35,10 @@ import { setIsOpenToday } from "../../../place/services/isOpenToday.service";
     await delay(500);
 
     logger.info("JOB - SET IS_OPEN_TODAY FOR PLACES\tEND");
-
-    if (parentPort) parentPort.postMessage("done");
   } catch (e) {
     logger.error(e);
     if (parentPort) parentPort.postMessage("Error while running job");
   }
+
+  if (parentPort) parentPort.postMessage("done");
 })();
