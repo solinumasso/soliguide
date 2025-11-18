@@ -1,3 +1,16 @@
+# [4.107.0](https://github.com/solinumasso/soliguide/compare/v4.106.0...v4.107.0) (2025-11-18)
+
+
+### Bug Fixes
+
+* **api:** fix ci for qovery [#1](https://github.com/solinumasso/soliguide/issues/1) ([1b8cd25](https://github.com/solinumasso/soliguide/commit/1b8cd255a9ac24a82a1b486ed140cc40f96b04f7))
+* **api:** fix qovery [#1](https://github.com/solinumasso/soliguide/issues/1) ([ce01e46](https://github.com/solinumasso/soliguide/commit/ce01e467a3c4ef041f2080a53fcc28d91f6cd0e6))
+
+
+### Features
+
+* **frontend:** add button to copy reset password link ([a4b860e](https://github.com/solinumasso/soliguide/commit/a4b860e9598be6df38e86562572784601226a746))
+
 # [4.106.0](https://github.com/solinumasso/soliguide/compare/v4.105.1...v4.106.0) (2025-11-14)
 
 
