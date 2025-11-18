@@ -114,7 +114,7 @@ export const updateEmailStatus = async () => {
         await updatOneEmailCampaign({ _id: email._id }, dataToUpdate);
       } else {
         emailsWithNoChange.push(email._id);
-        logger.info(`\t ✌️ Nothing to send to ${email.emailData.to}...\n`);
+        logger.info(`\t ✌️ No status update for ${email.emailData.to}...\n`);
       }
     } else {
       emailsWithNoChange.push(email._id);

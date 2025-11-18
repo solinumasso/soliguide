@@ -24,44 +24,18 @@ import { logger } from "../../general/logger";
 import { isPlaceOpenToday, isServiceOpenToday } from "../utils";
 
 export const setIsOpenToday = async () => {
-  //
-  // 1. Reset open places
-  //
-  const placesReseted = await PlaceModel.updateMany(
-    { isOpenToday: true },
-    { $set: { isOpenToday: false } },
-    { timestamps: false }
-  );
-
-  logger.info(
-    `${placesReseted.modifiedCount} PLACES ON WHICH OPENING STATUS HAS BEEN RESETED`
-  );
-
-  //
-  // 2. Reset open services
-  //
-  const servicesReseted = await PlaceModel.updateMany(
-    { "services_all.isOpenToday": true },
-    { $set: { "services_all.$[elem].isOpenToday": false } },
-    { arrayFilters: [{ "elem.isOpenToday": true }], timestamps: false }
-  );
-
-  logger.info(
-    `${servicesReseted.modifiedCount} PLACES ON WHICH OPENING STATUS HAS BEEN RESETED AT LEAST ON ONE SERVICE`
-  );
-
-  //
-  // 3. Reset the places opening status
-  //
+  /**
+   * Reset the places opening status
+   */
   const nPotentiallyOpenedPlaces = await PlaceModel.countDocuments({
     $or: [
       { position: { $exists: true, $ne: null } },
       { "parcours.position": { $exists: true, $ne: null } },
     ],
-    status: { $ne: PlaceStatus.PERMANENTLY_CLOSED },
+    status: { $nin: [PlaceStatus.DRAFT, PlaceStatus.PERMANENTLY_CLOSED] },
   });
 
-  const batchSize = 500;
+  const batchSize = 5000;
 
   let loopCpt = 0;
 
@@ -77,7 +51,7 @@ export const setIsOpenToday = async () => {
         { position: { $exists: true, $ne: null } },
         { "parcours.position": { $exists: true, $ne: null } },
       ],
-      status: { $ne: PlaceStatus.PERMANENTLY_CLOSED },
+      status: { $nin: [PlaceStatus.DRAFT, PlaceStatus.PERMANENTLY_CLOSED] },
     })
       .sort({ _id: 1 })
       .skip(loopCpt)
@@ -119,14 +93,14 @@ export const setIsOpenToday = async () => {
         cpt++;
         serviceCpt++;
 
-        if (operations.length && cpt % 200 === 0) {
+        if (operations.length && cpt % 2000 === 0) {
           await PlaceModel.bulkWrite(operations);
           operations = [];
           cpt = 0;
         }
       }
 
-      if (operations.length && cpt % 200 === 0) {
+      if (operations.length && cpt % 2000 === 0) {
         await PlaceModel.bulkWrite(operations);
         operations = [];
         cpt = 0;
