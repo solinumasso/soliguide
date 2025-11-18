@@ -159,10 +159,6 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
   if (!elements.length) {
     logger.warn("[TRANSLATION] Nothing to translate");
   }
-
-  if (parentPort) {
-    parentPort.postMessage("done");
-  }
 };
 
 /**
@@ -173,6 +169,7 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
     logger.warn(
       "[TRANSLATION] Google credentials not provided, not translating."
     );
+    if (parentPort) parentPort.postMessage("done");
     return;
   }
 
@@ -188,4 +185,6 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
       parentPort.postMessage("Error while running job");
     }
   }
+
+  if (parentPort) parentPort.postMessage("done");
 })();

@@ -40,8 +40,8 @@ import { importCategories } from "../../../place/utils/importCategories";
   } catch (e) {
     logger.error(e, "ERROR IMPORT CATEGORIES");
     await delay(500);
-    if (parentPort) {
-      parentPort.postMessage("ERROR IMPORT CATEGORIES");
-    }
+    if (parentPort) parentPort.postMessage("ERROR IMPORT CATEGORIES");
   }
+
+  if (parentPort) parentPort.postMessage("done");
 })();

@@ -45,6 +45,9 @@ import { findPlacesByParams } from "../../../place/services/place.service";
     if (parentPort) parentPort.postMessage("done");
   } catch (e) {
     logger.error(e);
-    if (parentPort) parentPort.postMessage("Error while running job");
+    if (parentPort) {
+      parentPort.postMessage("Error while running job");
+      parentPort.postMessage("done");
+    }
   }
 })();
