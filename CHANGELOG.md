@@ -1,3 +1,10 @@
+## [4.107.1](https://github.com/solinumasso/soliguide/compare/v4.107.0...v4.107.1) (2025-11-19)
+
+
+### Bug Fixes
+
+* **api:** add missing license ([aac90d7](https://github.com/solinumasso/soliguide/commit/aac90d78a9a777cf2862cb661ce210b5c7e947c9))
+
 # [4.107.0](https://github.com/solinumasso/soliguide/compare/v4.106.0...v4.107.0) (2025-11-18)
 
 
