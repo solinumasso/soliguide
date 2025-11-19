@@ -1,3 +1,24 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
 # CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
@@ -219,6 +240,7 @@ test(location-api): add tests for geocoding service
 ### Build Order
 
 Due to package dependencies, always build in this order:
+
 1. `@soliguide/common` (builds both CJS and ESM)
 2. `@soliguide/common-angular` (depends on common)
 3. Other packages (api, frontend, widget, web-app)
@@ -228,6 +250,7 @@ Nx handles this automatically when using `yarn build`.
 ### Common Module Dual Build
 
 `@soliguide/common` builds twice:
+
 - **CommonJS** (`dist/cjs/`) for Node.js backend (api, location-api, soligare)
 - **ESM** (`dist/esm/`) for frontend (frontend, widget, web-app)
 
@@ -236,6 +259,7 @@ Both are defined in `package.json` exports field.
 ### Translation Files
 
 Translation files from `@soliguide/common` are copied during build:
+
 - API: Copies to `packages/api/resources/locales/`
 - Frontend: Copies to `packages/frontend/src/assets/locales/`
 
@@ -244,6 +268,7 @@ This happens in prebuild/postbuild scripts. If translations are missing, rebuild
 ### Environment Variables
 
 Each package has its own `.env` file:
+
 - API: `packages/api/.env` (copy from `.env.example`)
 - Location API: `packages/location-api/.env`
 - Frontend: Uses `src/environments/` files
@@ -253,6 +278,7 @@ Root `.env.example` is for Docker builds only.
 ### Testing Database
 
 API tests require MongoDB test database:
+
 - Start MongoDB: `docker compose up -d`
 - Restore test data: `./packages/api/db.sh restore -t`
 - Connection: `mongodb://127.0.0.1:27017/soliguide_test?replicaSet=rs0`
@@ -273,6 +299,7 @@ yarn workspace @soliguide/web-app test -- path/to/test.spec.ts
 ### Docker Development
 
 Full local stack with Docker Compose includes:
+
 - MongoDB 7.0 (replica set)
 - Typesense 27.1
 - Redis
@@ -282,6 +309,7 @@ Full local stack with Docker Compose includes:
 ### PDF Export Feature
 
 Requires LibreOffice installed locally:
+
 - macOS: `brew install --cask libreoffice`
 - Linux: `apt-get install libreoffice`
 - Used by `libreoffice-convert` package in API
