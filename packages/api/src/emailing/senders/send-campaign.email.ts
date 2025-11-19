@@ -131,7 +131,7 @@ export const sendCampaignEmails = async (
         await updatOneEmailCampaign(
           { _id: email._id },
           {
-            lastStatus: EmailEvents.PENDING,
+            lastStatus: EmailEvents.SENT,
             lastUpdate: new Date(),
             mailgunEmailId,
             "status.PENDING.date": new Date(),
