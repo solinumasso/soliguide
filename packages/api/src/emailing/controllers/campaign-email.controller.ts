@@ -38,7 +38,6 @@ import {
   type CampaignEmailName,
   CampaignEmailRemindMe,
   type CampaignEmails,
-  type UserPopulateType,
 } from "../../_models";
 
 import { getOneCurrentDepartment } from "../../_utils/functions";
@@ -51,7 +50,6 @@ import { FIELDS_FOR_SEARCH } from "../../search/constants/requests";
 import { getOrganizationByParams } from "../../organization/services";
 import {
   getUserRightsWithParams,
-  findUsersToContactAgain,
   findUsersToEmail,
   getUserByParams,
   updateUsers,
@@ -86,14 +84,8 @@ export const generateCampaignEmails = async (
 
   let nSavedEmails = 0;
 
-  // 1. We look for users to contact a priori
-  let users: UserPopulateType[] = [];
-
-  if (emailType?.includes("RELANCE")) {
-    users = await findUsersToContactAgain(territories, emailType, false);
-  } else if (emailType?.includes("CAMPAGNE")) {
-    users = await findUsersToEmail(territories, emailType);
-  }
+  // 1. We look for users to contact (auto-detects if it's a relance or initial campaign)
+  const users = await findUsersToEmail(territories, emailType);
 
   if (!users?.length) {
     logger.warn("[EMAILS] - No user to email");
