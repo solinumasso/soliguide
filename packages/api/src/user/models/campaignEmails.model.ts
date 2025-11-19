@@ -20,7 +20,7 @@
  */
 import mongoose from "mongoose";
 import type { UserCampaignEmails } from "../../_models/users";
-import { MG_EVENT_STRING_SORTED, EmailEvents } from "../../_models/emailing";
+import { EmailEvents } from "../../_models/emailing";
 
 const DEFAULT_VALUE = {
   done: { default: false, type: Boolean },
@@ -40,7 +40,7 @@ export const CampaignEmailsSchema = new mongoose.Schema<UserCampaignEmails>(
 
     lastEmailStatus: {
       default: EmailEvents.TO_SEND,
-      enum: MG_EVENT_STRING_SORTED,
+      enum: EmailEvents,
       type: String,
     },
   },

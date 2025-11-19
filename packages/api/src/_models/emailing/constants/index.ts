@@ -22,5 +22,4 @@
 export * from "./CAMPAIGN_EMAILS_CONTENT.const";
 export * from "./LIMIT_NUM_EMAILS_TO_SEND.const";
 export * from "./EMAILS_FOR_TESTS.const";
-export * from "./MG_EVENT_STRING_SORTED.const";
-export * from "./MG_EVENT_TABLE.const";
+export * from "./RGPD_FOOTER.const";
