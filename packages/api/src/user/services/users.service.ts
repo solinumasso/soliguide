@@ -293,6 +293,7 @@ export const findUsersToEmail = (
   emailType: string
 ) => {
   const isInvitation = emailType?.includes("INVITATION");
+  const isRelance = emailType?.includes("RELANCE");
 
   return searchUsers(
     {
@@ -312,8 +313,33 @@ export const findUsersToEmail = (
         };
       }),
       ...(isInvitation
-        ? { "invitations.0": { $exists: true } }
-        : { "organizations.0": { $exists: true } }),
+        ? {
+            "invitations.0": { $exists: true },
+            // For relances, ensure users received the initial campaign
+            ...(isRelance
+              ? {
+                  [`campaigns.${CAMPAIGN_DEFAULT_NAME}.CAMPAGNE_INVITATIONS.ready`]:
+                    true,
+                }
+              : {}),
+          }
+        : {
+            "organizations.0": { $exists: true },
+            // For relances, ensure users received the initial campaign
+            ...(isRelance
+              ? {
+                  [`campaigns.${CAMPAIGN_DEFAULT_NAME}.CAMPAGNE_COMPTES_PRO.ready`]:
+                    true,
+                }
+              : {}),
+          }),
+      // Special filter for "TERMINER" (reminder of reminder)
+      ...(emailType?.includes("TERMINER")
+        ? {
+            [`campaigns.${CAMPAIGN_DEFAULT_NAME}.RELANCE_CAMPAGNE_COMPTES_PRO.ready`]:
+              true,
+          }
+        : {}),
 
       status: UserStatus.PRO,
       "areas.fr.departments": { $in: territories },
@@ -328,8 +354,7 @@ export const findUsersToEmail = (
 
 export const findUsersToContactAgain = (
   territories: AnyDepartmentCode[],
-  emailType: string,
-  reminderAllowed = false
+  emailType: string
 ) => {
   const isInvitation = emailType?.includes("INVITATION");
 
@@ -383,23 +408,6 @@ export const findUsersToContactAgain = (
         territories: 1,
         areas: 1,
         user_id: 1,
-      },
-    },
-    {
-      $lookup: {
-        as: "emails",
-        foreignField: "info.user",
-        from: "emailsCampaign",
-        localField: "_id",
-      },
-    },
-    { $unwind: "$emails" },
-    {
-      $match: {
-        ...(reminderAllowed ? null : { emailType: { $ne: "REMIND_ME" } }),
-        "emails.lastStatus": {
-          $nin: ["BOUNCED_TEMP", "BOUNCED_PERM", "REJECTED", "SPAM"],
-        },
       },
     },
     // For invited people, we want info to simulate a populate of the function find
