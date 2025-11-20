@@ -1,3 +1,16 @@
+# [4.108.0](https://github.com/solinumasso/soliguide/compare/v4.107.1...v4.108.0) (2025-11-20)
+
+
+### Bug Fixes
+
+* **api:** add missing license ([4e92894](https://github.com/solinumasso/soliguide/commit/4e928942643aa335cfffce609b293f08b960d479))
+* fix is open today cron ([d87a4f9](https://github.com/solinumasso/soliguide/commit/d87a4f9c157f8274328214ff9c10521a122721d5))
+
+
+### Features
+
+* **api:** simplify request for generate relance mails ([33e5527](https://github.com/solinumasso/soliguide/commit/33e5527174af111ea071cbaf38e554838e0ea9a7))
+
 ## [4.107.1](https://github.com/solinumasso/soliguide/compare/v4.107.0...v4.107.1) (2025-11-19)
 
 
