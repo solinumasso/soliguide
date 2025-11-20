@@ -16,25 +16,17 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 FROM mongo:7.0
 
-# Install required tools
-RUN apt-get update &&\
-  apt-get install --no-install-recommends -y s3cmd=2.2.0-1 &&\
-  rm -rf /var/lib/apt/lists/*
-
-# Create script directory
 WORKDIR /scripts
 
-# Copy db.sh script from packages/api/
-COPY --chmod=0544 --chown=mongodb:mongodb packages/api/db.sh /scripts/db.sh
+# Copy seed script
+COPY --chmod=0544 --chown=mongodb:mongodb seed-mongodb.sh /scripts/seed-mongodb.sh
 
-# Copy data folder containing test dumps from repo root
-COPY --chown=mongodb:mongodb data /data/
+# Copy test dump
+COPY --chown=mongodb:mongodb data /data
 
-# Switch to mongodb user
 USER mongodb
 
-# Set the script as the entry point with restore action and test context
-ENTRYPOINT ["/scripts/db.sh"]
-CMD ["restore", "-t"]
+ENTRYPOINT ["/scripts/seed-mongodb.sh"]
