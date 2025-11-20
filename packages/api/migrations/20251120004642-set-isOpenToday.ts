@@ -18,24 +18,13 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Db } from "mongodb";
 
-import { logger } from "../../src/general/logger";
-import { setIsOpenToday } from "../../src/place/services/isOpenToday.service";
+import "../src/config/database/connection";
+import { Db } from "mongodb";
+import { logger } from "../src/general/logger";
+import { setIsOpenToday } from "../src/place/services/isOpenToday.service";
 
 const message = "Set isOpenToday for places and services";
-
-export const up = async (db: Db) => {
-  try {
-    logger.info("JOB - SET IS_OPEN_TODAY FOR PLACES\tSTART");
-
-    await setIsOpenToday();
-
-    logger.info("JOB - SET IS_OPEN_TODAY FOR PLACES\tEND");
-  } catch (e) {
-    logger.error(e);
-  }
-};
 
 export const down = async (db: Db) => {
   logger.info(`[ROLLBACK] - ${message}`);
@@ -51,4 +40,12 @@ export const down = async (db: Db) => {
       { $set: { "services_all.$[elem].isOpenToday": false } },
       { arrayFilters: [{ "elem.isOpenToday": true }] }
     );
+};
+
+export const up = async () => {
+  logger.info("SET IS_OPEN_TODAY FOR PLACES\tSTART");
+
+  await setIsOpenToday();
+
+  logger.info("SET IS_OPEN_TODAY FOR PLACES\tEND");
 };
