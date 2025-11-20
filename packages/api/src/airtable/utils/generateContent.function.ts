@@ -121,8 +121,7 @@ const generateContentForPlace = (
       [AT_FIELDS_IDS[AirtableEntityType.PLACE].visibility]:
         PLACE_VISIBILITY[place.visibility as PlaceVisibility],
       [AT_FIELDS_IDS[AirtableEntityType.PLACE].toUpdate]:
-        place.campaigns[CAMPAIGN_DEFAULT_NAME].toUpdate &&
-        !place.campaigns[CAMPAIGN_DEFAULT_NAME].general.updated,
+        place.campaigns[CAMPAIGN_DEFAULT_NAME].toUpdate,
       [AT_FIELDS_IDS[AirtableEntityType.PLACE].sources]: formatSources(
         place.sources
       ),
