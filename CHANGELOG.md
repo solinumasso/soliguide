@@ -1,3 +1,100 @@
+## [4.107.1](https://github.com/solinumasso/soliguide/compare/v4.107.0...v4.107.1) (2025-11-19)
+
+
+### Bug Fixes
+
+* **api:** add missing license ([aac90d7](https://github.com/solinumasso/soliguide/commit/aac90d78a9a777cf2862cb661ce210b5c7e947c9))
+
+# [4.107.0](https://github.com/solinumasso/soliguide/compare/v4.106.0...v4.107.0) (2025-11-18)
+
+
+### Bug Fixes
+
+* **api:** fix ci for qovery [#1](https://github.com/solinumasso/soliguide/issues/1) ([1b8cd25](https://github.com/solinumasso/soliguide/commit/1b8cd255a9ac24a82a1b486ed140cc40f96b04f7))
+* **api:** fix qovery [#1](https://github.com/solinumasso/soliguide/issues/1) ([ce01e46](https://github.com/solinumasso/soliguide/commit/ce01e467a3c4ef041f2080a53fcc28d91f6cd0e6))
+
+
+### Features
+
+* **frontend:** add button to copy reset password link ([a4b860e](https://github.com/solinumasso/soliguide/commit/a4b860e9598be6df38e86562572784601226a746))
+
+# [4.106.0](https://github.com/solinumasso/soliguide/compare/v4.105.1...v4.106.0) (2025-11-14)
+
+
+### Features
+
+* **api:** reset AT sync ([beac531](https://github.com/solinumasso/soliguide/commit/beac5313de842fc779b3ba80a4e889bdba4f79eb))
+
+## [4.105.1](https://github.com/solinumasso/soliguide/compare/v4.105.0...v4.105.1) (2025-11-14)
+
+
+### Bug Fixes
+
+* **api:** AT synchro for users multiple same records batch ([e23109e](https://github.com/solinumasso/soliguide/commit/e23109e9a9dc5fc86ff4dc8701866e7cf9c9fe28))
+* **api:** delete useless code, fix generation of emails [#1](https://github.com/solinumasso/soliguide/issues/1) ([de8582f](https://github.com/solinumasso/soliguide/commit/de8582f12979e4db0e547d5751a8e0a82beecb7e))
+* **api:** exclude spain/andorra users from campaign ([e374563](https://github.com/solinumasso/soliguide/commit/e374563146596403f76438bef853181158e57bf4))
+* **api:** fix migrations & test dump [#1](https://github.com/solinumasso/soliguide/issues/1) ([76e8fad](https://github.com/solinumasso/soliguide/commit/76e8fadbfc2d0c19680f4914924213ff4dfa5451))
+* **api:** update dump for seasonnal update [#1](https://github.com/solinumasso/soliguide/issues/1) ([9caf148](https://github.com/solinumasso/soliguide/commit/9caf1483fb13bbcce311a4ba5f23d7c22df1330f))
+* **api:** wrong status code e2e mailing ([1ac51e6](https://github.com/solinumasso/soliguide/commit/1ac51e6a2b32b4460bfa8be0c4456086305450b2))
+* button instead of link [#710](https://github.com/solinumasso/soliguide/issues/710) ([c60f3b5](https://github.com/solinumasso/soliguide/commit/c60f3b5f8433c2f6f6aac7c463553cc7bbee9aaa))
+
+# [4.105.0](https://github.com/solinumasso/soliguide/compare/v4.104.0...v4.105.0) (2025-11-06)
+
+
+### Bug Fixes
+
+* **frontend:** change color button page my organisation ([3f2712a](https://github.com/solinumasso/soliguide/commit/3f2712ad12d826c22337655713f78c658a7d1380))
+
+
+### Features
+
+* **frontend:** select source at end maj form ([dc95ca3](https://github.com/solinumasso/soliguide/commit/dc95ca3488012c29415ff0cd50fc561257a3ff16))
+
+# [4.104.0](https://github.com/solinumasso/soliguide/compare/v4.103.0...v4.104.0) (2025-11-05)
+
+
+### Bug Fixes
+
+* **maj:** synchro AT maj and monitoring + removing restos from excluded mails ([d875c4f](https://github.com/solinumasso/soliguide/commit/d875c4fff18b51dc50a2d55915490a0429eb0fc1))
+
+
+### Features
+
+* **api:** delete partner form mail generation and templates ([9ab2e68](https://github.com/solinumasso/soliguide/commit/9ab2e68749626d7893188917a6d1d1b622da4a46))
+* **frontend:** refresh transport cache when update address ([64ea9fd](https://github.com/solinumasso/soliguide/commit/64ea9fdf1ac214e3b84e584cbcbf0232f7a8b672))
+
+# [4.103.0](https://github.com/solinumasso/soliguide/compare/v4.102.0...v4.103.0) (2025-11-04)
+
+
+### Features
+
+* **api:** add mail and phone to sync AT ([de4e3a6](https://github.com/solinumasso/soliguide/commit/de4e3a6b8c1db6b7a675713e9c56e87cc187bc13))
+* **api:** delete old migrations ([c1ececa](https://github.com/solinumasso/soliguide/commit/c1ececad275d6348ff9214c9362682b4b24042ff))
+* **api:** enforce node version to 22 ([e179f50](https://github.com/solinumasso/soliguide/commit/e179f5003836a590cf754615029c4c69093f3662))
+* **frontend:** duplicate maj and edit mail templates ([09184b9](https://github.com/solinumasso/soliguide/commit/09184b93b965ca0823e0f293105cf80fccbbb616))
+* **frontend:** modify banner and buttons wording form campaign ([670c997](https://github.com/solinumasso/soliguide/commit/670c997363f0899c821a6875a1e897c773509f89))
+* **frontend:** modify campaign form wording ([ad7bc21](https://github.com/solinumasso/soliguide/commit/ad7bc21d10602b3d2f1286f540b0822d9a1a4b28))
+* **frontend:** upgrade MAJ form ([0bda175](https://github.com/solinumasso/soliguide/commit/0bda175c974ca7e58d061679655129a3718e843c))
+* **web-app:** redirect to source website when needed ([d411f76](https://github.com/solinumasso/soliguide/commit/d411f7634171c6389ddd1657ebb1e53cd87ebdf6))
+
+# [4.102.0](https://github.com/solinumasso/soliguide/compare/v4.101.0...v4.102.0) (2025-10-17)
+
+
+### Bug Fixes
+
+* fix areas in orga and users ([804a8d2](https://github.com/solinumasso/soliguide/commit/804a8d2eeed7028c399d7a3e2313d38cd7ac6fc8))
+* **frontend:** fix create orga and user ([5df5765](https://github.com/solinumasso/soliguide/commit/5df57655ad3b391231e2cf3cead21b436deeeed3))
+* **frontend:** fix soliguia logo ([480c4bd](https://github.com/solinumasso/soliguide/commit/480c4bd0d65671568c227d4b6ae47d8c5d43a080))
+* **frontend:** fix soliguia logo ([4f9bb4c](https://github.com/solinumasso/soliguide/commit/4f9bb4c2951c0c7a17672a24acab7369e542ba22))
+* **location-api:** search for district [#822](https://github.com/solinumasso/soliguide/issues/822) ([a4102c1](https://github.com/solinumasso/soliguide/commit/a4102c1faee14d78a1e30b0da7fa3b3e6fb373f9))
+* stop error message when delete temp message [#757](https://github.com/solinumasso/soliguide/issues/757) ([3842d45](https://github.com/solinumasso/soliguide/commit/3842d4501a651a1583dc9a88ddbce82bfd48bf14))
+
+
+### Features
+
+* **frontend:** add ads_storage to the cookie banner [#948](https://github.com/solinumasso/soliguide/issues/948) ([1a6a3df](https://github.com/solinumasso/soliguide/commit/1a6a3df9a894df0b6961b081f2f17e0f5fe037b9))
+* **location-api:** reduce cache duration update ([eb06894](https://github.com/solinumasso/soliguide/commit/eb068947f19852ae8404354edf6a39a92938c36e))
+
 # [4.101.0](https://github.com/solinumasso/soliguide/compare/v4.100.2...v4.101.0) (2025-10-14)
 
 
