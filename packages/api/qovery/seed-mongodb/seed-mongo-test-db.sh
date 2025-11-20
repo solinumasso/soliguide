@@ -28,9 +28,12 @@ echo "=========================================="
 echo "MongoDB Test Database Restore"
 echo "=========================================="
 echo "MONGODB_URI: ${MONGODB_URI:-(not set)}"
+echo "MONGODB_URI_CLEANED: ${MONGODB_URI%/admin}"
 echo "Dump file: ${DUMP_FILE}"
 echo "=========================================="
 echo ""
+
+MONGODB_URI="${MONGODB_URI%/admin}"
 
 # Validate MONGODB_URI is set
 if [ -z "${MONGODB_URI}" ]; then
@@ -45,7 +48,7 @@ if [ ! -f "$DUMP_FILE" ]; then
 fi
 
 echo "Waiting for MongoDB to be ready..."
-max_attempts=30
+max_attempts=10
 attempt=1
 while [ $attempt -le $max_attempts ]; do
     if mongosh "$MONGODB_URI" --quiet --eval "db.runCommand({ ping: 1 })" >/dev/null 2>&1; then
