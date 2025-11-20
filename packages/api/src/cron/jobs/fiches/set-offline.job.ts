@@ -57,10 +57,10 @@ import { PlaceModel } from "../../../place/models/place.model";
     await delay(500);
 
     logger.info("JOB - SET UN-UPDATED PLACES OFFLINE\tEND");
-
-    if (parentPort) parentPort.postMessage("done");
   } catch (e) {
     logger.error(e);
     if (parentPort) parentPort.postMessage("Error while running job");
   }
+
+  if (parentPort) parentPort.postMessage("done");
 })();

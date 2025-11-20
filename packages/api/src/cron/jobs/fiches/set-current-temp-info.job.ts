@@ -153,10 +153,10 @@ import { TempInfoModel } from "../../../temp-info/models/temp-info.model";
     await delay(500);
 
     logger.info("JOB - SET CURRENT TEMPORARY INFORMATION FOR PLACES - END");
-
-    if (parentPort) parentPort.postMessage("done");
   } catch (e) {
     logger.error(e);
     if (parentPort) parentPort.postMessage("Error while running job");
   }
+
+  if (parentPort) parentPort.postMessage("done");
 })();
