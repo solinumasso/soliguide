@@ -27,10 +27,10 @@ RUN apt-get update &&\
 WORKDIR /scripts
 
 # Copy db.sh script from packages/api/
-COPY --chmod=0544 --chown=mongodb:mongodb ../db.sh /scripts/db.sh
+COPY --chmod=0544 --chown=mongodb:mongodb packages/api/db.sh /scripts/db.sh
 
 # Copy data folder containing test dumps from repo root
-COPY --chown=mongodb:mongodb ../../../data /data
+COPY --chown=mongodb:mongodb data /data/
 
 # Switch to mongodb user
 USER mongodb
