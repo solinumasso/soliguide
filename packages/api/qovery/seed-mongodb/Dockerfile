@@ -26,11 +26,16 @@ RUN apt-get update &&\
 # Create script directory
 WORKDIR /scripts
 
-# Create the restore script with fixed sleep command
-COPY --chmod=0544 --chown=mongodb:mongodb restore.sh /scripts/restore.sh
+# Copy db.sh script instead of restore.sh
+COPY --chmod=0544 --chown=mongodb:mongodb packages/api/db.sh /scripts/db.sh
+
+# Copy data folder containing test dumps
+# db.sh will look for soliguide_db_test.gzip in data/
+COPY --chown=mongodb:mongodb data /data
 
 # Switch to mongodb user
 USER mongodb
 
-# Set the script as the entry point
-ENTRYPOINT ["/scripts/restore.sh"]
+# Set the script as the entry point with restore action and test context
+ENTRYPOINT ["/scripts/db.sh"]
+CMD ["restore", "-t"]
