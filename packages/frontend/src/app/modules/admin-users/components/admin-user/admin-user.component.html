@@ -142,6 +142,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           </div>
 
           <div *ngIf="me.status === 'ADMIN_SOLIGUIDE'" class="row">
+            @if (user.status === UserStatus.API_USER || user.status ===
+            UserStatus.ADMIN_TERRITORY) {
             <app-select-territories
               class="col-6"
               [isRequired]="
@@ -151,7 +153,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               [label]="'WHICH_TERRITORY_IS_OPERATE' | translate"
               [territoriesFormControl]="f.territories"
             ></app-select-territories>
-
+            }
             <div class="col-6" *ngIf="user.status === 'API_USER'">
               <app-select-category
                 [submitted]="submitted"
