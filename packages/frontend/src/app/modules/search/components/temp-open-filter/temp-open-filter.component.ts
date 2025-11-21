@@ -36,8 +36,6 @@ export class TempOpenFilterComponent implements OnInit {
 
   @Output() public readonly filtersChange = new EventEmitter<void>();
 
-  constructor() {}
-
   public ngOnInit(): void {
     this.openTodayChecked = !!this.filters.openToday;
   }

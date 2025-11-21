@@ -32,8 +32,6 @@ export class SearchSuggestionsService {
   public suggestions: FormattedSuggestion[] = [];
   private isLoaded = false;
 
-  constructor() {}
-
   async getAllSuggestions(): Promise<SearchSuggestion[]> {
     try {
       const suggestions = await SearchSuggestionModel.find({}).lean();
