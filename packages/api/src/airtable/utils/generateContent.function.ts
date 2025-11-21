@@ -80,7 +80,7 @@ const formatSources = (sources: CommonPlaceSource[] | undefined): string[] => {
   return sources
     .map((source: CommonPlaceSource) => {
       if (source.name in PLACE_EXTERNAL_SOURCES) {
-        return PLACE_EXTERNAL_SOURCES[source.name as PairingSources | string];
+        return PLACE_EXTERNAL_SOURCES[source.name as PairingSources];
       }
 
       return undefined;
@@ -121,8 +121,7 @@ const generateContentForPlace = (
       [AT_FIELDS_IDS[AirtableEntityType.PLACE].visibility]:
         PLACE_VISIBILITY[place.visibility as PlaceVisibility],
       [AT_FIELDS_IDS[AirtableEntityType.PLACE].toUpdate]:
-        place.campaigns[CAMPAIGN_DEFAULT_NAME].toUpdate &&
-        !place.campaigns[CAMPAIGN_DEFAULT_NAME].general.updated,
+        place.campaigns[CAMPAIGN_DEFAULT_NAME].toUpdate,
       [AT_FIELDS_IDS[AirtableEntityType.PLACE].sources]: formatSources(
         place.sources
       ),

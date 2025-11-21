@@ -26,7 +26,7 @@ import {
   CommonTimeslot,
   type DayName,
   EXTERNAL_SOURCE_MAPPING,
-  PairingSources,
+  type ExternalSourceToDisplay,
   PlaceOpeningStatus,
   checkIfSourceMustBeDisplayed,
   computeTempIsActive,
@@ -120,10 +120,11 @@ export const buildSources = (sources?: CommonPlaceSource[]): Source[] =>
           return [
             ...acc,
             {
-              label: EXTERNAL_SOURCE_MAPPING[source.name as PairingSources].label ?? '',
+              label: EXTERNAL_SOURCE_MAPPING[source.name as ExternalSourceToDisplay].label ?? '',
               licenseLabel:
-                EXTERNAL_SOURCE_MAPPING[source.name as PairingSources].licenseLabel ?? '',
-              licenseLink: EXTERNAL_SOURCE_MAPPING[source.name as PairingSources].licenseLink ?? '',
+                EXTERNAL_SOURCE_MAPPING[source.name as ExternalSourceToDisplay].licenseLabel ?? '',
+              licenseLink:
+                EXTERNAL_SOURCE_MAPPING[source.name as ExternalSourceToDisplay].licenseLink ?? '',
               url: getSourceUrl(source)
             }
           ];

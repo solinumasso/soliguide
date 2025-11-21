@@ -16,21 +16,17 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 FROM mongo:7.0
 
-# Install required tools
-RUN apt-get update &&\
-  apt-get install --no-install-recommends -y s3cmd=2.2.0-1 &&\
-  rm -rf /var/lib/apt/lists/*
-
-# Create script directory
 WORKDIR /scripts
 
-# Create the restore script with fixed sleep command
-COPY --chmod=0544 --chown=mongodb:mongodb restore.sh /scripts/restore.sh
+# Copy seed script
+COPY --chmod=0544 --chown=mongodb:mongodb packages/api/qovery/seed-mongodb/seed-mongo-test-db.sh /scripts/seed-mongo-test-db.sh
 
-# Switch to mongodb user
+# Copy test dump
+COPY --chown=mongodb:mongodb data /data
+
 USER mongodb
 
-# Set the script as the entry point
-ENTRYPOINT ["/scripts/restore.sh"]
+ENTRYPOINT ["/scripts/seed-mongo-test-db.sh"]

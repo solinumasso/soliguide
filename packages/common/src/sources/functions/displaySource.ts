@@ -22,16 +22,18 @@ import { PairingSources } from "../enums";
 import { ApiPlace, CommonPlaceSource } from "../../place";
 import {
   EXTERNAL_UPDATES_ONLY_SOURCES,
-  PAIRING_SOURCES,
   SOURCES_DISPLAY_EXTERNAL_LINK,
+  SOURCES_TO_DISPLAY,
 } from "../constants";
+import { ExternalSourceToDisplay } from "../types";
 
 export const checkIfSourceMustBeDisplayed = (
   sourceName: string,
   isOrigin: boolean
 ): boolean =>
   EXTERNAL_UPDATES_ONLY_SOURCES.includes(sourceName as PairingSources) ||
-  (PAIRING_SOURCES.includes(sourceName as PairingSources) && isOrigin);
+  (SOURCES_TO_DISPLAY.includes(sourceName as ExternalSourceToDisplay) &&
+    isOrigin);
 
 export const isFromExternalSource = (place: ApiPlace): boolean => {
   if (!place.sources) {

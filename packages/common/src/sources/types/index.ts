@@ -18,21 +18,5 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
-import { PairingSources } from "../enums";
-
-export const PAIRING_SOURCES = Object.values(PairingSources);
-
-export const SOURCES_TO_DISPLAY = [
-  PairingSources.DORA,
-  PairingSources.ALISOL,
-  PairingSources.CRF,
-  PairingSources.CROUS_PDL,
-] as const;
-
-export const EXTERNAL_UPDATES_ONLY_SOURCES = [
-  PairingSources.CRF,
-  PairingSources.CROUS_PDL,
-];
-
-export const SOURCES_DISPLAY_EXTERNAL_LINK = [PairingSources.ALISOL];
+// @index('./*', f => `export * from '${f.path}'`)
+export * from "./SourcesToDisplay.type";
