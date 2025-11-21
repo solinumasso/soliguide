@@ -38,8 +38,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: read
-      issues: read
+      pull-requests: write
+      issues: write
       id-token: write
       actions: read # Required for Claude to read CI results on PRs
     steps:
@@ -67,8 +67,8 @@ jobs:
             3. 🔗 Cohérence frontend/backend : API et UI alignées ? Types cohérents ?
             4. 📝 Qualité : maintenabilité, patterns du projet (voir CLAUDE.md)
 
-            Fournis maximum 7 points, triés par criticité.
-            Sois direct et actionnable, propose des évolutions possible
+            Fournis maximum 7 points, triés par criticité, propose des solutions sur la "logique du code"
+            Sois direct et actionnable.
 
           # Optional: Add claude_args to customize behavior and configuration
           # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
