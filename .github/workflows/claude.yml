@@ -31,15 +31,15 @@ on:
 jobs:
   claude:
     if: |
-      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
-      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
-      (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
-      (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude') && (github.event.comment.author_association == 'OWNER' || github.event.comment.author_association == 'MEMBER')) ||
+      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude') && (github.event.comment.author_association == 'OWNER' || github.event.comment.author_association == 'MEMBER')) ||
+      (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude') && (github.event.review.author_association == 'OWNER' || github.event.review.author_association == 'MEMBER')) ||
+      (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')) && (github.event.issue.author_association == 'OWNER' || github.event.issue.author_association == 'MEMBER'))
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: read
-      issues: read
+      pull-requests: write
+      issues: write
       id-token: write
       actions: read # Required for Claude to read CI results on PRs
     steps:
@@ -58,10 +58,31 @@ jobs:
           additional_permissions: |
             actions: read
 
-          # Optional: Give a custom prompt to Claude. If this is not specified, Claude will perform the instructions specified in the comment that tagged it.
-          # prompt: 'Update the pull request description to include a summary of changes.'
+          # Custom prompt for PR review
+          prompt: |
+            Analyse cette PR avec focus sur :
+
+            1. 🔒 Sécurité (PRIORITAIRE) : failles, auth, autorisation, injection, validation, headers
+            2. 🧠 Logique métier : répond-elle aux besoins ? Cohérent avec Soliguide ?
+            3. 🔗 Cohérence frontend/backend : API et UI alignées ? Types cohérents ?
+            4. 📝 Qualité : maintenabilité, patterns du projet (voir CLAUDE.md)
+
+            Fournis maximum 7 points, triés par criticité, propose des solutions sur la "logique du code"
+            Sois direct et actionnable.
 
           # Optional: Add claude_args to customize behavior and configuration
           # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
           # or https://docs.claude.com/en/docs/claude-code/cli-reference for available options
           # claude_args: '--allowed-tools Bash(gh pr:*)'
+
+      - name: Post review to PR
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## 📋 Claude Code Review\n\n${{ steps.claude.outputs.result }}`
+            })
