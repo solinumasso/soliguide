@@ -23,8 +23,6 @@ import { HealthCheck } from "@nestjs/terminus";
 
 @Controller()
 export class AppController {
-  constructor() {}
-
   @Get("/")
   @HealthCheck()
   async check() {
