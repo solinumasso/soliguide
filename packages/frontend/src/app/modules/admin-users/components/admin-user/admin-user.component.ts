@@ -62,8 +62,6 @@ export class AdminUserComponent implements OnInit, OnDestroy {
 
   public readonly UserStatus = UserStatus;
 
-  private countryCode: string;
-
   constructor(
     private readonly authService: AuthService,
     private readonly formBuilder: UntypedFormBuilder,
@@ -78,7 +76,6 @@ export class AdminUserComponent implements OnInit, OnDestroy {
     this.loading = false;
     this.submitted = false;
     this.user = new User();
-    this.countryCode = this.THEME_CONFIGURATION.country;
   }
 
   public ngOnInit(): void {
@@ -118,14 +115,9 @@ export class AdminUserComponent implements OnInit, OnDestroy {
   }
 
   public initForm = (): void => {
-    const initialTerritories = (
-      (this.user?.areas?.[this.countryCode]?.departments ??
-        this.user?.territories ??
-        []) as Array<string | number>
-    ).map(String);
-
     this.updateForm = this.formBuilder.group({
       categoriesLimitations: [this.user.categoriesLimitations],
+      country: [THEME_CONFIGURATION.country],
       languages: [
         this.user.languages,
         this.user.translator ? Validators.required : null,
@@ -140,7 +132,7 @@ export class AdminUserComponent implements OnInit, OnDestroy {
       name: [this.user.name, [Validators.required, noWhiteSpace]],
       phone: [this.user.phone, []],
       territories: [
-        initialTerritories,
+        this.user.territories,
         this.user.status === UserStatus.ADMIN_TERRITORY ||
         this.user.status === UserStatus.API_USER
           ? [Validators.required]
@@ -176,13 +168,6 @@ export class AdminUserComponent implements OnInit, OnDestroy {
 
     const formValue = {
       ...this.updateForm.value,
-      areas: {
-        ...structuredClone(this.user.areas),
-        [this.countryCode]: {
-          ...structuredClone(this.user.areas[this.countryCode]),
-          departments: this.updateForm.value.territories,
-        },
-      },
     };
 
     this.loading = true;
