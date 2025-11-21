@@ -1,3 +1,24 @@
+# [4.109.0](https://github.com/solinumasso/soliguide/compare/v4.108.0...v4.109.0) (2025-11-21)
+
+
+### Bug Fixes
+
+* **api:** fix qovery restore ([20a73e5](https://github.com/solinumasso/soliguide/commit/20a73e5833e117a7255f69af52e011db504b2b57))
+* **api:** fix qovery restore ([df8a707](https://github.com/solinumasso/soliguide/commit/df8a707c1293b1bd68cc73833b733f284d863b48))
+* **api:** fix qovery restore ([f6429bf](https://github.com/solinumasso/soliguide/commit/f6429bf5186ebf6facbba503feaaa3dd54a96fd6))
+* **api:** fix qovery restore ([c9ffe0b](https://github.com/solinumasso/soliguide/commit/c9ffe0b70dd6da2221f51e3e17d596d31c8ad241))
+* **api:** fix qovery restore ([2ffbe7c](https://github.com/solinumasso/soliguide/commit/2ffbe7c1b2dfe2abc19bfd37eb2d19b35feefba3))
+* **api:** fix qovery restore ([97938f3](https://github.com/solinumasso/soliguide/commit/97938f31c3b283ba9817618b62e4508868ceca35))
+* **api:** fix qovery restore ([34f6f65](https://github.com/solinumasso/soliguide/commit/34f6f65368f7daefbab22546b33b2845d0042df7))
+* **api:** fix qovery restore ([22fd355](https://github.com/solinumasso/soliguide/commit/22fd355a06f678952f3b12454d51e95d7c3097a0))
+* **api:** fix qovery restore ([8299b2b](https://github.com/solinumasso/soliguide/commit/8299b2b29716c3d6fefe74cdd377b39616125479))
+* fix campaign ssvp and CD59 being not to update ([9b693a1](https://github.com/solinumasso/soliguide/commit/9b693a1308276ff9841dc50ee0c49d985f8c8f8b))
+
+
+### Features
+
+* **api:** use only toUpdate to synchro AT column ([55efe02](https://github.com/solinumasso/soliguide/commit/55efe024c8afadaae0f47abbbe27b4bcead53ede))
+
 # [4.108.0](https://github.com/solinumasso/soliguide/compare/v4.107.1...v4.108.0) (2025-11-20)
 
 
