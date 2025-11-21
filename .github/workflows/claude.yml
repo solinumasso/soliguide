@@ -31,10 +31,10 @@ on:
 jobs:
   claude:
     if: |
-      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
-      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
-      (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
-      (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude') && (github.event.comment.author_association == 'OWNER' || github.event.comment.author_association == 'MEMBER')) ||
+      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude') && (github.event.comment.author_association == 'OWNER' || github.event.comment.author_association == 'MEMBER')) ||
+      (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude') && (github.event.review.author_association == 'OWNER' || github.event.review.author_association == 'MEMBER')) ||
+      (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')) && (github.event.issue.author_association == 'OWNER' || github.event.issue.author_association == 'MEMBER'))
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -58,8 +58,13 @@ jobs:
           additional_permissions: |
             actions: read
 
-          # Optional: Give a custom prompt to Claude. If this is not specified, Claude will perform the instructions specified in the comment that tagged it.
-          # prompt: 'Update the pull request description to include a summary of changes.'
+          # Custom prompt for PR review
+          prompt: |
+            Examine cette PR et fournis une review en maximum 5 points.
+            Trie par criticité (sécurité, bugs, perfs, code quality, autre).
+            Consulte CLAUDE.md pour les conventions du projet Soliguide.
+
+            Sois concis et actionnable.
 
           # Optional: Add claude_args to customize behavior and configuration
           # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md

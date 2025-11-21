@@ -75,3 +75,5 @@ echo ""
 echo "=========================================="
 echo "Database restore completed successfully!"
 echo "=========================================="
+
+exit 0
