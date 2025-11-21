@@ -19,7 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import "../../config/database/connection";
-import * as path from "path";
+
 import {
   SUPPORTED_LANGUAGES_BY_COUNTRY,
   SupportedLanguagesCode,
@@ -28,6 +28,7 @@ import {
 import { ensureDir, writeFile } from "fs-extra";
 import { getLangsForCountry } from "../utils";
 import { SearchSuggestionsService } from "../services";
+import { join, relative } from "path";
 
 async function generateAutocompleteFiles(): Promise<void> {
   try {
@@ -41,7 +42,7 @@ async function generateAutocompleteFiles(): Promise<void> {
     ) as SoliguideCountries[];
 
     for (const country of countries) {
-      const rootOutputDir = path.join(
+      const rootOutputDir = join(
         process.cwd(),
         "../frontend/src/assets/files",
         country
@@ -83,7 +84,7 @@ async function generateFileForLanguageAndCountry(
   }
 
   const filename = `${lang}.json`;
-  const filepath = path.join(countryOutputDir, filename);
+  const filepath = join(countryOutputDir, filename);
 
   await writeFile(
     filepath,
@@ -92,7 +93,7 @@ async function generateFileForLanguageAndCountry(
   );
 
   console.log(
-    `✅ File generated: ${path.relative(process.cwd(), filepath)} (${
+    `✅ File generated: ${relative(process.cwd(), filepath)} (${
       filteredSuggestions.length
     } items)`
   );

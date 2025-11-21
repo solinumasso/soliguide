@@ -298,15 +298,15 @@ export class SearchCategoryAutocompleteComponent
       case AutoCompleteType.CATEGORY:
         {
           iconContent = html`<span
+            aria-hidden="true"
             class="category-icon category-icon-${item.categoryId}_outlined"
-            title="Catégorie"
           ></span>`;
         }
         break;
       case AutoCompleteType.EXPRESSION:
         iconContent = html`<span
+          aria-hidden="true"
           class="category-icon category-icon-expression"
-          title="Expression"
         ></span>`;
         break;
       case AutoCompleteType.ESTABLISHMENT_TYPE: {
@@ -315,8 +315,8 @@ export class SearchCategoryAutocompleteComponent
           iconContent = html`<img
             src="${sourceLogos}/${item.slug}.svg"
             class="aa-category-icon"
-            alt="Type d'établissement"
-            title="Type d'établissement"
+            alt=""
+            aria-hidden="true"
           />`;
         } else {
           iconContent = html`<span
@@ -332,13 +332,13 @@ export class SearchCategoryAutocompleteComponent
           iconContent = html`<img
             src="${sourceLogos}/${item.slug}.svg"
             class="aa-category-icon"
-            alt="Organisation"
-            title="Organisation"
+            alt=""
+            aria-hidden="true"
           />`;
         } else {
           iconContent = html`<span
+            aria-hidden="true"
             class="category-icon category-icon-accomodation_and_housing"
-            title="Organisation"
           ></span>`;
         }
         break;
@@ -346,7 +346,7 @@ export class SearchCategoryAutocompleteComponent
       default:
         iconContent = html`<span
           class="category-icon category-icon-search"
-          title="Recherche"
+          aria-hidden="true"
         ></span>`;
         break;
     }
@@ -516,8 +516,8 @@ export class SearchCategoryAutocompleteComponent
                     <img
                       src="/assets/images/symbols/list.svg"
                       class="aa-category-icon"
-                      alt="Recherche"
-                      title="Recherche"
+                      alt=""
+                      aria-hidden="true"
                     />
                   </span>
                   <span class="aa-ItemContent">
