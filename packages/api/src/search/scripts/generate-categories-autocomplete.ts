@@ -77,7 +77,7 @@ interface ScriptOptions {
 
 class CategoryTranslationScript {
   private readonly results: TranslationResult[] = [];
-  private anthropic: Anthropic;
+  private readonly anthropic: Anthropic;
   private readonly options: ScriptOptions;
 
   constructor(options: ScriptOptions) {
