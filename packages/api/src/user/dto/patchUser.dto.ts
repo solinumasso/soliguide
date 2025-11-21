@@ -24,7 +24,7 @@ import { body } from "express-validator";
 
 import { CHECK_STRING_NULL } from "../../config/expressValidator.config";
 import { commonUserFormDto } from "./commonUserForm.dto";
-import { changeUserTerritoryDto } from "./changeUserTerritory.dto";
+import { territoriesDto } from "../../_utils/dto/territories.dto";
 
 const baseEditUserDto = [
   ...commonUserFormDto(),
@@ -50,7 +50,7 @@ export const patchMyAccountDto = [...baseEditUserDto];
 
 export const patchUserDto = [
   ...baseEditUserDto,
-  ...changeUserTerritoryDto,
+  ...territoriesDto,
   body("categoriesLimitations")
     .customSanitizer((categories, { req }) => {
       if (req.isSuperAdmin) {

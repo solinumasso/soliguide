@@ -34,40 +34,20 @@ import type {
   UserPopulateType,
 } from "../../_models";
 
-import {
-  CountryAreaTerritories,
-  SoliguideCountries,
-  UserStatus,
-} from "@soliguide/common";
+import { buildUserAreas } from "../utils";
 
 export const signupWithoutInvitation = async (
   userData: SignupUser
 ): Promise<UserPopulateType | null> => {
-  const user: SignupUser &
-    Pick<User, "status" | "verified" | "verifiedAt" | "areas"> = {
+  const user: SignupUser & Pick<User, "verified" | "verifiedAt" | "areas"> = {
     ...userData,
     verified: true,
     verifiedAt: new Date(),
   };
 
-  const country: SoliguideCountries = userData.country;
+  const { territories, areas } = buildUserAreas(user, userData);
 
-  if (
-    user.status === UserStatus.ADMIN_SOLIGUIDE ||
-    user.status === UserStatus.SOLI_BOT ||
-    user.status === UserStatus.SIMPLE_USER // Translators doesn't have territories
-  ) {
-    user.areas = undefined;
-    user.territories = [];
-  } else {
-    user.areas = {
-      [country]: new CountryAreaTerritories({
-        departments: user.territories,
-      }),
-    };
-  }
-
-  return await createUser(user);
+  return await createUser({ ...user, territories, areas });
 };
 
 export const patchUserAccount = async (

@@ -124,12 +124,6 @@ export class User {
     this.currentOrga = null;
     this.token = null;
 
-    this.areas =
-      this.status === UserStatus.ADMIN_SOLIGUIDE ||
-      this.status === UserStatus.ADMIN_TERRITORY
-        ? user?.areas
-        : undefined;
-
     if (!light && user && this.pro && user.organizations?.length > 0) {
       this.organizations = user.organizations.map(
         (
