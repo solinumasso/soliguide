@@ -75,14 +75,29 @@ jobs:
           # or https://docs.claude.com/en/docs/claude-code/cli-reference for available options
           # claude_args: '--allowed-tools Bash(gh pr:*)'
 
+      - name: Read Claude output
+        if: always() && steps.claude.outputs.execution_file
+        id: read_output
+        run: |
+          if [ -f "${{ steps.claude.outputs.execution_file }}" ]; then
+            echo "content<<EOF" >> $GITHUB_OUTPUT
+            cat "${{ steps.claude.outputs.execution_file }}" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          else
+            echo "content=Claude review completed but output file not found." >> $GITHUB_OUTPUT
+          fi
+
       - name: Post review to PR
-        if: always()
+        if: always() && steps.read_output.outputs.content
         uses: actions/github-script@v7
         with:
           script: |
+            const content = `${{ steps.read_output.outputs.content }}`.trim();
+            const body = content || 'Claude review completed but no output was generated.';
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `## 📋 Claude Code Review\n\n${{ steps.claude.outputs.result }}`
+              body: `## 📋 Claude Code Review\n\n${body}`
             })
