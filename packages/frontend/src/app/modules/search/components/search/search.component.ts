@@ -23,7 +23,20 @@ import { ActivatedRoute, type Params, Router } from "@angular/router";
 
 import { TranslateService } from "@ngx-translate/core";
 import { ToastrService } from "ngx-toastr";
-import { ReplaySubject, type Subject, Subscription, switchMap } from "rxjs";
+import {
+  catchError,
+  combineLatest,
+  filter,
+  map,
+  merge,
+  of,
+  ReplaySubject,
+  Subject,
+  Subscription,
+  switchMap,
+  takeUntil,
+  tap,
+} from "rxjs";
 
 import {
   SEARCH_MODALITIES_FILTERS,
@@ -34,11 +47,12 @@ import {
   type LocationAutoCompleteAddress,
   slugString,
   Categories,
+  SearchResults,
 } from "@soliguide/common";
 import type { PosthogProperties } from "@soliguide/common-angular";
 
 import { SearchFiltersComponent } from "../search-filters/search-filters.component";
-import { Search } from "../../interfaces";
+import { Search, SearchFilterParams } from "../../interfaces";
 import { SearchService } from "../../services/search.service";
 import { CurrentLanguageService } from "../../../general/services/current-language.service";
 import { SeoService, LocationService } from "../../../shared/services";
@@ -48,10 +62,6 @@ import { AuthService } from "../../../users/services/auth.service";
 import {
   type Place,
   type MarkerOptions,
-  type SearchFilterParams,
-  type SearchResults,
-  PLACE_SEARCH_LIMIT,
-  PARCOURS_SEARCH_LIMIT,
   THEME_CONFIGURATION,
 } from "../../../../models";
 
@@ -61,6 +71,8 @@ import {
   fadeInOut,
 } from "../../../../shared";
 import { PosthogService } from "../../../analytics/services/posthog.service";
+import { SearchBarService } from "../../../search-bar/services/search-bar.service";
+import { PARCOURS_SEARCH_LIMIT, PLACE_SEARCH_LIMIT } from "../../constants";
 
 @Component({
   animations: [fadeInOut],
@@ -70,6 +82,7 @@ import { PosthogService } from "../../../analytics/services/posthog.service";
 })
 export class SearchComponent implements OnInit, OnDestroy {
   public isMobileView: boolean = window.innerWidth < 768;
+
   // Results
   public places: Place[];
   public parcours: Place[];
@@ -91,14 +104,12 @@ export class SearchComponent implements OnInit, OnDestroy {
   public parcoursSearch: Search;
   public readonly parcoursSearchSubject: Subject<Search> = new ReplaySubject(1);
 
-  private subscription = new Subscription();
+  private readonly subscription = new Subscription();
 
   public queryParams: Params;
-
   public filters: SearchFilterParams;
 
   public readonly PlaceType = PlaceType;
-
   public sliderDefaultValue: number;
 
   // Leaflet Markers
@@ -110,10 +121,11 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   public center: number[];
   public me!: User | null;
-  public hideFilters: boolean;
+  public showFilters: boolean;
 
   public readonly THEME_CONFIGURATION = THEME_CONFIGURATION;
   @ViewChild("appFilters") public appFilters!: SearchFiltersComponent;
+  private readonly destroy$ = new Subject<void>();
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
@@ -125,12 +137,13 @@ export class SearchComponent implements OnInit, OnDestroy {
     private readonly translateService: TranslateService,
     private readonly currentLanguageService: CurrentLanguageService,
     private readonly posthogService: PosthogService,
-    private readonly locationService: LocationService
+    private readonly locationService: LocationService,
+    private readonly searchBarService: SearchBarService
   ) {
     this.loading = true;
     this.parcoursLoading = true;
     this.markers = [];
-    this.hideFilters = false;
+    this.showFilters = true;
     this.nbResults = 0;
 
     this.queryParams = {};
@@ -157,127 +170,353 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.hideFilters = this.isMobileView;
+    this.showFilters = !this.isMobileView;
     this.me = this.authService.currentUserValue;
-    this.title = this.translateService.instant("SEARCH_HELP_STRUCTURE", {
-      brandName: THEME_CONFIGURATION.brandName,
-    });
-    this.description = this.translateService.instant("SEARCH_HELP_STRUCTURE", {
-      brandName: THEME_CONFIGURATION.brandName,
-    });
+    this.initializeDefaultTitles();
 
-    this.translateService.onDefaultLangChange.subscribe({
-      next: () => {
-        this.title = this.translateService.instant("SEARCH_HELP_STRUCTURE", {
-          brandName: THEME_CONFIGURATION.brandName,
+    // Initialize searchBarService if needed
+    if (!this.searchBarService.isReady()) {
+      this.searchBarService.initialize();
+    }
+
+    // ========================================
+    // SINGLE REACTIVE FLOW: URL is the source of truth
+    // ========================================
+    combineLatest([
+      this.activatedRoute.params,
+      this.activatedRoute.queryParams,
+      this.searchBarService.initialization$.pipe(filter((ready) => ready)),
+    ])
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(([params, queryParams]) => {
+        console.log("🔄 URL changed, rebuilding search from URL...", {
+          params,
+          queryParams,
         });
-        this.description = this.translateService.instant(
-          "SEARCH_HELP_STRUCTURE",
-          { brandName: THEME_CONFIGURATION.brandName }
-        );
+        this.buildSearchFromUrl(params, queryParams);
+      });
+
+    // ========================================
+    // Listen to language changes
+    // ========================================
+    this.translateService.onDefaultLangChange
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        this.initializeDefaultTitles();
         this.updateTitleAndTags();
-      },
-    });
+      });
 
-    // URL change : category or location
-    this.subscription.add(
-      this.activatedRoute.params.subscribe((params: Params) => {
-        this.checkCategoryInUrl(params);
-        const position = this.activatedRoute.snapshot.params.position;
-        this.checkPositionInUrl(position);
-      })
-    );
+    // ========================================
+    // Search execution streams
+    // ========================================
+    merge(
+      this.searchSubject.pipe(
+        tap(() => {
+          this.places = [];
+          this.markers = [];
+          this.nbResults = 0;
+          this.loading = true;
+          this.updateTitleAndTags();
 
-    // Parse route parameters route
-    this.subscription.add(
-      this.activatedRoute.queryParams.subscribe((params: Params) => {
-        // Pages
-        this.setPlacePageFromParams(params);
-        this.setParcoursPageFromParams(params);
-
-        // Filters
-        // TODO : public filters (select multiple options)
-        this.setOpenFilterFromParams(params);
-        this.setPublicsFiltersFromParams(params);
-        this.setModalitiesFiltersFromParams(params);
-
-        const language = params.languages;
-
-        if (language) {
-          this.filters.languages = language;
-          this.search.languages = language;
-          this.parcoursSearch.languages = language;
-        }
-      })
-    );
-
-    // Search launch
-    this.subscription.add(
-      this.searchSubject
-        .pipe(
-          switchMap((search: Search) => {
-            this.places = [];
-            this.markers = [];
-            this.nbResults = 0;
-            this.loading = true;
-            this.updateTitleAndTags();
-
-            // Saving last visited URL
-            globalConstants.setItem("LAST_SEARCH_URL", {
-              url: decodeURI(this.router.url.split("?")[0]),
-              queryParams: this.activatedRoute.snapshot.queryParams,
-            });
-
-            return this.searchService.launchSearch(search);
-          })
+          // Save last visited URL
+          globalConstants.setItem("LAST_SEARCH_URL", {
+            url: decodeURI(this.router.url.split("?")[0]),
+            queryParams: this.activatedRoute.snapshot.queryParams,
+          });
+        }),
+        switchMap((search: Search) =>
+          this.searchService.launchSearch(search).pipe(
+            map((response) => ({ type: PlaceType.PLACE, response })),
+            catchError(() => of({ type: PlaceType.PLACE, error: true }))
+          )
         )
-        .subscribe({
-          next: (response: SearchResults) => {
-            this.nbResults = response.nbResults;
+      ),
+      this.parcoursSearchSubject.pipe(
+        tap(() => {
+          this.parcours = [];
+          this.nbParcoursResults = 0;
+          this.parcoursLoading = true;
+        }),
+        switchMap((search: Search) =>
+          this.searchService.launchSearch(search).pipe(
+            map((response) => ({ type: PlaceType.ITINERARY, response })),
+            catchError(() => of({ type: PlaceType.ITINERARY, error: true }))
+          )
+        )
+      )
+    )
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (result: {
+          type: PlaceType;
+          response: SearchResults<Place>;
+          error?: unknown;
+        }) => {
+          if ("error" in result) {
+            const message =
+              result.type === PlaceType.PLACE
+                ? "SEARCH_PLACE_FAILED"
+                : "SEARCH_ITINERARIES_FAILED";
+            this.toastr.warning(this.translateService.instant(message));
+            return;
+          }
+
+          if (result.type === PlaceType.PLACE) {
+            this.nbResults = result.response.nbResults;
             this.loading = false;
-            if (response.nbResults !== 0) {
-              this.places = response.places;
+            if (result.response.nbResults !== 0) {
+              this.places = result.response.results;
               this.markers = generateMarkerOptions(this.places, this.me);
             }
-          },
-          error: () => {
-            this.toastr.warning(
-              this.translateService.instant("SEARCH_PLACE_FAILED")
-            );
-          },
-        })
+          } else {
+            this.nbParcoursResults = result.response.nbResults;
+            this.parcoursLoading = false;
+            if (result.response.nbResults !== 0) {
+              this.parcours = result.response.results;
+            }
+          }
+        }
+      );
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+    this.subscription.unsubscribe();
+  }
+
+  // ========================================
+  // CORE: Build search objects from URL (single source of truth)
+  // ========================================
+  private buildSearchFromUrl(params: Params, queryParams: Params): void {
+    const position = params.position;
+
+    if (!position) {
+      this.redirectToDefaultSearch();
+      return;
+    }
+
+    // Store queryParams for child components
+    this.queryParams = queryParams;
+
+    // Parse all data from URL
+    const category = params.category;
+    const placePage = this.parsePageParam(queryParams.placePage);
+    const parcoursPage = this.parsePageParam(queryParams.parcoursPage);
+
+    // Build new search objects
+    const newSearch = new Search();
+    const newParcoursSearch = new Search({ placeType: PlaceType.ITINERARY });
+
+    // Apply limits
+    newSearch.options.limit = PLACE_SEARCH_LIMIT;
+    newParcoursSearch.options.limit = PARCOURS_SEARCH_LIMIT;
+
+    // Apply pages
+    newSearch.options.page = placePage;
+    newParcoursSearch.options.page = parcoursPage;
+
+    // Apply category/word
+    this.applySearchTerm(category, newSearch, newParcoursSearch);
+
+    // Apply ALL filters from queryParams
+    this.applyAllFilters(queryParams, newSearch, newParcoursSearch);
+
+    // Apply position (async if needed)
+    this.applyPosition(position, newSearch, newParcoursSearch, () => {
+      // Finalize: assign to component properties
+      this.search = newSearch;
+      this.parcoursSearch = newParcoursSearch;
+      this.searchCurrentPage = placePage;
+      this.parcoursSearchCurrentPage = parcoursPage;
+
+      console.log("✅ Search objects built from URL:", {
+        category: this.search.category,
+        word: this.search.word,
+        location: this.search.location.label,
+        placePage: this.search.options.page,
+        parcoursPage: this.parcoursSearch.options.page,
+        filters: this.filters,
+      });
+
+      // Launch searches
+      this.launchSearches();
+    });
+  }
+
+  private parsePageParam(pageParam: string | undefined): number {
+    if (!pageParam) return 1;
+    const page = parseInt(pageParam, 10);
+    return isNaN(page) ? 1 : page;
+  }
+
+  private applySearchTerm(
+    category: string | undefined,
+    search: Search,
+    parcoursSearch: Search
+  ): void {
+    if (!category) return;
+
+    let foundItem = this.searchBarService.findByCategoryId(
+      category as Categories
     );
 
+    if (!foundItem) {
+      foundItem = this.searchBarService.findBySlug(category);
+    }
+
+    if (foundItem) {
+      console.log(`🎯 ${foundItem.type} found in suggestions`, foundItem);
+
+      search.applySearchSuggestion(foundItem);
+      parcoursSearch.applySearchSuggestion(foundItem);
+
+      // SEO metadata
+      if (foundItem.seoTitle) {
+        this.title = foundItem.seoTitle;
+      }
+      if (foundItem.seoDescription) {
+        this.description = foundItem.seoDescription;
+      }
+    } else {
+      // Fallback: search the word
+      const wordInUrl = decodeURI(category);
+      search.setWord(slugString(wordInUrl), wordInUrl);
+      parcoursSearch.setWord(slugString(wordInUrl), wordInUrl);
+    }
+  }
+
+  private applyAllFilters(
+    queryParams: Params,
+    search: Search,
+    parcoursSearch: Search
+  ): void {
+    // Reset filters
+    this.filters = {};
+    search.publics = {};
+    parcoursSearch.publics = {};
+    search.modalities = {};
+    parcoursSearch.modalities = {};
+
+    // Open today
+    if (queryParams.openToday) {
+      this.filters.openToday = true;
+      search.openToday = true;
+      parcoursSearch.openToday = true;
+    }
+
+    // Publics filters
+    for (const type of SEARCH_PUBLICS_FILTERS) {
+      if (queryParams[type]) {
+        this.filters[type] = queryParams[type];
+        const value = queryParams[type];
+
+        if (type === "age") {
+          search.publics[type] = value;
+          parcoursSearch.publics[type] = value;
+        } else {
+          search.publics[type] = [value];
+          parcoursSearch.publics[type] = [value];
+        }
+      }
+    }
+
+    // Modalities filters
+    for (const type of SEARCH_MODALITIES_FILTERS) {
+      if (queryParams[type]) {
+        this.filters[type] = true;
+        search.modalities[type] = true;
+        parcoursSearch.modalities[type] = true;
+      }
+    }
+
+    // Languages
+    if (queryParams.languages) {
+      this.filters.languages = queryParams.languages;
+      search.languages = queryParams.languages;
+      parcoursSearch.languages = queryParams.languages;
+    }
+
+    // Keep ALL other queryParams that might exist
+    // This ensures we don't lose any custom filters
+    Object.keys(queryParams).forEach((key) => {
+      if (
+        key !== "placePage" &&
+        key !== "parcoursPage" &&
+        key !== "openToday" &&
+        key !== "languages" &&
+        !SEARCH_PUBLICS_FILTERS.includes(key) &&
+        !SEARCH_MODALITIES_FILTERS.includes(key)
+      ) {
+        this.filters[key] = queryParams[key];
+      }
+    });
+  }
+
+  private applyPosition(
+    position: string,
+    search: Search,
+    parcoursSearch: Search,
+    onComplete: () => void
+  ): void {
+    // Check cache first
+    const sessionPosition = globalConstants.getItem("POSITION");
+
+    if (sessionPosition) {
+      const cachedPosition = new GeoPosition(sessionPosition);
+      if (cachedPosition.geoValue === position) {
+        console.log("📍 Using cached position");
+        search.location = cachedPosition;
+        parcoursSearch.location = cachedPosition;
+        this.setInitialSliderValue(search, parcoursSearch);
+        onComplete();
+        return;
+      }
+    }
+
+    // Load from API
+    console.log("📍 Loading position from API:", position);
     this.subscription.add(
-      this.parcoursSearchSubject
-        .pipe(
-          switchMap((search: Search) => {
-            this.parcours = [];
-            this.nbParcoursResults = 0;
-            this.parcoursLoading = true;
+      this.locationService.locationAutoComplete(position).subscribe({
+        next: (addresses: LocationAutoCompleteAddress[]) => {
+          const item = addresses[0];
+          const geoPosition = new GeoPosition(item);
+          this.locationService.localPositionSubject.next(geoPosition);
 
-            return this.searchService.launchSearch(search);
-          })
-        )
-        .subscribe({
-          next: (response: SearchResults) => {
-            this.nbParcoursResults = response.nbResults;
-            this.parcoursLoading = false;
+          search.location = geoPosition;
+          parcoursSearch.location = geoPosition;
+          this.setInitialSliderValue(search, parcoursSearch);
 
-            if (response.nbResults !== 0) {
-              this.parcours = response.places;
-            }
-          },
-          error: () => {
-            this.toastr.warning(
-              this.translateService.instant("SEARCH_ITINERARIES_FAILED")
-            );
-          },
-        })
+          onComplete();
+        },
+        error: () => {
+          this.toastr.error(
+            this.translateService.instant("ADDRESS_DOESNT_EXIST")
+          );
+          this.redirectToDefaultSearch();
+        },
+      })
     );
   }
 
-  // TODO: separate this in a new component
+  private setInitialSliderValue(search: Search, parcoursSearch: Search): void {
+    this.currentDistanceValue = getDefaultSearchRadiusByGeoType(
+      search.location.geoType
+    );
+    search.location.distance = this.currentDistanceValue;
+    parcoursSearch.location.distance = this.currentDistanceValue;
+  }
+
+  private launchSearches(): void {
+    this.updateTitleAndTags();
+    this.searchSubject.next(this.search);
+    this.parcoursSearchSubject.next(this.parcoursSearch);
+  }
+
+  // ========================================
+  // UI ACTIONS: All update URL (source of truth)
+  // ========================================
+
   public updateDistance(value: number): void {
     this.captureEvent("update-search-distance", {
       from: this.search.location.distance,
@@ -285,16 +524,12 @@ export class SearchComponent implements OnInit, OnDestroy {
     });
 
     if (this.search.location) {
-      this.router.navigate([], {
-        relativeTo: this.activatedRoute,
-        queryParams: { placePage: null, parcoursPage: null },
-        queryParamsHandling: "merge",
-      });
-
       this.search.location.distance = value;
       this.parcoursSearch.location.distance = value;
-      this.launchSearch(true);
-      this.launchParcoursSearch();
+
+      // Distance is not in URL, launch directly
+      this.searchSubject.next(this.search);
+      this.parcoursSearchSubject.next(this.parcoursSearch);
     }
   }
 
@@ -302,324 +537,113 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.updateDistance(this.currentDistanceValue);
   }
 
-  public ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
-
   public toggleFilter = (): void => {
-    this.hideFilters = !this.hideFilters;
+    this.showFilters = !this.showFilters;
   };
 
   public toggleOpen = (): void => {
-    this.appFilters.filterBoolean("openToday");
+    // Toggle openToday in URL
+    const currentQueryParams = this.activatedRoute.snapshot.queryParams;
+    const newOpenToday = currentQueryParams.openToday ? null : true;
+
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: {
+        openToday: newOpenToday,
+        placePage: null,
+        parcoursPage: null,
+      },
+      queryParamsHandling: "merge",
+    });
   };
 
-  private setFilterValue = (
-    optionalSearchParams: string,
-    filterKey: string,
-    value: string | boolean | number,
-    toArray = false
-  ): void => {
-    this.filters[filterKey] = value;
-    this.search[optionalSearchParams][filterKey] = toArray ? [value] : value;
-    this.parcoursSearch[optionalSearchParams][filterKey] = toArray
-      ? [value]
-      : value;
-  };
-
-  private setOpenFilterFromParams = (params: Params): void => {
-    if (params.openToday) {
-      this.filters.openToday = true;
-      this.search.openToday = true;
-      this.parcoursSearch.openToday = true;
-    }
-  };
-
-  private setPublicsFiltersFromParams = (params: Params): void => {
-    this.search.publics = {};
-    this.parcoursSearch.publics = {};
-
-    for (const type of SEARCH_PUBLICS_FILTERS) {
-      if (params[type]) {
-        this.setFilterValue("publics", type, params[type], type !== "age");
-      }
-    }
-  };
-
-  private setModalitiesFiltersFromParams = (params: Params): void => {
-    this.search.modalities = {};
-    this.parcoursSearch.modalities = {};
-
-    for (const type of SEARCH_MODALITIES_FILTERS) {
-      if (params[type]) {
-        this.setFilterValue("modalities", type, true);
-      }
-    }
-  };
-
-  public setPlacePageFromParams = (params: Params): void => {
-    this.setPageFromParams(
-      params,
-      "placePage",
-      this.searchCurrentPage,
-      "search",
-      this.launchSearch
-    );
-  };
-
-  public setParcoursPageFromParams = (params: Params): void => {
-    this.setPageFromParams(
-      params,
-      "parcoursPage",
-      this.parcoursSearchCurrentPage,
-      "parcoursSearch",
-      this.launchParcoursSearch
-    );
-  };
-
-  public setPageFromParams = (
-    params: Params,
-    paramsKey: string,
-    currentPage: number,
-    searchKey: string,
-    searchFunction
-  ): void => {
-    const page = parseInt(params[paramsKey], 10);
-
-    if (!isNaN(page)) {
-      if (page !== +params[paramsKey]) {
-        this.router.navigate([], {
-          relativeTo: this.activatedRoute,
-          queryParams: { [paramsKey]: page },
-          queryParamsHandling: "merge",
-        });
-      } else {
-        if (currentPage !== page) {
-          this[searchKey].options.page = page;
-          this[`${searchKey}CurrentPage`] = page;
-
-          searchFunction();
-        }
-      }
-    } else {
-      if (typeof params[paramsKey] === "string") {
-        this.router.navigate([], {
-          relativeTo: this.activatedRoute,
-          queryParams: { [paramsKey]: 1 },
-          queryParamsHandling: "merge",
-        });
-      }
-    }
-  };
-
-  public getPosition = (position: string): void => {
-    this.subscription.add(
-      this.locationService.locationAutoComplete(position).subscribe({
-        next: (addresses: LocationAutoCompleteAddress[]) => {
-          const item = addresses[0];
-          const searchPosition = new GeoPosition(item);
-          this.locationService.localPositionSubject.next(searchPosition);
-          // New location
-          this.search.location = searchPosition;
-          this.parcoursSearch.location = searchPosition;
-          this.launchSearches();
-          return;
-        },
-        error: () => {
-          this.toastr.error(
-            this.translateService.instant("ADDRESS_DOESNT_EXIST")
-          );
-        },
-      })
-    );
-  };
-
-  // This function have the the responsability to reset pages for search and parcoursSearch when filters/position/category changes
-  public launchSearch = (isPagesMustBeReset: boolean): void => {
-    if (isPagesMustBeReset) {
-      this.resetPages();
-    }
-
-    this.searchSubject.next(this.search);
-  };
-
-  public launchParcoursSearch = (): void => {
-    this.parcoursSearchSubject.next(this.parcoursSearch);
-  };
-
-  // Update the location from a sub-component
   public updateLocation = (item: LocationAutoCompleteAddress): void => {
-    this.search.location = new GeoPosition(item);
+    const geoPosition = new GeoPosition(item);
     this.posthogService.capture("search-location-autocomplete", {
       search: this.search,
     });
 
     const categoryInUrl = this.activatedRoute.snapshot.params.category;
-
-    this.updateCategoryOrWordInUrl(categoryInUrl);
+    this.navigateToSearch(categoryInUrl, geoPosition.geoValue);
   };
 
-  // Update the category from a sub-component
   public updateCategory = (): void => {
-    if (Object.values(Categories).includes(this.search.category)) {
-      this.updateCategoryOrWordInUrl(this.search.category);
+    const categoryOrWord = this.search.category || this.search.word;
+    if (categoryOrWord) {
+      this.navigateToSearch(categoryOrWord, this.search.location.geoValue);
     }
-  };
-
-  public updateSearchTerm = (): void => {
-    this.updateCategoryOrWordInUrl(this.search.word);
-  };
-
-  public updateFilters = (): void => {
-    this.resetPages();
-    this.search = new Search(this.search);
   };
 
   public launchSearchFromSearchBar = (): void => {
-    if (this.search?.category) {
-      this.updateCategoryOrWordInUrl(this.search.category);
-    } else {
-      this.updateCategoryOrWordInUrl(this.search.word);
+    const categoryOrWord = this.search.category || this.search.word;
+    if (categoryOrWord) {
+      this.navigateToSearch(categoryOrWord, this.search.location.geoValue);
     }
   };
 
-  private updateCategoryOrWordInUrl = (categoryOrWord: string): void => {
-    const urlParts = this.router.url.trim().split("/");
-    const componentUrl = urlParts[2];
+  public updateFilters = (): void => {
+    // Called by search-filters component after it modifies this.filters
+    // Update URL with current filters, preserving all existing queryParams
+    const currentQueryParams = this.activatedRoute.snapshot.queryParams;
 
-    if (!this.search.location.geoValue) {
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: {
+        ...currentQueryParams, // Keep all existing params
+        ...this.filters, // Apply filter changes
+        placePage: null, // Reset pagination
+        parcoursPage: null,
+      },
+    });
+  };
+
+  public setPageToUrl(isPlacePage: boolean): void {
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: isPlacePage
+        ? { placePage: this.search.options.page }
+        : { parcoursPage: this.parcoursSearch.options.page },
+      queryParamsHandling: "merge",
+    });
+  }
+
+  private navigateToSearch(categoryOrWord: string, location: string): void {
+    if (!location) {
       this.redirectToDefaultSearch();
       return;
     }
 
-    const locationInUrl = this.search.location.geoValue;
-    let urlToRedirect = `${this.currentLanguageService.routePrefix}/${componentUrl}/${locationInUrl}/`;
+    const urlParts = this.router.url.trim().split("/");
+    const componentUrl = urlParts[2];
+
+    let urlToRedirect = `${this.currentLanguageService.routePrefix}/${componentUrl}/${location}/`;
 
     if (categoryOrWord) {
       urlToRedirect += `${categoryOrWord.trim()}`;
     }
 
+    // Preserve all current filters when navigating
+    const currentQueryParams = this.activatedRoute.snapshot.queryParams;
+
     this.router.navigate([urlToRedirect], {
-      queryParams: { ...this.filters },
-    });
-  };
-
-  private updateTitleAndTags = (): void => {
-    this.subscription.add(
-      this.translateService.get("SEARCH_TITRE").subscribe((value: string) => {
-        this.title = value;
-      })
-    );
-
-    if (this.search.category) {
-      this.subscription.add(
-        this.translateService
-          .get(this.search.category.toUpperCase())
-          .subscribe((value: string) => {
-            this.title += ` ${value.toLowerCase()}`;
-          })
-      );
-    } else if (this.search.word) {
-      this.title += ` de « ${decodeURI(this.search.word)} »`;
-    }
-
-    this.subscription.add(
-      this.translateService.get("AUTOUR_DE").subscribe((value: string) => {
-        this.title += ` ${value} ${this.search.location.label}`;
-        // Update tags
-        this.seoService.updateTitleAndTags(this.title, this.description, true);
-      })
-    );
-  };
-
-  public captureEvent(eventName: string, properties?: PosthogProperties): void {
-    this.posthogService.capture(`search-${eventName}`, {
-      ...properties,
-      search: this.search,
-      parcoursSearch: this.parcoursSearch,
-      filters: this.filters,
+      queryParams: currentQueryParams,
     });
   }
 
-  public setInitialSliderValue(): void {
-    this.currentDistanceValue = getDefaultSearchRadiusByGeoType(
-      this.search.location.geoType
-    );
+  // ========================================
+  // HELPERS
+  // ========================================
 
-    this.search.location.distance = this.currentDistanceValue;
-    this.parcoursSearch.location.distance = this.currentDistanceValue;
+  private initializeDefaultTitles(): void {
+    this.title = this.translateService.instant("SEARCH_HELP_STRUCTURE", {
+      brandName: THEME_CONFIGURATION.brandName,
+    });
+    this.description = this.translateService.instant("SEARCH_HELP_STRUCTURE", {
+      brandName: THEME_CONFIGURATION.brandName,
+    });
   }
 
-  private checkCategoryInUrl(params: Params) {
-    // Category
-    if (params.category) {
-      if (Object.values(Categories).includes(params.category)) {
-        const category = params.category as Categories;
-        this.search.category = category;
-        this.parcoursSearch.category = category;
-
-        this.search.word = null;
-        this.parcoursSearch.word = null;
-
-        this.subscription.add(
-          this.translateService
-            .get(this.search.category.toUpperCase())
-            .subscribe((value: string) => {
-              this.search.label = value;
-              this.parcoursSearch.label = value;
-            })
-        );
-      } else {
-        const wordInUrl = decodeURI(params.category);
-        // Recherche par mot
-        this.search.category = null;
-        this.parcoursSearch.category = null;
-
-        this.search.word = slugString(wordInUrl);
-        this.parcoursSearch.word = slugString(wordInUrl);
-
-        this.search.label = wordInUrl;
-        this.parcoursSearch.label = wordInUrl;
-      }
-    }
-  }
-
-  private checkPositionInUrl(position?: string): void {
-    if (!position) {
-      this.redirectToDefaultSearch();
-      return;
-    }
-
-    const sessionPosition = globalConstants.getItem("POSITION");
-
-    if (sessionPosition) {
-      const lastPosition = new GeoPosition(sessionPosition);
-      if (lastPosition.geoValue === position) {
-        this.search.location = lastPosition;
-        this.parcoursSearch.location = lastPosition;
-        this.launchSearches();
-        return;
-      }
-    }
-    this.getPosition(position);
-    return;
-  }
-
-  private launchSearches() {
-    this.setInitialSliderValue();
-    this.launchSearch(true);
-    this.launchParcoursSearch();
-  }
-
-  private resetPages() {
-    this.search.options.page = 1;
-    this.searchCurrentPage = 1;
-
-    this.parcoursSearch.options.page = 1;
-    this.parcoursSearchCurrentPage = 1;
-  }
-
-  private redirectToDefaultSearch() {
+  private redirectToDefaultSearch(): void {
     this.toastr.warning(
       this.translateService.instant("PLEASE_CHOOSE_LOCATION")
     );
@@ -630,19 +654,56 @@ export class SearchComponent implements OnInit, OnDestroy {
     ]);
   }
 
-  public setPageToUrl(isPlacePage: boolean): void {
-    if (isPlacePage) {
-      this.router.navigate([], {
-        relativeTo: this.activatedRoute,
-        queryParams: { placePage: this.search.options.page },
-        queryParamsHandling: "merge",
-      });
+  private readonly updateTitleAndTags = (): void => {
+    const foundItem = this.search.word
+      ? this.searchBarService.findBySlug(this.search.word)
+      : this.search.category
+      ? this.searchBarService.findByCategoryId(this.search.category)
+      : null;
+
+    if (foundItem?.seoTitle && foundItem.seoDescription) {
+      this.title = `${foundItem.seoTitle} ${this.search.location.label}`;
+      this.description = `${foundItem.seoDescription} ${this.search.location.label}`;
+
+      this.seoService.updateTitleAndTags(this.title, this.description, true);
     } else {
-      this.router.navigate([], {
-        relativeTo: this.activatedRoute,
-        queryParams: { parcoursPage: this.parcoursSearch.options.page },
-        queryParamsHandling: "merge",
-      });
+      this.subscription.add(
+        this.translateService.get("SEARCH_TITRE").subscribe((value: string) => {
+          this.title = value;
+        })
+      );
+
+      if (this.search.category) {
+        this.subscription.add(
+          this.translateService
+            .get(this.search.category.toUpperCase())
+            .subscribe((value: string) => {
+              this.title += ` ${value.toLowerCase()}`;
+            })
+        );
+      } else if (this.search.word) {
+        this.title += ` de « ${decodeURI(this.search.word)} »`;
+      }
+
+      this.subscription.add(
+        this.translateService.get("AUTOUR_DE").subscribe((value: string) => {
+          this.title += ` ${value} ${this.search.location.label}`;
+          this.seoService.updateTitleAndTags(
+            this.title,
+            this.description,
+            true
+          );
+        })
+      );
     }
+  };
+
+  public captureEvent(eventName: string, properties?: PosthogProperties): void {
+    this.posthogService.capture(`search-${eventName}`, {
+      ...properties,
+      search: this.search,
+      parcoursSearch: this.parcoursSearch,
+      filters: this.filters,
+    });
   }
 }

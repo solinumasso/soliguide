@@ -30,6 +30,4 @@ export class AutoExportOptionComponent {
   @Input() public option: string;
   @Input() public optionLabel: string;
   @Input() public params: ExportParams;
-
-  constructor() {}
 }

@@ -25,6 +25,4 @@ import { Component } from "@angular/core";
   templateUrl: "./personal-data-protection-agreement.component.html",
   styleUrls: ["./personal-data-protection-agreement.component.scss"],
 })
-export class PersonalDataProtectionAgreementComponent {
-  constructor() {}
-}
+export class PersonalDataProtectionAgreementComponent {}
