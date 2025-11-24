@@ -41,8 +41,8 @@ import { sendCampaignEmails } from "../../../emailing/senders/send-campaign.emai
   } catch (e) {
     logger.error(e);
     if (parentPort) parentPort.postMessage("Error while running job");
+  } finally {
+    await delay(1000);
+    if (parentPort) parentPort.postMessage("done");
   }
-
-  await delay(1000);
-  if (parentPort) parentPort.postMessage("done");
 })();

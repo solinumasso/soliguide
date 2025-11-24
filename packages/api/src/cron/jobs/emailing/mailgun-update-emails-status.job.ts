@@ -42,9 +42,8 @@ const JOB_NAME = "[UPDATE-MAIL-STATUS]";
     await updateEmailStatus();
   } catch (e) {
     logger.error(e, `${JOB_NAME} Failed to update email statuses`);
+  } finally {
+    await delay(500);
+    if (parentPort) parentPort.postMessage("done");
   }
-
-  await delay(500);
-
-  if (parentPort) parentPort.postMessage("done");
 })();

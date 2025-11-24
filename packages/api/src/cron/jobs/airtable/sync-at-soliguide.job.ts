@@ -34,41 +34,36 @@ import { syncAirtableRecords } from "../../../airtable/controllers/airtable.cont
     let totalSyncedEntities = 0;
     const syncResults: { [key: string]: number } = {};
 
-    try {
-      for (const airtableEntityType in AirtableEntityType) {
-        const now = new Date();
+    for (const airtableEntityType in AirtableEntityType) {
+      const now = new Date();
 
-        const entitiesToSync = await getEntitiesToSync(
-          airtableEntityType as AirtableEntityType
-        );
+      const entitiesToSync = await getEntitiesToSync(
+        airtableEntityType as AirtableEntityType
+      );
 
-        const entityCount = entitiesToSync.length;
-        totalSyncedEntities += entityCount;
-        syncResults[airtableEntityType] = entityCount;
+      const entityCount = entitiesToSync.length;
+      totalSyncedEntities += entityCount;
+      syncResults[airtableEntityType] = entityCount;
 
-        const frontUrl = CONFIG.SOLIGUIDE_FR_URL;
+      const frontUrl = CONFIG.SOLIGUIDE_FR_URL;
 
-        await syncAirtableRecords(
-          frontUrl,
-          entitiesToSync,
-          airtableEntityType as AirtableEntityType,
-          now
-        );
-
-        logger.info(
-          `[AIRTABLE SYNC] SUMMARY - Total entities synchronized: ${totalSyncedEntities} (Places: ${
-            syncResults.PLACE || 0
-          }, Users: ${syncResults.USER || 0})`
-        );
-      }
-    } catch (e) {
-      logger.warn("FAIL SYNCHRO AT WITH SOLIGUIDE");
-      logger.error(e);
+      await syncAirtableRecords(
+        frontUrl,
+        entitiesToSync,
+        airtableEntityType as AirtableEntityType,
+        now
+      );
     }
+
+    logger.info(
+      `[AIRTABLE SYNC] SUMMARY - Total entities synchronized: ${totalSyncedEntities} (Places: ${
+        syncResults.PLACE || 0
+      }, Users: ${syncResults.USER || 0})`
+    );
   } catch (e) {
     logger.error(e);
     if (parentPort) parentPort.postMessage("Error while running job");
+  } finally {
+    if (parentPort) parentPort.postMessage("done");
   }
-
-  if (parentPort) parentPort.postMessage("done");
 })();
