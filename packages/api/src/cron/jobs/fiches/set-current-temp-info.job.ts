@@ -156,7 +156,7 @@ import { TempInfoModel } from "../../../temp-info/models/temp-info.model";
   } catch (e) {
     logger.error(e);
     if (parentPort) parentPort.postMessage("Error while running job");
+  } finally {
+    if (parentPort) parentPort.postMessage("done");
   }
-
-  if (parentPort) parentPort.postMessage("done");
 })();
