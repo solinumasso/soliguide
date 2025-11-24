@@ -1,3 +1,11 @@
+## [4.110.1](https://github.com/solinumasso/soliguide/compare/v4.110.0...v4.110.1) (2025-11-24)
+
+
+### Bug Fixes
+
+* **api:** fix qovery & claude code ([82ee6c7](https://github.com/solinumasso/soliguide/commit/82ee6c7c4159a08e9a5d6e6e608c4700cbcacbb1))
+* improve cron ([d518aa2](https://github.com/solinumasso/soliguide/commit/d518aa2fac4010a7c78fc384e3bf14437ddaeb80))
+
 # [4.110.0](https://github.com/solinumasso/soliguide/compare/v4.109.0...v4.110.0) (2025-11-21)
 
 
