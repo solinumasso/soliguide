@@ -184,7 +184,7 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
     if (parentPort) {
       parentPort.postMessage("Error while running job");
     }
+  } finally {
+    if (parentPort) parentPort.postMessage("done");
   }
-
-  if (parentPort) parentPort.postMessage("done");
 })();

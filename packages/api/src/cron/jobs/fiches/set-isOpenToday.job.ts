@@ -38,7 +38,7 @@ import { setIsOpenToday } from "../../../place/services/isOpenToday.service";
   } catch (e) {
     logger.error(e);
     if (parentPort) parentPort.postMessage("Error while running job");
+  } finally {
+    if (parentPort) parentPort.postMessage("done");
   }
-
-  if (parentPort) parentPort.postMessage("done");
 })();
