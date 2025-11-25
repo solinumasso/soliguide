@@ -29,16 +29,13 @@ import {
   getFilteredData,
   canGetContact,
 } from "../../middleware";
-import type {
-  ExpressRequest,
-  ExpressResponse,
-  UserRightUserPopulate,
-} from "../../_models";
+import type { ExpressRequest, ExpressResponse } from "../../_models";
 import {
   getContactsProForPlace,
   getContactsProForPlaceAdmin,
   patchDisplayContactPro,
 } from "../controllers";
+import { UserRightUserPopulate } from "../../user/interfaces";
 
 const router = express.Router();
 

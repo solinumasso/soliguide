@@ -18,6 +18,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import { ModelWithId } from "../../_models";
+import { UserPopulateType, UserRight } from "../../user/interfaces";
 import {
   getContactsFromUserRights,
   updateUserRightsWithParams,
@@ -31,7 +33,6 @@ import {
   PlaceContact,
   PlaceContactForAdmin,
 } from "@soliguide/common";
-import { UserPopulateType, UserRight, ModelWithId } from "../../_models";
 
 export const getContactsProForPlace = async (
   place: ModelWithId<ApiPlace>

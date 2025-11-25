@@ -39,13 +39,7 @@ import {
   updateOrga,
 } from "../services";
 
-import {
-  Invitation,
-  ModelWithId,
-  OrganizationPopulate,
-  User,
-  UserPopulateType,
-} from "../../_models";
+import { ModelWithId, OrganizationPopulate } from "../../_models";
 
 import { generateSearchOptions } from "../../search/utils";
 import {
@@ -54,6 +48,8 @@ import {
   deleteInvitationWithParams,
   updateUsersAfterRemovedFromOrganization,
 } from "../../user/services";
+import { UserForSearch } from "../../user/types";
+import { Invitation, User } from "../../user/interfaces";
 
 /**
  * createOrganization - Create organization
@@ -87,7 +83,7 @@ export const createOrganization = async (
  */
 export const searchOrga = async (
   query: mongoose.FilterQuery<ApiOrganization>,
-  user: UserPopulateType
+  user: UserForSearch
 ): Promise<SearchResults<OrganizationPopulate>> => {
   const mongoSearchQuery = await createOrgaSearchQuery(query, user);
 

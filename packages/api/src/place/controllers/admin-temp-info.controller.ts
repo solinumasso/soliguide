@@ -28,8 +28,9 @@ import {
 } from "../../temp-info/controllers/temp-info.controller";
 import { TEMP_INFO_HISTORY_SECTIONS } from "../../temp-info/constants/TEMP_INFO_TYPE.const";
 import { saveTempChanges } from "../../place-changes/controllers/place-changes.controller";
-import type { ModelWithId, UserForLogs } from "../../_models";
+import type { ModelWithId } from "../../_models";
 import type { InputTempInfoInServices } from "../../temp-info/types";
+import { UserForLogs } from "../../user/interfaces";
 
 // Temporary services closures - During campaigns exclusively
 export const patchClosedServices = async (

@@ -23,7 +23,7 @@ import type { Request } from "express";
 import type { ApiPlace } from "@soliguide/common";
 
 import type { AirtableEntity, AirtableEntityType } from "../airtable";
-import type { User, UserForLogs, UserPopulateType } from "../users";
+
 import type { ApiTranslatedField } from "../../translations/interfaces";
 import type { OrganizationPopulate } from "../organization";
 import type {
@@ -32,6 +32,13 @@ import type {
 } from "../../place-changes/interfaces/PlaceChanges.interface";
 import type { ModelWithId } from "../mongo";
 import { RequestInformation } from "../../middleware";
+
+import {
+  UserPopulate,
+  UserPopulateType,
+  UserForLogs,
+  User,
+} from "../../user/interfaces";
 
 export interface ExpressRequest extends Request {
   // Airtable identifier, only used to tell that an entity has been deleted
@@ -62,7 +69,7 @@ export interface ExpressRequest extends Request {
 
   organization?: OrganizationPopulate | any;
   token?: string;
-  user?: UserPopulateType | any; // TODO: type it
+  user: UserPopulate;
   requestInformation: RequestInformation;
   selectedUser?: UserPopulateType;
   userForLogs: UserForLogs;
