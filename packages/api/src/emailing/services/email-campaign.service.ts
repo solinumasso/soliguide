@@ -18,20 +18,11 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { CAMPAIGN_DEFAULT_NAME } from "@soliguide/common";
-
-import { subHours } from "date-fns";
-
 import mongoose from "mongoose";
 
 import EmailCampaignModel from "../models/email-campaign.model";
 
-import {
-  CampaignEmailNameToSync,
-  CampaignEmails,
-  EmailEvents,
-  ModelWithId,
-} from "../../_models";
+import { CampaignEmails, ModelWithId } from "../../_models";
 
 import { PLACE_FIELDS_FOR_USERS } from "../../user/constants/FIELDS_TO_SELECT_FOR_POPULATE.const";
 
@@ -45,34 +36,6 @@ export const findEmails = async (
     .sort(options.sort)
     .collation({ locale: "fr", strength: 1 })
     .populate({ path: "info.organization", select: "organization_id name" })
-    .lean<ModelWithId<CampaignEmails>[]>()
-    .exec();
-};
-
-export const findEmailsToUpdate = async (): Promise<
-  ModelWithId<CampaignEmails>[]
-> => {
-  return await EmailCampaignModel.find({
-    campaign: CAMPAIGN_DEFAULT_NAME,
-    lastStatus: {
-      $nin: [
-        EmailEvents.CLICKED,
-        EmailEvents.HUMAN_RESPONSE,
-        EmailEvents.BOUNCED_PERM,
-        EmailEvents.TO_SEND,
-        EmailEvents.DISABLED,
-      ],
-    },
-    lastUpdate: { $lt: subHours(new Date(), 1) },
-    mailgunEmailId: { $ne: null },
-    emailType: {
-      $in: Object.values(CampaignEmailNameToSync),
-    },
-  })
-    .select("mailgunEmailId lastUpdate _id lastStatus info emailData emailType")
-    .limit(20)
-    .populate({ path: "info.user", select: "atSync user_id email" })
-    .sort({ lastUpdate: "ascending" })
     .lean<ModelWithId<CampaignEmails>[]>()
     .exec();
 };
@@ -115,15 +78,6 @@ export const updatOneEmailCampaign = async (
   )
     .populate({ path: "info.places", select: PLACE_FIELDS_FOR_USERS })
     .lean<ModelWithId<CampaignEmails>>()
-    .exec();
-};
-
-export const updateManyEmailCampaign = async (
-  params: any,
-  data: any
-): Promise<ModelWithId<CampaignEmails>[]> => {
-  return await EmailCampaignModel.updateMany(params, { $set: data })
-    .lean<ModelWithId<CampaignEmails>[]>()
     .exec();
 };
 

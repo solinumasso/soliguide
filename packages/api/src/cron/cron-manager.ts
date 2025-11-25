@@ -60,16 +60,16 @@ const bree = new Bree({
     },
     // ----
     // TRANSLATIONS
-    {
-      interval: "every 2 minutes",
-      name: "[TRANSLATION] Translates text elements thanks to GTranslate API",
-      path: join(
-        __dirname,
-        "jobs",
-        "translations",
-        `translate-fields.job${defaultExtension}`
-      ),
-    },
+    // {
+    //   interval: "every 2 minutes",
+    //   name: "[TRANSLATION] Translates text elements thanks to GTranslate API",
+    //   path: join(
+    //     __dirname,
+    //     "jobs",
+    //     "translations",
+    //     `translate-fields.job${defaultExtension}`
+    //   ),
+    // },
     // ----
     // AIRTABLE
     {
@@ -154,16 +154,6 @@ const bree = new Bree({
         "jobs",
         "emailing",
         `send-campaign-emails.job${defaultExtension}`
-      ),
-    },
-    {
-      interval: "every 1 minute",
-      name: "[MAILGUN] Update email status",
-      path: join(
-        __dirname,
-        "jobs",
-        "emailing",
-        `mailgun-update-emails-status.job${defaultExtension}`
       ),
     },
   ],

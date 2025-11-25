@@ -20,11 +20,7 @@
  */
 import formData from "form-data";
 
-import Mailgun, {
-  EventsList,
-  MailgunMessageData,
-  MessagesSendResult,
-} from "mailgun.js";
+import Mailgun, { MailgunMessageData, MessagesSendResult } from "mailgun.js";
 import type { Logger } from "pino";
 
 import { CONFIG, EMAILS_FOR_TESTS, EmailCallToActionData } from "../../_models";
@@ -107,11 +103,4 @@ export const mgSendHtmlEmail = async (
   }
 
   return await sendEmail(mailgunData, logger, isCampaign);
-};
-
-export const mgGetEvent = async (messageId: string): Promise<EventsList> => {
-  return await mailgun.events.get(CONFIG.EMAIL_FROM_DOMAIN, {
-    ascending: "no",
-    "message-id": messageId,
-  });
 };
