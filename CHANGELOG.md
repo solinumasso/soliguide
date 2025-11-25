@@ -1,3 +1,11 @@
+# [4.111.0](https://github.com/solinumasso/soliguide/compare/v4.110.1...v4.111.0) (2025-11-25)
+
+
+### Features
+
+* **api:** delete mail status cron and adapt status mail data ([40e1c21](https://github.com/solinumasso/soliguide/commit/40e1c21375fe93b3b5516b5dcd0dd0db0c5f78c8))
+* **api:** remove wifi, tolets, fountain, electrical outlet from maj ([56c76eb](https://github.com/solinumasso/soliguide/commit/56c76eb0dcc088f6e4845a857d63e2dc76752df2))
+
 ## [4.110.1](https://github.com/solinumasso/soliguide/compare/v4.110.0...v4.110.1) (2025-11-24)
 
 
