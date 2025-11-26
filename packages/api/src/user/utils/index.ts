@@ -24,3 +24,4 @@ export * from "./createUserRights";
 export * from "./mergeAreas";
 export * from "./random-password-generator";
 export * from "./sendUserForAuth";
+export * from "./buildUserAreas";

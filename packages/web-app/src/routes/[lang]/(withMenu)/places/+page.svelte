@@ -63,7 +63,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   pageStore.init({
     location: url.searchParams.get('location') ?? '',
     category: url.searchParams.get('category') ?? '',
-    lang: url.searchParams.get('lang') ?? '',
+    lang: $page.params.lang ?? '',
     latitude: url.searchParams.get('latitude') ?? '',
     longitude: url.searchParams.get('longitude') ?? '',
     type: url.searchParams.get('type') ?? '',

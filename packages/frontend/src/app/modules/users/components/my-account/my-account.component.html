@@ -141,17 +141,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             </div>
           </div>
 
-          <div *ngIf="me?.status === 'ADMIN_SOLIGUIDE'" class="row">
-            <div class="col-6">
-              <app-select-territories
-                [isRequired]="true"
-                [label]="'TERRITORY_I_WORK_ON' | translate"
-                [submitted]="submitted"
-                [territoriesFormControl]="f.territories"
-              ></app-select-territories>
-            </div>
-          </div>
-
           <br />
           <div class="row">
             <div class="col-6" *ngIf="me?.status">
