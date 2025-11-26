@@ -136,7 +136,7 @@ map {http.request.orig_uri.path} {category_source} {category_target_path} {
 	~^(.*/search/.*)/(specialistes-medecine)(.*)$ "${2}" "${1}/health_specialists${3}"
 	~^(.*/search/.*)/(stomatologie)(.*)$ "${2}" "${1}/stomatology${3}"
 	~^(.*/search/.*)/(technologie)(.*)$ "${2}" "${1}/technology${3}"
-	~^(.*/search/.*)/(telephone)(.*)$ "${2}" "${1}/telephone_at_your_disposal${3}"
+	~^(.*/search/.*)/(telephone)$ "${2}" "${1}/telephone_at_your_disposal${3}"
 	~^(.*/search/.*)/(toilettes)(.*)$ "${2}" "${1}/toilets${3}"
 	~^(.*/search/.*)/(transport-mobilite)(.*)$ "${2}" "${1}/mobility${3}"
 	~^(.*/search/.*)/(urologie)(.*)$ "${2}" "${1}/urology${3}"
