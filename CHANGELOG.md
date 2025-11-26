@@ -1,3 +1,13 @@
+## [4.111.1](https://github.com/solinumasso/soliguide/compare/v4.111.0...v4.111.1) (2025-11-26)
+
+
+### Bug Fixes
+
+* **frontend:** fix infinite redirection with category telephone ([698c45d](https://github.com/solinumasso/soliguide/commit/698c45dd59d952ac7aa1cd3bef510ed1e01d7d0e))
+* soligare duplicates ([#1025](https://github.com/solinumasso/soliguide/issues/1025)) ([276b491](https://github.com/solinumasso/soliguide/commit/276b491c462f511e84b0c8af11915fe1ea13d895))
+* update-user-bug ([fd3500d](https://github.com/solinumasso/soliguide/commit/fd3500dbc1e0e606bf593f81359132b2cd1750d9))
+* **web-app:** add language to search logs ([3664b30](https://github.com/solinumasso/soliguide/commit/3664b30eb6c289402831778fbd3eb86adc8398ca))
+
 # [4.111.0](https://github.com/solinumasso/soliguide/compare/v4.110.1...v4.111.0) (2025-11-25)
 
 
