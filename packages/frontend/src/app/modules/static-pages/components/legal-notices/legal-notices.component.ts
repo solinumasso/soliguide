@@ -19,7 +19,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { Component, OnInit } from "@angular/core";
-import { Title } from "@angular/platform-browser";
 import { TranslateService } from "@ngx-translate/core";
 import { NgComponentOutlet } from "@angular/common";
 import { LegalNoticesService } from "../../services/legal-notices.service";
@@ -27,6 +26,7 @@ import { CurrentLanguageService } from "../../../general/services/current-langua
 import { StaticPagesComponentAbstract } from "../static-pages-component.abstract";
 import { SeoService } from "../../../shared/services";
 import { THEME_CONFIGURATION } from "../../../../models";
+import { combineLatest } from "rxjs";
 
 @Component({
   standalone: true,
@@ -39,7 +39,6 @@ export class LegalNoticesComponent
   implements OnInit
 {
   constructor(
-    private readonly titleService: Title,
     private readonly seoService: SeoService,
     private readonly translateService: TranslateService,
     private readonly legalNoticesService: LegalNoticesService,
@@ -48,18 +47,18 @@ export class LegalNoticesComponent
     super();
   }
   public ngOnInit(): void {
-    const title = this.translateService.instant(
-      "STATIC_PAGE_LEGAL_NOTICE_TITLE"
-    );
-    const description = this.translateService.instant(
-      "STATIC_PAGE_LEGAL_NOTICE_DESCRIPTION",
-      { brandName: THEME_CONFIGURATION.brandName }
-    );
-    this.seoService.updateTitleAndTags(title, description, true);
+    const params = { brandName: THEME_CONFIGURATION.brandName };
 
-    this.titleService.setTitle(
-      this.translateService.instant("FOOTER_MENTIONS")
-    );
+    combineLatest([
+      this.translateService.stream("STATIC_PAGE_LEGAL_NOTICE_TITLE"),
+      this.translateService.stream(
+        "STATIC_PAGE_LEGAL_NOTICE_DESCRIPTION",
+        params
+      ),
+    ]).subscribe(([title, description]) => {
+      this.seoService.updateTitleAndTags(title, description, true);
+    });
+
     this.currentTemplate =
       this.legalNoticesService.getLegalNoticeComponentByName(
         this.theme,

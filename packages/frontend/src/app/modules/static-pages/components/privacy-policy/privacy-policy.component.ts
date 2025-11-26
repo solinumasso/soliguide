@@ -26,6 +26,7 @@ import { CurrentLanguageService } from "../../../general/services/current-langua
 import { StaticPagesComponentAbstract } from "../static-pages-component.abstract";
 import { TranslateService } from "@ngx-translate/core";
 import { THEME_CONFIGURATION } from "../../../../models";
+import { combineLatest } from "rxjs";
 
 @Component({
   standalone: true,
@@ -46,15 +47,17 @@ export class PrivacyPolicyComponent
     super();
   }
   public ngOnInit(): void {
-    const title = this.translateService.instant(
-      "STATIC_PAGE_PRIVACY_POLICY_TITLE"
-    );
-    const description = this.translateService.instant(
-      "STATIC_PAGE_PRIVACY_POLICY_DESCRIPTION",
-      { brandName: THEME_CONFIGURATION.brandName }
-    );
+    const params = { brandName: THEME_CONFIGURATION.brandName };
 
-    this.seoService.updateTitleAndTags(title, description, true);
+    combineLatest([
+      this.translateService.stream("STATIC_PAGE_PRIVACY_POLICY_TITLE"),
+      this.translateService.stream(
+        "STATIC_PAGE_PRIVACY_POLICY_DESCRIPTION",
+        params
+      ),
+    ]).subscribe(([title, description]) => {
+      this.seoService.updateTitleAndTags(title, description, true);
+    });
 
     this.currentTemplate =
       this.privacyPolicyService.getPrivacyPolicyComponentByName(
