@@ -146,7 +146,9 @@ export class CampaignManagePlacesComponent
           .subscribe((places: Place[]) => {
             this.places = places;
             this.titleService.setTitle(
-              this.translateService.instant("CAMPAIGN_GENERAL_VIEW")
+              this.translateService.instant("CAMPAIGN_GENERAL_VIEW", {
+                description: CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].description,
+              })
             );
           })
       );

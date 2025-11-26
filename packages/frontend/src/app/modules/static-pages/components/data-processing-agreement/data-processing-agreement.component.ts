@@ -46,14 +46,20 @@ export class DataProcessingAgreementComponent
   }
 
   public ngOnInit(): void {
-    const title = this.translateService.instant(
-      "STATIC_PAGE_DATA_PROCESSING_AGREEMENT_TITLE"
-    );
-    const description = this.translateService.instant(
-      "STATIC_PAGE_DATA_PROCESSING_AGREEMENT_DESCRIPTION"
-    );
+    this.translateService
+      .stream([
+        "STATIC_PAGE_DATA_PROCESSING_AGREEMENT_TITLE",
+        "STATIC_PAGE_DATA_PROCESSING_AGREEMENT_DESCRIPTION",
+      ])
+      .subscribe((translations) => {
+        const title =
+          translations["STATIC_PAGE_DATA_PROCESSING_AGREEMENT_TITLE"];
+        const description =
+          translations["STATIC_PAGE_DATA_PROCESSING_AGREEMENT_DESCRIPTION"];
 
-    this.seoService.updateTitleAndTags(title, description, true);
+        this.seoService.updateTitleAndTags(title, description, true);
+      });
+
     this.currentTemplate =
       this.dataProcessingAgreementService.getDataProcessingAgreementComponentByName(
         this.theme,
