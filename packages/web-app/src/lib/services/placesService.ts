@@ -47,7 +47,6 @@ export default (fetcher = fetch) => {
     return fetcher(`/api/${lang}/places`, {
       method: 'POST',
       body: JSON.stringify({
-        lang,
         location,
         category,
         type,
