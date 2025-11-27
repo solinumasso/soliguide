@@ -1,3 +1,10 @@
+# [4.112.0](https://github.com/solinumasso/soliguide/compare/v4.111.2...v4.112.0) (2025-11-27)
+
+
+### Features
+
+* **api:** create ops route to manage AT sync and isOpenToday cron ([0b203ca](https://github.com/solinumasso/soliguide/commit/0b203cac6d17ec96c9ddd18b17fd93795af6406d))
+
 ## [4.111.2](https://github.com/solinumasso/soliguide/compare/v4.111.1...v4.111.2) (2025-11-27)
 
 
