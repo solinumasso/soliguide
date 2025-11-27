@@ -26,6 +26,7 @@ import { GcuService } from "../../services/gcu.service";
 import { StaticPagesComponentAbstract } from "../static-pages-component.abstract";
 import { TranslateService } from "@ngx-translate/core";
 import { THEME_CONFIGURATION } from "../../../../models";
+import { combineLatest } from "rxjs";
 
 @Component({
   standalone: true,
@@ -47,15 +48,15 @@ export class GcuComponent
   }
 
   public ngOnInit(): void {
-    const title = this.translateService.instant("STATIC_PAGE_GCU_TITLE", {
-      brandName: THEME_CONFIGURATION.brandName,
-    });
-    const description = this.translateService.instant(
-      "STATIC_PAGE_GCU_DESCRIPTION",
-      { brandName: THEME_CONFIGURATION.brandName }
-    );
+    const params = { brandName: THEME_CONFIGURATION.brandName };
 
-    this.seoService.updateTitleAndTags(title, description, true);
+    combineLatest([
+      this.translateService.stream("STATIC_PAGE_GCU_TITLE", params),
+      this.translateService.stream("STATIC_PAGE_GCU_DESCRIPTION", params),
+    ]).subscribe(([title, description]) => {
+      this.seoService.updateTitleAndTags(title, description, true);
+    });
+
     this.currentTemplate = this.gcuService.getGCUComponentByName(
       this.theme,
       this.currentLanguageService.currentLanguage
