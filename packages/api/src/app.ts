@@ -107,6 +107,9 @@ import categories from "./categories/routes/categories.routes";
 // Soligare
 import soligare from "./soligare/routes/soligare.routes";
 
+// Ops
+import ops from "./ops/routes/ops.routes";
+
 // Jobs
 import { importCategories } from "./place/utils";
 import { serve, setup } from "swagger-ui-express";
@@ -237,6 +240,8 @@ _app.use("/emailing", emailing);
 _app.use("/v2/categories", categories);
 
 _app.use("/v2/soligare", soligare);
+
+_app.use("/ops", ops);
 
 if (TypesenseClient.isTypesenseEnabled) {
   _app.use("/v2/search", searchEngine);
