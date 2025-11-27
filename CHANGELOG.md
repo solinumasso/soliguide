@@ -1,3 +1,79 @@
+## [4.111.1](https://github.com/solinumasso/soliguide/compare/v4.111.0...v4.111.1) (2025-11-26)
+
+
+### Bug Fixes
+
+* **frontend:** fix infinite redirection with category telephone ([698c45d](https://github.com/solinumasso/soliguide/commit/698c45dd59d952ac7aa1cd3bef510ed1e01d7d0e))
+* soligare duplicates ([#1025](https://github.com/solinumasso/soliguide/issues/1025)) ([276b491](https://github.com/solinumasso/soliguide/commit/276b491c462f511e84b0c8af11915fe1ea13d895))
+* update-user-bug ([fd3500d](https://github.com/solinumasso/soliguide/commit/fd3500dbc1e0e606bf593f81359132b2cd1750d9))
+* **web-app:** add language to search logs ([3664b30](https://github.com/solinumasso/soliguide/commit/3664b30eb6c289402831778fbd3eb86adc8398ca))
+
+# [4.111.0](https://github.com/solinumasso/soliguide/compare/v4.110.1...v4.111.0) (2025-11-25)
+
+
+### Features
+
+* **api:** delete mail status cron and adapt status mail data ([40e1c21](https://github.com/solinumasso/soliguide/commit/40e1c21375fe93b3b5516b5dcd0dd0db0c5f78c8))
+* **api:** remove wifi, tolets, fountain, electrical outlet from maj ([56c76eb](https://github.com/solinumasso/soliguide/commit/56c76eb0dcc088f6e4845a857d63e2dc76752df2))
+
+## [4.110.1](https://github.com/solinumasso/soliguide/compare/v4.110.0...v4.110.1) (2025-11-24)
+
+
+### Bug Fixes
+
+* **api:** fix qovery & claude code ([82ee6c7](https://github.com/solinumasso/soliguide/commit/82ee6c7c4159a08e9a5d6e6e608c4700cbcacbb1))
+* improve cron ([d518aa2](https://github.com/solinumasso/soliguide/commit/d518aa2fac4010a7c78fc384e3bf14437ddaeb80))
+
+# [4.110.0](https://github.com/solinumasso/soliguide/compare/v4.109.0...v4.110.0) (2025-11-21)
+
+
+### Bug Fixes
+
+* **api:** add claude rules ([749a238](https://github.com/solinumasso/soliguide/commit/749a238c85abdb167e49cd984987cc6f178c839d))
+* **api:** add claude rules ([582c609](https://github.com/solinumasso/soliguide/commit/582c60983e86dc7d9fd299f64abd01e48059ca4d))
+* **api:** update claude code review ([f83be35](https://github.com/solinumasso/soliguide/commit/f83be35e009aa42fb160a24e210d401a74538181))
+
+
+### Features
+
+* **api:** add logs for AT sync job ([82ba1ff](https://github.com/solinumasso/soliguide/commit/82ba1ff27cdeb85731d6d88a3000e9188bb461f8))
+* **api:** define areas for admin soliguide ([c401e75](https://github.com/solinumasso/soliguide/commit/c401e7575220214b1991a8164d13fbd71549cc01))
+* **api:** reset AT sync ([bcb1d2d](https://github.com/solinumasso/soliguide/commit/bcb1d2d19d6df3ac471d30b55c95e9b2b829cfaf))
+
+# [4.109.0](https://github.com/solinumasso/soliguide/compare/v4.108.0...v4.109.0) (2025-11-21)
+
+
+### Bug Fixes
+
+* **api:** fix qovery restore ([20a73e5](https://github.com/solinumasso/soliguide/commit/20a73e5833e117a7255f69af52e011db504b2b57))
+* **api:** fix qovery restore ([df8a707](https://github.com/solinumasso/soliguide/commit/df8a707c1293b1bd68cc73833b733f284d863b48))
+* **api:** fix qovery restore ([f6429bf](https://github.com/solinumasso/soliguide/commit/f6429bf5186ebf6facbba503feaaa3dd54a96fd6))
+* **api:** fix qovery restore ([c9ffe0b](https://github.com/solinumasso/soliguide/commit/c9ffe0b70dd6da2221f51e3e17d596d31c8ad241))
+* **api:** fix qovery restore ([2ffbe7c](https://github.com/solinumasso/soliguide/commit/2ffbe7c1b2dfe2abc19bfd37eb2d19b35feefba3))
+* **api:** fix qovery restore ([97938f3](https://github.com/solinumasso/soliguide/commit/97938f31c3b283ba9817618b62e4508868ceca35))
+* **api:** fix qovery restore ([34f6f65](https://github.com/solinumasso/soliguide/commit/34f6f65368f7daefbab22546b33b2845d0042df7))
+* **api:** fix qovery restore ([22fd355](https://github.com/solinumasso/soliguide/commit/22fd355a06f678952f3b12454d51e95d7c3097a0))
+* **api:** fix qovery restore ([8299b2b](https://github.com/solinumasso/soliguide/commit/8299b2b29716c3d6fefe74cdd377b39616125479))
+* fix campaign ssvp and CD59 being not to update ([9b693a1](https://github.com/solinumasso/soliguide/commit/9b693a1308276ff9841dc50ee0c49d985f8c8f8b))
+
+
+### Features
+
+* **api:** use only toUpdate to synchro AT column ([55efe02](https://github.com/solinumasso/soliguide/commit/55efe024c8afadaae0f47abbbe27b4bcead53ede))
+
+# [4.108.0](https://github.com/solinumasso/soliguide/compare/v4.107.1...v4.108.0) (2025-11-20)
+
+
+### Bug Fixes
+
+* **api:** add missing license ([4e92894](https://github.com/solinumasso/soliguide/commit/4e928942643aa335cfffce609b293f08b960d479))
+* fix is open today cron ([d87a4f9](https://github.com/solinumasso/soliguide/commit/d87a4f9c157f8274328214ff9c10521a122721d5))
+
+
+### Features
+
+* **api:** simplify request for generate relance mails ([33e5527](https://github.com/solinumasso/soliguide/commit/33e5527174af111ea071cbaf38e554838e0ea9a7))
+
 ## [4.107.1](https://github.com/solinumasso/soliguide/compare/v4.107.0...v4.107.1) (2025-11-19)
 
 
