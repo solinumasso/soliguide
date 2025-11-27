@@ -684,15 +684,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/common@npm:^17.3.12":
-  version: 17.3.12
-  resolution: "@angular/common@npm:17.3.12"
+"@angular/common@npm:^19.2.16":
+  version: 19.2.16
+  resolution: "@angular/common@npm:19.2.16"
   dependencies:
     tslib: "npm:^2.3.0"
   peerDependencies:
-    "@angular/core": 17.3.12
+    "@angular/core": 19.2.16
     rxjs: ^6.5.3 || ^7.4.0
-  checksum: 10c0/f40d76081b04bacb3efd4389b0aa4dcfa742a4954e38a76a434dab1ae226b3192241077be5d0032cb011cc1625cb04043449cd5956f8ba44da99f8f7a3bbe83a
+  checksum: 10c0/c6dd3f30dc794f69312bac111da9e78a254475047c2b98c08f498b1f70c522e1754a06e6c2f0b6228a59a3878246995f0c3b4c89fd352f4a481f12920a7e9f91
   languageName: node
   linkType: hard
 
@@ -9577,7 +9577,7 @@ __metadata:
     "@angular-eslint/schematics": "npm:^17.5.3"
     "@angular-eslint/template-parser": "npm:^17.5.3"
     "@angular/cli": "npm:^17.3.17"
-    "@angular/common": "npm:^17.3.12"
+    "@angular/common": "npm:^19.2.16"
     "@angular/compiler": "npm:^17.3.12"
     "@angular/compiler-cli": "npm:^17.3.12"
     "@angular/core": "npm:^17.3.12"
@@ -9607,7 +9607,7 @@ __metadata:
     typescript: "npm:~5.4.5"
     zone.js: "npm:~0.14.10"
   peerDependencies:
-    "@angular/common": ^17.3.12
+    "@angular/common": ^19.2.16
     "@angular/compiler": ^17.3.12
     "@angular/core": ^17.3.12
     "@angular/platform-browser": ^17.3.12
@@ -9733,7 +9733,7 @@ __metadata:
     "@angular/animations": "npm:^17.3.12"
     "@angular/cdk": "npm:^17.3.10"
     "@angular/cli": "npm:^17.3.17"
-    "@angular/common": "npm:^17.3.12"
+    "@angular/common": "npm:^19.2.16"
     "@angular/compiler": "npm:^17.3.12"
     "@angular/compiler-cli": "npm:^17.3.12"
     "@angular/core": "npm:^17.3.12"
@@ -10008,7 +10008,7 @@ __metadata:
     "@angular-eslint/template-parser": "npm:^17.5.3"
     "@angular/animations": "npm:^17.3.12"
     "@angular/cli": "npm:^17.3.17"
-    "@angular/common": "npm:^17.3.12"
+    "@angular/common": "npm:^19.2.16"
     "@angular/compiler": "npm:^17.3.12"
     "@angular/compiler-cli": "npm:^17.3.12"
     "@angular/core": "npm:^17.3.12"
