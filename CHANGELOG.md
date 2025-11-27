@@ -1,3 +1,15 @@
+## [4.111.2](https://github.com/solinumasso/soliguide/compare/v4.111.1...v4.111.2) (2025-11-27)
+
+
+### Bug Fixes
+
+* **frontend:** add areas to user class ([af52bec](https://github.com/solinumasso/soliguide/commit/af52bec0759dafe2c74cb7b6c87018efe0d7dfa4))
+* **frontend:** fix infinite redirection with category telephone ([794fda8](https://github.com/solinumasso/soliguide/commit/794fda80681662104dfdb517042e093121a31a97))
+* **frontend:** wrong title for static pages ([7654159](https://github.com/solinumasso/soliguide/commit/7654159519a5967cca5d7a5ab64ce81a14184888))
+* soligare duplicates ([#1025](https://github.com/solinumasso/soliguide/issues/1025)) ([55c546a](https://github.com/solinumasso/soliguide/commit/55c546ac58f9b2af4fcc9ced35dc1e3589125cf5))
+* update-user-bug ([02fee50](https://github.com/solinumasso/soliguide/commit/02fee504c49daea3e3ce5ebc9c3ba549c928a1e7))
+* **web-app:** add language to search logs ([67b60c9](https://github.com/solinumasso/soliguide/commit/67b60c9a435307b3ae58dfee774642c19961b3d6))
+
 ## [4.111.1](https://github.com/solinumasso/soliguide/compare/v4.111.0...v4.111.1) (2025-11-26)
 
 
