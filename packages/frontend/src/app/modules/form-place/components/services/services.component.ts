@@ -62,6 +62,8 @@ export class FormServicesFicheComponent {
 
   @Input() public typeError!: string[];
 
+  @Input() public servicesWithoutCategory!: number[];
+
   @Output() public readonly isDescriptionInvalid = new EventEmitter<boolean>();
 
   @ContentChild("formTableHorairesTemplate", { static: false })

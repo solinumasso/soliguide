@@ -80,6 +80,8 @@ export class FormServicesComponent implements OnInit, OnDestroy {
 
   public idWarningServicePublic: number[];
 
+  public servicesWithoutCategory: number[] = [];
+
   public typeErrorForm: {
     error: string;
     serviceIndex: number;
@@ -177,6 +179,7 @@ export class FormServicesComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.submitted = true;
     this.typeError = [];
+    this.servicesWithoutCategory = [];
 
     if (this.isPublicInvalid()) {
       this.modalService.open(this.falsyUnconditionalPublic, {
@@ -192,6 +195,10 @@ export class FormServicesComponent implements OnInit, OnDestroy {
 
       service.close.actif = service.close.serviceActif;
 
+      if (!service.category) {
+        this.servicesWithoutCategory.push(i + 1);
+      }
+
       if (
         service.categorySpecificFields?.dietaryRegimesType &&
         service.categorySpecificFields.dietaryRegimesType ===
@@ -200,15 +207,6 @@ export class FormServicesComponent implements OnInit, OnDestroy {
       ) {
         this.toastr.error(
           this.translateService.instant("DIETARY_ADAPTATIONS_PRECISIONS")
-        );
-        this.loading = false;
-      }
-
-      if (service.category === null) {
-        this.toastr.error(
-          this.translateService.instant("CHOOSE_CATEGORY_FOR_SERVICE", {
-            number: i + 1,
-          })
         );
         this.loading = false;
       }
@@ -230,6 +228,18 @@ export class FormServicesComponent implements OnInit, OnDestroy {
         );
         this.loading = false;
       }
+    }
+
+    if (this.servicesWithoutCategory.length > 0) {
+      this.servicesWithoutCategory.forEach((serviceNumber) => {
+        this.toastr.error(
+          this.translateService.instant("CHOOSE_CATEGORY_FOR_SERVICE", {
+            number: serviceNumber,
+          })
+        );
+      });
+      this.loading = false;
+      return;
     }
 
     this.subscription.add(
