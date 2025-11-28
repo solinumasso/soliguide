@@ -28,3 +28,4 @@ export * from "./searchAdmin.dto";
 export * from "./searchLocations.dto";
 export * from "./searchUpdatedAt.dto";
 export * from "./text-search.dto";
+export * from "./lookup.dto";

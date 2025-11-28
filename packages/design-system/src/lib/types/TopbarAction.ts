@@ -18,32 +18,17 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import type { SupportedLanguagesCode, SoliguideCountries, Themes } from '@soliguide/common';
+import type { SvelteComponent, ComponentType } from 'svelte';
 
-export interface ThemeDefinition {
-  name: Themes;
-  brandName: string;
-  country: SoliguideCountries;
-  defaultLanguage: SupportedLanguagesCode;
-  supportedLanguages: SupportedLanguagesCode[];
-  media: {
-    homeIllustration: string;
-    favoritesIllustration: string;
-    logos: {
-      inline: string;
-      original: string;
-      symbol: string;
-    };
-  };
-  links: {
-    fichesPratiques: string;
-    solinumSite: string;
-    becomeTranslator: string;
-    cookiePolicy: string;
-    privacyPolicy: string;
-    dataProtectionAgreement: string;
-    legalNotice: string;
-    termsAndConditions: string;
-  };
-  chatWebsiteId: string | undefined | null;
+export type TopbarActionType = 'button' | 'toggle';
+
+export type TopbarActionEventKey = 'favorite' | 'share' | 'settings' | 'edit' | 'more';
+
+export interface TopbarAction {
+  label: string;
+  type?: TopbarActionType;
+  icon: ComponentType<SvelteComponent>;
+  iconColor?: string;
+  eventKey: TopbarActionEventKey;
+  active?: boolean;
 }
