@@ -22,9 +22,11 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
   OnInit,
   Output,
   SecurityContext,
+  SimpleChanges,
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 
@@ -39,7 +41,7 @@ import { TranslateService } from "@ngx-translate/core";
   templateUrl: "./single-service.component.html",
   styleUrls: ["./single-service.component.css"],
 })
-export class FormSingleServiceFicheComponent implements OnInit {
+export class FormSingleServiceFicheComponent implements OnInit, OnChanges {
   @Input() public service: Service;
 
   @Input() public serviceIndex: number;
@@ -55,6 +57,10 @@ export class FormSingleServiceFicheComponent implements OnInit {
   @Input() public typeError: string[];
 
   @Input() public submitted: boolean;
+
+  @Input() public servicesWithoutCategory: number[] = [];
+
+  public hasErrorCategory: boolean = false;
 
   public editor = ClassicEditor;
   public editorConfig = CK_EDITOR_CONF;
@@ -80,6 +86,19 @@ export class FormSingleServiceFicheComponent implements OnInit {
       this.service.description
     );
     this.checkValue(this.service.description);
+    this.updateErrorCategory();
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes["servicesWithoutCategory"]) {
+      this.updateErrorCategory();
+    }
+  }
+
+  private updateErrorCategory(): void {
+    this.hasErrorCategory = this.servicesWithoutCategory.includes(
+      this.serviceIndex + 1
+    );
   }
 
   public toggleShow(): void {
