@@ -34,7 +34,9 @@ describe("Test AmqpEventsSender", () => {
   });
 
   it("Works when no URL provided", async () => {
-    delete CONFIG.AMQP_URL;
+    delete CONFIG.RABBIT_HTTP_BASE;
+    delete CONFIG.RABBIT_USER;
+    delete CONFIG.RABBIT_PASSWORD;
     const amqpMock = jest.spyOn(amqp, "connect");
     const sender = new AmqpEventsSender();
     expect(amqpMock).not.toHaveBeenCalled();
