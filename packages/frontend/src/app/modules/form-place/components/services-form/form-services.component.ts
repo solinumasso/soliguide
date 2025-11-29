@@ -232,6 +232,10 @@ export class FormServicesComponent implements OnInit, OnDestroy {
       }
     }
 
+    this.place.services_all = this.place.services_all.filter(
+      (service: Service) => service.category
+    );
+
     this.subscription.add(
       this.adminPlaceService
         .patchServices(this.place.lieu_id, this.place.services_all)
