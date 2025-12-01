@@ -1,3 +1,15 @@
+# [4.113.0](https://github.com/solinumasso/soliguide/compare/v4.112.0...v4.113.0) (2025-12-01)
+
+
+### Bug Fixes
+
+* **api:** update also when modify territories of user ([b8afeba](https://github.com/solinumasso/soliguide/commit/b8afebaa8ab24fb91a50e64a54459dccb0ea7869))
+
+
+### Features
+
+* **api:** include all restos places in maj ([f95e02c](https://github.com/solinumasso/soliguide/commit/f95e02c060eb644d8b3da1c7baa3ada828c101ef))
+
 # [4.112.0](https://github.com/solinumasso/soliguide/compare/v4.111.2...v4.112.0) (2025-11-27)
 
 
