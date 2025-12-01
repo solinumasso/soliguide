@@ -66,6 +66,7 @@ import {
   capturePasswordReset,
   capturePasswordResetToken,
 } from "../middlewares/capture-user-event.middleware";
+import { addAreasToUser } from "../middlewares/add-areas-to-user.middleware";
 
 const router = express.Router();
 
@@ -519,6 +520,7 @@ router.patch(
   canEditUser,
   patchUserDto,
   getFilteredData,
+  addAreasToUser,
   async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
     try {
       const user = await UserController.patchUserAccount(
