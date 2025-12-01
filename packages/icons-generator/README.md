@@ -19,12 +19,12 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-### Create icon font from png files
+### Create icon font from svg files
 
 ## Steps
 
 - Name your icons files with the css name you want them to have (id category)
-- Add your icons files (JPG !) to the icons folder at the root of the project
+- Add your icons files (SVG !) to the icons folder at the root of the project inside the folder svg
 - If your icon is a PNG file, convert it to JPG
 - open terminal
 - run `cd path/to/folder`

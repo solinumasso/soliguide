@@ -41,7 +41,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   >
     <svelte:fragment slot="icon">
       {#if category}
-        <CategoryIcon categoryId={category} variation="filled" />
+        <CategoryIcon categoryId={category} variation="filled" size={22} />
       {:else}
         <MoreHoriz />
       {/if}

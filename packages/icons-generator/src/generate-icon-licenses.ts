@@ -144,6 +144,9 @@ async function main(): Promise<void> {
 
   const startTime = Date.now();
 
+  // Process SVG files
+  await generateLicensesForFolder(paths.svg, [".svg"]);
+
   // Process PNG files
   await generateLicensesForFolder(paths.png, [".png"]);
 

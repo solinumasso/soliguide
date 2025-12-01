@@ -1,24 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-Soliguide: Useful information for those who need it
-
-SPDX-FileCopyrightText: © 2025 Solinum
-
-SPDX-License-Identifier: AGPL-3.0-only
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Affero General Public License as published
-by the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Affero General Public License for more details.
-
-You should have received a copy of the GNU Affero General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.
--->
 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M53.3335 16H50.6668V37.3333C50.6668 38.8 49.4668 40 48.0002 40H16.0002V42.6667C16.0002 45.6 18.4002 48 21.3335 48H48.0002L58.6668 58.6667V21.3333C58.6668 18.4 56.2668 16 53.3335 16ZM45.3335 29.3333V10.6667C45.3335 7.73334 42.9335 5.33334 40.0002 5.33334H10.6668C7.7335 5.33334 5.3335 7.73334 5.3335 10.6667V45.3333L16.0002 34.6667H40.0002C42.9335 34.6667 45.3335 32.2667 45.3335 29.3333Z" fill="#404040"/>
+<path d="M34.4002 3.20001C38.3802 3.20001 41.6002 6.42001 41.6002 10.4V29.6C41.6002 33.58 38.3802 36.8 34.4002 36.8H24.0002L15.6602 44.38C15.3702 44.65 14.9802 44.8 14.5802 44.8H14.4002C13.5202 44.8 12.8002 44.08 12.8002 43.2V36.8H10.4002C6.4202 36.8 3.2002 33.58 3.2002 29.6V10.4C3.2002 6.42001 6.4202 3.20001 10.4002 3.20001H34.4002ZM22.4002 45.6V44.74L25.8602 41.6H34.4002C41.0302 41.6 46.4002 36.23 46.4002 29.6V19.2H53.6002C57.5802 19.2 60.8002 22.42 60.8002 26.4V45.6C60.8002 49.58 57.5802 52.8 53.6002 52.8H51.2002V59.2C51.2002 60.08 50.4802 60.8 49.6002 60.8H49.4202C49.0202 60.8 48.6402 60.65 48.3402 60.38L40.0002 52.8H29.6002C25.6202 52.8 22.4002 49.58 22.4002 45.6Z" fill="#271332"/>
 </svg>
