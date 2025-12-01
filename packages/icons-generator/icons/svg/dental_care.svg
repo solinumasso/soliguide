@@ -1,24 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-Soliguide: Useful information for those who need it
-
-SPDX-FileCopyrightText: © 2025 Solinum
-
-SPDX-License-Identifier: AGPL-3.0-only
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Affero General Public License as published
-by the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Affero General Public License for more details.
-
-You should have received a copy of the GNU Affero General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.
--->
 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M23.98 4C12.94 4 4 12.96 4 24C4 35.04 12.94 44 23.98 44C35.04 44 44 35.04 44 24C44 12.96 35.04 4 23.98 4ZM17 16C18.66 16 20 17.34 20 19C20 20.66 18.66 22 17 22C15.34 22 14 20.66 14 19C14 17.34 15.34 16 17 16ZM33.5 29.5C31.6 32.78 28.06 35 24 35C19.94 35 16.4 32.78 14.5 29.5C14.12 28.84 14.62 28 15.38 28H32.62C33.4 28 33.88 28.84 33.5 29.5ZM31 22C29.34 22 28 20.66 28 19C28 17.34 29.34 16 31 16C32.66 16 34 17.34 34 19C34 20.66 32.66 22 31 22Z" fill="#404040"/>
+<path d="M18.0752 5.22755L24.0002 7.20005L29.9252 5.22755C30.7727 4.94255 31.6502 4.80005 32.5427 4.80005C37.1027 4.80005 40.8002 8.49755 40.8002 13.0575V18.1951C40.8002 20.4001 40.0877 22.5526 38.7602 24.3151L38.6777 24.4276C37.7102 25.7176 37.0802 27.2325 36.8552 28.83L35.2277 40.1926C34.9802 41.9176 33.5027 43.2001 31.7627 43.2001C30.0527 43.2001 28.5902 41.9626 28.3127 40.2751L26.7977 31.17C26.5727 29.805 25.3877 28.8 24.0002 28.8C22.6127 28.8 21.4352 29.805 21.2027 31.17L19.6877 40.2751C19.4027 41.9626 17.9477 43.2001 16.2377 43.2001C14.4977 43.2001 13.0202 41.9176 12.7727 40.1926L11.1452 28.8375C10.9202 27.24 10.2902 25.725 9.3227 24.435L9.2402 24.3225C7.91269 22.5525 7.2002 20.4075 7.2002 18.2025V13.065C7.2002 8.49755 10.8977 4.80005 15.4577 4.80005C16.3502 4.80005 17.2277 4.94255 18.0752 5.22755Z" fill="#271332"/>
 </svg>

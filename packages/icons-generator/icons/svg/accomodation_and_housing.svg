@@ -1,26 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-Soliguide: Useful information for those who need it
-
-SPDX-FileCopyrightText: © 2025 Solinum
-
-SPDX-License-Identifier: AGPL-3.0-only
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Affero General Public License as published
-by the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Affero General Public License for more details.
-
-You should have received a copy of the GNU Affero General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.
--->
-<svg version="1.1" width="64" height="64" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path
-    d="M26.6606 51.54V38.2067H37.3272V51.54C37.3272 53.0067 38.5272 54.2067 39.9939 54.2067H47.9939C49.4606 54.2067 50.6606 53.0067 50.6606 51.54V32.8733H55.1939C56.4206 32.8733 57.0072 31.3533 56.0739 30.5533L33.7806 10.4733C32.7672 9.56667 31.2206 9.56667 30.2072 10.4733L7.91391 30.5533C7.00725 31.3533 7.56725 32.8733 8.79391 32.8733H13.3272V51.54C13.3272 53.0067 14.5272 54.2067 15.9939 54.2067H23.9939C25.4606 54.2067 26.6606 53.0067 26.6606 51.54Z"
-    stroke="none" fill="black" fill-rule="evenodd" />
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M34.1802 7.26003C32.9502 6.12003 31.0502 6.12003 29.8302 7.26003L7.43019 28.06C6.47019 28.96 6.15019 30.35 6.63019 31.57C7.11019 32.79 8.28019 33.6 9.60019 33.6H11.2002V51.2C11.2002 54.73 14.0702 57.6 17.6002 57.6H46.4002C49.9302 57.6 52.8002 54.73 52.8002 51.2V33.6H54.4002C55.7202 33.6 56.9002 32.79 57.3802 31.57C57.8602 30.35 57.5402 28.95 56.5802 28.06L34.1802 7.26003ZM30.4002 38.4H33.6002C36.2502 38.4 38.4002 40.55 38.4002 43.2V52.8H25.6002V43.2C25.6002 40.55 27.7502 38.4 30.4002 38.4Z" fill="#271332"/>
 </svg>

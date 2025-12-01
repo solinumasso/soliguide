@@ -1,24 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-Soliguide: Useful information for those who need it
-
-SPDX-FileCopyrightText: © 2025 Solinum
-
-SPDX-License-Identifier: AGPL-3.0-only
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Affero General Public License as published
-by the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Affero General Public License for more details.
-
-You should have received a copy of the GNU Affero General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.
--->
 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8 14C8 12.9 8.9 12 10 12H42C43.1 12 44 11.1 44 10C44 8.9 43.1 8 42 8H8C5.8 8 4 9.8 4 12V34H3C1.34 34 0 35.34 0 37C0 38.66 1.34 40 3 40H28V34H8V14ZM46 16H34C32.9 16 32 16.9 32 18V38C32 39.1 32.9 40 34 40H46C47.1 40 48 39.1 48 38V18C48 16.9 47.1 16 46 16ZM44 34H36V20H44V34Z" fill="#404040"/>
+<path d="M10.7999 9.59999C10.7999 8.93999 11.3399 8.39999 11.9999 8.39999H33.5999C34.2599 8.39999 34.7999 8.93999 34.7999 9.59999V13.2H38.3999V9.59999C38.3999 6.95249 36.2474 4.79999 33.5999 4.79999H11.9999C9.3524 4.79999 7.1999 6.95249 7.1999 9.59999V21.6H4.3199C3.2624 21.6 2.3999 22.4625 2.3999 23.52C2.3999 27.765 5.8349 31.2 10.0799 31.2H21.5999V27.6H10.0799C8.4224 27.6 6.9974 26.6175 6.3599 25.2H21.5999V21.6H10.7999V9.59999ZM29.9999 39.6C29.3399 39.6 28.7999 39.06 28.7999 38.4V21.6C28.7999 20.94 29.3399 20.4 29.9999 20.4H38.3999C39.0599 20.4 39.5999 20.94 39.5999 21.6V38.4C39.5999 39.06 39.0599 39.6 38.3999 39.6H29.9999ZM29.9999 16.8C27.3524 16.8 25.1999 18.9525 25.1999 21.6V38.4C25.1999 41.0475 27.3524 43.2 29.9999 43.2H38.3999C41.0474 43.2 43.1999 41.0475 43.1999 38.4V21.6C43.1999 18.9525 41.0474 16.8 38.3999 16.8H29.9999ZM32.9999 33.6C32.0024 33.6 31.1999 34.4025 31.1999 35.4C31.1999 36.3975 32.0024 37.2 32.9999 37.2H35.3999C36.3974 37.2 37.1999 36.3975 37.1999 35.4C37.1999 34.4025 36.3974 33.6 35.3999 33.6H32.9999Z" fill="#271332"/>
 </svg>

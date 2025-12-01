@@ -1,24 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-Soliguide: Useful information for those who need it
-
-SPDX-FileCopyrightText: © 2025 Solinum
-
-SPDX-License-Identifier: AGPL-3.0-only
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Affero General Public License as published
-by the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Affero General Public License for more details.
-
-You should have received a copy of the GNU Affero General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.
--->
 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M14 22H10V36H14V22ZM26 22H22V36H26V22ZM43 40H5V44H43V40ZM38 22H34V36H38V22ZM24 8.52L34.42 14H13.58L24 8.52ZM24 4L5 14V18H43V14L24 4Z" fill="#404040"/>
+<path d="M24.9898 5.69249C24.3898 5.30249 23.6173 5.30249 23.0173 5.69249L5.6173 17.0925C4.9498 17.5275 4.6498 18.3525 4.8748 19.1175C5.0998 19.8825 5.8048 20.4 6.5998 20.4H9.5998V32.4H8.9998C8.0023 32.4 7.1998 33.2025 7.1998 34.2C7.1998 35.1975 8.0023 36 8.9998 36H38.9998C39.9973 36 40.7998 35.1975 40.7998 34.2C40.7998 33.2025 39.9973 32.4 38.9998 32.4H38.3998V20.4H41.3998C42.1948 20.4 42.8998 19.875 43.1248 19.1175C43.3498 18.36 43.0498 17.535 42.3898 17.1L24.9898 5.69999V5.69249ZM17.9998 32.4H13.1998V20.4H17.9998V32.4ZM26.3998 32.4H21.5998V20.4H26.3998V32.4ZM34.7998 32.4H29.9998V20.4H34.7998V32.4ZM21.9223 16.8H12.6298L23.9998 9.35249L35.3698 16.8H26.0773C26.2798 16.4475 26.3998 16.035 26.3998 15.6C26.3998 14.2725 25.3273 13.2 23.9998 13.2C22.6723 13.2 21.5998 14.2725 21.5998 15.6C21.5998 16.035 21.7198 16.4475 21.9223 16.8ZM4.7998 41.4C4.7998 42.3975 5.6023 43.2 6.5998 43.2H41.3998C42.3973 43.2 43.1998 42.3975 43.1998 41.4C43.1998 40.4025 42.3973 39.6 41.3998 39.6H6.5998C5.6023 39.6 4.7998 40.4025 4.7998 41.4Z" fill="#271332"/>
 </svg>
