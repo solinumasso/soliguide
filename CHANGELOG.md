@@ -1,3 +1,10 @@
+## [4.113.1](https://github.com/solinumasso/soliguide/compare/v4.113.0...v4.113.1) (2025-12-02)
+
+
+### Bug Fixes
+
+* **frontend:** pop error when validate service update without category ([7dcdb11](https://github.com/solinumasso/soliguide/commit/7dcdb11fc6645233a0e90dac59ff6e45fe47c531))
+
 # [4.113.0](https://github.com/solinumasso/soliguide/compare/v4.112.0...v4.113.0) (2025-12-01)
 
 
