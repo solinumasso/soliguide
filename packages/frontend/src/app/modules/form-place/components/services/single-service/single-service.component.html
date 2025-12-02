@@ -61,7 +61,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   </div>
 </div>
 
-<div class="col-12 service-form" *ngIf="service.show">
+<div
+  class="col-12 service-form"
+  [ngClass]="{ 'has-error': hasErrorCategory }"
+  *ngIf="service.show"
+>
   <form autocomplete="off">
     <div class="row">
       <div class="col-md-7 col-12 my-2">

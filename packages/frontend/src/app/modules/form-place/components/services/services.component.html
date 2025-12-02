@@ -52,13 +52,18 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           (showServiceIndex)="showService($event)"
           (descriptionHasError)="handleDescriptionError($event)"
           [typeError]="typeError"
+          [servicesWithoutCategory]="servicesWithoutCategory"
         ></app-form-single-service-fiche>
       </div>
     </div>
     <br />
   </form>
   <div class="col-12">
-    <button (click)="newService()" type="button" class="btn btn-primary">
+    <button
+      (click)="newService()"
+      type="button"
+      class="btn btn-outline-primary"
+    >
       {{ "ADD_SERVICE" | translate }}
     </button>
   </div>
