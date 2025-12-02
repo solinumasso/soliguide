@@ -1,3 +1,10 @@
+# [4.114.0](https://github.com/solinumasso/soliguide/compare/v4.113.1...v4.114.0) (2025-12-02)
+
+
+### Features
+
+* **api:** reset AT sync for restos ([3a4a50e](https://github.com/solinumasso/soliguide/commit/3a4a50e0d4dd45370de5ff5f01d21f02042964fe))
+
 ## [4.113.1](https://github.com/solinumasso/soliguide/compare/v4.113.0...v4.113.1) (2025-12-02)
 
 
