@@ -1,3 +1,10 @@
+# [4.115.0](https://github.com/solinumasso/soliguide/compare/v4.114.0...v4.115.0) (2025-12-03)
+
+
+### Features
+
+* **api:** include parcours into maj ([83d5423](https://github.com/solinumasso/soliguide/commit/83d54238e694dcdd77c17f2ae975bc4677ea1113))
+
 # [4.114.0](https://github.com/solinumasso/soliguide/compare/v4.113.1...v4.114.0) (2025-12-02)
 
 
