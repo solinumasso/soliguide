@@ -45,6 +45,7 @@ export interface CategoryService {
   getRootCategories(): Categories[];
   getChildrenCategories(categoryId: Categories): Categories[];
   isCategoryRoot(categoryId: Categories): boolean;
+  hasChildren(categoryId: Categories): boolean;
   getCategorySuggestions(searchTerm: string): Promise<Categories[]>;
 }
 
