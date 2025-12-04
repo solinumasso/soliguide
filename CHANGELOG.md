@@ -1,3 +1,10 @@
+# [4.116.0](https://github.com/solinumasso/soliguide/compare/v4.115.0...v4.116.0) (2025-12-04)
+
+
+### Features
+
+* **api:** excludes Spain and Andorra from campaign maj ([c51f934](https://github.com/solinumasso/soliguide/commit/c51f934d2a4e2f6303d7a72a3e651efc980770f2))
+
 # [4.115.0](https://github.com/solinumasso/soliguide/compare/v4.114.0...v4.115.0) (2025-12-03)
 
 
