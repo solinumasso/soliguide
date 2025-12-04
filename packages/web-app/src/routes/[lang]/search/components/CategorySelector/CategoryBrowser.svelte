@@ -30,6 +30,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import type { Categories } from '@soliguide/common';
   import type { I18nStore } from '$lib/client/types';
   import type { PosthogCaptureFunction } from '$lib/services/types';
+  import { categoryService } from '$lib/services/categoryService';
 
   export let state: CategoryBrowserState = CategoryBrowserState.CLOSED;
   export let parentCategory: Categories | null = null;
@@ -50,12 +51,25 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     if (!category) {
       return;
     }
-    if (state === CategoryBrowserState.OPEN_CATEGORY_DETAIL) {
-      dispatch('selectCategory', category);
-    } else if (category !== parentCategory) {
+
+    // Check if the category has children
+    const categoryHasChildren = categoryService.hasChildren(category);
+
+    // If the category has children, navigate to them
+    if (categoryHasChildren) {
       dispatch('navigateChild', category);
       capture('browsecategory', { category });
+    } else {
+      // If no children, select the category for search
+      dispatch('selectCategory', category);
     }
+  };
+
+  const selectParentCategory = () => {
+    if (!parentCategory) {
+      return;
+    }
+    dispatch('selectCategory', parentCategory);
   };
 </script>
 
@@ -78,11 +92,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     </CategoryListItem>
 
     {#if state === CategoryBrowserState.OPEN_CATEGORY_DETAIL}
-      <CategoryListItem
-        title={$i18n.t('ALL_CATEGORY')}
-        navigable
-        on:click={() => clickCategory(parentCategory)}
-      />
+      <CategoryListItem title={$i18n.t('ALL_CATEGORY')} navigable on:click={selectParentCategory} />
     {/if}
 
     {#each categories as category}

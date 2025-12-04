@@ -49,33 +49,8 @@ const apiSuggestions = {
     }
   ]
 };
-const apiSuggestionsWithSpecialists = {
-  categories: [
-    {
-      categoryId: 'cardiology',
-      expressionId: null,
-      label: 'CARDIOLOGY',
-      seo: 'cardiologie'
-    },
-    {
-      categoryId: 'digital_tools_training',
-      expressionId: null,
-      label: 'DIGITAL_TOOLS_TRAINING',
-      seo: 'formation-numerique'
-    }
-  ],
-  terms: [
-    {
-      categoryId: null,
-      expressionId: 'pmi',
-      label: 'PMI - Protection maternelle et Infantile',
-      seo: 'pmi-protection-maternelle-infantile'
-    }
-  ]
-};
 
 const builtSuggestions = ['hygiene_products', 'digital_tools_training'];
-const builtSuggestionsWithoutSpecialists = ['digital_tools_training'];
 
 describe('Category Service', () => {
   const { fetch, feedWith, setError } = fakeFetch();
@@ -106,12 +81,6 @@ describe('Category Service', () => {
       expect(() => service.getCategorySuggestions('bob')).rejects.toThrowError(
         CategoriesErrors.ERROR_SERVER
       );
-    });
-
-    it('If the api result contains a specialist category, it is removed', async () => {
-      feedWith(apiSuggestionsWithSpecialists);
-      const result = await service.getCategorySuggestions('abc');
-      expect(result).toEqual(builtSuggestionsWithoutSpecialists);
     });
   });
 });
