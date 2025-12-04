@@ -1,24 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-Soliguide: Useful information for those who need it
-
-SPDX-FileCopyrightText: © 2025 Solinum
-
-SPDX-License-Identifier: AGPL-3.0-only
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Affero General Public License as published
-by the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Affero General Public License for more details.
-
-You should have received a copy of the GNU Affero General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.
--->
 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M38 3.5L28 13.5V35.5L38 26.5V3.5ZM2 13.5V42.8C2 43.3 2.5 43.8 3 43.8C3.2 43.8 3.3 43.7 3.5 43.7C6.2 42.4 10.1 41.5 13 41.5C16.9 41.5 21.1 42.3 24 44.5V13.5C21.1 11.3 16.9 10.5 13 10.5C9.1 10.5 4.9 11.3 2 13.5ZM46 13.5C44.8 12.6 43.5 12 42 11.5V38.5C39.8 37.8 37.4 37.5 35 37.5C31.6 37.5 26.7 38.8 24 40.5V44.5C26.7 42.8 31.6 41.5 35 41.5C38.3 41.5 41.7 42.1 44.5 43.6C44.7 43.7 44.8 43.7 45 43.7C45.5 43.7 46 43.2 46 42.7V13.5Z" fill="#404040"/>
+<path d="M29.3401 6.075C28.0576 6.42 27.3001 7.7325 27.6451 9.015L28.5751 12.495L37.8451 10.0125L36.9151 6.5325C36.5776 5.25 35.2576 4.4925 33.9751 4.83L29.3401 6.075ZM38.7826 13.485L29.5126 15.9675L34.4851 34.515L43.7551 32.0325L38.7826 13.485ZM36.3376 41.4675C36.6826 42.75 37.9951 43.5075 39.2776 43.1625L43.9201 41.925C45.2026 41.58 45.9601 40.2675 45.6151 38.985L44.6851 35.505L35.4151 37.9875L36.3451 41.4675H36.3376ZM4.83008 7.2V10.8H14.4301V7.2C14.4301 5.8725 13.3576 4.8 12.0301 4.8H7.23008C5.90258 4.8 4.83008 5.8725 4.83008 7.2ZM4.83008 14.4V33.6H14.4301V14.4H4.83008ZM4.83008 37.2V40.8C4.83008 42.1275 5.90258 43.2 7.23008 43.2H12.0301C13.3576 43.2 14.4301 42.1275 14.4301 40.8V37.2H4.83008ZM18.0301 14.4V40.8C18.0301 42.1275 19.1026 43.2 20.4301 43.2H24.0301C25.3576 43.2 26.4301 42.1275 26.4301 40.8V14.4C26.4301 13.0725 25.3576 12 24.0301 12H20.4301C19.1026 12 18.0301 13.0725 18.0301 14.4Z" fill="#271332"/>
 </svg>
