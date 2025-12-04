@@ -84,7 +84,8 @@ export const getCategoryService = (
 
   const allCategories = categoriesService.getCategories();
   const categoriesWithoutSpecialists = removeSpecialistsFromCategories(allCategories);
-  const parentToChildren = buildParentToChildrenStructure(categoriesWithoutSpecialists);
+  // Build from allCategories to support 3-level navigation (including specialists)
+  const parentToChildren = buildParentToChildrenStructure(allCategories);
 
   const getAllCategories = (): FlatCategoriesTreeNode[] => {
     return allCategories;
@@ -113,6 +114,14 @@ export const getCategoryService = (
   };
 
   /**
+   * Checks if a category has children
+   */
+  const hasChildren = (categoryId: Categories): boolean => {
+    const children = parentToChildren[categoryId];
+    return children && children.length > 0;
+  };
+
+  /**
    * Auto-complete feature for categories. All apseiclists are filtered from the results
    */
   const getCategorySuggestions = async (searchTerm: string): Promise<Categories[]> => {
@@ -135,6 +144,7 @@ export const getCategoryService = (
     getRootCategories,
     getChildrenCategories,
     isCategoryRoot,
+    hasChildren,
     getCategorySuggestions
   };
 };

@@ -45,6 +45,9 @@ google-token.json
 *.code-workspace
 *.tmp
 
+# Claude local instructions
+CLAUDE.local.md
+
 # logs
 **/*.log
 /logs
