@@ -25,6 +25,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let size: ToggleButtonSize = 'medium';
   export let type: ToggleButtonType = 'secondaryBordered';
   export let icon: ComponentType<SvelteComponent> | null = null;
+  export let iconColor: string | null = null;
   export let iconOnly = false;
   export let disabled = false;
   export let singleSelect = false;
@@ -82,7 +83,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <span class="btn-content-container">
     {#if !!icon}
       <span class="btn-icon-container">
-        <svelte:component this={icon} class="icon" aria-hidden="true" />
+        <svelte:component
+          this={icon}
+          class="icon"
+          aria-hidden="true"
+          {...iconColor ? { color: iconColor } : {}}
+        />
       </span>
     {/if}
     {#if !iconOnly}
@@ -297,10 +303,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     }
 
     &.btn-active {
-      background: var(--color-surfaceWhiteAlphaStrong);
+      background: var(--color-surfaceSecondary1);
       color: var(--color-interactionReversedActive);
       &:hover {
-        background: var(--color-interactionReversedHover);
+        background: var(--color-surfaceSecondary1);
         color: var(--color-interactionReversedActiveHover);
       }
 
