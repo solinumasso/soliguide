@@ -28,7 +28,6 @@ export const CATEGORIES_SPECIFIC_FIELDS_CATEGORY_MAPPING: CategoriesSpecificFiel
     [Categories.WELLNESS]: ["wellnessActivityName"],
     [Categories.SPORT_ACTIVITIES]: ["activityName"],
     [Categories.OTHER_ACTIVITIES]: ["activityName"],
-    [Categories.MOBILITY_ASSISTANCE]: ["mobilityAssistanceName"],
     [Categories.FRENCH_COURSE]: ["courseType"],
     [Categories.DOMICILIATION]: ["domiciliationType"],
     [Categories.HYGIENE_PRODUCTS]: ["hygieneProductType"],
