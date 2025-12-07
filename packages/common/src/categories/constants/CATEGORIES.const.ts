@@ -787,37 +787,53 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
     id: Categories.MOBILITY,
     children: [
       {
-        id: Categories.CARPOOLING,
+        id: Categories.TRANSPORTATION_MOBILITY,
         rank: 100,
       },
       {
-        id: Categories.PROVISION_OF_VEHICLES,
+        id: Categories.PERSONAL_VEHICLE_ACCESS,
         rank: 200,
       },
       {
-        id: Categories.CHAUFFEUR_DRIVEN_TRANSPORT,
+        id: Categories.VEHICLE_MAINTENANCE,
         rank: 300,
       },
       {
-        id: Categories.MOBILITY_ASSISTANCE,
+        id: Categories.MOBILITY_SUPPORT,
         rank: 400,
+      },
+      {
+        id: Categories.DRIVING_LICENSE,
+        rank: 500,
+      },
+      {
+        id: Categories.MOBILITY_FINANCING,
+        rank: 600,
       },
     ],
   },
   {
-    id: Categories.CARPOOLING,
+    id: Categories.TRANSPORTATION_MOBILITY,
     children: [],
   },
   {
-    id: Categories.PROVISION_OF_VEHICLES,
+    id: Categories.PERSONAL_VEHICLE_ACCESS,
     children: [],
   },
   {
-    id: Categories.CHAUFFEUR_DRIVEN_TRANSPORT,
+    id: Categories.VEHICLE_MAINTENANCE,
     children: [],
   },
   {
-    id: Categories.MOBILITY_ASSISTANCE,
+    id: Categories.MOBILITY_SUPPORT,
+    children: [],
+  },
+  {
+    id: Categories.DRIVING_LICENSE,
+    children: [],
+  },
+  {
+    id: Categories.MOBILITY_FINANCING,
     children: [],
   },
 ];
