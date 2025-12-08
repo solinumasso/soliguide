@@ -664,6 +664,7 @@
   "EXPORTS_WORD_FOOTER_MESSAGE": "ندعوك للتحقق من المعلومات مباشرة على Soliguide.fr",
   "EXPORTS_WORD_HEADER": "إذا كنت بحاجة إلى سكن طارئ ، يجب عليك الاتصال بـ 115. إذا كنت بلا مأوى ولا مكان للإقامة ، يمكنك أيضًا الاتصال بـ 115 لطلب تدخل أحد اللصوص.",
   "EXPORTS_WORD_WARNING_HEADER": "تنبيه ، ننصحك بالتحقق من التغييرات / الإغلاق المحتملة عبر الرابط أو مباشرة على Soliguide.fr",
+  "EXPORT_CLOSED_HOLIDAYS": "يرجى ملاحظة أنه مغلق في أيام العطل الرسمية.",
   "EXPORT_DATA": "تصدير البيانات (Excel ، Word ، pdf ، csv)",
   "EXPORT_IN_PROGRESS": "جاري التصدير (الرجاء الانتظار) …",
   "EXPORT_SOLIGUIDE_PLACES": "تصدير ملفات {{ brandName }} إلى CSV، PDF، Word وExcel",

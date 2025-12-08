@@ -664,6 +664,7 @@
   "EXPORTS_WORD_FOOTER_MESSAGE": "Nous vous invitons à vérifier les informations directement sur Soliguide.fr",
   "EXPORTS_WORD_HEADER": "Si vous avez besoin d’un hébergement d'urgence, il vous faut appeler le 115. Si vous êtes sans domicile et sans hébergement, vous pouvez également appeler le 115 pour demander l'intervention d'une maraude.",
   "EXPORTS_WORD_WARNING_HEADER": "Attention, nous vous conseillons de vérifier les potentiel.le.s changements / fermetures via le lien ou directement sur Soliguide.fr",
+  "EXPORT_CLOSED_HOLIDAYS": "Attention, fermé les jours fériés",
   "EXPORT_DATA": "Exporter les données (Excel, word, pdf, csv)",
   "EXPORT_IN_PROGRESS": "Export en cours (merci de patienter)…",
   "EXPORT_SOLIGUIDE_PLACES": "Exporter des fiches {{ brandName }} en CSV, PDF, Word et Excel",
