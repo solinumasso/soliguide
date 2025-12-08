@@ -664,6 +664,7 @@
   "EXPORTS_WORD_FOOTER_MESSAGE": "We invite you to check the information directly on Soliguide.fr",
   "EXPORTS_WORD_HEADER": "If you need emergency accommodation, you must call 115. If you are homeless and without accommodation, you can also call 115 to request the intervention of a marauder.",
   "EXPORTS_WORD_WARNING_HEADER": "Attention, we advise you to check the potential changes / closures via the link or directly on Soliguide.fr",
+  "EXPORT_CLOSED_HOLIDAYS": "Please note, closed on public holidays.",
   "EXPORT_DATA": "Export data (Excel, word, pdf, csv)",
   "EXPORT_IN_PROGRESS": "Export in progress (please wait)…",
   "EXPORT_SOLIGUIDE_PLACES": "Export {{ brandName }} files to CSV, PDF, Word and Excel",
