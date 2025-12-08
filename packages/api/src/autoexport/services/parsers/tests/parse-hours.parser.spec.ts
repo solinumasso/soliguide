@@ -367,4 +367,75 @@ describe("Parse hours, display in string", () => {
       "Monday: 9h to 12h - 14h to 19h\nTuesday to Friday: 9h to 17h\nSunday: 9h30 to 11h - 13h30 to 15h - 23h30 to 19h"
     );
   });
+
+  it("Display closed holidays message when place is closed on public holidays (EN)", () => {
+    const hoursWithClosedHolidays: CommonOpeningHours = {
+      description: "",
+      closedHolidays: PlaceClosedHolidays.CLOSED,
+      monday: {
+        open: true,
+        timeslot: [
+          {
+            end: 1700,
+            start: 900,
+          },
+        ],
+      },
+      tuesday: {
+        open: true,
+        timeslot: [
+          {
+            end: 1700,
+            start: 900,
+          },
+        ],
+      },
+      wednesday: {
+        open: true,
+        timeslot: [
+          {
+            end: 1700,
+            start: 900,
+          },
+        ],
+      },
+      thursday: {
+        open: true,
+        timeslot: [
+          {
+            end: 1700,
+            start: 900,
+          },
+        ],
+      },
+      friday: {
+        open: true,
+        timeslot: [
+          {
+            end: 1700,
+            start: 900,
+          },
+        ],
+      },
+      saturday: {
+        open: false,
+        timeslot: [],
+      },
+      sunday: {
+        open: false,
+        timeslot: [],
+      },
+    };
+
+    expect(
+      parseHours(
+        hoursWithClosedHolidays,
+        SupportedLanguagesCode.EN,
+        false,
+        true
+      )
+    ).toEqual(
+      "Please note, closed on public holidays.\nMonday to Friday: 9h to 17h"
+    );
+  });
 });

@@ -664,6 +664,7 @@
   "EXPORTS_WORD_FOOTER_MESSAGE": "ما از شما دعوت می کنیم که اطلاعات را مستقیماً در Soliguide.fr بررسی کنید",
   "EXPORTS_WORD_HEADER": "اگر نیاز به اسکان اضطراری دارید، باید با 115 تماس بگیرید. اگر بی خانمان و بدون مسکن هستید، می توانید برای درخواست مداخله یک غارتگر نیز با 115 تماس بگیرید.",
   "EXPORTS_WORD_WARNING_HEADER": "توجه، ما به شما توصیه می کنیم تغییرات / بسته شدن احتمالی را از طریق پیوند یا مستقیماً در Soliguide.fr بررسی کنید.",
+  "EXPORT_CLOSED_HOLIDAYS": "لطفا توجه داشته باشید، در تعطیلات رسمی تعطیل است.",
   "EXPORT_DATA": "صادرات داده ها (Excel، word، pdf، csv)",
   "EXPORT_IN_PROGRESS": "صادرات در حال انجام است (لطفاً صبر کنید)…",
   "EXPORT_SOLIGUIDE_PLACES": "فایل های {{ brandName }} را به CSV، PDF، Word و Excel صادر کنید",
