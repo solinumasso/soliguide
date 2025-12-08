@@ -25,6 +25,7 @@ import {
   DayName,
   capitalize,
   CommonTimeslot,
+  PlaceClosedHolidays,
 } from "@soliguide/common";
 
 import { translator } from "../../../config/i18n.config";
@@ -94,7 +95,7 @@ export const parseHours = (
 
   WEEK_DAYS.forEach((day: DayName) => {
     const dayName: string = translator
-      .t("DAY_" + day.toUpperCase(), { lng: language })
+      .t(`DAY_${day.toUpperCase()}`, { lng: language })
       .toLowerCase();
 
     const dayHoursString = readableTimeslot(hours[day].timeslot, language);
@@ -136,7 +137,7 @@ export const parseHours = (
 
     // Only one day
     if (days.length === 1) {
-      const oneDay = capitalize(days[0] + ": " + line.hours);
+      const oneDay = capitalize(`${days[0]}: ${line.hours}`);
 
       if (displayClosedDays || line.hours !== closedText) {
         lines.push(oneDay);
@@ -145,13 +146,7 @@ export const parseHours = (
     // Multiple days, we merge first and last value
     else {
       const multipleDays = capitalize(
-        days[0] +
-          " " +
-          linkDays +
-          " " +
-          days[days.length - 1] +
-          ": " +
-          line.hours
+        `${days[0]} ${linkDays} ${days[days.length - 1]}: ${line.hours}`
       );
 
       if (displayClosedDays || line.hours !== closedText) {
@@ -163,6 +158,16 @@ export const parseHours = (
   weekOpeningHoursString = lines.join("\n");
   if (hideMinutes) {
     weekOpeningHoursString = weekOpeningHoursString.replace(/h00/g, "h");
+  }
+
+  // Add holidays information at the beginning if the place is closed on holidays
+  if (hours?.closedHolidays === PlaceClosedHolidays.CLOSED) {
+    const closedHolidaysText = translator.t("EXPORT_CLOSED_HOLIDAYS", {
+      lng: language,
+    });
+    weekOpeningHoursString = `${closedHolidaysText}${
+      weekOpeningHoursString ? `\n${weekOpeningHoursString}` : ""
+    }`;
   }
 
   return weekOpeningHoursString.replace(/^\s+|\s+$/g, "");
