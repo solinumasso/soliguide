@@ -1,3 +1,10 @@
+# [4.117.0](https://github.com/solinumasso/soliguide/compare/v4.116.0...v4.117.0) (2025-12-08)
+
+
+### Features
+
+* **api:** mention closed holidays on exports ([d5bb5d7](https://github.com/solinumasso/soliguide/commit/d5bb5d764507bfd7a35ea999757d087533bfec07))
+
 # [4.116.0](https://github.com/solinumasso/soliguide/compare/v4.115.0...v4.116.0) (2025-12-04)
 
 
