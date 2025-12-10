@@ -38,7 +38,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import type { ThemeDefinition } from '$lib/theme/types';
   import type { LocationSuggestion } from '$lib/models/locationSuggestion';
-  import type { Categories } from '@soliguide/common';
+  import { getCategoryTranslationKey, type Categories } from '@soliguide/common';
   import { CategoriesErrors, LocationErrors } from '$lib/services/types';
 
   setContext('CAPTURE_FCTN_CTX_KEY', pageStore.captureEvent);
@@ -54,7 +54,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     category: url.searchParams.get('category')
   });
 
-  $: categoryLabel = $i18n.t(($pageStore.selectedCategory || '').toUpperCase());
+  $: categoryLabel = $i18n.t(getCategoryTranslationKey($pageStore.selectedCategory));
   $: topbarTitleKey =
     $pageStore.currentStep === Steps.STEP_LOCATION
       ? 'WHERE_ARE_YOU_LOOKING'

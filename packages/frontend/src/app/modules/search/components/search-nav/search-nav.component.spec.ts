@@ -38,6 +38,7 @@ import { SearchNavComponent } from "./search-nav.component";
 import { Search } from "../../interfaces";
 import { CommonPosthogMockService } from "../../../../../../mocks";
 import { PosthogService } from "../../../analytics/services/posthog.service";
+import { CategoryTranslateKeyPipe } from "../../../shared/pipes";
 
 describe("SearchNavComponent", () => {
   let component: SearchNavComponent;
@@ -45,7 +46,7 @@ describe("SearchNavComponent", () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [SearchNavComponent],
+      declarations: [SearchNavComponent, CategoryTranslateKeyPipe],
       imports: [
         HttpClientTestingModule,
         NgbModule,

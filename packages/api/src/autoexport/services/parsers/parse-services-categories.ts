@@ -24,6 +24,7 @@ import {
   capitalize,
   Categories,
   CommonNewPlaceService,
+  getCategoryTranslationKey,
 } from "@soliguide/common";
 
 import { translator } from "../../../config/i18n.config";
@@ -32,7 +33,7 @@ export const translateServiceName = (
   category: Categories,
   language: SupportedLanguagesCode
 ): string => {
-  return translator.t(category.toUpperCase(), { lng: language });
+  return translator.t(getCategoryTranslationKey(category), { lng: language });
 };
 
 export const getAllServicesNames = (

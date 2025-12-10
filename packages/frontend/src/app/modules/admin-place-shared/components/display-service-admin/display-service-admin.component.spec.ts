@@ -27,6 +27,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
 import { DisplayServiceAdminComponent } from "./display-service-admin.component";
 import { ONLINE_PLACE_MOCK } from "../../../../../../mocks/ONLINE_PLACE.mock";
+import { CategoryTranslateKeyPipe } from "../../../shared/pipes";
 
 describe("DisplayServiceAdminComponent", () => {
   let component: DisplayServiceAdminComponent;
@@ -34,11 +35,11 @@ describe("DisplayServiceAdminComponent", () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [DisplayServiceAdminComponent],
+      declarations: [DisplayServiceAdminComponent, CategoryTranslateKeyPipe],
       imports: [
         HttpClientTestingModule,
-        TranslateModule.forRoot({}),
         NgbModule,
+        TranslateModule.forRoot({}),
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();

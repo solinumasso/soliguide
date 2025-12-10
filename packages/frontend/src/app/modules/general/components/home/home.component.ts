@@ -32,6 +32,7 @@ import {
   FlatCategoriesTreeNode,
   FlatOrderCategoriesTreeNode,
   type LocationAutoCompleteAddress,
+  getCategoryTranslationKey,
 } from "@soliguide/common";
 import type { PosthogProperties } from "@soliguide/common-angular";
 
@@ -161,7 +162,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public putTextCat(value: Categories | string) {
     this.search.category = value as Categories;
-    this.search.label = this.translateService.instant(value.toUpperCase());
+    this.search.label = this.translateService.instant(
+      getCategoryTranslationKey(value)
+    );
 
     this.searchInputValue = this.search.label;
 

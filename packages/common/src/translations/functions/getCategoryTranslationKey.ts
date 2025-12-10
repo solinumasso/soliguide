@@ -18,14 +18,10 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-//@index('./*.pipe.ts', f => `export * from '${f.path}'`)
-export * from "./category-translate-key.pipe";
-export * from "./convert-km-to-meters.pipe";
-export * from "./date-proxy.pipe";
-export * from "./format-big-number.pipe";
-export * from "./html-to-text.pipe";
-export * from "./limit-to.pipe";
-export * from "./readable-parcours.pipe";
-export * from "./safe-html.pipe";
-export * from "./uc-first.pipe";
-export * from "./user-fullname.pipe";
+import { Categories } from "../../categories";
+
+export function getCategoryTranslationKey(
+  category: string | Categories | null
+): string {
+  return category ? `CAT_${category.toUpperCase()}` : "";
+}
