@@ -26,6 +26,7 @@ import { FormsModule } from "@angular/forms";
 import { TranslateModule } from "@ngx-translate/core";
 
 import { FormChooseCategoryFicheComponent } from "./choose-category.component";
+import { CategoryTranslateKeyPipe } from "../../../../../shared/pipes";
 
 import { SERVICE_MOCK } from "../../../../../../../../mocks/SERVICE.mock";
 import {
@@ -40,7 +41,10 @@ describe("FormChooseCategoryFicheComponent", () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [FormChooseCategoryFicheComponent],
+      declarations: [
+        FormChooseCategoryFicheComponent,
+        CategoryTranslateKeyPipe,
+      ],
       imports: [FormsModule, TranslateModule.forRoot()],
       providers: [{ provide: APP_BASE_HREF, useValue: "/" }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],

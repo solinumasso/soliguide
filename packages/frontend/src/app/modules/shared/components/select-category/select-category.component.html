@@ -51,11 +51,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             ngbDropdownItem
           >
             <input
-              [attr.aria-label]="categoryNode.id | uppercase | translate"
+              [attr.aria-label]="
+                categoryNode.id | categoryTranslateKey | translate
+              "
               [checked]="categories.includes(categoryNode.id)"
               type="checkbox"
             />
-            <span>{{ categoryNode.id | uppercase | translate }}</span>
+            <span>{{
+              categoryNode.id | categoryTranslateKey | translate
+            }}</span>
           </button>
           <ng-container *ngFor="let categoryChild of categoryNode.children">
             <button
@@ -66,12 +70,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               class="ps-3"
             >
               <input
-                [attr.aria-label]="categoryChild.id | uppercase | translate"
+                [attr.aria-label]="
+                  categoryChild.id | categoryTranslateKey | translate
+                "
                 [checked]="categories.includes(categoryChild.id)"
                 type="checkbox"
               />
               <span class="fw-normal">{{
-                categoryChild.id | uppercase | translate
+                categoryChild.id | categoryTranslateKey | translate
               }}</span>
             </button>
           </ng-container>

@@ -36,7 +36,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           captureEvent('click-category' + categoryWithChildren.toUpperCase())
         "
       >
-        {{ categoryWithChildren | uppercase | translate }}
+        {{ categoryWithChildren | categoryTranslateKey | translate }}
       </a>
     </li>
   </ul>
@@ -66,7 +66,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         queryParamsHandling="preserve"
         (click)="captureEvent('click-category' + categoryParentNode.id)"
       >
-        {{ categoryParentNode.id | uppercase | translate }}
+        {{ categoryParentNode.id | categoryTranslateKey | translate }}
       </a>
     </li>
 
@@ -82,7 +82,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           queryParamsHandling="preserve"
           (click)="captureEvent('click-service-' + categoryId.id)"
         >
-          {{ categoryId.id | uppercase | translate }}
+          {{ categoryId.id | categoryTranslateKey | translate }}
         </a>
       </li>
     </ng-container>

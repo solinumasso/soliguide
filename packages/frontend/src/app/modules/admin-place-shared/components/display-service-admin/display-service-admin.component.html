@@ -33,7 +33,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       ></span>
 
       <span *ngIf="isCategoryExist">
-        {{ service.category | uppercase | translate }}
+        {{ service.category | categoryTranslateKey | translate }}
       </span>
       <ng-container *ngIf="service.categorySpecificFields">
         <ng-container

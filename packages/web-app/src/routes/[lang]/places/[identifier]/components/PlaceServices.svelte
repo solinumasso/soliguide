@@ -37,7 +37,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import DOMPurify from 'dompurify';
   import Warning from 'svelte-google-materialdesign-icons/Warning_amber.svelte';
   import type { PlaceTempInfoHoursReady, Service } from '$lib/models/types';
-  import { TempInfoStatus, type DayName } from '@soliguide/common';
+  import { getCategoryTranslationKey, TempInfoStatus, type DayName } from '@soliguide/common';
   import type { I18nStore } from '$lib/client/types';
   import { formatDateToLocale } from '$lib/client/date';
   import { page } from '$app/stores';
@@ -80,7 +80,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           {#if description || hours || info.length || saturation || tempClosure}
             <section class="service-accordion">
               <Accordion
-                title={$i18n.t(category.toUpperCase())}
+                title={$i18n.t(getCategoryTranslationKey(category))}
                 isExpanded={index === 0}
                 key={`${category}-${index}`}
                 shy={index === services.length - 1}
@@ -135,7 +135,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <section class="service-list">
               <ListItem
                 shape={index === services.length - 1 ? 'default' : 'bordered'}
-                title={$i18n.t(category.toUpperCase())}
+                title={$i18n.t(getCategoryTranslationKey(category))}
               >
                 <span slot="icon">
                   <CategoryIcon categoryId={category} />

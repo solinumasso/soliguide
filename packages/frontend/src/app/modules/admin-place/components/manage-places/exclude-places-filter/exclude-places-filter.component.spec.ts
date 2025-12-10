@@ -25,6 +25,7 @@ import { FormsModule } from "@angular/forms";
 
 import { ExcludePlacesFilterComponent } from "./exclude-places-filter.component";
 import { Categories } from "@soliguide/common";
+import { CategoryTranslateKeyPipe } from "../../../../shared/pipes";
 
 describe("ExcludePlacesFilterComponent", () => {
   let component: ExcludePlacesFilterComponent;
@@ -32,7 +33,7 @@ describe("ExcludePlacesFilterComponent", () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ExcludePlacesFilterComponent],
+      declarations: [ExcludePlacesFilterComponent, CategoryTranslateKeyPipe],
       imports: [FormsModule, TranslateModule.forRoot({})],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
     }).compileComponents();

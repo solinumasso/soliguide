@@ -21,7 +21,11 @@
 import { TranslateService } from "@ngx-translate/core";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
-import { Categories, getCategoriesService } from "@soliguide/common";
+import {
+  Categories,
+  getCategoriesService,
+  getCategoryTranslationKey,
+} from "@soliguide/common";
 
 @Component({
   selector: "app-select-category",
@@ -70,10 +74,10 @@ export class SelectCategoryComponent implements OnInit {
       displayValue = displayValue
         ? displayValue.concat(
             ", ",
-            this.translateService.instant(category.toUpperCase())
+            this.translateService.instant(getCategoryTranslationKey(category))
           )
         : displayValue.concat(
-            this.translateService.instant(category.toUpperCase())
+            this.translateService.instant(getCategoryTranslationKey(category))
           );
     }
 

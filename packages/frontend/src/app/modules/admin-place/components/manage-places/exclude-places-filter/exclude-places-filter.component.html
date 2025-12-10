@@ -47,7 +47,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             [checked]="categoriesToExclude.includes(catToExclude)"
             type="checkbox"
           />
-          <span>{{ catToExclude | uppercase | translate }}</span>
+          <span>{{ catToExclude | categoryTranslateKey | translate }}</span>
         </button>
       </ng-container>
     </div>

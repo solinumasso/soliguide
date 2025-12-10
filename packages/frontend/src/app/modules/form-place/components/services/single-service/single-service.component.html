@@ -28,7 +28,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <div class="col-11 service-form-header-inner-container">
       <div class="service-title-container">
         <span *ngIf="service.category" class="service-title">
-          {{ service.category | uppercase | translate }}
+          {{ service.category | categoryTranslateKey | translate }}
         </span>
         <span class="text-danger" *ngIf="!service.category">
           {{ "CHOOSE_SINGLE_CATEGORY" | translate }}

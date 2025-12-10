@@ -88,7 +88,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <div class="row align-items-center">
               <div class="col-8">
                 <span *ngIf="service.category">
-                  {{ service.category | uppercase | translate }}
+                  {{ service.category | categoryTranslateKey | translate }}
                 </span>
                 <span *ngIf="service.categorySpecificFields?.length"
                   >: {{ service.categorySpecificFields | lowercase }}</span

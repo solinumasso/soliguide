@@ -30,7 +30,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import type { ThemeDefinition } from '$lib/theme/types';
   import { get } from 'svelte/store';
   import { themeStore } from '$lib/theme';
-  import { Categories } from '@soliguide/common';
+  import { Categories, getCategoryTranslationKey } from '@soliguide/common';
   import { CategoryIcon } from '$lib/components';
   import MoreHoriz from 'svelte-google-materialdesign-icons/More_horiz.svelte';
 
@@ -54,37 +54,39 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     variant: 'primary' | 'secondary' | 'tertiary';
   }[] = [
     {
-      label: $i18n.t(Categories.FOOD.toUpperCase()),
+      label: $i18n.t(getCategoryTranslationKey(Categories.FOOD)),
       iconCategory: Categories.FOOD,
       iconComponent: CategoryIcon,
       variant: 'primary'
     },
     {
-      label: $i18n.t(Categories.TRAINING_AND_JOBS.toUpperCase()),
+      label: $i18n.t(getCategoryTranslationKey(Categories.TRAINING_AND_JOBS)),
       iconCategory: Categories.TRAINING_AND_JOBS,
       iconComponent: CategoryIcon,
       variant: 'secondary'
     },
     {
-      label: $i18n.t(Categories.COUNSELING.toUpperCase()),
+      label: $i18n.t(getCategoryTranslationKey(Categories.COUNSELING)),
       iconCategory: Categories.COUNSELING,
       iconComponent: CategoryIcon,
       variant: 'tertiary'
     },
     {
-      label: $i18n.t(`${Categories.EQUIPMENT.toUpperCase()}_${Categories.CLOTHING.toUpperCase()}`),
+      label: $i18n.t(
+        `${getCategoryTranslationKey(Categories.EQUIPMENT)}_${Categories.CLOTHING.toUpperCase()}`
+      ),
       iconCategory: Categories.EQUIPMENT,
       iconComponent: CategoryIcon,
       variant: 'primary'
     },
     {
-      label: $i18n.t(Categories.HEALTH.toUpperCase()),
+      label: $i18n.t(getCategoryTranslationKey(Categories.HEALTH)),
       iconCategory: Categories.HEALTH,
       iconComponent: CategoryIcon,
       variant: 'secondary'
     },
     {
-      label: $i18n.t(Categories.HYGIENE_AND_WELLNESS.toUpperCase()),
+      label: $i18n.t(getCategoryTranslationKey(Categories.HYGIENE_AND_WELLNESS)),
       iconCategory: Categories.HYGIENE_AND_WELLNESS,
       iconComponent: CategoryIcon,
       variant: 'tertiary'

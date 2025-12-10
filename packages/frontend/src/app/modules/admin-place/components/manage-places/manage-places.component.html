@@ -311,7 +311,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <b>{{ "FILTERS_USED" | translate }} :</b>
 
     <span *ngIf="search.category" class="btn btn-light btn-sm mx-1">
-      {{ search.category | uppercase | translate | lowercase }} :
+      {{ search.category | categoryTranslateKey | translate | lowercase }} :
 
       <fa-icon
         (click)="clearWordOrCategory()"

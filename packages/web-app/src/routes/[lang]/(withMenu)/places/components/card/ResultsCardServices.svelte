@@ -24,7 +24,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import { CategoryIcon } from '$lib/components';
   import type { I18nStore } from '$lib/client/types';
-  import type { Categories } from '@soliguide/common';
+  import { getCategoryTranslationKey, type Categories } from '@soliguide/common';
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
 
@@ -44,7 +44,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     {#each servicesToDisplay as service}
       <li class="services-item">
         <CategoryIcon categoryId={service} />
-        <Text as="span" color="shy" type="text2">{$i18n.t(service.toUpperCase())}</Text>
+        <Text as="span" color="shy" type="text2">{$i18n.t(getCategoryTranslationKey(service))}</Text
+        >
       </li>
     {/each}
     {#if servicesHidden.length > 0}

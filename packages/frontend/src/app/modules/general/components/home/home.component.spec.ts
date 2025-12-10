@@ -22,6 +22,7 @@ import {
   SupportedLanguagesCode,
   GeoPosition,
   Categories,
+  getCategoryTranslationKey,
 } from "@soliguide/common";
 import { APP_BASE_HREF } from "@angular/common";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
@@ -38,6 +39,7 @@ import { HomeComponent } from "./home.component";
 
 import { CurrentLanguageService } from "../../services/current-language.service";
 import { SeoService } from "../../../shared/services/seo.service";
+import { CategoryTranslateKeyPipe } from "../../../shared/pipes";
 import { globalConstants } from "../../../../shared/functions";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { CommonPosthogMockService } from "../../../../../../mocks";
@@ -58,7 +60,7 @@ describe("HomeComponent", () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [HomeComponent],
+      declarations: [HomeComponent, CategoryTranslateKeyPipe],
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
@@ -128,7 +130,7 @@ describe("HomeComponent", () => {
     component.putTextCat(Categories.WELCOME.toString());
     expect(component.search.category).toBe(Categories.WELCOME);
     expect(component.search.label).toBe(
-      translateService.instant(Categories.WELCOME.toUpperCase())
+      translateService.instant(getCategoryTranslationKey(Categories.WELCOME))
     );
     expect(spyOnScroll).toHaveBeenCalled();
   });
