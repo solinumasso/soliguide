@@ -82,13 +82,17 @@ export function checkUserTerritoryRights(
     );
   }
 
-  territories.forEach((territory) => {
-    if (!userTerritories.includes(territory)) {
-      throw new Error(
-        `You do not have the rights necessary to seek on this territory: "${territory}" (country: ${country})`
-      );
-    }
-  });
+  const hasAtLeastOneTerritory = territories.some((territory) =>
+    userTerritories.includes(territory)
+  );
+
+  if (!hasAtLeastOneTerritory) {
+    throw new Error(
+      `You do not have the rights necessary to seek on any of these territories: ${territories.join(
+        ", "
+      )} (country: ${country})`
+    );
+  }
 
   return true;
 }
