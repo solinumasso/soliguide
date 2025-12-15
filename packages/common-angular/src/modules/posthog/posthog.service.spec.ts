@@ -33,7 +33,7 @@ const mockedPosthog = posthog as jest.Mocked<PostHog>;
 const baseConfig: PosthogConfig = {
   posthogUrl: "https://foo.bar",
   posthogLibraryName: "baz",
-  soliguideApiUrl: "https://bar.foo/",
+  soliguideApiUrl: "https://bar.foo",
 };
 
 describe("PosthogService", () => {

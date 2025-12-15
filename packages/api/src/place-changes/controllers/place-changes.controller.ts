@@ -23,14 +23,14 @@ import { isDeepStrictEqual } from "util";
 
 import {
   CAMPAIGN_DEFAULT_NAME,
+  CommonPlaceChanges,
+  getTerritoryAndCountryFromPlace,
   PlaceChangesSection,
   PlaceChangesStatus,
-  UserStatus,
+  SearchResults,
   type ApiPlace,
   type CampaignChangesSection,
-  getTerritoryAndCountryFromPlace,
-  SearchResults,
-  CommonPlaceChanges,
+  UserStatus,
 } from "@soliguide/common";
 
 import type {

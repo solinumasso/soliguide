@@ -71,28 +71,6 @@ const bree = new Bree({
     //   ),
     // },
     // ----
-    // AIRTABLE
-    {
-      interval: "every 30 seconds",
-      name: "[AIRTABLE] Synchronizes created and updated data",
-      path: join(
-        __dirname,
-        "jobs",
-        "airtable",
-        `sync-at-soliguide.job${defaultExtension}`
-      ),
-    },
-    {
-      interval: "at 4:00 am",
-      name: "[AIRTABLE] Synchronizes places closing status",
-      path: join(
-        __dirname,
-        "jobs",
-        "airtable",
-        `sync-place-closed-today.job${defaultExtension}`
-      ),
-    },
-    // ----
     // PLACES
     {
       interval: "at 3:00 am",

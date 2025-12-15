@@ -35,4 +35,5 @@ export type PopulatedUser = Pick<
   | "territories"
   | "verified"
   | "user_id"
+  | "areas"
 >;

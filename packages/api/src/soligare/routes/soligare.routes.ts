@@ -36,7 +36,7 @@ router.post(
 
     try {
       const result = await axios.post(
-        `${CONFIG.SOLIGARE_URL}source/available`,
+        `${CONFIG.SOLIGARE_URL}/source/available`,
         search
       );
 
@@ -60,7 +60,7 @@ router.get(
 
     try {
       const result = await axios.get(
-        `${CONFIG.SOLIGARE_URL}source/details/${sourceId}`
+        `${CONFIG.SOLIGARE_URL}/source/details/${sourceId}`
       );
 
       return res.status(result.status).json(result.data);
@@ -81,7 +81,7 @@ router.post(
 
     try {
       const result = await axios.post(
-        `${CONFIG.SOLIGARE_URL}pairing/to-pair`,
+        `${CONFIG.SOLIGARE_URL}/pairing/to-pair`,
         search
       );
 
@@ -105,7 +105,7 @@ router.get(
 
     try {
       const result = await axios.get(
-        `${CONFIG.SOLIGARE_URL}pairing/external-structure/${sourceId}`
+        `${CONFIG.SOLIGARE_URL}/pairing/external-structure/${sourceId}`
       );
 
       return res.status(result.status).json(result.data);
@@ -126,7 +126,7 @@ router.post(
 
     try {
       const result = await axios.post(
-        `${CONFIG.SOLIGARE_URL}pairing/pair`,
+        `${CONFIG.SOLIGARE_URL}/pairing/pair`,
         search
       );
 
@@ -150,7 +150,7 @@ router.delete(
 
     try {
       const result = await axios.delete(
-        `${CONFIG.SOLIGARE_URL}pairing/pair/${soliguideUuid}`
+        `${CONFIG.SOLIGARE_URL}/pairing/pair/${soliguideUuid}`
       );
 
       return res.status(result.status).json(result.data);

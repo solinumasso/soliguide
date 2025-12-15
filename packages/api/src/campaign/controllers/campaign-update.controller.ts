@@ -186,7 +186,7 @@ export const setRemindMeLater = async (
   place: ApiPlace,
   date: Date,
   user: UserForLogs
-): Promise<ApiPlace> => {
+): Promise<ModelWithId<ApiPlace>> => {
   const update: { [key: string]: Date } = {};
 
   update[`campaigns.${CAMPAIGN_DEFAULT_NAME}.remindMeDate`] = date;

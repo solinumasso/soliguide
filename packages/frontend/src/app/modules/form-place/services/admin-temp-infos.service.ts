@@ -39,7 +39,7 @@ import { environment } from "../../../../environments/environment";
   providedIn: "root",
 })
 export class AdminTempInfosService {
-  public endPoint = environment.apiUrl + "temp-infos/";
+  public endPoint = `${environment.apiUrl}/temp-infos`;
 
   constructor(public http: HttpClient) {}
 
@@ -48,7 +48,7 @@ export class AdminTempInfosService {
     tempInfoType: TempInfoType
   ): Observable<ApiTempInfoResponse> => {
     return this.http.get<ApiTempInfoResponse>(
-      `${this.endPoint}${tempInfoType}/${lieuId}`
+      `${this.endPoint}/${tempInfoType}/${lieuId}`
     );
   };
 
@@ -58,7 +58,7 @@ export class AdminTempInfosService {
     tempInfoType: TempInfoType
   ): Observable<ApiTempInfoResponse> => {
     return this.http.patch<ApiTempInfoResponse>(
-      `${this.endPoint}${tempInfoType}/${lieuId}`,
+      `${this.endPoint}/${tempInfoType}/${lieuId}`,
       tempInfo
     );
   };
@@ -73,7 +73,7 @@ export class AdminTempInfosService {
     tempInfoType: TempInfoType
   ): Observable<boolean> => {
     return this.http.post<boolean>(
-      `${this.endPoint}check-date-interval/${lieuId}/${tempInfoType}`,
+      `${this.endPoint}/check-date-interval/${lieuId}/${tempInfoType}`,
       infos
     );
   };
@@ -84,7 +84,7 @@ export class AdminTempInfosService {
     tempInfoType: TempInfoType
   ): Observable<ApiTempInfoResponse> => {
     return this.http.delete<ApiTempInfoResponse>(
-      `${this.endPoint}${tempInfoType}/${lieuId}/${tempInfoId}`
+      `${this.endPoint}/${tempInfoType}/${lieuId}/${tempInfoId}`
     );
   };
 
@@ -94,7 +94,7 @@ export class AdminTempInfosService {
     services: BasePlaceTempInfo[]
   ): Observable<Place> => {
     return this.http
-      .patch<ApiPlace>(`${this.endPoint}services/${lieuId}`, services)
+      .patch<ApiPlace>(`${this.endPoint}/services/${lieuId}`, services)
       .pipe(
         map((updatedPlace: ApiPlace) => {
           return new Place(updatedPlace, true);

@@ -18,6 +18,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { PlaceType } from "@soliguide/common";
+import { body } from "express-validator";
 
-export type KeyPlaceTypeValueString = { [key in PlaceType]: string };
+export const idsToSyncDto = [
+  body("idsToSync").isArray(),
+  body("idsToSync.*").isInt(),
+];

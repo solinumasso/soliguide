@@ -25,7 +25,6 @@ const router = express.Router();
 import { UserStatus } from "@soliguide/common";
 
 import {
-  AirtableEntityType,
   ExpressRequest,
   ExpressResponse,
   OrganizationPopulate,
@@ -33,11 +32,6 @@ import {
 } from "../../_models";
 
 import { orgaDto, searchOrgasDto } from "../dto";
-
-import {
-  setEntityExcludedOrNot,
-  setMultipleEntitiesExcludedForSync,
-} from "../../airtable/services/airtableEntity.service";
 
 import {
   getPlaceFromUrl,
@@ -61,6 +55,11 @@ import {
   patchOrganization,
   removeOrganization,
 } from "../controllers/organization.controller";
+import { sendPlaceChangesToMq } from "../../place-changes/middlewares/send-place-changes-to-mq.middleware";
+import { getPlaceByParams } from "../../place/services/place.service";
+import { getPlacesAndUsersAndSync } from "../../middleware/events/getPlacesAndUsersAndSync.middleware";
+import { getUserByParams } from "../../user/services";
+import { sendUserChangesToMq } from "../../user/middlewares/send-user-changes-event-to-mq.middleware";
 
 /**
  * @swagger
@@ -96,9 +95,6 @@ router.get(
     try {
       const updatedOrga = await addPlaceToOrga(req.lieu, req.organization);
 
-      req.airtableEntity = req.lieu;
-      req.airtableEntityType = AirtableEntityType.PLACE;
-
       res.status(200).json(updatedOrga);
 
       next();
@@ -109,7 +105,16 @@ router.get(
         .json({ message: "ADD_PLACE_TO_ORGA_NOT_POSSIBLE" });
     }
   },
-  setEntityExcludedOrNot
+  async (req: ExpressRequest, _res: ExpressResponse, next: NextFunction) => {
+    const place = await getPlaceByParams({ _id: req.lieu._id });
+
+    if (place) {
+      req.updatedPlace = place;
+    }
+
+    return next();
+  },
+  sendPlaceChangesToMq
 );
 
 router.post(
@@ -163,9 +168,8 @@ router.patch(
         req.bodyValidated
       );
 
-      req.airtableEntities = result.users;
-      req.entityPlace = result.places;
-      req.airtableEntityType = AirtableEntityType.USER;
+      req.updatedPlaces = result.places;
+      req.updatedUsers = result.users;
 
       res.status(200).json(result);
 
@@ -175,16 +179,7 @@ router.patch(
       return res.status(400).json({ message: "UPDATE_ORGA_ERROR" });
     }
   },
-  setMultipleEntitiesExcludedForSync,
-  (req: ExpressRequest, _res: ExpressResponse, next: NextFunction) => {
-    req.airtableEntities = req.entityPlace;
-    req.airtableEntityType = AirtableEntityType.PLACE;
-    next();
-  },
-  setMultipleEntitiesExcludedForSync,
-  () => {
-    return null;
-  }
+  getPlacesAndUsersAndSync
 );
 
 // Delete a user from an organization
@@ -206,9 +201,6 @@ router.delete(
         req.organization
       );
 
-      req.airtableEntity = req.selectedUser;
-      req.airtableEntityType = AirtableEntityType.USER;
-
       res.status(200).json(updatedOrga);
 
       next();
@@ -217,7 +209,22 @@ router.delete(
       return res.status(400).json({ message: "DELETE_USER_FROM_FAIL" });
     }
   },
-  setEntityExcludedOrNot
+  async (
+    req: ExpressRequest & {
+      selectedUser: Required<UserPopulateType>;
+    },
+    _res: ExpressResponse,
+    next: NextFunction
+  ) => {
+    const user = await getUserByParams({ _id: req.selectedUser._id });
+
+    if (user) {
+      req.updatedUser = user;
+    }
+
+    return next();
+  },
+  sendUserChangesToMq
 );
 
 router.delete(
@@ -229,9 +236,6 @@ router.delete(
     try {
       const updatedOrga = await removePlaceFromOrga(req.organization, req.lieu);
 
-      req.airtableEntity = req.lieu;
-      req.airtableEntityType = AirtableEntityType.PLACE;
-
       res.status(200).json(updatedOrga);
 
       next();
@@ -240,7 +244,16 @@ router.delete(
       return res.status(400).json({ message: "DELETE_PLACE_FROM_ORGA" });
     }
   },
-  setEntityExcludedOrNot
+  async (req: ExpressRequest, _res: ExpressResponse, next: NextFunction) => {
+    const place = await getPlaceByParams({ _id: req.lieu._id });
+
+    if (place) {
+      req.updatedPlace = place;
+    }
+
+    return next();
+  },
+  sendPlaceChangesToMq
 );
 
 router.delete(
@@ -252,9 +265,8 @@ router.delete(
       const organization = req.organization as OrganizationPopulate;
       await removeOrganization(organization);
 
-      req.airtableEntities = organization.users;
-      req.entityPlace = organization.places;
-      req.airtableEntityType = AirtableEntityType.USER;
+      req.updatedPlaces = organization.places;
+      req.updatedUsers = organization.users;
 
       res.status(200).json({ message: "ORGA_DELETED_SUCCESS" });
 
@@ -264,16 +276,7 @@ router.delete(
       return res.status(400).json({ message: "DELETE_ORGA_FAIL" });
     }
   },
-  setMultipleEntitiesExcludedForSync,
-  (req: ExpressRequest, _res: ExpressResponse, next: NextFunction) => {
-    req.airtableEntities = req.entityPlace;
-    req.airtableEntityType = AirtableEntityType.PLACE;
-    next();
-  },
-  setMultipleEntitiesExcludedForSync,
-  () => {
-    return null;
-  }
+  getPlacesAndUsersAndSync
 );
 
 export default router;

@@ -39,7 +39,7 @@ import { environment } from "../../../../environments/environment";
   providedIn: "root",
 })
 export class PlaceChangesService {
-  public endPoint = `${environment.apiUrl}place-changes`;
+  public endPoint = `${environment.apiUrl}/place-changes`;
 
   constructor(private readonly http: HttpClient) {}
 

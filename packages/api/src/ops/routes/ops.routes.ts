@@ -18,25 +18,39 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import express from "express";
+import express, { NextFunction } from "express";
 
-import { UserStatus } from "@soliguide/common";
+import { ApiPlace, UserStatus } from "@soliguide/common";
 
-import { checkRights } from "../../middleware";
+import {
+  checkRights,
+  getFilteredData,
+  canGetOrEditUser,
+  syncUsersAndNext,
+  syncPlacesAndNext,
+} from "../../middleware";
 
-import { ExpressRequest, ExpressResponse } from "../../_models";
+import {
+  ExpressRequest,
+  ExpressResponse,
+  ModelWithId,
+  UserPopulateType,
+} from "../../_models";
 
-import { resetAirtableSync } from "../services/airtable-sync.service";
 import { setIsOpenToday } from "../../place/services/isOpenToday.service";
+import { findPlacesByParams } from "../../place/services/place.service";
+import { searchUsers } from "../../user/services";
+import { idsToSyncDto } from "../dto";
+import { canEditPlace } from "../../user/controllers/user-rights.controller";
 
 const router = express.Router();
 
 /**
  * @swagger
  *
- * /ops/reset-at-sync:
+ * /ops/reset-at-sync/users/all:
  *   post:
- *     description: Reset Airtable synchronization by setting lastSync to null for all non-excluded entities
+ *     description: Send all users to rabbitMQ to sync them with AT
  *     tags: [Ops]
  *     produces:
  *       - application/json
@@ -49,24 +63,174 @@ const router = express.Router();
  *      - bearerAuth: []
  */
 router.post(
-  "/reset-at-sync",
+  "/reset-at-sync/users/all",
   checkRights([UserStatus.ADMIN_SOLIGUIDE]),
-  async (req: ExpressRequest, res: ExpressResponse) => {
+  async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
     try {
-      req.log.info("OPS - RESET AT SYNC\tSTART");
+      req.updatedUsers = await searchUsers({});
 
-      const result = await resetAirtableSync();
-
-      req.log.info("OPS - RESET AT SYNC\tEND");
-
-      return res.status(200).json({
-        message: "AT_SYNC_RESET_SUCCESS",
-        ...result,
-      });
+      return next();
     } catch (e) {
       req.log.error(e, "AT_SYNC_RESET_ERROR");
       return res.status(500).json({ message: "AT_SYNC_RESET_ERROR" });
     }
+  },
+  syncUsersAndNext,
+  (_req: ExpressRequest, res: ExpressResponse) => {
+    return res.status(200).json({
+      message: "AT_SYNC_RESET_SUCCESS",
+    });
+  }
+);
+
+/**
+ * @swagger
+ *
+ * /ops/reset-at-sync/places/all:
+ *   post:
+ *     description: Send all places to rabbitMQ to sync them with AT
+ *     tags: [Ops]
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: AT_SYNC_RESET_SUCCESS
+ *       500:
+ *         description: AT_SYNC_RESET_ERROR
+ *     security:
+ *      - bearerAuth: []
+ */
+router.post(
+  "/reset-at-sync/places/all",
+  checkRights([UserStatus.ADMIN_SOLIGUIDE]),
+  async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
+    try {
+      req.updatedPlaces = await findPlacesByParams({}, true);
+
+      return next();
+    } catch (e) {
+      req.log.error(e, "AT_SYNC_RESET_ERROR");
+      return res.status(500).json({ message: "AT_SYNC_RESET_ERROR" });
+    }
+  },
+  syncPlacesAndNext,
+  (_req: ExpressRequest, res: ExpressResponse) => {
+    return res.status(200).json({
+      message: "AT_SYNC_RESET_SUCCESS",
+    });
+  }
+);
+
+/**
+ * @swagger
+ *
+ * /ops/reset-at-sync/users:
+ *   post:
+ *     description: Send selected users to rabbitMQ to sync them with AT
+ *     tags: [Ops]
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: AT_SYNC_RESET_SUCCESS
+ *       500:
+ *         description: AT_SYNC_RESET_ERROR
+ *     security:
+ *      - bearerAuth: []
+ */
+router.post(
+  "/reset-at-sync/users",
+  checkRights([UserStatus.ADMIN_SOLIGUIDE, UserStatus.ADMIN_TERRITORY]),
+  idsToSyncDto,
+  getFilteredData,
+  async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
+    try {
+      req.updatedUsers = await searchUsers({
+        user_id: { $in: req.bodyValidated.idsToSync },
+      });
+
+      return next();
+    } catch (e) {
+      req.log.error(e, "AT_SYNC_RESET_ERROR");
+      return res.status(500).json({ message: "AT_SYNC_RESET_ERROR" });
+    }
+  },
+  async (
+    req: ExpressRequest & { updatedUsers: UserPopulateType[] },
+    _res: ExpressResponse,
+    next: NextFunction
+  ) => {
+    req.updatedUsers = await Promise.all(
+      req.updatedUsers.filter(
+        async (user) => await canGetOrEditUser(req.user, user)
+      )
+    );
+
+    return next();
+  },
+  syncUsersAndNext,
+  (_req: ExpressRequest, res: ExpressResponse) => {
+    return res.status(200).json({
+      message: "AT_SYNC_RESET_SUCCESS",
+    });
+  }
+);
+
+/**
+ * @swagger
+ *
+ * /ops/reset-at-sync/places:
+ *   post:
+ *     description: Send selected places to rabbitMQ to sync them with AT
+ *     tags: [Ops]
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: AT_SYNC_RESET_SUCCESS
+ *       500:
+ *         description: AT_SYNC_RESET_ERROR
+ *     security:
+ *      - bearerAuth: []
+ */
+router.post(
+  "/reset-at-sync/places",
+  checkRights([UserStatus.ADMIN_SOLIGUIDE, UserStatus.ADMIN_TERRITORY]),
+  idsToSyncDto,
+  getFilteredData,
+  async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
+    try {
+      req.updatedPlaces = await findPlacesByParams(
+        {
+          lieu_id: { $in: req.bodyValidated.idsToSync },
+        },
+        true
+      );
+
+      return next();
+    } catch (e) {
+      req.log.error(e, "AT_SYNC_RESET_ERROR");
+      return res.status(500).json({ message: "AT_SYNC_RESET_ERROR" });
+    }
+  },
+  async (
+    req: ExpressRequest & { updatedPlaces: ModelWithId<ApiPlace>[] },
+    _res: ExpressResponse,
+    next: NextFunction
+  ) => {
+    req.updatedPlaces = await Promise.all(
+      req.updatedPlaces.filter(
+        async (place) => await canEditPlace(req.user, place)
+      )
+    );
+
+    return next();
+  },
+  syncPlacesAndNext,
+  (_req: ExpressRequest, res: ExpressResponse) => {
+    return res.status(200).json({
+      message: "AT_SYNC_RESET_SUCCESS",
+    });
   }
 );
 

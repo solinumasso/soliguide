@@ -41,8 +41,8 @@ import { User } from "../../../users/classes";
 import { AuthService } from "../../../users/services/auth.service";
 import { UsersService } from "../../../users/services/users.service";
 
-import { noWhiteSpace } from "../../../../shared";
-import { THEME_CONFIGURATION } from "../../../../models";
+import { noWhiteSpace, SyncService } from "../../../../shared";
+import { ApiError, ApiMessage, THEME_CONFIGURATION } from "../../../../models";
 
 @Component({
   selector: "app-admin-user",
@@ -58,6 +58,7 @@ export class AdminUserComponent implements OnInit, OnDestroy {
   public me!: User | null;
 
   public loading: boolean;
+  public syncLoading: boolean;
   public submitted: boolean;
 
   public readonly UserStatus = UserStatus;
@@ -71,9 +72,11 @@ export class AdminUserComponent implements OnInit, OnDestroy {
     private readonly toastr: ToastrService,
     private readonly translateService: TranslateService,
     private readonly usersService: UsersService,
-    private readonly currentLanguageService: CurrentLanguageService
+    private readonly currentLanguageService: CurrentLanguageService,
+    private readonly syncService: SyncService
   ) {
     this.loading = false;
+    this.syncLoading = false;
     this.submitted = false;
     this.user = new User();
   }
@@ -188,4 +191,21 @@ export class AdminUserComponent implements OnInit, OnDestroy {
       })
     );
   };
+
+  public syncUser(): void {
+    this.syncLoading = true;
+
+    this.subscription.add(
+      this.syncService.sync([this.user.user_id], "users").subscribe({
+        next: (value: ApiMessage) => {
+          this.syncLoading = false;
+          this.toastr.success(this.translateService.instant(value.message));
+        },
+        error: (error: ApiError) => {
+          this.syncLoading = false;
+          this.toastr.error(this.translateService.instant(error.message));
+        },
+      })
+    );
+  }
 }

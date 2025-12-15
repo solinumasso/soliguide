@@ -60,7 +60,7 @@ describe("UsersService", () => {
         });
 
       const req = httpMock.expectOne(
-        `${service.getEndPoint}signup-translator/`
+        `${service.getEndPoint}/signup-translator/`
       );
 
       expect(req.request.method).toBe("POST");
@@ -79,7 +79,7 @@ describe("UsersService", () => {
           expect(response).toBe("");
         });
 
-      const req = httpMock.expectOne(`${service.getEndPoint}signup/`);
+      const req = httpMock.expectOne(`${service.getEndPoint}/signup/`);
 
       expect(req.request.method).toBe("POST");
     });
@@ -101,9 +101,7 @@ describe("UsersService", () => {
         });
 
       const req = httpMock.expectOne(
-        environment.apiUrl +
-          "invite-user/accept-first-invitation/" +
-          DUMMY_INVIT
+        `${environment.apiUrl}/invite-user/accept-first-invitation/${DUMMY_INVIT}`
       );
 
       expect(req.request.method).toBe("POST");

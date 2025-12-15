@@ -42,6 +42,6 @@ export class Photo {
     this.createdAt = (photo && new Date(photo.createdAt)) ?? new Date();
     this.photoUrl = "";
 
-    this.photoUrl = environment.apiUrl + "medias/pictures/" + this.path;
+    this.photoUrl = `${environment.apiUrl}/medias/pictures/${this.path}`;
   }
 }

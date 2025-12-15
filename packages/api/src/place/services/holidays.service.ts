@@ -39,7 +39,7 @@ export class HolidaysService {
 
   constructor() {
     this.lastUpdate = null;
-    this.apiBaseUrl = `${CONFIG.SOLIGUIDE_LOCATION_API_URL}holidays/`;
+    this.apiBaseUrl = `${CONFIG.SOLIGUIDE_LOCATION_API_URL}/holidays/`;
 
     if (CONFIG.ENV === "test") {
       this.lastUpdate = new Date();

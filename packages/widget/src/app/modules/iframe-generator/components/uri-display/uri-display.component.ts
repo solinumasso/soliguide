@@ -52,7 +52,7 @@ export class UriDisplayComponent implements OnInit {
 
   constructor(private readonly analyticsService: AnalyticsService) {
     this.uri = "";
-    this.searchUri = `${environment.widgetUrl}search/SOLINUM/fr/none?`;
+    this.searchUri = `${environment.widgetUrl}/search/SOLINUM/fr/none?`;
   }
 
   public async ngOnInit() {

@@ -133,13 +133,37 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <fa-icon
           aria-hidden="true"
           [icon]="['fas', 'circle-notch']"
-          [spin]="true"
+          animation="spin"
         >
         </fa-icon>
         {{ "SEARCH_IN_PROGRESS" | translate }}
       </div>
     </div>
   </div>
+</div>
+
+<div
+  class="align-items-center justify-content-between d-flex py-3 flex-row-reverse"
+>
+  <button
+    type="button"
+    [disabled]="nbResults === 0 || loading || syncLoading"
+    class="btn btn-outline-primary m-1 row"
+    (click)="syncUsers()"
+  >
+    @if (syncLoading && idSyncedUser === null) {
+    <span class="px-1">{{ "SYNC_IN_PROGRESS" | translate }}</span>
+    <fa-icon
+      aria-hidden="true"
+      [icon]="['fas', 'sync']"
+      animation="spin"
+      class="px-1"
+    ></fa-icon>
+    } @else {
+    <span class="px-1">{{ "SYNC_USERS" | translate }}</span>
+    <fa-icon aria-hidden="true" [icon]="['fas', 'sync']" class="px-1"></fa-icon>
+    }
+  </button>
 </div>
 
 <div class="view" *ngIf="nbResults > 0 && !loading" @fadeInOut>
@@ -307,11 +331,26 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
           <td>
             <button
+              type="button"
+              class="btn btn-primary btn-sm text-center mx-1"
+              (click)="syncUsers(user.user_id)"
+              [attr.aria-label]="'SYNC_USER' | translate"
+              [ngbTooltip]="'SYNC_USER' | translate"
+            >
+              <fa-icon
+                aria-hidden="true"
+                [icon]="['fas', 'sync']"
+                [animation]="
+                  syncLoading && idSyncedUser === user.user_id ? 'spin' : null
+                "
+              ></fa-icon>
+            </button>
+            <button
               [disabled]="loading"
               [attr.aria-label]="'GENERATE_LINK_RESET_PASSWORD' | translate"
               [ngbTooltip]="'GENERATE_AND_COPY_LINK_RESET_PASSWORD' | translate"
               type="button"
-              class="btn btn-sm btn-warning"
+              class="btn btn-sm btn-warning mx-1"
               (click)="generateResetPasswordLink(user.mail)"
             >
               <fa-icon aria-hidden="true" [icon]="['fas', 'lock']"></fa-icon>
@@ -321,14 +360,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               [title]="'EDIT_USER' | translate"
               [ngbTooltip]="'EDIT_USER' | translate"
               target="_blank"
-              class="btn btn-sm btn-primary mx-2"
+              class="btn btn-sm btn-primary mx-1"
             >
               <fa-icon aria-hidden="true" [icon]="['fas', 'pencil-alt']">
               </fa-icon>
             </a>
             <button
               type="button"
-              class="btn btn-danger btn-sm text-white"
+              class="btn btn-danger btn-sm text-white mx-1"
               [title]="'DELETE_USER' | translate"
               (click)="openDeleteModal(user)"
             >

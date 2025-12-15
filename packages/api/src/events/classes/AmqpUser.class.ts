@@ -21,9 +21,10 @@
 import mongoose from "mongoose";
 
 import type {
+  AnyDepartmentCode,
   ApiOrganization,
   Categories,
-  AnyDepartmentCode,
+  OperationalAreas,
   Phone,
   SupportedLanguagesCode,
   UserStatus,
@@ -53,6 +54,7 @@ export class AmqpUser {
   public languages?: SupportedLanguagesCode[];
   public verified: boolean;
   public resetPasswordToken?: string;
+  public areas: OperationalAreas;
 
   constructor(user: UserPopulateType | ModelWithId<User>) {
     this.status = user.status;
@@ -74,7 +76,7 @@ export class AmqpUser {
     this.apiAuthorizedCategories = user.categoriesLimitations?.length
       ? user.categoriesLimitations
       : undefined;
-    if ("userRights" in user) {
+    if ("userRights" in user && user.userRights?.length) {
       this.rights = user.userRights.map(
         (userRight: UserRight) => new AmqpUserRight(userRight)
       );
@@ -84,5 +86,9 @@ export class AmqpUser {
     this.languages = user.languages?.length ? user.languages : undefined;
     this.verified = user.verified;
     this.resetPasswordToken = user.passwordToken ?? undefined;
+
+    if (user.areas) {
+      this.areas = user.areas;
+    }
   }
 }

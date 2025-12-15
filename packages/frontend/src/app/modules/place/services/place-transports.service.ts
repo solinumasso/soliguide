@@ -28,7 +28,7 @@ import { environment } from "../../../../environments/environment";
   providedIn: "root",
 })
 export class TransportService {
-  private readonly apiUrl = `${environment.locationApiUrl}transports/`;
+  private readonly apiUrl = `${environment.locationApiUrl}/transports`;
 
   constructor(private readonly http: HttpClient) {}
 
@@ -37,7 +37,7 @@ export class TransportService {
     longitude: number,
     placeId: number
   ): Observable<Station[]> {
-    const url = `${this.apiUrl}${latitude}/${longitude}/${placeId}`;
+    const url = `${this.apiUrl}/${latitude}/${longitude}/${placeId}`;
     return this.http.get<Station[]>(url);
   }
 }
