@@ -65,7 +65,7 @@ describe("InviteUserService", () => {
         });
 
       const req = httpControllerMock.expectOne(
-        `${environment.apiUrl}invite-user/test-email-exist-orga/${dummyOrga._id}`
+        `${environment.apiUrl}/invite-user/test-email-exist-orga/${dummyOrga._id}`
       );
       expect(req.request.method).toBe("POST");
       req.flush(true);

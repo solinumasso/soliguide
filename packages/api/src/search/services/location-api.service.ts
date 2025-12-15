@@ -33,7 +33,7 @@ class LocationApiService {
   public locationApiEndPoint: string;
 
   constructor() {
-    this.locationApiEndPoint = `${CONFIG.SOLIGUIDE_LOCATION_API_URL}`;
+    this.locationApiEndPoint = CONFIG.SOLIGUIDE_LOCATION_API_URL;
   }
 
   async reverse(
@@ -43,7 +43,7 @@ class LocationApiService {
   ): Promise<LocationAutoCompleteAddress | null> {
     // TODO: update this url when we start international integration
     const apiResponse = await axios.get<LocationAutoCompleteAddress[]>(
-      `${this.locationApiEndPoint}reverse/fr/${latitude}/${longitude}`
+      `${this.locationApiEndPoint}/reverse/fr/${latitude}/${longitude}`
     );
 
     if (apiResponse.data.length === 0) {
@@ -72,7 +72,7 @@ class LocationApiService {
   }): Promise<LocationAutoCompleteAddress[] | null> {
     const baseUrl = `${
       this.locationApiEndPoint
-    }autocomplete/${country}/all/${encodeURI(slugLocation(geoValue))}`;
+    }/autocomplete/${country}/all/${encodeURI(slugLocation(geoValue))}`;
 
     const params: {
       latitude?: number;

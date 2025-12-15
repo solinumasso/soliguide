@@ -19,12 +19,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import {
-  PlaceStatus,
-  getDepartmentCodeFromPostalCode,
-  PlaceChangesSection,
   ApiPlace,
   CampaignChangesSection,
   CountryCodes,
+  getDepartmentCodeFromPostalCode,
+  PlaceChangesSection,
+  PlaceStatus,
 } from "@soliguide/common";
 
 import express, { NextFunction } from "express";
@@ -142,17 +142,31 @@ router.post(
   canEditPlace,
   remindMe,
   getFilteredData,
-  async (req: ExpressRequest, res: ExpressResponse) => {
+  async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
     const { date } = req.bodyValidated;
 
     try {
       const place = await setRemindMeLater(req.lieu, date, req.userForLogs);
-      return res.status(200).json(place);
+
+      saveTempChanges(
+        PlaceChangesSection.remindMe,
+        req.lieu,
+        place,
+        req.userForLogs,
+        true,
+        true
+      );
+
+      req.updatedPlace = place;
+      res.status(200).json(place);
+
+      return next();
     } catch (e) {
       req.log.error(e);
       return res.status(500).json("REMINDE_ME_IMPOSSIBLE");
     }
-  }
+  },
+  sendPlaceChangesToMq
 );
 
 router.get(

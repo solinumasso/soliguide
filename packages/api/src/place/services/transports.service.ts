@@ -30,7 +30,7 @@ import {
 } from "../../_models";
 import { logger } from "../../general/logger";
 
-const apiBaseUrl = `${CONFIG.SOLIGUIDE_LOCATION_API_URL}transports/`;
+const apiBaseUrl = `${CONFIG.SOLIGUIDE_LOCATION_API_URL}/transports/`;
 
 export const refreshTransportsCache = async (
   req: ExpressRequest & {

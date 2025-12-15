@@ -23,6 +23,7 @@ import { PopulatedUser } from "../../_models";
 
 export const ARRAY_OF_USERS_FIELDS_TO_POPULATE: Array<keyof PopulatedUser> = [
   "_id",
+  "areas",
   "invitations",
   "lastname",
   "mail",
@@ -30,10 +31,10 @@ export const ARRAY_OF_USERS_FIELDS_TO_POPULATE: Array<keyof PopulatedUser> = [
   "organizations",
   "phone",
   "status",
-  "title",
   "territories",
-  "verified",
+  "title",
   "user_id",
+  "verified",
 ];
 
 export const USERS_FIELDS_FOR_POPULATE: string =

@@ -35,7 +35,7 @@ import { environment } from "../../../../environments/environment";
 import { TranslateService } from "@ngx-translate/core";
 import { globalConstants } from "../../../shared/functions";
 
-const AUTH_END_POINT: string = `${environment.apiUrl}users/`;
+const AUTH_END_POINT: string = `${environment.apiUrl}/users`;
 @Injectable({
   providedIn: "root",
 })
@@ -60,7 +60,7 @@ export class AuthService {
 
   public login(mail: string, password: string): Observable<User> {
     return this.http
-      .post<{ token: string; user: UserForAuth }>(`${AUTH_END_POINT}signin`, {
+      .post<{ token: string; user: UserForAuth }>(`${AUTH_END_POINT}/signin`, {
         mail,
         password,
       })
@@ -80,7 +80,7 @@ export class AuthService {
       return of(false);
     }
 
-    return this.http.get<UserForAuth>(`${AUTH_END_POINT}me`).pipe(
+    return this.http.get<UserForAuth>(`${AUTH_END_POINT}/me`).pipe(
       map((response: UserForAuth | null) => {
         if (!response) {
           this.currentUserSubject.next(null);
@@ -164,7 +164,7 @@ export class AuthService {
 
   public changeCurrentOrga(index: number): Observable<User> {
     return this.http
-      .patch<UserForAuth>(`${AUTH_END_POINT}current-orga`, {
+      .patch<UserForAuth>(`${AUTH_END_POINT}/current-orga`, {
         index,
       })
       .pipe(

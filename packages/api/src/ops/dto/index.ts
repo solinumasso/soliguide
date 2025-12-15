@@ -18,4 +18,5 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-export const ORIGIN_ORGA = ["FAVORITE_CONTACT", "PLACES"];
+// @index('./*.ts', f => `export * from '${f.path}'`)
+export * from "./ops.dto";

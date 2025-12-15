@@ -40,8 +40,8 @@ import {
   providedIn: "root",
 })
 export class OrganisationService {
-  private endPoint = environment.apiUrl + "organizations";
-  private endPointRoles = environment.apiUrl + "admin/user-rights";
+  private endPoint = `${environment.apiUrl}/organizations`;
+  private endPointRoles = `${environment.apiUrl}/admin/user-rights`;
 
   constructor(private http: HttpClient) {}
 

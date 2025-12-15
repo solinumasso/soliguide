@@ -34,7 +34,7 @@ import { environment } from "../../../../environments/environment";
   providedIn: "root",
 })
 export class SearchService {
-  public endpoint = environment.apiUrl + "new-search/";
+  public endpoint = `${environment.apiUrl}/new-search`;
 
   constructor(public http: HttpClient) {}
 
@@ -44,7 +44,7 @@ export class SearchService {
       "X-Document-Referrer": document.referrer,
     });
     return this.http
-      .post<ApiSearchResults>(`${this.endpoint}${search.lang}`, search, {
+      .post<ApiSearchResults>(`${this.endpoint}/${search.lang}`, search, {
         headers,
       })
       .pipe(

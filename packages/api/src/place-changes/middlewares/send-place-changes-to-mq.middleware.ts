@@ -26,6 +26,7 @@ import {
   RoutingKey,
   amqpEventsSender,
   Exchange,
+  AmqpSynchroAirtablePlaceEvent,
 } from "../../events";
 import type { PlaceChanges } from "../interfaces/PlaceChanges.interface";
 
@@ -43,10 +44,25 @@ export const sendPlaceChangesToMq = async (
       req.requestInformation.theme
     );
     const key = req.placeChanges?.section === "new" ? "new" : "update";
-    const routingKey = `${RoutingKey.PLACE_CHANGES}.${req.placeChanges.placeType}.${key}`;
     await amqpEventsSender.sendToQueue<AmqpPlaceChangesEvent>(
       Exchange.PLACE_CHANGES,
-      routingKey,
+      `${RoutingKey.PLACE_CHANGES}.${req.placeChanges.placeType}.${key}`,
+      payload,
+      req.log
+    );
+  }
+
+  if (req.updatedPlace) {
+    const payload = new AmqpSynchroAirtablePlaceEvent(
+      req.updatedPlace,
+      req.requestInformation.frontendUrl,
+      req.requestInformation.theme,
+      req.isPlaceDeleted
+    );
+
+    await amqpEventsSender.sendToQueue<AmqpSynchroAirtablePlaceEvent>(
+      Exchange.SYNCHRO_AT,
+      `${RoutingKey.SYNCHRO_AT}.place`,
       payload,
       req.log
     );

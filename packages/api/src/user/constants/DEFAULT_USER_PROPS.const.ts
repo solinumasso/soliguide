@@ -23,7 +23,6 @@ import { EmailEvents, ModelWithId, User } from "../../_models";
 
 export const DEFAULT_USER_PROPS: Pick<
   ModelWithId<User>,
-  | "atSync"
   | "blocked"
   | "campaigns"
   | "categoriesLimitations"
@@ -41,11 +40,6 @@ export const DEFAULT_USER_PROPS: Pick<
   | "verified"
   | "verifiedAt"
 > = {
-  atSync: {
-    airtableId: "",
-    excluded: false,
-    lastSync: null,
-  },
   blocked: false,
   campaigns: {
     MAJ_ETE_2022: {

@@ -44,8 +44,8 @@ export class LocationService {
   public readonly logosToDisplaySubject: BehaviorSubject<Logos[]>;
 
   private readonly THEME_CONFIGURATION = THEME_CONFIGURATION;
-  private readonly locationAutocompleteEndpoint = `${environment.locationApiUrl}autocomplete/${this.THEME_CONFIGURATION.country}/`;
-  private readonly locationReverseEndpoint = `${environment.locationApiUrl}reverse/${this.THEME_CONFIGURATION.country}/`;
+  private readonly locationAutocompleteEndpoint = `${environment.locationApiUrl}/autocomplete/${this.THEME_CONFIGURATION.country}/`;
+  private readonly locationReverseEndpoint = `${environment.locationApiUrl}/reverse/${this.THEME_CONFIGURATION.country}/`;
 
   public lastQuery = "";
   public lastSearchResults: LocationAutoCompleteAddress[];

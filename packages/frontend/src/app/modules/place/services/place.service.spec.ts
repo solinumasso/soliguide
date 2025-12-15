@@ -63,7 +63,7 @@ describe("PlaceService", () => {
       });
 
     const req = httpMock.expectOne(
-      `${environment.apiUrl}place/${ONLINE_PLACE_MOCK.seo_url}/${currentLanguageService.currentLanguage}`
+      `${environment.apiUrl}/place/${ONLINE_PLACE_MOCK.seo_url}/${currentLanguageService.currentLanguage}`
     );
     expect(req.request.method).toBe("GET");
     req.flush(ONLINE_PLACE_MOCK);
@@ -77,7 +77,7 @@ describe("PlaceService", () => {
       });
 
     const req = httpMock.expectOne(
-      `${environment.apiUrl}admin/user-rights/can-edit/${ONLINE_PLACE_MOCK.seo_url}`
+      `${environment.apiUrl}/admin/user-rights/can-edit/${ONLINE_PLACE_MOCK.seo_url}`
     );
     expect(req.request.method).toBe("GET");
     req.flush(true);

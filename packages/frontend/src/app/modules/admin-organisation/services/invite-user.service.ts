@@ -38,7 +38,7 @@ import { CommonUser } from "@soliguide/common";
   providedIn: "root",
 })
 export class InviteUserService {
-  private endpoint = `${environment.apiUrl}invite-user/`;
+  private endpoint = `${environment.apiUrl}/invite-user/`;
 
   constructor(private http: HttpClient) {}
 

@@ -64,6 +64,8 @@ import type { User } from "../../../users/classes";
 import { AuthService } from "../../../users/services/auth.service";
 
 import {
+  ApiError,
+  ApiMessage,
   CAMPAIGN_SOURCE_LABELS,
   ORGA_CAMPAIGN_STATUS,
   PLACE_CAMPAIGN_STATUS,
@@ -76,6 +78,7 @@ import {
   campaignIsActiveWithTheme,
   globalConstants,
   DEFAULT_MODAL_OPTIONS,
+  SyncService,
 } from "../../../../shared";
 
 const LOCAL_STORAGE_KEY = "SOLIGUIDE_MANAGE_PLACES_SEARCH";
@@ -104,6 +107,10 @@ export class ManagePlacesComponent implements OnInit, OnDestroy {
   // Filters
   public showFilters: boolean;
   public autoExportLoading: boolean;
+
+  // Sync
+  public syncLoading: boolean;
+  public idSyncedPlace: number | null;
 
   // TODO: isolate in a component
   @ViewChild("deletePlaceModal", { static: true })
@@ -147,7 +154,8 @@ export class ManagePlacesComponent implements OnInit, OnDestroy {
     private readonly toastr: ToastrService,
     private readonly cdf: ChangeDetectorRef,
     private readonly translateService: TranslateService,
-    private readonly currentLanguageService: CurrentLanguageService
+    private readonly currentLanguageService: CurrentLanguageService,
+    private readonly syncService: SyncService
   ) {
     this.loading = true;
     this.places = [];
@@ -166,6 +174,9 @@ export class ManagePlacesComponent implements OnInit, OnDestroy {
     this.me = this.authService.currentUserValue;
 
     this.search = new AdminSearchPlaces({}, this.me);
+
+    this.syncLoading = false;
+    this.idSyncedPlace = null;
   }
 
   public toggleFilter = (): void => {
@@ -345,4 +356,30 @@ export class ManagePlacesComponent implements OnInit, OnDestroy {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(this.search));
     this.launchSearch(true);
   };
+
+  public syncPlaces(placeId?: number): void {
+    let placeIds: number[];
+    if (placeId) {
+      placeIds = [placeId];
+      this.idSyncedPlace = placeId;
+    } else {
+      placeIds = this.places.map((place) => place.lieu_id);
+      this.idSyncedPlace = null;
+    }
+
+    this.syncLoading = true;
+
+    this.subscription.add(
+      this.syncService.sync(placeIds, "places").subscribe({
+        next: (value: ApiMessage) => {
+          this.syncLoading = false;
+          this.toastr.success(this.translateService.instant(value.message));
+        },
+        error: (error: ApiError) => {
+          this.syncLoading = false;
+          this.toastr.error(this.translateService.instant(error.message));
+        },
+      })
+    );
+  }
 }

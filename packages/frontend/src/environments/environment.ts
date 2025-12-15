@@ -21,8 +21,8 @@
 import type { Environment } from "../app/shared/types/Environment.type";
 
 export const environment: Environment = {
-  apiUrl: "http://localhost:3001/",
-  locationApiUrl: "http://localhost:3000/",
+  apiUrl: "http://localhost:3001",
+  locationApiUrl: "http://localhost:3000",
   enableTracing: false,
   environment: "DEV",
   posthogUrl: "https://eu.posthog.com",

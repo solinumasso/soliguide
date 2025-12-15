@@ -34,10 +34,10 @@ export class PlaceContactsService {
   public endPoint: string;
 
   constructor(private http: HttpClient) {
-    this.endPoint = environment.apiUrl + "place-contacts/";
+    this.endPoint = `${environment.apiUrl}/place-contacts`;
   }
 
   public getPlaceContacts(lieu_id: number): Observable<PlaceContact[]> {
-    return this.http.get<PlaceContact[]>(`${this.endPoint}${lieu_id}`);
+    return this.http.get<PlaceContact[]>(`${this.endPoint}/${lieu_id}`);
   }
 }

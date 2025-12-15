@@ -18,26 +18,39 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import type { Themes } from "@soliguide/common";
-
+import { CountryCodes, parsePhoneNumber, type Themes } from "@soliguide/common";
 import type { ModelWithId, User, UserPopulateType } from "../../_models";
-import { AmqpUser } from "./AmqpUser.class";
-import { AmqpEvent } from "../interfaces";
+import { AmqpEvent, SynchroAirtableEvent } from "../interfaces";
+import { AmqpUserEvent } from "./AmqpUserEvent.class";
 
-export class AmqpUserEvent extends AmqpUser implements AmqpEvent {
-  public frontendUrl: string;
-  public theme: Themes | null;
-  public isUpdateCampaignOn: boolean;
+export class AmqpSynchroAirtableUserEvent
+  extends AmqpUserEvent
+  implements AmqpEvent, SynchroAirtableEvent
+{
+  public entityType: "USER";
+
+  public deleted: boolean;
+
+  public countries: CountryCodes[];
+
+  public parsedPhone?: string;
 
   constructor(
     user: UserPopulateType | ModelWithId<User>,
     frontendUrl: string,
     theme: Themes | null,
-    isUpdateCampaignOn?: boolean
+    deleted = false
   ) {
-    super(user);
-    this.frontendUrl = frontendUrl;
-    this.theme = theme;
-    this.isUpdateCampaignOn = Boolean(isUpdateCampaignOn);
+    super(user, frontendUrl, theme);
+
+    this.entityType = "USER";
+
+    this.deleted = deleted;
+
+    if (this.phone) {
+      this.parsedPhone =
+        parsePhoneNumber(this.phone, this.phone.countryCode as CountryCodes) ??
+        "";
+    }
   }
 }

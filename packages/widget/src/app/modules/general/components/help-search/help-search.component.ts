@@ -84,11 +84,11 @@ export class HelpSearchComponent implements OnInit {
   public generateUrls() {
     this.generatedUrls = {};
     this.availableCategories.forEach((category: Categories) => {
-      const text = `<iframe aria-label="Soliguide" height="490px" style="width: 100%; display: block; margin: 0 auto" title="Widget Soliguide" src="${this.widgetUrl}search/${this.selectedWidget}/${this.currentLang}/${category}" frameborder="0"></iframe>`;
+      const text = `<iframe aria-label="Soliguide" height="490px" style="width: 100%; display: block; margin: 0 auto" title="Widget Soliguide" src="${this.widgetUrl}/search/${this.selectedWidget}/${this.currentLang}/${category}" frameborder="0"></iframe>`;
       this.generatedUrls[category] = text;
     });
 
-    this.generatedUrlPass = `<iframe aria-label="Soliguide" height="490px" style="width: 100%; display: block; margin: 0 auto" title="Widget Soliguide" src="${this.widgetUrl}search/${this.selectedWidget}/${this.currentLang}/PASS" frameborder="0"></iframe>`;
+    this.generatedUrlPass = `<iframe aria-label="Soliguide" height="490px" style="width: 100%; display: block; margin: 0 auto" title="Widget Soliguide" src="${this.widgetUrl}/search/${this.selectedWidget}/${this.currentLang}/PASS" frameborder="0"></iframe>`;
   }
 
   public updateLang(lang: string) {

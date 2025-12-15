@@ -35,7 +35,7 @@ import { environment } from "../../../../environments/environment";
   providedIn: "root",
 })
 export class SearchService {
-  public ep = `${environment.apiUrl}new-search/`;
+  public endPoint = `${environment.apiUrl}/new-search`;
 
   constructor(
     private readonly http: HttpClient,
@@ -43,7 +43,7 @@ export class SearchService {
   ) {}
 
   public launchSearch(search: Search): Observable<SearchResults<Place>> {
-    const url = this.ep + this.currentLanguageService.currentLanguage;
+    const url = `${this.endPoint}/${this.currentLanguageService.currentLanguage}`;
 
     return this.http.post<ApiSearchResults>(`${url}`, search).pipe(
       map((response: ApiSearchResults) => {

@@ -39,7 +39,7 @@ import { environment } from "../../../../environments/environment";
   providedIn: "root",
 })
 export class TranslationService {
-  public endPoint = `${environment.apiUrl}translations`;
+  public endPoint = `${environment.apiUrl}/translations`;
   constructor(private readonly http: HttpClient) {}
 
   public searchTranslatedFields(

@@ -48,7 +48,7 @@ import { CurrentLanguageService } from "../../general/services/current-language.
   providedIn: "root",
 })
 export class AdminPlaceService {
-  public endPoint = `${environment.apiUrl}admin/places/`;
+  public endPoint = `${environment.apiUrl}/admin/places/`;
 
   constructor(
     private readonly http: HttpClient,

@@ -55,7 +55,7 @@ export class UploadService {
     media: MediaType
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ): Observable<any> {
-    const uploadURL = `${this.endPoint}${media}/${placeId}`;
+    const uploadURL = `${this.endPoint}/${media}/${placeId}`;
 
     return this.http
       .post<UploadResponse>(uploadURL, data, {
@@ -75,7 +75,7 @@ export class UploadService {
     media: MediaType,
     arrayId: number | null = null // utile pour les documents dans les services ou les photos dans les parcours
   ): Observable<Place> {
-    let uploadURL = `${this.endPoint}${media}/${placeId}/`;
+    let uploadURL = `${this.endPoint}/${media}/${placeId}/`;
 
     uploadURL += id;
 
@@ -93,7 +93,7 @@ export class UploadService {
 
   public getDocument(doc: CommonPlaceDocument): void {
     this.http
-      .get(`${environment.apiUrl}medias/documents/${doc.path}`, {
+      .get(`${environment.apiUrl}/medias/documents/${doc.path}`, {
         responseType: "blob",
       })
       .subscribe({

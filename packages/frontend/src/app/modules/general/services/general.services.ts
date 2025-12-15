@@ -34,14 +34,14 @@ export class GeneralService {
 
   public contact(contactInfo: unknown): Observable<ApiMessage> {
     return this.http.post<ApiMessage>(
-      `${environment.apiUrl}contact`,
+      `${environment.apiUrl}/contact`,
       contactInfo
     );
   }
 
   // HOME PAGE STATS
   public statsAll(): Observable<number> {
-    return this.http.get<string>(`${environment.apiUrl}stats/all`).pipe(
+    return this.http.get<string>(`${environment.apiUrl}/stats/all`).pipe(
       map((response: string) => {
         return parseInt(response, 10);
       })
@@ -49,7 +49,7 @@ export class GeneralService {
   }
 
   public statsServices(): Observable<number> {
-    return this.http.get<string>(`${environment.apiUrl}stats/services`).pipe(
+    return this.http.get<string>(`${environment.apiUrl}/stats/services`).pipe(
       map((response: string) => {
         return parseInt(response, 10);
       })

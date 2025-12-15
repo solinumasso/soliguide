@@ -62,7 +62,7 @@ describe("AvailableSourceService", () => {
       });
 
     const req = httpMock.expectOne(
-      `${environment.apiUrl}v2/soligare/source/available`
+      `${environment.apiUrl}/v2/soligare/source/available`
     );
     expect(req.request.method).toBe("POST");
     expect(req.request.body).toEqual({ territories: dummyDepartmentCode });
