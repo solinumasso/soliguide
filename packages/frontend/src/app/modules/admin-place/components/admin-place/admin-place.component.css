@@ -54,3 +54,7 @@
 :host ::ng-deep .tooltip-visible .tooltip-inner {
   border: black 1px solid;
 }
+
+li .btn {
+  width: 100%;
+}

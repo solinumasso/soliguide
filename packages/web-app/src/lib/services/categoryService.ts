@@ -98,7 +98,7 @@ export const getCategoryService = (
         return [];
       }
 
-      const url = `${apiUrl}new-search/auto-complete/${encodeURI(searchTerm.trim())}`;
+      const url = `${apiUrl}/new-search/auto-complete/${encodeURI(searchTerm.trim())}`;
 
       const result = await fetcher(url);
       return buildCategorySuggestion(result);

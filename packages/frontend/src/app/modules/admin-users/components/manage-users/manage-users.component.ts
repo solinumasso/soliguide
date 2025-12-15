@@ -56,8 +56,9 @@ import {
   DEFAULT_MODAL_OPTIONS,
   fadeInOut,
   globalConstants,
+  SyncService,
 } from "../../../../shared";
-import { THEME_CONFIGURATION } from "../../../../models";
+import { ApiError, ApiMessage, THEME_CONFIGURATION } from "../../../../models";
 import { OriginService } from "../../../shared/services";
 
 @Component({
@@ -75,6 +76,9 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
 
   public nbResults: number;
   public loading: boolean;
+
+  public syncLoading: boolean;
+  public idSyncedUser: number | null;
 
   public search: SearchUsersObject;
   public searchSubject: Subject<SearchUsersObject> = new ReplaySubject(1);
@@ -94,9 +98,12 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
     private readonly toastr: ToastrService,
     private readonly currentLanguageService: CurrentLanguageService,
     private readonly translateService: TranslateService,
-    private readonly originService: OriginService
+    private readonly originService: OriginService,
+    private readonly syncService: SyncService
   ) {
     this.loading = false;
+    this.syncLoading = false;
+    this.idSyncedUser = null;
     this.users = [];
     this.nbResults = 0;
     this.search = new SearchUsersObject(
@@ -250,6 +257,32 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
           this.toastr.error(
             this.translateService.instant("ERROR_GENERATING_RESET_LINK")
           );
+        },
+      })
+    );
+  }
+
+  public syncUsers(userId?: number): void {
+    let userIds: number[];
+    if (userId) {
+      userIds = [userId];
+      this.idSyncedUser = userId;
+    } else {
+      userIds = this.users.map((user) => user.user_id);
+      this.idSyncedUser = null;
+    }
+
+    this.syncLoading = true;
+
+    this.subscription.add(
+      this.syncService.sync(userIds, "users").subscribe({
+        next: (value: ApiMessage) => {
+          this.syncLoading = false;
+          this.toastr.success(this.translateService.instant(value.message));
+        },
+        error: (error: ApiError) => {
+          this.syncLoading = false;
+          this.toastr.error(this.translateService.instant(error.message));
         },
       })
     );

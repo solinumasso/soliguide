@@ -76,7 +76,7 @@ export const getUserFromUrl = async (
   return res.status(400).send({ message: "USER_NOT_EXIST" });
 };
 
-const canGetOrEditUser = async (
+export const canGetOrEditUser = async (
   authUser: UserPopulateType,
   selectedUser: UserPopulateType
 ): Promise<boolean> => {

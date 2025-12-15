@@ -29,7 +29,6 @@ import {
 } from "@soliguide/common";
 import mongoose from "mongoose";
 
-import type { AirtableSyncType } from "../../airtable";
 import { ModelWithId } from "../../mongo";
 import { OrganizationPopulate } from "../../organization";
 import { Origin } from "../enums";
@@ -42,7 +41,6 @@ import { InvitationPopulate } from "./Invitation.interface";
 
 export interface User extends Omit<CommonUser, "_id"> {
   _id?: mongoose.Types.ObjectId;
-  atSync: AirtableSyncType;
   campaigns: {
     MAJ_ETE_2022: UserCampaignEmails;
     MAJ_ETE_2023: UserCampaignEmails;
@@ -145,7 +143,6 @@ class UserPopulate implements ACurrentUser, UserPopulate {
   public categoriesLimitations;
   public translator;
   public verifiedAt;
-  public atSync;
   public campaigns;
   public devToken;
   public passwordToken;
@@ -176,7 +173,6 @@ class UserPopulate implements ACurrentUser, UserPopulate {
     this.categoriesLimitations = user?.categoriesLimitations;
     this.translator = user?.translator;
     this.verifiedAt = user?.verifiedAt;
-    this.atSync = user?.atSync;
     this.campaigns = user?.campaigns;
     this.devToken = user?.devToken;
     this.passwordToken = user?.passwordToken;

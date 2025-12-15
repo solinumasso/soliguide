@@ -36,7 +36,7 @@ import { CommonUser } from "@soliguide/common";
   providedIn: "root",
 })
 export class UsersService {
-  private endPoint = environment.apiUrl + "users/";
+  private endPoint = `${environment.apiUrl}/users`;
 
   constructor(private http: HttpClient) {}
 
@@ -46,7 +46,7 @@ export class UsersService {
 
   public signupTranslator(user: UserSignup): Observable<ApiMessage> {
     return this.http.post<ApiMessage>(
-      `${this.endPoint}signup-translator/`,
+      `${this.endPoint}/signup-translator/`,
       user
     );
   }
@@ -54,10 +54,10 @@ export class UsersService {
   public signup(user: UserSignup): Observable<string> {
     return user.invitation
       ? this.http.post<string>(
-          `${environment.apiUrl}invite-user/accept-first-invitation/${user.invitation}`,
+          `${environment.apiUrl}/invite-user/accept-first-invitation/${user.invitation}`,
           user
         )
-      : this.http.post<string>(`${this.endPoint}signup/`, user);
+      : this.http.post<string>(`${this.endPoint}/signup/`, user);
   }
 
   public updateUser(

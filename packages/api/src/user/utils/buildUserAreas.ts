@@ -26,7 +26,7 @@ import {
   SoliguideCountries,
   UserStatus,
 } from "@soliguide/common";
-import { User } from "src/_models";
+import { User } from "../../_models";
 
 export const buildUserAreas = (
   user: Pick<User, "status" | "areas"> & Partial<Pick<User, "territories">>,

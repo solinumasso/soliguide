@@ -19,15 +19,13 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 // @index('./*', f => `export * from '${f.path}'`)
-export * from "./airtable";
-export * from "./AIRTABLE_MODULE.mock";
 export * from "./general";
+export * from "./placeChanges";
+export * from "./places";
+export * from "./users";
 export * from "./HOURS.mock";
 export * from "./INVITATION.mock";
 export * from "./ORGANIZATION.mock";
 export * from "./PARCOURS.mock";
 export * from "./PHOTO.mock";
-export * from "./placeChanges";
-export * from "./places";
 export * from "./SERVICE.mock";
-export * from "./users";

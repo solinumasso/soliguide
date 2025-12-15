@@ -294,7 +294,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       <fa-icon
         aria-hidden="true"
         [icon]="['fas', 'circle-notch']"
-        [spin]="true"
+        animation="spin"
       >
       </fa-icon>
       {{ "SEARCH_IN_PROGRESS" | translate }}
@@ -465,7 +465,32 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     </span>
   </div>
 
-  <div *ngIf="search.placeType === PlaceType.PLACE" class="text-end">
+  <div class="text-end">
+    <button
+      type="button"
+      [disabled]="nbResults === 0 || loading || syncLoading"
+      class="btn btn-outline-primary m-1 row"
+      (click)="syncPlaces()"
+    >
+      @if (syncLoading && idSyncedPlace === null) {
+      <span class="px-1">{{ "SYNC_IN_PROGRESS" | translate }}</span>
+      <fa-icon
+        aria-hidden="true"
+        [icon]="['fas', 'sync']"
+        animation="spin"
+        class="px-1"
+      ></fa-icon>
+      } @else {
+      <span class="px-1">{{ "SYNC_PLACES" | translate }}</span>
+      <fa-icon
+        aria-hidden="true"
+        [icon]="['fas', 'sync']"
+        class="px-1"
+      ></fa-icon>
+      }
+    </button>
+
+    @if (search.placeType === PlaceType.PLACE){
     <button
       type="button"
       [disabled]="autoExportLoading"
@@ -476,7 +501,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <fa-icon
           aria-hidden="true"
           [icon]="['fas', 'circle-notch']"
-          [spin]="true"
+          animation="spin"
         >
         </fa-icon>
         {{ "EXPORT_IN_PROGRESS" | translate }}
@@ -486,6 +511,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <fa-icon aria-hidden="true" [icon]="['fas', 'download']"></fa-icon>
       </span>
     </button>
+    }
   </div>
 </div>
 
@@ -875,6 +901,21 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           </td>
 
           <td class="actions text-end">
+            <button
+              type="button"
+              class="btn btn-primary btn-sm text-center"
+              (click)="syncPlaces(place.lieu_id)"
+              [attr.aria-label]="'SYNC_PLACE' | translate"
+              [ngbTooltip]="'SYNC_PLACE' | translate"
+            >
+              <fa-icon
+                aria-hidden="true"
+                [icon]="['fas', 'sync']"
+                [animation]="
+                  syncLoading && idSyncedPlace === place.lieu_id ? 'spin' : null
+                "
+              ></fa-icon>
+            </button>
             <a
               target="_blank"
               class="btn btn-warning btn-sm text-center"

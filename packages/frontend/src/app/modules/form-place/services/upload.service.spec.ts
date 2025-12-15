@@ -59,7 +59,7 @@ describe("UploadService", () => {
         expect(res).not.toBeNull();
       });
 
-      const req = httpMock.expectOne(`${service.endPoint}documents/0`);
+      const req = httpMock.expectOne(`${service.endPoint}/documents/0`);
       expect(req.request.method).toBe("POST");
 
       req.flush("");
@@ -73,7 +73,7 @@ describe("UploadService", () => {
       });
 
       const req = httpMock.expectOne(
-        `${service.endPoint}documents/0/${DUMMY_DATA._id}`
+        `${service.endPoint}/documents/0/${DUMMY_DATA._id}`
       );
       expect(req.request.method).toBe("DELETE");
 

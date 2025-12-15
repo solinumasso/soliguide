@@ -34,7 +34,7 @@ import { AnalyticsService } from "../../services/analytics.service";
   styleUrls: ["./intro-form.component.scss"],
 })
 export class IntroFormComponent {
-  public frontendUrl: string = environment.frontendUrl;
+  public frontendUrl = `${environment.frontendUrl}/`;
   public currentLang: string;
   public readonly SupportedLanguagesCode = SupportedLanguagesCode;
 

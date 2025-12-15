@@ -39,10 +39,6 @@ import { ModalitiesSchema } from "./modalities.model";
 import { PlaceUpdateCampaignSchema } from "./placeUpdateCampaign.model";
 import { PublicsSchema } from "./publics.model";
 
-import {
-  AIRTABLE_SYNC_DEFAULT,
-  AirtableSyncSchema,
-} from "../../airtable/models/airtableSync.model";
 import { TEMP_INFO } from "./default_values/TEMP_INFO.const";
 import { EntitySchema } from "./entity.model";
 import { OpeningHoursSchema } from "./opening-hours.model";
@@ -54,12 +50,6 @@ import { TempInfoSchema } from "./temp-info.model";
 
 const PlaceSchema = new mongoose.Schema(
   {
-    atSync: {
-      default: AIRTABLE_SYNC_DEFAULT,
-      required: true,
-      type: AirtableSyncSchema,
-    },
-
     auto: { default: false, type: Boolean },
 
     campaigns: {

@@ -40,7 +40,7 @@ export default (fetcher: Fetcher<LocationAutoCompleteAddress[]> = fetch): Locati
         return [];
       }
 
-      const baseUrl = `${locationApiUrl}autocomplete/${country}`;
+      const baseUrl = `${locationApiUrl}/autocomplete/${country}`;
       const url = `${baseUrl}/all/${encodeURI(searchTerm.trim())}`;
 
       const result = await fetcher(url);
@@ -60,7 +60,7 @@ export default (fetcher: Fetcher<LocationAutoCompleteAddress[]> = fetch): Locati
     longitude: number
   ): Promise<LocationSuggestion | null> => {
     try {
-      const baseUrl = `${locationApiUrl}reverse/${country}`;
+      const baseUrl = `${locationApiUrl}/reverse/${country}`;
       const url = `${baseUrl}/${latitude}/${longitude}`;
 
       const result = await fetcher(url);

@@ -22,7 +22,6 @@ import type { Request } from "express";
 
 import type { ApiPlace } from "@soliguide/common";
 
-import type { AirtableEntity, AirtableEntityType } from "../airtable";
 import type { User, UserForLogs, UserPopulateType } from "../users";
 import type { ApiTranslatedField } from "../../translations/interfaces";
 import type { OrganizationPopulate } from "../organization";
@@ -34,18 +33,10 @@ import type { ModelWithId } from "../mongo";
 import { RequestInformation } from "../../middleware";
 
 export interface ExpressRequest extends Request {
-  // Airtable identifier, only used to tell that an entity has been deleted
-  airtableId?: string;
-
   bodyValidated?: any; // Forms
   placeDeleted?: ModelWithId<ApiPlace>;
   // Exports log
   exportStartedAt?: Date;
-
-  // Type of entity to synchronize with AT
-  airtableEntity?: AirtableEntity;
-  airtableEntities?: AirtableEntity[];
-  airtableEntityType?: AirtableEntityType;
 
   // File to upload
   file?: Express.Multer.File | Express.MulterS3.File | any;
@@ -70,10 +61,15 @@ export interface ExpressRequest extends Request {
 
   // Place updated and added to the request for translation
   updatedPlace?: ModelWithId<ApiPlace>;
+  updatedPlaces?: ModelWithId<ApiPlace>[];
+  isPlaceDeleted?: boolean;
+
+  // User updated and added to the request for potential sync
+  updatedUser?: UserPopulateType;
+  updatedUsers?: UserPopulateType[];
+  isUserDeleted?: boolean;
 
   translatedField?: ApiTranslatedField;
-
-  entityPlace?: ApiPlace[];
 
   // Boolean to know if the search comes from the admin of not
   adminSearch?: boolean;

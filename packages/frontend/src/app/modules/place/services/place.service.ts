@@ -36,17 +36,13 @@ import { environment } from "../../../../environments/environment";
   providedIn: "root",
 })
 export class PlaceService {
-  public endPoint: string;
-
   constructor(
     private readonly http: HttpClient,
     private readonly currentLanguageService: CurrentLanguageService
-  ) {
-    this.endPoint = `${environment.apiUrl}place/`;
-  }
+  ) {}
 
   public getPlace = (seoUrl: string): Observable<Place> => {
-    const apiURL = `${this.endPoint}${seoUrl}/${this.currentLanguageService.currentLanguage}`;
+    const apiURL = `${environment.apiUrl}/place/${seoUrl}/${this.currentLanguageService.currentLanguage}`;
 
     return this.http
       .get<ApiPlace>(apiURL)
@@ -56,13 +52,13 @@ export class PlaceService {
   // Structures modification button
   public canEditPlace = (seoUrl: string): Observable<boolean> => {
     return this.http.get<boolean>(
-      `${environment.apiUrl}admin/user-rights/can-edit/${seoUrl}`
+      `${environment.apiUrl}/admin/user-rights/can-edit/${seoUrl}`
     );
   };
 
   public canReadChangePlace = (changeObjectId: string): Observable<boolean> => {
     return this.http.get<boolean>(
-      `${environment.apiUrl}place-changes/can-read-change/${changeObjectId}`
+      `${environment.apiUrl}/place-changes/can-read-change/${changeObjectId}`
     );
   };
 }

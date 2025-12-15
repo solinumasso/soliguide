@@ -78,11 +78,6 @@ export const findPlacesToUpdateWithParams = async (
   // List of places which don't need to be updated
   const placesToExclude = await findPlacesToExclude();
 
-  console.log(
-    "is lieu_id in place to exclude",
-    placesToExclude.includes(params?.lieu_id)
-  );
-
   const placesIds = await PlaceModel.aggregate([
     {
       $match: {

@@ -18,8 +18,20 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { PlaceVisibility } from "@soliguide/common";
+import { Db } from "mongodb";
 
-export type KeyPlaceVisibilityValueString = {
-  [key in PlaceVisibility]: string;
+import { logger } from "../src/general/logger";
+
+const message = "Remove atSync from data";
+
+export const up = async (db: Db) => {
+  logger.info(`[MIGRATION] - ${message}`);
+
+  await db.collection("lieux").updateMany({}, { $unset: { atSync: 1 } });
+  await db.collection("users").updateMany({}, { $unset: { atSync: 1 } });
+};
+
+export const down = () => {
+  logger.info(`[ROLLBACK] - ${message}`);
+  logger.info("NO ROLLBACK POSSIBLE");
 };
