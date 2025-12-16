@@ -2966,33 +2966,6 @@
   },
   {
     "categoryId": null,
-    "label": "Médecins Du Monde (MDM)",
-    "slug": "msf",
-    "synonyms": ["médecins du monde", "mdm", "medecin"],
-    "type": "ORGANIZATION",
-    "lang": "en",
-    "country": "fr",
-    "seoTitle": "Find free healthcare with Médecins Du Monde (MDM) using Soliguide",
-    "seoDescription": "Soliguide helps you locate Médecins Du Monde (MDM) centers offering free consultations, vaccinations, and health support near you in France."
-  },
-  {
-    "categoryId": null,
-    "label": "Médecins Sans Frontières (MSF)",
-    "slug": "msf",
-    "synonyms": [
-      "médecins sans frontières",
-      "MSF",
-      "doctors without borders",
-      "médecin sans frontière"
-    ],
-    "type": "ORGANIZATION",
-    "lang": "en",
-    "country": "fr",
-    "seoTitle": "Find free medical care with Médecins Sans Frontières (MSF) through Soliguide",
-    "seoDescription": "Soliguide helps you locate Médecins Sans Frontières (MSF) centers offering free consultations, emergency care, and health support near you"
-  },
-  {
-    "categoryId": null,
     "label": "Petits Frères des Pauvres",
     "slug": "petits-freres-des-pauvres",
     "synonyms": [
@@ -3104,22 +3077,6 @@
   },
   {
     "categoryId": null,
-    "label": "CADA: centre d'accueil pour demandeurs d'asile",
-    "slug": "cada",
-    "synonyms": [
-      "CADA",
-      "centre accueil demandeurs asile",
-      "centre d'accueil pour demandeurs d'asile",
-      "hébergement demandeurs asile"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "en",
-    "country": "fr",
-    "seoTitle": "Find CADA asylum seeker accommodation centers with Soliguide",
-    "seoDescription": "Soliguide helps you locate CADA centers, temporary housing, and legal support services for asylum seekers across France"
-  },
-  {
-    "categoryId": null,
     "label": "ESI: équipe spécialisée d'insertion",
     "slug": "esi",
     "synonyms": [
@@ -3217,22 +3174,6 @@
   },
   {
     "categoryId": null,
-    "label": "CHRS: centre d'hébergement et de réinsertion sociale",
-    "slug": "chrs",
-    "synonyms": [
-      "CHRS",
-      "centre hébergement réinsertion sociale",
-      "centre d'hébergement et de réinsertion sociale",
-      "foyer CHRS"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "en",
-    "country": "fr",
-    "seoTitle": "Find housing and social support at CHRS centres with Soliguide",
-    "seoDescription": "Soliguide helps you locate CHRS centres offering emergency housing, social reintegration support, and personalized assistance near you"
-  },
-  {
-    "categoryId": null,
     "label": "MDS: maison départementale des solidarités",
     "slug": "mds",
     "synonyms": [
@@ -3246,39 +3187,6 @@
     "country": "fr",
     "seoTitle": "Find your local MDS maison départementale des solidarités with Soliguide",
     "seoDescription": "Soliguide helps you locate MDS offices for housing support, family aid, and disability services near you in France"
-  },
-  {
-    "categoryId": null,
-    "label": "Hôpital",
-    "slug": "hopital",
-    "synonyms": [
-      "hôpital",
-      "centre hospitalier",
-      "CH",
-      "CHU",
-      "établissement hospitalier"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "en",
-    "country": "fr",
-    "seoTitle": "Find free hospital care with Soliguide",
-    "seoDescription": "Soliguide helps you locate hundreds of hospitals offering emergency care, free consultations, and medical assistance near you in France"
-  },
-  {
-    "categoryId": null,
-    "label": "PSA: point santé accueil",
-    "slug": "psa",
-    "synonyms": [
-      "PSA",
-      "point santé accueil",
-      "permanence santé accueil",
-      "point d'accès santé"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "en",
-    "country": "fr",
-    "seoTitle": "Find free healthcare at PSA point santé accueil centers with Soliguide",
-    "seoDescription": "Soliguide helps you locate PSA point santé accueil centers offering free consultations, vaccinations, and health support near you in France."
   },
   {
     "categoryId": null,

@@ -2836,7 +2836,11 @@
     "categoryId": null,
     "label": "Maisons France Services",
     "slug": "france-services",
-    "synonyms": ["france service", "maison france services", "MFS"],
+    "synonyms": [
+      "france service",
+      "maison france services",
+      "MFS"
+    ],
     "type": "ORGANIZATION",
     "lang": "fa",
     "country": "fr",
@@ -2847,7 +2851,11 @@
     "categoryId": null,
     "label": "La CIMADE",
     "slug": "cimade",
-    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
+    "synonyms": [
+      "la cimade",
+      "CIMADE",
+      "service œcuménique d'entraide"
+    ],
     "type": "ORGANIZATION",
     "lang": "fa",
     "country": "fr",
@@ -2966,33 +2974,6 @@
   },
   {
     "categoryId": null,
-    "label": "Médecins Du Monde (MDM)",
-    "slug": "msf",
-    "synonyms": ["médecins du monde", "mdm", "medecin"],
-    "type": "ORGANIZATION",
-    "lang": "fa",
-    "country": "fr",
-    "seoTitle": "مراقبت‌های پزشکی رایگان با پزشکان جهان (MDM) در سولی‌گاید پیدا کنید",
-    "seoDescription": "سولی‌گاید صدها مکان برای دریافت مراقبت‌های پزشکی رایگان، واکسیناسیون و مشاوره سلامت روان ارائه می‌دهد"
-  },
-  {
-    "categoryId": null,
-    "label": "Médecins Sans Frontières (MSF)",
-    "slug": "msf",
-    "synonyms": [
-      "médecins sans frontières",
-      "MSF",
-      "doctors without borders",
-      "médecin sans frontière"
-    ],
-    "type": "ORGANIZATION",
-    "lang": "fa",
-    "country": "fr",
-    "seoTitle": "کمک‌های پزشکی رایگان پزشکان بدون مرز را با سولیگاید پیدا کنید",
-    "seoDescription": "سولیگاید به شما کمک می‌کند تا مراکز درمانی رایگان، مشاوره پزشکی و خدمات بهداشتی پزشکان بدون مرز را در نزدیکی خود پیدا کنید"
-  },
-  {
-    "categoryId": null,
     "label": "Petits Frères des Pauvres",
     "slug": "petits-freres-des-pauvres",
     "synonyms": [
@@ -3060,7 +3041,11 @@
     "categoryId": null,
     "label": "Centre socioculturel",
     "slug": "centre-socioculturel",
-    "synonyms": ["centre socio culturel", "csc", "centre social"],
+    "synonyms": [
+      "centre socio culturel",
+      "csc",
+      "centre social"
+    ],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "fa",
     "country": "fr",
@@ -3101,22 +3086,6 @@
     "country": "fr",
     "seoTitle": "مراقبت‌های رایگان مادر و کودک را با Soliguide پیدا کنید",
     "seoDescription": "Soliguide صدها مرکز PMI: protection maternelle et infantile ارائه می‌دهد: واکسیناسیون، مشاوره بارداری، معاینات کودکان"
-  },
-  {
-    "categoryId": null,
-    "label": "CADA: centre d'accueil pour demandeurs d'asile",
-    "slug": "cada",
-    "synonyms": [
-      "CADA",
-      "centre accueil demandeurs asile",
-      "centre d'accueil pour demandeurs d'asile",
-      "hébergement demandeurs asile"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "fa",
-    "country": "fr",
-    "seoTitle": "مراکز پذیرش متقاضیان پناهندگی CADA را با Soliguide پیدا کنید",
-    "seoDescription": "Soliguide صدها مرکز CADA برای اسکان، راهنمایی حقوقی و یادگیری زبان فرانسوی در نزدیکی شما ارائه می‌دهد"
   },
   {
     "categoryId": null,
@@ -3217,22 +3186,6 @@
   },
   {
     "categoryId": null,
-    "label": "CHRS: centre d'hébergement et de réinsertion sociale",
-    "slug": "chrs",
-    "synonyms": [
-      "CHRS",
-      "centre hébergement réinsertion sociale",
-      "centre d'hébergement et de réinsertion sociale",
-      "foyer CHRS"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "fa",
-    "country": "fr",
-    "seoTitle": "مراکز اسکان و ادغام اجتماعی CHRS را با Soliguide پیدا کنید",
-    "seoDescription": "Soliguide صدها مرکز اسکان و ادغام اجتماعی CHRS، خوابگاه اضطراری و مراکز پذیرش روزانه در فرانسه به شما معرفی می‌کند"
-  },
-  {
-    "categoryId": null,
     "label": "MDS: maison départementale des solidarités",
     "slug": "mds",
     "synonyms": [
@@ -3246,39 +3199,6 @@
     "country": "fr",
     "seoTitle": "خانه بخشی همبستگی MDS را با سولیگاید پیدا کنید",
     "seoDescription": "سولیگاید صدها مکان برای کمک اجتماعی، مسکن اضطراری و کمک مالی در نزدیکی شما ارائه می‌دهد"
-  },
-  {
-    "categoryId": null,
-    "label": "Hôpital",
-    "slug": "hopital",
-    "synonyms": [
-      "hôpital",
-      "centre hospitalier",
-      "CH",
-      "CHU",
-      "établissement hospitalier"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "fa",
-    "country": "fr",
-    "seoTitle": "بیمارستان‌های رایگان را با Soliguide پیدا کنید",
-    "seoDescription": "Soliguide صدها مکان برای درمان اورژانسی، مراقبت‌های پزشکی رایگان و خدمات بهداشتی در نزدیکی شما ارائه می‌دهد"
-  },
-  {
-    "categoryId": null,
-    "label": "PSA: point santé accueil",
-    "slug": "psa",
-    "synonyms": [
-      "PSA",
-      "point santé accueil",
-      "permanence santé accueil",
-      "point d'accès santé"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "fa",
-    "country": "fr",
-    "seoTitle": "نقاط استقبال سلامت PSA را با Soliguide پیدا کنید",
-    "seoDescription": "Soliguide صدها مکان برای مراقبت رایگان، مشاوره پزشکی و کمک‌های بهداشتی در خانه‌های سلامت و CCAS نزدیک شما ارائه می‌دهد"
   },
   {
     "categoryId": null,

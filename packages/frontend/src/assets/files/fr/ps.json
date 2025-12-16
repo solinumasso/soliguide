@@ -2836,7 +2836,11 @@
     "categoryId": null,
     "label": "Maisons France Services",
     "slug": "france-services",
-    "synonyms": ["france service", "maison france services", "MFS"],
+    "synonyms": [
+      "france service",
+      "maison france services",
+      "MFS"
+    ],
     "type": "ORGANIZATION",
     "lang": "ps",
     "country": "fr",
@@ -2847,7 +2851,11 @@
     "categoryId": null,
     "label": "La CIMADE",
     "slug": "cimade",
-    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
+    "synonyms": [
+      "la cimade",
+      "CIMADE",
+      "service œcuménique d'entraide"
+    ],
     "type": "ORGANIZATION",
     "lang": "ps",
     "country": "fr",
@@ -2966,33 +2974,6 @@
   },
   {
     "categoryId": null,
-    "label": "Médecins Du Monde (MDM)",
-    "slug": "msf",
-    "synonyms": ["médecins du monde", "mdm", "medecin"],
-    "type": "ORGANIZATION",
-    "lang": "ps",
-    "country": "fr",
-    "seoTitle": "د Médecins Du Monde (MDM) سره وړیا روغتیایی پاملرنه ومومئ Soliguide کې",
-    "seoDescription": "Soliguide بې کوره خلکو، کډوالو او اړمنو ته د Médecins Du Monde څانګې، وړیا درملتون او روغتیایی مرسته وړاندې کوي"
-  },
-  {
-    "categoryId": null,
-    "label": "Médecins Sans Frontières (MSF)",
-    "slug": "msf",
-    "synonyms": [
-      "médecins sans frontières",
-      "MSF",
-      "doctors without borders",
-      "médecin sans frontière"
-    ],
-    "type": "ORGANIZATION",
-    "lang": "ps",
-    "country": "fr",
-    "seoTitle": "د وړیا درملنې لپاره د Médecins Sans Frontières (MSF) سره د Soliguide څخه مرسته ومومئ",
-    "seoDescription": "Soliguide تاسو ته د وړیا درملنې، د روغتیایی مرستې او د ډاکټرانو د لیدنې لپاره ځایونه وړاندې کوي"
-  },
-  {
-    "categoryId": null,
     "label": "Petits Frères des Pauvres",
     "slug": "petits-freres-des-pauvres",
     "synonyms": [
@@ -3060,7 +3041,11 @@
     "categoryId": null,
     "label": "Centre socioculturel",
     "slug": "centre-socioculturel",
-    "synonyms": ["centre socio culturel", "csc", "centre social"],
+    "synonyms": [
+      "centre socio culturel",
+      "csc",
+      "centre social"
+    ],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "ps",
     "country": "fr",
@@ -3101,22 +3086,6 @@
     "country": "fr",
     "seoTitle": "د میندو او ماشومانو د ساتنې خدماتو موندل د Soliguide سره",
     "seoDescription": "Soliguide ستاسو ته د میندو او ماشومانو د ساتنې ډېر ځایونه وړاندې کوي: د وړیا معاینې، د واکسینونو خدمات، د میندو مرسته"
-  },
-  {
-    "categoryId": null,
-    "label": "CADA: centre d'accueil pour demandeurs d'asile",
-    "slug": "cada",
-    "synonyms": [
-      "CADA",
-      "centre accueil demandeurs asile",
-      "centre d'accueil pour demandeurs d'asile",
-      "hébergement demandeurs asile"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "ps",
-    "country": "fr",
-    "seoTitle": "د پناه غوښتونکو د استقبال مرکزونه موندل د Soliguide سره",
-    "seoDescription": "Soliguide بې وزله کورونه، د کورونو مرسته، او د حقوقو مشورې د پناه غوښتونکو لپاره وړاندې کوي"
   },
   {
     "categoryId": null,
@@ -3217,22 +3186,6 @@
   },
   {
     "categoryId": null,
-    "label": "CHRS: centre d'hébergement et de réinsertion sociale",
-    "slug": "chrs",
-    "synonyms": [
-      "CHRS",
-      "centre hébergement réinsertion sociale",
-      "centre d'hébergement et de réinsertion sociale",
-      "foyer CHRS"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "ps",
-    "country": "fr",
-    "seoTitle": "د CHRS: centre d'hébergement et de réinsertion sociale موندنه د Soliguide سره",
-    "seoDescription": "Soliguide ستاسو ته د کورونو، د ټولنیز مرستو او د کار موندنې لپاره د CHRS مرکزونه وړاندې کوي"
-  },
-  {
-    "categoryId": null,
     "label": "MDS: maison départementale des solidarités",
     "slug": "mds",
     "synonyms": [
@@ -3246,39 +3199,6 @@
     "country": "fr",
     "seoTitle": "د ټولنیزو مرستو د کورونو سره مرسته ومومئ - د Soliguide سره د MDS موندنه",
     "seoDescription": "Soliguide ستاسو ته د ټولنیزو مرستو کورونه وړاندې کوي: د کورونو مرسته، د ماشومانو ساتنه، او د معلولیت مرستې ستاسو سیمه کې"
-  },
-  {
-    "categoryId": null,
-    "label": "Hôpital",
-    "slug": "hopital",
-    "synonyms": [
-      "hôpital",
-      "centre hospitalier",
-      "CH",
-      "CHU",
-      "établissement hospitalier"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "ps",
-    "country": "fr",
-    "seoTitle": "د وړیا درملنې لپاره روغتون ومومئ د Soliguide سره",
-    "seoDescription": "Soliguide بېلابېل روغتونونه وړاندې کوي - بیړني درملنه، د ماشومانو پاملرنه، او د رواني روغتیا خدمات ستاسو سیمه کې"
-  },
-  {
-    "categoryId": null,
-    "label": "PSA: point santé accueil",
-    "slug": "psa",
-    "synonyms": [
-      "PSA",
-      "point santé accueil",
-      "permanence santé accueil",
-      "point d'accès santé"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "ps",
-    "country": "fr",
-    "seoTitle": "د روغتیا د ګټې ټکي د Soliguide سره وموندئ",
-    "seoDescription": "Soliguide تاسو ته د PSA روغتیا ټکونه وړاندې کوي: د وینې معاینه، د رنځورۍ مرسته، د درملو مشوره"
   },
   {
     "categoryId": null,

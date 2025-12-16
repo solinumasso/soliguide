@@ -2836,7 +2836,11 @@
     "categoryId": null,
     "label": "Maisons France Services",
     "slug": "france-services",
-    "synonyms": ["france service", "maison france services", "MFS"],
+    "synonyms": [
+      "france service",
+      "maison france services",
+      "MFS"
+    ],
     "type": "ORGANIZATION",
     "lang": "ca",
     "country": "fr",
@@ -2847,7 +2851,11 @@
     "categoryId": null,
     "label": "La CIMADE",
     "slug": "cimade",
-    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
+    "synonyms": [
+      "la cimade",
+      "CIMADE",
+      "service œcuménique d'entraide"
+    ],
     "type": "ORGANIZATION",
     "lang": "ca",
     "country": "fr",
@@ -2966,33 +2974,6 @@
   },
   {
     "categoryId": null,
-    "label": "Médecins Du Monde (MDM)",
-    "slug": "msf",
-    "synonyms": ["médecins du monde", "mdm", "medecin"],
-    "type": "ORGANIZATION",
-    "lang": "ca",
-    "country": "fr",
-    "seoTitle": "Trobeu atenció mèdica gratuïta amb Metges del Món (MDM) a Soliguide",
-    "seoDescription": "Soliguide us ofereix centenars de llocs Metges del Món per rebre consultes mèdiques, vacunes i atenció d'urgència gratuïta a França"
-  },
-  {
-    "categoryId": null,
-    "label": "Médecins Sans Frontières (MSF)",
-    "slug": "msf",
-    "synonyms": [
-      "médecins sans frontières",
-      "MSF",
-      "doctors without borders",
-      "médecin sans frontière"
-    ],
-    "type": "ORGANIZATION",
-    "lang": "ca",
-    "country": "fr",
-    "seoTitle": "Trobeu atenció mèdica d'urgència amb Metges Sense Fronteres (MSF) a Soliguide",
-    "seoDescription": "Soliguide us ofereix centres MSF per a atenció mèdica urgent, vacunació gratuïta i suport psicològic a França"
-  },
-  {
-    "categoryId": null,
     "label": "Petits Frères des Pauvres",
     "slug": "petits-freres-des-pauvres",
     "synonyms": [
@@ -3060,7 +3041,11 @@
     "categoryId": null,
     "label": "Centre socioculturel",
     "slug": "centre-socioculturel",
-    "synonyms": ["centre socio culturel", "csc", "centre social"],
+    "synonyms": [
+      "centre socio culturel",
+      "csc",
+      "centre social"
+    ],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "ca",
     "country": "fr",
@@ -3101,22 +3086,6 @@
     "country": "fr",
     "seoTitle": "Trobeu cura maternal i infantil gratuïta amb Soliguide",
     "seoDescription": "Soliguide us ofereix centenars de llocs PMI: protection maternelle et infantile, consultes gratuïtes, vacunacions i seguiment embaràs"
-  },
-  {
-    "categoryId": null,
-    "label": "CADA: centre d'accueil pour demandeurs d'asile",
-    "slug": "cada",
-    "synonyms": [
-      "CADA",
-      "centre accueil demandeurs asile",
-      "centre d'accueil pour demandeurs d'asile",
-      "hébergement demandeurs asile"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "ca",
-    "country": "fr",
-    "seoTitle": "Trobeu un CADA centre d'accueil pour demandeurs d'asile amb Soliguide",
-    "seoDescription": "Soliguide us ofereix centenars de CADA per allotjament, acompanyament jurídic i suport social a França"
   },
   {
     "categoryId": null,
@@ -3217,22 +3186,6 @@
   },
   {
     "categoryId": null,
-    "label": "CHRS: centre d'hébergement et de réinsertion sociale",
-    "slug": "chrs",
-    "synonyms": [
-      "CHRS",
-      "centre hébergement réinsertion sociale",
-      "centre d'hébergement et de réinsertion sociale",
-      "foyer CHRS"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "ca",
-    "country": "fr",
-    "seoTitle": "Trobeu un CHRS centre d'hébergement et de réinsertion sociale amb Soliguide",
-    "seoDescription": "Soliguide us proposa centenars de CHRS per allotjament d'urgència, acompanyament social i reinserció professional a França"
-  },
-  {
-    "categoryId": null,
     "label": "MDS: maison départementale des solidarités",
     "slug": "mds",
     "synonyms": [
@@ -3246,39 +3199,6 @@
     "country": "fr",
     "seoTitle": "Trobeu ajuda social a la vostra MDS maison départementale des solidarités amb Soliguide",
     "seoDescription": "Soliguide us ofereix centenars de MDS per obtenir ajudes socials, domiciliació al CCAS o suport familiar a França"
-  },
-  {
-    "categoryId": null,
-    "label": "Hôpital",
-    "slug": "hopital",
-    "synonyms": [
-      "hôpital",
-      "centre hospitalier",
-      "CH",
-      "CHU",
-      "établissement hospitalier"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "ca",
-    "country": "fr",
-    "seoTitle": "Trobeu atenció mèdica gratuïta a l'hospital amb Soliguide",
-    "seoDescription": "Soliguide us ofereix centenars d'hospitals per rebre atenció mèdica, urgències o consultes especialitzades a França"
-  },
-  {
-    "categoryId": null,
-    "label": "PSA: point santé accueil",
-    "slug": "psa",
-    "synonyms": [
-      "PSA",
-      "point santé accueil",
-      "permanence santé accueil",
-      "point d'accès santé"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "ca",
-    "country": "fr",
-    "seoTitle": "Trobeu atenció sanitària gratuïta als PSA punt salut acollida amb Soliguide",
-    "seoDescription": "Soliguide us ofereix centenars de PSA punt salut acollida: consultes mèdiques gratuïtes, vacunacions i seguiment sanitari a França"
   },
   {
     "categoryId": null,

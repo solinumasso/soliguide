@@ -66,6 +66,7 @@ import {
   slugString,
 } from "@soliguide/common";
 import { THEME_CONFIGURATION } from "../../../../models";
+import { AVAILABLES_LOGOS } from "../../../../shared/constants";
 
 @Component({
   selector: "app-search-category-autocomplete",
@@ -282,18 +283,6 @@ export class SearchCategoryAutocompleteComponent
     let iconContent;
 
     const sourceLogos = `/assets/images/organizations-logos/${THEME_CONFIGURATION.country}`;
-    const AVAILABLES_LOGOS = [
-      "restos-du-coeur",
-      "france-travail",
-      "secours-catholique",
-      "cruz-roja",
-      "secours-populaire",
-      "mdm",
-      "caf",
-      "france-travail",
-      "cpam",
-      "armee-du-salut",
-    ];
     switch (item.type) {
       case AutoCompleteType.CATEGORY:
         {

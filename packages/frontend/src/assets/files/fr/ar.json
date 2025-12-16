@@ -2836,7 +2836,11 @@
     "categoryId": null,
     "label": "Maisons France Services",
     "slug": "france-services",
-    "synonyms": ["france service", "maison france services", "MFS"],
+    "synonyms": [
+      "france service",
+      "maison france services",
+      "MFS"
+    ],
     "type": "ORGANIZATION",
     "lang": "ar",
     "country": "fr",
@@ -2847,7 +2851,11 @@
     "categoryId": null,
     "label": "La CIMADE",
     "slug": "cimade",
-    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
+    "synonyms": [
+      "la cimade",
+      "CIMADE",
+      "service œcuménique d'entraide"
+    ],
     "type": "ORGANIZATION",
     "lang": "ar",
     "country": "fr",
@@ -2966,33 +2974,6 @@
   },
   {
     "categoryId": null,
-    "label": "Médecins Du Monde (MDM)",
-    "slug": "msf",
-    "synonyms": ["médecins du monde", "mdm", "medecin"],
-    "type": "ORGANIZATION",
-    "lang": "ar",
-    "country": "fr",
-    "seoTitle": "احصلوا على الرعاية الطبية المجانية مع أطباء العالم عبر دليل سوليغيد",
-    "seoDescription": "يساعدكم سوليغيد في العثور على مراكز أطباء العالم للاستشارات المجانية والأدوية والفحوصات الطبية بالقرب منكم في فرنسا"
-  },
-  {
-    "categoryId": null,
-    "label": "Médecins Sans Frontières (MSF)",
-    "slug": "msf",
-    "synonyms": [
-      "médecins sans frontières",
-      "MSF",
-      "doctors without borders",
-      "médecin sans frontière"
-    ],
-    "type": "ORGANIZATION",
-    "lang": "ar",
-    "country": "fr",
-    "seoTitle": "احصلوا على الرعاية الطبية المجانية مع أطباء بلا حدود عبر دليل سوليغيد",
-    "seoDescription": "يساعدكم سوليغيد في العثور على مراكز أطباء بلا حدود للرعاية الطبية المجانية والاستشارات الصحية والأدوية في فرنسا"
-  },
-  {
-    "categoryId": null,
     "label": "Petits Frères des Pauvres",
     "slug": "petits-freres-des-pauvres",
     "synonyms": [
@@ -3060,7 +3041,11 @@
     "categoryId": null,
     "label": "Centre socioculturel",
     "slug": "centre-socioculturel",
-    "synonyms": ["centre socio culturel", "csc", "centre social"],
+    "synonyms": [
+      "centre socio culturel",
+      "csc",
+      "centre social"
+    ],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "ar",
     "country": "fr",
@@ -3101,22 +3086,6 @@
     "country": "fr",
     "seoTitle": "احصلوا على رعاية مجانية للأمهات والأطفال مع دليل سوليغيد",
     "seoDescription": "سوليغيد يقدم لكم مئات المراكز للحماية الأمومية والطفولة، استشارات طبية مجانية، ومتابعة الحمل والولادة"
-  },
-  {
-    "categoryId": null,
-    "label": "CADA: centre d'accueil pour demandeurs d'asile",
-    "slug": "cada",
-    "synonyms": [
-      "CADA",
-      "centre accueil demandeurs asile",
-      "centre d'accueil pour demandeurs d'asile",
-      "hébergement demandeurs asile"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "ar",
-    "country": "fr",
-    "seoTitle": "العثور على مركز استقبال طالبي اللجوء CADA بالقرب منك مع سوليغيد",
-    "seoDescription": "سوليغيد يساعدكم في العثور على مراكز CADA للإقامة والمرافقة والدعم القانوني لطالبي اللجوء في فرنسا"
   },
   {
     "categoryId": null,
@@ -3217,22 +3186,6 @@
   },
   {
     "categoryId": null,
-    "label": "CHRS: centre d'hébergement et de réinsertion sociale",
-    "slug": "chrs",
-    "synonyms": [
-      "CHRS",
-      "centre hébergement réinsertion sociale",
-      "centre d'hébergement et de réinsertion sociale",
-      "foyer CHRS"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "ar",
-    "country": "fr",
-    "seoTitle": "العثور على مركز إيواء وإعادة إدماج اجتماعي مع دليل سوليغيد",
-    "seoDescription": "سوليغيد يقدم لك مراكز الإيواء والإعادة الإدماج، المساعدة في السكن، والدعم الاجتماعي في فرنسا"
-  },
-  {
-    "categoryId": null,
     "label": "MDS: maison départementale des solidarités",
     "slug": "mds",
     "synonyms": [
@@ -3246,39 +3199,6 @@
     "country": "fr",
     "seoTitle": "العثور على دار التضامن الإقليمية بالقرب منك مع سوليغيد",
     "seoDescription": "سوليغيد يساعدكم في العثور على دار التضامن الإقليمية للحصول على المساعدات الاجتماعية والإسكان والدعم الأسري بالقرب منكم"
-  },
-  {
-    "categoryId": null,
-    "label": "Hôpital",
-    "slug": "hopital",
-    "synonyms": [
-      "hôpital",
-      "centre hospitalier",
-      "CH",
-      "CHU",
-      "établissement hospitalier"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "ar",
-    "country": "fr",
-    "seoTitle": "العثور على المستشفيات والرعاية الطبية المجانية مع سوليغايد",
-    "seoDescription": "سوليغايد يقدم لك مئات المستشفيات والمراكز الصحية للحصول على الرعاية الطبية المجانية والاستشارات الطبية والأدوية"
-  },
-  {
-    "categoryId": null,
-    "label": "PSA: point santé accueil",
-    "slug": "psa",
-    "synonyms": [
-      "PSA",
-      "point santé accueil",
-      "permanence santé accueil",
-      "point d'accès santé"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "ar",
-    "country": "fr",
-    "seoTitle": "احصل على الرعاية الصحية المجانية في نقاط الاستقبال الصحي مع سوليغيد",
-    "seoDescription": "سوليغيد يساعدك في العثور على نقاط الاستقبال الصحي، المراكز الصحية المجتمعية، والمساعدة الطبية المجانية بالقرب منك"
   },
   {
     "categoryId": null,
