@@ -2835,7 +2835,11 @@
     "categoryId": null,
     "label": "Maisons France Services",
     "slug": "france-services",
-    "synonyms": ["france service", "maison france services", "MFS"],
+    "synonyms": [
+      "france service",
+      "maison france services",
+      "MFS"
+    ],
     "type": "ORGANIZATION",
     "lang": "ka",
     "country": "fr",
@@ -2846,7 +2850,11 @@
     "categoryId": null,
     "label": "La CIMADE",
     "slug": "cimade",
-    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
+    "synonyms": [
+      "la cimade",
+      "CIMADE",
+      "service œcuménique d'entraide"
+    ],
     "type": "ORGANIZATION",
     "lang": "ka",
     "country": "fr",
@@ -2965,33 +2973,6 @@
   },
   {
     "categoryId": null,
-    "label": "Médecins Du Monde (MDM)",
-    "slug": "msf",
-    "synonyms": ["médecins du monde", "mdm", "medecin"],
-    "type": "ORGANIZATION",
-    "lang": "ka",
-    "country": "fr",
-    "seoTitle": "უფასო სამედიცინო დახმარება მსოფლიო ექიმებთან ერთად Soliguide-ზე",
-    "seoDescription": "Soliguide გთავაზობთ Médecins Du Monde (MDM) ცენტრებს: უფასო კონსულტაციები, ვაქცინაცია და სამედიცინო დახმარება ფრანგეთში"
-  },
-  {
-    "categoryId": null,
-    "label": "Médecins Sans Frontières (MSF)",
-    "slug": "msf",
-    "synonyms": [
-      "médecins sans frontières",
-      "MSF",
-      "doctors without borders",
-      "médecin sans frontière"
-    ],
-    "type": "ORGANIZATION",
-    "lang": "ka",
-    "country": "fr",
-    "seoTitle": "უფასო სამედიცინო დახმარება საზღვრების გარეშე ექიმებთან ერთად Soliguide-ზე",
-    "seoDescription": "Soliguide გთავაზობთ საზღვრების გარეშე ექიმების (MSF) ცენტრებს უფასო კონსულტაციებისთვის, ვაქცინაციისთვის და გადაუდებელი დახმარებისთვის"
-  },
-  {
-    "categoryId": null,
     "label": "Petits Frères des Pauvres",
     "slug": "petits-freres-des-pauvres",
     "synonyms": [
@@ -3059,7 +3040,11 @@
     "categoryId": null,
     "label": "Centre socioculturel",
     "slug": "centre-socioculturel",
-    "synonyms": ["centre socio culturel", "csc", "centre social"],
+    "synonyms": [
+      "centre socio culturel",
+      "csc",
+      "centre social"
+    ],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "ka",
     "country": "fr",
@@ -3100,22 +3085,6 @@
     "country": "fr",
     "seoTitle": "დედისა და ბავშვის დაცვის უფასო სერვისები Soliguide-თან ერთად",
     "seoDescription": "Soliguide გთავაზობთ PMI ცენტრებს ვაქცინაციისთვის, ჯანმრთელობის კონსულტაციებისთვის და ოჯახური დახმარებისთვის"
-  },
-  {
-    "categoryId": null,
-    "label": "CADA: centre d'accueil pour demandeurs d'asile",
-    "slug": "cada",
-    "synonyms": [
-      "CADA",
-      "centre accueil demandeurs asile",
-      "centre d'accueil pour demandeurs d'asile",
-      "hébergement demandeurs asile"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "ka",
-    "country": "fr",
-    "seoTitle": "იპოვეთ თავშესაფარი თქვენთვის Soliguide-ზე - CADA ცენტრები ფრანგეთში",
-    "seoDescription": "Soliguide გთავაზობთ CADA ცენტრებს საცხოვრებლად, იურიდიული დახმარებისთვის და ფრანგული ენის შესასწავლად ფრანგეთში"
   },
   {
     "categoryId": null,
@@ -3216,22 +3185,6 @@
   },
   {
     "categoryId": null,
-    "label": "CHRS: centre d'hébergement et de réinsertion sociale",
-    "slug": "chrs",
-    "synonyms": [
-      "CHRS",
-      "centre hébergement réinsertion sociale",
-      "centre d'hébergement et de réinsertion sociale",
-      "foyer CHRS"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "ka",
-    "country": "fr",
-    "seoTitle": "იპოვეთ CHRS: centre d'hébergement et de réinsertion sociale Soliguide-ის დახმარებით",
-    "seoDescription": "Soliguide გთავაზობთ ასობით ადგილს საცხოვრებლად, სოციალური რეინტეგრაციისთვის და დახმარებისთვის თქვენს მახლობლად"
-  },
-  {
-    "categoryId": null,
     "label": "MDS: maison départementale des solidarités",
     "slug": "mds",
     "synonyms": [
@@ -3245,39 +3198,6 @@
     "country": "fr",
     "seoTitle": "იპოვეთ MDS: maison départementale des solidarités თქვენს მახლობლად Soliguide-ით",
     "seoDescription": "Soliguide გთავაზობთ MDS-ების მისამართებს საცხოვრებელი ადგილის რეგისტრაციისთვის, სოციალური დახმარებისთვის და ოჯახური მხარდაჭერისთვის"
-  },
-  {
-    "categoryId": null,
-    "label": "Hôpital",
-    "slug": "hopital",
-    "synonyms": [
-      "hôpital",
-      "centre hospitalier",
-      "CH",
-      "CHU",
-      "établissement hospitalier"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "ka",
-    "country": "fr",
-    "seoTitle": "საავადმყოფოს უფასო მომსახურება Soliguide-ით",
-    "seoDescription": "Soliguide გთავაზობთ ასობით ადგილს: უფასო კონსულტაციები, ჯანდაცვის სახლები და CCAS დომიცილიაციისთვის"
-  },
-  {
-    "categoryId": null,
-    "label": "PSA: point santé accueil",
-    "slug": "psa",
-    "synonyms": [
-      "PSA",
-      "point santé accueil",
-      "permanence santé accueil",
-      "point d'accès santé"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "ka",
-    "country": "fr",
-    "seoTitle": "იპოვეთ უფასო სამედიცინო მომსახურება Soliguide-ით PSA point santé accueil-ში",
-    "seoDescription": "Soliguide გთავაზობთ ასობით ადგილს სამედიცინო დახმარებისთვის, ვაქცინაციისთვის და ჯანმრთელობის კონსულტაციებისთვის"
   },
   {
     "categoryId": null,

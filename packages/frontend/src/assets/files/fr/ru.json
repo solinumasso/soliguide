@@ -2836,7 +2836,11 @@
     "categoryId": null,
     "label": "Maisons France Services",
     "slug": "france-services",
-    "synonyms": ["france service", "maison france services", "MFS"],
+    "synonyms": [
+      "france service",
+      "maison france services",
+      "MFS"
+    ],
     "type": "ORGANIZATION",
     "lang": "ru",
     "country": "fr",
@@ -2847,7 +2851,11 @@
     "categoryId": null,
     "label": "La CIMADE",
     "slug": "cimade",
-    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
+    "synonyms": [
+      "la cimade",
+      "CIMADE",
+      "service œcuménique d'entraide"
+    ],
     "type": "ORGANIZATION",
     "lang": "ru",
     "country": "fr",
@@ -2966,33 +2974,6 @@
   },
   {
     "categoryId": null,
-    "label": "Médecins Du Monde (MDM)",
-    "slug": "msf",
-    "synonyms": ["médecins du monde", "mdm", "medecin"],
-    "type": "ORGANIZATION",
-    "lang": "ru",
-    "country": "fr",
-    "seoTitle": "Найдите бесплатную медицинскую помощь от Врачей Мира с Soliguide",
-    "seoDescription": "Soliguide поможет найти центры Врачей Мира: консультации без документов, помощь мигрантам, лечение в PASS больниц"
-  },
-  {
-    "categoryId": null,
-    "label": "Médecins Sans Frontières (MSF)",
-    "slug": "msf",
-    "synonyms": [
-      "médecins sans frontières",
-      "MSF",
-      "doctors without borders",
-      "médecin sans frontière"
-    ],
-    "type": "ORGANIZATION",
-    "lang": "ru",
-    "country": "fr",
-    "seoTitle": "Найдите медицинскую помощь от Врачей без границ через Soliguide",
-    "seoDescription": "Soliguide поможет найти бесплатную медпомощь: консультации в центрах здоровья, помощь в CCAS для регистрации, поддержку беженцев"
-  },
-  {
-    "categoryId": null,
     "label": "Petits Frères des Pauvres",
     "slug": "petits-freres-des-pauvres",
     "synonyms": [
@@ -3060,7 +3041,11 @@
     "categoryId": null,
     "label": "Centre socioculturel",
     "slug": "centre-socioculturel",
-    "synonyms": ["centre socio culturel", "csc", "centre social"],
+    "synonyms": [
+      "centre socio culturel",
+      "csc",
+      "centre social"
+    ],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "ru",
     "country": "fr",
@@ -3101,22 +3086,6 @@
     "country": "fr",
     "seoTitle": "Найдите центры охраны материнства и детства PMI рядом с вами через Soliguide",
     "seoDescription": "Soliguide поможет найти центры PMI: protection maternelle et infantile для консультаций, прививок и медосмотров детей"
-  },
-  {
-    "categoryId": null,
-    "label": "CADA: centre d'accueil pour demandeurs d'asile",
-    "slug": "cada",
-    "synonyms": [
-      "CADA",
-      "centre accueil demandeurs asile",
-      "centre d'accueil pour demandeurs d'asile",
-      "hébergement demandeurs asile"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "ru",
-    "country": "fr",
-    "seoTitle": "Найдите центр приёма для просителей убежища CADA рядом с вами через Soliguide",
-    "seoDescription": "Soliguide поможет найти центры CADA во Франции: временное жильё, правовая помощь, сопровождение в процедурах получения убежища"
   },
   {
     "categoryId": null,
@@ -3217,22 +3186,6 @@
   },
   {
     "categoryId": null,
-    "label": "CHRS: centre d'hébergement et de réinsertion sociale",
-    "slug": "chrs",
-    "synonyms": [
-      "CHRS",
-      "centre hébergement réinsertion sociale",
-      "centre d'hébergement et de réinsertion sociale",
-      "foyer CHRS"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "ru",
-    "country": "fr",
-    "seoTitle": "Найдите центр размещения и социальной реинтеграции CHRS рядом с вами через Soliguide",
-    "seoDescription": "Soliguide поможет найти центры CHRS во Франции: временное жилье, социальное сопровождение, помощь в трудоустройстве рядом с вами"
-  },
-  {
-    "categoryId": null,
     "label": "MDS: maison départementale des solidarités",
     "slug": "mds",
     "synonyms": [
@@ -3246,39 +3199,6 @@
     "country": "fr",
     "seoTitle": "Найдите департаментский дом солидарности MDS рядом с вами через Soliguide",
     "seoDescription": "Soliguide поможет найти MDS: департаментский дом солидарности для получения социальной помощи, жилищной поддержки и семейных услуг"
-  },
-  {
-    "categoryId": null,
-    "label": "Hôpital",
-    "slug": "hopital",
-    "synonyms": [
-      "hôpital",
-      "centre hospitalier",
-      "CH",
-      "CHU",
-      "établissement hospitalier"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "ru",
-    "country": "fr",
-    "seoTitle": "Найдите бесплатную медицинскую помощь в больницах с Soliguide",
-    "seoDescription": "Soliguide поможет найти больницы для неотложной помощи, консультаций без документов и бесплатного лечения рядом с вами"
-  },
-  {
-    "categoryId": null,
-    "label": "PSA: point santé accueil",
-    "slug": "psa",
-    "synonyms": [
-      "PSA",
-      "point santé accueil",
-      "permanence santé accueil",
-      "point d'accès santé"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "ru",
-    "country": "fr",
-    "seoTitle": "Найдите бесплатную медицинскую помощь в пунктах приема здравоохранения с Soliguide",
-    "seoDescription": "Soliguide поможет найти пункты приема здравоохранения рядом с вами: консультации врача, медосмотры, помощь в CCAS для получения адреса"
   },
   {
     "categoryId": null,

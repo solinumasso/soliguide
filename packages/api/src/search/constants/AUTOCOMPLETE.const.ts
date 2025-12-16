@@ -192,16 +192,6 @@ export const AUTOCOMPLETE_ORGANIZATIONS: {
       synonyms: ["médecins du monde", "mdm", "medecin"],
     },
     {
-      label: "Médecins Sans Frontières (MSF)",
-      slug: "msf",
-      synonyms: [
-        "médecins sans frontières",
-        "MSF",
-        "doctors without borders",
-        "médecin sans frontière",
-      ],
-    },
-    {
       label: "Petits Frères des Pauvres",
       slug: "petits freres des pauvres",
       synonyms: [
@@ -363,16 +353,6 @@ export const AUTOCOMPLETE_ESTABLISHMENT_TYPES: {
       ],
     },
     {
-      label: "CADA: centre d'accueil pour demandeurs d'asile",
-      slug: "cada",
-      synonyms: [
-        "CADA",
-        "centre accueil demandeurs asile",
-        "centre d'accueil pour demandeurs d'asile",
-        "hébergement demandeurs asile",
-      ],
-    },
-    {
       label: "ESI: équipe spécialisée d'insertion",
       slug: "esi",
       synonyms: [
@@ -434,16 +414,6 @@ export const AUTOCOMPLETE_ESTABLISHMENT_TYPES: {
       ],
     },
     {
-      label: "CHRS: centre d'hébergement et de réinsertion sociale",
-      slug: "chrs",
-      synonyms: [
-        "CHRS",
-        "centre hébergement réinsertion sociale",
-        "centre d'hébergement et de réinsertion sociale",
-        "foyer CHRS",
-      ],
-    },
-    {
       label: "MDS: maison départementale des solidarités",
       slug: "mds",
       synonyms: [
@@ -451,27 +421,6 @@ export const AUTOCOMPLETE_ESTABLISHMENT_TYPES: {
         "maison des solidarités",
         "maison départementale des solidarités",
         "maison départementale solidarités",
-      ],
-    },
-    {
-      label: "Hôpital",
-      slug: "hopital",
-      synonyms: [
-        "hôpital",
-        "centre hospitalier",
-        "CH",
-        "CHU",
-        "établissement hospitalier",
-      ],
-    },
-    {
-      label: "PSA: point santé accueil",
-      slug: "psa",
-      synonyms: [
-        "PSA",
-        "point santé accueil",
-        "permanence santé accueil",
-        "point d'accès santé",
       ],
     },
     {
@@ -535,16 +484,7 @@ export const AUTOCOMPLETE_ESTABLISHMENT_TYPES: {
         "dossier mdph",
       ],
     },
-    {
-      label: "Maison Relais: logement accompagné pour personnes vulnérables",
-      slug: "maison relais",
-      synonyms: [
-        "maisons relais",
-        "pension famille",
-        "résidence accueil",
-        "logement accompagné",
-      ],
-    },
+
     {
       label: "Planning Familial ",
       slug: "planning familial",

@@ -2966,33 +2966,6 @@
   },
   {
     "categoryId": null,
-    "label": "Médecins Du Monde (MDM)",
-    "slug": "msf",
-    "synonyms": ["médecins du monde", "mdm", "medecin"],
-    "type": "ORGANIZATION",
-    "lang": "fr",
-    "country": "fr",
-    "seoTitle": "Trouvez un centre Médecins Du Monde (MDM) près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à localiser les centres Médecins Du Monde pour des consultations gratuites, soins dentaires et accompagnement social"
-  },
-  {
-    "categoryId": null,
-    "label": "Médecins Sans Frontières (MSF)",
-    "slug": "msf",
-    "synonyms": [
-      "médecins sans frontières",
-      "MSF",
-      "doctors without borders",
-      "médecin sans frontière"
-    ],
-    "type": "ORGANIZATION",
-    "lang": "fr",
-    "country": "fr",
-    "seoTitle": "Trouvez l'aide de Médecins Sans Frontières près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à localiser Médecins Sans Frontières (MSF) : soins d'urgence, aide aux migrants, consultations médicales gratuites"
-  },
-  {
-    "categoryId": null,
     "label": "Petits Frères des Pauvres",
     "slug": "petits-freres-des-pauvres",
     "synonyms": [
@@ -3037,7 +3010,7 @@
     "lang": "fr",
     "country": "fr",
     "seoTitle": "Trouvez une Fondation pour le Logement des Défavorisés près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver un logement d'urgence, un hébergement temporaire ou une aide au relogement près de chez vous"
+    "seoDescription": "Soliguide vous aide à trouver une aide au relogement près de chez vous"
   },
   {
     "categoryId": null,
@@ -3101,22 +3074,6 @@
     "country": "fr",
     "seoTitle": "Trouvez un centre PMI protection maternelle et infantile près de chez vous avec Soliguide",
     "seoDescription": "Soliguide vous aide à localiser les centres PMI pour consultations gratuites, vaccinations et suivi de grossesse près de chez vous"
-  },
-  {
-    "categoryId": null,
-    "label": "CADA: centre d'accueil pour demandeurs d'asile",
-    "slug": "cada",
-    "synonyms": [
-      "CADA",
-      "centre accueil demandeurs asile",
-      "centre d'accueil pour demandeurs d'asile",
-      "hébergement demandeurs asile"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "fr",
-    "country": "fr",
-    "seoTitle": "Trouvez un CADA centre d'accueil pour demandeurs d'asile près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver un CADA pour votre hébergement, accompagnement administratif et cours de français près de chez vous"
   },
   {
     "categoryId": null,
@@ -3217,22 +3174,6 @@
   },
   {
     "categoryId": null,
-    "label": "CHRS: centre d'hébergement et de réinsertion sociale",
-    "slug": "chrs",
-    "synonyms": [
-      "CHRS",
-      "centre hébergement réinsertion sociale",
-      "centre d'hébergement et de réinsertion sociale",
-      "foyer CHRS"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "fr",
-    "country": "fr",
-    "seoTitle": "Trouvez un CHRS centre d'hébergement et de réinsertion sociale près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver un CHRS pour un hébergement d'urgence, un accompagnement social ou une aide à la réinsertion professionnelle"
-  },
-  {
-    "categoryId": null,
     "label": "MDS: maison départementale des solidarités",
     "slug": "mds",
     "synonyms": [
@@ -3246,39 +3187,6 @@
     "country": "fr",
     "seoTitle": "Trouvez votre maison départementale des solidarités avec Soliguide",
     "seoDescription": "Soliguide vous aide à localiser votre MDS pour vos démarches RSA, aide au logement et accompagnement social près de chez vous"
-  },
-  {
-    "categoryId": null,
-    "label": "Hôpital",
-    "slug": "hopital",
-    "synonyms": [
-      "hôpital",
-      "centre hospitalier",
-      "CH",
-      "CHU",
-      "établissement hospitalier"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "fr",
-    "country": "fr",
-    "seoTitle": "Trouvez un hôpital près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à localiser les hôpitaux, centres de soins gratuits et permanences médicales pour vos urgences et consultations"
-  },
-  {
-    "categoryId": null,
-    "label": "PSA: point santé accueil",
-    "slug": "psa",
-    "synonyms": [
-      "PSA",
-      "point santé accueil",
-      "permanence santé accueil",
-      "point d'accès santé"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "fr",
-    "country": "fr",
-    "seoTitle": "Trouvez un PSA point santé accueil près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver un PSA point santé accueil : consultations gratuites, soins infirmiers et accompagnement médical"
   },
   {
     "categoryId": null,
@@ -3374,22 +3282,6 @@
     "country": "fr",
     "seoTitle": "Trouvez votre MDPH maison départementale des personnes handicapées avec Soliguide",
     "seoDescription": "Soliguide vous aide à localiser votre MDPH pour vos demandes d'AAH, carte mobilité inclusion ou reconnaissance de handicap près de chez vous"
-  },
-  {
-    "categoryId": null,
-    "label": "Maison Relais: logement accompagné pour personnes vulnérables",
-    "slug": "maison-relais",
-    "synonyms": [
-      "maisons relais",
-      "pension famille",
-      "résidence accueil",
-      "logement accompagné"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "fr",
-    "country": "fr",
-    "seoTitle": "Trouvez une maison relais pour un logement accompagné avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des maisons relais près de chez vous : logement stable, accompagnement social et aide aux démarches administratives"
   },
   {
     "categoryId": null,

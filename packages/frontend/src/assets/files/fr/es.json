@@ -2836,7 +2836,11 @@
     "categoryId": null,
     "label": "Maisons France Services",
     "slug": "france-services",
-    "synonyms": ["france service", "maison france services", "MFS"],
+    "synonyms": [
+      "france service",
+      "maison france services",
+      "MFS"
+    ],
     "type": "ORGANIZATION",
     "lang": "es",
     "country": "fr",
@@ -2847,7 +2851,11 @@
     "categoryId": null,
     "label": "La CIMADE",
     "slug": "cimade",
-    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
+    "synonyms": [
+      "la cimade",
+      "CIMADE",
+      "service œcuménique d'entraide"
+    ],
     "type": "ORGANIZATION",
     "lang": "es",
     "country": "fr",
@@ -2966,33 +2974,6 @@
   },
   {
     "categoryId": null,
-    "label": "Médecins Du Monde (MDM)",
-    "slug": "msf",
-    "synonyms": ["médecins du monde", "mdm", "medecin"],
-    "type": "ORGANIZATION",
-    "lang": "es",
-    "country": "fr",
-    "seoTitle": "Encuentre atención médica gratuita con Médecins Du Monde (MDM) en Soliguide",
-    "seoDescription": "Soliguide le ayuda a localizar centros de Médecins Du Monde (MDM): consultas gratuitas, vacunación y atención para personas sin papeles."
-  },
-  {
-    "categoryId": null,
-    "label": "Médecins Sans Frontières (MSF)",
-    "slug": "msf",
-    "synonyms": [
-      "médecins sans frontières",
-      "MSF",
-      "doctors without borders",
-      "médecin sans frontière"
-    ],
-    "type": "ORGANIZATION",
-    "lang": "es",
-    "country": "fr",
-    "seoTitle": "Encuentre atención médica gratuita con Médecins Sans Frontières (MSF) en Soliguide",
-    "seoDescription": "Soliguide le conecta con Médecins Sans Frontières (MSF): consultas médicas gratuitas, vacunación y atención de urgencia cerca de usted"
-  },
-  {
-    "categoryId": null,
     "label": "Petits Frères des Pauvres",
     "slug": "petits-freres-des-pauvres",
     "synonyms": [
@@ -3060,7 +3041,11 @@
     "categoryId": null,
     "label": "Centre socioculturel",
     "slug": "centre-socioculturel",
-    "synonyms": ["centre socio culturel", "csc", "centre social"],
+    "synonyms": [
+      "centre socio culturel",
+      "csc",
+      "centre social"
+    ],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "es",
     "country": "fr",
@@ -3101,22 +3086,6 @@
     "country": "fr",
     "seoTitle": "Encuentre centros PMI protection maternelle et infantile cerca de usted con Soliguide",
     "seoDescription": "Soliguide le ayuda a localizar centros PMI para consultas gratuitas, vacunas infantiles y seguimiento del embarazo en Francia"
-  },
-  {
-    "categoryId": null,
-    "label": "CADA: centre d'accueil pour demandeurs d'asile",
-    "slug": "cada",
-    "synonyms": [
-      "CADA",
-      "centre accueil demandeurs asile",
-      "centre d'accueil pour demandeurs d'asile",
-      "hébergement demandeurs asile"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "es",
-    "country": "fr",
-    "seoTitle": "Encuentre un CADA centro de acogida para solicitantes de asilo con Soliguide",
-    "seoDescription": "Soliguide le ayuda a localizar centros CADA en Francia: alojamiento temporal, acompañamiento social y apoyo jurídico para solicitantes de asilo"
   },
   {
     "categoryId": null,
@@ -3217,22 +3186,6 @@
   },
   {
     "categoryId": null,
-    "label": "CHRS: centre d'hébergement et de réinsertion sociale",
-    "slug": "chrs",
-    "synonyms": [
-      "CHRS",
-      "centre hébergement réinsertion sociale",
-      "centre d'hébergement et de réinsertion sociale",
-      "foyer CHRS"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "es",
-    "country": "fr",
-    "seoTitle": "Encuentre un CHRS centro de alojamiento y reinserción social cerca de usted con Soliguide",
-    "seoDescription": "Soliguide le ayuda a encontrar CHRS en Francia: alojamiento de emergencia, acompañamiento social, ayuda para la reinserción profesional"
-  },
-  {
-    "categoryId": null,
     "label": "MDS: maison départementale des solidarités",
     "slug": "mds",
     "synonyms": [
@@ -3246,39 +3199,6 @@
     "country": "fr",
     "seoTitle": "Encuentre una MDS maison départementale des solidarités cerca de usted con Soliguide",
     "seoDescription": "Soliguide le ayuda a localizar MDS para ayuda social, tramitación de RSA y acompañamiento personalizado en Francia"
-  },
-  {
-    "categoryId": null,
-    "label": "Hôpital",
-    "slug": "hopital",
-    "synonyms": [
-      "hôpital",
-      "centre hospitalier",
-      "CH",
-      "CHU",
-      "établissement hospitalier"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "es",
-    "country": "fr",
-    "seoTitle": "Encuentre atención médica gratuita cerca de usted con Soliguide",
-    "seoDescription": "Soliguide le ayuda a encontrar hospitales y centros de salud gratuitos: urgencias, consultas sin cita previa, atención para personas sin papeles."
-  },
-  {
-    "categoryId": null,
-    "label": "PSA: point santé accueil",
-    "slug": "psa",
-    "synonyms": [
-      "PSA",
-      "point santé accueil",
-      "permanence santé accueil",
-      "point d'accès santé"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "es",
-    "country": "fr",
-    "seoTitle": "Encuentre atención médica gratuita en PSA punto de acogida sanitaria con Soliguide",
-    "seoDescription": "Soliguide le ofrece cientos de PSA para consultas médicas gratuitas, vacunaciones y atención de enfermería cerca de usted en Francia."
   },
   {
     "categoryId": null,

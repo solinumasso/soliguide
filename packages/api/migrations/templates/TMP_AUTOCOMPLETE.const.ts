@@ -57,7 +57,7 @@ export const TMP_AUTOCOMPLETE: any = [
     label: "HEALTH",
     seo: "sante",
     synonyms:
-      "sante soins se soigner hopital lam lit medicalise lhss medecin docteur infirmiere aide soignante aide soignant malade douleur materiel medical medicaments maintien a domicile senior assurance maladie securite sociale secu cpam sexe",
+      "sante soins se soigner lam lit medicalise lhss medecin docteur infirmiere aide soignante aide soignant malade douleur materiel medical medicaments maintien a domicile senior assurance maladie securite sociale secu cpam sexe",
     type: "CATEGORY",
     __v: 0,
   },
@@ -1425,7 +1425,7 @@ export const TMP_AUTOCOMPLETE: any = [
     expressionId: null,
     label: "LONG_TERM_ACCOMODATION",
     seo: "hebergement-long-terme",
-    synonyms: "hebergement dormir lit logement chrs repos toit",
+    synonyms: "hebergement dormir lit logement repos toit",
     type: "CATEGORY",
     __v: 0,
   },

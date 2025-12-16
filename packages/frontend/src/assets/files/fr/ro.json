@@ -2836,7 +2836,11 @@
     "categoryId": null,
     "label": "Maisons France Services",
     "slug": "france-services",
-    "synonyms": ["france service", "maison france services", "MFS"],
+    "synonyms": [
+      "france service",
+      "maison france services",
+      "MFS"
+    ],
     "type": "ORGANIZATION",
     "lang": "ro",
     "country": "fr",
@@ -2847,7 +2851,11 @@
     "categoryId": null,
     "label": "La CIMADE",
     "slug": "cimade",
-    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
+    "synonyms": [
+      "la cimade",
+      "CIMADE",
+      "service œcuménique d'entraide"
+    ],
     "type": "ORGANIZATION",
     "lang": "ro",
     "country": "fr",
@@ -2966,33 +2974,6 @@
   },
   {
     "categoryId": null,
-    "label": "Médecins Du Monde (MDM)",
-    "slug": "msf",
-    "synonyms": ["médecins du monde", "mdm", "medecin"],
-    "type": "ORGANIZATION",
-    "lang": "ro",
-    "country": "fr",
-    "seoTitle": "Găsiți îngrijiri medicale gratuite cu Médecins Du Monde prin Soliguide",
-    "seoDescription": "Soliguide vă oferă sute de locuri pentru consultații gratuite, vaccinuri și îngrijiri medicale prin Médecins Du Monde în Franța"
-  },
-  {
-    "categoryId": null,
-    "label": "Médecins Sans Frontières (MSF)",
-    "slug": "msf",
-    "synonyms": [
-      "médecins sans frontières",
-      "MSF",
-      "doctors without borders",
-      "médecin sans frontière"
-    ],
-    "type": "ORGANIZATION",
-    "lang": "ro",
-    "country": "fr",
-    "seoTitle": "Găsiți îngrijire medicală gratuită cu Médecins Sans Frontières prin Soliguide",
-    "seoDescription": "Soliguide vă conectează cu Médecins Sans Frontières pentru consultații gratuite, vaccinuri și îngrijire de urgență în Franța"
-  },
-  {
-    "categoryId": null,
     "label": "Petits Frères des Pauvres",
     "slug": "petits-freres-des-pauvres",
     "synonyms": [
@@ -3060,7 +3041,11 @@
     "categoryId": null,
     "label": "Centre socioculturel",
     "slug": "centre-socioculturel",
-    "synonyms": ["centre socio culturel", "csc", "centre social"],
+    "synonyms": [
+      "centre socio culturel",
+      "csc",
+      "centre social"
+    ],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "ro",
     "country": "fr",
@@ -3101,22 +3086,6 @@
     "country": "fr",
     "seoTitle": "Găsiți centre PMI protecție maternală și infantilă cu Soliguide",
     "seoDescription": "Soliguide vă oferă sute de centre PMI pentru consultații gratuite, vaccinuri copii și urmărire sarcină în Franța"
-  },
-  {
-    "categoryId": null,
-    "label": "CADA: centre d'accueil pour demandeurs d'asile",
-    "slug": "cada",
-    "synonyms": [
-      "CADA",
-      "centre accueil demandeurs asile",
-      "centre d'accueil pour demandeurs d'asile",
-      "hébergement demandeurs asile"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "ro",
-    "country": "fr",
-    "seoTitle": "Găsiți un centru de primire pentru solicitanții de azil CADA cu Soliguide",
-    "seoDescription": "Soliguide vă oferă sute de centre CADA pentru cazare, sprijin juridic și însoțire socială în Franța"
   },
   {
     "categoryId": null,
@@ -3217,22 +3186,6 @@
   },
   {
     "categoryId": null,
-    "label": "CHRS: centre d'hébergement et de réinsertion sociale",
-    "slug": "chrs",
-    "synonyms": [
-      "CHRS",
-      "centre hébergement réinsertion sociale",
-      "centre d'hébergement et de réinsertion sociale",
-      "foyer CHRS"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "ro",
-    "country": "fr",
-    "seoTitle": "Găsiți un centru de cazare și reinserție socială CHRS cu Soliguide",
-    "seoDescription": "Soliguide vă oferă sute de centre CHRS pentru cazare de urgență, însoțire socială și reinserția profesională în Franța"
-  },
-  {
-    "categoryId": null,
     "label": "MDS: maison départementale des solidarités",
     "slug": "mds",
     "synonyms": [
@@ -3246,39 +3199,6 @@
     "country": "fr",
     "seoTitle": "Găsiți o casă departamentală a solidarității MDS lângă dumneavoastră cu Soliguide",
     "seoDescription": "Soliguide vă ajută să găsiți o MDS pentru ajutor social, alocații familiale sau sprijin pentru persoane în dificultate în Franța"
-  },
-  {
-    "categoryId": null,
-    "label": "Hôpital",
-    "slug": "hopital",
-    "synonyms": [
-      "hôpital",
-      "centre hospitalier",
-      "CH",
-      "CHU",
-      "établissement hospitalier"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "ro",
-    "country": "fr",
-    "seoTitle": "Găsiți îngrijiri medicale gratuite la spital cu Soliguide",
-    "seoDescription": "Soliguide vă oferă sute de spitale pentru consultații gratuite, urgențe medicale sau internări în Franța"
-  },
-  {
-    "categoryId": null,
-    "label": "PSA: point santé accueil",
-    "slug": "psa",
-    "synonyms": [
-      "PSA",
-      "point santé accueil",
-      "permanence santé accueil",
-      "point d'accès santé"
-    ],
-    "type": "ESTABLISHMENT_TYPE",
-    "lang": "ro",
-    "country": "fr",
-    "seoTitle": "Găsiți îngrijire medicală gratuită la PSA point santé accueil cu Soliguide",
-    "seoDescription": "Soliguide vă oferă sute de PSA point santé accueil: consultații gratuite la CCAS, îngrijire la Maison de santé, sprijin medical de urgență"
   },
   {
     "categoryId": null,
