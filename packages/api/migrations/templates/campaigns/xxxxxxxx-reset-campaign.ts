@@ -21,14 +21,18 @@
 import {
   CAMPAIGN_DEFAULT_NAME,
   CampaignStatus,
-  EXTERNAL_UPDATES_ONLY_SOURCES,
-  PlaceStatus,
   PlaceUpdateCampaign,
 } from "@soliguide/common";
 
 import { Db, ObjectId } from "mongodb";
 import { logger } from "../../../src/general/logger";
 import { CAMPAIGN_EMAILS_CONTENT_FOR_USERS } from "../../../src/user/models/default_values";
+import {
+  countryIncludeInMAJ,
+  excludeBasicServicesFilter,
+  sourceToIncludeInMaj,
+  statusIncludeInMAJ,
+} from "./filtersToResetCampaign";
 
 const message =
   "Add default value for users, orga and places for summer update 2023";
@@ -64,20 +68,13 @@ export const up = async (db: Db) => {
   );
 
   logger.info("[MIGRATION] [RESET] Add 'toUpdate' to places online & offline");
+
   await db.collection("lieux").updateMany(
     {
-      status: { $in: [PlaceStatus.ONLINE, PlaceStatus.OFFLINE] },
-      $or: [
-        { sources: { $eq: [] } },
-        {
-          sources: {
-            $elemMatch: {
-              name: { $nin: EXTERNAL_UPDATES_ONLY_SOURCES },
-              isOrigin: false,
-            },
-          },
-        },
-      ],
+      ...countryIncludeInMAJ,
+      ...statusIncludeInMAJ,
+      ...excludeBasicServicesFilter,
+      ...sourceToIncludeInMaj,
     },
     {
       $set: {
