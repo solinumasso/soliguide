@@ -2826,7 +2826,7 @@
       "allocations",
       "allocations familiales"
     ],
-    "type": "ORGANIZATION",
+    "type": "ESTABLISHMENT_TYPE",
     "lang": "es",
     "country": "fr",
     "seoTitle": "Encuentre su CAF caisse des allocations familiales cerca de usted con Soliguide",
@@ -2836,12 +2836,8 @@
     "categoryId": null,
     "label": "Maisons France Services",
     "slug": "france-services",
-    "synonyms": [
-      "france service",
-      "maison france services",
-      "MFS"
-    ],
-    "type": "ORGANIZATION",
+    "synonyms": ["france service", "maison france services", "MFS"],
+    "type": "ESTABLISHMENT_TYPE",
     "lang": "es",
     "country": "fr",
     "seoTitle": "Encuentre las Maisons France Services cerca de usted con Soliguide",
@@ -2851,11 +2847,7 @@
     "categoryId": null,
     "label": "La CIMADE",
     "slug": "cimade",
-    "synonyms": [
-      "la cimade",
-      "CIMADE",
-      "service œcuménique d'entraide"
-    ],
+    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
     "type": "ORGANIZATION",
     "lang": "es",
     "country": "fr",
@@ -2902,7 +2894,7 @@
       "sécurité sociale",
       "assurance maladie"
     ],
-    "type": "ORGANIZATION",
+    "type": "ESTABLISHMENT_TYPE",
     "lang": "es",
     "country": "fr",
     "seoTitle": "Encuentre su CPAM caisse primaire d'assurance maladie con Soliguide",
@@ -2941,7 +2933,7 @@
   },
   {
     "categoryId": null,
-    "label": "France Travail: service public de l'emploi",
+    "label": "France Travail",
     "slug": "france-travail",
     "synonyms": [
       "pole emploi",
@@ -2951,7 +2943,7 @@
       "pole-emploi",
       "france-travail"
     ],
-    "type": "ORGANIZATION",
+    "type": "ESTABLISHMENT_TYPE",
     "lang": "es",
     "country": "fr",
     "seoTitle": "Encuentre trabajo y formación con France Travail en Soliguide",
@@ -3041,11 +3033,7 @@
     "categoryId": null,
     "label": "Centre socioculturel",
     "slug": "centre-socioculturel",
-    "synonyms": [
-      "centre socio culturel",
-      "csc",
-      "centre social"
-    ],
+    "synonyms": ["centre socio culturel", "csc", "centre social"],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "es",
     "country": "fr",

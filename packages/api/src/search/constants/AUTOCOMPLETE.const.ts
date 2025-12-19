@@ -166,7 +166,7 @@ export const AUTOCOMPLETE_ORGANIZATIONS: {
       ],
     },
     {
-      label: "France Travail: service public de l'emploi",
+      label: "France Travail",
       slug: "france travail",
       synonyms: [
         "pole emploi",

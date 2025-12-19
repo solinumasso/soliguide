@@ -277,7 +277,7 @@ export class SearchBarService implements OnDestroy {
 
   public autoComplete(term: string): FuseResult<SearchSuggestion>[] {
     if (!this.fuse || !this.isInitialized) return [];
-    return this.fuse.search(term, { limit: 7 });
+    return this.fuse.search(term, { limit: 6 });
   }
 
   public isReady(): boolean {

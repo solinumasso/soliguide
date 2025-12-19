@@ -2836,11 +2836,7 @@
     "categoryId": null,
     "label": "Maisons France Services",
     "slug": "france-services",
-    "synonyms": [
-      "france service",
-      "maison france services",
-      "MFS"
-    ],
+    "synonyms": ["france service", "maison france services", "MFS"],
     "type": "ORGANIZATION",
     "lang": "uk",
     "country": "fr",
@@ -2851,11 +2847,7 @@
     "categoryId": null,
     "label": "La CIMADE",
     "slug": "cimade",
-    "synonyms": [
-      "la cimade",
-      "CIMADE",
-      "service œcuménique d'entraide"
-    ],
+    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
     "type": "ORGANIZATION",
     "lang": "uk",
     "country": "fr",
@@ -2941,7 +2933,7 @@
   },
   {
     "categoryId": null,
-    "label": "France Travail: service public de l'emploi",
+    "label": "France Travail",
     "slug": "france-travail",
     "synonyms": [
       "pole emploi",
@@ -3041,11 +3033,7 @@
     "categoryId": null,
     "label": "Centre socioculturel",
     "slug": "centre-socioculturel",
-    "synonyms": [
-      "centre socio culturel",
-      "csc",
-      "centre social"
-    ],
+    "synonyms": ["centre socio culturel", "csc", "centre social"],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "uk",
     "country": "fr",
