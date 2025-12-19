@@ -19,22 +19,38 @@
 name: Claude Code
 
 on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
   issue_comment:
     types: [created]
-  pull_request_review_comment:
-    types: [created]
-  issues:
-    types: [opened, assigned]
-  pull_request_review:
-    types: [submitted]
 
 jobs:
   claude:
+    # Run on:
+    # 1. PR opened/synced/reopened from maintainers (excluding chore/weblate/dependencies)
+    # 2. PR with "claude" label added
+    # 3. Comment on PR containing @claude mention
     if: |
-      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude') && (github.event.comment.author_association == 'OWNER' || github.event.comment.author_association == 'MEMBER')) ||
-      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude') && (github.event.comment.author_association == 'OWNER' || github.event.comment.author_association == 'MEMBER')) ||
-      (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude') && (github.event.review.author_association == 'OWNER' || github.event.review.author_association == 'MEMBER')) ||
-      (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')) && (github.event.issue.author_association == 'OWNER' || github.event.issue.author_association == 'MEMBER'))
+      (
+        github.event_name == 'pull_request' &&
+        github.event.pull_request.state == 'open' &&
+        (github.event.pull_request.author_association == 'OWNER' || github.event.pull_request.author_association == 'MEMBER') &&
+        !startsWith(github.event.pull_request.title, 'chore') &&
+        !contains(github.event.pull_request.title, 'Weblate') &&
+        !contains(github.event.pull_request.title, 'weblate') &&
+        !contains(github.event.pull_request.title, 'upgrade') &&
+        !contains(github.event.pull_request.title, 'Upgrade') &&
+        !contains(github.event.pull_request.title, 'dependencies') &&
+        !contains(github.event.pull_request.title, 'Dependencies') &&
+        !contains(github.event.pull_request.user.login, 'weblate') &&
+        !contains(github.event.pull_request.user.login, 'dependabot') &&
+        !contains(github.event.pull_request.user.login, 'renovate') &&
+        (github.event.action != 'labeled' || contains(github.event.label.name, 'claude'))
+      ) || (
+        github.event_name == 'issue_comment' &&
+        github.event.issue.pull_request &&
+        contains(github.event.comment.body, '@claude')
+      )
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -43,10 +59,18 @@ jobs:
       id-token: write
       actions: read # Required for Claude to read CI results on PRs
     steps:
+      - name: Get PR number for comment event
+        if: github.event_name == 'issue_comment'
+        id: pr
+        run: |
+          echo "number=${{ github.event.issue.number }}" >> $GITHUB_OUTPUT
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          # For comment events, checkout the PR branch
+          ref: ${{ github.event_name == 'issue_comment' && format('refs/pull/{0}/head', steps.pr.outputs.number) || github.event.pull_request.head.ref }}
+          fetch-depth: 0
 
       - name: Run Claude Code
         id: claude
@@ -58,7 +82,7 @@ jobs:
           additional_permissions: |
             actions: read
 
-          # Custom prompt for PR review
+          # Custom prompt for PR review - focus on changed files only
           prompt: |
             Analyse cette PR avec focus sur :
 
@@ -66,6 +90,8 @@ jobs:
             2. 🧠 Logique métier : répond-elle aux besoins ? Cohérent avec Soliguide ?
             3. 🔗 Cohérence frontend/backend : API et UI alignées ? Types cohérents ?
             4. 📝 Qualité : maintenabilité, patterns du projet (voir CLAUDE.md)
+
+            **IMPORTANT : Analyse UNIQUEMENT les fichiers modifiés dans cette PR, pas tout le codebase.**
 
             Fournis maximum 7 points, triés par criticité, propose des solutions sur la "logique du code"
             Sois direct et actionnable.
@@ -95,8 +121,13 @@ jobs:
             const content = `${{ steps.read_output.outputs.content }}`.trim();
             const body = content || 'Claude review completed but no output was generated.';
 
+            // Get PR number from either event type
+            const prNumber = context.eventName === 'issue_comment'
+              ? context.issue.number
+              : context.payload.pull_request.number;
+
             github.rest.issues.createComment({
-              issue_number: context.issue.number,
+              issue_number: prNumber,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: `## 📋 Claude Code Review\n\n${body}`
