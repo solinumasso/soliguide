@@ -228,6 +228,24 @@ export class SearchCategoryAutocompleteComponent
       this.destroy = destroy;
       this.setQuery = setQuery;
 
+      setTimeout(() => {
+        const inputEl =
+          this.autocompleteContainerCategories.nativeElement.querySelector(
+            "input"
+          );
+        if (inputEl && window.innerWidth >= 768) {
+          inputEl.addEventListener("focus", () => {
+            const offsetTop =
+              inputEl.getBoundingClientRect().top + window.scrollY;
+            const padding = 100;
+            window.scrollTo({
+              top: offsetTop - padding,
+              behavior: "smooth",
+            });
+          });
+        }
+      }, 0);
+
       if (this.currentValue) {
         this.setQuery(this.currentValue);
       }
@@ -272,6 +290,17 @@ export class SearchCategoryAutocompleteComponent
     });
   }
 
+  private getTypeLabel(item: SearchSuggestion): string {
+    switch (item.type) {
+      case AutoCompleteType.ESTABLISHMENT_TYPE:
+        return "établissement";
+      case AutoCompleteType.ORGANIZATION:
+        return "organisation";
+      default:
+        return "";
+    }
+  }
+
   private renderItem({
     item,
     html,
@@ -280,71 +309,56 @@ export class SearchCategoryAutocompleteComponent
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     html: any; // skipcq: JS-0323
   }) {
+    const sourceLogos = `/assets/images/organizations-logos/${THEME_CONFIGURATION.country}`;
     let iconContent;
 
-    const sourceLogos = `/assets/images/organizations-logos/${THEME_CONFIGURATION.country}`;
-    switch (item.type) {
-      case AutoCompleteType.CATEGORY:
-        {
-          iconContent = html`<span
-            aria-hidden="true"
-            class="category-icon category-icon-${item.categoryId}_outlined"
-          ></span>`;
-        }
-        break;
-      case AutoCompleteType.EXPRESSION:
-        iconContent = html`<span
+    if (item.type === AutoCompleteType.CATEGORY) {
+      iconContent = html`<span
+        aria-hidden="true"
+        class="category-icon category-icon-${item.categoryId}_outlined"
+      ></span>`;
+    } else if (
+      item.type === AutoCompleteType.ESTABLISHMENT_TYPE ||
+      item.type === AutoCompleteType.ORGANIZATION
+    ) {
+      const hasLogo = item.slug && AVAILABLES_LOGOS.includes(item.slug);
+      if (hasLogo) {
+        const logoPath = `${sourceLogos}/${item.slug}.svg`;
+        iconContent = html`<img
+          src="${logoPath}"
+          class="aa-category-icon"
+          alt=""
           aria-hidden="true"
-          class="category-icon category-icon-expression"
-        ></span>`;
-        break;
-      case AutoCompleteType.ESTABLISHMENT_TYPE: {
-        const hasLogo = AVAILABLES_LOGOS.includes(item.slug);
-        if (hasLogo) {
-          iconContent = html`<img
-            src="${sourceLogos}/${item.slug}.svg"
-            class="aa-category-icon"
-            alt=""
-            aria-hidden="true"
-          />`;
-        } else {
-          iconContent = html`<span
-            class="category-icon category-icon-accomodation_and_housing"
-            title="Type d'établissement"
-          ></span>`;
-        }
-        break;
-      }
-      case AutoCompleteType.ORGANIZATION: {
-        const hasLogo = AVAILABLES_LOGOS.includes(item.slug);
-        if (hasLogo) {
-          iconContent = html`<img
-            src="${sourceLogos}/${item.slug}.svg"
-            class="aa-category-icon"
-            alt=""
-            aria-hidden="true"
-          />`;
-        } else {
-          iconContent = html`<span
-            aria-hidden="true"
-            class="category-icon category-icon-accomodation_and_housing"
-          ></span>`;
-        }
-        break;
-      }
-      default:
-        iconContent = html`<span
-          class="category-icon category-icon-search"
+        />`;
+      } else {
+        iconContent = html`<img
+          src="/assets/images/search/etablishment.svg"
+          class="aa-category-icon"
+          alt=""
           aria-hidden="true"
-        ></span>`;
-        break;
+        />`;
+      }
+    } else {
+      iconContent = html`<img
+        src="/assets/images/search/expression.svg"
+        class="aa-category-icon"
+        alt=""
+        aria-hidden="true"
+      />`;
     }
 
+    const typeLabel = this.getTypeLabel(item);
+
     return html`<button class="aa-ItemLink" type="button">
-      <div class="aa-CategoryIcon">${iconContent}</div>
-      <div class="aa-ItemContent">
-        <div class="aa-ItemContentTitle">${item.label}</div>
-      </div>
+      <span class="aa-CategoryIcon">${iconContent}</span>
+      <span class="aa-ItemContent">
+        <span class="aa-ItemContentTitle"
+          ><span class="aa-ItemCategory"> ${item.label}</span>
+          ${typeLabel
+            ? html`<span class="aa-ItemContentType">- ${typeLabel}</span>`
+            : ""}
+        </span>
+      </span>
     </button>`;
   }
 
@@ -378,77 +392,11 @@ export class SearchCategoryAutocompleteComponent
 
       sources.push(
         suggestions$.then((suggestions: SearchSuggestion[]) => {
-          const categorySuggestions = suggestions.filter(
-            (s) => s.type === AutoCompleteType.CATEGORY
-          );
-          const establishmentSuggestions = suggestions.filter(
-            (s) => s.type === AutoCompleteType.ESTABLISHMENT_TYPE
-          );
-          const organizationSuggestions = suggestions.filter(
-            (s) => s.type === AutoCompleteType.ORGANIZATION
-          );
-
-          const allSources = [];
-
-          if (categorySuggestions.length > 0) {
-            allSources.push({
-              sourceId: "categories-services",
+          return [
+            {
+              sourceId: "all-results",
               getItems() {
-                return categorySuggestions;
-              },
-              onSelect: ({ item, event }) => {
-                const keyUsed =
-                  event.type === "keydown" ? "enter-pressed" : "mouse-clicked";
-                this.handleSelect(
-                  item as SearchSuggestion,
-                  sanitizedQuery,
-                  keyUsed
-                );
-                return (item as SearchSuggestion).label;
-              },
-              getItemInputValue: ({ item }) => (item as SearchSuggestion).label,
-              templates: {
-                header: ({ html }) =>
-                  html`${this.translateService.instant("CATEGORIES_SERVICES") ||
-                  "Catégories & services"}`,
-                item: (context) => this.renderItem(context),
-              },
-            });
-          }
-
-          // Source pour "Types d'établissement"
-          if (establishmentSuggestions.length > 0) {
-            allSources.push({
-              sourceId: "establishment-types",
-              getItems() {
-                return establishmentSuggestions;
-              },
-              onSelect: ({ item, event }) => {
-                const keyUsed =
-                  event.type === "keydown" ? "enter-pressed" : "mouse-clicked";
-                this.handleSelect(
-                  item as SearchSuggestion,
-                  sanitizedQuery,
-                  keyUsed
-                );
-                return (item as SearchSuggestion).label;
-              },
-              getItemInputValue: ({ item }) => (item as SearchSuggestion).label,
-              templates: {
-                header: ({ html }) =>
-                  html`${this.translateService.instant("ESTABLISHMENT_TYPES") ||
-                  "Types d'établissement"}`,
-                item: (context) => this.renderItem(context),
-              },
-            });
-          }
-
-          // Source pour "Associations & organisations"
-          if (organizationSuggestions.length > 0) {
-            allSources.push({
-              sourceId: "organizations",
-              getItems() {
-                return organizationSuggestions;
+                return suggestions;
               },
               onSelect: ({ item, event }) => {
                 const keyUsed =
@@ -464,14 +412,12 @@ export class SearchCategoryAutocompleteComponent
               templates: {
                 header: ({ html }) =>
                   html`${this.translateService.instant(
-                    "ASSOCIATIONS_ORGANIZATIONS"
-                  ) || "Associations & organisations"}`,
+                    "SEARCH_AUTOCOMPLETE_SUGGESTIONS"
+                  ) || "Suggestions"}`,
                 item: (context) => this.renderItem(context),
               },
-            });
-          }
-
-          return allSources;
+            },
+          ];
         })
       );
     }
@@ -503,14 +449,15 @@ export class SearchCategoryAutocompleteComponent
                 html` <button class="aa-ItemLink" type="button">
                   <span class="aa-CategoryIcon">
                     <img
-                      src="/assets/images/symbols/list.svg"
+                      src="/assets/images/search/text-search.svg"
                       class="aa-category-icon"
                       alt=""
                       aria-hidden="true"
-                    />
-                  </span>
+                  /></span>
                   <span class="aa-ItemContent">
-                    <span class="aa-ItemContentTitle">${sanitizedQuery}</span>
+                    <span class="aa-ItemContentTitle">
+                      <span class="aa-ItemCategory">${sanitizedQuery}</span>
+                    </span>
                   </span>
                 </button>`,
               header: ({ html }) =>

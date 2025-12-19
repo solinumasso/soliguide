@@ -36,7 +36,7 @@ export const AVAILABLES_LOGOS = [
   "etablishement-2",
   "etablishement",
   "fondation-pour-le-logement",
-  "france-service",
+  "france-services",
   "france-travail",
   "mdm",
   "msf",
