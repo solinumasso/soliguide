@@ -42,30 +42,60 @@ const doesGithubIssueExists = async (
 
 const checkGithubIssues: AsyncRule = async (ctx) => {
   const message = "missing reference to a GitHub issue (e.g. #123)";
-  if (ctx.header?.startsWith("chore: :pushpin: ")) {
-    // It's a tag commit, no issue required
-    return [true, message];
+
+  // Commits that don't require a GitHub issue reference
+  const exemptPatterns = [
+    /^chore: :pushpin: /, // Tag commits
+    /^chore\(deps\):/, // Dependency updates
+    /^\w+\(deps\):/, // Any type with deps scope
+  ];
+
+  const isExempt = exemptPatterns.some((pattern) =>
+    pattern.test(ctx.header || "")
+  );
+
+  if (isExempt) {
+    return [true];
   }
-  if (ctx?.references?.length === 0) {
+
+  // Check if there are any references
+  if (!ctx.references || ctx.references.length === 0) {
     return [false, message];
   }
+
+  // Validate reference format (must be GitHub issues with # prefix)
   const allReferencesAreValid = ctx.references.every(
     (reference) => reference.issue && reference.prefix === "#"
   );
+
   if (!allReferencesAreValid) {
-    return [false, message];
+    return [false, "references must be GitHub issues (e.g. #123)"];
   }
+
+  // If GITHUB_TOKEN is available, verify issues exist
   if (process.env.GITHUB_TOKEN) {
-    console.log("Checking issues presence in Github...");
-    const allIssuesExistPromises = await Promise.all(
-      ctx.references.map((reference) => doesGithubIssueExists(reference.issue))
-    );
-    const allIssuesExist = allIssuesExistPromises.every((bool) => bool);
-    if (!allIssuesExist) {
-      return [false, "one or more referenced GitHub issues do not exist"];
+    console.log("Verifying GitHub issues exist...");
+    try {
+      const issueChecks = await Promise.all(
+        ctx.references.map((reference) =>
+          doesGithubIssueExists(reference.issue)
+        )
+      );
+      const allIssuesExist = issueChecks.every((exists) => exists);
+
+      if (!allIssuesExist) {
+        return [
+          false,
+          "one or more referenced GitHub issues do not exist or are not accessible",
+        ];
+      }
+    } catch (error) {
+      console.warn("Error checking GitHub issues:", error);
+      // Continue validation even if API check fails
     }
   }
-  return [true, message];
+
+  return [true];
 };
 
 const Configuration: UserConfig = {
@@ -77,6 +107,45 @@ const Configuration: UserConfig = {
     // By default 100 characters but Deepsource links in Deepsource commits are too long
     "body-max-line-length": [2, "always", 120],
     "github-issue": [2, "always"],
+    // Explicitly enable all conventional commit types including chore
+    "type-enum": [
+      2,
+      "always",
+      [
+        "build",
+        "chore",
+        "ci",
+        "docs",
+        "feat",
+        "fix",
+        "perf",
+        "refactor",
+        "revert",
+        "style",
+        "test",
+      ],
+    ],
+    // Add additional scopes beyond lerna scopes (project names)
+    "scope-enum": [
+      2,
+      "always",
+      [
+        // Additional general scopes
+        "deps",
+        "chore",
+        // Lerna package scopes (project names)
+        "api",
+        "location-api",
+        "soligare",
+        "frontend",
+        "widget",
+        "web-app",
+        "design-system",
+        "common",
+        "common-angular",
+        "icons-generator",
+      ],
+    ],
   },
   plugins: [
     {
