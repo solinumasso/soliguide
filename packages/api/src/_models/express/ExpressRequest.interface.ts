@@ -73,4 +73,7 @@ export interface ExpressRequest extends Request {
 
   // Boolean to know if the search comes from the admin of not
   adminSearch?: boolean;
+
+  // Flag to indicate if mobility categories should be converted back to legacy format in results
+  shouldConvertMobilityCategories?: boolean;
 }
