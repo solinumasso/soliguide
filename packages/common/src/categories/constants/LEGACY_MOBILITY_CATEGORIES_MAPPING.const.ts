@@ -18,12 +18,15 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-// @index('./*', f => `export * from '${f.path}'`)
-export * from "./CATEGORIES_SPECIFIC_FIELDS.const";
-export * from "./CATEGORIES.const";
-export * from "./LEGACY_CATEGORIES.const";
-export * from "./LEGACY_CATEGORIES_RANGE.const";
-export * from "./LEGACY_CATEGORIES_SEO.const";
-export * from "./LEGACY_SPECIAL_NAME_CAT.const";
-export * from "./LEGACY_SUPER_CATEGORIES.const";
-export * from "./LEGACY_MOBILITY_CATEGORIES_MAPPING.const";
+
+import { Categories } from "../enums";
+
+export const LEGACY_MOBILITY_CATEGORIES_MAPPING: Record<string, Categories> = {
+  chauffeur_driven_transport: Categories.TRANSPORTATION_MOBILITY,
+  mobility_assistance: Categories.MOBILITY_FINANCING,
+  carpooling: Categories.TRANSPORTATION_MOBILITY,
+  provision_of_vehicles: Categories.PERSONAL_VEHICLE_ACCESS,
+} as const;
+
+export type LegacyMobilityCategory =
+  keyof typeof LEGACY_MOBILITY_CATEGORIES_MAPPING;
