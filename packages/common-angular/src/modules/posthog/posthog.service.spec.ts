@@ -62,6 +62,7 @@ describe("PosthogService", () => {
       {
         api_host: baseConfig.posthogUrl,
         autocapture: false,
+        capture_pageleave: false,
         persistence: "memory",
         disable_session_recording: true,
         debug: undefined,
