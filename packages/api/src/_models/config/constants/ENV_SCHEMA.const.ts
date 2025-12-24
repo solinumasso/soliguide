@@ -133,24 +133,6 @@ export const ENV_SCHEMA: JSONSchemaType<Config> = {
       type: "string",
       default: "mongodb://127.0.0.1:27017/soliguide?replicaSet=rs0",
     },
-    TYPESENSE_NODES_URL: {
-      type: "string",
-      default: "http://127.0.0.1:8108",
-    },
-    TYPESENSE_API_KEY: {
-      type: "string",
-      nullable: true,
-    },
-    TYPESENSE_LOG_LEVEL: {
-      type: "string",
-      default: "info",
-      enum: ["trace", "debug", "info", "warn", "error"],
-      nullable: true,
-    },
-    TYPESENSE_COLLECTIONS_PREFIX: {
-      type: "string",
-      nullable: true,
-    },
     GOOGLE_PROJECT_ID: {
       type: "string",
       nullable: true,

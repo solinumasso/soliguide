@@ -30,8 +30,6 @@ import swaggerJSDoc from "swagger-jsdoc";
 
 import { anonymizeDb } from "./config/database/anonymizeDb";
 import { restoreSynchro } from "./config/synchro/restoreSynchro";
-import { bulkIndexPlaces } from "./search-engine/typesense";
-import { TypesenseClient } from "./search-engine/services/TypesenseClient.service";
 
 import { httpLogger, logger } from "./general/logger";
 
@@ -82,9 +80,6 @@ import translations from "./translations/routes/translations.routes";
 
 // Search
 import search from "./search/routes/search.routes";
-
-// Search engine
-import searchEngine from "./search-engine/routes/search.routes";
 
 // Export
 import autoExportRoute from "./autoexport/routes/autoexport.routes";
@@ -243,10 +238,6 @@ _app.use("/v2/soligare", soligare);
 
 _app.use("/ops", ops);
 
-if (TypesenseClient.isTypesenseEnabled) {
-  _app.use("/v2/search", searchEngine);
-}
-
 const options = {
   apis: [
     "./src/place/routes/admin-place.routes.js",
@@ -293,11 +284,6 @@ _app.use((req: Request, res: Response) => {
 if (CONFIG.ENV !== "test") {
   _app.listen(CONFIG.PORT, async () => {
     logger.info(`Soliguide API running on port ${CONFIG.PORT}`);
-
-    if (TypesenseClient.isTypesenseEnabled) {
-      await TypesenseClient.instance.createCollections();
-      await bulkIndexPlaces();
-    }
   });
 }
 

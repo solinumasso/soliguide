@@ -18,7 +18,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import type { LogLevelDesc } from "loglevel";
 
 export interface Config {
   // General
@@ -116,12 +115,6 @@ export interface Config {
 
   // RabbitMQ
   AMQP_URL?: string;
-
-  // Typesense (search engine)
-  TYPESENSE_NODES_URL: string;
-  TYPESENSE_API_KEY?: string;
-  TYPESENSE_LOG_LEVEL?: LogLevelDesc;
-  TYPESENSE_COLLECTIONS_PREFIX?: string;
 
   // Dipeeo
   RGPD_EMAIL: string;

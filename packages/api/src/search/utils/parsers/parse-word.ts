@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { SupportedLanguagesCode } from "@soliguide/common";
+import { getSeoSlug, SupportedLanguagesCode } from "@soliguide/common";
 import autocompleteSuggestionService from "../../services/search-suggestions.service";
 import { FormattedSuggestion } from "../../types";
 import { parseTextSearch } from "./parse-text-search";
@@ -64,13 +64,12 @@ export function findSuggestionBySynonym(
   searchTerm: string,
   lang: SupportedLanguagesCode
 ): FormattedSuggestion | null {
-  const normalizedSearch = searchTerm.toLowerCase().trim();
+  const normalizedSearch = getSeoSlug(searchTerm);
 
   const suggestionBySlug = autocompleteSuggestionService.findBySlugAndLang(
     normalizedSearch,
     lang
   );
-
   if (suggestionBySlug) {
     return suggestionBySlug;
   }
