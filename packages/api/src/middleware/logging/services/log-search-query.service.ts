@@ -48,6 +48,7 @@ export const logSearchQuery = async (
     adminSearch: !!req.adminSearch,
     userData: req.userForLogs,
     suggestionType: AutoCompleteType.CATEGORY,
+    slug: req.bodyValidated?.category,
   };
 
   if (req.bodyValidated?.word) {
@@ -61,9 +62,6 @@ export const logSearchQuery = async (
       searchData.suggestionType = foundSuggestion.type;
       searchData.slug = foundSuggestion.slug;
     }
-  } else if (searchData.categories || searchData.category) {
-    searchData.suggestionType = AutoCompleteType.CATEGORY;
-    searchData.slug = searchData?.category;
   }
 
   try {

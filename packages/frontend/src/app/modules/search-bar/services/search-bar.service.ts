@@ -23,6 +23,7 @@ import { Injectable, OnDestroy } from "@angular/core";
 import {
   AutoCompleteType,
   Categories,
+  getSeoSlug,
   SearchSuggestion,
   SupportedLanguagesCode,
 } from "@soliguide/common";
@@ -268,7 +269,11 @@ export class SearchBarService implements OnDestroy {
 
   public findBySlug(slug: string): SearchSuggestion | null {
     if (!this.isInitialized) return null;
-    return this.allSuggestions.find((item) => item.slug === slug) || null;
+    return (
+      this.allSuggestions.find(
+        (item) => getSeoSlug(item.slug) === getSeoSlug(slug)
+      ) || null
+    );
   }
 
   public findByCategoryId(categoryId: Categories): SearchSuggestion | null {
