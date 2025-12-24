@@ -23,6 +23,7 @@ import {
   SearchSuggestion,
   SoliguideCountries,
   SupportedLanguagesCode,
+  getSeoSlug,
 } from "@soliguide/common";
 import { logger } from "../../general/logger";
 import { SearchSuggestionModel } from "../models/search-suggestion.model";
@@ -126,14 +127,6 @@ export class SearchSuggestionsService {
     return this.suggestions;
   }
 
-  findBySlug(slug: string): FormattedSuggestion | null {
-    if (!this.isLoaded) {
-      logger.warn("Service not initialized. Call loadSuggestions() first.");
-      return null;
-    }
-    return this.suggestions.find((item) => item.slug === slug) || null;
-  }
-
   findBySlugAndLang(
     slug: string,
     lang?: SupportedLanguagesCode
@@ -145,32 +138,16 @@ export class SearchSuggestionsService {
       );
       return null;
     }
-    return this.suggestions.find((item) => item.slug === slug) || null;
+    return (
+      this.suggestions.find(
+        (item) => getSeoSlug(item.slug) === getSeoSlug(slug)
+      ) || null
+    );
   }
 
   findById(categoryId: string): FormattedSuggestion | null {
     if (!this.isLoaded) {
       logger.warn("Service not initialized. Call loadSuggestions() first.");
-      return null;
-    }
-    return (
-      this.suggestions.find(
-        (item) =>
-          item.type === AutoCompleteType.CATEGORY &&
-          item.categoryId === categoryId
-      ) || null
-    );
-  }
-
-  findByIdAndLang(
-    categoryId: string,
-    lang?: SupportedLanguagesCode
-  ): FormattedSuggestion | null {
-    const resolvedLang = lang || this.defaultLang;
-    if (!this.isLoaded || this.currentLang !== resolvedLang) {
-      logger.warn(
-        "Service not initialized or different language loaded. Call loadSuggestions() first."
-      );
       return null;
     }
     return (
@@ -194,16 +171,16 @@ export class SearchSuggestionsService {
       return null;
     }
 
-    const normalized = searchTerm.toLowerCase().trim();
+    const normalized = getSeoSlug(searchTerm);
 
     return (
       this.suggestions.find((suggestion) => {
-        if (suggestion.label.toLowerCase().trim() === normalized) {
+        if (getSeoSlug(suggestion.label) === normalized) {
           return true;
         }
 
         return suggestion.synonyms.some(
-          (synonym) => synonym.toLowerCase().trim() === normalized
+          (synonym) => getSeoSlug(synonym) === normalized
         );
       }) ?? null
     );
