@@ -29,12 +29,17 @@ import {
   NgModule,
   CUSTOM_ELEMENTS_SCHEMA,
   NO_ERRORS_SCHEMA,
+  APP_INITIALIZER,
 } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
+import {
+  TranslateLoader,
+  TranslateModule,
+  TranslateService,
+} from "@ngx-translate/core";
 import { CountUpModule } from "ngx-countup";
 import { ToastrModule } from "ngx-toastr";
 
@@ -53,12 +58,22 @@ import { AnalyticsModule } from "./modules/analytics/analytics.module";
 import { CustomLoaderTranslate, registerLocales } from "./shared";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { THEME_CONFIGURATION } from "./models";
+import { firstValueFrom } from "rxjs";
 
 const disableAnimations =
   !("animate" in document.documentElement) ||
   (navigator && /iPhone OS (8|9|10|11|12|13)_/.test(navigator.userAgent));
 
 registerLocales();
+
+export function initializeTranslate(translate: TranslateService) {
+  return async () => {
+    const defaultLanguage = THEME_CONFIGURATION.defaultLanguage;
+    translate.setDefaultLang(defaultLanguage);
+    return await firstValueFrom(translate.use(defaultLanguage));
+  };
+}
 
 @NgModule({
   declarations: [AppComponent],
@@ -96,6 +111,12 @@ registerLocales();
     AppRoutingModule,
   ],
   providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeTranslate,
+      deps: [TranslateService],
+      multi: true,
+    },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     {
       multi: true,
