@@ -59,7 +59,7 @@ import { CustomLoaderTranslate, registerLocales } from "./shared";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { THEME_CONFIGURATION } from "./models";
-import { firstValueFrom } from "rxjs";
+import { firstValueFrom, timeout } from "rxjs";
 
 const disableAnimations =
   !("animate" in document.documentElement) ||
@@ -69,12 +69,16 @@ registerLocales();
 
 export function initializeTranslate(translate: TranslateService) {
   return async () => {
-    const defaultLanguage = THEME_CONFIGURATION.defaultLanguage;
-    translate.setDefaultLang(defaultLanguage);
-    return await firstValueFrom(translate.use(defaultLanguage));
+    try {
+      const defaultLanguage = THEME_CONFIGURATION.defaultLanguage;
+      translate.setDefaultLang(defaultLanguage);
+      await firstValueFrom(translate.use(defaultLanguage).pipe(timeout(5000)));
+    } catch (error) {
+      console.error("Translation loading failed, using defaults", error);
+      // Fallback: l'app démarre quand même
+    }
   };
 }
-
 @NgModule({
   declarations: [AppComponent],
   imports: [

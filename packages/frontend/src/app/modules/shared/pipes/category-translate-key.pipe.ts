@@ -33,6 +33,6 @@ import { Categories } from "@soliguide/common";
 @Pipe({ name: "categoryTranslateKey" })
 export class CategoryTranslateKeyPipe implements PipeTransform {
   public transform(category: string | Categories): string {
-    return `CAT_${category.toUpperCase()}`;
+    return `CAT_${(category || "").toUpperCase()}`;
   }
 }
