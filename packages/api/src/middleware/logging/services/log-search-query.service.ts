@@ -52,7 +52,7 @@ export const logSearchQuery = async (
   };
 
   if (req.bodyValidated?.word) {
-    const searchTerm = req.bodyValidated?.word?.trim();
+    const searchTerm = req.bodyValidated?.word;
     const foundSuggestion = findSuggestionBySynonym(
       searchTerm,
       searchData.languages

@@ -163,7 +163,6 @@ router.get(
   async (req: ExpressRequest, res: ExpressResponse) => {
     const cacheKey = `search:${req.bodyValidated.term}`;
     const results = await searchSuggestionsCache.get(cacheKey);
-    console.log({ cacheKey, results });
     if (results) {
       return res.status(200).json(results);
     }
