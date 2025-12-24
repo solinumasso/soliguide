@@ -10815,7 +10815,6 @@ __metadata:
     ts-jest: "npm:^29.3.2"
     ts-node: "npm:^10.9.2"
     typescript: "npm:5.8.3"
-    typesense: "npm:^1.8.2"
     validator: "npm:^13.15.0"
     xlsx: "npm:^0.18.5"
     xmlbuilder: "npm:15.1.1"
@@ -14646,7 +14645,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.10.0, axios@npm:^1.6.0, axios@npm:^1.7.2, axios@npm:^1.7.4, axios@npm:^1.8.2, axios@npm:^1.8.3, axios@npm:^1.9.0":
+"axios@npm:^1.10.0, axios@npm:^1.7.2, axios@npm:^1.7.4, axios@npm:^1.8.2, axios@npm:^1.8.3, axios@npm:^1.9.0":
   version: 1.13.2
   resolution: "axios@npm:1.13.2"
   dependencies:
@@ -25170,13 +25169,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loglevel@npm:^1.8.1":
-  version: 1.9.1
-  resolution: "loglevel@npm:1.9.1"
-  checksum: 10c0/152f0501cea367cf998c844a38b19f0b5af555756ad7d8650214a1f8c6a5b045e31b8cf5dae27d28339a061624ce3f618aadb333aed386cac041d6ddc5101a39
-  languageName: node
-  linkType: hard
-
 "long@npm:^5.0.0":
   version: 5.2.3
   resolution: "long@npm:5.2.3"
@@ -33686,18 +33678,6 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 10c0/db2ad2a16ca829f50427eeb1da155e7a45e598eec7b086d8b4e8ba44e5a235f758e606d681c66992230d3fc3b8995865e5fd0b22a2c95486d0b3200f83072ec9
-  languageName: node
-  linkType: hard
-
-"typesense@npm:^1.8.2":
-  version: 1.8.2
-  resolution: "typesense@npm:1.8.2"
-  dependencies:
-    axios: "npm:^1.6.0"
-    loglevel: "npm:^1.8.1"
-  peerDependencies:
-    "@babel/runtime": ^7.23.2
-  checksum: 10c0/9a553b479ebbd435867dd257035ce6dda78e1e7c2e1c1fb9fc90aef2cf36c67ecdc5e322a8d10ff069bb27efd017d1b29c4496b54581ad453f5eb54af4cd0696
   languageName: node
   linkType: hard
 

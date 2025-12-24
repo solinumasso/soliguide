@@ -50,5 +50,5 @@ export interface LogSearchPlaces {
   word: string | null;
   updatedAt?: SearchFilterUpdatedAt;
   suggestionType: AutoCompleteType;
-  slug?: string;
+  slug?: string | null;
 }

@@ -63,8 +63,8 @@ export const generateSourceId = (
   };
 
   return `${getPrefix(type)}${getSeoSlug(label)
-    .replace(/-/g, "_")
-    .replace(/ /g, "_")
+    .replaceAll("-", "_")
+    .replaceAll(" ", "_")
     .toUpperCase()}`;
 };
 

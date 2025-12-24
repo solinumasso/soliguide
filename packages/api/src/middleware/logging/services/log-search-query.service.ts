@@ -61,6 +61,9 @@ export const logSearchQuery = async (
       searchData.suggestionType = foundSuggestion.type;
       searchData.slug = foundSuggestion.slug;
     }
+  } else if (searchData.categories || searchData.category) {
+    searchData.suggestionType = AutoCompleteType.CATEGORY;
+    searchData.slug = searchData?.category;
   }
 
   try {
