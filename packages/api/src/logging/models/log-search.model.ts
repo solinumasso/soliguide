@@ -29,6 +29,7 @@ import {
   WelcomedPublics,
   PlaceType,
   Categories,
+  AutoCompleteType,
 } from "@soliguide/common";
 
 import { ObjectId } from "mongodb";
@@ -210,6 +211,18 @@ const LogSearchPlacesSchema = new Schema<LogSearchPlaces>(
       default: null,
       type: String,
     },
+
+    suggestionType: {
+      type: String,
+      enum: AutoCompleteType,
+      required: true,
+    },
+
+    slug: {
+      default: null,
+      type: String,
+    },
+
     updatedAt: {
       default: null,
       type: Object,

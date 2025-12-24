@@ -54,6 +54,7 @@ export class SearchBarService implements OnDestroy {
   private readonly DB_NAME = "SoliguideDB";
   private readonly STORE_NAME = "suggestions";
   private readonly COUNTRY = THEME_CONFIGURATION.country;
+  private readonly CACHE_VALIDITY_MS = 24 * 60 * 60 * 1000; // 24 heures
 
   public initialization$ = this.initializationSubject.asObservable();
 
@@ -178,11 +179,17 @@ export class SearchBarService implements OnDestroy {
     lang: SupportedLanguagesCode
   ): Promise<SearchSuggestion[]> {
     const cached = await this.getFromDB(country, lang);
+
+    // Si le cache existe et n'a pas >24h, l'utiliser
     if (cached) {
-      console.log(`Data found in IndexedDB for ${country}/${lang}`);
-      return cached.content;
+      const cacheAge = Date.now() - new Date(cached.updatedAt).getTime();
+      if (cacheAge < this.CACHE_VALIDITY_MS) {
+        console.log(`Data found in IndexedDB for ${country}/${lang}`);
+        return cached.content;
+      }
     }
 
+    // Cache absent ou expiré, recharger depuis l'API
     try {
       console.log(`Loading ${country}/${lang}.json from server`);
       const data = await firstValueFrom(

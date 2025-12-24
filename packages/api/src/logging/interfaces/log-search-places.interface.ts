@@ -27,6 +27,7 @@ import {
   SearchModalities,
   SearchPublics,
   ManageSearchOptions,
+  AutoCompleteType,
 } from "@soliguide/common";
 
 import { UserForLogs } from "../../_models";
@@ -48,4 +49,6 @@ export interface LogSearchPlaces {
   userData: UserForLogs;
   word: string | null;
   updatedAt?: SearchFilterUpdatedAt;
+  suggestionType: AutoCompleteType;
+  slug?: string;
 }

@@ -49,7 +49,6 @@ import {
   checkRights,
   isNotApiUser,
   getFilteredData,
-  trackSearchPlaces,
   logSearchQuery,
   handleLanguage,
   overrideLocationWithAreasInfo,
@@ -105,8 +104,7 @@ router.post(
       res.status(500).json({ message: "ADMIN_SEARCH_ERROR" });
     }
   },
-  logSearchQuery,
-  trackSearchPlaces
+  logSearchQuery
 );
 
 router.post(
@@ -295,8 +293,7 @@ router.post(
     }
   },
   overrideLocationWithAreasInfo,
-  logSearchQuery,
-  trackSearchPlaces
+  logSearchQuery
 );
 
 export default router;

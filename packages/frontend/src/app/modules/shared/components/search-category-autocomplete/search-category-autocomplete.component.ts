@@ -67,6 +67,14 @@ import {
 } from "@soliguide/common";
 import { THEME_CONFIGURATION } from "../../../../models";
 import { AVAILABLES_LOGOS } from "../../../../shared/constants";
+import { PosthogProperties } from "@soliguide/common-angular";
+
+interface SearchAutoCompleteResult {
+  type: AutoCompleteType;
+  label: string;
+  categoryId?: Categories | null;
+  slug?: string;
+}
 
 @Component({
   selector: "app-search-category-autocomplete",
@@ -103,6 +111,8 @@ export class SearchCategoryAutocompleteComponent
   public setQuery: (value: string) => void;
 
   public searching = false;
+  public autoCompleteResults: SearchAutoCompleteResult[] = [];
+
   private readonly subscription = new Subscription();
   private readonly searchCancelSubject = new Subject<void>();
 
@@ -111,6 +121,7 @@ export class SearchCategoryAutocompleteComponent
     private readonly translateService: TranslateService,
     private readonly posthogService: PosthogService
   ) {}
+
   ngOnDestroy(): void {
     this.searchCancelSubject.next();
     this.searchCancelSubject.complete();
@@ -121,7 +132,6 @@ export class SearchCategoryAutocompleteComponent
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
     if (changes?.search && this.setQuery) {
       const currentSearchValue = this.getCurrentSearchValue(
         changes.search.currentValue
@@ -137,6 +147,7 @@ export class SearchCategoryAutocompleteComponent
       this.setQuery(changes.currentValue.currentValue);
     }
   }
+
   // Check if the service is already initialized
   ngAfterViewInit(): void {
     const searchBarReady$ = this.searchBarService.isReady()
@@ -219,6 +230,7 @@ export class SearchCategoryAutocompleteComponent
         openOnFocus: true,
 
         onReset: () => {
+          this.captureEvent("click-clear-autocomplete");
           this.clearSearch.emit();
         },
         defaultActiveItemId: 0,
@@ -274,6 +286,7 @@ export class SearchCategoryAutocompleteComponent
     this.updateCategory.emit();
     this.captureEvent(`click-autocomplete-search-category-${category}`, {
       keyUsed,
+      category,
     });
   }
 
@@ -285,8 +298,11 @@ export class SearchCategoryAutocompleteComponent
     this.search.word = item?.slug ?? slugString(item?.label);
     this.search.label = item?.label;
     this.updateCategory.emit();
-    this.captureEvent(`click-autocomplete-search-word-${item?.label}`, {
+    this.captureEvent(`click-autocomplete-search-word`, {
       keyUsed,
+      word: item?.label,
+      slug: item?.slug,
+      type: item?.type,
     });
   }
 
@@ -385,7 +401,12 @@ export class SearchCategoryAutocompleteComponent
           }),
           map((fuseResults) => {
             this.searching = false;
-            return fuseResults.slice(0, 10).map((result) => result.item);
+            const results = fuseResults
+              .slice(0, 10)
+              .map((result) => result.item);
+            // Stocker les résultats pour le tracking
+            this.autoCompleteResults = results;
+            return results;
           })
         )
       );
@@ -483,11 +504,11 @@ export class SearchCategoryAutocompleteComponent
     });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public captureEvent(eventName: string, data?: any) {
-    this.posthogService.capture(
-      `search-category-autocomplete-${eventName}`,
-      data
-    );
+  public captureEvent(eventName: string, properties?: PosthogProperties): void {
+    this.posthogService.capture(`search-category-autocomplete-${eventName}`, {
+      ...properties,
+      search: this.search,
+      autoCompleteResults: this.autoCompleteResults,
+    });
   }
 }

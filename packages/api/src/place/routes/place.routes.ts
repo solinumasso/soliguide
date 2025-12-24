@@ -29,7 +29,6 @@ import {
   getPlaceFromUrl,
   canGetPlace,
   logPlace,
-  trackViewPlace,
   handleLanguage,
 } from "../../middleware";
 import type { ExpressRequest, ExpressResponse } from "../../_models";
@@ -98,8 +97,7 @@ router.get(
     res.status(200).json(req.lieu);
     next();
   },
-  logPlace,
-  trackViewPlace
+  logPlace
 );
 
 export default router;
