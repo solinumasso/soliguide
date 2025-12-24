@@ -21,9 +21,9 @@
 import {
   AutoCompleteType,
   SearchSuggestion,
+  slugString,
   SoliguideCountries,
   SupportedLanguagesCode,
-  getSeoSlug,
 } from "@soliguide/common";
 import { logger } from "../../general/logger";
 import { SearchSuggestionModel } from "../models/search-suggestion.model";
@@ -139,9 +139,7 @@ export class SearchSuggestionsService {
       return null;
     }
     return (
-      this.suggestions.find(
-        (item) => getSeoSlug(item.slug) === getSeoSlug(slug)
-      ) || null
+      this.suggestions.find((item) => slugString(item.slug) === slug) || null
     );
   }
 
@@ -171,44 +169,19 @@ export class SearchSuggestionsService {
       return null;
     }
 
-    const normalized = getSeoSlug(searchTerm);
+    const normalized = slugString(searchTerm);
 
     return (
       this.suggestions.find((suggestion) => {
-        if (getSeoSlug(suggestion.label) === normalized) {
+        if (slugString(suggestion.label) === normalized) {
           return true;
         }
 
         return suggestion.synonyms.some(
-          (synonym) => getSeoSlug(synonym) === normalized
+          (synonym) => slugString(synonym) === normalized
         );
       }) ?? null
     );
-  }
-
-  findAllBySynonym(
-    searchTerm: string,
-    lang?: SupportedLanguagesCode
-  ): FormattedSuggestion[] {
-    const resolvedLang = lang || this.defaultLang;
-    if (!this.isLoaded || this.currentLang !== resolvedLang) {
-      logger.warn(
-        "Service not initialized or different language loaded. Call loadSuggestions() first."
-      );
-      return [];
-    }
-
-    const normalized = searchTerm.toLowerCase().trim();
-
-    return this.suggestions.filter((suggestion) => {
-      if (suggestion.label.toLowerCase().trim() === normalized) {
-        return true;
-      }
-
-      return suggestion.synonyms.some(
-        (synonym) => synonym.toLowerCase().trim() === normalized
-      );
-    });
   }
 
   generate(): FormattedSuggestion[] {

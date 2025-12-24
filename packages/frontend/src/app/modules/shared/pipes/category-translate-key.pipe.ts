@@ -32,8 +32,7 @@ import { Categories } from "@soliguide/common";
  */
 @Pipe({ name: "categoryTranslateKey" })
 export class CategoryTranslateKeyPipe implements PipeTransform {
-  public transform(category: string | Categories | null | undefined): string {
-    if (!category) return "";
-    return `CAT_${category.toUpperCase()}`;
+  public transform(category: string | Categories): string {
+    return `CAT_${(category || "").toUpperCase()}`;
   }
 }
