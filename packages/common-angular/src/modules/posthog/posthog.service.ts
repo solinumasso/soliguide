@@ -84,6 +84,7 @@ export class PosthogService implements OnDestroy {
     return {
       api_host: this.posthogConfig.posthogUrl,
       autocapture: false,
+      capture_pageleave: false,
       ip: false,
       debug: this.posthogConfig.posthogDebug,
       disable_session_recording: true,
