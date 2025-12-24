@@ -33,10 +33,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <ng-container
       *ngFor="let categoryNode of CATEGORIES_NODES_WITH_ONE_DEPTH_CHILDREN"
     >
-      <optgroup label=" {{ categoryNode.id | uppercase | translate }}">
+      <optgroup
+        label=" {{ categoryNode.id | categoryTranslateKey | translate }}"
+      >
         <ng-container *ngFor="let subcategory of categoryNode.children">
           <option *ngIf="subcategory" [value]="subcategory.id">
-            {{ subcategory.id | uppercase | translate }}
+            {{ subcategory.id | categoryTranslateKey | translate }}
           </option>
         </ng-container>
       </optgroup>

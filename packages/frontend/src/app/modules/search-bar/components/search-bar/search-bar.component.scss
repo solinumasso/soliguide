@@ -19,13 +19,13 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 #form_recherche {
-  width: 800px;
+  width: 920px;
   margin: 0 auto;
   max-width: 98%;
-}
 
-#form_recherche button {
-  vertical-align: middle;
+  button {
+    vertical-align: middle;
+  }
 }
 
 @media (max-width: 1024px) {

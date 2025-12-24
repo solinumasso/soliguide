@@ -31,13 +31,11 @@ import { PosthogService } from "../../../analytics/services/posthog.service";
   styleUrls: ["./search-bar.component.scss"],
 })
 export class SearchBarComponent {
-  @Input() public search!: Search;
+  @Input({ required: true }) public search: Search;
+  @Input() public currentValue!: string;
   // Selected category
   @Output()
   public readonly updateCategory = new EventEmitter<void>();
-  // Searched term
-  @Output()
-  public readonly updateSearchTerm = new EventEmitter<void>();
   // Searched location
   @Output()
   public readonly updateLocation =

@@ -19,12 +19,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import type { Categories, SearchAutoComplete } from '@soliguide/common';
-const buildCategorySuggestion = (
-  searchResult: SearchAutoComplete,
-  isSpecialistFn: (categoryId: Categories) => boolean
-): Categories[] => {
+const buildCategorySuggestion = (searchResult: SearchAutoComplete): Categories[] => {
   return searchResult.categories
-    .filter(({ categoryId }) => categoryId && !isSpecialistFn(categoryId))
+    .filter(({ categoryId }) => categoryId)
     .map(({ categoryId }) => categoryId as Categories)
     .filter((categoryId) => Boolean(categoryId));
 };

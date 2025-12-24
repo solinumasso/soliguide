@@ -19,7 +19,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 // @index('./*', f => `export * from '${f.path}'`)
-export * from "./analytics";
 export * from "./getFilteredData.middleware";
 export * from "./guards";
 export * from "./logging";

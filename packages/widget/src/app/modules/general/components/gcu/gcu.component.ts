@@ -25,6 +25,4 @@ import { Component } from "@angular/core";
   templateUrl: "./gcu.component.html",
   styleUrls: ["./gcu.component.scss"],
 })
-export class GcuComponent {
-  constructor() {}
-}
+export class GcuComponent {}

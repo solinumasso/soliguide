@@ -49,28 +49,6 @@ const buildParentToChildrenStructure = (categories: FlatCategoriesTreeNode[]): P
 };
 
 /**
- * Remove specialists and  HEALTH_SPECIALISTS's children in global structure
- */
-const removeSpecialistsFromCategories = (
-  categories: FlatCategoriesTreeNode[]
-): FlatCategoriesTreeNode[] => {
-  const specialistsParentNode = categories.find(
-    (category) => category.id === Categories.HEALTH_SPECIALISTS
-  );
-
-  if (specialistsParentNode) {
-    const specialists = specialistsParentNode.children.map((child) => child.id);
-    return categories
-      .map((category) => ({
-        ...category,
-        children: category.id === Categories.HEALTH_SPECIALISTS ? [] : category.children
-      }))
-      .filter((category) => !specialists.includes(category.id));
-  }
-  return [...categories];
-};
-
-/**
  * This service proxies the @soliguide/common category.service
  * and provides ad hoc functions and data
  *
@@ -83,18 +61,10 @@ export const getCategoryService = (
   const categoriesService = new CategoriesService(currentThemeName);
 
   const allCategories = categoriesService.getCategories();
-  const categoriesWithoutSpecialists = removeSpecialistsFromCategories(allCategories);
-  const parentToChildren = buildParentToChildrenStructure(categoriesWithoutSpecialists);
+  const parentToChildren = buildParentToChildrenStructure(allCategories);
 
   const getAllCategories = (): FlatCategoriesTreeNode[] => {
     return allCategories;
-  };
-
-  /**
-   * Checks if a category is a specialty
-   */
-  const isSpecialist = (categoryId: Categories): boolean => {
-    return !categoriesWithoutSpecialists.find(({ id }) => id === categoryId);
   };
 
   const getRootCategories = (): Categories[] => {
@@ -113,7 +83,14 @@ export const getCategoryService = (
   };
 
   /**
-   * Auto-complete feature for categories. All apseiclists are filtered from the results
+   * Checks if a category has children
+   */
+  const hasChildren = (categoryId: Categories): boolean => {
+    return categoriesService.hasChildren(categoryId);
+  };
+
+  /**
+   * Auto-complete feature for categories.
    */
   const getCategorySuggestions = async (searchTerm: string): Promise<Categories[]> => {
     try {
@@ -124,7 +101,7 @@ export const getCategoryService = (
       const url = `${apiUrl}new-search/auto-complete/${encodeURI(searchTerm.trim())}`;
 
       const result = await fetcher(url);
-      return buildCategorySuggestion(result, isSpecialist);
+      return buildCategorySuggestion(result);
     } catch {
       throw CategoriesErrors.ERROR_SERVER;
     }
@@ -135,9 +112,11 @@ export const getCategoryService = (
     getRootCategories,
     getChildrenCategories,
     isCategoryRoot,
+    hasChildren,
     getCategorySuggestions
   };
 };
 
 const themeName = get(themeStore.getTheme()).name;
+
 export const categoryService = getCategoryService(themeName, fetch);

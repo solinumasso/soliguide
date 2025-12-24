@@ -23,7 +23,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { Text, ListItem, PageLoader } from '@soliguide/design-system';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import { CategoryIcon } from '$lib/components';
-  import type { Categories } from '@soliguide/common';
+  import { getCategoryTranslationKey, type Categories } from '@soliguide/common';
   import type { I18nStore } from '$lib/client/types';
 
   export let items: Categories[] = [];
@@ -43,7 +43,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
     {#each items as item}
       <ListItem
-        title={$i18n.t(item.toUpperCase())}
+        title={$i18n.t(getCategoryTranslationKey(item))}
         shape="bordered"
         type="actionFull"
         size="small"

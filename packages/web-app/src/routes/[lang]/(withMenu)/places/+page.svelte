@@ -33,6 +33,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { themeStore } from '$lib/theme';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import type { ThemeDefinition } from '$lib/theme/types';
+  import { getCategoryTranslationKey } from '@soliguide/common';
 
   const { url } = $page;
 
@@ -98,7 +99,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <svelte:head>
   <title
     >{$i18n.t('SEARCH_CATEGORY_AROUND_LOCALISATION', {
-      category: $i18n.t($pageStore.search.category.toUpperCase()),
+      category: $i18n.t(getCategoryTranslationKey($pageStore.search.category)),
       localisation: $pageStore.adressLabel
     })}</title
   >
@@ -113,7 +114,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 {#if $pageStore.urlParams}
   <ResultsTopBar
     title={$i18n.t('CATEGORY_AND_ADRESS', {
-      category: $i18n.t($pageStore.search.category.toUpperCase()),
+      category: $i18n.t(getCategoryTranslationKey($pageStore.search.category)),
       adress: $pageStore.adressLabel
     })}
     on:goBack={modifySearch}

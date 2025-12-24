@@ -19,51 +19,5 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-.aa-ItemLink,
-.aa-ItemWrapper {
-  justify-content: left !important;
-}
-
-.aa-PanelLayout {
-  padding: 0 !important;
-}
-.aa-Item {
-  padding: 0.5rem;
-  border-bottom: 1px solid rgb(211, 211, 211);
-}
-
-.aa-ItemLink {
-  img {
-    width: 12px;
-    height: auto;
-  }
-  font-size: 1.05rem;
-}
-
-:host img {
-  width: 14px !important;
-  height: auto !important;
-}
-
-.search-input {
-  min-width: 340px;
-
-  .aa-Label,
-  .aa-InputWrapperSuffix,
-  .aa-SubmitButton {
-    display: none !important;
-  }
-
-  .aa-Form:focus-within,
-  .aa-Form {
-    border: none !important;
-    padding: none !important;
-    box-shadow: none !important;
-  }
-
-  .aa-Autocomplete {
-    button {
-      border: none;
-    }
-  }
+.btn {
 }

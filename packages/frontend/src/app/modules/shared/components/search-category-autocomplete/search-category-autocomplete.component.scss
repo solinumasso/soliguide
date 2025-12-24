@@ -1,0 +1,158 @@
+/*
+ * Soliguide: Useful information for those who need it
+ *
+ * SPDX-FileCopyrightText: © 2024 Solinum
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+.aa-ItemLink {
+  display: inline-block !important;
+  width: 100%;
+  padding: 0.5rem !important;
+  text-align: left;
+}
+
+.aa-CategoryIcon {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin-right: 0.75rem;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: #f6f5ff;
+    z-index: -1;
+  }
+
+  img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  span {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: #3f3f9f !important;
+    fill: #3f3f9f;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.aa-ItemContent {
+  display: inline-block;
+  vertical-align: middle;
+  width: calc(100% - 4.3125rem);
+}
+
+.aa-ItemContentTitle {
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  display: inline;
+  color: #3a3a3a;
+  font-size: 1.05rem;
+  font-style: normal;
+  font-weight: 600;
+  margin: 0;
+}
+
+.aa-ItemContentType {
+  margin-left: 0.5rem;
+  color: #999;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.aa-Label {
+  overflow: hidden;
+  color: #171717;
+  text-overflow: ellipsis;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.aa-Input,
+.aa-PanelLayout {
+  padding: 0 !important;
+}
+
+.aa-SourceHeader {
+  padding: 0.6rem 0.5rem;
+  font-weight: 600;
+  margin: 0;
+  font-size: 1rem;
+
+  display: flex;
+  align-items: center;
+}
+
+.aa-SourceHeader::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: #d3d3d3;
+  margin-left: 0.75rem;
+}
+
+.aa-Panel,
+.aa-PanelLayout {
+  z-index: 40000;
+}
+
+.aa-Item {
+  padding: 0 !important;
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.search-input {
+  min-width: 340px;
+
+  .aa-Form:focus-within,
+  .aa-Form {
+    border: none !important;
+    padding: none !important;
+    box-shadow: none !important;
+  }
+
+  .aa-Autocomplete {
+    button {
+      border: none;
+    }
+  }
+}

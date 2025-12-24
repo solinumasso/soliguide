@@ -27,6 +27,7 @@ import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { TranslateModule } from "@ngx-translate/core";
 
 import { FormSingleServiceFicheComponent } from "./single-service.component";
+import { CategoryTranslateKeyPipe } from "../../../../shared/pipes";
 
 import { SERVICE_MOCK } from "../../../../../../../mocks/SERVICE.mock";
 
@@ -36,7 +37,7 @@ describe("FormSingleServiceFicheComponent", () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [FormSingleServiceFicheComponent],
+      declarations: [FormSingleServiceFicheComponent, CategoryTranslateKeyPipe],
       imports: [FormsModule, TranslateModule.forRoot()],
       providers: [{ provide: APP_BASE_HREF, useValue: "/" }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],

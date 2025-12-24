@@ -23,6 +23,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import {
   Categories,
   DEFAULT_SERVICES_TO_EXCLUDE_WITH_ADDICTION,
+  getCategoryTranslationKey,
 } from "@soliguide/common";
 
 @Component({
@@ -58,7 +59,9 @@ export class ExcludePlacesFilterComponent implements OnInit {
     }
 
     this.categoriesToExclude.forEach((category) => {
-      const label = this.translateService.instant(category.toUpperCase());
+      const label = this.translateService.instant(
+        getCategoryTranslationKey(category)
+      );
 
       if (this.categoriesToExclude.includes(category)) {
         displayValue =

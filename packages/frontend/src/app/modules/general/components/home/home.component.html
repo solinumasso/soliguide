@@ -38,6 +38,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   </div>
 
   <app-search-bar
+    [currentValue]="searchInputValue"
     (updateLocation)="updateLocation($event)"
     (launchSearch)="launchSearch()"
     [search]="search"
@@ -86,14 +87,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               class="btn"
               [attr.aria-label]="
                 'Choisir la catégorie ' +
-                (categoryHighlighted | uppercase | translate)
+                (categoryHighlighted | categoryTranslateKey | translate)
               "
               (click)="putTextCat(categoryHighlighted)"
             >
               <span
                 [class]="'category-icon category-icon-' + categoryHighlighted"
               ></span>
-              <span>{{ categoryHighlighted | uppercase | translate }}</span>
+              <span>{{
+                categoryHighlighted | categoryTranslateKey | translate
+              }}</span>
             </button>
           </div>
         </ng-container>
@@ -126,7 +129,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               <span
                 [class]="'category-icon category-icon-' + categoryRoot.id"
               ></span>
-              {{ categoryRoot.id | uppercase | translate }}
+              {{ categoryRoot.id | categoryTranslateKey | translate }}
             </button>
             <ul>
               <li *ngFor="let category of categoryRoot.children">
@@ -141,7 +144,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                       'category-icon category-icon-' + category.id + '_outlined'
                     "
                   ></span>
-                  {{ category.id | uppercase | translate }}
+                  {{ category.id | categoryTranslateKey | translate }}
                 </button>
               </li>
             </ul>

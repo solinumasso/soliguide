@@ -95,9 +95,7 @@ const getPosthogService = () => {
     }
 
     if (instance) {
-      const eventToSend = ['$pageview', '$pageleave'].includes(eventName)
-        ? eventName
-        : `web-app-${eventName}`;
+      const eventToSend = eventName === '$pageview' ? eventName : `web-app-${eventName}`;
 
       instance.capture(eventToSend, properties);
     } else {

@@ -1,24 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-Soliguide: Useful information for those who need it
-
-SPDX-FileCopyrightText: © 2025 Solinum
-
-SPDX-License-Identifier: AGPL-3.0-only
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Affero General Public License as published
-by the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Affero General Public License for more details.
-
-You should have received a copy of the GNU Affero General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.
--->
 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M39 16H34V12C34 9.8 32.2 8 30 8H6C3.8 8 2 9.8 2 12V30C2 32.2 3.8 34 6 34C6 37.32 8.68 40 12 40C15.32 40 18 37.32 18 34H30C30 37.32 32.68 40 36 40C39.32 40 42 37.32 42 34H44C45.1 34 46 33.1 46 32V25.34C46 24.48 45.72 23.64 45.2 22.94L40.6 16.8C40.22 16.3 39.62 16 39 16ZM12 36C10.9 36 10 35.1 10 34C10 32.9 10.9 32 12 32C13.1 32 14 32.9 14 34C14 35.1 13.1 36 12 36ZM39 19L42.92 24H34V19H39ZM36 36C34.9 36 34 35.1 34 34C34 32.9 34.9 32 36 32C37.1 32 38 32.9 38 34C38 35.1 37.1 36 36 36Z" fill="#404040"/>
+<path d="M4.8 7.2C2.1525 7.2 0 9.3525 0 12V36.6C0 40.245 2.955 43.2 6.6 43.2C8.49 43.2 10.2 42.405 11.4 41.13C12.6 42.405 14.31 43.2 16.2 43.2C19.2225 43.2 21.765 41.1675 22.5525 38.4H32.6475C33.4275 41.1675 35.9775 43.2 39 43.2C42.225 43.2 44.9175 40.8825 45.4875 37.8225C46.9875 37.0125 48 35.4225 48 33.6V22.5975C48 21.3225 47.4975 20.1 46.5975 19.2L43.2 15.8025C42.3 14.9025 41.0775 14.4 39.8025 14.4H36V12C36 9.3525 33.8475 7.2 31.2 7.2H4.8ZM36 19.2H39.8025L43.2 22.5975V26.4H36V19.2ZM6.6 33.6C8.2575 33.6 9.6 34.9425 9.6 36.6C9.6 38.2575 8.2575 39.6 6.6 39.6C4.9425 39.6 3.6 38.2575 3.6 36.6C3.6 34.9425 4.9425 33.6 6.6 33.6ZM36 36.6C36 34.9425 37.3425 33.6 39 33.6C40.6575 33.6 42 34.9425 42 36.6C42 38.2575 40.6575 39.6 39 39.6C37.3425 39.6 36 38.2575 36 36.6ZM16.2 33.6C17.8575 33.6 19.2 34.9425 19.2 36.6C19.2 38.2575 17.8575 39.6 16.2 39.6C14.5425 39.6 13.2 38.2575 13.2 36.6C13.2 34.9425 14.5425 33.6 16.2 33.6Z" fill="#271332"/>
 </svg>

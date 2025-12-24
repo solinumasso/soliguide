@@ -34,6 +34,7 @@ export interface PageState {
   categories: Categories[];
   browserState: CategoryBrowserState;
   selectedCategory: Categories | null;
+  navigationStack: Categories[];
 }
 
 export interface CategorySelectorController {
