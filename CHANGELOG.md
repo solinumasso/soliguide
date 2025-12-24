@@ -1,3 +1,11 @@
+## [4.118.1](https://github.com/solinumasso/soliguide/compare/v4.118.0...v4.118.1) (2025-12-24)
+
+
+### Bug Fixes
+
+* **api:** fix console.logt ([bc852c9](https://github.com/solinumasso/soliguide/commit/bc852c9457e83f13cf60b7335ba2936844ed191f))
+* **frontend:** load translation first ([dbd1970](https://github.com/solinumasso/soliguide/commit/dbd19706a52db9f889a2291464c95c778a10634f))
+
 # [4.118.0](https://github.com/solinumasso/soliguide/compare/v4.117.0...v4.118.0) (2025-12-24)
 
 
