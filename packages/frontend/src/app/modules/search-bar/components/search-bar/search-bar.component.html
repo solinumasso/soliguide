@@ -29,6 +29,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           [currentValue]="currentValue"
           [search]="search"
           (updateCategory)="updateCategory.emit()"
+          (click)="captureEvent('category-input')"
         ></app-search-category-autocomplete>
       </div>
     </div>
@@ -41,6 +42,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           [addressesOnly]="false"
           [currentAddress]="search?.location.label"
           (updateLocation)="updateLocation.emit($event)"
+          (click)="captureEvent('location-input')"
         ></app-location-autocomplete>
       </div>
     </div>

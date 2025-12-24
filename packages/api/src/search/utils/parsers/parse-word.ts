@@ -18,20 +18,23 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import { SupportedLanguagesCode } from "@soliguide/common";
 import autocompleteSuggestionService from "../../services/search-suggestions.service";
+import { FormattedSuggestion } from "../../types";
 import { parseTextSearch } from "./parse-text-search";
 
 export function buildEnhancedWordSearch(
   searchData: any,
   nosqlQuery: any,
-  lang: string = "fr"
+  lang: SupportedLanguagesCode = SupportedLanguagesCode.FR
 ): void {
-  if (!searchData.word) return;
+  if (!searchData?.word) {
+    return;
+  }
 
   const searchTerm = searchData.word.trim();
   const foundSuggestion = findSuggestionBySynonym(searchTerm, lang);
 
-  console.log({ foundSuggestion });
   if (foundSuggestion) {
     buildSynonymSearch(nosqlQuery, foundSuggestion);
   } else {
@@ -39,13 +42,13 @@ export function buildEnhancedWordSearch(
   }
 }
 
-function buildSynonymSearch(nosqlQuery: any, suggestion: any): void {
+function buildSynonymSearch(
+  nosqlQuery: any,
+  suggestion: FormattedSuggestion
+): void {
   const allTerms = [suggestion.label, ...suggestion.synonyms].filter(Boolean);
-  console.table(allTerms);
   if (allTerms.length > 0) {
     const regexTerms = allTerms.map((term) => createWordBoundaryRegex(term));
-
-    console.log(regexTerms);
     nosqlQuery["slugs.infos.name"] = { $in: regexTerms };
   }
 }
@@ -57,11 +60,16 @@ function buildSimpleSearch(nosqlQuery: any, searchTerm: string): void {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function findSuggestionBySynonym(searchTerm: string, _lang: string) {
+export function findSuggestionBySynonym(
+  searchTerm: string,
+  lang: SupportedLanguagesCode
+): FormattedSuggestion | null {
   const normalizedSearch = searchTerm.toLowerCase().trim();
 
-  const suggestionBySlug =
-    autocompleteSuggestionService.findBySlug(normalizedSearch);
+  const suggestionBySlug = autocompleteSuggestionService.findBySlugAndLang(
+    normalizedSearch,
+    lang
+  );
 
   if (suggestionBySlug) {
     return suggestionBySlug;
@@ -71,6 +79,6 @@ function findSuggestionBySynonym(searchTerm: string, _lang: string) {
 }
 
 function createWordBoundaryRegex(term: string): RegExp {
-  const escaped = term.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-  return new RegExp(`\\b${escaped}\\b`, "i");
+  const escaped = term.replaceAll(/[-[\]{}()*+?.,\\^$|#\s]/g, String.raw`\$&`);
+  return new RegExp(String.raw`\b${escaped}\b`, "i");
 }

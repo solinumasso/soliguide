@@ -37,6 +37,7 @@ import {
   getAllowedTerritories,
   CountryCodes,
   CategoriesService,
+  SupportedLanguagesCode,
 } from "@soliguide/common";
 import { cleanSearchQuery } from "./clean-search-query";
 import {
@@ -125,7 +126,7 @@ export const generateSearchQuery = (
   }
 
   if (searchData?.word) {
-    buildEnhancedWordSearch(searchData, nosqlQuery, "fr");
+    buildEnhancedWordSearch(searchData, nosqlQuery, SupportedLanguagesCode.FR);
   }
 
   if (searchData.openToday) {

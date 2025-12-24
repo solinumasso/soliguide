@@ -147,7 +147,7 @@ export class LocationAutocompleteComponent
       distinctUntilChanged(),
       tap(() => this.searchCancelSubject.next()),
       switchMap((term) => {
-        const sanitizedQuery = term.trim().replace(/\//g, " ");
+        const sanitizedQuery = term.trim().replaceAll(/\//g, " ");
 
         if (sanitizedQuery.length <= 2) {
           return of([]);
@@ -184,8 +184,8 @@ export class LocationAutocompleteComponent
     this.clearAddress.emit();
     this.captureEvent("click-clear-location");
   }
+
   public formatter = (result: string): string => {
-    console.log({ result });
     return result || "";
   };
 

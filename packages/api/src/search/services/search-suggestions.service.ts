@@ -31,6 +31,10 @@ import { FormattedSuggestion } from "../types/FormattedSuggestion.type";
 export class SearchSuggestionsService {
   public suggestions: FormattedSuggestion[] = [];
   private isLoaded = false;
+  private currentLang: SupportedLanguagesCode | null = null;
+  private currentCountry: SoliguideCountries | null = null;
+  private readonly defaultLang: SupportedLanguagesCode =
+    SupportedLanguagesCode.FR;
 
   async getAllSuggestions(): Promise<SearchSuggestion[]> {
     try {
@@ -66,7 +70,12 @@ export class SearchSuggestionsService {
     lang: SupportedLanguagesCode,
     forceReload = false
   ): Promise<void> {
-    if (this.isLoaded && !forceReload) {
+    if (
+      this.isLoaded &&
+      !forceReload &&
+      this.currentLang === lang &&
+      this.currentCountry === country
+    ) {
       logger.info(
         `Suggestions already loaded, skipping (country=${country}, lang=${lang})`
       );
@@ -94,12 +103,12 @@ export class SearchSuggestionsService {
         slug: suggestion.slug,
         synonyms: suggestion.synonyms || [],
         type: suggestion.type,
-        lang: suggestion.lang,
-        country: suggestion.country,
         seoTitle: suggestion.seoTitle,
         seoDescription: suggestion.seoDescription,
       }));
 
+      this.currentLang = lang;
+      this.currentCountry = country;
       this.isLoaded = true;
       logger.info(
         `Suggestions loaded: ${this.suggestions.length} items (country=${country}, lang=${lang})`
@@ -125,6 +134,20 @@ export class SearchSuggestionsService {
     return this.suggestions.find((item) => item.slug === slug) || null;
   }
 
+  findBySlugAndLang(
+    slug: string,
+    lang?: SupportedLanguagesCode
+  ): FormattedSuggestion | null {
+    const resolvedLang = lang || this.defaultLang;
+    if (!this.isLoaded || this.currentLang !== resolvedLang) {
+      logger.warn(
+        "Service not initialized or different language loaded. Call loadSuggestions() first."
+      );
+      return null;
+    }
+    return this.suggestions.find((item) => item.slug === slug) || null;
+  }
+
   findById(categoryId: string): FormattedSuggestion | null {
     if (!this.isLoaded) {
       logger.warn("Service not initialized. Call loadSuggestions() first.");
@@ -139,9 +162,35 @@ export class SearchSuggestionsService {
     );
   }
 
-  findBySynonym(searchTerm: string): FormattedSuggestion | null {
-    if (!this.isLoaded) {
-      logger.warn("Service not initialized. Call loadSuggestions() first.");
+  findByIdAndLang(
+    categoryId: string,
+    lang?: SupportedLanguagesCode
+  ): FormattedSuggestion | null {
+    const resolvedLang = lang || this.defaultLang;
+    if (!this.isLoaded || this.currentLang !== resolvedLang) {
+      logger.warn(
+        "Service not initialized or different language loaded. Call loadSuggestions() first."
+      );
+      return null;
+    }
+    return (
+      this.suggestions.find(
+        (item) =>
+          item.type === AutoCompleteType.CATEGORY &&
+          item.categoryId === categoryId
+      ) || null
+    );
+  }
+
+  findBySynonym(
+    searchTerm: string,
+    lang?: SupportedLanguagesCode
+  ): FormattedSuggestion | null {
+    const resolvedLang = lang || this.defaultLang;
+    if (!this.isLoaded || this.currentLang !== resolvedLang) {
+      logger.warn(
+        "Service not initialized or different language loaded. Call loadSuggestions() first."
+      );
       return null;
     }
 
@@ -152,11 +201,37 @@ export class SearchSuggestionsService {
         if (suggestion.label.toLowerCase().trim() === normalized) {
           return true;
         }
+
         return suggestion.synonyms.some(
           (synonym) => synonym.toLowerCase().trim() === normalized
         );
       }) ?? null
     );
+  }
+
+  findAllBySynonym(
+    searchTerm: string,
+    lang?: SupportedLanguagesCode
+  ): FormattedSuggestion[] {
+    const resolvedLang = lang || this.defaultLang;
+    if (!this.isLoaded || this.currentLang !== resolvedLang) {
+      logger.warn(
+        "Service not initialized or different language loaded. Call loadSuggestions() first."
+      );
+      return [];
+    }
+
+    const normalized = searchTerm.toLowerCase().trim();
+
+    return this.suggestions.filter((suggestion) => {
+      if (suggestion.label.toLowerCase().trim() === normalized) {
+        return true;
+      }
+
+      return suggestion.synonyms.some(
+        (synonym) => synonym.toLowerCase().trim() === normalized
+      );
+    });
   }
 
   generate(): FormattedSuggestion[] {
@@ -166,6 +241,8 @@ export class SearchSuggestionsService {
   reset(): void {
     this.suggestions = [];
     this.isLoaded = false;
+    this.currentLang = null;
+    this.currentCountry = null;
   }
 }
 
