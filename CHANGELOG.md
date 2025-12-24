@@ -1,3 +1,35 @@
+# [4.118.0](https://github.com/solinumasso/soliguide/compare/v4.117.0...v4.118.0) (2025-12-24)
+
+
+### Bug Fixes
+
+* **api:** delete index ([ba5ebb3](https://github.com/solinumasso/soliguide/commit/ba5ebb3a7a889392a39f6cb71dd6dd4f0caf8084))
+* **api:** delete typesense, update logs ([acf16b5](https://github.com/solinumasso/soliguide/commit/acf16b5b75b6b8e1ebdc2fdba560eba61be344b3))
+* **api:** delete useless search logs ([64fbc7c](https://github.com/solinumasso/soliguide/commit/64fbc7c6f8081840219dae95174c5893073fb484))
+* **api:** fix [#624](https://github.com/solinumasso/soliguide/issues/624) ([cc5e9ac](https://github.com/solinumasso/soliguide/commit/cc5e9ac9b20e3929e07dc8f7b2c4c4125c6e7a6e))
+* **api:** fix dump [#627](https://github.com/solinumasso/soliguide/issues/627) ([be92f00](https://github.com/solinumasso/soliguide/commit/be92f0096e3e810717a5a48317bfc09cfcf0154f))
+* **api:** fix sonarcloud issues ([01c5a13](https://github.com/solinumasso/soliguide/commit/01c5a13dd17d4c69ba8df6e7bd1b7be3a4894cfe))
+* **api:** fix suggestion in test [#627](https://github.com/solinumasso/soliguide/issues/627) ([979db50](https://github.com/solinumasso/soliguide/commit/979db500a961a8d6bead04c1e9cf000ec31d0f8e))
+* **api:** fix unit tests ([95fd3ea](https://github.com/solinumasso/soliguide/commit/95fd3eabca363e4f87c00d812d8aedddfd85fa03))
+* **api:** update qovery ([3b6df95](https://github.com/solinumasso/soliguide/commit/3b6df95d85a816c7a78636fcf01ada1153a099f2))
+* **chore:** fix claude pr reviews ([53beb1e](https://github.com/solinumasso/soliguide/commit/53beb1ee475283252a23dbdef0f6c0715b2c329a))
+* **common:** fix license check & commitlint ([5539130](https://github.com/solinumasso/soliguide/commit/55391303baa86ecf5daaff2fc9bf3d7dda527297))
+* **frontend:** add focus & fix labels ([c2bd573](https://github.com/solinumasso/soliguide/commit/c2bd57320e853343da2ce9f9a6f6124bd4323ea1))
+* **frontend:** update list of etablishments and logos ([9a0b9d1](https://github.com/solinumasso/soliguide/commit/9a0b9d18b119f8912767d45e4023c29b8ec5ec6f))
+* **frontend:** update unit tests [#627](https://github.com/solinumasso/soliguide/issues/627) ([5fe87fe](https://github.com/solinumasso/soliguide/commit/5fe87fecae79b5f97d9860ba970e9f7f5672f2e3))
+* **frontend:** update unit tests [#627](https://github.com/solinumasso/soliguide/issues/627) ([98e2eda](https://github.com/solinumasso/soliguide/commit/98e2edabf9a772ea3a2685e9498a9e6f5d8245f1))
+* **location-api:** fix autocomplete test location coordinates update ([0ce23eb](https://github.com/solinumasso/soliguide/commit/0ce23ebe20d553f905accf6f3e49ab5941297f67))
+
+
+### Features
+
+* **api:** add autocomplete [#624](https://github.com/solinumasso/soliguide/issues/624) ([6a4a4dd](https://github.com/solinumasso/soliguide/commit/6a4a4dded88063b411c647da8617e2f8aa74b052))
+* **api:** remove based services from maj and update reset campaign template ([13c87a4](https://github.com/solinumasso/soliguide/commit/13c87a4710b025609f0b50824516a55435218ca7))
+* **frontend:** add CAT_ prefix to all category translation keys ([7d47a6c](https://github.com/solinumasso/soliguide/commit/7d47a6c56ca2f0271e468cd9cd520763727fb36c))
+* **frontend:** remove pageleave and webapp search term posthog events ([7d2ad71](https://github.com/solinumasso/soliguide/commit/7d2ad71bf6d400f5ca96580156376575aa19e91b))
+* **frontend:** use new icons from fontawesome ([cfa5d0b](https://github.com/solinumasso/soliguide/commit/cfa5d0b4ed8d4e55c079bcd73cc170a416ed578e))
+* **web-app:** make menu navigation in 3 level possible ([6c15633](https://github.com/solinumasso/soliguide/commit/6c15633857b39bf1708382a6f60200a711d8ca2a))
+
 # [4.117.0](https://github.com/solinumasso/soliguide/compare/v4.116.0...v4.117.0) (2025-12-08)
 
 
