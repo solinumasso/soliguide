@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { slugString, SupportedLanguagesCode } from "@soliguide/common";
+import { SupportedLanguagesCode } from "@soliguide/common";
 import autocompleteSuggestionService from "../../services/search-suggestions.service";
 import { FormattedSuggestion } from "../../types";
 import { parseTextSearch } from "./parse-text-search";
@@ -32,7 +32,7 @@ export function buildEnhancedWordSearch(
     return;
   }
 
-  const searchTerm = searchData.word.trim();
+  const searchTerm = searchData.word;
   const foundSuggestion = findSuggestionBySynonym(searchTerm, lang);
 
   if (foundSuggestion) {
@@ -64,17 +64,15 @@ export function findSuggestionBySynonym(
   searchTerm: string,
   lang: SupportedLanguagesCode
 ): FormattedSuggestion | null {
-  const normalizedSearch = slugString(searchTerm);
-
   const suggestionBySlug = autocompleteSuggestionService.findBySlugAndLang(
-    normalizedSearch,
+    searchTerm,
     lang
   );
   if (suggestionBySlug) {
     return suggestionBySlug;
   }
 
-  return autocompleteSuggestionService.findBySynonym(normalizedSearch, lang);
+  return autocompleteSuggestionService.findBySynonym(searchTerm, lang);
 }
 
 function createWordBoundaryRegex(term: string): RegExp {
