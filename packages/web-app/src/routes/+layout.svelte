@@ -37,6 +37,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { ROUTES_CTX_KEY, getRoutes, isLanguageSelected, getZDCookieConsent } from '$lib/client';
   import { cookieConsent, COOKIE_CTX_KEY } from '$lib/client/cookie';
   import { themeStore } from '$lib/theme';
+  import ToastContainer from '$lib/components/ToastContainer.svelte';
 
   themeStore.init($page.url.origin);
   const theme = get(themeStore.getTheme());
@@ -82,6 +83,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <main>
       <slot />
     </main>
+    <ToastContainer />
   </ZendeskIntegration>
 </ThemeContext>
 

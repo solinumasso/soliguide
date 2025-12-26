@@ -25,6 +25,7 @@ export * from "./campaign";
 export * from "./categories";
 export * from "./contacts";
 export * from "./dates";
+export * from "./favorites";
 export * from "./general";
 export * from "./holidays";
 export * from "./hours";

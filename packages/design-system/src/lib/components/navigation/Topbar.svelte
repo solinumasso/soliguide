@@ -23,13 +23,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import ChevronLeft from 'svelte-google-materialdesign-icons/Chevron_left.svelte';
   import type { TopbarType } from '$lib/types/TopBar';
   import type { ButtonType } from '$lib/types/Button';
+  import type { TopbarAction } from '$lib/types/TopbarAction';
   import Button from '$lib/components/buttons/Button.svelte';
+  import ActionButton from '$lib/components/ActionButton.svelte';
   import Text from '$lib/components/Text.svelte';
 
   export let title = '';
 
   export let type: TopbarType = 'gradient';
   export let navigateBackAriaLabel = 'Back';
+  export let actions: TopbarAction[] = [];
 
   const buttonTypeMapping: Record<TopbarType, ButtonType> = {
     gradient: 'shy',
@@ -38,7 +41,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     reversedTransparent: 'reversed'
   };
 
-  const dispatch = createEventDispatcher<{ navigate: null }>();
+  const dispatch = createEventDispatcher<{ navigate: null } & Record<string, null>>();
 </script>
 
 <!-- IN V2, to include the buttons, check what was done in src/routes/actions/+page.svelte with actions buttons -->
@@ -55,6 +58,21 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   <div class="nav-title">
     <Text type="title3PrimaryExtraBold">{title}</Text>
+  </div>
+
+  <div class="nav-actions">
+    {#each actions as action}
+      <ActionButton
+        type={action.type || 'button'}
+        label={action.label}
+        icon={action.icon}
+        iconColor={action.iconColor}
+        active={action.active || false}
+        reversed={type === 'reversedGradient' || type === 'reversedTransparent'}
+        on:action={() => dispatch(action.eventKey)}
+      />
+    {/each}
+    <slot name="actions" />
   </div>
 </nav>
 
@@ -91,5 +109,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   .nav-title {
     width: 100%;
     text-align: center;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 48px;
+    flex-shrink: 0;
+    gap: var(--spacingXS);
   }
 </style>
