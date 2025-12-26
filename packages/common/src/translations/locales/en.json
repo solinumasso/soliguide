@@ -1866,6 +1866,7 @@
   "SUCCESSFUL_ADDITION": "recording completed",
   "SUCCESSFUL_SIGNUP": "successful registration",
   "SUCCESS_ADD_PLACE_TO_ORGA": "Structure successfully added",
+  "SYNC_IN_PROGRESS": "Synchronization in progress",
   "SYNC_PLACE": "Synchronize the structure",
   "SYNC_PLACES": "Synchronize the structures",
   "SYNC_USER": "Synchronize the user",
