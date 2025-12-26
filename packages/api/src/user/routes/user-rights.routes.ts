@@ -93,6 +93,7 @@ router.get(
     }
   }
 );
+
 /**
  * @summary Update the user rights in an organization
  */

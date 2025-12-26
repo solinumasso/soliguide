@@ -65,7 +65,7 @@ export class SearchResultsComponent implements OnInit {
     this.currentLang = this.search.lang;
 
     if (!this.disabled) {
-      this.soliguideLink = `${this.frontendUrl}${this.currentLang}/search/${this.search.location.geoValue}/`;
+      this.soliguideLink = `${this.frontendUrl}/${this.currentLang}/search/${this.search.location.geoValue}/`;
 
       if (this.search.category) {
         this.soliguideLink += this.search.category;

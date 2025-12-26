@@ -32,7 +32,6 @@ import mongoose from "mongoose";
 
 export const removeFieldFromPlaceForDuplication = (place: any) => {
   delete place._id;
-  delete place.atSync;
   delete place.auto;
   delete place.campaigns;
   delete place.modalities.docs;

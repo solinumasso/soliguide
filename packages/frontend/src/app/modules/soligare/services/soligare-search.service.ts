@@ -37,7 +37,7 @@ export class SoligareSearchService {
   public launchSearch(
     search: SearchPairing
   ): Observable<SearchResults<ExternalStructure>> {
-    const url = `${environment.apiUrl}v2/soligare/pairing/to-pair`;
+    const url = `${environment.apiUrl}/v2/soligare/pairing/to-pair`;
     return this.http.post<SearchResults<ExternalStructure>>(`${url}`, {
       sources: search.sources ?? [],
       territories: search.territories ?? [],
@@ -46,12 +46,12 @@ export class SoligareSearchService {
   }
 
   public getDuplicates(place: Partial<ApiPlace>): Observable<Place[]> {
-    const url = `${environment.apiUrl}integration/search-duplicates`;
+    const url = `${environment.apiUrl}/integration/search-duplicates`;
     return this.http.post<Place[]>(url, place);
   }
 
   public getExternalStructure(id: string): Observable<Partial<ApiPlace>> {
-    const url = `${environment.apiUrl}v2/soligare/pairing/external-structure/${id}`;
+    const url = `${environment.apiUrl}/v2/soligare/pairing/external-structure/${id}`;
 
     return this.http.get<Partial<ApiPlace>>(url);
   }

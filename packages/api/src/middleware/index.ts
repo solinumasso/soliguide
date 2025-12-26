@@ -19,8 +19,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 // @index('./*', f => `export * from '${f.path}'`)
-export * from "./getFilteredData.middleware";
+export * from "./events";
 export * from "./guards";
 export * from "./logging";
 export * from "./request";
+export * from "./getFilteredData.middleware";
 export * from "./validateBodyGenerator.middleware";

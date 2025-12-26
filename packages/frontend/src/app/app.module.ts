@@ -28,7 +28,6 @@ import {
 import {
   NgModule,
   CUSTOM_ELEMENTS_SCHEMA,
-  NO_ERRORS_SCHEMA,
   APP_INITIALIZER,
 } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -128,7 +127,7 @@ export function initializeTranslate(translate: TranslateService) {
       useClass: ServerErrorInterceptor,
     },
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {} // skipcq: JS-0327

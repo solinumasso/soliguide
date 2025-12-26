@@ -27,17 +27,14 @@ import * as UserAdminController from "../controllers/user-admin.controller";
 import { searchUserDto } from "../dto";
 import { validObjectIdDto } from "../../_utils/dto";
 
-import {
-  AirtableEntityType,
-  type ExpressRequest,
-  type ExpressResponse,
+import type {
+  ExpressRequest,
+  ExpressResponse,
   UserPopulateType,
 } from "../../_models";
 
-import { syncEntityDeletion } from "../../airtable/controllers/airtable.controller";
-import { setEntityExcludedOrNot } from "../../airtable/services/airtableEntity.service";
-
 import { checkRights, getUserFromUrl, getFilteredData } from "../../middleware";
+import { sendUserChangesToMq } from "../middlewares/send-user-changes-event-to-mq.middleware";
 
 const router = express.Router();
 /**
@@ -93,20 +90,14 @@ router.patch(
   checkRights([UserStatus.ADMIN_SOLIGUIDE]),
   validObjectIdDto,
   getFilteredData,
-  async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
-    const _id = req.bodyValidated._id;
+  async (req: ExpressRequest, res: ExpressResponse) => {
     try {
-      req.airtableEntity = await UserAdminController.removeFromDev(_id);
-      req.airtableEntityType = AirtableEntityType.USER;
-
-      res.status(200).json({ message: "USER_REMOVED" });
+      return res.status(200).json({ message: "USER_REMOVED" });
     } catch (e) {
       req.log.error(e, "REMOVE_FROM_DEV_IMPOSSIBLE");
       return res.status(400).json({ message: "REMOVE_FROM_DEV_IMPOSSIBLE" });
     }
-    return next();
-  },
-  setEntityExcludedOrNot
+  }
 );
 
 /**
@@ -174,6 +165,7 @@ router.delete(
   async (
     req: ExpressRequest & {
       selectedUser: Required<UserPopulateType>;
+      isUserDeleted: boolean;
     },
     res: ExpressResponse,
     next: NextFunction
@@ -181,20 +173,18 @@ router.delete(
     try {
       await UserAdminController.deleteUser(req.selectedUser, req.log);
 
-      req.airtableId = req.selectedUser?.atSync?.airtableId;
-      req.airtableEntityType = AirtableEntityType.USER;
+      req.updatedUser = req.selectedUser;
+      req.isUserDeleted = true;
 
       res.status(200).json({ message: "USER_DELETED" });
+
+      return next();
     } catch (e) {
       req.log.error(e, "DELETE_USER_FAIL");
       return res.status(400).json({ message: "DELETE_USER_FAIL" });
     }
-    return next();
   },
-  syncEntityDeletion,
-  () => {
-    return;
-  }
+  sendUserChangesToMq
 );
 
 export default router;

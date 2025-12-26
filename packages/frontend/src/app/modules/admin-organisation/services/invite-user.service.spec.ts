@@ -25,7 +25,7 @@ import {
   HttpClientTestingModule,
   HttpTestingController,
 } from "@angular/common/http/testing";
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterModule } from "@angular/router";
 import { ToastrModule } from "ngx-toastr";
 
 import { InviteUserService } from "./invite-user.service";
@@ -41,7 +41,7 @@ describe("InviteUserService", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
+        RouterModule.forRoot([]),
         ToastrModule.forRoot({}),
         TranslateModule.forRoot({}),
         HttpClientTestingModule,
@@ -65,7 +65,7 @@ describe("InviteUserService", () => {
         });
 
       const req = httpControllerMock.expectOne(
-        `${environment.apiUrl}invite-user/test-email-exist-orga/${dummyOrga._id}`
+        `${environment.apiUrl}/invite-user/test-email-exist-orga/${dummyOrga._id}`
       );
       expect(req.request.method).toBe("POST");
       req.flush(true);

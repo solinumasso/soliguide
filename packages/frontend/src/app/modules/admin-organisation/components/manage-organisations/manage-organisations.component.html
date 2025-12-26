@@ -211,7 +211,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <fa-icon
           aria-hidden="true"
           [icon]="['fas', 'circle-notch']"
-          [spin]="true"
+          animation="spin"
         >
         </fa-icon>
         {{ "SEARCH_IN_PROGRESS" | translate }}
@@ -580,7 +580,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           ></app-display-territories>
         </td>
         <td class="text-center" appTextDirection>
-          {{ orga.createdAt | date }}
+          {{ orga.createdAt | dateProxy }}
         </td>
       </tr>
     </tbody>

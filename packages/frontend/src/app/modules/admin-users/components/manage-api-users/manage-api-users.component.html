@@ -30,7 +30,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <fa-icon
           [icon]="['fas', 'circle-notch']"
           aria-hidden="true"
-          [spin]="true"
+          animation="spin"
         >
         </fa-icon>
         {{ "SEARCH_IN_PROGRESS" | translate }}
@@ -113,7 +113,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             </a>
           </td>
           <td>
-            {{ partner.createdAt | date }}
+            {{ partner.createdAt | dateProxy }}
           </td>
           <td>
             <app-display-territories

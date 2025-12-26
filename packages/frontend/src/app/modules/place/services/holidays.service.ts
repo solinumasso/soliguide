@@ -34,7 +34,7 @@ import { environment } from "../../../../environments/environment";
 })
 export class HolidaysService {
   public todayHolidays = new BehaviorSubject<PublicHoliday[] | null>(null);
-  private readonly API_URL = `${environment.locationApiUrl}holidays/${THEME_CONFIGURATION.country}/`;
+  private readonly API_URL = `${environment.locationApiUrl}/holidays/${THEME_CONFIGURATION.country}`;
 
   constructor(private readonly http: HttpClient) {
     this.loadInitialData();
@@ -44,7 +44,7 @@ export class HolidaysService {
     if (!this.todayHolidays.value) {
       const today = new Date();
       const formattedDate = format(today, "yyyy-MM-dd");
-      const url = `${this.API_URL}${formattedDate}`;
+      const url = `${this.API_URL}/${formattedDate}`;
 
       this.http
         .get<PublicHoliday[]>(url)
@@ -67,7 +67,7 @@ export class HolidaysService {
     }
 
     const formattedDate = format(date, "yyyy-MM-dd");
-    const url = `${this.API_URL}${formattedDate}`;
+    const url = `${this.API_URL}/${formattedDate}`;
 
     return this.http.get<PublicHoliday[]>(url).pipe(
       tap((holidays) => {

@@ -29,7 +29,6 @@ import cors from "cors";
 import swaggerJSDoc from "swagger-jsdoc";
 
 import { anonymizeDb } from "./config/database/anonymizeDb";
-import { restoreSynchro } from "./config/synchro/restoreSynchro";
 
 import { httpLogger, logger } from "./general/logger";
 
@@ -274,10 +273,6 @@ _app.use((req: Request, res: Response) => {
 
   if (CONFIG.ENV !== "prod" && CONFIG.ENV !== "test" && CONFIG.DEV_ANON) {
     await anonymizeDb();
-  }
-
-  if (CONFIG.ENV !== "prod" && CONFIG.RESTORE_SYNC) {
-    await restoreSynchro();
   }
 })();
 

@@ -368,11 +368,6 @@ const samplePlace: ApiPlace = Object.freeze({
   },
   visibility: PlaceVisibility.ALL,
   isOpenToday: false,
-  atSync: {
-    airtableId: 'XXX',
-    excluded: false,
-    lastSync: '2024-06-14T04:28:31.225Z'
-  },
   status: PlaceStatus.ONLINE,
   updatedByUserAt: '2024-06-11T15:27:13.409Z',
   createdBy: null,
@@ -458,12 +453,6 @@ const sampleItinerary: ApiPlace = Object.freeze({
   _id: '643e5053bb2e82804132cd19',
   sourceLanguage: SupportedLanguagesCode.FR,
   country: CountryCodes.FR,
-  atSync: {
-    airtableContact: false,
-    airtableId: 'XXX',
-    excluded: false,
-    lastSync: '2024-06-17T10:01:01.854Z'
-  },
   auto: false,
   campaigns: {
     UKRAINE_2022: {

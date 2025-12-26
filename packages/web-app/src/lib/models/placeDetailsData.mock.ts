@@ -513,11 +513,6 @@ const samplePlace: ApiPlace = Object.freeze({
   },
   visibility: PlaceVisibility.ALL,
   isOpenToday: true,
-  atSync: {
-    airtableId: 'XXX',
-    excluded: false,
-    lastSync: '2024-06-14T04:28:31.225Z'
-  },
   status: PlaceStatus.ONLINE,
   updatedByUserAt: '2024-06-11T15:27:13.409Z',
   createdBy: null,

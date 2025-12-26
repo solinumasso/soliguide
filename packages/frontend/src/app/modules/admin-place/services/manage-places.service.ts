@@ -49,7 +49,7 @@ export class ManagePlacesService {
     exportParams: ExportParams
   ): Observable<Blob> {
     return this.http.post(
-      `${environment.apiUrl}autoexport`,
+      `${environment.apiUrl}/autoexport`,
       { ...search, exportParams },
       {
         responseType: "blob",
@@ -59,7 +59,7 @@ export class ManagePlacesService {
 
   public getPlaceForAdmin(lieu_id: string): Observable<Place> {
     return this.http
-      .get<ApiPlace>(`${environment.apiUrl}admin/places/${lieu_id}`)
+      .get<ApiPlace>(`${environment.apiUrl}/admin/places/${lieu_id}`)
       .pipe(
         map((place: ApiPlace) => {
           return new Place(place, false);
@@ -73,7 +73,7 @@ export class ManagePlacesService {
   ): Observable<SearchResults<Place>> {
     return this.http
       .post<ApiSearchResults>(
-        `${environment.apiUrl}new-search/${context}`,
+        `${environment.apiUrl}/new-search/${context}`,
         search
       )
       .pipe(
@@ -100,13 +100,13 @@ export class ManagePlacesService {
 
   public deletePlace(lieu_id: number): Observable<ApiMessage> {
     return this.http.delete<ApiMessage>(
-      `${environment.apiUrl}admin/places/${lieu_id}`
+      `${environment.apiUrl}/admin/places/${lieu_id}`
     );
   }
 
   public deletePair(lieu_id: number): Observable<ApiMessage> {
     return this.http.delete<ApiMessage>(
-      `${environment.apiUrl}v2/soligare/pairing/pair/${lieu_id}`
+      `${environment.apiUrl}/v2/soligare/pairing/pair/${lieu_id}`
     );
   }
 }

@@ -192,7 +192,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <div class="mt-4 p-0">
           <button
             type="submit"
-            class="btn btn-lg btn-secondary"
+            class="btn btn-lg btn-secondary mx-3"
             [disabled]="loading || updateForm.status !== 'VALID' ? true : null"
           >
             <span *ngIf="!loading">
@@ -207,11 +207,35 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               ><fa-icon
                 aria-hidden="true"
                 [icon]="['fas', 'circle-notch']"
-                [spin]="true"
+                animation="spin"
               >
               </fa-icon>
               {{ "PLEASE_WAIT" | translate }}
             </span>
+          </button>
+
+          <button
+            type="button"
+            [disabled]="syncLoading"
+            class="btn btn-outline-primary btn-lg m-3 row"
+            (click)="syncUser()"
+          >
+            @if (syncLoading) {
+            <span class="px-1">{{ "SYNC_IN_PROGRESS" | translate }}</span>
+            <fa-icon
+              aria-hidden="true"
+              [icon]="['fas', 'sync']"
+              animation="spin"
+              class="px-1"
+            ></fa-icon>
+            } @else {
+            <span class="px-1">{{ "SYNC_USERS" | translate }}</span>
+            <fa-icon
+              aria-hidden="true"
+              [icon]="['fas', 'sync']"
+              class="px-1"
+            ></fa-icon>
+            }
           </button>
         </div>
       </form>

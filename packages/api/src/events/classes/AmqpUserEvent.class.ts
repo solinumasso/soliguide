@@ -21,7 +21,7 @@
 import type { Themes } from "@soliguide/common";
 
 import type { ModelWithId, User, UserPopulateType } from "../../_models";
-import { AmqpUser } from ".";
+import { AmqpUser } from "./AmqpUser.class";
 import { AmqpEvent } from "../interfaces";
 
 export class AmqpUserEvent extends AmqpUser implements AmqpEvent {
@@ -38,6 +38,6 @@ export class AmqpUserEvent extends AmqpUser implements AmqpEvent {
     super(user);
     this.frontendUrl = frontendUrl;
     this.theme = theme;
-    this.isUpdateCampaignOn = !!isUpdateCampaignOn;
+    this.isUpdateCampaignOn = Boolean(isUpdateCampaignOn);
   }
 }

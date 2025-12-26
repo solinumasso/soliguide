@@ -37,7 +37,7 @@ export default (fetcher = fetch) => {
     { lang, location, category, coordinates, type, distance, options = { page: 1 } }: SearchParams,
     commonHeaders: RequestOptions
   ): Promise<SearchResult> => {
-    const url = `${apiUrl}new-search/${lang}`;
+    const url = `${apiUrl}/new-search/${lang}`;
 
     const headers = {
       'Content-Type': 'application/json',
@@ -96,7 +96,7 @@ export default (fetcher = fetch) => {
     categorySearched: Categories,
     parcourIndex?: number
   ): Promise<PlaceDetails> => {
-    const url = `${apiUrl}place/${identifier}/${lang}`;
+    const url = `${apiUrl}/place/${identifier}/${lang}`;
 
     const headers = {
       'Content-Type': 'application/json',

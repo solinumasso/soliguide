@@ -18,11 +18,5 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-export enum PlaceOpeningStatus {
-  CLOSED = "CLOSED",
-  OPENED = "OPENED",
-}
-
-export type KeyPlaceOpeningStatusValueString = {
-  [key in PlaceOpeningStatus]: string;
-};
+// @index('./*.ts', f => `export * from '${f.path}'`)
+export * from "./dto";

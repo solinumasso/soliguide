@@ -35,7 +35,7 @@ import { environment } from "../../../../environments/environment";
   providedIn: "root",
 })
 export class AdminPlaceContactsService {
-  public endPoint = environment.apiUrl + "place-contacts/";
+  public endPoint = `${environment.apiUrl}/place-contacts/`;
 
   constructor(public http: HttpClient) {}
 
@@ -66,7 +66,7 @@ export class AdminPlaceContactsService {
       "mail" | "languages" | "translator" | "territories"
     >
   ): Observable<ApiMessage> {
-    const endPoint = environment.apiUrl + "users/user-contact/";
+    const endPoint = `${environment.apiUrl}/users/user-contact/`;
 
     return this.http.patch<ApiMessage>(
       `${endPoint}${userObjectId}`,

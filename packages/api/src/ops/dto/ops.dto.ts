@@ -18,11 +18,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { CONFIG, KeyAirtableEntityTypeValueString } from "../../_models";
+import { body } from "express-validator";
 
-export const SOLIGUIDE_BASE_ID = CONFIG.AT_BASE_ID_SOLIGUIDE;
-
-export const SOLIGUIDE_TABLE_ID: KeyAirtableEntityTypeValueString = {
-  PLACE: CONFIG.AT_TABLE_ID_FICHE,
-  USER: CONFIG.AT_TABLE_ID_USER,
-};
+export const idsToSyncDto = [
+  body("idsToSync").isArray(),
+  body("idsToSync.*").isInt(),
+];

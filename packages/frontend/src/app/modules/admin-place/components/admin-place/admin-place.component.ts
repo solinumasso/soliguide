@@ -56,6 +56,8 @@ import { AuthService } from "../../../users/services/auth.service";
 
 import {
   type Place,
+  ApiError,
+  ApiMessage,
   MarkerOptions,
   THEME_CONFIGURATION,
 } from "../../../../models";
@@ -64,6 +66,7 @@ import {
   generateMarkerOptions,
   campaignIsActiveWithTheme,
   DEFAULT_MODAL_OPTIONS,
+  SyncService,
 } from "../../../../shared";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 
@@ -81,6 +84,7 @@ export class AdminPlaceComponent implements OnInit, OnDestroy {
   public me!: User | null;
   public markers: MarkerOptions[];
   public campaignIsActive: boolean;
+  public campaignIsActiveForPlace: boolean;
   public placeInOrga: boolean;
 
   public routePrefix: string;
@@ -104,6 +108,8 @@ export class AdminPlaceComponent implements OnInit, OnDestroy {
   public removePlaceModal!: TemplateRef<NgbModalRef>;
   public currentUrl: string;
 
+  public syncLoading: boolean;
+
   constructor(
     private readonly adminPlaceService: AdminPlaceService,
     private readonly authService: AuthService,
@@ -114,13 +120,17 @@ export class AdminPlaceComponent implements OnInit, OnDestroy {
     private readonly toastr: ToastrService,
     private readonly translateService: TranslateService,
     private readonly currentLanguageService: CurrentLanguageService,
-    protected readonly posthogService: PosthogService
+    protected readonly posthogService: PosthogService,
+    private readonly syncService: SyncService
   ) {
     this.markers = [];
 
     this.campaignIsActive = false;
+    this.campaignIsActiveForPlace = false;
     this.placeInOrga = false;
     this.routePrefix = this.currentLanguageService.routePrefix;
+
+    this.syncLoading = false;
   }
 
   public ngOnInit(): void {
@@ -149,6 +159,7 @@ export class AdminPlaceComponent implements OnInit, OnDestroy {
               this.checkPlaceInOrga(place.lieu_id);
               this.isDraftAndFormUncomplete = isDraftAndFormUncomplete(place);
               this.markers = generateMarkerOptions([place], this.me);
+              this.campaignIsActiveForPlace = this.getIsCampaignActive();
             },
             error: () => {
               this.router.navigate([
@@ -272,6 +283,23 @@ export class AdminPlaceComponent implements OnInit, OnDestroy {
       ])
     );
   };
+
+  public syncPlace(): void {
+    this.syncLoading = true;
+
+    this.subscription.add(
+      this.syncService.sync([this.place.lieu_id], "places").subscribe({
+        next: (value: ApiMessage) => {
+          this.syncLoading = false;
+          this.toastr.success(this.translateService.instant(value.message));
+        },
+        error: (error: ApiError) => {
+          this.syncLoading = false;
+          this.toastr.error(this.translateService.instant(error.message));
+        },
+      })
+    );
+  }
 
   public captureEvent(eventName: string, properties?: Record<string, unknown>) {
     const placeId = this.place.lieu_id;

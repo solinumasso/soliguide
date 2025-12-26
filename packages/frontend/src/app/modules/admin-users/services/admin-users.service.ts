@@ -34,7 +34,7 @@ import { PasswordTokenResponse } from "src/app/models/manage-search/interfaces";
   providedIn: "root",
 })
 export class AdminUsersService {
-  private endPoint = environment.apiUrl + "admin/users/";
+  private endPoint = `${environment.apiUrl}/admin/users/`;
 
   constructor(private http: HttpClient) {}
 
@@ -73,7 +73,7 @@ export class AdminUsersService {
     userEmail: string
   ): Observable<PasswordTokenResponse> {
     return this.http.post<PasswordTokenResponse>(
-      `${environment.apiUrl}users/forgot-password`,
+      `${environment.apiUrl}/users/forgot-password`,
       { mail: userEmail, isAdminRequest: true }
     );
   }

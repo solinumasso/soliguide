@@ -46,7 +46,7 @@ export class SingleResultComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.soliguideLink = `${environment.frontendUrl}${this.currentLang}/fiche/${this.place.seo_url}`;
+    this.soliguideLink = `${environment.frontendUrl}/${this.currentLang}/fiche/${this.place.seo_url}`;
     this.osmLink =
       "https://www.openstreetmap.org/search?query=" +
       this.place.position.address;

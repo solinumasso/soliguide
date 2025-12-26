@@ -18,4 +18,17 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-export const ORIGIN_ORGA = ["FAVORITE_CONTACT", "PLACES"];
+import { NgModule } from "@angular/core";
+import { Router } from "@angular/router";
+
+/**
+ * NgModule as workaround for "Navigation triggered outside Angular zone" in tests
+ *
+ * https://github.com/angular/angular/issues/47236
+ */
+@NgModule()
+// skipcq: JS-0327
+export class FixNavigationTriggeredOutsideAngularZoneNgModule {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  constructor(_router: Router) {} // skipcq: JS-0358, JS-0321
+}
