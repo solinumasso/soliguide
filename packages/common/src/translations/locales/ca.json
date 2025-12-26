@@ -1866,6 +1866,7 @@
   "SUCCESSFUL_ADDITION": "Enregistrament finalitzat",
   "SUCCESSFUL_SIGNUP": "Inscripció correcta",
   "SUCCESS_ADD_PLACE_TO_ORGA": "L'equipament s'ha afegit correctament",
+  "SYNC_IN_PROGRESS": "Sincronització en curs",
   "SYNC_PLACE": "Sincronitzar l'estructura",
   "SYNC_PLACES": "Sincronitzar les estructures",
   "SYNC_USER": "Sincronitza l'usuari",
