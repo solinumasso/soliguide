@@ -74,7 +74,7 @@ export interface PlacesService {
   placeDetails(
     params: PlaceDetailsParams,
     categorySearched: Categories,
-    parcourIndex?: number
+    crossingPointIndex?: number
   ): Promise<PlaceDetails>;
 }
 
@@ -133,6 +133,7 @@ interface PosthogProperties {
   clickedItem?: string;
   isDisabled?: boolean;
   place?: DataForLogs;
+  action?: string;
 }
 
 export interface ZendeskState {
