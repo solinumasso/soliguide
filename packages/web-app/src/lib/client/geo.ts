@@ -18,6 +18,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import { captureException } from '@sentry/sveltekit';
+
 export const isGeolocSupported = (): boolean => 'geolocation' in navigator;
 
 export const getGeolocation = (): Promise<GeolocationPosition> =>
@@ -28,6 +30,7 @@ export const getGeolocation = (): Promise<GeolocationPosition> =>
           resolve(position);
         },
         (error: GeolocationPositionError) => {
+          captureException(error);
           if (error.PERMISSION_DENIED) {
             reject(new Error('UNAUTHORIZED_LOCATION'));
           } else {
