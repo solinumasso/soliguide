@@ -24,6 +24,7 @@ import { fetch } from '$lib/client';
 import type { Fetcher } from '$lib/client/types';
 import { LocationErrors, type LocationService } from './types';
 import type { LocationAutoCompleteAddress, SoliguideCountries } from '@soliguide/common';
+import { captureException } from '@sentry/sveltekit';
 
 const locationApiUrl = env.PUBLIC_LOCATION_API_URL;
 
@@ -72,6 +73,7 @@ export default (fetcher: Fetcher<LocationAutoCompleteAddress[]> = fetch): Locati
         'getLocationFromPosition error :',
         error instanceof Error ? error.message : error
       );
+      captureException(error);
       throw new Error('UNABLE_TO_LOCATE_YOU');
     }
   };

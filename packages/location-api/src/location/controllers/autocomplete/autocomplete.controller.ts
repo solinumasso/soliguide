@@ -248,7 +248,7 @@ export class AutocompleteController {
       );
     } catch (e) {
       this.logger.error(e);
-      throw new BadRequestException();
+      throw new BadRequestException("CANNOT_FIND_LOCATION");
     }
   }
 
