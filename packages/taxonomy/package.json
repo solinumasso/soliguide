@@ -1,0 +1,24 @@
+{
+  "name": "@soliguide/taxonomy",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit",
+    "validate:dsl": "ts-node src/dsl/validate.ts",
+    "generate:caddy": "ts-node src/scripts/generate-caddy.ts",
+    "generate:md": "ts-node src/scripts/generate-md.ts"
+  },
+  "dependencies": {
+    "@soliguide/common": "workspace:*",
+    "js-yaml": "^4.1.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.0",
+    "vitest": "^4.0.16"
+  }
+}
