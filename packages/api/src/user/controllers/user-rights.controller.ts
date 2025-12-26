@@ -22,12 +22,7 @@ import * as UserRightsService from "../services/userRights.service";
 
 import { searchPlacesIds } from "../../search/services";
 
-import {
-  ModelWithId,
-  OrganizationPopulate,
-  User,
-  UserPopulateType,
-} from "../../_models";
+import { ModelWithId, OrganizationPopulate } from "../../_models";
 import {
   ApiPlace,
   UserRightEditionPayload,
@@ -35,6 +30,7 @@ import {
 } from "@soliguide/common";
 import { hasAdminAccessToPlace } from "../../_utils";
 import { createUserRights } from "../utils";
+import { User, UserPopulateType } from "../interfaces";
 
 export const getUserRightsForOrganization = async (
   organization: OrganizationPopulate

@@ -53,12 +53,12 @@ import {
   type AirtableEntity,
   AirtableEntityType,
   type AirtableRecordType,
-  type User,
   type PlaceOpeningStatus,
 } from "../../_models";
 
 import { isCampaignActive } from "../../campaign/controllers";
 import { translateServiceName } from "../../autoexport/services/parsers";
+import { User } from "../../user/interfaces";
 
 const formatOrga = (frontUrl: string, organisations: any[]): string => {
   if (organisations.length) {
@@ -223,11 +223,11 @@ const generateContentForUser = (
     content.fields[AT_FIELDS_IDS[AirtableEntityType.USER].creationPhone] =
       user.phone ? parsePhoneNumber(user.phone, CountryCodes.FR) ?? "" : "";
     content.fields[AT_FIELDS_IDS[AirtableEntityType.USER].creationTerritories] =
-      user.territories;
+      user.territories; // TODO: update this part with areas
   }
 
   if (
-    isCampaignActive(user.territories) &&
+    isCampaignActive(user.territories) && // TODO: update this part with areas
     user.campaigns[CAMPAIGN_DEFAULT_NAME]?.lastEmailStatus &&
     EMAIL_STATUS[user.campaigns[CAMPAIGN_DEFAULT_NAME].lastEmailStatus]
   ) {
