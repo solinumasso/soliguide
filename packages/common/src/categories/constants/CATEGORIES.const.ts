@@ -791,20 +791,8 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
         rank: 100,
       },
       {
-        id: Categories.PERSONAL_VEHICLE_ACCESS,
-        rank: 200,
-      },
-      {
-        id: Categories.VEHICLE_MAINTENANCE,
-        rank: 300,
-      },
-      {
         id: Categories.MOBILITY_SUPPORT,
         rank: 400,
-      },
-      {
-        id: Categories.DRIVING_LICENSE,
-        rank: 500,
       },
       {
         id: Categories.MOBILITY_FINANCING,
@@ -817,19 +805,7 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
     children: [],
   },
   {
-    id: Categories.PERSONAL_VEHICLE_ACCESS,
-    children: [],
-  },
-  {
-    id: Categories.VEHICLE_MAINTENANCE,
-    children: [],
-  },
-  {
     id: Categories.MOBILITY_SUPPORT,
-    children: [],
-  },
-  {
-    id: Categories.DRIVING_LICENSE,
     children: [],
   },
   {
@@ -863,6 +839,23 @@ export const CATEGORIES_SOLIGUIDE_FR: FlatCategoriesTreeNode[] = [
     ],
   },
   {
+    id: Categories.MOBILITY,
+    children: [
+      {
+        id: Categories.DRIVING_LICENSE,
+        rank: 500,
+      },
+      {
+        id: Categories.PERSONAL_VEHICLE_ACCESS,
+        rank: 200,
+      },
+      {
+        id: Categories.VEHICLE_MAINTENANCE,
+        rank: 300,
+      },
+    ],
+  },
+  {
     id: Categories.TRAINING_AND_JOBS,
     children: [
       {
@@ -885,6 +878,18 @@ export const CATEGORIES_SOLIGUIDE_FR: FlatCategoriesTreeNode[] = [
   },
   {
     id: Categories.PUBLIC_WRITER,
+    children: [],
+  },
+  {
+    id: Categories.DRIVING_LICENSE,
+    children: [],
+  },
+  {
+    id: Categories.PERSONAL_VEHICLE_ACCESS,
+    children: [],
+  },
+  {
+    id: Categories.VEHICLE_MAINTENANCE,
     children: [],
   },
 ];
