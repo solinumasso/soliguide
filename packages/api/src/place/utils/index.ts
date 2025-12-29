@@ -18,11 +18,11 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-// @index('./*.ts', f => `export * from '${f.path}'`)
+// @index(['./*.ts', '!./*.spec.ts'], f => `export * from '${f.path}'`)
 export * from "./aggregateUserForContacts";
-export * from "./importCategories";
+export * from "./getPriorityForPlace";
 export * from "./isOpenToday";
 export * from "./mediasUtils";
-export * from "./readGsheetFile";
-export * from "./updateServicesAfterPatch";
 export * from "./place";
+export * from "./updateServicesAfterPatch";
+export * from "./weightSourceDuplicate";

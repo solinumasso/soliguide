@@ -33,7 +33,6 @@ import {
   getPlaceFromUrl,
   canGetPlace,
   logPlace,
-  trackViewPlace,
   handleLanguage,
   getFilteredData,
 } from "../../middleware";
@@ -108,8 +107,7 @@ router.get(
     res.status(200).json(req.lieu);
     next();
   },
-  logPlace,
-  trackViewPlace
+  logPlace
 );
 
 /**

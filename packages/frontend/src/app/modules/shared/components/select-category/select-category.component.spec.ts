@@ -26,6 +26,7 @@ import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { TranslateModule } from "@ngx-translate/core";
 
 import { SelectCategoryComponent } from "./select-category.component";
+import { CategoryTranslateKeyPipe } from "../../pipes";
 import {
   Categories,
   initializeCategoriesByTheme,
@@ -42,7 +43,7 @@ describe("SelectCategoryComponent", () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [SelectCategoryComponent],
+      declarations: [SelectCategoryComponent, CategoryTranslateKeyPipe],
       imports: [TranslateModule.forRoot({})],
       providers: [{ provide: APP_BASE_HREF, useValue: "/" }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],

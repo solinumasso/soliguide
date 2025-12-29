@@ -20,8 +20,8 @@
  */
 
 import { ManageSearchOptions } from "@soliguide/common";
-import { ManageSearch } from "../../../models";
 import { User } from "../../users/classes";
+import { ManageSearch } from "../../manage-common/classes";
 
 export class SearchTranslatedPlace extends ManageSearch {
   public lieu_id?: string;

@@ -38,6 +38,7 @@ import { CleanStrDirective } from "./directives/clean-str.directive";
 import { DateFrDirective } from "./directives/date-fr.directive";
 import { DigitOnlyDirective } from "./directives/digit-only.directive";
 import {
+  CategoryTranslateKeyPipe,
   FormatBigNumberPipe,
   HtmlToTextPipe,
   KmToMeters,
@@ -55,6 +56,7 @@ import { NgxTranslateI18nextAdapter } from "./services/ngx-translate-i18next-ada
 
 @NgModule({
   declarations: [
+    CategoryTranslateKeyPipe,
     CleanStrDirective,
     DateFrDirective,
     DigitOnlyDirective,
@@ -74,6 +76,7 @@ import { NgxTranslateI18nextAdapter } from "./services/ngx-translate-i18next-ada
     DisplaySourcesComponent,
   ],
   exports: [
+    CategoryTranslateKeyPipe,
     CleanStrDirective,
     DateFrDirective,
     DigitOnlyDirective,

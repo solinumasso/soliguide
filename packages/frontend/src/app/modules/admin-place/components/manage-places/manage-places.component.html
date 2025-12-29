@@ -21,18 +21,22 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <div class="admin_search_bar">
   <div class="row align-items-center justify-content-center my-1">
     <div class="col-md-3 col-12 my-1">
-      <app-search-category-autocomplete
-        [search]="search"
-        (updateCategory)="launchSearch(true)"
-        (updateSearchTerm)="launchSearch(true)"
-        class="search-input"
-      ></app-search-category-autocomplete>
+      <div class="search-input">
+        <span class="search-label">
+          {{ "WHAT_ARE_YOU_LOOKING_FOR" | translate }}
+        </span>
+        <app-search-category-autocomplete
+          [search]="search"
+          (updateCategory)="launchSearch(true)"
+          class="search-input"
+        ></app-search-category-autocomplete>
+      </div>
     </div>
     <div class="col-md-3 col-12 my-1">
       <div class="search-input">
-        <label for="address-search">
+        <span class="search-label">
           {{ "NEXT_TO" | translate }}
-        </label>
+        </span>
         <app-location-autocomplete
           [addressesOnly]="false"
           [currentAddress]="search.location.label"
@@ -307,7 +311,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <b>{{ "FILTERS_USED" | translate }} :</b>
 
     <span *ngIf="search.category" class="btn btn-light btn-sm mx-1">
-      {{ search.category | uppercase | translate | lowercase }} :
+      {{ search.category | categoryTranslateKey | translate | lowercase }} :
 
       <fa-icon
         (click)="clearWordOrCategory()"

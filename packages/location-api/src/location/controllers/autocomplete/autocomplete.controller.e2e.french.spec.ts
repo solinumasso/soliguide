@@ -442,7 +442,7 @@ describe("E2E - Location autocomplete endpoints", () => {
           expect(response.statusCode).toEqual(200);
           expect(body[0]).toEqual({
             label: "2 Boulevard de l’Europe, 78300 Poissy",
-            coordinates: [2.044042, 48.933427],
+            coordinates: [2.043986, 48.933577],
             postalCode: "78300",
             cityCode: "78498",
             city: "Poissy",

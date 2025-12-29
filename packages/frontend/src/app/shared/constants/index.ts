@@ -19,6 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 //@index('./*', f => `export * from '${f.path}'`)
+export * from "./AVAILABLES_LOGOS.const";
 export * from "./BOTS_LIST_REGEXP.const";
 export * from "./BOTS_LIST.const";
 export * from "./ckeditor";

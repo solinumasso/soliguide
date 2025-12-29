@@ -22,7 +22,6 @@
 import { TrackedEvents } from "../types";
 
 export const TRACKED_EVENTS = {
-  API_SEARCH_PLACES: "api_search_places",
   API_SEND_CAMPAIGN_EMAIL: "api_send_campaign_email",
   API_SEND_WELCOME_EMAIL: "api_send_welcome_email",
   API_SEND_CONTACT_EMAIL: "api_send_contact_email",
@@ -30,6 +29,4 @@ export const TRACKED_EVENTS = {
   API_RESEND_INVITATION_EMAIL: "api_resend_invitation_email",
   API_SEND_PASSWORD_RESET_EMAIL: "api_send_password_reset_email",
   API_SEND_RESET_PASSWORD_LINK_EMAIL: "api_send_reset_password_link_email",
-  API_UPDATE_CAMPAIGN_EMAIL_STATUS: "api_update_campaign_email_status",
-  API_VIEW_PLACE: "api_view_place",
 } satisfies TrackedEvents;

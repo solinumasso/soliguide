@@ -19,7 +19,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <script lang="ts" context="module">
-  import { BabyParcel } from '$lib';
+  import Star from 'svelte-google-materialdesign-icons/Star.svelte';
   import Tile from '$lib/components/Tile.svelte';
   import type { TileVariant } from '$lib/types';
   import type { ComponentProps } from 'svelte';
@@ -48,7 +48,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </script>
 
 <Template let:args>
-  <Tile {...args}><BabyParcel variation="filled" size={'16'}></BabyParcel></Tile>
+  <Tile {...args}><Star variation="filled" size={'16'}></Star></Tile>
 </Template>
 
 <Story name="Default" args={{ ...defaultArgs }} />
@@ -64,13 +64,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <Story name="Tile variants with icons" parameters={{ controls: { disable: true } }}>
   <div class="story-row">
     <Tile label="Primary" variant="primary">
-      <BabyParcel variation="filled" size={'16'}></BabyParcel>
+      <Star variation="filled" size={'16'}></Star>
     </Tile>
     <Tile label="Secondary" variant="secondary">
-      <BabyParcel variation="filled" size={'16'}></BabyParcel>
+      <Star variation="filled" size={'16'}></Star>
     </Tile>
     <Tile label="Tertiary" variant="tertiary">
-      <BabyParcel variation="filled" size={'16'}></BabyParcel>
+      <Star variation="filled" size={'16'}></Star>
     </Tile>
   </div>
 </Story>

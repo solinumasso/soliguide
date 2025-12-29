@@ -18,7 +18,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import type { LogLevelDesc } from "loglevel";
 
 export interface Config {
   // General
@@ -42,6 +41,7 @@ export interface Config {
 
   // Google
   GOOGLE_PROJECT_ID?: string;
+  GEMINI_API_KEY?: string;
   GOOGLE_API_KEY?: string;
 
   // Emails & Mailgun
@@ -113,17 +113,8 @@ export interface Config {
   DEV_ANON: boolean;
   DEV_ANON_PASSWORD_FOR_ALL: string;
 
-  // Google Docs for events and synonyms
-  SYNONYMS_GOOGLE_DOCS_LINK?: string;
-
   // RabbitMQ
   AMQP_URL?: string;
-
-  // Typesense (search engine)
-  TYPESENSE_NODES_URL: string;
-  TYPESENSE_API_KEY?: string;
-  TYPESENSE_LOG_LEVEL?: LogLevelDesc;
-  TYPESENSE_COLLECTIONS_PREFIX?: string;
 
   // Dipeeo
   RGPD_EMAIL: string;

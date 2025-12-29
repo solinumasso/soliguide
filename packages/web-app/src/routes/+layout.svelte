@@ -21,7 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <script lang="ts">
   // Layout full page
   import { page } from '$app/stores';
-  import { beforeNavigate, afterNavigate } from '$app/navigation';
+  import { afterNavigate } from '$app/navigation';
   import { browser } from '$app/environment';
   import { setContext } from 'svelte';
   import { derived, get } from 'svelte/store';
@@ -69,7 +69,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   setContext(COOKIE_CTX_KEY, cookieConsent);
 
   if (browser) {
-    beforeNavigate(() => posthogService.capture('$pageleave'));
     afterNavigate(() => posthogService.capture('$pageview'));
   }
 </script>

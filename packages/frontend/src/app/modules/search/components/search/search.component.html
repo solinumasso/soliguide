@@ -26,10 +26,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     "
   >
     <app-search-bar
-      (launchSearch)="launchSearchFromSearchBar()"
-      (updateSearchTerm)="updateSearchTerm()"
       (updateCategory)="updateCategory()"
       (updateLocation)="updateLocation($event)"
+      (launchSearch)="launchSearchFromSearchBar()"
       [search]="search"
     ></app-search-bar>
 
@@ -38,26 +37,26 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   <div id="page_list">
     <div class="row pt-3">
-      <div class="text-md-start col-md-7 col-12">
+      <div class="text-md-start col-md-9 col-12">
         <h1>{{ title | ucFirst }}</h1>
       </div>
-      <div class="text-md-end col-md-5 col-12">
+      <div class="text-md-end col-md-3 col-12">
         <button
           class="btn btn-outline-secondary"
           type="button"
           (click)="toggleFilter()"
         >
           <fa-icon class="me-2" [icon]="['fas', 'filter']"></fa-icon>
-          <span *ngIf="!hideFilters">{{ "HIDE_FILTERS" | translate }}</span>
-          <span *ngIf="hideFilters">{{ "SHOW_FILTERS" | translate }}</span>
+          <span *ngIf="!showFilters">{{ "HIDE_FILTERS" | translate }}</span>
+          <span *ngIf="showFilters">{{ "SHOW_FILTERS" | translate }}</span>
         </button>
       </div>
     </div>
 
     <app-search-filters
-      *ngIf="!hideFilters"
+      *ngIf="!showFilters"
       #appFilters
-      [hideFilters]="hideFilters"
+      [showFilters]="showFilters"
       [search]="search"
       [parcoursSearch]="parcoursSearch"
       [searchSubject]="searchSubject"
@@ -90,12 +89,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           {{ nbResults }}
           {{ (nbResults > 1 ? "PLACES" : PlaceType.PLACE) | translate }}
         </div>
-
+        @if( !showFilters ){
         <app-temp-open-filter
           class="col-md-2 col-6 text-end"
           [filters]="filters"
           (filtersChange)="toggleOpen()"
-        ></app-temp-open-filter>
+        ></app-temp-open-filter
+        >}
       </div>
 
       <div

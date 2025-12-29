@@ -249,6 +249,16 @@ export class CategoriesService {
     return this.categoriesLeaf;
   }
 
+  /**
+   * Checks if a category has children
+   */
+  public hasChildren(categoryId: Categories): boolean {
+    const category = this.categoriesByTheme.find(
+      (cat) => cat.id === categoryId
+    );
+    return Boolean(category?.children.length);
+  }
+
   public getOrderRootCategoriesIds(): Categories[] {
     return this.orderRootCategoriesIds;
   }

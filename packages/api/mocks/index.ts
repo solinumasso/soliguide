@@ -21,7 +21,6 @@
 // @index('./*', f => `export * from '${f.path}'`)
 export * from "./airtable";
 export * from "./AIRTABLE_MODULE.mock";
-export * from "./builders";
 export * from "./general";
 export * from "./HOURS.mock";
 export * from "./INVITATION.mock";

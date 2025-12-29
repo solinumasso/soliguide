@@ -38,6 +38,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   </div>
 
   <app-search-bar
+    [currentValue]="searchInputValue"
     (updateLocation)="updateLocation($event)"
     (launchSearch)="launchSearch()"
     [search]="search"
@@ -46,72 +47,72 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <br />
 </div>
 <div class="container">
-  <div class="row">
-    <div id="home_search_buttons_cont">
-      <img
-        id="arrowup"
-        src="../../../assets/images/homepage/arrow.png"
-        alt="Home arrow"
-        aria-hidden="true"
-      />
-      <div id="home_search_buttons" class="row justify-content-center">
+  <div id="home_search_buttons_cont">
+    <img
+      id="arrowup"
+      src="../../../assets/images/homepage/arrow.png"
+      alt="Home arrow"
+      aria-hidden="true"
+    />
+    <div id="home_search_buttons" class="row justify-content-center">
+      <div class="col-5 col-md-2 p-0 m-2">
+        <button
+          type="button"
+          class="btn"
+          [attr.aria-label]="
+            'Choisir la catégorie ' + ('ALL_CATEGORIES' | translate)
+          "
+          (click)="clearCategories()"
+        >
+          <img
+            alt=""
+            src="../../../assets/images/homepage/homepictos.png"
+            class="p-2"
+            aria-hidden="true"
+            title="home pictos"
+          />
+          <span>{{ "ALL_CATEGORIES" | translate }}</span>
+        </button>
+      </div>
+      <ng-container
+        *ngFor="
+          let categoryHighlighted of CATEGORIES_HIGHLIGHTED;
+          let i = index
+        "
+      >
         <div class="col-5 col-md-2 p-0 m-2">
           <button
             type="button"
             class="btn"
             [attr.aria-label]="
-              'Choisir la catégorie ' + ('ALL_CATEGORIES' | translate)
+              'Choisir la catégorie ' +
+              (categoryHighlighted | categoryTranslateKey | translate)
             "
-            (click)="clearCategories()"
+            (click)="putTextCat(categoryHighlighted)"
           >
-            <img
-              alt=""
-              src="../../../assets/images/homepage/homepictos.png"
-              class="p-2"
-              aria-hidden="true"
-              title="home pictos"
-            />
-            <span>{{ "ALL_CATEGORIES" | translate }}</span>
+            <span
+              [class]="'category-icon category-icon-' + categoryHighlighted"
+            ></span>
+            <span>{{
+              "CAT_" + categoryHighlighted.toUpperCase() | translate
+            }}</span>
           </button>
         </div>
-        <ng-container
-          *ngFor="
-            let categoryHighlighted of CATEGORIES_HIGHLIGHTED;
-            let i = index
-          "
-        >
-          <div class="col-5 col-md-2 p-0 m-2">
-            <button
-              type="button"
-              class="btn"
-              [attr.aria-label]="
-                'Choisir la catégorie ' +
-                (categoryHighlighted | uppercase | translate)
-              "
-              (click)="putTextCat(categoryHighlighted)"
-            >
-              <span
-                [class]="'category-icon category-icon-' + categoryHighlighted"
-              ></span>
-              <span>{{ categoryHighlighted | uppercase | translate }}</span>
-            </button>
-          </div>
-        </ng-container>
-      </div>
+      </ng-container>
     </div>
   </div>
 </div>
 
 <div class="container" id="allCats">
   <div class="my-4 home_section">
-    <div class="text-center">
+    <div class="text-center my-4">
       <button class="btn btn-primary" (click)="showCats()" type="button">
         {{ "VOIR_CATEGORIES" | translate }}
       </button>
     </div>
     <div
       [@smoothCollapse]="!hideCategories ? 'initial' : 'final'"
-      class="step_form home-shadow"
+      class="card bg-white align-items-center home-shadow"
       [ngClass]="{ blue: hideCategories }"
     >
       <div class="row">
@@ -126,7 +127,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               <span
                 [class]="'category-icon category-icon-' + categoryRoot.id"
               ></span>
-              {{ categoryRoot.id | uppercase | translate }}
+              {{ "CAT_" + categoryRoot.id.toUpperCase() | translate }}
             </button>
             <ul>
               <li *ngFor="let category of categoryRoot.children">
@@ -141,7 +142,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                       'category-icon category-icon-' + category.id + '_outlined'
                     "
                   ></span>
-                  {{ category.id | uppercase | translate }}
+                  {{ "CAT_" + category.id.toUpperCase() | translate }}
                 </button>
               </li>
             </ul>

@@ -32,7 +32,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           <span
             [class]="'category-icon category-icon-' + service.category"
           ></span>
-          <span>{{ service.category | uppercase | translate }}</span>
+          <span>{{ service.category | categoryTranslateKey | translate }}</span>
           <ng-container *ngIf="service.categorySpecificFields">
             <ng-container
               *ngFor="

@@ -25,7 +25,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     class="form-check-input"
     [checked]="openTodayChecked"
     id="filter-openToday"
-    (click)="emitFilters()"
+    (change)="emitFilters()"
   />
   <label class="form-label form-check-label" for="filter-openToday">
     <span>{{ "SEARCH_FILTER_OPEN_TODAY" | translate }}</span></label

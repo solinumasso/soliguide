@@ -20,8 +20,8 @@
  */
 import { UserSearchContext, UserStatus } from "@soliguide/common";
 
-import { ManageSearch } from "../../../models/manage-search";
 import { User } from "../../users/classes";
+import { ManageSearch } from "../../manage-common/classes";
 
 export class SearchUsersObject extends ManageSearch {
   public mail: string | null;

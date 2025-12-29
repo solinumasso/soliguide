@@ -137,7 +137,6 @@ export const getSearchPageController = (
 
     // Do nothing unless the search term has at least 3 characters
     if (searchTerm.length >= SEARCH_LOCATION_MINIMUM_CHARS) {
-      captureEvent('search-term', { searchTerm });
       getDebouncedLocationSuggestions(searchTerm);
     } else {
       myPageStore.update(

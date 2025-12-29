@@ -22,7 +22,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 
-import { PlaceStatus, PlaceType } from "@soliguide/common";
+import { PlaceStatus, PlaceType, SearchResults } from "@soliguide/common";
 import { PosthogProperties } from "@soliguide/common-angular";
 
 import { TranslateService } from "@ngx-translate/core";
@@ -35,7 +35,7 @@ import { PlaceForOrganization } from "../../types";
 
 import { ManagePlacesService } from "../../../admin-place/services/manage-places.service";
 
-import { SearchResults, Place, THEME_CONFIGURATION } from "../../../../models";
+import { Place, THEME_CONFIGURATION } from "../../../../models";
 
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { AdminSearchPlaces } from "../../../admin-place/classes";
@@ -179,12 +179,11 @@ export class AddPlaceToOrgaComponent implements OnInit, OnDestroy {
       this.managePlacesService
         .launchSearch(this.search, "admin-search-to-add-place-in-orga")
         .subscribe({
-          next: (results: SearchResults) => {
+          next: (results: SearchResults<Place>) => {
             this.loading = false;
             if (results.nbResults > 0) {
               this.noPlaces = false;
-
-              this.foundPlaces = results.places;
+              this.foundPlaces = results.results;
             } else {
               this.noPlaces = true;
               this.foundPlaces = [];

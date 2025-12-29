@@ -30,9 +30,11 @@
     "test": "ENV=test MONGODB_URI='mongodb://127.0.0.1:27017/soliguide_test?replicaSet=rs0' TZ=Europe/Paris jest"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.65.0",
     "@aws-sdk/client-s3": "^3.787.0",
     "@babel/runtime": "^7.27.6",
     "@google-cloud/translate": "^8.3.0",
+    "@google/genai": "^1.10.0",
     "@sentry/node": "^9.15.0",
     "@sentry/profiling-node": "^9.15.0",
     "@sentry/wizard": "^4.8.0",
@@ -50,6 +52,7 @@
     "class-transformer-validator": "^0.9.1",
     "class-validator": "^0.14.2",
     "class-validator-extended": "^4.2.1",
+    "commander": "^14.0.1",
     "compression": "1.8.0",
     "cookie-parser": "1.4.7",
     "cors": "2.8.5",
@@ -65,6 +68,8 @@
     "express": "4.21.2",
     "express-validator": "^7.2.1",
     "fastest-levenshtein": "^1.0.16",
+    "fuse": "^0.12.1",
+    "fuse.js": "^7.1.0",
     "google-libphonenumber": "^3.2.40",
     "html-entities": "^2.6.0",
     "i18next": "^22.5.1",
@@ -88,7 +93,6 @@
     "striptags": "^3.2.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "4.6.2",
-    "typesense": "^1.8.2",
     "validator": "^13.15.0",
     "xlsx": "^0.18.5",
     "xmlbuilder": "15.1.1"

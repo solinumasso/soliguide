@@ -36,7 +36,8 @@ export const getCategorySelectorController = (
     parentCategory: null,
     categories: [],
     browserState: CategoryBrowserState.CLOSED,
-    selectedCategory: null
+    selectedCategory: null,
+    navigationStack: []
   };
 
   const pageStore = writable(initialState);
@@ -52,48 +53,86 @@ export const getCategorySelectorController = (
         browserState: CategoryBrowserState.OPEN_ROOT_CATEGORIES,
         parentCategory: null,
         selectedCategory: null,
-        categories: categoryService.getRootCategories()
+        categories: categoryService.getRootCategories(),
+        navigationStack: []
       })
     );
   };
 
   /**
    * Get the children of the category to display them.
+   * Supports navigation at any level (root, level 2, level 3, etc.)
    */
   const navigateToDetail = (categoryId: Categories) => {
     pageStore.update((oldValue): PageState => {
-      // We cannot navigate from other than a root category
-      const isRoot = categoryService.isCategoryRoot(categoryId);
-      if (!isRoot || oldValue.browserState !== CategoryBrowserState.OPEN_ROOT_CATEGORIES) {
+      // Check if the category has children
+      const categoryHasChildren = categoryService.hasChildren(categoryId);
+      if (!categoryHasChildren) {
         return oldValue;
       }
+
+      // Add current parent to navigation stack if exists
+      const newStack = oldValue.parentCategory
+        ? [...oldValue.navigationStack, oldValue.parentCategory]
+        : oldValue.navigationStack;
+
       return {
         ...oldValue,
         browserState: CategoryBrowserState.OPEN_CATEGORY_DETAIL,
         parentCategory: categoryId,
-        categories: categoryService.getChildrenCategories(categoryId)
+        categories: categoryService.getChildrenCategories(categoryId),
+        navigationStack: newStack
       };
     });
   };
 
   /**
-   * Go to root categories page or close the browser, depending on the browserState
+   * Go back in the navigation hierarchy:
+   * - If in OPEN_ROOT_CATEGORIES: close the browser
+   * - If in OPEN_CATEGORY_DETAIL with empty stack: go back to root categories
+   * - If in OPEN_CATEGORY_DETAIL with items in stack: go back to previous category
    */
   const navigateBack = () => {
-    pageStore.update(
-      (oldValue): PageState => ({
-        ...oldValue,
-        browserState:
-          oldValue.browserState === CategoryBrowserState.OPEN_CATEGORY_DETAIL
-            ? CategoryBrowserState.OPEN_ROOT_CATEGORIES
-            : CategoryBrowserState.CLOSED,
-        parentCategory: null,
-        categories:
-          oldValue.browserState === CategoryBrowserState.OPEN_CATEGORY_DETAIL
-            ? categoryService.getRootCategories()
-            : []
-      })
-    );
+    pageStore.update((oldValue): PageState => {
+      // If we're showing root categories, close the browser
+      if (oldValue.browserState === CategoryBrowserState.OPEN_ROOT_CATEGORIES) {
+        return {
+          ...oldValue,
+          browserState: CategoryBrowserState.CLOSED,
+          parentCategory: null,
+          categories: [],
+          navigationStack: []
+        };
+      }
+
+      // If we're in category detail
+      if (oldValue.browserState === CategoryBrowserState.OPEN_CATEGORY_DETAIL) {
+        // If stack is empty, go back to root categories
+        if (oldValue.navigationStack.length === 0) {
+          return {
+            ...oldValue,
+            browserState: CategoryBrowserState.OPEN_ROOT_CATEGORIES,
+            parentCategory: null,
+            categories: categoryService.getRootCategories(),
+            navigationStack: []
+          };
+        }
+
+        // If stack has items, get the last one and navigate to it
+        const previousCategory = oldValue.navigationStack[oldValue.navigationStack.length - 1];
+        const newStack = oldValue.navigationStack.slice(0, -1);
+
+        return {
+          ...oldValue,
+          browserState: CategoryBrowserState.OPEN_CATEGORY_DETAIL,
+          parentCategory: previousCategory,
+          categories: categoryService.getChildrenCategories(previousCategory),
+          navigationStack: newStack
+        };
+      }
+
+      return oldValue;
+    });
   };
 
   const selectCategory = (categoryId: Categories) => {
@@ -108,7 +147,8 @@ export const getCategorySelectorController = (
         browserState: CategoryBrowserState.CLOSED,
         parentCategory: null,
         categories: [],
-        selectedCategory: categoryId
+        selectedCategory: categoryId,
+        navigationStack: []
       })
     );
   };

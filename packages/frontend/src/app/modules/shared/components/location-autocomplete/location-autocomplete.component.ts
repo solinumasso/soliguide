@@ -17,38 +17,44 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */ /*
+ * Soliguide: Useful information for those who need it
+ *
+ * SPDX-FileCopyrightText: © 2024 Solinum
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only
  */
 import {
   Component,
-  ElementRef,
   EventEmitter,
   Input,
   OnDestroy,
   Output,
-  ViewChild,
-  ViewEncapsulation,
   OnInit,
-  AfterViewInit,
   OnChanges,
   SimpleChanges,
 } from "@angular/core";
-import { autocomplete } from "@algolia/autocomplete-js";
 import {
   Subject,
   Subscription,
   catchError,
   debounceTime,
-  firstValueFrom,
-  map,
   of,
-  takeUntil,
+  distinctUntilChanged,
+  switchMap,
+  tap,
+  Observable,
 } from "rxjs";
 import {
   faCircleNotch,
   faLocationDot,
+  faMapPin,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { TranslateModule, TranslateService } from "@ngx-translate/core";
 import { ToastrService } from "ngx-toastr";
+import { NgbTypeaheadModule } from "@ng-bootstrap/ng-bootstrap";
+import { FormsModule } from "@angular/forms";
 
 import {
   GeoPosition,
@@ -62,26 +68,33 @@ import { LocationService } from "../../services";
 import { THEME_CONFIGURATION } from "../../../../models";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { NgIf } from "@angular/common";
-
 @Component({
   selector: "app-location-autocomplete",
-  imports: [NgIf, FontAwesomeModule, TranslateModule],
+  imports: [
+    NgIf,
+    FontAwesomeModule,
+    TranslateModule,
+    NgbTypeaheadModule,
+    FormsModule,
+  ],
   standalone: true,
   templateUrl: "./location-autocomplete.component.html",
   styleUrls: ["./location-autocomplete.component.scss"],
-  encapsulation: ViewEncapsulation.None,
 })
 export class LocationAutocompleteComponent
-  implements OnInit, OnDestroy, AfterViewInit, OnChanges
+  implements OnInit, OnDestroy, OnChanges
 {
   @Input()
   public addressesOnly: boolean; // If true, we don't search for 'poi'
 
   @Input()
-  public currentAddress: string;
+  public currentAddress: string = "";
+  public readonly faXmark = faXmark;
+  public readonly faMapPin = faMapPin;
 
   public readonly faLocationDot = faLocationDot;
   public readonly faCircleNotch = faCircleNotch;
+  public readonly GeoTypes = GeoTypes; // Expose pour le template
 
   @Output()
   public readonly updateLocation =
@@ -90,19 +103,14 @@ export class LocationAutocompleteComponent
   @Output()
   public readonly clearAddress = new EventEmitter<void>();
 
-  @Input() public search!: Search;
-
-  @ViewChild("autocompleteContainer", { static: true })
-  autocompleteContainer: ElementRef<HTMLElement>;
-
-  public destroy: () => void;
-  public setQuery: (value: string) => void;
+  @Input() public search: Search;
 
   public locationLoading = false;
+  public model: string = "";
+  public placeholder: string = "";
   private readonly subscription = new Subscription();
-
-  public currentPosition: LocationAutoCompleteAddress | null;
-  private searchCancelSubject = new Subject<void>();
+  public currentPosition: LocationAutoCompleteAddress | null = null;
+  private readonly searchCancelSubject = new Subject<void>();
 
   constructor(
     private readonly locationService: LocationService,
@@ -111,52 +119,56 @@ export class LocationAutocompleteComponent
     private readonly posthogService: PosthogService
   ) {}
 
+  ngOnInit(): void {
+    this.placeholder =
+      THEME_CONFIGURATION.locationAutocompletePlaceholder ||
+      this.translateService.instant("LOCATION_PLACEHOLDER");
+    this.model = this.currentAddress || "";
+  }
+
   ngOnDestroy(): void {
     this.searchCancelSubject.next();
     this.searchCancelSubject.complete();
-    this.destroy();
+    this.subscription.unsubscribe();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (
       changes?.currentAddress?.currentValue !==
-        changes?.currentAddress?.previousValue &&
-      this.setQuery
+      changes?.currentAddress?.previousValue
     ) {
-      this.setQuery(changes?.currentAddress?.currentValue);
+      this.model = changes?.currentAddress?.currentValue || "";
     }
   }
 
-  ngAfterViewInit(): void {
-    const inputEl =
-      this.autocompleteContainer.nativeElement.querySelector("input");
+  public searchLocation = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      tap(() => this.searchCancelSubject.next()),
+      switchMap((term) => {
+        const sanitizedQuery = term.trim().replaceAll(/\//g, " ");
 
-    if (inputEl && this.currentAddress) {
-      inputEl.value = this.currentAddress;
-      this.setQuery(this.currentAddress);
-    }
-  }
+        if (sanitizedQuery.length <= 2) {
+          return of([]);
+        }
 
-  ngOnInit(): void {
-    if (this.autocompleteContainer) {
-      const { destroy, setQuery } = autocomplete({
-        detachedMediaQuery: "none",
-        placeholder: THEME_CONFIGURATION.locationAutocompletePlaceholder,
-        container: this.autocompleteContainer.nativeElement,
-        openOnFocus: true,
-        onReset: () => {
-          this.clearAddress.emit();
-        },
-        defaultActiveItemId: 0,
-        getSources: ({ query }) => this.getSources({ query }),
-      });
+        return this.locationService
+          .locationAutoComplete(sanitizedQuery, this.addressesOnly)
+          .pipe(
+            catchError(() => {
+              this.toastr.error(
+                this.translateService.instant(
+                  "IMPOSSIBLE_TO_DETERMINE_LOCATION"
+                )
+              );
+              return of([]);
+            })
+          );
+      })
+    );
 
-      this.destroy = destroy;
-      this.setQuery = setQuery;
-    }
-  }
-
-  private handleSelect(item: LocationAutoCompleteAddress, term: string) {
+  private handleSelect(item: LocationAutoCompleteAddress, term: string): void {
     const lastPosition = new GeoPosition(item);
     this.posthogService.capture("search-location-autocomplete-term", {
       term,
@@ -166,91 +178,35 @@ export class LocationAutocompleteComponent
     this.updateLocation.emit(item);
   }
 
-  private renderItem({
-    item,
-    html,
-  }: {
-    item: LocationAutoCompleteAddress;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    html: any; // skipcq: JS-0323
-  }) {
-    if (item.geoType !== GeoTypes.POSITION) {
-      let geoType = this.translateService.instant(
-        `GEOTYPE_${item.geoType.toUpperCase()}`
-      );
-      geoType = geoType.charAt(0).toUpperCase() + geoType.slice(1);
-      return html`<button class="aa-ItemLink" type="button">
-        <div class="aa-ItemIcon aa-ItemIcon--noBorder">
-          <img src="/assets/images/maps/0.png" alt="" />
-        </div>
-        <div class="aa-ItemContent">
-          <div class="aa-ItemContentTitle">
-            <b>${geoType}</b> - ${item.label}
-          </div>
-        </div>
-      </button>`;
-    } else {
-      return html`<button class="aa-ItemLink" type="button">
-        <div class="aa-ItemIcon aa-ItemIcon--noBorder">
-          <img src="/assets/images/maps/0.png" alt="" />
-        </div>
-        <div class="aa-ItemContent">
-          <div class="aa-ItemContentTitle">${item.label}</div>
-        </div>
-      </button>`;
-    }
+  public clearLocation(): void {
+    this.model = "";
+    this.currentPosition = null;
+    this.clearAddress.emit();
+    this.captureEvent("click-clear-location");
   }
 
-  private getSources({ query }: { query: string }) {
-    this.searchCancelSubject.next();
-    const sanitizedQuery = query.trim().replace(/\//g, " ");
+  public formatter = (result: string): string => {
+    return result || "";
+  };
 
-    if (sanitizedQuery.length <= 2) {
-      return Promise.resolve([]);
-    }
-
-    return firstValueFrom(
-      this.locationService
-        .locationAutoComplete(sanitizedQuery, this.addressesOnly)
-        .pipe(
-          debounceTime(300),
-          takeUntil(this.searchCancelSubject),
-          catchError(() => {
-            this.toastr.error(
-              this.translateService.instant("IMPOSSIBLE_TO_DETERMINE_LOCATION")
-            );
-            return of([]);
-          }),
-          map((predictions: LocationAutoCompleteAddress[]) => {
-            return [
-              {
-                sourceId: "locations",
-                getItems() {
-                  return predictions;
-                },
-                onSelect: ({ item }) => {
-                  this.handleSelect(
-                    item as LocationAutoCompleteAddress,
-                    sanitizedQuery
-                  );
-                  return (item as LocationAutoCompleteAddress).label;
-                },
-                getItemInputValue: ({ item }) =>
-                  (item as LocationAutoCompleteAddress).label,
-                templates: {
-                  item: (context) => this.renderItem(context),
-                },
-              },
-            ];
-          })
-        )
+  public getGeoTypeLabel(geoType: string): string {
+    const geoTypeLabel = this.translateService.instant(
+      `GEOTYPE_${geoType.toUpperCase()}`
     );
+    return geoTypeLabel.charAt(0).toUpperCase() + geoTypeLabel.slice(1);
   }
 
-  public captureEvent(eventName: string) {
+  public captureEvent(eventName: string): void {
     this.posthogService.capture(`search-location-autocomplete-${eventName}`);
   }
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public onSelectItem(event: any): void {
+    event.preventDefault();
+    const item: LocationAutoCompleteAddress = event.item;
+    if (item) {
+      this.handleSelect(item, item.label);
+    }
+  }
   public getCurrentPosition(): void {
     this.captureEvent("click-get-current-position");
     if (typeof navigator.geolocation !== "object") {
@@ -270,7 +226,6 @@ export class LocationAutocompleteComponent
               this.locationLoading = false;
               if (results.length) {
                 this.handleSelect(results[0], "current-position");
-                this.setQuery(results[0].label);
                 this.currentPosition = results[0];
               } else {
                 this.toastr.error(

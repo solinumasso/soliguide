@@ -32,6 +32,7 @@ import {
   FlatCategoriesTreeNode,
   FlatOrderCategoriesTreeNode,
   type LocationAutoCompleteAddress,
+  getCategoryTranslationKey,
 } from "@soliguide/common";
 import type { PosthogProperties } from "@soliguide/common-angular";
 
@@ -73,6 +74,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   public readonly CATEGORIES_NODES_WITH_ONE_DEPTH_CHILDREN: FlatCategoriesTreeNode[];
 
   public readonly CATEGORIES_ROOT_NODES: FlatOrderCategoriesTreeNode[];
+  public searchInputValue: string = "";
 
   constructor(
     private readonly translateService: TranslateService,
@@ -160,8 +162,12 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public putTextCat(value: Categories | string) {
     this.search.category = value as Categories;
+    this.search.label = this.translateService.instant(
+      getCategoryTranslationKey(value)
+    );
 
-    this.search.label = this.translateService.instant(value.toUpperCase());
+    this.searchInputValue = this.search.label;
+
     this.captureEvent(`select-category-${value}`);
     window.scroll({
       behavior: "smooth",

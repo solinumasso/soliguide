@@ -19,6 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 //@index('./*.pipe.ts', f => `export * from '${f.path}'`)
+export * from "./category-translate-key.pipe";
 export * from "./convert-km-to-meters.pipe";
 export * from "./date-proxy.pipe";
 export * from "./format-big-number.pipe";
