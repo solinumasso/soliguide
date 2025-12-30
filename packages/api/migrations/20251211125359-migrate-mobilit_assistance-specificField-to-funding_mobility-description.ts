@@ -22,6 +22,7 @@ import { Db } from "mongodb";
 
 import { logger } from "../src/general/logger";
 import { Categories, CommonNewPlaceService } from "@soliguide/common";
+import striptags from "striptags";
 
 const message =
   "Migrate mobitlityAssistanceName specificField to funding_mobility.description";
@@ -51,11 +52,9 @@ export const up = async (db: Db) => {
             service.categorySpecificFields?.mobilityAssistanceName;
 
           if (specificField) {
-            if (service.description) {
-              service.description += `<p>${specificField}</p>`;
-            } else {
-              service.description = `<p>${specificField}</p>`;
-            }
+            service.description = service.description
+              ? `${service.description}<p>${striptags(specificField)}</p>`
+              : `<p>${striptags(specificField)}</p>`;
 
             migratedCount++;
             modified = true;

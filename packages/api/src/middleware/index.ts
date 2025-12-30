@@ -25,3 +25,5 @@ export * from "./logging";
 export * from "./request";
 export * from "./getFilteredData.middleware";
 export * from "./validateBodyGenerator.middleware";
+export * from "./location-api";
+export * from "./taxonomy-retro-compatibility";
