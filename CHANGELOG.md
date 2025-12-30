@@ -1,3 +1,19 @@
+# [4.119.0](https://github.com/solinumasso/soliguide/compare/v4.118.1...v4.119.0) (2025-12-30)
+
+
+### Bug Fixes
+
+* **common:** add script disable for yarn ([fbf45fe](https://github.com/solinumasso/soliguide/commit/fbf45fedf9842c4f29faea1a77de23b10f5f8540))
+* **common:** add script disable for yarn ([#1076](https://github.com/solinumasso/soliguide/issues/1076)) ([bf290fb](https://github.com/solinumasso/soliguide/commit/bf290fbacadb5b046bcb6f249f338f59a0cc402e))
+* **frontend:** fix unit test for pipe ([74d63d7](https://github.com/solinumasso/soliguide/commit/74d63d79a0f354c517208f3f6014a01ca87e53a6))
+* **location-api:** catch errors in location api & webapp ([fc3179b](https://github.com/solinumasso/soliguide/commit/fc3179b6167ed3f6e633a20806a217d50c0b20ce))
+* remove issues check in commit lint ([#1077](https://github.com/solinumasso/soliguide/issues/1077)) ([e2bdb41](https://github.com/solinumasso/soliguide/commit/e2bdb418d78bdfd9dac9f4751c8e0f4e6d74f448))
+
+
+### Features
+
+* **api:** move sync AT to rabbitMQ ([b523cc8](https://github.com/solinumasso/soliguide/commit/b523cc86878ca1772eaef5ddbb33e7922a3d5159))
+
 ## [4.118.1](https://github.com/solinumasso/soliguide/compare/v4.118.0...v4.118.1) (2025-12-24)
 
 
