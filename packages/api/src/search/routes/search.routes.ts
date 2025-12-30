@@ -23,17 +23,12 @@ import { Router, type NextFunction } from "express";
 import {
   ApiPlace,
   CountryCodes,
-  type GeoPosition,
-  GeoTypes,
   PlaceType,
   SUPPORTED_LANGUAGES_BY_COUNTRY,
   SoliguideCountries,
   SupportedLanguagesCode,
   UserStatus,
-  getCategoryFromLegacyCategory,
-  convertOldToNewMobilityCategory,
   convertNewToOldMobilityCategory,
-  isLegacyMobilityCategory,
   isNewMobilityCategory,
   type LegacyMobilityCategory,
 } from "@soliguide/common";
@@ -64,6 +59,9 @@ import { getTranslatedPlacesForSearch } from "../../translations/controllers/tra
 import SearchSuggestionsController from "../controllers/search-suggestions.controller";
 import { createCache } from "cache-manager";
 import { trackSearchPlaces } from "../../middleware/analytics";
+import { mobilityConverting } from "../../middleware/taxonomy-retro-compatibility";
+import { locationApiCountryHandling } from "../../middleware/location-api";
+import { convertPlaceFromNewMobilityToOld } from "../utils";
 
 const searchSuggestionsCache = createCache({ ttl: 30 * 24 * 60 * 60 });
 
@@ -206,100 +204,8 @@ router.get(
 router.post(
   "/:lang?",
   handleLanguage,
-  (req: ExpressRequest, _res: ExpressResponse, next: NextFunction) => {
-    if (req.body.categorie) {
-      req.body.category = getCategoryFromLegacyCategory(req.body.categorie);
-    }
-
-    if (
-      req.body.categories?.length &&
-      typeof req.body.categories[0] === "number"
-    ) {
-      req.body.categories = req.body.categories.map((category: number) =>
-        getCategoryFromLegacyCategory(category)
-      );
-    }
-
-    next();
-  },
-  // Convert legacy mobility categories to new categories for API users
-  (req: ExpressRequest, _res: ExpressResponse, next: NextFunction) => {
-    if (req.user.status !== UserStatus.API_USER) {
-      return next();
-    }
-
-    // Track if we need to convert results back to legacy format
-    req.shouldConvertMobilityCategories = false;
-
-    // Convert single category
-    if (req.body.category && isLegacyMobilityCategory(req.body.category)) {
-      const newCategory = convertOldToNewMobilityCategory(req.body.category);
-      if (newCategory) {
-        req.body.category = newCategory;
-        req.shouldConvertMobilityCategories = true;
-      }
-    }
-
-    // Convert multiple categories
-    if (req.body.categories?.length) {
-      const hasLegacyCategory = req.body.categories.some(
-        (categorie: string) =>
-          typeof categorie === "string" && isLegacyMobilityCategory(categorie)
-      );
-
-      if (hasLegacyCategory) {
-        req.body.categories = req.body.categories.map((category: string) => {
-          if (
-            typeof category === "string" &&
-            isLegacyMobilityCategory(category)
-          ) {
-            const newCategory = convertOldToNewMobilityCategory(category);
-            return newCategory ?? category;
-          }
-          return category;
-        });
-        req.shouldConvertMobilityCategories = true;
-      }
-    }
-
-    next();
-  },
-  // [LOCATION API] To remove at the beginning of May
-  (req: ExpressRequest, _res: ExpressResponse, next: NextFunction) => {
-    if (
-      req.user.isLogged() &&
-      req.user.status === UserStatus.API_USER &&
-      req.body.location?.geoType === GeoTypes.COUNTRY &&
-      /^france$/i.test(req.body.location?.geoValue)
-    ) {
-      req.body.location.geoValue = CountryCodes.FR;
-    }
-
-    if (
-      req.user.isLogged() &&
-      req.user.status === UserStatus.API_USER &&
-      req.body["location.geoType"] === GeoTypes.COUNTRY &&
-      /^france$/i.test(req.body["location.geoValue"])
-    ) {
-      req.body["location.geoValue"] = CountryCodes.FR;
-    }
-
-    if (req.body.locations?.length) {
-      req.body.locations = req.body.locations.map(
-        (location: Partial<GeoPosition>) => {
-          if (
-            location?.geoType === GeoTypes.COUNTRY &&
-            /^france$/i.test(location?.geoValue ?? "")
-          ) {
-            location.geoValue = CountryCodes.FR;
-          }
-          return location;
-        }
-      );
-    }
-
-    next();
-  },
+  locationApiCountryHandling,
+  mobilityConverting,
   searchDto,
   getFilteredData,
   async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
@@ -335,33 +241,9 @@ router.post(
 
       // Convert new mobility categories back to legacy format for API users
       if (req.shouldConvertMobilityCategories && searchResults.places) {
-        searchResults.places = searchResults.places.map((place: ApiPlace) => {
-          if (!place.services_all?.length) return place;
-
-          return {
-            ...place,
-            services_all: place.services_all.map((service) => {
-              if (!service.category) return service;
-
-              // Only convert if it's a new mobility category
-              if (!isNewMobilityCategory(service.category)) return service;
-
-              const legacyCategory = convertNewToOldMobilityCategory(
-                service.category
-              );
-
-              // If conversion found, return service with legacy category
-              if (legacyCategory) {
-                return {
-                  ...service,
-                  category: legacyCategory as LegacyMobilityCategory,
-                };
-              }
-
-              return service;
-            }),
-          };
-        }) as ApiPlace[];
+        searchResults.places = convertPlaceFromNewMobilityToOld([
+          ...searchResults.places,
+        ]);
       }
 
       req.nbResults = searchResults.nbResults;
