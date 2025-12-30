@@ -37,7 +37,6 @@ export const getPlaceByParams = async (
     params._id = new mongoose.Types.ObjectId(params._id);
   }
   const place = await PlaceModel.findOne(params)
-    .select("+atSync")
     .populate([
       {
         path: "parcours",
@@ -66,11 +65,29 @@ export const getPlaceByParams = async (
 };
 
 export const findPlacesByParams = async (
-  params: FilterQuery<ApiPlace>
+  params: FilterQuery<ApiPlace>,
+  withOrga = false
 ): Promise<Array<ModelWithId<ApiPlace>>> => {
   if (params._id) {
     params._id = new mongoose.Types.ObjectId(params._id);
   }
 
-  return PlaceModel.find(params).lean<Array<ModelWithId<ApiPlace>>>().exec();
+  let places = await PlaceModel.find(params)
+    .lean<Array<ModelWithId<ApiPlace>>>()
+    .exec();
+
+  if (withOrga) {
+    places = await Promise.all(
+      places.map(async (place) => {
+        place.organizations = await OrganizationModel.find(
+          { places: { $in: place._id } },
+          { name: 1, organization_id: 1, _id: 0 }
+        ).exec();
+
+        return place;
+      })
+    );
+  }
+
+  return places;
 };

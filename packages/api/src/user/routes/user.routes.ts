@@ -46,10 +46,7 @@ import {
   type ExpressResponse,
   type SignupUser,
   UserFactory,
-  AirtableEntityType,
 } from "../../_models";
-
-import { setEntityExcludedOrNot } from "../../airtable/services/airtableEntity.service";
 
 import {
   tokenPasswordGuard,
@@ -67,6 +64,7 @@ import {
   capturePasswordResetToken,
 } from "../middlewares/capture-user-event.middleware";
 import { addAreasToUser } from "../middlewares/add-areas-to-user.middleware";
+import { sendUserChangesToMq } from "../middlewares/send-user-changes-event-to-mq.middleware";
 
 const router = express.Router();
 
@@ -106,7 +104,7 @@ router.post(
   checkRights([UserStatus.ADMIN_SOLIGUIDE, UserStatus.ADMIN_TERRITORY]),
   signupDto,
   getFilteredData,
-  async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
+  async (req: ExpressRequest, res: ExpressResponse) => {
     try {
       const signupUserPayload = req.bodyValidated as SignupUser & {
         passwordConfirmation: string;
@@ -128,17 +126,13 @@ router.post(
       if (!user) {
         return res.status(500).json({ message: "SIGNUP_IMPOSSIBLE" });
       }
-      res.status(200).json(user._id.toString());
 
-      req.airtableEntity = user;
-      req.airtableEntityType = AirtableEntityType.USER;
+      return res.status(200).json(user._id.toString());
     } catch (e) {
       req.log.error(e);
       return res.status(500).json({ message: "SIGNUP_IMPOSSIBLE" });
     }
-    return next();
-  },
-  setEntityExcludedOrNot
+  }
 );
 
 router.post(
@@ -403,9 +397,7 @@ router.patch(
         patchedUser.type = req.user.type;
       }
       req.user = UserFactory.createUser(patchedUser!);
-
-      req.airtableEntity = req.user;
-      req.airtableEntityType = AirtableEntityType.USER;
+      req.updatedUser = req.user;
 
       res.status(200).json(req.user);
       return next();
@@ -414,7 +406,7 @@ router.patch(
       return res.status(500).json({ message: "PATCH_ME_FAIL" });
     }
   },
-  setEntityExcludedOrNot
+  sendUserChangesToMq
 );
 
 router.patch(
@@ -478,19 +470,26 @@ router.patch(
   canEditUser,
   patchUserFromContactDto,
   getFilteredData,
-  async (req: ExpressRequest, res: ExpressResponse) => {
+  async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
     try {
-      await UserController.patchUserAccount(
+      const user = await UserController.patchUserAccount(
         req.params.userObjectId,
         req.bodyValidated
       );
 
-      return res.status(200).json({ message: "USER_UPDATED" });
+      if (user) {
+        req.updatedUser = user;
+      }
+
+      res.status(200).json({ message: "USER_UPDATED" });
+
+      return next();
     } catch (e) {
       req.log.error(e, "PATCH_USER_FAIL");
       return res.status(500).json({ message: "PATCH_USER_FAIL" });
     }
-  }
+  },
+  sendUserChangesToMq
 );
 
 /**
@@ -532,8 +531,7 @@ router.patch(
       }
 
       req.selectedUser = user;
-      req.airtableEntity = user;
-      req.airtableEntityType = AirtableEntityType.USER;
+      req.updatedUser = user;
 
       res.status(200).json({ message: "USER_UPDATED" });
 
@@ -543,7 +541,7 @@ router.patch(
       return res.status(500).json({ message: "PATCH_USER_FAIL" });
     }
   },
-  setEntityExcludedOrNot
+  sendUserChangesToMq
 );
 
 export default router;

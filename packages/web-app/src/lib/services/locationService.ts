@@ -24,6 +24,7 @@ import { fetch } from '$lib/client';
 import type { Fetcher } from '$lib/client/types';
 import { LocationErrors, type LocationService } from './types';
 import type { LocationAutoCompleteAddress, SoliguideCountries } from '@soliguide/common';
+import { captureException } from '@sentry/sveltekit';
 
 const locationApiUrl = env.PUBLIC_LOCATION_API_URL;
 
@@ -39,7 +40,7 @@ export default (fetcher: Fetcher<LocationAutoCompleteAddress[]> = fetch): Locati
         return [];
       }
 
-      const baseUrl = `${locationApiUrl}autocomplete/${country}`;
+      const baseUrl = `${locationApiUrl}/autocomplete/${country}`;
       const url = `${baseUrl}/all/${encodeURI(searchTerm.trim())}`;
 
       const result = await fetcher(url);
@@ -59,7 +60,7 @@ export default (fetcher: Fetcher<LocationAutoCompleteAddress[]> = fetch): Locati
     longitude: number
   ): Promise<LocationSuggestion | null> => {
     try {
-      const baseUrl = `${locationApiUrl}reverse/${country}`;
+      const baseUrl = `${locationApiUrl}/reverse/${country}`;
       const url = `${baseUrl}/${latitude}/${longitude}`;
 
       const result = await fetcher(url);
@@ -72,6 +73,7 @@ export default (fetcher: Fetcher<LocationAutoCompleteAddress[]> = fetch): Locati
         'getLocationFromPosition error :',
         error instanceof Error ? error.message : error
       );
+      captureException(error);
       throw new Error('UNABLE_TO_LOCATE_YOU');
     }
   };

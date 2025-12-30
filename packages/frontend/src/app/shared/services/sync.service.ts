@@ -18,11 +18,29 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-export enum PlaceOpeningStatus {
-  CLOSED = "CLOSED",
-  OPENED = "OPENED",
-}
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 
-export type KeyPlaceOpeningStatusValueString = {
-  [key in PlaceOpeningStatus]: string;
-};
+import { Observable } from "rxjs";
+import { ApiMessage } from "../../models/api";
+
+import { environment } from "../../../environments/environment";
+
+@Injectable({
+  providedIn: "root",
+})
+export class SyncService {
+  constructor(private readonly http: HttpClient) {}
+
+  public sync(
+    idsToSync: number[],
+    entityToSync: "users" | "places"
+  ): Observable<ApiMessage> {
+    return this.http.post<ApiMessage>(
+      `${environment.apiUrl}/ops/reset-at-sync/${entityToSync}`,
+      {
+        idsToSync,
+      }
+    );
+  }
+}

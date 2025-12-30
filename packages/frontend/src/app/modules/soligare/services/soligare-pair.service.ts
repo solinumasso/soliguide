@@ -34,7 +34,7 @@ export class SoligarePairService {
   constructor(private http: HttpClient) {}
 
   public sourceDetails(sourceId: string): Observable<CommonPlaceSource> {
-    const url = `${environment.apiUrl}v2/soligare/source/details/${sourceId}`;
+    const url = `${environment.apiUrl}/v2/soligare/source/details/${sourceId}`;
     return this.http.get<CommonPlaceSource>(`${url}`);
   }
 
@@ -42,7 +42,7 @@ export class SoligarePairService {
     soliguideId: number,
     body: CommonPlaceSource
   ): Observable<ApiMessage> {
-    const url = `${environment.apiUrl}admin/places/sources/${soliguideId}`;
+    const url = `${environment.apiUrl}/admin/places/sources/${soliguideId}`;
 
     const details = {
       source: {
@@ -58,7 +58,7 @@ export class SoligarePairService {
   }
 
   public pair(sourceId: string, soliguideId: number): Observable<ApiMessage> {
-    const url = `${environment.apiUrl}v2/soligare/pairing/pair`;
+    const url = `${environment.apiUrl}/v2/soligare/pairing/pair`;
     const body = {
       source_id: sourceId,
       soliguide_id: soliguideId,

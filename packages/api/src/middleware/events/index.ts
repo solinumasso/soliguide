@@ -18,30 +18,5 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Schema } from "mongoose";
-
-import { AirtableSyncType } from "../../_models";
-
-export const AirtableSyncSchema = new Schema<AirtableSyncType>(
-  {
-    _id: false,
-    airtableContact: { default: false, type: Boolean },
-    airtableId: { default: "", type: String },
-    excluded: { default: true, type: Boolean },
-    lastSync: { default: null, type: Date },
-  },
-  {
-    strict: true,
-  }
-);
-
-export const AIRTABLE_SYNC_DEFAULT: AirtableSyncType = {
-  airtableId: "",
-  excluded: true,
-  lastSync: null,
-};
-
-export const AIRTABLE_SYNC_DEFAULT_USER: AirtableSyncType = {
-  airtableContact: false,
-  ...AIRTABLE_SYNC_DEFAULT,
-};
+// @index('./*', f => `export * from '${f.path}'`)
+export * from "./getPlacesAndUsersAndSync.middleware";

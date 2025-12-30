@@ -24,12 +24,11 @@ import { UserStatus, validateUserStatusWithEmail } from "@soliguide/common";
 
 import { emailValidDto, inviteUserDto, signupAfterInvitationDto } from "../dto";
 import {
-  AirtableEntityType,
   ExpressRequest,
   ExpressResponse,
   InvitationPopulate,
+  UserPopulateType,
 } from "../../_models";
-import { setEntityExcludedOrNotAndNext } from "../../airtable/services/airtableEntity.service";
 
 import {
   getInvitationFromUrl,
@@ -60,6 +59,10 @@ import {
   captureSendInvitation,
   captureWelcomeEvent,
 } from "../middlewares/capture-inivitation-event.middleware";
+import {
+  sendUserChangesToMq,
+  sendUserChangesToMqAndNext,
+} from "../middlewares/send-user-changes-event-to-mq.middleware";
 
 const router = express.Router();
 
@@ -100,15 +103,14 @@ router.post(
 
       if (invitation) {
         req.invitation = invitation;
-        req.airtableEntity = req.invitation.user;
-        req.airtableEntityType = AirtableEntityType.USER;
+        req.updatedUser = req.invitation.user as UserPopulateType;
       } else {
         throw new Error("INVITATION WASN'T CREATED");
       }
-      next();
+      return next();
     } catch (e) {
       req.log.error(e, "CREATE_INVITATION_FAIL");
-      res.status(500).json({ message: "CREATE_INVITATION_FAIL" });
+      return res.status(500).json({ message: "CREATE_INVITATION_FAIL" });
     }
   },
   sendNewInvitationToMqAndNext,
@@ -120,9 +122,9 @@ router.post(
     next: NextFunction
   ) => {
     res.status(200).json({ message: "INVITE_SENT" });
-    next();
+    return next();
   },
-  setEntityExcludedOrNotAndNext,
+  sendUserChangesToMqAndNext,
   captureSendInvitation
 );
 
@@ -141,11 +143,14 @@ router.delete(
     req: ExpressRequest & {
       invitation: InvitationPopulate;
     },
-    res: ExpressResponse
+    res: ExpressResponse,
+    next: NextFunction
   ) => {
     try {
       await deleteInvitation(req.invitation);
-      return res.status(200).json({ message: "OK" });
+      res.status(200).json({ message: "OK" });
+
+      return next();
     } catch (e) {
       req.log.error(e, "DELETE_INVITATION_FAIL");
       return res.status(400).json({ message: "DELETE_INVITATION_FAIL" });
@@ -195,18 +200,19 @@ router.get(
       const updatedUser = await validateInvitation(req.invitation);
 
       req.selectedUser = updatedUser;
-      req.airtableEntity = updatedUser;
-      req.airtableEntityType = AirtableEntityType.USER;
+
+      req.updatedUser = updatedUser;
+
       res.status(200).json(updatedUser);
 
-      next();
+      return next();
     } catch (e) {
       req.log.error(e, "VALIDATION_INVITATION_FAIL");
-      res.status(400).json({ message: "VALIDATION_INVITATION_FAIL" });
+      return res.status(400).json({ message: "VALIDATION_INVITATION_FAIL" });
     }
   },
-  setEntityExcludedOrNotAndNext,
-  sendAcceptedInvitationToMq
+  sendAcceptedInvitationToMq,
+  sendUserChangesToMq
 );
 
 /**
@@ -238,8 +244,6 @@ router.post(
       req.invitation.user = user;
       req.selectedUser = user;
       req.organization = req.invitation.organization;
-      req.airtableEntity = user;
-      req.airtableEntityType = AirtableEntityType.USER;
 
       res.status(200).json(user._id.toString());
 
@@ -249,9 +253,9 @@ router.post(
       res.status(500).json({ message: "ACCEPT_FIRST_INVITATION_FAIL" });
     }
   },
-  setEntityExcludedOrNotAndNext,
   sendWelcomeToMqAndNext,
   sendAcceptedInvitationToMqAndNext,
+  sendUserChangesToMqAndNext,
   captureWelcomeEvent
 );
 
@@ -272,7 +276,7 @@ router.get(
   sendReNewInvitationToMqAndNext,
   (_req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
     res.status(200).json({ message: "RESEND_DONE" });
-    next();
+    return next();
   },
   captureReSendInvitation
 );
@@ -313,10 +317,10 @@ router.post(
         req.bodyValidated.mail,
         req.organization
       );
-      res.status(200).json(result);
+      return res.status(200).json(result);
     } catch (e) {
       req.log.error(e, "/test-email-exist");
-      res.status(400).json({ message: "TEST_EMAIL_FAIL" });
+      return res.status(400).json({ message: "TEST_EMAIL_FAIL" });
     }
   }
 );

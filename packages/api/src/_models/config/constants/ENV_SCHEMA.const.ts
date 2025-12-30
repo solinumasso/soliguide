@@ -23,55 +23,7 @@ import type { Config } from "../interfaces";
 
 export const ENV_SCHEMA: JSONSchemaType<Config> = {
   type: "object",
-  required: [
-    "JWT_SECRET",
-    "MAILGUN_API_KEY",
-    "AT_API_KEY",
-    "AT_BASE_ID_SOLIGUIDE",
-    "AT_TABLE_ID_FICHE",
-    "AT_TABLE_ID_USER",
-    "AT_FIELD_PLACE_ID",
-    "AT_FIELD_PLACE_CITY",
-    "AT_FIELD_PLACE_POSTAL_CODE",
-    "AT_FIELD_PLACE_NAME",
-    "AT_FIELD_PLACE_OPENING",
-    "AT_FIELD_PLACE_ORGA",
-    "AT_FIELD_PLACE_SERVICES",
-    "AT_FIELD_PLACE_STATUS",
-    "AT_FIELD_PLACE_TERRITORY",
-    "AT_FIELD_PLACE_VISIBILITY",
-    "AT_FIELD_PLACE_TYPE",
-    "AT_FIELD_PLACE_PHONE",
-    "AT_FIELD_PLACE_MAIL",
-    "AT_FIELD_PLACE_TO_UPDATE",
-    "AT_FIELD_PLACE_SOURCES",
-    "AT_FIELD_PLACE_WEBSITE",
-    "AT_FIELD_PLACE_ADDRESS",
-    "AT_FIELD_PLACE_CAMPAIGN_STATUS_MAJ",
-    "AT_FIELD_PLACE_CAMPAIGN_AUTONOMY",
-    "AT_FIELD_PLACE_CAMPAIGN_REMIND_DATE",
-    "AT_FIELD_USER_ID",
-    "AT_FIELD_USER_FIRSTNAME",
-    "AT_FIELD_USER_LASTNAME",
-    "AT_FIELD_USER_EMAIL",
-    "AT_FIELD_USER_ORGA",
-    "AT_FIELD_USER_PHONE",
-    "AT_FIELD_USER_STATUS",
-    "AT_FIELD_USER_TITLE",
-    "AT_FIELD_USER_TRANSLATOR",
-    "AT_FIELD_USER_VERIFIED",
-    "AT_FIELD_USER_BLOCKED",
-    "AT_FIELD_USER_DELETED",
-    "AT_FIELD_USER_CREATION_EMAIL",
-    "AT_FIELD_USER_CREATION_NAME",
-    "AT_FIELD_USER_CREATION_NEW",
-    "AT_FIELD_USER_CREATION_PHONE",
-    "AT_FIELD_USER_CREATION_TITLE",
-    "AT_FIELD_USER_CREATION_TERRITORIES",
-    "AT_FIELD_USER_CAMPAIGN_EMAIL_STATUS",
-    "S3_ACCESS_KEY",
-    "S3_SECRET_KEY",
-  ],
+  required: ["JWT_SECRET", "MAILGUN_API_KEY", "S3_ACCESS_KEY", "S3_SECRET_KEY"],
   properties: {
     ENV: {
       type: "string",
@@ -83,49 +35,44 @@ export const ENV_SCHEMA: JSONSchemaType<Config> = {
     },
     WEBAPP_FR_URL: {
       type: "string",
-      default: "http://localhost:5173/",
+      default: "http://localhost:5173",
     },
     WEBAPP_ES_URL: {
       type: "string",
-      default: "http://localhost:5173/",
+      default: "http://localhost:5173",
     },
     WEBAPP_AD_URL: {
       type: "string",
-      default: "http://localhost:5173/",
+      default: "http://localhost:5173",
     },
     WIDGET_URL: {
       type: "string",
-      default: "http://localhost:4201/",
+      default: "http://localhost:4201",
     },
     SOLIGUIA_AD_URL: {
       type: "string",
-      default: "http://localhost:4220/",
+      default: "http://localhost:4220",
     },
     SOLIGUIA_ES_URL: {
       type: "string",
-      default: "http://localhost:4210/",
+      default: "http://localhost:4210",
     },
     SOLIGUIDE_FR_URL: {
       type: "string",
-      default: "http://localhost:4200/",
+      default: "http://localhost:4200",
     },
     SOLIGUIDE_LOCATION_API_URL: {
       type: "string",
-      default: "http://localhost:3000/",
+      default: "http://localhost:3000",
     },
     SOLIGARE_URL: {
       type: "string",
-      default: "http://localhost:3003/",
+      default: "http://localhost:3003",
     },
-
     JWT_SECRET: {
       type: "string",
     },
     CRON_ENABLED: {
-      type: "boolean",
-      default: false,
-    },
-    RESTORE_SYNC: {
       type: "boolean",
       default: false,
     },
@@ -163,135 +110,6 @@ export const ENV_SCHEMA: JSONSchemaType<Config> = {
     AMQP_URL: {
       type: "string",
       nullable: true,
-    },
-    AT_API_KEY: {
-      type: "string",
-    },
-    AT_BASE_ID_SOLIGUIDE: {
-      type: "string",
-    },
-    AT_TABLE_ID_FICHE: {
-      type: "string",
-    },
-    AT_TABLE_ID_USER: {
-      type: "string",
-    },
-    AT_FIELD_PLACE_ID: {
-      type: "string",
-    },
-    AT_FIELD_PLACE_CITY: {
-      type: "string",
-    },
-    AT_FIELD_PLACE_NAME: {
-      type: "string",
-    },
-    AT_FIELD_PLACE_OPENING: {
-      type: "string",
-    },
-    AT_FIELD_PLACE_ORGA: {
-      type: "string",
-    },
-    AT_FIELD_PLACE_POSTAL_CODE: {
-      type: "string",
-    },
-    AT_FIELD_PLACE_SERVICES: {
-      type: "string",
-    },
-    AT_FIELD_PLACE_STATUS: {
-      type: "string",
-    },
-    AT_FIELD_PLACE_TERRITORY: {
-      type: "string",
-    },
-    AT_FIELD_PLACE_VISIBILITY: {
-      type: "string",
-    },
-    AT_FIELD_PLACE_TYPE: {
-      type: "string",
-    },
-    AT_FIELD_PLACE_PHONE: {
-      type: "string",
-    },
-    AT_FIELD_PLACE_MAIL: {
-      type: "string",
-    },
-    AT_FIELD_PLACE_TO_UPDATE: {
-      type: "string",
-    },
-    AT_FIELD_PLACE_SOURCES: {
-      type: "string",
-    },
-    AT_FIELD_PLACE_WEBSITE: {
-      type: "string",
-    },
-    AT_FIELD_PLACE_ADDRESS: {
-      type: "string",
-    },
-    AT_FIELD_PLACE_CAMPAIGN_STATUS_MAJ: {
-      type: "string",
-    },
-    AT_FIELD_PLACE_CAMPAIGN_AUTONOMY: {
-      type: "string",
-    },
-    AT_FIELD_PLACE_CAMPAIGN_REMIND_DATE: {
-      type: "string",
-    },
-    AT_FIELD_USER_ID: {
-      type: "string",
-    },
-    AT_FIELD_USER_FIRSTNAME: {
-      type: "string",
-    },
-    AT_FIELD_USER_LASTNAME: {
-      type: "string",
-    },
-    AT_FIELD_USER_EMAIL: {
-      type: "string",
-    },
-    AT_FIELD_USER_ORGA: {
-      type: "string",
-    },
-    AT_FIELD_USER_PHONE: {
-      type: "string",
-    },
-    AT_FIELD_USER_STATUS: {
-      type: "string",
-    },
-    AT_FIELD_USER_TITLE: {
-      type: "string",
-    },
-    AT_FIELD_USER_TRANSLATOR: {
-      type: "string",
-    },
-    AT_FIELD_USER_VERIFIED: {
-      type: "string",
-    },
-    AT_FIELD_USER_DELETED: {
-      type: "string",
-    },
-    AT_FIELD_USER_BLOCKED: {
-      type: "string",
-    },
-    AT_FIELD_USER_CREATION_EMAIL: {
-      type: "string",
-    },
-    AT_FIELD_USER_CREATION_NAME: {
-      type: "string",
-    },
-    AT_FIELD_USER_CREATION_NEW: {
-      type: "string",
-    },
-    AT_FIELD_USER_CREATION_PHONE: {
-      type: "string",
-    },
-    AT_FIELD_USER_CREATION_TITLE: {
-      type: "string",
-    },
-    AT_FIELD_USER_CREATION_TERRITORIES: {
-      type: "string",
-    },
-    AT_FIELD_USER_CAMPAIGN_EMAIL_STATUS: {
-      type: "string",
     },
     S3_ENDPOINT: {
       type: "string",

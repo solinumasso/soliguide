@@ -35,7 +35,7 @@ import { environment } from "../../../../environments/environment";
   providedIn: "root",
 })
 export class CampaignService {
-  public endPoint = environment.apiUrl + "campaign";
+  public endPoint = `${environment.apiUrl}/campaign`;
 
   constructor(private readonly http: HttpClient) {}
 

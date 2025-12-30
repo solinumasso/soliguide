@@ -27,12 +27,8 @@ jobs:
   commitlint:
     uses: ./.github/workflows/_commitlint.yml
 
-  # licenses-check:
-  #   uses: ./.github/workflows/_licenses-check.yml
-
   all:
     uses: ./.github/workflows/_build-and-test.yml
     needs:
       - commitlint
-      # - licenses-check
     secrets: inherit

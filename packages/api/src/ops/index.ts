@@ -18,30 +18,5 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { PLACE_FIELDS_NAME } from "../../src/airtable/constants/AT_FIELDS_NAMES.const";
-
-import { AirtableRecordType } from "../../src/_models/airtable/airtableRecord.type";
-
-export const PLACE_RECORDS: AirtableRecordType[] = [
-  {
-    fields: {
-      [PLACE_FIELDS_NAME.FICHE_ID]: 2963,
-      [PLACE_FIELDS_NAME.NAME]: "CSAPA APORIA Nanterre",
-    },
-    id: "reciuJK0UsZEagBWT",
-  },
-  {
-    fields: {
-      [PLACE_FIELDS_NAME.FICHE_ID]: 2961,
-      [PLACE_FIELDS_NAME.NAME]: "CSAPA AGATA Rueil-Malmaison",
-    },
-    id: "recjDqNnKulcjoCcC",
-  },
-  {
-    fields: {
-      [PLACE_FIELDS_NAME.FICHE_ID]: 2960,
-      [PLACE_FIELDS_NAME.NAME]: "CSAPA AGATA Gennevilliers",
-    },
-    id: "recKWpB9HaTwqkPlJ",
-  },
-];
+// @index('./*.ts', f => `export * from '${f.path}'`)
+export * from "./dto";

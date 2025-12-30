@@ -35,7 +35,7 @@ export class AvailableSourceService {
   public getAvailableSource(
     territories: AnyDepartmentCode[]
   ): Observable<string[]> {
-    const url = `${environment.apiUrl}v2/soligare/source/available`;
+    const url = `${environment.apiUrl}/v2/soligare/source/available`;
 
     return this.http.post<string[]>(url, { territories: territories });
   }

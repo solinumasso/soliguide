@@ -28,10 +28,6 @@ import {
 
 import { CampaignEmailsSchema } from "./campaignEmails.model";
 import { User } from "../../_models/users";
-import {
-  AirtableSyncSchema,
-  AIRTABLE_SYNC_DEFAULT_USER,
-} from "../../airtable/models/airtableSync.model";
 import { CAMPAIGN_EMAILS_CONTENT_FOR_USERS } from "./default_values";
 import { languagesValidator } from "./validators";
 import { PhoneSchema } from "../../place/models";
@@ -40,11 +36,6 @@ const UserSchema = new mongoose.Schema<User>(
   {
     areas: {
       type: Object,
-    },
-    atSync: {
-      default: AIRTABLE_SYNC_DEFAULT_USER,
-      required: true,
-      type: AirtableSyncSchema,
     },
 
     // Developers blocking

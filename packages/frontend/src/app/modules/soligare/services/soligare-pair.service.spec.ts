@@ -57,7 +57,7 @@ describe("PairService", () => {
     });
 
     const req = httpMock.expectOne(
-      `${environment.apiUrl}v2/soligare/pairing/pair`
+      `${environment.apiUrl}/v2/soligare/pairing/pair`
     );
 
     expect(req.request.method).toBe("POST");

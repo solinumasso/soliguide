@@ -43,15 +43,11 @@ import {
   visibilityDto,
 } from "../dto";
 
-import {
-  AirtableEntityType,
+import type {
   ExpressRequest,
   ExpressResponse,
   UserForLogs,
 } from "../../_models";
-
-import { syncEntityDeletion } from "../../airtable/controllers/airtable.controller";
-import { setEntityExcludedOrNotAndNext } from "../../airtable/services/airtableEntity.service";
 
 import {
   canAddPlace,
@@ -231,18 +227,16 @@ router.post(
         req.organization
       );
 
-      req.airtableEntity = updatedPlace;
       req.placeChanges = placeChanges;
       req.updatedPlace = updatedPlace;
-      req.airtableEntityType = AirtableEntityType.PLACE;
+
       res.status(200).json(updatedPlace);
-      next();
+      return next();
     } catch (e) {
       req.log.error(e);
       return res.status(400).json({ message: "CREATE_PLACE_IMPOSSIBLE" });
     }
   },
-  setEntityExcludedOrNotAndNext,
   sendPlaceChangesToMq
 );
 
@@ -278,20 +272,18 @@ router.patch(
         req,
         req.bodyValidated
       );
+
       req.updatedPlace = updatedPlace;
-      req.airtableEntity = updatedPlace;
       req.placeChanges = placeChanges;
-      req.airtableEntityType = AirtableEntityType.PLACE;
 
       res.status(200).json({ ...updatedPlace, historicEntry: !!placeChanges });
-      next();
+      return next();
     } catch (e) {
       req.log.error(e, "PATCH_INFO_IMPOSSIBLE");
       return res.status(400).json({ message: "PATCH_INFO_IMPOSSIBLE" });
     }
   },
   generateElementsToTranslate,
-  setEntityExcludedOrNotAndNext,
   sendPlaceChangesToMq
 );
 
@@ -308,12 +300,10 @@ router.patch(
         req.bodyValidated
       );
       req.updatedPlace = updatedPlace;
-      req.airtableEntity = updatedPlace;
       req.placeChanges = placeChanges;
-      req.airtableEntityType = AirtableEntityType.PLACE;
 
       res.status(200).json({ ...updatedPlace, historicEntry: !!placeChanges });
-      next();
+      return next();
     } catch (e) {
       req.log.error(e, "PATCH_POSITION_IMPOSSIBLE");
       return res.status(400).json({ message: "PATCH_POSITION_IMPOSSIBLE" });
@@ -321,7 +311,6 @@ router.patch(
   },
   refreshTransportsCache,
   generateElementsToTranslate,
-  setEntityExcludedOrNotAndNext,
   sendPlaceChangesToMq
 );
 
@@ -433,19 +422,16 @@ router.patch(
     try {
       const { placeChanges, updatedPlace } = await patchStatus(req);
       req.updatedPlace = updatedPlace;
-      req.airtableEntity = updatedPlace;
       req.placeChanges = placeChanges;
-      req.airtableEntityType = AirtableEntityType.PLACE;
 
       res.status(200).json({ ...updatedPlace, historicEntry: !!placeChanges });
-      next();
+      return next();
     } catch (e) {
       req.log.error(e, "PATCH_STATUS_ERROR");
       return res.status(400).json({ message: "PATCH_STATUS_ERROR" });
     }
   },
   generateElementsToTranslate,
-  setEntityExcludedOrNotAndNext,
   sendPlaceChangesToMq
 );
 
@@ -479,19 +465,16 @@ router.patch(
     try {
       const { placeChanges, updatedPlace } = await patchVisibility(req);
       req.updatedPlace = updatedPlace;
-      req.airtableEntity = updatedPlace;
       req.placeChanges = placeChanges;
-      req.airtableEntityType = AirtableEntityType.PLACE;
 
       res.status(200).json({ ...updatedPlace, historicEntry: !!placeChanges });
-      next();
+      return next();
     } catch (e) {
       req.log.error(e, "PATCH_PRO_ONLY_ERROR");
       return res.status(400).json({ message: "PATCH_PRO_ONLY_ERROR" });
     }
   },
   generateElementsToTranslate,
-  setEntityExcludedOrNotAndNext,
   sendPlaceChangesToMq
 );
 
@@ -658,25 +641,21 @@ router.patch(
   getPlaceFromUrl,
   canEditPlace,
   servicesDto,
-
   getFilteredData,
   async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
     try {
       const { placeChanges, updatedPlace } = await patchServices(req);
       req.updatedPlace = updatedPlace;
-      req.airtableEntity = updatedPlace;
       req.placeChanges = placeChanges;
-      req.airtableEntityType = AirtableEntityType.PLACE;
 
       res.status(200).json({ ...updatedPlace, historicEntry: !!placeChanges });
-      next();
+      return next();
     } catch (e) {
       req.log.error(e, "PATCH_SERVICES_FAIL");
       return res.status(500).json({ message: "PATCH_SERVICES_FAIL" });
     }
   },
   generateElementsToTranslate,
-  setEntityExcludedOrNotAndNext,
   rebuildTempServiceClosure,
   sendPlaceChangesToMq
 );
@@ -761,19 +740,16 @@ router.post(
       );
 
       req.updatedPlace = updatedPlace;
-      req.airtableEntity = updatedPlace;
       req.placeChanges = placeChanges;
-      req.airtableEntityType = AirtableEntityType.PLACE;
 
       res.status(200).json(updatedPlace);
-      next();
+      return next();
     } catch (e) {
       req.log.error(e);
       return res.status(500).json({ message: "DUPLICATE_PLACE_IMPOSSIBLE" });
     }
   },
   generateElementsToTranslate,
-  setEntityExcludedOrNotAndNext,
   sendPlaceChangesToMq
 );
 
@@ -806,11 +782,12 @@ router.delete(
     try {
       await deletePlace(req.lieu, req.log);
       req.placeDeleted = req.lieu;
-      req.airtableId = req.lieu.atSync.airtableId;
-      req.airtableEntityType = AirtableEntityType.PLACE;
+
+      req.updatedPlace = req.lieu;
+      req.isPlaceDeleted = true;
 
       res.status(200).json({ message: "PLACE_DELETED" });
-      next();
+      return next();
     } catch (e) {
       req.log.error(e, "PLACE_DELETE_IMPOSSIBLE");
       return res.status(500).json({ message: "PLACE_DELETE_IMPOSSIBLE" });
@@ -818,10 +795,7 @@ router.delete(
   },
   setObsoletePlaceChanges,
   rebuildTempServiceClosure,
-  syncEntityDeletion,
-  () => {
-    return;
-  }
+  sendPlaceChangesToMq
 );
 
 /**
@@ -861,19 +835,16 @@ router.patch(
   ) => {
     try {
       const { placeChanges, updatedPlace } = await patchParcours(req);
-      req.airtableEntity = updatedPlace;
-      req.airtableEntityType = AirtableEntityType.PLACE;
       req.placeChanges = placeChanges;
       req.updatedPlace = updatedPlace;
 
       res.status(200).json({ ...updatedPlace, historicEntry: !!placeChanges });
-      next();
+      return next();
     } catch (err) {
       req.log.error(err);
       return res.status(500).json({ message: "UPDATE_PARCOURS_MARAUDE_ERROR" });
     }
   },
-  setEntityExcludedOrNotAndNext,
   sendPlaceChangesToMq
 );
 

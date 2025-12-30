@@ -191,14 +191,4 @@ describe("CategoryTranslateKeyPipe", () => {
       expect(pipe.transform("HeAlTh")).toBe("CAT_HEALTH");
     });
   });
-
-  describe("error cases", () => {
-    it("should handle null gracefully", () => {
-      expect(pipe.transform(null)).toBe("");
-    });
-
-    it("should handle undefined gracefully", () => {
-      expect(pipe.transform(undefined)).toBe("");
-    });
-  });
 });

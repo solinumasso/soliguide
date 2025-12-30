@@ -216,7 +216,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             >
               <span *ngIf="!loading">{{ "EDIT" | translate }}</span>
               <span *ngIf="loading"
-                ><fa-icon icon="circle-notch" aria-hidden="true" [spin]="true">
+                ><fa-icon
+                  icon="circle-notch"
+                  aria-hidden="true"
+                  animation="spin"
+                >
                 </fa-icon>
                 {{ "PLEASE_WAIT" | translate }}</span
               >
@@ -231,7 +235,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 {{ "DELETE" | translate }}
               </span>
               <span *ngIf="loading"
-                ><fa-icon icon="circle-notch" aria-hidden="true" [spin]="true">
+                ><fa-icon
+                  icon="circle-notch"
+                  aria-hidden="true"
+                  animation="spin"
+                >
                 </fa-icon>
                 {{ "PLEASE_WAIT" | translate }}</span
               >

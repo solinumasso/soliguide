@@ -18,7 +18,8 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
-<div class="container my-5" *ngIf="place">
+@if (place) {
+<div class="container my-5">
   <div class="row">
     <div class="col-md-8 col-12">
       <h1 class="d-inline-block me-1">{{ place.name }}</h1>
@@ -34,15 +35,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       >
         {{ place.status | translate }}
       </span>
-      <span
-        *ngIf="
-          place.status === PlaceStatus.ONLINE &&
-          place.visibility === PlaceVisibility.PRO
-        "
-        class="badge bg-info align-top ms-2"
-      >
+      @if (place.status === PlaceStatus.ONLINE && place.visibility ===
+      PlaceVisibility.PRO) {
+      <span class="badge bg-info align-top ms-2">
         {{ "PRO" | translate }}
       </span>
+      }
 
       <p class="my-1">
         <b>{{
@@ -61,22 +59,23 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             routerLinkActive="router-link-active"
             >{{ orga.name }}</a
           >
-          <ng-container *ngIf="!last">, </ng-container>
+          @if (!last) {, }
         </ng-container>
-        <ng-container *ngIf="!place.organizations.length">{{
-          "NONE_F" | translate
-        }}</ng-container>
+        @if (!place.organizations.length) {
+        {{ "NONE_F" | translate }}
+        }
       </p>
       <p class="my-1" appTextDirection>
         {{ "CREATION_DATE" | translate }}
         {{ place.createdAt | date : "fullDate" }}
-        <ng-container *ngIf="place.createdBy">
-          {{ "BY" | translate | lowercase }} {{ place.createdBy }}</ng-container
-        >
+        @if (place.createdBy) {
+        {{ "BY" | translate | lowercase }} {{ place.createdBy }}
+        }
       </p>
     </div>
 
-    <div class="col-md-4 col-12 text-end d-inline-block" *ngIf="me">
+    @if (me) {
+    <div class="col-md-4 col-12 text-end d-inline-block">
       <div class="d-inline-block mt-2 ms-2">
         <a
           target="_blank"
@@ -91,11 +90,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         </a>
       </div>
     </div>
+    }
   </div>
 
   <div class="row mt-4">
     <div class="col-2 d-none d-md-block">
-      <nav class="sidebar-sticky" *ngIf="me">
+      @if( me ) {
+      <nav class="sidebar-sticky">
         <ul>
           <li>
             <a [routerLink]="currentUrl" fragment="info">
@@ -109,17 +110,19 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             }}</a>
           </li>
 
-          <li *ngIf="placeInOrga">
+          @if (placeInOrga) {
+          <li>
             <a [routerLink]="currentUrl" fragment="contacts">
               {{ "CONTACTS" | translate }}</a
             >
           </li>
-
-          <li *ngIf="place.placeType === PlaceType.PLACE">
+          } @if (place.placeType === PlaceType.PLACE) {
+          <li>
             <a [routerLink]="currentUrl" fragment="opening-hours">
               {{ "OPENING_HOURS" | translate }}</a
             >
           </li>
+          }
 
           <li>
             <a [routerLink]="currentUrl" fragment="hosted-public">{{
@@ -139,16 +142,44 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             >
           </li>
 
-          <li *ngIf="place.placeType === PlaceType.PLACE">
+          @if (place.placeType === PlaceType.PLACE) {
+          <li>
             <a [routerLink]="currentUrl" fragment="photo">
               {{ "PICTURES" | translate }}</a
             >
           </li>
-
-          <li *ngIf="me.admin">
+          } @if (me.admin) {
+          <li>
             <app-duplicate-place [place]="place" />
           </li>
-          <li *ngIf="me.admin">
+          } @if (me.admin) {
+          <li>
+            <button
+              type="button"
+              [disabled]="syncLoading"
+              class="btn btn-outline-primary mb-2"
+              (click)="syncPlace()"
+            >
+              @if (syncLoading ) {
+              <span class="px-1">{{ "SYNC_IN_PROGRESS" | translate }}</span>
+              <fa-icon
+                aria-hidden="true"
+                [icon]="['fas', 'sync']"
+                animation="spin"
+                class="px-1"
+              ></fa-icon>
+              } @else {
+              <span class="px-1">{{ "SYNC_PLACES" | translate }}</span>
+              <fa-icon
+                aria-hidden="true"
+                [icon]="['fas', 'sync']"
+                class="px-1"
+              ></fa-icon>
+              }
+            </button>
+          </li>
+          } @if (me.admin) {
+          <li>
             <button
               type="button"
               class="btn btn-outline-danger"
@@ -157,17 +188,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               {{ "DELETE_PLACE" | translate }}
             </button>
           </li>
+          }
         </ul>
       </nav>
+      }
     </div>
 
     <div class="col-12 col-md-7">
       <div class="row">
         <div class="col-12">
-          <div
-            class="alert alert-danger"
-            *ngIf="place.status === PlaceStatus.OFFLINE"
-          >
+          @if (place.status === PlaceStatus.OFFLINE) {
+          <div class="alert alert-danger">
             <b class="alert-link">
               <fa-icon [icon]="['fas', 'exclamation-triangle']"></fa-icon>
               {{ "STRUCTURE_HORS_LIGNE" | translate }}
@@ -175,6 +206,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <br />
             {{ "STRUCTURE_HORS_LIGNE_MESSAGE_CAN_EDIT" | translate }}
           </div>
+          }
 
           <app-display-temp-banner
             [tempInfoType]="TempInfoType.MESSAGE"
@@ -251,10 +283,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
         <div class="row">
           <div class="col-12">
+            @if (place.placeType === PlaceType.PLACE) {
             <app-display-position-admin
-              *ngIf="place.placeType === PlaceType.PLACE"
               [place]="place"
             ></app-display-position-admin>
+            }
             <div class="map-container">
               <app-search-map
                 [markers]="markers"
@@ -263,15 +296,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               ></app-search-map>
             </div>
 
+            @if (place.placeType === PlaceType.ITINERARY) {
             <app-display-parcours-mobile
-              *ngIf="place.placeType === PlaceType.ITINERARY"
               [place]="place"
             ></app-display-parcours-mobile>
+            }
           </div>
         </div>
       </div>
 
-      <div class="form-container" id="contacts" *ngIf="placeInOrga">
+      @if (placeInOrga) {
+      <div class="form-container" id="contacts">
         <div class="row">
           <div class="col-8">
             <h2>{{ "CONTACTS" | translate }}</h2>
@@ -306,12 +341,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           </div>
         </div>
       </div>
-
-      <div
-        class="form-container"
-        id="opening-hours"
-        *ngIf="place.placeType === PlaceType.PLACE"
-      >
+      } @if (place.placeType === PlaceType.PLACE) {
+      <div class="form-container" id="opening-hours">
         <div class="row">
           <div class="col-8">
             <h2>{{ "OPENING_HOURS" | translate }}</h2>
@@ -346,19 +377,18 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           </div>
         </div>
 
-        <div
-          *ngIf="place.newhours.closedHolidays === PlaceClosedHolidays.CLOSED"
-          class="col-12 mt-4 alert alert-info"
-        >
+        @if (place.newhours.closedHolidays === PlaceClosedHolidays.CLOSED) {
+        <div class="col-12 mt-4 alert alert-info">
           {{ "CLOSE_ON_PUBLIC_HOLIDAYS" | translate }}
         </div>
-        <div
-          *ngIf="place.newhours.closedHolidays === PlaceClosedHolidays.OPEN"
-          class="col-12 mt-4 alert alert-info"
-        >
+        } @else if (place.newhours.closedHolidays === PlaceClosedHolidays.OPEN)
+        {
+        <div class="col-12 mt-4 alert alert-info">
           {{ "OPEN_ON_PUBLIC_HOLIDAYS" | translate }}
         </div>
+        }
       </div>
+      }
 
       <div class="form-container" id="hosted-public">
         <div class="row">
@@ -386,15 +416,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           </div>
         </div>
 
+        @if (place.publics) {
         <app-display-publics-admin
-          *ngIf="place.publics"
           [publics]="place.publics"
           [languages]="place.languages"
         ></app-display-publics-admin>
-
-        <div class="alert alert-warning" *ngIf="!place.publics">
+        } @else {
+        <div class="alert alert-warning">
           {{ "NOT_DEFINED_THE_TARGET_AUDIENCE" | translate }}
         </div>
+        }
       </div>
 
       <div class="form-container" id="modalities">
@@ -423,14 +454,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           </div>
         </div>
 
+        @if (place.modalities) {
         <app-display-modalities
-          *ngIf="place.modalities"
           [modalities]="place.modalities"
         ></app-display-modalities>
-
-        <div class="alert alert-warning" *ngIf="!place.modalities">
+        } @else {
+        <div class="alert alert-warning">
           {{ "NOT_DEFINED_YOUR_RECEPTION_ARRANGEMENTS" | translate }}
         </div>
+        }
       </div>
 
       <div class="form-container" id="services">
@@ -459,35 +491,35 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           </div>
         </div>
 
-        <div class="row" *ngIf="place.services_all">
-          <ng-container *ngIf="place.services_all.length >= 1">
-            <app-display-service-admin
-              *ngFor="let service of place.services_all; let i = index"
-              [index]="i"
-              [service]="service"
-            ></app-display-service-admin>
-          </ng-container>
-          <div class="col-md-12" *ngIf="place.services_all.length < 1">
+        <div class="row">
+          @if (place.services_all.length >= 1) {
+          <app-display-service-admin
+            *ngFor="let service of place.services_all; let i = index"
+            [index]="i"
+            [service]="service"
+          ></app-display-service-admin>
+          } @else {
+          <div class="col-md-12">
             <p
               class="alert alert-danger"
               [innerHTML]="'NO_SERVICE_AVAILABLE' | translate"
             ></p>
           </div>
+          }
         </div>
 
-        <div class="row" *ngIf="place.services_all.length < 1">
+        @if (place.services_all.length < 1) {
+        <div class="row">
           <div class="col-12">
             <div class="alert alert-warning">
               {{ "NOT_DEFINED_THE_SERVICES" | translate }}
             </div>
           </div>
         </div>
+        }
       </div>
-      <div
-        class="form-container"
-        id="photo"
-        *ngIf="place.placeType === PlaceType.PLACE"
-      >
+      @if (place.placeType === PlaceType.PLACE) {
+      <div class="form-container" id="photo">
         <div class="row">
           <div class="col-8">
             <h2>{{ "PICTURES" | translate }}</h2>
@@ -512,7 +544,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             </a>
           </div>
         </div>
-        <div class="row" *ngIf="place.photos">
+        @if(place.photos) {
+        <div class="row">
           <div class="col-12 me-0">
             <app-display-photos
               [photos]="place.photos"
@@ -520,23 +553,23 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             ></app-display-photos>
           </div>
         </div>
+        }
       </div>
+      }
     </div>
 
     <div class="col-md-3 col-12">
+      @if (campaignIsActive && place.campaigns?.runningCampaign?.toUpdate &&
+      campaignIsActiveForPlace) {
       <app-helper-notification
         [title]="'UPDATE_CAMPAIGN' | translate"
         [message]="'UPDATE_PERIOD_INFORMATION' | translate"
         [link]="[routePrefix, 'campaign', 'fiche', place.lieu_id]"
         [buttonMessage]="'TO_UPDATE' | translate"
-        *ngIf="
-          campaignIsActive &&
-          place.campaigns?.runningCampaign?.toUpdate &&
-          getIsCampaignActive()
-        "
         (clickFunction)="captureEvent('click-go-to-campaign-form-button')"
       >
       </app-helper-notification>
+      }
       <div class="helper-container">
         <h3>{{ "PLACE_STATUS" | translate }}</h3>
 
@@ -622,42 +655,41 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           </div>
         </div>
 
-        <ng-container *ngIf="isDraftAndFormUncomplete">
-          <p class="my-2">
-            {{ "HOW_TO_PUBLISH_PLACE" | translate }}
-          </p>
+        @if (isDraftAndFormUncomplete) {
+        <p class="my-2">
+          {{ "HOW_TO_PUBLISH_PLACE" | translate }}
+        </p>
 
-          <ul class="my-2">
-            <li *ngIf="!place.stepsDone.emplacement">
-              {{ "SITE" | translate }}
-            </li>
-            <li
-              *ngIf="
-                !place.stepsDone.horaires && place.placeType === PlaceType.PLACE
-              "
-            >
-              {{ "OPENING_HOURS" | translate }}
-            </li>
-            <li *ngIf="!place.stepsDone.publics">
-              {{ "HOSTED_PUBLIC" | translate }}
-            </li>
-            <li *ngIf="!place.stepsDone.conditions">
-              {{ "HOW_TO_ACCESS" | translate }}
-            </li>
-            <li *ngIf="!place.stepsDone.services">
-              {{ "SERVICES_OFFERED" | translate }}
-            </li>
-          </ul>
-        </ng-container>
+        <ul class="my-2">
+          @if (!place.stepsDone.emplacement) {
+          <li>
+            {{ "SITE" | translate }}
+          </li>
+          } @if (!place.stepsDone.horaires && place.placeType ===
+          PlaceType.PLACE) {
+          <li>
+            {{ "OPENING_HOURS" | translate }}
+          </li>
+          } @if (!place.stepsDone.publics) {
+          <li>
+            {{ "HOSTED_PUBLIC" | translate }}
+          </li>
+          } @if (!place.stepsDone.conditions) {
+          <li>
+            {{ "HOW_TO_ACCESS" | translate }}
+          </li>
+          } @if(!place.stepsDone.services) {
+          <li>
+            {{ "SERVICES_OFFERED" | translate }}
+          </li>
+          }
+        </ul>
+        }
       </div>
 
-      <div
-        *ngIf="
-          place.status === PlaceStatus.ONLINE ||
-          place.status === PlaceStatus.OFFLINE
-        "
-        class="helper-container"
-      >
+      @if (place.status === PlaceStatus.ONLINE || place.status ===
+      PlaceStatus.OFFLINE) {
+      <div class="helper-container">
         <h3>{{ "PLACE_VISIBILITY" | translate }}</h3>
 
         <div
@@ -667,12 +699,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           ngbDropdown
         >
           <button type="button" ngbDropdownToggle>
-            <ng-container *ngIf="place.visibility === PlaceVisibility.ALL">{{
-              "PLACE_VISIBILITY_ALL" | translate
-            }}</ng-container>
-            <ng-container *ngIf="place.visibility === PlaceVisibility.PRO">{{
-              "PLACE_VISIBILITY_PRO" | translate
-            }}</ng-container>
+            @if (place.visibility === PlaceVisibility.ALL) {
+            {{ "PLACE_VISIBILITY_ALL" | translate }}
+            } @else if (place.visibility === PlaceVisibility.PRO) {
+            {{ "PLACE_VISIBILITY_PRO" | translate }}
+            }
           </button>
           <div ngbDropdownMenu>
             <button
@@ -702,26 +733,22 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           </div>
         </div>
       </div>
+      }
 
       <div class="mb-2"></div>
 
+      @if (place.status === PlaceStatus.ONLINE || place.status ===
+      PlaceStatus.OFFLINE) {
       <app-helper-notification
-        *ngIf="
-          place.status === PlaceStatus.ONLINE ||
-          place.status === PlaceStatus.OFFLINE
-        "
         [title]="'PLACE_UP_TO_DATE' | translate"
         [message]="'TOOLTIP_VALID_UP_TO_DATE' | translate"
         (clickFunction)="setNoChange()"
         [buttonMessage]="'NO_CHANGE' | translate"
       >
       </app-helper-notification>
-
+      } @if (place.status === PlaceStatus.ONLINE || place.status ===
+      PlaceStatus.OFFLINE) {
       <app-helper-notification
-        *ngIf="
-          place.status === PlaceStatus.ONLINE ||
-          place.status === PlaceStatus.OFFLINE
-        "
         [title]="'TEMPORARY_CLOSURE' | translate"
         [message]="'PLAN_CLOSURE' | translate"
         [link]="[
@@ -734,13 +761,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         [buttonMessage]="'TO_UPDATE' | translate"
       >
       </app-helper-notification>
-
+      } @if (place.placeType === PlaceType.PLACE && (place.status ===
+      PlaceStatus.ONLINE || place.status === PlaceStatus.OFFLINE)) {
       <app-helper-notification
-        *ngIf="
-          place.placeType === PlaceType.PLACE &&
-          (place.status === PlaceStatus.ONLINE ||
-            place.status === PlaceStatus.OFFLINE)
-        "
         [title]="'TEMPORARY_SCHEDULE' | translate"
         [message]="'PLAN_TEMPORARY_SCHEDULE' | translate"
         [link]="[
@@ -752,13 +775,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         ]"
         [buttonMessage]="'TO_UPDATE' | translate"
       >
-      </app-helper-notification>
-
+      </app-helper-notification
+      >} @if (place.status === PlaceStatus.ONLINE || place.status ===
+      PlaceStatus.OFFLINE) {
       <app-helper-notification
-        *ngIf="
-          place.status === PlaceStatus.ONLINE ||
-          place.status === PlaceStatus.OFFLINE
-        "
         [title]="'TEMPORARY_MESSAGE' | translate"
         [message]="'PLAN_TEMPORARY_MESSAGE' | translate"
         [link]="[
@@ -770,7 +790,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         ]"
         [buttonMessage]="'TO_UPDATE' | translate"
       >
-      </app-helper-notification>
+      </app-helper-notification
+      >}
 
       <app-display-changes-admin-place
         [place]="place"
@@ -778,6 +799,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     </div>
   </div>
 </div>
+}
 
 <ng-template #deletePlaceModal let-modal>
   <app-delete-place [place]="place"></app-delete-place>

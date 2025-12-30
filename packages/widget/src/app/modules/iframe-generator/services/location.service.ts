@@ -30,8 +30,8 @@ import { environment } from "../../../../environments/environment";
   providedIn: "root",
 })
 export class LocationService {
-  private readonly locationAutocompleteEndpoint = `${environment.locationApiUrl}autocomplete/fr/`;
-  private readonly locationReverseEndpoint = `${environment.locationApiUrl}reverse/fr/`;
+  private readonly locationAutocompleteEndpoint = `${environment.locationApiUrl}/autocomplete/fr`;
+  private readonly locationReverseEndpoint = `${environment.locationApiUrl}/reverse/fr`;
 
   constructor(public http: HttpClient) {}
 
@@ -40,7 +40,7 @@ export class LocationService {
     longitude: number
   ): Observable<LocationAutoCompleteAddress[]> {
     return this.http.get<LocationAutoCompleteAddress[]>(
-      `${this.locationReverseEndpoint}${latitude}/${longitude}/false`
+      `${this.locationReverseEndpoint}/${latitude}/${longitude}/false`
     );
   }
 
@@ -49,7 +49,7 @@ export class LocationService {
     geoType?: GeoTypes
   ): Observable<LocationAutoCompleteAddress[]> {
     const params = geoType ? { geoType } : undefined;
-    const url = `${this.locationAutocompleteEndpoint}all/${encodeURI(
+    const url = `${this.locationAutocompleteEndpoint}/all/${encodeURI(
       term.trim()
     )}`;
     return this.http.get<LocationAutoCompleteAddress[]>(url, { params });
