@@ -30,15 +30,32 @@ export const getGeolocation = (): Promise<GeolocationPosition> =>
           resolve(position);
         },
         (error: GeolocationPositionError) => {
-          captureException(error);
-          if (error.PERMISSION_DENIED) {
+          const getErrorType = (code: number): string => {
+            if (code === 1) {
+              return 'PERMISSION_DENIED';
+            } else if (code === 2) {
+              return 'POSITION_UNAVAILABLE';
+            }
+            return 'TIMEOUT';
+          };
+
+          captureException(new Error(`Geolocation error: ${getErrorType(error.code)}`), {
+            extra: {
+              code: error.code,
+              message: error.message
+            }
+          });
+
+          if (error.code === 1) {
             reject(new Error('UNAUTHORIZED_LOCATION'));
+          } else if (error.code === 3) {
+            reject(new Error('GEOLOCATION_TIMEOUT'));
           } else {
             reject(new Error('UNABLE_TO_LOCATE_YOU'));
           }
         },
         {
-          timeout: 5000,
+          timeout: 10000,
           maximumAge: 60000,
           enableHighAccuracy: true
         }
