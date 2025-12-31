@@ -20,7 +20,7 @@
  */
 import { captureException, captureMessage } from "@sentry/node";
 import { pinoHttp } from "pino-http";
-import type { IncomingMessage, ServerResponse } from "http";
+import type { IncomingMessage, ServerResponse } from "node:http";
 
 import { CONFIG } from "../_models";
 

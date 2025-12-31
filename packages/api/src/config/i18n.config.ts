@@ -24,9 +24,8 @@ import type { i18n } from "i18next";
 import i18next from "i18next";
 import Backend from "i18next-fs-backend";
 
-import { join } from "path";
-
 import { logger } from "../general/logger";
+import { join } from "node:path";
 
 const options = {
   backend: {

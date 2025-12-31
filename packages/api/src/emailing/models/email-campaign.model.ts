@@ -37,13 +37,6 @@ import {
 const EmailsCampaignSchema: mongoose.Schema<CampaignEmails> =
   new mongoose.Schema(
     {
-      // TODO: unify this model with all other model with a synchro
-      airtable: {
-        lastSync: { default: null, type: Date },
-        recordId: { default: null, type: String },
-        synced: { default: false, type: Boolean },
-      },
-
       campaign: {
         default: CAMPAIGN_DEFAULT_NAME,
         type: String,

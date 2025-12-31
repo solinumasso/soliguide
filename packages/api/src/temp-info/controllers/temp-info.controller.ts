@@ -93,7 +93,7 @@ export const patchTempInfoByType = async (
   }
 
   if (service) {
-    if (!params) params = {};
+    params ??= {};
     params["serviceObjectId"] = service.serviceObjectId;
   }
 

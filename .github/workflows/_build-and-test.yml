@@ -256,7 +256,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Start MinIO and MongoDB
-        run: docker compose up -d minio mongodb typesense
+        run: docker compose up -d minio mongodb
 
       - name: Pull test image
         run: docker pull "$TEST_API_IMAGE"

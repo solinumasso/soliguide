@@ -27,12 +27,6 @@ import { CampaignEmailName } from "./CampaignEmailName.type";
 import { EmailData } from "./EmailData.type";
 
 export type CampaignEmails = {
-  airtable: {
-    lastSync: Date | null;
-    recordId: string;
-    synced: boolean;
-  };
-
   campaign: CampaignNameAndAll;
 
   info: {
