@@ -30,7 +30,6 @@ export enum ServiceTranslatedFieldElement {
   SERVICE_SPECIFIC_FIELD_ACTIVITY_NAME = "service.categorySpecificFields.activityName",
   SERVICE_SPECIFIC_FIELD_AVAILABLE_EQUIPMENT_PRECISIONS = "service.categorySpecificFields.availableEquipmentPrecisions",
   SERVICE_SPECIFIC_FIELD_JOBSLIST = "service.categorySpecificFields.jobsList",
-  SERVICE_SPECIFIC_FIELD_MOBILITY_ASSISTANCE_NAME = "service.categorySpecificFields.mobilityAssistanceName",
   SERVICE_SPECIFIC_FIELD_USAGE_MODALITY = "service.categorySpecificFields.usageModality",
   SERVICE_SPECIFIC_FIELD_VOUCHER_TYPE_PRECISIONS = "service.categorySpecificFields.voucherTypePrecisions",
   SERVICE_SPECIFIC_FIELD_OTHER_PRODUCT_TYPE_PRECISIONS = "service.categorySpecificFields.otherProductTypePrecisions",
