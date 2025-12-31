@@ -92,12 +92,17 @@ export class AmqpSynchroAirtablePlaceEvent
     this.placeId = place.lieu_id;
     this.placeType = place.placeType;
     this.services = place.services_all
-      .map((service: CommonNewPlaceService) =>
-        service.category
-          ? translateServiceName(service.category, SupportedLanguagesCode.FR)
-          : ""
-      )
-      .filter((categoryName: string) => categoryName);
+      ? place.services_all
+          .map((service: CommonNewPlaceService) =>
+            service.category
+              ? translateServiceName(
+                  service.category,
+                  SupportedLanguagesCode.FR
+                )
+              : ""
+          )
+          .filter((categoryName: string) => categoryName)
+      : [];
     this.status = isDeleted ? "DELETED" : (place.status as PlaceStatus);
     this.visibility = place.visibility;
     this.sources = place.sources ?? [];

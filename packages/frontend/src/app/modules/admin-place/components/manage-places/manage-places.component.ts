@@ -47,11 +47,9 @@ import {
   PlaceVisibility,
   PublicsOther,
   SearchPlaceStatus,
-  getDepartmentCodeFromPostalCode,
   type LocationAutoCompleteAddress,
   type Categories,
   getDefaultSearchRadiusByGeoType,
-  CountryCodes,
   LocationAreas,
   ManageSearchOptions,
   SearchResults,
@@ -79,6 +77,7 @@ import {
   globalConstants,
   DEFAULT_MODAL_OPTIONS,
   SyncService,
+  getIsCampaignActive,
 } from "../../../../shared";
 
 const LOCAL_STORAGE_KEY = "SOLIGUIDE_MANAGE_PLACES_SEARCH";
@@ -145,6 +144,8 @@ export class ManagePlacesComponent implements OnInit, OnDestroy {
   public readonly ManagePlacesComponent = ManagePlacesComponent;
 
   public routePrefix: string;
+
+  protected readonly getIsCampaignActive = getIsCampaignActive;
 
   constructor(
     private readonly authService: AuthService,
@@ -335,16 +336,6 @@ export class ManagePlacesComponent implements OnInit, OnDestroy {
     );
   };
 
-  public static getIsCampaignActive(postalCode: string): boolean {
-    return (
-      THEME_CONFIGURATION.country === CountryCodes.FR &&
-      postalCode &&
-      campaignIsActiveWithTheme([
-        getDepartmentCodeFromPostalCode(CountryCodes.FR, postalCode),
-      ])
-    );
-  }
-
   public setAutonomy = (selectedAutonomies: string[]): void => {
     this.search.autonomy = selectedAutonomies as CampaignPlaceAutonomy[];
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(this.search));
@@ -357,20 +348,32 @@ export class ManagePlacesComponent implements OnInit, OnDestroy {
     this.launchSearch(true);
   };
 
-  public syncPlaces(placeId?: number): void {
-    let placeIds: number[];
-    if (placeId) {
-      placeIds = [placeId];
-      this.idSyncedPlace = placeId;
-    } else {
-      placeIds = this.places.map((place) => place.lieu_id);
-      this.idSyncedPlace = null;
-    }
+  public syncPlacesByIds(placeId: number): void {
+    this.idSyncedPlace = placeId;
 
     this.syncLoading = true;
 
     this.subscription.add(
-      this.syncService.sync(placeIds, "places").subscribe({
+      this.syncService.syncByIds([placeId], "places").subscribe({
+        next: (value: ApiMessage) => {
+          this.syncLoading = false;
+          this.toastr.success(this.translateService.instant(value.message));
+        },
+        error: (error: ApiError) => {
+          this.syncLoading = false;
+          this.toastr.error(this.translateService.instant(error.message));
+        },
+      })
+    );
+  }
+
+  public syncPlacesBySearch(): void {
+    this.idSyncedPlace = null;
+
+    this.syncLoading = true;
+
+    this.subscription.add(
+      this.syncService.syncWithSearchParams(this.search, "places").subscribe({
         next: (value: ApiMessage) => {
           this.syncLoading = false;
           this.toastr.success(this.translateService.instant(value.message));
