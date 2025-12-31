@@ -18,24 +18,16 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import type { RequestOptionsFrontend } from '$lib/services/types';
+import type { Categories } from '@soliguide/common';
 
-export interface SearchOptions {
-  page: number;
-}
+/**
+ * Special constant for "all categories" search
+ * This value is used internally in the app and converted to null when calling the API
+ */
+export const ALL_CATEGORIES = 'all_categories' as const;
 
-export interface SearchParams {
-  lang: string;
-  location: string;
-  category: string | null;
-  coordinates: number[];
-  type: string;
-  distance: number;
-  options: SearchOptions;
-}
-
-// Need to forward info from frontend request
-export interface RequestOptions extends RequestOptionsFrontend {
-  origin: string;
-  referer: string;
-}
+/**
+ * Type representing a category selection in the search interface
+ * Can be a real category from the enum or ALL_CATEGORIES for searching everything
+ */
+export type CategorySearch = Categories | typeof ALL_CATEGORIES;

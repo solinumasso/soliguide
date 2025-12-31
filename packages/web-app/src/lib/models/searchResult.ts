@@ -64,7 +64,7 @@ const computeDistance = (
 const buildSearchResultItem = (
   place: ApiPlace | ApiPlaceWithCrossingPointIndex,
   locationParams: SearchLocationParams,
-  categorySearched: Categories
+  categorySearched: Categories | null
 ): SearchResultItem => {
   const onOrientation = Boolean(place.modalities.orientation.checked);
 
@@ -171,7 +171,7 @@ const buildSearchResultWithParcours = (
   placesResult: ApiSearchResults,
   itineraryResult: ApiSearchResults,
   searchLocationParams: SearchLocationParams,
-  category: Categories
+  category: Categories | null
 ): SearchResult => {
   const placesResultItems = placesResult.places.map((place) =>
     buildSearchResultItem(place, searchLocationParams, category)
@@ -201,7 +201,7 @@ const buildSearchResultWithParcours = (
 const buildSearchResult = (
   placesResult: ApiSearchResults,
   searchLocationParams: SearchLocationParams,
-  category: Categories
+  category: Categories | null
 ): SearchResult => {
   const placesResultItems = placesResult.places.map((place) =>
     buildSearchResultItem(place, searchLocationParams, category)

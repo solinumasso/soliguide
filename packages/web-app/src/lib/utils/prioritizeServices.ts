@@ -87,10 +87,10 @@ const calculateAdditionalWeight = (
  */
 const sortServicesByRelevance = (
   services: CommonNewPlaceService[],
-  category: Categories,
+  category: Categories | null,
   allCategoriesByTheme: FlatCategoriesTreeNode[]
 ): CommonNewPlaceService[] => {
-  if (!Object.values(Categories).includes(category)) {
+  if (!category || !Object.values(Categories).includes(category)) {
     return services;
   }
 

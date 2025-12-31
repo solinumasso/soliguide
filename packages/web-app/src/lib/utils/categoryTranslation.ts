@@ -18,24 +18,28 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import type { RequestOptionsFrontend } from '$lib/services/types';
+import {
+  Categories,
+  getCategoryTranslationKey as getCommonCategoryTranslationKey
+} from '@soliguide/common';
+import { ALL_CATEGORIES, type CategorySearch } from '$lib/constants';
 
-export interface SearchOptions {
-  page: number;
-}
+/**
+ * Get translation key for a category or ALL_CATEGORIES
+ * Wrapper around the common function to handle the special ALL_CATEGORIES case
+ * Accepts both CategorySearch and string to handle values from URL params
+ * Returns empty string if category is null to display empty input field
+ */
+export const getCategorySearchTranslationKey = (
+  category: CategorySearch | string | null
+): string => {
+  if (!category) {
+    return '';
+  }
 
-export interface SearchParams {
-  lang: string;
-  location: string;
-  category: string | null;
-  coordinates: number[];
-  type: string;
-  distance: number;
-  options: SearchOptions;
-}
+  if (category === ALL_CATEGORIES) {
+    return 'ALL_CATEGORIES';
+  }
 
-// Need to forward info from frontend request
-export interface RequestOptions extends RequestOptionsFrontend {
-  origin: string;
-  referer: string;
-}
+  return getCommonCategoryTranslationKey(category as Categories);
+};

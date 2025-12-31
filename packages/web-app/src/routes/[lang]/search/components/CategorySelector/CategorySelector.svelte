@@ -25,8 +25,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import CategoryButton from './CategoryButton.svelte';
   import CategoryBrowser from './CategoryBrowser.svelte';
   import { CategoryBrowserState } from './types';
-  import type { Categories } from '@soliguide/common';
   import { categoryService } from '$lib/services/categoryService';
+  import type { CategorySearch } from '$lib/constants';
 
   const pageStore = getCategorySelectorController(categoryService);
 
@@ -34,7 +34,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   pageStore.init();
 
-  const selectCategory = (category: Categories): void => {
+  const selectCategory = (category: CategorySearch): void => {
     pageStore.selectCategory(category);
     dispatch('selectCategory', category);
   };

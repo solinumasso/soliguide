@@ -24,6 +24,7 @@ import type { CategoryService } from '$lib/services/types';
 import { CategoryBrowserState, type CategorySelectorController, type PageState } from './types';
 import { locationService } from '$lib/services';
 import { getSearchPageController } from '../../pageController';
+import { type CategorySearch } from '$lib/constants';
 
 /**
  * Returns an instance of the service
@@ -135,8 +136,9 @@ export const getCategorySelectorController = (
     });
   };
 
-  const selectCategory = (categoryId: Categories) => {
+  const selectCategory = (categoryId: CategorySearch) => {
     const isFromBrowser = get(pageStore).browserState !== CategoryBrowserState.CLOSED;
+
     searchController.captureEvent(isFromBrowser ? 'select-category' : 'select-showcased-category', {
       categorySelected: categoryId
     });

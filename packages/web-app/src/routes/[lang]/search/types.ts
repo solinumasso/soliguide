@@ -27,6 +27,7 @@ import {
 import type { CategoriesErrors, LocationErrors, PosthogCaptureFunction } from '$lib/services/types';
 import type { LocationSuggestion } from '$lib/models/locationSuggestion';
 import type { Writable } from 'svelte/store';
+import type { CategorySearch } from '$lib/constants';
 
 /**
  * Enum describing the current step of the search form
@@ -49,7 +50,7 @@ export enum Focus {
 /**
  * used for query string in search results page
  * location is the location geoValue
- * category is the category id
+ * category is the category id (can be ALL_CATEGORIES for searching all)
  * */
 export interface SearchPageParams {
   lang: string;
@@ -82,7 +83,7 @@ export interface PageState {
   locationSuggestionError: LocationErrors;
   currentPositionError: string | null;
   categorySuggestions: Categories[];
-  selectedCategory: Categories | null;
+  selectedCategory: CategorySearch | null;
   categorySuggestionError: CategoriesErrors;
   searchParams: SearchPageParams | null;
   focus: Focus;
@@ -105,7 +106,7 @@ export interface SearchPageController {
   editLocation(): void;
   init(country: SoliguideCountries, lang: SupportedLanguagesCode, options: PageOptions): void;
   getPreviousStep(): Steps;
-  selectCategorySuggestion(categorySuggestion: Categories): void;
+  selectCategorySuggestion(categorySuggestion: CategorySearch): void;
   captureEvent: PosthogCaptureFunction;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getCategorySuggestions(event: any): void;

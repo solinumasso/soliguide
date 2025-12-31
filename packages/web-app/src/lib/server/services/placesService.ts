@@ -83,7 +83,7 @@ export default (fetcher = fetch) => {
         coordinates,
         distance
       },
-      category as Categories
+      category as Categories | null
     );
   };
 
