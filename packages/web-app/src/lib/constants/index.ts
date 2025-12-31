@@ -18,24 +18,4 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import type { RequestOptionsFrontend } from '$lib/services/types';
-
-export interface SearchOptions {
-  page: number;
-}
-
-export interface SearchParams {
-  lang: string;
-  location: string;
-  category: string | null;
-  coordinates: number[];
-  type: string;
-  distance: number;
-  options: SearchOptions;
-}
-
-// Need to forward info from frontend request
-export interface RequestOptions extends RequestOptionsFrontend {
-  origin: string;
-  referer: string;
-}
+export { ALL_CATEGORIES, type CategorySearch } from './categories';

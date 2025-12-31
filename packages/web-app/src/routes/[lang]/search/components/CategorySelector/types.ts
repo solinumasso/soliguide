@@ -21,6 +21,7 @@
 import { Categories } from '@soliguide/common';
 import { type Writable } from 'svelte/store';
 import type { PosthogCaptureFunction } from '$lib/services/types';
+import type { CategorySearch } from '$lib/constants';
 
 export enum CategoryBrowserState {
   CLOSED = 'closed',
@@ -33,7 +34,7 @@ export interface PageState {
   parentCategory: Categories | null;
   categories: Categories[];
   browserState: CategoryBrowserState;
-  selectedCategory: Categories | null;
+  selectedCategory: CategorySearch | null;
   navigationStack: Categories[];
 }
 
@@ -42,7 +43,7 @@ export interface CategorySelectorController {
   openCategoryBrowser(): void;
   navigateToDetail(categoryId: Categories): void;
   navigateBack(): void;
-  selectCategory(categoryId: Categories): void;
+  selectCategory(categoryId: CategorySearch): void;
   init(): void;
 }
 

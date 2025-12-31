@@ -31,6 +31,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import type { I18nStore } from '$lib/client/types';
   import type { PosthogCaptureFunction } from '$lib/services/types';
   import { categoryService } from '$lib/services/categoryService';
+  import { ALL_CATEGORIES } from '$lib/constants';
 
   export let state: CategoryBrowserState = CategoryBrowserState.CLOSED;
   export let parentCategory: Categories | null = null;
@@ -65,11 +66,21 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     }
   };
 
+  const searchAllCategories = () => {
+    dispatch('selectCategory', ALL_CATEGORIES);
+  };
+
   const selectParentCategory = () => {
     if (!parentCategory) {
       return;
     }
     dispatch('selectCategory', parentCategory);
+  };
+
+  const handleClick = () => {
+    if (!parentCategory) {
+      searchAllCategories();
+    }
   };
 </script>
 
@@ -81,6 +92,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <div class="browser-body">
     <CategoryListItem
       title={$i18n.t(parentCategory ? getCategoryTranslationKey(parentCategory) : 'ALL_CATEGORIES')}
+      navigable={!parentCategory}
+      on:click={handleClick}
     >
       <svelte:fragment slot="icon">
         {#if parentCategory}
