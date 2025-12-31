@@ -1,3 +1,16 @@
+# [4.120.0](https://github.com/solinumasso/soliguide/compare/v4.119.0...v4.120.0) (2025-12-31)
+
+
+### Bug Fixes
+
+* **api:** delete useless code ([d9bc80b](https://github.com/solinumasso/soliguide/commit/d9bc80b655175c89f0eb7ba5b92adc3e6d6418b2))
+* **api:** update dump ([d6adde5](https://github.com/solinumasso/soliguide/commit/d6adde5dd22a7a7d602909bb055240ffff283004))
+
+
+### Features
+
+* **web-app:** increase geoloc timeout and better error gestion ([#1085](https://github.com/solinumasso/soliguide/issues/1085)) ([a7ff03c](https://github.com/solinumasso/soliguide/commit/a7ff03c5d48c68eafbcdc9b73571552f8a2172fd))
+
 # [4.119.0](https://github.com/solinumasso/soliguide/compare/v4.118.1...v4.119.0) (2025-12-30)
 
 
