@@ -145,11 +145,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <div
   class="align-items-center justify-content-between d-flex py-3 flex-row-reverse"
 >
-  <button
+  <!-- BUTTON TO SYNC ALL USERS BASED ON SEARCH CRITERIA - DISABLED FOR NOW -->
+  <!-- <button
     type="button"
     [disabled]="nbResults === 0 || loading || syncLoading"
     class="btn btn-outline-primary m-1 row"
-    (click)="syncUsers()"
+    (click)="syncUsersBySearch()"
   >
     @if (syncLoading && idSyncedUser === null) {
     <span class="px-1">{{ "SYNC_IN_PROGRESS" | translate }}</span>
@@ -163,7 +164,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <span class="px-1">{{ "SYNC_USERS" | translate }}</span>
     <fa-icon aria-hidden="true" [icon]="['fas', 'sync']" class="px-1"></fa-icon>
     }
-  </button>
+  </button> -->
 </div>
 
 <div class="view" *ngIf="nbResults > 0 && !loading" @fadeInOut>
@@ -333,7 +334,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <button
               type="button"
               class="btn btn-primary btn-sm text-center mx-1"
-              (click)="syncUsers(user.user_id)"
+              (click)="syncUsersByIds(user.user_id)"
               [attr.aria-label]="'SYNC_USER' | translate"
               [ngbTooltip]="'SYNC_USER' | translate"
             >

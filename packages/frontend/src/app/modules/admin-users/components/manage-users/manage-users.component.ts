@@ -262,20 +262,32 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
     );
   }
 
-  public syncUsers(userId?: number): void {
-    let userIds: number[];
-    if (userId) {
-      userIds = [userId];
-      this.idSyncedUser = userId;
-    } else {
-      userIds = this.users.map((user) => user.user_id);
-      this.idSyncedUser = null;
-    }
+  public syncUsersByIds(userId: number): void {
+    this.idSyncedUser = userId;
 
     this.syncLoading = true;
 
     this.subscription.add(
-      this.syncService.sync(userIds, "users").subscribe({
+      this.syncService.syncByIds([userId], "users").subscribe({
+        next: (value: ApiMessage) => {
+          this.syncLoading = false;
+          this.toastr.success(this.translateService.instant(value.message));
+        },
+        error: (error: ApiError) => {
+          this.syncLoading = false;
+          this.toastr.error(this.translateService.instant(error.message));
+        },
+      })
+    );
+  }
+
+  public syncUsersBySearch(): void {
+    this.idSyncedUser = null;
+
+    this.syncLoading = true;
+
+    this.subscription.add(
+      this.syncService.syncWithSearchParams(this.search, "users").subscribe({
         next: (value: ApiMessage) => {
           this.syncLoading = false;
           this.toastr.success(this.translateService.instant(value.message));

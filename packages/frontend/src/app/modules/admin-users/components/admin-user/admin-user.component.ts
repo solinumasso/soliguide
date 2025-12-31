@@ -196,7 +196,7 @@ export class AdminUserComponent implements OnInit, OnDestroy {
     this.syncLoading = true;
 
     this.subscription.add(
-      this.syncService.sync([this.user.user_id], "users").subscribe({
+      this.syncService.syncByIds([this.user.user_id], "users").subscribe({
         next: (value: ApiMessage) => {
           this.syncLoading = false;
           this.toastr.success(this.translateService.instant(value.message));
