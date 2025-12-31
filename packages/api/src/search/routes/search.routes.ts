@@ -21,16 +21,12 @@
 import { Router, type NextFunction } from "express";
 
 import {
-  ApiPlace,
   CountryCodes,
   PlaceType,
   SUPPORTED_LANGUAGES_BY_COUNTRY,
   SoliguideCountries,
   SupportedLanguagesCode,
   UserStatus,
-  convertNewToOldMobilityCategory,
-  isNewMobilityCategory,
-  type LegacyMobilityCategory,
 } from "@soliguide/common";
 
 import { searchTerm } from "../controllers/auto-complete.controller";
@@ -53,14 +49,14 @@ import {
   logSearchQuery,
   handleLanguage,
   overrideLocationWithAreasInfo,
+  mobilityConverting,
+  locationApiCountryHandling,
 } from "../../middleware";
 
 import { getTranslatedPlacesForSearch } from "../../translations/controllers/translation.controller";
 import SearchSuggestionsController from "../controllers/search-suggestions.controller";
 import { createCache } from "cache-manager";
 import { trackSearchPlaces } from "../../middleware/analytics";
-import { mobilityConverting } from "../../middleware/taxonomy-retro-compatibility";
-import { locationApiCountryHandling } from "../../middleware/location-api";
 import { convertPlaceFromNewMobilityToOld } from "../utils";
 
 const searchSuggestionsCache = createCache({ ttl: 30 * 24 * 60 * 60 });

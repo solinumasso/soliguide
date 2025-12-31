@@ -41,7 +41,6 @@ export const CATEGORIES_SPECIFIC_FIELDS_PLACE_DISPLAYED: Record<
     "courseType",
     "canteensMealType",
     "domiciliationType",
-    "mobilityAssistanceName",
     "wellnessActivityName",
     "hygieneProductType",
     "activityName",
