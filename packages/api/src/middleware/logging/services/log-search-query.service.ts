@@ -61,6 +61,8 @@ export const logSearchQuery = async (
     if (foundSuggestion) {
       searchData.suggestionType = foundSuggestion.type;
       searchData.slug = foundSuggestion.slug;
+    } else {
+      searchData.suggestionType = AutoCompleteType.EXPRESSION;
     }
   }
 

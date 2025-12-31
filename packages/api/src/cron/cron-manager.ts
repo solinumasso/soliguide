@@ -23,7 +23,7 @@
 import "../instrument";
 
 import Bree from "bree";
-import { join } from "path";
+import { join } from "node:path";
 import { logger } from "../general/logger";
 
 const defaultExtension =
@@ -114,26 +114,26 @@ const bree = new Bree({
     },
     // ----
     // CAMPAIGN
-    {
-      interval: "at 9:00 am",
-      name: "[MAILGUN] Send remind me emails",
-      path: join(
-        __dirname,
-        "jobs",
-        "emailing",
-        `send-remind-me-emails.job${defaultExtension}`
-      ),
-    },
-    {
-      interval: "every 1 minute",
-      name: "[MAILGUN] Send Emails",
-      path: join(
-        __dirname,
-        "jobs",
-        "emailing",
-        `send-campaign-emails.job${defaultExtension}`
-      ),
-    },
+    // {
+    //   interval: "at 9:00 am",
+    //   name: "[MAILGUN] Send remind me emails",
+    //   path: join(
+    //     __dirname,
+    //     "jobs",
+    //     "emailing",
+    //     `send-remind-me-emails.job${defaultExtension}`
+    //   ),
+    // },
+    // {
+    //   interval: "every 1 minute",
+    //   name: "[MAILGUN] Send Emails",
+    //   path: join(
+    //     __dirname,
+    //     "jobs",
+    //     "emailing",
+    //     `send-campaign-emails.job${defaultExtension}`
+    //   ),
+    // },
   ],
 });
 

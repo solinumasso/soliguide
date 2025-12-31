@@ -92,18 +92,8 @@ services:
       retries: 3
       start_period: 20s
 
-  typesense:
-    image: typesense/typesense:27.1
-    restart: on-failure
-    ports:
-      - 8108:8108
-    volumes:
-      - typesense-data:/data
-    command: "--data-dir /data --api-key=xyz --enable-cors"
-
 volumes:
   mongo-data:
   rabbitmq-data:
   postgres-data:
-  typesense-data:
   redis-data:
