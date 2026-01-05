@@ -1,3 +1,10 @@
+## [4.120.1](https://github.com/solinumasso/soliguide/compare/v4.120.0...v4.120.1) (2026-01-05)
+
+
+### Bug Fixes
+
+* fix cron not working ([c0d210d](https://github.com/solinumasso/soliguide/commit/c0d210dc3f1d4a99bc74f2e025d5914246b6e00b))
+
 # [4.120.0](https://github.com/solinumasso/soliguide/compare/v4.119.0...v4.120.0) (2025-12-31)
 
 
