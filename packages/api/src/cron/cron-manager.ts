@@ -47,18 +47,6 @@ const bree = new Bree({
 
   jobs: [
     // ----
-    // GENERAL
-    {
-      interval: "at 1:15 am",
-      name: "[GENERAL] Imports categories",
-      path: join(
-        __dirname,
-        "jobs",
-        "general",
-        `import-categories.job${defaultExtension}`
-      ),
-    },
-    // ----
     // TRANSLATIONS
     // {
     //   interval: "every 2 minutes",
