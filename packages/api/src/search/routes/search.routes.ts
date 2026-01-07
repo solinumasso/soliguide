@@ -57,6 +57,7 @@ import {
 import { getTranslatedPlacesForSearch } from "../../translations/controllers/translation.controller";
 import SearchSuggestionsController from "../controllers/search-suggestions.controller";
 import { createCache } from "cache-manager";
+import { trackSearchPlaces } from "../../middleware/analytics";
 
 const searchSuggestionsCache = createCache({ ttl: 30 * 24 * 60 * 60 });
 
@@ -104,7 +105,8 @@ router.post(
       res.status(500).json({ message: "ADMIN_SEARCH_ERROR" });
     }
   },
-  logSearchQuery
+  logSearchQuery,
+  trackSearchPlaces
 );
 
 router.post(
@@ -292,7 +294,8 @@ router.post(
     }
   },
   overrideLocationWithAreasInfo,
-  logSearchQuery
+  logSearchQuery,
+  trackSearchPlaces
 );
 
 export default router;
