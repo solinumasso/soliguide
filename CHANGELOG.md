@@ -1,3 +1,11 @@
+## [4.120.2](https://github.com/solinumasso/soliguide/compare/v4.120.1...v4.120.2) (2026-01-07)
+
+
+### Bug Fixes
+
+* reimplement api search place poshtog event ([fcb869f](https://github.com/solinumasso/soliguide/commit/fcb869f028c7d4595c6f022a937fdc7967c060c7))
+* reimplement api search place poshtog event ([d9423e1](https://github.com/solinumasso/soliguide/commit/d9423e10611dbe78c9df5fe57bd15069647cda18))
+
 ## [4.120.1](https://github.com/solinumasso/soliguide/compare/v4.120.0...v4.120.1) (2026-01-05)
 
 
