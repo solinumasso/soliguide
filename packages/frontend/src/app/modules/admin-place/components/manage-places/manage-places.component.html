@@ -466,11 +466,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   </div>
 
   <div class="text-end">
-    <button
+    <!-- BUTTON TO SYNC ALL PLACES BASED ON SEARCH CRITERIA - DISABLED FOR NOW -->
+    <!-- <button
       type="button"
       [disabled]="nbResults === 0 || loading || syncLoading"
       class="btn btn-outline-primary m-1 row"
-      (click)="syncPlaces()"
+      (click)="syncPlacesBySearch()"
     >
       @if (syncLoading && idSyncedPlace === null) {
       <span class="px-1">{{ "SYNC_IN_PROGRESS" | translate }}</span>
@@ -488,7 +489,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         class="px-1"
       ></fa-icon>
       }
-    </button>
+    </button> -->
 
     @if (search.placeType === PlaceType.PLACE){
     <button
@@ -904,7 +905,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <button
               type="button"
               class="btn btn-primary btn-sm text-center"
-              (click)="syncPlaces(place.lieu_id)"
+              (click)="syncPlacesByIds(place.lieu_id)"
               [attr.aria-label]="'SYNC_PLACE' | translate"
               [ngbTooltip]="'SYNC_PLACE' | translate"
             >
@@ -926,9 +927,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               *ngIf="
                 campaignIsActiveForMe &&
                 place.campaigns.runningCampaign.toUpdate &&
-                ManagePlacesComponent.getIsCampaignActive(
-                  place.position.postalCode
-                )
+                getIsCampaignActive(place.position.postalCode)
               "
             >
               <fa-icon

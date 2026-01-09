@@ -24,6 +24,7 @@ import {
   CountryCodes,
   CAMPAIGN_LIST,
   campaignIsActive,
+  getDepartmentCodeFromPostalCode,
 } from "@soliguide/common";
 
 import { THEME_CONFIGURATION } from "../../../models";
@@ -49,4 +50,14 @@ export const campaignIsAvailable = (
     }
   }
   return isCampaignAvailable;
+};
+
+export const getIsCampaignActive = (postalCode: string): boolean => {
+  return (
+    THEME_CONFIGURATION.country === CountryCodes.FR &&
+    postalCode &&
+    campaignIsActiveWithTheme([
+      getDepartmentCodeFromPostalCode(CountryCodes.FR, postalCode),
+    ])
+  );
 };

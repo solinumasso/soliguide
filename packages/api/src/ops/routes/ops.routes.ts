@@ -20,7 +20,7 @@
  */
 import express, { NextFunction } from "express";
 
-import { ApiPlace, UserStatus } from "@soliguide/common";
+import { ApiPlace, PlaceType, UserStatus } from "@soliguide/common";
 
 import {
   checkRights,
@@ -42,15 +42,19 @@ import { findPlacesByParams } from "../../place/services/place.service";
 import { searchUsers } from "../../user/services";
 import { idsToSyncDto } from "../dto";
 import { canEditPlace } from "../../user/controllers/user-rights.controller";
+import { searchAdminDto } from "../../search/dto";
+import { searchPlaces } from "../../search/controllers/search.controller";
+import { searchUserDto } from "../../user/dto";
+import { searchUsers as searchUsersController } from "../../user/controllers/user-admin.controller";
 
 const router = express.Router();
 
 /**
  * @swagger
  *
- * /ops/reset-at-sync/users/all:
+ * /ops/reset-at-sync/users/search:
  *   post:
- *     description: Send all users to rabbitMQ to sync them with AT
+ *     description: Send users found with search to rabbitMQ to sync them with AT
  *     tags: [Ops]
  *     produces:
  *       - application/json
@@ -63,11 +67,17 @@ const router = express.Router();
  *      - bearerAuth: []
  */
 router.post(
-  "/reset-at-sync/users/all",
-  checkRights([UserStatus.ADMIN_SOLIGUIDE]),
+  "/reset-at-sync/users/search",
+  checkRights([UserStatus.ADMIN_SOLIGUIDE, UserStatus.ADMIN_TERRITORY]),
+  searchUserDto,
+  getFilteredData,
   async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
     try {
-      req.updatedUsers = await searchUsers({});
+      req.bodyValidated.options.limit = 0;
+
+      req.updatedUsers = (
+        await searchUsersController(req.bodyValidated, req.user)
+      ).results as UserPopulateType[];
 
       return next();
     } catch (e) {
@@ -86,9 +96,9 @@ router.post(
 /**
  * @swagger
  *
- * /ops/reset-at-sync/places/all:
+ * /ops/reset-at-sync/places/search:
  *   post:
- *     description: Send all places to rabbitMQ to sync them with AT
+ *     description: Send places found with search to rabbitMQ to sync them with AT
  *     tags: [Ops]
  *     produces:
  *       - application/json
@@ -101,11 +111,28 @@ router.post(
  *      - bearerAuth: []
  */
 router.post(
-  "/reset-at-sync/places/all",
-  checkRights([UserStatus.ADMIN_SOLIGUIDE]),
+  "/reset-at-sync/places/search",
+  checkRights([UserStatus.ADMIN_SOLIGUIDE, UserStatus.ADMIN_TERRITORY]),
+  searchAdminDto,
+  getFilteredData,
   async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
+    const searchData = req.bodyValidated;
+    const context =
+      searchData.placeType === PlaceType.PLACE
+        ? "MANAGE_PLACE"
+        : "MANAGE_PARCOURS";
+
+    searchData.options.limit = 0;
+
     try {
-      req.updatedPlaces = await findPlacesByParams({}, true);
+      req.updatedPlaces = (
+        await searchPlaces(
+          req.requestInformation.categoryService,
+          req.user,
+          searchData,
+          context
+        )
+      ).places as ModelWithId<ApiPlace>[];
 
       return next();
     } catch (e) {

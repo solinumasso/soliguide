@@ -288,7 +288,7 @@ export class AdminPlaceComponent implements OnInit, OnDestroy {
     this.syncLoading = true;
 
     this.subscription.add(
-      this.syncService.sync([this.place.lieu_id], "places").subscribe({
+      this.syncService.syncByIds([this.place.lieu_id], "places").subscribe({
         next: (value: ApiMessage) => {
           this.syncLoading = false;
           this.toastr.success(this.translateService.instant(value.message));
