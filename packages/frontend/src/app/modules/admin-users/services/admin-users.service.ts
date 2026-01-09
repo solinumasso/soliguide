@@ -34,7 +34,7 @@ import { PasswordTokenResponse } from "src/app/models/manage-search/interfaces";
   providedIn: "root",
 })
 export class AdminUsersService {
-  private endPoint = `${environment.apiUrl}/admin/users/`;
+  private endPoint = `${environment.apiUrl}/admin/users`;
 
   constructor(private http: HttpClient) {}
 
@@ -42,7 +42,7 @@ export class AdminUsersService {
     search: SearchUsersObject
   ): Observable<SearchResults<CommonUser>> {
     return this.http
-      .post<SearchResults<CommonUser>>(`${this.endPoint}search`, search)
+      .post<SearchResults<CommonUser>>(`${this.endPoint}/search`, search)
       .pipe(
         map((response: SearchResults<CommonUser>) => {
           if (response.nbResults > 0) {
@@ -54,18 +54,18 @@ export class AdminUsersService {
   }
 
   public deleteUser(user: CommonUser): Observable<ApiMessage> {
-    return this.http.delete<ApiMessage>(`${this.endPoint}${user._id}`);
+    return this.http.delete<ApiMessage>(`${this.endPoint}/${user._id}`);
   }
 
   public removeFromDev(userObjectId: string): Observable<ApiMessage> {
-    return this.http.patch<ApiMessage>(`${this.endPoint}removeFromDev`, {
+    return this.http.patch<ApiMessage>(`${this.endPoint}/removeFromDev`, {
       _id: userObjectId,
     });
   }
 
   public createDevToken(userObjectId: string): Observable<string> {
     return this.http.get<string>(
-      `${this.endPoint}createDevToken/${userObjectId}`
+      `${this.endPoint}/createDevToken/${userObjectId}`
     );
   }
 

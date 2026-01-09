@@ -65,7 +65,7 @@ export class UsersService {
     userObjectId: string
   ): Observable<ApiMessage> {
     return this.http.patch<ApiMessage>(
-      `${this.endPoint}${userObjectId}`,
+      `${this.endPoint}/${userObjectId}`,
       userEditDatas
     );
   }
@@ -73,7 +73,7 @@ export class UsersService {
   // Editer mon compte
   public updateMyAccount(userEditDatas: UserEdit): Observable<User> {
     return this.http
-      .patch<CommonUser>(`${this.endPoint}me`, userEditDatas)
+      .patch<CommonUser>(`${this.endPoint}/me`, userEditDatas)
       .pipe(
         map((user: CommonUser) => {
           return new User(user);
@@ -82,7 +82,7 @@ export class UsersService {
   }
 
   public getUser(id: string): Observable<User> {
-    return this.http.get<CommonUser>(`${this.endPoint}${id}`).pipe(
+    return this.http.get<CommonUser>(`${this.endPoint}/${id}`).pipe(
       map((user: CommonUser) => {
         return new User(user);
       })
@@ -90,12 +90,12 @@ export class UsersService {
   }
 
   public sendResetPwdEmail(data: { mail: string }): Observable<ApiMessage> {
-    return this.http.post<ApiMessage>(`${this.endPoint}forgot-password`, data);
+    return this.http.post<ApiMessage>(`${this.endPoint}/forgot-password`, data);
   }
 
   public checkPasswordToken(token: string): Observable<boolean> {
     return this.http.get<boolean>(
-      `${this.endPoint}check-password-token/${token}`
+      `${this.endPoint}/check-password-token/${token}`
     );
   }
 
@@ -104,13 +104,13 @@ export class UsersService {
     token: string;
   }): Observable<ApiMessage> {
     return this.http.post<ApiMessage>(
-      `${this.endPoint}reset-password/${data.token}`,
+      `${this.endPoint}/reset-password/${data.token}`,
       data
     );
   }
 
   public checkEmailAlreadyUsed(mail: string): Observable<boolean> {
-    return this.http.post<boolean>(`${this.endPoint}test-email-exist`, {
+    return this.http.post<boolean>(`${this.endPoint}/test-email-exist`, {
       mail,
     });
   }
