@@ -1,3 +1,11 @@
+# [4.121.0](https://github.com/solinumasso/soliguide/compare/v4.120.2...v4.121.0) (2026-01-09)
+
+
+### Features
+
+* fix and remove at sync from manage ([582d0b6](https://github.com/solinumasso/soliguide/commit/582d0b6842e9c9c9ce57e0885b3a96e4e8b3d05d))
+* fix and remove at sync from manage ([97ae123](https://github.com/solinumasso/soliguide/commit/97ae123261802648afc07077a2923c78d10626cd))
+
 ## [4.120.2](https://github.com/solinumasso/soliguide/compare/v4.120.1...v4.120.2) (2026-01-07)
 
 
