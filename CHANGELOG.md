@@ -1,3 +1,11 @@
+## [4.121.1](https://github.com/solinumasso/soliguide/compare/v4.121.0...v4.121.1) (2026-01-09)
+
+
+### Bug Fixes
+
+* wrong url admin user ([2bc4ec2](https://github.com/solinumasso/soliguide/commit/2bc4ec27fbbdc7cc3ecf3591115d1f10723dfd1b))
+* wrong url admin user ([81b1b17](https://github.com/solinumasso/soliguide/commit/81b1b1793b1a33ad05efb7b729cbbcb987e1aae8))
+
 # [4.121.0](https://github.com/solinumasso/soliguide/compare/v4.120.2...v4.121.0) (2026-01-09)
 
 
