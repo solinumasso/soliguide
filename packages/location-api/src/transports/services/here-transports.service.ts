@@ -23,9 +23,9 @@ import { HttpService } from "@nestjs/axios";
 import { catchError, firstValueFrom, map } from "rxjs";
 
 import { ConfigService } from "@nestjs/config";
-import { sortTransports } from "./sort-transports";
 import { calculateDistanceBetweenTwoPoints, Station } from "@soliguide/common";
 import { HereTransportStation } from "../interfaces/here-station.interface";
+import { filterTransports } from "./filter-transports";
 
 @Injectable()
 export class HereTransportsService {
@@ -45,7 +45,6 @@ export class HereTransportsService {
       return: "transport",
       modes:
         "-highSpeedTrain,-intercityTrain,-interRegionalTrain,-ferry,-plane,-aerial",
-      // Doc: https://www.here.com/docs/bundle/intermodal-routing-api-developer-guide/page/concepts/modes.html
     };
 
     try {
@@ -55,7 +54,7 @@ export class HereTransportsService {
             stations: HereTransportStation[];
           }>(this.baseUrl, { params })
           .pipe(
-            map((response) => sortTransports(response.data.stations)),
+            map((response) => filterTransports(response.data.stations)),
             map((stations: Station[]) =>
               stations.map((station: Station) => {
                 station.place.distance = calculateDistanceBetweenTwoPoints(
