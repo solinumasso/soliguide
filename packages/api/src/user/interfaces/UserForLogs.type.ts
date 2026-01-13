@@ -19,7 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { CommonUserForLogs } from "@soliguide/common";
-import { Origin } from "../enums";
+import { Origin } from "../../_models/users/enums";
 
 export interface UserForLogs extends CommonUserForLogs {
   origin: Origin;

@@ -31,7 +31,7 @@ import {
 
 import { TEMP_INFO_HISTORY_SECTIONS } from "../constants/TEMP_INFO_TYPE.const";
 
-import type { ModelWithId, UserForLogs } from "../../_models";
+import type { ModelWithId } from "../../_models";
 
 import { isCampaignActiveForPlace } from "../../campaign/controllers/campaign.controller";
 import { computePlaceAutonomyStatus } from "../../campaign/controllers/campaign-stats.controller";
@@ -55,6 +55,7 @@ import {
   updateTempInfos,
 } from "../../place/services/admin-place.service";
 import type { PopulatedTempInfo, TempInfo } from "../types";
+import { UserForLogs } from "../../user/interfaces";
 
 export const getTempInfoByType = (
   type: TempInfoType,

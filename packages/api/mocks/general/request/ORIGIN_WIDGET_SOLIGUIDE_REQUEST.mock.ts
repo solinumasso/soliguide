@@ -18,7 +18,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { ExpressRequest, Origin } from "../../../src/_models";
+import { ExpressRequest } from "../../../src/_models";
+import { Origin } from "../../../src/_models/users/enums";
 import { ABSTRACT_ORIGIN_REQUEST } from "./ABSTRACT_ORIGIN_REQUEST.mock";
 
 export const ORIGIN_WIDGET_SOLIGUIDE_REQUEST = {

@@ -24,15 +24,14 @@ import {
   UserStatusNotLogged,
   UserTypeLogged,
 } from "@soliguide/common";
-import {
-  ExpressRequest,
-  UserForLogs,
-  PartialUserForLogs,
-  UserFactory,
-  NotLoggedUserType,
-} from "../../../_models";
+import { ExpressRequest } from "../../../_models";
 import { generateFullName } from "../../../_utils";
 import { getUserLanguageFromRequest } from "./get-user-language-from-request";
+import {
+  UserForLogs,
+  PartialUserForLogs,
+  UserPopulate,
+} from "../../../user/interfaces";
 
 export const getUserForLogs = (req: ExpressRequest): UserForLogs => {
   const user = req.user;
@@ -70,10 +69,11 @@ export const getUserForLogs = (req: ExpressRequest): UserForLogs => {
       userForLogs.userName = req.body.widgetId;
     }
 
-    req.user = UserFactory.createUser({
+    req.user = {
       type: UserTypeLogged.NOT_LOGGED,
       status: userForLogs.status,
-    } as NotLoggedUserType);
+      isLogged: () => false,
+    } as UserPopulate;
 
     return userForLogs;
   }
@@ -96,7 +96,7 @@ export const getUserForLogs = (req: ExpressRequest): UserForLogs => {
         : null;
     userForLogs.orgaName = user.organizations[currentOrga]?.name ?? null;
     userForLogs.territory =
-      user.organizations[currentOrga]?.territories[0] ?? null;
+      user.organizations[currentOrga]?.territories[0] ?? null; // TODO: update this after merge of areas
     userForLogs.role =
       user.userRights.filter(
         (userRight: { organization_id: number }) =>

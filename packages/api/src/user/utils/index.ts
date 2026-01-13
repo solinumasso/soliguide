@@ -20,7 +20,9 @@
  */
 // @index('./*.ts', f => `export * from '${f.path}'`)
 export * from "./aggregateUserRightsForAuth";
+export * from "./checkUserStatus";
 export * from "./createUserRights";
+export * from "./getTerritoriesFromAreas";
 export * from "./mergeAreas";
 export * from "./random-password-generator";
 export * from "./sendUserForAuth";

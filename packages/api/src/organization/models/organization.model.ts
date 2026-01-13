@@ -316,7 +316,6 @@ const OrganizationSchema = new mongoose.Schema<ModelWithId<ApiOrganization>>(
       default: [],
       type: [{ enum: RELATIONS, type: String }],
     },
-    territories: { default: [], type: [String] },
 
     users: [
       {

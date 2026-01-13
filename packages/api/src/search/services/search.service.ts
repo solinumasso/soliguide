@@ -22,10 +22,11 @@ import { PlaceModel } from "../../place/models/place.model";
 import { DEFAULT_SEARCH_OPTIONS } from "../../_utils/constants";
 
 import { ApiPlace, UserStatus } from "@soliguide/common";
-import { ModelWithId, UserPopulateType } from "../../_models";
+import { ModelWithId } from "../../_models";
 import { RootQuerySelector } from "mongoose";
 import { generateApiUserRestriction } from "../utils/query/generate-api-user-restriction";
 import { cleanPlaceCategorySpecificFields } from "../../place/utils";
+import { UserForSearch } from "../../user/types";
 
 /**
  * @summary   Count the amount of place with this geo position
@@ -33,7 +34,7 @@ import { cleanPlaceCategorySpecificFields } from "../../place/utils";
  */
 export const countPlacesWithLocationParams = async (
   params: RootQuerySelector<ApiPlace>,
-  user: UserPopulateType
+  user: UserForSearch
 ) => {
   const geoNearStage = params.$geoNear ? [{ $geoNear: params.$geoNear }] : [];
   const matchOrganizations = params.organizations
@@ -188,7 +189,7 @@ export const adminSearchPlacesWithParams = async (
  */
 export const apiSearchPlacesWithParams = async (
   params: RootQuerySelector<ApiPlace>,
-  user: UserPopulateType,
+  user: UserForSearch,
   options = DEFAULT_SEARCH_OPTIONS
 ): Promise<ApiPlace[]> => {
   const $geoNear = params["$geoNear"];

@@ -35,7 +35,6 @@ import {
   CampaignSteps,
   ModelWithId,
   OrganizationPopulate,
-  UserForLogs,
 } from "../../_models";
 
 import {
@@ -46,6 +45,7 @@ import {
 import { saveTempChanges } from "../../place-changes/controllers/place-changes.controller";
 
 import { updatePlaceByPlaceId } from "../../place/services/admin-place.service";
+import { UserForLogs } from "../../user/interfaces";
 
 export const setNoChangeForPlace = async (
   lieu_id: number,

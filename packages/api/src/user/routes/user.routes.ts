@@ -44,8 +44,7 @@ import { sendUserForAuth } from "../utils";
 import {
   type ExpressRequest,
   type ExpressResponse,
-  type SignupUser,
-  UserFactory,
+  AirtableEntityType,
 } from "../../_models";
 
 import {
@@ -65,6 +64,7 @@ import {
 } from "../middlewares/capture-user-event.middleware";
 import { addAreasToUser } from "../middlewares/add-areas-to-user.middleware";
 import { sendUserChangesToMq } from "../middlewares/send-user-changes-event-to-mq.middleware";
+import { SignupUser } from "../interfaces";
 
 const router = express.Router();
 
@@ -112,7 +112,7 @@ router.post(
 
       if (
         validateUserStatusWithEmail(
-          signupUserPayload.status,
+          signupUserPayload.status as UserStatus,
           signupUserPayload.mail
         ) !== null
       ) {
@@ -399,7 +399,10 @@ router.patch(
       req.user = UserFactory.createUser(patchedUser!);
       req.updatedUser = req.user;
 
-      res.status(200).json(req.user);
+      req.airtableEntity = patchedUser;
+      req.airtableEntityType = AirtableEntityType.USER;
+
+      res.status(200).json(patchedUser);
       return next();
     } catch (e) {
       req.log.error(e);

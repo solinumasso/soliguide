@@ -20,14 +20,14 @@
  */
 import type { AnyDepartmentCode, Themes, UserRole } from "@soliguide/common";
 
-import type {
-  InvitationPopulate,
-  ModelWithId,
-  User,
-  UserPopulateType,
-} from "../../_models";
 import { AmqpOrganization, AmqpUser } from ".";
 import { AmqpEvent } from "../interfaces";
+import { ModelWithId } from "../../_models";
+import {
+  InvitationPopulate,
+  User,
+  UserPopulateType,
+} from "../../user/interfaces";
 
 export class AmqpInvitationEvent implements AmqpEvent {
   public acceptedAt?: Date;

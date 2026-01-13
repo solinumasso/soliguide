@@ -25,19 +25,21 @@ import { USERS_FIELDS_FOR_POPULATE } from "../constants";
 import { InvitationModel } from "../models/invitation.model";
 
 import { generateUrlToken } from "../../_utils";
-import type {
-  Invitation,
-  InvitationPopulate,
-  OrganizationPopulate,
+import type { OrganizationPopulate } from "../../_models";
+import { SoliguideCountries, UserRole } from "@soliguide/common";
+import { extractTerritoriesFromAreasForCountry } from "../utils";
+import {
   UserPopulateType,
-} from "../../_models";
-import { UserRole } from "@soliguide/common";
+  InvitationPopulate,
+  Invitation,
+} from "../interfaces";
 
 export const createInvitation = async (
   userWhoInvite: UserPopulateType,
   organization: OrganizationPopulate,
   createdUser: UserPopulateType,
   role: UserRole,
+  country: SoliguideCountries,
   session?: ClientSession
 ): Promise<InvitationPopulate> => {
   const invitationToSave: Partial<Invitation> = {
@@ -51,7 +53,10 @@ export const createInvitation = async (
 
     pending: true,
     roleType: role,
-    territories: organization.territories,
+    territories: extractTerritoriesFromAreasForCountry(
+      organization.areas,
+      country
+    ),
 
     // Invitation token = objectID for old invitations
     token: generateUrlToken(),

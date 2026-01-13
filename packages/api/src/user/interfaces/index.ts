@@ -18,20 +18,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import type { ApiOrganization, CommonInvitation } from "@soliguide/common";
-import mongoose from "mongoose";
-import type { User } from "./User.interface";
-import type { ModelWithId } from "../../mongo";
-
-export interface Invitation extends Omit<CommonInvitation, "createdBy"> {
-  _id: mongoose.Types.ObjectId;
-  createdBy?: mongoose.Types.ObjectId;
-  organization: mongoose.Types.ObjectId;
-  user: mongoose.Types.ObjectId;
-}
-
-export type InvitationPopulate = Omit<Invitation, "organization" | "user"> &
-  Required<{
-    organization: ModelWithId<Omit<ApiOrganization, "_id">>;
-    user: ModelWithId<User>;
-  }>;
+//@index('./*', f => `export * from '${f.path}'`)
+export * from "./Invitation.interface";
+export * from "./User.interface";
+export * from "./UserForLogs.type";
+export * from "./UserRight.interface";

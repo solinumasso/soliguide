@@ -56,8 +56,6 @@ import type {
   ExpressRequest,
   ModelWithId,
   OrganizationPopulate,
-  UserForLogs,
-  UserPopulateType,
 } from "../../_models";
 
 import type { BodySource } from "../interfaces";
@@ -93,6 +91,7 @@ import {
 } from "../../campaign/controllers";
 
 import { patchPositionForTranslations } from "../../translations/controllers/translation.controller";
+import { UserForLogs, UserPopulateType } from "../../user/interfaces";
 
 /**
  * @param {ModelWithId<ApiPlace>} updatedPlace Newly updated place

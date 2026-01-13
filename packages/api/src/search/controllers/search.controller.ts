@@ -27,18 +27,17 @@ import {
 
 import { generateSearchQuery, generateSearchOptions } from "../utils";
 
-import { UserPopulateType } from "../../_models";
-
 import {
   adminSearchPlacesWithParams,
   apiSearchPlacesWithParams,
   countPlacesWithLocationParams,
   searchPlacesWithParams,
 } from "../services";
+import { UserForSearch } from "../../user/types";
 
 export const searchPlaces = async (
   categoryService: CategoriesService,
-  user: UserPopulateType,
+  user: UserForSearch,
   searchPlacesData: any,
   context = "PLACE_PUBLIC_SEARCH"
 ): Promise<ApiSearchResults> => {

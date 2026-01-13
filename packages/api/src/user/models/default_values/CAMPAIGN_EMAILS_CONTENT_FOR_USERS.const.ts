@@ -19,10 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { EmailEvents } from "../../../_models";
-import type {
-  UserCampaignEmailsValue,
-  UserCampaignEmails,
-} from "../../../_models/users";
+import { UserCampaignEmailsValue, UserCampaignEmails } from "../../types";
 
 const VALUE: UserCampaignEmailsValue = {
   done: false,

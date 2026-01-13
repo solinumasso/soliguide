@@ -26,7 +26,8 @@ import {
 } from "@soliguide/common";
 
 import { updatePlaceByPlaceId } from "../../place/services/admin-place.service";
-import { ModelWithId, UserForLogs } from "../../_models";
+import { ModelWithId } from "../../_models";
+import { UserForLogs } from "../../user/interfaces";
 
 export const computePlaceAutonomyStatus = async (
   place: ModelWithId<ApiPlace>,

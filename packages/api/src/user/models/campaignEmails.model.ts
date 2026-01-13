@@ -21,6 +21,7 @@
 import mongoose from "mongoose";
 import type { UserCampaignEmails } from "../../_models/users";
 import { EmailEvents } from "../../_models/emailing";
+import { UserCampaignEmails } from "../types";
 
 const DEFAULT_VALUE = {
   done: { default: false, type: Boolean },

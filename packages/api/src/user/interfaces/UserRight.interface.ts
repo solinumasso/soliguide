@@ -21,8 +21,8 @@
 import mongoose from "mongoose";
 
 import { ApiOrganization, UserRightStatus, UserRole } from "@soliguide/common";
-import { ModelWithId } from "../../mongo";
-import { PopulatedUser } from "./PopulatedUser.type";
+import { ModelWithId } from "../../_models/mongo";
+import { PopulatedUser } from "../types/PopulatedUser.type";
 
 export interface UserRight {
   _id?: mongoose.Types.ObjectId;

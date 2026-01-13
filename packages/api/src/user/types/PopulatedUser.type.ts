@@ -18,8 +18,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import { ModelWithId } from "../../_models";
 import { User } from "../interfaces/User.interface";
-import { ModelWithId } from "../../mongo/types/ModelWithId.type";
 
 export type PopulatedUser = Pick<
   ModelWithId<User>,

@@ -19,9 +19,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { ApiOrganization, ApiPlace } from "@soliguide/common";
-import { Invitation, User } from "../users";
-
 import { ModelWithId } from "../mongo";
+
+import { Invitation, User } from "../../user/interfaces";
 
 export type OrganizationPopulate = ModelWithId<ApiOrganization> &
   Required<{

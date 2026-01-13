@@ -24,12 +24,7 @@ import type { Logger } from "pino";
 import type { Themes } from "@soliguide/common";
 
 import { Exchange } from "../../events";
-import type {
-  ExpressRequest,
-  ExpressResponse,
-  InvitationPopulate,
-  UserPopulateType,
-} from "../../_models";
+import type { ExpressRequest, ExpressResponse } from "../../_models";
 import {
   AmqpInvitationEvent,
   RoutingKey,
@@ -37,6 +32,7 @@ import {
 } from "../../events";
 import { getUserByParams } from "../services";
 import { isCampaignActive } from "../../campaign/controllers";
+import { InvitationPopulate, UserPopulateType } from "../interfaces";
 
 const sendInvitationEventToMq = async (
   invitation: InvitationPopulate,

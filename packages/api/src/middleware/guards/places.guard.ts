@@ -27,11 +27,7 @@ import {
 } from "@soliguide/common";
 
 import { NextFunction } from "express";
-import {
-  CurrentUserType,
-  ExpressRequest,
-  ExpressResponse,
-} from "../../_models";
+import { ExpressRequest, ExpressResponse } from "../../_models";
 import { getPlaceByParams } from "../../place/services/place.service";
 
 import {
@@ -39,6 +35,7 @@ import {
   canDeletePlace as UserRightsCanDeletePlace,
   canEditPlace as UserRightsCanEditPlace,
 } from "../../user/controllers/user-rights.controller";
+import { CurrentUserType } from "../../user/interfaces";
 
 export const canAddPlace = async (
   req: ExpressRequest,

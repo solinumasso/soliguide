@@ -75,7 +75,6 @@ import type {
   ExpressRequest,
   ExpressResponse,
   ModelWithId,
-  User,
 } from "../../_models";
 
 import { DEFAULT_SEARCH_OPTIONS } from "../../_utils/constants/DEFAULT_SEARCH_OPTIONS.const";
@@ -86,6 +85,8 @@ import type { PopulatedTempInfo } from "../../temp-info/types";
 import { getTranslatedFieldLanguagesByPlaceLanguages } from "../functions";
 import { logger } from "../../general/logger";
 import { TranslatedFieldModel, TranslatedPlaceModel } from "../models";
+import { UserForSearch } from "../../user/types";
+import { UserPopulate } from "../../user/interfaces";
 
 /**
  * @param  {Object} searchData
@@ -94,7 +95,7 @@ import { TranslatedFieldModel, TranslatedPlaceModel } from "../models";
  */
 export const searchTranslatedFields = async (
   searchData: any,
-  user: User
+  user: UserForSearch
 ): Promise<SearchResults<TranslatedField>> => {
   const searchObject: {
     options: QueryOptions;
@@ -150,7 +151,7 @@ export const searchTranslatedFields = async (
  */
 export const searchTranslatedPlaces = async (
   searchData: any,
-  user: User
+  user: UserForSearch
 ): Promise<SearchResults<TranslatedPlace>> => {
   // @Yassine The translation search serves no purpose except sorting translations?
   const searchObject: {
@@ -402,7 +403,7 @@ const generateTranslatedField = async (
  * @param  {Object} translateData content + language coming from the update form
  */
 export const patchTranslatedField = async (
-  user: User,
+  user: UserPopulate,
   translatedField: ApiTranslatedField,
   translateData: {
     content: string;

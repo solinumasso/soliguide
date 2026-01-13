@@ -20,8 +20,9 @@
  */
 import mongoose from "mongoose";
 import { USER_ROLES } from "../constants/USER_ROLES.const";
-import { InvitationPopulate } from "../../_models";
+
 import { ALL_DEPARTMENT_CODES } from "@soliguide/common";
+import { InvitationPopulate } from "../interfaces";
 
 const InvitationSchema = new mongoose.Schema<InvitationPopulate>(
   {

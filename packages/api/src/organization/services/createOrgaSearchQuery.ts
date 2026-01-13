@@ -19,14 +19,15 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { CAMPAIGN_DEFAULT_NAME } from "@soliguide/common";
-import { UserPopulateType } from "../../_models";
+
 import { getPlaceByParams } from "../../place/services/place.service";
 import { getGlobalSearchQuery } from "../../search/services";
 import { parseTerritories } from "../../search/utils";
+import { UserForSearch } from "../../user/types";
 
 export const createOrgaSearchQuery = async (
   searchData: any,
-  user: UserPopulateType
+  user: UserForSearch
 ) => {
   const query: any = {
     $and: [],
