@@ -18,57 +18,97 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import { captureException, captureMessage } from "@sentry/node";
 import { User, UserPopulateType } from "../../_models";
 import { hashPassword } from "../../_utils";
 import { DEFAULT_USER_POPULATE } from "../constants";
 
 import { UserModel } from "../models/user.model";
 
-export const findByPasswordToken = (
+export const findByPasswordToken = async (
   token: string
 ): Promise<Pick<User, "name"> | null> => {
-  return UserModel.findOne({ passwordToken: token })
-    .select("name")
-    .lean()
-    .exec();
+  try {
+    return await UserModel.findOne({ passwordToken: token })
+      .select("name")
+      .lean()
+      .exec();
+  } catch (error) {
+    captureException(error, {
+      extra: { tokenProvided: Boolean(token) },
+    });
+    throw error;
+  }
 };
 
 export const updatePassword = async (
   token: string,
   password: string
 ): Promise<UserPopulateType | null> => {
-  return UserModel.findOneAndUpdate(
-    { passwordToken: token },
-    {
-      $set: {
-        password: await hashPassword(password),
+  try {
+    return await UserModel.findOneAndUpdate(
+      { passwordToken: token },
+      {
+        $set: {
+          password: await hashPassword(password),
+        },
+        $unset: {
+          passwordToken: null,
+        },
       },
-      $unset: {
-        passwordToken: null,
+      { new: true }
+    )
+      .populate(DEFAULT_USER_POPULATE)
+      .lean<UserPopulateType>()
+      .exec();
+  } catch (error) {
+    captureException(error, {
+      extra: {
+        tokenProvided: Boolean(token),
+        passwordProvided: Boolean(password),
       },
-    },
-    { new: true }
-  )
-    .populate(DEFAULT_USER_POPULATE)
-    .lean<UserPopulateType>()
-    .exec();
+    });
+    throw error;
+  }
 };
 
-export const generatePasswordToken = (
+export const generatePasswordToken = async (
   mail: string,
   hash: string
 ): Promise<UserPopulateType | null> => {
-  return UserModel.findOneAndUpdate(
-    { mail },
-    {
-      $set: {
-        passwordToken: hash,
+  try {
+    const result = await UserModel.findOneAndUpdate(
+      { mail },
+      {
+        $set: {
+          passwordToken: hash,
+        },
       },
-    },
-    { new: true }
-  )
-    .populate(DEFAULT_USER_POPULATE)
-    .select("+passwordToken")
-    .lean<UserPopulateType>()
-    .exec();
+      { new: true }
+    )
+      .populate(DEFAULT_USER_POPULATE)
+      .select("+passwordToken")
+      .lean<UserPopulateType>()
+      .exec();
+
+    if (!result) {
+      captureMessage("User not found for password token generation", {
+        level: "warning",
+        extra: {
+          mail,
+          hashProvided: Boolean(hash),
+        },
+      });
+    }
+
+    return result;
+  } catch (error) {
+    captureException(error, {
+      extra: {
+        mail,
+        hashProvided: Boolean(hash),
+      },
+    });
+    throw error;
+  }
 };
