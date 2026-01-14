@@ -214,7 +214,7 @@ const LogSearchPlacesSchema = new Schema<LogSearchPlaces>(
 
     suggestionType: {
       type: String,
-      enum: AutoCompleteType,
+      enum: [...Object.values(AutoCompleteType), "EMPTY"],
       required: true,
     },
 
