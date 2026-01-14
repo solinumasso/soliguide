@@ -24,11 +24,28 @@ import { HERE_TRANSIT_MODE } from "../constants/HERE_TRANSIT_MODE.const";
 
 const EXCLUDED_TRANSPORT_NAMES = ["blablacar", "ouibus", "flixbus"];
 
+const EXCLUDED_TRANSPORT_MODES = [
+  "highSpeedTrain",
+  "intercityTrain",
+  "interRegionalTrain",
+  "regionalTrain",
+  "cityTrain",
+  "ferry",
+  "flight",
+  "aerial",
+  "monorail",
+  "privateBus",
+];
+
 const isExcludedTransport = (name: string): boolean => {
   const normalizedName = slugString(name);
   return EXCLUDED_TRANSPORT_NAMES.some((excluded) =>
     normalizedName.includes(excluded)
   );
+};
+
+const isExcludedMode = (mode: string): boolean => {
+  return EXCLUDED_TRANSPORT_MODES.includes(mode);
 };
 
 export const filterTransports = (
@@ -37,9 +54,17 @@ export const filterTransports = (
   const processedStations = new Map<string, Station>();
 
   for (const station of stations ?? []) {
-    const filteredTransports = station.transports?.filter(
-      (transport) => !isExcludedTransport(transport.name)
-    );
+    const filteredTransports = station.transports?.filter((transport) => {
+      if (isExcludedTransport(transport.name)) {
+        return false;
+      }
+
+      if (isExcludedMode(transport.mode)) {
+        return false;
+      }
+
+      return true;
+    });
 
     if (!filteredTransports?.length) {
       continue;

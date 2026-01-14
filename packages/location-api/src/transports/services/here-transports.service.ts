@@ -43,8 +43,7 @@ export class HereTransportsService {
       apiKey: this.configService.get<string>("HERE_API_KEY"),
       in: `${latitude},${longitude},r=2000`,
       return: "transport",
-      modes:
-        "-highSpeedTrain,-intercityTrain,-interRegionalTrain,-ferry,-plane,-aerial",
+      // Doc: https://www.here.com/docs/bundle/intermodal-routing-api-developer-guide/page/concepts/modes.html
     };
 
     try {
