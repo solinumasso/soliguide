@@ -47,7 +47,9 @@ export const logSearchQuery = async (
     options,
     adminSearch: !!req.adminSearch,
     userData: req.userForLogs,
-    suggestionType: AutoCompleteType.CATEGORY,
+    suggestionType: req?.bodyValidated?.category
+      ? AutoCompleteType.CATEGORY
+      : "EMPTY",
     slug: req.bodyValidated?.category,
   };
 
