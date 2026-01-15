@@ -51,4 +51,5 @@ export interface CommonUser {
   invitations: any[];
   organizations: any[];
   areas?: OperationalAreas;
+  lastLogin: Date | null;
 }

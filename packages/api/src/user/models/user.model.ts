@@ -193,6 +193,10 @@ const UserSchema = new mongoose.Schema<User>(
       default: null,
       type: Date,
     },
+    lastLogin: {
+      default: null,
+      type: Date,
+    },
   },
   {
     strict: true,
