@@ -411,7 +411,7 @@ describe("E2E - Location autocomplete endpoints", () => {
             country: CountryCodes.FR,
             department: "Hérault",
             departmentCode: "34",
-            coordinates: [3.927764, 43.525525],
+            coordinates: [3.942202, 43.530342],
             postalCode: "34250",
             region: "Occitanie",
             regionCode: "76",

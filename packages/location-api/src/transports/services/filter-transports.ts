@@ -22,14 +22,19 @@ import { slugString, Station } from "@soliguide/common";
 import { HereTransportStation } from "../interfaces/here-station.interface";
 import { HERE_TRANSIT_MODE } from "../constants/HERE_TRANSIT_MODE.const";
 
-const EXCLUDED_TRANSPORT_NAMES = ["blablacar", "ouibus", "flixbus"];
+const EXCLUDED_TRANSPORT_NAMES = [
+  "blablacar",
+  "ouibus",
+  "flixbus",
+  "noctilien",
+  "tgv",
+];
 
 const EXCLUDED_TRANSPORT_MODES = [
   "highSpeedTrain",
   "intercityTrain",
   "interRegionalTrain",
   "regionalTrain",
-  "cityTrain",
   "ferry",
   "flight",
   "aerial",
@@ -54,17 +59,10 @@ export const filterTransports = (
   const processedStations = new Map<string, Station>();
 
   for (const station of stations ?? []) {
-    const filteredTransports = station.transports?.filter((transport) => {
-      if (isExcludedTransport(transport.name)) {
-        return false;
-      }
-
-      if (isExcludedMode(transport.mode)) {
-        return false;
-      }
-
-      return true;
-    });
+    const filteredTransports = station.transports?.filter(
+      (transport) =>
+        !isExcludedTransport(transport.name) && !isExcludedMode(transport.mode)
+    );
 
     if (!filteredTransports?.length) {
       continue;
