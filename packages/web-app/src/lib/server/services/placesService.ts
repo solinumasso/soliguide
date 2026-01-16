@@ -46,7 +46,6 @@ export default (fetcher = fetch) => {
 
     const body = {
       category,
-      languages: lang,
       location: {
         geoValue: location,
         geoType: type,
