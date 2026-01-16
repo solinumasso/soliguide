@@ -33,5 +33,6 @@ export const USER_SIMPLE: User = {
     status: UserStatus.SIMPLE_USER,
     territories: ["93"],
     user_id: 123456789,
+    lastLogin: new Date("2025-11-17T11:45:41.165"),
   },
 };

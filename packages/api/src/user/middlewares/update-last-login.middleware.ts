@@ -52,7 +52,6 @@ export const updateLastLogin = async (
 ) => {
   try {
     if (!req.user.isLogged()) {
-      req.log.debug("User not logged in, skipping lastLogin update");
       return next();
     }
 
@@ -68,7 +67,7 @@ export const updateLastLogin = async (
         { _id: req.user._id },
         { lastLogin: now },
         undefined,
-        false // Don't update timestamps
+        true
       );
       req.log.info({ userId: req.user._id }, "User lastLogin updated");
     } else {
@@ -80,7 +79,6 @@ export const updateLastLogin = async (
 
     // Update organization lastLogin if user has organizations
     if (
-      req.user.organizations &&
       req.user.organizations.length > 0 &&
       req.user.selectedOrgaIndex !== undefined
     ) {
@@ -91,7 +89,11 @@ export const updateLastLogin = async (
           { orgId: currentOrg._id, currentLastLogin: currentOrg.lastLogin },
           "Updating organization lastLogin"
         );
-        await updateOrga({ _id: currentOrg._id }, { lastLogin: now });
+        await updateOrga(
+          { _id: currentOrg._id },
+          { lastLogin: now },
+          undefined
+        );
         req.log.info(
           { orgId: currentOrg._id },
           "Organization lastLogin updated"

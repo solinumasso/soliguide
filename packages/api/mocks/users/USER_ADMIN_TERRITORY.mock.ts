@@ -60,6 +60,7 @@ export const USER_ADMIN_TERRITORY: UserPopulateType = {
     title: "Gérant autonome de la seine-saint-denis",
     updatedAt: new Date("2021-04-29T08:20:04.247Z"),
     user_id: 345,
+    lastLogin: new Date("2025-04-29T08:20:04.247Z"),
     type: UserTypeLogged.LOGGED,
     isLogged() {
       return true;
