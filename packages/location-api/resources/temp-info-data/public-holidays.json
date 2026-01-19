@@ -1,116 +1,6 @@
 {
   "fr": [
     {
-      "isNational": true,
-      "name": "Lundi de Pentecôte",
-      "departments": [],
-      "startDate": "2025-06-09",
-      "endDate": "2025-06-09",
-      "translations": {
-        "fr": "Lundi de Pentecôte"
-      }
-    },
-    {
-      "isNational": false,
-      "name": "Abolition de l'esclavage",
-      "departments": ["973"],
-      "startDate": "2025-06-10",
-      "endDate": "2025-06-10",
-      "translations": {
-        "fr": "Abolition de l'esclavage"
-      }
-    },
-    {
-      "isNational": true,
-      "name": "Fête nationale",
-      "departments": [],
-      "startDate": "2025-07-14",
-      "endDate": "2025-07-14",
-      "translations": {
-        "fr": "Fête nationale"
-      }
-    },
-    {
-      "isNational": true,
-      "name": "Assomption",
-      "departments": [],
-      "startDate": "2025-08-15",
-      "endDate": "2025-08-15",
-      "translations": {
-        "fr": "Assomption"
-      }
-    },
-    {
-      "isNational": false,
-      "name": "Abolition de l'esclavage",
-      "departments": ["977"],
-      "startDate": "2025-10-09",
-      "endDate": "2025-10-09",
-      "translations": {
-        "fr": "Abolition de l'esclavage"
-      }
-    },
-    {
-      "isNational": true,
-      "name": "Toussaint",
-      "departments": [],
-      "startDate": "2025-11-01",
-      "endDate": "2025-11-01",
-      "translations": {
-        "fr": "Toussaint"
-      }
-    },
-    {
-      "isNational": true,
-      "name": "Armistice 1918",
-      "departments": [],
-      "startDate": "2025-11-11",
-      "endDate": "2025-11-11",
-      "translations": {
-        "fr": "Armistice 1918"
-      }
-    },
-    {
-      "isNational": false,
-      "name": "Abolition de l'esclavage",
-      "departments": ["974"],
-      "startDate": "2025-12-20",
-      "endDate": "2025-12-20",
-      "translations": {
-        "fr": "Abolition de l'esclavage"
-      }
-    },
-    {
-      "isNational": true,
-      "name": "Noël",
-      "departments": [],
-      "startDate": "2025-12-25",
-      "endDate": "2025-12-25",
-      "translations": {
-        "fr": "Noël"
-      }
-    },
-    {
-      "isNational": false,
-      "name": "2ème jour de Noël",
-      "departments": ["57", "67", "68"],
-      "startDate": "2025-12-26",
-      "endDate": "2025-12-26",
-      "translations": {
-        "fr": "2ème jour de Noël"
-      }
-    },
-    {
-      "isNational": true,
-      "name": "Jour de l'an",
-      "departments": [],
-      "startDate": "2026-01-01",
-      "endDate": "2026-01-01",
-      "translations": {
-        "fr": "Jour de l'an"
-      }
-    },
-    {
       "isNational": false,
       "name": "Vendredi saint",
       "departments": ["57", "67", "68"],
@@ -289,25 +179,474 @@
       "translations": {
         "fr": "2ème jour de Noël"
       }
+    },
+    {
+      "isNational": true,
+      "name": "Jour de l'an",
+      "departments": [],
+      "startDate": "2027-01-01",
+      "endDate": "2027-01-01",
+      "translations": {
+        "fr": "Jour de l'an"
+      }
+    },
+    {
+      "isNational": false,
+      "name": "Vendredi saint",
+      "departments": ["57", "67", "68"],
+      "startDate": "2027-03-26",
+      "endDate": "2027-03-26",
+      "translations": {
+        "fr": "Vendredi saint"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Lundi de Pâques",
+      "departments": [],
+      "startDate": "2027-03-29",
+      "endDate": "2027-03-29",
+      "translations": {
+        "fr": "Lundi de Pâques"
+      }
+    },
+    {
+      "isNational": false,
+      "name": "Abolition de l'esclavage",
+      "departments": ["976"],
+      "startDate": "2027-04-27",
+      "endDate": "2027-04-27",
+      "translations": {
+        "fr": "Abolition de l'esclavage"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Fête du Travail",
+      "departments": [],
+      "startDate": "2027-05-01",
+      "endDate": "2027-05-01",
+      "translations": {
+        "fr": "Fête du Travail"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Ascension",
+      "departments": [],
+      "startDate": "2027-05-06",
+      "endDate": "2027-05-06",
+      "translations": {
+        "fr": "Ascension"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Victoire 1945",
+      "departments": [],
+      "startDate": "2027-05-08",
+      "endDate": "2027-05-08",
+      "translations": {
+        "fr": "Victoire 1945"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Lundi de Pentecôte",
+      "departments": [],
+      "startDate": "2027-05-17",
+      "endDate": "2027-05-17",
+      "translations": {
+        "fr": "Lundi de Pentecôte"
+      }
+    },
+    {
+      "isNational": false,
+      "name": "Abolition de l'esclavage",
+      "departments": ["972"],
+      "startDate": "2027-05-22",
+      "endDate": "2027-05-22",
+      "translations": {
+        "fr": "Abolition de l'esclavage"
+      }
+    },
+    {
+      "isNational": false,
+      "name": "Abolition de l'esclavage",
+      "departments": ["971", "978"],
+      "startDate": "2027-05-27",
+      "endDate": "2027-05-27",
+      "translations": {
+        "fr": "Abolition de l'esclavage"
+      }
+    },
+    {
+      "isNational": false,
+      "name": "Abolition de l'esclavage",
+      "departments": ["973"],
+      "startDate": "2027-06-10",
+      "endDate": "2027-06-10",
+      "translations": {
+        "fr": "Abolition de l'esclavage"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Fête nationale",
+      "departments": [],
+      "startDate": "2027-07-14",
+      "endDate": "2027-07-14",
+      "translations": {
+        "fr": "Fête nationale"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Assomption",
+      "departments": [],
+      "startDate": "2027-08-15",
+      "endDate": "2027-08-15",
+      "translations": {
+        "fr": "Assomption"
+      }
+    },
+    {
+      "isNational": false,
+      "name": "Abolition de l'esclavage",
+      "departments": ["977"],
+      "startDate": "2027-10-09",
+      "endDate": "2027-10-09",
+      "translations": {
+        "fr": "Abolition de l'esclavage"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Toussaint",
+      "departments": [],
+      "startDate": "2027-11-01",
+      "endDate": "2027-11-01",
+      "translations": {
+        "fr": "Toussaint"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Armistice 1918",
+      "departments": [],
+      "startDate": "2027-11-11",
+      "endDate": "2027-11-11",
+      "translations": {
+        "fr": "Armistice 1918"
+      }
+    },
+    {
+      "isNational": false,
+      "name": "Abolition de l'esclavage",
+      "departments": ["974"],
+      "startDate": "2027-12-20",
+      "endDate": "2027-12-20",
+      "translations": {
+        "fr": "Abolition de l'esclavage"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Noël",
+      "departments": [],
+      "startDate": "2027-12-25",
+      "endDate": "2027-12-25",
+      "translations": {
+        "fr": "Noël"
+      }
+    },
+    {
+      "isNational": false,
+      "name": "2ème jour de Noël",
+      "departments": ["57", "67", "68"],
+      "startDate": "2027-12-26",
+      "endDate": "2027-12-26",
+      "translations": {
+        "fr": "2ème jour de Noël"
+      }
     }
   ],
   "es": [
     {
       "isNational": false,
+      "name": "Verge de la Candelaria",
+      "departments": [],
+      "startDate": "2026-02-02",
+      "endDate": "2026-02-02",
+      "translations": {
+        "ca": "Verge de la Candelaria"
+      }
+    },
+    {
+      "isNational": false,
+      "name": "Dimarts de Carnaval",
+      "departments": ["06", "10"],
+      "startDate": "2026-02-13",
+      "endDate": "2026-02-13",
+      "translations": {
+        "ca": "Dimarts de Carnaval"
+      }
+    },
+    {
+      "isNational": false,
+      "name": "Dia d'Andalusia",
+      "departments": ["04", "11", "14", "18", "21", "23", "29", "41"],
+      "startDate": "2026-02-28",
+      "endDate": "2026-02-28",
+      "translations": {
+        "ca": "Dia d'Andalusia"
+      }
+    },
+    {
+      "isNational": false,
+      "name": "Dia següent del Dia de les Illes Balears",
+      "departments": ["07"],
+      "startDate": "2026-03-02",
+      "endDate": "2026-03-02",
+      "translations": {
+        "ca": "Dia següent del Dia de les Illes Balears"
+      }
+    },
+    {
+      "isNational": false,
+      "name": "Estatut d'Autonomia de Melilla",
+      "departments": ["52"],
+      "startDate": "2026-03-13",
+      "endDate": "2026-03-13",
+      "translations": {
+        "ca": "Estatut d'Autonomia de Melilla"
+      }
+    },
+    {
+      "isNational": false,
+      "name": "Dia de Sant Josep",
+      "departments": [
+        "01",
+        "03",
+        "12",
+        "15",
+        "20",
+        "27",
+        "30",
+        "31",
+        "32",
+        "36",
+        "46",
+        "48"
+      ],
+      "startDate": "2026-03-19",
+      "endDate": "2026-03-19",
+      "translations": {
+        "ca": "Dia de Sant Josep"
+      }
+    },
+    {
+      "isNational": false,
+      "name": "Festa de la fi del Ramadà (Eid al-Fitr)",
+      "departments": ["51", "52"],
+      "startDate": "2026-03-20",
+      "endDate": "2026-03-20",
+      "translations": {
+        "ca": "Festa de la fi del Ramadà (Eid al-Fitr)"
+      }
+    },
+    {
+      "isNational": false,
+      "name": "Dijous Sant",
+      "departments": [
+        "01",
+        "02",
+        "04",
+        "05",
+        "06",
+        "07",
+        "09",
+        "10",
+        "11",
+        "13",
+        "14",
+        "15",
+        "16",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "44",
+        "45",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52"
+      ],
+      "startDate": "2026-04-02",
+      "endDate": "2026-04-02",
+      "translations": {
+        "ca": "Dijous Sant"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Divendres Sant",
+      "departments": [],
+      "startDate": "2026-04-03",
+      "endDate": "2026-04-03",
+      "translations": {
+        "ca": "Divendres Sant"
+      }
+    },
+    {
+      "isNational": false,
+      "name": "Dilluns de Pasqua",
+      "departments": [
+        "01",
+        "02",
+        "03",
+        "07",
+        "08",
+        "12",
+        "13",
+        "16",
+        "17",
+        "19",
+        "20",
+        "25",
+        "26",
+        "31",
+        "39",
+        "43",
+        "45",
+        "46",
+        "48"
+      ],
+      "startDate": "2026-04-06",
+      "endDate": "2026-04-06",
+      "translations": {
+        "ca": "Dilluns de Pasqua"
+      }
+    },
+    {
+      "isNational": false,
+      "name": "Dia d'Aragó",
+      "departments": ["22", "44", "50"],
+      "startDate": "2026-04-23",
+      "endDate": "2026-04-23",
+      "translations": {
+        "ca": "Dia d'Aragó"
+      }
+    },
+    {
+      "isNational": false,
+      "name": "Festa de Castella i Lleó",
+      "departments": ["05", "09", "24", "34", "37", "40", "42", "47", "49"],
+      "startDate": "2026-04-23",
+      "endDate": "2026-04-23",
+      "translations": {
+        "ca": "Festa de Castella i Lleó"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Dia del Treball",
+      "departments": [],
+      "startDate": "2026-05-01",
+      "endDate": "2026-05-01",
+      "translations": {
+        "ca": "Dia del Treball"
+      }
+    },
+    {
+      "isNational": false,
+      "name": "Dia de la Comunitat de Madrid",
+      "departments": ["28"],
+      "startDate": "2026-05-02",
+      "endDate": "2026-05-02",
+      "translations": {
+        "ca": "Dia de la Comunitat de Madrid"
+      }
+    },
+    {
+      "isNational": false,
+      "name": "Dia de les Lletres Gallegues",
+      "departments": ["15", "27", "32", "36"],
+      "startDate": "2026-05-17",
+      "endDate": "2026-05-17",
+      "translations": {
+        "ca": "Dia de les Lletres Gallegues"
+      }
+    },
+    {
+      "isNational": false,
       "name": "Festa del Sacrifici (Eid al-Adha)",
       "departments": ["51", "52"],
-      "startDate": "2025-06-06",
-      "endDate": "2025-06-06",
+      "startDate": "2026-05-27",
+      "endDate": "2026-05-27",
       "translations": {
         "ca": "Festa del Sacrifici (Eid al-Adha)"
       }
     },
     {
       "isNational": false,
+      "name": "Dia de les Canàries",
+      "departments": ["35", "38"],
+      "startDate": "2026-05-30",
+      "endDate": "2026-05-30",
+      "translations": {
+        "ca": "Dia de les Canàries"
+      }
+    },
+    {
+      "isNational": false,
+      "name": "Dia de Castella-la Manxa",
+      "departments": ["02", "13", "16", "19", "45"],
+      "startDate": "2026-05-31",
+      "endDate": "2026-05-31",
+      "translations": {
+        "ca": "Dia de Castella-la Manxa"
+      }
+    },
+    {
+      "isNational": false,
+      "name": "Corpus Christi",
+      "departments": ["02", "13", "16", "19", "45"],
+      "startDate": "2026-06-04",
+      "endDate": "2026-06-04",
+      "translations": {
+        "ca": "Corpus Christi"
+      }
+    },
+    {
+      "isNational": false,
       "name": "Dia de la Regió de Múrcia",
       "departments": ["30"],
-      "startDate": "2025-06-09",
-      "endDate": "2025-06-09",
+      "startDate": "2026-06-09",
+      "endDate": "2026-06-09",
       "translations": {
         "ca": "Dia de la Regió de Múrcia"
       }
@@ -316,8 +655,8 @@
       "isNational": false,
       "name": "Dia de La Rioja",
       "departments": ["26"],
-      "startDate": "2025-06-09",
-      "endDate": "2025-06-09",
+      "startDate": "2026-06-09",
+      "endDate": "2026-06-09",
       "translations": {
         "ca": "Dia de La Rioja"
       }
@@ -326,28 +665,18 @@
       "isNational": false,
       "name": "Sant Antoni",
       "departments": ["51"],
-      "startDate": "2025-06-13",
-      "endDate": "2025-06-13",
+      "startDate": "2026-06-13",
+      "endDate": "2026-06-13",
       "translations": {
         "ca": "Sant Antoni"
       }
     },
     {
       "isNational": false,
-      "name": "Festa del Sacrifici (Eid al-Adha)",
-      "departments": ["51", "52"],
-      "startDate": "2025-06-17",
-      "endDate": "2025-06-17",
-      "translations": {
-        "ca": "Festa del Sacrifici (Eid al-Adha)"
-      }
-    },
-    {
-      "isNational": false,
       "name": "Corpus Christi",
       "departments": ["02", "13", "16", "19", "45"],
-      "startDate": "2025-06-19",
-      "endDate": "2025-06-19",
+      "startDate": "2026-06-19",
+      "endDate": "2026-06-19",
       "translations": {
         "ca": "Corpus Christi"
       }
@@ -368,158 +697,158 @@
         "43",
         "46"
       ],
-      "startDate": "2025-06-24",
-      "endDate": "2025-06-24",
+      "startDate": "2026-06-24",
+      "endDate": "2026-06-24",
       "translations": {
         "ca": "Sant Joan"
       }
     },
     {
       "isNational": false,
-      "name": "La nostra Senyora dels Reis",
-      "departments": [],
-      "startDate": "2025-07-05",
-      "endDate": "2025-07-05",
-      "translations": {
-        "ca": "La nostra Senyora dels Reis"
-      }
-    },
-    {
-      "isNational": false,
-      "name": "Dia Nacional de Galícia",
-      "departments": ["15", "27", "32", "36"],
-      "startDate": "2025-07-25",
-      "endDate": "2025-07-25",
-      "translations": {
-        "ca": "Dia Nacional de Galícia"
-      }
-    },
-    {
-      "isNational": false,
       "name": "Santiago Apòstol",
       "departments": ["01", "20", "28", "31", "48"],
-      "startDate": "2025-07-25",
-      "endDate": "2025-07-25",
+      "startDate": "2026-07-25",
+      "endDate": "2026-07-25",
       "translations": {
         "ca": "Santiago Apòstol"
       }
     },
     {
       "isNational": false,
+      "name": "Dia Nacional de Galícia",
+      "departments": ["15", "27", "32", "36"],
+      "startDate": "2026-07-25",
+      "endDate": "2026-07-25",
+      "translations": {
+        "ca": "Dia Nacional de Galícia"
+      }
+    },
+    {
+      "isNational": false,
       "name": "Dia de les Institucions",
       "departments": ["39"],
-      "startDate": "2025-07-28",
-      "endDate": "2025-07-28",
+      "startDate": "2026-07-28",
+      "endDate": "2026-07-28",
       "translations": {
         "ca": "Dia de les Institucions"
       }
     },
     {
       "isNational": false,
-      "name": "La nostra Senyora d'Àfrica",
-      "departments": ["51"],
-      "startDate": "2025-08-05",
-      "endDate": "2025-08-05",
+      "name": "La nostra Senyora de les Neus",
+      "departments": [],
+      "startDate": "2026-08-05",
+      "endDate": "2026-08-05",
       "translations": {
-        "ca": "La nostra Senyora d'Àfrica"
+        "ca": "La nostra Senyora de les Neus"
       }
     },
     {
       "isNational": false,
-      "name": "La nostra Senyora de les Neus",
-      "departments": [],
-      "startDate": "2025-08-05",
-      "endDate": "2025-08-05",
+      "name": "La nostra Senyora d'Àfrica",
+      "departments": ["51"],
+      "startDate": "2026-08-05",
+      "endDate": "2026-08-05",
       "translations": {
-        "ca": "La nostra Senyora de les Neus"
+        "ca": "La nostra Senyora d'Àfrica"
       }
     },
     {
       "isNational": true,
       "name": "Assumpció de la Mare de Déu",
       "departments": [],
-      "startDate": "2025-08-15",
-      "endDate": "2025-08-15",
+      "startDate": "2026-08-15",
+      "endDate": "2026-08-15",
       "translations": {
         "ca": "Assumpció de la Mare de Déu"
       }
     },
     {
       "isNational": false,
-      "name": "Festiu d'Extremadura",
-      "departments": ["06", "10"],
-      "startDate": "2025-09-08",
-      "endDate": "2025-09-08",
+      "name": "Dia de Ceuta",
+      "departments": ["51"],
+      "startDate": "2026-09-02",
+      "endDate": "2026-09-02",
       "translations": {
-        "ca": "Festiu d'Extremadura"
+        "ca": "Dia de Ceuta"
       }
     },
     {
       "isNational": false,
       "name": "Dia de Ntra. Sra. Verge de la Victòria",
       "departments": ["52"],
-      "startDate": "2025-09-08",
-      "endDate": "2025-09-08",
+      "startDate": "2026-09-08",
+      "endDate": "2026-09-08",
       "translations": {
         "ca": "Dia de Ntra. Sra. Verge de la Victòria"
       }
     },
     {
       "isNational": false,
-      "name": "La nostra Senyora del Pi",
-      "departments": [],
-      "startDate": "2025-09-08",
-      "endDate": "2025-09-08",
-      "translations": {
-        "ca": "La nostra Senyora del Pi"
-      }
-    },
-    {
-      "isNational": false,
       "name": "Festiu d'Astúries",
       "departments": ["33"],
-      "startDate": "2025-09-08",
-      "endDate": "2025-09-08",
+      "startDate": "2026-09-08",
+      "endDate": "2026-09-08",
       "translations": {
         "ca": "Festiu d'Astúries"
       }
     },
     {
       "isNational": false,
+      "name": "La nostra Senyora del Pi",
+      "departments": [],
+      "startDate": "2026-09-08",
+      "endDate": "2026-09-08",
+      "translations": {
+        "ca": "La nostra Senyora del Pi"
+      }
+    },
+    {
+      "isNational": false,
+      "name": "Festiu d'Extremadura",
+      "departments": ["06", "10"],
+      "startDate": "2026-09-08",
+      "endDate": "2026-09-08",
+      "translations": {
+        "ca": "Festiu d'Extremadura"
+      }
+    },
+    {
+      "isNational": false,
       "name": "Diada Nacional de Catalunya",
       "departments": ["08", "17", "25", "43"],
-      "startDate": "2025-09-11",
-      "endDate": "2025-09-11",
+      "startDate": "2026-09-11",
+      "endDate": "2026-09-11",
       "translations": {
         "ca": "Diada Nacional de Catalunya"
       }
     },
     {
       "isNational": false,
-      "name": "La nostra Senyora dels Volcans",
-      "departments": [],
-      "startDate": "2025-09-15",
-      "endDate": "2025-09-15",
-      "translations": {
-        "ca": "La nostra Senyora dels Volcans"
-      }
-    },
-    {
-      "isNational": false,
       "name": "La Bé Apareguda",
       "departments": ["39"],
-      "startDate": "2025-09-15",
-      "endDate": "2025-09-15",
+      "startDate": "2026-09-15",
+      "endDate": "2026-09-15",
       "translations": {
         "ca": "La Bé Apareguda"
       }
     },
     {
       "isNational": false,
+      "name": "La nostra Senyora dels Volcans",
+      "departments": [],
+      "startDate": "2026-09-15",
+      "endDate": "2026-09-15",
+      "translations": {
+        "ca": "La nostra Senyora dels Volcans"
+      }
+    },
+    {
+      "isNational": false,
       "name": "Dia de Melilla",
       "departments": ["52"],
-      "startDate": "2025-09-17",
-      "endDate": "2025-09-17",
+      "startDate": "2026-09-17",
+      "endDate": "2026-09-17",
       "translations": {
         "ca": "Dia de Melilla"
       }
@@ -528,18 +857,28 @@
       "isNational": false,
       "name": "La nostra Senyora de la Penya",
       "departments": [],
-      "startDate": "2025-09-19",
-      "endDate": "2025-09-19",
+      "startDate": "2026-09-18",
+      "endDate": "2026-09-18",
       "translations": {
         "ca": "La nostra Senyora de la Penya"
       }
     },
     {
       "isNational": false,
+      "name": "La nostra Senyora dels Reis",
+      "departments": [],
+      "startDate": "2026-09-24",
+      "endDate": "2026-09-24",
+      "translations": {
+        "ca": "La nostra Senyora dels Reis"
+      }
+    },
+    {
+      "isNational": false,
       "name": "La nostra Senyora de Guadalupe",
       "departments": [],
-      "startDate": "2025-10-06",
-      "endDate": "2025-10-06",
+      "startDate": "2026-10-05",
+      "endDate": "2026-10-05",
       "translations": {
         "ca": "La nostra Senyora de Guadalupe"
       }
@@ -548,8 +887,8 @@
       "isNational": false,
       "name": "Dia de la Comunitat Valenciana",
       "departments": ["03", "12", "46"],
-      "startDate": "2025-10-09",
-      "endDate": "2025-10-09",
+      "startDate": "2026-10-09",
+      "endDate": "2026-10-09",
       "translations": {
         "ca": "Dia de la Comunitat Valenciana"
       }
@@ -558,51 +897,51 @@
       "isNational": true,
       "name": "Diada Nacional d'Espanya",
       "departments": [],
-      "startDate": "2025-10-12",
-      "endDate": "2025-10-12",
+      "startDate": "2026-10-12",
+      "endDate": "2026-10-12",
       "translations": {
         "ca": "Diada Nacional d'Espanya"
-      }
-    },
-    {
-      "isNational": false,
-      "name": "Dilluns següent al Diada Nacional d'Espanya",
-      "departments": [
-        "04",
-        "11",
-        "14",
-        "18",
-        "21",
-        "22",
-        "23",
-        "29",
-        "33",
-        "41",
-        "44",
-        "50"
-      ],
-      "startDate": "2025-10-13",
-      "endDate": "2025-10-13",
-      "translations": {
-        "ca": "Dilluns següent al Diada Nacional d'Espanya"
       }
     },
     {
       "isNational": true,
       "name": "Tots Sants",
       "departments": [],
-      "startDate": "2025-11-01",
-      "endDate": "2025-11-01",
+      "startDate": "2026-11-01",
+      "endDate": "2026-11-01",
       "translations": {
         "ca": "Tots Sants"
       }
     },
     {
       "isNational": false,
+      "name": "Dilluns següent a Tots Sants",
+      "departments": [
+        "02",
+        "13",
+        "16",
+        "19",
+        "22",
+        "28",
+        "31",
+        "35",
+        "38",
+        "44",
+        "45",
+        "50"
+      ],
+      "startDate": "2026-11-02",
+      "endDate": "2026-11-02",
+      "translations": {
+        "ca": "Dilluns següent a Tots Sants"
+      }
+    },
+    {
+      "isNational": false,
       "name": "Sant Francesc Xavier",
       "departments": ["31"],
-      "startDate": "2025-12-03",
-      "endDate": "2025-12-03",
+      "startDate": "2026-12-03",
+      "endDate": "2026-12-03",
       "translations": {
         "ca": "Sant Francesc Xavier"
       }
@@ -611,18 +950,28 @@
       "isNational": true,
       "name": "Dia de la Constitució Espanyola",
       "departments": [],
-      "startDate": "2025-12-06",
-      "endDate": "2025-12-06",
+      "startDate": "2026-12-06",
+      "endDate": "2026-12-06",
       "translations": {
         "ca": "Dia de la Constitució Espanyola"
+      }
+    },
+    {
+      "isNational": false,
+      "name": "Dilluns següent al Dia de la Constitució Espanyola",
+      "departments": ["22", "26", "28", "30", "39", "44", "50", "52"],
+      "startDate": "2026-12-07",
+      "endDate": "2026-12-07",
+      "translations": {
+        "ca": "Dilluns següent al Dia de la Constitució Espanyola"
       }
     },
     {
       "isNational": true,
       "name": "Immaculada Concepció",
       "departments": [],
-      "startDate": "2025-12-08",
-      "endDate": "2025-12-08",
+      "startDate": "2026-12-08",
+      "endDate": "2026-12-08",
       "translations": {
         "ca": "Immaculada Concepció"
       }
@@ -631,8 +980,8 @@
       "isNational": true,
       "name": "Nadal",
       "departments": [],
-      "startDate": "2025-12-25",
-      "endDate": "2025-12-25",
+      "startDate": "2026-12-25",
+      "endDate": "2026-12-25",
       "translations": {
         "ca": "Nadal"
       }
@@ -641,104 +990,14 @@
       "isNational": false,
       "name": "Sant Esteve",
       "departments": ["07", "08", "17", "25", "43"],
-      "startDate": "2025-12-26",
-      "endDate": "2025-12-26",
+      "startDate": "2026-12-26",
+      "endDate": "2026-12-26",
       "translations": {
         "ca": "Sant Esteve"
       }
     }
   ],
   "ad": [
-    {
-      "isNational": true,
-      "name": "Dilluns de Pentecosta",
-      "departments": [],
-      "startDate": "2025-06-09",
-      "endDate": "2025-06-09",
-      "translations": {
-        "ca": "Dilluns de Pentecosta"
-      }
-    },
-    {
-      "isNational": true,
-      "name": "Assumpció",
-      "departments": [],
-      "startDate": "2025-08-15",
-      "endDate": "2025-08-15",
-      "translations": {
-        "ca": "Assumpció"
-      }
-    },
-    {
-      "isNational": true,
-      "name": "Mare de Déu de Meritxell",
-      "departments": [],
-      "startDate": "2025-09-08",
-      "endDate": "2025-09-08",
-      "translations": {
-        "ca": "Mare de Déu de Meritxell"
-      }
-    },
-    {
-      "isNational": true,
-      "name": "Tots Sants",
-      "departments": [],
-      "startDate": "2025-11-01",
-      "endDate": "2025-11-01",
-      "translations": {
-        "ca": "Tots Sants"
-      }
-    },
-    {
-      "isNational": true,
-      "name": "Immaculada Concepció",
-      "departments": [],
-      "startDate": "2025-12-08",
-      "endDate": "2025-12-08",
-      "translations": {
-        "ca": "Immaculada Concepció"
-      }
-    },
-    {
-      "isNational": true,
-      "name": "Nadal",
-      "departments": [],
-      "startDate": "2025-12-25",
-      "endDate": "2025-12-25",
-      "translations": {
-        "ca": "Nadal"
-      }
-    },
-    {
-      "isNational": true,
-      "name": "Sant Esteve",
-      "departments": [],
-      "startDate": "2025-12-26",
-      "endDate": "2025-12-26",
-      "translations": {
-        "ca": "Sant Esteve"
-      }
-    },
-    {
-      "isNational": true,
-      "name": "Any nou",
-      "departments": [],
-      "startDate": "2026-01-01",
-      "endDate": "2026-01-01",
-      "translations": {
-        "ca": "Any nou"
-      }
-    },
-    {
-      "isNational": true,
-      "name": "Reis",
-      "departments": [],
-      "startDate": "2026-01-06",
-      "endDate": "2026-01-06",
-      "translations": {
-        "ca": "Reis"
-      }
-    },
     {
       "isNational": true,
       "name": "Carnaval",
@@ -855,6 +1114,146 @@
       "departments": [],
       "startDate": "2026-12-26",
       "endDate": "2026-12-26",
+      "translations": {
+        "ca": "Sant Esteve"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Any nou",
+      "departments": [],
+      "startDate": "2027-01-01",
+      "endDate": "2027-01-01",
+      "translations": {
+        "ca": "Any nou"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Reis",
+      "departments": [],
+      "startDate": "2027-01-06",
+      "endDate": "2027-01-06",
+      "translations": {
+        "ca": "Reis"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Carnaval",
+      "departments": [],
+      "startDate": "2027-02-08",
+      "endDate": "2027-02-08",
+      "translations": {
+        "ca": "Carnaval"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Dia de la Constitució",
+      "departments": [],
+      "startDate": "2027-03-14",
+      "endDate": "2027-03-14",
+      "translations": {
+        "ca": "Dia de la Constitució"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Divendres Sant",
+      "departments": [],
+      "startDate": "2027-03-26",
+      "endDate": "2027-03-26",
+      "translations": {
+        "ca": "Divendres Sant"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Dilluns de Pasqua",
+      "departments": [],
+      "startDate": "2027-03-29",
+      "endDate": "2027-03-29",
+      "translations": {
+        "ca": "Dilluns de Pasqua"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Festa del Treball",
+      "departments": [],
+      "startDate": "2027-05-01",
+      "endDate": "2027-05-01",
+      "translations": {
+        "ca": "Festa del Treball"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Dilluns de Pentecosta",
+      "departments": [],
+      "startDate": "2027-05-17",
+      "endDate": "2027-05-17",
+      "translations": {
+        "ca": "Dilluns de Pentecosta"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Assumpció",
+      "departments": [],
+      "startDate": "2027-08-15",
+      "endDate": "2027-08-15",
+      "translations": {
+        "ca": "Assumpció"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Mare de Déu de Meritxell",
+      "departments": [],
+      "startDate": "2027-09-08",
+      "endDate": "2027-09-08",
+      "translations": {
+        "ca": "Mare de Déu de Meritxell"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Tots Sants",
+      "departments": [],
+      "startDate": "2027-11-01",
+      "endDate": "2027-11-01",
+      "translations": {
+        "ca": "Tots Sants"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Immaculada Concepció",
+      "departments": [],
+      "startDate": "2027-12-08",
+      "endDate": "2027-12-08",
+      "translations": {
+        "ca": "Immaculada Concepció"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Nadal",
+      "departments": [],
+      "startDate": "2027-12-25",
+      "endDate": "2027-12-25",
+      "translations": {
+        "ca": "Nadal"
+      }
+    },
+    {
+      "isNational": true,
+      "name": "Sant Esteve",
+      "departments": [],
+      "startDate": "2027-12-26",
+      "endDate": "2027-12-26",
       "translations": {
         "ca": "Sant Esteve"
       }
