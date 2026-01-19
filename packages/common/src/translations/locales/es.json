@@ -118,6 +118,7 @@
   "ALREADY_LOGGED_IN": "Ya estás conectado a {{ brandName }}",
   "AMENDMENT_CLAUSE": "Ten en cuenta que el widget de la Soliguía actualmente se proporciona de forma gratuita. Sin embargo, nos reservamos el derecho de cobrar por el uso del widget o de algunas de sus funciones. En este caso, por supuesto, se te notificará antes de cualquier modificación de las reglas para usar el widget de la Soliguía.",
   "ANIMAUX": "Animales",
+  "ANTICIPATE_CLOSURES": "Anticipe los cierres de servicios en su área",
   "API": "API",
   "API_PARTNERS": "Socios API",
   "API_USER": "Usuario/a de la API",

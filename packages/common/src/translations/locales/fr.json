@@ -118,6 +118,7 @@
   "ALREADY_LOGGED_IN": "Vous êtes déjà connecté(e) sur {{ brandName }}",
   "AMENDMENT_CLAUSE": "Notons que le Widget Soliguide est actuellement fourni à titre gratuit. Toutefois, nous nous réservons la possibilité de rendre payante l’utilisation du Widget ou de certaines de ces fonctionnalités. Dans ce cas, vous serez évidemment prévenus avant toute modification des règles d’utilisation du Widget Soliguide.",
   "ANIMAUX": "Animaux",
+  "ANTICIPATE_CLOSURES": "Anticipez des fermetures de services sur votre territoire",
   "API": "API",
   "API_PARTNERS": "Partenaires API",
   "API_USER": "Utilisateur de l'API",
