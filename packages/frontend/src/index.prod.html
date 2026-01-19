@@ -130,6 +130,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           olympicGames: '{{ env "SOLIGUIDE_OLYMPIC_GAMES" }}'.length
             ? '{{ env "SOLIGUIDE_OLYMPIC_GAMES" }}'
             : undefined,
+          anticipateClosures: '{{ env "SOLIGUIDE_ANTICIPATE_CLOSURES" }}'.length
+            ? '{{ env "SOLIGUIDE_ANTICIPATE_CLOSURES" }}'
+            : undefined,
           foodAccess: '{{ env "SOLIGUIDE_FOOD_ACCESS" }}'.length
             ? '{{ env "SOLIGUIDE_FOOD_ACCESS" }}'
             : undefined,
