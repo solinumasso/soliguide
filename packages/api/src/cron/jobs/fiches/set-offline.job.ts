@@ -20,7 +20,7 @@
  */
 import "../../../config/database/connection";
 
-import { CountryCodes, PlaceStatus } from "@soliguide/common";
+import { PlaceStatus } from "@soliguide/common";
 
 import delay from "delay";
 
@@ -47,7 +47,6 @@ import { PlaceModel } from "../../../place/models/place.model";
       ...DEFAULT_PLACES_TO_INCLUDE_FOR_SEARCH,
       status: PlaceStatus.ONLINE,
       updatedByUserAt: { $lt: sixMonthsAgo },
-      country: CountryCodes.FR,
     };
 
     await PlaceModel.updateMany(request, {
