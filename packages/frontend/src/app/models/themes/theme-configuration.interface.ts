@@ -28,6 +28,7 @@ export enum PrivateDashboards {
   SeasonalAnalysis = "seasonalAnalysis",
   FoodAccess = "foodAccess",
   OlympicGames = "olympicGames",
+  AnticipateClosures = "anticipateClosures",
 }
 
 export enum PublicDashboards {
