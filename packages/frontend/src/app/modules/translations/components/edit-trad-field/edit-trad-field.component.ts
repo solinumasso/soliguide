@@ -52,7 +52,6 @@ import { TranslateService } from "@ngx-translate/core";
 @Component({
   selector: "app-edit-trad-field",
   templateUrl: "./edit-trad-field.component.html",
-  styleUrls: ["./edit-trad-field.component.css"],
 })
 export class EditTradFieldComponent implements OnInit, OnDestroy {
   private readonly subscription = new Subscription();
@@ -72,7 +71,7 @@ export class EditTradFieldComponent implements OnInit, OnDestroy {
   public translatedField!: TranslatedField;
 
   public isAutoTranslation: boolean = true;
-  public translatedContent: string;
+  public translatedContent = "";
 
   public loading = false;
   public lang: SupportedLanguagesCode;
@@ -87,8 +86,6 @@ export class EditTradFieldComponent implements OnInit, OnDestroy {
     private readonly currentLanguageService: CurrentLanguageService,
     private readonly translateService: TranslateService
   ) {
-    this.translatedContent = "";
-
     this.lang = SupportedLanguagesCode.EN;
     this.routePrefix = this.currentLanguageService.routePrefix;
   }
@@ -143,7 +140,10 @@ export class EditTradFieldComponent implements OnInit, OnDestroy {
           this.typeEditor =
             TRANSLATED_FIELDS_PARAMS[translatedField.elementName].editor;
 
-          if (!translatedField.languages[this.lang].human.content) {
+          if (
+            !translatedField.languages[this.lang].human.content ||
+            translatedField.languages[this.lang].human.content === ""
+          ) {
             this.translatedContent =
               translatedField.languages[this.lang].auto.content;
             this.isAutoTranslation = false;
@@ -164,7 +164,6 @@ export class EditTradFieldComponent implements OnInit, OnDestroy {
             this.currentLanguageService.routePrefix,
             "404",
           ]);
-          return;
         },
       })
     );
