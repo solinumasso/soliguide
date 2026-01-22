@@ -30,7 +30,7 @@ const LOGOS_BASE_PATH = "../../../../../assets/images/poctefa-logos";
 
 export const ALL_LOGOS: LogoWithLink[] = [
   {
-    path: `${LOGOS_BASE_PATH}/Isologo.svg`,
+    path: `${LOGOS_BASE_PATH}/isologo.svg`,
     alt: "iSocial",
     link: "https://isocial.cat/",
     size: "large",
@@ -48,7 +48,7 @@ export const ALL_LOGOS: LogoWithLink[] = [
     size: "large",
   },
   {
-    path: `${LOGOS_BASE_PATH}/alba_verd.svg`,
+    path: `${LOGOS_BASE_PATH}/alba-verd.svg`,
     alt: "Alba",
     link: "https://aalba.cat/ca/",
     size: "large",
@@ -60,7 +60,7 @@ export const ALL_LOGOS: LogoWithLink[] = [
     size: "large",
   },
   {
-    path: `${LOGOS_BASE_PATH}/Fundació Resilis.svg`,
+    path: `${LOGOS_BASE_PATH}/fundacio-resilis.svg`,
     alt: "Fundació Resilis",
     link: "https://www.resilis.org/",
     size: "large",
@@ -72,7 +72,7 @@ export const ALL_LOGOS: LogoWithLink[] = [
     size: "large",
   },
   {
-    path: `${LOGOS_BASE_PATH}/diputació-de-tarragona.svg`,
+    path: `${LOGOS_BASE_PATH}/diputacio-de-tarragona.svg`,
     alt: "Diputació de Tarragona",
     link: "https://www.dipta.cat/",
     size: "small",
