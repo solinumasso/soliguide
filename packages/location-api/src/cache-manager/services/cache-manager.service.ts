@@ -19,12 +19,14 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { CACHE_MANAGER, Cache } from "@nestjs/cache-manager";
-import { Inject, Injectable } from "@nestjs/common";
+import { Inject, Injectable, Logger } from "@nestjs/common";
 import { createHash } from "crypto";
 import { CachePrefix } from "../enums";
 
 @Injectable()
 export class CacheManagerService {
+  private readonly logger = new Logger(CacheManagerService.name);
+
   constructor(@Inject(CACHE_MANAGER) private cacheManager: Cache) {}
 
   public async getCachedData<T>(key: string): Promise<T | undefined> {
@@ -39,5 +41,16 @@ export class CacheManagerService {
     const paramString = `${context}-${JSON.stringify(params)}`;
     const hash = createHash("sha1").update(paramString).digest("hex");
     return hash;
+  }
+
+  public async flushCache(): Promise<void> {
+    try {
+      this.logger.log("Flushing Redis cache...");
+      await this.cacheManager.clear();
+      this.logger.log("Redis cache flushed successfully");
+    } catch (error) {
+      this.logger.error("Failed to flush Redis cache", error);
+      throw error;
+    }
   }
 }
