@@ -20,7 +20,7 @@
  */
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { TranslateModule } from "@ngx-translate/core";
 
@@ -39,7 +39,11 @@ describe("GcuFormComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [GcuFormComponent],
-      imports: [FormsModule, RouterTestingModule, TranslateModule.forRoot({})],
+      imports: [
+        FormsModule,
+        RouterModule.forRoot([]),
+        TranslateModule.forRoot({}),
+      ],
       providers: [
         { provide: PosthogService, useClass: CommonPosthogMockService },
       ],

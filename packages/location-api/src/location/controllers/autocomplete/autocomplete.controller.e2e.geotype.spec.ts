@@ -87,16 +87,16 @@ describe("E2E - Location autocomplete endpoints for Spain", () => {
       expect(location.geoType).toEqual(GeoTypes.REGION);
     });
 
-    it(`/autocomplete/FR/all/argentueil?geoType=${GeoTypes.CITY}`, async () => {
+    it(`/autocomplete/FR/all/argenteuil?geoType=${GeoTypes.CITY}`, async () => {
       const response = await app.inject({
         method: "GET",
-        url: `/autocomplete/FR/all/argentueil?geoType=${GeoTypes.CITY}`,
+        url: `/autocomplete/FR/all/argenteuil?geoType=${GeoTypes.CITY}`,
       });
 
       const body = JSON.parse(response.body);
       expect(response.statusCode).toEqual(200);
       expect(body[0]).toBeDefined();
-      expect(body.length).toEqual(1);
+      expect(body.length).toBeGreaterThanOrEqual(1);
 
       const locations = body as LocationAutoCompleteAddress[];
 

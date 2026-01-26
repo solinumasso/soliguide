@@ -65,6 +65,7 @@ import {
 } from "../middlewares/capture-user-event.middleware";
 import { addAreasToUser } from "../middlewares/add-areas-to-user.middleware";
 import { sendUserChangesToMq } from "../middlewares/send-user-changes-event-to-mq.middleware";
+import { addBreadcrumb, captureException, captureMessage } from "@sentry/node";
 
 const router = express.Router();
 
@@ -232,6 +233,10 @@ router.post(
       const { mail, isAdminRequest } = req.bodyValidated;
 
       if (isAdminRequest && !req.isAdmin) {
+        captureMessage("Unauthorized admin password reset attempt", {
+          level: "warning",
+          extra: { mail, isAdminRequest, hasAdminRights: req.isAdmin },
+        });
         return res.status(500).json({ message: "BAD_REQUEST" });
       }
 
@@ -240,6 +245,15 @@ router.post(
       );
 
       if (!selectedUser) {
+        captureMessage("Password reset attempt for non-existent user", {
+          level: "info",
+          extra: {
+            mail,
+            isAdminRequest,
+            userFound: false,
+          },
+        });
+
         req.log.error({
           email: mail,
           message: "TENTATIVE_RESET_PASSWORD_ACCOUNT",
@@ -249,6 +263,13 @@ router.post(
       req.selectedUser = selectedUser;
 
       if (isAdminRequest) {
+        addBreadcrumb({
+          category: "password",
+          message: "Admin password reset token generated",
+          level: "info",
+          data: { mail, tokenGenerated: Boolean(selectedUser.passwordToken) },
+        });
+
         return res
           .status(200)
           .json({ passwordToken: selectedUser.passwordToken });
@@ -256,6 +277,13 @@ router.post(
         next();
       }
     } catch (e) {
+      captureException(e, {
+        extra: {
+          mail: req.bodyValidated,
+          isAdminRequest: req.bodyValidated?.isAdminRequest,
+        },
+      });
+
       req.log.error(e);
       return res.status(500).json({ message: "RESET_PASSWORD_IMPOSSIBLE" });
     }
@@ -312,11 +340,33 @@ router.post(
         userPwdInfos.token
       );
       if (!user) {
+        captureMessage("Password update returned null user", {
+          level: "error",
+          extra: {
+            tokenProvided: Boolean(userPwdInfos.token),
+            passwordProvided: Boolean(userPwdInfos.password),
+          },
+        });
         throw new Error("FAILED_PASSWORD_UPDATE");
       }
       req.selectedUser = user;
+
+      addBreadcrumb({
+        category: "password",
+        message: "Password successfully reset",
+        level: "info",
+        data: { userId: user._id?.toString() },
+      });
+
       return next();
     } catch (e) {
+      captureException(e, {
+        extra: {
+          tokenProvided: Boolean(userPwdInfos.token),
+          passwordProvided: Boolean(userPwdInfos.password),
+        },
+      });
+
       req.log.error(e);
       return res.status(400).json("UPDATE_PASSWORD_IMPOSSIBLE");
     }

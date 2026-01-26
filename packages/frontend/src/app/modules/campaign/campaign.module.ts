@@ -21,11 +21,7 @@
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 import { CommonModule } from "@angular/common";
-import {
-  CUSTOM_ELEMENTS_SCHEMA,
-  NO_ERRORS_SCHEMA,
-  NgModule,
-} from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
@@ -81,6 +77,6 @@ import { PlacePageModule } from "../place-page/place-page.module";
     CampaignSharedModule,
   ],
   providers: [CampaignService],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class CampaignModule {}
+export class CampaignModule {} // skipcq: JS-0327

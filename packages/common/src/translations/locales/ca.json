@@ -118,6 +118,7 @@
   "ALREADY_LOGGED_IN": "Ja estàs connectat a {{ brandName }}",
   "AMENDMENT_CLAUSE": "Tingues en compte que el giny (\"widget\") de la Soliguia es proporciona actualment de manera gratuïta. Tanmateix, ens reservem el dret de cobrar per l'ús del giny o d'algunes de les seves funcions. En aquest cas, òbviament, se us notificarà abans de qualsevol modificació de les regles d'ús del giny de la Soliguia.",
   "ANIMAUX": "Animals",
+  "ANTICIPATE_CLOSURES": "Preveu els tancaments de serveis a la vostra zona",
   "API": "API",
   "API_PARTNERS": "Socis API",
   "API_USER": "Usuari/ària de l'API",

@@ -101,6 +101,12 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
           "https://superset.solinum.org/superset/dashboard/solidata_jo_2024/?standalone=2",
         seoUrl: "olympic-games",
       },
+      anticipateClosures: {
+        label: "Anticipez des fermetures de services sur votre territoire",
+        dashboardUrl:
+          "https://superset.solinum.org/superset/dashboard/calendrier_des_fermetures/?standalone=2",
+        seoUrl: "calendrier_des_fermetures",
+      },
       demoFoodAccess: {
         label: "Démo – Analyse de l'accès à l'alimentation",
         dashboardUrl:

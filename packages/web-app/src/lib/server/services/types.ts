@@ -27,7 +27,7 @@ export interface SearchOptions {
 export interface SearchParams {
   lang: string;
   location: string;
-  category: string;
+  category: string | null;
   coordinates: number[];
   type: string;
   distance: number;

@@ -44,6 +44,7 @@ import {
 import type { LocationSuggestion } from '$lib/models/locationSuggestion';
 import { posthogService } from '$lib/services/posthogService';
 import { getErrorValue } from '$lib/ts';
+import { ALL_CATEGORIES, type CategorySearch } from '$lib/constants';
 
 const SEARCH_LOCATION_MINIMUM_CHARS = 3;
 
@@ -214,7 +215,7 @@ export const getSearchPageController = (
    */
   const buildSearchParams = (
     locationSelection: LocationSuggestion | null = null,
-    categorySelection: Categories | null = null
+    categorySelection: CategorySearch | null = null
   ): SearchPageParams | null => {
     if (locationSelection !== null && categorySelection !== null) {
       const [latitude, longitude] = locationSelection.coordinates;
@@ -340,6 +341,7 @@ export const getSearchPageController = (
    * the controller is initialized on categories page with proper selections and suggestions set
    * - the location is searched and the result matching the geoValue is used
    * - the category is validated
+   * Special case: if category is ALL_CATEGORIES, we ignore it and don't initialize the category
    * In case of failure, controller is init with default empty value
    */
   const init = async (
@@ -348,7 +350,11 @@ export const getSearchPageController = (
     { geoValue, label, category }: PageOptions = {}
   ) => {
     myPageStore.set({ ...initialState, country, lang });
-    if (geoValue && label && category) {
+
+    const shouldIgnoreCategory = category === ALL_CATEGORIES;
+    const shouldInitCategory = category && category !== ALL_CATEGORIES;
+
+    if (geoValue && label && shouldInitCategory) {
       myPageStore.set({ ...initialState, loading: true });
       const locationInfo = await getLocationInfoFromParam(label, geoValue);
       const categoryInfo = await getCategoryInfoFromParam(category);
@@ -374,10 +380,34 @@ export const getSearchPageController = (
         focus: Focus.FOCUS_NONE,
         loading: false
       });
+    } else if (geoValue && label && shouldIgnoreCategory) {
+      // Special case: we have location but category is ALL_CATEGORIES
+      // Initialize only the location, leave category empty
+      myPageStore.set({ ...initialState, loading: true });
+      const locationInfo = await getLocationInfoFromParam(label, geoValue);
+
+      const step =
+        locationInfo.error !== LocationErrors.NONE || !locationInfo.selection
+          ? Steps.STEP_LOCATION
+          : Steps.STEP_CATEGORY;
+
+      myPageStore.set({
+        ...initialState,
+        country,
+        lang,
+        currentStep: step,
+        locationSuggestions: locationInfo.suggestions,
+        selectedLocationSuggestion: locationInfo.selection,
+        locationLabel: locationInfo.selection?.suggestionLabel ?? '',
+        locationSuggestionError: locationInfo.error,
+        selectedCategory: null,
+        focus: Focus.FOCUS_CATEGORY,
+        loading: false
+      });
     }
   };
 
-  const selectCategorySuggestion = (categorySuggestion: Categories): void => {
+  const selectCategorySuggestion = (categorySuggestion: CategorySearch): void => {
     if (get(myPageStore).currentStep === Steps.STEP_CATEGORY) {
       myPageStore.update(
         (oldValue): PageState => ({

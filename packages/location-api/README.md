@@ -70,3 +70,20 @@ To run tests, run the following command
 ```bash
   yarn test
 ```
+
+## Annual Maintenance Tasks
+
+### Holiday Data Generation
+
+**IMPORTANT**: The holiday data needs to be regenerated annually to ensure accurate holiday information for the current year.
+
+**Command:**
+```bash
+yarn generate:holidays-file
+```
+**When to run:**
+- At the beginning of each calendar year (January)
+- Whenever holiday definitions change for supported countries
+
+**What it does:**
+This command generates and updates the holiday calendar data used by the location API to provide accurate holiday information for various regions and countries.

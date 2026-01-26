@@ -19,7 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { CacheModule } from "@nestjs/cache-manager";
-import { Module } from "@nestjs/common";
+import { Module, OnModuleInit } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { CacheManagerService } from "./services/cache-manager.service";
 import { CacheManagerInterceptor } from "./cache-manager.interceptor";
@@ -73,4 +73,15 @@ import KeyvRedis, { RedisClientOptions } from "@keyv/redis";
     }),
   ],
 })
-export class CacheManagerModule {}
+export class CacheManagerModule implements OnModuleInit {
+  constructor(private cacheManagerService: CacheManagerService) {}
+
+  async onModuleInit() {
+    if (!CacheManagerModule.hasInitialized) {
+      CacheManagerModule.hasInitialized = true;
+      await this.cacheManagerService.flushCache();
+    }
+  }
+
+  private static hasInitialized = false;
+}

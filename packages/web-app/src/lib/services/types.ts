@@ -18,6 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import type { CategorySearch } from '$lib/constants';
 import type { LocationSuggestion } from '$lib/models/locationSuggestion';
 import type { SearchResult, PlaceDetails, DataForLogs } from '$lib/models/types';
 import {
@@ -109,7 +110,7 @@ declare global {
 }
 
 interface PosthogProperties {
-  categorySelected?: Categories;
+  categorySelected?: CategorySearch;
   location?: string;
   completeLocation?: {
     geoValue: string;

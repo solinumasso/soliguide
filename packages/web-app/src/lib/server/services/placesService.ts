@@ -46,7 +46,6 @@ export default (fetcher = fetch) => {
 
     const body = {
       category,
-      languages: lang,
       location: {
         geoValue: location,
         geoType: type,
@@ -83,7 +82,7 @@ export default (fetcher = fetch) => {
         coordinates,
         distance
       },
-      category as Categories
+      category as Categories | null
     );
   };
 

@@ -338,6 +338,20 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               >
                 {{ "SOLIDATA_FOOD_ACCESS" | translate }}
               </a>
+              <a
+                routerLinkActive="router-link-active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                [routerLink]="[
+                  routePrefix,
+                  'solidata',
+                  'calendrier_des_fermetures'
+                ]"
+                (click)="captureEvent('click-solidata-closing_calendar', {})"
+                ngbDropdownItem
+                *ngIf="displaySolidataAnticipateClosures"
+              >
+                {{ "ANTICIPATE_CLOSURES" | translate }}
+              </a>
             </div>
           </div>
         </li>

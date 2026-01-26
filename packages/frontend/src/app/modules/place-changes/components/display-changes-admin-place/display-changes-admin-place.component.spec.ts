@@ -27,17 +27,23 @@ import { DisplayChangesAdminPlaceComponent } from "./display-changes-admin-place
 
 import { PlaceChanges } from "../../../../models/place-changes";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterModule } from "@angular/router";
 
 import { ONLINE_PLACE_MOCK } from "./../../../../../../mocks";
 import { APP_BASE_HREF } from "@angular/common";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { TranslateModule } from "@ngx-translate/core";
+import { SharedModule } from "../../../shared";
+import { registerLocales } from "../../../../shared";
 
 describe("DisplayChangesAdminPlaceComponent", () => {
   let component: DisplayChangesAdminPlaceComponent;
   let fixture: ComponentFixture<DisplayChangesAdminPlaceComponent>;
+
+  beforeAll(() => {
+    registerLocales();
+  });
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -45,7 +51,8 @@ describe("DisplayChangesAdminPlaceComponent", () => {
       imports: [
         HttpClientTestingModule,
         NgbModule,
-        RouterTestingModule,
+        RouterModule.forRoot([]),
+        SharedModule,
         ToastrModule.forRoot({}),
         TranslateModule.forRoot(),
       ],

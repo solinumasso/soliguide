@@ -24,6 +24,7 @@ import { posthogService } from '$lib/services/posthogService';
 import type { PlaceDetailsParams, SearchOptions, SearchParams } from './types';
 import type { PlaceDetails, SearchResult } from '$lib/models/types';
 import { isValidStringEnumValue } from '$lib/ts';
+import { ALL_CATEGORIES } from '$lib/constants';
 
 export default (fetcher = fetch) => {
   const searchPlaces = (
@@ -33,7 +34,8 @@ export default (fetcher = fetch) => {
     if (!isValidStringEnumValue(SupportedLanguagesCode, lang)) {
       throw Error(`Bad request, lang ${lang} is invalid`);
     }
-    if (!isValidStringEnumValue(Categories, category)) {
+    // Allow ALL_CATEGORIES or any valid category from the enum
+    if (category !== ALL_CATEGORIES && !isValidStringEnumValue(Categories, category)) {
       throw Error(`Bad request, category ${category} is invalid`);
     }
     if (!isValidStringEnumValue(GeoTypes, type)) {

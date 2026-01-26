@@ -19,7 +19,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <script lang="ts">
-  import { getContext, setContext } from 'svelte';
+  import { getContext, setContext, onMount } from 'svelte';
   import { get } from 'svelte/store';
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
@@ -38,8 +38,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import type { ThemeDefinition } from '$lib/theme/types';
   import type { LocationSuggestion } from '$lib/models/locationSuggestion';
-  import { getCategoryTranslationKey, type Categories } from '@soliguide/common';
   import { CategoriesErrors, LocationErrors } from '$lib/services/types';
+  import { type CategorySearch, ALL_CATEGORIES } from '$lib/constants';
+  import { getCategorySearchTranslationKey } from '$lib/utils/categoryTranslation';
 
   setContext('CAPTURE_FCTN_CTX_KEY', pageStore.captureEvent);
 
@@ -48,13 +49,31 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
   const { url } = $page;
 
+  const categoryParam = url.searchParams.get('category');
+
+  // Initialize the page store
   pageStore.init(theme.country, theme.defaultLanguage, {
     geoValue: url.searchParams.get('location'),
     label: url.searchParams.get('label'),
-    category: url.searchParams.get('category')
+    category: categoryParam
   });
 
-  $: categoryLabel = $i18n.t(getCategoryTranslationKey($pageStore.selectedCategory));
+  // Clean URL after init if category was ALL_CATEGORIES
+  // This happens synchronously after init is called
+  onMount(() => {
+    if (categoryParam === ALL_CATEGORIES) {
+      const newSearchParams = new URLSearchParams(url.searchParams);
+      newSearchParams.delete('category');
+
+      const newUrl = newSearchParams.toString()
+        ? `${url.pathname}?${newSearchParams.toString()}`
+        : url.pathname;
+
+      goto(newUrl, { replaceState: true });
+    }
+  });
+
+  $: categoryLabel = $i18n.t(getCategorySearchTranslationKey($pageStore.selectedCategory));
   $: topbarTitleKey =
     $pageStore.currentStep === Steps.STEP_LOCATION
       ? 'WHERE_ARE_YOU_LOOKING'
@@ -98,7 +117,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     postSelectSuggestion();
   };
 
-  const selectCategory = (categorySuggestion: Categories): void => {
+  const selectCategory = (categorySuggestion: CategorySearch): void => {
     pageStore.selectCategorySuggestion(categorySuggestion);
     postSelectSuggestion();
   };

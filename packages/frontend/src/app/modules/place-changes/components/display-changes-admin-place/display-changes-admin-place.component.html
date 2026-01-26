@@ -35,7 +35,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <div class="px-3">
       <p appTextDirection>
         {{ "LAST_UPDATE_AT" | translate }} :
-        <b> {{ place.updatedByUserAt | date : "longDate" }}</b>
+        <b> {{ place.updatedByUserAt | dateProxy : "longDate" }}</b>
       </p>
 
       <p *ngIf="changes.length === 0" appTextDirection>
@@ -95,7 +95,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             />
           </div>
           <div>
-            {{ change.createdAt | date }}
+            {{ change.createdAt | dateProxy }}
           </div>
         </div>
         <a
