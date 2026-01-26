@@ -69,7 +69,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </script>
 
 <Card>
-  <a {id} class="card-link" {href}>
+  <a {id} class="card-link" {href} data-sveltekit-preload-data="off">
     <CardHeader
       on:click={() => {
         captureEvent('card-header-click', { placeId: place.id });
@@ -87,6 +87,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           {#if place.banners.campaign}
             <a
               href={`${$routes.ROUTE_PLACES}/${place.seoUrl}?categorySearched=${category}#bannerMessage`}
+              data-sveltekit-preload-data="off"
               ><InfoIcon
                 size="medium"
                 variant="warning"
@@ -97,6 +98,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           {:else if place.tempInfo.message === TempInfoStatus.CURRENT}
             <a
               href={`${$routes.ROUTE_PLACES}/${place.seoUrl}?categorySearched=${category}#tempMessage`}
+              data-sveltekit-preload-data="off"
               ><InfoIcon
                 size="medium"
                 variant="warning"
@@ -114,6 +116,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               {#if place.tempInfo.hours === TempInfoStatus.CURRENT && place.tempInfo.message !== TempInfoStatus.CURRENT}
                 <a
                   href={`${$routes.ROUTE_PLACES}/${place.seoUrl}?categorySearched=${category}#openingHoursSection`}
+                  data-sveltekit-preload-data="off"
                   ><InfoIcon
                     size="small"
                     variant="warning"
@@ -174,6 +177,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         on:click={() => gotoPlace(place.seoUrl, category)}
         size="small"
         type="primaryGradientFill"
+        data-sveltekit-preload-data="off"
         >{$i18n.t('PLUS_INFOS')}
       </Button>
     </div>

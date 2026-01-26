@@ -46,7 +46,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 <Card>
   <div class="card-container">
-    <a class="card-link" {href}>
+    <a class="card-link" {href} data-sveltekit-preload-data="off">
       <CardHeader>
         <div class="card-header-container">
           <div class="card-title">
