@@ -1,3 +1,26 @@
+# [4.122.0](https://github.com/solinumasso/soliguide/compare/v4.121.1...v4.122.0) (2026-01-26)
+
+
+### Bug Fixes
+
+* add captureException for password actions ([b28f2a7](https://github.com/solinumasso/soliguide/commit/b28f2a7519fde1b8116c4d592093859e98bf7eb3))
+* **api:** fix logs of search ([4e13947](https://github.com/solinumasso/soliguide/commit/4e13947536d376fcd1a1f9fc866c4925010ea763))
+* **api:** restart translations ([2177e0c](https://github.com/solinumasso/soliguide/commit/2177e0cad17ca2cf2a744e5548b66ac84c148734))
+* display financer logos for poctefa ([24fda88](https://github.com/solinumasso/soliguide/commit/24fda889f998c818f57df8d85906a43d9f1c746f))
+* display new dashboard in nav ([c12ad21](https://github.com/solinumasso/soliguide/commit/c12ad21ff740dfb1ed434db661cbc451191864d2))
+* remove flixbus and blabla transports from api display ([#1092](https://github.com/solinumasso/soliguide/issues/1092)) ([94f727a](https://github.com/solinumasso/soliguide/commit/94f727a512a2f2aac5b8d154527b26bf8147f8ca))
+* stop app filtering by app language ([1dda1ba](https://github.com/solinumasso/soliguide/commit/1dda1ba3a8f2d46a32c70a1f8a3d4a306a193077))
+* wrong url admin user ([7c52a67](https://github.com/solinumasso/soliguide/commit/7c52a672ddd08e1f9f723c31f2f8d7be0c51a035))
+
+
+### Features
+
+* add closure anticipation dashboard ([1679896](https://github.com/solinumasso/soliguide/commit/1679896c95bba0799add0b9180f95f3ff8c1ef85))
+* flush redis cache on nest start ([621fb7c](https://github.com/solinumasso/soliguide/commit/621fb7cb3fdba1529ce201f9a4e563bc18ea534d))
+* **frontend:** remove all warning in tests [#815](https://github.com/solinumasso/soliguide/issues/815) ([7188bcc](https://github.com/solinumasso/soliguide/commit/7188bcc88cebe2e8864c6acb2733b65cfaec72f6))
+* update cron job so places for spain and andorra also go offline when not updated ([c914178](https://github.com/solinumasso/soliguide/commit/c91417861a57f73576db54e8d01ff07936becaf4))
+* **web-app:** make all categories search possible ([2b485eb](https://github.com/solinumasso/soliguide/commit/2b485eb580a5e78f42e7b2691b59c0b325f4f23b))
+
 ## [4.121.1](https://github.com/solinumasso/soliguide/compare/v4.121.0...v4.121.1) (2026-01-09)
 
 
