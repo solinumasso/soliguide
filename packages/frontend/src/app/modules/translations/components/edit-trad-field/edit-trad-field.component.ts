@@ -146,10 +146,11 @@ export class EditTradFieldComponent implements OnInit, OnDestroy {
           ) {
             this.translatedContent =
               translatedField.languages[this.lang].auto.content;
-            this.isAutoTranslation = false;
+            this.isAutoTranslation = true;
           } else {
             this.translatedContent =
               translatedField.languages[this.lang].human.content;
+            this.isAutoTranslation = false;
           }
 
           this.editorConfig.placeholder = this.translateService.instant(
