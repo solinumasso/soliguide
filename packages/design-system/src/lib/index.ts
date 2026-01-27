@@ -46,12 +46,6 @@ import {
   EmojiNature,
   FaceRetouchingNatural,
   Flag,
-  Forum,
-  Gavel,
-  Hail,
-  Healing,
-  Home,
-  HomeWork,
   IconBurgerOff,
   IconBurgerOn,
   IconFavoriteOff,
@@ -98,20 +92,11 @@ import type * as types from './types/index.d.ts';
 export type { types };
 
 export {
-  AccessibleForward,
   Accordion,
   AccordionGroup,
-  ActionButton,
   AppIcon,
-  Article,
-  AutoStories,
-  BabyChangingStation,
-  BabyParcel,
   Badge,
-  Balance,
   BasicCard,
-  Bathtub,
-  Bedtime,
   Blind,
   BusinessCenter,
   Button,
@@ -135,14 +120,8 @@ export {
   FaceRetouchingNatural,
   Flag,
   FormControl,
-  Forum,
-  Gavel,
   generateId,
   getDesignSystemLocale,
-  Hail,
-  Healing,
-  Home,
-  HomeWork,
   IconBurgerOff,
   IconBurgerOn,
   IconFavoriteOff,
@@ -174,12 +153,10 @@ export {
   ThemeContext,
   ThermostatAuto,
   Tile,
-  Toast,
   ToggleButton,
   ToggleSwitch,
   Topbar
 };
 
 export { default as ActionButton } from './components/ActionButton.svelte';
-export { IconFavoriteOff, IconFavoriteOn } from './components/icons';
 export { default as Toast } from './components/dataDisplay/Toast.svelte';

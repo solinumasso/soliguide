@@ -66,8 +66,6 @@ const computeDistance = (
  */
 const buildLightPlaceCard = (
   place: ApiPlace | ApiPlaceWithCrossingPointIndex,
-  categorySearched: Categories | null
-  locationParams: SearchLocationParams | null | undefined,
   servicesAll: CommonNewPlaceService[]
 ): LightPlaceCard => {
   const onOrientation = Boolean(place.modalities.orientation.checked);

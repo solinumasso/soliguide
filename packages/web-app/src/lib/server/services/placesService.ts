@@ -134,7 +134,7 @@ export default (fetcher = fetch) => {
 
     const ids = [...new Set(favorites.map(({ lieuId }) => lieuId))];
 
-    const url = `${apiUrl}place/lookup/${lang}`;
+    const url = `${apiUrl}/place/lookup/${lang}`;
 
     const headers = {
       'Content-Type': 'application/json',

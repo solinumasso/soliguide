@@ -36,7 +36,11 @@ import {
   handleLanguage,
   getFilteredData,
 } from "../../middleware";
-import type { ExpressRequest, ExpressResponse } from "../../_models";
+import {
+  Origin,
+  type ExpressRequest,
+  type ExpressResponse,
+} from "../../_models";
 import {
   getTranslatedPlace,
   getTranslatedPlacesForSearch,
@@ -138,6 +142,13 @@ router.get(
  */
 router.post(
   "/lookup/:lang?",
+  (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
+    const allowedOrigins = [Origin.MOBILE_APP, Origin.WEBAPP_SOLIGUIDE];
+    if (!allowedOrigins.includes(req.requestInformation.originForLogs)) {
+      return res.status(403).send({ message: "FORBIDDEN" });
+    }
+    return next();
+  },
   handleLanguage,
   lookupDto,
   getFilteredData,
