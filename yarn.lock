@@ -9782,6 +9782,7 @@ __metadata:
     "@types/lodash.debounce": "npm:^4.0.9"
     "@types/lodash.get": "npm:^4.4.9"
     "@types/node": "npm:^20.19.8"
+    "@types/punycode": "npm:^2"
     "@types/validator": "npm:^13.15.2"
     "@typescript-eslint/eslint-plugin": "npm:^6.21.0"
     "@typescript-eslint/parser": "npm:^6.21.0"
@@ -9817,6 +9818,7 @@ __metadata:
     ngx-sharebuttons: "npm:^14.0.0"
     ngx-toastr: "npm:^18.0.0"
     prettier: "npm:^2.8.8"
+    punycode: "npm:^2.3.1"
     rxjs: "npm:^7.8.2"
     schema-dts: "npm:^1.1.5"
     source-map-explorer: "npm:^2.5.3"
@@ -11381,6 +11383,13 @@ __metadata:
   version: 2.0.10
   resolution: "@types/pug@npm:2.0.10"
   checksum: 10/b7331b87ceffe6a55b200d0fbfd3f4defdc6703ce21d25a8f3f01d9022a3b36ab0e2ee7d6eeb16b82b6375c0cadf35e1633219775237cb0c62e785fbd35df57c
+  languageName: node
+  linkType: hard
+
+"@types/punycode@npm:^2":
+  version: 2.1.4
+  resolution: "@types/punycode@npm:2.1.4"
+  checksum: 10/16637bdd8e4f830243072668125f83b93b728085a05140ccc3e7801528d78c62cce5426b07d5cdc75e4f797e1644807c762777f651d1cd071ad0128835cdce5e
   languageName: node
   linkType: hard
 

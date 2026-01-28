@@ -39,6 +39,7 @@ import { DateFrDirective } from "./directives/date-fr.directive";
 import { DigitOnlyDirective } from "./directives/digit-only.directive";
 import {
   CategoryTranslateKeyPipe,
+  DecodePunycodeEmailPipe,
   FormatBigNumberPipe,
   HtmlToTextPipe,
   KmToMeters,
@@ -59,6 +60,7 @@ import { NgxTranslateI18nextAdapter } from "./services/ngx-translate-i18next-ada
     CategoryTranslateKeyPipe,
     CleanStrDirective,
     DateFrDirective,
+    DecodePunycodeEmailPipe,
     DigitOnlyDirective,
     FormatBigNumberPipe,
     HtmlToTextPipe,
@@ -79,6 +81,7 @@ import { NgxTranslateI18nextAdapter } from "./services/ngx-translate-i18next-ada
     CategoryTranslateKeyPipe,
     CleanStrDirective,
     DateFrDirective,
+    DecodePunycodeEmailPipe,
     DigitOnlyDirective,
     FormatBigNumberPipe,
     HtmlToTextPipe,

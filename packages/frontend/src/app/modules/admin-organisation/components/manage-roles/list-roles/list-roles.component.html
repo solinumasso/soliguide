@@ -24,7 +24,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       <span class="fw-bold d-block fs-6">
         {{ userRight.name }} {{ userRight.lastname }}
       </span>
-      <span>{{ userRight.mail }}</span>
+      <span>{{ userRight.mail | decodePunycodeEmail }}</span>
       <p>
         <span *ngIf="invitation" class="badge text-dark bg-warning">
           {{ "INVITATION" | translate }}

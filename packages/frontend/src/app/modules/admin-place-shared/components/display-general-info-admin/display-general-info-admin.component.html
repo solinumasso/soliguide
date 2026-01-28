@@ -57,7 +57,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <div class="col-md-9 col-12">
       <span>
         <a href="mailto:{{ place.entity.mail }}" target="_blank">
-          {{ place.entity.mail }}
+          {{ place.entity.mail | decodePunycodeEmail }}
         </a>
       </span>
     </div>

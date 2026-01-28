@@ -40,7 +40,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             </h4>
 
             <div class="fiche-location">
-              {{ "EMAIL_ADDRESS" | translate }}: {{ invitation.user.mail }}
+              {{ "EMAIL_ADDRESS" | translate }}:
+              {{ invitation.user.mail | decodePunycodeEmail }}
             </div>
             <ul *ngIf="me.role === UserRole.OWNER || me.admin">
               <li>

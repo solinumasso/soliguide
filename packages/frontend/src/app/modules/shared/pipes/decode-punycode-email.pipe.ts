@@ -18,15 +18,17 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-//@index('./*.pipe.ts', f => `export * from '${f.path}'`)
-export * from "./category-translate-key.pipe";
-export * from "./convert-km-to-meters.pipe";
-export * from "./date-proxy.pipe";
-export * from "./decode-punycode-email.pipe";
-export * from "./format-big-number.pipe";
-export * from "./html-to-text.pipe";
-export * from "./limit-to.pipe";
-export * from "./readable-parcours.pipe";
-export * from "./safe-html.pipe";
-export * from "./uc-first.pipe";
-export * from "./user-fullname.pipe";
+import { Pipe, PipeTransform } from "@angular/core";
+import { toUnicode } from "punycode";
+
+export function decodePunycodeEmail(email: string): string {
+  const [local, domain] = email.split("@");
+  return `${local}@${toUnicode(domain)}`;
+}
+
+@Pipe({ name: "decodePunycodeEmail" })
+export class DecodePunycodeEmailPipe implements PipeTransform {
+  transform(email: string): string {
+    return decodePunycodeEmail(email);
+  }
+}

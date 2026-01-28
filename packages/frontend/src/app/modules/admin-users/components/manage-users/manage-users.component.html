@@ -248,7 +248,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           </td>
 
           <td class="sticky-col second-col">
-            {{ user.mail }}
+            {{ user.mail | decodePunycodeEmail }}
           </td>
 
           <td class="text-center">
