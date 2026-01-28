@@ -182,24 +182,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             >
           {/if}
         </div>
-
-        <div class="card-header-infos-container">
-          <PlaceStatus status={place.status} />
-          <div>
-            <TodayInfo todayInfo={place.todayInfo}>
-              {#if place.tempInfo.hours === TempInfoStatus.CURRENT && place.tempInfo.message !== TempInfoStatus.CURRENT}
-                <a
-                  href={`${$routes.ROUTE_PLACES}/${place.seoUrl}?categorySearched=${category}#openingHoursSection`}
-                  data-sveltekit-preload-data="off"
-                  ><InfoIcon
-                    size="small"
-                    variant="warning"
-                    withShadow
-                    altTag={$i18n.t('TEMPORARY_HOURS_CURRENTLY_ACTIVE')}
-                  ></InfoIcon></a
-                >
-              {/if}</TodayInfo
-            >
         {#if place?.sources.length}
           <div class="card-header-source">
             <DisplaySource sources={place.sources} color="inverse" />
