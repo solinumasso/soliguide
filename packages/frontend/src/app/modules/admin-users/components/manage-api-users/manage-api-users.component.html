@@ -84,7 +84,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             {{ partner.user_id }}
           </td>
           <td class="sticky-col second-col">
-            {{ partner.mail }}
+            {{ partner.mail | decodePunycodeEmail }}
           </td>
           <td>
             <a
