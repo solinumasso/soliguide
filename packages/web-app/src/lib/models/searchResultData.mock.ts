@@ -42,7 +42,7 @@ import {
   TempInfoStatus,
   CommonPlacePosition
 } from '@soliguide/common';
-import type { SearchResultItem } from './types';
+import type { SearchResultPlaceCard } from './types';
 
 const samplePlace: ApiPlace = Object.freeze({
   _id: '5a58c0c7c1797fe45e377324',
@@ -389,7 +389,7 @@ const samplePlace: ApiPlace = Object.freeze({
   }
 });
 
-const samplePlaceTransformed: SearchResultItem = Object.freeze({
+const samplePlaceTransformed: SearchResultPlaceCard = Object.freeze({
   address: '1 Rue Montmartre, 75001 Paris',
   banners: { orientation: false, holidays: PlaceClosedHolidays.UNKNOWN, campaign: null },
   dataForLogs: {
@@ -443,6 +443,7 @@ const samplePlaceTransformed: SearchResultItem = Object.freeze({
   services: [Categories.FOOD_DISTRIBUTION],
   sources: [],
   status: PlaceOpeningStatus.TEMPORARILY_CLOSED,
+  placeStatus: PlaceStatus.ONLINE,
   tempInfo: { hours: null, message: null, closure: TempInfoStatus.CURRENT },
   todayInfo: {
     closingDays: { end: '2024-11-30T23:59:59.000Z', start: '2024-04-01T00:00:00.000Z' }
@@ -1470,7 +1471,7 @@ const sampleItineraryCrossingPoint: CommonPlaceParcours = {
   }
 };
 
-const sampleItineraryTransformed: SearchResultItem[] = [
+const sampleItineraryTransformed: SearchResultPlaceCard[] = [
   {
     address: "Nationale, 75013 Paris 13e Arrondissement - Point d'arrivée de la maraude",
     banners: { orientation: false, holidays: PlaceClosedHolidays.UNKNOWN, campaign: null },
@@ -1496,6 +1497,7 @@ const sampleItineraryTransformed: SearchResultItem[] = [
     services: [Categories.FOOD_DISTRIBUTION, Categories.HYGIENE_PRODUCTS, Categories.CLOTHING],
     sources: [],
     status: PlaceOpeningStatus.OPEN,
+    placeStatus: PlaceStatus.ONLINE,
     tempInfo: { hours: null, message: null, closure: null },
     todayInfo: { openingHours: [{ end: '2000', start: '1950' }] }
   },
@@ -1524,6 +1526,7 @@ const sampleItineraryTransformed: SearchResultItem[] = [
     services: [Categories.FOOD_DISTRIBUTION, Categories.HYGIENE_PRODUCTS, Categories.CLOTHING],
     sources: [],
     status: PlaceOpeningStatus.OPEN,
+    placeStatus: PlaceStatus.ONLINE,
     tempInfo: { hours: null, message: null, closure: null },
     todayInfo: { openingHours: [{ end: '2215', start: '2200' }] }
   }

@@ -762,6 +762,7 @@
   "FAVORITES_TOAST_LIMIT_ACTION": "Редагувати мої улюблені",
   "FAVORITES_TOAST_LIMIT_REACHED": "Не вдалося додати до обраного. Ви досягли максимальної кількості.",
   "FAVORITES_TOAST_REMOVED": "Видалено з обраного",
+  "FAVORITES_UNAVAILABLE_BANNER": "Деякі місця, збережені у ваших улюблених, тепер недоступні.",
   "FAX": "факс",
   "FERMETURE_TEMPORAIRE": "Тимчасове закриття:",
   "FICHES_PRATIQUES": "Практичні аркуші",

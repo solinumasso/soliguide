@@ -18,32 +18,26 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import type { SupportedLanguagesCode, SoliguideCountries, Themes } from '@soliguide/common';
+import { json, type RequestEvent } from '@sveltejs/kit';
+import getSearchService from '$lib/server/services/placesService';
+import { getHeaders } from '$lib/server/services/headers';
 
-export interface ThemeDefinition {
-  name: Themes;
-  brandName: string;
-  country: SoliguideCountries;
-  defaultLanguage: SupportedLanguagesCode;
-  supportedLanguages: SupportedLanguagesCode[];
-  media: {
-    homeIllustration: string;
-    favoritesIllustration: string;
-    logos: {
-      inline: string;
-      original: string;
-      symbol: string;
-    };
-  };
-  links: {
-    fichesPratiques: string;
-    solinumSite: string;
-    becomeTranslator: string;
-    cookiePolicy: string;
-    privacyPolicy: string;
-    dataProtectionAgreement: string;
-    legalNotice: string;
-    termsAndConditions: string;
-  };
-  chatWebsiteId: string | undefined | null;
-}
+/**
+ * Lookup places by IDs
+ */
+export const POST = async (requestEvent: RequestEvent): Promise<Response> => {
+  const requestBody = await requestEvent.request.json();
+  const favorites = Array.isArray(requestBody?.favorites) ? requestBody.favorites : [];
+
+  const headers = getHeaders(requestEvent);
+  const searchService = getSearchService();
+  const result = await searchService.lookup(
+    {
+      lang: requestEvent.params.lang ?? '',
+      favorites
+    },
+    headers
+  );
+
+  return json(result, { status: 200 });
+};

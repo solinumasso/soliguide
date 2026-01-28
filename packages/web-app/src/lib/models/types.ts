@@ -25,6 +25,7 @@ import type {
   CommonPlacePosition,
   CountryCodes,
   PlaceClosedHolidays,
+  PlaceStatus,
   PlaceOpeningStatus,
   PlaceType,
   TempInfoStatus
@@ -83,7 +84,7 @@ export interface DataForLogs {
   distance: number;
 }
 
-export interface SearchResultItem {
+export interface LightPlaceCard {
   address: string;
   banners: {
     holidays: PlaceClosedHolidays;
@@ -91,24 +92,34 @@ export interface SearchResultItem {
     campaign: PlaceCampaignBannerMessage | null;
   };
   crossingPointIndex?: number;
-  dataForLogs: DataForLogs;
-  distance: number;
   id: number;
   name: string;
-  parcourIndex?: number;
   phones: Phone[];
-  searchGeoType: string;
   seoUrl: string;
   services: Categories[];
   sources: Source[];
   status: PlaceOpeningStatus;
+  placeStatus: PlaceStatus;
   todayInfo: TodayInfo;
   tempInfo: SearchResultTempInfo;
 }
 
-export interface SearchResult {
+export interface SearchResultPlaceCard extends LightPlaceCard {
+  dataForLogs: DataForLogs;
+  distance: number;
+  searchGeoType: string;
+}
+
+export interface SearchResultNumber {
   nbResults: number;
-  places: SearchResultItem[];
+}
+
+export interface SearchResult extends SearchResultNumber {
+  places: SearchResultPlaceCard[];
+}
+
+export interface SearchFavorisResult extends SearchResultNumber {
+  places: SearchResultPlaceCard[];
 }
 
 // Work in progress fiche détaillée
@@ -192,6 +203,7 @@ export interface PlaceDetails {
   id: number;
   address: string;
   campaignBanner: PlaceCampaignBannerMessage | null;
+  crossingPointIndex?: number;
   description: string;
   email: string;
   facebook: string;

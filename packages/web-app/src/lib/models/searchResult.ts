@@ -19,16 +19,18 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { categoryService } from '$lib/services/categoryService';
-import { sort } from '$lib/ts';
 import {
+  GeoTypes,
+  calculateDistanceBetweenTwoPoints,
+  computePlaceOpeningStatus,
   type ApiPlace,
-  type ApiSearchResults,
+  CountryCodes,
   Categories,
   type Phone as CommonPhone,
-  CountryCodes,
-  calculateDistanceBetweenTwoPoints,
-  computePlaceOpeningStatus
+  type ApiSearchResults,
+  type CommonNewPlaceService
 } from '@soliguide/common';
+import { sort } from '$lib/ts';
 import { sortServicesByRelevance } from '../utils';
 import {
   buildSources,
@@ -39,9 +41,10 @@ import {
 } from './place';
 import type {
   ApiPlaceWithCrossingPointIndex,
+  LightPlaceCard,
   SearchLocationParams,
   SearchResult,
-  SearchResultItem
+  SearchResultPlaceCard
 } from './types';
 
 const computeDistance = (
@@ -59,26 +62,15 @@ const computeDistance = (
 };
 
 /**
- * Transformation
+ * Base function to build result item with common logic
  */
-const buildSearchResultItem = (
+const buildLightPlaceCard = (
   place: ApiPlace | ApiPlaceWithCrossingPointIndex,
-  locationParams: SearchLocationParams,
-  categorySearched: Categories | null
-): SearchResultItem => {
+  servicesAll: CommonNewPlaceService[]
+): LightPlaceCard => {
   const onOrientation = Boolean(place.modalities.orientation.checked);
 
-  const distance = computeDistance(place, locationParams);
-
   const status = computePlaceOpeningStatus(place);
-
-  const allCategoriesByTheme = categoryService.getAllCategories();
-
-  const sortedServices = sortServicesByRelevance(
-    place.services_all,
-    categorySearched,
-    allCategoriesByTheme
-  );
 
   return {
     address: computeAddress(place.position, onOrientation),
@@ -88,14 +80,6 @@ const buildSearchResultItem = (
       campaign: computeCampaignBanner(place)
     },
     ...('crossingPointIndex' in place ? { crossingPointIndex: place.crossingPointIndex } : {}),
-    dataForLogs: {
-      // eslint-disable-next-line no-underscore-dangle
-      id: place?._id,
-      lieuId: place.lieu_id,
-      distance,
-      position: place.position
-    },
-    distance,
     id: place.lieu_id,
     name: place.name,
     phones: [
@@ -104,15 +88,47 @@ const buildSearchResultItem = (
         countryCode: phone.countryCode as CountryCodes
       }))
     ],
-    searchGeoType: locationParams.geoType,
     seoUrl: place.seo_url,
-    services: sortedServices
+    services: servicesAll
       .map((service) => service?.category)
       .filter((category) => typeof category !== 'undefined'),
     sources: buildSources(place.sources),
     status,
+    placeStatus: place.status,
     todayInfo: computeTodayInfo(place, status),
     tempInfo: computeTempInfo(place.tempInfos)
+  };
+};
+
+/**
+ * Transformation for search results with category-based service sorting
+ */
+const buildSearchResultPlaceCard = (
+  place: ApiPlace,
+  locationParams: SearchLocationParams,
+  categorySearched: Categories
+): SearchResultPlaceCard => {
+  const allCategoriesByTheme = categoryService.getAllCategories();
+
+  const sortedServices = sortServicesByRelevance(
+    place.services_all,
+    categorySearched,
+    allCategoriesByTheme
+  );
+
+  const distance = computeDistance(place, locationParams);
+
+  return {
+    ...buildLightPlaceCard(place, sortedServices),
+    dataForLogs: {
+      // eslint-disable-next-line no-underscore-dangle
+      id: place?._id,
+      lieuId: place.lieu_id,
+      distance,
+      position: place.position
+    },
+    distance,
+    searchGeoType: locationParams?.geoType ?? GeoTypes.UNKNOWN
   };
 };
 
@@ -156,10 +172,11 @@ const extractCrossingPointsFromItineraryPlace = (
  * Sort by distance ascending.
  * If an item is out of range, it is removed
  */
-const sortPlacesByDistance = (places: SearchResultItem[]): SearchResultItem[] => {
+const sortPlacesByDistance = (places: SearchResultPlaceCard[]): SearchResultPlaceCard[] => {
   return sort(
     places,
-    (place1: SearchResultItem, place2: SearchResultItem) => place1.distance - place2.distance
+    (place1: SearchResultPlaceCard, place2: SearchResultPlaceCard) =>
+      place1.distance - place2.distance
   );
 };
 
@@ -174,7 +191,7 @@ const buildSearchResultWithParcours = (
   category: Categories | null
 ): SearchResult => {
   const placesResultItems = placesResult.places.map((place) =>
-    buildSearchResultItem(place, searchLocationParams, category)
+    buildSearchResultPlaceCard(place, searchLocationParams, category)
   );
 
   // We extract itinerary crossing points and build a "place" for each one of them
@@ -184,7 +201,7 @@ const buildSearchResultWithParcours = (
       searchLocationParams
     );
     return extractedCrossingPoints.map((extractedCrossingPoint) =>
-      buildSearchResultItem(extractedCrossingPoint, searchLocationParams, category)
+      buildSearchResultPlaceCard(extractedCrossingPoint, searchLocationParams, category)
     );
   });
   const sortedPlaces = sortPlacesByDistance([...placesResultItems, ...itineraryResultItems]);
@@ -204,7 +221,7 @@ const buildSearchResult = (
   category: Categories | null
 ): SearchResult => {
   const placesResultItems = placesResult.places.map((place) =>
-    buildSearchResultItem(place, searchLocationParams, category)
+    buildSearchResultPlaceCard(place, searchLocationParams, category)
   );
 
   return {
@@ -213,4 +230,4 @@ const buildSearchResult = (
   };
 };
 
-export { buildSearchResult, buildSearchResultWithParcours };
+export { buildSearchResult, buildSearchResultWithParcours, buildLightPlaceCard };

@@ -365,7 +365,7 @@ const buildPlaceDetailsTempInfo = (tempInfo: IPlaceTempInfo): PlaceDetailsTempIn
 const buildPlaceDetails = (
   placeResult: ApiPlace,
   categorySearched: Categories,
-  parcourIndex?: number
+  crossingPointIndex?: number
 ): PlaceDetails => {
   const status = computePlaceOpeningStatus(placeResult);
 
@@ -374,8 +374,10 @@ const buildPlaceDetails = (
   const isItinerary = placeResult.placeType === PlaceType.ITINERARY;
 
   const validItineraryIndex =
-    isItinerary && typeof parcourIndex === 'number' && placeResult.parcours?.[parcourIndex]
-      ? parcourIndex
+    isItinerary &&
+    typeof crossingPointIndex === 'number' &&
+    placeResult.parcours?.[crossingPointIndex]
+      ? crossingPointIndex
       : 0;
 
   // Use place or passage point position based on the context

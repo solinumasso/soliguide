@@ -763,6 +763,7 @@
   "FAVORITES_TOAST_LIMIT_ACTION": "ჩემი ფავორიტების რედაქტირება",
   "FAVORITES_TOAST_LIMIT_REACHED": "ფავორიტის დამატება შეუძლებელია. თქვენ მიაღწიეთ მაქსიმალურ ლიმიტს.",
   "FAVORITES_TOAST_REMOVED": "რჩეული წაშლილია",
+  "FAVORITES_UNAVAILABLE_BANNER": "თქვენი რჩეულების სიაში შენახული ზოგიერთი ადგილი ახლა მიუწვდომელია.",
   "FAX": "ფაქსი",
   "FERMETURE_TEMPORAIRE": "დროებითი დახურვა:",
   "FICHES_PRATIQUES": "პრაქტიკული ფურცლები",
