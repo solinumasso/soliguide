@@ -94,7 +94,7 @@ export default (fetcher = fetch) => {
   const placeDetails = async (
     { identifier, lang }: PlaceDetailsParams,
     commonHeaders: RequestOptions,
-    categorySearched: Categories,
+    categorySearched: Categories | null,
     crossingPointIndex?: number
   ): Promise<PlaceDetails> => {
     const url = `${apiUrl}/place/${identifier}/${lang}`;

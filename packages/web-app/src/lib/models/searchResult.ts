@@ -106,7 +106,7 @@ const buildLightPlaceCard = (
 const buildSearchResultPlaceCard = (
   place: ApiPlace,
   locationParams: SearchLocationParams,
-  categorySearched: Categories
+  categorySearched: Categories | null
 ): SearchResultPlaceCard => {
   const allCategoriesByTheme = categoryService.getAllCategories();
 

@@ -302,7 +302,7 @@ const buildServiceTempClosure = (
  */
 const buildServices = (
   services: CommonNewPlaceService[],
-  categorySearched: Categories
+  categorySearched: Categories | null
 ): Service[] => {
   const servicesToProcess = categorySearched
     ? sortServicesByRelevance(services, categorySearched, categoryService.getAllCategories())
@@ -324,16 +324,23 @@ const buildServices = (
 const buildLightPlaces = (
   apiPlace: ApiPlace,
   onOrientation: boolean,
-  categorySearched: Categories,
+  categorySearched: Categories | null,
   status: PlaceOpeningStatus
 ): LightPlace[] => {
-  return apiPlace.parcours?.map((crossingPoint, index) => ({
-    address: computeAddress(crossingPoint.position, onOrientation),
-    url: `${apiPlace.seo_url}?categorySearched=${categorySearched}&crossingPointIndex=${index}`,
-    name: apiPlace.name,
-    status,
-    todayInfo: computeTodayInfo({ ...apiPlace, newhours: crossingPoint.hours }, status)
-  }));
+  return apiPlace.parcours?.map((crossingPoint, index) => {
+    const params = new URLSearchParams();
+    if (categorySearched) {
+      params.set('categorySearched', categorySearched);
+    }
+    params.set('crossingPointIndex', String(index));
+    return {
+      address: computeAddress(crossingPoint.position, onOrientation),
+      url: `${apiPlace.seo_url}?${params.toString()}`,
+      name: apiPlace.name,
+      status,
+      todayInfo: computeTodayInfo({ ...apiPlace, newhours: crossingPoint.hours }, status)
+    };
+  });
 };
 
 const buildPlaceDetailsTempInfo = (tempInfo: IPlaceTempInfo): PlaceDetailsTempInfo => {
@@ -364,7 +371,7 @@ const buildPlaceDetailsTempInfo = (tempInfo: IPlaceTempInfo): PlaceDetailsTempIn
  */
 const buildPlaceDetails = (
   placeResult: ApiPlace,
-  categorySearched: Categories,
+  categorySearched: Categories | null,
   crossingPointIndex?: number
 ): PlaceDetails => {
   const status = computePlaceOpeningStatus(placeResult);

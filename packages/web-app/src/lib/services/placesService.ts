@@ -62,7 +62,7 @@ export default (fetcher = fetch) => {
 
   const placeDetails = (
     { lang, identifier }: PlaceDetailsParams,
-    categorySearched: Categories,
+    categorySearched: Categories | null,
     crossingPointIndex?: number
   ): Promise<PlaceDetails> => {
     if (!isValidStringEnumValue(SupportedLanguagesCode, lang)) {
