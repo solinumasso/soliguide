@@ -351,6 +351,7 @@
   "CAT_WELLNESS": "Bienestar",
   "CAT_WIFI": "Wifi",
   "CAT_WIFI_TITLE": "Acceder al wifi",
+  "CHANGES_NOT_SAVED": "ADVERTENCIA: Algunos elementos se han modificado, pero no se han guardado. Pulse Cancelar para guardar los cambios o Aceptar para descartarlos.",
   "CHANGE_LANGUAGE": "Cambiar el idioma",
   "CHANGE_PASSWORD": "Modificar tu contraseña",
   "CHANGE_PERSONAL_DETAILS": "Aquí puedes modificar tus datos personales",
