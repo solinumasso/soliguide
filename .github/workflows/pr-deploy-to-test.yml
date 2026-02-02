@@ -40,7 +40,6 @@ jobs:
     with:
       environment: test1
       deploy_api: ${{ contains(needs.affected_packages.outputs.to_deploy, 'api') }}
-      deploy_design-system: ${{ contains(needs.affected_packages.outputs.to_deploy, 'design-system') }}
       deploy_frontend: ${{ contains(needs.affected_packages.outputs.to_deploy, 'frontend') }}
       deploy_location-api: ${{ contains(needs.affected_packages.outputs.to_deploy, 'location-api') }}
       deploy_soligare: ${{ contains(needs.affected_packages.outputs.to_deploy, 'soligare') }}
@@ -57,7 +56,6 @@ jobs:
     with:
       environment: test2
       deploy_api: ${{ contains(needs.affected_packages.outputs.to_deploy, 'api') }}
-      deploy_design-system: ${{ contains(needs.affected_packages.outputs.to_deploy, 'design-system') }}
       deploy_frontend: ${{ contains(needs.affected_packages.outputs.to_deploy, 'frontend') }}
       deploy_location-api: ${{ contains(needs.affected_packages.outputs.to_deploy, 'location-api') }}
       deploy_soligare: ${{ contains(needs.affected_packages.outputs.to_deploy, 'soligare') }}
@@ -73,7 +71,6 @@ jobs:
     uses: ./.github/workflows/_deploy-to-test-qovery.yml
     with:
       deploy_api: ${{ contains(needs.affected_packages.outputs.to_deploy, 'api') }}
-      deploy_design-system: ${{ contains(needs.affected_packages.outputs.to_deploy, 'design-system') }}
       deploy_frontend: ${{ contains(needs.affected_packages.outputs.to_deploy, 'frontend') }}
       deploy_location-api: ${{ contains(needs.affected_packages.outputs.to_deploy, 'location-api') }}
       deploy_soligare: ${{ contains(needs.affected_packages.outputs.to_deploy, 'soligare') }}

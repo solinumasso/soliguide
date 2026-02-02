@@ -32,8 +32,13 @@ env:
 
 jobs:
   delete_qovery_environement:
-    name: Delete Qovery environment for  this PR (${{ github.event.number }})
+    name: Delete Qovery environment
     runs-on: ubuntu-latest
+    environment: pr # Nécessaire pour accéder aux vars
+    env:
+      QOVERY_ORGANIZATION_NAME: ${{ vars.QOVERY_ORGANIZATION_NAME }}
+      QOVERY_PROJECT_NAME: ${{ vars.QOVERY_PROJECT_NAME }}
+      QOVERY_ENVIRONMENT_NAME: pr-${{ github.event.number }}
     permissions: {}
     steps:
       - name: Install Qovery CLI
@@ -72,7 +77,6 @@ jobs:
       matrix:
         subdomain:
           - ph
-          - rabbitmq
           - api
           - fr
           - es
@@ -92,6 +96,4 @@ jobs:
           present: false
           zone: soliguide.dev
           subdomain: ${{ matrix.subdomain }}.${{ env.QOVERY_ENVIRONMENT_NAME }}
-          target: ${{ steps.location-api_domain.outputs.validation_domain }}.
           type: CNAME
-          ttl: 0

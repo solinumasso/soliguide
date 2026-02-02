@@ -33,9 +33,6 @@ on:
       deploy_api:
         type: boolean
         default: true
-      deploy_design-system:
-        type: boolean
-        default: true
       deploy_frontend:
         type: boolean
         default: true
@@ -77,14 +74,6 @@ jobs:
           skopeo copy "docker://$SOURCE_IMAGE" "docker://$TARGET_IMAGE"
         env:
           SOURCE_IMAGE: ${{ inputs.registry }}/${{ github.repository }}/api:${{ inputs.tag }}
-
-      - name: Tag design-system image
-        if: ${{ inputs.deploy_design-system }}
-        run: |
-          export TARGET_IMAGE=$(echo "$SOURCE_IMAGE" | sed -E 's/:.+$/:${{ inputs.environment }}/')
-          skopeo copy "docker://$SOURCE_IMAGE" "docker://$TARGET_IMAGE"
-        env:
-          SOURCE_IMAGE: ${{ inputs.registry }}/${{ github.repository }}/design-system:${{ inputs.tag }}-build
 
       - name: Tag frontend image
         if: ${{ inputs.deploy_frontend }}
