@@ -20,6 +20,7 @@
  */
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { TranslateService } from "@ngx-translate/core";
 
 export interface ComponentCanDeactivate {
   canDeactivate: () => boolean | Observable<boolean>;
@@ -27,6 +28,8 @@ export interface ComponentCanDeactivate {
 
 @Injectable({ providedIn: "root" })
 export class PendingChangesGuard {
+  constructor(private readonly translateService: TranslateService) {}
+
   public canDeactivate(
     component: ComponentCanDeactivate
   ): boolean | Observable<boolean> {
@@ -36,10 +39,6 @@ export class PendingChangesGuard {
       : // NOTE: this warning message will only be shown when navigating elsewhere within your angular app;
         // when navigating away from your angular app, the browser will show a generic warning message
         // see http://stackoverflow.com/a/42207299/7307355
-        confirm(
-          "ATTENTION : Certains éléments ont été modifiés mais pas " +
-            "enregistrés. Appuyez sur annuler pour revenir en arrière et " +
-            "sauvegarder ces changements ou sur OK pour annuler ces changements."
-        );
+        confirm(this.translateService.instant("CHANGES_NOT_SAVED"));
   }
 }
