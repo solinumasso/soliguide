@@ -77,7 +77,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     if (isPlaceUnavailable) {
       return;
     }
-    captureEvent('card-info-click', { placeId: place.id });
     goto(`${$routes.ROUTE_PLACES}/${seoUrl}?categorySearched=${categorySearched}`);
   };
 
