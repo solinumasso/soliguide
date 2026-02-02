@@ -24,9 +24,6 @@ on:
       deploy_api:
         type: boolean
         default: true
-      deploy_design-system:
-        type: boolean
-        default: true
       deploy_frontend:
         type: boolean
         default: true
@@ -141,60 +138,6 @@ jobs:
           target: ${{ steps.ph_domain.outputs.validation_domain }}.
           type: CNAME
 
-      - name: Delete RabbitMQ
-        if: github.ref == 'refs/heads/develop'
-        env:
-          QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
-        run: |
-          if [ $(qovery container list \
-            --organization "$QOVERY_ORGANIZATION_NAME" \
-            --project "$QOVERY_PROJECT_NAME" \
-            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
-            --json \
-            | jq -r '.[] | .name' | grep -e "^RabbitMQ$") ]; then
-            qovery container delete \
-              --organization "$QOVERY_ORGANIZATION_NAME" \
-              --project "$QOVERY_PROJECT_NAME" \
-              --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
-              --container "RabbitMQ"
-          fi
-
-      - name: Create the RabbitMQ custom domain in Qovery
-        if: steps.create_environment.outcome == 'success' && github.ref != 'refs/heads/develop'
-        id: rabbitmq_domain
-        env:
-          QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
-        run: |
-          qovery container domain create \
-            --organization "$QOVERY_ORGANIZATION_NAME" \
-            --project "$QOVERY_PROJECT_NAME" \
-            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
-            --container "RabbitMQ" \
-            --domain "rabbitmq.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
-
-          VALIDATION_DOMAIN=$(qovery container domain list \
-            --organization "$QOVERY_ORGANIZATION_NAME" \
-            --project "$QOVERY_PROJECT_NAME" \
-            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
-            --container "RabbitMQ" \
-            --json \
-            | jq -r '.[] | select(.type == "CUSTOM_DOMAIN") | .validation_domain')
-
-          echo "Validation domain: $VALIDATION_DOMAIN"
-
-          echo "validation_domain=$VALIDATION_DOMAIN" >> "$GITHUB_OUTPUT"
-
-      - name: Create DNS record for the RabbitMQ
-        if: steps.create_environment.outcome == 'success' && github.ref != 'refs/heads/develop'
-        uses: solinumasso/gcore-dns-action@v1
-        with:
-          api-key: ${{ secrets.GCORE_API_KEY }}
-          present: true
-          zone: soliguide.dev
-          subdomain: rabbitmq.${{ env.QOVERY_BASE_DOMAIN_NAME }}
-          target: ${{ steps.rabbitmq_domain.outputs.validation_domain }}.
-          type: CNAME
-
       - name: Update API services
         if: inputs.deploy_api && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
         env:
@@ -220,18 +163,6 @@ jobs:
             --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
             --container "Cron" \
             --tag "$SOLIGUIDE_TAG"
-
-      - name: Override RabbitMQ connection URL
-        if: github.ref == 'refs/heads/develop'
-        env:
-          QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
-        run: |
-          qovery environment env update \
-            --organization "$QOVERY_ORGANIZATION_NAME" \
-            --project "$QOVERY_PROJECT_NAME" \
-            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
-            --key AMQP_URL \
-            --value '${{ secrets.AMQP_URL }}'
 
       - name: Create the API custom domain in Qovery
         if: inputs.deploy_api && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
@@ -283,70 +214,6 @@ jobs:
           zone: soliguide.dev
           subdomain: api.${{ env.QOVERY_BASE_DOMAIN_NAME }}
           target: ${{ steps.api_domain.outputs.validation_domain }}.
-          type: CNAME
-
-      - name: Update Design system
-        if: inputs.deploy_design-system && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
-        env:
-          QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
-        run: |
-          qovery container update \
-            --organization "$QOVERY_ORGANIZATION_NAME" \
-            --project "$QOVERY_PROJECT_NAME" \
-            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
-            --container "Design System" \
-            --tag "$SOLIGUIDE_TAG"
-
-      - name: Create the Design system custom domain in Qovery
-        if: inputs.deploy_design-system && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
-        id: design-system_domain
-        env:
-          QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
-        run: |
-          # Function to create domain if it doesn't exist
-          create_domain_if_not_exists() {
-            local domain=$1
-            if ! qovery container domain list \
-              --organization "$QOVERY_ORGANIZATION_NAME" \
-              --project "$QOVERY_PROJECT_NAME" \
-              --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
-              --container "Design System" \
-              --json | jq -e --arg domain "$domain" '.[] | select(.domain == $domain)' > /dev/null; then
-              echo "Creating domain: $domain"
-              qovery container domain create \
-                --organization "$QOVERY_ORGANIZATION_NAME" \
-                --project "$QOVERY_PROJECT_NAME" \
-                --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
-                --container "Design System" \
-                --domain "$domain"
-            else
-              echo "Domain already exists: $domain"
-            fi
-          }
-
-          create_domain_if_not_exists "design-system.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
-
-          VALIDATION_DOMAIN=$(qovery container domain list \
-            --organization "$QOVERY_ORGANIZATION_NAME" \
-            --project "$QOVERY_PROJECT_NAME" \
-            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
-            --container "Design System" \
-            --json \
-            | jq -r '.[] | select(.type == "CUSTOM_DOMAIN") | .validation_domain')
-
-          echo "Validation domain: $VALIDATION_DOMAIN"
-
-          echo "validation_domain=$VALIDATION_DOMAIN" >> "$GITHUB_OUTPUT"
-
-      - name: Create DNS record for the Design system
-        if: steps.design-system_domain.outcome == 'success'
-        uses: solinumasso/gcore-dns-action@v1
-        with:
-          api-key: ${{ secrets.GCORE_API_KEY }}
-          present: true
-          zone: soliguide.dev
-          subdomain: design-system.${{ env.QOVERY_BASE_DOMAIN_NAME }}
-          target: ${{ steps.design-system_domain.outputs.validation_domain }}.
           type: CNAME
 
       - name: Update Location API

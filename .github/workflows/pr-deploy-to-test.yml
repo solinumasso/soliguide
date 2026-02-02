@@ -33,47 +33,12 @@ jobs:
   affected_packages:
     uses: ./.github/workflows/pr-get-affected-packages.yml
 
-  deploy_test1:
-    name: Deploy test1
-    if: ${{ github.event.label.name == '🚀 test1' }}
-    uses: ./.github/workflows/_deploy-to-environment.yml
-    with:
-      environment: test1
-      deploy_api: ${{ contains(needs.affected_packages.outputs.to_deploy, 'api') }}
-      deploy_design-system: ${{ contains(needs.affected_packages.outputs.to_deploy, 'design-system') }}
-      deploy_frontend: ${{ contains(needs.affected_packages.outputs.to_deploy, 'frontend') }}
-      deploy_location-api: ${{ contains(needs.affected_packages.outputs.to_deploy, 'location-api') }}
-      deploy_soligare: ${{ contains(needs.affected_packages.outputs.to_deploy, 'soligare') }}
-      deploy_web-app: ${{ contains(needs.affected_packages.outputs.to_deploy, 'web-app') }}
-      deploy_widget: ${{ contains(needs.affected_packages.outputs.to_deploy, 'widget') }}
-    needs:
-      - affected_packages
-    secrets: inherit
-
-  deploy_test2:
-    name: Deploy test2
-    if: ${{ github.event.label.name == '🚀 test2' }}
-    uses: ./.github/workflows/_deploy-to-environment.yml
-    with:
-      environment: test2
-      deploy_api: ${{ contains(needs.affected_packages.outputs.to_deploy, 'api') }}
-      deploy_design-system: ${{ contains(needs.affected_packages.outputs.to_deploy, 'design-system') }}
-      deploy_frontend: ${{ contains(needs.affected_packages.outputs.to_deploy, 'frontend') }}
-      deploy_location-api: ${{ contains(needs.affected_packages.outputs.to_deploy, 'location-api') }}
-      deploy_soligare: ${{ contains(needs.affected_packages.outputs.to_deploy, 'soligare') }}
-      deploy_web-app: ${{ contains(needs.affected_packages.outputs.to_deploy, 'web-app') }}
-      deploy_widget: ${{ contains(needs.affected_packages.outputs.to_deploy, 'widget') }}
-    needs:
-      - affected_packages
-    secrets: inherit
-
   deploy_qovery:
     name: Deploy to Qovery
     if: ${{ github.event.label.name == '🚀 qovery' }}
     uses: ./.github/workflows/_deploy-to-test-qovery.yml
     with:
       deploy_api: ${{ contains(needs.affected_packages.outputs.to_deploy, 'api') }}
-      deploy_design-system: ${{ contains(needs.affected_packages.outputs.to_deploy, 'design-system') }}
       deploy_frontend: ${{ contains(needs.affected_packages.outputs.to_deploy, 'frontend') }}
       deploy_location-api: ${{ contains(needs.affected_packages.outputs.to_deploy, 'location-api') }}
       deploy_soligare: ${{ contains(needs.affected_packages.outputs.to_deploy, 'soligare') }}
@@ -85,11 +50,9 @@ jobs:
 
   remove_deploy_label:
     name: Remove the deploy label ${{ github.event.label.name }}
-    if: ${{ github.event.label.name == '🚀 test2' || github.event.label.name == '🚀 test1' || github.event.label.name == '🚀 qovery' && always() }}
+    if: ${{ github.event.label.name == '🚀 qovery' && always() }}
     runs-on: ubuntu-latest
     needs:
-      - deploy_test1
-      - deploy_test2
       - deploy_qovery
     permissions:
       pull-requests: write

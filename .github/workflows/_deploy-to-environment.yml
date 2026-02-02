@@ -32,9 +32,6 @@ on:
       deploy_api:
         type: boolean
         default: true
-      deploy_design-system:
-        type: boolean
-        default: true
       deploy_frontend:
         type: boolean
         default: true
@@ -79,7 +76,6 @@ jobs:
       tag: ${{ needs.compute_tag.outputs.tag }}
       registry: ${{ inputs.registry }}
       deploy_api: ${{ inputs.deploy_api }}
-      deploy_design-system: ${{ inputs.deploy_design-system }}
       deploy_frontend: ${{ inputs.deploy_frontend }}
       deploy_location-api: ${{ inputs.deploy_location-api }}
       deploy_soligare: ${{ inputs.deploy_soligare }}
@@ -147,12 +143,6 @@ jobs:
         run: |
           git remote add clever-api-migrations git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.API_MIGRATIONS_APP_ID }}.git
           echo clever-api-migrations >>./remotes-to-deploy-to.txt
-
-      - name: Add design-system to the list of app to deploy
-        if: ${{ inputs.deploy_design-system }}
-        run: |
-          git remote add clever-design-system git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.DESIGN_SYSTEM_APP_ID }}.git
-          echo clever-design-system >>./remotes-to-deploy-to.txt
 
       - name: Add frontend to the list of app to deploy
         if: ${{ inputs.deploy_frontend }}
