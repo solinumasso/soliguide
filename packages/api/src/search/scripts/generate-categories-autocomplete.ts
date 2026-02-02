@@ -234,16 +234,16 @@ class CategoryTranslationScript {
     }));
   }
 
-  private async translateCategory(
+  public async translateCategory(
     suggestion: SearchSuggestionForTranslation
   ): Promise<TranslationResult> {
     const prompt = this.buildPrompt(suggestion);
 
     try {
       const response = await this.anthropic.messages.create({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 1024,
-        temperature: 0.3,
+        model: "claude-haiku-4-5-20251001", // ⚡ Le plus rapide
+        max_tokens: 512, // ✅ Réduit (tu n'as besoin que du JSON)
+        temperature: 0.2, // ✅ Baissé pour plus de cohérence
         messages: [
           {
             role: "user",
@@ -372,7 +372,7 @@ RÉPONDS UNIQUEMENT AVEC LE JSON. COMMENCE PAR { ET TERMINE PAR }`;
   ): TranslationResult {
     try {
       let cleanText = text.trim();
-      cleanText = cleanText.replace(/```json\s*|```\s*/g, "");
+      cleanText = cleanText.replaceAll(/```json\s*|```\s*/g, "");
 
       const firstBrace = cleanText.indexOf("{");
       const lastBrace = cleanText.lastIndexOf("}");
@@ -519,18 +519,19 @@ Examples:
     Clean and retranslate all French establishments in French
 `
 );
+// ✅ Ajoute cette condition pour exécuter SEULEMENT via CLI
+if (require.main === module) {
+  // Display help if no arguments provided
+  if (process.argv.length === 2) {
+    program.help();
+  }
 
-// Display help if no arguments provided
-if (process.argv.length === 2) {
-  program.help();
+  // Parse arguments
+  try {
+    program.parse(process.argv);
+  } catch (error) {
+    // Commander will automatically display error and help for missing required options
+    process.exit(1);
+  }
 }
-
-// Parse arguments
-try {
-  program.parse(process.argv);
-} catch (error) {
-  // Commander will automatically display error and help for missing required options
-  process.exit(1);
-}
-
 export { CategoryTranslationScript };

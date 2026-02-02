@@ -1,11 +1,3 @@
-import {
-  convertOldToNewMobilityCategory,
-  isLegacyMobilityCategory,
-  UserStatus,
-} from "@soliguide/common";
-import { NextFunction } from "express";
-import { ExpressRequest, ExpressResponse } from "src/_models";
-
 /*
  * Soliguide: Useful information for those who need it
  *
@@ -26,6 +18,14 @@ import { ExpressRequest, ExpressResponse } from "src/_models";
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import {
+  convertOldToNewMobilityCategory,
+  isLegacyMobilityCategory,
+  UserStatus,
+} from "@soliguide/common";
+import { NextFunction } from "express";
+import { ExpressRequest, ExpressResponse } from "src/_models";
+
 export const mobilityConverting = (
   req: ExpressRequest,
   _res: ExpressResponse,
