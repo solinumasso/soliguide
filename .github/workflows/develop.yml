@@ -32,3 +32,12 @@ jobs:
     needs:
       - commitlint
     secrets: inherit
+
+  deploy_clever_cloud_develop:
+    name: Deploy to Clever Cloud (develop)
+    uses: ./.github/workflows/_deploy-to-environment.yml
+    with:
+      environment: develop
+    needs:
+      - all
+    secrets: inherit
