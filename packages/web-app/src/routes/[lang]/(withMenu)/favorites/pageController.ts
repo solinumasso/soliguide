@@ -44,7 +44,7 @@ export const getFavoritesPageController = () => {
   const myPageStore = writable(initialState);
   const cachedDataStore = writable<CachedFavoritesData | null>(null);
   const captureEvent: PosthogCaptureFunction = (eventName, properties) => {
-    posthogService.capture(`favorites-${eventName}`, properties);
+    posthogService.capture(`search-${eventName}`, properties);
   };
 
   const isCacheValid = (
