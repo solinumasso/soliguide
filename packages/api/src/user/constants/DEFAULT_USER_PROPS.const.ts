@@ -19,7 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { UserStatus } from "@soliguide/common";
-import { EmailEvents, ModelWithId, User } from "../../_models";
+import { ModelWithId, User } from "../../_models";
 
 export const DEFAULT_USER_PROPS: Pick<
   ModelWithId<User>,
@@ -78,7 +78,6 @@ export const DEFAULT_USER_PROPS: Pick<
         ready: false,
         sendDate: null,
       },
-      lastEmailStatus: EmailEvents.TO_SEND,
     },
     MAJ_ETE_2023: {
       CAMPAGNE_COMPTES_PRO: {
@@ -116,7 +115,6 @@ export const DEFAULT_USER_PROPS: Pick<
         ready: false,
         sendDate: null,
       },
-      lastEmailStatus: EmailEvents.TO_SEND,
     },
     MAJ_ETE_2024: {
       CAMPAGNE_COMPTES_PRO: {
@@ -154,7 +152,6 @@ export const DEFAULT_USER_PROPS: Pick<
         ready: false,
         sendDate: null,
       },
-      lastEmailStatus: EmailEvents.TO_SEND,
     },
     MAJ_HIVER_2022: {
       CAMPAGNE_COMPTES_PRO: {
@@ -192,7 +189,6 @@ export const DEFAULT_USER_PROPS: Pick<
         ready: false,
         sendDate: null,
       },
-      lastEmailStatus: EmailEvents.TO_SEND,
     },
     MAJ_HIVER_2023: {
       CAMPAGNE_COMPTES_PRO: {
@@ -230,7 +226,6 @@ export const DEFAULT_USER_PROPS: Pick<
         ready: false,
         sendDate: null,
       },
-      lastEmailStatus: EmailEvents.TO_SEND,
     },
     END_YEAR_2024: {
       CAMPAGNE_COMPTES_PRO: {
@@ -268,7 +263,6 @@ export const DEFAULT_USER_PROPS: Pick<
         ready: false,
         sendDate: null,
       },
-      lastEmailStatus: EmailEvents.TO_SEND,
     },
     MID_YEAR_2025: {
       CAMPAGNE_COMPTES_PRO: {
@@ -306,7 +300,6 @@ export const DEFAULT_USER_PROPS: Pick<
         ready: false,
         sendDate: null,
       },
-      lastEmailStatus: EmailEvents.TO_SEND,
     },
     END_YEAR_2025: {
       CAMPAGNE_COMPTES_PRO: {
@@ -344,7 +337,6 @@ export const DEFAULT_USER_PROPS: Pick<
         ready: false,
         sendDate: null,
       },
-      lastEmailStatus: EmailEvents.TO_SEND,
     },
     UKRAINE_2022: {
       _id: undefined,
@@ -383,7 +375,6 @@ export const DEFAULT_USER_PROPS: Pick<
         ready: false,
         sendDate: null,
       },
-      lastEmailStatus: EmailEvents.TO_SEND,
     },
   },
   categoriesLimitations: [],
