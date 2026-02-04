@@ -19,6 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 // @index('./*.ts', f => `export * from '${f.path}'`)
+export * from "./AmqpContactFormEvent.class";
 export * from "./AmqpInvitationEvent.class";
 export * from "./AmqpOrganization.class";
 export * from "./AmqpSynchroAirtablePlaceEvent.class";
