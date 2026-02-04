@@ -330,6 +330,7 @@ jobs:
     with:
       package: common
       container_image: ${{ fromJSON(needs.build-common.outputs.tags2)[0] }}
+      node_version: ${{ needs.affected_packages.outputs.node_version }}
 
   test-common-angular:
     name: Test common Angular
@@ -341,6 +342,7 @@ jobs:
     with:
       package: common-angular
       container_image: ${{ fromJSON(needs.build-common-angular.outputs.tags2)[0] }}
+      node_version: ${{ needs.affected_packages.outputs.node_version }}
 
   test-design-system:
     name: Test design system
@@ -352,6 +354,7 @@ jobs:
     with:
       package: design-system
       container_image: ${{ fromJSON(needs.build-design-system.outputs.tags2)[0] }}
+      node_version: ${{ needs.affected_packages.outputs.node_version }}
 
   test-frontend:
     name: Test frontend
@@ -363,6 +366,7 @@ jobs:
     with:
       package: frontend
       container_image: ${{ fromJSON(needs.build-frontend.outputs.tags2)[0] }}
+      node_version: ${{ needs.affected_packages.outputs.node_version }}
 
   test-location-api:
     name: Test location API
@@ -628,10 +632,11 @@ jobs:
     with:
       package: widget
       container_image: ${{ fromJSON(needs.build-widget.outputs.tags2)[0] }}
+      node_version: ${{ needs.affected_packages.outputs.node_version }}
 
   send-test-coverage:
     name: Send test coverage reports to Deepsource
-    if: ${{ !startsWith(github.ref, 'refs/pull/') || needs.affected_packages.outputs.to_test != '[]' && always() }}
+    if: ${{ always() && (!startsWith(github.ref, 'refs/pull/') || needs.affected_packages.outputs.to_test != '[]') }}
     needs:
       - affected_packages
       - test-api

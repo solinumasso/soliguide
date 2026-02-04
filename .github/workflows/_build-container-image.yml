@@ -81,7 +81,7 @@ jobs:
 
   build_container:
     name: Build container image ${{ inputs.image_name }}
-    if: ${{ always() }}
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
