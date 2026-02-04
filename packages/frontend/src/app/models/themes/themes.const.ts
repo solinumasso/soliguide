@@ -141,7 +141,7 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
     suggestedLanguages: [SupportedLanguagesCode.CA, SupportedLanguagesCode.ES],
     helpEnabled: false,
     becomeVolunteerEnabled: false,
-    contactFormEnabled: false,
+    contactFormEnabled: true,
     locationAutocompletePlaceholder: "Barcelona Sants, Lleida, etc.",
     showTranslationMenuDropdown: false,
     showSoligareMenu: false,
@@ -166,7 +166,7 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
     ],
     helpEnabled: false,
     becomeVolunteerEnabled: false,
-    contactFormEnabled: false,
+    contactFormEnabled: true,
     locationAutocompletePlaceholder:
       "Andorre-la-Vieja, Escaldes-Engordany, etc.",
     showTranslationMenuDropdown: false,
