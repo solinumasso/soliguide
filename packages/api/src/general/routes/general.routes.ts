@@ -22,10 +22,10 @@ import express from "express";
 import { createCache } from "cache-manager";
 
 import { ExpressRequest, ExpressResponse } from "../../_models";
-import { emailContact } from "../../emailing/senders";
 import { getFilteredData } from "../../middleware";
 import { sitemapDto, contactEmailDto } from "../dto";
 import { generateRegionSitemap, getVersion, checkMongo } from "../services";
+import { emailContact } from "../../emailing/senders/send-contact.email";
 
 const router = express.Router();
 
