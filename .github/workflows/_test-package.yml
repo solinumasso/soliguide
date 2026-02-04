@@ -27,6 +27,9 @@ on:
       container_image:
         type: string
         required: true
+      node_version:
+        type: string
+        required: true
 
 jobs:
   test_package:
@@ -44,10 +47,10 @@ jobs:
         uses: actions/cache@v4
         with:
           path: packages/${{ inputs.package }}/node_modules/.cache/prettier
-          key: ${{ runner.os }}-${{ needs.affected_packages.outputs.node_version }}-prettiercache-${{ inputs.package }}-${{ github.ref }}
+          key: ${{ runner.os }}-${{ inputs.node_version }}-prettiercache-${{ inputs.package }}-${{ github.ref }}
           restore-keys: |
-            ${{ runner.os }}-${{ needs.affected_packages.outputs.node_version }}-prettiercache-${{ inputs.package }}-${{ github.base_ref }}
-            ${{ runner.os }}-${{ needs.affected_packages.outputs.node_version }}-prettiercache-${{ inputs.package }}-
+            ${{ runner.os }}-${{ inputs.node_version }}-prettiercache-${{ inputs.package }}-${{ github.base_ref }}
+            ${{ runner.os }}-${{ inputs.node_version }}-prettiercache-${{ inputs.package }}-
 
       - name: Format check
         run: yarn workspace @soliguide/${{ inputs.package }} format
@@ -56,10 +59,10 @@ jobs:
         uses: actions/cache@v4
         with:
           path: packages/${{ inputs.package }}/.eslintcache
-          key: ${{ runner.os }}-${{ needs.affected_packages.outputs.node_version }}-eslintcache-${{ inputs.package }}-${{ github.ref }}
+          key: ${{ runner.os }}-${{ inputs.node_version }}-eslintcache-${{ inputs.package }}-${{ github.ref }}
           restore-keys: |
-            ${{ runner.os }}-${{ needs.affected_packages.outputs.node_version }}-eslintcache-${{ inputs.package }}-${{ github.base_ref }}
-            ${{ runner.os }}-${{ needs.affected_packages.outputs.node_version }}-eslintcache-
+            ${{ runner.os }}-${{ inputs.node_version }}-eslintcache-${{ inputs.package }}-${{ github.base_ref }}
+            ${{ runner.os }}-${{ inputs.node_version }}-eslintcache-
 
       - name: Lint
         run: yarn workspace @soliguide/${{ inputs.package }} lint

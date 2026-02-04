@@ -45,7 +45,9 @@ on:
         description: Whether to create the environment if it does not exists
     secrets:
       QOVERY_CLI_ACCESS_TOKEN:
+        required: true
       GCORE_API_KEY:
+        required: true
 
 jobs:
   docker_meta:
