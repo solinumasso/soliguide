@@ -36,7 +36,7 @@ import { CONFIG, ExpressRequest, ExpressResponse } from "./_models";
 
 logger.info(CONFIG);
 
-import "./config/database/connection";
+import { connectToDatabase } from "./config/database/connection";
 import "./config/i18n.config";
 
 import { s3Middleware } from "./general/services/s3";
@@ -106,6 +106,7 @@ import ops from "./ops/routes/ops.routes";
 // Jobs
 import { serve, setup } from "swagger-ui-express";
 import autocompleteSuggestionService from "./search/services/search-suggestions.service";
+import SearchSuggestionsController from "./search/controllers/search-suggestions.controller";
 import { CountryCodes, SupportedLanguagesCode } from "@soliguide/common";
 
 const _app = express();
@@ -262,24 +263,38 @@ _app.use((req: Request, res: Response) => {
   }
 });
 
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
 (async () => {
-  await autocompleteSuggestionService.loadSuggestions(
-    CountryCodes.FR,
-    SupportedLanguagesCode.FR
-  );
-  if (CONFIG.ENV !== "test" && CONFIG.CRON_ENABLED) {
-    await import("./cron/cron-manager");
-  }
+  try {
+    // Connect to MongoDB with retry logic before starting the application
+    await connectToDatabase();
 
-  if (CONFIG.ENV !== "prod" && CONFIG.ENV !== "test" && CONFIG.DEV_ANON) {
-    await anonymizeDb();
+    // Initialize search suggestions for all countries and languages (uses Fuse.js)
+    if (CONFIG.ENV !== "test") {
+      await SearchSuggestionsController.initialize();
+    }
+
+    await autocompleteSuggestionService.loadSuggestions(
+      CountryCodes.FR,
+      SupportedLanguagesCode.FR
+    );
+    if (CONFIG.ENV !== "test" && CONFIG.CRON_ENABLED) {
+      await import("./cron/cron-manager");
+    }
+
+    if (CONFIG.ENV !== "prod" && CONFIG.ENV !== "test" && CONFIG.DEV_ANON) {
+      await anonymizeDb();
+    }
+
+    if (CONFIG.ENV !== "test") {
+      _app.listen(CONFIG.PORT, async () => {
+        logger.info(`Soliguide API running on port ${CONFIG.PORT}`);
+      });
+    }
+  } catch (err) {
+    logger.fatal({ err }, "Erreur fatale lors du démarrage de l'application");
+    process.exit(1);
   }
 })();
-
-if (CONFIG.ENV !== "test") {
-  _app.listen(CONFIG.PORT, async () => {
-    logger.info(`Soliguide API running on port ${CONFIG.PORT}`);
-  });
-}
 
 export const app = _app;
