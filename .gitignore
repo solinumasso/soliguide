@@ -72,3 +72,7 @@ packages/api/public
 
 .DS_Store
 
+# Soliguide docs - copied icons from icons-generator
+packages/soliguide-docs/assets/icons-copied/
+packages/soliguide-docs/icons-list.json
+

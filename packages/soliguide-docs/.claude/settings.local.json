@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ln:*)",
+      "Bash(ls:*)",
+      "Bash(node generate-icons-list.js:*)",
+      "Bash(node:*)",
+      "Bash(yarn docs:dev:*)",
+      "Bash(yarn install)",
+      "Bash(yarn build:*)"
+    ]
+  }
+}

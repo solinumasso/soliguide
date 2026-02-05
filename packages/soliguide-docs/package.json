@@ -1,0 +1,22 @@
+{
+  "name": "@soliguide/docs",
+  "version": "1.0.0",
+  "author": "Association Solinum <contact@solinum.org> (https://solinum.org)",
+  "license": "AGPL-3.0-only",
+  "private": true,
+  "scripts": {
+    "dev": "yarn build && npx http-server . -p 3000 -o",
+    "start": "yarn build && npx http-server . -p 3000 -o",
+    "build": "mkdir -p assets/icons-copied && cp -r ../icons-generator/icons/svg/* assets/icons-copied/ && tsx generate-icons-list.ts",
+    "generate-icons-list": "tsx generate-icons-list.ts",
+    "clean": "rm -rf assets/icons-copied icons-list.json"
+  },
+  "dependencies": {
+    "@soliguide/common": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "http-server": "^14.1.1",
+    "tsx": "^4.20.3"
+  }
+}

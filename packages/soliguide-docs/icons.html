@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<html lang="fr" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Icônes Soliguide - Catégories et Services</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#3e3a71',
+              secondary: '#e65a46',
+              accent: '#635dac',
+            },
+          },
+        },
+        daisyui: {
+          themes: [
+            {
+              light: {
+                primary: '#3e3a71',
+                secondary: '#e65a46',
+                accent: '#635dac',
+                neutral: '#212529',
+                'base-100': '#ffffff',
+                'base-200': '#f2f5f9',
+                'base-300': '#949aa0',
+                info: '#17a2b8',
+                success: '#007036',
+                warning: '#ffc107',
+                error: '#da3849',
+              },
+              dark: {
+                primary: '#9d97db',
+                secondary: '#ff8672',
+                accent: '#b5aff0',
+                neutral: '#e0e0e0',
+                'base-100': '#0f1419',
+                'base-200': '#1a1f26',
+                'base-300': '#2d3339',
+                'base-content': '#e8e8e8',
+                info: '#4fc3f7',
+                success: '#66bb6a',
+                warning: '#ffb74d',
+                error: '#ef5350',
+              },
+            },
+          ],
+        },
+      }
+    </script>
+    <style>
+      .toast {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 9999;
+      }
+    </style>
+  </head>
+  <body class="bg-base-200 flex flex-col min-h-screen">
+    <!-- Toast notification -->
+    <div id="toast" class="toast toast-end hidden">
+      <div class="alert alert-success">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="stroke-current shrink-0 h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+        <span id="toastMessage">Copié !</span>
+      </div>
+    </div>
+
+    <!-- Navbar -->
+    <div class="navbar bg-primary text-primary-content shadow-lg sticky top-0 z-50">
+      <div class="navbar-start">
+        <a class="flex items-center gap-2" href="/">
+          <div class="card bg-base-100 shadow-md p-2 hover:shadow-lg transition-shadow">
+            <img src="./assets/logo.svg" alt="Soliguide" class="h-8 w-auto" />
+          </div>
+        </a>
+      </div>
+      <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1">
+          <li><a href="/">Accueil</a></li>
+          <li><a href="./icons.html" class="active">Icônes</a></li>
+          <li><a href="./search.html">Recherche</a></li>
+        </ul>
+      </div>
+      <div class="navbar-end gap-2">
+        <button id="theme-toggle" class="btn btn-ghost btn-circle">
+          <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+        <div class="dropdown dropdown-end lg:hidden">
+          <button class="btn btn-ghost">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
+            </svg>
+          </button>
+          <ul
+            class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            <li><a href="/">Accueil</a></li>
+            <li><a href="./icons.html">Icônes</a></li>
+            <li><a href="./search.html">Recherche</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page Header -->
+    <div class="bg-primary text-primary-content py-12">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h1 class="text-4xl font-bold mb-4">Bibliothèque d'icônes Soliguide</h1>
+        <p class="text-lg opacity-90">
+          Explorez et téléchargez les icônes de catégories et services utilisées dans Soliguide.
+        </p>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1">
+      <div class="container mx-auto px-4 py-12 max-w-6xl">
+      <!-- Search Bar -->
+      <div class="mb-8">
+        <label class="input input-bordered flex items-center gap-2">
+          <input
+            type="text"
+            id="iconSearch"
+            class="grow"
+            placeholder="Rechercher une icône..."
+            onkeyup="filterIcons()"
+          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            class="h-4 w-4 opacity-70">
+            <path
+              fill-rule="evenodd"
+              d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+              clip-rule="evenodd" />
+          </svg>
+        </label>
+      </div>
+
+        <!-- Info Alert -->
+        <div class="alert alert-info shadow-md">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            class="stroke-current shrink-0 w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
+            ></path>
+          </svg>
+          <div>
+            <h3 class="font-bold">Comment utiliser les icônes</h3>
+            <div class="text-sm">
+              Cliquez sur une icône pour accéder aux options de téléchargement, copie du code SVG et du nom de la classe.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Icons Loading Message -->
+      <div id="loadingMessage" class="text-center py-12">
+        <span class="loading loading-spinner loading-lg text-primary"></span>
+        <p class="mt-4 text-lg">Chargement des icônes...</p>
+      </div>
+
+      <!-- Icons Grid Container -->
+      <div id="iconsContainer" class="hidden">
+        <!-- Will be populated by JavaScript -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="hidden text-center py-12">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-24 w-24 mx-auto text-base-300 mb-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+        <h3 class="text-2xl font-bold mb-2">Aucune icône trouvée</h3>
+        <p class="text-base-content/70">
+          Essayez une autre recherche ou changez les filtres.
+        </p>
+      </div>
+    </div>
+
+    <!-- Icon Detail Modal -->
+    <dialog id="iconModal" class="modal">
+      <div class="modal-box w-11/12 max-w-2xl">
+        <form method="dialog">
+          <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+            ✕
+          </button>
+        </form>
+        <h3 class="font-bold text-2xl mb-4" id="modalIconName">Nom de l'icône</h3>
+
+        <!-- Icon Preview -->
+        <div class="flex justify-center py-8 bg-base-200 rounded-lg mb-6">
+          <div id="modalIconPreview" class="w-32 h-32"></div>
+        </div>
+
+        <!-- Actions Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <button class="btn btn-primary gap-2" onclick="copyIconName()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+            Copier le nom
+          </button>
+
+          <button class="btn btn-primary gap-2" onclick="copySVG()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+            Copier le SVG
+          </button>
+
+          <button class="btn btn-secondary gap-2" onclick="downloadSVG()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            Télécharger SVG
+          </button>
+
+          <button class="btn btn-secondary gap-2" onclick="downloadPNG()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            Télécharger PNG
+          </button>
+        </div>
+      </div>
+      <form method="dialog" class="modal-backdrop">
+        <button>Fermer</button>
+      </form>
+    </dialog>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer footer-center p-10 bg-primary text-primary-content mt-12">
+      <div class="container mx-auto max-w-6xl">
+        <aside>
+          <div class="card bg-base-100 shadow-lg p-3 mb-4 inline-block">
+            <img src="./assets/logo.svg" alt="Soliguide" class="h-12 w-auto" />
+          </div>
+          <p class="font-bold text-lg">
+            Soliguide
+            <br />
+            Informations utiles pour ceux qui en ont besoin
+          </p>
+          <p class="opacity-80">Copyright © 2024 - Solinum</p>
+        </aside>
+      </div>
+    </footer>
+
+    <script>
+      let allIcons = []
+      let currentIcon = null
+
+      // Load icons from directory
+      async function loadIcons() {
+        try {
+          console.log('🔄 Chargement des icônes...')
+          const response = await fetch('./icons-list.json')
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`)
+          }
+
+          const data = await response.json()
+          console.log('✅ Données chargées:', data)
+          console.log('📊 Nombre de catégories:', Object.keys(data.categories || {}).length)
+          console.log('📊 Total icônes:', data.total)
+
+          allIcons = data
+
+          displayIcons(data)
+          document.getElementById('loadingMessage').classList.add('hidden')
+          document.getElementById('iconsContainer').classList.remove('hidden')
+        } catch (error) {
+          console.error('❌ Error loading icons:', error)
+          document.getElementById('loadingMessage').innerHTML = `
+            <div class="alert alert-error">
+              <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Erreur lors du chargement des icônes: ${error.message}</span>
+            </div>
+          `
+        }
+      }
+
+      function displayIcons(data) {
+        const container = document.getElementById('iconsContainer')
+
+        if (!data || !data.categories || Object.keys(data.categories).length === 0) {
+          container.classList.add('hidden')
+          document.getElementById('emptyState').classList.remove('hidden')
+          return
+        }
+
+        container.classList.remove('hidden')
+        document.getElementById('emptyState').classList.add('hidden')
+
+        let html = ''
+
+        // Add stats card
+        html += `
+          <div class="stats shadow w-full mb-8">
+            <div class="stat">
+              <div class="stat-title">Total d'icônes</div>
+              <div class="stat-value text-primary">${data.total}</div>
+              <div class="stat-desc">Icônes disponibles</div>
+            </div>
+            <div class="stat">
+              <div class="stat-title">Catégories</div>
+              <div class="stat-value text-secondary">${Object.keys(data.categories).length}</div>
+              <div class="stat-desc">Thèmes organisés</div>
+            </div>
+          </div>
+        `
+
+        // Sort categories by rank
+        const sortedCategories = Object.entries(data.categories).sort(([, a], [, b]) => a.rank - b.rank)
+
+        // Title for common categories
+        html += `<h2 class="text-3xl font-bold mb-8 text-primary">Catégories communes</h2>`
+
+        // Display common categories
+        for (const [categoryId, category] of sortedCategories) {
+          // Determine if we should show parent or children
+          const hasChildren = Object.keys(category.children).length > 0
+
+          // Collect icons to display
+          let iconsToDisplay = []
+          if (hasChildren) {
+            // If has children, show ONLY children
+            Object.values(category.children).forEach(childIcons => {
+              iconsToDisplay.push(...childIcons)
+            })
+          } else {
+            // If no children, show parent icons
+            iconsToDisplay = [...category.icons]
+          }
+
+          if (iconsToDisplay.length === 0) continue
+
+          html += `
+            <div class="mb-12 category-section" data-category="${categoryId}">
+              <h2 class="text-2xl font-bold mb-6 pb-2 border-b-4 border-primary inline-block">
+                ${category.name}
+                <span class="badge badge-lg badge-primary ml-2">${iconsToDisplay.length}</span>
+              </h2>
+              <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-6">
+          `
+
+          // Display icons (either parent or children based on hasChildren)
+          iconsToDisplay.forEach(icon => {
+            const iconName = icon.replace('.svg', '')
+            const displayName = formatIconName(iconName)
+
+            html += `
+              <div class="card bg-base-100 shadow hover:shadow-xl transition-all cursor-pointer icon-card"
+                   data-name="${iconName}"
+                   data-category="${categoryId}"
+                   onclick="openIconModal('${iconName}')">
+                <div class="card-body items-center text-center p-4">
+                  <div class="w-16 h-16 flex items-center justify-center mb-2">
+                    <img src="./assets/icons-copied/${icon}" alt="${displayName}" class="max-w-full max-h-full" />
+                  </div>
+                  <p class="text-xs font-semibold line-clamp-2">${displayName}</p>
+                </div>
+              </div>
+            `
+          })
+
+          html += `
+              </div>
+            </div>
+          `
+        }
+
+        // Display country-specific categories
+        if (data.countriesCategories) {
+          html += `<h2 class="text-3xl font-bold mb-8 mt-16 text-primary">Catégories par pays</h2>`
+
+          const countriesData = [
+            { code: 'FR', name: 'France', flag: '🇫🇷', data: data.countriesCategories.FR },
+            { code: 'ES', name: 'Espagne', flag: '🇪🇸', data: data.countriesCategories.ES },
+            { code: 'AD', name: 'Andorre', flag: '🇦🇩', data: data.countriesCategories.AD }
+          ]
+
+          countriesData.forEach((country, index) => {
+            if (Object.keys(country.data).length === 0) return
+
+            html += `<h3 class="text-2xl font-bold mb-6 ${index > 0 ? 'mt-12' : ''} flex items-center"><span class="mr-2">${country.flag}</span> ${country.name}</h3>`
+
+            for (const [catId, catData] of Object.entries(country.data)) {
+              const hasChildren = Object.keys(catData.children).length > 0
+              let iconsToDisplay = hasChildren ?
+                Object.values(catData.children).flat() :
+                catData.icons
+
+              if (iconsToDisplay.length === 0) continue
+
+              html += `
+                <div class="mb-12 category-section" data-category="${catId}">
+                  <h4 class="text-xl font-bold mb-4 pb-2 border-b-2 border-secondary inline-block">
+                    ${catData.name}
+                    <span class="badge badge-lg badge-secondary ml-2">${iconsToDisplay.length}</span>
+                  </h4>
+                  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-4">
+              `
+
+              iconsToDisplay.forEach(icon => {
+                const iconName = icon.replace('.svg', '')
+                const displayName = formatIconName(iconName)
+
+                html += `
+                  <div class="card bg-base-100 shadow hover:shadow-xl transition-all cursor-pointer icon-card"
+                       data-name="${iconName}"
+                       data-category="${catId}"
+                       onclick="openIconModal('${iconName}')">
+                    <div class="card-body items-center text-center p-4">
+                      <div class="w-16 h-16 flex items-center justify-center mb-2">
+                        <img src="./assets/icons-copied/${icon}" alt="${displayName}" class="max-w-full max-h-full" />
+                      </div>
+                      <p class="text-xs font-semibold line-clamp-2">${displayName}</p>
+                    </div>
+                  </div>
+                `
+              })
+
+              html += `</div></div>`
+            }
+          })
+        }
+
+        container.innerHTML = html
+      }
+
+      function formatIconName(name) {
+        return name
+          .replace(/_outlined$/, '')
+          .replace(/_/g, ' ')
+          .split(' ')
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(' ')
+      }
+
+      function filterIcons() {
+        const searchValue = document.getElementById('iconSearch').value.toLowerCase()
+
+        const iconCards = document.querySelectorAll('.icon-card')
+        const categorySections = document.querySelectorAll('.category-section')
+        let visibleCount = 0
+
+        // Filter cards by search term
+        iconCards.forEach(card => {
+          const iconName = card.getAttribute('data-name').toLowerCase()
+          const matchesSearch = iconName.includes(searchValue)
+
+          if (matchesSearch) {
+            card.style.display = 'block'
+            visibleCount++
+          } else {
+            card.style.display = 'none'
+          }
+        })
+
+        // Show/hide category sections based on whether they have visible cards
+        categorySections.forEach(section => {
+          const categoryCards = section.querySelectorAll('.icon-card[style*="display: block"],.icon-card:not([style*="display"])')
+          const hasVisibleCards = Array.from(categoryCards).some(card =>
+            card.style.display !== 'none'
+          )
+
+          if (hasVisibleCards) {
+            section.style.display = 'block'
+          } else {
+            section.style.display = 'none'
+          }
+        })
+
+        // Show/hide empty state
+        const emptyState = document.getElementById('emptyState')
+        const iconsContainer = document.getElementById('iconsContainer')
+        if (visibleCount === 0) {
+          emptyState.classList.remove('hidden')
+          iconsContainer.classList.add('hidden')
+        } else {
+          emptyState.classList.add('hidden')
+          iconsContainer.classList.remove('hidden')
+        }
+      }
+
+      function openIconModal(iconName) {
+        currentIcon = iconName
+        const displayName = formatIconName(iconName)
+
+        document.getElementById('modalIconName').textContent = displayName
+        document.getElementById('modalIconPreview').innerHTML = `
+          <img src="./assets/icons-copied/${iconName}.svg" alt="${displayName}" class="w-full h-full object-contain" />
+        `
+
+        document.getElementById('iconModal').showModal()
+      }
+
+      function copyIconName() {
+        const text = currentIcon
+        navigator.clipboard.writeText(text).then(() => {
+          showToast('Nom copié !')
+        })
+      }
+
+      async function copySVG() {
+        try {
+          const response = await fetch(`./assets/icons-copied/${currentIcon}.svg`)
+          const svgText = await response.text()
+          await navigator.clipboard.writeText(svgText)
+          showToast('SVG copié !')
+        } catch (error) {
+          showToast('Erreur lors de la copie', 'error')
+        }
+      }
+
+      function downloadSVG() {
+        const link = document.createElement('a')
+        link.href = `./assets/icons-copied/${currentIcon}.svg`
+        link.download = `${currentIcon}.svg`
+        link.click()
+        showToast('Téléchargement SVG en cours...')
+      }
+
+      function downloadPNG() {
+        const link = document.createElement('a')
+        link.href = `./assets/icons-png/${currentIcon}.png`
+        link.download = `${currentIcon}.png`
+        link.click()
+        showToast('Téléchargement PNG en cours...')
+      }
+
+      function showToast(message, type = 'success') {
+        const toast = document.getElementById('toast')
+        const toastMessage = document.getElementById('toastMessage')
+
+        toastMessage.textContent = message
+        toast.classList.remove('hidden')
+
+        setTimeout(() => {
+          toast.classList.add('hidden')
+        }, 3000)
+      }
+
+      // Load icons on page load
+      loadIcons()
+
+      // Theme toggle functionality
+      const themeToggle = document.getElementById('theme-toggle');
+      const htmlElement = document.documentElement;
+      const sunIcon = document.getElementById('theme-icon-sun');
+      const moonIcon = document.getElementById('theme-icon-moon');
+
+      // Load saved theme or default to light
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      htmlElement.setAttribute('data-theme', savedTheme);
+      updateThemeIcon(savedTheme);
+
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = htmlElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+        htmlElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+      });
+
+      function updateThemeIcon(theme) {
+        if (theme === 'dark') {
+          sunIcon.classList.add('hidden');
+          moonIcon.classList.remove('hidden');
+        } else {
+          sunIcon.classList.remove('hidden');
+          moonIcon.classList.add('hidden');
+        }
+      }
+    </script>
+  </body>
+</html>

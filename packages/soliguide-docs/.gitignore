@@ -1,0 +1,24 @@
+# SPDX-FileCopyrightText: © 2024 Solinum
+# SPDX-License-Identifier: AGPL-3.0-only
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Copied icons (use symlink in dev, copy in build)
+assets/icons-copied/
+
+# Generated icons list
+icons-list.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
