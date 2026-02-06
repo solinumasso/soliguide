@@ -38,7 +38,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         place.status !== PlaceStatus.PERMANENTLY_CLOSED &&
         place.status !== PlaceStatus.DRAFT
       "
-      class="card-header p-4 bg-gradient"
+      class="card-header p-4 bg-gradient search-card-header"
     >
       <div class="d-flex">
         <div class="p-2 flex flex-column">
@@ -364,7 +364,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     let phoneIndex = index
                   "
                   href="tel:{{ phone | formatInternationalPhoneNumber }}"
-                  class="dropdown-item"
+                  class="dropdown-item search-display-phone-number"
                 >
                   <span
                     ><span *ngIf="phone.label"> {{ phone.label }}: </span
@@ -378,7 +378,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <a
               *ngFor="let phone of place.entity.phones; let phoneIndex = index"
               href="tel:{{ phone.phoneNumber }}"
-              class="btn btn-outline-primary"
+              class="btn btn-outline-primary search-display-phone-number"
               (click)="togglePhoneNumber(phoneIndex)"
             >
               <fa-icon
@@ -403,7 +403,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           *ngIf="!isInSoligare"
           [routerLink]="[routePrefix, 'fiche', place.seo_url]"
           title="{{ 'SEE_THE_PAGE' | translate }} {{ place.name }}"
-          class="btn btn-secondary ms-2"
+          class="btn btn-secondary ms-2 search-more-info"
           (click)="captureEvent('click-more-info-button', { place, placeIndex })"
         >
           {{ "SEE_THE_DETAILS" | translate }}
