@@ -47,6 +47,13 @@ jobs:
         with:
           # Fetch the entire history of the repository
           fetch-depth: 0
+          # Fetch all branches to ensure the base branch is available
+          fetch-tags: true
+
+      - name: Fetch base branch
+        run: |
+          git fetch origin develop:develop || true
+          git fetch origin main:main || true
 
       - name: Get node version from root Dockerfile
         id: node_version
