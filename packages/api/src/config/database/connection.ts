@@ -38,17 +38,22 @@ const CONNECTION_TIMEOUT_MS = 5000; // 5 seconds to detect if MongoDB is down
 export async function connectToDatabase(): Promise<void> {
   let attempt = 0;
 
-  logger.info({
-    uri: CONFIG.MONGODB_URI.replace(/\/\/[^:]+:[^@]+@/, '//***:***@'), // Hide credentials in logs
-    maxAttempts: MAX_RETRY_ATTEMPTS,
-    timeoutMs: CONNECTION_TIMEOUT_MS
-  }, "Démarrage de la connexion MongoDB");
+  logger.info(
+    {
+      uri: CONFIG.MONGODB_URI.replace(/\/\/[^:]+:[^@]+@/, "//***:***@"), // Hide credentials in logs
+      maxAttempts: MAX_RETRY_ATTEMPTS,
+      timeoutMs: CONNECTION_TIMEOUT_MS,
+    },
+    "Démarrage de la connexion MongoDB"
+  );
 
   while (attempt < MAX_RETRY_ATTEMPTS) {
     attempt++;
 
     try {
-      logger.info(`Tentative de connexion MongoDB (${attempt}/${MAX_RETRY_ATTEMPTS})...`);
+      logger.info(
+        `Tentative de connexion MongoDB (${attempt}/${MAX_RETRY_ATTEMPTS})...`
+      );
 
       await mongoose.connect(CONFIG.MONGODB_URI, {
         maxIdleTimeMS: 50000,
@@ -63,19 +68,22 @@ export async function connectToDatabase(): Promise<void> {
       logger.info("✓ Connexion MongoDB vérifiée avec succès");
 
       return; // Success - exit the function
-
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : String(err);
-      const isConnectionRefused = errorMessage.includes('ECONNREFUSED') || errorMessage.includes('MongoServerSelectionError');
+      const isConnectionRefused =
+        errorMessage.includes("ECONNREFUSED") ||
+        errorMessage.includes("MongoServerSelectionError");
 
       logger.error(
         {
           err,
           attempt,
           maxAttempts: MAX_RETRY_ATTEMPTS,
-          errorType: isConnectionRefused ? 'CONNECTION_REFUSED' : 'OTHER'
+          errorType: isConnectionRefused ? "CONNECTION_REFUSED" : "OTHER",
         },
-        `❌ Échec de connexion MongoDB (tentative ${attempt}/${MAX_RETRY_ATTEMPTS})${isConnectionRefused ? ' - MongoDB semble éteint ou inaccessible' : ''}`
+        `❌ Échec de connexion MongoDB (tentative ${attempt}/${MAX_RETRY_ATTEMPTS})${
+          isConnectionRefused ? " - MongoDB semble éteint ou inaccessible" : ""
+        }`
       );
 
       if (attempt >= MAX_RETRY_ATTEMPTS) {
@@ -83,7 +91,7 @@ export async function connectToDatabase(): Promise<void> {
           {
             err,
             attempts: MAX_RETRY_ATTEMPTS,
-            uri: CONFIG.MONGODB_URI.replace(/\/\/[^:]+:[^@]+@/, '//***:***@')
+            uri: CONFIG.MONGODB_URI.replace(/\/\/[^:]+:[^@]+@/, "//***:***@"),
           },
           `❌ ERREUR FATALE: Impossible de se connecter à MongoDB après ${MAX_RETRY_ATTEMPTS} tentatives. Vérifiez que MongoDB est démarré (docker compose up -d). Arrêt de l'application.`
         );
@@ -91,7 +99,9 @@ export async function connectToDatabase(): Promise<void> {
       }
 
       // Wait before retry
-      logger.info(`⏳ Nouvelle tentative dans ${RETRY_DELAY_MS / 1000} secondes...`);
+      logger.info(
+        `⏳ Nouvelle tentative dans ${RETRY_DELAY_MS / 1000} secondes...`
+      );
       await new Promise((resolve) => setTimeout(resolve, RETRY_DELAY_MS));
     }
   }
