@@ -19,7 +19,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { Injectable, OnDestroy } from "@angular/core";
-import posthog, { type PostHog, type PostHogConfig } from "posthog-js";
+import posthog, {
+  PostHog,
+  type PostHogConfig,
+  type PostHogInterface,
+} from "posthog-js";
 import { from, map, type Observable, Subscription } from "rxjs";
 
 import { PosthogConfig } from "./posthog-config";
@@ -35,7 +39,7 @@ export class PosthogService implements OnDestroy {
   public enabled: boolean;
   public canBeEnabled: boolean;
 
-  private persistence: "memory" | "localStorage+cookie";
+  private persistence: "memory" | "localStorage" | "localStorage+cookie";
 
   public constructor(private readonly posthogConfig: PosthogConfig) {
     this.subscription = new Subscription();
@@ -51,7 +55,9 @@ export class PosthogService implements OnDestroy {
     this._posthogInstance = this.setPosthogInstance();
   }
 
-  private enablePosthog(persistence: "memory" | "localStorage+cookie"): void {
+  private enablePosthog(
+    persistence: "memory" | "localStorage" | "localStorage+cookie"
+  ): void {
     this.enabled = this.canBeEnabled;
 
     this.persistence = persistence;
@@ -66,16 +72,20 @@ export class PosthogService implements OnDestroy {
         return resolve(null);
       }
       // Reference documentation: https://posthog.com/docs/integrate/client/js#config
+      // Wrapper to convert PostHogInterface (from loaded callback) to PostHog
+      const loadedCallback = (posthogInstance: PostHogInterface) => {
+        resolve(posthogInstance as PostHog);
+      };
       posthog.init(
         this.posthogConfig.posthogApiKey,
-        this.getConfig(resolve),
+        this.getConfig(loadedCallback),
         this.posthogConfig.posthogLibraryName
       );
     });
   }
 
   private getConfig(
-    loaded?: (posthogInstance: PostHog) => void,
+    loaded?: (posthogInstance: PostHogInterface) => void,
     processProperties?: (
       properties: PosthogProperties,
       event_name: string
@@ -84,12 +94,20 @@ export class PosthogService implements OnDestroy {
     return {
       api_host: this.posthogConfig.posthogUrl,
       autocapture: false,
+      capture_pageview: "history_change",
       capture_pageleave: false,
       ip: false,
       debug: this.posthogConfig.posthogDebug,
       disable_session_recording: true,
+      rageclick: false,
+      // Only create person profiles for identified users (preserves anonymity)
+      // person_profiles: "identified_only",
       loaded,
+      rate_limiting: {
+        events_per_second: 3,
+      },
       persistence: this.persistence,
+      person_profiles: "always",
       session_idle_timeout_seconds: 1800, // 30 minutes
       sanitize_properties: processProperties,
     };
@@ -103,7 +121,8 @@ export class PosthogService implements OnDestroy {
   ): void {
     this.subscription.add(
       this.posthogInstance.subscribe((posthogInstance) => {
-        posthogInstance?.set_config(
+        // set_config is not available on PostHogInterface, cast to PostHog
+        (posthogInstance as PostHog | null)?.set_config(
           this.getConfig(undefined, processProperties)
         );
       })
@@ -179,7 +198,7 @@ export class PosthogService implements OnDestroy {
   }
 
   public switchPersistence(
-    persistence: "memory" | "localStorage+cookie"
+    persistence: "memory" | "localStorage" | "localStorage+cookie"
   ): void {
     this.persistence = persistence;
 
@@ -188,7 +207,8 @@ export class PosthogService implements OnDestroy {
     } else {
       this.subscription.add(
         this.posthogInstance.subscribe((posthogInstance) => {
-          posthogInstance?.set_config({ persistence });
+          // set_config is not available on PostHogInterface, cast to PostHog
+          (posthogInstance as PostHog | null)?.set_config({ persistence });
         })
       );
     }

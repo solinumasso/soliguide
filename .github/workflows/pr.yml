@@ -20,6 +20,7 @@ name: PR - Build and test
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
     branches-ignore:
       - "renovate/**"
       - hotfix
@@ -30,8 +31,10 @@ concurrency:
 
 jobs:
   commitlint:
+    if: github.event.pull_request.draft == false
     uses: ./.github/workflows/_commitlint.yml
 
   all:
+    if: github.event.pull_request.draft == false
     uses: ./.github/workflows/_build-and-test.yml
     secrets: inherit
