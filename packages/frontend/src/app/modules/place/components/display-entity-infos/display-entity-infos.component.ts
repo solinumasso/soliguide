@@ -51,6 +51,7 @@ export class DisplayEntityInfosComponent
 
   // Affichage
   public showEmail: boolean;
+  public showPhones: boolean;
   public showAddress: boolean;
 
   public readonly faMapMarker = faMapMarker;
@@ -67,6 +68,7 @@ export class DisplayEntityInfosComponent
   ) {
     super(posthogService, "display-entity-info");
     this.showEmail = false;
+    this.showPhones = false;
     this.showAddress = false;
   }
 

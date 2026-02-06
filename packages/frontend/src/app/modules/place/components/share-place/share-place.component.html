@@ -19,14 +19,18 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <div class="d-flex align-items-center justify-content-center">
-  <button type="button" class="btn btn-outline-primary mx-1" (click)="open()">
+  <button
+    type="button"
+    class="btn btn-outline-primary mx-1 place-share"
+    (click)="open()"
+  >
     <fa-icon [icon]="['fas', 'share']" aria-hidden="true"></fa-icon>
     {{ "PARTAGER" | translate }}
   </button>
 
   <button
     type="button"
-    class="d-none d-lg-block d-xl-block btn btn-outline-secondary"
+    class="d-none d-lg-block d-xl-block btn btn-outline-secondary place-print"
     (click)="printFiche()"
   >
     <fa-icon [icon]="['fas', 'print']"></fa-icon>
