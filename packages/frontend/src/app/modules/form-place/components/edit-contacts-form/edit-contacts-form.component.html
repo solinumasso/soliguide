@@ -131,7 +131,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                   [icon]="['fas', 'envelope']"
                 ></fa-icon>
                 <span>
-                  <a href="mailto:{{ contact.mail }}">{{ contact.mail }}</a>
+                  <a href="mailto:{{ contact.mail }}">{{
+                    contact.mail | decodePunycodeEmail
+                  }}</a>
                 </span>
               </div>
             </div>

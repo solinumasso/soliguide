@@ -20,11 +20,20 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <script lang="ts">
   import { getContext, onMount, setContext } from 'svelte';
-  import { goto } from '$app/navigation';
+  import { goto, afterNavigate } from '$app/navigation';
+  import { page } from '$app/stores';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import { ROUTES_CTX_KEY } from '$lib/client/index';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
-  import { Topbar, InfoBlock } from '@soliguide/design-system';
+  import {
+    Topbar,
+    InfoBlock,
+    IconFavoriteOff,
+    IconFavoriteOn,
+    type types as DSTypes
+  } from '@soliguide/design-system';
+  import { favorites, toggleFavorite } from '$lib/client/favorites';
+  import { notifyFavoriteChange } from '$lib/toast/toast.store';
   import {
     PlaceInfoSection,
     PlaceDescriptionSection,
@@ -39,6 +48,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { getPlaceDetailsPageController } from './pageController';
   import CampaignBanner from './components/CampaignBanner.svelte';
   import PlaceItinerarySection from './components/PlaceItinerarySection.svelte';
+  import { favoriteMatches } from '$lib/models/favorite';
 
   export let data: PageData;
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
@@ -54,6 +64,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   let headerHeight = 0;
   let scrolled = false;
+  let previousRoute = '/';
+
+  afterNavigate(({ from }) => {
+    previousRoute = from?.url.pathname || '/';
+  });
 
   onMount(() => {
     // window.TallyConfig = {
@@ -89,8 +104,32 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   const goBack = () => {
     pageStore.captureEvent('go-back', { fromPlace: $pageStore.placeDetails.id });
-    goto(`${$routes.ROUTE_PLACES}#${$pageStore.placeDetails.id}`);
+
+    if (previousRoute === `/${$page.params.lang}/favorites`) {
+      goto(`/${$page.params.lang}/favorites`);
+    } else {
+      goto(`${$routes.ROUTE_PLACES}#${$pageStore.placeDetails.id}`);
+    }
   };
+
+  $: isFavorite = $favorites.some((favorite) =>
+    favoriteMatches(
+      favorite,
+      $pageStore.placeDetails.id,
+      $pageStore.placeDetails.crossingPointIndex
+    )
+  );
+
+  $: favoriteAction = {
+    label: $i18n.t('TOGGLE_FAVORITES'),
+    type: 'toggle' as DSTypes.TopbarActionType,
+    icon: isFavorite ? IconFavoriteOn : IconFavoriteOff,
+    ...(isFavorite ? {} : { iconColor: 'var(--color-textInverse)' }),
+    eventKey: 'favorite' as DSTypes.TopbarActionEventKey,
+    active: isFavorite
+  };
+
+  $: topbarActions = $pageStore.placeDetails.id ? [favoriteAction] : [];
 </script>
 
 <svelte:head>
@@ -99,7 +138,24 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <!-- <script src="https://tally.so/widgets/embed.js"></script> -->
 </svelte:head>
 
-<Topbar type="reversedGradient" on:navigate={goBack} />
+<Topbar
+  type="reversedGradient"
+  actions={topbarActions}
+  on:navigate={goBack}
+  on:favorite={() => {
+    if ($pageStore.placeDetails.id) {
+      const status = toggleFavorite(
+        $pageStore.placeDetails.id,
+        $pageStore.placeDetails.crossingPointIndex
+      );
+      pageStore.captureEvent('manage-favorite', {
+        action: status === 'added' ? 'add' : 'remove',
+        placeId: $pageStore.placeDetails.id
+      });
+      notifyFavoriteChange(status, i18n);
+    }
+  }}
+/>
 
 <div class="place-detail-page" class:with-footer={scrolled}>
   <PlaceHeader

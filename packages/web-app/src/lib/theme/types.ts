@@ -28,6 +28,7 @@ export interface ThemeDefinition {
   supportedLanguages: SupportedLanguagesCode[];
   media: {
     homeIllustration: string;
+    favoritesIllustration: string;
     logos: {
       inline: string;
       original: string;

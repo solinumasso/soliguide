@@ -27,7 +27,6 @@ import {
 } from "@angular/core";
 import { PosthogAddUserIdHeadersInterceptor } from "./posthog-add-user-id-headers.interceptor";
 import { PosthogConfig } from "./posthog-config";
-import { PosthogRouterInitService } from "./posthog-router-init.service";
 import { PosthogService } from "./posthog.service";
 
 @NgModule({
@@ -38,7 +37,6 @@ import { PosthogService } from "./posthog.service";
       useClass: PosthogAddUserIdHeadersInterceptor,
       multi: true,
     },
-    PosthogRouterInitService,
   ],
 })
 export class PosthogModule {
@@ -49,11 +47,7 @@ export class PosthogModule {
     };
   }
 
-  constructor(
-    posthogRouterInitService: PosthogRouterInitService,
-    @Optional() @SkipSelf() parentModule?: PosthogModule
-  ) {
-    posthogRouterInitService.subscribeToRouteChange();
+  constructor(@Optional() @SkipSelf() parentModule?: PosthogModule) {
     if (parentModule) {
       throw new Error(
         "PosthogModule is already loaded. Import it in the AppModule only"

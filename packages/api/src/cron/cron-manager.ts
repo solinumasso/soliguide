@@ -48,16 +48,16 @@ const bree = new Bree({
   jobs: [
     // ----
     // TRANSLATIONS
-    {
-      interval: "every 2 minutes",
-      name: "[TRANSLATION] Translates text elements thanks to GTranslate API",
-      path: join(
-        __dirname,
-        "jobs",
-        "translations",
-        `translate-fields.job${defaultExtension}`
-      ),
-    },
+    // {
+    //   interval: "every 2 minutes",
+    //   name: "[TRANSLATION] Translates text elements thanks to GTranslate API",
+    //   path: join(
+    //     __dirname,
+    //     "jobs",
+    //     "translations",
+    //     `translate-fields.job${defaultExtension}`
+    //   ),
+    // },
     // ----
     // PLACES
     {

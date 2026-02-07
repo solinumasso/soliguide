@@ -19,10 +19,13 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte';
   import Text from '$lib/components/Text.svelte';
   import DOMPurify from 'dompurify';
   import TextClamper from '$lib/components/dataDisplay/TextClamper.svelte';
   import InfoIcon from '$lib/components/InfoIcon.svelte';
+  import Close from 'svelte-google-materialdesign-icons/Close.svelte';
+  import i18n from '$lib/i18n';
   import type { InfoBlockVariant } from '$lib/types/InfoBlock';
   import type { InfoIconVariant } from '$lib/types/InfoIcon';
   import ButtonLink from '../buttons/ButtonLink.svelte';
@@ -43,12 +46,19 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   /* eslint-disable-next-line @typescript-eslint/no-empty-function */
   export let buttonAction = () => {};
   export let date: string | null = null;
+  export let dismissible = false;
+
+  const dispatch = createEventDispatcher<{ close: void }>();
 
   const variantMapping: Record<InfoBlockVariant, InfoIconVariant> = {
     info: 'info',
     success: 'success',
     warning: 'warning',
     error: 'error'
+  };
+
+  const close = () => {
+    dispatch('close');
   };
 
   $: withTitle = !!title;
@@ -106,10 +116,25 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       </div>
     {/if}
   </div>
+  {#if dismissible}
+    <div class="infoblock-close">
+      <Button
+        type="shy"
+        size="xsmall"
+        iconPosition="iconOnly"
+        aria-label={$i18n.t('CLOSE')}
+        title={$i18n.t('CLOSE')}
+        on:click={close}
+      >
+        <Close slot="icon" />
+      </Button>
+    </div>
+  {/if}
 </article>
 
 <style lang="scss">
   .infoblock {
+    position: relative;
     display: flex;
     align-items: center;
     border-radius: var(--radiusMiddle);
@@ -132,6 +157,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       justify-content: center;
       padding-top: var(--spacingXS);
     }
+  }
+
+  .infoblock-close {
+    display: flex;
+    margin-left: auto;
+    align-self: flex-start;
   }
 
   .infoblock-info {

@@ -21,8 +21,9 @@
 import { fetch } from '$lib/client';
 import { Categories, GeoTypes, SupportedLanguagesCode } from '@soliguide/common';
 import { posthogService } from '$lib/services/posthogService';
+import type { FavoriteItem } from '$lib/models/favorite';
 import type { PlaceDetailsParams, SearchOptions, SearchParams } from './types';
-import type { PlaceDetails, SearchResult } from '$lib/models/types';
+import type { PlaceDetails, SearchFavorisResult, SearchResult } from '$lib/models/types';
 import { isValidStringEnumValue } from '$lib/ts';
 import { ALL_CATEGORIES } from '$lib/constants';
 
@@ -61,7 +62,7 @@ export default (fetcher = fetch) => {
 
   const placeDetails = (
     { lang, identifier }: PlaceDetailsParams,
-    categorySearched: Categories,
+    categorySearched: Categories | null,
     crossingPointIndex?: number
   ): Promise<PlaceDetails> => {
     if (!isValidStringEnumValue(SupportedLanguagesCode, lang)) {
@@ -79,8 +80,40 @@ export default (fetcher = fetch) => {
     });
   };
 
+  const lookupPlaces = ({
+    lang,
+    favorites
+  }: {
+    lang: SupportedLanguagesCode;
+    favorites: FavoriteItem[];
+  }): Promise<SearchFavorisResult> => {
+    if (!isValidStringEnumValue(SupportedLanguagesCode, lang)) {
+      throw new Error(`Bad request, lang ${lang} is invalid`);
+    }
+    if (!Array.isArray(favorites) || favorites.length === 0) {
+      throw new Error('Bad request, favorites must be a non-empty array');
+    }
+    if (
+      favorites.some(
+        (favorite) =>
+          typeof favorite?.lieuId !== 'number' ||
+          favorite.lieuId <= 0 ||
+          Number.isNaN(favorite.lieuId)
+      )
+    ) {
+      throw new Error('Bad request, all lieuId must be positive numbers');
+    }
+
+    return fetcher<SearchFavorisResult>(`/api/${lang}/places/lookup`, {
+      method: 'POST',
+      body: JSON.stringify({ favorites }),
+      headers: posthogService.getHeaders() as unknown as Record<string, string>
+    });
+  };
+
   return {
     searchPlaces,
-    placeDetails
+    placeDetails,
+    lookupPlaces
   };
 };

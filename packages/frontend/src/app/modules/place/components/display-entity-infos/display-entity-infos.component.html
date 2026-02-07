@@ -87,7 +87,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       *ngIf="showEmail"
     >
       <fa-icon [icon]="faEnvelope" aria-hidden="true"></fa-icon>
-      <span>{{ place.entity.mail }}</span>
+      <span>{{ place.entity.mail | decodePunycodeEmail }}</span>
     </a>
   </li>
 

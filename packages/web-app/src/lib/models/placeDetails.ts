@@ -302,7 +302,7 @@ const buildServiceTempClosure = (
  */
 const buildServices = (
   services: CommonNewPlaceService[],
-  categorySearched: Categories
+  categorySearched: Categories | null
 ): Service[] => {
   const servicesToProcess = categorySearched
     ? sortServicesByRelevance(services, categorySearched, categoryService.getAllCategories())
@@ -324,16 +324,23 @@ const buildServices = (
 const buildLightPlaces = (
   apiPlace: ApiPlace,
   onOrientation: boolean,
-  categorySearched: Categories,
+  categorySearched: Categories | null,
   status: PlaceOpeningStatus
 ): LightPlace[] => {
-  return apiPlace.parcours?.map((crossingPoint, index) => ({
-    address: computeAddress(crossingPoint.position, onOrientation),
-    url: `${apiPlace.seo_url}?categorySearched=${categorySearched}&crossingPointIndex=${index}`,
-    name: apiPlace.name,
-    status,
-    todayInfo: computeTodayInfo({ ...apiPlace, newhours: crossingPoint.hours }, status)
-  }));
+  return apiPlace.parcours?.map((crossingPoint, index) => {
+    const params = new URLSearchParams();
+    if (categorySearched) {
+      params.set('categorySearched', categorySearched);
+    }
+    params.set('crossingPointIndex', String(index));
+    return {
+      address: computeAddress(crossingPoint.position, onOrientation),
+      url: `${apiPlace.seo_url}?${params.toString()}`,
+      name: apiPlace.name,
+      status,
+      todayInfo: computeTodayInfo({ ...apiPlace, newhours: crossingPoint.hours }, status)
+    };
+  });
 };
 
 const buildPlaceDetailsTempInfo = (tempInfo: IPlaceTempInfo): PlaceDetailsTempInfo => {
@@ -364,8 +371,8 @@ const buildPlaceDetailsTempInfo = (tempInfo: IPlaceTempInfo): PlaceDetailsTempIn
  */
 const buildPlaceDetails = (
   placeResult: ApiPlace,
-  categorySearched: Categories,
-  parcourIndex?: number
+  categorySearched: Categories | null,
+  crossingPointIndex?: number
 ): PlaceDetails => {
   const status = computePlaceOpeningStatus(placeResult);
 
@@ -374,8 +381,10 @@ const buildPlaceDetails = (
   const isItinerary = placeResult.placeType === PlaceType.ITINERARY;
 
   const validItineraryIndex =
-    isItinerary && typeof parcourIndex === 'number' && placeResult.parcours?.[parcourIndex]
-      ? parcourIndex
+    isItinerary &&
+    typeof crossingPointIndex === 'number' &&
+    placeResult.parcours?.[crossingPointIndex]
+      ? crossingPointIndex
       : 0;
 
   // Use place or passage point position based on the context

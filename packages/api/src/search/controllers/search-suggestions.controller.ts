@@ -41,9 +41,6 @@ export class SearchSuggestionsController {
 
   constructor() {
     this.searchService = new SearchSuggestionsService();
-    if (process.env.NODE_ENV !== "test") {
-      this.initialize();
-    }
   }
 
   private getFuseOptions(): IFuseOptions<SearchSuggestion> {

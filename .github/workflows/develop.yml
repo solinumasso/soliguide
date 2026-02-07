@@ -23,6 +23,10 @@ on:
     branches:
       - develop
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   commitlint:
     uses: ./.github/workflows/_commitlint.yml
@@ -31,4 +35,13 @@ jobs:
     uses: ./.github/workflows/_build-and-test.yml
     needs:
       - commitlint
+    secrets: inherit
+
+  deploy_clever_cloud_develop:
+    name: Deploy to Clever Cloud (develop)
+    uses: ./.github/workflows/_deploy-to-environment.yml
+    with:
+      environment: develop
+    needs:
+      - all
     secrets: inherit

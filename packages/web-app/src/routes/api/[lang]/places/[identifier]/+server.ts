@@ -32,7 +32,7 @@ export const POST = async (requestEvent: RequestEvent): Promise<Response> => {
   const {
     categorySearched,
     crossingPointIndex
-  }: { categorySearched: Categories; crossingPointIndex: number | null } =
+  }: { categorySearched: Categories | null; crossingPointIndex: number | null } =
     await requestEvent.request.json();
   const headers = getHeaders(requestEvent);
 

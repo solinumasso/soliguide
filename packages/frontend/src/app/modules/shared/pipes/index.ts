@@ -22,6 +22,7 @@
 export * from "./category-translate-key.pipe";
 export * from "./convert-km-to-meters.pipe";
 export * from "./date-proxy.pipe";
+export * from "./decode-punycode-email.pipe";
 export * from "./format-big-number.pipe";
 export * from "./html-to-text.pipe";
 export * from "./limit-to.pipe";

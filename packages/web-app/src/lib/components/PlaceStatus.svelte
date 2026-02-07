@@ -22,45 +22,82 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { getContext } from 'svelte';
   import { Tag, type types as DSTypes } from '@soliguide/design-system';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
-  import type { PlaceOpeningStatus } from '@soliguide/common';
+  import { PlaceOpeningStatus, PlaceStatus } from '@soliguide/common';
   import type { I18nStore } from '$lib/client/types';
 
-  export let status: PlaceOpeningStatus;
+  type DisplayStatus = PlaceOpeningStatus | PlaceStatus;
+
+  export let openingStatus: PlaceOpeningStatus;
+  export let placeStatus: PlaceStatus | null = null;
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
 
-  const getTagVariant = (state: PlaceOpeningStatus): DSTypes.TagVariant => {
+  const getTagVariant = (state: DisplayStatus): DSTypes.TagVariant => {
     switch (state) {
-      case 'open':
+      case PlaceOpeningStatus.OPEN:
         return 'success';
-      case 'partiallyOpen':
+      case PlaceOpeningStatus.PARTIALLY_OPEN:
         return 'warning';
-      case 'closed':
-      case 'temporarilyClosed':
+      case PlaceOpeningStatus.CLOSED:
+      case PlaceOpeningStatus.TEMPORARILY_CLOSED:
+      case PlaceStatus.OFFLINE:
+      case PlaceStatus.PERMANENTLY_CLOSED:
         return 'error';
+      case PlaceStatus.DRAFT:
       default:
         return 'neutral';
     }
   };
 
-  const getTagLabel = (state: PlaceOpeningStatus): string => {
+  const getTagLabel = (state: DisplayStatus): string => {
     switch (state) {
-      case 'open':
+      case PlaceOpeningStatus.OPEN:
         return $i18n.t('OPENED');
-      case 'partiallyOpen':
+      case PlaceOpeningStatus.PARTIALLY_OPEN:
         return $i18n.t('PARTIALLY_OPENED');
-      case 'closed':
+      case PlaceOpeningStatus.CLOSED:
         return $i18n.t('CLOSED');
-      case 'temporarilyClosed':
+      case PlaceOpeningStatus.TEMPORARILY_CLOSED:
         return $i18n.t('TEMPORARILY_CLOSED');
-      case 'unknown':
+      case PlaceStatus.DRAFT:
+        return $i18n.t('DRAFT');
+      case PlaceStatus.OFFLINE:
+        return $i18n.t('OFFLINE');
+      case PlaceStatus.PERMANENTLY_CLOSED:
+        return $i18n.t('PERMANENTLY_CLOSED');
       default:
         return $i18n.t('HOURS_NOT_SET');
     }
   };
 
-  $: tagVariant = getTagVariant(status);
-  $: tagLabel = getTagLabel(status);
+  const isPlaceStatusUnavailable = (status: PlaceStatus | null): status is PlaceStatus => {
+    return (
+      status === PlaceStatus.DRAFT ||
+      status === PlaceStatus.OFFLINE ||
+      status === PlaceStatus.PERMANENTLY_CLOSED
+    );
+  };
+
+  const resolveDisplayStatus = (
+    openingStatusValue: PlaceOpeningStatus,
+    placeStatusValue: PlaceStatus | null
+  ): DisplayStatus => {
+    if (openingStatusValue !== PlaceOpeningStatus.UNKNOWN) {
+      return openingStatusValue;
+    }
+
+    if (isPlaceStatusUnavailable(placeStatusValue)) {
+      return placeStatusValue;
+    }
+
+    return PlaceOpeningStatus.UNKNOWN;
+  };
+
+  let displayStatus: DisplayStatus;
+
+  $: displayStatus = resolveDisplayStatus(openingStatus, placeStatus);
+  $: tagVariant = getTagVariant(displayStatus);
+  $: tagLabel = getTagLabel(displayStatus);
 </script>
 
-<Tag variant={tagVariant} type={status === 'unknown' ? 'display' : 'badge'}>{tagLabel}</Tag>
+<Tag variant={tagVariant} type={displayStatus === 'unknown' ? 'display' : 'badge'}>{tagLabel}</Tag>

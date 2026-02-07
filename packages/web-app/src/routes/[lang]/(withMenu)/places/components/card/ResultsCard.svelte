@@ -31,7 +31,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     CardFooter,
     Text,
     ButtonLink,
-    InfoIcon
+    InfoIcon,
+    IconFavoriteOff,
+    IconFavoriteOn,
+    ToggleButton
   } from '@soliguide/design-system';
   import NearMe from 'svelte-google-materialdesign-icons/Near_me.svelte';
   import PinDrop from 'svelte-google-materialdesign-icons/Pin_drop.svelte';
@@ -39,54 +42,125 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import PhoneButton from '$lib/components/PhoneButton.svelte';
   import ResultsCardServices from './ResultsCardServices.svelte';
   import DisplaySource from '$lib/components/DisplaySource.svelte';
-  import { GeoTypes, kmOrMeters, TempInfoStatus } from '@soliguide/common';
-  import { getSearchResultPageController } from '../../pageController';
-  import { searchService } from '$lib/services';
+  import {
+    GeoTypes,
+    kmOrMeters,
+    TempInfoStatus,
+    PlaceStatus as PlaceStatusEnum
+  } from '@soliguide/common';
 
+  import { favorites, toggleFavorite } from '$lib/client/favorites';
+  import { notifyFavoriteChange } from '$lib/toast/toast.store';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
-  import type { SearchResultItem } from '$lib/models/types';
+  import type { SearchResultPlaceCard } from '$lib/models/types';
+  import { favoriteMatches } from '$lib/models/favorite';
+  import type { PosthogCaptureFunction } from '$lib/services/types';
 
-  const { captureEvent } = getSearchResultPageController(searchService);
+  const captureEvent = getContext('CAPTURE_FCTN_CTX_KEY') as PosthogCaptureFunction;
 
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
 
-  export let place: SearchResultItem;
+  export let place: SearchResultPlaceCard;
   export let id: string;
   export let category: string;
+
+  $: isPlaceUnavailable =
+    place.placeStatus === PlaceStatusEnum.DRAFT ||
+    place.placeStatus === PlaceStatusEnum.OFFLINE ||
+    place.placeStatus === PlaceStatusEnum.PERMANENTLY_CLOSED;
 
   /**
    * Redirect user to place he clicked on
    */
   const gotoPlace = (seoUrl: string, categorySearched: string) => {
-    captureEvent('card-info-click', { placeId: place.id });
+    if (isPlaceUnavailable) {
+      return;
+    }
     goto(`${$routes.ROUTE_PLACES}/${seoUrl}?categorySearched=${categorySearched}`);
   };
 
   const isDisabled = place.banners.orientation;
   const urlWithItinerary = `${typeof place.crossingPointIndex === 'number' ? `&crossingPointIndex=${place.crossingPointIndex}` : ''}`;
   const href = `${$routes.ROUTE_PLACES}/${place.seoUrl}?categorySearched=${category}${urlWithItinerary}`;
+
+  $: isFavorite = $favorites.some((favorite) =>
+    favoriteMatches(favorite, place.id, place.crossingPointIndex)
+  );
 </script>
 
 <Card>
-  <a {id} class="card-link" {href}>
+  <a
+    {id}
+    class="card-link"
+    {href}
+    aria-disabled={isPlaceUnavailable}
+    on:click|preventDefault={() => gotoPlace(place.seoUrl, category)}
+    data-sveltekit-preload-data="off"
+  >
     <CardHeader
+      disabled={isPlaceUnavailable}
       on:click={() => {
+        if (isPlaceUnavailable) {
+          return;
+        }
         captureEvent('card-header-click', { placeId: place.id });
       }}
     >
       <div class="card-header-container">
-        {#if place?.sources.length}
-          <div class="card-header-source">
-            <DisplaySource sources={place.sources} color="inverse" />
+        <div class="card-header-infos-container">
+          <div class="card-infos-left">
+            <PlaceStatus openingStatus={place.status} placeStatus={place.placeStatus} />
+            <div>
+              <TodayInfo todayInfo={place.todayInfo}>
+                {#if place.tempInfo.hours === TempInfoStatus.CURRENT && place.tempInfo.message !== TempInfoStatus.CURRENT}
+                  <a
+                    href={`${$routes.ROUTE_PLACES}/${place.seoUrl}?categorySearched=${category}#openingHoursSection`}
+                    ><InfoIcon
+                      size="small"
+                      variant="warning"
+                      withShadow
+                      altTag={$i18n.t('TEMPORARY_HOURS_CURRENTLY_ACTIVE')}
+                    ></InfoIcon></a
+                  >
+                {/if}</TodayInfo
+              >
+            </div>
           </div>
-        {/if}
-
+          <div
+            class="card-infos-right"
+            on:click|stopPropagation
+            on:change|stopPropagation
+            on:keydown|stopPropagation
+            role="button"
+            tabindex="-1"
+          >
+            <ToggleButton
+              type="primaryReversed"
+              size="medium"
+              icon={isFavorite ? IconFavoriteOn : IconFavoriteOff}
+              {...isFavorite ? {} : { iconColor: 'var(--color-textInverse)' }}
+              checked={isFavorite}
+              aria-label={$i18n.t('TOGGLE_FAVORITES')}
+              on:change={() => {
+                const status = toggleFavorite(place.id, place.crossingPointIndex);
+                if (status === 'added' || status === 'removed') {
+                  captureEvent('manage-favorite', {
+                    action: status === 'added' ? 'add' : 'remove',
+                    placeId: place.id
+                  });
+                }
+                notifyFavoriteChange(status, i18n);
+              }}
+            />
+          </div>
+        </div>
         <div class="card-title">
           <Text ellipsis type="title2PrimaryExtraBold">{place.name}</Text>
           {#if place.banners.campaign}
             <a
               href={`${$routes.ROUTE_PLACES}/${place.seoUrl}?categorySearched=${category}#bannerMessage`}
+              data-sveltekit-preload-data="off"
               ><InfoIcon
                 size="medium"
                 variant="warning"
@@ -97,6 +171,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           {:else if place.tempInfo.message === TempInfoStatus.CURRENT}
             <a
               href={`${$routes.ROUTE_PLACES}/${place.seoUrl}?categorySearched=${category}#tempMessage`}
+              data-sveltekit-preload-data="off"
               ><InfoIcon
                 size="medium"
                 variant="warning"
@@ -106,25 +181,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             >
           {/if}
         </div>
-
-        <div class="card-header-infos-container">
-          <PlaceStatus status={place.status} />
-          <div>
-            <TodayInfo todayInfo={place.todayInfo}>
-              {#if place.tempInfo.hours === TempInfoStatus.CURRENT && place.tempInfo.message !== TempInfoStatus.CURRENT}
-                <a
-                  href={`${$routes.ROUTE_PLACES}/${place.seoUrl}?categorySearched=${category}#openingHoursSection`}
-                  ><InfoIcon
-                    size="small"
-                    variant="warning"
-                    withShadow
-                    altTag={$i18n.t('TEMPORARY_HOURS_CURRENTLY_ACTIVE')}
-                  ></InfoIcon></a
-                >
-              {/if}</TodayInfo
-            >
+        {#if place?.sources.length}
+          <div class="card-header-source">
+            <DisplaySource sources={place.sources} color="inverse" />
           </div>
-        </div>
+        {/if}
       </div>
     </CardHeader>
   </a>
@@ -146,11 +207,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           iconPosition="iconOnly"
           type="primaryOutline"
           href={getMapLink(place.address)}
-          disabled={isDisabled}
+          disabled={isDisabled || isPlaceUnavailable}
           ><NearMe
             slot="icon"
             on:click={() => {
-              if (!isDisabled) {
+              if (!isDisabled && !isPlaceUnavailable) {
                 captureEvent('go-to-click', { place: { ...place.dataForLogs } });
               }
             }}
@@ -164,7 +225,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <div class="card-footer">
       <PhoneButton
         type="neutralOutlined"
-        phones={place.phones}
+        phones={isPlaceUnavailable ? [] : place.phones}
         on:click={() => {
           captureEvent('phone-click', { place: { ...place.dataForLogs } });
         }}
@@ -174,6 +235,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         on:click={() => gotoPlace(place.seoUrl, category)}
         size="small"
         type="primaryGradientFill"
+        aria-disabled={isPlaceUnavailable}
+        disabled={isPlaceUnavailable}
+        data-sveltekit-preload-data="off"
         >{$i18n.t('PLUS_INFOS')}
       </Button>
     </div>
@@ -185,21 +249,29 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   .card-title {
     display: flex;
     align-items: center;
-    gap: var(--spacingXS);
+    gap: var(--spacing3XS);
+    align-self: stretch;
   }
 
   .card-link {
     text-decoration: none;
   }
 
+  .card-link[aria-disabled='true'] {
+    cursor: default;
+  }
+
   .card-header-container {
     position: relative;
     height: $cardHeaderHeight;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing3XS);
   }
 
   .card-header-source {
     position: absolute;
-    top: -14px;
+    bottom: -14px;
     right: 0;
     white-space: nowrap;
     overflow: hidden;
@@ -209,9 +281,24 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   .card-header-infos-container {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: flex-start;
-    gap: var(--spacing3XS);
+    gap: var(--spacingXS);
+    align-self: stretch;
+  }
+
+  .card-infos-left {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: var(--spacingXS);
+  }
+
+  .card-infos-right {
+    display: flex;
+    align-items: center;
   }
 
   .card-body {

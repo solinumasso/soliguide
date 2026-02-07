@@ -20,9 +20,13 @@
  */
 import express, { type NextFunction } from "express";
 import {
+  CountryCodes,
+  FAVORITES_LIMIT,
   SoliguideCountries,
   SUPPORTED_LANGUAGES_BY_COUNTRY,
+  SupportedLanguagesCode,
   UserStatus,
+  type ApiSearchResults,
 } from "@soliguide/common";
 
 import {
@@ -30,10 +34,20 @@ import {
   canGetPlace,
   logPlace,
   handleLanguage,
+  getFilteredData,
 } from "../../middleware";
-import type { ExpressRequest, ExpressResponse } from "../../_models";
-import { getTranslatedPlace } from "../../translations/controllers/translation.controller";
+import {
+  Origin,
+  type ExpressRequest,
+  type ExpressResponse,
+} from "../../_models";
+import {
+  getTranslatedPlace,
+  getTranslatedPlacesForSearch,
+} from "../../translations/controllers/translation.controller";
 import { cleanPlaceCategorySpecificFields } from "../utils";
+import { getPlacesByIds } from "../services/place.service";
+import { lookupDto } from "../../search/dto";
 
 const router = express.Router();
 
@@ -98,6 +112,85 @@ router.get(
     next();
   },
   logPlace
+);
+
+/**
+ * @swagger
+ *
+ * /place/lookup/{lang}:
+ *   post:
+ *     description: Lookup places by IDs
+ *     tags: [Place]
+ *     parameters:
+ *       - name: ids
+ *         required: true
+ *         in: formData
+ *         type: array
+ *         items:
+ *           type: number
+ *       - name: lang
+ *         in: path
+ *         required: false
+ *         type: string
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: places lookup results
+ *       500:
+ *         description: LOOKUP_ERROR
+ */
+router.post(
+  "/lookup/:lang?",
+  (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
+    const allowedOrigins = [Origin.MOBILE_APP, Origin.WEBAPP_SOLIGUIDE];
+    if (!allowedOrigins.includes(req.requestInformation.originForLogs)) {
+      return res.status(403).send({ message: "FORBIDDEN" });
+    }
+    return next();
+  },
+  handleLanguage,
+  lookupDto,
+  getFilteredData,
+  async (req: ExpressRequest, res: ExpressResponse) => {
+    try {
+      const { ids } = req.bodyValidated;
+      const uniqueIds = Array.from(new Set<number>(ids));
+      const limitedIds = uniqueIds.slice(0, FAVORITES_LIMIT);
+
+      const places = await getPlacesByIds(limitedIds);
+      const placeById = new Map(places.map((place) => [place.lieu_id, place]));
+      const orderedPlaces = limitedIds
+        .map((id) => placeById.get(id))
+        .filter(
+          (place): place is (typeof places)[number] => place !== undefined
+        );
+
+      const lookupResults: ApiSearchResults = {
+        nbResults: orderedPlaces.length,
+        places: orderedPlaces,
+      };
+
+      const country = req.bodyValidated?.country ?? CountryCodes.FR;
+
+      if (
+        req?.params?.lang &&
+        SUPPORTED_LANGUAGES_BY_COUNTRY[country as unknown as SoliguideCountries]
+          .source !== req?.params?.lang
+      ) {
+        lookupResults.places = await getTranslatedPlacesForSearch(
+          lookupResults.places,
+          req?.params?.lang as SupportedLanguagesCode
+        );
+      }
+
+      req.nbResults = lookupResults.nbResults;
+      res.status(200).json(lookupResults);
+    } catch (e) {
+      req.log.error(e, "LOOKUP_ERROR");
+      res.status(500).json({ message: "LOOKUP_ERROR" });
+    }
+  }
 );
 
 export default router;

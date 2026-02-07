@@ -22,10 +22,12 @@ import { env } from '$env/dynamic/private';
 import { Categories, PlaceType, type ApiPlace, type ApiSearchResults } from '@soliguide/common';
 import { fetch } from '$lib/client';
 import { buildSearchResultWithParcours } from '$lib/models/searchResult';
+import { buildLookupResult } from '$lib/models/lookupResult';
 import { buildPlaceDetails } from '$lib/models/placeDetails';
 import type { RequestOptions, SearchParams } from './types';
-import type { PlaceDetails, SearchResult } from '$lib/models/types';
+import type { PlaceDetails, SearchFavorisResult, SearchResult } from '$lib/models/types';
 import type { PlaceDetailsParams } from '$lib/services/types';
+import type { FavoriteItem } from '$lib/models/favorite';
 
 const apiUrl = env.API_URL;
 
@@ -92,8 +94,8 @@ export default (fetcher = fetch) => {
   const placeDetails = async (
     { identifier, lang }: PlaceDetailsParams,
     commonHeaders: RequestOptions,
-    categorySearched: Categories,
-    parcourIndex?: number
+    categorySearched: Categories | null,
+    crossingPointIndex?: number
   ): Promise<PlaceDetails> => {
     const url = `${apiUrl}/place/${identifier}/${lang}`;
 
@@ -107,11 +109,53 @@ export default (fetcher = fetch) => {
       headers
     });
 
-    return buildPlaceDetails(placeResult, categorySearched, parcourIndex);
+    return buildPlaceDetails(placeResult, categorySearched, crossingPointIndex);
+  };
+
+  /**
+   * Lookup places by IDs
+   */
+  const lookup = async (
+    {
+      lang,
+      favorites
+    }: {
+      lang: string;
+      favorites: FavoriteItem[];
+    },
+    commonHeaders: RequestOptions
+  ): Promise<SearchFavorisResult> => {
+    if (!Array.isArray(favorites) || favorites.length === 0) {
+      return {
+        nbResults: 0,
+        places: []
+      };
+    }
+
+    const ids = [...new Set(favorites.map(({ lieuId }) => lieuId))];
+
+    const url = `${apiUrl}/place/lookup/${lang}`;
+
+    const headers = {
+      'Content-Type': 'application/json',
+      ...commonHeaders
+    };
+
+    const placesResult: ApiSearchResults = await fetcher(url, {
+      method: 'POST',
+      body: JSON.stringify({
+        ids,
+        placeType: PlaceType.PLACE
+      }),
+      headers
+    });
+
+    return buildLookupResult(placesResult, favorites);
   };
 
   return {
     placeDetails,
-    search
+    search,
+    lookup
   };
 };
