@@ -1,6 +1,6 @@
 {
   "name": "@soliguide/frontend",
-  "version": "4.33.1",
+  "version": "5.0.0",
   "main": "index.js",
   "author": "Association Solinum <contact@solinum.org> (https://solinum.org)",
   "license": "AGPL-3.0-only",

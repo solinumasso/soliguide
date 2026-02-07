@@ -23,8 +23,8 @@ import envSchema from "env-schema";
 import { ENV_SCHEMA } from "./ENV_SCHEMA.const";
 
 import { Config } from "../interfaces";
-import { resolve } from "path";
-import { existsSync } from "fs";
+import { resolve } from "node:path";
+import { existsSync } from "node:fs";
 
 const dotenvConfig = (() => {
   // If we are in test mode only in local

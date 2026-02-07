@@ -23,6 +23,7 @@ export interface Config {
   // General
   ENV: string;
   PORT: number;
+  VERSION: string;
   WEBAPP_FR_URL: string;
   WEBAPP_ES_URL: string;
   WEBAPP_AD_URL: string;

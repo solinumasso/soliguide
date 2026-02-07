@@ -22,7 +22,7 @@ import multer from "multer";
 
 import multerS3 from "multer-s3";
 
-import { extname, basename } from "path";
+import { extname, basename } from "node:path";
 
 import * as PhotoServices from "../services/photo.services";
 

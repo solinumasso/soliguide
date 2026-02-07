@@ -31,6 +31,7 @@ export const handleRequest = (
   next: NextFunction
 ) => {
   req.requestInformation = new RequestInformation(req);
+
   if (!req.requestInformation?.originForLogs) {
     const message = {
       CONTENT: Origin.ORIGIN_UNDEFINED,

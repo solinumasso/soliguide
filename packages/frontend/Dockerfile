@@ -51,6 +51,11 @@ COPY --chmod=0544 packages/frontend/docker_cmd.sh /bin/docker_cmd.sh
 COPY packages/frontend/Caddyfile /etc/caddy/
 
 COPY --from=build /app/packages/frontend/dist/soliguide/ /srv/
+COPY --from=build /app/packages/frontend/package.json /tmp/package.json
+
+# Generate version.json from package.json
+RUN echo "{\"version\":\"$(grep -oP '(?<="version": ")[^"]*' /tmp/package.json)\"}" > /srv/assets/version.json && \
+  rm /tmp/package.json
 
 # Add go template for default language. Angular breaks this if we put it in the original index.prod.html
 RUN sed 's/<html lang="fr">/<html lang="{{ placeholder "soliguide_language" }}">/g' < /srv/index.html > /srv/index.html.tmp && \

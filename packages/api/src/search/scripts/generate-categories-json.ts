@@ -28,7 +28,7 @@ import {
 import { ensureDir, writeFile } from "fs-extra";
 import { getLangsForCountry } from "../utils";
 import { SearchSuggestionsService } from "../services";
-import { join, relative } from "path";
+import { join, relative } from "node:path";
 
 async function generateAutocompleteFiles(): Promise<void> {
   try {

@@ -28,10 +28,13 @@ import {
 } from "@nestjs/terminus";
 import type { AxiosResponse } from "axios";
 import Redis from "ioredis";
+import { readFileSync } from "fs";
+import { resolve } from "path";
 
 @Controller("health")
 export class HealthController {
   private redis: Redis;
+  private readonly version: string;
 
   constructor(
     private readonly health: HealthCheckService,
@@ -40,11 +43,37 @@ export class HealthController {
     private readonly redisIndicator: RedisHealthIndicator
   ) {
     this.redis = new Redis(this.configService.get<string>("REDIS_URL"));
+    this.version = this.getVersion();
+  }
+
+  private getVersion(): string {
+    try {
+      const paths = [
+        resolve(__dirname, "../../package.json"),
+        resolve(__dirname, "../../../package.json"),
+      ];
+
+      for (const packageJsonPath of paths) {
+        try {
+          const packageJson = JSON.parse(
+            readFileSync(packageJsonPath, "utf-8")
+          );
+          if (packageJson.version) {
+            return packageJson.version;
+          }
+        } catch {
+          continue;
+        }
+      }
+      return "0.0.0";
+    } catch {
+      return "0.0.0";
+    }
   }
 
   @Get()
   @HealthCheck()
-  check() {
+  async check() {
     const checks = [
       () =>
         this.redisIndicator.checkHealth("redis", {
@@ -75,6 +104,11 @@ export class HealthController {
         ),
     ];
 
-    return this.health.check(checks);
+    const result = await this.health.check(checks);
+
+    return {
+      ...result,
+      version: this.version,
+    };
   }
 }
