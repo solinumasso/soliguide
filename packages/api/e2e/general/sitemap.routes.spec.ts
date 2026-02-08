@@ -24,7 +24,10 @@ describe("GET /sitemap/:country/:regionCode", () => {
   test("✅ Returns sitemap XML without origin header (like Googlebot)", async () => {
     const response = await supertest()
       .get("/sitemap/fr/ile-de-france")
-      .set("User-Agent", "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)");
+      .set(
+        "User-Agent",
+        "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+      );
 
     expect(response.status).toEqual(200);
     expect(response.headers["content-type"]).toContain("text/xml");
@@ -35,7 +38,10 @@ describe("GET /sitemap/:country/:regionCode", () => {
   test("✅ Returns sitemap without referer header", async () => {
     const response = await supertest()
       .get("/sitemap/fr/provence-alpes-cote-d-azur")
-      .set("User-Agent", "Mozilla/5.0 (compatible; Bingbot/2.0; +http://www.bing.com/bingbot.htm)");
+      .set(
+        "User-Agent",
+        "Mozilla/5.0 (compatible; Bingbot/2.0; +http://www.bing.com/bingbot.htm)"
+      );
 
     expect(response.status).toEqual(200);
     expect(response.headers["content-type"]).toContain("text/xml");
