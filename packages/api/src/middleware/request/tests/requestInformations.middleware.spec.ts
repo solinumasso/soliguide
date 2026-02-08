@@ -25,6 +25,7 @@ import { handleRequest } from "../requestInformation.middleware";
 describe("handleRequest", () => {
   it("Test referer not given", () => {
     const req = {
+      path: "/some-route",
       get: jest.fn().mockImplementation((name) => {
         if (name === "origin") return "https://soliguide.fr";
         if (name === "referer") return;
@@ -43,6 +44,7 @@ describe("handleRequest", () => {
 
   it("Test referer given", () => {
     const req = {
+      path: "/some-route",
       get: jest.fn().mockImplementation((name) => {
         if (name === "origin") return "https://soliguide.fr";
         if (name === "x-document-referrer") return;
@@ -61,6 +63,7 @@ describe("handleRequest", () => {
 
   it("Test x-document-referrer given", () => {
     const req = {
+      path: "/some-route",
       get: jest.fn().mockImplementation((name) => {
         if (name === "origin") {
           return "https://soliguide.fr";
@@ -85,6 +88,7 @@ describe("handleRequest", () => {
 
   it("Test of origin and frontUrl", () => {
     const req = {
+      path: "/some-route",
       get: jest
         .fn()
         .mockImplementation((name) =>
@@ -101,6 +105,7 @@ describe("handleRequest", () => {
   });
   it("Test originForLogs SOLIGUIDE", () => {
     const req = {
+      path: "/some-route",
       get: jest
         .fn()
         .mockImplementation((name) =>
@@ -118,6 +123,7 @@ describe("handleRequest", () => {
 
   it("Test originForLogs ORIGIN_UNDEFINED", () => {
     const req = {
+      path: "/some-route",
       get: jest
         .fn()
         .mockImplementation((name) =>
@@ -202,6 +208,77 @@ describe("handleRequest", () => {
     const next = () => {};
     handleRequest(req, res, next);
     expect(req.requestInformation.originForLogs).toEqual("WIDGET_SOLIGUIDE");
+
+    CONFIG.ENV = "test";
+  });
+
+  it("Test public route /sitemap bypasses origin check", () => {
+    const req = {
+      path: "/sitemap/fr/ile-de-france",
+      get: jest.fn().mockReturnValue(null),
+    } as unknown as ExpressRequest;
+
+    const res = {} as ExpressResponse;
+    const next = jest.fn();
+    handleRequest(req, res, next);
+
+    expect(next).toHaveBeenCalled();
+    expect(req.requestInformation).toBeDefined();
+
+    CONFIG.ENV = "test";
+  });
+
+  it("Test public route /medias/ bypasses origin check", () => {
+    const req = {
+      path: "/medias/pictures/test.jpg",
+      get: jest.fn().mockReturnValue(null),
+    } as unknown as ExpressRequest;
+
+    const res = {} as ExpressResponse;
+    const next = jest.fn();
+    handleRequest(req, res, next);
+
+    expect(next).toHaveBeenCalled();
+    expect(req.requestInformation).toBeDefined();
+
+    CONFIG.ENV = "test";
+  });
+
+  it("Test public route /robots.txt bypasses origin check", () => {
+    const req = {
+      path: "/robots.txt",
+      get: jest.fn().mockReturnValue(null),
+    } as unknown as ExpressRequest;
+
+    const res = {} as ExpressResponse;
+    const next = jest.fn();
+    handleRequest(req, res, next);
+
+    expect(next).toHaveBeenCalled();
+    expect(req.requestInformation).toBeDefined();
+
+    CONFIG.ENV = "test";
+  });
+
+  it("Test non-public route with invalid origin returns 403", () => {
+    const req = {
+      path: "/api/places",
+      get: jest.fn().mockReturnValue(null),
+      body: {},
+      headers: {},
+    } as unknown as ExpressRequest;
+
+    const res = {
+      status: jest.fn().mockReturnThis(),
+      send: jest.fn(),
+    } as unknown as ExpressResponse;
+
+    const next = jest.fn();
+    handleRequest(req, res, next);
+
+    expect(res.status).toHaveBeenCalledWith(403);
+    expect(res.send).toHaveBeenCalledWith({ message: "FORBIDDEN_API_USER" });
+    expect(next).not.toHaveBeenCalled();
 
     CONFIG.ENV = "test";
   });

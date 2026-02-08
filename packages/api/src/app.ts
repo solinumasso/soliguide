@@ -40,6 +40,7 @@ import { connectToDatabase } from "./config/database/connection";
 import "./config/i18n.config";
 
 import { s3Middleware } from "./general/services/s3";
+import { isPublicRoute } from "./_utils/isPublicRoute";
 
 // global middleware
 import {
@@ -135,13 +136,6 @@ _app.use(
   })
 );
 
-const isPublicRoute = (path: string): boolean => {
-  return (
-    path.startsWith("/medias/") ||
-    path.startsWith("/sitemap") ||
-    path === "/robots.txt"
-  );
-};
 _app.use(compression());
 
 _app.use(

@@ -24,7 +24,10 @@ import { resolve } from "node:path";
 
 import { CONFIG } from "../../_models";
 
-export const getVersion = (): string => {
+// Cache the version at module load time (loaded once at startup)
+let cachedVersion: string | null = null;
+
+const loadVersion = (): string => {
   try {
     const paths = [
       resolve(__dirname, "../../../package.json"),
@@ -45,6 +48,13 @@ export const getVersion = (): string => {
   } catch {
     return CONFIG.VERSION;
   }
+};
+
+export const getVersion = (): string => {
+  if (cachedVersion === null) {
+    cachedVersion = loadVersion();
+  }
+  return cachedVersion;
 };
 
 export const checkMongo = async (): Promise<"up" | "down"> => {

@@ -1,7 +1,7 @@
 /*
  * Soliguide: Useful information for those who need it
  *
- * SPDX-FileCopyrightText: © 2024 Solinum
+ * SPDX-FileCopyrightText: © 2025 Solinum
  *
  * SPDX-License-Identifier: AGPL-3.0-only
  *
@@ -18,7 +18,16 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-// @index('./*.ts', f => `export * from '${f.path}'`)
-export * from "./sync.service";
-export * from "./theme.service";
-export * from "./version.service";
+
+/**
+ * Check if a route is public (accessible by bots without origin validation)
+ * Public routes: medias, sitemap, robots.txt, health
+ */
+export const isPublicRoute = (path: string): boolean => {
+  return (
+    path.startsWith("/medias/") ||
+    path.startsWith("/sitemap") ||
+    path === "/robots.txt" ||
+    path === "/health"
+  );
+};
