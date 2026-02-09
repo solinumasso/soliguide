@@ -70,19 +70,19 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     place.placeStatus === PlaceStatusEnum.OFFLINE ||
     place.placeStatus === PlaceStatusEnum.PERMANENTLY_CLOSED;
 
-  /**
-   * Redirect user to place he clicked on
-   */
-  const gotoPlace = (seoUrl: string, categorySearched: string) => {
-    if (isPlaceUnavailable) {
-      return;
-    }
-    goto(`${$routes.ROUTE_PLACES}/${seoUrl}?categorySearched=${categorySearched}`);
-  };
-
   const isDisabled = place.banners.orientation;
   const urlWithItinerary = `${typeof place.crossingPointIndex === 'number' ? `&crossingPointIndex=${place.crossingPointIndex}` : ''}`;
   const href = `${$routes.ROUTE_PLACES}/${place.seoUrl}?categorySearched=${category}${urlWithItinerary}`;
+
+  /**
+   * Redirect user to place he clicked on
+   */
+  const gotoPlace = () => {
+    if (isPlaceUnavailable) {
+      return;
+    }
+    goto(href);
+  };
 
   $: isFavorite = $favorites.some((favorite) =>
     favoriteMatches(favorite, place.id, place.crossingPointIndex)
@@ -95,7 +95,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     class="card-link"
     {href}
     aria-disabled={isPlaceUnavailable}
-    on:click|preventDefault={() => gotoPlace(place.seoUrl, category)}
+    on:click|preventDefault={gotoPlace}
     data-sveltekit-preload-data="off"
   >
     <CardHeader
@@ -233,7 +233,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       <Button
         role="link"
         on:click={() => {
-          gotoPlace(place.seoUrl, category);
+          gotoPlace();
           captureEvent('card-info-click', { placeId: place.id });
         }}
         size="small"
