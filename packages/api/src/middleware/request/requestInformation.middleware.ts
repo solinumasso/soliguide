@@ -38,7 +38,10 @@ export const handleRequest = (
     return next();
   }
 
-  if (!req.requestInformation?.originForLogs) {
+  if (
+    !req.requestInformation?.originForLogs ||
+    req.requestInformation.originForLogs === Origin.ORIGIN_UNDEFINED
+  ) {
     const message = {
       CONTENT: Origin.ORIGIN_UNDEFINED,
       REQUEST_BODY: req.body,

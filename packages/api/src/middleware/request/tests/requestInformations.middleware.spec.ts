@@ -131,10 +131,18 @@ describe("handleRequest", () => {
         ),
     } as unknown as ExpressRequest;
 
-    const res = {} as ExpressResponse;
-    const next = () => {};
+    const res = {
+      status: jest.fn().mockReturnThis(),
+      send: jest.fn(),
+    } as unknown as ExpressResponse;
+    const next = jest.fn();
+
     handleRequest(req, res, next);
+
     expect(req.requestInformation.originForLogs).toEqual("ORIGIN_UNDEFINED");
+    // ORIGIN_UNDEFINED should be blocked with 403
+    expect(res.status).toHaveBeenCalledWith(403);
+    expect(next).not.toHaveBeenCalled();
 
     CONFIG.ENV = "test";
   });
@@ -261,6 +269,10 @@ describe("handleRequest", () => {
   });
 
   it("Test non-public route with invalid origin returns 403", () => {
+    // Save original ENV and set to production to force ORIGIN_UNDEFINED behavior
+    const originalEnv = CONFIG.ENV;
+    CONFIG.ENV = "production";
+
     const req = {
       path: "/api/places",
       get: jest.fn().mockReturnValue(null),
@@ -280,6 +292,7 @@ describe("handleRequest", () => {
     expect(res.send).toHaveBeenCalledWith({ message: "FORBIDDEN_API_USER" });
     expect(next).not.toHaveBeenCalled();
 
-    CONFIG.ENV = "test";
+    // Restore ENV
+    CONFIG.ENV = originalEnv;
   });
 });

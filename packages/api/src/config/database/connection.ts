@@ -38,22 +38,29 @@ const CONNECTION_TIMEOUT_MS = 5000; // 5 seconds to detect if MongoDB is down
 export async function connectToDatabase(): Promise<void> {
   let attempt = 0;
 
-  logger.info(
-    {
-      uri: CONFIG.MONGODB_URI.replace(/\/\/[^:]+:[^@]+@/, "//***:***@"), // Hide credentials in logs
-      maxAttempts: MAX_RETRY_ATTEMPTS,
-      timeoutMs: CONNECTION_TIMEOUT_MS,
-    },
-    "Démarrage de la connexion MongoDB"
-  );
+  // Ne log que si le logger n'est pas en mode silent (tests)
+  const shouldLog = logger.level !== "silent";
+
+  if (shouldLog) {
+    logger.info(
+      {
+        uri: CONFIG.MONGODB_URI.replace(/\/\/[^:]+:[^@]+@/, "//***:***@"), // Hide credentials in logs
+        maxAttempts: MAX_RETRY_ATTEMPTS,
+        timeoutMs: CONNECTION_TIMEOUT_MS,
+      },
+      "Démarrage de la connexion MongoDB"
+    );
+  }
 
   while (attempt < MAX_RETRY_ATTEMPTS) {
     attempt++;
 
     try {
-      logger.info(
-        `Tentative de connexion MongoDB (${attempt}/${MAX_RETRY_ATTEMPTS})...`
-      );
+      if (shouldLog) {
+        logger.info(
+          `Tentative de connexion MongoDB (${attempt}/${MAX_RETRY_ATTEMPTS})...`
+        );
+      }
 
       await mongoose.connect(CONFIG.MONGODB_URI, {
         maxIdleTimeMS: 50000,
@@ -62,10 +69,14 @@ export async function connectToDatabase(): Promise<void> {
 
       // Test the connection with a real operation
       // This ensures MongoDB is actually responding to queries, not just accepting connections
-      logger.info("✓ Connexion MongoDB établie, test de la connexion...");
+      if (shouldLog) {
+        logger.info("✓ Connexion MongoDB établie, test de la connexion...");
+      }
       await mongoose.connection.db?.admin().ping();
 
-      logger.info("✓ Connexion MongoDB vérifiée avec succès");
+      if (shouldLog) {
+        logger.info("✓ Connexion MongoDB vérifiée avec succès");
+      }
 
       return; // Success - exit the function
     } catch (err) {
@@ -99,9 +110,11 @@ export async function connectToDatabase(): Promise<void> {
       }
 
       // Wait before retry
-      logger.info(
-        `⏳ Nouvelle tentative dans ${RETRY_DELAY_MS / 1000} secondes...`
-      );
+      if (shouldLog) {
+        logger.info(
+          `⏳ Nouvelle tentative dans ${RETRY_DELAY_MS / 1000} secondes...`
+        );
+      }
       await new Promise((resolve) => setTimeout(resolve, RETRY_DELAY_MS));
     }
   }
@@ -109,12 +122,16 @@ export async function connectToDatabase(): Promise<void> {
 
 // If the connection throws an error after successful connection
 mongoose.connection.on("error", (err) => {
-  logger.error({ err }, "Erreur de connexion MongoDB");
+  if (logger.level !== "silent") {
+    logger.error({ err }, "Erreur de connexion MongoDB");
+  }
 });
 
 // When the connection is disconnected
 mongoose.connection.on("disconnected", () => {
-  logger.warn("Connexion MongoDB déconnectée");
+  if (logger.level !== "silent") {
+    logger.warn("Connexion MongoDB déconnectée");
+  }
 });
 
 // If the Node process ends, close the Mongoose connection
