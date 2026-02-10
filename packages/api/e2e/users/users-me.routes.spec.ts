@@ -84,7 +84,8 @@ describe.each(Object.values(TestAccounts))(
       let userData = {};
       let userId: number;
 
-      beforeEach(async () => {
+      // Use beforeAll instead of beforeEach - data is fetched once per account instead of before each test
+      beforeAll(async () => {
         const response = await getUser();
 
         userId = response.body.user_id;

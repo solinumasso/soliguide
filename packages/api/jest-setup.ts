@@ -20,9 +20,15 @@
  */
 import mongoose from "mongoose";
 
+import { connectToDatabase } from "./src/config/database/connection";
 import { amqpEventsSender } from "./src/events";
 
 mongoose.set("debug", false);
+
+// Établir la connexion avant tous les tests
+beforeAll(async () => {
+  await connectToDatabase();
+});
 
 afterAll(async () => {
   mongoose.connection.close();

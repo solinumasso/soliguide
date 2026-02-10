@@ -24,8 +24,6 @@ import { createPhoto, deletePhoto } from "./photo.services";
 
 import { ApiPlacePhoto } from "../../_models";
 
-import "../../config/database/connection";
-
 describe("CRUD for pictures", () => {
   afterAll(() => {
     mongoose.connection.close();

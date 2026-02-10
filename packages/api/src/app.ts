@@ -155,7 +155,7 @@ _app.use(
 _app.use(cookieParser());
 
 _app.use((req: Request, res: Response, next: NextFunction) => {
-  if (isPublicRoute(req.path)) {
+  if (isPublicRoute(req?.path)) {
     res.removeHeader("X-Robots-Tag");
     return next();
   }
