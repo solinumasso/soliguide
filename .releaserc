@@ -22,9 +22,9 @@ branches:
 plugins:
   - "@semantic-release/commit-analyzer"
   - "@semantic-release/release-notes-generator"
-  - - "semantic-release-lerna"
-    - npmPublish: false
   - "@semantic-release/changelog"
+  - - "@semantic-release/exec"
+    - prepareCmd: "lerna version ${nextRelease.version} --yes --no-git-tag-version --no-push"
   - - "@semantic-release/git"
     - assets:
         - CHANGELOG.md
