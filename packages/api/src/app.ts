@@ -108,6 +108,7 @@ import { serve, setup } from "swagger-ui-express";
 import autocompleteSuggestionService from "./search/services/search-suggestions.service";
 import SearchSuggestionsController from "./search/controllers/search-suggestions.controller";
 import { CountryCodes, SupportedLanguagesCode } from "@soliguide/common";
+import { initializeCronJobs } from "./cron/cron-manager";
 
 const _app = express();
 
@@ -264,7 +265,7 @@ _app.use((req: Request, res: Response) => {
       SupportedLanguagesCode.FR
     );
     if (CONFIG.ENV !== "test" && CONFIG.CRON_ENABLED) {
-      await import("./cron/cron-manager");
+      initializeCronJobs();
     }
 
     if (CONFIG.ENV !== "prod" && CONFIG.ENV !== "test" && CONFIG.DEV_ANON) {

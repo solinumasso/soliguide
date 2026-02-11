@@ -18,15 +18,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import mongoose from "mongoose";
-import { connectToDatabase } from "../../../config/database/connection";
-
-import "../../../place/models/place.model";
-import "../../../place/models/document.model";
-import "../../../place/models/photo.model";
-import "../../../user/models/user.model";
-import "../../../user/models/invitation.model";
-
 import {
   SoliguideCountries,
   SUPPORTED_LANGUAGES_BY_COUNTRY,
@@ -35,7 +26,6 @@ import {
   TranslatedFieldLanguageStatus,
 } from "@soliguide/common";
 
-import { parentPort } from "worker_threads";
 import { logger } from "../../../general/logger";
 import { CONFIG } from "../../../_models";
 
@@ -166,29 +156,17 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
 /**
  * @summary Update a translation
  */
-(async () => {
-  try {
-    if (!CONFIG.GOOGLE_API_KEY || !CONFIG.GOOGLE_PROJECT_ID) {
-      logger.warn(
-        "[TRANSLATION] Google credentials not provided, not translating."
-      );
-      return;
-    }
-
-    await connectToDatabase();
-
-    await Promise.all(
-      Object.keys(SUPPORTED_LANGUAGES_BY_COUNTRY).map((countryCode) =>
-        translatedJobByCountry(countryCode as SoliguideCountries)
-      )
+export async function translateFieldsJob(): Promise<void> {
+  if (!CONFIG.GOOGLE_API_KEY || !CONFIG.GOOGLE_PROJECT_ID) {
+    logger.warn(
+      "[TRANSLATION] Google credentials not provided, not translating."
     );
-  } catch (e) {
-    logger.error(e);
-    if (parentPort) {
-      parentPort.postMessage("Error while running job");
-    }
-  } finally {
-    await mongoose.connection.close();
-    if (parentPort) parentPort.postMessage("done");
+    return;
   }
-})();
+
+  await Promise.all(
+    Object.keys(SUPPORTED_LANGUAGES_BY_COUNTRY).map((countryCode) =>
+      translatedJobByCountry(countryCode as SoliguideCountries)
+    )
+  );
+}
