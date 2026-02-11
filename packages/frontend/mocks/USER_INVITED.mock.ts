@@ -43,6 +43,7 @@ export const USER_INVITED_MOCK: CommonUser = {
   translator: false,
   user_id: 1433,
   verified: false,
+  lastLogin: new Date("2020-11-19T08:59:48.182Z"),
   campaigns: {
     MAJ_ETE_2022: {
       CAMPAGNE_COMPTES_PRO: {
