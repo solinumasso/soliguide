@@ -1,0 +1,20 @@
+#!/bin/sh
+
+remote="$1"
+url="$2"
+
+# Get the current branch name
+current_branch=$(git symbolic-ref --short HEAD)
+
+# Check if the remote branch exists
+if git rev-parse --verify "origin/$current_branch" >/dev/null 2>&1; then
+  # Validate commits that are about to be pushed
+  yarn commitlint --from "origin/$current_branch" --to HEAD
+else
+  # For new branches, check all commits from the main branch
+  if git rev-parse --verify origin/develop >/dev/null 2>&1; then
+    yarn commitlint --from origin/develop --to HEAD
+  elif git rev-parse --verify origin/main >/dev/null 2>&1; then
+    yarn commitlint --from origin/main --to HEAD
+  fi
+fi
