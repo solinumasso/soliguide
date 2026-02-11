@@ -18,14 +18,23 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import mongoose from "mongoose";
+import { connectToDatabase } from "../../../config/database/connection";
+
+import delay from "delay";
+import { parentPort } from "worker_threads";
+
 import { TempInfoStatus, TempInfoType } from "@soliguide/common";
+
 import type { TempInfoObject } from "../../../_models";
 import { PlaceModel } from "./../../../place/models/place.model";
 import { logger } from "../../../general/logger";
 import { TempInfoModel } from "../../../temp-info/models/temp-info.model";
 
-export async function setCurrentTempInfoJob(): Promise<void> {
-  logger.info("JOB - SET CURRENT TEMPORARY INFORMATION FOR PLACES - START");
+(async () => {
+  try {
+    await connectToDatabase();
+    logger.info("JOB - SET CURRENT TEMPORARY INFORMATION FOR PLACES - START");
 
   //
   // 1. Search for future info which can go to places in the temporary information table
@@ -120,13 +129,27 @@ export async function setCurrentTempInfoJob(): Promise<void> {
       });
     }
 
-    tempInfoBulkQuery.push({
-      updateOne: {
-        filter: { _id: tempInfos.tempInfosObjectId },
-        timestamps: false,
-        update: { $set: { status: TempInfoStatus.CURRENT } },
-      },
-    });
+    if (placeBulkQuery.length) {
+      await PlaceModel.bulkWrite(placeBulkQuery);
+    }
+
+    if (tempInfoBulkQuery.length) {
+      await TempInfoModel.bulkWrite(tempInfoBulkQuery);
+    }
+
+    logger.info(
+      `${placeBulkQuery.length} Current temporary info populated in the places`
+    );
+
+    await delay(500);
+
+    logger.info("JOB - SET CURRENT TEMPORARY INFORMATION FOR PLACES - END");
+  } catch (e) {
+    logger.error(e);
+    if (parentPort) parentPort.postMessage("Error while running job");
+  } finally {
+    await mongoose.connection.close();
+    if (parentPort) parentPort.postMessage("done");
   }
 
   if (placeBulkQuery.length) {
