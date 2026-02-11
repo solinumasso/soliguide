@@ -22,7 +22,8 @@ branches:
 plugins:
   - "@semantic-release/commit-analyzer"
   - "@semantic-release/release-notes-generator"
-  - "semantic-release-lerna"
+  - - "semantic-release-lerna"
+    - npmPublish: false
   - "@semantic-release/changelog"
   - - "@semantic-release/git"
     - assets:
