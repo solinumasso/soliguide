@@ -18,7 +18,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import "../../../config/database/connection";
+import mongoose from "mongoose";
+import { connectToDatabase } from "../../../config/database/connection";
 
 import "../../../place/models/document.model";
 import "../../../place/models/photo.model";
@@ -36,25 +37,30 @@ import { sendCampaignEmails } from "../../../emailing/senders";
 import { CONFIG } from "../../../_models";
 
 (async () => {
-  logger.info("[EMAILS] Sending emails");
-
-  const frontUrl = CONFIG.SOLIGUIDE_FR_URL;
-
   try {
-    await generateRemindMeEmails(frontUrl);
-  } catch (e) {
-    logger.error(e);
-    if (parentPort) parentPort.postMessage("Error while running job");
-  }
+    await connectToDatabase();
+    logger.info("[EMAILS] Sending emails");
 
-  try {
-    await sendCampaignEmails("REMIND_ME");
-  } catch (e) {
-    logger.error(e);
-    if (parentPort) parentPort.postMessage("Error while running job");
-  }
+    const frontUrl = CONFIG.SOLIGUIDE_FR_URL;
 
-  logger.info("[EMAILS] All emails sent");
-  await delay(1000);
-  if (parentPort) parentPort.postMessage("done");
+    try {
+      await generateRemindMeEmails(frontUrl);
+    } catch (e) {
+      logger.error(e);
+      if (parentPort) parentPort.postMessage("Error while running job");
+    }
+
+    try {
+      await sendCampaignEmails("REMIND_ME");
+    } catch (e) {
+      logger.error(e);
+      if (parentPort) parentPort.postMessage("Error while running job");
+    }
+
+    logger.info("[EMAILS] All emails sent");
+    await delay(1000);
+  } finally {
+    await mongoose.connection.close();
+    if (parentPort) parentPort.postMessage("done");
+  }
 })();

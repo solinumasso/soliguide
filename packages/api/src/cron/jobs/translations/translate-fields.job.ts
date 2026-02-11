@@ -18,7 +18,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import "../../../config/database/connection";
+import mongoose from "mongoose";
+import { connectToDatabase } from "../../../config/database/connection";
+
 import "../../../place/models/place.model";
 import "../../../place/models/document.model";
 import "../../../place/models/photo.model";
@@ -165,15 +167,16 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
  * @summary Update a translation
  */
 (async () => {
-  if (!CONFIG.GOOGLE_API_KEY || !CONFIG.GOOGLE_PROJECT_ID) {
-    logger.warn(
-      "[TRANSLATION] Google credentials not provided, not translating."
-    );
-    if (parentPort) parentPort.postMessage("done");
-    return;
-  }
-
   try {
+    if (!CONFIG.GOOGLE_API_KEY || !CONFIG.GOOGLE_PROJECT_ID) {
+      logger.warn(
+        "[TRANSLATION] Google credentials not provided, not translating."
+      );
+      return;
+    }
+
+    await connectToDatabase();
+
     await Promise.all(
       Object.keys(SUPPORTED_LANGUAGES_BY_COUNTRY).map((countryCode) =>
         translatedJobByCountry(countryCode as SoliguideCountries)
@@ -185,6 +188,7 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
       parentPort.postMessage("Error while running job");
     }
   } finally {
+    await mongoose.connection.close();
     if (parentPort) parentPort.postMessage("done");
   }
 })();

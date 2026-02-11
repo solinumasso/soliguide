@@ -18,7 +18,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import "../../../config/database/connection";
+import mongoose from "mongoose";
+import { connectToDatabase } from "../../../config/database/connection";
 
 import "../../../organization/models/organization.model";
 import "../../../user/models/invitation.model";
@@ -35,6 +36,7 @@ import { sendCampaignEmails } from "../../../emailing/senders/send-campaign.emai
 
 (async () => {
   try {
+    await connectToDatabase();
     logger.info("[EMAILS] Sending emails");
     await sendCampaignEmails();
     logger.info("[EMAILS] All emails sent");
@@ -43,6 +45,7 @@ import { sendCampaignEmails } from "../../../emailing/senders/send-campaign.emai
     if (parentPort) parentPort.postMessage("Error while running job");
   } finally {
     await delay(1000);
+    await mongoose.connection.close();
     if (parentPort) parentPort.postMessage("done");
   }
 })();

@@ -18,7 +18,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import "../../../config/database/connection";
+import mongoose from "mongoose";
+import { connectToDatabase } from "../../../config/database/connection";
 
 import { PlaceStatus } from "@soliguide/common";
 
@@ -34,6 +35,7 @@ import { PlaceModel } from "../../../place/models/place.model";
 
 (async () => {
   try {
+    await connectToDatabase();
     logger.info("JOB - SET UN-UPDATED PLACES OFFLINE\tSTART");
 
     const sixMonthsAgo = new Date();
@@ -60,6 +62,7 @@ import { PlaceModel } from "../../../place/models/place.model";
     logger.error(e);
     if (parentPort) parentPort.postMessage("Error while running job");
   } finally {
+    await mongoose.connection.close();
     if (parentPort) parentPort.postMessage("done");
   }
 })();

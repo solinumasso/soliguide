@@ -18,12 +18,13 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import mongoose from "mongoose";
+import { connectToDatabase } from "../../../config/database/connection";
+
 import delay from "delay";
 import { parentPort } from "worker_threads";
 
 import { TempInfoStatus, TempInfoType } from "@soliguide/common";
-
-import "../../../config/database/connection";
 
 import { TempInfoObject } from "../../../_models";
 import { logger } from "../../../general/logger";
@@ -33,6 +34,7 @@ import { TranslatedFieldModel } from "../../../translations/models/translatedFie
 
 (async () => {
   try {
+    await connectToDatabase();
     logger.info(
       "JOB - UNSET OBSOLETE TEMPORARY INFORMATION FOR PLACES - START"
     );
@@ -135,7 +137,8 @@ import { TranslatedFieldModel } from "../../../translations/models/translatedFie
   } catch (e) {
     logger.error(e);
     if (parentPort) parentPort.postMessage("Error while running job");
+  } finally {
+    await mongoose.connection.close();
+    if (parentPort) parentPort.postMessage("done");
   }
-
-  if (parentPort) parentPort.postMessage("done");
 })();

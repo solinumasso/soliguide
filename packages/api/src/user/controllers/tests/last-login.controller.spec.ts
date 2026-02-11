@@ -18,9 +18,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
-import "../../../config/database/connection";
-
 import mongoose from "mongoose";
 import request from "supertest";
 import { CountryCodes, UserStatus } from "@soliguide/common";
@@ -60,8 +57,7 @@ describe("LastLogin Integration Tests", () => {
     await mongoose.connection.close();
   });
 
-  describe("User lastLogin", () => {
-    it("should have null lastLogin for newly created user", async () => {
+  it("should have null lastLogin for newly created user", async () => {
       const retrievedUser = await getUserByIdWithUserRights(user._id);
       expect(retrievedUser?.lastLogin).toBeNull();
     });
@@ -168,31 +164,4 @@ describe("LastLogin Integration Tests", () => {
       );
       expect(updatedUser!.lastLogin!.getDate()).toEqual(new Date().getDate());
     });
-  });
-
-  describe("Multiple independent users", () => {
-    let user2: any;
-    let user2Mail: string;
-    let user2Password: string;
-
-    beforeAll(async () => {
-      user2Mail = `${getRandomString()}@test.fr`;
-      user2Password = `Password${getRandomString()}123!`;
-      const createdUser2 = await UserController.signupWithoutInvitation({
-        ...USER_SIMPLE,
-        mail: user2Mail,
-        password: user2Password,
-        country: CountryCodes.FR,
-        status: UserStatus.PRO,
-      });
-      user2 = createdUser2!;
-
-      // Reset lastLogin to null to simulate a newly created user
-      await UserModel.findByIdAndUpdate(user2._id, { lastLogin: null });
-    });
-
-    afterAll(async () => {
-      await UserAdminController.deleteUser(user2);
-    });
-  });
 });

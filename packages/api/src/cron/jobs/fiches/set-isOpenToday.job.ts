@@ -18,7 +18,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import "../../../config/database/connection";
+import mongoose from "mongoose";
+import { connectToDatabase } from "../../../config/database/connection";
 
 import delay from "delay";
 import { parentPort } from "worker_threads";
@@ -28,6 +29,7 @@ import { setIsOpenToday } from "../../../place/services/isOpenToday.service";
 
 (async () => {
   try {
+    await connectToDatabase();
     logger.info("JOB - SET IS_OPEN_TODAY FOR PLACES\tSTART");
 
     await setIsOpenToday();
@@ -39,6 +41,7 @@ import { setIsOpenToday } from "../../../place/services/isOpenToday.service";
     logger.error(e);
     if (parentPort) parentPort.postMessage("Error while running job");
   } finally {
+    await mongoose.connection.close();
     if (parentPort) parentPort.postMessage("done");
   }
 })();

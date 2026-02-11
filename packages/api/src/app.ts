@@ -48,7 +48,6 @@ import {
   handleRequest,
   setUserForLogs,
   handleAdminRight,
-  originGuard,
   handleApiRight,
 } from "./middleware";
 
@@ -177,17 +176,9 @@ Disallow: /`);
 // First middlewares
 _app.use([
   getCurrentUser, // retrieve current user
-  handleRequest, // retrieve request informations like origin, referer, ...
+  handleRequest, // retrieve request informations like origin, referer, and validates origin for non-public routes
   setUserForLogs, // create a user for Log
 ]);
-
-_app.use((req: ExpressRequest, res, next) => {
-  if (isPublicRoute(req.path)) {
-    next();
-  } else {
-    originGuard(req, res, next);
-  }
-});
 
 // Auth middlewares
 _app.use([
