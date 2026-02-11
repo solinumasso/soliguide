@@ -65,4 +65,5 @@ export interface ApiOrganization {
   invitations: any[];
   campaigns?: any;
   areas: OperationalAreas;
+  lastLogin: Date | null;
 }

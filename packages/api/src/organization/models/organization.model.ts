@@ -332,6 +332,10 @@ const OrganizationSchema = new mongoose.Schema<ModelWithId<ApiOrganization>>(
       default: null,
       type: String,
     },
+    lastLogin: {
+      default: null,
+      type: Date,
+    },
   },
   {
     strict: true,

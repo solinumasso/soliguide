@@ -50,6 +50,7 @@ export const USER_ADMIN_SOLIGUIDE: UserPopulateType = {
     updatedAt: new Date("2021-04-29T08:20:04.247Z"),
     user_id: 123,
     verified: true,
+    lastLogin: new Date("2025-07-28T21:07:28.007Z"),
     type: UserTypeLogged.LOGGED,
     isLogged() {
       return true;

@@ -46,6 +46,7 @@ export const ORGANIZATION: ApiOrganization = {
   facebook: "",
   fax: "",
   invitations: [],
+  lastLogin: null,
   logo: "",
   mail: "mon-orga@orga.fr",
   name: "Organisme de test",
