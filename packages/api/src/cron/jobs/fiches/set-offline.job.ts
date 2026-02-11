@@ -18,31 +18,45 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import mongoose from "mongoose";
+import { connectToDatabase } from "../../../config/database/connection";
+
 import { PlaceStatus } from "@soliguide/common";
 import { logger } from "../../../general/logger";
 
 import { PlaceModel } from "../../../place/models/place.model";
 import { DEFAULT_PLACES_TO_INCLUDE_FOR_SEARCH } from "../../../search/constants/requests";
 
-export async function setOfflineJob(): Promise<void> {
-  logger.info("JOB - SET UN-UPDATED PLACES OFFLINE\tSTART");
+(async () => {
+  try {
+    await connectToDatabase();
+    logger.info("JOB - SET UN-UPDATED PLACES OFFLINE\tSTART");
 
-  const sixMonthsAgo = new Date();
-  sixMonthsAgo.setHours(0);
-  sixMonthsAgo.setMinutes(0);
-  sixMonthsAgo.setSeconds(0);
-  sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+    const sixMonthsAgo = new Date();
+    sixMonthsAgo.setHours(0);
+    sixMonthsAgo.setMinutes(0);
+    sixMonthsAgo.setSeconds(0);
+    sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
 
-  logger.info("Mise à jour des structures hors ligne");
-  const request = {
-    ...DEFAULT_PLACES_TO_INCLUDE_FOR_SEARCH,
-    status: PlaceStatus.ONLINE,
-    updatedByUserAt: { $lt: sixMonthsAgo },
-  };
+    logger.info("Mise à jour des structures hors ligne");
+    const request = {
+      ...DEFAULT_PLACES_TO_INCLUDE_FOR_SEARCH,
+      status: PlaceStatus.ONLINE,
+      updatedByUserAt: { $lt: sixMonthsAgo },
+    };
 
-  await PlaceModel.updateMany(request, {
-    $set: { status: PlaceStatus.OFFLINE },
-  });
+    await PlaceModel.updateMany(request, {
+      $set: { status: PlaceStatus.OFFLINE },
+    });
 
-  logger.info("JOB - SET UN-UPDATED PLACES OFFLINE\tEND");
-}
+    await delay(500);
+
+    logger.info("JOB - SET UN-UPDATED PLACES OFFLINE\tEND");
+  } catch (e) {
+    logger.error(e);
+    if (parentPort) parentPort.postMessage("Error while running job");
+  } finally {
+    await mongoose.connection.close();
+    if (parentPort) parentPort.postMessage("done");
+  }
+})();
