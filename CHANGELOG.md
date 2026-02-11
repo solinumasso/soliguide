@@ -1,3 +1,30 @@
+# [4.123.0](https://github.com/solinumasso/soliguide/compare/v4.122.0...v4.123.0) (2026-02-07)
+
+
+### Bug Fixes
+
+* **api:** formatting ([1d80ddd](https://github.com/solinumasso/soliguide/commit/1d80ddd9eea9efdf80fcbffdfaccf296d3a0879c))
+* **api:** update rate-limit ([f03c25d](https://github.com/solinumasso/soliguide/commit/f03c25d73750966d9f2d4364777920ff853019a4))
+* **common:** fix mongodb connexion ([2480910](https://github.com/solinumasso/soliguide/commit/24809108859aef3e32648c76f4b24c9352507d44))
+* **common:** fix qovery ([182ba53](https://github.com/solinumasso/soliguide/commit/182ba53dd66058bea41261e14f2f597f33e70f69))
+* **common:** update qovery, delete useless code ([69d4b66](https://github.com/solinumasso/soliguide/commit/69d4b668de21c6c1e79ca29cae877abba5a8be85))
+* **common:** upgrade posthog version ([#1142](https://github.com/solinumasso/soliguide/issues/1142)) ([5607260](https://github.com/solinumasso/soliguide/commit/5607260ebf46f14f3481a2202c9632875f2fecd6))
+* decode punycode in email adresses ([955fd61](https://github.com/solinumasso/soliguide/commit/955fd6125f48c13879db656c6f2ed5447066bc2f))
+* **frontend:** add translation for pending changes warning ([b7ce6e6](https://github.com/solinumasso/soliguide/commit/b7ce6e64d9c2bb88a666f4947f3b4469f7d39e5b))
+* **frontend:** remove wrong date ([3494bce](https://github.com/solinumasso/soliguide/commit/3494bce1a9c97c5ce664e2f912d366b92859a892))
+* inversed logic for translation banner display ([c8eca40](https://github.com/solinumasso/soliguide/commit/c8eca40fc450a738b73b99436a1fef715a87634e))
+* **location-api:** fix blocking test ([429935c](https://github.com/solinumasso/soliguide/commit/429935ce6823517d6a847def1b145ba0276cf31b))
+* stop logfiche from tracking on hover on mobile ([2a91d6f](https://github.com/solinumasso/soliguide/commit/2a91d6f5807c60afcf14d073e72d21d6ce06bd03))
+* **web-app:** fix result card tags ([0937555](https://github.com/solinumasso/soliguide/commit/0937555e97e65bff44656428f8e9985bb6806bbb))
+* **web-app:** make posthog tracking on favourites sames as search result page ([1f00e00](https://github.com/solinumasso/soliguide/commit/1f00e00eaa619bf9b371b07d5d5ef00fce141c52))
+* **web-app:** remove second click event for card header ([d818446](https://github.com/solinumasso/soliguide/commit/d81844621ce641aae72407028486cd26794577c7))
+
+
+### Features
+
+* update legal docs for french site ([b2e3cd9](https://github.com/solinumasso/soliguide/commit/b2e3cd998e350ada723eb6e22ac4c798bfe3afd9))
+* **web-app:** add favorites ([ce19c73](https://github.com/solinumasso/soliguide/commit/ce19c73aafe2ce89997ebdb1d86795677a979e19))
+
 # [4.122.0](https://github.com/solinumasso/soliguide/compare/v4.121.1...v4.122.0) (2026-01-26)
 
 
