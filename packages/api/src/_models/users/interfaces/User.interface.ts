@@ -148,6 +148,7 @@ class UserPopulate implements ACurrentUser, UserPopulate {
   public passwordToken;
   public territories;
   public areas;
+  public lastLogin;
 
   constructor(user: UserPopulateType) {
     this._id = user?._id;
@@ -178,6 +179,7 @@ class UserPopulate implements ACurrentUser, UserPopulate {
     this.passwordToken = user?.passwordToken;
     this.territories = user?.territories;
     this.areas = user?.areas;
+    this.lastLogin = user?.lastLogin;
   }
 
   isLogged(): boolean {

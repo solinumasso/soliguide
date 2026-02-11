@@ -1,6 +1,6 @@
 {
   "name": "soliguide-font-generator",
-  "version": "1.0.0",
+  "version": "5.0.0",
   "description": "Generate a font with Soliguide icons.",
   "main": "dist/index.js",
   "type": "module",

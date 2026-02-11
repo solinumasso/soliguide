@@ -66,6 +66,7 @@ import {
 import { addAreasToUser } from "../middlewares/add-areas-to-user.middleware";
 import { sendUserChangesToMq } from "../middlewares/send-user-changes-event-to-mq.middleware";
 import { addBreadcrumb, captureException, captureMessage } from "@sentry/node";
+import { updateLastLogin } from "../middlewares/update-last-login.middleware";
 
 const router = express.Router();
 
@@ -91,14 +92,18 @@ const router = express.Router();
  *       401 :
  *         description: NOT_LOGGED
  */
-router.get("/me", (req: ExpressRequest, res: ExpressResponse) => {
-  if (req.user.isLogged()) {
-    const user = sendUserForAuth(req.user);
-    return res.status(200).json(user);
-  }
+router.get(
+  "/me",
+  updateLastLogin,
+  (req: ExpressRequest, res: ExpressResponse) => {
+    if (req.user.isLogged()) {
+      const user = sendUserForAuth(req.user);
+      return res.status(200).json(user);
+    }
 
-  return res.status(401).send({ message: "NOT_LOGGED" });
-});
+    return res.status(401).send({ message: "NOT_LOGGED" });
+  }
+);
 
 router.post(
   "/signup",

@@ -31,6 +31,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             properties: { address: place.position.address }
           })
         "
+        class="place-address"
       >
         <fa-icon [icon]="faMapMarker"></fa-icon>
         <span>{{ place.position.address }}</span>
@@ -48,23 +49,42 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     </li>
   </ng-container>
 
-  <li *ngFor="let phone of place.entity.phones; index as i">
+  <li *ngIf="place.entity?.phones?.length && !showPhones">
     <a
-      href="tel:{{ phone | formatInternationalPhoneNumber }}"
       (click)="
-        captureEvent({
-          name: 'click-phone-number',
-          properties: { index: i, phone,  }
-        })
+        showPhones = true; captureEvent({ name: 'click-show-phone-numbers' })
       "
+      class="place-phone"
     >
       <fa-icon [icon]="faPhone" aria-hidden="true"></fa-icon>
-      <span>{{ phone | formatInternationalPhoneNumber }}</span>
+      <span>{{
+        (place.entity.phones.length > 1
+          ? "SHOW_PHONE_NUMBERS"
+          : "SHOW_PHONE_NUMBER"
+        ) | translate
+      }}</span>
     </a>
-    <span *ngIf="phone.label" class="additional_info">
-      ({{ phone.label }})</span
-    >
   </li>
+  <ng-container *ngIf="showPhones">
+    <li *ngFor="let phone of place.entity.phones; index as i">
+      <a
+        href="tel:{{ phone | formatInternationalPhoneNumber }}"
+        (click)="
+          captureEvent({
+            name: 'click-phone-number',
+            properties: { index: i, phone }
+          })
+        "
+        class="place-phone"
+      >
+        <fa-icon [icon]="faPhone" aria-hidden="true"></fa-icon>
+        <span>{{ phone | formatInternationalPhoneNumber }}</span>
+      </a>
+      <span *ngIf="phone.label" class="additional_info">
+        ({{ phone.label }})</span
+      >
+    </li>
+  </ng-container>
 
   <li *ngIf="place.entity?.mail">
     <a
@@ -72,6 +92,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         showEmail = !showEmail; captureEvent({ name: 'click-show-email' })
       "
       *ngIf="!showEmail"
+      class="place-email"
     >
       <fa-icon [icon]="faEnvelope" aria-hidden="true"></fa-icon>
       <span>{{ "SEND_EMAIL" | translate }}</span>
@@ -102,6 +123,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           properties: { website: place.entity.website }
         })
       "
+      class="place-website"
     >
       <fa-icon [icon]="faLink" aria-hidden="true"></fa-icon>
       <span>{{ "VOIRSITE" | translate }}</span>
@@ -126,6 +148,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           properties: { facebook: place.entity.facebook }
         })
       "
+      class="place-facebook"
     >
       <fa-icon [icon]="['fab', 'facebook']"></fa-icon>
       <span>{{ "SEE_FACEBOOK" | translate }}</span>
@@ -143,6 +166,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           properties: { instagram: place.entity.instagram }
         })
       "
+      class="place-instagram"
     >
       <fa-icon [icon]="['fab', 'instagram']"></fa-icon>
       <span>{{ "INSTAGRAM" | translate }}</span>

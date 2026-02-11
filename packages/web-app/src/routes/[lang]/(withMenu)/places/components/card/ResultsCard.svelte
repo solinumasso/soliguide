@@ -232,7 +232,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       />
       <Button
         role="link"
-        on:click={() => gotoPlace(place.seoUrl, category)}
+        on:click={() => {
+          gotoPlace(place.seoUrl, category);
+          captureEvent('card-info-click', { placeId: place.id });
+        }}
         size="small"
         type="primaryGradientFill"
         aria-disabled={isPlaceUnavailable}

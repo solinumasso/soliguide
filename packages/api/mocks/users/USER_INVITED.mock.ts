@@ -52,6 +52,7 @@ export const USER_INVITED: ModelWithId<User> = {
       }),
     },
     user_id: 1433,
+    lastLogin: null,
     verified: false,
     type: UserTypeLogged.LOGGED,
     isLogged() {

@@ -19,8 +19,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import "../../config/database/connection";
-
 import mongoose from "mongoose";
 
 import { ApiPlacePhoto, ModelWithId } from "../../_models";

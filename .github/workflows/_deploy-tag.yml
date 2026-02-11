@@ -30,8 +30,6 @@ on:
         required: true
         type: choice
         options:
-          - test1
-          - test2
           - develop # demo
           - production
 

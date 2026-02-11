@@ -38,12 +38,10 @@ Translations are handled using [Weblate](https://hosted.weblate.org/projects/sol
 
 ## Our environments
 
-As for now, we currently use 3 + 1 distinct environments for the Soliguide:
+As for now, we currently use 2 distinct environments for the Soliguide:
 
 - The production one (prod) which is linked to [soliguide.fr](https://soliguide.fr/);
 - The demo one which is linked to [fr.demo.soliguide.dev](https://fr.demo.soliguide.dev/). It is used to test our releases;
-- The test1 one which is linked to [fr.test1.soliguide.dev](https://fr.test1.soliguide.dev/). It is used to test our features;
-- The test2 one which is linked to [fr.test2.soliguide.dev](https://fr.test2.soliguide.dev/). It is used to test our features;
 - The local dev environment.
 
 ## Our workflow

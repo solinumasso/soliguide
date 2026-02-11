@@ -79,6 +79,7 @@ export const INVITATION: InvitationPopulate = {
         departments: ["01", "03"],
       }),
     },
+    lastLogin: null,
   },
 
   roleType: UserRole.OWNER,

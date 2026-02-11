@@ -52,6 +52,7 @@ EOF
 COPY --from=build /app/packages/common/dist /app/packages/common/dist
 COPY --from=build /app/packages/location-api/dist /app/packages/location-api/dist
 COPY --from=build /app/packages/location-api/resources /app/packages/location-api/resources
+COPY --from=build /app/packages/location-api/package.json /app/packages/location-api/package.json
 
 WORKDIR /app/packages/location-api
 USER node

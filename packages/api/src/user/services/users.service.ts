@@ -225,6 +225,18 @@ export const getUserForLogin = (
     .exec();
 };
 
+export const updateUserLastLogin = (
+  userId: string | mongoose.Types.ObjectId
+): Promise<UserPopulateType | null> => {
+  return UserModel.findByIdAndUpdate<UserPopulateType>(
+    userId,
+    { $set: { lastLogin: new Date() } },
+    { new: true }
+  )
+    .populate(DEFAULT_USER_POPULATE)
+    .exec();
+};
+
 export const deleteUserWithParams = (
   params: mongoose.FilterQuery<User>,
   session?: ClientSession
