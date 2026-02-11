@@ -25,7 +25,7 @@ import { ExpressRequest, ExpressResponse } from "../../_models";
 import { emailContact } from "../../emailing/senders";
 import { getFilteredData } from "../../middleware";
 import { sitemapDto, contactEmailDto } from "../dto";
-import { generateRegionSitemap } from "../services";
+import { generateRegionSitemap, getVersion, checkMongo } from "../services";
 
 const router = express.Router();
 
@@ -34,6 +34,30 @@ const memoryCache = createCache({ ttl: 24 * 60 * 60 });
 router.get("/", (_req: ExpressRequest, res: ExpressResponse) => {
   res.setHeader("X-Robots-Tag", "noindex, nofollow");
   res.json("Soliguide API");
+});
+
+/**
+ * @swagger
+ *
+ * /health:
+ *   get:
+ *     description: Health check endpoint to verify API and database status
+ *     tags: [general]
+ *     responses:
+ *       200:
+ *         description: Health status response
+ */
+router.get("/health", async (_req: ExpressRequest, res: ExpressResponse) => {
+  const mongo = await checkMongo();
+
+  res.setHeader("X-Robots-Tag", "noindex, nofollow");
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+
+  return res.status(mongo === "up" ? 200 : 503).json({
+    status: mongo === "up" ? "ok" : "down",
+    version: getVersion(),
+    mongo,
+  });
 });
 
 router.get(

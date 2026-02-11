@@ -42,6 +42,10 @@ export const handleOrigin = (req: ExpressRequest): string | null => {
   const requestOrigin = req.get("origin");
   const referer = req.get("referer");
 
+  if (CONFIG.ENV === "dev") {
+    return CONFIG.SOLIGUIDE_FR_URL;
+  }
+
   if (referer) {
     try {
       const cleanedReferer = cleanUrl(referer);
@@ -50,8 +54,8 @@ export const handleOrigin = (req: ExpressRequest): string | null => {
       }
 
       const refererUrl = new URL(cleanedReferer);
-
       if (CONFIG.ENV === "dev") {
+        console.log("ENV DEV");
         return CONFIG.SOLIGUIDE_FR_URL;
       }
 

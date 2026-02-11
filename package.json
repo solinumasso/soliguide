@@ -22,6 +22,9 @@
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@commitlint/config-lerna-scopes": "^19.8.1",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^12.0.3",
     "husky": "^9.1.7",
     "lerna": "^8.2.3",
     "license-check-and-add": "^4.0.5",
@@ -39,6 +42,6 @@
       "packages/*"
     ]
   },
-  "version": "4.33.3",
+  "version": "5.0.0",
   "packageManager": "yarn@4.11.0"
 }

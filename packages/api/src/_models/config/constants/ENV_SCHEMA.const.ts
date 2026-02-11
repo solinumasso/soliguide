@@ -33,6 +33,10 @@ export const ENV_SCHEMA: JSONSchemaType<Config> = {
       type: "number",
       default: 3001,
     },
+    VERSION: {
+      type: "string",
+      default: "0.0.0",
+    },
     WEBAPP_FR_URL: {
       type: "string",
       default: "http://localhost:5173",

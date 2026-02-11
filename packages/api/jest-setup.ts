@@ -20,9 +20,19 @@
  */
 import mongoose from "mongoose";
 
+import { connectToDatabase } from "./src/config/database/connection";
 import { amqpEventsSender } from "./src/events";
+import { logger } from "./src/general/logger";
 
 mongoose.set("debug", false);
+
+// Désactiver complètement les logs pendant les tests
+logger.level = "silent";
+
+// Établir la connexion avant tous les tests
+beforeAll(async () => {
+  await connectToDatabase();
+});
 
 afterAll(async () => {
   mongoose.connection.close();

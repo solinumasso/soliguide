@@ -31,6 +31,7 @@ import { PosthogService } from "./modules/analytics/services/posthog.service";
 
 import { IS_BOT, IS_WEBVIEW_APP } from "./shared/constants";
 import { ChatService, CookieManagerService } from "./modules/shared/services";
+import { VersionService } from "./shared/services";
 
 @Component({
   selector: "app-root",
@@ -59,7 +60,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private readonly currentLanguageService: CurrentLanguageService,
     private readonly posthogService: PosthogService,
     private readonly cookieManagerService: CookieManagerService,
-    private readonly chatService: ChatService
+    private readonly chatService: ChatService,
+    private readonly versionService: VersionService
   ) {
     this.hasUserGivenConsent = false;
 
@@ -76,6 +78,16 @@ export class AppComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.currentUrl = this.router.url;
     this.languageSetupService.setupTranslations();
+
+    // Load version from version.json file
+    this.versionService.loadVersion().subscribe({
+      next: () => {
+        console.log("Version loaded:", this.versionService.getVersion());
+      },
+      error: (error) => {
+        console.error("Failed to load version:", error);
+      },
+    });
 
     this.subscription.add(
       this.authService.currentUserSubject.subscribe((user: User) => {

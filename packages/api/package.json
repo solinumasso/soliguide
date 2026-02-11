@@ -1,6 +1,6 @@
 {
   "name": "@soliguide/api",
-  "version": "4.33.1",
+  "version": "5.0.0",
   "description": "Soliguide API, all the services, initiatives and resources for people who encounter a difficulty",
   "author": "Solinum",
   "type": "commonjs",

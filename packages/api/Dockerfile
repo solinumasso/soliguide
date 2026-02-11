@@ -62,6 +62,7 @@ EOF
 COPY ./packages/api/docker-start.sh /app/packages/api/docker-start.sh
 COPY --from=build /app/packages/common/dist /app/packages/common/dist
 COPY --from=build /app/packages/api/dist /app/packages/api/dist
+COPY --from=build /app/packages/api/package.json /app/packages/api/package.json
 
 RUN <<EOF
 set -e

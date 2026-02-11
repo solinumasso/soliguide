@@ -18,7 +18,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import "../../config/database/connection";
 import "../../place/models/place.model";
 import { SupportedLanguagesCode } from "@soliguide/common";
 
@@ -43,11 +42,16 @@ import {
 import { TRACKED_EVENTS } from "../../analytics/constants";
 import { PosthogClient } from "../../analytics/services";
 
-jest.useFakeTimers();
-
 const posthogInstance = PosthogClient.instance;
 
 describe("To test the trackSearchPlaces middleware", () => {
+  beforeAll(() => {
+    jest.useFakeTimers();
+  });
+
+  afterAll(() => {
+    jest.useRealTimers();
+  });
   const trackedEvent = TRACKED_EVENTS.API_SEARCH_PLACES;
   const distinctId = "michel";
   const sessionId = "isabelle";

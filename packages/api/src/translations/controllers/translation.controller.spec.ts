@@ -19,7 +19,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import "../../config/database/connection";
 import "../../place/models/document.model";
 import "../../place/models/photo.model";
 

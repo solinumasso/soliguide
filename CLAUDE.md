@@ -231,7 +231,6 @@ test(location-api): add tests for geocoding service
 ### Environments
 
 - **Local**: Dev environment with Docker Compose
-- **Test1/Test2**: Feature testing (`fr.test1.soliguide.dev`, `fr.test2.soliguide.dev`)
 - **Demo**: Release testing (`fr.demo.soliguide.dev`)
 - **Production**: `soliguide.fr`
 

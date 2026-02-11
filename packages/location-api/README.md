@@ -78,10 +78,13 @@ To run tests, run the following command
 **IMPORTANT**: The holiday data needs to be regenerated annually to ensure accurate holiday information for the current year.
 
 **Command:**
+
 ```bash
 yarn generate:holidays-file
 ```
+
 **When to run:**
+
 - At the beginning of each calendar year (January)
 - Whenever holiday definitions change for supported countries
 

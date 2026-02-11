@@ -25,6 +25,7 @@ import i18next from "i18next";
 import Backend from "i18next-fs-backend";
 
 import { logger } from "../general/logger";
+import { CONFIG } from "../_models";
 import { join } from "node:path";
 
 const options = {
@@ -44,7 +45,10 @@ i18next
       logger.error(err);
       return;
     }
-    logger.info("i18next is ready...");
+    // Ne log que si pas en mode test
+    if (CONFIG.ENV !== "test") {
+      logger.info("i18next is ready...");
+    }
   })
   .catch((err) => {
     logger.error(err);

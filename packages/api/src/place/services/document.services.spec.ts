@@ -22,7 +22,6 @@ import mongoose from "mongoose";
 
 import documentService from "./document.services";
 
-import "../../config/database/connection";
 import { CommonPlaceDocument } from "@soliguide/common";
 
 afterAll(() => {

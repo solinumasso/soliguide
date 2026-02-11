@@ -31,7 +31,7 @@ import Docxtemplater from "docxtemplater";
 import { pathExists, readFile } from "fs-extra";
 import i18next from "i18next";
 import libre from "libreoffice-convert";
-import { join } from "path";
+import { join } from "node:path";
 import PizZip from "pizzip";
 import { promisify } from "util";
 
