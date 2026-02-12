@@ -65,6 +65,13 @@ export const getGeolocation = (): Promise<GeolocationPosition> =>
     }
   });
 
-export const getMapLink = (address: string): string => {
+export const getMapLink = (
+  address: string,
+  coordinates?: [number, number] // [longitude, latitude] in GeoJSON format
+): string => {
+  if (coordinates && coordinates.length === 2) {
+    const [lng, lat] = coordinates;
+    return `https://www.google.com/maps/dir//${lat},${lng}`;
+  }
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
 };
