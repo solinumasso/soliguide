@@ -18,26 +18,15 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import mongoose from "mongoose";
-import { connectToDatabase } from "../../../config/database/connection";
-
-import delay from "delay";
-import { parentPort } from "worker_threads";
-
 import { TempInfoStatus, TempInfoType } from "@soliguide/common";
-
 import { TempInfoObject } from "../../../_models";
 import { logger } from "../../../general/logger";
 import { PlaceModel } from "../../../place/models/place.model";
 import { TempInfoModel } from "../../../temp-info/models/temp-info.model";
 import { TranslatedFieldModel } from "../../../translations/models/translatedField.model";
 
-(async () => {
-  try {
-    await connectToDatabase();
-    logger.info(
-      "JOB - UNSET OBSOLETE TEMPORARY INFORMATION FOR PLACES - START"
-    );
+export async function unsetObsoleteTempInfoJob(): Promise<void> {
+  logger.info("JOB - UNSET OBSOLETE TEMPORARY INFORMATION FOR PLACES - START");
 
   //
   // 1. Search for currently obsolete info on places in the temporary info table
@@ -106,28 +95,28 @@ import { TranslatedFieldModel } from "../../../translations/models/translatedFie
       });
     }
 
-    if (placeBulkQuery.length) {
-      await PlaceModel.bulkWrite(placeBulkQuery);
-    }
-
-    if (tempInfoBulkQuery.length) {
-      await TempInfoModel.bulkWrite(tempInfoBulkQuery);
-    }
-
-    if (translationBulkQuery.length) {
-      await TranslatedFieldModel.bulkWrite(translationBulkQuery);
-    }
-
-    logger.info(`${placeBulkQuery.length} Obsolete temporary info cleaned up`);
-
-    await delay(500);
-
-    logger.info("JOB - UNSET OBSOLETE TEMPORARY INFORMATION FOR PLACES - END");
-  } catch (e) {
-    logger.error(e);
-    if (parentPort) parentPort.postMessage("Error while running job");
-  } finally {
-    await mongoose.connection.close();
-    if (parentPort) parentPort.postMessage("done");
+    tempInfoBulkQuery.push({
+      updateOne: {
+        filter: { _id: tempInfos._id },
+        timestamps: false,
+        update: { $set: { status: TempInfoStatus.OBSOLETE } },
+      },
+    });
   }
-})();
+
+  if (placeBulkQuery.length) {
+    await PlaceModel.bulkWrite(placeBulkQuery);
+  }
+
+  if (tempInfoBulkQuery.length) {
+    await TempInfoModel.bulkWrite(tempInfoBulkQuery);
+  }
+
+  if (translationBulkQuery.length) {
+    await TranslatedFieldModel.bulkWrite(translationBulkQuery);
+  }
+
+  logger.info(`${placeBulkQuery.length} Obsolete temporary info cleaned up`);
+
+  logger.info("JOB - UNSET OBSOLETE TEMPORARY INFORMATION FOR PLACES - END");
+}
