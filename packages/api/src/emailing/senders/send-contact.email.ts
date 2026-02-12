@@ -19,10 +19,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import {
-  CountryCodes,
+  getCountryFromTheme,
   SupportedLanguagesCode,
   Themes,
-  type SoliguideCountries,
 } from "@soliguide/common";
 import { ExpressRequest, ExpressResponse } from "../../_models";
 import { PosthogClient } from "../../analytics/services";
@@ -34,18 +33,12 @@ import {
   amqpEventsSender,
 } from "../../events";
 
-const THEME_TO_COUNTRY: Record<Themes, SoliguideCountries> = {
-  [Themes.SOLIGUIDE_FR]: CountryCodes.FR,
-  [Themes.SOLIGUIA_ES]: CountryCodes.ES,
-  [Themes.SOLIGUIA_AD]: CountryCodes.AD,
-};
-
 export const emailContact = async (
   req: ExpressRequest,
   res: ExpressResponse
 ) => {
   const theme = req.requestInformation?.theme ?? Themes.SOLIGUIDE_FR;
-  const country = THEME_TO_COUNTRY[theme];
+  const country = getCountryFromTheme(theme);
   const locale = req.requestInformation?.language ?? SupportedLanguagesCode.FR;
   const frontendUrl = req.requestInformation?.frontendUrl ?? "";
 
