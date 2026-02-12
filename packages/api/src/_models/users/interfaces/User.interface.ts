@@ -128,7 +128,7 @@ class UserPopulate implements ACurrentUser, UserPopulate {
   public categoriesLimitations;
   public translator;
   public verifiedAt;
-  public campaigns;
+
   public devToken;
   public passwordToken;
   public territories;
@@ -159,7 +159,7 @@ class UserPopulate implements ACurrentUser, UserPopulate {
     this.categoriesLimitations = user?.categoriesLimitations;
     this.translator = user?.translator;
     this.verifiedAt = user?.verifiedAt;
-    this.campaigns = user?.campaigns;
+
     this.devToken = user?.devToken;
     this.passwordToken = user?.passwordToken;
     this.territories = user?.territories;

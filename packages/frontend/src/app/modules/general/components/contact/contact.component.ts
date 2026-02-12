@@ -113,6 +113,7 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.contactForm = this.formBuilder.group({
       email: ["", [Validators.required, EmailValidator]],
       name: ["", [Validators.required]],
+      country: [THEME_CONFIGURATION.country],
       department: ["", [Validators.required]],
       subject: ["", [Validators.required]],
       message: ["", [Validators.required]],
