@@ -19,7 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import type {
-  SoliguideCountries,
+  CountryCodes,
   SupportedLanguagesCode,
   Themes,
 } from "@soliguide/common";
@@ -31,7 +31,7 @@ export class AmqpContactFormEvent implements AmqpEvent {
   public email: string;
   public subject: string;
   public message: string;
-  public country: SoliguideCountries;
+  public country: CountryCodes;
   public territory: string | null;
   public locale: SupportedLanguagesCode;
   public frontendUrl: string;
@@ -42,7 +42,7 @@ export class AmqpContactFormEvent implements AmqpEvent {
     email: string;
     subject: string;
     message: string;
-    country: SoliguideCountries;
+    country: CountryCodes;
     territory: string | null;
     locale: SupportedLanguagesCode;
     frontendUrl: string;
