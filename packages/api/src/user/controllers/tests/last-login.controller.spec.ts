@@ -58,110 +58,110 @@ describe("LastLogin Integration Tests", () => {
   });
 
   it("should have null lastLogin for newly created user", async () => {
-      const retrievedUser = await getUserByIdWithUserRights(user._id);
-      expect(retrievedUser?.lastLogin).toBeNull();
-    });
+    const retrievedUser = await getUserByIdWithUserRights(user._id);
+    expect(retrievedUser?.lastLogin).toBeNull();
+  });
 
-    it("should set lastLogin when user logs in for the first time", async () => {
-      const beforeLogin = new Date();
+  it("should set lastLogin when user logs in for the first time", async () => {
+    const beforeLogin = new Date();
 
-      // Login via HTTP request to trigger middleware
-      const loginResponse = await request(app)
-        .post("/users/signin")
-        .set("Origin", "https://soliguide.fr")
-        .send({
-          mail: userMail,
-          password: userPassword,
-        });
-
-      expect(loginResponse.status).toBe(200);
-      const token = loginResponse.body.token;
-
-      // Make an authenticated request to trigger updateLastLogin middleware
-      await request(app)
-        .get("/users/me")
-        .set("Origin", "https://soliguide.fr")
-        .set("Authorization", `JWT ${token}`);
-
-      // Check that lastLogin was updated
-      const updatedUser = await getUserByIdWithUserRights(user._id);
-      expect(updatedUser?.lastLogin).not.toBeNull();
-      expect(updatedUser?.lastLogin).toBeInstanceOf(Date);
-      expect(updatedUser!.lastLogin!.getTime()).toBeGreaterThanOrEqual(
-        beforeLogin.getTime()
-      );
-    });
-
-    it("should not update lastLogin when user logs in again on the same day", async () => {
-      // Get current lastLogin
-      const userBeforeSecondLogin = await getUserByIdWithUserRights(user._id);
-      const firstLoginDate = userBeforeSecondLogin?.lastLogin;
-
-      // Login again via HTTP
-      const loginResponse = await request(app)
-        .post("/users/signin")
-        .set("Origin", "https://soliguide.fr")
-        .send({
-          mail: userMail,
-          password: userPassword,
-        });
-
-      expect(loginResponse.status).toBe(200);
-      const token = loginResponse.body.token;
-
-      // Make an authenticated request to trigger updateLastLogin middleware
-      await request(app)
-        .get("/users/me")
-        .set("Origin", "https://soliguide.fr")
-        .set("Authorization", `JWT ${token}`);
-
-      // Check that lastLogin was NOT updated (same day)
-      const userAfterSecondLogin = await getUserByIdWithUserRights(user._id);
-      expect(userAfterSecondLogin?.lastLogin?.getTime()).toEqual(
-        firstLoginDate?.getTime()
-      );
-    });
-
-    it("should update lastLogin when user logs in on a different day", async () => {
-      // Manually set lastLogin to yesterday
-      const yesterday = new Date();
-      yesterday.setDate(yesterday.getDate() - 1);
-
-      await UserModel.findByIdAndUpdate(user._id, {
-        lastLogin: yesterday,
+    // Login via HTTP request to trigger middleware
+    const loginResponse = await request(app)
+      .post("/users/signin")
+      .set("Origin", "https://soliguide.fr")
+      .send({
+        mail: userMail,
+        password: userPassword,
       });
 
-      // Verify it was set
-      const userWithYesterdayLogin = await getUserByIdWithUserRights(user._id);
-      expect(userWithYesterdayLogin?.lastLogin?.getDate()).toEqual(
-        yesterday.getDate()
-      );
+    expect(loginResponse.status).toBe(200);
+    const token = loginResponse.body.token;
 
-      // Login via HTTP
-      const beforeLogin = new Date();
-      const loginResponse = await request(app)
-        .post("/users/signin")
-        .set("Origin", "https://soliguide.fr")
-        .send({
-          mail: userMail,
-          password: userPassword,
-        });
+    // Make an authenticated request to trigger updateLastLogin middleware
+    await request(app)
+      .get("/users/me")
+      .set("Origin", "https://soliguide.fr")
+      .set("Authorization", `JWT ${token}`);
 
-      expect(loginResponse.status).toBe(200);
-      const token = loginResponse.body.token;
+    // Check that lastLogin was updated
+    const updatedUser = await getUserByIdWithUserRights(user._id);
+    expect(updatedUser?.lastLogin).not.toBeNull();
+    expect(updatedUser?.lastLogin).toBeInstanceOf(Date);
+    expect(updatedUser!.lastLogin!.getTime()).toBeGreaterThanOrEqual(
+      beforeLogin.getTime()
+    );
+  });
 
-      // Make an authenticated request to trigger updateLastLogin middleware
-      await request(app)
-        .get("/users/me")
-        .set("Origin", "https://soliguide.fr")
-        .set("Authorization", `JWT ${token}`);
+  it("should not update lastLogin when user logs in again on the same day", async () => {
+    // Get current lastLogin
+    const userBeforeSecondLogin = await getUserByIdWithUserRights(user._id);
+    const firstLoginDate = userBeforeSecondLogin?.lastLogin;
 
-      // Check that lastLogin was updated to today
-      const updatedUser = await getUserByIdWithUserRights(user._id);
-      expect(updatedUser?.lastLogin).not.toBeNull();
-      expect(updatedUser!.lastLogin!.getTime()).toBeGreaterThanOrEqual(
-        beforeLogin.getTime()
-      );
-      expect(updatedUser!.lastLogin!.getDate()).toEqual(new Date().getDate());
+    // Login again via HTTP
+    const loginResponse = await request(app)
+      .post("/users/signin")
+      .set("Origin", "https://soliguide.fr")
+      .send({
+        mail: userMail,
+        password: userPassword,
+      });
+
+    expect(loginResponse.status).toBe(200);
+    const token = loginResponse.body.token;
+
+    // Make an authenticated request to trigger updateLastLogin middleware
+    await request(app)
+      .get("/users/me")
+      .set("Origin", "https://soliguide.fr")
+      .set("Authorization", `JWT ${token}`);
+
+    // Check that lastLogin was NOT updated (same day)
+    const userAfterSecondLogin = await getUserByIdWithUserRights(user._id);
+    expect(userAfterSecondLogin?.lastLogin?.getTime()).toEqual(
+      firstLoginDate?.getTime()
+    );
+  });
+
+  it("should update lastLogin when user logs in on a different day", async () => {
+    // Manually set lastLogin to yesterday
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    await UserModel.findByIdAndUpdate(user._id, {
+      lastLogin: yesterday,
     });
+
+    // Verify it was set
+    const userWithYesterdayLogin = await getUserByIdWithUserRights(user._id);
+    expect(userWithYesterdayLogin?.lastLogin?.getDate()).toEqual(
+      yesterday.getDate()
+    );
+
+    // Login via HTTP
+    const beforeLogin = new Date();
+    const loginResponse = await request(app)
+      .post("/users/signin")
+      .set("Origin", "https://soliguide.fr")
+      .send({
+        mail: userMail,
+        password: userPassword,
+      });
+
+    expect(loginResponse.status).toBe(200);
+    const token = loginResponse.body.token;
+
+    // Make an authenticated request to trigger updateLastLogin middleware
+    await request(app)
+      .get("/users/me")
+      .set("Origin", "https://soliguide.fr")
+      .set("Authorization", `JWT ${token}`);
+
+    // Check that lastLogin was updated to today
+    const updatedUser = await getUserByIdWithUserRights(user._id);
+    expect(updatedUser?.lastLogin).not.toBeNull();
+    expect(updatedUser!.lastLogin!.getTime()).toBeGreaterThanOrEqual(
+      beforeLogin.getTime()
+    );
+    expect(updatedUser!.lastLogin!.getDate()).toEqual(new Date().getDate());
+  });
 });

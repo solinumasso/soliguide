@@ -44,18 +44,28 @@ export const setIsOpenToday = async () => {
   let cpt = 0;
   let placeCpt = 0;
   let serviceCpt = 0;
+  let lastId: any = null;
 
   while (loopCpt < nPotentiallyOpenedPlaces) {
-    const places = await PlaceModel.find({
+    const paginatedFilter = {
+      ...(lastId ? { _id: { $gt: lastId } } : {}),
       $or: [
         { position: { $exists: true, $ne: null } },
         { "parcours.position": { $exists: true, $ne: null } },
       ],
       status: { $nin: [PlaceStatus.DRAFT, PlaceStatus.PERMANENTLY_CLOSED] },
-    })
+    };
+
+    const places = await PlaceModel.find(paginatedFilter)
       .sort({ _id: 1 })
-      .skip(loopCpt)
-      .limit(batchSize);
+      // MODIF 1 : plus de .skip()
+      .limit(batchSize)
+      // MODIF 2 : .lean()
+      .lean();
+
+    if (places.length === 0) break;
+
+    lastId = places[places.length - 1]._id;
 
     for (const place of places) {
       operations.push({

@@ -20,6 +20,11 @@ name: _Format, lint, build and test
 
 on:
   workflow_call:
+    inputs:
+      check_tests:
+        description: 'Whether to check tests in gatekeeper'
+        type: boolean
+        default: true
 
 concurrency:
   group: ${{ github.workflow }}-build-${{ github.ref }}
@@ -777,7 +782,7 @@ jobs:
       - test-widget
       - send-test-coverage
     steps:
-      - name: Check all jobs ran for non PR refs
+      - name: Check all builds succeeded for non PR refs
         if: ${{ !startsWith(github.ref, 'refs/pull/') }}
         run: |
           [[ "${{ needs.build-base.result }}" == "success" ]]
@@ -791,6 +796,10 @@ jobs:
           [[ "${{ needs.build-soligare.result }}" == "success" ]]
           [[ "${{ needs.build-web-app.result }}" == "success" ]]
           [[ "${{ needs.build-widget.result }}" == "success" ]]
+
+      - name: Check all tests succeeded for non PR refs
+        if: ${{ !startsWith(github.ref, 'refs/pull/') && inputs.check_tests }}
+        run: |
           [[ "${{ needs.test-api.result }}" == "success" ]]
           [[ "${{ needs.test-common.result }}" == "success" ]]
           [[ "${{ needs.test-common-angular.result }}" == "success" ]]
@@ -849,47 +858,47 @@ jobs:
         run: |
           [[ "${{ needs.build-widget.result }}" == "success" ]]
       - name: Check send-test-coverage
-        if: ${{ startsWith(github.ref, 'refs/pull/') && needs.affected_packages.outputs.to_test != '[]' }}
+        if: ${{ startsWith(github.ref, 'refs/pull/') && needs.affected_packages.outputs.to_test != '[]' && inputs.check_tests }}
         run: |
           [[ "${{ needs.send-test-coverage.result }}" == "success" ]]
       - name: Check test-api
-        if: ${{ startsWith(github.ref, 'refs/pull/') && contains(needs.affected_packages.outputs.to_test, 'api') }}
+        if: ${{ startsWith(github.ref, 'refs/pull/') && contains(needs.affected_packages.outputs.to_test, 'api') && inputs.check_tests }}
         run: |
           [[ "${{ needs.test-api.result }}" == "success" ]]
       - name: Check test-common
-        if: ${{ startsWith(github.ref, 'refs/pull/') && contains(needs.affected_packages.outputs.to_test, 'common') }}
+        if: ${{ startsWith(github.ref, 'refs/pull/') && contains(needs.affected_packages.outputs.to_test, 'common') && inputs.check_tests }}
         run: |
           [[ "${{ needs.test-common.result }}" == "success" ]]
       - name: Check test-common-angular
-        if: ${{ startsWith(github.ref, 'refs/pull/') && contains(needs.affected_packages.outputs.to_test, 'common-angular') }}
+        if: ${{ startsWith(github.ref, 'refs/pull/') && contains(needs.affected_packages.outputs.to_test, 'common-angular') && inputs.check_tests }}
         run: |
           [[ "${{ needs.test-common-angular.result }}" == "success" ]]
       - name: Check test-design-system
-        if: ${{ startsWith(github.ref, 'refs/pull/') && contains(needs.affected_packages.outputs.to_test, 'design-system') }}
+        if: ${{ startsWith(github.ref, 'refs/pull/') && contains(needs.affected_packages.outputs.to_test, 'design-system') && inputs.check_tests }}
         run: |
           [[ "${{ needs.test-design-system.result }}" == "success" ]]
       - name: Check test-frontend
-        if: ${{ startsWith(github.ref, 'refs/pull/') && contains(needs.affected_packages.outputs.to_test, 'frontend') }}
+        if: ${{ startsWith(github.ref, 'refs/pull/') && contains(needs.affected_packages.outputs.to_test, 'frontend') && inputs.check_tests }}
         run: |
           [[ "${{ needs.test-frontend.result }}" == "success" ]]
       - name: Check test-location-api
-        if: ${{ startsWith(github.ref, 'refs/pull/') && contains(needs.affected_packages.outputs.to_test, 'location-api') }}
+        if: ${{ startsWith(github.ref, 'refs/pull/') && contains(needs.affected_packages.outputs.to_test, 'location-api') && inputs.check_tests }}
         run: |
           [[ "${{ needs.test-location-api.result }}" == "success" ]]
       - name: Check test-maintenance
-        if: ${{ startsWith(github.ref, 'refs/pull/') && contains(needs.affected_packages.outputs.to_test, 'maintenance') }}
+        if: ${{ startsWith(github.ref, 'refs/pull/') && contains(needs.affected_packages.outputs.to_test, 'maintenance') && inputs.check_tests }}
         run: |
           [[ "${{ needs.test-maintenance-frontend.result }}" == "success" ]]
           [[ "${{ needs.test-maintenance-widget.result }}" == "success" ]]
       - name: Check test-soligare
-        if: ${{ startsWith(github.ref, 'refs/pull/') && contains(needs.affected_packages.outputs.to_test, 'soligare') }}
+        if: ${{ startsWith(github.ref, 'refs/pull/') && contains(needs.affected_packages.outputs.to_test, 'soligare') && inputs.check_tests }}
         run: |
           [[ "${{ needs.test-soligare.result }}" == "success" ]]
       - name: Check test-web-app
-        if: ${{ startsWith(github.ref, 'refs/pull/') && contains(needs.affected_packages.outputs.to_test, 'web-app') }}
+        if: ${{ startsWith(github.ref, 'refs/pull/') && contains(needs.affected_packages.outputs.to_test, 'web-app') && inputs.check_tests }}
         run: |
           [[ "${{ needs.test-web-app.result }}" == "success" ]]
       - name: Check test-widget
-        if: ${{ startsWith(github.ref, 'refs/pull/') && contains(needs.affected_packages.outputs.to_test, 'widget') }}
+        if: ${{ startsWith(github.ref, 'refs/pull/') && contains(needs.affected_packages.outputs.to_test, 'widget') && inputs.check_tests }}
         run: |
           [[ "${{ needs.test-widget.result }}" == "success" ]]
