@@ -27,6 +27,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import type { I18nStore } from '$lib/client/types';
 
   export let address: string;
+  export let coordinates: [number, number] | undefined;
   export let reversed = false;
 
   export let onOrientation: boolean;
@@ -37,7 +38,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   const gotoLink = () => {
     if (!disabled) {
-      window.open(getMapLink(address), '_blank', 'noopener,noreferrer');
+      window.open(getMapLink(address, coordinates), '_blank', 'noopener,noreferrer');
     }
   };
 

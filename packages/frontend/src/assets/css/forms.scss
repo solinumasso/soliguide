@@ -60,12 +60,12 @@ label,
 }
 
 .input-description {
-  font-style: italic;
-  font-weight: normal;
-  font-size: 15px;
-  line-height: 150%;
   margin: 6px 0;
-  color: #3e3a71;
+  color: var(--Colors-Text-TextShy, #737373);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
 }
 
 .input-description .ng-fa-icon {

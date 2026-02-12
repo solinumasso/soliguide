@@ -30,6 +30,8 @@ export class CommonPlacePosition {
   public country?: CountryCodes;
   public timeZone: AnyTimeZone;
 
+  public isManualAddress?: boolean;
+
   public slugs?: PositionSlugs;
 
   constructor(position?: Partial<CommonPlacePosition>) {
@@ -60,6 +62,7 @@ export class CommonPlacePosition {
     // @deprecated end
 
     this.timeZone = position?.timeZone ?? "Europe/Paris";
+    this.isManualAddress = position?.isManualAddress ?? false;
 
     this.slugs = new PositionSlugs(this);
   }

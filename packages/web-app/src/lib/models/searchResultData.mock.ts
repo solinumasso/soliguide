@@ -374,6 +374,7 @@ const samplePlace: ApiPlace = Object.freeze({
 const samplePlaceTransformed: SearchResultPlaceCard = Object.freeze({
   address: '1 Rue Montmartre, 75001 Paris',
   banners: { orientation: false, holidays: PlaceClosedHolidays.UNKNOWN, campaign: null },
+  coordinates: [2.345897, 48.86323609999999] as [number, number],
   dataForLogs: {
     id: '5a58c0c7c1797fe45e377324',
     lieuId: 154,
@@ -1441,6 +1442,7 @@ const sampleItineraryTransformed: SearchResultPlaceCard[] = [
   {
     address: "Nationale, 75013 Paris 13e Arrondissement - Point d'arrivée de la maraude",
     banners: { orientation: false, holidays: PlaceClosedHolidays.UNKNOWN, campaign: null },
+    coordinates: [0, 0] as [number, number],
     dataForLogs: {
       id: '30965',
       lieuId: 30965,
@@ -1470,6 +1472,7 @@ const sampleItineraryTransformed: SearchResultPlaceCard[] = [
   {
     address: "Pl. Louis-Armand, 75012 Paris - Point d'arrivée de la maraude",
     banners: { orientation: false, holidays: PlaceClosedHolidays.UNKNOWN, campaign: null },
+    coordinates: [0, 0] as [number, number],
     dataForLogs: {
       id: '30965',
       lieuId: 30965,

@@ -1,5 +1,7 @@
 import { body } from "express-validator";
 
+import { PlaceType } from "@soliguide/common";
+
 import { entityDto } from "./entity.dto";
 
 import { countryDto, stringDto } from "../../_utils/dto";
@@ -16,6 +18,13 @@ export const infoDto = (auto = false) => [
 
   // Place description must be between 10 and 4000 characters
   stringDto("description", false, 4000, 10),
+
+  // Place type: fixed address or mobile itinerary
+  body("placeType")
+    .optional()
+    .isIn(Object.values(PlaceType))
+    .default(PlaceType.PLACE),
+
   ...countryDto,
   ...entityDto,
 ];

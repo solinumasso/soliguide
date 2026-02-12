@@ -32,6 +32,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import type { I18nStore } from '$lib/client/types';
 
   export let address: string;
+  export let coordinates: [number, number] | undefined;
 
   export let onOrientation: boolean;
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
@@ -39,7 +40,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   const gotoLink = () => {
     placeController.captureEvent('see-on-map', { placeAddress: address });
-    window.open(getMapLink(address), '_blank', 'noopener,noreferrer');
+    window.open(getMapLink(address, coordinates), '_blank', 'noopener,noreferrer');
   };
 
   const copyText = () => {

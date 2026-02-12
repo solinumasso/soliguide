@@ -41,6 +41,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let status: PlaceOpeningStatus;
   export let phones: Phone[];
   export let address: string;
+  export let coordinates: [number, number] | undefined;
   export let onOrientation: boolean;
   export let tempInfo: PlaceDetailsTempInfo;
   export let campaignBanner: PlaceCampaignBannerMessage | null;
@@ -87,6 +88,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <div class="actions">
     <GoToButton
       {address}
+      {coordinates}
       {onOrientation}
       reversed
       on:click={() => {

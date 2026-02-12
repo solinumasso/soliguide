@@ -29,6 +29,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       [helpComplementAddresse]="true"
       [showMap]="true"
       [submitted]="submitted"
+      (positionChange)="place.position = $event"
       (addressInvalid)="isAddressInvalid($event)"
       (checkDuplicatePosition)="checkDuplicates($event)"
     >
