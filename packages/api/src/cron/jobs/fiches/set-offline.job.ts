@@ -20,8 +20,9 @@
  */
 import { PlaceStatus } from "@soliguide/common";
 import { logger } from "../../../general/logger";
-import { DEFAULT_PLACES_TO_INCLUDE_FOR_SEARCH } from "../../../search/constants/requests/DEFAULT_PLACES_FOR_SEARCH.const";
+
 import { PlaceModel } from "../../../place/models/place.model";
+import { DEFAULT_PLACES_TO_INCLUDE_FOR_SEARCH } from "../../../search/constants/requests";
 
 export async function setOfflineJob(): Promise<void> {
   logger.info("JOB - SET UN-UPDATED PLACES OFFLINE\tSTART");

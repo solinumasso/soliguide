@@ -17,6 +17,7 @@ export const Schedule = {
   EVERY_HOUR: "0 * * * *",
   EVERY_DAY_AT_MIDNIGHT: "0 0 * * *",
   EVERY_DAY_AT_1AM: "0 1 * * *",
+  EVERY_DAY_AT_2AM: "0 2 * * *",
   EVERY_DAY_AT_3AM: "0 3 * * *",
   EVERY_DAY_AT_4AM: "0 4 * * *",
   EVERY_DAY_AT_5AM: "0 5 * * *",
@@ -47,21 +48,23 @@ export function initializeCronJobs() {
   logger.info("Initializing cron jobs with Sentry monitoring");
 
   createMonitoredCron(
-    "set-is-open-today",
-    Schedule.EVERY_DAY_AT_1AM,
-    setIsOpenTodayJob
-  );
-  createMonitoredCron("set-offline", Schedule.EVERY_DAY_AT_3AM, setOfflineJob);
-  createMonitoredCron(
     "set-current-temp-info",
-    Schedule.EVERY_DAY_AT_4AM,
+    Schedule.EVERY_DAY_AT_1AM,
     setCurrentTempInfoJob
   );
+
   createMonitoredCron(
     "unset-obsolete-temp-info",
-    Schedule.EVERY_DAY_AT_5AM,
+    Schedule.EVERY_DAY_AT_2AM,
     unsetObsoleteTempInfoJob
   );
+  createMonitoredCron(
+    "set-is-open-today",
+    Schedule.EVERY_DAY_AT_4AM,
+    setIsOpenTodayJob
+  );
+
+  createMonitoredCron("set-offline", Schedule.EVERY_DAY_AT_3AM, setOfflineJob);
 
   logger.info("All cron jobs initialized successfully");
 }
