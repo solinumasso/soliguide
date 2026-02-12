@@ -3,7 +3,12 @@ import type { Config } from "../interfaces";
 
 export const ENV_SCHEMA: JSONSchemaType<Config> = {
   type: "object",
-  required: ["JWT_SECRET", "S3_ACCESS_KEY", "S3_SECRET_KEY"],
+  required: [
+    "JWT_SECRET",
+    "S3_ACCESS_KEY",
+    "S3_SECRET_KEY",
+    "GOOGLE_MAPS_API_KEY",
+  ],
   properties: {
     ENV: {
       type: "string",
@@ -71,6 +76,9 @@ export const ENV_SCHEMA: JSONSchemaType<Config> = {
     GOOGLE_API_KEY: {
       type: "string",
       nullable: true,
+    },
+    GOOGLE_MAPS_API_KEY: {
+      type: "string",
     },
     GEMINI_API_KEY: {
       type: "string",

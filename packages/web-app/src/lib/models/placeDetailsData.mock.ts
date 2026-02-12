@@ -515,6 +515,7 @@ const samplePlaceTransformed: PlaceDetails = {
   id: 154,
   address: '1 Rue Montmartre, 75001 Paris',
   campaignBanner: null,
+  coordinates: [2.345897, 48.86323609999999],
   description:
     "<p>Repas complets servis sur le parvis de l'église Saint-Eustache. Il est conseillé d'arriver en avance.</p><p><strong>Attention : il s'agit d'un dispositif hivernal qui commence le 1er décembre et qui finit le 31 mars.</strong></p>",
   email: 'lasoupe@saint-eustache.org',
