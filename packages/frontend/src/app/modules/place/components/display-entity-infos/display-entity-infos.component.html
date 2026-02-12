@@ -22,7 +22,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <ng-container *ngIf="place.placeType === PlaceType.PLACE">
     <li *ngIf="place.position.address && showAddress">
       <a
-        href="https://www.google.fr/maps/dir//{{ place.position.address }}"
+        href="https://www.google.fr/maps/search/?api=1&query={{
+          place.position.location.coordinates[1]
+        }},{{ place.position.location.coordinates[0] }}"
         target="_blank"
         rel="noopener"
         (click)="

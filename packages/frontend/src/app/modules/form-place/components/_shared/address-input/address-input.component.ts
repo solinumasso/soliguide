@@ -18,14 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-} from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import {
   MarkerOptions,
   PlacePosition,
@@ -37,21 +30,18 @@ import {
   Validators,
   UntypedFormBuilder,
 } from "@angular/forms";
-import { Subscription } from "rxjs";
 
 import { LocationAutoCompleteAddress } from "@soliguide/common";
 import { AuthService } from "../../../../users/services/auth.service";
-import { LocationService } from "../../../../shared/services";
 import { TranslateService } from "@ngx-translate/core";
 import { User } from "../../../../users/classes";
-import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-address-input",
   templateUrl: "./address-input.component.html",
   styleUrls: ["./address-input.component.scss"],
 })
-export class AddressInputComponent implements OnInit, OnDestroy {
+export class AddressInputComponent implements OnInit {
   @Input() public position: PlacePosition;
   @Input() public additionalInformation: string;
 
@@ -71,9 +61,9 @@ export class AddressInputComponent implements OnInit, OnDestroy {
   @Output() public readonly checkDuplicatePosition =
     new EventEmitter<PlacePosition>();
 
-  private readonly subscription = new Subscription();
   public readonly THEME_CONFIGURATION = THEME_CONFIGURATION;
   public positionForm: UntypedFormGroup;
+  public readonly addressesOnly = false;
 
   public marker: MarkerOptions[];
 
@@ -86,9 +76,7 @@ export class AddressInputComponent implements OnInit, OnDestroy {
   constructor(
     private readonly authService: AuthService,
     private readonly formBuilder: UntypedFormBuilder,
-    private readonly locationService: LocationService,
-    private readonly translateService: TranslateService,
-    private readonly toastrService: ToastrService
+    private readonly translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -121,10 +109,6 @@ export class AddressInputComponent implements OnInit, OnDestroy {
       location: [this.position.location, [Validators.required]],
     });
   };
-
-  public ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
 
   public updateLocation(item: LocationAutoCompleteAddress) {
     this.position = new PlacePosition({
@@ -189,28 +173,27 @@ export class AddressInputComponent implements OnInit, OnDestroy {
     lat: number;
     lng: number;
   }): void => {
-    this.subscription.add(
-      this.locationService.reverse(newCoord.lat, newCoord.lng).subscribe({
-        next: (addresses: LocationAutoCompleteAddress[]) => {
-          if (addresses.length === 0) {
-            this.resetLocationIfNotExist();
-          } else {
-            this.updateLocation(addresses[0]);
-          }
-        },
-        error: () => {
-          this.resetLocationIfNotExist();
-        },
-      })
-    );
+    this.updatePositionFromCoordinates(newCoord);
   };
 
-  private resetLocationIfNotExist() {
-    this.toastrService.error(
-      this.translateService.instant("UNABLE_TO_LOCATE_YOU")
-    );
-    this.initMarker();
-  }
+  private updatePositionFromCoordinates = (newCoord: {
+    lat: number;
+    lng: number;
+  }): void => {
+    this.position.location = {
+      type: "Point",
+      coordinates: [newCoord.lng, newCoord.lat],
+    };
+
+    this.marker[0].lat = newCoord.lat;
+    this.marker[0].lng = newCoord.lng;
+
+    this.positionForm.controls.location.setValue(this.position.location);
+
+    if (this.positionChange) {
+      this.positionChange.emit(this.position);
+    }
+  };
 
   private initMarker() {
     this.marker = [

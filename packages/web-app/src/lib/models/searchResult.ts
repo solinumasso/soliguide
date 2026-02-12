@@ -79,6 +79,7 @@ const buildLightPlaceCard = (
       orientation: onOrientation,
       campaign: computeCampaignBanner(place)
     },
+    coordinates: place.position.location.coordinates as [number, number],
     ...('crossingPointIndex' in place ? { crossingPointIndex: place.crossingPointIndex } : {}),
     id: place.lieu_id,
     name: place.name,
