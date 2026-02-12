@@ -55,6 +55,14 @@ export const emailContact = async (
   });
 
   try {
+    PosthogClient.instance.capture({
+      event: TRACKED_EVENTS.API_SEND_CONTACT_EMAIL,
+      req,
+      properties: {
+        contactForm: payload,
+      },
+    });
+
     await amqpEventsSender.sendToQueue<AmqpContactFormEvent>(
       Exchange.CONTACT_FORM,
       `${RoutingKey.CONTACT_FORM}.form-submitted`,
@@ -63,15 +71,6 @@ export const emailContact = async (
     );
 
     req.log.info({ payload }, "CONTACT_FORM_EVENT_SENT_TO_QUEUE");
-
-    PosthogClient.instance.capture({
-      event: TRACKED_EVENTS.API_SEND_CONTACT_EMAIL,
-      req,
-      properties: {
-        contactForm: payload,
-        success: true,
-      },
-    });
 
     return res.status(200).json({ message: "EMAIL_CONTACT_SENT" });
   } catch (e) {

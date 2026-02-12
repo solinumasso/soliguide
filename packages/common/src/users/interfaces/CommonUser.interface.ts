@@ -47,7 +47,7 @@ export interface CommonUser {
   territories: AnyDepartmentCode[];
   translator: boolean;
   verifiedAt: Date | null;
-  campaigns: any;
+
   invitations: any[];
   organizations: any[];
   areas?: OperationalAreas;

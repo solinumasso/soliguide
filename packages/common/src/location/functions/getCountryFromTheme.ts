@@ -18,41 +18,16 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { UserStatus } from "@soliguide/common";
-import { ModelWithId, User } from "../../_models";
+import { Themes } from "../../themes";
+import { CountryCodes } from "../enums";
 
-export const DEFAULT_USER_PROPS: Pick<
-  ModelWithId<User>,
-  | "blocked"
-  | "categoriesLimitations"
-  | "devToken"
-  | "invitations"
-  | "languages"
-  | "organizations"
-  | "passwordToken"
-  | "phone"
-  | "selectedOrgaIndex"
-  | "status"
-  | "territories"
-  | "title"
-  | "translator"
-  | "verified"
-  | "verifiedAt"
-> = {
-  blocked: false,
-
-  categoriesLimitations: [],
-  devToken: null,
-  invitations: [],
-  languages: [],
-  organizations: [],
-  passwordToken: null,
-  phone: null,
-  selectedOrgaIndex: 0,
-  status: UserStatus.SIMPLE_USER,
-  territories: [],
-  title: null,
-  translator: false,
-  verified: false,
-  verifiedAt: null,
+export const getCountryFromTheme = (theme: Themes): CountryCodes => {
+  const countryCode = theme.split("_").pop();
+  if (
+    countryCode &&
+    Object.values(CountryCodes).includes(countryCode as CountryCodes)
+  ) {
+    return countryCode as CountryCodes;
+  }
+  return CountryCodes.FR;
 };
