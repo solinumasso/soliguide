@@ -32,7 +32,7 @@ export class LastLoginBadgeDirective implements OnInit {
 
   constructor(
     private el: ElementRef,
-    private translateService: TranslateService,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit() {
@@ -48,10 +48,7 @@ export class LastLoginBadgeDirective implements OnInit {
       return "status-danger";
     }
 
-    const monthsDiff = differenceInMonths(
-      new Date(),
-      new Date(this.lastLogin),
-    );
+    const monthsDiff = differenceInMonths(new Date(), new Date(this.lastLogin));
     return monthsDiff > 3 ? "status-danger" : "status-success";
   }
 
