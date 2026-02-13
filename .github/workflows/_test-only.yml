@@ -1,0 +1,176 @@
+# Soliguide: Useful information for those who need it
+#
+# SPDX-FileCopyrightText: © 2024 Solinum
+#
+# SPDX-License-Identifier: AGPL-3.0-only
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+name: _Test only (no build)
+
+on:
+  workflow_call:
+    inputs:
+      docker_tag:
+        description: 'Docker tag to test (e.g., develop, pr-123)'
+        type: string
+        required: true
+      test_api:
+        type: boolean
+        default: true
+      test_common:
+        type: boolean
+        default: true
+      test_common-angular:
+        type: boolean
+        default: true
+      test_design-system:
+        type: boolean
+        default: true
+      test_frontend:
+        type: boolean
+        default: true
+      test_location-api:
+        type: boolean
+        default: true
+      test_soligare:
+        type: boolean
+        default: true
+      test_web-app:
+        type: boolean
+        default: true
+      test_widget:
+        type: boolean
+        default: true
+
+concurrency:
+  group: ${{ github.workflow }}-test-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  # Test jobs pull images built previously
+  test-api:
+    if: ${{ inputs.test_api }}
+    uses: ./.github/workflows/_test-package.yml
+    with:
+      package: api
+      docker_image: ${{ github.event.repository.full_name }}/api:${{ inputs.docker_tag }}-test
+      docker_compose_services: minio mongodb
+    secrets: inherit
+
+  test-common:
+    if: ${{ inputs.test_common }}
+    uses: ./.github/workflows/_test-package.yml
+    with:
+      package: common
+      docker_image: ${{ github.event.repository.full_name }}/common:${{ inputs.docker_tag }}-test
+    secrets: inherit
+
+  test-common-angular:
+    if: ${{ inputs.test_common-angular }}
+    uses: ./.github/workflows/_test-package.yml
+    with:
+      package: common-angular
+      docker_image: ${{ github.event.repository.full_name }}/common-angular:${{ inputs.docker_tag }}-test
+    secrets: inherit
+
+  test-design-system:
+    if: ${{ inputs.test_design-system }}
+    uses: ./.github/workflows/_test-package.yml
+    with:
+      package: design-system
+      docker_image: ${{ github.event.repository.full_name }}/design-system:${{ inputs.docker_tag }}-test
+    secrets: inherit
+
+  test-frontend:
+    if: ${{ inputs.test_frontend }}
+    uses: ./.github/workflows/_test-package.yml
+    with:
+      package: frontend
+      docker_image: ${{ github.event.repository.full_name }}/frontend:${{ inputs.docker_tag }}-test
+    secrets: inherit
+
+  test-location-api:
+    if: ${{ inputs.test_location-api }}
+    uses: ./.github/workflows/_test-package.yml
+    with:
+      package: location-api
+      docker_image: ${{ github.event.repository.full_name }}/location-api:${{ inputs.docker_tag }}-test
+      docker_compose_services: redis
+    secrets: inherit
+
+  test-soligare:
+    if: ${{ inputs.test_soligare }}
+    uses: ./.github/workflows/_test-package.yml
+    with:
+      package: soligare
+      docker_image: ${{ github.event.repository.full_name }}/soligare:${{ inputs.docker_tag }}-test
+      docker_compose_services: postgres
+    secrets: inherit
+
+  test-web-app:
+    if: ${{ inputs.test_web-app }}
+    uses: ./.github/workflows/_test-package.yml
+    with:
+      package: web-app
+      docker_image: ${{ github.event.repository.full_name }}/web-app:${{ inputs.docker_tag }}-test
+    secrets: inherit
+
+  test-widget:
+    if: ${{ inputs.test_widget }}
+    uses: ./.github/workflows/_test-package.yml
+    with:
+      package: widget
+      docker_image: ${{ github.event.repository.full_name }}/widget:${{ inputs.docker_tag }}-test
+    secrets: inherit
+
+  # Coverage reporting
+  coverage:
+    name: Send test coverage reports to Deepsource
+    runs-on: ubuntu-latest
+    if: ${{ always() }}
+    needs:
+      - test-api
+      - test-common
+      - test-common-angular
+      - test-design-system
+      - test-frontend
+      - test-location-api
+      - test-soligare
+      - test-web-app
+      - test-widget
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download all coverage artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: coverage
+
+      - name: Report test coverage to Deepsource
+        continue-on-error: true
+        run: |
+          curl https://deepsource.io/cli | sh
+          for package in api common common-angular design-system frontend location-api soligare web-app widget; do
+            if [ -f "coverage/${package}-coverage/cobertura-coverage.xml" ]; then
+              ./bin/deepsource report --analyzer test-coverage \
+                --key javascript \
+                --value-file "coverage/${package}-coverage/cobertura-coverage.xml"
+            fi
+          done
+        env:
+          DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}

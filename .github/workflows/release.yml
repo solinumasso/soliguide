@@ -31,16 +31,38 @@ jobs:
   commitlint:
     uses: ./.github/workflows/_commitlint.yml
 
-  all:
-    uses: ./.github/workflows/_build-and-test.yml
+  # Build all packages for release candidate
+  build:
+    name: Build all packages
+    uses: ./.github/workflows/_build.yml
     needs:
       - commitlint
+    secrets: inherit
+
+  # Test using pre-built images (blocking for release)
+  test:
+    name: Test all packages
+    uses: ./.github/workflows/_test-only.yml
+    with:
+      docker_tag: ${{ github.ref_name }}
+      test_api: true
+      test_common: true
+      test_common-angular: true
+      test_design-system: true
+      test_frontend: true
+      test_location-api: true
+      test_soligare: true
+      test_web-app: true
+      test_widget: true
+    needs:
+      - build
     secrets: inherit
 
   deploy:
     name: Deploy to staging
     needs:
-      - all
+      - build
+      - test
     uses: ./.github/workflows/_deploy-to-environment.yml
     with:
       environment: staging

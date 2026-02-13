@@ -113,13 +113,10 @@ jobs:
           sudo apt-get update
           sudo apt-get -y install parallel
 
-      - name: Create a brand new branch from scratch
+      - name: Configure git for Clever Cloud deployment
         run: |
-          git checkout --orphan cc
           git config --global user.email tech@solinum.org
           git config --global user.name ${{ github.actor }}
-          git add -A
-          git commit -m "Commit for Clever Cloud" || echo "Nothing to commit"
 
       - name: Install SSH key
         run: |
