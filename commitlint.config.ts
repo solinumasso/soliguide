@@ -47,8 +47,9 @@ const Configuration: UserConfig = {
       ],
     ],
     // Add additional scopes beyond lerna scopes (project names)
+    // Changed to warning level (1) instead of error (2) to be more permissive
     "scope-enum": [
-      2,
+      1,
       "always",
       [
         // Additional general scopes
@@ -67,6 +68,10 @@ const Configuration: UserConfig = {
         "icons-generator",
       ],
     ],
+    // Make scope optional instead of required
+    "scope-empty": [0],
+    // Allow subject to start with uppercase (for version tags like "V5.0.0")
+    "subject-case": [0],
   },
 };
 export default Configuration;
