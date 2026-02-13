@@ -59,6 +59,7 @@ export const CONTACTS_FOR_ONE_PLACE: UserRightUserPopulate[] = [
       territories: [],
       verified: true,
       invitations: [],
+      lastLogin: new Date("2021-10-01T12:26:33.760Z"),
       phone: {
         label: null,
         phoneNumber: "0606060606",
@@ -114,6 +115,7 @@ export const CONTACTS_FOR_ONE_PLACE: UserRightUserPopulate[] = [
     user: {
       _id: new mongoose.Types.ObjectId("5fd78bb917e8c5648075c785"),
       lastname: "John",
+      lastLogin: new Date("2021-10-01T12:26:33.760Z"),
       mail: "johndoe@soliguide.dev",
       name: "DOE",
       phone: {
