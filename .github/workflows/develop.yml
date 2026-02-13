@@ -76,6 +76,7 @@ jobs:
       test_design-system: ${{ contains(needs.build.outputs.to_deploy, 'design-system') }}
       test_frontend: ${{ contains(needs.build.outputs.to_deploy, 'frontend') }}
       test_location-api: ${{ contains(needs.build.outputs.to_deploy, 'location-api') }}
+      test_maintenance: ${{ contains(needs.build.outputs.to_deploy, 'maintenance') }}
       test_soligare: ${{ contains(needs.build.outputs.to_deploy, 'soligare') }}
       test_web-app: ${{ contains(needs.build.outputs.to_deploy, 'web-app') }}
       test_widget: ${{ contains(needs.build.outputs.to_deploy, 'widget') }}

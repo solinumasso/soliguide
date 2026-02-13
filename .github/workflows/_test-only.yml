@@ -47,6 +47,9 @@ on:
       test_location-api:
         type: boolean
         default: true
+      test_maintenance:
+        type: boolean
+        default: true
       test_soligare:
         type: boolean
         default: true
@@ -239,6 +242,42 @@ jobs:
           path: /app/packages/location-api/coverage/cobertura-coverage.xml
           if-no-files-found: error
           retention-days: 1
+
+  test-maintenance-frontend:
+    name: Test maintenance frontend
+    if: ${{ inputs.test_maintenance }}
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.event.repository.full_name }}/maintenance:${{ inputs.docker_tag }}-frontend
+    permissions:
+      packages: read
+    defaults:
+      run:
+        working-directory: /etc/caddy/
+    steps:
+      - name: Validate Caddy configuration
+        run: caddy validate
+        env:
+          ANGULAR_FRONTEND_PROXY_URL: http://localhost:8080
+          WEB_APP_PROXY_URL: http://localhost:8081
+          WEB_APP_DOMAIN_REDIRECT_MOBILE: http://localhost:8081
+
+  test-maintenance-widget:
+    name: Test maintenance widget
+    if: ${{ inputs.test_maintenance }}
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.event.repository.full_name }}/maintenance:${{ inputs.docker_tag }}-widget
+    permissions:
+      packages: read
+    defaults:
+      run:
+        working-directory: /etc/caddy/
+    steps:
+      - name: Validate Caddy configuration
+        run: caddy validate
+        env:
+          ANGULAR_FRONTEND_PROXY_URL: http://localhost:8080
 
   test-soligare:
     name: Test soligare
