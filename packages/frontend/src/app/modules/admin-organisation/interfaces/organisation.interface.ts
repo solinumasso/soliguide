@@ -62,6 +62,7 @@ export class Organisation implements Partial<ApiOrganization> {
 
   public isCampaignActive: boolean;
   public areas: OperationalAreas;
+  public lastLogin: Date | null;
 
   constructor(organisation?: Partial<ApiOrganization>, populate = false) {
     this.organization_id = null;
@@ -105,6 +106,7 @@ export class Organisation implements Partial<ApiOrganization> {
     );
     this.priority = organisation?.priority ?? false;
     this.createdAt = organisation?.createdAt ?? new Date();
+    this.lastLogin = organisation?.lastLogin ?? null;
     this.relations = organisation?.relations ?? [];
     if (populate) {
       this.invitations = this.invitations.filter(
