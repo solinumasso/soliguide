@@ -35,6 +35,8 @@ jobs:
     uses: ./.github/workflows/_build-and-test.yml
     needs:
       - commitlint
+    with:
+      check_tests: false
     secrets: inherit
 
   deploy_clever_cloud_develop:

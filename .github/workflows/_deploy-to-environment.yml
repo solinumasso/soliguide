@@ -118,7 +118,8 @@ jobs:
           git checkout --orphan cc
           git config --global user.email tech@solinum.org
           git config --global user.name ${{ github.actor }}
-          git commit -m "Commit for Clever Cloud"
+          git add -A
+          git commit -m "Commit for Clever Cloud" || echo "Nothing to commit"
 
       - name: Install SSH key
         run: |
@@ -186,7 +187,18 @@ jobs:
           git remote add clever-widget git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.WIDGET_APP_ID }}.git
           echo clever-widget >>./remotes-to-deploy-to.txt
 
+      - name: Verify branch and remotes before deployment
+        run: |
+          echo "Current branch:"
+          git branch
+          echo -e "\nCommit info:"
+          git log -1 --oneline
+          echo -e "\nRemotes to deploy:"
+          cat ./remotes-to-deploy-to.txt
+          echo -e "\nGit remotes:"
+          git remote -v | grep clever
+
       - name: Deploy all apps to Clever Cloud
         # Run in parallel 4 git push and retries twice if it fails
         run: |
-          cat ./remotes-to-deploy-to.txt | parallel --progress -j 4 --retries 2 git push -f {} HEAD:master
+          cat ./remotes-to-deploy-to.txt | parallel --no-notice --line-buffer --tagstring '{= $_.=substr($_,7); =}' -j 4 --retries 2 git push -f {} cc:master
