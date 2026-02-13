@@ -26,6 +26,7 @@ export const ABSTRACT_USER = {
   territories: ["93"],
   verified: true,
   translator: false,
+  lastLogin: new Date("2020-11-19T08:33:39.326Z"),
   createdAt: new Date("2020-11-19T08:33:39.326Z"),
   updatedAt: new Date("2021-03-31T16:08:46.215Z"),
 };

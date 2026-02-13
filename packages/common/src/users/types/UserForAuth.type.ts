@@ -38,6 +38,7 @@ export type UserForAuth = Pick<
   | "translator"
   | "user_id"
   | "areas"
+  | "lastLogin"
   | "verified"
 > &
   Required<{

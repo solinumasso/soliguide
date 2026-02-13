@@ -25,6 +25,7 @@ export const COMMON_USER_PRO: CommonUser = {
   createdAt: new Date(),
   updatedAt: new Date(),
   verifiedAt: new Date(),
+  lastLogin: new Date(),
   invitations: [],
   blocked: false,
   password: "xx",
