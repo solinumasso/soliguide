@@ -45,6 +45,7 @@ jobs:
     uses: ./.github/workflows/_test-only.yml
     with:
       docker_tag: ${{ github.ref_name }}
+      node_version: ${{ needs.build.outputs.node_version }}
       test_api: true
       test_common: true
       test_common-angular: true

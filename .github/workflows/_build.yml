@@ -45,6 +45,9 @@ on:
       deploy_widget:
         description: 'Whether to deploy Widget'
         value: ${{ jobs.affected_packages.outputs.widget_dependencies }}
+      node_version:
+        description: 'Node version used for builds and tests'
+        value: ${{ jobs.affected_packages.outputs.node_version }}
 
 concurrency:
   group: ${{ github.workflow }}-build-${{ github.ref }}

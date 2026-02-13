@@ -25,6 +25,10 @@ on:
         description: 'Docker tag to test (e.g., develop, pr-123)'
         type: string
         required: true
+      node_version:
+        description: 'Node version for cache keys'
+        type: string
+        required: true
       test_api:
         type: boolean
         default: true
@@ -67,8 +71,8 @@ jobs:
     uses: ./.github/workflows/_test-package.yml
     with:
       package: api
-      docker_image: ${{ github.event.repository.full_name }}/api:${{ inputs.docker_tag }}-test
-      docker_compose_services: minio mongodb
+      container_image: ${{ github.event.repository.full_name }}/api:${{ inputs.docker_tag }}-test
+      node_version: ${{ inputs.node_version }}
     secrets: inherit
 
   test-common:
@@ -76,7 +80,8 @@ jobs:
     uses: ./.github/workflows/_test-package.yml
     with:
       package: common
-      docker_image: ${{ github.event.repository.full_name }}/common:${{ inputs.docker_tag }}-test
+      container_image: ${{ github.event.repository.full_name }}/common:${{ inputs.docker_tag }}-test
+      node_version: ${{ inputs.node_version }}
     secrets: inherit
 
   test-common-angular:
@@ -84,7 +89,8 @@ jobs:
     uses: ./.github/workflows/_test-package.yml
     with:
       package: common-angular
-      docker_image: ${{ github.event.repository.full_name }}/common-angular:${{ inputs.docker_tag }}-test
+      container_image: ${{ github.event.repository.full_name }}/common-angular:${{ inputs.docker_tag }}-test
+      node_version: ${{ inputs.node_version }}
     secrets: inherit
 
   test-design-system:
@@ -92,7 +98,8 @@ jobs:
     uses: ./.github/workflows/_test-package.yml
     with:
       package: design-system
-      docker_image: ${{ github.event.repository.full_name }}/design-system:${{ inputs.docker_tag }}-test
+      container_image: ${{ github.event.repository.full_name }}/design-system:${{ inputs.docker_tag }}-test
+      node_version: ${{ inputs.node_version }}
     secrets: inherit
 
   test-frontend:
@@ -100,7 +107,8 @@ jobs:
     uses: ./.github/workflows/_test-package.yml
     with:
       package: frontend
-      docker_image: ${{ github.event.repository.full_name }}/frontend:${{ inputs.docker_tag }}-test
+      container_image: ${{ github.event.repository.full_name }}/frontend:${{ inputs.docker_tag }}-test
+      node_version: ${{ inputs.node_version }}
     secrets: inherit
 
   test-location-api:
@@ -108,8 +116,8 @@ jobs:
     uses: ./.github/workflows/_test-package.yml
     with:
       package: location-api
-      docker_image: ${{ github.event.repository.full_name }}/location-api:${{ inputs.docker_tag }}-test
-      docker_compose_services: redis
+      container_image: ${{ github.event.repository.full_name }}/location-api:${{ inputs.docker_tag }}-test
+      node_version: ${{ inputs.node_version }}
     secrets: inherit
 
   test-soligare:
@@ -117,8 +125,8 @@ jobs:
     uses: ./.github/workflows/_test-package.yml
     with:
       package: soligare
-      docker_image: ${{ github.event.repository.full_name }}/soligare:${{ inputs.docker_tag }}-test
-      docker_compose_services: postgres
+      container_image: ${{ github.event.repository.full_name }}/soligare:${{ inputs.docker_tag }}-test
+      node_version: ${{ inputs.node_version }}
     secrets: inherit
 
   test-web-app:
@@ -126,7 +134,8 @@ jobs:
     uses: ./.github/workflows/_test-package.yml
     with:
       package: web-app
-      docker_image: ${{ github.event.repository.full_name }}/web-app:${{ inputs.docker_tag }}-test
+      container_image: ${{ github.event.repository.full_name }}/web-app:${{ inputs.docker_tag }}-test
+      node_version: ${{ inputs.node_version }}
     secrets: inherit
 
   test-widget:
@@ -134,7 +143,8 @@ jobs:
     uses: ./.github/workflows/_test-package.yml
     with:
       package: widget
-      docker_image: ${{ github.event.repository.full_name }}/widget:${{ inputs.docker_tag }}-test
+      container_image: ${{ github.event.repository.full_name }}/widget:${{ inputs.docker_tag }}-test
+      node_version: ${{ inputs.node_version }}
     secrets: inherit
 
   # Coverage reporting

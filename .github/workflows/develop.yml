@@ -69,6 +69,7 @@ jobs:
     uses: ./.github/workflows/_test-only.yml
     with:
       docker_tag: develop
+      node_version: ${{ needs.build.outputs.node_version }}
       test_api: ${{ contains(needs.build.outputs.to_deploy, 'api') }}
       test_common: ${{ contains(needs.build.outputs.to_deploy, 'common') }}
       test_common-angular: ${{ contains(needs.build.outputs.to_deploy, 'common-angular') }}
