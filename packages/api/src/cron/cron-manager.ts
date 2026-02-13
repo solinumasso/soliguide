@@ -1,131 +1,70 @@
-/*
- * Soliguide: Useful information for those who need it
- *
- * SPDX-FileCopyrightText: © 2024 Solinum
- *
- * SPDX-License-Identifier: AGPL-3.0-only
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
-// Import first to make it tracks as much as possible
-// see https://docs.sentry.io/platforms/javascript/guides/express/install/esm-without-import/
 import "../instrument";
 
-import Bree from "bree";
-import { join } from "node:path";
+import { CronJob } from "cron";
+import * as Sentry from "@sentry/node";
 import { logger } from "../general/logger";
 
-const defaultExtension =
-  __filename.split(".").pop() === "ts" ? ".ts" : "" + ".js";
+import { setOfflineJob } from "./jobs/fiches/set-offline.job";
+import { setIsOpenTodayJob } from "./jobs/fiches/set-isOpenToday.job";
+import { setCurrentTempInfoJob } from "./jobs/fiches/set-current-temp-info.job";
+import { unsetObsoleteTempInfoJob } from "./jobs/fiches/unset-obsolete-temp-info.job";
 
-const bree = new Bree({
-  /**
-   * Always set the root option when doing any type of
-   * compiling with bree. This just makes it clearer where
-   * bree should resolve the jobs folder from. By default it
-   * resolves to the jobs folder relative to where the program
-   * is executed.
-   */
-  root: join(__dirname, "jobs"),
+export const Schedule = {
+  EVERY_MINUTE: "* * * * *",
+  EVERY_5_MINUTES: "*/5 * * * *",
+  EVERY_15_MINUTES: "*/15 * * * *",
+  EVERY_30_MINUTES: "*/30 * * * *",
+  EVERY_HOUR: "0 * * * *",
+  EVERY_DAY_AT_MIDNIGHT: "0 0 * * *",
+  EVERY_DAY_AT_1AM: "0 1 * * *",
+  EVERY_DAY_AT_2AM: "0 2 * * *",
+  EVERY_DAY_AT_3AM: "0 3 * * *",
+  EVERY_DAY_AT_4AM: "0 4 * * *",
+  EVERY_DAY_AT_5AM: "0 5 * * *",
+  EVERY_DAY_AT_6AM: "0 6 * * *",
+  EVERY_MONDAY_AT_9AM: "0 9 * * 1",
+  EVERY_WEEK: "0 0 * * 0",
+  EVERY_MONTH: "0 0 1 * *",
+} as const;
 
-  logger: {
-    info: (msg) => logger.info(msg),
-    warn: (msg) => logger.warn(msg),
-    error: (msg) => logger.error(msg),
-  },
+function createMonitoredCron(
+  slug: string,
+  schedule: string,
+  jobFn: () => Promise<void>
+) {
+  const MonitoredCronJob = Sentry.cron.instrumentCron(CronJob, slug);
 
-  jobs: [
-    // ----
-    // TRANSLATIONS
-    // {
-    //   interval: "every 2 minutes",
-    //   name: "[TRANSLATION] Translates text elements thanks to GTranslate API",
-    //   path: join(
-    //     __dirname,
-    //     "jobs",
-    //     "translations",
-    //     `translate-fields.job${defaultExtension}`
-    //   ),
-    // },
-    // ----
-    // PLACES
-    {
-      interval: "at 3:00 am",
-      name: "[PLACES] Set un-updated places offline",
-      path: join(
-        __dirname,
-        "jobs",
-        "fiches",
-        `set-offline.job${defaultExtension}`
-      ),
-    },
-    {
-      interval: "at 3:50 am",
-      name: "[PLACES] Unset obsolete temporary information on places",
-      path: join(
-        __dirname,
-        "jobs",
-        "fiches",
-        `unset-obsolete-temp-info.job${defaultExtension}`
-      ),
-    },
-    {
-      interval: "at 3:15 am",
-      name: "[PLACES] Set current temporary information on places",
-      path: join(
-        __dirname,
-        "jobs",
-        "fiches",
-        `set-current-temp-info.job${defaultExtension}`
-      ),
-    },
-    {
-      interval: "at 1:00 am",
-      name: "[PLACES] Set isOpenToday on places",
-      path: join(
-        __dirname,
-        "jobs",
-        "fiches",
-        `set-isOpenToday.job${defaultExtension}`
-      ),
-    },
-    // ----
-    // CAMPAIGN
-    // {
-    //   interval: "at 9:00 am",
-    //   name: "[MAILGUN] Send remind me emails",
-    //   path: join(
-    //     __dirname,
-    //     "jobs",
-    //     "emailing",
-    //     `send-remind-me-emails.job${defaultExtension}`
-    //   ),
-    // },
-    // {
-    //   interval: "every 1 minute",
-    //   name: "[MAILGUN] Send Emails",
-    //   path: join(
-    //     __dirname,
-    //     "jobs",
-    //     "emailing",
-    //     `send-campaign-emails.job${defaultExtension}`
-    //   ),
-    // },
-  ],
-});
+  MonitoredCronJob.from({
+    cronTime: schedule,
+    onTick: jobFn,
+    start: true,
+    timeZone: "Europe/Paris",
+  });
 
-// start all jobs (this is the equivalent of reloading a crontab):
-(async () => {
-  await bree.start();
-})();
+  logger.info(`Cron registered: ${slug} (${schedule})`);
+}
+
+export function initializeCronJobs() {
+  logger.info("Initializing cron jobs with Sentry monitoring");
+
+  createMonitoredCron(
+    "set-current-temp-info",
+    Schedule.EVERY_DAY_AT_1AM,
+    setCurrentTempInfoJob
+  );
+
+  createMonitoredCron(
+    "unset-obsolete-temp-info",
+    Schedule.EVERY_DAY_AT_2AM,
+    unsetObsoleteTempInfoJob
+  );
+  createMonitoredCron(
+    "set-is-open-today",
+    Schedule.EVERY_DAY_AT_4AM,
+    setIsOpenTodayJob
+  );
+
+  createMonitoredCron("set-offline", Schedule.EVERY_DAY_AT_3AM, setOfflineJob);
+
+  logger.info("All cron jobs initialized successfully");
+}
