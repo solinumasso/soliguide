@@ -58,6 +58,8 @@ describe.each(Object.values(TestAccounts))(
   "Test of the route 'photos'",
   (currentAccountTest) => {
     describe(`POST /photos/ ${currentAccountTest}`, () => {
+      // Augmenter le timeout pour les tests d'upload de fichiers (60s)
+      jest.setTimeout(60000);
       afterEach(deletePlacePictures);
       test("✅ Correct data", async () => {
         // Successful test
@@ -98,6 +100,8 @@ describe.each(Object.values(TestAccounts))(
     });
 
     describe(`DELETE /photos/ ${currentAccountTest}`, () => {
+      // Augmenter le timeout pour les tests d'upload de fichiers (60s)
+      jest.setTimeout(60000);
       beforeEach(async () => {
         await postValidPicture(TestAccounts.USER_ADMIN_SOLIGUIDE);
       });

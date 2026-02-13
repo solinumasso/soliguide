@@ -35,6 +35,7 @@ export const USER_PRO_MOCK: UserForAuth = {
   lastname: "Nom-pro",
   mail: "mail-user-pro@structure.fr",
   name: "Marcel",
+  lastLogin: new Date(),
   organizations: [
     new Organisation({
       _id: "5fb648823cb90874d9ab1bef",
