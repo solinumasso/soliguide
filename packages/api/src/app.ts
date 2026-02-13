@@ -48,7 +48,6 @@ import {
   handleRequest,
   setUserForLogs,
   handleAdminRight,
-  originGuard,
   handleApiRight,
 } from "./middleware";
 
@@ -109,6 +108,7 @@ import { serve, setup } from "swagger-ui-express";
 import autocompleteSuggestionService from "./search/services/search-suggestions.service";
 import SearchSuggestionsController from "./search/controllers/search-suggestions.controller";
 import { CountryCodes, SupportedLanguagesCode } from "@soliguide/common";
+import { initializeCronJobs } from "./cron/cron-manager";
 
 const _app = express();
 
@@ -177,17 +177,9 @@ Disallow: /`);
 // First middlewares
 _app.use([
   getCurrentUser, // retrieve current user
-  handleRequest, // retrieve request informations like origin, referer, ...
+  handleRequest, // retrieve request informations like origin, referer, and validates origin for non-public routes
   setUserForLogs, // create a user for Log
 ]);
-
-_app.use((req: ExpressRequest, res, next) => {
-  if (isPublicRoute(req.path)) {
-    next();
-  } else {
-    originGuard(req, res, next);
-  }
-});
 
 // Auth middlewares
 _app.use([
@@ -273,7 +265,7 @@ _app.use((req: Request, res: Response) => {
       SupportedLanguagesCode.FR
     );
     if (CONFIG.ENV !== "test" && CONFIG.CRON_ENABLED) {
-      await import("./cron/cron-manager");
+      initializeCronJobs();
     }
 
     if (CONFIG.ENV !== "prod" && CONFIG.ENV !== "test" && CONFIG.DEV_ANON) {

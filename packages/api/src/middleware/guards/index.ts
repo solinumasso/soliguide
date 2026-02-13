@@ -24,7 +24,6 @@ export * from "./auth.guard";
 export * from "./invitations.guard";
 export * from "./media.guard";
 export * from "./organizations.guard";
-export * from "./origin.guard";
 export * from "./passwords.guard";
 export * from "./place-changes.guard";
 export * from "./places.guard";
