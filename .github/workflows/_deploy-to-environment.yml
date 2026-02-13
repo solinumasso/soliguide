@@ -201,4 +201,4 @@ jobs:
       - name: Deploy all apps to Clever Cloud
         # Run in parallel 4 git push and retries twice if it fails
         run: |
-          cat ./remotes-to-deploy-to.txt | parallel --no-notice --line-buffer --tagstring '{= $_.=substr($_,7); =}' -j 4 --retries 2 git push -f {} cc:master
+          cat ./remotes-to-deploy-to.txt | parallel --no-notice --line-buffer --tagstring '{= $_.=substr($_,7); =}' -j 4 --retries 2 git push -f {} HEAD:master
