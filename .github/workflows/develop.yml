@@ -40,10 +40,10 @@ jobs:
 
   # Dès que le build est OK, on déploie ET on teste en parallèle
   deploy_clever_cloud:
-    name: Deploy to Clever Cloud (develop)
+    name: Deploy to Clever Cloud (staging)
     uses: ./.github/workflows/_deploy-to-environment.yml
     with:
-      environment: develop
+      environment: staging
     needs:
       - build
     secrets: inherit

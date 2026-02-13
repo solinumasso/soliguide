@@ -231,8 +231,16 @@ test(location-api): add tests for geocoding service
 ### Environments
 
 - **Local**: Dev environment with Docker Compose
-- **Demo**: Release testing (`fr.demo.soliguide.dev`)
-- **Production**: `soliguide.fr`
+- **Staging**: Clever Cloud staging (`*.staging.soliguide.dev`)
+- **Demo**: Qovery test environment (`*.demo.soliguide.dev`) - deployed from develop branch
+- **Production**: Clever Cloud prod (`soliguide.fr`, `soliguia.es`, `soliguia.cat`, `soliguia.ad`)
+
+#### Accessing PR Environment URLs
+
+After deployment, environment URLs are available in the PR via **GitHub Deployments** (not public comments):
+- Go to your PR
+- Scroll to the "Deployments" section
+- Click on the environment to see all URLs
 
 ## Important Development Notes
 
