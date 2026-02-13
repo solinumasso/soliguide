@@ -236,6 +236,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               [searchField]="'createdAt'"
             ></app-manage-sort-icon>
           </th>
+          <th scope="col">{{ "LAST_CONNECTION" | translate }}</th>
           <th scope="col">{{ "ORGANIZATIONS" | translate }}</th>
           <th scope="col">{{ "INVITATIONS" | translate }}</th>
           <th scope="col" class="actions">{{ "ACTIONS" | translate }}</th>
@@ -292,6 +293,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
           <td>
             {{ user.createdAt | dateProxy : "short" }}
+          </td>
+
+          <td>
+            <span appLastLoginBadge [lastLogin]="user.lastLogin"></span>
           </td>
 
           <td>

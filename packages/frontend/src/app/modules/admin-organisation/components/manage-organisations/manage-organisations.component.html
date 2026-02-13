@@ -314,6 +314,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             [searchField]="'createdAt'"
           ></app-manage-sort-icon>
         </th>
+        <th scope="col">{{ "LAST_CONNECTION" | translate }}</th>
       </tr>
     </thead>
     <tbody>
@@ -581,6 +582,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         </td>
         <td class="text-center" appTextDirection>
           {{ orga.createdAt | dateProxy }}
+        </td>
+        <td>
+          <span appLastLoginBadge [lastLogin]="orga.lastLogin"></span>
         </td>
       </tr>
     </tbody>
