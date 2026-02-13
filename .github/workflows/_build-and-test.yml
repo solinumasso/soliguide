@@ -25,6 +25,13 @@ on:
         description: 'Whether to check tests in gatekeeper'
         type: boolean
         default: true
+    outputs:
+      to_deploy:
+        description: 'List of packages to deploy'
+        value: ${{ jobs.affected_packages.outputs.to_deploy }}
+      to_build:
+        description: 'List of packages to build'
+        value: ${{ jobs.affected_packages.outputs.to_build }}
 
 concurrency:
   group: ${{ github.workflow }}-build-${{ github.ref }}
@@ -207,30 +214,6 @@ jobs:
     needs:
       - affected_packages
       - build-common-angular
-
-  update_qovery_environment:
-    name: Update Qovery environment with new tags
-    if: ${{ github.ref == 'refs/heads/develop' && always() }}
-    uses: ./.github/workflows/_deploy-to-test-qovery.yml
-    with:
-      deploy_api: ${{ contains(needs.affected_packages.outputs.to_deploy, 'api') }}
-      deploy_frontend: ${{ contains(needs.affected_packages.outputs.to_deploy, 'frontend') }}
-      deploy_location-api: ${{ contains(needs.affected_packages.outputs.to_deploy, 'location-api') }}
-      deploy_soligare: ${{ contains(needs.affected_packages.outputs.to_deploy, 'soligare') }}
-      deploy_web-app: ${{ contains(needs.affected_packages.outputs.to_deploy, 'web-app') }}
-      deploy_widget: ${{ contains(needs.affected_packages.outputs.to_deploy, 'widget') }}
-      create: true
-    needs:
-      - affected_packages
-      - build-api
-      - build-design-system
-      - build-frontend
-      - build-location-api
-      - build-maintenance
-      - build-soligare
-      - build-web-app
-      - build-widget
-    secrets: inherit
 
   test-api:
     name: Test API

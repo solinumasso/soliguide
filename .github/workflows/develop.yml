@@ -31,19 +31,45 @@ jobs:
   commitlint:
     uses: ./.github/workflows/_commitlint.yml
 
-  all:
-    uses: ./.github/workflows/_build-and-test.yml
+  build:
+    name: Build all packages
+    uses: ./.github/workflows/_build.yml
     needs:
       - commitlint
-    with:
-      check_tests: false
     secrets: inherit
 
-  deploy_clever_cloud_develop:
+  # Dès que les builds sont OK, on déploie en parallèle sur Clever Cloud et Qovery
+  deploy_clever_cloud:
     name: Deploy to Clever Cloud (develop)
     uses: ./.github/workflows/_deploy-to-environment.yml
     with:
       environment: develop
     needs:
-      - all
+      - build
+    secrets: inherit
+
+  deploy_qovery:
+    name: Deploy to Qovery (develop)
+    uses: ./.github/workflows/_deploy-to-test-qovery.yml
+    with:
+      deploy_api: ${{ contains(needs.build.outputs.to_deploy, 'api') }}
+      deploy_frontend: ${{ contains(needs.build.outputs.to_deploy, 'frontend') }}
+      deploy_location-api: ${{ contains(needs.build.outputs.to_deploy, 'location-api') }}
+      deploy_soligare: ${{ contains(needs.build.outputs.to_deploy, 'soligare') }}
+      deploy_web-app: ${{ contains(needs.build.outputs.to_deploy, 'web-app') }}
+      deploy_widget: ${{ contains(needs.build.outputs.to_deploy, 'widget') }}
+      create: true
+    needs:
+      - build
+    secrets: inherit
+
+  # Les tests s'exécutent en parallèle (non-bloquants, incluant DeepSource)
+  test:
+    name: Run all tests (non-blocking)
+    uses: ./.github/workflows/_build-and-test.yml
+    if: ${{ always() }}
+    needs:
+      - build
+    with:
+      check_tests: false
     secrets: inherit
