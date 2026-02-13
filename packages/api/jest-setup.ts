@@ -32,7 +32,10 @@ logger.level = "silent";
 // Ignorer les erreurs EPIPE qui peuvent survenir pendant les tests
 // Ces erreurs sont souvent des race conditions inoffensives dans les tests
 process.on("uncaughtException", (err: Error) => {
-  if (err.message.includes("EPIPE") || err.message.includes("write after end")) {
+  if (
+    err.message.includes("EPIPE") ||
+    err.message.includes("write after end")
+  ) {
     // Ignorer silencieusement ces erreurs de pipe cassé
     return;
   }
@@ -42,7 +45,10 @@ process.on("uncaughtException", (err: Error) => {
 
 process.on("unhandledRejection", (reason: unknown) => {
   const err = reason as Error;
-  if (err?.message?.includes("EPIPE") || err?.message?.includes("write after end")) {
+  if (
+    err?.message?.includes("EPIPE") ||
+    err?.message?.includes("write after end")
+  ) {
     // Ignorer silencieusement ces erreurs de pipe cassé
     return;
   }
