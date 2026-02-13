@@ -1,0 +1,488 @@
+# Soliguide: Useful information for those who need it
+#
+# SPDX-FileCopyrightText: © 2024 Solinum
+#
+# SPDX-License-Identifier: AGPL-3.0-only
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+name: _Test only (no build)
+
+on:
+  workflow_call:
+    inputs:
+      docker_tag:
+        description: 'Docker tag to test (e.g., develop, pr-123)'
+        type: string
+        required: true
+      node_version:
+        description: 'Node version for cache keys'
+        type: string
+        required: true
+      test_api:
+        type: boolean
+        default: true
+      test_common:
+        type: boolean
+        default: true
+      test_common-angular:
+        type: boolean
+        default: true
+      test_design-system:
+        type: boolean
+        default: true
+      test_frontend:
+        type: boolean
+        default: true
+      test_location-api:
+        type: boolean
+        default: true
+      test_maintenance:
+        type: boolean
+        default: true
+      test_soligare:
+        type: boolean
+        default: true
+      test_web-app:
+        type: boolean
+        default: true
+      test_widget:
+        type: boolean
+        default: true
+
+concurrency:
+  group: ${{ github.workflow }}-test-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  # Test jobs pull images built previously
+  test-api:
+    name: Test API
+    if: ${{ inputs.test_api }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    env:
+      MONGODB_URI: mongodb://127.0.0.1:27017/soliguide_test?replicaSet=rs0
+      API_IMAGE: ghcr.io/${{ github.event.repository.full_name }}/api:${{ inputs.docker_tag }}-test
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Start MinIO and MongoDB
+        run: docker compose up -d minio mongodb
+
+      - name: Pull test image
+        run: docker pull "$API_IMAGE"
+
+      - name: Prettier cache
+        uses: actions/cache@v4
+        with:
+          path: packages/api/node_modules/.cache/prettier
+          key: ${{ runner.os }}-${{ inputs.node_version }}-prettiercache-api-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-${{ inputs.node_version }}-prettiercache-api-${{ github.base_ref }}
+            ${{ runner.os }}-${{ inputs.node_version }}-prettiercache-api-
+
+      - name: Format check
+        run: |
+          docker run \
+            -v ./packages/api/node_modules/.cache/prettier:/app/packages/api/node_modules/.cache/prettier \
+            "$API_IMAGE" \
+            yarn workspace @soliguide/api format
+
+      - name: Eslint cache
+        uses: actions/cache@v4
+        with:
+          path: packages/api/.eslintcache
+          key: ${{ runner.os }}-${{ inputs.node_version }}-eslintcache-api-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-${{ inputs.node_version }}-eslintcache-api-${{ github.base_ref }}
+            ${{ runner.os }}-${{ inputs.node_version }}-eslintcache-api-
+
+      - name: Lint
+        run: |
+          docker run \
+            -v ./packages/api/.eslintcache:/app/packages/api/.eslintcache \
+            "$API_IMAGE" \
+            yarn workspace @soliguide/api lint
+
+      - name: Wait for Mongo to be ready
+        timeout-minutes: 5
+        run: |
+          while [ "$(docker inspect --format='{{json .State.Health.Status}}' soliguide-mongodb-1)" != '"healthy"' ]; do
+            echo "Mongodb is not yet ready to accept connections"&>2
+            sleep 3s
+          done
+
+      - name: Create .env file for API
+        run: echo "MONGODB_URI=$MONGODB_URI" > packages/api/.env
+
+      - name: Restore API test data
+        run: ./packages/api/db.sh restore -tm full
+
+      - name: Migrate Mongo schema and test
+        run: |
+          docker run \
+            -v ./packages/api/coverage:/app/packages/api/coverage/ \
+            -e ENV=CI \
+            --network host \
+            "$API_IMAGE" \
+            sh -c 'yarn workspace @soliguide/api migrate-up && yarn workspace @soliguide/api test --coverage'
+
+      - name: Upload coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-api
+          path: ./packages/api/coverage/cobertura-coverage.xml
+          if-no-files-found: error
+          retention-days: 1
+
+  test-common:
+    if: ${{ inputs.test_common }}
+    uses: ./.github/workflows/_test-package.yml
+    with:
+      package: common
+      container_image: ghcr.io/${{ github.event.repository.full_name }}/common:${{ inputs.docker_tag }}-test
+      node_version: ${{ inputs.node_version }}
+    secrets: inherit
+
+  test-common-angular:
+    if: ${{ inputs.test_common-angular }}
+    uses: ./.github/workflows/_test-package.yml
+    with:
+      package: common-angular
+      container_image: ghcr.io/${{ github.event.repository.full_name }}/common-angular:${{ inputs.docker_tag }}-test
+      node_version: ${{ inputs.node_version }}
+    secrets: inherit
+
+  test-design-system:
+    if: ${{ inputs.test_design-system }}
+    uses: ./.github/workflows/_test-package.yml
+    with:
+      package: design-system
+      container_image: ghcr.io/${{ github.event.repository.full_name }}/design-system:${{ inputs.docker_tag }}-test
+      node_version: ${{ inputs.node_version }}
+    secrets: inherit
+
+  test-frontend:
+    if: ${{ inputs.test_frontend }}
+    uses: ./.github/workflows/_test-package.yml
+    with:
+      package: frontend
+      container_image: ghcr.io/${{ github.event.repository.full_name }}/frontend:${{ inputs.docker_tag }}-test
+      node_version: ${{ inputs.node_version }}
+    secrets: inherit
+
+  test-location-api:
+    name: Test location API
+    if: ${{ inputs.test_location-api }}
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.event.repository.full_name }}/location-api:${{ inputs.docker_tag }}-test
+    permissions:
+      packages: read
+    defaults:
+      run:
+        working-directory: /app
+    steps:
+      - name: Prettier cache
+        uses: actions/cache@v4
+        with:
+          path: packages/location-api/node_modules/.cache/prettier
+          key: ${{ runner.os }}-${{ inputs.node_version }}-prettiercache-location-api-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-${{ inputs.node_version }}-prettiercache-location-api-${{ github.base_ref }}
+            ${{ runner.os }}-${{ inputs.node_version }}-prettiercache-location-api-
+
+      - name: Format check
+        run: yarn workspace @soliguide/location-api format
+
+      - name: Eslint cache
+        uses: actions/cache@v4
+        with:
+          path: packages/location-api/.eslintcache
+          key: ${{ runner.os }}-${{ inputs.node_version }}-eslintcache-location-api-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-${{ inputs.node_version }}-eslintcache-location-api-${{ github.base_ref }}
+            ${{ runner.os }}-${{ inputs.node_version }}-eslintcache-location-api-
+
+      - name: Lint
+        run: yarn workspace @soliguide/location-api lint
+
+      - name: Test
+        run: yarn workspace @soliguide/location-api test --coverage
+        env:
+          HERE_API_KEY: ${{ secrets.HERE_API_KEY }}
+
+      - name: Upload coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-location-api
+          path: /app/packages/location-api/coverage/cobertura-coverage.xml
+          if-no-files-found: error
+          retention-days: 1
+
+  test-maintenance-frontend:
+    name: Test maintenance frontend
+    if: ${{ inputs.test_maintenance }}
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.event.repository.full_name }}/maintenance:${{ inputs.docker_tag }}-frontend
+    permissions:
+      packages: read
+    defaults:
+      run:
+        working-directory: /etc/caddy/
+    steps:
+      - name: Validate Caddy configuration
+        run: caddy validate
+        env:
+          ANGULAR_FRONTEND_PROXY_URL: http://localhost:8080
+          WEB_APP_PROXY_URL: http://localhost:8081
+          WEB_APP_DOMAIN_REDIRECT_MOBILE: http://localhost:8081
+
+  test-maintenance-widget:
+    name: Test maintenance widget
+    if: ${{ inputs.test_maintenance }}
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.event.repository.full_name }}/maintenance:${{ inputs.docker_tag }}-widget
+    permissions:
+      packages: read
+    defaults:
+      run:
+        working-directory: /etc/caddy/
+    steps:
+      - name: Validate Caddy configuration
+        run: caddy validate
+        env:
+          ANGULAR_FRONTEND_PROXY_URL: http://localhost:8080
+
+  test-soligare:
+    name: Test soligare
+    if: ${{ inputs.test_soligare }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    env:
+      SOLIGARE_IMAGE: ghcr.io/${{ github.event.repository.full_name }}/soligare:${{ inputs.docker_tag }}-test
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Start postgres
+        run: docker compose up -d postgres
+
+      - name: Pull test image
+        run: docker pull "$SOLIGARE_IMAGE"
+
+      - name: Prettier cache
+        uses: actions/cache@v4
+        with:
+          path: packages/soligare/node_modules/.cache/prettier
+          key: ${{ runner.os }}-${{ inputs.node_version }}-prettiercache-soligare-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-${{ inputs.node_version }}-prettiercache-soligare-${{ github.base_ref }}
+            ${{ runner.os }}-${{ inputs.node_version }}-prettiercache-soligare-
+
+      - name: Format check
+        run: |
+          docker run \
+            -v ./packages/soligare/node_modules/.cache/prettier:/app/packages/soligare/node_modules/.cache/prettier \
+            "$SOLIGARE_IMAGE" \
+            yarn workspace @soliguide/soligare format
+
+      - name: Eslint cache
+        uses: actions/cache@v4
+        with:
+          path: packages/soligare/.eslintcache
+          key: ${{ runner.os }}-${{ inputs.node_version }}-eslintcache-soligare-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-${{ inputs.node_version }}-eslintcache-soligare-${{ github.base_ref }}
+            ${{ runner.os }}-${{ inputs.node_version }}-eslintcache-soligare-
+
+      - name: Lint
+        run: |
+          docker run \
+            -v ./packages/soligare/.eslintcache:/app/packages/soligare/.eslintcache \
+            "$SOLIGARE_IMAGE" \
+            yarn workspace @soliguide/soligare lint
+
+      - name: Wait for Postgres to be ready
+        timeout-minutes: 5
+        run: |
+          while [ "$(docker inspect --format='{{json .State.Health.Status}}' soligare-postgres)" != '"healthy"' ]; do
+            echo "PostgreSQL is not yet ready to accept connections"&>2
+            sleep 3s
+          done
+
+      - name: Restore PostgreSQL test database
+        run: ./scripts/restore-soligare-db.sh --db=test
+        env:
+          POSTGRES_EXTERNAL_USERNAME: postgres
+          POSTGRES_EXTERNAL_PASSWORD: postgres
+          POSTGRES_EXTERNAL_HOST: 127.0.0.1
+          POSTGRES_EXTERNAL_PORT: 5432
+          POSTGRES_EXTERNAL_DATABASE: postgres
+
+      - name: Test
+        run: |
+          docker run \
+            -v ./packages/soligare/coverage/:/app/packages/soligare/coverage/ \
+            -e POSTGRES_EXTERNAL_USERNAME \
+            -e POSTGRES_EXTERNAL_PASSWORD \
+            -e POSTGRES_EXTERNAL_HOST \
+            -e POSTGRES_EXTERNAL_PORT \
+            -e POSTGRES_EXTERNAL_DATABASE \
+            --network soliguide_default \
+            "$SOLIGARE_IMAGE" \
+            yarn workspace @soliguide/soligare test --coverage
+        env:
+          POSTGRES_EXTERNAL_USERNAME: postgres
+          POSTGRES_EXTERNAL_PASSWORD: postgres
+          POSTGRES_EXTERNAL_HOST: postgres
+          POSTGRES_EXTERNAL_PORT: 5432
+          POSTGRES_EXTERNAL_DATABASE: postgres
+
+      - name: Upload coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-soligare
+          path: ./packages/soligare/coverage/cobertura-coverage.xml
+          if-no-files-found: error
+          retention-days: 1
+
+  test-web-app:
+    name: Test web app
+    if: ${{ inputs.test_web-app }}
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.event.repository.full_name }}/web-app:${{ inputs.docker_tag }}-test
+    permissions:
+      packages: read
+    defaults:
+      run:
+        working-directory: /app
+    steps:
+      - name: Prettier cache
+        uses: actions/cache@v4
+        with:
+          path: packages/web-app/node_modules/.cache/prettier
+          key: ${{ runner.os }}-${{ inputs.node_version }}-prettiercache-web-app-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-${{ inputs.node_version }}-prettiercache-web-app-${{ github.base_ref }}
+            ${{ runner.os }}-${{ inputs.node_version }}-prettiercache-web-app-
+
+      - name: Format check
+        run: yarn workspace @soliguide/web-app format
+
+      - name: Eslint cache
+        uses: actions/cache@v4
+        with:
+          path: packages/web-app/.eslintcache
+          key: ${{ runner.os }}-${{ inputs.node_version }}-eslintcache-web-app-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-${{ inputs.node_version }}-eslintcache-web-app-${{ github.base_ref }}
+            ${{ runner.os }}-${{ inputs.node_version }}-eslintcache-web-app-
+
+      - name: Lint
+        run: yarn workspace @soliguide/web-app lint
+
+      - name: Unit tests
+        run: yarn workspace @soliguide/web-app test:unit run --coverage
+
+      # - name: Integration tests
+      #   run: yarn workspace @soliguide/web-app test:integration
+      #   env:
+      #     PLAYWRIGHT_BROWSERS_PATH: /root/.cache/ms-playwright
+
+      - name: Upload coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-web-app
+          path: /app/packages/web-app/coverage/cobertura-coverage.xml
+          if-no-files-found: error
+          retention-days: 1
+
+  test-widget:
+    if: ${{ inputs.test_widget }}
+    uses: ./.github/workflows/_test-package.yml
+    with:
+      package: widget
+      container_image: ghcr.io/${{ github.event.repository.full_name }}/widget:${{ inputs.docker_tag }}-test
+      node_version: ${{ inputs.node_version }}
+    secrets: inherit
+
+  # Coverage reporting
+  coverage:
+    name: Send test coverage reports to Deepsource
+    runs-on: ubuntu-latest
+    if: ${{ always() }}
+    needs:
+      - test-api
+      - test-common
+      - test-common-angular
+      - test-design-system
+      - test-frontend
+      - test-location-api
+      - test-soligare
+      - test-web-app
+      - test-widget
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download all coverage artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: coverage
+
+      - name: Report test coverage to Deepsource
+        continue-on-error: true
+        run: |
+          curl https://deepsource.io/cli | sh
+          for package in api common common-angular design-system frontend location-api soligare web-app widget; do
+            if [ -f "coverage/${package}-coverage/cobertura-coverage.xml" ]; then
+              ./bin/deepsource report --analyzer test-coverage \
+                --key javascript \
+                --value-file "coverage/${package}-coverage/cobertura-coverage.xml"
+            fi
+          done
+        env:
+          DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}

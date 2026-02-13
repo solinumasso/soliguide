@@ -32,18 +32,18 @@ jobs:
     uses: ./.github/workflows/_commitlint.yml
 
   build:
-    name: Build all packages
+    name: Build all packages (once)
     uses: ./.github/workflows/_build.yml
     needs:
       - commitlint
     secrets: inherit
 
-  # Dès que les builds sont OK, on déploie en parallèle sur Clever Cloud et Qovery
+  # Dès que le build est OK, on déploie ET on teste en parallèle
   deploy_clever_cloud:
-    name: Deploy to Clever Cloud (develop)
+    name: Deploy to Clever Cloud (staging)
     uses: ./.github/workflows/_deploy-to-environment.yml
     with:
-      environment: develop
+      environment: staging
     needs:
       - build
     secrets: inherit
@@ -63,13 +63,23 @@ jobs:
       - build
     secrets: inherit
 
-  # Les tests s'exécutent en parallèle (non-bloquants, incluant DeepSource)
+  # Les tests utilisent les images déjà buildées (pas de rebuild)
   test:
-    name: Run all tests (non-blocking)
-    uses: ./.github/workflows/_build-and-test.yml
-    if: ${{ always() }}
+    name: Test all packages (using built images)
+    uses: ./.github/workflows/_test-only.yml
+    with:
+      docker_tag: develop
+      node_version: ${{ needs.build.outputs.node_version }}
+      test_api: ${{ contains(needs.build.outputs.to_deploy, 'api') }}
+      test_common: ${{ contains(needs.build.outputs.to_deploy, 'common') }}
+      test_common-angular: ${{ contains(needs.build.outputs.to_deploy, 'common-angular') }}
+      test_design-system: ${{ contains(needs.build.outputs.to_deploy, 'design-system') }}
+      test_frontend: ${{ contains(needs.build.outputs.to_deploy, 'frontend') }}
+      test_location-api: ${{ contains(needs.build.outputs.to_deploy, 'location-api') }}
+      test_maintenance: ${{ contains(needs.build.outputs.to_deploy, 'maintenance') }}
+      test_soligare: ${{ contains(needs.build.outputs.to_deploy, 'soligare') }}
+      test_web-app: ${{ contains(needs.build.outputs.to_deploy, 'web-app') }}
+      test_widget: ${{ contains(needs.build.outputs.to_deploy, 'widget') }}
     needs:
       - build
-    with:
-      check_tests: false
     secrets: inherit

@@ -113,13 +113,10 @@ jobs:
           sudo apt-get update
           sudo apt-get -y install parallel
 
-      - name: Create a brand new branch from scratch
+      - name: Configure git for Clever Cloud deployment
         run: |
-          git checkout --orphan cc
           git config --global user.email tech@solinum.org
           git config --global user.name ${{ github.actor }}
-          git add -A
-          git commit -m "Commit for Clever Cloud" || echo "Nothing to commit"
 
       - name: Install SSH key
         run: |
@@ -202,3 +199,66 @@ jobs:
         # Run in parallel 4 git push and retries twice if it fails
         run: |
           cat ./remotes-to-deploy-to.txt | parallel --no-notice --line-buffer --tagstring '{= $_.=substr($_,7); =}' -j 4 --retries 2 git push -f {} HEAD:master
+
+      - name: Create GitHub Deployment
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const env = '${{ inputs.environment }}';
+            const deployApi = '${{ inputs.deploy_api }}' === 'true';
+            const deployFrontend = '${{ inputs.deploy_frontend }}' === 'true';
+            const deployWebApp = '${{ inputs.deploy_web-app }}' === 'true';
+            const deployWidget = '${{ inputs.deploy_widget }}' === 'true';
+            const deployLocationApi = '${{ inputs.deploy_location-api }}' === 'true';
+            const deploySoligare = '${{ inputs.deploy_soligare }}' === 'true';
+
+            // Déterminer le domaine selon l'environnement
+            const baseDomain = env === 'staging' ? 'staging.soliguide.dev' :
+                               env === 'production' ? 'soliguide.fr' :
+                               'unknown';
+
+            // Construire la liste des URLs
+            let urls = [];
+            if (deployFrontend) {
+              if (env === 'production') {
+                urls.push(`🇫🇷 Frontend FR: https://soliguide.fr`);
+                urls.push(`🇪🇸 Frontend ES: https://soliguia.es`);
+                urls.push(`🏴 Frontend CAT: https://soliguia.cat`);
+                urls.push(`🇦🇩 Frontend AD: https://soliguia.ad`);
+              } else {
+                urls.push(`🇫🇷 Frontend FR: https://fr.${baseDomain}`);
+                urls.push(`🇪🇸 Frontend ES: https://es.${baseDomain}`);
+                urls.push(`🇦🇩 Frontend AD: https://ad.${baseDomain}`);
+              }
+            }
+            if (deployWebApp) urls.push(`🌐 Web App: https://app.${baseDomain}`);
+            if (deployWidget) urls.push(`🔌 Widget: https://widget.${baseDomain}`);
+            if (deployApi) urls.push(`🔧 API: https://api.${baseDomain}`);
+            if (deployLocationApi) urls.push(`📍 Location API: https://location-api.${baseDomain}`);
+            if (deploySoligare) urls.push(`🔍 Soligare: https://soligare.${baseDomain}`);
+
+            // Créer le deployment
+            const { data: deployment } = await github.rest.repos.createDeployment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: context.sha,
+              environment: env,
+              description: `Déploiement Clever Cloud (${env})`,
+              auto_merge: false,
+              required_contexts: [],
+              transient_environment: false,
+            });
+
+            // Créer le deployment status
+            await github.rest.repos.createDeploymentStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              deployment_id: deployment.id,
+              state: 'success',
+              environment_url: deployFrontend ?
+                (env === 'production' ? 'https://soliguide.fr' : `https://fr.${baseDomain}`) :
+                `https://api.${baseDomain}`,
+              description: urls.join('\n'),
+              log_url: `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+            });
