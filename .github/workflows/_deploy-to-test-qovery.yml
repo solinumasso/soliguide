@@ -68,6 +68,7 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
+      deployments: write
     needs:
       - docker_meta
     steps:
