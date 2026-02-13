@@ -49,7 +49,7 @@ jobs:
     if: github.event.pull_request.draft == false
     uses: ./.github/workflows/_test-only.yml
     with:
-      docker_tag: ${{ github.head_ref }}
+      docker_tag: pr-${{ github.event.pull_request.number }}
       node_version: ${{ needs.build.outputs.node_version }}
       test_api: ${{ contains(needs.build.outputs.to_deploy, 'api') }}
       test_common: ${{ contains(needs.build.outputs.to_deploy, 'common') }}
