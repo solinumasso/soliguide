@@ -16,119 +16,220 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
-name: Claude Code
+name: Claude Code Review
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened, labeled]
-  issue_comment:
+    types: [opened, synchronize, reopened]
+  pull_request_review_comment:
     types: [created]
 
 jobs:
-  claude:
-    # Run on:
-    # 1. PR opened/synced/reopened from maintainers (excluding chore/weblate/dependencies)
-    # 2. PR with "claude" label added
-    # 3. Comment on PR containing @claude mention
+  claude-review:
+    name: AI Code Review
+    runs-on: ubuntu-latest
+    # Conditions simplifiées :
+    # 1. PRs de maintainers (MEMBER/OWNER/COLLABORATOR)
+    # 2. Exclure PRs automatiques (renovate, dependabot, weblate)
+    # 3. Exclure PRs de maintenance (chore, dependencies, upgrade)
+    # 4. Ou répondre aux commentaires mentionnant @claude
     if: |
       (
         github.event_name == 'pull_request' &&
-        github.event.pull_request.state == 'open' &&
-        (github.event.pull_request.author_association == 'OWNER' || github.event.pull_request.author_association == 'MEMBER') &&
-        !startsWith(github.event.pull_request.title, 'chore') &&
-        !contains(github.event.pull_request.title, 'Weblate') &&
-        !contains(github.event.pull_request.title, 'weblate') &&
-        !contains(github.event.pull_request.title, 'upgrade') &&
-        !contains(github.event.pull_request.title, 'Upgrade') &&
-        !contains(github.event.pull_request.title, 'dependencies') &&
-        !contains(github.event.pull_request.title, 'Dependencies') &&
-        !contains(github.event.pull_request.user.login, 'weblate') &&
-        !contains(github.event.pull_request.user.login, 'dependabot') &&
+        contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.pull_request.author_association) &&
         !contains(github.event.pull_request.user.login, 'renovate') &&
-        (github.event.action != 'labeled' || contains(github.event.label.name, 'claude'))
+        !contains(github.event.pull_request.user.login, 'dependabot') &&
+        !contains(github.event.pull_request.user.login, 'weblate') &&
+        !startsWith(github.event.pull_request.title, 'chore') &&
+        !contains(toLower(github.event.pull_request.title), 'weblate') &&
+        !contains(toLower(github.event.pull_request.title), 'dependencies') &&
+        !contains(toLower(github.event.pull_request.title), 'upgrade')
       ) || (
-        github.event_name == 'issue_comment' &&
-        github.event.issue.pull_request &&
+        github.event_name == 'pull_request_review_comment' &&
         contains(github.event.comment.body, '@claude')
       )
-    runs-on: ubuntu-latest
+
     permissions:
       contents: read
       pull-requests: write
       issues: write
-      id-token: write
-      actions: read # Required for Claude to read CI results on PRs
-    steps:
-      - name: Get PR number for comment event
-        if: github.event_name == 'issue_comment'
-        id: pr
-        run: |
-          echo "number=${{ github.event.issue.number }}" >> $GITHUB_OUTPUT
+      checks: read
+      actions: read
 
-      - name: Checkout repository
+    steps:
+      - name: Debug event context
+        run: |
+          echo "Event name: ${{ github.event_name }}"
+          echo "Action: ${{ github.event.action }}"
+          echo "Author: ${{ github.event.pull_request.user.login }}"
+          echo "Author association: ${{ github.event.pull_request.author_association }}"
+          echo "PR title: ${{ github.event.pull_request.title }}"
+          echo "PR number: ${{ github.event.pull_request.number || github.event.issue.number }}"
+
+      - name: Checkout PR branch
         uses: actions/checkout@v4
         with:
-          # For comment events, checkout the PR branch
-          ref: ${{ github.event_name == 'issue_comment' && format('refs/pull/{0}/head', steps.pr.outputs.number) || github.event.pull_request.head.ref }}
+          ref: ${{ github.event.pull_request.head.sha || github.event.pull_request.head.ref }}
           fetch-depth: 0
 
-      - name: Run Claude Code
+      - name: Get PR files changed
+        id: changed-files
+        run: |
+          # Get list of changed files for context
+          gh pr view ${{ github.event.pull_request.number }} --json files --jq '.files[].path' > /tmp/changed_files.txt
+          echo "Changed files:"
+          cat /tmp/changed_files.txt
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run Claude Code Review
         id: claude
         uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
 
-          # This is an optional setting that allows Claude to read CI results on PRs
-          additional_permissions: |
-            actions: read
-
-          # Custom prompt for PR review - focus on changed files only
+          # Prompt optimisé pour review style Sentry
           prompt: |
-            Analyse cette PR avec focus sur :
+            Tu es un reviewer IA expert pour Soliguide. Analyse cette Pull Request.
 
-            1. 🔒 Sécurité (PRIORITAIRE) : failles, auth, autorisation, injection, validation, headers
-            2. 🧠 Logique métier : répond-elle aux besoins ? Cohérent avec Soliguide ?
-            3. 🔗 Cohérence frontend/backend : API et UI alignées ? Types cohérents ?
-            4. 📝 Qualité : maintenabilité, patterns du projet (voir CLAUDE.md)
+            ## 🎯 Objectif
+            Fournis une review concise, actionnable et structurée comme Sentry le fait.
 
-            **IMPORTANT : Analyse UNIQUEMENT les fichiers modifiés dans cette PR, pas tout le codebase.**
+            ## 🔍 Focus de l'analyse (par ordre de priorité)
 
-            Fournis maximum 7 points, triés par criticité, propose des solutions sur la "logique du code"
-            Sois direct et actionnable.
+            ### 1. 🔒 Sécurité (CRITIQUE)
+            - Vulnérabilités OWASP Top 10 (injection SQL, XSS, CSRF, etc.)
+            - Authentication & Authorization : vérifier que les routes/endpoints sont protégés
+            - Validation des entrées utilisateur
+            - Gestion des secrets et credentials
+            - Headers de sécurité
 
-          # Optional: Add claude_args to customize behavior and configuration
-          # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
-          # or https://docs.claude.com/en/docs/claude-code/cli-reference for available options
-          # claude_args: '--allowed-tools Bash(gh pr:*)'
+            ### 2. 🐛 Bugs potentiels
+            - Erreurs logiques
+            - Edge cases non gérés
+            - Race conditions
+            - Memory leaks
+            - Null/undefined non gérés
 
-      - name: Read Claude output
-        if: always() && steps.claude.outputs.execution_file
-        id: read_output
+            ### 3. 🧠 Logique métier
+            - Cohérence avec les règles métier Soliguide
+            - Cas d'usage correctement implémentés
+            - Impact sur les fonctionnalités existantes
+
+            ### 4. 🔗 Cohérence Frontend/Backend
+            - Types TypeScript synchronisés (@soliguide/common)
+            - Contrats API respectés
+            - Gestion d'erreurs cohérente
+
+            ### 5. 📝 Qualité du code
+            - Respect des patterns du projet (voir CLAUDE.md)
+            - Maintenabilité
+            - Tests manquants pour code critique
+
+            ## 📋 Format de sortie
+
+            Structure ta review ainsi :
+
+            ```
+            ## 🤖 Claude Code Review
+
+            ### ✅ Points positifs
+            - [Si pertinent] Lister 1-2 points positifs
+
+            ### ⚠️ Problèmes identifiés
+
+            #### 🔴 Critique (blocant)
+            - **[Fichier:ligne]** Description du problème
+              - Impact: ...
+              - Solution: ...
+
+            #### 🟠 Important (recommandé)
+            - **[Fichier:ligne]** Description
+              - Solution: ...
+
+            #### 🟡 Améliorations suggérées
+            - **[Fichier:ligne]** Description
+
+            ### 📊 Résumé
+            - X fichiers analysés
+            - Y problèmes critiques
+            - Z recommandations
+            ```
+
+            ## ⚡ Contraintes
+            - Maximum 10 points au total
+            - Analyse UNIQUEMENT les fichiers modifiés dans cette PR
+            - Sois direct et actionnable
+            - Cite toujours le fichier et la ligne concernée
+            - Propose des solutions concrètes pour chaque problème
+            - Priorise par criticité
+
+      - name: Process Claude output
+        if: always()
+        id: process
         run: |
-          if [ -f "${{ steps.claude.outputs.execution_file }}" ]; then
-            echo "content<<EOF" >> $GITHUB_OUTPUT
-            cat "${{ steps.claude.outputs.execution_file }}" >> $GITHUB_OUTPUT
-            echo "EOF" >> $GITHUB_OUTPUT
+          OUTPUT_FILE="${{ steps.claude.outputs.execution_file }}"
+
+          if [ -f "$OUTPUT_FILE" ]; then
+            echo "✅ Claude output file found"
+
+            # Read content and escape for GitHub Actions
+            CONTENT=$(cat "$OUTPUT_FILE")
+
+            # Save to output
+            {
+              echo "content<<CLAUDE_EOF"
+              echo "$CONTENT"
+              echo "CLAUDE_EOF"
+            } >> $GITHUB_OUTPUT
+
+            echo "has_content=true" >> $GITHUB_OUTPUT
           else
-            echo "content=Claude review completed but output file not found." >> $GITHUB_OUTPUT
+            echo "❌ Claude output file not found"
+            echo "has_content=false" >> $GITHUB_OUTPUT
+            echo "content=⚠️ La review Claude n'a pas pu être générée. Vérifier les logs." >> $GITHUB_OUTPUT
           fi
 
-      - name: Post review to PR
-        if: always() && steps.read_output.outputs.content
+      - name: Post review comment
+        if: always() && steps.process.outputs.has_content == 'true'
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const content = `${{ steps.read_output.outputs.content }}`.trim();
-            const body = content || 'Claude review completed but no output was generated.';
+            const prNumber = context.payload.pull_request.number;
+            const reviewBody = `${{ steps.process.outputs.content }}`;
 
-            // Get PR number from either event type
-            const prNumber = context.eventName === 'issue_comment'
-              ? context.issue.number
-              : context.payload.pull_request.number;
-
-            github.rest.issues.createComment({
-              issue_number: prNumber,
+            // Poster en tant que commentaire de PR (comme Sentry)
+            await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `## 📋 Claude Code Review\n\n${body}`
-            })
+              issue_number: prNumber,
+              body: reviewBody
+            });
+
+            console.log(`✅ Review postée sur PR #${prNumber}`);
+
+      - name: Handle errors
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const prNumber = context.payload.pull_request?.number;
+            if (!prNumber) {
+              console.log('❌ No PR number found');
+              return;
+            }
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body: `## ❌ Claude Code Review - Erreur
+
+La review automatique a rencontré une erreur. Vérifier les logs du workflow.
+
+[Voir les logs](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`
+            });
+
+            console.log('❌ Error notification posted')
