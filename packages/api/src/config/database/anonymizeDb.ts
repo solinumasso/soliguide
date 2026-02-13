@@ -24,7 +24,6 @@ import { CONFIG } from "../../_models";
 
 import { hashPassword } from "../../_utils/random-generator.functions";
 import { logger } from "../../general/logger";
-import EmailCampaignModel from "../../emailing/models/email-campaign.model";
 import { TranslatedFieldModel } from "../../translations/models/translatedField.model";
 import { UserModel } from "../../user/models/user.model";
 
@@ -41,13 +40,6 @@ export const anonymizeDb = async () => {
   await UserModel.updateMany(
     {},
     { $set: { password: await hashPassword(password) } }
-  );
-
-  logger.info("[ANON] [EMAILS] Disable email sending");
-
-  await EmailCampaignModel.updateMany(
-    { lastStatus: { $in: ["TO_SEND", "PENDING"] } },
-    { $set: { lastStatus: "DISABLED" } }
   );
 
   // TODO: Remove phone numbers, use fake emails and remove real emails

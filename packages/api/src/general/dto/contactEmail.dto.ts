@@ -20,7 +20,6 @@
  */
 import {
   ALL_DEPARTMENT_CODES,
-  CountryCodes,
   EMAIL_VALIDATOR_CONFIG,
   KeyStringValueString,
 } from "@soliguide/common";
@@ -31,8 +30,8 @@ import {
   CHECK_STRING_NULL,
   EMAIL_NORMALIZE_OPTIONS,
 } from "../../config/expressValidator.config";
+import { countryDto } from "../../_utils/dto";
 
-const VALID_COUNTRY_CODES = Object.values(CountryCodes);
 const VALID_DEPARTMENT_CODES: string[] = [...ALL_DEPARTMENT_CODES, "99"];
 
 export const contactEmailDto = [
@@ -50,10 +49,7 @@ export const contactEmailDto = [
     .isEmail(EMAIL_VALIDATOR_CONFIG)
     .normalizeEmail(EMAIL_NORMALIZE_OPTIONS),
 
-  body("country")
-    .optional()
-    .isIn(VALID_COUNTRY_CODES)
-    .withMessage("Invalid country code"),
+  ...countryDto,
 
   body("department")
     .exists()

@@ -19,5 +19,4 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 // @index('./*.ts', f => `export * from '${f.path}'`)
-export * from "./send-campaign.email";
 export * from "./send-contact.email";
