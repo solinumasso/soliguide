@@ -38,6 +38,7 @@
     "class-validator": "^0.14.3",
     "joi": "^17.13.3",
     "nestjs-pino": "^4.4.0",
+    "pino": "^9.5.0",
     "pino-http": "^10.4.0",
     "postgres": "^3.4.5",
     "reflect-metadata": "^0.2.2",
