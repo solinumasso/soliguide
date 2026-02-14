@@ -19,7 +19,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 // @index('./*service.ts', f => `export * from '${f.path}'`)
-export * from "./auto-complete.service";
 export * from "./get-global-search-query.service";
 export * from "./location-api.service";
 export * from "./location.service";

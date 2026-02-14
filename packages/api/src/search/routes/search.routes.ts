@@ -1,26 +1,7 @@
-/*
- * Soliguide: Useful information for those who need it
- *
- * SPDX-FileCopyrightText: © 2024 Solinum
- *
- * SPDX-License-Identifier: AGPL-3.0-only
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
 import { Router, type NextFunction } from "express";
 
 import {
+  AutoCompleteType,
   CountryCodes,
   PlaceType,
   SUPPORTED_LANGUAGES_BY_COUNTRY,
@@ -29,13 +10,11 @@ import {
   UserStatus,
 } from "@soliguide/common";
 
-import { searchTerm } from "../controllers/auto-complete.controller";
 import { searchPlaces } from "../controllers/search.controller";
 
 import {
   searchAdminDto,
   searchAdminForOrgasDto,
-  autoCompleteSearchDto,
   searchDto,
   searchSuggestionDto,
 } from "../dto";
@@ -139,31 +118,13 @@ router.post(
   }
 );
 
-// @deprecated
-router.get(
-  "/auto-complete/:term",
-  isNotApiUser,
-  autoCompleteSearchDto("term"),
-  getFilteredData,
-  async (req: ExpressRequest, res: ExpressResponse) => {
-    try {
-      const autocompleteResults = await searchTerm(req.bodyValidated.term);
-
-      res.status(200).json(autocompleteResults);
-    } catch (e) {
-      req.log.error(e, "AUTOCOMPLETE_FAILED");
-      res.status(500).json({ message: "AUTOCOMPLETE_FAILED" });
-    }
-  }
-);
-
 router.get(
   "/search-suggestions/:country/:term",
   isNotApiUser,
   searchSuggestionDto("term"),
   getFilteredData,
   async (req: ExpressRequest, res: ExpressResponse) => {
-    const cacheKey = `search:${req.bodyValidated.term}`;
+    const cacheKey = `search:${req.bodyValidated.country}:${req.bodyValidated.lang}:${req.bodyValidated.term}`;
     const results = await searchSuggestionsCache.get(cacheKey);
     if (results) {
       return res.status(200).json(results);
@@ -180,6 +141,42 @@ router.get(
     } catch (e) {
       req.log.error(e, "AUTOCOMPLETE_FAILED");
       res.status(500).json({ message: "AUTOCOMPLETE_FAILED" });
+    }
+  }
+);
+
+/**
+ * Search suggestions for categories only (used by web-app)
+ */
+router.get(
+  "/search-suggestions/:country/:term/categories",
+  isNotApiUser,
+  searchSuggestionDto("term"),
+  getFilteredData,
+  async (req: ExpressRequest, res: ExpressResponse) => {
+    const cacheKey = `search-categories:${req.bodyValidated.country}:${req.bodyValidated.lang}:${req.bodyValidated.term}`;
+    const results = await searchSuggestionsCache.get(cacheKey);
+    if (results) {
+      return res.status(200).json(results);
+    }
+    try {
+      const autocompleteResults = SearchSuggestionsController.autoComplete(
+        req.bodyValidated.term,
+        req.bodyValidated.country,
+        req.bodyValidated.lang
+      );
+
+      // Filter to only return categories (not organizations or establishment types)
+      const categories = autocompleteResults.filter(
+        (result) => result.type === AutoCompleteType.CATEGORY
+      );
+
+      searchSuggestionsCache.set(cacheKey, categories);
+
+      return res.status(200).json(categories);
+    } catch (e) {
+      req.log.error(e, "AUTOCOMPLETE_CATEGORIES_FAILED");
+      res.status(500).json({ message: "AUTOCOMPLETE_CATEGORIES_FAILED" });
     }
   }
 );
