@@ -29,7 +29,7 @@ export class PostgresService implements OnApplicationShutdown {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private readonly connection: postgres.Sql<any>;
 
-  constructor(private configService: ConfigService) {
+  constructor(private readonly configService: ConfigService) {
     try {
       // skipcq: JS-0339
       const username: string = this.configService.get<string>(
@@ -75,7 +75,7 @@ export class PostgresService implements OnApplicationShutdown {
 
   async checkConnection() {
     try {
-      await this.connection.begin(async (sql) => {
+      await this.connection.begin(async (sql: any) => {
         await sql`SELECT NOW()`;
       });
     } catch (error) {

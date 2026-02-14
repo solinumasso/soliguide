@@ -1861,13 +1861,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/helper-validator-identifier@npm:^7.28.5":
-  version: 7.28.5
-  resolution: "@babel/helper-validator-identifier@npm:7.28.5"
-  checksum: 10/8e5d9b0133702cfacc7f368bf792f0f8ac0483794877c6dca5fcb73810ee138e27527701826fb58a40a004f3a5ec0a2f3c3dd5e326d262530b119918f3132ba7
-  languageName: node
-  linkType: hard
-
 "@babel/helper-validator-option@npm:^7.25.9, @babel/helper-validator-option@npm:^7.27.1":
   version: 7.27.1
   resolution: "@babel/helper-validator-option@npm:7.27.1"
@@ -1908,17 +1901,6 @@ __metadata:
   linkType: hard
 
 "@babel/parser@npm:^7.1.0, @babel/parser@npm:^7.14.7, @babel/parser@npm:^7.20.7, @babel/parser@npm:^7.22.16, @babel/parser@npm:^7.23.9, @babel/parser@npm:^7.25.4, @babel/parser@npm:^7.26.10, @babel/parser@npm:^7.27.1":
-  version: 7.29.0
-  resolution: "@babel/parser@npm:7.29.0"
-  dependencies:
-    "@babel/types": "npm:^7.29.0"
-  bin:
-    parser: ./bin/babel-parser.js
-  checksum: 10/b1576dca41074997a33ee740d87b330ae2e647f4b7da9e8d2abd3772b18385d303b0cee962b9b88425e0f30d58358dbb8d63792c1a2d005c823d335f6a029747
-  languageName: node
-  linkType: hard
-
-"@babel/parser@npm:^7.25.4":
   version: 7.29.0
   resolution: "@babel/parser@npm:7.29.0"
   dependencies:
@@ -2936,16 +2918,6 @@ __metadata:
   linkType: hard
 
 "@babel/types@npm:^7.0.0, @babel/types@npm:^7.20.7, @babel/types@npm:^7.22.17, @babel/types@npm:^7.23.9, @babel/types@npm:^7.24.7, @babel/types@npm:^7.25.4, @babel/types@npm:^7.25.9, @babel/types@npm:^7.26.10, @babel/types@npm:^7.26.9, @babel/types@npm:^7.27.1, @babel/types@npm:^7.29.0, @babel/types@npm:^7.3.3, @babel/types@npm:^7.4.4":
-  version: 7.29.0
-  resolution: "@babel/types@npm:7.29.0"
-  dependencies:
-    "@babel/helper-string-parser": "npm:^7.27.1"
-    "@babel/helper-validator-identifier": "npm:^7.28.5"
-  checksum: 10/bfc2b211210f3894dcd7e6a33b2d1c32c93495dc1e36b547376aa33441abe551ab4bc1640d4154ee2acd8e46d3bbc925c7224caae02fcaf0e6a771e97fccc661
-  languageName: node
-  linkType: hard
-
-"@babel/types@npm:^7.25.4, @babel/types@npm:^7.29.0":
   version: 7.29.0
   resolution: "@babel/types@npm:7.29.0"
   dependencies:
@@ -5678,13 +5650,6 @@ __metadata:
   peerDependencies:
     keyv: ^5.3.4
   checksum: 10/c2619b4a8607fbc1cf159d695e827e7eba29859f342e017bf32e049eb62d40a61160671aec52c4f4ad6726fcee21c551193f3dd81846c0e98d1e0206d076e6fd
-  languageName: node
-  linkType: hard
-
-"@keyv/serialize@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "@keyv/serialize@npm:1.1.1"
-  checksum: 10/e3b2cb1377863342acedd5ff785af3e69269bee9b44707c617d1c8bc14eeb5ac763159d6455903ffe92f143c2238e1e783c4f113f9c8910eacccf172894472da
   languageName: node
   linkType: hard
 
@@ -9766,7 +9731,7 @@ __metadata:
     "@types/supertest": "npm:^6.0.3"
     "@types/swagger-jsdoc": "npm:^6.0.4"
     "@types/swagger-ui-express": "npm:^4.1.8"
-    "@types/validator": "npm:^13.15.10"
+    "@types/validator": "npm:13.11.8"
     "@typescript-eslint/eslint-plugin": "npm:^6.21.0"
     "@typescript-eslint/parser": "npm:^6.21.0"
     amqp-connection-manager: "npm:^4.1.14"
@@ -9776,10 +9741,7 @@ __metadata:
     bcryptjs: "npm:2.4.3"
     body-parser: "npm:1.20.4"
     cache-manager: "npm:^6.4.3"
-    class-transformer: "npm:^0.5.1"
-    class-transformer-validator: "npm:^0.9.1"
-    class-validator: "npm:^0.14.3"
-    class-validator-extended: "npm:^4.2.1"
+    class-validator: "npm:^0.14.2"
     commander: "npm:^14.0.3"
     compression: "npm:1.8.1"
     cookie-parser: "npm:1.4.7"
@@ -9910,7 +9872,7 @@ __metadata:
     "@types/lodash.get": "npm:^4.4.9"
     "@types/node": "npm:^20.19.33"
     "@types/slug": "npm:^5.0.9"
-    "@types/validator": "npm:^13.15.10"
+    "@types/validator": "npm:13.11.8"
     "@typescript-eslint/eslint-plugin": "npm:^6.21.0"
     "@typescript-eslint/parser": "npm:^6.21.0"
     date-fns: "npm:^2.30.0"
@@ -11420,6 +11382,13 @@ __metadata:
   version: 2.0.7
   resolution: "@types/trusted-types@npm:2.0.7"
   checksum: 10/8e4202766a65877efcf5d5a41b7dd458480b36195e580a3b1085ad21e948bc417d55d6f8af1fd2a7ad008015d4117d5fdfe432731157da3c68678487174e4ba3
+  languageName: node
+  linkType: hard
+
+"@types/validator@npm:13.11.8":
+  version: 13.11.8
+  resolution: "@types/validator@npm:13.11.8"
+  checksum: 10/27cba3b43d79cff40c57703225944efacb9c4954379640a8f1ba29cdae07f36fc1115deed08dada9f6d7ff09f205540d04c435e27999dc1ce78d26fd3d8867a0
   languageName: node
   linkType: hard
 
@@ -14278,16 +14247,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"class-transformer-validator@npm:^0.9.1":
-  version: 0.9.1
-  resolution: "class-transformer-validator@npm:0.9.1"
-  peerDependencies:
-    class-transformer: ">=0.2.3"
-    class-validator: ">=0.12.0"
-  checksum: 10/faa159fb4842ba0844b6b6f6b008d1a48a8b77f8e4ef2069cbf468e89093a83f01495825232c9e25ca71ada71ced1b12686bffdcf966aa39375f09445c325bfd
-  languageName: node
-  linkType: hard
-
 "class-transformer@npm:^0.5.1":
   version: 0.5.1
   resolution: "class-transformer@npm:0.5.1"
@@ -14295,22 +14254,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"class-validator-extended@npm:^4.2.1":
-  version: 4.2.1
-  resolution: "class-validator-extended@npm:4.2.1"
-  dependencies:
-    dayjs: "npm:*"
-  peerDependencies:
-    class-validator: ^0.14.1
-    validator: ^13.9.0
-  dependenciesMeta:
-    dayjs:
-      optional: true
-  checksum: 10/27c66d1f90d155d81636c19ff9f8e536a9bf43d0120eedeeee4affcb745b1070a9fa6a40b6adfc81c346292f4fd6959a4b4303b6ecfe93a36719eadca1596208
-  languageName: node
-  linkType: hard
-
-"class-validator@npm:^0.14.3":
+"class-validator@npm:^0.14.2, class-validator@npm:^0.14.3":
   version: 0.14.3
   resolution: "class-validator@npm:0.14.3"
   dependencies:
@@ -15586,13 +15530,6 @@ __metadata:
   version: 4.6.3
   resolution: "dateformat@npm:4.6.3"
   checksum: 10/5c149c91bf9ce2142c89f84eee4c585f0cb1f6faf2536b1af89873f862666a28529d1ccafc44750aa01384da2197c4f76f4e149a3cc0c1cb2c46f5cc45f2bcb5
-  languageName: node
-  linkType: hard
-
-"dayjs@npm:*":
-  version: 1.11.12
-  resolution: "dayjs@npm:1.11.12"
-  checksum: 10/8ee7c1e14961fd08d40b788d0c0e930dc6288b3d32911bb911b2fb31bb703c262788164fbe678ee9e50e2a35268d667b8c8ba43fd1806771c1f404c300a2b428
   languageName: node
   linkType: hard
 
@@ -26181,27 +26118,6 @@ __metadata:
   linkType: hard
 
 "pino@npm:^9.0.0, pino@npm:^9.14.0":
-  version: 9.14.0
-  resolution: "pino@npm:9.14.0"
-  dependencies:
-    "@pinojs/redact": "npm:^0.4.0"
-    atomic-sleep: "npm:^1.0.0"
-    on-exit-leak-free: "npm:^2.1.0"
-    pino-abstract-transport: "npm:^2.0.0"
-    pino-std-serializers: "npm:^7.0.0"
-    process-warning: "npm:^5.0.0"
-    quick-format-unescaped: "npm:^4.0.3"
-    real-require: "npm:^0.2.0"
-    safe-stable-stringify: "npm:^2.3.1"
-    sonic-boom: "npm:^4.0.1"
-    thread-stream: "npm:^3.0.0"
-  bin:
-    pino: bin.js
-  checksum: 10/918e1fc764885150cb2b4fae8249a0ece53275020a7ca389f994fa2fbbb17b6353cd736c2db3a3794fbac0351f8e3d58411fabe127e875e24151a8fa4cd0b2b5
-  languageName: node
-  linkType: hard
-
-"pino@npm:^9.5.0":
   version: 9.14.0
   resolution: "pino@npm:9.14.0"
   dependencies:
