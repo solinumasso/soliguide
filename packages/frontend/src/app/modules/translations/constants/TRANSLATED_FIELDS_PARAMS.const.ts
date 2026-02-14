@@ -112,10 +112,6 @@ export const TRANSLATED_FIELDS_PARAMS: {
     label: "Activité proposée",
     editor: "input",
   },
-  "service.categorySpecificFields.mobilityAssistanceName": {
-    label: "Type d'assistance mobilité",
-    editor: "input",
-  },
   "service.categorySpecificFields.usageModality": {
     label: "Modalité d'utilisation",
     editor: "input",

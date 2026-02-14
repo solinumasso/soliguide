@@ -24,7 +24,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Trouvez un lieu d'accueil chaleureux près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous guide vers des centres d'accueil, foyers d'urgence et espaces de repos en Espagne pour vous offrir un refuge sûr."
+    "seoDescription": "Soliguide vous guide vers des centres d'accueil, foyers d'urgence et espaces de repos en France pour vous offrir un refuge sûr."
   },
   {
     "categoryId": "day_hosting",
@@ -34,16 +34,16 @@
       "repos",
       "repas",
       "douche",
-      "cafe",
+      "café",
       "chaleur",
       "abri",
       "rencontrer",
       "parler",
-      "ecoute",
+      "écoute",
       "refuge",
       "pause",
-      "dejeuner",
-      "hygiene",
+      "déjeuner",
+      "hygiène",
       "accueillir",
       "recevoir"
     ],
@@ -132,7 +132,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Espace famille pour parents et enfants avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des centres familiaux, crèches municipales et points info famille près de chez vous en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des centres familiaux, crèches municipales et points info famille près de chez vous en France"
   },
   {
     "categoryId": "information_point",
@@ -186,7 +186,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Trouvez des activités et loisirs gratuits près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à découvrir des activités gratuites en Espagne : ateliers créatifs, sport, sorties culturelles et rencontres."
+    "seoDescription": "Soliguide vous aide à découvrir des activités gratuites en France : ateliers créatifs, sport, sorties culturelles et rencontres."
   },
   {
     "categoryId": "sport_activities",
@@ -213,7 +213,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Trouvez des activités sportives gratuites près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des clubs de sport gratuits, des cours de fitness et des activités physiques adaptées en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des clubs de sport gratuits, des cours de fitness et des activités physiques adaptées en France"
   },
   {
     "categoryId": "museums",
@@ -240,7 +240,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Visitez des musées gratuits et découvrez la culture avec Soliguide",
-    "seoDescription": "Soliguide vous guide vers des musées gratuits, des visites culturelles et des ateliers créatifs accessibles à tous en Espagne"
+    "seoDescription": "Soliguide vous guide vers des musées gratuits, des visites culturelles et des ateliers créatifs accessibles à tous en France"
   },
   {
     "categoryId": "libraries",
@@ -321,7 +321,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Trouvez de l'aide alimentaire près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des restaurants sociaux, des distributions alimentaires et des épiceries solidaires partout en Espagne."
+    "seoDescription": "Soliguide vous aide à trouver des restaurants sociaux, des distributions alimentaires et des épiceries solidaires partout en France."
   },
   {
     "categoryId": "food_distribution",
@@ -348,7 +348,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Trouvez des repas gratuits près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des cantines sociales, des distributions alimentaires et des restaurants solidaires partout en Espagne."
+    "seoDescription": "Soliguide vous aide à trouver des cantines sociales, des distributions alimentaires et des restaurants solidaires partout en France."
   },
   {
     "categoryId": "food_packages",
@@ -375,7 +375,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Trouvez un panier alimentaire gratuit près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des paniers alimentaires, épiceries solidaires et distributions de repas gratuits partout en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des paniers alimentaires, épiceries solidaires et distributions de repas gratuits partout en France"
   },
   {
     "categoryId": "social_grocery_stores",
@@ -456,7 +456,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Trouvez un frigo solidaire près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à localiser des frigos solidaires en Espagne : nourriture gratuite à Madrid, fruits frais à Barcelone, repas à Valence"
+    "seoDescription": "Soliguide vous aide à localiser des frigos solidaires en France : nourriture gratuite à Paris, fruits frais à Lyon, repas à Marseille"
   },
   {
     "categoryId": "shared_kitchen",
@@ -510,7 +510,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Participez à des ateliers cuisine gratuits avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des ateliers cuisine en Espagne : cours de cuisine gratuits, apprentissage culinaire et repas partagés"
+    "seoDescription": "Soliguide vous aide à trouver des ateliers cuisine en France : cours de cuisine gratuits, apprentissage culinaire et repas partagés"
   },
   {
     "categoryId": "baby_parcel",
@@ -537,7 +537,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Trouvez un colis bébé gratuit près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des colis bébé : couches, lait infantile et vêtements dans les centres sociaux et associations d'Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des colis bébé : couches, lait infantile et vêtements dans les centres sociaux et associations de France"
   },
   {
     "categoryId": "food_voucher",
@@ -564,7 +564,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Obtenez des bons et chèques alimentaires avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des bons alimentaires, chèques repas et colis gratuits dans votre ville en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des bons alimentaires, chèques repas et colis gratuits dans votre ville en France"
   },
   {
     "categoryId": "community_garden",
@@ -591,7 +591,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Jardins solidaires près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des jardins partagés pour cultiver, apprendre le jardinage et rencontrer d'autres personnes en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des jardins partagés pour cultiver, apprendre le jardinage et rencontrer d'autres personnes en France"
   },
   {
     "categoryId": "counseling",
@@ -807,7 +807,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Trouvez formation et emploi près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des formations gratuites, des ateliers CV et des offres d'emploi adaptées en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des formations gratuites, des ateliers CV et des offres d'emploi adaptées en France"
   },
   {
     "categoryId": "digital_tools_training",
@@ -861,7 +861,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Trouvez un accompagnement à l'emploi près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver formation professionnelle, conseils CV, ateliers recherche d'emploi et orientation carrière en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver formation professionnelle, conseils CV, ateliers recherche d'emploi et orientation carrière en France"
   },
   {
     "categoryId": "integration_through_economic_activity",
@@ -888,7 +888,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Retrouvez du travail grâce à l'insertion par l'activité économique avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des entreprises d'insertion, ateliers de formation professionnelle et chantiers d'insertion en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des entreprises d'insertion, ateliers de formation professionnelle et chantiers d'insertion en France"
   },
   {
     "categoryId": "tutoring",
@@ -942,7 +942,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Trouvez un hébergement et logement d'urgence avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver un hébergement d'urgence, un logement temporaire ou une aide au logement près de chez vous en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver un hébergement d'urgence, un logement temporaire ou une aide au logement près de chez vous en France"
   },
   {
     "categoryId": "overnight_stop",
@@ -969,7 +969,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Trouvez une halte de nuit pour vous reposer en sécurité avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des haltes de nuit en Espagne : hébergement temporaire, repos nocturne, accueil d'urgence près de chez vous"
+    "seoDescription": "Soliguide vous aide à trouver des haltes de nuit en France : hébergement temporaire, repos nocturne, accueil d'urgence près de chez vous"
   },
   {
     "categoryId": "emergency_accommodation",
@@ -987,7 +987,7 @@
       "centre",
       "foyer",
       "protection",
-      "securite",
+      "sécurité",
       "toit",
       "chambre",
       "repos"
@@ -995,8 +995,8 @@
     "type": "CATEGORY",
     "lang": "fr",
     "country": "es",
-    "seoTitle": "Trouvez un hébergement d'urgence en Espagne avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver un lit d'urgence, un centre d'accueil ou un refuge temporaire en Espagne quand vous en avez besoin."
+    "seoTitle": "Trouvez un hébergement d'urgence en France avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver un lit d'urgence, un centre d'accueil ou un refuge temporaire en France quand vous en avez besoin."
   },
   {
     "categoryId": "long_term_accomodation",
@@ -1022,8 +1022,8 @@
     "type": "CATEGORY",
     "lang": "fr",
     "country": "es",
-    "seoTitle": "Trouvez un hébergement à long terme en Espagne avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver un logement temporaire, une résidence sociale ou un foyer d'accueil en Espagne pour vous loger durablement"
+    "seoTitle": "Trouvez un hébergement à long terme en France avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver un logement temporaire, une résidence sociale ou un foyer d'accueil en France pour vous loger durablement"
   },
   {
     "categoryId": "citizen_housing",
@@ -1104,7 +1104,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Accédez aux services d'hygiène et bien-être avec Soliguide",
-    "seoDescription": "Soliguide vous guide vers les douches, laveries et espaces de repos disponibles en Espagne pour votre hygiène et bien-être au quotidien"
+    "seoDescription": "Soliguide vous guide vers les douches, laveries et espaces de repos disponibles en France pour votre hygiène et bien-être au quotidien"
   },
   {
     "categoryId": "shower",
@@ -1131,7 +1131,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Trouvez des douches gratuites près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des douches gratuites en Espagne : centres d'accueil, associations locales et services municipaux."
+    "seoDescription": "Soliguide vous aide à trouver des douches gratuites en France : centres d'accueil, associations locales et services municipaux."
   },
   {
     "categoryId": "hairdresser",
@@ -1158,7 +1158,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Coiffeur gratuit ou à prix réduit près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des coiffeurs solidaires en Espagne : coupes gratuites, soins capillaires, relooking pour entretiens d'embauche"
+    "seoDescription": "Soliguide vous aide à trouver des coiffeurs solidaires en France : coupes gratuites, soins capillaires, relooking pour entretiens d'embauche"
   },
   {
     "categoryId": "laundry",
@@ -1266,7 +1266,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Trouvez des produits d'hygiène gratuits avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des produits d'hygiène gratuits : savon, dentifrice, serviettes hygiéniques dans toute l'Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des produits d'hygiène gratuits : savon, dentifrice, serviettes hygiéniques dans toute la France"
   },
   {
     "categoryId": "face_masks",
@@ -1320,7 +1320,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Trouvez du matériel gratuit près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver du matériel gratuit en Espagne : vêtements, meubles, électroménager et objets du quotidien près de chez vous."
+    "seoDescription": "Soliguide vous aide à trouver du matériel gratuit en France : vêtements, meubles, électroménager et objets du quotidien près de chez vous."
   },
   {
     "categoryId": "luggage_storage",
@@ -1401,7 +1401,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Trouvez des vêtements gratuits près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des vêtements gratuits en Espagne : vestimentaires d'urgence, boutiques solidaires et distributions de habits"
+    "seoDescription": "Soliguide vous aide à trouver des vêtements gratuits en France : aide vestimentaire d'urgence, boutiques solidaires et distributions de vêtements"
   },
   {
     "categoryId": "animal_assitance",
@@ -1428,7 +1428,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Aide pour vos animaux de compagnie avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des vétérinaires gratuits, refuges pour animaux et associations de protection animale en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des vétérinaires gratuits, refuges pour animaux et associations de protection animale en France"
   },
   {
     "categoryId": "health",
@@ -1517,26 +1517,26 @@
     "slug": "psychologie",
     "synonyms": [
       "psychologue",
-      "therapie",
-      "depression",
-      "anxiete",
+      "thérapie",
+      "dépression",
+      "anxiété",
       "stress",
       "trauma",
-      "ecoute",
+      "écoute",
       "consultation",
       "soutien",
       "mental",
-      "emotionnel",
+      "émotionnel",
       "parler",
       "confiance",
-      "guerison",
-      "bien-etre"
+      "guérison",
+      "bien-être"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "es",
     "seoTitle": "Trouvez un soutien psychologique gratuit près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des psychologues, centres de santé mentale et groupes de parole gratuits partout en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des psychologues, centres de santé mentale et groupes de parole gratuits partout en France"
   },
   {
     "categoryId": "child_care",
@@ -1590,7 +1590,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Consultez un médecin généraliste gratuitement avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des consultations médicales gratuites, des centres de santé communautaires et des médecins sans rendez-vous en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des consultations médicales gratuites, des centres de santé communautaires et des médecins sans rendez-vous en France"
   },
   {
     "categoryId": "dental_care",
@@ -1602,10 +1602,10 @@
       "carie",
       "urgence",
       "consultation",
-      "prothese",
+      "prothèse",
       "extraction",
       "couronne",
-      "detartrage",
+      "détartrage",
       "orthodontie",
       "implant",
       "bridge",
@@ -1681,24 +1681,24 @@
       "soins",
       "pansement",
       "consultation",
-      "medicament",
+      "médicament",
       "tension",
-      "piqure",
+      "piqûre",
       "blessure",
-      "fievre",
+      "fièvre",
       "douleur",
       "urgence",
       "gratuit",
       "dispensaire",
       "clinique",
       "centre",
-      "medical"
+      "médical"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "es",
     "seoTitle": "Trouvez des soins gratuits en infirmerie avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des infirmeries gratuites en Espagne : soins de base, pansements et consultations près de chez vous"
+    "seoDescription": "Soliguide vous aide à trouver des infirmeries gratuites en France : soins de base, pansements et consultations près de chez vous"
   },
   {
     "categoryId": "vet_care",
@@ -1725,7 +1725,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Soins vétérinaires gratuits pour vos animaux avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des vétérinaires solidaires, cliniques gratuites et dispensaires pour animaux en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des vétérinaires solidaires, cliniques gratuites et dispensaires pour animaux en France"
   },
   {
     "categoryId": "health_specialists",
@@ -1752,7 +1752,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Trouvez des spécialistes de l'aide sociale près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous connecte aux spécialistes sociaux en Espagne : travailleurs sociaux, conseillers juridiques, psychologues gratuits."
+    "seoDescription": "Soliguide vous connecte aux spécialistes sociaux en France : travailleurs sociaux, conseillers juridiques, psychologues gratuits."
   },
   {
     "categoryId": "allergology",
@@ -1859,7 +1859,7 @@
     "type": "CATEGORY",
     "lang": "fr",
     "country": "es",
-    "seoTitle": "Échographie gratuite et accessible avec Soliguide en Espagne",
+    "seoTitle": "Échographie gratuite et accessible avec Soliguide en France",
     "seoDescription": "Soliguide vous aide à trouver des échographies gratuites : centres de santé publics, associations pour femmes enceintes, cliniques solidaires"
   },
   {
@@ -1914,7 +1914,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Soins digestifs gratuits et consultations gastro-entérologie avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des consultations gratuites, centres de santé et hôpitaux publics pour vos problèmes digestifs en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des consultations gratuites, centres de santé et hôpitaux publics pour vos problèmes digestifs en France"
   },
   {
     "categoryId": "gynecology",
@@ -1941,7 +1941,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Soins gynécologiques gratuits et accessibles avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des consultations gynécologiques gratuites, centres de planification familiale et maisons de santé en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des consultations gynécologiques gratuites, centres de planification familiale et maisons de santé en France"
   },
   {
     "categoryId": "kinesitherapy",
@@ -1995,7 +1995,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Mammographie gratuite et dépistage du cancer du sein avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des centres de mammographie gratuits, des consultations de dépistage et un accompagnement médical en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des centres de mammographie gratuits, des consultations de dépistage et un accompagnement médical en France"
   },
   {
     "categoryId": "ophthalmology",
@@ -2011,8 +2011,8 @@
       "oculaire",
       "regarder",
       "voir",
-      "controle",
-      "depistage",
+      "contrôle",
+      "dépistage",
       "correction",
       "monture",
       "verres",
@@ -2033,23 +2033,23 @@
       "nez",
       "gorge",
       "audition",
-      "surdite",
+      "surdité",
       "otite",
       "sinusite",
       "rhinite",
       "laryngite",
       "phoniatre",
-      "audioprothese",
+      "audioprothèse",
       "vertiges",
-      "acouphenes",
-      "deglutition",
+      "acouphènes",
+      "déglutition",
       "respiration"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "es",
     "seoTitle": "Soins ORL gratuits et consultations oreilles nez gorge avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des consultations ORL gratuites, soins auditifs et traitements gorge près de chez vous en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des consultations ORL gratuites, soins auditifs et traitements gorge près de chez vous en France"
   },
   {
     "categoryId": "nutrition",
@@ -2103,7 +2103,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Soins des pieds gratuits et pédicure solidaire avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des soins de pédicure gratuits, centres de santé et consultations podologiques près de chez vous en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des soins de pédicure gratuits, centres de santé et consultations podologiques près de chez vous en France"
   },
   {
     "categoryId": "phlebology",
@@ -2226,19 +2226,19 @@
       "urinaire",
       "consultation",
       "gratuit",
-      "hopital",
+      "hôpital",
       "centre",
-      "sante",
+      "santé",
       "publique",
-      "specialiste",
+      "spécialiste",
       "traitement",
-      "depistage"
+      "dépistage"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "es",
     "seoTitle": "Soins urologiques gratuits et accessibles avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des consultations urologiques gratuites, des centres de santé et des hôpitaux publics en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des consultations urologiques gratuites, des centres de santé et des hôpitaux publics en France"
   },
   {
     "categoryId": "speech_therapy",
@@ -2292,7 +2292,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Soins dentaires gratuits et stomatologie avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des soins dentaires gratuits, des consultations stomatologiques et des prothèses dentaires en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des soins dentaires gratuits, des consultations stomatologiques et des prothèses dentaires en France"
   },
   {
     "categoryId": "osteopathy",
@@ -2300,10 +2300,10 @@
     "slug": "osteo",
     "synonyms": [
       "manipulation",
-      "vertebre",
+      "vertèbre",
       "articulation",
       "posture",
-      "mobilite",
+      "mobilité",
       "cervicale",
       "lombaire",
       "musculaire",
@@ -2311,15 +2311,15 @@
       "mouvement",
       "colonne",
       "rachis",
-      "etirement",
+      "étirement",
       "palpation",
-      "therapeute"
+      "thérapeute"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "es",
     "seoTitle": "Trouvez un ostéopathe accessible près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des ostéopathes à tarifs réduits, des consultations gratuites et des centres de soins en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des ostéopathes à tarifs réduits, des consultations gratuites et des centres de soins en France"
   },
   {
     "categoryId": "acupuncture",
@@ -2373,7 +2373,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Accès à la technologie et au numérique avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des lieux pour apprendre l'informatique, accéder à internet et utiliser les services numériques en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des lieux pour apprendre l'informatique, accéder à internet et utiliser les services numériques en France"
   },
   {
     "categoryId": "computers_at_your_disposal",
@@ -2414,20 +2414,20 @@
       "recherche",
       "emploi",
       "formation",
-      "bibliotheque",
+      "bibliothèque",
       "centre",
       "gratuit",
-      "acces",
-      "numerique",
+      "accès",
+      "numérique",
       "portable",
       "tablette",
-      "reseau"
+      "réseau"
     ],
     "type": "CATEGORY",
     "lang": "fr",
     "country": "es",
     "seoTitle": "Accès Wifi gratuit pour tous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des points Wifi gratuits : bibliothèques, centres sociaux et espaces publics près de chez vous en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des points Wifi gratuits : bibliothèques, centres sociaux et espaces publics près de chez vous en France"
   },
   {
     "categoryId": "electrical_outlets_available",
@@ -2481,7 +2481,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Accédez à un téléphone gratuit près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des lieux pour téléphoner gratuitement, recharger votre portable ou obtenir une ligne d'urgence en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des lieux pour téléphoner gratuitement, recharger votre portable ou obtenir une ligne d'urgence en France"
   },
   {
     "categoryId": "digital_safe",
@@ -2535,115 +2535,7 @@
     "lang": "fr",
     "country": "es",
     "seoTitle": "Trouvez des solutions de transport et mobilité avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des transports gratuits, des titres de transport solidaires et des véhicules d'urgence en Espagne"
-  },
-  {
-    "categoryId": "carpooling",
-    "label": "Co-voiturage",
-    "slug": "covoiturage",
-    "synonyms": [
-      "trajet",
-      "partage",
-      "transport",
-      "voiture",
-      "conducteur",
-      "passager",
-      "voyage",
-      "déplacement",
-      "économique",
-      "solidaire",
-      "gratuit",
-      "accompagnement",
-      "mobilité",
-      "véhicule",
-      "route"
-    ],
-    "type": "CATEGORY",
-    "lang": "fr",
-    "country": "es",
-    "seoTitle": "Trouvez un co-voiturage solidaire près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des trajets partagés gratuits ou à prix réduit en Espagne : Madrid-Barcelone, transport médical, courses."
-  },
-  {
-    "categoryId": "provision_of_vehicles",
-    "label": "Mise à disposition de véhicule",
-    "slug": "vehicule",
-    "synonyms": [
-      "voiture",
-      "transport",
-      "prêt",
-      "véhicule",
-      "conduire",
-      "déplacement",
-      "mobilité",
-      "auto",
-      "emprunt",
-      "circulation",
-      "rouler",
-      "permis",
-      "essence",
-      "trajets",
-      "urgence"
-    ],
-    "type": "CATEGORY",
-    "lang": "fr",
-    "country": "es",
-    "seoTitle": "Accédez à un véhicule quand vous en avez besoin grâce à Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des solutions de mise à disposition de véhicule : prêt de voiture, transport solidaire, véhicules d'urgence"
-  },
-  {
-    "categoryId": "chauffeur_driven_transport",
-    "label": "Transport avec chauffeur",
-    "slug": "chauffeur",
-    "synonyms": [
-      "chauffeur",
-      "voiture",
-      "trajet",
-      "medical",
-      "hopital",
-      "courses",
-      "demarches",
-      "deplacement",
-      "vehicule",
-      "conduite",
-      "transport",
-      "gratuit",
-      "reduit",
-      "accompagner",
-      "emmener"
-    ],
-    "type": "CATEGORY",
-    "lang": "fr",
-    "country": "es",
-    "seoTitle": "Transport avec chauffeur gratuit ou à prix réduit avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des transports avec chauffeur : trajets médicaux, courses essentielles, démarches administratives en Espagne"
-  },
-  {
-    "categoryId": "mobility_assistance",
-    "label": "Aide à la mobilité",
-    "slug": "permis",
-    "synonyms": [
-      "transport",
-      "vélo",
-      "déplacement",
-      "voyage",
-      "trajet",
-      "bus",
-      "métro",
-      "train",
-      "voiture",
-      "essence",
-      "carburant",
-      "ticket",
-      "abonnement",
-      "gratuit",
-      "solidaire"
-    ],
-    "type": "CATEGORY",
-    "lang": "fr",
-    "country": "es",
-    "seoTitle": "Trouvez une aide à la mobilité près de chez vous avec Soliguide",
-    "seoDescription": "Soliguide vous aide à trouver des transports gratuits, des vélos solidaires et des aides aux déplacements partout en Espagne"
+    "seoDescription": "Soliguide vous aide à trouver des transports gratuits, des titres de transport solidaires et des véhicules d'urgence en France"
   },
   {
     "categoryId": "spanish_course",
@@ -3018,5 +2910,86 @@
     "country": "es",
     "seoTitle": "Trouvez des services comarcaux près de chez vous avec Soliguide",
     "seoDescription": "Soliguide vous aide à localiser les services comarcaux en Espagne : aide sociale, accompagnement administratif et soutien local."
+  },
+  {
+    "categoryId": "transportation_mobility",
+    "label": "Mobilité Transport",
+    "slug": "transportation_mobility",
+    "synonyms": [
+      "bus gratuit",
+      "navette sociale",
+      "transport accessible",
+      "ticket réduit",
+      "mobilité",
+      "déplacement",
+      "trajets",
+      "autobus",
+      "véhicule partagé",
+      "aide transport",
+      "pass mobilité",
+      "abonnement social",
+      "trajet gratuit",
+      "transport adapté",
+      "circulation"
+    ],
+    "type": "CATEGORY",
+    "lang": "fr",
+    "country": "es",
+    "seoTitle": "Trouvez des solutions de transport avec Soliguide en Espagne",
+    "seoDescription": "Soliguide vous aide à trouver des transports gratuits ou à prix réduit. Découvrez les bus sociaux, les navettes et les aides à la mobilité près de vous."
+  },
+  {
+    "categoryId": "mobility_support",
+    "label": "Aide à la mobilité",
+    "slug": "mobility_support",
+    "synonyms": [
+      "transports gratuits",
+      "trajets",
+      "déplacements",
+      "navettes",
+      "bons de transport",
+      "bus",
+      "métro",
+      "tickets",
+      "trajets quotidiens",
+      "se déplacer",
+      "circuler",
+      "accès mobilité",
+      "véhicule",
+      "trajet domicile",
+      "sortir"
+    ],
+    "type": "CATEGORY",
+    "lang": "fr",
+    "country": "es",
+    "seoTitle": "Aide à la mobilité et aux transports avec Soliguide en Espagne",
+    "seoDescription": "Soliguide vous aide à vous déplacer gratuitement. Trouvez des bons de transport, des navettes ou des aides pour vos trajets en Espagne."
+  },
+  {
+    "categoryId": "mobility_financing",
+    "label": "Financement de la mobilité",
+    "slug": "mobility_financing",
+    "synonyms": [
+      "transport",
+      "déplacement",
+      "trajet",
+      "autobus",
+      "train",
+      "voiture",
+      "carburant",
+      "permis",
+      "ticket",
+      "voyage",
+      "route",
+      "bus",
+      "métro",
+      "navette",
+      "essence"
+    ],
+    "type": "CATEGORY",
+    "lang": "fr",
+    "country": "es",
+    "seoTitle": "Financer votre mobilité avec Soliguide en Espagne",
+    "seoDescription": "Soliguide vous aide à financer vos déplacements. Découvrez les aides pour transports, carburant ou permis de conduire en Espagne."
   }
 ]

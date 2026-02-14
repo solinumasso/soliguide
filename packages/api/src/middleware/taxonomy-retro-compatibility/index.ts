@@ -18,12 +18,5 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import type { Categories, SearchAutoComplete } from '@soliguide/common';
-const buildCategorySuggestion = (searchResult: SearchAutoComplete): Categories[] => {
-  return searchResult.categories
-    .filter(({ categoryId }) => categoryId)
-    .map(({ categoryId }) => categoryId as Categories)
-    .filter((categoryId) => Boolean(categoryId));
-};
-
-export { buildCategorySuggestion };
+// @index('./*', f => `export * from '${f.path}'`)
+export * from "./mobilityConverting.middlewrare";

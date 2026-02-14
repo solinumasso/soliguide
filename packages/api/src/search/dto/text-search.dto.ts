@@ -37,18 +37,6 @@ export const textSearchDto = (key: string) => {
   ];
 };
 
-export const autoCompleteSearchDto = (key: string) => {
-  return [
-    param(key)
-      .exists(CHECK_STRING_NULL)
-      .isString()
-      .trim()
-      .notEmpty()
-      .escape()
-      .customSanitizer((string: string) => slugString(string)),
-  ];
-};
-
 export const searchSuggestionDto = (key: string) => {
   return [
     param("lang").if(body("lang").exists()).isIn(SUPPORTED_LANGUAGES),

@@ -50,7 +50,6 @@ export interface CategoriesSpecificFields {
   otherProductTypePrecisions?: string;
   hygieneProductType?: HygieneProductType;
   jobsList?: string;
-  mobilityAssistanceName?: string;
   nationalOriginProductType?: NationalProductType;
   organicOriginProductType?: OrganicProductType;
   serviceStyleType?: ServiceStyleType[];

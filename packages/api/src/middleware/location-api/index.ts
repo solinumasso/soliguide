@@ -18,15 +18,5 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Categories } from "../../categories";
-import { AutoCompleteType } from "../enums";
-
-export interface AutoComplete {
-  categoryId: Categories | null;
-  description?: string;
-  expressionId: string | null;
-  label: string;
-  seo: string;
-  synonyms?: string;
-  type: AutoCompleteType;
-}
+// @index('./*', f => `export * from '${f.path}'`)
+export * from "./countryHandling.middleware";
