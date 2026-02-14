@@ -85,6 +85,7 @@ export const CONTACTS_FOR_ONE_PLACE: UserRightUserPopulate[] = [
       lastname: "Thiery",
       mail: "henry@soliguide.dev",
       name: "Henry",
+      lastLogin: new Date("2021-10-01T12:28:47.872Z"),
       phone: {
         label: null,
         phoneNumber: "0606060606",
