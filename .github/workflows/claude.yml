@@ -21,7 +21,7 @@ name: Claude Code Review
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-  pull_request_review_comment:
+  issue_comment:
     types: [created]
 
 jobs:
@@ -45,7 +45,8 @@ jobs:
         !contains(toLower(github.event.pull_request.title), 'dependencies') &&
         !contains(toLower(github.event.pull_request.title), 'upgrade')
       ) || (
-        github.event_name == 'pull_request_review_comment' &&
+        github.event_name == 'issue_comment' &&
+        github.event.issue.pull_request &&
         contains(github.event.comment.body, '@claude')
       )
 
@@ -66,17 +67,26 @@ jobs:
           echo "PR title: ${{ github.event.pull_request.title }}"
           echo "PR number: ${{ github.event.pull_request.number || github.event.issue.number }}"
 
+      - name: Get PR number
+        id: pr-number
+        run: |
+          if [ "${{ github.event_name }}" == "issue_comment" ]; then
+            echo "number=${{ github.event.issue.number }}" >> $GITHUB_OUTPUT
+          else
+            echo "number=${{ github.event.pull_request.number }}" >> $GITHUB_OUTPUT
+          fi
+
       - name: Checkout PR branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha || github.event.pull_request.head.ref }}
+          ref: ${{ github.event_name == 'issue_comment' && format('refs/pull/{0}/head', steps.pr-number.outputs.number) || github.event.pull_request.head.ref }}
           fetch-depth: 0
 
       - name: Get PR files changed
         id: changed-files
         run: |
           # Get list of changed files for context
-          gh pr view ${{ github.event.pull_request.number }} --json files --jq '.files[].path' > /tmp/changed_files.txt
+          gh pr view ${{ steps.pr-number.outputs.number }} --json files --jq '.files[].path' > /tmp/changed_files.txt
           echo "Changed files:"
           cat /tmp/changed_files.txt
         env:
@@ -196,7 +206,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const prNumber = context.payload.pull_request.number;
+            const prNumber = ${{ steps.pr-number.outputs.number }};
             const reviewBody = `${{ steps.process.outputs.content }}`;
 
             // Poster en tant que commentaire de PR (comme Sentry)
@@ -215,7 +225,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const prNumber = context.payload.pull_request?.number;
+            const prNumber = ${{ steps.pr-number.outputs.number }};
             if (!prNumber) {
               console.log('❌ No PR number found');
               return;
