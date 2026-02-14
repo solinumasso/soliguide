@@ -6,8 +6,7 @@
   "license": "AGPL-3.0-only",
   "scripts": {
     "ng": "ng",
-    "prebuild": "yarn workspace @soliguide/taxonomy generate:caddy && cp -r ../common/dist/esm/translations/locales ./src/assets",
-    "prestart": "yarn workspace @soliguide/taxonomy generate:caddy",
+    "prebuild": "cp -r ../common/dist/esm/translations/locales ./src/assets",
     "start": "yarn prebuild && ng serve --configuration=development_fr -o",
     "start:ad": "yarn prebuild && ng serve --configuration=development_ad -o",
     "start:es": "yarn prebuild && ng serve --configuration=development_es -o",
