@@ -31,8 +31,8 @@ export class LastLoginBadgeDirective implements OnInit {
   @Input() lastLogin: Date | null;
 
   constructor(
-    private el: ElementRef,
-    private translateService: TranslateService
+    private readonly el: ElementRef,
+    private readonly translateService: TranslateService
   ) {}
 
   ngOnInit() {
@@ -58,6 +58,6 @@ export class LastLoginBadgeDirective implements OnInit {
     }
 
     const datePipe = new DatePipe(this.translateService.currentLang ?? "fr");
-    return datePipe.transform(this.lastLogin, "short") ?? "";
+    return datePipe.transform(this.lastLogin, "shortDate") ?? "";
   }
 }

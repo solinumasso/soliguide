@@ -584,7 +584,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           {{ orga.createdAt | dateProxy }}
         </td>
         <td>
-          <span appLastLoginBadge [lastLogin]="orga.lastLogin"></span>
+          <span appLastLoginBadge [lastLogin]="orga?.lastLogin"></span>
         </td>
       </tr>
     </tbody>
