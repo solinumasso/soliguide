@@ -31,7 +31,7 @@
     "test": "ENV=test MONGODB_URI='mongodb://127.0.0.1:27017/soliguide_test?replicaSet=rs0' TZ=Europe/Paris jest"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.65.0",
+    "@anthropic-ai/sdk": "^0.74.0",
     "@aws-sdk/client-s3": "^3.787.0",
     "@google-cloud/translate": "^8.3.0",
     "@sentry/node": "^9.15.0",
@@ -40,9 +40,9 @@
     "amqp-connection-manager": "^4.1.14",
     "amqplib": "^0.10.7",
     "apicache": "^1.6.3",
-    "axios": "^1.10.0",
+    "axios": "^1.13.5",
     "bcryptjs": "2.4.3",
-    "body-parser": "1.20.3",
+    "body-parser": "1.20.4",
     "cache-manager": "^6.4.3",
     "class-transformer": "^0.5.1",
     "class-transformer-validator": "^0.9.1",

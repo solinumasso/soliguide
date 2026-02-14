@@ -33,7 +33,7 @@
     "!dist/**/*.spec.*"
   ],
   "devDependencies": {
-    "@eslint/compat": "^1.2.9",
+    "@eslint/compat": "^1.4.1",
     "@playwright/test": "^1.28.1",
     "@sveltejs/adapter-auto": "^3.0.0",
     "@sveltejs/adapter-node": "^5.2.0",
