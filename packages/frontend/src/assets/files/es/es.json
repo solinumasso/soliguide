@@ -2913,7 +2913,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "Transportation Mobility",
+    "label": "Movilidad y Transporte",
     "slug": "transportation_mobility",
     "synonyms": [
       "transporte gratuito",
@@ -2940,7 +2940,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "Mobility Support",
+    "label": "Apoyo a la Movilidad",
     "slug": "mobility_support",
     "synonyms": [
       "transporte",
@@ -2967,7 +2967,7 @@
   },
   {
     "categoryId": "mobility_financing",
-    "label": "Mobility Financing",
+    "label": "Financiamiento de Movilidad",
     "slug": "mobility_financing",
     "synonyms": [
       "transporte",

@@ -3222,7 +3222,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "Transportation Mobility",
+    "label": "Mobilitat i Transport",
     "slug": "transportation_mobility",
     "synonyms": [
       "desplaçar",
@@ -3249,7 +3249,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "Mobility Support",
+    "label": "Suport de Mobilitat",
     "slug": "mobility_support",
     "synonyms": [
       "transport",
@@ -3271,12 +3271,12 @@
     "type": "CATEGORY",
     "lang": "ca",
     "country": "fr",
-    "seoTitle": "Trobeu ajuda per desplaçar-vos amb Mobility Support a Soliguide",
+    "seoTitle": "Trobeu ajuda per desplaçar-vos amb suport de mobilitat a Soliguide",
     "seoDescription": "Soliguide us ajuda a trobar transport gratuït, targetes de metro reduïdes i ajudes per moure-us per París, Lió o Marsella"
   },
   {
     "categoryId": "mobility_financing",
-    "label": "Mobility Financing",
+    "label": "Finançament de la mobilitat",
     "slug": "mobility_financing",
     "synonyms": [
       "transport",
@@ -3303,7 +3303,7 @@
   },
   {
     "categoryId": "driving_license",
-    "label": "Driving License",
+    "label": "Permís de conduir",
     "slug": "driving_license",
     "synonyms": [
       "permís",
@@ -3330,7 +3330,7 @@
   },
   {
     "categoryId": "personal_vehicle_access",
-    "label": "Personal Vehicle Access",
+    "label": "Accés a vehicle personal",
     "slug": "personal_vehicle_access",
     "synonyms": [
       "transport",
@@ -3357,7 +3357,7 @@
   },
   {
     "categoryId": "vehicle_maintenance",
-    "label": "Vehicle Maintenance",
+    "label": "Manteniment de vehicles",
     "slug": "vehicle_maintenance",
     "synonyms": [
       "reparació",

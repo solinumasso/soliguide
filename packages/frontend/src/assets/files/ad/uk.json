@@ -2156,7 +2156,7 @@
     "type": "CATEGORY",
     "lang": "uk",
     "country": "ad",
-    "seoTitle": "Знайдіть допомогу з пульмонологія в Андоррі через Soliguide",
+    "seoTitle": "Знайдіть допомогу з пульмонології в Андоррі через Soliguide",
     "seoDescription": "Soliguide допоможе вам знайти пульмонологічну допомогу в Андоррі: консультації лікарів, обстеження легенів, лікування астми"
   },
   {
@@ -2824,7 +2824,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "Transportation Mobility",
+    "label": "Транспорт та мобільність",
     "slug": "transportation_mobility",
     "synonyms": [
       "автобус",
@@ -2851,7 +2851,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "Mobility Support",
+    "label": "Підтримка мобільності",
     "slug": "mobility_support",
     "synonyms": [
       "транспорт",
@@ -2878,7 +2878,7 @@
   },
   {
     "categoryId": "mobility_financing",
-    "label": "Mobility Financing",
+    "label": "Фінансування мобільності",
     "slug": "mobility_financing",
     "synonyms": [
       "проїзд",

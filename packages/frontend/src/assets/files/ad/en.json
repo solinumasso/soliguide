@@ -919,7 +919,7 @@
   },
   {
     "categoryId": "accomodation_and_housing",
-    "label": "Lodging and housing",
+    "label": "Accommodation and housing",
     "slug": "hebergement-et-logement",
     "synonyms": [
       "shelter",
@@ -1000,7 +1000,7 @@
   },
   {
     "categoryId": "long_term_accomodation",
-    "label": "Long-terme shelters",
+    "label": "Long-term shelters",
     "slug": "hebergement-long-terme",
     "synonyms": [
       "housing",
@@ -2242,7 +2242,7 @@
   },
   {
     "categoryId": "speech_therapy",
-    "label": "Orthophony",
+    "label": "Speech Therapy",
     "slug": "orthophonie",
     "synonyms": [
       "speech",

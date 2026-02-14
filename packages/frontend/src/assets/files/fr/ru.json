@@ -3222,7 +3222,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "Transportation Mobility",
+    "label": "Транспорт и мобильность",
     "slug": "transportation_mobility",
     "synonyms": [
       "транспорт",
@@ -3249,7 +3249,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "Mobility Support",
+    "label": "Поддержка мобильности",
     "slug": "mobility_support",
     "synonyms": [
       "транспорт",
@@ -3276,7 +3276,7 @@
   },
   {
     "categoryId": "mobility_financing",
-    "label": "Mobility Financing",
+    "label": "Финансирование мобильности",
     "slug": "mobility_financing",
     "synonyms": [
       "транспорт",
@@ -3303,7 +3303,7 @@
   },
   {
     "categoryId": "driving_license",
-    "label": "Driving License",
+    "label": "Водительское удостоверение",
     "slug": "driving_license",
     "synonyms": [
       "водительское удостоверение",
@@ -3330,7 +3330,7 @@
   },
   {
     "categoryId": "personal_vehicle_access",
-    "label": "Personal Vehicle Access",
+    "label": "Доступ к личному транспорту",
     "slug": "personal_vehicle_access",
     "synonyms": [
       "транспорт",
@@ -3357,7 +3357,7 @@
   },
   {
     "categoryId": "vehicle_maintenance",
-    "label": "Vehicle Maintenance",
+    "label": "Обслуживание автомобилей",
     "slug": "vehicle_maintenance",
     "synonyms": [
       "ремонт автомобиля",

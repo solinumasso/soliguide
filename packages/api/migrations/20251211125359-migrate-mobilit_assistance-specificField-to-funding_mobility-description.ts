@@ -48,8 +48,9 @@ export const up = async (db: Db) => {
     place.services_all = place.services_all.map(
       (service: CommonNewPlaceService) => {
         if (service.category === Categories.MOBILITY_FINANCING) {
-          const specificField =
-            service.categorySpecificFields?.mobilityAssistanceName;
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const specificField = (service?.categorySpecificFields as any)
+            ?.mobilityAssistanceName;
 
           if (specificField) {
             service.description = service.description

@@ -3221,7 +3221,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "Transportation Mobility",
+    "label": "ტრანსპორტი და მობილობა",
     "slug": "transportation_mobility",
     "synonyms": [
       "მეტრო",
@@ -3248,7 +3248,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "Mobility Support",
+    "label": "მოძრაობის დახმარება",
     "slug": "mobility_support",
     "synonyms": [
       "ტრანსპორტი",
@@ -3275,7 +3275,7 @@
   },
   {
     "categoryId": "mobility_financing",
-    "label": "Mobility Financing",
+    "label": "მობილობის ფინანსირება",
     "slug": "mobility_financing",
     "synonyms": [
       "ტრანსპორტი",
@@ -3302,7 +3302,7 @@
   },
   {
     "categoryId": "driving_license",
-    "label": "Driving License",
+    "label": "მძღოლის ლიცენზია",
     "slug": "driving_license",
     "synonyms": [
       "მძღოლის ტესტი",
@@ -3329,7 +3329,7 @@
   },
   {
     "categoryId": "personal_vehicle_access",
-    "label": "Personal Vehicle Access",
+    "label": "პირადი ავტომობილის ხელმისაწვდომობა",
     "slug": "personal_vehicle_access",
     "synonyms": [
       "მანქანის აქირავება",
@@ -3356,7 +3356,7 @@
   },
   {
     "categoryId": "vehicle_maintenance",
-    "label": "Vehicle Maintenance",
+    "label": "მანქანის მოვლა",
     "slug": "vehicle_maintenance",
     "synonyms": [
       "მანქანის რემონტი",

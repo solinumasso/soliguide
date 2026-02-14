@@ -2156,7 +2156,7 @@
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "Знайдіть допомогу з пульмонологія в Іспанії через Soliguide",
+    "seoTitle": "Знайдіть допомогу з пульмонології в Іспанії через Soliguide",
     "seoDescription": "Soliguide допоможе знайти центри охорони здоров'я, лікарні та спеціалістів з легеневих захворювань в Мадриді, Барселоні та інших містах"
   },
   {
@@ -2561,7 +2561,7 @@
     "type": "CATEGORY",
     "lang": "uk",
     "country": "es",
-    "seoTitle": "Знайдіть курси іспанської мови з Soliguide для вивчення categories.spanish_course",
+    "seoTitle": "Знайдіть курси іспанської мови з Soliguide для вивчення іспанської мови",
     "seoDescription": "Soliguide допоможе знайти безкоштовні курси іспанської: заняття в центрах соціальних послуг, онлайн уроки, розмовні клуби"
   },
   {
@@ -2913,7 +2913,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "Transportation Mobility",
+    "label": "Транспортна мобільність",
     "slug": "transportation_mobility",
     "synonyms": [
       "проїзний квиток",
@@ -2940,7 +2940,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "Mobility Support",
+    "label": "Підтримка мобільності",
     "slug": "mobility_support",
     "synonyms": [
       "транспорт",
@@ -2967,7 +2967,7 @@
   },
   {
     "categoryId": "mobility_financing",
-    "label": "Mobility Financing",
+    "label": "Фінансування мобільності",
     "slug": "mobility_financing",
     "synonyms": [
       "проїзд",

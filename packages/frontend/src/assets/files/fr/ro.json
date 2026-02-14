@@ -3220,7 +3220,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "Transportation Mobility",
+    "label": "Mobilitate Transport",
     "slug": "transportation_mobility",
     "synonyms": [
       "transport",
@@ -3247,7 +3247,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "Mobility Support",
+    "label": "Suport pentru Mobilitate",
     "slug": "mobility_support",
     "synonyms": [
       "transport",
@@ -3274,7 +3274,7 @@
   },
   {
     "categoryId": "mobility_financing",
-    "label": "Mobility Financing",
+    "label": "Finanțarea Mobilității",
     "slug": "mobility_financing",
     "synonyms": [
       "transport gratuit",
@@ -3301,7 +3301,7 @@
   },
   {
     "categoryId": "driving_license",
-    "label": "Driving License",
+    "label": "Permis de conducere",
     "slug": "driving_license",
     "synonyms": [
       "permis de conducere",
@@ -3328,7 +3328,7 @@
   },
   {
     "categoryId": "personal_vehicle_access",
-    "label": "Personal Vehicle Access",
+    "label": "Acces la Vehicul Personal",
     "slug": "personal_vehicle_access",
     "synonyms": [
       "transport",
@@ -3355,7 +3355,7 @@
   },
   {
     "categoryId": "vehicle_maintenance",
-    "label": "Vehicle Maintenance",
+    "label": "Întreținerea vehiculului",
     "slug": "vehicle_maintenance",
     "synonyms": [
       "reparații auto",
@@ -3378,6 +3378,6 @@
     "lang": "ro",
     "country": "fr",
     "seoTitle": "Găsiți ajutor pentru întreținerea vehiculului cu Soliguide",
-    "seoDescription": "Soliguide vă conectează cu servicii de reparații auto gratuite sau ieftine. Găsiți mecanici, piese de schimb și ajutor pentru transport în Francia."
+    "seoDescription": "Soliguide vă conectează cu servicii de reparații auto gratuite sau ieftine. Găsiți mecanici, piese de schimb și ajutor pentru transport în Franța."
   }
 ]

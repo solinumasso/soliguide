@@ -23,6 +23,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { SearchSuggestion, SupportedLanguagesCode } from "@soliguide/common";
 
 import { logger } from "../src/general/logger";
+import { CONFIG } from "../src/_models";
 
 const message =
   "Use Claude API to verify and correct search suggestion language";
@@ -169,6 +170,12 @@ Respond with ONLY this JSON (no markdown):
 }
 
 export const up = async (db: Db) => {
+  if (CONFIG.ENV !== "local") {
+    logger.info(
+      `[MIGRATION] - Skipping ${message} in local environment to avoid hitting API limits`
+    );
+    return;
+  }
   console.log(`\n🚀 [MIGRATION] - ${message}\n`);
 
   // Check for API key

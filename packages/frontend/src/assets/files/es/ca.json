@@ -2913,7 +2913,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "Transportation Mobility",
+    "label": "Transport i Mobilitat",
     "slug": "transportation_mobility",
     "synonyms": [
       "autobús",
@@ -2940,7 +2940,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "Mobility Support",
+    "label": "Suport de Mobilitat",
     "slug": "mobility_support",
     "synonyms": [
       "transport",
@@ -2967,7 +2967,7 @@
   },
   {
     "categoryId": "mobility_financing",
-    "label": "Mobility Financing",
+    "label": "Finançament de mobilitat",
     "slug": "mobility_financing",
     "synonyms": [
       "transport",

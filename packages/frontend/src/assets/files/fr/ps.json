@@ -3222,7 +3222,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "Transportation Mobility",
+    "label": "د ټرانسپورټ او تګ راتګ",
     "slug": "transportation_mobility",
     "synonyms": [
       "بس",
@@ -3249,7 +3249,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "Mobility Support",
+    "label": "د تګ راتګ مرسته",
     "slug": "mobility_support",
     "synonyms": [
       "بس",
@@ -3276,7 +3276,7 @@
   },
   {
     "categoryId": "mobility_financing",
-    "label": "Mobility Financing",
+    "label": "د تحرک مالي مرسته",
     "slug": "mobility_financing",
     "synonyms": [
       "ټرانسپورټ",
@@ -3303,7 +3303,7 @@
   },
   {
     "categoryId": "driving_license",
-    "label": "Driving License",
+    "label": "د رانندګي جواز",
     "slug": "driving_license",
     "synonyms": [
       "رانندګي جواز",
@@ -3330,7 +3330,7 @@
   },
   {
     "categoryId": "personal_vehicle_access",
-    "label": "Personal Vehicle Access",
+    "label": "د شخصي موټر لاسرسي",
     "slug": "personal_vehicle_access",
     "synonyms": [
       "موټر کرایه",
@@ -3357,7 +3357,7 @@
   },
   {
     "categoryId": "vehicle_maintenance",
-    "label": "Vehicle Maintenance",
+    "label": "د موټر مراقبت",
     "slug": "vehicle_maintenance",
     "synonyms": [
       "موټر مرمت",

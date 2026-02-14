@@ -2824,7 +2824,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "Transportation Mobility",
+    "label": "النقل والتنقل",
     "slug": "transportation_mobility",
     "synonyms": [
       "الحافلات المجانية",
@@ -2851,7 +2851,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "Mobility Support",
+    "label": "دعم التنقل",
     "slug": "mobility_support",
     "synonyms": [
       "النقل المجاني",
@@ -2878,7 +2878,7 @@
   },
   {
     "categoryId": "mobility_financing",
-    "label": "Mobility Financing",
+    "label": "تمويل التنقل",
     "slug": "mobility_financing",
     "synonyms": [
       "النقل",

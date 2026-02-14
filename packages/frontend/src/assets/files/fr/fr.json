@@ -3206,7 +3206,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "Transportation Mobility",
+    "label": "Mobilité Transport",
     "slug": "transportation_mobility",
     "synonyms": [
       "bus",
@@ -3233,7 +3233,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "Mobility Support",
+    "label": "Aide à la mobilité",
     "slug": "mobility_support",
     "synonyms": [
       "transport",
@@ -3260,7 +3260,7 @@
   },
   {
     "categoryId": "mobility_financing",
-    "label": "Mobility Financing",
+    "label": "Financement de la mobilité",
     "slug": "mobility_financing",
     "synonyms": [
       "transport",
@@ -3287,7 +3287,7 @@
   },
   {
     "categoryId": "driving_license",
-    "label": "Driving License",
+    "label": "Permis de conduire",
     "slug": "driving_license",
     "synonyms": [
       "permis",
@@ -3314,7 +3314,7 @@
   },
   {
     "categoryId": "personal_vehicle_access",
-    "label": "Personal Vehicle Access",
+    "label": "Accès à un véhicule personnel",
     "slug": "personal_vehicle_access",
     "synonyms": [
       "transport",
@@ -3341,7 +3341,7 @@
   },
   {
     "categoryId": "vehicle_maintenance",
-    "label": "Vehicle Maintenance",
+    "label": "Entretien de véhicules",
     "slug": "vehicle_maintenance",
     "synonyms": [
       "réparation voiture",

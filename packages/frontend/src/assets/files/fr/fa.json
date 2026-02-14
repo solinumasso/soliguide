@@ -3222,7 +3222,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "Transportation Mobility",
+    "label": "تحرک و حمل‌ونقل",
     "slug": "transportation_mobility",
     "synonyms": [
       "مترو",
@@ -3249,7 +3249,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "Mobility Support",
+    "label": "پشتیبانی تحرک",
     "slug": "mobility_support",
     "synonyms": [
       "بلیط",
@@ -3276,7 +3276,7 @@
   },
   {
     "categoryId": "mobility_financing",
-    "label": "Mobility Financing",
+    "label": "تامین مالی تحرک",
     "slug": "mobility_financing",
     "synonyms": [
       "بلیط",
@@ -3303,7 +3303,7 @@
   },
   {
     "categoryId": "driving_license",
-    "label": "Driving License",
+    "label": "گواهینامه رانندگی",
     "slug": "driving_license",
     "synonyms": [
       "گواهینامه",
@@ -3330,7 +3330,7 @@
   },
   {
     "categoryId": "personal_vehicle_access",
-    "label": "Personal Vehicle Access",
+    "label": "دسترسی به وسایل نقلیه شخصی",
     "slug": "personal_vehicle_access",
     "synonyms": [
       "حمل‌ونقل",
@@ -3357,7 +3357,7 @@
   },
   {
     "categoryId": "vehicle_maintenance",
-    "label": "Vehicle Maintenance",
+    "label": "تعمیر و نگهداری خودرو",
     "slug": "vehicle_maintenance",
     "synonyms": [
       "تعمیر خودرو",

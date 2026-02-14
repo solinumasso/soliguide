@@ -86,7 +86,7 @@
     "slug": "garde-enfants",
     "synonyms": [
       "cuidador",
-      "niñera",
+      "cangur",
       "vigilància",
       "infants",
       "fills",
@@ -443,14 +443,14 @@
       "verdures",
       "fruita",
       "pa",
-      "lactis",
+      "làctics",
       "conserves",
       "cuinar",
       "berenar",
       "dinar",
       "sopar",
       "nevera",
-      "frigorifico"
+      "frigorífic"
     ],
     "type": "CATEGORY",
     "lang": "ca",
@@ -1150,9 +1150,9 @@
       "higiene",
       "aparença",
       "estètica",
-      "coiffure",
+      "perruqueria",
       "perruquera",
-      "salon"
+      "saló"
     ],
     "type": "CATEGORY",
     "lang": "ca",
@@ -1283,10 +1283,10 @@
       "salut",
       "seguretat",
       "respiratori",
-      "quirúrgica",
+      "quirúrgic",
       "FFP2",
       "teixit",
-      "desechable",
+      "d'un sol ús",
       "higiene"
     ],
     "type": "CATEGORY",
@@ -1378,7 +1378,7 @@
   },
   {
     "categoryId": "clothing",
-    "label": "Rober",
+    "label": "Robatori",
     "slug": "vetements",
     "synonyms": [
       "víctima",
@@ -2032,7 +2032,7 @@
       "orella",
       "nas",
       "gola",
-      "audiència",
+      "audició",
       "sinusitis",
       "rinitis",
       "vertigen",
@@ -2220,18 +2220,18 @@
     "synonyms": [
       "ronyons",
       "bufeta",
-      "prostata",
-      "incontinencia",
-      "infeccio",
+      "pròstata",
+      "incontinència",
+      "infecció",
       "dolor",
       "consulta",
       "especialista",
       "tractament",
       "medicament",
-      "analisi",
+      "anàlisi",
       "ecografia",
-      "revisio",
-      "prevencion",
+      "revisió",
+      "prevenció",
       "salut"
     ],
     "type": "CATEGORY",
@@ -2824,7 +2824,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "Transportation Mobility",
+    "label": "Mobilitat de transport",
     "slug": "transportation_mobility",
     "synonyms": [
       "autobús",
@@ -2851,7 +2851,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "Mobility Support",
+    "label": "Suport de Mobilitat",
     "slug": "mobility_support",
     "synonyms": [
       "transport",
@@ -2878,7 +2878,7 @@
   },
   {
     "categoryId": "mobility_financing",
-    "label": "Mobility Financing",
+    "label": "Finançament de mobilitat",
     "slug": "mobility_financing",
     "synonyms": [
       "transport",

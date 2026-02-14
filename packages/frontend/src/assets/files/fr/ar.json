@@ -3222,7 +3222,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "Transportation Mobility",
+    "label": "التنقل والمواصلات",
     "slug": "transportation_mobility",
     "synonyms": [
       "حافلة",
@@ -3249,7 +3249,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "Mobility Support",
+    "label": "دعم التنقل",
     "slug": "mobility_support",
     "synonyms": [
       "نقل",
@@ -3276,7 +3276,7 @@
   },
   {
     "categoryId": "mobility_financing",
-    "label": "Mobility Financing",
+    "label": "تمويل التنقل",
     "slug": "mobility_financing",
     "synonyms": [
       "نقل",
@@ -3303,7 +3303,7 @@
   },
   {
     "categoryId": "driving_license",
-    "label": "Driving License",
+    "label": "رخصة القيادة",
     "slug": "driving_license",
     "synonyms": [
       "رخصة السيارة",
@@ -3330,7 +3330,7 @@
   },
   {
     "categoryId": "personal_vehicle_access",
-    "label": "Personal Vehicle Access",
+    "label": "الوصول إلى المركبات الشخصية",
     "slug": "personal_vehicle_access",
     "synonyms": [
       "النقل",
@@ -3357,7 +3357,7 @@
   },
   {
     "categoryId": "vehicle_maintenance",
-    "label": "Vehicle Maintenance",
+    "label": "صيانة السيارات",
     "slug": "vehicle_maintenance",
     "synonyms": [
       "إصلاح السيارة",
