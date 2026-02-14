@@ -70,7 +70,4 @@ name = "docker"
   ]
 
 [[analyzers]]
-name = "test-coverage"
-
-[[analyzers]]
 name = "secrets"

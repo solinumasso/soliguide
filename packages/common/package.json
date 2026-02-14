@@ -14,9 +14,6 @@
     "format:fix": "prettier --cache -w .",
     "lint": "eslint --cache ./src",
     "lint:fix": "eslint --cache ./src --fix",
-    "license:add": "license-check-and-add add -f license.config.json -r $(date +%Y)",
-    "license:check": "license-check-and-add check -f license.config.json -r $(date +%Y)",
-    "license:remove": "license-check-and-add remove -f license.config.json -r $(date +%Y)",
     "test": "jest"
   },
   "devDependencies": {

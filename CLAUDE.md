@@ -118,19 +118,6 @@ yarn workspace @soliguide/api migrate-status
 ./packages/api/db.sh dump -t
 ```
 
-### License Management
-
-```bash
-# Add license headers to all files
-yarn license:add
-
-# Check license compliance
-yarn license:check
-
-# For files that cannot have headers, use:
-./scripts/reuse-annotate.sh --force-dot-license path/to/file
-```
-
 ## Architecture
 
 ### Monorepo Structure

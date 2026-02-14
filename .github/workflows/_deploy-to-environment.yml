@@ -99,6 +99,7 @@ jobs:
         if: ${{ !inputs.tag }}
         uses: actions/checkout@v4
         with:
+          fetch-depth: 0
           persist-credentials: true
 
       - name: Checkout repository (tag)
@@ -106,6 +107,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: refs/tags/${{ inputs.tag }}
+          fetch-depth: 0
           persist-credentials: true
 
       - name: Install parallel utils
@@ -198,7 +200,7 @@ jobs:
       - name: Deploy all apps to Clever Cloud
         # Run in parallel 4 git push and retries twice if it fails
         run: |
-          cat ./remotes-to-deploy-to.txt | parallel --no-notice --line-buffer --tagstring '{= $_.=substr($_,7); =}' -j 4 --retries 2 git push -f {} HEAD:master
+          cat ./remotes-to-deploy-to.txt | parallel --no-notice --line-buffer --tagstring '{= s/^clever-//; =}' -j 4 --retries 2 git push -f {} HEAD:master
 
       - name: Create GitHub Deployment
         if: github.event_name == 'pull_request'

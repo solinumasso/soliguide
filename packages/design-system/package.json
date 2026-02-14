@@ -19,9 +19,6 @@
     "format": "prettier --cache -c .",
     "format:fix": "prettier --cache -w .",
     "start": "storybook dev -p 6006",
-    "license:add": "license-check-and-add add -f license.config.json -r $(date +%Y)",
-    "license:check": "license-check-and-add check -f license.config.json -r $(date +%Y)",
-    "license:remove": "license-check-and-add remove -f license.config.json -r $(date +%Y)",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build"
   },

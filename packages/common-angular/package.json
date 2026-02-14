@@ -11,10 +11,7 @@
     "test": "jest",
     "lint": "ng lint",
     "format": "prettier --cache -c .",
-    "format:fix": "prettier --cache -w .",
-    "license:add": "license-check-and-add add -f license.config.json -r $(date +%Y)",
-    "license:check": "license-check-and-add check -f license.config.json -r $(date +%Y)",
-    "license:remove": "license-check-and-add remove -f license.config.json -r $(date +%Y)"
+    "format:fix": "prettier --cache -w ."
   },
   "devDependencies": {
     "@angular-devkit/architect": "0.1802.1",

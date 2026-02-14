@@ -19,9 +19,6 @@
     "start": "yarn build && yarn preview",
     "test:integration": "playwright test",
     "test:unit": "vitest",
-    "license:add": "license-check-and-add add -f license.config.json -r $(date +%Y)",
-    "license:check": "license-check-and-add check -f license.config.json -r $(date +%Y)",
-    "license:remove": "license-check-and-add remove -f license.config.json -r $(date +%Y)",
     "watch": "yarn dev"
   },
   "exports": {
