@@ -30,6 +30,8 @@ COPY \
   nx.json \
   /app/
 
+COPY .yarn/releases/ /app/.yarn/releases/
+
 COPY packages/api/package.json /app/packages/api/
 COPY packages/common/package.json /app/packages/common/
 COPY packages/common-angular/package.json /app/packages/common-angular/
