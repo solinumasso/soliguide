@@ -206,7 +206,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           size="small"
           iconPosition="iconOnly"
           type="primaryOutline"
-          href={getMapLink(place.address)}
+          href={getMapLink(place.address, place.coordinates)}
           disabled={isDisabled || isPlaceUnavailable}
           ><NearMe
             slot="icon"

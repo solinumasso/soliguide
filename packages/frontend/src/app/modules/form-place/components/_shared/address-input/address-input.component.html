@@ -34,7 +34,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <app-location-autocomplete
       (clearAddress)="clearAddress()"
       (updateLocation)="updateLocation($event)"
-      [addressesOnly]="true"
+      [addressesOnly]="addressesOnly"
       [currentAddress]="position.address"
     ></app-location-autocomplete>
     <div *ngIf="helpAddress" class="input-description">
