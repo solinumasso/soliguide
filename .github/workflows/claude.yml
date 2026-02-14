@@ -33,18 +33,9 @@ jobs:
     # 2. Exclure PRs automatiques (renovate, dependabot, weblate)
     # 3. Exclure PRs de maintenance (chore, dependencies, upgrade)
     # 4. Ou répondre aux commentaires mentionnant @claude
+    # Temporairement simplifié pour debug - à restaurer après tests
     if: |
-      (
-        github.event_name == 'pull_request' &&
-        contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.pull_request.author_association) &&
-        !contains(github.event.pull_request.user.login, 'renovate') &&
-        !contains(github.event.pull_request.user.login, 'dependabot') &&
-        !contains(github.event.pull_request.user.login, 'weblate') &&
-        !startsWith(github.event.pull_request.title, 'chore') &&
-        !contains(toLower(github.event.pull_request.title), 'weblate') &&
-        !contains(toLower(github.event.pull_request.title), 'dependencies') &&
-        !contains(toLower(github.event.pull_request.title), 'upgrade')
-      ) || (
+      github.event_name == 'pull_request' || (
         github.event_name == 'issue_comment' &&
         github.event.issue.pull_request &&
         contains(github.event.comment.body, '@claude')
