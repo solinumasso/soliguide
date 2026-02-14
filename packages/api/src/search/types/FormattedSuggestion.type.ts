@@ -27,6 +27,8 @@ export type FormattedSuggestion = Pick<
   | "slug"
   | "synonyms"
   | "type"
+  | "lang"
+  | "country"
   | "seoTitle"
   | "seoDescription"
 >;

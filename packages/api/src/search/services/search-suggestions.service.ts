@@ -104,6 +104,8 @@ export class SearchSuggestionsService {
         slug: suggestion.slug,
         synonyms: suggestion.synonyms || [],
         type: suggestion.type,
+        lang: suggestion.lang,
+        country: suggestion.country,
         seoTitle: suggestion.seoTitle,
         seoDescription: suggestion.seoDescription,
       }));

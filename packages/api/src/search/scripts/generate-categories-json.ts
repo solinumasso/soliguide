@@ -18,7 +18,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import "../../config/database/connection";
 
 import {
   SUPPORTED_LANGUAGES_BY_COUNTRY,
@@ -29,6 +28,7 @@ import { ensureDir, writeFile } from "fs-extra";
 import { getLangsForCountry } from "../utils";
 import { SearchSuggestionsService } from "../services";
 import { join, relative } from "node:path";
+import { connectToDatabase } from "../../config/database";
 
 async function generateAutocompleteFiles(): Promise<void> {
   try {
@@ -100,5 +100,6 @@ async function generateFileForLanguageAndCountry(
 }
 
 (async () => {
+  await connectToDatabase();
   await generateAutocompleteFiles();
 })();
