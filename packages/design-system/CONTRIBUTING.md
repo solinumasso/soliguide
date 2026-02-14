@@ -31,19 +31,16 @@ This file presents how contribute to the design system : how to setup, run and c
 
 Clone the repository and install dependencies with `yarn install`
 
-We use Storybook as a dev server to work on the components in isolation.
+Use the dev server to work on the components:
 
 ```bash
-# Then navigate to `http://localhost:`.
-yarn storybook
+# Launch the dev server at http://localhost:5173
+yarn dev
 ```
 
 The app live reloads as sources change.
 
-You can use `yarn start` as an alias.
-
-NB: running `yarn dev` will launch a dev server with an empty app.
-This app can be used as a playground, but won't be part of the design system once built.
+This dev app can be used as a playground to test components, but won't be part of the design system once built.
 
 ### Build
 

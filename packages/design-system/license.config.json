@@ -16,9 +16,6 @@
     "build/**/*",
     ".prettierrc",
     "**/.DS_Store",
-    "storybook-static/**/*",
-    "build-storybook.log",
-    "**/*.mdx",
     "coverage/**/*"
   ],
   "licenseFormats": {

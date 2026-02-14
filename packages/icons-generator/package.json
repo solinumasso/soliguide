@@ -7,8 +7,8 @@
   "dependencies": {
     "@soliguide/common": "workspace:*",
     "fs-extra": "^11.3.0",
-    "sharp": "^0.34.3",
-    "svgtofont": "^6.3.2"
+    "sharp": "^0.34.5",
+    "svgtofont": "^6.5.1"
   },
   "scripts": {
     "start": "tsx src/index.ts",
@@ -27,7 +27,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^22.16.4",
+    "@types/node": "^22.19.11",
     "@types/sharp": "^0.32.0",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",

@@ -58,11 +58,11 @@
     "terser": "^5.36.0",
     "typescript": "^5.0.0",
     "typescript-eslint": "^8.30.1",
-    "vite": "^5.0.3",
-    "vitest": "^2.0.0"
+    "vite": "^5.4.21",
+    "vitest": "^2.1.9"
   },
   "dependencies": {
-    "@sentry/sveltekit": "^9.15.0",
+    "@sentry/sveltekit": "^9.47.1",
     "@soliguide/common": "workspace:*",
     "@soliguide/design-system": "workspace:*",
     "date-fns": "^4.1.0",
@@ -73,7 +73,7 @@
     "svelte-circle-flags": "^1.1.2",
     "svelte-google-materialdesign-icons": "^1.0.5",
     "svelte-i18next": "^2.2.2",
-    "zod": "^3.23.8"
+    "zod": "^3.25.76"
   },
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",
