@@ -19,11 +19,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 // @index('./*', f => `export * from '${f.path}'`)
+export * from "./analytics";
 export * from "./events";
+export * from "./getFilteredData.middleware";
 export * from "./guards";
+export * from "./location-api";
 export * from "./logging";
 export * from "./request";
-export * from "./getFilteredData.middleware";
-export * from "./validateBodyGenerator.middleware";
-export * from "./location-api";
 export * from "./taxonomy-retro-compatibility";

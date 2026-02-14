@@ -19,17 +19,26 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import {
+  ApiPlace,
   PlaceSlugs,
   PlaceType,
-  defaultSlugOptions,
   slugString,
+  SupportedLanguagesCode,
 } from "@soliguide/common";
 
 import slug from "slug";
 
+const defaultSlugOptions = {
+  ...slug.defaults.modes.rfc3986,
+  mode: "rfc3986" as const,
+  locale: SupportedLanguagesCode.FR,
+};
+
 // SEO URL : remove special characters, use hyphens, remove useless words (de, à, l', etc.)
 // The city is added to the url to improve the SEO
-export const seoUrl = (referencedItem: any) => {
+export const seoUrl = (
+  referencedItem: Pick<ApiPlace, "name" | "placeType" | "position" | "lieu_id">
+) => {
   let newSeoUrl = slug(referencedItem.name, defaultSlugOptions);
   let city = null;
 
