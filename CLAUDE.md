@@ -27,8 +27,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Soliguide is a social impact platform that references all services, initiatives and resources for people in need. It's a monorepo managed by Lerna 8 and Nx 19, using Yarn 4 workspaces.
 
-**License**: AGPL-3.0-only with REUSE compliance required for all files.
-
 ## Common Commands
 
 ### Development Setup
@@ -225,6 +223,7 @@ test(location-api): add tests for geocoding service
 #### Accessing PR Environment URLs
 
 After deployment, environment URLs are available in the PR via **GitHub Deployments** (not public comments):
+
 - Go to your PR
 - Scroll to the "Deployments" section
 - Click on the environment to see all URLs
