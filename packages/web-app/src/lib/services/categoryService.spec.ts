@@ -19,36 +19,52 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { beforeEach, describe, expect, it } from 'vitest';
-import { Themes } from '@soliguide/common';
+import {
+  AutoCompleteType,
+  Categories,
+  CountryCodes,
+  SupportedLanguagesCode,
+  Themes,
+  type SearchSuggestion
+} from '@soliguide/common';
 import { getCategoryService } from './categoryService';
 import { fakeFetch } from '$lib/client';
 import type { Fetcher } from '$lib/client/types';
 import { CategoriesErrors } from './types';
 
-const apiSuggestions = {
-  categories: [
-    {
-      categoryId: 'hygiene_products',
-      expressionId: null,
-      label: 'HYGIENE_PRODUCTS',
-      seo: 'produits-hygiene'
-    },
-    {
-      categoryId: 'digital_tools_training',
-      expressionId: null,
-      label: 'DIGITAL_TOOLS_TRAINING',
-      seo: 'formation-numerique'
-    }
-  ],
-  terms: [
-    {
-      categoryId: null,
-      expressionId: 'pmi',
-      label: 'PMI - Protection maternelle et Infantile',
-      seo: 'pmi-protection-maternelle-infantile'
-    }
-  ]
-};
+const apiSuggestions: SearchSuggestion[] = [
+  {
+    sourceId: 'hygiene_products',
+    lang: SupportedLanguagesCode.FR,
+    label: "Produits d'hygiène",
+    categoryId: Categories.HYGIENE_PRODUCTS,
+    slug: 'produits-hygiene',
+    country: CountryCodes.FR,
+    synonyms: [],
+    type: AutoCompleteType.CATEGORY,
+    content: '',
+    seoTitle: 'HYGIENE_PRODUCTS',
+    seoDescription: '',
+    createdAt: new Date(),
+    updatedAt: new Date()
+  },
+  {
+    sourceId: 'digital_tools_training',
+    lang: SupportedLanguagesCode.FR,
+    label: 'Formation numérique',
+    categoryId: Categories.DIGITAL_TOOLS_TRAINING,
+    slug: 'formation-numerique',
+    country: CountryCodes.FR,
+
+    synonyms: [],
+    type: AutoCompleteType.CATEGORY,
+    content: '',
+    seoTitle: 'DIGITAL_TOOLS_TRAINING',
+    seoDescription: '',
+    createdAt: new Date(),
+    updatedAt: new Date()
+  }
+];
 
 const builtSuggestions = ['hygiene_products', 'digital_tools_training'];
 
@@ -66,19 +82,19 @@ describe('Category Service', () => {
   describe('getCategorySuggestions', () => {
     it('I get category suggestions with a search term', async () => {
       feedWith(apiSuggestions);
-      const result = await service.getCategorySuggestions('abc');
+      const result = await service.getCategorySuggestions('abc', 'fr', 'fr');
       expect(result).toEqual(builtSuggestions);
     });
 
     it('I get no category suggestion with an empty search term', async () => {
       feedWith(apiSuggestions);
-      const result = await service.getCategorySuggestions('');
+      const result = await service.getCategorySuggestions('', 'fr', 'fr');
       expect(result).toEqual([]);
     });
 
     it('Returns nothing when search has a server error', () => {
       setError({ status: 500, statusText: 'Internal server error' });
-      expect(() => service.getCategorySuggestions('bob')).rejects.toThrowError(
+      expect(() => service.getCategorySuggestions('bob', 'fr', 'fr')).rejects.toThrowError(
         CategoriesErrors.ERROR_SERVER
       );
     });

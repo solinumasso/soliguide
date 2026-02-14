@@ -19,6 +19,4 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 // @index('./*', f => `export * from '${f.path}'`)
-export * from "./AutoComplete.interface";
 export * from "./search-suggestion.interface";
-export * from "./SearchAutoComplete.interface";

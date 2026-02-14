@@ -321,14 +321,16 @@ export const getSearchPageController = (
    * Get information about categories based on the param (supposed to be a Categories object)
    */
   const getCategoryInfoFromParam = async (
-    category: string
+    category: string,
+    country: SoliguideCountries,
+    lang: SupportedLanguagesCode
   ): Promise<{
     suggestions: Categories[];
     selection: Categories | null;
     error: CategoriesErrors;
   }> => {
     try {
-      const suggestions = await categoryService.getCategorySuggestions(category);
+      const suggestions = await categoryService.getCategorySuggestions(category, country, lang);
       const selection = suggestions.find((suggestion) => suggestion === category) ?? null;
       return { suggestions, selection, error: CategoriesErrors.NONE };
     } catch (error) {
@@ -357,7 +359,7 @@ export const getSearchPageController = (
     if (geoValue && label && shouldInitCategory) {
       myPageStore.set({ ...initialState, loading: true });
       const locationInfo = await getLocationInfoFromParam(label, geoValue);
-      const categoryInfo = await getCategoryInfoFromParam(category);
+      const categoryInfo = await getCategoryInfoFromParam(category, country, lang);
 
       // Stay on step 1 if there is an error or an option needs to be selected
       const step =
@@ -422,7 +424,8 @@ export const getSearchPageController = (
   /** api is called with a 300ms debounce */
   const getDebouncedCategorySuggestions = debounce(async (search: string) => {
     try {
-      const result = await categoryService.getCategorySuggestions(search);
+      const { country, lang } = get(myPageStore);
+      const result = await categoryService.getCategorySuggestions(search, country, lang);
       myPageStore.update(
         (oldValue): PageState => ({
           ...oldValue,
