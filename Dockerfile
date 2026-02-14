@@ -41,6 +41,7 @@ COPY packages/icons-generator/package.json /app/packages/icons-generator/
 COPY packages/location-api/package.json /app/packages/location-api/
 COPY packages/maintenance/package.json /app/packages/maintenance/
 COPY packages/soligare/package.json /app/packages/soligare/
+COPY packages/taxonomy/package.json /app/packages/taxonomy/
 COPY packages/web-app/package.json /app/packages/web-app/
 COPY packages/widget/package.json /app/packages/widget/
 
