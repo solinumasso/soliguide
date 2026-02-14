@@ -128,7 +128,7 @@ packages/
 ├── frontend/         - Angular 17 admin interface
 ├── widget/           - Angular 17 embeddable widget
 ├── web-app/          - SvelteKit public interface (SSR)
-├── design-system/    - Svelte component library with Storybook
+├── design-system/    - Svelte component library
 ├── common/           - Shared TypeScript types and utilities (dual build: CJS + ESM)
 └── common-angular/   - Shared Angular services
 ```
@@ -152,7 +152,7 @@ common (base types & utilities)
 - **Soligare**: NestJS, PostgreSQL
 - **Frontend/Widget**: Angular 17, Bootstrap 5, Leaflet, Algolia, ngx-translate
 - **Web-app**: SvelteKit, i18next, Playwright E2E, Vitest
-- **Design System**: Svelte 4, Storybook, SASS
+- **Design System**: Svelte 4, SASS
 
 ### Database Architecture
 
@@ -376,7 +376,7 @@ Required: Node.js 22+ (specified in package.json engines)
 
 ### Design System (@soliguide/design-system)
 
-- **Storybook**: Run with `yarn workspace @soliguide/design-system storybook`
+- **Dev server**: Run with `yarn workspace @soliguide/design-system dev`
 - **Components**: Reusable Svelte components with i18next support
 - **Build**: Outputs library consumable by web-app
 

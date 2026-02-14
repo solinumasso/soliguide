@@ -57,7 +57,7 @@
     "@angular/language-service": "^17.3.12",
     "@types/geojson": "^7946.0.16",
     "@types/jest": "^29.5.14",
-    "@types/node": "^20.19.8",
+    "@types/node": "^20.19.33",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.57.1",
@@ -73,7 +73,7 @@
     "ts-jest": "^29.3.2",
     "ts-node": "10.9.2",
     "typescript": "~5.4.5",
-    "webpack": "^5.100.2",
+    "webpack": "^5.105.2",
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^6.0.1"
   },
