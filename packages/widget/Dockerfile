@@ -43,7 +43,7 @@ COPY \
   ./packages/widget/tsconfig.spec.json \
   /app/packages/widget/
 
-FROM caddy:2.9-alpine AS deploy
+FROM caddy:2.11-alpine AS deploy
 
 COPY --chmod=0544 packages/widget/docker_cmd.sh /bin/docker_cmd.sh
 COPY packages/widget/Caddyfile /etc/caddy/
