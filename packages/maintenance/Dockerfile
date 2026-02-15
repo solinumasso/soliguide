@@ -16,7 +16,7 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
-FROM caddy:2.9-alpine AS base
+FROM caddy:2.11-alpine AS base
 
 COPY packages/maintenance/docker_cmd.sh /bin/docker_cmd.sh
 COPY packages/maintenance/maintenance.html /srv/maintenance.html
