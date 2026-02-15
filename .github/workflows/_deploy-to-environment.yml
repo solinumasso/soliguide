@@ -126,65 +126,46 @@ jobs:
           echo "${{ secrets.CLEVER_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           ssh-keyscan -H ${{ env.CC_PUSH_HOST }} > ~/.ssh/known_hosts
 
-      - name: Add api to the list of app to deploy
-        if: ${{ inputs.deploy_api }}
+      - name: Configure git remotes for deployment
         run: |
-          git remote add clever-api git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.API_APP_ID }}.git
-          echo clever-api >>./remotes-to-deploy-to.txt
+          REMOTES=()
 
-      - name: Add api cron to the list of app to deploy
-        if: ${{ inputs.deploy_api }}
-        run: |
-          git remote add clever-api-cron git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.CRON_APP_ID }}.git
-          echo clever-api-cron >>./remotes-to-deploy-to.txt
+          ${{ inputs.deploy_api }} && {
+            git remote add clever-api git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.API_APP_ID }}.git
+            git remote add clever-api-cron git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.CRON_APP_ID }}.git
+            git remote add clever-api-migrations git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.API_MIGRATIONS_APP_ID }}.git
+            REMOTES+=(clever-api clever-api-cron clever-api-migrations)
+          }
 
-      - name: Add api migrations to the list of app to deploy
-        if: ${{ inputs.deploy_api }}
-        run: |
-          git remote add clever-api-migrations git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.API_MIGRATIONS_APP_ID }}.git
-          echo clever-api-migrations >>./remotes-to-deploy-to.txt
+          ${{ inputs.deploy_frontend }} && {
+            git remote add clever-frontend git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.FRONTEND_APP_ID }}.git
+            git remote add clever-maintenance-frontend git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.MAINTENANCE_FRONTEND_APP_ID }}.git
+            REMOTES+=(clever-frontend clever-maintenance-frontend)
+          }
 
-      - name: Add frontend to the list of app to deploy
-        if: ${{ inputs.deploy_frontend }}
-        run: |
-          git remote add clever-frontend git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.FRONTEND_APP_ID }}.git
-          echo clever-frontend >>./remotes-to-deploy-to.txt
+          ${{ inputs.deploy_location-api }} && {
+            git remote add clever-location-api git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.API_LOCATION_APP_ID }}.git
+            REMOTES+=(clever-location-api)
+          }
 
-      - name: Add location api to the list of app to deploy
-        if: ${{ inputs.deploy_location-api }}
-        run: |
-          git remote add clever-location-api git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.API_LOCATION_APP_ID }}.git
-          echo clever-location-api >>./remotes-to-deploy-to.txt
+          ${{ inputs.deploy_widget }} && {
+            git remote add clever-widget git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.WIDGET_APP_ID }}.git
+            git remote add clever-maintenance-widget git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.MAINTENANCE_WIDGET_APP_ID }}.git
+            REMOTES+=(clever-widget clever-maintenance-widget)
+          }
 
-      - name: Add maintenance frontend to the list of app to deploy
-        if: ${{ inputs.deploy_frontend }}
-        run: |
-          git remote add clever-maintenance-frontend git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.MAINTENANCE_FRONTEND_APP_ID }}.git
-          echo clever-maintenance-frontend >>./remotes-to-deploy-to.txt
+          ${{ inputs.deploy_soligare }} && {
+            git remote add clever-soligare git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.SOLIGARE_APP_ID }}.git
+            REMOTES+=(clever-soligare)
+          }
 
-      - name: Add maintenance widget to the list of app to deploy
-        if: ${{ inputs.deploy_widget }}
-        run: |
-          git remote add clever-maintenance-widget git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.MAINTENANCE_WIDGET_APP_ID }}.git
-          echo clever-maintenance-widget >>./remotes-to-deploy-to.txt
+          ${{ inputs.deploy_web-app }} && {
+            git remote add clever-web-app git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.WEB_APP_APP_ID }}.git
+            REMOTES+=(clever-web-app)
+          }
 
-      - name: Add soligare to the list of app to deploy
-        if: ${{ inputs.deploy_soligare }}
-        run: |
-          git remote add clever-soligare git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.SOLIGARE_APP_ID }}.git
-          echo clever-soligare >>./remotes-to-deploy-to.txt
-
-      - name: Add web-app to the list of app to deploy
-        if: ${{ inputs.deploy_web-app }}
-        run: |
-          git remote add clever-web-app git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.WEB_APP_APP_ID }}.git
-          echo clever-web-app >>./remotes-to-deploy-to.txt
-
-      - name: Add widget to the list of app to deploy
-        if: ${{ inputs.deploy_widget }}
-        run: |
-          git remote add clever-widget git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.WIDGET_APP_ID }}.git
-          echo clever-widget >>./remotes-to-deploy-to.txt
+          # Export for next step
+          echo "DEPLOY_REMOTES=${REMOTES[*]}" >> $GITHUB_ENV
 
       - name: Verify branch and remotes before deployment
         run: |
