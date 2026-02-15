@@ -19,7 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { Component, OnInit } from "@angular/core";
-import { CountryCodes, Themes } from "@soliguide/common";
+import { CountryCodes, getCountryFromTheme } from "@soliguide/common";
 import { themeService } from "../../../../shared/services/theme.service";
 import { LogoWithLink } from "../../../../shared/constants";
 import {
@@ -37,7 +37,7 @@ export class PartnersBannerComponent implements OnInit {
   private currentCountry!: CountryCodes;
 
   ngOnInit(): void {
-    this.currentCountry = this.getCountryFromTheme(themeService.getTheme());
+    this.currentCountry = getCountryFromTheme(themeService.getTheme());
     this.logos = getLogosForCountry(this.currentCountry);
   }
 
@@ -49,17 +49,5 @@ export class PartnersBannerComponent implements OnInit {
   getDeployerLogos(): LogoWithLink[] {
     const funderNames = getFunderNamesForCountry(this.currentCountry);
     return this.logos.filter((logo) => !funderNames.includes(logo.alt));
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  private getCountryFromTheme(theme: Themes): CountryCodes {
-    const countryCode = theme.split("_").pop();
-    if (
-      countryCode &&
-      Object.values(CountryCodes).includes(countryCode as CountryCodes)
-    ) {
-      return countryCode as CountryCodes;
-    }
-    return CountryCodes.FR; // fallback
   }
 }

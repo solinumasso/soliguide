@@ -36,6 +36,8 @@ jobs:
     uses: ./.github/workflows/_build.yml
     needs:
       - commitlint
+    with:
+      check_tests: false
     secrets: inherit
 
   # Dès que le build est OK, on déploie ET on teste en parallèle
