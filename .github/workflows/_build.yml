@@ -83,7 +83,7 @@ jobs:
       dockerfile: ./packages/common/Dockerfile
       build_args: |
         BASE_IMAGE=${{ fromJSON(needs.build-base.outputs.tags2)[0] }}
-      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_test, 'common') }}
+      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_deploy, 'common') }}
     needs:
       - affected_packages
       - build-base
@@ -97,7 +97,7 @@ jobs:
       dockerfile: ./packages/common-angular/Dockerfile
       build_args: |
         COMMON_IMAGE=${{ fromJSON(needs.build-common.outputs.tags1)[0] }}
-      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_test, 'common-angular') }}
+      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_deploy, 'common-angular') }}
     needs:
       - affected_packages
       - build-common
@@ -112,7 +112,7 @@ jobs:
       build_production: true
       build_args: |
         BASE_IMAGE=${{ fromJSON(needs.build-base.outputs.tags2)[0] }}
-      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_test, 'design-system') }}
+      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_deploy, 'design-system') }}
     needs:
       - affected_packages
       - build-base
@@ -128,7 +128,7 @@ jobs:
       build_args: |
         BASE_IMAGE=${{ fromJSON(needs.build-base.outputs.tags1)[0] }}
         COMMON_IMAGE=${{ fromJSON(needs.build-common.outputs.tags1)[0] }}
-      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_test, 'api') }}
+      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_deploy, 'api') }}
     needs:
       - affected_packages
       - build-base
@@ -144,7 +144,7 @@ jobs:
       build_production: true
       build_args: |
         COMMON_ANGULAR_IMAGE=${{ fromJSON(needs.build-common-angular.outputs.tags1)[0] }}
-      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_test, 'frontend') }}
+      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_deploy, 'frontend') }}
     needs:
       - affected_packages
       - build-common-angular
@@ -160,7 +160,7 @@ jobs:
       build_args: |
         BASE_IMAGE=${{ fromJSON(needs.build-base.outputs.tags1)[0] }}
         COMMON_IMAGE=${{ fromJSON(needs.build-common.outputs.tags1)[0] }}
-      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_test, 'location-api') }}
+      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_deploy, 'location-api') }}
     needs:
       - affected_packages
       - build-base
@@ -191,7 +191,7 @@ jobs:
       build_args: |
         BASE_IMAGE=${{ fromJSON(needs.build-base.outputs.tags1)[0] }}
         COMMON_IMAGE=${{ fromJSON(needs.build-common.outputs.tags1)[0] }}
-      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_test, 'soligare') }}
+      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_deploy, 'soligare') }}
     needs:
       - affected_packages
       - build-base
@@ -209,7 +209,7 @@ jobs:
         BASE_IMAGE=${{ fromJSON(needs.build-base.outputs.tags1)[0] }}
         COMMON_IMAGE=${{ fromJSON(needs.build-common.outputs.tags1)[0] }}
         DESIGN_SYSTEM_IMAGE=${{ fromJSON(needs.build-design-system.outputs.tags1)[0] }}
-      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_test, 'web-app') }}
+      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_deploy, 'web-app') }}
     needs:
       - affected_packages
       - build-base
@@ -226,7 +226,7 @@ jobs:
       build_production: true
       build_args: |
         COMMON_ANGULAR_IMAGE=${{ fromJSON(needs.build-common-angular.outputs.tags1)[0] }}
-      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_test, 'widget') }}
+      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_deploy, 'widget') }}
     needs:
       - affected_packages
       - build-common-angular

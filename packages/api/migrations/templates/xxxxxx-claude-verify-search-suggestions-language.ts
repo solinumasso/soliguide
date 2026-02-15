@@ -22,8 +22,8 @@ import { Db } from "mongodb";
 import Anthropic from "@anthropic-ai/sdk";
 import { SearchSuggestion, SupportedLanguagesCode } from "@soliguide/common";
 
-import { logger } from "../src/general/logger";
-import { CONFIG } from "../src/_models";
+import { logger } from "../../src/general/logger";
+import { CONFIG } from "../../src/_models";
 
 const message =
   "Use Claude API to verify and correct search suggestion language";

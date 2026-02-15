@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /*
  * Soliguide: Useful information for those who need it
  *
@@ -44,7 +45,7 @@ describe("seoUrl", () => {
     },
   ].forEach((value) => {
     it(`SEO URL: ${value.in}`, () => {
-      expect(seoUrl(value.in)).toEqual(value.out);
+      expect(seoUrl(value.in as any)).toEqual(value.out);
     });
   });
 });
