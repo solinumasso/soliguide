@@ -149,7 +149,7 @@ router.get(
  * Search suggestions for categories only (used by web-app)
  */
 router.get(
-  "/search-suggestions/:country/:term/categories",
+  "/search-suggestions/:country/:lang/:term/categories",
   isNotApiUser,
   searchSuggestionDto("term"),
   getFilteredData,
