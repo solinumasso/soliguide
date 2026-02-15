@@ -45,7 +45,7 @@ COPY \
   ./packages/frontend/setup-jest.ts \
   /app/packages/frontend/
 
-FROM caddy:2.9-alpine AS deploy
+FROM caddy:2.11-alpine AS deploy
 
 COPY --chmod=0544 packages/frontend/docker_cmd.sh /bin/docker_cmd.sh
 COPY packages/frontend/caddy /etc/caddy
