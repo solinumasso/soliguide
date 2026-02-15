@@ -31,9 +31,7 @@ import { join, relative } from "node:path";
 import { connectToDatabase } from "../../config/database";
 
 export async function generateAutocompleteFiles(): Promise<void> {
-  console.log(
-    "🚀 Generate search suggestions JSON for frontend (by country)"
-  );
+  console.log("🚀 Generate search suggestions JSON for frontend (by country)");
 
   // Iterate per country configured in SUPPORTED_LANGUAGES_BY_COUNTRY
   const countries = Object.keys(

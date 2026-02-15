@@ -13,6 +13,7 @@ yarn workspace @soliguide/api categories:sync
 ```
 
 **Ce que ça fait :**
+
 1. Parcourt toutes les catégories de l'enum `Categories`
 2. Crée les entrées manquantes en BDD (tous pays × toutes langues)
 3. Trouve toutes les entrées sans `seoTitle` ou `seoDescription`
@@ -20,6 +21,7 @@ yarn workspace @soliguide/api categories:sync
 5. Exporte les fichiers JSON avec `generateAutocompleteFiles`
 
 **Résultat :**
+
 - Nouvelles catégories créées ✅
 - Traductions générées avec Claude (ISO 24495-1:2023) ✅
 - Fichiers JSON exportés pour le frontend ✅
@@ -31,10 +33,12 @@ yarn workspace @soliguide/api categories:clean
 ```
 
 **Ce que ça fait :**
+
 - Vide `seoTitle`, `seoDescription`, `synonyms` pour toutes les catégories
 - Utile pour régénérer toutes les traductions from scratch
 
 **Usage typique :**
+
 ```bash
 # Nettoyer + Régénérer tout
 yarn workspace @soliguide/api categories:clean
@@ -46,6 +50,7 @@ yarn workspace @soliguide/api categories:sync
 ### Ajouter une nouvelle catégorie
 
 **1. Ajouter dans l'enum**
+
 ```typescript
 // packages/common/src/categories/enums/Categories.enum.ts
 export enum Categories {
@@ -55,11 +60,13 @@ export enum Categories {
 ```
 
 **2. Synchroniser**
+
 ```bash
 yarn workspace @soliguide/api categories:sync
 ```
 
 **3. Créer le dump**
+
 ```bash
 ./packages/api/db.sh dump
 ```
@@ -86,6 +93,7 @@ yarn workspace @soliguide/api categories:sync
 ### La fonction `translateCategory`
 
 Utilise les prompts détaillés de `generate-categories-autocomplete.ts` :
+
 - ✅ Norme ISO 24495-1:2023 (langage clair et simple)
 - ✅ Phrases courtes (max 22 mots)
 - ✅ Ton bienveillant, sans jargon
@@ -96,6 +104,7 @@ Utilise les prompts détaillés de `generate-categories-autocomplete.ts` :
 ### Structure créée automatiquement
 
 Pour chaque catégorie de l'enum :
+
 ```
 HEALTH (enum)
   → health-FR-fr (BDD)
@@ -128,9 +137,11 @@ packages/frontend/src/assets/files/
 ## ⚙️ Configuration
 
 **Variable d'environnement requise :**
+
 - `ANTHROPIC_API_KEY` - Pour la génération avec Claude
 
 **Modèle utilisé :**
+
 - `claude-opus-4-20250514` (meilleure qualité de traduction)
 - Temperature: 0.3
 - Max tokens: 1024
@@ -149,17 +160,20 @@ scripts/
 ## 💡 Pourquoi c'est simple maintenant ?
 
 **Avant :**
+
 - Plusieurs scripts
 - Options pays/langue
 - Compliqué
 
 **Maintenant :**
+
 - Un seul script : `sync-categories.ts`
 - Pas d'options : fait tout automatiquement
 - Réutilise les vraies fonctions existantes
 - Clean séparé et indépendant
 
 **Exemple complet :**
+
 ```bash
 # Tout en 2 commandes
 yarn workspace @soliguide/api categories:sync

@@ -2728,11 +2728,7 @@
     "categoryId": null,
     "label": "Maisons France Services",
     "slug": "france-services",
-    "synonyms": [
-      "france service",
-      "maison france services",
-      "MFS"
-    ],
+    "synonyms": ["france service", "maison france services", "MFS"],
     "type": "ORGANIZATION",
     "lang": "fr",
     "country": "fr",
@@ -2743,11 +2739,7 @@
     "categoryId": null,
     "label": "La CIMADE",
     "slug": "cimade",
-    "synonyms": [
-      "la cimade",
-      "CIMADE",
-      "service œcuménique d'entraide"
-    ],
+    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
     "type": "ORGANIZATION",
     "lang": "fr",
     "country": "fr",
@@ -2933,11 +2925,7 @@
     "categoryId": null,
     "label": "Centre socioculturel",
     "slug": "centre-socioculturel",
-    "synonyms": [
-      "centre socio culturel",
-      "csc",
-      "centre social"
-    ],
+    "synonyms": ["centre socio culturel", "csc", "centre social"],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "fr",
     "country": "fr",
@@ -3206,7 +3194,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "Mobilité Transport",
+    "label": "Se déplacer et être transporté",
     "slug": "transportation_mobility",
     "synonyms": [
       "bus",
@@ -3233,7 +3221,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "Aide à la mobilité",
+    "label": "Accompagnement à la mobilité",
     "slug": "mobility_support",
     "synonyms": [
       "transport",
@@ -3287,7 +3275,7 @@
   },
   {
     "categoryId": "driving_license",
-    "label": "Permis de conduire",
+    "label": "Préparation aux permis",
     "slug": "driving_license",
     "synonyms": [
       "permis",
@@ -3341,7 +3329,7 @@
   },
   {
     "categoryId": "vehicle_maintenance",
-    "label": "Entretien de véhicules",
+    "label": "Entretien et réparation du véhicule",
     "slug": "vehicle_maintenance",
     "synonyms": [
       "réparation voiture",

@@ -293,7 +293,7 @@ function parseResponse(
   suggestion: SearchSuggestion
 ): TranslationResult {
   let cleanText = text.trim();
-  cleanText = cleanText.replaceAll(/```json\s*|```\s*/g, "");
+  cleanText = cleanText.replace(/```json\s*|```\s*/g, "");
 
   const firstBrace = cleanText.indexOf("{");
   const lastBrace = cleanText.lastIndexOf("}");

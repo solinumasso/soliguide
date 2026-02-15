@@ -2630,11 +2630,7 @@
     "categoryId": null,
     "label": "Quàlia",
     "slug": "qualia",
-    "synonyms": [
-      "Qualia",
-      "Fundació Quàlia",
-      "Fundación Qualia"
-    ],
+    "synonyms": ["Qualia", "Fundació Quàlia", "Fundación Qualia"],
     "type": "ORGANIZATION",
     "lang": "ca",
     "country": "es",
@@ -2645,11 +2641,7 @@
     "categoryId": null,
     "label": "Amisol",
     "slug": "amisol",
-    "synonyms": [
-      "AMISOL",
-      "Associació Amisol",
-      "Asociación Amisol"
-    ],
+    "synonyms": ["AMISOL", "Associació Amisol", "Asociación Amisol"],
     "type": "ORGANIZATION",
     "lang": "ca",
     "country": "es",

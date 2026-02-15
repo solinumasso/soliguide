@@ -32,9 +32,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <ThemeContext>
   <section>
     <Text type="display1">Welcome to the design system</Text>
-    <Text as="p">
-      You can use this page as a playground to test components.
-    </Text>
+    <Text as="p">You can use this page as a playground to test components.</Text>
     <Text as="p">
       Test translation key: CLOSE = {$i18n.t('CLOSE')}
     </Text>
