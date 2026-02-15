@@ -55,7 +55,7 @@ header {
 
 
 # Import auto-generated category redirections from taxonomy package
-import ../taxonomy/src/generated/category-redirects.caddy
+import ./category-redirects.caddy
 
 log_append category_source {category_source}
 log_append category_target_path {category_target_path}

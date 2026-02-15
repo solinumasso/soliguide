@@ -48,7 +48,7 @@ COPY \
 FROM caddy:2.9-alpine AS deploy
 
 COPY --chmod=0544 packages/frontend/docker_cmd.sh /bin/docker_cmd.sh
-COPY packages/frontend/Caddyfile /etc/caddy/
+COPY packages/frontend/caddy /etc/caddy
 
 COPY --from=build /app/packages/frontend/dist/soliguide/ /srv/
 COPY --from=build /app/packages/frontend/package.json /tmp/package.json
