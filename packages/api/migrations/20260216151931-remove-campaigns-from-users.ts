@@ -18,34 +18,29 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import mongoose from "mongoose";
-import { LogEmail } from "../interfaces";
+import { Db } from "mongodb";
 
-const LogEmailSchema = new mongoose.Schema<LogEmail>(
-  {
-    mailgunEmailId: {
-      default: null,
-      type: String,
-    },
-    emailId: {
-      ref: "Emails",
-      type: mongoose.Schema.Types.ObjectId,
-    },
-    message: {
-      required: true,
-      type: String,
-    },
-    status: {
-      default: null,
-      required: true,
-      type: String,
-    },
-  },
-  {
-    collection: "logEmail",
-    strict: true,
-    timestamps: true,
-  }
-);
+import { logger } from "../src/general/logger";
 
-export const LogEmailModel = mongoose.model("LogEmail", LogEmailSchema);
+const message = "Remove campaigns field from users";
+
+export const up = async (db: Db) => {
+  logger.info(`[MIGRATION] - ${message}`);
+
+  const result = await db
+    .collection("users")
+    .updateMany(
+      { campaigns: { $exists: true } },
+      { $unset: { campaigns: "" } }
+    );
+
+  logger.info(
+    `[MIGRATION] - Removed campaigns from ${result.modifiedCount} users`
+  );
+};
+
+export const down = async (db: Db) => {
+  logger.info(`[ROLLBACK] - ${message}`);
+  // Cannot restore campaigns data - this is a one-way migration
+  await db.collection("users").findOne();
+};
