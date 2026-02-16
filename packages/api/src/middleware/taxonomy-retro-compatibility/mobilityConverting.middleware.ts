@@ -4,7 +4,7 @@ import {
   UserStatus,
 } from "@soliguide/common";
 import { NextFunction } from "express";
-import { ExpressRequest, ExpressResponse } from "src/_models";
+import { ExpressRequest, ExpressResponse } from "../../_models";
 
 /*
  * Soliguide: Useful information for those who need it
@@ -41,15 +41,10 @@ export const mobilityConverting = (
   req.shouldConvertMobilityCategories = false;
 
   // Convert single category
-  if (
-    req.bodyValidated.category &&
-    isLegacyMobilityCategory(req.bodyValidated.category)
-  ) {
-    const newCategory = convertOldToNewMobilityCategory(
-      req.bodyValidated.category
-    );
+  if (req.body.category && isLegacyMobilityCategory(req.body.category)) {
+    const newCategory = convertOldToNewMobilityCategory(req.body.category);
     if (newCategory) {
-      req.bodyValidated.category = newCategory;
+      req.body.category = newCategory;
       req.shouldConvertMobilityCategories = true;
     }
   }

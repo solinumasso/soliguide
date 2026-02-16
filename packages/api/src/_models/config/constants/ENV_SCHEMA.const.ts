@@ -23,7 +23,7 @@ import type { Config } from "../interfaces";
 
 export const ENV_SCHEMA: JSONSchemaType<Config> = {
   type: "object",
-  required: ["JWT_SECRET", "MAILGUN_API_KEY", "S3_ACCESS_KEY", "S3_SECRET_KEY"],
+  required: ["JWT_SECRET", "S3_ACCESS_KEY", "S3_SECRET_KEY"],
   properties: {
     ENV: {
       type: "string",
@@ -103,9 +103,6 @@ export const ENV_SCHEMA: JSONSchemaType<Config> = {
     TEST_RECIPIENT_EMAIL: {
       type: "string",
       default: "tech@solinum.org",
-    },
-    MAILGUN_API_KEY: {
-      type: "string",
     },
     EMAIL_FROM_DOMAIN: {
       type: "string",
