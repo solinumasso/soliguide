@@ -309,9 +309,9 @@ export class SearchCategoryAutocompleteComponent
   private getTypeLabel(item: SearchSuggestion): string {
     switch (item.type) {
       case AutoCompleteType.ESTABLISHMENT_TYPE:
-        return "établissement";
+        return this.translateService.instant("ESTABLISHMENT");
       case AutoCompleteType.ORGANIZATION:
-        return "organisation";
+        return this.translateService.instant("ORGANIZATION");
       default:
         return "";
     }
