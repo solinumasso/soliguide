@@ -44,11 +44,10 @@ export interface Config {
   GEMINI_API_KEY?: string;
   GOOGLE_API_KEY?: string;
 
-  // Emails & Mailgun
+  // Emails
   DEFAULT_SENDER_EMAIL: string;
   TEST_RECIPIENT_EMAIL: string;
   EMAIL_FROM_DOMAIN: string;
-  MAILGUN_API_KEY: string;
 
   // S3
   S3_ENDPOINT: string;

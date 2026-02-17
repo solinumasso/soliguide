@@ -24,6 +24,7 @@ export * from "./default-search-radius";
 export * from "./departments-helpers";
 export * from "./extract-geo-type-from-search";
 export * from "./getAllowedTerritories";
+export * from "./getCountryFromTheme";
 export * from "./getDepartmentCodeFromPostalCode";
 export * from "./getTerritoriesFromAreas";
 export * from "./getTerritoryAndCountryFromPlace";
