@@ -23,7 +23,6 @@ export * from "./campaign";
 export * from "./config";
 export * from "./express";
 export * from "./mongo";
-export * from "./emailing";
 export * from "./organization";
 export * from "./place";
 export * from "./temp-info";

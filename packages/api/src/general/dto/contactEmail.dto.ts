@@ -19,6 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import {
+  ALL_DEPARTMENT_CODES,
   EMAIL_VALIDATOR_CONFIG,
   KeyStringValueString,
 } from "@soliguide/common";
@@ -29,6 +30,9 @@ import {
   CHECK_STRING_NULL,
   EMAIL_NORMALIZE_OPTIONS,
 } from "../../config/expressValidator.config";
+import { countryDto } from "../../_utils/dto";
+
+const VALID_DEPARTMENT_CODES: string[] = [...ALL_DEPARTMENT_CODES, "99"];
 
 export const contactEmailDto = [
   body("name")
@@ -45,14 +49,16 @@ export const contactEmailDto = [
     .isEmail(EMAIL_VALIDATOR_CONFIG)
     .normalizeEmail(EMAIL_NORMALIZE_OPTIONS),
 
+  ...countryDto,
+
   body("department")
     .exists()
     .withMessage("Veuillez vérifier que tout les champs sont complétés.")
     .notEmpty()
     .withMessage("Veuillez vérifier que tout les champs sont complétés.")
-    .isInt()
-    .withMessage("Veuillez vérifier que vous avez bien choisi un département")
-    .toInt(),
+    .isString()
+    .isIn(VALID_DEPARTMENT_CODES)
+    .withMessage("Veuillez vérifier que vous avez bien choisi un département"),
 
   body("subject")
     .exists()

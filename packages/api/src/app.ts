@@ -86,9 +86,6 @@ import autoExportRoute from "./autoexport/routes/autoexport.routes";
 // Campaign
 import campaign from "./campaign/routes/campaign.routes";
 
-// Emailing
-import emailing from "./emailing/routes/emailing.routes";
-
 // Stats
 import stats from "./stats/routes/stats.routes";
 
@@ -217,7 +214,6 @@ _app.use("/stats", stats);
 
 _app.use("/campaign", campaign);
 
-_app.use("/emailing", emailing);
 _app.use("/v2/categories", categories);
 
 _app.use("/v2/soligare", soligare);

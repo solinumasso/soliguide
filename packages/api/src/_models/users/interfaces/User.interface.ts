@@ -32,26 +32,11 @@ import mongoose from "mongoose";
 import { ModelWithId } from "../../mongo";
 import { OrganizationPopulate } from "../../organization";
 import { Origin } from "../enums";
-import type {
-  UserCampaignEmails,
-  UserRight,
-  UserRightOrganizationPopulate,
-} from "../types";
+import type { UserRight, UserRightOrganizationPopulate } from "../types";
 import { InvitationPopulate } from "./Invitation.interface";
 
 export interface User extends Omit<CommonUser, "_id"> {
   _id?: mongoose.Types.ObjectId;
-  campaigns: {
-    MAJ_ETE_2022: UserCampaignEmails;
-    MAJ_ETE_2023: UserCampaignEmails;
-    MAJ_HIVER_2022: UserCampaignEmails;
-    MAJ_HIVER_2023: UserCampaignEmails;
-    END_YEAR_2024: UserCampaignEmails;
-    MAJ_ETE_2024: UserCampaignEmails;
-    MID_YEAR_2025: UserCampaignEmails;
-    END_YEAR_2025: UserCampaignEmails;
-    UKRAINE_2022: UserCampaignEmails;
-  };
   invitations: mongoose.Types.ObjectId[];
   organizations: mongoose.Types.ObjectId[];
   passwordToken: string | null;
@@ -143,7 +128,7 @@ class UserPopulate implements ACurrentUser, UserPopulate {
   public categoriesLimitations;
   public translator;
   public verifiedAt;
-  public campaigns;
+
   public devToken;
   public passwordToken;
   public territories;
@@ -174,7 +159,7 @@ class UserPopulate implements ACurrentUser, UserPopulate {
     this.categoriesLimitations = user?.categoriesLimitations;
     this.translator = user?.translator;
     this.verifiedAt = user?.verifiedAt;
-    this.campaigns = user?.campaigns;
+
     this.devToken = user?.devToken;
     this.passwordToken = user?.passwordToken;
     this.territories = user?.territories;
