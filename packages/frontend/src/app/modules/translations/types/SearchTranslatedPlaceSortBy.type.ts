@@ -28,6 +28,7 @@ export type SearchTranslatedPlaceSortBy =
   | "languages.ka.translationRate"
   | "languages.es.translationRate"
   | "languages.ps.translationRate"
+  | "languages.pt.translationRate"
   | "languages.ru.translationRate"
   | "languages.uk.translationRate"
   | "languages.fr.translationRate"

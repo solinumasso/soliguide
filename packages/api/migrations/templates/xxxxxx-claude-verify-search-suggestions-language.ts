@@ -38,6 +38,7 @@ const LANGUAGE_NAMES: Record<SupportedLanguagesCode, string> = {
   [SupportedLanguagesCode.FR]: "French",
   [SupportedLanguagesCode.KA]: "Georgian",
   [SupportedLanguagesCode.PS]: "Pashto",
+  [SupportedLanguagesCode.PT]: "Portuguese",
   [SupportedLanguagesCode.RO]: "Romanian",
   [SupportedLanguagesCode.RU]: "Russian",
   [SupportedLanguagesCode.UK]: "Ukrainian",
