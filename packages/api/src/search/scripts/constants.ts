@@ -16,6 +16,7 @@ export const LANGUAGE_NAMES: Record<SupportedLanguagesCode, string> = {
   [SupportedLanguagesCode.FA]: "farsi",
   [SupportedLanguagesCode.KA]: "géorgien",
   [SupportedLanguagesCode.PS]: "pachto",
+  [SupportedLanguagesCode.PT]: "portugais",
   [SupportedLanguagesCode.RO]: "roumain",
   [SupportedLanguagesCode.RU]: "russe",
   [SupportedLanguagesCode.UK]: "ukrainien",

@@ -28,6 +28,7 @@ export type SearchTranslatedFieldsSortBy =
   | "languages.ka.human.status"
   | "languages.es.human.status"
   | "languages.ps.human.status"
+  | "languages.pt.human.status"
   | "languages.ro.human.status"
   | "languages.ru.human.status"
   | "languages.uk.human.status"
