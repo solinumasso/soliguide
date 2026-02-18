@@ -19,9 +19,6 @@
     "start": "yarn build && yarn preview",
     "test:integration": "playwright test",
     "test:unit": "vitest",
-    "license:add": "license-check-and-add add -f license.config.json -r $(date +%Y)",
-    "license:check": "license-check-and-add check -f license.config.json -r $(date +%Y)",
-    "license:remove": "license-check-and-add remove -f license.config.json -r $(date +%Y)",
     "watch": "yarn dev"
   },
   "exports": {
@@ -36,15 +33,15 @@
     "!dist/**/*.spec.*"
   ],
   "devDependencies": {
-    "@eslint/compat": "^1.2.9",
+    "@eslint/compat": "^1.4.1",
     "@playwright/test": "^1.28.1",
     "@sveltejs/adapter-auto": "^3.0.0",
     "@sveltejs/adapter-node": "^5.2.0",
     "@sveltejs/kit": "^2.0.0",
-    "@sveltejs/vite-plugin-svelte": "^3.0.0",
+    "@sveltejs/vite-plugin-svelte": "^3.1.2",
     "@types/eslint": "^9.6.1",
     "@vitejs/plugin-legacy": "^5.4.3",
-    "@vitest/coverage-v8": "^2.0.0",
+    "@vitest/coverage-v8": "^2.1.9",
     "dotenv": "^16.6.1",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^9.1.0",
@@ -61,11 +58,11 @@
     "terser": "^5.36.0",
     "typescript": "^5.0.0",
     "typescript-eslint": "^8.30.1",
-    "vite": "^5.0.3",
-    "vitest": "^2.0.0"
+    "vite": "^5.4.21",
+    "vitest": "^2.1.9"
   },
   "dependencies": {
-    "@sentry/sveltekit": "^9.15.0",
+    "@sentry/sveltekit": "^9.47.1",
     "@soliguide/common": "workspace:*",
     "@soliguide/design-system": "workspace:*",
     "date-fns": "^4.1.0",
@@ -76,7 +73,7 @@
     "svelte-circle-flags": "^1.1.2",
     "svelte-google-materialdesign-icons": "^1.0.5",
     "svelte-i18next": "^2.2.2",
-    "zod": "^3.23.8"
+    "zod": "^3.25.76"
   },
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",

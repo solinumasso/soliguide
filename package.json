@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "soliguide",
   "license": "AGPL-3.0-only",
   "scripts": {
@@ -10,12 +9,6 @@
     "format:fix": "lerna run format:fix",
     "test": "lerna run test",
     "start": "lerna run start",
-    "license:root:add": "license-check-and-add add -f license.config.json -r $(date +%Y)",
-    "license:root:check": "license-check-and-add check -f license.config.json -r $(date +%Y)",
-    "license:root:remove": "license-check-and-add remove -f license.config.json -r $(date +%Y)",
-    "license:add": "yarn license:root:add && lerna run license:add",
-    "license:check": "yarn license:root:check && lerna run license:check",
-    "license:remove": "yarn license:root:remove && lerna run license:remove",
     "prepare": "husky"
   },
   "devDependencies": {
@@ -25,14 +18,16 @@
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/exec": "^7.1.0",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^12.0.3",
+    "@semantic-release/github": "^12.0.6",
+    "@semantic-release/npm": "^12.0.2",
+    "@types/node": "^20.19.33",
     "husky": "^9.1.7",
     "lerna": "^8.2.3",
-    "license-check-and-add": "^4.0.5",
     "lint-staged": "^15.5.1",
     "nx": "^19.8.14",
     "semantic-release": "^24.2.3",
-    "tsx": "^4.20.3"
+    "tsx": "^4.21.0",
+    "typescript": "^5.4.5"
   },
   "resolutions": {
     "@aws-sdk/client-s3": "3.637.0"
@@ -42,6 +37,6 @@
       "packages/*"
     ]
   },
-  "version": "5.0.0",
+  "version": "4.123.0",
   "packageManager": "yarn@4.11.0"
 }

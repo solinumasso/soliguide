@@ -26,9 +26,7 @@ import {
   UserStatus,
 } from "@soliguide/common";
 
-import { CampaignEmailsSchema } from "./campaignEmails.model";
 import { User } from "../../_models/users";
-import { CAMPAIGN_EMAILS_CONTENT_FOR_USERS } from "./default_values";
 import { languagesValidator } from "./validators";
 import { PhoneSchema } from "../../place/models";
 
@@ -42,53 +40,6 @@ const UserSchema = new mongoose.Schema<User>(
     blocked: {
       default: false,
       type: Boolean,
-    },
-
-    campaigns: {
-      MAJ_ETE_2022: {
-        default: CAMPAIGN_EMAILS_CONTENT_FOR_USERS,
-        type: CampaignEmailsSchema,
-      },
-
-      MAJ_ETE_2023: {
-        default: CAMPAIGN_EMAILS_CONTENT_FOR_USERS,
-        type: CampaignEmailsSchema,
-      },
-
-      MAJ_ETE_2024: {
-        default: CAMPAIGN_EMAILS_CONTENT_FOR_USERS,
-        type: CampaignEmailsSchema,
-      },
-
-      MAJ_HIVER_2022: {
-        default: CAMPAIGN_EMAILS_CONTENT_FOR_USERS,
-        type: CampaignEmailsSchema,
-      },
-
-      MAJ_HIVER_2023: {
-        default: CAMPAIGN_EMAILS_CONTENT_FOR_USERS,
-        type: CampaignEmailsSchema,
-      },
-
-      END_YEAR_2024: {
-        default: CAMPAIGN_EMAILS_CONTENT_FOR_USERS,
-        type: CampaignEmailsSchema,
-      },
-
-      MID_YEAR_2025: {
-        default: CAMPAIGN_EMAILS_CONTENT_FOR_USERS,
-        type: CampaignEmailsSchema,
-      },
-
-      END_YEAR_2025: {
-        default: CAMPAIGN_EMAILS_CONTENT_FOR_USERS,
-        type: CampaignEmailsSchema,
-      },
-
-      UKRAINE_2022: {
-        default: CAMPAIGN_EMAILS_CONTENT_FOR_USERS,
-        type: CampaignEmailsSchema,
-      },
     },
 
     // Restrictions for API users

@@ -37,6 +37,7 @@ import { SelectTerritoriesComponent } from "./components/select-territories/sele
 import { CleanStrDirective } from "./directives/clean-str.directive";
 import { DateFrDirective } from "./directives/date-fr.directive";
 import { DigitOnlyDirective } from "./directives/digit-only.directive";
+import { LastLoginBadgeDirective } from "./directives/last-login-badge.directive";
 import {
   CategoryTranslateKeyPipe,
   DecodePunycodeEmailPipe,
@@ -65,6 +66,7 @@ import { NgxTranslateI18nextAdapter } from "./services/ngx-translate-i18next-ada
     FormatBigNumberPipe,
     HtmlToTextPipe,
     KmToMeters,
+    LastLoginBadgeDirective,
     LimitToPipe,
     ReadableParcoursPipe,
     SafeHtmlPipe,
@@ -86,6 +88,7 @@ import { NgxTranslateI18nextAdapter } from "./services/ngx-translate-i18next-ada
     FormatBigNumberPipe,
     HtmlToTextPipe,
     KmToMeters,
+    LastLoginBadgeDirective,
     LimitToPipe,
     ReadableParcoursPipe,
     SafeHtmlPipe,

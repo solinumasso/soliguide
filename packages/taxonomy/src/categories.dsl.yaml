@@ -1,0 +1,1011 @@
+countries: [FR, ES, AD]
+
+categories:
+  HEALTH:
+    slug: health
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: sante
+        until: "2023-11-20"
+      - slug: health
+        from: "2023-11-20"
+
+  ADDICTION:
+    slug: addiction
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: addiction
+        from: "2023-11-20"
+
+  STD_TESTING:
+    slug: std_testing
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: depistage
+        until: "2023-11-20"
+      - slug: std_testing
+        from: "2023-11-20"
+
+  PSYCHOLOGICAL_SUPPORT:
+    slug: psychological_support
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: psychologie
+        until: "2023-11-20"
+      - slug: psychological_support
+        from: "2023-11-20"
+
+  CHILD_CARE:
+    slug: child_care
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: soins-enfants
+        until: "2023-11-20"
+      - slug: child_care
+        from: "2023-11-20"
+
+  GENERAL_PRACTITIONER:
+    slug: general_practitioner
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: generaliste
+        until: "2023-11-20"
+      - slug: general_practitioner
+        from: "2023-11-20"
+
+  DENTAL_CARE:
+    slug: dental_care
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: dentaire
+        until: "2023-11-20"
+      - slug: dental_care
+        from: "2023-11-20"
+
+  PREGNANCY_CARE:
+    slug: pregnancy_care
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: planification
+        until: "2023-11-20"
+      - slug: pregnancy_care
+        from: "2023-11-20"
+
+  VACCINATION:
+    slug: vaccination
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: vaccination
+        from: "2023-11-20"
+
+  INFIRMARY:
+    slug: infirmary
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: infirmerie
+        until: "2023-11-20"
+      - slug: infirmary
+        from: "2023-11-20"
+
+  VET_CARE:
+    slug: vet_care
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: veterinaire
+        until: "2023-11-20"
+      - slug: vet_care
+        from: "2023-11-20"
+
+  HEALTH_SPECIALISTS:
+    slug: health_specialists
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: specialistes-medecine
+        until: "2023-11-20"
+      - slug: health_specialists
+        from: "2023-11-20"
+
+  ALLERGOLOGY:
+    slug: allergology
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: allergologie
+        until: "2023-11-20"
+      - slug: allergology
+        from: "2023-11-20"
+
+  CARDIOLOGY:
+    slug: cardiology
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: cardiologie
+        until: "2023-11-20"
+      - slug: cardiology
+        from: "2023-11-20"
+
+  DERMATOLOGY:
+    slug: dermatology
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: dermatologie
+        until: "2023-11-20"
+      - slug: dermatology
+        from: "2023-11-20"
+
+  ECHOGRAPHY:
+    slug: echography
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: echographie
+        until: "2023-11-20"
+      - slug: echography
+        from: "2023-11-20"
+
+  ENDOCRINOLOGY:
+    slug: endocrinology
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: endocrinologie
+        until: "2023-11-20"
+      - slug: endocrinology
+        from: "2023-11-20"
+
+  GASTROENTEROLOGY:
+    slug: gastroenterology
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: gastro-enterologie
+        until: "2023-11-20"
+      - slug: gastroenterology
+        from: "2023-11-20"
+
+  GYNECOLOGY:
+    slug: gynecology
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: gynecologie
+        until: "2023-11-20"
+      - slug: gynecology
+        from: "2023-11-20"
+
+  KINESITHERAPY:
+    slug: kinesitherapy
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: kinesitherapie
+        until: "2023-11-20"
+      - slug: kinesitherapy
+        from: "2023-11-20"
+
+  MAMMOGRAPHY:
+    slug: mammography
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: mammographie
+        until: "2023-11-20"
+      - slug: mammography
+        from: "2023-11-20"
+
+  OPHTHALMOLOGY:
+    slug: ophthalmology
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: ophtalmologie
+        until: "2023-11-20"
+      - slug: ophthalmology
+        from: "2023-11-20"
+
+  OTORHINOLARYNGOLOGY:
+    slug: otorhinolaryngology
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: oto-rhino-laryngologie
+        until: "2023-11-20"
+      - slug: otorhinolaryngology
+        from: "2023-11-20"
+
+  NUTRITION:
+    slug: nutrition
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: nutrition
+        from: "2023-11-20"
+
+  PEDICURE:
+    slug: pedicure
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: pedicure
+        from: "2023-11-20"
+
+  PHLEBOLOGY:
+    slug: phlebology
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: phlebologie
+        until: "2023-11-20"
+      - slug: phlebology
+        from: "2023-11-20"
+
+  PNEUMOLOGY:
+    slug: pneumology
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: pneumologie
+        until: "2023-11-20"
+      - slug: pneumology
+        from: "2023-11-20"
+
+  RADIOLOGY:
+    slug: radiology
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: radiologie
+        until: "2023-11-20"
+      - slug: radiology
+        from: "2023-11-20"
+
+  RHEUMATOLOGY:
+    slug: rheumatology
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: rhumatologie
+        until: "2023-11-20"
+      - slug: rheumatology
+        from: "2023-11-20"
+
+  UROLOGY:
+    slug: urology
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: urologie
+        until: "2023-11-20"
+      - slug: urology
+        from: "2023-11-20"
+
+  SPEECH_THERAPY:
+    slug: speech_therapy
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: orthophonie
+        until: "2023-11-20"
+      - slug: speech_therapy
+        from: "2023-11-20"
+
+  STOMATOLOGY:
+    slug: stomatology
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: stomatologie
+        until: "2023-11-20"
+      - slug: stomatology
+        from: "2023-11-20"
+
+  OSTEOPATHY:
+    slug: osteopathy
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: osteo
+        until: "2023-11-20"
+      - slug: osteopathy
+        from: "2023-11-20"
+
+  ACUPUNCTURE:
+    slug: acupuncture
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: acupuncture
+        from: "2023-11-20"
+
+  MOBILITY:
+    slug: mobility
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: transport-mobilite
+        until: "2023-11-20"
+      - slug: mobility
+        from: "2023-11-20"
+
+  TRANSPORTATION_MOBILITY:
+    slug: transportation_mobility
+    countries: [FR, ES, AD]
+    createdAt: "2025-12-31"
+    history:
+      - slug: covoiturage
+        until: "2023-11-20"
+      - slug: carpooling
+        from: "2023-11-20"
+        until: "2025-12-31"
+      - slug: chauffeur
+        until: "2023-11-20"
+      - slug: chauffeur_driven_transport
+        from: "2023-11-20"
+        until: "2025-12-31"
+      - slug: transportation_mobility
+        from: "2025-12-31"
+
+  PERSONAL_VEHICLE_ACCESS:
+    slug: personal_vehicle_access
+    countries: [FR]
+    createdAt: "2025-12-31"
+    history:
+      - slug: vehicule
+        until: "2023-11-20"
+      - slug: provision_of_vehicles
+        from: "2023-11-20"
+        until: "2025-12-31"
+      - slug: personal_vehicle_access
+        from: "2025-12-31"
+
+  VEHICLE_MAINTENANCE:
+    slug: vehicle_maintenance
+    countries: [FR]
+    history: []
+
+  MOBILITY_SUPPORT:
+    slug: mobility_support
+    countries: [FR, ES, AD]
+    history: []
+
+  DRIVING_LICENSE:
+    slug: driving_license
+    countries: [FR]
+    history: []
+
+  MOBILITY_FINANCING:
+    slug: mobility_financing
+    countries: [FR, ES, AD]
+    createdAt: "2025-12-31"
+    history:
+      - slug: permis
+        until: "2023-11-20"
+      - slug: mobility_assistance
+        from: "2023-11-20"
+        until: "2025-12-31"
+      - slug: mobility_financing
+        from: "2025-12-31"
+
+  TRAINING_AND_JOBS:
+    slug: training_and_jobs
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: formation-emploi
+        until: "2023-11-20"
+      - slug: training_and_jobs
+        from: "2023-11-20"
+
+  DIGITAL_TOOLS_TRAINING:
+    slug: digital_tools_training
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: formation-numerique
+        until: "2023-11-20"
+      - slug: digital_tools_training
+        from: "2023-11-20"
+
+  FRENCH_COURSE:
+    slug: french_course
+    countries: [FR]
+    createdAt: "2023-11-20"
+    history:
+      - slug: formation-francais
+        until: "2023-11-20"
+      - slug: french_course
+        from: "2023-11-20"
+
+  CATALAN_COURSE:
+    slug: catalan_course
+    countries: [ES, AD]
+    history: []
+
+  SPANISH_COURSE:
+    slug: spanish_course
+    countries: [ES, AD]
+    history: []
+
+  JOB_COACHING:
+    slug: job_coaching
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: accompagnement-emploi
+        until: "2023-11-20"
+      - slug: job_coaching
+        from: "2023-11-20"
+
+  INTEGRATION_THROUGH_ECONOMIC_ACTIVITY:
+    slug: integration_through_economic_activity
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: insertion-activite-economique
+        until: "2023-11-20"
+      - slug: integration_through_economic_activity
+        from: "2023-11-20"
+
+  TUTORING:
+    slug: tutoring
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: soutien-scolaire
+        until: "2023-11-20"
+      - slug: tutoring
+        from: "2023-11-20"
+
+  HYGIENE_AND_WELLNESS:
+    slug: hygiene_and_wellness
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: hygiene
+        until: "2023-11-20"
+      - slug: hygiene_and_wellness
+        from: "2023-11-20"
+
+  SHOWER:
+    slug: shower
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: douche
+        until: "2023-11-20"
+      - slug: shower
+        from: "2023-11-20"
+
+  LAUNDRY:
+    slug: laundry
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: laverie
+        until: "2023-11-20"
+      - slug: laundry
+        from: "2023-11-20"
+
+  WELLNESS:
+    slug: wellness
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: bien-etre
+        until: "2023-11-20"
+      - slug: wellness
+        from: "2023-11-20"
+
+  TOILETS:
+    slug: toilets
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: toilettes
+        until: "2023-11-20"
+      - slug: toilets
+        from: "2023-11-20"
+
+  HYGIENE_PRODUCTS:
+    slug: hygiene_products
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: produits-hygiene
+        until: "2023-11-20"
+      - slug: hygiene_products
+        from: "2023-11-20"
+
+  FACE_MASKS:
+    slug: face_masks
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: masques
+        until: "2023-11-20"
+      - slug: face_masks
+        from: "2023-11-20"
+
+  COUNSELING:
+    slug: counseling
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: conseil
+        until: "2023-11-20"
+      - slug: counseling
+        from: "2023-11-20"
+
+  LEGAL_ADVICE:
+    slug: legal_advice
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: permanence-juridique
+        until: "2023-11-20"
+      - slug: legal_advice
+        from: "2023-11-20"
+
+  DOMICILIATION:
+    slug: domiciliation
+    countries: [FR]
+    createdAt: "2023-11-20"
+    history:
+      - slug: domiciliation
+        from: "2023-11-20"
+
+  SOCIAL_ACCOMPANIMENT:
+    slug: social_accompaniment
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: accompagnement-social
+        until: "2023-11-20"
+      - slug: social_accompaniment
+        from: "2023-11-20"
+
+  PUBLIC_WRITER:
+    slug: public_writer
+    countries: [FR]
+    createdAt: "2023-11-20"
+    history:
+      - slug: ecrivain-public
+        until: "2023-11-20"
+      - slug: public_writer
+        from: "2023-11-20"
+
+  DISABILITY_ADVICE:
+    slug: disability_advice
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: conseil-handicap
+        until: "2023-11-20"
+      - slug: disability_advice
+        from: "2023-11-20"
+
+  ADMINISTRATIVE_ASSISTANCE:
+    slug: administrative_assistance
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: conseil-administratif
+        until: "2023-11-20"
+      - slug: administrative_assistance
+        from: "2023-11-20"
+
+  PARENT_ASSISTANCE:
+    slug: parent_assistance
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: conseil-parents
+        until: "2023-11-20"
+      - slug: parent_assistance
+        from: "2023-11-20"
+
+  BUDGET_ADVICE:
+    slug: budget_advice
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: conseil-budget
+        until: "2023-11-20"
+      - slug: budget_advice
+        from: "2023-11-20"
+
+  TECHNOLOGY:
+    slug: technology
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: technologie
+        until: "2023-11-20"
+      - slug: technology
+        from: "2023-11-20"
+
+  COMPUTERS_AT_YOUR_DISPOSAL:
+    slug: computers_at_your_disposal
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: ordinateur
+        until: "2023-11-20"
+      - slug: computers_at_your_disposal
+        from: "2023-11-20"
+
+  WIFI:
+    slug: wifi
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: wifi
+        from: "2023-11-20"
+
+  ELECTRICAL_OUTLETS_AVAILABLE:
+    slug: electrical_outlets_available
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: prise
+        until: "2023-11-20"
+      - slug: electrical_outlets_available
+        from: "2023-11-20"
+
+  TELEPHONE_AT_YOUR_DISPOSAL:
+    slug: telephone_at_your_disposal
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: telephone
+        until: "2023-11-20"
+      - slug: telephone_at_your_disposal
+        from: "2023-11-20"
+
+  DIGITAL_SAFE:
+    slug: digital_safe
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: numerisation
+        until: "2023-11-20"
+      - slug: digital_safe
+        from: "2023-11-20"
+
+  FOOD:
+    slug: food
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: alimentation
+        until: "2023-11-20"
+      - slug: food
+        from: "2023-11-20"
+
+  FOOD_DISTRIBUTION:
+    slug: food_distribution
+    countries: [FR, ES, AD]
+    createdAt: "2025-12-31"
+    history:
+      - slug: distribution-repas
+        until: "2023-11-20"
+      - slug: food_distribution
+        from: "2023-11-20"
+        until: "2025-12-31"
+      - slug: restauration-assise
+        until: "2023-11-20"
+      - slug: seated_catering
+        from: "2023-11-20"
+        until: "2025-12-31"
+      - slug: food_distribution
+        from: "2025-12-31"
+
+  FOOD_PACKAGES:
+    slug: food_packages
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: panier-alimentaire
+        until: "2023-11-20"
+      - slug: food_packages
+        from: "2023-11-20"
+
+  SOCIAL_GROCERY_STORES:
+    slug: social_grocery_stores
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: epicerie-sociale-solidaire
+        until: "2023-11-20"
+      - slug: social_grocery_stores
+        from: "2023-11-20"
+
+  FOUNTAIN:
+    slug: fountain
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: fontaine
+        until: "2023-11-20"
+      - slug: fountain
+        from: "2023-11-20"
+
+  SOLIDARITY_FRIDGE:
+    slug: solidarity_fridge
+    countries: [FR, ES, AD]
+    createdAt: "2024-03-24"
+    history: []
+
+  SHARED_KITCHEN:
+    slug: shared_kitchen
+    countries: [FR, ES, AD]
+    createdAt: "2024-03-24"
+    history: []
+
+  COOKING_WORKSHOP:
+    slug: cooking_workshop
+    countries: [FR, ES, AD]
+    createdAt: "2024-03-24"
+    history: []
+
+  BABY_PARCEL:
+    slug: baby_parcel
+    countries: [FR, ES, AD]
+    createdAt: "2024-03-24"
+    history: []
+
+  FOOD_VOUCHER:
+    slug: food_voucher
+    countries: [FR, ES, AD]
+    createdAt: "2024-03-24"
+    history: []
+
+  COMMUNITY_GARDEN:
+    slug: community_garden
+    countries: [FR, ES, AD]
+    createdAt: "2024-03-24"
+    history: []
+
+  WELCOME:
+    slug: welcome
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: accueil
+        until: "2023-11-20"
+      - slug: welcome
+        from: "2023-11-20"
+
+  DAY_HOSTING:
+    slug: day_hosting
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: accueil-jour
+        until: "2023-11-20"
+      - slug: day_hosting
+        from: "2023-11-20"
+
+  REST_AREA:
+    slug: rest_area
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: espace-repos
+        until: "2023-11-20"
+      - slug: rest_area
+        from: "2023-11-20"
+
+  BABYSITTING:
+    slug: babysitting
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: garde-enfants
+        until: "2023-11-20"
+      - slug: babysitting
+        from: "2023-11-20"
+
+  FAMILY_AREA:
+    slug: family_area
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: espace-famille
+        until: "2023-11-20"
+      - slug: family_area
+        from: "2023-11-20"
+
+  INFORMATION_POINT:
+    slug: information_point
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: point-information
+        until: "2023-11-20"
+      - slug: information_point
+        from: "2023-11-20"
+
+  ACTIVITIES:
+    slug: activities
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: activites
+        until: "2023-11-20"
+      - slug: activities
+        from: "2023-11-20"
+
+  SPORT_ACTIVITIES:
+    slug: sport_activities
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: activites-sportives
+        until: "2023-11-20"
+      - slug: sport_activities
+        from: "2023-11-20"
+
+  MUSEUMS:
+    slug: museums
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: musee
+        until: "2023-11-20"
+      - slug: museums
+        from: "2023-11-20"
+
+  LIBRARIES:
+    slug: libraries
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: bibliotheque
+        until: "2023-11-20"
+      - slug: libraries
+        from: "2023-11-20"
+
+  OTHER_ACTIVITIES:
+    slug: other_activities
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: activites-diverses
+        until: "2023-11-20"
+      - slug: other_activities
+        from: "2023-11-20"
+
+  EQUIPMENT:
+    slug: equipment
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: materiel
+        until: "2023-11-20"
+      - slug: equipment
+        from: "2023-11-20"
+
+  LUGGAGE_STORAGE:
+    slug: luggage_storage
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: bagagerie
+        until: "2023-11-20"
+      - slug: luggage_storage
+        from: "2023-11-20"
+
+  SOLIDARITY_STORE:
+    slug: solidarity_store
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: boutique-solidaire
+        until: "2023-11-20"
+      - slug: solidarity_store
+        from: "2023-11-20"
+
+  CLOTHING:
+    slug: clothing
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: vetements
+        until: "2023-11-20"
+      - slug: clothing
+        from: "2023-11-20"
+
+  ANIMAL_ASSITANCE:
+    slug: animal_assitance
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: animaux
+        until: "2023-11-20"
+      - slug: animal_assitance
+        from: "2023-11-20"
+
+  ACCOMODATION_AND_HOUSING:
+    slug: accomodation_and_housing
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: hebergement-et-logement
+        until: "2023-11-20"
+      - slug: accomodation_and_housing
+        from: "2023-11-20"
+
+  OVERNIGHT_STOP:
+    slug: overnight_stop
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: halte-nuit
+        until: "2023-11-20"
+      - slug: overnight_stop
+        from: "2023-11-20"
+
+  EMERGENCY_ACCOMMODATION:
+    slug: emergency_accommodation
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: hebergement-urgence
+        until: "2023-11-20"
+      - slug: emergency_accommodation
+        from: "2023-11-20"
+
+  LONG_TERM_ACCOMODATION:
+    slug: long_term_accomodation
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: hebergement-long-terme
+        until: "2023-11-20"
+      - slug: long_term_accomodation
+        from: "2023-11-20"
+
+  CITIZEN_HOUSING:
+    slug: citizen_housing
+    countries: [FR]
+    createdAt: "2023-11-20"
+    history:
+      - slug: hebergement-citoyen
+        until: "2023-11-20"
+      - slug: citizen_housing
+        from: "2023-11-20"
+
+  ACCESS_TO_HOUSING:
+    slug: access_to_housing
+    countries: [FR, ES, AD]
+    createdAt: "2023-11-20"
+    history:
+      - slug: conseil-logement
+        until: "2023-11-20"
+      - slug: access_to_housing
+        from: "2023-11-20"
+
+  HAIRDRESSER:
+    slug: hairdresser
+    countries: [FR, ES, AD]
+    history: []
+
+  LEGAL_PROTECTION:
+    slug: legal_protection
+    countries: [AD]
+    history: []

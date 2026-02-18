@@ -5,13 +5,9 @@
   "license": "AGPL-3.0-only",
   "scripts": {
     "format": "prettier -c .",
-    "format:fix": "prettier -w .",
-    "license:add": "license-check-and-add add -f license.config.json -r $(date +%Y)",
-    "license:check": "license-check-and-add check -f license.config.json -r $(date +%Y)",
-    "license:remove": "license-check-and-add remove -f license.config.json -r $(date +%Y)"
+    "format:fix": "prettier -w ."
   },
   "devDependencies": {
-    "license-check-and-add": "^4.0.5",
     "lint-staged": "^15.5.1",
     "prettier": "2.8.8"
   }

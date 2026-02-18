@@ -22,6 +22,7 @@ import {
   AutoCompleteType,
   SearchSuggestion,
   slugString,
+  removeAccents,
   SoliguideCountries,
   SupportedLanguagesCode,
 } from "@soliguide/common";
@@ -36,6 +37,14 @@ export class SearchSuggestionsService {
   private currentCountry: SoliguideCountries | null = null;
   private readonly defaultLang: SupportedLanguagesCode =
     SupportedLanguagesCode.FR;
+
+  /**
+   * Normalize string for matching: removes accents, converts to lowercase, and trims
+   * This provides better matching for user searches regardless of accent usage
+   */
+  private normalizeForMatching(str: string): string {
+    return removeAccents(str.toLowerCase().trim()).replace(/\s+/g, " ");
+  }
 
   async getAllSuggestions(): Promise<SearchSuggestion[]> {
     try {
@@ -104,6 +113,8 @@ export class SearchSuggestionsService {
         slug: suggestion.slug,
         synonyms: suggestion.synonyms || [],
         type: suggestion.type,
+        lang: suggestion.lang,
+        country: suggestion.country,
         seoTitle: suggestion.seoTitle,
         seoDescription: suggestion.seoDescription,
       }));
@@ -138,8 +149,19 @@ export class SearchSuggestionsService {
       );
       return null;
     }
+
+    // Normalize the search slug for accent-insensitive matching
+    const normalizedSlug = this.normalizeForMatching(slug);
+
     return (
-      this.suggestions.find((item) => slugString(item.slug) === slug) || null
+      this.suggestions.find((item) => {
+        // Try exact slug match first (fast path)
+        if (slugString(item.slug) === slug) {
+          return true;
+        }
+        // Fallback to normalized matching for accent tolerance
+        return this.normalizeForMatching(item.slug) === normalizedSlug;
+      }) || null
     );
   }
 
@@ -169,16 +191,25 @@ export class SearchSuggestionsService {
       return null;
     }
 
-    const normalized = slugString(searchTerm);
+    // Use both slugString (for backward compatibility) and normalized matching (for accent tolerance)
+    const slugged = slugString(searchTerm);
+    const normalized = this.normalizeForMatching(searchTerm);
 
     return (
       this.suggestions.find((suggestion) => {
-        if (slugString(suggestion.label) === normalized) {
+        // Check label match (exact slug or normalized)
+        if (
+          slugString(suggestion.label) === slugged ||
+          this.normalizeForMatching(suggestion.label) === normalized
+        ) {
           return true;
         }
 
+        // Check synonyms match (exact slug or normalized)
         return suggestion.synonyms.some(
-          (synonym) => slugString(synonym) === normalized
+          (synonym) =>
+            slugString(synonym) === slugged ||
+            this.normalizeForMatching(synonym) === normalized
         );
       }) ?? null
     );

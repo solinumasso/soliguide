@@ -23,11 +23,11 @@ import {
   CategoriesService,
   Categories,
   type FlatCategoriesTreeNode,
-  type SearchAutoComplete,
-  Themes
+  type SearchSuggestion,
+  Themes,
+  SupportedLanguagesCode
 } from '@soliguide/common';
 import { fetch } from '$lib/client';
-import { buildCategorySuggestion } from '$lib/models/categorySuggestion';
 import type { Fetcher } from '$lib/client/types';
 import { CategoriesErrors, type CategoryService } from './types';
 import { get } from 'svelte/store';
@@ -56,7 +56,7 @@ const buildParentToChildrenStructure = (categories: FlatCategoriesTreeNode[]): P
  */
 export const getCategoryService = (
   currentThemeName: Themes,
-  fetcher: Fetcher<SearchAutoComplete> = fetch
+  fetcher: Fetcher<SearchSuggestion[]> = fetch
 ): CategoryService => {
   const categoriesService = new CategoriesService(currentThemeName);
 
@@ -91,17 +91,24 @@ export const getCategoryService = (
 
   /**
    * Auto-complete feature for categories.
+   * Now uses the new search-suggestions endpoint with country and language support.
    */
-  const getCategorySuggestions = async (searchTerm: string): Promise<Categories[]> => {
+  const getCategorySuggestions = async (
+    searchTerm: string,
+    country: string,
+    lang: SupportedLanguagesCode
+  ): Promise<Categories[]> => {
     try {
       if (searchTerm.length === 0) {
         return [];
       }
 
-      const url = `${apiUrl}/new-search/auto-complete/${encodeURI(searchTerm.trim())}`;
+      const url = `${apiUrl}/new-search/search-suggestions/${country}/${lang}/${encodeURI(searchTerm.trim())}/categories`;
 
-      const result = await fetcher(url);
-      return buildCategorySuggestion(result);
+      const result: SearchSuggestion[] = await fetcher(url);
+
+      // Filter and extract only the categoryId values
+      return result.map((item) => item.categoryId).filter((id): id is Categories => id !== null);
     } catch {
       throw CategoriesErrors.ERROR_SERVER;
     }

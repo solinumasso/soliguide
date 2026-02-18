@@ -31,8 +31,31 @@ jobs:
   commitlint:
     uses: ./.github/workflows/_commitlint.yml
 
-  all:
-    uses: ./.github/workflows/_build-and-test.yml
+  # Build all packages for production tag
+  build:
+    name: Build all packages
+    uses: ./.github/workflows/_build.yml
     needs:
       - commitlint
+    secrets: inherit
+
+  # Test using pre-built images (blocking for production)
+  test:
+    name: Test all packages
+    uses: ./.github/workflows/_test-only.yml
+    with:
+      docker_tag: ${{ github.ref_name }}
+      node_version: ${{ needs.build.outputs.node_version }}
+      test_api: true
+      test_common: true
+      test_common-angular: true
+      test_design-system: true
+      test_frontend: true
+      test_location-api: true
+      test_maintenance: true
+      test_soligare: true
+      test_web-app: true
+      test_widget: true
+    needs:
+      - build
     secrets: inherit

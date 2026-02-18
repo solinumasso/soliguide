@@ -18,27 +18,13 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import "../../../config/database/connection";
-
-import delay from "delay";
-import { parentPort } from "worker_threads";
-
 import { logger } from "../../../general/logger";
 import { setIsOpenToday } from "../../../place/services/isOpenToday.service";
 
-(async () => {
-  try {
-    logger.info("JOB - SET IS_OPEN_TODAY FOR PLACES\tSTART");
+export async function setIsOpenTodayJob(): Promise<void> {
+  logger.info("JOB - SET IS_OPEN_TODAY FOR PLACES\tSTART");
 
-    await setIsOpenToday();
+  await setIsOpenToday();
 
-    await delay(500);
-
-    logger.info("JOB - SET IS_OPEN_TODAY FOR PLACES\tEND");
-  } catch (e) {
-    logger.error(e);
-    if (parentPort) parentPort.postMessage("Error while running job");
-  } finally {
-    if (parentPort) parentPort.postMessage("done");
-  }
-})();
+  logger.info("JOB - SET IS_OPEN_TODAY FOR PLACES\tEND");
+}

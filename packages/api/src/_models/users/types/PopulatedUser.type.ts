@@ -26,6 +26,7 @@ export type PopulatedUser = Pick<
   | "_id"
   | "invitations"
   | "lastname"
+  | "lastLogin"
   | "mail"
   | "name"
   | "organizations"

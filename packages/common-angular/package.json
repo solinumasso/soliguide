@@ -11,10 +11,7 @@
     "test": "jest",
     "lint": "ng lint",
     "format": "prettier --cache -c .",
-    "format:fix": "prettier --cache -w .",
-    "license:add": "license-check-and-add add -f license.config.json -r $(date +%Y)",
-    "license:check": "license-check-and-add check -f license.config.json -r $(date +%Y)",
-    "license:remove": "license-check-and-add remove -f license.config.json -r $(date +%Y)"
+    "format:fix": "prettier --cache -w ."
   },
   "devDependencies": {
     "@angular-devkit/architect": "0.1802.1",
@@ -34,7 +31,7 @@
     "@angular/router": "^17.3.12",
     "@soliguide/common": "workspace:*",
     "@types/jest": "^29.5.14",
-    "@types/node": "^20.19.8",
+    "@types/node": "^20.19.33",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.57.1",

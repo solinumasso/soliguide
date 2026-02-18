@@ -34,7 +34,33 @@ jobs:
     if: github.event.pull_request.draft == false
     uses: ./.github/workflows/_commitlint.yml
 
-  all:
+  # Build affected packages only (PR optimization)
+  build:
+    name: Build affected packages
     if: github.event.pull_request.draft == false
-    uses: ./.github/workflows/_build-and-test.yml
+    uses: ./.github/workflows/_build.yml
+    needs:
+      - commitlint
+    secrets: inherit
+
+  # Test using pre-built images (no rebuild)
+  test:
+    name: Test affected packages
+    if: github.event.pull_request.draft == false
+    uses: ./.github/workflows/_test-only.yml
+    with:
+      docker_tag: pr-${{ github.event.pull_request.number }}
+      node_version: ${{ needs.build.outputs.node_version }}
+      test_api: ${{ contains(needs.build.outputs.to_deploy, 'api') }}
+      test_common: ${{ contains(needs.build.outputs.to_deploy, 'common') }}
+      test_common-angular: ${{ contains(needs.build.outputs.to_deploy, 'common-angular') }}
+      test_design-system: ${{ contains(needs.build.outputs.to_deploy, 'design-system') }}
+      test_frontend: ${{ contains(needs.build.outputs.to_deploy, 'frontend') }}
+      test_location-api: ${{ contains(needs.build.outputs.to_deploy, 'location-api') }}
+      test_maintenance: ${{ contains(needs.build.outputs.to_deploy, 'maintenance') }}
+      test_soligare: ${{ contains(needs.build.outputs.to_deploy, 'soligare') }}
+      test_web-app: ${{ contains(needs.build.outputs.to_deploy, 'web-app') }}
+      test_widget: ${{ contains(needs.build.outputs.to_deploy, 'widget') }}
+    needs:
+      - build
     secrets: inherit

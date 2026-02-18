@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /*
  * Soliguide: Useful information for those who need it
  *
@@ -541,7 +542,7 @@ describe('Search Result', () => {
                 licenseLabel: 'LicenceLabel1'
               },
               toDisplay2: { label: 'toDisplay2' }
-            },
+            } as any,
             checkIfSourceMustBeDisplayed: (name: string) => name.includes('toDisplay')
           };
         });

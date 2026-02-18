@@ -26,6 +26,7 @@ export const ARRAY_OF_USERS_FIELDS_TO_POPULATE: Array<keyof PopulatedUser> = [
   "areas",
   "invitations",
   "lastname",
+  "lastLogin",
   "mail",
   "name",
   "organizations",

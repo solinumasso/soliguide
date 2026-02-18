@@ -1,0 +1,115 @@
+# Soliguide: Useful information for those who need it
+#
+# SPDX-FileCopyrightText: © 2025 Solinum
+#
+# SPDX-License-Identifier: AGPL-3.0-only
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+{
+	admin off
+	# Handled by Clever Cloud for now
+	auto_https off
+	log default {
+		format json
+	}
+	servers {
+		trusted_proxies static {$TRUSTED_PROXIES}
+	}
+	{$DEBUG:}
+}
+
+:8080
+
+log {
+	format json
+}
+
+encode zstd gzip
+
+# Client max body size
+request_body {
+	max_size 6MB
+}
+
+# Redirect www to non-www
+@www header_regexp host Host ^www\.(.+)$
+handle @www {
+	redir https://{re.host.1}{uri} permanent
+}
+
+# Remove useless server error, it could be used to target Caddy security vulnerability
+header {
+	-Server
+}
+
+
+# Import auto-generated category redirections from taxonomy package
+import ./category-redirects.caddy
+
+log_append category_source {category_source}
+log_append category_target_path {category_target_path}
+log_append category_before {category_before}
+log_append category_after {category_after}
+
+@category_redirect_with_query {
+	not vars {category_source} null ""
+	not vars {category_target_path} null ""
+	not vars {http.request.orig_uri.query} null ""
+}
+handle @category_redirect_with_query {
+	redir {category_target_path}?{http.request.orig_uri.query} permanent
+}
+@category_redirect_without_query {
+	not vars {category_source} null ""
+	not vars {category_target_path} null ""
+	vars {http.request.orig_uri.query} null ""
+}
+handle @category_redirect_without_query {
+	redir {category_target_path} permanent
+}
+
+handle {
+	root * /srv/
+	file_server
+  templates
+
+	# Set the theme based on the domain
+	map {header.X-Forwarded-Host} {soliguide_theme} {soliguide_language} {soliguide_title} {soliguide_description} {
+		{$SOLIGUIA_AD_DOMAIN} soliguia_ad ca "Soliguia, la guía de la solidaridad en línea" "Soliguia te permite encontrar ayuda alimentaria, asistencia social, asociaciones y numerosos servicios solidarios gratuitos."
+		{$SOLIGUIA_ES_DOMAIN} soliguia_es ca "Soliguia, la guía de la solidaridad en línea" "Soliguia te permite encontrar ayuda alimentaria, asistencia social, asociaciones y numerosos servicios solidarios gratuitos."
+		default soliguide_fr fr "Soliguide - Itinéraire vers la solidarité" "Soliguide vous indique où trouver les services dont vous avez besoin, au plus proche de vous. Gratuit et anonyme, disponible en plusieurs langues."
+	}
+	log_append soliguide_theme {soliguide_theme}
+	log_append soliguide_language {soliguide_language}
+	log_append forwarded_host {header.X-Forwarded-Host}
+
+	# Keep static files in caches
+	@static {
+		path *.png *.svg *.ttf *.woff *.woff2 *.eot *.js /*.css
+    not path *.xml
+		# Check that the file exists
+		file
+	}
+	route @static {
+		header Cache-Control "public"
+		header +Cache-Control "max-age=62208000"
+		header Pragma public
+		header Expires 720d
+	}
+
+	route {
+		try_files {path} /index.html
+		header /index.html Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+	}
+}

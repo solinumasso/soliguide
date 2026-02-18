@@ -25,6 +25,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { ROUTES_CTX_KEY } from '$lib/client';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import SearchButtonInput from './SearchButtonInput.svelte';
+  import FavoritesAnnouncementBanner from './components/FavoritesAnnouncementBanner.svelte';
   import { getHomePageController } from './pageController';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import type { ThemeDefinition } from '$lib/theme/types';
@@ -110,6 +111,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </svelte:head>
 
 <section>
+  <FavoritesAnnouncementBanner />
   <div class="header">
     <span class="title">
       <Text as="h1" type="title3PrimaryExtraBold">{$i18n.t('HOME_TITLE')}</Text>

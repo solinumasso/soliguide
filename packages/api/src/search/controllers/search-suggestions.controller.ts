@@ -133,6 +133,7 @@ export class SearchSuggestionsController {
       seoDescription: result.item.seoDescription,
       country,
       lang,
+      type: result.item.type,
       score: result.score,
       matches: result.matches,
     }));

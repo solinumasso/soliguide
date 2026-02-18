@@ -76,6 +76,6 @@ export function findSuggestionBySynonym(
 }
 
 function createWordBoundaryRegex(term: string): RegExp {
-  const escaped = term.replaceAll(/[-[\]{}()*+?.,\\^$|#\s]/g, String.raw`\$&`);
+  const escaped = term.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, String.raw`\$&`);
   return new RegExp(String.raw`\b${escaped}\b`, "i");
 }

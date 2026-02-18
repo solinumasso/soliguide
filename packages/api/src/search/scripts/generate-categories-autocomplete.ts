@@ -30,6 +30,7 @@ import { ModelWithId } from "../../_models";
 import { SearchSuggestionModel } from "../models/search-suggestion.model";
 import Anthropic from "@anthropic-ai/sdk";
 import { Command } from "commander";
+import { LANGUAGE_NAMES } from "./constants";
 
 interface TranslationResult {
   sourceId: string;
@@ -53,20 +54,6 @@ type SearchSuggestionForTranslation = ModelWithId<
     | "seoTitle"
   >
 >;
-
-const LANGUAGE_NAMES: Record<SupportedLanguagesCode, string> = {
-  [SupportedLanguagesCode.AR]: "arabe",
-  [SupportedLanguagesCode.CA]: "catalan",
-  [SupportedLanguagesCode.EN]: "anglais",
-  [SupportedLanguagesCode.ES]: "espagnol",
-  [SupportedLanguagesCode.FA]: "farsi",
-  [SupportedLanguagesCode.KA]: "géorgien",
-  [SupportedLanguagesCode.PS]: "pachto",
-  [SupportedLanguagesCode.RO]: "roumain",
-  [SupportedLanguagesCode.RU]: "russe",
-  [SupportedLanguagesCode.UK]: "ukrainien",
-  [SupportedLanguagesCode.FR]: "français",
-};
 
 interface ScriptOptions {
   country: string;

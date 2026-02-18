@@ -1,0 +1,232 @@
+# Soliguide: Useful information for those who need it
+#
+# SPDX-FileCopyrightText: © 2024 Solinum
+#
+# SPDX-License-Identifier: AGPL-3.0-only
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+name: _Build all packages
+
+on:
+  workflow_call:
+    outputs:
+      to_deploy:
+        description: 'List of packages to deploy'
+        value: ${{ jobs.affected_packages.outputs.to_deploy }}
+      to_build:
+        description: 'List of packages to build'
+        value: ${{ jobs.affected_packages.outputs.to_build }}
+      deploy_api:
+        description: 'Whether to deploy API'
+        value: ${{ jobs.affected_packages.outputs.api_dependencies }}
+      deploy_frontend:
+        description: 'Whether to deploy Frontend'
+        value: ${{ jobs.affected_packages.outputs.frontend_dependencies }}
+      deploy_location-api:
+        description: 'Whether to deploy Location API'
+        value: ${{ jobs.affected_packages.outputs.location-api_dependencies }}
+      deploy_soligare:
+        description: 'Whether to deploy Soligare'
+        value: ${{ jobs.affected_packages.outputs.soligare_dependencies }}
+      deploy_web-app:
+        description: 'Whether to deploy Web app'
+        value: ${{ jobs.affected_packages.outputs.web-app_dependencies }}
+      deploy_widget:
+        description: 'Whether to deploy Widget'
+        value: ${{ jobs.affected_packages.outputs.widget_dependencies }}
+      node_version:
+        description: 'Node version used for builds and tests'
+        value: ${{ jobs.affected_packages.outputs.node_version }}
+
+concurrency:
+  group: ${{ github.workflow }}-build-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  affected_packages:
+    uses: ./.github/workflows/pr-get-affected-packages.yml
+
+  build-base:
+    name: Build base container image
+    if: ${{ !startsWith(github.ref, 'refs/pull/') || needs.affected_packages.outputs.to_build != '[]' }}
+    uses: ./.github/workflows/_build-container-image.yml
+    needs:
+      - affected_packages
+    with:
+      image_name: ${{ github.repository }}/base
+      dockerfile: Dockerfile
+      tag_suffix1: -base
+      target1: base
+      tag_suffix2: ""
+      target2: deps
+
+  build-common:
+    name: Build common container image
+    if: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_build, 'common') }}
+    uses: ./.github/workflows/_build-container-image.yml
+    with:
+      image_name: ${{ github.repository }}/common
+      dockerfile: ./packages/common/Dockerfile
+      build_args: |
+        BASE_IMAGE=${{ fromJSON(needs.build-base.outputs.tags2)[0] }}
+      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_deploy, 'common') }}
+    needs:
+      - affected_packages
+      - build-base
+
+  build-common-angular:
+    name: Build common Angular container image
+    if: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_build, 'common-angular') }}
+    uses: ./.github/workflows/_build-container-image.yml
+    with:
+      image_name: ${{ github.repository }}/common-angular
+      dockerfile: ./packages/common-angular/Dockerfile
+      build_args: |
+        COMMON_IMAGE=${{ fromJSON(needs.build-common.outputs.tags1)[0] }}
+      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_deploy, 'common-angular') }}
+    needs:
+      - affected_packages
+      - build-common
+
+  build-design-system:
+    name: Build design system container image
+    if: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_build, 'design-system') }}
+    uses: ./.github/workflows/_build-container-image.yml
+    with:
+      image_name: ${{ github.repository }}/design-system
+      dockerfile: ./packages/design-system/Dockerfile
+      build_production: true
+      build_args: |
+        BASE_IMAGE=${{ fromJSON(needs.build-base.outputs.tags2)[0] }}
+      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_deploy, 'design-system') }}
+    needs:
+      - affected_packages
+      - build-base
+
+  build-api:
+    name: Build API container image
+    if: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_build, 'api') }}
+    uses: ./.github/workflows/_build-container-image.yml
+    with:
+      image_name: ${{ github.repository }}/api
+      dockerfile: ./packages/api/Dockerfile
+      build_production: true
+      build_args: |
+        BASE_IMAGE=${{ fromJSON(needs.build-base.outputs.tags1)[0] }}
+        COMMON_IMAGE=${{ fromJSON(needs.build-common.outputs.tags1)[0] }}
+      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_deploy, 'api') }}
+    needs:
+      - affected_packages
+      - build-base
+      - build-common
+
+  build-frontend:
+    name: Build frontend container image
+    if: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_build, 'frontend') }}
+    uses: ./.github/workflows/_build-container-image.yml
+    with:
+      image_name: ${{ github.repository }}/frontend
+      dockerfile: ./packages/frontend/Dockerfile
+      build_production: true
+      build_args: |
+        COMMON_ANGULAR_IMAGE=${{ fromJSON(needs.build-common-angular.outputs.tags1)[0] }}
+      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_deploy, 'frontend') }}
+    needs:
+      - affected_packages
+      - build-common-angular
+
+  build-location-api:
+    name: Build location API container image
+    if: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_build, 'location-api') }}
+    uses: ./.github/workflows/_build-container-image.yml
+    with:
+      image_name: ${{ github.repository }}/location-api
+      dockerfile: ./packages/location-api/Dockerfile
+      build_production: true
+      build_args: |
+        BASE_IMAGE=${{ fromJSON(needs.build-base.outputs.tags1)[0] }}
+        COMMON_IMAGE=${{ fromJSON(needs.build-common.outputs.tags1)[0] }}
+      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_deploy, 'location-api') }}
+    needs:
+      - affected_packages
+      - build-base
+      - build-common
+
+  build-maintenance:
+    name: Build maintenance container image
+    if: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_build, 'maintenance') }}
+    uses: ./.github/workflows/_build-container-image.yml
+    with:
+      image_name: ${{ github.repository }}/maintenance
+      dockerfile: ./packages/maintenance/Dockerfile
+      tag_suffix1: -frontend
+      target1: frontend
+      tag_suffix2: -widget
+      target2: widget
+    needs:
+      - affected_packages
+
+  build-soligare:
+    name: Build Soligare container image
+    if: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_build, 'soligare') }}
+    uses: ./.github/workflows/_build-container-image.yml
+    with:
+      image_name: ${{ github.repository }}/soligare
+      dockerfile: ./packages/soligare/Dockerfile
+      build_production: true
+      build_args: |
+        BASE_IMAGE=${{ fromJSON(needs.build-base.outputs.tags1)[0] }}
+        COMMON_IMAGE=${{ fromJSON(needs.build-common.outputs.tags1)[0] }}
+      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_deploy, 'soligare') }}
+    needs:
+      - affected_packages
+      - build-base
+      - build-common
+
+  build-web-app:
+    name: Build web app container image
+    if: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_build, 'web-app') }}
+    uses: ./.github/workflows/_build-container-image.yml
+    with:
+      image_name: ${{ github.repository }}/web-app
+      dockerfile: ./packages/web-app/Dockerfile
+      build_production: true
+      build_args: |
+        BASE_IMAGE=${{ fromJSON(needs.build-base.outputs.tags1)[0] }}
+        COMMON_IMAGE=${{ fromJSON(needs.build-common.outputs.tags1)[0] }}
+        DESIGN_SYSTEM_IMAGE=${{ fromJSON(needs.build-design-system.outputs.tags1)[0] }}
+      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_deploy, 'web-app') }}
+    needs:
+      - affected_packages
+      - build-base
+      - build-common
+      - build-design-system
+
+  build-widget:
+    name: Build widget image
+    if: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_build, 'widget') }}
+    uses: ./.github/workflows/_build-container-image.yml
+    with:
+      image_name: ${{ github.repository }}/widget
+      dockerfile: ./packages/widget/Dockerfile
+      build_production: true
+      build_args: |
+        COMMON_ANGULAR_IMAGE=${{ fromJSON(needs.build-common-angular.outputs.tags1)[0] }}
+      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_deploy, 'widget') }}
+    needs:
+      - affected_packages
+      - build-common-angular

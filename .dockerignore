@@ -21,12 +21,8 @@
 .editorconfig
 .github/
 .nx/
-.reuse/
 .vscode/
 commitlint.config.js
-LICENSE
-LICENSE.header
-REUSE.toml
 docker-compose.yml
 **/*.license
 **/*.log

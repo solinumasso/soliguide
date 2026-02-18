@@ -125,7 +125,6 @@ jobs:
           annotations: ${{ needs.docker_meta1.outputs.annotations }}
           cache-from: |
             type=registry,ref=${{ env.TARGET1_IMAGE }}-cache
-            type=registry,ref=${{ inputs.registry }}/${{ inputs.image_name }}:main${{ inputs.tag_suffix1 }}-cache
           cache-to: |
             type=registry,mode=max,ref=${{ env.TARGET1_IMAGE }}-cache
 
@@ -143,7 +142,6 @@ jobs:
           annotations: ${{ needs.docker_meta2.outputs.annotations }}
           cache-from: |
             type=registry,ref=${{ env.TARGET2_IMAGE }}-cache
-            type=registry,ref=${{ inputs.registry }}/${{ inputs.image_name }}:main${{ inputs.tag_suffix2 }}-cache
           cache-to: |
             type=registry,mode=max,ref=${{ env.TARGET2_IMAGE }}-cache
 
@@ -160,9 +158,6 @@ jobs:
           labels: ${{ needs.docker_meta.outputs.labels }}
           annotations: ${{ needs.docker_meta.outputs.annotations }}
           cache-from: |
-            type=registry,ref=${{ env.TARGET2_IMAGE }}-cache
             type=registry,ref=${{ env.PRODUCTION_IMAGE }}-cache
-            type=registry,ref=${{ inputs.registry }}/${{ inputs.image_name }}:main${{ inputs.tag_suffix2 }}-cache
-            type=registry,ref=${{ inputs.registry }}/${{ inputs.image_name }}:main-cache
           cache-to: |
             type=registry,mode=max,ref=${{ env.PRODUCTION_IMAGE }}-cache

@@ -7,8 +7,8 @@
   "dependencies": {
     "@soliguide/common": "workspace:*",
     "fs-extra": "^11.3.0",
-    "sharp": "^0.34.3",
-    "svgtofont": "^6.3.2"
+    "sharp": "^0.34.5",
+    "svgtofont": "^6.5.1"
   },
   "scripts": {
     "start": "tsx src/index.ts",
@@ -19,22 +19,18 @@
     "build-and-run": "tsc && yarn generate-icons && exit 0",
     "format": "prettier --cache -c .",
     "format:fix": "prettier --cache -w .",
-    "license:add-icons": "tsx src/generate-icon-licenses.ts",
-    "license:add": "license-check-and-add add -f license.config.json -r $(date +%Y)",
-    "license:check": "license-check-and-add check -f license.config.json -r $(date +%Y)",
-    "license:remove": "license-check-and-add remove -f license.config.json -r $(date +%Y)",
     "copy-png-to-api": "mkdir -p ../api/resources/auto-export/pictos && cp -r icons/png/* ../api/resources/auto-export/pictos/",
     "copy-fonts": "mkdir -p ../frontend/src/assets/fonts/icons/ && cp fonts/categories-icons.woff fonts/categories-icons.woff2 fonts/categories-icons.scss ../frontend/src/assets/fonts/icons/",
-    "full-process": "yarn generate-icons && yarn license:add  && yarn license:add-icons && yarn format:fix && yarn copy-fonts && echo \"✅ Tous les fichiers ont été générés et copiés avec succès!\" && exit 0"
+    "full-process": "yarn generate-icons && yarn format:fix && yarn copy-fonts && echo \"✅ Tous les fichiers ont été générés et copiés avec succès!\" && exit 0"
   },
   "author": "Solinum",
   "license": "MIT",
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^22.16.4",
+    "@types/node": "^22.19.11",
     "@types/sharp": "^0.32.0",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.21.0",
+    "@typescript-eslint/eslint-plugin": "^8.37.0",
+    "@typescript-eslint/parser": "^8.37.0",
     "eslint": "^9.31.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.31.0",
@@ -46,7 +42,7 @@
     "lint-staged": "^15.5.1",
     "ng-lint-staged": "^12.0.4",
     "prettier": "^2.8.8",
-    "tsx": "^4.20.3",
+    "tsx": "^4.21.0",
     "typescript": "5.8.3",
     "typescript-eslint": "8.37.0"
   }

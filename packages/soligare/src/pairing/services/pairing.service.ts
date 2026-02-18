@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /*
  * Soliguide: Useful information for those who need it
  *
@@ -195,7 +196,7 @@ export class PairingService {
     const connection = this.postgresService.getConnection();
 
     if (soliguide_id) {
-      await connection.begin(async (psql) => {
+      await connection.begin(async (psql: any) => {
         await psql`
           update
             dagster_structure.sources as src

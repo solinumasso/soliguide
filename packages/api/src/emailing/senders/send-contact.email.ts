@@ -19,46 +19,58 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import {
-  ExpressRequest,
-  ExpressResponse,
-  EmailCallToActionData,
-} from "../../_models";
-import { mgSendTemplateEmail } from "../services/mailgun.service";
-import { getSenderData } from "../utils/getSenderData";
+  getCountryFromTheme,
+  SupportedLanguagesCode,
+  Themes,
+} from "@soliguide/common";
+import { ExpressRequest, ExpressResponse } from "../../_models";
 import { PosthogClient } from "../../analytics/services";
 import { TRACKED_EVENTS } from "../../analytics/constants";
+import {
+  AmqpContactFormEvent,
+  Exchange,
+  RoutingKey,
+  amqpEventsSender,
+} from "../../events";
 
 export const emailContact = async (
   req: ExpressRequest,
   res: ExpressResponse
 ) => {
-  const contactEmail = getSenderData(req.body.department, "senderEmail");
+  const theme = req.requestInformation?.theme ?? Themes.SOLIGUIDE_FR;
+  const country = getCountryFromTheme(theme);
+  const locale = req.requestInformation?.language ?? SupportedLanguagesCode.FR;
+  const frontendUrl = req.requestInformation?.frontendUrl ?? "";
 
-  const info: EmailCallToActionData = {
-    params: {
-      email: req.bodyValidated.email,
-      message: req.bodyValidated.message,
-      name: req.bodyValidated.name,
-    },
-    recipientEmail: contactEmail,
-    replyEmail: "postmaster@solinum.org",
-    senderEmail: "L'équipe Soliguide <postmaster@solinum.org>",
-    subject: `Message sur le site : ${req.bodyValidated.subject}`,
-    templateName: "2022-contact-form",
-  };
+  const payload = new AmqpContactFormEvent({
+    name: req.bodyValidated.name,
+    email: req.bodyValidated.email,
+    subject: req.bodyValidated.subject,
+    message: req.bodyValidated.message,
+    country,
+    territory: req.bodyValidated.department ?? null,
+    locale,
+    frontendUrl,
+    theme,
+  });
 
   try {
-    req.log.info(`EMAIL CONTACT SENT TO: ${contactEmail}`);
-    const result = await mgSendTemplateEmail(info, req.log);
-
     PosthogClient.instance.capture({
       event: TRACKED_EVENTS.API_SEND_CONTACT_EMAIL,
       req,
       properties: {
-        emailData: info,
-        success: typeof result === "object",
+        contactForm: payload,
       },
     });
+
+    await amqpEventsSender.sendToQueue<AmqpContactFormEvent>(
+      Exchange.CONTACT_FORM,
+      `${RoutingKey.CONTACT_FORM}.form-submitted`,
+      payload,
+      req.log
+    );
+
+    req.log.info({ payload }, "CONTACT_FORM_EVENT_SENT_TO_QUEUE");
 
     return res.status(200).json({ message: "EMAIL_CONTACT_SENT" });
   } catch (e) {

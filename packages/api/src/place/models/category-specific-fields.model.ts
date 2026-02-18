@@ -71,7 +71,6 @@ export const CategorySpecificFieldsSchema =
       otherProductTypePrecisions: { type: String, trim: true },
       hygieneProductType: { type: String, enum: HygieneProductType },
       jobsList: { type: String, trim: true },
-      mobilityAssistanceName: { type: String, trim: true },
       nationalOriginProductType: {
         type: String,
         enum: NationalProductType,

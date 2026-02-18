@@ -30,6 +30,8 @@ COPY \
   nx.json \
   /app/
 
+COPY .yarn/releases/ /app/.yarn/releases/
+
 COPY packages/api/package.json /app/packages/api/
 COPY packages/common/package.json /app/packages/common/
 COPY packages/common-angular/package.json /app/packages/common-angular/
@@ -39,6 +41,7 @@ COPY packages/icons-generator/package.json /app/packages/icons-generator/
 COPY packages/location-api/package.json /app/packages/location-api/
 COPY packages/maintenance/package.json /app/packages/maintenance/
 COPY packages/soligare/package.json /app/packages/soligare/
+COPY packages/taxonomy/package.json /app/packages/taxonomy/
 COPY packages/web-app/package.json /app/packages/web-app/
 COPY packages/widget/package.json /app/packages/widget/
 

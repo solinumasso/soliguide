@@ -135,7 +135,7 @@ export const insertPlace = async (
   newPlace.lieu_id = await getNextPlaceId();
 
   // Generate Seo URL
-  newPlace.seo_url = seoUrl(newPlace);
+  newPlace.seo_url = seoUrl(newPlace as ApiPlace);
 
   // Used by the search features
   newPlace.slugs = generateSlugForPlaceInfo(newPlace);

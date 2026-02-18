@@ -57,5 +57,6 @@ export const sendUserForAuth = (user: UserPopulateType): UserForAuth => {
     user_id: user.user_id,
     verified: user.verified,
     areas: user?.areas,
+    lastLogin: user?.lastLogin,
   };
 };

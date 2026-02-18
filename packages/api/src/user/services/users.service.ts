@@ -19,9 +19,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import {
-  ApiOrganization,
-  CAMPAIGN_DEFAULT_NAME,
   AnyDepartmentCode,
+  ApiOrganization,
   UserSearchContext,
   UserStatus,
 } from "@soliguide/common";
@@ -43,7 +42,7 @@ import { DEFAULT_SEARCH_OPTIONS } from "../../_utils/constants";
 import { hashPassword } from "../../_utils";
 import { getMongoId } from "../../_utils/functions/mongo";
 import { getUserRightsWithParams } from "./userRights.service";
-import { PARTNERS_EMAIL_DOMAIN } from "../../partners";
+
 import { mergeOperationalAreas } from "../utils";
 
 export const getUserByParams = (
@@ -295,176 +294,6 @@ export const updateUsersTerritories = async (
   )
     .lean<UserPopulateType>()
     .exec();
-};
-
-/**
- * @returns Invited list or a user to contact during the campaign
- */
-export const findUsersToEmail = (
-  territories: AnyDepartmentCode[],
-  emailType: string
-) => {
-  const isInvitation = emailType?.includes("INVITATION");
-  const isRelance = emailType?.includes("RELANCE");
-
-  return searchUsers(
-    {
-      $or: [
-        { [`campaigns.${CAMPAIGN_DEFAULT_NAME}.${emailType}.ready`]: false },
-        {
-          [`campaigns.${CAMPAIGN_DEFAULT_NAME}.${emailType}.ready`]: {
-            $exists: false,
-          },
-        },
-      ],
-      $and: Object.values(PARTNERS_EMAIL_DOMAIN).map((domain: string) => {
-        return {
-          mail: {
-            $not: { $regex: domain, $options: "i" },
-          },
-        };
-      }),
-      ...(isInvitation
-        ? {
-            "invitations.0": { $exists: true },
-            // For relances, ensure users received the initial campaign
-            ...(isRelance
-              ? {
-                  [`campaigns.${CAMPAIGN_DEFAULT_NAME}.CAMPAGNE_INVITATIONS.ready`]:
-                    true,
-                }
-              : {}),
-          }
-        : {
-            "organizations.0": { $exists: true },
-            // For relances, ensure users received the initial campaign
-            ...(isRelance
-              ? {
-                  [`campaigns.${CAMPAIGN_DEFAULT_NAME}.CAMPAGNE_COMPTES_PRO.ready`]:
-                    true,
-                }
-              : {}),
-          }),
-      // Special filter for "TERMINER" (reminder of reminder)
-      ...(emailType?.includes("TERMINER")
-        ? {
-            [`campaigns.${CAMPAIGN_DEFAULT_NAME}.RELANCE_CAMPAGNE_COMPTES_PRO.ready`]:
-              true,
-          }
-        : {}),
-
-      status: UserStatus.PRO,
-      "areas.fr.departments": { $in: territories },
-    },
-    {
-      page: 1,
-      skip: 0,
-      sort: { createdAt: "descending" },
-    }
-  );
-};
-
-export const findUsersToContactAgain = (
-  territories: AnyDepartmentCode[],
-  emailType: string
-) => {
-  const isInvitation = emailType?.includes("INVITATION");
-
-  return UserModel.aggregate([
-    {
-      $match: {
-        $or: [
-          { [`campaigns.${CAMPAIGN_DEFAULT_NAME}.${emailType}.ready`]: false },
-          {
-            [`campaigns.${CAMPAIGN_DEFAULT_NAME}.${emailType}.ready`]: {
-              $exists: false,
-            },
-          },
-        ],
-        $and: Object.values(PARTNERS_EMAIL_DOMAIN).map((domain: string) => {
-          return {
-            mail: {
-              $not: { $regex: domain, $options: "i" },
-            },
-          };
-        }),
-        ...(isInvitation
-          ? {
-              "invitations.0": { $exists: true },
-              [`campaigns.${CAMPAIGN_DEFAULT_NAME}.CAMPAGNE_INVITATIONS.ready`]:
-                true,
-            }
-          : {
-              "organizations.0": { $exists: true },
-              [`campaigns.${CAMPAIGN_DEFAULT_NAME}.CAMPAGNE_COMPTES_PRO.ready`]:
-                true,
-            }),
-        status: UserStatus.PRO,
-        "areas.fr.departments": { $in: territories },
-        ...(emailType?.includes("TERMINER")
-          ? {
-              [`campaigns.${CAMPAIGN_DEFAULT_NAME}.RELANCE_CAMPAGNE_COMPTES_PRO.ready`]:
-                true,
-            }
-          : {}),
-      },
-    },
-    {
-      $project: {
-        _id: 1,
-        invitations: 1,
-        lastname: 1,
-        mail: 1,
-        name: 1,
-        organizations: 1,
-        territories: 1,
-        areas: 1,
-        user_id: 1,
-      },
-    },
-    // For invited people, we want info to simulate a populate of the function find
-    {
-      $unwind: {
-        path: "$invitations",
-        preserveNullAndEmptyArrays: true,
-      },
-    },
-    {
-      $lookup: {
-        as: "invitations",
-        foreignField: "_id",
-        from: "invitations",
-        localField: "invitations",
-      },
-    },
-    // For pro users, we want the organization info to simulate a populate of the function find
-    {
-      $unwind: {
-        path: "$organizations",
-        preserveNullAndEmptyArrays: true,
-      },
-    },
-    {
-      $lookup: {
-        as: "organizations",
-        foreignField: "_id",
-        from: "organization",
-        localField: "organizations",
-      },
-    },
-    {
-      $group: {
-        _id: "$_id",
-        invitations: { $first: "$invitations" },
-        lastname: { $first: "$lastname" },
-        mail: { $first: "$mail" },
-        name: { $first: "$name" },
-        organizations: { $first: "$organizations" },
-        territories: { $first: "$territories" },
-        user_id: { $first: "$user_id" },
-      },
-    },
-  ]).exec();
 };
 
 export const updateUsersAfterRemovedFromOrganization = (

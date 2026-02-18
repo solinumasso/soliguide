@@ -1,23 +1,3 @@
-/*
- * Soliguide: Useful information for those who need it
- *
- * SPDX-FileCopyrightText: © 2024 Solinum
- *
- * SPDX-License-Identifier: AGPL-3.0-only
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
 import slug from "slug";
 import striptags from "striptags";
 import { decode } from "html-entities";
@@ -25,107 +5,90 @@ import { decode } from "html-entities";
 import { WEEK_DAYS } from "../../dates";
 import { SupportedLanguagesCode } from "../../translations";
 
-export const defaultSlugOptions = {
+const DEFAULT_SLUG_OPTIONS = {
   ...slug.defaults.modes.rfc3986,
   mode: "rfc3986" as const,
   locale: SupportedLanguagesCode.FR,
+} as const;
+
+const COMMON_CHARMAP_OVERRIDES = {
+  ...slug.charmap,
+  "/": " ",
+  "'": " ",
+  "\u2019": " ", // '
+  "°": " ",
+  ".": " ",
+} as const;
+
+// Unicode NFD normalization: décompose puis supprime les diacritiques
+export const removeAccents = (src: string): string =>
+  src
+    .normalize("NFD")
+    .replaceAll(/[\u0300-\u036f]/g, "")
+    .split("")
+    .map((char) => (char in slug.charmap ? slug.charmap[char] : char))
+    .join("");
+
+const sanitize = (str: string): string => {
+  const decoded = decode(str || "", { level: "html5" });
+  return striptags(decoded);
 };
 
-export const removeAccents = (src: string): string => {
-  return src
-    .split("")
-    .map((char) => {
-      if (char in slug.charmap) {
-        return slug.charmap[char];
-      }
-      return char;
-    })
-    .join("");
-};
+const buildSlug = (
+  str: string,
+  replacement: string,
+  language?: SupportedLanguagesCode,
+  charmapOverrides?: Record<string, string>
+): string =>
+  slug(sanitize(str), {
+    ...DEFAULT_SLUG_OPTIONS,
+    replacement,
+    locale: language ?? DEFAULT_SLUG_OPTIONS.locale,
+    charmap: {
+      ...COMMON_CHARMAP_OVERRIDES,
+      "-": replacement,
+      ...charmapOverrides,
+    },
+  });
 
 export const slugString = (
   str: string,
   language?: SupportedLanguagesCode
-): string => {
-  if (!str) {
-    str = "";
-  }
-  const locale = language ?? defaultSlugOptions.locale;
-  let result = decode(str, { level: "html5" });
-  result = striptags(result);
-  return slug(result, {
-    ...defaultSlugOptions,
-    replacement: " ",
-    locale,
-    charmap: {
-      ...slug.charmap,
-      "-": " ",
-      "/": " ",
-      "’": " ",
-      "'": " ",
-      "°": " ",
-      ".": " ",
-    },
-  });
-};
+): string => buildSlug(str, " ", language);
 
 export const getSeoSlug = (
   str: string,
   language?: SupportedLanguagesCode
-): string => {
-  if (!str) {
-    str = "";
-  }
-  const locale = language ?? defaultSlugOptions.locale;
-  let result = decode(str, { level: "html5" });
-  result = striptags(result);
-  return slug(result, {
-    ...defaultSlugOptions,
-    replacement: "-",
-    locale,
-    charmap: {
-      ...slug.charmap,
-      "-": "-",
-      "/": " ",
-      "’": " ",
-      "'": " ",
-      "°": " ",
-      ".": " ",
-    },
-  });
-};
+): string => buildSlug(str, "-", language);
 
 export const slugLocation = (str: string | null): string => {
-  if (!str) {
-    return "";
-  }
-  const result = str.replace(/, france$/gi, "");
-  return slug(result, {
-    ...defaultSlugOptions,
+  if (!str) return "";
+
+  return slug(str.replaceAll(/, france$/gi, ""), {
+    ...DEFAULT_SLUG_OPTIONS,
     charmap: {
       ...slug.charmap,
-      "’": "-",
       "'": "-",
+      "\u2019": "-", // '
     },
   });
 };
 
 export const capitalize = (value: number | string): string => {
-  let capitalizedValue = value
-    ? value.toString().charAt(0).toUpperCase() + value.toString().slice(1)
-    : "";
+  if (!value) return "";
 
-  if (capitalizedValue) {
-    for (const day of WEEK_DAYS) {
-      if (capitalizedValue.includes(day)) {
-        const index = capitalizedValue.indexOf(day);
-        capitalizedValue =
-          capitalizedValue.slice(0, index) +
-          capitalizedValue.charAt(index).toUpperCase() +
-          capitalizedValue.slice(index + 1);
-      }
+  let result = String(value);
+  result = result.charAt(0).toUpperCase() + result.slice(1);
+
+  for (const day of WEEK_DAYS) {
+    const index = result.indexOf(day);
+    if (index !== -1) {
+      result =
+        result.slice(0, index) +
+        result.charAt(index).toUpperCase() +
+        result.slice(index + 1);
     }
   }
 
-  return capitalizedValue;
+  return result;
 };

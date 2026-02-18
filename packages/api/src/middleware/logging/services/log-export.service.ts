@@ -75,7 +75,7 @@ export const logExport = async (req: ExpressRequest) => {
         searchData.location
       );
     } else {
-      req.log.error("Location data are emtpy", "GET_AREAS_ERROR");
+      req.log.error("Location data are emtpy");
     }
   } catch (e) {
     req.log.error(e, "GET_AREAS_ERROR");

@@ -1,27 +1,8 @@
-# Soliguide: Useful information for those who need it
-#
-# SPDX-FileCopyrightText: © 2024 Solinum
-#
-# SPDX-License-Identifier: AGPL-3.0-only
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as published
-# by the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-ARG BASE_IMAGE=soliguide/base:local  
+ARG BASE_IMAGE=soliguide/base:local
 
 # skipcq: DOK-DL3006
 FROM ${BASE_IMAGE} AS build
 
-COPY ./packages/design-system/.storybook /app/packages/design-system/.storybook
 COPY \
   ./packages/design-system/tsconfig.json \
   ./packages/design-system/svelte.config.js \
@@ -30,8 +11,7 @@ COPY \
 COPY ./packages/design-system/static /app/packages/design-system/static
 COPY ./packages/design-system/src /app/packages/design-system/src
 
-RUN yarn workspace @soliguide/design-system build && \
-  yarn workspace @soliguide/design-system storybook:build
+RUN yarn workspace @soliguide/design-system build
 
 FROM build AS test
 
@@ -48,7 +28,5 @@ FROM caddy:2.9-alpine AS deploy
 
 COPY --chmod=0544 packages/design-system/docker_cmd.sh /bin/docker_cmd.sh
 COPY packages/design-system/Caddyfile /etc/caddy/
-
-COPY --from=build /app/packages/design-system/storybook-static/ /srv/
 
 CMD ["/bin/docker_cmd.sh"]

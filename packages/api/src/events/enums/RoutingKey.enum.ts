@@ -19,6 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 export enum RoutingKey {
+  CONTACT_FORM = "contact_form",
   INVITATIONS = "invitations",
   PLACE_CHANGES = "place_changes",
   SYNCHRO_AT = "synchro_at",

@@ -19,7 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import * as bcrypt from "bcryptjs";
-import * as crypto from "crypto";
+import * as crypto from "node:crypto";
 
 export const generateUrlToken = (): string => {
   return crypto
