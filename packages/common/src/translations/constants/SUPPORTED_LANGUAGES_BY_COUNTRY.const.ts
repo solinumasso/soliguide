@@ -33,6 +33,7 @@ export const SUPPORTED_LANGUAGES_BY_COUNTRY: SupportedCountriesLanguages = {
       SupportedLanguagesCode.EN,
       SupportedLanguagesCode.AR,
       SupportedLanguagesCode.UK,
+      SupportedLanguagesCode.PT,
     ],
   },
   [CountryCodes.AD]: {
@@ -43,6 +44,7 @@ export const SUPPORTED_LANGUAGES_BY_COUNTRY: SupportedCountriesLanguages = {
       SupportedLanguagesCode.EN,
       SupportedLanguagesCode.AR,
       SupportedLanguagesCode.UK,
+      SupportedLanguagesCode.PT,
     ],
   },
 };

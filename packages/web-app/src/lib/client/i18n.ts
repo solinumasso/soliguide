@@ -18,19 +18,20 @@ import uk from '@soliguide/common/dist/esm/translations/locales/uk.json';
 
 import type { I18nStore } from './types';
 
-const resources = {
-  ar: { translation: ar },
-  ca: { translation: ca },
-  en: { translation: en },
-  es: { translation: es },
-  fa: { translation: fa },
-  fr: { translation: fr },
-  ka: { translation: ka },
-  ps: { translation: ps },
-  ro: { translation: ro },
-  ru: { translation: ru },
-  uk: { translation: uk }
-};
+const resources: Partial<Record<SupportedLanguagesCode, { translation: Record<string, string> }>> =
+  {
+    ar: { translation: ar },
+    ca: { translation: ca },
+    en: { translation: en },
+    es: { translation: es },
+    fa: { translation: fa },
+    fr: { translation: fr },
+    ka: { translation: ka },
+    ps: { translation: ps },
+    ro: { translation: ro },
+    ru: { translation: ru },
+    uk: { translation: uk }
+  };
 
 type TranslationResources = Record<string, { translation: Record<string, string> }>;
 
