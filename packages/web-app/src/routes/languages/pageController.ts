@@ -7,7 +7,7 @@ import type { LanguageOption, LanguagePageController, PageState } from './types'
 import type { ComponentType, SvelteComponent } from 'svelte';
 import type { PosthogCaptureFunction } from '$lib/services/types';
 
-const flagsMap: Record<SupportedLanguagesCode, ComponentType<SvelteComponent>> = {
+const flagsMap: Partial<Record<SupportedLanguagesCode, ComponentType<SvelteComponent>>> = {
   [SupportedLanguagesCode.FR]: Fr,
   [SupportedLanguagesCode.AR]: ArabicLanguage,
   [SupportedLanguagesCode.CA]: EsCt,
