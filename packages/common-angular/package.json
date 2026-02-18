@@ -1,6 +1,6 @@
 {
   "name": "@soliguide/common-angular",
-  "version": "4.124.0",
+  "version": "4.125.0",
   "license": "AGPL-3.0-only",
   "main": "dist/esm2022/index.mjs",
   "module": "dist/esm2022/index.mjs",

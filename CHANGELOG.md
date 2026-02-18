@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.125.0](https://github.com/solinumasso/soliguide/compare/v4.124.0...v4.125.0) (2026-02-18)
+
+
+### Bug Fixes
+
+* **api:** delete deepsource test & license step ([e44c4b4](https://github.com/solinumasso/soliguide/commit/e44c4b48bec7014c91166d4877b58a8e81be4e5b))
+* **api:** fix ci ([b77ee01](https://github.com/solinumasso/soliguide/commit/b77ee01034e5f9b4b8235639febcb674ebbfcba5))
+* **api:** fix contact ([7c84e3a](https://github.com/solinumasso/soliguide/commit/7c84e3a23c03d5a44cba5b1342fd84c017d52758))
+* **api:** fix deployment ([cb617b6](https://github.com/solinumasso/soliguide/commit/cb617b6e6551d5a95b3f8a1604d6ef25f4581201))
+* **api:** fix params of search autocomplete ([347777a](https://github.com/solinumasso/soliguide/commit/347777ac76140f3f703ca86756e582fe1e4d7fc4))
+* **api:** fix yarn ([3066f61](https://github.com/solinumasso/soliguide/commit/3066f61c72738466a5838639eacddc8f265f4379))
+* **api:** update transport label, & fix github issues ([fd718c5](https://github.com/solinumasso/soliguide/commit/fd718c57cc94eaa03b55218043423f798538a6a6))
+* **ci:** refactor claude workflow for reliable PR reviews ([#1163](https://github.com/solinumasso/soliguide/issues/1163)) ([86bd16a](https://github.com/solinumasso/soliguide/commit/86bd16a393a5cee0c7b4d69a1a0c0652ed101683))
+* **ci:** restore issue_comment trigger for claude workflow ([#1164](https://github.com/solinumasso/soliguide/issues/1164)) ([dea0631](https://github.com/solinumasso/soliguide/commit/dea06312ab4e4ea254115b03161bd293f6a53688))
+* **ci:** revert to HEAD:master for Clever Cloud deployment ([ac4d5e4](https://github.com/solinumasso/soliguide/commit/ac4d5e4efb42c793b3658b98970763625591506b))
+* **common:** clean repo ([7270eab](https://github.com/solinumasso/soliguide/commit/7270eab2d7b7ad22df9572abf88ebcd3f54ed169))
+* **common:** update packages, update types, restore dockerfile ([54a7328](https://github.com/solinumasso/soliguide/commit/54a73283496e89ce15b4260a101b4e50589b905f))
+* **docker:** copy yarn releases directory to build context ([b07011b](https://github.com/solinumasso/soliguide/commit/b07011b1368998e34623fd8e61539d13f30e11d0))
+* **frontend:** add caddy ([58662c6](https://github.com/solinumasso/soliguide/commit/58662c609dfce527266c45e39f767f40c27cc496))
+* **frontend:** add caddy ([13991c4](https://github.com/solinumasso/soliguide/commit/13991c4a00aa00db87a821faf66ec444f1f8fdba))
+* **frontend:** fix & resync search suggestions ([80c2932](https://github.com/solinumasso/soliguide/commit/80c293262b6a64a42b1c0e7de677c17169f06166))
+* **frontend:** fix & resync search suggestions ([2dc3372](https://github.com/solinumasso/soliguide/commit/2dc33728d6423f7fe56cb35a63d3ef326478f00c))
+* **frontend:** fix caddy ([fc0153f](https://github.com/solinumasso/soliguide/commit/fc0153f7d167926f1141a43af2ea2e22930baf59))
+* **frontend:** fix date of last login ([f4bd0dd](https://github.com/solinumasso/soliguide/commit/f4bd0dd034a079e591a931e1a26ca00eeca207a3))
+* **frontend:** fix unit tests ([b32ec25](https://github.com/solinumasso/soliguide/commit/b32ec25528bbb6f8bb6810f2131037bc4807553d))
+* **frontend:** lint ([445b6cd](https://github.com/solinumasso/soliguide/commit/445b6cdd8a6a6f3b768a442da0164619d4e149b5))
+
+
+### Features
+
+* **api:** add contact for for spain and andorra and move to brevo ([#1137](https://github.com/solinumasso/soliguide/issues/1137)) ([1e10dd8](https://github.com/solinumasso/soliguide/commit/1e10dd83dcd8385d3bba3adf78245fc5cd923fb7))
+* **api:** ajout du champ lastLogin dans UserForAuth ([3f1dca8](https://github.com/solinumasso/soliguide/commit/3f1dca81131650f4c6c204ef5832ea0f726cf07b))
+* **frontend:** add Last Login ([5e9788c](https://github.com/solinumasso/soliguide/commit/5e9788c62a26a44385842956f6dbdf2fee0fc1dc))
+* **frontend:** fix translation for type label ([#1170](https://github.com/solinumasso/soliguide/issues/1170)) ([1339573](https://github.com/solinumasso/soliguide/commit/1339573056a827342b6dde4e9151983f6d63195b))
+* implement new mobility taxonomy ([#1057](https://github.com/solinumasso/soliguide/issues/1057)) ([d60291d](https://github.com/solinumasso/soliguide/commit/d60291d58652466fa95614fa86c1b67b920faaa7))
+* **web-app:** ajout d'une bannière d'annonce pour la fonctionnalité favoris ([573cb81](https://github.com/solinumasso/soliguide/commit/573cb81838f32308f623881f0de8b05139fd21cc))
+* **webapp:** delete storybook ([#1166](https://github.com/solinumasso/soliguide/issues/1166)) ([aeea35a](https://github.com/solinumasso/soliguide/commit/aeea35a18339b9967c631b7b0182e4856e1e85c3))
+
+
+
+
+
 # [4.124.0](https://github.com/solinumasso/soliguide/compare/v4.123.0...v4.124.0) (2026-02-11)
 
 
