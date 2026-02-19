@@ -1,8 +1,8 @@
 @font-face {
   font-family: 'categories-icons';
   src:
-    url('../fonts/icons/categories-icons.woff2?t=1766763172358') format('woff2'),
-    url('../fonts/icons/categories-icons.woff?t=1766763172358') format('woff');
+    url('../fonts/icons/categories-icons.woff2?t=1771504813021') format('woff2'),
+    url('../fonts/icons/categories-icons.woff?t=1771504813021') format('woff');
 }
 
 [class^='category-icon-'],
@@ -85,11 +85,20 @@
 .category-icon-cardiology_outlined::before {
   content: '\ea18';
 }
+.category-icon-carpooling::before {
+  content: '\ea19';
+}
 .category-icon-carpooling_outlined::before {
   content: '\ea19';
 }
 .category-icon-catalan_course::before {
   content: '\ea1a';
+}
+.category-icon-chauffeur_driven_transport::before {
+  content: '\eac4';
+}
+.category-icon-chauffeur_driven_transport_outlined::before {
+  content: '\eac5';
 }
 .category-icon-catalan_course_outlined::before {
   content: '\ea1b';
@@ -385,6 +394,12 @@
 .category-icon-mobility::before {
   content: '\ea7c';
 }
+.category-icon-mobility_assistance::before {
+  content: '\ea7d';
+}
+.category-icon-mobility_assistance_outlined::before {
+  content: '\ea7e';
+}
 .category-icon-mobility_financing::before {
   content: '\ea7d';
 }
@@ -477,6 +492,12 @@
 }
 .category-icon-pregnancy_care_outlined::before {
   content: '\ea9b';
+}
+.category-icon-provision_of_vehicles::before {
+  content: '\ea94';
+}
+.category-icon-provision_of_vehicles_outlined::before {
+  content: '\ea95';
 }
 .category-icon-psychological_support::before {
   content: '\ea9c';
