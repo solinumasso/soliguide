@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.125.1](https://github.com/solinumasso/soliguide/compare/v4.125.0...v4.125.1) (2026-02-20)
+
+
+### Bug Fixes
+
+* **api:** detect correct country ([cde1952](https://github.com/solinumasso/soliguide/commit/cde19523c3f2ef5f2c8f146afacd0abe4762d0b5))
+* **frontend:** correct typo in French privacy policy ([342aeac](https://github.com/solinumasso/soliguide/commit/342aeacb5915f9856a11a98b98d34c8d29b6764a))
+* **web-app:** fix translation for welcome type ([026f1b1](https://github.com/solinumasso/soliguide/commit/026f1b1996b9d5ebf0eac05bebdb5d4bdc3a6eca))
+* **web-app:** generate icons ([78d53ba](https://github.com/solinumasso/soliguide/commit/78d53bacf3410869ddc0e9893da8ee2d70343989))
+
+
+
+
+
 # [4.125.0](https://github.com/solinumasso/soliguide/compare/v4.124.0...v4.125.0) (2026-02-18)
 
 
