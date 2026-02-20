@@ -109,7 +109,7 @@ export default (fetcher = fetch) => {
       headers
     });
 
-    return buildPlaceDetails(placeResult, categorySearched, crossingPointIndex);
+    return buildPlaceDetails(placeResult, categorySearched, lang, crossingPointIndex);
   };
 
   /**
