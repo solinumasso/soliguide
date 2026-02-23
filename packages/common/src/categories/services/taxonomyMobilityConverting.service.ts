@@ -33,9 +33,7 @@ import {
 export const convertOldToNewMobilityCategory = (
   oldCategory: string
 ): Categories | undefined => {
-  return LEGACY_MOBILITY_CATEGORIES_MAPPING[
-    oldCategory as LegacyMobilityCategory
-  ];
+  return LEGACY_MOBILITY_CATEGORIES_MAPPING[oldCategory];
 };
 
 /**
@@ -50,7 +48,7 @@ export const convertNewToOldMobilityCategory = (
   const entry = Object.entries(LEGACY_MOBILITY_CATEGORIES_MAPPING).find(
     ([, value]) => value === newCategory
   );
-  return entry?.[0] as LegacyMobilityCategory | undefined;
+  return entry?.[0];
 };
 
 /**
