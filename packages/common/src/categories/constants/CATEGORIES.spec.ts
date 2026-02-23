@@ -121,7 +121,7 @@ describe("Categories", () => {
   it("leaves", () => {
     const CATEGORIES_LEAF_NODES =
       getCategoriesService().getCategoriesLeafNodes();
-    expect(CATEGORIES_LEAF_NODES.length).toEqual(89);
+    expect(CATEGORIES_LEAF_NODES.length).toEqual(91);
   });
 
   it("roots", () => {
