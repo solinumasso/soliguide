@@ -365,8 +365,8 @@ describe('Place details Result', () => {
           PlaceDetailsInfoType.WELCOME_EXCLUSIVE;
         modifiedPlaceResult.info[STANDARD_INFO_INDEX.publics].description = [
           { key: PUBLICS_LABELS.gender[PublicsGender.women].toUpperCase() },
-          { key: PUBLICS_LABELS.other[PublicsOther.violence]!.toUpperCase() },
-          { key: PUBLICS_LABELS.other[PublicsOther.lgbt]!.toUpperCase() }
+          { key: (PUBLICS_LABELS.other[PublicsOther.violence] ?? '').toUpperCase() },
+          { key: (PUBLICS_LABELS.other[PublicsOther.lgbt] ?? '').toUpperCase() }
         ];
 
         const result = buildPlaceDetails(modifiedPlace, category, lang);
