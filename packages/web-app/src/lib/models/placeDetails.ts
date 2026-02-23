@@ -45,6 +45,7 @@ import {
   type DayName,
   type IPlaceTempInfo
 } from '@soliguide/common';
+import { getCurrentLangInStorage } from '../client';
 import { i18nInstance } from '../client/i18n';
 import {
   buildSources,
@@ -83,14 +84,21 @@ const buildHours = (hours: CommonOpeningHours, allDays: boolean): PlaceDetailsOp
 /**
  * Transform publics to front ready info
  */
-const buildPublics = (publics: Publics, lang: SupportedLanguagesCode): PlaceDetailsInfo[] => {
+const buildPublics = (publics: Publics): PlaceDetailsInfo[] => {
   const WELCOME_TO_TITLE_MAPPING: Record<WelcomedPublics, PlaceDetailsInfoType> = {
     [WelcomedPublics.UNCONDITIONAL]: PlaceDetailsInfoType.WELCOME_UNCONDITIONAL,
     [WelcomedPublics.PREFERENTIAL]: PlaceDetailsInfoType.WELCOME_UNCONDITIONAL_CUSTOM,
     [WelcomedPublics.EXCLUSIVE]: PlaceDetailsInfoType.WELCOME_EXCLUSIVE
   };
+  const currentLang = getCurrentLangInStorage();
 
-  const description = translatePublics(i18nInstance, lang, publics, true, false);
+  const description = translatePublics(
+    i18nInstance,
+    currentLang as unknown as SupportedLanguagesCode,
+    publics,
+    true,
+    false
+  );
 
   return [
     {
@@ -217,12 +225,9 @@ const buildSpokenLanguages = (language: string[]): PlaceDetailsInfo[] => {
 /**
  * Transform publics, modalities, spoken languages and specific services to front ready info
  */
-const buildPlaceDetailsInfo = (
-  place: ApiPlace,
-  lang: SupportedLanguagesCode
-): PlaceDetailsInfo[] => {
+const buildPlaceDetailsInfo = (place: ApiPlace): PlaceDetailsInfo[] => {
   return [
-    ...buildPublics(place.publics, lang),
+    ...buildPublics(place.publics),
     ...buildModalities(place.modalities),
     ...buildSpokenLanguages(place.languages)
   ];
@@ -244,12 +249,9 @@ const buildServiceHours = (
 /**
  * Transform services info to front ready info
  */
-const buildServiceInfo = (
-  service: CommonNewPlaceService,
-  lang: SupportedLanguagesCode
-): PlaceDetailsInfo[] => {
+const buildServiceInfo = (service: CommonNewPlaceService): PlaceDetailsInfo[] => {
   return [
-    ...(service.differentPublics ? buildPublics(service.publics, lang) : []),
+    ...(service.differentPublics ? buildPublics(service.publics) : []),
     ...(service.differentModalities ? buildModalities(service.modalities) : [])
   ];
 };
@@ -300,8 +302,7 @@ const buildServiceTempClosure = (
  */
 const buildServices = (
   services: CommonNewPlaceService[],
-  categorySearched: Categories | null,
-  lang: SupportedLanguagesCode
+  categorySearched: Categories | null
 ): Service[] => {
   const servicesToProcess = categorySearched
     ? sortServicesByRelevance(services, categorySearched, categoryService.getAllCategories())
@@ -311,7 +312,7 @@ const buildServices = (
     category: service.category as Categories,
     description: service.description ?? '',
     ...buildServiceHours(service),
-    info: buildServiceInfo(service, lang),
+    info: buildServiceInfo(service),
     ...buildServiceSaturation(service),
     ...buildServiceTempClosure(service)
   }));
@@ -371,7 +372,6 @@ const buildPlaceDetailsTempInfo = (tempInfo: IPlaceTempInfo): PlaceDetailsTempIn
 const buildPlaceDetails = (
   placeResult: ApiPlace,
   categorySearched: Categories | null,
-  lang: SupportedLanguagesCode,
   crossingPointIndex?: number
 ): PlaceDetails => {
   const status = computePlaceOpeningStatus(placeResult);
@@ -407,7 +407,7 @@ const buildPlaceDetails = (
     facebook: placeResult.entity.facebook ?? '',
     fax: placeResult.entity.fax ?? '',
     hours: buildHours(hoursToBuild, true),
-    info: buildPlaceDetailsInfo(placeResult, lang),
+    info: buildPlaceDetailsInfo(placeResult),
     instagram: placeResult.entity.instagram ?? '',
     lastUpdate: new Date(placeResult.updatedByUserAt).toISOString(),
     linkedPlaces: isItinerary
@@ -423,7 +423,7 @@ const buildPlaceDetails = (
       countryCode: phone.countryCode as CountryCodes
     })),
     placeType: placeResult.placeType,
-    services: buildServices(placeResult.services_all, categorySearched, lang),
+    services: buildServices(placeResult.services_all, categorySearched),
     sources: buildSources(placeResult.sources),
     status,
     todayInfo: computeTodayInfo({ ...placeResult, newhours: hoursToBuild }, status),

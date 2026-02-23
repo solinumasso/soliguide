@@ -19,17 +19,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import {
-  CountryCodes,
   getCountryFromTheme,
   SupportedLanguagesCode,
   Themes,
 } from "@soliguide/common";
-import {
-  ExpressRequest,
-  ExpressResponse,
-  FRONT_URLS_MAPPINGS,
-} from "../../_models";
-import { handleLanguageByTheme } from "../../middleware/request/services";
+import { ExpressRequest, ExpressResponse } from "../../_models";
 import { PosthogClient } from "../../analytics/services";
 import { TRACKED_EVENTS } from "../../analytics/constants";
 import {
@@ -43,12 +37,10 @@ export const emailContact = async (
   req: ExpressRequest,
   res: ExpressResponse
 ) => {
-  const country: CountryCodes = req.bodyValidated.country;
-  const theme =
-    Object.values(Themes).find((t) => getCountryFromTheme(t) === country) ??
-    Themes.SOLIGUIDE_FR;
-  const locale = handleLanguageByTheme(theme) ?? SupportedLanguagesCode.FR;
-  const frontendUrl = FRONT_URLS_MAPPINGS[theme];
+  const theme = req.requestInformation?.theme ?? Themes.SOLIGUIDE_FR;
+  const country = getCountryFromTheme(theme);
+  const locale = req.requestInformation?.language ?? SupportedLanguagesCode.FR;
+  const frontendUrl = req.requestInformation?.frontendUrl ?? "";
 
   const payload = new AmqpContactFormEvent({
     name: req.bodyValidated.name,

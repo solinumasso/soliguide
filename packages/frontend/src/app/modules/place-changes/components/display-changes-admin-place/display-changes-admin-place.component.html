@@ -34,7 +34,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <ng-container *ngIf="!loading">
     <div class="px-3">
       <p appTextDirection>
-        {{ "LAST_UPDATE_AT" | translate }}
+        {{ "LAST_UPDATE_AT" | translate }} :
         <b> {{ place.updatedByUserAt | dateProxy : "longDate" }}</b>
       </p>
 

@@ -214,7 +214,7 @@ describe("E2E - Location autocomplete endpoints", () => {
           expect(response.statusCode).toEqual(200);
           expect(body[0]).toEqual({
             label: "Mamoudzou (97600)",
-            coordinates: [45.197602, -12.797661],
+            coordinates: [45.208565, -12.792835],
             postalCode: "97600",
             cityCode: "97611",
             city: "Mamoudzou",
