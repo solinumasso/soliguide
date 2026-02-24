@@ -1673,6 +1673,7 @@
   "SEARCHED_CHANGE_INEXISTANT": "Шуканої зміни не існує.",
   "SEARCHED_CHANGE_NON_EXISTANT": "Шуканої зміни не існує.",
   "SEARCHED_ORGA_COULD_NOT_BE_IDENTIFIED": "Організацію, яку ви шукаєте, не вдалося ідентифікувати",
+  "SEARCH_ADDRESS": "Пошук адреси:",
   "SEARCH_AREA": "Пошук у цій області",
   "SEARCH_AROUND_ME": "Пошук навколо мене",
   "SEARCH_AUTOCOMPLETE_SUGGESTIONS": "Пропозиції",
