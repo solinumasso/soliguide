@@ -1673,6 +1673,7 @@
   "SEARCHED_CHANGE_INEXISTANT": "Искомое изменение не существует.",
   "SEARCHED_CHANGE_NON_EXISTANT": "Искомое изменение не существует.",
   "SEARCHED_ORGA_COULD_NOT_BE_IDENTIFIED": "Организация, которую вы ищете, не может быть идентифицирована",
+  "SEARCH_ADDRESS": "Поиск адреса:",
   "SEARCH_AREA": "Искать в этой области",
   "SEARCH_AROUND_ME": "Искать вокруг меня",
   "SEARCH_AUTOCOMPLETE_SUGGESTIONS": "Предложения",
