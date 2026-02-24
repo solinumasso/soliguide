@@ -1673,6 +1673,7 @@
   "SEARCHED_CHANGE_INEXISTANT": "ძებნილი ცვლილება არ არსებობს.",
   "SEARCHED_CHANGE_NON_EXISTANT": "ძებნილი ცვლილება არ არსებობს.",
   "SEARCHED_ORGA_COULD_NOT_BE_IDENTIFIED": "ორგანიზაციის იდენტიფიცირება, რომელსაც ეძებთ, ვერ მოხერხდა",
+  "SEARCH_ADDRESS": "მისამართის ძიება:",
   "SEARCH_AREA": "მოძებნეთ ეს ტერიტორია",
   "SEARCH_AROUND_ME": "მოძებნე ჩემს ირგვლივ",
   "SEARCH_AUTOCOMPLETE_SUGGESTIONS": "წინადადებები",
