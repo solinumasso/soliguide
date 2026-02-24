@@ -1673,6 +1673,7 @@
   "SEARCHED_CHANGE_INEXISTANT": "تغییر مورد نظر وجود ندارد.",
   "SEARCHED_CHANGE_NON_EXISTANT": "تغییر مورد نظر وجود ندارد.",
   "SEARCHED_ORGA_COULD_NOT_BE_IDENTIFIED": "سازمانی که به دنبال آن هستید شناسایی نشد",
+  "SEARCH_ADDRESS": "جستجوی آدرس:",
   "SEARCH_AREA": "این منطقه را جستجو کنید",
   "SEARCH_AROUND_ME": "در اطرافم جستجو کن",
   "SEARCH_AUTOCOMPLETE_SUGGESTIONS": "پیشنهادات",
