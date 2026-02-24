@@ -12,4 +12,5 @@ export interface Environment {
   becomeTranslatorFormLink?: string;
   proAccountCreationFormLink?: string;
   donateLink?: string;
+  googleMapsApiKey?: string;
 }
