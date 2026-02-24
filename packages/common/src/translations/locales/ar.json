@@ -1673,6 +1673,7 @@
   "SEARCHED_CHANGE_INEXISTANT": "التغيير المنشود غير موجود.",
   "SEARCHED_CHANGE_NON_EXISTANT": "التغيير المنشود غير موجود.",
   "SEARCHED_ORGA_COULD_NOT_BE_IDENTIFIED": "لا يمكن تحديد المنظمة التي تبحث عنها",
+  "SEARCH_ADDRESS": "ابحث عن عنوان:",
   "SEARCH_AREA": "ابحث في هذه المنطقة",
   "SEARCH_AROUND_ME": "ابحث حولي",
   "SEARCH_AUTOCOMPLETE_SUGGESTIONS": "اقتراحات",
