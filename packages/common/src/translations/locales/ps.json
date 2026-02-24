@@ -1673,6 +1673,7 @@
   "SEARCHED_CHANGE_INEXISTANT": "هغه بدلون چې غوښتل شوي شتون نلري.",
   "SEARCHED_CHANGE_NON_EXISTANT": "هغه بدلون چې غوښتل شوي شتون نلري.",
   "SEARCHED_ORGA_COULD_NOT_BE_IDENTIFIED": "هغه سازمان چې تاسو یې په لټه کې یاست پیژندل کیدی نشي",
+  "SEARCH_ADDRESS": "د پتې لټون:",
   "SEARCH_AREA": "دا سیمه وپلټئ",
   "SEARCH_AROUND_ME": "زما شاوخوا وپلټئ",
   "SEARCH_AUTOCOMPLETE_SUGGESTIONS": "وړاندیزونه",
