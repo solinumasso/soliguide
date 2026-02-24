@@ -1673,6 +1673,7 @@
   "SEARCHED_CHANGE_INEXISTANT": "Schimbarea căutată nu există.",
   "SEARCHED_CHANGE_NON_EXISTANT": "Schimbarea căutată nu există.",
   "SEARCHED_ORGA_COULD_NOT_BE_IDENTIFIED": "Organizația pe care o căutați nu a putut fi identificată",
+  "SEARCH_ADDRESS": "Căutați o adresă:",
   "SEARCH_AREA": "Căutați în această zonă",
   "SEARCH_AROUND_ME": "Caută în jurul meu",
   "SEARCH_AUTOCOMPLETE_SUGGESTIONS": "Sugestii",
