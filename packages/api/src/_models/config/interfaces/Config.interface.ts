@@ -22,6 +22,7 @@ export interface Config {
   GOOGLE_PROJECT_ID?: string;
   GEMINI_API_KEY?: string;
   GOOGLE_API_KEY?: string;
+  GOOGLE_MAPS_API_KEY?: string;
 
   // Emails
   DEFAULT_SENDER_EMAIL: string;

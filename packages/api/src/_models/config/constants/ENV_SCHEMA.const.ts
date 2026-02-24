@@ -72,6 +72,10 @@ export const ENV_SCHEMA: JSONSchemaType<Config> = {
       type: "string",
       nullable: true,
     },
+    GOOGLE_MAPS_API_KEY: {
+      type: "string",
+      nullable: true,
+    },
     GEMINI_API_KEY: {
       type: "string",
       nullable: true,

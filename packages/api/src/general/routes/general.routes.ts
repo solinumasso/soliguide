@@ -1,7 +1,7 @@
 import express from "express";
 import { createCache } from "cache-manager";
 
-import { ExpressRequest, ExpressResponse } from "../../_models";
+import { CONFIG, ExpressRequest, ExpressResponse } from "../../_models";
 import { getFilteredData } from "../../middleware";
 import { sitemapDto, contactEmailDto } from "../dto";
 import { generateRegionSitemap, getVersion, checkMongo } from "../services";
@@ -69,5 +69,9 @@ router.get(
  *     tags: [general]
  */
 router.post("/contact", contactEmailDto, getFilteredData, emailContact);
+
+router.get("/config", (_req: ExpressRequest, res: ExpressResponse) => {
+  res.json({ googleMapsApiKey: CONFIG.GOOGLE_MAPS_API_KEY ?? null });
+});
 
 export default router;
