@@ -1673,6 +1673,7 @@
   "SEARCHED_CHANGE_INEXISTANT": "Le changement recherché n'existe pas.",
   "SEARCHED_CHANGE_NON_EXISTANT": "Le changement recherché n'existe pas.",
   "SEARCHED_ORGA_COULD_NOT_BE_IDENTIFIED": "L'organisation que vous recherchez n'a pas pu être identifiée",
+  "SEARCH_ADDRESS": "Recherchez une adresse :",
   "SEARCH_AREA": "Rechercher sur cette zone",
   "SEARCH_AROUND_ME": "Rechercher autour de moi",
   "SEARCH_AUTOCOMPLETE_SUGGESTIONS": "Suggestions",
