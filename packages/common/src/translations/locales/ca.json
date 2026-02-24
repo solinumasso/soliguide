@@ -1673,6 +1673,7 @@
   "SEARCHED_CHANGE_INEXISTANT": "El canvi buscat no existeix.",
   "SEARCHED_CHANGE_NON_EXISTANT": "El canvi buscat no existeix.",
   "SEARCHED_ORGA_COULD_NOT_BE_IDENTIFIED": "No s'ha pogut identificar l'organització que busques",
+  "SEARCH_ADDRESS": "Cerca una adreça:",
   "SEARCH_AREA": "Cerca en aquesta zona",
   "SEARCH_AROUND_ME": "Busca al meu voltant",
   "SEARCH_AUTOCOMPLETE_SUGGESTIONS": "Suggeriments",
