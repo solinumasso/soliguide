@@ -1,0 +1,105 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<!-- No API key configured -->
+<div *ngIf="!hasApiKey" class="alert alert-warning">
+  <strong>Clé API Google Maps manquante.</strong>
+  Ajoutez <code>googleMapsApiKey: "votre-clé"</code> dans
+  <code>src/environments/environment.ts</code>, puis redémarrez le serveur.
+</div>
+
+<ng-container *ngIf="hasApiKey">
+  <!-- Loading spinner -->
+  <div
+    *ngIf="isLoading"
+    class="d-flex justify-content-center align-items-center map-container"
+  >
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Chargement de Google Maps...</span>
+    </div>
+  </div>
+
+  <!-- Load error -->
+  <div *ngIf="loadError" class="alert alert-danger">
+    Erreur lors du chargement de l'API Google Maps. Vérifiez votre clé API et
+    les domaines autorisés dans la Google Cloud Console.
+  </div>
+
+  <!-- Controls: only when map is ready -->
+  <div
+    *ngIf="!isLoading && !loadError"
+    class="map-controls mb-2 d-flex align-items-center flex-wrap gap-2"
+  >
+    <div class="btn-group btn-group-sm" role="group" aria-label="Type de carte">
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        [class.active]="currentMode === 'roadmap'"
+        (click)="setMode('roadmap')"
+      >
+        Plan
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        [class.active]="currentMode === 'satellite'"
+        (click)="setMode('satellite')"
+      >
+        Satellite
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        [class.active]="currentMode === 'hybrid'"
+        (click)="setMode('hybrid')"
+      >
+        Hybride
+      </button>
+    </div>
+    <button
+      type="button"
+      class="btn btn-sm btn-outline-info"
+      (click)="toggleStreetView()"
+    >
+      {{ showStreetView ? "Masquer Street View" : "Afficher Street View" }}
+    </button>
+    <span class="text-muted small">
+      Cliquez sur la carte ou déplacez le marqueur pour positionner l'adresse
+    </span>
+  </div>
+
+  <!--
+    Le div carte est toujours présent dans le DOM (pas de *ngIf) afin que
+    Google Maps puisse s'y attacher dès la fin du chargement du script,
+    avant qu'Angular n'ait relancé la détection de changements.
+  -->
+  <div
+    id="google-poc-map"
+    class="map-container"
+    [class.d-none]="isLoading || loadError"
+  ></div>
+
+  <div
+    *ngIf="showStreetView && !isLoading && !loadError"
+    id="google-streetview"
+    class="streetview-container mt-2"
+  ></div>
+</ng-container>
