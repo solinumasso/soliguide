@@ -1,0 +1,58 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="map-controls mb-2 d-flex align-items-center flex-wrap gap-2">
+  <div class="btn-group btn-group-sm" role="group" aria-label="Type de carte">
+    <button
+      type="button"
+      class="btn btn-outline-secondary"
+      [class.active]="currentMode === 'plan'"
+      (click)="setLayer('plan')"
+    >
+      Plan
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-secondary"
+      [class.active]="currentMode === 'satellite'"
+      (click)="setLayer('satellite')"
+    >
+      Satellite
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-secondary"
+      [class.active]="currentMode === 'hybrid'"
+      (click)="setLayer('hybrid')"
+    >
+      Hybride
+    </button>
+  </div>
+  <span class="text-muted small">
+    Cliquez sur la carte ou déplacez le marqueur pour positionner l'adresse
+  </span>
+</div>
+
+<div id="leaflet-poc-map" class="map-container"></div>
+
+<div class="alert alert-info mt-2 mb-0 py-2 small">
+  <strong>Note :</strong> La vue Street View n'est pas disponible nativement
+  dans Leaflet.
+</div>

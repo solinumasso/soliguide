@@ -1,7 +1,7 @@
 /*
  * Soliguide: Useful information for those who need it
  *
- * SPDX-FileCopyrightText: © 2025 Solinum
+ * SPDX-FileCopyrightText: © 2024 Solinum
  *
  * SPDX-License-Identifier: AGPL-3.0-only
  *
@@ -18,19 +18,18 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-export interface Environment {
-  apiUrl: string;
-  locationApiUrl: string;
-  chatWebsiteId?: string;
-  enableTracing: boolean;
-  environment: "DEV" | "PROD" | "PREPROD";
-  posthogUrl: string;
-  posthogApiKey?: string;
-  sentryDsn?: string;
-  territoriesPresent: string;
-  praticalFilesLink?: string;
-  becomeTranslatorFormLink?: string;
-  proAccountCreationFormLink?: string;
-  donateLink?: string;
-  googleMapsApiKey?: string;
-}
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+
+import { MapComparisonComponent } from "./components/map-comparison/map-comparison.component";
+
+const pocRoutes: Routes = [
+  { path: "map-comparison", component: MapComparisonComponent },
+  { path: "", redirectTo: "map-comparison", pathMatch: "full" },
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(pocRoutes)],
+  exports: [RouterModule],
+})
+export class PocRoutingModule {}
