@@ -32,6 +32,7 @@ export const LANGUAGE_FOR_PRACTICAL_FILES: Record<
   [SupportedLanguagesCode.FA]: `${SupportedLanguagesCode.EN}-us`,
   [SupportedLanguagesCode.KA]: `${SupportedLanguagesCode.EN}-us`,
   [SupportedLanguagesCode.PS]: `${SupportedLanguagesCode.EN}-us`,
+  [SupportedLanguagesCode.PT]: `${SupportedLanguagesCode.EN}-us`,
   [SupportedLanguagesCode.RO]: `${SupportedLanguagesCode.EN}-us`,
   [SupportedLanguagesCode.RU]: `${SupportedLanguagesCode.EN}-us`,
   [SupportedLanguagesCode.UK]: `${SupportedLanguagesCode.EN}-us`,
