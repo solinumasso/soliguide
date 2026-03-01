@@ -14,7 +14,7 @@
     "format:fix": "prettier --cache -w ."
   },
   "devDependencies": {
-    "@angular-devkit/architect": "0.1802.1",
+    "@angular-devkit/architect": "0.2102.0",
     "@angular-devkit/build-angular": "^17.3.17",
     "@angular-eslint/builder": "^17.5.3",
     "@angular-eslint/eslint-plugin": "^17.5.3",
@@ -43,14 +43,14 @@
     "lint-staged": "^15.5.1",
     "ng-lint-staged": "^12.0.4",
     "ng-packagr": "^17.3.0",
-    "posthog-js": "1.341.0",
+    "posthog-js": "1.356.1",
     "prettier": "^2.8.8",
     "rxjs": "^7.8.2",
     "ts-jest": "^29.3.2",
     "ts-node": "^10.9.2",
     "tslib": "^2.6.3",
-    "typescript": "~5.4.5",
-    "zone.js": "~0.14.10"
+    "typescript": "~5.9.0",
+    "zone.js": "~0.16.0"
   },
   "peerDependencies": {
     "@angular/common": "^17.3.12",
@@ -60,9 +60,9 @@
     "@angular/platform-browser-dynamic": "^17.3.12",
     "@angular/router": "^17.3.12",
     "@soliguide/common": "workspace:*",
-    "posthog-js": "1.341.0",
+    "posthog-js": "1.356.1",
     "rxjs": "^7.8.1",
-    "zone.js": "~0.14.7"
+    "zone.js": "~0.16.0"
   },
   "engines": {
     "node": ">= 22"
