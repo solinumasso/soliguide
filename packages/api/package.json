@@ -31,7 +31,7 @@
     "test": "ENV=test MONGODB_URI='mongodb://127.0.0.1:27017/soliguide_test?replicaSet=rs0' TZ=Europe/Paris jest"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.74.0",
+    "@anthropic-ai/sdk": "^0.78.0",
     "@aws-sdk/client-s3": "^3.787.0",
     "@google-cloud/translate": "^8.3.0",
     "@sentry/node": "^9.47.1",
@@ -44,7 +44,7 @@
     "bcryptjs": "2.4.3",
     "body-parser": "1.20.4",
     "cache-manager": "^6.4.3",
-    "class-validator": "^0.14.2",
+    "class-validator": "^0.15.0",
     "commander": "^14.0.3",
     "compression": "1.8.1",
     "cookie-parser": "1.4.7",
@@ -58,7 +58,7 @@
     "dot-object": "^2.1.5",
     "dotenv": "16.6.1",
     "env-schema": "^6.0.1",
-    "express": "4.21.2",
+    "express": "4.22.1",
     "express-validator": "^7.2.1",
     "fastest-levenshtein": "^1.0.16",
     "fuse.js": "^7.1.0",
@@ -115,7 +115,7 @@
     "@types/supertest": "^6.0.3",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.8",
-    "@types/validator": "13.11.8",
+    "@types/validator": "13.15.10",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.57.1",
@@ -135,7 +135,7 @@
     "supertest": "^7.1.3",
     "ts-jest": "^29.3.2",
     "ts-node": "^10.9.2",
-    "typescript": "5.8.3"
+    "typescript": "5.9.3"
   },
   "engines": {
     "node": ">= 22"
