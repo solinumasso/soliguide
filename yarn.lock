@@ -10302,7 +10302,7 @@ __metadata:
     webpack: "npm:^5.105.2"
     webpack-bundle-analyzer: "npm:^4.10.2"
     webpack-cli: "npm:^6.0.1"
-    zone.js: "npm:~0.14.10"
+    zone.js: "npm:~0.16.0"
   languageName: unknown
   linkType: soft
 
@@ -32680,5 +32680,12 @@ __metadata:
   version: 0.14.10
   resolution: "zone.js@npm:0.14.10"
   checksum: 10/a7bed2f9a7ce67ba4e70b03b7e59dc955e4d2d738570950c4a0e16fafb5c23c47d0c6ece84f6e871a0f77d81c26a051da566d09738ebfdab297f54b862ae0b5d
+  languageName: node
+  linkType: hard
+
+"zone.js@npm:~0.16.0":
+  version: 0.16.1
+  resolution: "zone.js@npm:0.16.1"
+  checksum: 10/5c3e05fa6893fa737b3373ffb41c5a67f940536bfa5b4afff18dbdf77f3e87b13249b098a6c069b6d293341711cf0493e4df6f0412e0ecd2b287b594aca8b1b6
   languageName: node
   linkType: hard
