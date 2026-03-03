@@ -18,17 +18,11 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {
-  Component,
-  OnDestroy,
-  OnInit,
-  TemplateRef,
-  ViewChild,
-} from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 import { TranslateService } from "@ngx-translate/core";
 
@@ -41,8 +35,7 @@ import { UploadService } from "../../services/upload.service";
 
 import { CurrentLanguageService } from "../../../general/services/current-language.service";
 
-import { Photo, PlaceParcours, Place } from "../../../../models/place/classes";
-import { DEFAULT_MODAL_OPTIONS } from "../../../../shared";
+import { Photo, Place } from "../../../../models/place/classes";
 
 @Component({
   selector: "app-place-position-form",
@@ -58,8 +51,6 @@ export class PlaceEmplacementFormComponent implements OnInit, OnDestroy {
   public loading: boolean;
   public place!: Place;
   public readonly PlaceType = PlaceType;
-  @ViewChild("changePlaceTypeModal", { static: true })
-  public changePlaceTypeModal!: TemplateRef<NgbModalRef>;
 
   constructor(
     private readonly adminPlaceService: AdminPlaceService,
@@ -88,6 +79,7 @@ export class PlaceEmplacementFormComponent implements OnInit, OnDestroy {
           this.adminPlaceService.getPlace(id, true).subscribe({
             next: (place: Place) => {
               this.place = place;
+              this.convertTypeIfNeeded();
               this.titleService.setTitle(
                 this.translateService.instant("PLACE_NAME_LOCATION", {
                   placeName: place.name,
@@ -116,30 +108,20 @@ export class PlaceEmplacementFormComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  public setPlaceType = (placeType: PlaceType): void => {
-    switch (placeType) {
-      case PlaceType.PLACE:
-        if (this.place.placeType === PlaceType.ITINERARY) {
-          this.openChangePlaceTypeModal();
-        }
-        break;
-      case PlaceType.ITINERARY:
-        if (this.place.placeType === PlaceType.PLACE) {
-          this.place.parcours = [
-            new PlaceParcours({ position: this.place.position }, true),
-          ];
-        }
-        this.place.placeType = placeType;
-        break;
-      default:
-        this.place.placeType = placeType;
-        break;
+  private convertTypeIfNeeded(): void {
+    if (
+      this.place.placeType === PlaceType.PLACE &&
+      this.place.parcours.length > 0
+    ) {
+      // User switched PARCOURS→LIEU in step 1: promote first waypoint to position
+      this.place.position = JSON.parse(
+        JSON.stringify(this.place.parcours[0].position)
+      );
+      this.place.parcours = [];
     }
-  };
-
-  public openChangePlaceTypeModal = (): void => {
-    this.modalService.open(this.changePlaceTypeModal, DEFAULT_MODAL_OPTIONS);
-  };
+    // LIEU→PARCOURS is handled by parcours-position-form initialising
+    // the first waypoint from place.position when parcours is empty
+  }
 
   public eraseParcours = (): void => {
     for (let i = 0; i < this.place.parcours.length; i++) {

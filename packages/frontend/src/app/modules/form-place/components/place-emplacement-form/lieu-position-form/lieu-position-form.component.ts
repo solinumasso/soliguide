@@ -109,10 +109,6 @@ export class LieuPositionFormComponent implements OnInit, OnDestroy {
   public isAddressInvalid(isInvalid: boolean): void {
     this.isInvalid = isInvalid;
     this.isDirty = true;
-
-    if (isInvalid) {
-      this.place.position = new PlacePosition();
-    }
   }
 
   public submitPosition(): void {

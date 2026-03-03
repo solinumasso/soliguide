@@ -32,7 +32,12 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ChangeEvent } from "@ckeditor/ckeditor5-angular/ckeditor.component";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-import { AdminPlaceMenuSteps, Phone, REGEXP } from "@soliguide/common";
+import {
+  AdminPlaceMenuSteps,
+  Phone,
+  PlaceType,
+  REGEXP,
+} from "@soliguide/common";
 
 import { ToastrService } from "ngx-toastr";
 
@@ -53,6 +58,7 @@ import { TranslateService } from "@ngx-translate/core";
 })
 export class InfosComponent implements OnInit, OnDestroy {
   public readonly THEME_CONFIGURATION = THEME_CONFIGURATION;
+  public readonly PlaceType = PlaceType;
   private readonly subscription = new Subscription();
   public routePrefix: string;
   public place: Place;
@@ -68,6 +74,7 @@ export class InfosComponent implements OnInit, OnDestroy {
 
   public step: AdminPlaceMenuSteps;
   private orgaObjectId: string | null;
+  private initialPlaceType: PlaceType;
 
   constructor(
     private readonly formBuilder: UntypedFormBuilder,
@@ -187,6 +194,7 @@ export class InfosComponent implements OnInit, OnDestroy {
           this.descriptionValidator,
         ],
       ],
+      placeType: [this.place.placeType ?? PlaceType.PLACE],
       entity: this.formBuilder.group({
         facebook: [
           this.place.entity.facebook,
@@ -203,6 +211,7 @@ export class InfosComponent implements OnInit, OnDestroy {
       }),
       country: [THEME_CONFIGURATION.country],
     });
+    this.initialPlaceType = this.place.placeType ?? PlaceType.PLACE;
   }
 
   public onDescriptionChange({ editor }: ChangeEvent): void {
@@ -253,9 +262,12 @@ export class InfosComponent implements OnInit, OnDestroy {
             this.loading = false;
             this.success = true;
 
-            const route = place.stepsDone.emplacement
-              ? `${this.currentLanguageService.routePrefix}/manage-place/${place.lieu_id}`
-              : `${this.currentLanguageService.routePrefix}/admin-place/emplacement/${place.lieu_id}`;
+            const placeTypeChanged =
+              this.infosForm.value.placeType !== this.initialPlaceType;
+            const route =
+              placeTypeChanged || !place.stepsDone.emplacement
+                ? `${this.currentLanguageService.routePrefix}/admin-place/emplacement/${place.lieu_id}`
+                : `${this.currentLanguageService.routePrefix}/manage-place/${place.lieu_id}`;
 
             this.router.navigate([route]);
           },
