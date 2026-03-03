@@ -29,6 +29,7 @@ export const ALL_SUPPORTED_LANGUAGES_NAME: AllSupportedLanguages = {
   fr: { name: "LANGUE_FR", nativeName: "Français" },
   ka: { name: "LANGUE_KA", nativeName: "ქართული" },
   ps: { name: "LANGUE_PS", nativeName: "پښتو" },
+  pt: { name: "LANGUE_PT", nativeName: "Português" },
   ro: { name: "LANGUE_RO", nativeName: "Română" },
   ru: { name: "LANGUE_RU", nativeName: "русский" },
   uk: {
