@@ -18,7 +18,14 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from "@angular/core";
 import {
   MarkerOptions,
   PlacePosition,
@@ -33,15 +40,17 @@ import {
 
 import { LocationAutoCompleteAddress } from "@soliguide/common";
 import { AuthService } from "../../../../users/services/auth.service";
+import { LocationService } from "../../../../shared/services/location.service";
 import { TranslateService } from "@ngx-translate/core";
 import { User } from "../../../../users/classes";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-address-input",
   templateUrl: "./address-input.component.html",
   styleUrls: ["./address-input.component.scss"],
 })
-export class AddressInputComponent implements OnInit {
+export class AddressInputComponent implements OnInit, OnDestroy {
   @Input() public position: PlacePosition;
   @Input() public additionalInformation: string;
 
@@ -64,10 +73,16 @@ export class AddressInputComponent implements OnInit {
   public readonly THEME_CONFIGURATION = THEME_CONFIGURATION;
   public positionForm: UntypedFormGroup;
   public readonly addressesOnly = false;
+  public manualMode = false;
+  public mapHintVisible = true;
+  public manualStreetDisplay = "";
 
   public marker: MarkerOptions[];
 
   public me!: User | null;
+
+  private readonly subscription = new Subscription();
+  private isUpdatingFromAutocomplete = false;
 
   public get f(): { [key: string]: AbstractControl } {
     return this.positionForm.controls;
@@ -76,6 +91,7 @@ export class AddressInputComponent implements OnInit {
   constructor(
     private readonly authService: AuthService,
     private readonly formBuilder: UntypedFormBuilder,
+    private readonly locationService: LocationService,
     private readonly translateService: TranslateService
   ) {}
 
@@ -83,6 +99,10 @@ export class AddressInputComponent implements OnInit {
     this.me = this.authService.currentUserValue;
     this.initForm();
     this.initMarker();
+  }
+
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   public initForm = (): void => {
@@ -107,10 +127,19 @@ export class AddressInputComponent implements OnInit {
       department: [this.position.department, [Validators.required]],
       departmentCode: [this.position.departmentCode, [Validators.required]],
       location: [this.position.location, [Validators.required]],
+      latitude: [
+        this.position.location?.coordinates?.[1] ?? null,
+        [Validators.min(-90), Validators.max(90)],
+      ],
+      longitude: [
+        this.position.location?.coordinates?.[0] ?? null,
+        [Validators.min(-180), Validators.max(180)],
+      ],
     });
   };
 
   public updateLocation(item: LocationAutoCompleteAddress) {
+    this.isUpdatingFromAutocomplete = true;
     this.position = new PlacePosition({
       // @deprecated start
       adresse: item.label,
@@ -158,6 +187,10 @@ export class AddressInputComponent implements OnInit {
     this.positionForm.controls.departmentCode.setValue(
       this.position.departmentCode
     );
+    this.positionForm.controls.latitude.setValue(item.coordinates[1]);
+    this.positionForm.controls.longitude.setValue(item.coordinates[0]);
+
+    this.isUpdatingFromAutocomplete = false;
 
     this.checkDuplicatePosition.emit(this.position);
     this.addressInvalid.emit(this.positionForm.invalid);
@@ -173,8 +206,90 @@ export class AddressInputComponent implements OnInit {
     lat: number;
     lng: number;
   }): void => {
-    this.updatePositionFromCoordinates(newCoord);
+    this.mapHintVisible = false;
+    this.marker = [{ ...this.marker[0], lat: newCoord.lat, lng: newCoord.lng }];
+
+    // Try reverse geocoding to find an approximate address at the pin location
+    this.subscription.add(
+      this.locationService.reverse(newCoord.lat, newCoord.lng).subscribe({
+        next: (results: LocationAutoCompleteAddress[]) => {
+          if (results?.length) {
+            this.updatePositionFromReverseGeocode(results[0], newCoord);
+          } else {
+            this.updatePositionFromCoordinates(newCoord);
+          }
+        },
+        error: () => {
+          this.updatePositionFromCoordinates(newCoord);
+        },
+      })
+    );
   };
+
+  private updatePositionFromReverseGeocode(
+    result: LocationAutoCompleteAddress,
+    coord: { lat: number; lng: number }
+  ): void {
+    this.isUpdatingFromAutocomplete = true;
+
+    // Keep GPS at the user's dragged pin position, not at the reverse geocoded address
+    const location = {
+      type: "Point",
+      coordinates: [coord.lng, coord.lat],
+    };
+
+    if (this.manualMode) {
+      this.manualStreetDisplay = result.name ?? result.label;
+    }
+
+    this.position = new PlacePosition({
+      // @deprecated start
+      adresse: result.label,
+      codePostal: result.postalCode,
+      complementAdresse: this.additionalInformation,
+      departement: result.department,
+      departementCode: result.departmentCode,
+      pays: result.country,
+      ville: result.city,
+      // @deprecated end
+      additionalInformation: this.additionalInformation,
+      address: result.label,
+      city: result.city,
+      cityCode: result.cityCode,
+      regionCode: result.regionCode,
+      country: result.country,
+      department: result.department,
+      postalCode: result.postalCode,
+      departmentCode: result.departmentCode,
+      region: result.region,
+      timeZone: result.timeZone,
+      location,
+    });
+
+    this.positionForm.controls.location.setValue(location);
+    this.positionForm.controls.address.setValue(this.position.address);
+    this.positionForm.controls.city.setValue(this.position.city);
+    this.positionForm.controls.cityCode.setValue(this.position.cityCode);
+    this.positionForm.controls.postalCode.setValue(this.position.postalCode);
+    this.positionForm.controls.department.setValue(this.position.department);
+    this.positionForm.controls.departmentCode.setValue(
+      this.position.departmentCode
+    );
+    this.positionForm.controls.region.setValue(this.position.region);
+    this.positionForm.controls.regionCode.setValue(this.position.regionCode);
+    this.positionForm.controls.country.setValue(this.position.country);
+    this.positionForm.controls.timeZone.setValue(this.position.timeZone);
+    this.positionForm.controls.latitude.setValue(coord.lat);
+    this.positionForm.controls.longitude.setValue(coord.lng);
+
+    this.isUpdatingFromAutocomplete = false;
+
+    this.addressInvalid.emit(this.positionForm.invalid);
+
+    if (this.positionChange) {
+      this.positionChange.emit(this.position);
+    }
+  }
 
   private updatePositionFromCoordinates = (newCoord: {
     lat: number;
@@ -184,9 +299,6 @@ export class AddressInputComponent implements OnInit {
       type: "Point",
       coordinates: [newCoord.lng, newCoord.lat],
     };
-
-    this.marker[0].lat = newCoord.lat;
-    this.marker[0].lng = newCoord.lng;
 
     this.positionForm.controls.location.setValue(this.position.location);
 
@@ -215,6 +327,71 @@ export class AddressInputComponent implements OnInit {
     ];
   }
 
+  public updateStreetOnly(item: LocationAutoCompleteAddress): void {
+    this.isUpdatingFromAutocomplete = true;
+    this.mapHintVisible = false;
+
+    this.manualStreetDisplay = item.name ?? item.label;
+    const location = { type: "Point", coordinates: item.coordinates };
+
+    this.position.address = item.label;
+    this.position.location = location;
+    if (item.city) this.position.city = item.city;
+    if (item.cityCode) this.position.cityCode = item.cityCode;
+    if (item.postalCode) this.position.postalCode = item.postalCode;
+    if (item.department) this.position.department = item.department;
+    if (item.departmentCode) this.position.departmentCode = item.departmentCode;
+    if (item.region) this.position.region = item.region;
+    if (item.regionCode) this.position.regionCode = item.regionCode;
+    if (item.country) this.position.country = item.country;
+    if (item.timeZone) this.position.timeZone = item.timeZone;
+
+    this.positionForm.controls.address.setValue(item.label);
+    this.positionForm.controls.location.setValue(location);
+    if (item.city) this.positionForm.controls.city.setValue(item.city);
+    if (item.cityCode)
+      this.positionForm.controls.cityCode.setValue(item.cityCode);
+    if (item.postalCode)
+      this.positionForm.controls.postalCode.setValue(item.postalCode);
+    this.positionForm.controls.latitude.setValue(item.coordinates[1]);
+    this.positionForm.controls.longitude.setValue(item.coordinates[0]);
+    if (item.department)
+      this.positionForm.controls.department.setValue(item.department);
+    if (item.departmentCode)
+      this.positionForm.controls.departmentCode.setValue(item.departmentCode);
+    if (item.region) this.positionForm.controls.region.setValue(item.region);
+    if (item.regionCode)
+      this.positionForm.controls.regionCode.setValue(item.regionCode);
+    if (item.country) this.positionForm.controls.country.setValue(item.country);
+    if (item.timeZone)
+      this.positionForm.controls.timeZone.setValue(item.timeZone);
+
+    this.marker = [
+      { ...this.marker[0], lat: item.coordinates[1], lng: item.coordinates[0] },
+    ];
+
+    this.isUpdatingFromAutocomplete = false;
+
+    this.positionChange.emit(this.position);
+    this.addressInvalid.emit(this.positionForm.invalid);
+  }
+
+  public clearStreetField(): void {
+    this.manualStreetDisplay = "";
+    this.position.address = "";
+    this.position.postalCode = "";
+    this.position.city = "";
+    this.position.department = "";
+    this.position.region = "";
+    this.positionForm.controls.address.setValue("", { emitEvent: false });
+    this.positionForm.controls.postalCode.setValue("", { emitEvent: false });
+    this.positionForm.controls.city.setValue("", { emitEvent: false });
+    this.positionForm.controls.department.setValue("", { emitEvent: false });
+    this.positionForm.controls.region.setValue("", { emitEvent: false });
+    this.positionChange.emit(this.position);
+    this.addressInvalid.emit(this.positionForm.invalid);
+  }
+
   public clearAddress = (): void => {
     this.position = new PlacePosition();
     this.initForm();
@@ -224,5 +401,90 @@ export class AddressInputComponent implements OnInit {
   public setAdditionalInformation = (event: string): void => {
     this.position.additionalInformation = event;
     this.additionalInformation = event;
+  };
+
+  public setManualMode = (manual: boolean): void => {
+    this.manualMode = manual;
+    if (manual) {
+      this.manualStreetDisplay = this.position.address ?? "";
+      this.positionForm.controls.latitude.setValue(
+        this.position.location?.coordinates?.[1] ?? null
+      );
+      this.positionForm.controls.longitude.setValue(
+        this.position.location?.coordinates?.[0] ?? null
+      );
+      this.subscription.add(
+        this.positionForm.valueChanges.subscribe(() => {
+          if (this.isUpdatingFromAutocomplete) return;
+          const city = this.positionForm.controls.city.value || "";
+          const postalCode = this.positionForm.controls.postalCode.value || "";
+          const cityPart = [postalCode, city].filter(Boolean).join(" ");
+          const fullAddress = [this.manualStreetDisplay, cityPart]
+            .filter(Boolean)
+            .join(", ");
+          if (fullAddress) {
+            this.position.address = fullAddress;
+            this.positionForm.controls.address.setValue(fullAddress, {
+              emitEvent: false,
+            });
+          }
+          this.position.city = city;
+          this.position.postalCode = postalCode;
+          this.position.additionalInformation =
+            this.positionForm.controls.additionalInformation.value;
+          this.position.country = this.positionForm.controls.country.value;
+          this.positionChange.emit(this.position);
+          this.addressInvalid.emit(this.positionForm.invalid);
+        })
+      );
+    }
+  };
+
+  public onManualCoordinatesChange = (): void => {
+    const lat = this.positionForm.controls.latitude.value;
+    const lng = this.positionForm.controls.longitude.value;
+
+    if (lat === null || lng === null || isNaN(lat) || isNaN(lng)) {
+      return;
+    }
+
+    if (this.marker?.[0]) {
+      this.marker = [{ ...this.marker[0], lat, lng }];
+    }
+
+    const location = {
+      type: "Point",
+      coordinates: [lng, lat],
+    };
+    this.positionForm.controls.location.setValue(location);
+    this.position.location = location;
+
+    this.subscription.add(
+      this.locationService.reverse(lat, lng).subscribe({
+        next: (results: LocationAutoCompleteAddress[]) => {
+          if (results?.length) {
+            const result = results[0];
+            this.positionForm.controls.department.setValue(result.department);
+            this.positionForm.controls.departmentCode.setValue(
+              result.departmentCode
+            );
+            this.positionForm.controls.region.setValue(result.region);
+            this.positionForm.controls.regionCode.setValue(result.regionCode);
+            this.positionForm.controls.timeZone.setValue(result.timeZone);
+            this.position.department = result.department;
+            this.position.departmentCode = result.departmentCode;
+            this.position.region = result.region;
+            this.position.regionCode = result.regionCode;
+            this.position.timeZone = result.timeZone;
+          }
+          this.positionChange.emit(this.position);
+          this.addressInvalid.emit(this.positionForm.invalid);
+        },
+        error: () => {
+          this.positionChange.emit(this.position);
+          this.addressInvalid.emit(this.positionForm.invalid);
+        },
+      })
+    );
   };
 }
