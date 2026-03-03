@@ -34,6 +34,7 @@ import {
   faCircle,
   faCircleNotch,
   faCode,
+  faCrosshairs,
   faComment,
   faCopy,
   faCutlery,
@@ -103,6 +104,7 @@ import {
   faUsers,
   faUserSecret,
   faUserShield,
+  faRoute,
   faWheelchair,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -127,6 +129,7 @@ export const FA_ICONS: IconDefinition[] = [
   faCircleNotch,
   faClock,
   faCode,
+  faCrosshairs,
   faComment,
   faCopy,
   faCutlery,
@@ -186,6 +189,7 @@ export const FA_ICONS: IconDefinition[] = [
   faSortAmountDown,
   faSortAmountUp,
   faSpinner,
+  faRoute,
   faStar,
   faSuitcase,
   faSun,
