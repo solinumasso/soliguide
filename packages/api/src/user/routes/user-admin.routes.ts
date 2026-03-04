@@ -35,6 +35,7 @@ import type {
 
 import { checkRights, getUserFromUrl, getFilteredData } from "../../middleware";
 import { sendUserChangesToMq } from "../middlewares/send-user-changes-event-to-mq.middleware";
+import { sendUserBrevoSyncToMq } from "../middlewares/send-user-brevo-sync-event-to-mq.middleware";
 
 const router = express.Router();
 /**
@@ -184,7 +185,8 @@ router.delete(
       return res.status(400).json({ message: "DELETE_USER_FAIL" });
     }
   },
-  sendUserChangesToMq
+  sendUserChangesToMq,
+  sendUserBrevoSyncToMq
 );
 
 export default router;

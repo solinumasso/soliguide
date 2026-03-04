@@ -65,6 +65,7 @@ import {
 } from "../middlewares/capture-user-event.middleware";
 import { addAreasToUser } from "../middlewares/add-areas-to-user.middleware";
 import { sendUserChangesToMq } from "../middlewares/send-user-changes-event-to-mq.middleware";
+import { sendUserBrevoSyncToMq } from "../middlewares/send-user-brevo-sync-event-to-mq.middleware";
 import { addBreadcrumb, captureException, captureMessage } from "@sentry/node";
 import { updateLastLogin } from "../middlewares/update-last-login.middleware";
 
@@ -461,7 +462,8 @@ router.patch(
       return res.status(500).json({ message: "PATCH_ME_FAIL" });
     }
   },
-  sendUserChangesToMq
+  sendUserChangesToMq,
+  sendUserBrevoSyncToMq
 );
 
 router.patch(
@@ -544,7 +546,8 @@ router.patch(
       return res.status(500).json({ message: "PATCH_USER_FAIL" });
     }
   },
-  sendUserChangesToMq
+  sendUserChangesToMq,
+  sendUserBrevoSyncToMq
 );
 
 /**
@@ -596,7 +599,8 @@ router.patch(
       return res.status(500).json({ message: "PATCH_USER_FAIL" });
     }
   },
-  sendUserChangesToMq
+  sendUserChangesToMq,
+  sendUserBrevoSyncToMq
 );
 
 export default router;

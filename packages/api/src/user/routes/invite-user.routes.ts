@@ -63,6 +63,10 @@ import {
   sendUserChangesToMq,
   sendUserChangesToMqAndNext,
 } from "../middlewares/send-user-changes-event-to-mq.middleware";
+import {
+  sendUserBrevoSyncToMq,
+  sendUserBrevoSyncToMqAndNext,
+} from "../middlewares/send-user-brevo-sync-event-to-mq.middleware";
 
 const router = express.Router();
 
@@ -125,6 +129,7 @@ router.post(
     return next();
   },
   sendUserChangesToMqAndNext,
+  sendUserBrevoSyncToMqAndNext,
   captureSendInvitation
 );
 
@@ -212,7 +217,8 @@ router.get(
     }
   },
   sendAcceptedInvitationToMq,
-  sendUserChangesToMq
+  sendUserChangesToMq,
+  sendUserBrevoSyncToMq
 );
 
 /**
@@ -256,6 +262,7 @@ router.post(
   sendWelcomeToMqAndNext,
   sendAcceptedInvitationToMqAndNext,
   sendUserChangesToMqAndNext,
+  sendUserBrevoSyncToMqAndNext,
   captureWelcomeEvent
 );
 
