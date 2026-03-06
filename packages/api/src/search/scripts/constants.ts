@@ -1,10 +1,3 @@
-/*
- * Soliguide: Useful information for those who need it
- *
- * SPDX-FileCopyrightText: © 2025 Solinum
- *
- * SPDX-License-Identifier: AGPL-3.0-only
- */
 
 import { SupportedLanguagesCode } from "@soliguide/common";
 

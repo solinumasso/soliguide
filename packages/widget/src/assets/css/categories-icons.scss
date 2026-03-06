@@ -1,135 +1,312 @@
-/*
- * Soliguide: Useful information for those who need it
- *
- * SPDX-FileCopyrightText: © 2024 Solinum
- *
- * SPDX-License-Identifier: AGPL-3.0-only
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
-@font-face {font-family: "categories-icons";
-  src: url('../fonts/icons/categories-icons.eot?t=1709056385229'); /* IE9*/
-  src: url('../fonts/icons/categories-icons.eot?t=1709056385229#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url("../fonts/icons/categories-icons.woff2?t=1709056385229") format("woff2"),
-  url("../fonts/icons/categories-icons.woff?t=1709056385229") format("woff"),
-  url('../fonts/icons/categories-icons.ttf?t=1709056385229') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('../fonts/icons/categories-icons.svg?t=1709056385229#categories-icons') format('svg'); /* iOS 4.1- */
+@font-face {
+  font-family: "categories-icons";
+  src: url("../fonts/icons/categories-icons.eot?t=1709056385229"); /* IE9*/
+  src: url("../fonts/icons/categories-icons.eot?t=1709056385229#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("../fonts/icons/categories-icons.woff2?t=1709056385229")
+      format("woff2"),
+    url("../fonts/icons/categories-icons.woff?t=1709056385229") format("woff"),
+    url("../fonts/icons/categories-icons.ttf?t=1709056385229")
+      format("truetype"),
+    /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+      url("../fonts/icons/categories-icons.svg?t=1709056385229#categories-icons")
+      format("svg"); /* iOS 4.1- */
 }
 
-[class^="category-icon-"], [class*=" category-icon-"] {
-  font-family: 'categories-icons' !important;
+[class^="category-icon-"],
+[class*=" category-icon-"] {
+  font-family: "categories-icons" !important;
   font-size: 16px;
-  font-style:normal;
+  font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.category-icon-access_to_housing:before { content: "\ea01"; }
-.category-icon-accomodation_and_housing:before { content: "\ea02"; }
-.category-icon-activities:before { content: "\ea03"; }
-.category-icon-acupuncture:before { content: "\ea04"; }
-.category-icon-addiction:before { content: "\ea05"; }
-.category-icon-administrative_assistance:before { content: "\ea06"; }
-.category-icon-allergology:before { content: "\ea07"; }
-.category-icon-animal_assitance:before { content: "\ea08"; }
-.category-icon-babysitting:before { content: "\ea09"; }
-.category-icon-budget_advice:before { content: "\ea0a"; }
-.category-icon-cardiology:before { content: "\ea0b"; }
-.category-icon-carpooling:before { content: "\ea0c"; }
-.category-icon-chauffeur_driven_transport:before { content: "\ea0d"; }
-.category-icon-child_care:before { content: "\ea0e"; }
-.category-icon-citizen_housing:before { content: "\ea0f"; }
-.category-icon-clothing:before { content: "\ea10"; }
-.category-icon-computers_at_your_disposal:before { content: "\ea11"; }
-.category-icon-counseling:before { content: "\ea12"; }
-.category-icon-day_hosting:before { content: "\ea13"; }
-.category-icon-dental_care:before { content: "\ea14"; }
-.category-icon-dermatology:before { content: "\ea15"; }
-.category-icon-digital_safe:before { content: "\ea16"; }
-.category-icon-digital_tools_training:before { content: "\ea17"; }
-.category-icon-disability_advice:before { content: "\ea18"; }
-.category-icon-domiciliation:before { content: "\ea19"; }
-.category-icon-echography:before { content: "\ea1a"; }
-.category-icon-electrical_outlets_available:before { content: "\ea1b"; }
-.category-icon-emergency_accommodation:before { content: "\ea1c"; }
-.category-icon-endocrinology:before { content: "\ea1d"; }
-.category-icon-equipment:before { content: "\ea1e"; }
-.category-icon-face_masks:before { content: "\ea1f"; }
-.category-icon-family_area:before { content: "\ea20"; }
-.category-icon-food:before { content: "\ea21"; }
-.category-icon-food_distribution:before { content: "\ea22"; }
-.category-icon-food_packages:before { content: "\ea23"; }
-.category-icon-fountain:before { content: "\ea24"; }
-.category-icon-french_course:before { content: "\ea25"; }
-.category-icon-gastroenterology:before { content: "\ea26"; }
-.category-icon-general_practitioner:before { content: "\ea27"; }
-.category-icon-gynecology:before { content: "\ea28"; }
-.category-icon-health:before { content: "\ea29"; }
-.category-icon-health_specialists:before { content: "\ea2a"; }
-.category-icon-hygiene_and_wellness:before { content: "\ea2b"; }
-.category-icon-hygiene_products:before { content: "\ea2c"; }
-.category-icon-infirmary:before { content: "\ea2d"; }
-.category-icon-information_point:before { content: "\ea2e"; }
-.category-icon-integration_through_economic_activity:before { content: "\ea2f"; }
-.category-icon-job_coaching:before { content: "\ea30"; }
-.category-icon-kinesitherapy:before { content: "\ea31"; }
-.category-icon-laundry:before { content: "\ea32"; }
-.category-icon-legal_advice:before { content: "\ea33"; }
-.category-icon-libraries:before { content: "\ea34"; }
-.category-icon-long_term_accomodation:before { content: "\ea35"; }
-.category-icon-luggage_storage:before { content: "\ea36"; }
-.category-icon-mammography:before { content: "\ea37"; }
-.category-icon-mobility:before { content: "\ea38"; }
-.category-icon-mobility_assistance:before { content: "\ea39"; }
-.category-icon-museums:before { content: "\ea3a"; }
-.category-icon-nutrition:before { content: "\ea3b"; }
-.category-icon-ophthalmology:before { content: "\ea3c"; }
-.category-icon-osteopathy:before { content: "\ea3d"; }
-.category-icon-other_activities:before { content: "\ea3e"; }
-.category-icon-otorhinolaryngology:before { content: "\ea3f"; }
-.category-icon-overnight_stop:before { content: "\ea40"; }
-.category-icon-parent_assistance:before { content: "\ea41"; }
-.category-icon-pedicure:before { content: "\ea42"; }
-.category-icon-phlebology:before { content: "\ea43"; }
-.category-icon-pneumology:before { content: "\ea44"; }
-.category-icon-pregnancy_care:before { content: "\ea45"; }
-.category-icon-provision_of_vehicles:before { content: "\ea46"; }
-.category-icon-psychological_support:before { content: "\ea47"; }
-.category-icon-public_writer:before { content: "\ea48"; }
-.category-icon-radiology:before { content: "\ea49"; }
-.category-icon-rest_area:before { content: "\ea4a"; }
-.category-icon-rheumatology:before { content: "\ea4b"; }
-.category-icon-seated_catering:before { content: "\ea4c"; }
-.category-icon-shower:before { content: "\ea4d"; }
-.category-icon-social_accompaniment:before { content: "\ea4e"; }
-.category-icon-social_grocery_stores:before { content: "\ea4f"; }
-.category-icon-solidarity_store:before { content: "\ea50"; }
-.category-icon-speech_therapy:before { content: "\ea51"; }
-.category-icon-sport_activities:before { content: "\ea52"; }
-.category-icon-std_testing:before { content: "\ea53"; }
-.category-icon-stomatology:before { content: "\ea54"; }
-.category-icon-technology:before { content: "\ea55"; }
-.category-icon-telephone_at_your_disposal:before { content: "\ea56"; }
-.category-icon-toilets:before { content: "\ea57"; }
-.category-icon-training_and_jobs:before { content: "\ea58"; }
-.category-icon-tutoring:before { content: "\ea59"; }
-.category-icon-urology:before { content: "\ea5a"; }
-.category-icon-vaccination:before { content: "\ea5b"; }
-.category-icon-vet_care:before { content: "\ea5c"; }
-.category-icon-welcome:before { content: "\ea5d"; }
-.category-icon-wellness:before { content: "\ea5e"; }
-.category-icon-wifi:before { content: "\ea5f"; }
+.category-icon-access_to_housing:before {
+  content: "\ea01";
+}
+.category-icon-accomodation_and_housing:before {
+  content: "\ea02";
+}
+.category-icon-activities:before {
+  content: "\ea03";
+}
+.category-icon-acupuncture:before {
+  content: "\ea04";
+}
+.category-icon-addiction:before {
+  content: "\ea05";
+}
+.category-icon-administrative_assistance:before {
+  content: "\ea06";
+}
+.category-icon-allergology:before {
+  content: "\ea07";
+}
+.category-icon-animal_assitance:before {
+  content: "\ea08";
+}
+.category-icon-babysitting:before {
+  content: "\ea09";
+}
+.category-icon-budget_advice:before {
+  content: "\ea0a";
+}
+.category-icon-cardiology:before {
+  content: "\ea0b";
+}
+.category-icon-carpooling:before {
+  content: "\ea0c";
+}
+.category-icon-chauffeur_driven_transport:before {
+  content: "\ea0d";
+}
+.category-icon-child_care:before {
+  content: "\ea0e";
+}
+.category-icon-citizen_housing:before {
+  content: "\ea0f";
+}
+.category-icon-clothing:before {
+  content: "\ea10";
+}
+.category-icon-computers_at_your_disposal:before {
+  content: "\ea11";
+}
+.category-icon-counseling:before {
+  content: "\ea12";
+}
+.category-icon-day_hosting:before {
+  content: "\ea13";
+}
+.category-icon-dental_care:before {
+  content: "\ea14";
+}
+.category-icon-dermatology:before {
+  content: "\ea15";
+}
+.category-icon-digital_safe:before {
+  content: "\ea16";
+}
+.category-icon-digital_tools_training:before {
+  content: "\ea17";
+}
+.category-icon-disability_advice:before {
+  content: "\ea18";
+}
+.category-icon-domiciliation:before {
+  content: "\ea19";
+}
+.category-icon-echography:before {
+  content: "\ea1a";
+}
+.category-icon-electrical_outlets_available:before {
+  content: "\ea1b";
+}
+.category-icon-emergency_accommodation:before {
+  content: "\ea1c";
+}
+.category-icon-endocrinology:before {
+  content: "\ea1d";
+}
+.category-icon-equipment:before {
+  content: "\ea1e";
+}
+.category-icon-face_masks:before {
+  content: "\ea1f";
+}
+.category-icon-family_area:before {
+  content: "\ea20";
+}
+.category-icon-food:before {
+  content: "\ea21";
+}
+.category-icon-food_distribution:before {
+  content: "\ea22";
+}
+.category-icon-food_packages:before {
+  content: "\ea23";
+}
+.category-icon-fountain:before {
+  content: "\ea24";
+}
+.category-icon-french_course:before {
+  content: "\ea25";
+}
+.category-icon-gastroenterology:before {
+  content: "\ea26";
+}
+.category-icon-general_practitioner:before {
+  content: "\ea27";
+}
+.category-icon-gynecology:before {
+  content: "\ea28";
+}
+.category-icon-health:before {
+  content: "\ea29";
+}
+.category-icon-health_specialists:before {
+  content: "\ea2a";
+}
+.category-icon-hygiene_and_wellness:before {
+  content: "\ea2b";
+}
+.category-icon-hygiene_products:before {
+  content: "\ea2c";
+}
+.category-icon-infirmary:before {
+  content: "\ea2d";
+}
+.category-icon-information_point:before {
+  content: "\ea2e";
+}
+.category-icon-integration_through_economic_activity:before {
+  content: "\ea2f";
+}
+.category-icon-job_coaching:before {
+  content: "\ea30";
+}
+.category-icon-kinesitherapy:before {
+  content: "\ea31";
+}
+.category-icon-laundry:before {
+  content: "\ea32";
+}
+.category-icon-legal_advice:before {
+  content: "\ea33";
+}
+.category-icon-libraries:before {
+  content: "\ea34";
+}
+.category-icon-long_term_accomodation:before {
+  content: "\ea35";
+}
+.category-icon-luggage_storage:before {
+  content: "\ea36";
+}
+.category-icon-mammography:before {
+  content: "\ea37";
+}
+.category-icon-mobility:before {
+  content: "\ea38";
+}
+.category-icon-mobility_assistance:before {
+  content: "\ea39";
+}
+.category-icon-museums:before {
+  content: "\ea3a";
+}
+.category-icon-nutrition:before {
+  content: "\ea3b";
+}
+.category-icon-ophthalmology:before {
+  content: "\ea3c";
+}
+.category-icon-osteopathy:before {
+  content: "\ea3d";
+}
+.category-icon-other_activities:before {
+  content: "\ea3e";
+}
+.category-icon-otorhinolaryngology:before {
+  content: "\ea3f";
+}
+.category-icon-overnight_stop:before {
+  content: "\ea40";
+}
+.category-icon-parent_assistance:before {
+  content: "\ea41";
+}
+.category-icon-pedicure:before {
+  content: "\ea42";
+}
+.category-icon-phlebology:before {
+  content: "\ea43";
+}
+.category-icon-pneumology:before {
+  content: "\ea44";
+}
+.category-icon-pregnancy_care:before {
+  content: "\ea45";
+}
+.category-icon-provision_of_vehicles:before {
+  content: "\ea46";
+}
+.category-icon-psychological_support:before {
+  content: "\ea47";
+}
+.category-icon-public_writer:before {
+  content: "\ea48";
+}
+.category-icon-radiology:before {
+  content: "\ea49";
+}
+.category-icon-rest_area:before {
+  content: "\ea4a";
+}
+.category-icon-rheumatology:before {
+  content: "\ea4b";
+}
+.category-icon-seated_catering:before {
+  content: "\ea4c";
+}
+.category-icon-shower:before {
+  content: "\ea4d";
+}
+.category-icon-social_accompaniment:before {
+  content: "\ea4e";
+}
+.category-icon-social_grocery_stores:before {
+  content: "\ea4f";
+}
+.category-icon-solidarity_store:before {
+  content: "\ea50";
+}
+.category-icon-speech_therapy:before {
+  content: "\ea51";
+}
+.category-icon-sport_activities:before {
+  content: "\ea52";
+}
+.category-icon-std_testing:before {
+  content: "\ea53";
+}
+.category-icon-stomatology:before {
+  content: "\ea54";
+}
+.category-icon-technology:before {
+  content: "\ea55";
+}
+.category-icon-telephone_at_your_disposal:before {
+  content: "\ea56";
+}
+.category-icon-toilets:before {
+  content: "\ea57";
+}
+.category-icon-training_and_jobs:before {
+  content: "\ea58";
+}
+.category-icon-tutoring:before {
+  content: "\ea59";
+}
+.category-icon-urology:before {
+  content: "\ea5a";
+}
+.category-icon-vaccination:before {
+  content: "\ea5b";
+}
+.category-icon-vet_care:before {
+  content: "\ea5c";
+}
+.category-icon-welcome:before {
+  content: "\ea5d";
+}
+.category-icon-wellness:before {
+  content: "\ea5e";
+}
+.category-icon-wifi:before {
+  content: "\ea5f";
+}
 
 $category-icon-access_to_housing: "\ea01";
 $category-icon-accomodation_and_housing: "\ea02";
@@ -226,4 +403,3 @@ $category-icon-vet_care: "\ea5c";
 $category-icon-welcome: "\ea5d";
 $category-icon-wellness: "\ea5e";
 $category-icon-wifi: "\ea5f";
-
