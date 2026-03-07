@@ -78,20 +78,6 @@ services:
       retries: 3
       start_period: 20s
 
-  redis:
-    image: redis:7-alpine
-    command: redis-server --requirepass redispassword
-    ports:
-      - 6379:6379
-    volumes:
-      - redis-data:/data
-    healthcheck:
-      test: redis-cli -a redispassword ping | grep PONG
-      interval: 5s
-      timeout: 20s
-      retries: 3
-      start_period: 20s
-
 volumes:
   mongo-data:
   rabbitmq-data:

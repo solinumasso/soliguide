@@ -147,7 +147,7 @@ common (base types & utilities)
 
 ### Key Technologies
 
-- **API**: Express, MongoDB (Mongoose), Typesense, RabbitMQ, Airtable sync, S3, Redis caching
+- **API**: Express, MongoDB (Mongoose), Typesense, RabbitMQ, Airtable sync, S3
 - **Location API**: NestJS, Fastify, Redis
 - **Soligare**: NestJS, PostgreSQL
 - **Frontend/Widget**: Angular 17, Bootstrap 5, Leaflet, Algolia, ngx-translate
@@ -160,7 +160,6 @@ common (base types & utilities)
 - **Migrations**: TypeScript migrations in `packages/api/migrations/` using migrate-mongo
 - **Test DB**: `soliguide_test` with dump in `data/soliguide_db_test.gzip`
 - **PostgreSQL**: Soligare duplicate detection only
-- **Redis**: Location API caching layer
 - **Typesense 27.1**: Search engine for places
 
 ### Multi-Language Support
@@ -294,8 +293,6 @@ yarn workspace @soliguide/web-app test -- path/to/test.spec.ts
 Full local stack with Docker Compose includes:
 
 - MongoDB 7.0 (replica set)
-- Typesense 27.1
-- Redis
 - RabbitMQ
 - All can be started with: `docker compose up -d`
 
@@ -362,7 +359,6 @@ Required: Node.js 22+ (specified in package.json engines)
 
 - **Architecture**: NestJS modular with dependency injection
 - **Purpose**: Geocoding, address search, transport info, holiday calculations
-- **Redis**: Used for caching with decorators
 - **Swagger**: API docs at `/api`
 
 ### Web-app (@soliguide/web-app)
