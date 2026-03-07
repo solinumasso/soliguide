@@ -1,13 +1,14 @@
 import "../instrument";
+import { cron } from "@sentry/node";
 
 import { CronJob } from "cron";
-import * as Sentry from "@sentry/node";
 import { logger } from "../general/logger";
 
 import { setOfflineJob } from "./jobs/fiches/set-offline.job";
 import { setIsOpenTodayJob } from "./jobs/fiches/set-isOpenToday.job";
 import { setCurrentTempInfoJob } from "./jobs/fiches/set-current-temp-info.job";
 import { unsetObsoleteTempInfoJob } from "./jobs/fiches/unset-obsolete-temp-info.job";
+import { syncPlacesToAirtableJob } from "./jobs/fiches/sync-places-to-airtable.job";
 
 export const Schedule = {
   EVERY_MINUTE: "* * * * *",
@@ -32,11 +33,19 @@ function createMonitoredCron(
   schedule: string,
   jobFn: () => Promise<void>
 ) {
-  const MonitoredCronJob = Sentry.cron.instrumentCron(CronJob, slug);
+  const MonitoredCronJob = cron.instrumentCron(CronJob, slug);
 
   MonitoredCronJob.from({
     cronTime: schedule,
-    onTick: jobFn,
+    onTick: async () => {
+      try {
+        await jobFn();
+      } catch (err) {
+        logger.error(`[CRON] ${slug} failed`, err);
+        // instrumentCron a déjà envoyé le check-in "error" à Sentry
+        // on ne re-throw pas pour éviter de crasher le process
+      }
+    },
     start: true,
     timeZone: "Europe/Paris",
   });
@@ -58,6 +67,7 @@ export function initializeCronJobs() {
     Schedule.EVERY_DAY_AT_2AM,
     unsetObsoleteTempInfoJob
   );
+
   createMonitoredCron(
     "set-is-open-today",
     Schedule.EVERY_DAY_AT_4AM,
@@ -65,6 +75,12 @@ export function initializeCronJobs() {
   );
 
   createMonitoredCron("set-offline", Schedule.EVERY_DAY_AT_3AM, setOfflineJob);
+
+  createMonitoredCron(
+    "sync-places-to-airtable",
+    Schedule.EVERY_DAY_AT_5AM,
+    syncPlacesToAirtableJob
+  );
 
   logger.info("All cron jobs initialized successfully");
 }

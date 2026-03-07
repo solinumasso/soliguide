@@ -10,10 +10,9 @@ import * as AutoExportController from "../controllers/autoexport.controller";
 
 import { AutoExportDto } from "../dto/AutoExportDto";
 
-import { CONFIG, ExpressRequest, ExpressResponse } from "../../_models";
+import { ExpressRequest, ExpressResponse } from "../../_models";
 
 import { checkRights, getFilteredData, logExport } from "../../middleware";
-import { captureMessage } from "@sentry/node";
 import { logger } from "../../general/logger";
 
 export const router = Router();
@@ -40,13 +39,6 @@ router.post(
     try {
       const data = await AutoExportController.autoExport(req, searchData);
 
-      if (CONFIG.ENV !== "dev" && CONFIG.ENV !== "test") {
-        captureMessage(
-          `[AUTOEXPORT] Export generated - ${new Date()} - by ${
-            req.user?.mail
-          } - with ${JSON.stringify(searchData)}`
-        );
-      }
       req.log.info(
         `[AUTOEXPORT] Export generated - ${new Date()} - by ${
           req.user?.mail

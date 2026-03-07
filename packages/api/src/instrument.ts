@@ -1,36 +1,37 @@
-import { CONFIG } from "./_models";
-import {
-  captureMessage,
-  expressIntegration,
-  httpIntegration,
-  init,
-  mongoIntegration,
-  mongooseIntegration,
-  nativeNodeFetchIntegration,
-} from "@sentry/node";
+import * as Sentry from "@sentry/node";
 import { nodeProfilingIntegration } from "@sentry/profiling-node";
+import { CONFIG } from "./_models";
 
 if (CONFIG.SENTRY_DSN?.length) {
-  init({
+  const isCron = CONFIG.CRON_ENABLED;
+
+  Sentry.init({
     dsn: CONFIG.SENTRY_DSN,
     environment: CONFIG.ENV,
+
     integrations: [
-      httpIntegration(),
-      mongoIntegration(),
-      nativeNodeFetchIntegration(),
-      expressIntegration(),
-      mongooseIntegration(),
+      Sentry.mongoIntegration(),
+      Sentry.mongooseIntegration(),
       nodeProfilingIntegration(),
+
+      ...(!isCron
+        ? [
+            Sentry.httpIntegration(),
+            Sentry.expressIntegration(),
+            Sentry.nativeNodeFetchIntegration(),
+          ]
+        : []),
     ],
+
     tracesSampleRate: 1.0,
-    // Set sampling rate for profiling - this is relative to tracesSampleRate
-    profilesSampleRate: 1.0,
+    profileSessionSampleRate: 1.0,
+    profileLifecycle: "trace",
     attachStacktrace: true,
+    enableLogs: true,
   });
 
-  captureMessage(
-    `[INFO] ${CONFIG.CRON_ENABLED ? "[CRON]" : "[API]"} [${
-      CONFIG.ENV
-    }] API Restart - ${new Date()}`
-  );
+  Sentry.logger.info(`[${isCron ? "CRON" : "API"}] [${CONFIG.ENV}] Restart`, {
+    timestamp: new Date().toISOString(),
+    cron: isCron,
+  });
 }
