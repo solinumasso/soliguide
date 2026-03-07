@@ -5,7 +5,6 @@ import { TerminusModule } from "@nestjs/terminus";
 
 import { HealthController } from "./health.controller";
 import { CONFIG_VALIDATOR } from "../config";
-import { RedisHealthModule } from "@liaoliaots/nestjs-redis-health";
 
 describe("HealthController", () => {
   let controller: HealthController;
@@ -20,17 +19,10 @@ describe("HealthController", () => {
         }),
         HttpModule,
         TerminusModule,
-        RedisHealthModule,
       ],
     }).compile();
 
     controller = module.get<HealthController>(HealthController);
-
-    controller["redis"] = {
-      ping: jest.fn().mockResolvedValue("PONG"),
-      status: "ready",
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any;
   });
 
   it("should be defined", () => {

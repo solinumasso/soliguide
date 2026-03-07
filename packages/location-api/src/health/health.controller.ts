@@ -1,4 +1,3 @@
-import { RedisHealthIndicator } from "@liaoliaots/nestjs-redis-health";
 import { Controller, Get } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import {
@@ -17,8 +16,7 @@ export class HealthController {
   constructor(
     private readonly health: HealthCheckService,
     private readonly http: HttpHealthIndicator,
-    private readonly configService: ConfigService,
-    private readonly redisIndicator: RedisHealthIndicator
+    private readonly configService: ConfigService
   ) {
     this.version = this.getVersion();
   }
