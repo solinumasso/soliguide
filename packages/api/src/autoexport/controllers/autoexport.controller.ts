@@ -14,12 +14,7 @@ import { getTranslatedPlace } from "../../translations/controllers/translation.c
 import { getUpcomingTempInfo } from "../../temp-info/services/temp-info.service";
 import type { UpComingTempInfo } from "../types";
 import { searchPlaces } from "../../search/controllers/search.controller";
-import {
-  CONFIG,
-  type ExpressRequest,
-  type UserPopulateType,
-} from "../../_models";
-import { captureMessage } from "@sentry/node";
+import { type ExpressRequest, type UserPopulateType } from "../../_models";
 
 export const autoExport = async (
   req: ExpressRequest,
@@ -37,14 +32,6 @@ export const autoExport = async (
   };
 
   searchData.placeType = PlaceType.PLACE;
-
-  if (CONFIG.ENV !== "dev" && CONFIG.ENV !== "test") {
-    captureMessage(
-      `[AUTOEXPORT] Get places info - ${new Date()} - by ${
-        req.user?.mail
-      } - with ${JSON.stringify(searchData)}`
-    );
-  }
 
   req.log.info(
     `[AUTOEXPORT] Get places info - ${new Date()} - by ${
@@ -97,13 +84,6 @@ export const autoExport = async (
     upcomingTempInfo = await getUpcomingTempInfo(placesIds);
   }
 
-  if (CONFIG.ENV !== "dev" && CONFIG.ENV !== "test") {
-    captureMessage(
-      `[AUTOEXPORT] Start export - ${new Date()} - by ${
-        req.user?.mail
-      } - with ${JSON.stringify(searchData)}`
-    );
-  }
   req.log.info(
     `[AUTOEXPORT] Start export - ${new Date()} - by ${
       req.user?.mail

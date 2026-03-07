@@ -46,6 +46,7 @@ export class AmqpSynchroAirtablePlaceEvent
   public website: string;
   public email: string;
   public phones: string;
+  public isOpenToday: boolean;
   public autonomy?: CampaignPlaceAutonomy;
   public remindMeDate?: Date;
   public campaignStatus?: CampaignStatus;
@@ -84,6 +85,7 @@ export class AmqpSynchroAirtablePlaceEvent
           .filter((categoryName: string) => categoryName)
       : [];
     this.status = isDeleted ? "DELETED" : (place.status as PlaceStatus);
+    this.isOpenToday = place.isOpenToday ?? false;
     this.visibility = place.visibility;
     this.sources = place.sources ?? [];
     this.website = place.entity?.website || "";
