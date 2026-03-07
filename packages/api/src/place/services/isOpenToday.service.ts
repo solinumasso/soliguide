@@ -1,7 +1,9 @@
-import { PlaceStatus } from "@soliguide/common";
+import mongoose from "mongoose";
+import { ApiPlace, PlaceStatus } from "@soliguide/common";
 import { PlaceModel } from "../models";
 import { logger } from "../../general/logger";
 import { isPlaceOpenToday, isServiceOpenToday } from "../utils";
+import { ModelWithId } from "../../_models";
 
 export const setIsOpenToday = async () => {
   /**
@@ -24,10 +26,10 @@ export const setIsOpenToday = async () => {
   let cpt = 0;
   let placeCpt = 0;
   let serviceCpt = 0;
-  let lastId: any = null;
+  let lastId: mongoose.Types.ObjectId | null = null;
 
   while (loopCpt < nPotentiallyOpenedPlaces) {
-    const paginatedFilter = {
+    const paginatedFilter: any = {
       ...(lastId ? { _id: { $gt: lastId } } : {}),
       $or: [
         { position: { $exists: true, $ne: null } },
@@ -36,14 +38,16 @@ export const setIsOpenToday = async () => {
       status: { $nin: [PlaceStatus.DRAFT, PlaceStatus.PERMANENTLY_CLOSED] },
     };
 
-    const places = await PlaceModel.find(paginatedFilter)
+    const places = await PlaceModel.find<ModelWithId<ApiPlace>>(paginatedFilter)
       .sort({ _id: 1 })
       // MODIF 1 : plus de .skip()
       .limit(batchSize)
       // MODIF 2 : .lean()
-      .lean();
+      .lean<Array<ModelWithId<ApiPlace>>>();
 
-    if (places.length === 0) break;
+    if (places.length === 0) {
+      break;
+    }
 
     lastId = places[places.length - 1]._id;
 

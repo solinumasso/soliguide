@@ -48,7 +48,12 @@ export const generateRegionSitemap = async (siteMapDto: {
         "loc",
         `${frontUrl}/${SupportedLanguagesCode.FR}/fiche/${place.seo_url}/`
       );
-      url.ele("lastmod", place.updatedByUserAt || new Date().toISOString());
+      url.ele(
+        "lastmod",
+        new Date(place.updatedByUserAt || Date.now())
+          .toISOString()
+          .replace(/\.\d{3}Z$/, "+00:00")
+      );
       url.ele("changefreq", "monthly");
       url.ele("priority", "0.8");
     }

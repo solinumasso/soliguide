@@ -32,7 +32,7 @@ export const aggregateUserRightsForAuth = (
 
     tmpUserRights.forEach((userRight: UserRight) => {
       if (userRight.place_id !== null) {
-        places.push(userRight.place_id as number);
+        places.push(userRight.place_id);
       }
     });
   }

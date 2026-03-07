@@ -86,6 +86,7 @@ import autocompleteSuggestionService from "./search/services/search-suggestions.
 import SearchSuggestionsController from "./search/controllers/search-suggestions.controller";
 import { CountryCodes, SupportedLanguagesCode } from "@soliguide/common";
 import { initializeCronJobs } from "./cron/cron-manager";
+import { setIsOpenToday } from "./place/services/isOpenToday.service";
 
 const _app = express();
 
@@ -241,7 +242,9 @@ _app.use((req: Request, res: Response) => {
       SupportedLanguagesCode.FR
     );
     if (CONFIG.ENV !== "test" && CONFIG.CRON_ENABLED) {
+      console.log("Initializing cron jobs...");
       initializeCronJobs();
+      await setIsOpenToday();
     }
 
     if (CONFIG.ENV !== "prod" && CONFIG.ENV !== "test" && CONFIG.DEV_ANON) {

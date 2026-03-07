@@ -15,7 +15,7 @@ import { logger } from "../../general/logger";
 export class HolidaysService {
   private readonly apiBaseUrl: string;
   private lastUpdate: Date | null;
-  private holidays: AllPublicHolidays = {};
+  private readonly holidays: AllPublicHolidays = {};
 
   constructor() {
     this.lastUpdate = null;
