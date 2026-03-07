@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.125.2](https://github.com/solinumasso/soliguide/compare/v4.125.1...v4.125.2) (2026-03-07)
+
+
+### Bug Fixes
+
+* **api:** delete head of licence & redis ([e5971e2](https://github.com/solinumasso/soliguide/commit/e5971e240e62d7eb4a5f5217ae53b12e24bd30da))
+* **api:** fix sentry & sync ([61e8572](https://github.com/solinumasso/soliguide/commit/61e85729e150f1dc63a1857ae69b88cf286ee5eb))
+* **frontend:** correctlinks in help component ([03ab36f](https://github.com/solinumasso/soliguide/commit/03ab36f068efde2583783a3c32f7f2044d756257))
+* **frontend:** update tuto links ([24d9361](https://github.com/solinumasso/soliguide/commit/24d936199c71abc23c003663586934e5fafcca2a))
+* **location-api:** fix health redis ([9b8976d](https://github.com/solinumasso/soliguide/commit/9b8976d455c610984af8754363e2df58be586081))
+* **web-app:** include crossingPointIndex in passage point card navigation ([9e0d26a](https://github.com/solinumasso/soliguide/commit/9e0d26ac14d455917404990692f05b0ca47edeb6))
+
+
+
+
+
 ## [4.125.1](https://github.com/solinumasso/soliguide/compare/v4.125.0...v4.125.1) (2026-02-23)
 
 
