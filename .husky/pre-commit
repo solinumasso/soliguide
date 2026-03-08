@@ -1,1 +1,5 @@
+npx node-talisman --githook pre-commit
+yarn npm audit --severity high --recursive
+yarn workspace @soliguide/common exec tsc --noEmit
+yarn format:fix
 yarn lint-staged

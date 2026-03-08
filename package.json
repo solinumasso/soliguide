@@ -24,6 +24,7 @@
     "husky": "^9.1.7",
     "lerna": "^8.2.3",
     "lint-staged": "^15.5.1",
+    "node-talisman": "^1.29.22",
     "nx": "^19.8.14",
     "semantic-release": "^24.2.3",
     "tsx": "^4.21.0",

@@ -14942,6 +14942,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"clogy@npm:^1.3.3":
+  version: 1.3.3
+  resolution: "clogy@npm:1.3.3"
+  checksum: 10/280de04abd724e6324138f069ed3eb7bdb3dd0835650c865dd6c01994a90a58189cb52a282a2a0bd5b71509e65708ed2516ea990974d5f9c6764b42aebc33d42
+  languageName: node
+  linkType: hard
+
 "clone-deep@npm:4.0.1, clone-deep@npm:^4.0.1":
   version: 4.0.1
   resolution: "clone-deep@npm:4.0.1"
@@ -17922,6 +17929,13 @@ __metadata:
   version: 3.3.0
   resolution: "events@npm:3.3.0"
   checksum: 10/a3d47e285e28d324d7180f1e493961a2bbb4cad6412090e4dec114f4db1f5b560c7696ee8e758f55e23913ede856e3689cd3aa9ae13c56b5d8314cd3b3ddd1be
+  languageName: node
+  linkType: hard
+
+"exec-sh@npm:^0.3.4":
+  version: 0.3.6
+  resolution: "exec-sh@npm:0.3.6"
+  checksum: 10/48abc4a3fc8ccdfd913d19857f1c0905310f0faf58b603ffed18469414b516be534c47f1a02e2a81ce49d592cfb612324de153b47ca30213f7191e1d0c073e80
   languageName: node
   linkType: hard
 
@@ -24627,6 +24641,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"node-talisman@npm:^1.29.22":
+  version: 1.29.22
+  resolution: "node-talisman@npm:1.29.22"
+  dependencies:
+    clogy: "npm:^1.3.3"
+    exec-sh: "npm:^0.3.4"
+    mkdirp: "npm:^1.0.4"
+    request: "npm:^2.88.2"
+  bin:
+    node-talisman: dist-node/index.bin.js
+  checksum: 10/a822dacb5b4aef122083d715025f0373fa9d9be79af2f63e97a28936d8a9e7387473ec6323a395b76e0ea3c6f502c759b4a59b2c7ec3a2b4af05b388a382d35c
+  languageName: node
+  linkType: hard
+
 "nodemon@npm:^3.1.10":
   version: 3.1.10
   resolution: "nodemon@npm:3.1.10"
@@ -29163,6 +29191,7 @@ __metadata:
     husky: "npm:^9.1.7"
     lerna: "npm:^8.2.3"
     lint-staged: "npm:^15.5.1"
+    node-talisman: "npm:^1.29.22"
     nx: "npm:^19.8.14"
     semantic-release: "npm:^24.2.3"
     tsx: "npm:^4.21.0"
