@@ -1,22 +1,20 @@
 // Import first to make it tracks as much as possible
 // see https://docs.sentry.io/platforms/javascript/guides/express/install/esm-without-import/
 import "./instrument";
+import { connectToDatabase } from "./config/database/connection";
 
 import express, { NextFunction, Request, Response } from "express";
 import compression from "compression";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import swaggerJSDoc from "swagger-jsdoc";
-
 import { anonymizeDb } from "./config/database/anonymizeDb";
 
 import { httpLogger, logger } from "./general/logger";
-
 import { CONFIG, ExpressRequest, ExpressResponse } from "./_models";
 
 logger.info(CONFIG);
 
-import { connectToDatabase } from "./config/database/connection";
 import "./config/i18n.config";
 
 import { s3Middleware } from "./general/services/s3";

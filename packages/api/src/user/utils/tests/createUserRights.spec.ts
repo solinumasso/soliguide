@@ -1,4 +1,3 @@
-
 import { createUserRights } from "../createUserRights";
 import mongoose from "mongoose";
 import { UserRightStatus, UserRole } from "@soliguide/common";
