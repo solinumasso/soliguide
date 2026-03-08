@@ -1,18 +1,19 @@
 import "../instrument";
-import { cron } from "@sentry/node";
+import * as Sentry from "@sentry/node";
 
 import { CronJob } from "cron";
 import { logger } from "../general/logger";
-
-import { setOfflineJob } from "./jobs/fiches/set-offline.job";
-import { setIsOpenTodayJob } from "./jobs/fiches/set-isOpenToday.job";
-import { setCurrentTempInfoJob } from "./jobs/fiches/set-current-temp-info.job";
-import { unsetObsoleteTempInfoJob } from "./jobs/fiches/unset-obsolete-temp-info.job";
-import { syncPlacesToAirtableJob } from "./jobs/fiches/sync-places-to-airtable.job";
+import { setCurrentTempInfoJob } from "./jobs/places/set-current-temp-info.job";
+import { setIsOpenTodayJob } from "./jobs/places/set-isOpenToday.job";
+import { setOfflineJob } from "./jobs/places/set-offline.job";
+import { syncPlacesToAirtableJob } from "./jobs/places/sync-places-to-airtable.job";
+import { translateFieldsJob } from "./jobs/translations/translate-fields.job";
+import { unsetObsoleteTempInfoJob } from "./jobs/places/unset-obsolete-temp-info.job";
 
 export const Schedule = {
   EVERY_MINUTE: "* * * * *",
   EVERY_5_MINUTES: "*/5 * * * *",
+  EVERY_10_MINUTES: "*/10 * * * *",
   EVERY_15_MINUTES: "*/15 * * * *",
   EVERY_30_MINUTES: "*/30 * * * *",
   EVERY_HOUR: "0 * * * *",
@@ -31,20 +32,34 @@ export const Schedule = {
 function createMonitoredCron(
   slug: string,
   schedule: string,
-  jobFn: () => Promise<void>
+  jobFn: () => Promise<void>,
+  maxRuntime?: number
 ) {
-  const MonitoredCronJob = cron.instrumentCron(CronJob, slug);
+  const monitorConfig = {
+    schedule: {
+      type: "crontab" as const,
+      value: schedule,
+    },
+    timezone: "Europe/Paris",
+    checkinMargin: 5,
+    maxRuntime: maxRuntime ?? 30,
+  };
 
-  MonitoredCronJob.from({
+  CronJob.from({
     cronTime: schedule,
     onTick: async () => {
-      try {
-        await jobFn();
-      } catch (err) {
-        logger.error(`[CRON] ${slug} failed`, err);
-        // instrumentCron a déjà envoyé le check-in "error" à Sentry
-        // on ne re-throw pas pour éviter de crasher le process
-      }
+      await Sentry.withMonitor(
+        slug,
+        async () => {
+          try {
+            await jobFn();
+          } catch (err) {
+            logger.error(`[CRON] ${slug} failed`, err);
+            throw err;
+          }
+        },
+        monitorConfig
+      );
     },
     start: true,
     timeZone: "Europe/Paris",
@@ -80,6 +95,12 @@ export function initializeCronJobs() {
     "sync-places-to-airtable",
     Schedule.EVERY_DAY_AT_5AM,
     syncPlacesToAirtableJob
+  );
+
+  createMonitoredCron(
+    "translate-fields",
+    Schedule.EVERY_10_MINUTES,
+    translateFieldsJob
   );
 
   logger.info("All cron jobs initialized successfully");

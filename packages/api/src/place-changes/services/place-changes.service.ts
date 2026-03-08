@@ -1,4 +1,4 @@
-import mongoose, { FilterQuery } from "mongoose";
+import mongoose, { FilterQuery, QueryOptions } from "mongoose";
 import { PlaceChangesModel } from "../models/place-changes.model";
 import {
   PlaceChanges,
@@ -14,13 +14,13 @@ import { PlaceChangesSection } from "@soliguide/common";
  */
 export const findPlaceChanges = (
   params: FilterQuery<PlaceChanges>,
-  options: any = DEFAULT_SEARCH_OPTIONS,
+  options: QueryOptions = DEFAULT_SEARCH_OPTIONS,
   light = false
 ): Promise<PlaceChangesPopulate[]> => {
   return PlaceChangesModel.find(params)
     .populate([{ path: "place", select: "name" }])
-    .limit(options.limit)
-    .skip(options.skip)
+    .limit(options.limit as number)
+    .skip(options.skip as number)
     .sort(options.sort)
     .select(light ? "" : "-old -new -__v -updatedAt")
     .lean<PlaceChangesPopulate[]>()

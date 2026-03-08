@@ -7,6 +7,6 @@ export interface ExportSearchParams extends PlaceSearchForAdmin {
     limit?: number | null;
     page?: number | null;
     skip?: number | null;
-    sort?: any;
+    sort?: Record<string, 1 | -1>;
   };
 }

@@ -1,4 +1,9 @@
-import { CommonDayOpeningHours, PlaceType, WEEK_DAYS } from "@soliguide/common";
+import {
+  CommonDayOpeningHours,
+  CommonOpeningHours,
+  PlaceType,
+  WEEK_DAYS,
+} from "@soliguide/common";
 
 /**
  * @param  {Object} day a week day (monday, tuesday, etc.)
@@ -42,7 +47,7 @@ export const isValidDay = (
 };
 
 export const isValidHoursObject = (
-  hours: any,
+  hours: CommonOpeningHours,
   placeType: PlaceType = PlaceType.PLACE
 ): boolean => {
   for (const element of WEEK_DAYS) {

@@ -1,6 +1,10 @@
-
 import { ApiOrganization } from "@soliguide/common";
-import mongoose, { ClientSession, FilterQuery, UpdateQuery } from "mongoose";
+import mongoose, {
+  ClientSession,
+  FilterQuery,
+  QueryOptions,
+  UpdateQuery,
+} from "mongoose";
 import { OrganizationModel } from "../models/organization.model";
 
 import { DEFAULT_SEARCH_OPTIONS } from "../../_utils/constants";
@@ -162,11 +166,11 @@ export const countOrgas = (
 
 export const searchOrgas = (
   query: FilterQuery<ApiOrganization>,
-  options: any = DEFAULT_SEARCH_OPTIONS
+  options: QueryOptions = DEFAULT_SEARCH_OPTIONS
 ): Promise<OrganizationPopulate[]> => {
   return OrganizationModel.find<OrganizationPopulate>(query)
-    .limit(options.limit)
-    .skip(options.skip)
+    .limit(options.limit as number)
+    .skip(options.skip as number)
     .sort(options.sort)
     .collation({ locale: "fr", strength: 1 })
     .populate([
