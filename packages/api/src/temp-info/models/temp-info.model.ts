@@ -61,4 +61,10 @@ TempInfoSchema.index(
   { unique: true }
 );
 
+// Index for setCurrentTempInfoJob: finds FUTURE temp infos by dateDebut range
+TempInfoSchema.index({ status: 1, dateDebut: 1 });
+
+// Index for unsetObsoleteTempInfoJob: finds CURRENT temp infos with expired dateFin
+TempInfoSchema.index({ status: 1, dateFin: 1 });
+
 export const TempInfoModel = model("TempInfo", TempInfoSchema, "tempInfos");

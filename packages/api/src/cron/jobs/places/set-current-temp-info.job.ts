@@ -4,26 +4,44 @@ import { PlaceModel } from "./../../../place/models/place.model";
 import { logger } from "../../../general/logger";
 import { TempInfoModel } from "../../../temp-info/models/temp-info.model";
 
+const BATCH_SIZE = 500;
+
 export async function setCurrentTempInfoJob(): Promise<void> {
   logger.info("JOB - SET CURRENT TEMPORARY INFORMATION FOR PLACES - START");
 
   //
-  // 1. Search for future info which can go to places in the temporary information table
+  // 0. Clean up stale FUTURE records whose dateDebut is already in the past
+  //    These records missed their activation window and would otherwise accumulate forever
   //
-  const futureTempInfos = await TempInfoModel.aggregate([
-    { $match: { status: TempInfoStatus.FUTURE } },
+  const staleResult = await TempInfoModel.updateMany(
     {
-      $addFields: {
-        isCurrent: {
-          $dateDiff: {
-            endDate: "$dateDebut",
-            startDate: new Date(),
-            unit: "day",
-          },
-        },
+      status: TempInfoStatus.FUTURE,
+      dateDebut: { $lt: new Date() },
+    },
+    { $set: { status: TempInfoStatus.OBSOLETE } }
+  );
+
+  if (staleResult.modifiedCount) {
+    logger.info(
+      `${staleResult.modifiedCount} stale FUTURE temp infos marked as OBSOLETE`
+    );
+  }
+
+  //
+  // 1. Search for future info which can go to places in the temporary information table
+  //    Uses a cursor to avoid loading all results into memory at once
+  //
+  const now = new Date();
+  const maxDateDebut = new Date(now);
+  maxDateDebut.setDate(maxDateDebut.getDate() + 15);
+
+  const cursor = TempInfoModel.aggregate([
+    {
+      $match: {
+        status: TempInfoStatus.FUTURE,
+        dateDebut: { $gte: now, $lte: maxDateDebut },
       },
     },
-    { $match: { isCurrent: { $gte: 0, $lte: 15 } } },
     { $sort: { dateDebut: 1 } },
     {
       $group: {
@@ -51,16 +69,17 @@ export async function setCurrentTempInfoJob(): Promise<void> {
         tempInfoType: { $first: "$tempInfoType" },
       },
     },
-  ]);
+  ]).cursor();
 
   //
-  // 2. Populate these temporary info in the matching places
+  // 2. Populate these temporary info in the matching places (batched)
   //
 
-  const placeBulkQuery: any[] = [];
-  const tempInfoBulkQuery = [];
+  let placeBulkQuery: any[] = [];
+  let tempInfoBulkQuery: any[] = [];
+  let totalProcessed = 0;
 
-  for (const tempInfos of futureTempInfos) {
+  for await (const tempInfos of cursor) {
     const basicContent: TempInfoObject = {
       actif: true,
       dateDebut: tempInfos.dateDebut,
@@ -107,18 +126,26 @@ export async function setCurrentTempInfoJob(): Promise<void> {
         update: { $set: { status: TempInfoStatus.CURRENT } },
       },
     });
+
+    // Flush batch when reaching BATCH_SIZE
+    if (placeBulkQuery.length >= BATCH_SIZE) {
+      await PlaceModel.bulkWrite(placeBulkQuery);
+      await TempInfoModel.bulkWrite(tempInfoBulkQuery);
+      totalProcessed += placeBulkQuery.length;
+      placeBulkQuery = [];
+      tempInfoBulkQuery = [];
+    }
   }
 
+  // Flush remaining operations
   if (placeBulkQuery.length) {
     await PlaceModel.bulkWrite(placeBulkQuery);
-  }
-
-  if (tempInfoBulkQuery.length) {
     await TempInfoModel.bulkWrite(tempInfoBulkQuery);
+    totalProcessed += placeBulkQuery.length;
   }
 
   logger.info(
-    `${placeBulkQuery.length} Current temporary info populated in the places`
+    `${totalProcessed} Current temporary info populated in the places`
   );
 
   logger.info("JOB - SET CURRENT TEMPORARY INFORMATION FOR PLACES - END");

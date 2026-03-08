@@ -5,27 +5,31 @@ import { PlaceModel } from "../../../place/models/place.model";
 import { TempInfoModel } from "../../../temp-info/models/temp-info.model";
 import { TranslatedFieldModel } from "../../../translations/models/translatedField.model";
 
+const BATCH_SIZE = 500;
+
 export async function unsetObsoleteTempInfoJob(): Promise<void> {
   logger.info("JOB - UNSET OBSOLETE TEMPORARY INFORMATION FOR PLACES - START");
 
   //
   // 1. Search for currently obsolete info on places in the temporary info table
+  //    Uses a cursor to avoid loading all results into memory at once
   //
-  const obsoleteTempInfos = await TempInfoModel.find({
-    dateFin: { $exists: true, $lt: new Date(), $ne: null },
+  const cursor = TempInfoModel.find({
     status: TempInfoStatus.CURRENT,
+    dateFin: { $lt: new Date(), $ne: null },
   })
     .lean()
-    .exec();
+    .cursor();
 
   //
-  // 2. Cleaning up these temporary info in the matching places
+  // 2. Cleaning up these temporary info in the matching places (batched)
   //
-  const placeBulkQuery: any = [];
-  const tempInfoBulkQuery = [];
-  const translationBulkQuery: any = [];
+  let placeBulkQuery: any[] = [];
+  let tempInfoBulkQuery: any[] = [];
+  let translationBulkQuery: any[] = [];
+  let totalProcessed = 0;
 
-  for (const tempInfos of obsoleteTempInfos) {
+  for await (const tempInfos of cursor) {
     const basicCleaning: TempInfoObject = {
       actif: false,
       dateDebut: null,
@@ -82,21 +86,32 @@ export async function unsetObsoleteTempInfoJob(): Promise<void> {
         update: { $set: { status: TempInfoStatus.OBSOLETE } },
       },
     });
+
+    // Flush batch when reaching BATCH_SIZE
+    if (tempInfoBulkQuery.length >= BATCH_SIZE) {
+      await PlaceModel.bulkWrite(placeBulkQuery);
+      await TempInfoModel.bulkWrite(tempInfoBulkQuery);
+      if (translationBulkQuery.length) {
+        await TranslatedFieldModel.bulkWrite(translationBulkQuery);
+      }
+      totalProcessed += tempInfoBulkQuery.length;
+      placeBulkQuery = [];
+      tempInfoBulkQuery = [];
+      translationBulkQuery = [];
+    }
   }
 
-  if (placeBulkQuery.length) {
-    await PlaceModel.bulkWrite(placeBulkQuery);
-  }
-
+  // Flush remaining operations
   if (tempInfoBulkQuery.length) {
+    await PlaceModel.bulkWrite(placeBulkQuery);
     await TempInfoModel.bulkWrite(tempInfoBulkQuery);
+    if (translationBulkQuery.length) {
+      await TranslatedFieldModel.bulkWrite(translationBulkQuery);
+    }
+    totalProcessed += tempInfoBulkQuery.length;
   }
 
-  if (translationBulkQuery.length) {
-    await TranslatedFieldModel.bulkWrite(translationBulkQuery);
-  }
-
-  logger.info(`${placeBulkQuery.length} Obsolete temporary info cleaned up`);
+  logger.info(`${totalProcessed} Obsolete temporary info cleaned up`);
 
   logger.info("JOB - UNSET OBSOLETE TEMPORARY INFORMATION FOR PLACES - END");
 }

@@ -224,4 +224,7 @@ const PlaceSchema = new mongoose.Schema(
 
 PlaceSchema.index({ createdAt: 1, updatedAt: 1 });
 
+// Index for setOfflineJob cron: finds ONLINE places not updated for 6 months
+PlaceSchema.index({ status: 1, updatedByUserAt: 1 });
+
 export const PlaceModel = model<ApiPlace>("Place", PlaceSchema, "lieux");
