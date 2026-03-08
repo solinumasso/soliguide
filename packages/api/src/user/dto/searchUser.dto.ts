@@ -1,4 +1,3 @@
-
 import { body } from "express-validator";
 
 import { UserSearchContext, UserStatus } from "@soliguide/common";

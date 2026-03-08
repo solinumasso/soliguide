@@ -1,4 +1,3 @@
-
 export interface Config {
   // General
   ENV: string;

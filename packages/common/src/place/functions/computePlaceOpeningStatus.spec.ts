@@ -1,4 +1,3 @@
-
 import { PlaceOpeningStatus } from "../enums";
 import { PlaceClosedHolidays } from "../../hours";
 import { ONLINE_PLACE } from "../mocks";

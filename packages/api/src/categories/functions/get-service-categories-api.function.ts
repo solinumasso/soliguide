@@ -1,4 +1,3 @@
-
 import { CategoriesService, Themes } from "@soliguide/common";
 import {
   SERVICE_CATEGORIES_API_AD,

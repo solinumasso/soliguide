@@ -1,4 +1,3 @@
-
 import {
   initializeCategoriesApiByTheme,
   initializeCategoriesForCategoriesApiV2,

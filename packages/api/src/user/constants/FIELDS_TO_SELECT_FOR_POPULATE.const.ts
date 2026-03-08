@@ -1,4 +1,3 @@
-
 import { PopulatedUser } from "../../_models";
 
 export const ARRAY_OF_USERS_FIELDS_TO_POPULATE: Array<keyof PopulatedUser> = [

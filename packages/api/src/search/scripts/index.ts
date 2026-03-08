@@ -1,4 +1,3 @@
-
 // Main synchronization script
 export * from "./sync-categories";
 

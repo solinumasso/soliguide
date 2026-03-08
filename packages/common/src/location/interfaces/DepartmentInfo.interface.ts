@@ -1,4 +1,3 @@
-
 import { OtherNames } from "./OtherNames.interface";
 import { SoliguideCountries } from "../enums";
 import { DepartmentCode, RegionCode, TimeZone } from "../types";

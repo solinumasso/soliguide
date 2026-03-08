@@ -1,4 +1,3 @@
-
 import type { Modalities } from "../../../modalities";
 import { SupportedLanguagesCode } from "../../enums";
 

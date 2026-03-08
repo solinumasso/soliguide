@@ -1,4 +1,3 @@
-
 import { ApiPlace, getPosition } from "../../place";
 import { SoliguideCountries } from "../enums";
 import { AnyDepartmentCode } from "../types";

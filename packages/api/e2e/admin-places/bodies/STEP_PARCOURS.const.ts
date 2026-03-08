@@ -1,4 +1,3 @@
-
 import { CountryCodes, PlaceClosedHolidays } from "@soliguide/common";
 
 export const STEP_PARCOURS_OK = {

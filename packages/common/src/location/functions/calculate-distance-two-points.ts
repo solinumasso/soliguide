@@ -1,4 +1,3 @@
-
 const isValidLatitude = (latitude: number): boolean => {
   return isFinite(latitude) && Math.abs(latitude) <= 90;
 };

@@ -26,12 +26,9 @@
     "lint-staged": "^15.5.1",
     "node-talisman": "^1.29.22",
     "nx": "^19.8.14",
-    "semantic-release": "^24.2.3",
+    "semantic-release": "^24.2.9",
     "tsx": "^4.21.0",
     "typescript": "^5.4.5"
-  },
-  "resolutions": {
-    "@aws-sdk/client-s3": "3.637.0"
   },
   "workspaces": {
     "packages": [

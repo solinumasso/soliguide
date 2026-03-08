@@ -1,4 +1,3 @@
-
 export enum GeoTypes {
   BOROUGH = "codePostal", // Only used for the boroughs of Paris, Lyon and Marseille
   CITY = "ville",

@@ -1,4 +1,3 @@
-
 // Default Solinum theme: semantic variables
 export const theme = {
   color: {

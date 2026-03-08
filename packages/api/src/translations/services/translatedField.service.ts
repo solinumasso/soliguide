@@ -1,4 +1,3 @@
-
 import mongoose, { FilterQuery, QueryOptions } from "mongoose";
 
 import { ApiTranslatedField } from "../interfaces";

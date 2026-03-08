@@ -1,4 +1,3 @@
-
 export const FR_BOROUGHS_CITY_CODES: string[] = ["69123", "75056", "13055"];
 
 export const FR_BOROUGHS_LYON: string[] = [

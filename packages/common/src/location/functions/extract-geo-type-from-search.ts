@@ -1,4 +1,3 @@
-
 import { GEO_TYPES_KEYS } from "../constants";
 import { SoliguideCountries, GeoTypes } from "../enums";
 

@@ -1,4 +1,3 @@
-
 import {
   CAMPAIGN_DEFAULT_NAME,
   Relations,

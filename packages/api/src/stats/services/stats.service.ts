@@ -1,4 +1,3 @@
-
 import { FilterQuery } from "mongoose";
 import { PlaceModel } from "../../place/models/place.model";
 import { ApiPlace } from "@soliguide/common";

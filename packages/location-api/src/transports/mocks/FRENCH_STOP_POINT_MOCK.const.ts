@@ -1,4 +1,3 @@
-
 import { HereTransportStation } from "../interfaces/here-station.interface";
 
 export const FRENCH_STOP_POINT_MOCK: {

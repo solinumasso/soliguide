@@ -1,4 +1,3 @@
-
 import { ApiPlace } from "@soliguide/common";
 import { ModelWithId } from "../../_models";
 

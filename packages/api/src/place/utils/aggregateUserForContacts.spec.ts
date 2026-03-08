@@ -1,4 +1,3 @@
-
 import {
   aggregateUsersForContacts,
   aggregateUsersForContactsEdition,

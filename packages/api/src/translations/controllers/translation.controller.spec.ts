@@ -1,4 +1,3 @@
-
 import "../../place/models/document.model";
 import "../../place/models/photo.model";
 

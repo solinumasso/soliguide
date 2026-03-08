@@ -1,4 +1,3 @@
-
 import { SortingOrder } from "../enums";
 
 export class ManageSearchOptions {

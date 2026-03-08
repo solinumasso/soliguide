@@ -1,4 +1,3 @@
-
 import { TimeZone } from "../types";
 import { SoliguideCountries } from "../enums";
 import { RegionCode } from "../types/RegionCode.type";

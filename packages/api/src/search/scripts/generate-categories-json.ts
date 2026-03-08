@@ -1,4 +1,3 @@
-
 import {
   SUPPORTED_LANGUAGES_BY_COUNTRY,
   SupportedLanguagesCode,

@@ -1,4 +1,3 @@
-
 import { CommonPlacePosition } from "@soliguide/common";
 import { globalConstants } from "../../../shared/functions";
 import { THEME_CONFIGURATION } from "../../themes";

@@ -1,4 +1,3 @@
-
 import { AnyDepartmentCode, AnyRegionCode, CountryCodes } from "../../location";
 import { CommonPlacePosition } from "./CommonPlacePosition.class";
 

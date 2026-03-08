@@ -1,4 +1,3 @@
-
 import type { SpinnerSize } from '$lib/types/Spinner';
 import type { ButtonSize, ButtonType } from '$lib/types/Button';
 

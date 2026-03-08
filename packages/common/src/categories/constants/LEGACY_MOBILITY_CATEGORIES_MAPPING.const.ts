@@ -1,4 +1,3 @@
-
 import { Categories } from "../enums";
 
 export const LEGACY_MOBILITY_CATEGORIES_MAPPING: Record<string, Categories> = {

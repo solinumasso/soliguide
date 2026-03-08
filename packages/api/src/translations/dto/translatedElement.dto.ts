@@ -1,4 +1,3 @@
-
 import { body } from "express-validator";
 
 import { CHECK_STRING_NULL } from "../../config/expressValidator.config";

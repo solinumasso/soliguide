@@ -1,4 +1,3 @@
-
 import { UserStatus } from "@soliguide/common";
 import { User } from "../../_models/users";
 import { getGlobalSearchQuery } from "../../search/services";

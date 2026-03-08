@@ -1,4 +1,3 @@
-
 export enum NationalProductType {
   ALL_PRODUCTS_NATIONAL = "all_products_national",
   MAJORITY_OF_PRODUCTS_NATIONAL = "majority_of_products_national",

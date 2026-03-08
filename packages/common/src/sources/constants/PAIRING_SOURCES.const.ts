@@ -1,4 +1,3 @@
-
 import { PairingSources } from "../enums";
 
 export const PAIRING_SOURCES = Object.values(PairingSources);

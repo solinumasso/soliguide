@@ -1,4 +1,3 @@
-
 import { DOMAINS_ADMIN_TERRITORIES } from "../constants";
 import { UserStatus } from "../enums";
 import { validateUserStatusWithEmail } from "./validateUserStatusWithEmail";

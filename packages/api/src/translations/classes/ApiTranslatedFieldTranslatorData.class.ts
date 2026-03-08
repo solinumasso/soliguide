@@ -1,4 +1,3 @@
-
 import {
   TranslatedFieldLanguageStatus,
   TranslatedFieldTranslatorData,

@@ -1,4 +1,3 @@
-
 import { ApiProperty } from '@nestjs/swagger';
 import { IsObject, ValidateNested } from 'class-validator';
 import { PaginationDto } from './pagination.dto';

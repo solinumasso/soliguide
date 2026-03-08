@@ -1,4 +1,3 @@
-
 import mongoose from "mongoose";
 
 import { ApiPlacePhoto, ModelWithId } from "../../_models";

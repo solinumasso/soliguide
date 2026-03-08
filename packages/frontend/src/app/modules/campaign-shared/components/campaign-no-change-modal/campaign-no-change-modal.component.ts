@@ -1,4 +1,3 @@
-
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";

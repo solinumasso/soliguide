@@ -1,4 +1,3 @@
-
 /**
  * List of available organization logos
  * Based on files in src/assets/images/organizations-logos/fr/

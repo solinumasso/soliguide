@@ -1,4 +1,3 @@
-
 export enum PublicsOther {
   addiction = "addiction",
   all = "all",

@@ -1,4 +1,3 @@
-
 import { CategoryTranslateKeyPipe } from "./category-translate-key.pipe";
 import { Categories } from "@soliguide/common";
 import { readFileSync } from "fs";

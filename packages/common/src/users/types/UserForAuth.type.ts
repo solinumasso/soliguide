@@ -1,4 +1,3 @@
-
 import { ApiOrganization } from "../../organization";
 import { UserRole } from "../enums";
 import { CommonUser } from "../interfaces";

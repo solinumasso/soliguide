@@ -1,4 +1,3 @@
-
 import { LocationAutoCompleteAddress } from "../interfaces";
 import { LocationAreas } from "./LocationAreas.class";
 

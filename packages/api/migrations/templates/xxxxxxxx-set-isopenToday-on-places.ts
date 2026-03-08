@@ -1,4 +1,3 @@
-
 import "../../src/config/database/connection";
 import { Db } from "mongodb";
 import { logger } from "../../src/general/logger";

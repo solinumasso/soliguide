@@ -1,4 +1,3 @@
-
 import { Categories } from "../enums";
 import {
   LEGACY_MOBILITY_CATEGORIES_MAPPING,

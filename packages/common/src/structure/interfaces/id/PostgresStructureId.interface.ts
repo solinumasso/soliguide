@@ -1,4 +1,3 @@
-
 export interface PostgresStructureId {
   id: string;
   original_id: number;

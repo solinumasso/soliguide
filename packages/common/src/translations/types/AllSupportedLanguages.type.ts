@@ -1,4 +1,3 @@
-
 import { SupportedLanguagesCode } from "../enums";
 
 export type AllSupportedLanguages = {

@@ -1,4 +1,3 @@
-
 import { UserRole } from "@soliguide/common";
 
 export type UserRolesForSort = {

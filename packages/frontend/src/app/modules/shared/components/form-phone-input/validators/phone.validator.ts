@@ -1,4 +1,3 @@
-
 import { AbstractControl, ValidationErrors } from "@angular/forms";
 import { Phone, REGEXP, phoneUtil } from "@soliguide/common";
 

@@ -1,6 +1,6 @@
 import { Db } from "mongodb";
 
-import { logger } from "../src/general/logger";
+import { logger } from "../../../src/general/logger";
 import { Categories } from "@soliguide/common";
 
 const message = "Migrate old mobility categories to new ones";

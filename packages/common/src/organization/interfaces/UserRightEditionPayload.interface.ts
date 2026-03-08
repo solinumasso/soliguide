@@ -1,4 +1,3 @@
-
 import { UserRole } from "../../users";
 
 export interface UserRightEditionPayload {

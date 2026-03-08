@@ -1,4 +1,3 @@
-
 export enum CampaignChangesSection {
   services = "services",
   tempClosure = "tempClosure",

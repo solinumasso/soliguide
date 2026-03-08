@@ -1,4 +1,3 @@
-
 import { ExpressRequest, UserPopulateType } from "../../_models";
 import { PosthogClient } from "../../analytics/services";
 import { TRACKED_EVENTS } from "../../analytics/constants";

@@ -1,4 +1,3 @@
-
 import { CONFIG, ExpressRequest } from "../../../src/_models";
 import { RequestInformation } from "../../../src/middleware";
 

@@ -1,4 +1,3 @@
-
 type Action = "EDIT" | "SEARCH" | "SEND" | "RESEND" | "UPDATE" | "VIEW"; // Later on to add "DELETE" | "SHARE" ...
 type Feature =
   | "CAMPAIGN_EMAIL"

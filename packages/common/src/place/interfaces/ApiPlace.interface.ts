@@ -1,4 +1,3 @@
-
 import type { PlaceType, PlaceStatus, PlaceVisibility } from "../enums";
 import type {
   CommonNewPlaceService,

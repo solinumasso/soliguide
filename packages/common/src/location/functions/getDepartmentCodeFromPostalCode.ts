@@ -1,4 +1,3 @@
-
 import { DEPARTMENTS_MAP, FR_EXCEPTIONAL_POSTAL_CODES } from "../constants";
 import { CountryCodes, SoliguideCountries } from "../enums";
 import { AnyDepartmentCode, DepartmentCode } from "../types";

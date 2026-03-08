@@ -1,4 +1,3 @@
-
 /**
  * Check if a route is public (accessible by bots without origin validation)
  * Public routes: medias, sitemap, robots.txt, health

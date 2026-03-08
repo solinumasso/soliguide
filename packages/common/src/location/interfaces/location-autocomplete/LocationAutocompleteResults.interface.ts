@@ -1,4 +1,3 @@
-
 import { LocationAutoCompleteAddress } from "./LocationAutoCompleteAddress.interface";
 
 export interface LocationAutoCompleteResults {

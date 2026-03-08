@@ -1,4 +1,3 @@
-
 import { Categories } from "../enums";
 import { CategoriesSpecificFieldsCategoryMapping } from "../types";
 

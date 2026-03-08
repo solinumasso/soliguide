@@ -1,4 +1,3 @@
-
 import { aggregateUserRightsForAuth } from "../aggregateUserRightsForAuth";
 
 import { UserRole, UserRightStatus } from "@soliguide/common";

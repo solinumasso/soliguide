@@ -1,4 +1,3 @@
-
 import { isWithinInterval } from "date-fns";
 
 export const computeTempIsActive = (tempInfo: {

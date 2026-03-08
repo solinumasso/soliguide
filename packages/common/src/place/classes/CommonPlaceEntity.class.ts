@@ -1,4 +1,3 @@
-
 import { Phone } from "../../phone";
 
 export class CommonPlaceEntity {

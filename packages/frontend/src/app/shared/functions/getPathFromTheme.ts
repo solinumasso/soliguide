@@ -1,4 +1,3 @@
-
 import { LOCAL_PATH_ROUTES_BY_THEME } from "../../modules/static-pages/static-pages.routes";
 import { themeService } from "../services";
 

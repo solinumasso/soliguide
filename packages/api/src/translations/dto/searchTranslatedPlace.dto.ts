@@ -1,4 +1,3 @@
-
 import { SUPPORTED_LANGUAGES } from "@soliguide/common";
 
 import { body } from "express-validator";

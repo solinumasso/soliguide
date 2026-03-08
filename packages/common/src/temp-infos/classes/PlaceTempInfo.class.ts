@@ -1,4 +1,3 @@
-
 import { IPlaceTempInfo } from "../interfaces";
 
 import { BasePlaceTempInfo } from "./BasePlaceTempInfo.class";

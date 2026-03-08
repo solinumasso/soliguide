@@ -1,4 +1,3 @@
-
 import { TrackedEvents } from "../types";
 
 export const TRACKED_EVENTS = {

@@ -1,4 +1,3 @@
-
 import { GeoTypes, CountryCodes } from "../enums";
 import { LocationAutoCompleteAddress } from "../interfaces";
 

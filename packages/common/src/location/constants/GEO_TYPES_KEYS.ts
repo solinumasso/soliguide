@@ -1,4 +1,3 @@
-
 import { SoliguideCountries, GeoTypes, CountryCodes } from "../enums";
 
 export const GEO_TYPES_KEYS: {

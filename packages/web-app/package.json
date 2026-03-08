@@ -34,7 +34,7 @@
   ],
   "devDependencies": {
     "@eslint/compat": "^1.4.1",
-    "@playwright/test": "^1.28.1",
+    "@playwright/test": "^1.58.2",
     "@sveltejs/adapter-auto": "^3.0.0",
     "@sveltejs/adapter-node": "^5.2.0",
     "@sveltejs/kit": "^2.0.0",
@@ -62,7 +62,7 @@
     "vitest": "^2.1.9"
   },
   "dependencies": {
-    "@sentry/sveltekit": "^9.47.1",
+    "@sentry/sveltekit": "^10.42.0",
     "@soliguide/common": "workspace:*",
     "@soliguide/design-system": "workspace:*",
     "date-fns": "^4.1.0",

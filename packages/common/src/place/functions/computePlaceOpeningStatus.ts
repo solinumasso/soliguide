@@ -1,4 +1,3 @@
-
 import { DayName, WEEK_DAYS } from "../../dates";
 import { PlaceOpeningStatus, PlaceStatus } from "../enums";
 import { ApiPlace } from "../interfaces";

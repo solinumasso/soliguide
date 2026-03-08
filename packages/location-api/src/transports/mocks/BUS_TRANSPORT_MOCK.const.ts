@@ -1,4 +1,3 @@
-
 import { HereTransportStation } from "../interfaces/here-station.interface";
 
 export const mockHereTransportStations = {

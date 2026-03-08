@@ -1,4 +1,3 @@
-
 import { SupportedLanguagesCode } from "@soliguide/common";
 
 export const LANGUAGE_NAMES: Record<SupportedLanguagesCode, string> = {

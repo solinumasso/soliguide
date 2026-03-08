@@ -1,4 +1,3 @@
-
 import express from "express";
 import { checkRights, getFilteredData } from "../../middleware";
 import { UserStatus } from "@soliguide/common";

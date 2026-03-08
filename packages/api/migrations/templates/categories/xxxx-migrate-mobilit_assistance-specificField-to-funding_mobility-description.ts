@@ -1,6 +1,6 @@
 import { Db } from "mongodb";
 
-import { logger } from "../src/general/logger";
+import { logger } from "../../../src/general/logger";
 import { Categories, CommonNewPlaceService } from "@soliguide/common";
 import striptags from "striptags";
 

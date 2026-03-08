@@ -1,4 +1,3 @@
-
 import { UserRole } from "@soliguide/common";
 
 export const USER_ROLES_FOR_EDITION = [UserRole.OWNER, UserRole.EDITOR];

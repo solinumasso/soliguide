@@ -1,4 +1,3 @@
-
 import { ApiOrganization, CampaignStatus, RELATIONS } from "@soliguide/common";
 import mongoose, { model } from "mongoose";
 import { ModelWithId } from "../../_models";

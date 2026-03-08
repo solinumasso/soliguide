@@ -1,4 +1,3 @@
-
 import { ONLINE_PLACE } from "../mocks";
 import { computeTempIsActive } from "./computeTempIsActive";
 

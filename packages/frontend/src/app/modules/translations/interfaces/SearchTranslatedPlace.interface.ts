@@ -1,4 +1,3 @@
-
 import { ManageSearchOptions } from "@soliguide/common";
 import { User } from "../../users/classes";
 import { ManageSearch } from "../../manage-common/classes";

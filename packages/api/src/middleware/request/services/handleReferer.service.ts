@@ -1,4 +1,3 @@
-
 import { ExpressRequest } from "../../../_models";
 
 export const handleReferer = (req: ExpressRequest): string | null => {

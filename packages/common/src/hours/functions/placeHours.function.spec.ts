@@ -1,4 +1,3 @@
-
 import { CommonOpeningHours } from "../classes/CommonOpeningHours.class";
 import { is24HoursOpen, isOneDayOpen } from "./placeHours.function";
 

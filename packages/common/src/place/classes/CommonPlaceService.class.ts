@@ -1,4 +1,3 @@
-
 import { CommonOpeningHours, OpeningHoursContext } from "../../hours";
 import { Modalities } from "../../modalities";
 import { Publics } from "../../publics";
