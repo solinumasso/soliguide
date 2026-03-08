@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.125.3](https://github.com/solinumasso/soliguide/compare/v4.125.2...v4.125.3) (2026-03-08)
+
+
+### Bug Fixes
+
+* **api:** fix sentry cron ([8548176](https://github.com/solinumasso/soliguide/commit/8548176da92692c2b36460a708fc20d44d840a77))
+* **location-api:** fix health redis ([b688858](https://github.com/solinumasso/soliguide/commit/b688858437a58182770ad47f8bf6fb298bb6fb8d))
+
+
+
+
+
 ## [4.125.2](https://github.com/solinumasso/soliguide/compare/v4.125.1...v4.125.2) (2026-03-07)
 
 

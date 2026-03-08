@@ -37,6 +37,6 @@
       "packages/*"
     ]
   },
-  "version": "4.125.2",
+  "version": "4.125.3",
   "packageManager": "yarn@4.11.0"
 }
