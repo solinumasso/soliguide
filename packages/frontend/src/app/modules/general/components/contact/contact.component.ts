@@ -1,23 +1,3 @@
-/*
- * Soliguide: Useful information for those who need it
- *
- * SPDX-FileCopyrightText: © 2024 Solinum
- *
- * SPDX-License-Identifier: AGPL-3.0-only
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import {
   AbstractControl,
@@ -32,9 +12,9 @@ import { ToastrService } from "ngx-toastr";
 import { Subscription } from "rxjs";
 
 import {
-  TERRITORIES_NOTIF,
   DEPARTMENTS_MAP,
-  CountryCodes,
+  DEPARTMENT_CODES,
+  DepartmentInfo,
 } from "@soliguide/common";
 import { GeneralService } from "../../services/general.services";
 import { AuthService } from "../../../users/services/auth.service";
@@ -63,10 +43,11 @@ export class ContactComponent implements OnInit, OnDestroy {
   public loading: boolean;
   public submitted: boolean;
 
-  public departmentNumbers = Object.keys(TERRITORIES_NOTIF).sort(
-    (a, b) => parseInt(a, 10) - parseInt(b, 10)
-  );
-  public departmentsList = DEPARTMENTS_MAP[CountryCodes.FR];
+  public departmentNumbers = DEPARTMENT_CODES[THEME_CONFIGURATION.country]
+    .slice()
+    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+  public departmentsList: DepartmentInfo<typeof THEME_CONFIGURATION.country> =
+    DEPARTMENTS_MAP[THEME_CONFIGURATION.country];
 
   constructor(
     private readonly authService: AuthService,
@@ -112,6 +93,7 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.contactForm = this.formBuilder.group({
       email: ["", [Validators.required, EmailValidator]],
       name: ["", [Validators.required]],
+      country: [THEME_CONFIGURATION.country],
       department: ["", [Validators.required]],
       subject: ["", [Validators.required]],
       message: ["", [Validators.required]],

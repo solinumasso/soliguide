@@ -1,23 +1,3 @@
-/*
- * Soliguide: Useful information for those who need it
- *
- * SPDX-FileCopyrightText: © 2024 Solinum
- *
- * SPDX-License-Identifier: AGPL-3.0-only
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
 import { Categories } from "../enums";
 import { ChildCategory, FlatCategoriesTreeNode } from "../interfaces";
 
@@ -787,37 +767,29 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
     id: Categories.MOBILITY,
     children: [
       {
-        id: Categories.CARPOOLING,
+        id: Categories.TRANSPORTATION_MOBILITY,
         rank: 100,
       },
       {
-        id: Categories.PROVISION_OF_VEHICLES,
-        rank: 200,
-      },
-      {
-        id: Categories.CHAUFFEUR_DRIVEN_TRANSPORT,
-        rank: 300,
-      },
-      {
-        id: Categories.MOBILITY_ASSISTANCE,
+        id: Categories.MOBILITY_SUPPORT,
         rank: 400,
+      },
+      {
+        id: Categories.MOBILITY_FINANCING,
+        rank: 600,
       },
     ],
   },
   {
-    id: Categories.CARPOOLING,
+    id: Categories.TRANSPORTATION_MOBILITY,
     children: [],
   },
   {
-    id: Categories.PROVISION_OF_VEHICLES,
+    id: Categories.MOBILITY_SUPPORT,
     children: [],
   },
   {
-    id: Categories.CHAUFFEUR_DRIVEN_TRANSPORT,
-    children: [],
-  },
-  {
-    id: Categories.MOBILITY_ASSISTANCE,
+    id: Categories.MOBILITY_FINANCING,
     children: [],
   },
 ];
@@ -847,6 +819,23 @@ export const CATEGORIES_SOLIGUIDE_FR: FlatCategoriesTreeNode[] = [
     ],
   },
   {
+    id: Categories.MOBILITY,
+    children: [
+      {
+        id: Categories.DRIVING_LICENSE,
+        rank: 500,
+      },
+      {
+        id: Categories.PERSONAL_VEHICLE_ACCESS,
+        rank: 200,
+      },
+      {
+        id: Categories.VEHICLE_MAINTENANCE,
+        rank: 300,
+      },
+    ],
+  },
+  {
     id: Categories.TRAINING_AND_JOBS,
     children: [
       {
@@ -869,6 +858,18 @@ export const CATEGORIES_SOLIGUIDE_FR: FlatCategoriesTreeNode[] = [
   },
   {
     id: Categories.PUBLIC_WRITER,
+    children: [],
+  },
+  {
+    id: Categories.DRIVING_LICENSE,
+    children: [],
+  },
+  {
+    id: Categories.PERSONAL_VEHICLE_ACCESS,
+    children: [],
+  },
+  {
+    id: Categories.VEHICLE_MAINTENANCE,
     children: [],
   },
 ];

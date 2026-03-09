@@ -27,8 +27,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Soliguide is a social impact platform that references all services, initiatives and resources for people in need. It's a monorepo managed by Lerna 8 and Nx 19, using Yarn 4 workspaces.
 
-**License**: AGPL-3.0-only with REUSE compliance required for all files.
-
 ## Common Commands
 
 ### Development Setup
@@ -118,19 +116,6 @@ yarn workspace @soliguide/api migrate-status
 ./packages/api/db.sh dump -t
 ```
 
-### License Management
-
-```bash
-# Add license headers to all files
-yarn license:add
-
-# Check license compliance
-yarn license:check
-
-# For files that cannot have headers, use:
-./scripts/reuse-annotate.sh --force-dot-license path/to/file
-```
-
 ## Architecture
 
 ### Monorepo Structure
@@ -143,7 +128,7 @@ packages/
 ├── frontend/         - Angular 17 admin interface
 ├── widget/           - Angular 17 embeddable widget
 ├── web-app/          - SvelteKit public interface (SSR)
-├── design-system/    - Svelte component library with Storybook
+├── design-system/    - Svelte component library
 ├── common/           - Shared TypeScript types and utilities (dual build: CJS + ESM)
 └── common-angular/   - Shared Angular services
 ```
@@ -162,12 +147,12 @@ common (base types & utilities)
 
 ### Key Technologies
 
-- **API**: Express, MongoDB (Mongoose), Typesense, RabbitMQ, Airtable sync, S3, Redis caching
+- **API**: Express, MongoDB (Mongoose), Typesense, RabbitMQ, Airtable sync, S3
 - **Location API**: NestJS, Fastify, Redis
 - **Soligare**: NestJS, PostgreSQL
 - **Frontend/Widget**: Angular 17, Bootstrap 5, Leaflet, Algolia, ngx-translate
 - **Web-app**: SvelteKit, i18next, Playwright E2E, Vitest
-- **Design System**: Svelte 4, Storybook, SASS
+- **Design System**: Svelte 4, SASS
 
 ### Database Architecture
 
@@ -175,7 +160,6 @@ common (base types & utilities)
 - **Migrations**: TypeScript migrations in `packages/api/migrations/` using migrate-mongo
 - **Test DB**: `soliguide_test` with dump in `data/soliguide_db_test.gzip`
 - **PostgreSQL**: Soligare duplicate detection only
-- **Redis**: Location API caching layer
 - **Typesense 27.1**: Search engine for places
 
 ### Multi-Language Support
@@ -231,8 +215,17 @@ test(location-api): add tests for geocoding service
 ### Environments
 
 - **Local**: Dev environment with Docker Compose
-- **Demo**: Release testing (`fr.demo.soliguide.dev`)
-- **Production**: `soliguide.fr`
+- **Staging**: Clever Cloud staging (`*.staging.soliguide.dev`)
+- **Demo**: Qovery test environment (`*.demo.soliguide.dev`) - deployed from develop branch
+- **Production**: Clever Cloud prod (`soliguide.fr`, `soliguia.es`, `soliguia.cat`, `soliguia.ad`)
+
+#### Accessing PR Environment URLs
+
+After deployment, environment URLs are available in the PR via **GitHub Deployments** (not public comments):
+
+- Go to your PR
+- Scroll to the "Deployments" section
+- Click on the environment to see all URLs
 
 ## Important Development Notes
 
@@ -300,8 +293,6 @@ yarn workspace @soliguide/web-app test -- path/to/test.spec.ts
 Full local stack with Docker Compose includes:
 
 - MongoDB 7.0 (replica set)
-- Typesense 27.1
-- Redis
 - RabbitMQ
 - All can be started with: `docker compose up -d`
 
@@ -368,7 +359,6 @@ Required: Node.js 22+ (specified in package.json engines)
 
 - **Architecture**: NestJS modular with dependency injection
 - **Purpose**: Geocoding, address search, transport info, holiday calculations
-- **Redis**: Used for caching with decorators
 - **Swagger**: API docs at `/api`
 
 ### Web-app (@soliguide/web-app)
@@ -382,7 +372,7 @@ Required: Node.js 22+ (specified in package.json engines)
 
 ### Design System (@soliguide/design-system)
 
-- **Storybook**: Run with `yarn workspace @soliguide/design-system storybook`
+- **Dev server**: Run with `yarn workspace @soliguide/design-system dev`
 - **Components**: Reusable Svelte components with i18next support
 - **Build**: Outputs library consumable by web-app
 

@@ -1,21 +1,3 @@
-# Soliguide: Useful information for those who need it
-#
-# SPDX-FileCopyrightText: © 2024 Solinum
-#
-# SPDX-License-Identifier: AGPL-3.0-only
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as published
-# by the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
 name: _Tag container images
 
 on:
@@ -71,7 +53,12 @@ jobs:
         if: ${{ inputs.deploy_api }}
         run: |
           export TARGET_IMAGE=$(echo "$SOURCE_IMAGE" | sed -E 's/:.+$/:${{ inputs.environment }}/')
-          skopeo copy "docker://$SOURCE_IMAGE" "docker://$TARGET_IMAGE"
+          if [ "$SOURCE_IMAGE" != "$TARGET_IMAGE" ]; then
+            echo "Copying $SOURCE_IMAGE to $TARGET_IMAGE"
+            skopeo copy "docker://$SOURCE_IMAGE" "docker://$TARGET_IMAGE"
+          else
+            echo "Source and target images are the same ($SOURCE_IMAGE), skipping copy"
+          fi
         env:
           SOURCE_IMAGE: ${{ inputs.registry }}/${{ github.repository }}/api:${{ inputs.tag }}
 
@@ -79,7 +66,12 @@ jobs:
         if: ${{ inputs.deploy_frontend }}
         run: |
           export TARGET_IMAGE=$(echo "$SOURCE_IMAGE" | sed -E 's/:.+$/:${{ inputs.environment }}/')
-          skopeo copy "docker://$SOURCE_IMAGE" "docker://$TARGET_IMAGE"
+          if [ "$SOURCE_IMAGE" != "$TARGET_IMAGE" ]; then
+            echo "Copying $SOURCE_IMAGE to $TARGET_IMAGE"
+            skopeo copy "docker://$SOURCE_IMAGE" "docker://$TARGET_IMAGE"
+          else
+            echo "Source and target images are the same ($SOURCE_IMAGE), skipping copy"
+          fi
         env:
           SOURCE_IMAGE: ${{ inputs.registry }}/${{ github.repository }}/frontend:${{ inputs.tag }}
 
@@ -87,7 +79,12 @@ jobs:
         if: ${{ inputs.deploy_location-api }}
         run: |
           export TARGET_IMAGE=$(echo "$SOURCE_IMAGE" | sed -E 's/:.+$/:${{ inputs.environment }}/')
-          skopeo copy "docker://$SOURCE_IMAGE" "docker://$TARGET_IMAGE"
+          if [ "$SOURCE_IMAGE" != "$TARGET_IMAGE" ]; then
+            echo "Copying $SOURCE_IMAGE to $TARGET_IMAGE"
+            skopeo copy "docker://$SOURCE_IMAGE" "docker://$TARGET_IMAGE"
+          else
+            echo "Source and target images are the same ($SOURCE_IMAGE), skipping copy"
+          fi
         env:
           SOURCE_IMAGE: ${{ inputs.registry }}/${{ github.repository }}/location-api:${{ inputs.tag }}
 
@@ -95,7 +92,12 @@ jobs:
         if: ${{ inputs.deploy_frontend }}
         run: |
           export TARGET_IMAGE=$(echo "$SOURCE_IMAGE" | sed -E 's/:.+-frontend$/:${{ inputs.environment }}-frontend/')
-          skopeo copy "docker://$SOURCE_IMAGE" "docker://$TARGET_IMAGE"
+          if [ "$SOURCE_IMAGE" != "$TARGET_IMAGE" ]; then
+            echo "Copying $SOURCE_IMAGE to $TARGET_IMAGE"
+            skopeo copy "docker://$SOURCE_IMAGE" "docker://$TARGET_IMAGE"
+          else
+            echo "Source and target images are the same ($SOURCE_IMAGE), skipping copy"
+          fi
         env:
           SOURCE_IMAGE: ${{ inputs.registry }}/${{ github.repository }}/maintenance:${{ inputs.tag }}-frontend
 
@@ -103,7 +105,12 @@ jobs:
         if: ${{ inputs.deploy_widget }}
         run: |
           export TARGET_IMAGE=$(echo "$SOURCE_IMAGE" | sed -E 's/:.+-widget$/:${{ inputs.environment }}-widget/')
-          skopeo copy "docker://$SOURCE_IMAGE" "docker://$TARGET_IMAGE"
+          if [ "$SOURCE_IMAGE" != "$TARGET_IMAGE" ]; then
+            echo "Copying $SOURCE_IMAGE to $TARGET_IMAGE"
+            skopeo copy "docker://$SOURCE_IMAGE" "docker://$TARGET_IMAGE"
+          else
+            echo "Source and target images are the same ($SOURCE_IMAGE), skipping copy"
+          fi
         env:
           SOURCE_IMAGE: ${{ inputs.registry }}/${{ github.repository }}/maintenance:${{ inputs.tag }}-widget
 
@@ -111,7 +118,12 @@ jobs:
         if: ${{ inputs.deploy_soligare }}
         run: |
           export TARGET_IMAGE=$(echo "$SOURCE_IMAGE" | sed -E 's/:.+$/:${{ inputs.environment }}/')
-          skopeo copy "docker://$SOURCE_IMAGE" "docker://$TARGET_IMAGE"
+          if [ "$SOURCE_IMAGE" != "$TARGET_IMAGE" ]; then
+            echo "Copying $SOURCE_IMAGE to $TARGET_IMAGE"
+            skopeo copy "docker://$SOURCE_IMAGE" "docker://$TARGET_IMAGE"
+          else
+            echo "Source and target images are the same ($SOURCE_IMAGE), skipping copy"
+          fi
         env:
           SOURCE_IMAGE: ${{ inputs.registry }}/${{ github.repository }}/soligare:${{ inputs.tag }}
 
@@ -119,7 +131,12 @@ jobs:
         if: ${{ inputs.deploy_web-app }}
         run: |
           export TARGET_IMAGE=$(echo "$SOURCE_IMAGE" | sed -E 's/:.+$/:${{ inputs.environment }}/')
-          skopeo copy "docker://$SOURCE_IMAGE" "docker://$TARGET_IMAGE"
+          if [ "$SOURCE_IMAGE" != "$TARGET_IMAGE" ]; then
+            echo "Copying $SOURCE_IMAGE to $TARGET_IMAGE"
+            skopeo copy "docker://$SOURCE_IMAGE" "docker://$TARGET_IMAGE"
+          else
+            echo "Source and target images are the same ($SOURCE_IMAGE), skipping copy"
+          fi
         env:
           SOURCE_IMAGE: ${{ inputs.registry }}/${{ github.repository }}/web-app:${{ inputs.tag }}
 
@@ -127,6 +144,11 @@ jobs:
         if: ${{ inputs.deploy_widget }}
         run: |
           export TARGET_IMAGE=$(echo "$SOURCE_IMAGE" | sed -E 's/:.+$/:${{ inputs.environment }}/')
-          skopeo copy "docker://$SOURCE_IMAGE" "docker://$TARGET_IMAGE"
+          if [ "$SOURCE_IMAGE" != "$TARGET_IMAGE" ]; then
+            echo "Copying $SOURCE_IMAGE to $TARGET_IMAGE"
+            skopeo copy "docker://$SOURCE_IMAGE" "docker://$TARGET_IMAGE"
+          else
+            echo "Source and target images are the same ($SOURCE_IMAGE), skipping copy"
+          fi
         env:
           SOURCE_IMAGE: ${{ inputs.registry }}/${{ github.repository }}/widget:${{ inputs.tag }}

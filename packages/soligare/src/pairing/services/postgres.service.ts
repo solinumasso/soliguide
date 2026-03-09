@@ -1,23 +1,3 @@
-/*
- * Soliguide: Useful information for those who need it
- *
- * SPDX-FileCopyrightText: © 2024 Solinum
- *
- * SPDX-License-Identifier: AGPL-3.0-only
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
 import { Global, Injectable, OnApplicationShutdown } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { captureException, captureMessage } from '@sentry/nestjs';
@@ -29,7 +9,7 @@ export class PostgresService implements OnApplicationShutdown {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private readonly connection: postgres.Sql<any>;
 
-  constructor(private configService: ConfigService) {
+  constructor(private readonly configService: ConfigService) {
     try {
       // skipcq: JS-0339
       const username: string = this.configService.get<string>(
@@ -75,7 +55,7 @@ export class PostgresService implements OnApplicationShutdown {
 
   async checkConnection() {
     try {
-      await this.connection.begin(async (sql) => {
+      await this.connection.begin(async (sql: any) => {
         await sql`SELECT NOW()`;
       });
     } catch (error) {

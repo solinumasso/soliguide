@@ -1,27 +1,9 @@
-/*
- * Soliguide: Useful information for those who need it
- *
- * SPDX-FileCopyrightText: © 2024 Solinum
- *
- * SPDX-License-Identifier: AGPL-3.0-only
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
-import { PlaceStatus } from "@soliguide/common";
+import mongoose from "mongoose";
+import { ApiPlace, PlaceStatus } from "@soliguide/common";
 import { PlaceModel } from "../models";
 import { logger } from "../../general/logger";
 import { isPlaceOpenToday, isServiceOpenToday } from "../utils";
+import { ModelWithId } from "../../_models";
 
 export const setIsOpenToday = async () => {
   /**
@@ -44,18 +26,30 @@ export const setIsOpenToday = async () => {
   let cpt = 0;
   let placeCpt = 0;
   let serviceCpt = 0;
+  let lastId: mongoose.Types.ObjectId | null = null;
 
   while (loopCpt < nPotentiallyOpenedPlaces) {
-    const places = await PlaceModel.find({
+    const paginatedFilter: any = {
+      ...(lastId ? { _id: { $gt: lastId } } : {}),
       $or: [
         { position: { $exists: true, $ne: null } },
         { "parcours.position": { $exists: true, $ne: null } },
       ],
       status: { $nin: [PlaceStatus.DRAFT, PlaceStatus.PERMANENTLY_CLOSED] },
-    })
+    };
+
+    const places = await PlaceModel.find<ModelWithId<ApiPlace>>(paginatedFilter)
       .sort({ _id: 1 })
-      .skip(loopCpt)
-      .limit(batchSize);
+      // MODIF 1 : plus de .skip()
+      .limit(batchSize)
+      // MODIF 2 : .lean()
+      .lean<Array<ModelWithId<ApiPlace>>>();
+
+    if (places.length === 0) {
+      break;
+    }
+
+    lastId = places[places.length - 1]._id;
 
     for (const place of places) {
       operations.push({

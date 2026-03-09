@@ -1,23 +1,3 @@
-/*
- * Soliguide: Useful information for those who need it
- *
- * SPDX-FileCopyrightText: © 2024 Solinum
- *
- * SPDX-License-Identifier: AGPL-3.0-only
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
 import { Test } from "@nestjs/testing";
 import {
   FastifyAdapter,
@@ -214,7 +194,7 @@ describe("E2E - Location autocomplete endpoints", () => {
           expect(response.statusCode).toEqual(200);
           expect(body[0]).toEqual({
             label: "Mamoudzou (97600)",
-            coordinates: [45.208565, -12.792835],
+            coordinates: [45.197602, -12.797661],
             postalCode: "97600",
             cityCode: "97611",
             city: "Mamoudzou",

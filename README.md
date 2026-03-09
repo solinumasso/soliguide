@@ -42,8 +42,6 @@ We are (almost) all using VSCode, here's a list of useful plugins:
 - ESLint https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
 - Prettier - https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
 
-For license header and [REUSE](https://reuse.software/) compliance we're using [REUSE Tool](https://github.com/fsfe/reuse-tool). If the CI complains about the non-REUSE compliance you may need to install the tool.
-
 For Windows only:
 
 - You will need to install bash for windows. We recommend using the last ubuntu LTS release. You can find everything you need on the windows store. Basically, it will be used to run the app and use all the scripts.

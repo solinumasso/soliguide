@@ -1,23 +1,3 @@
-/*
- * Soliguide: Useful information for those who need it
- *
- * SPDX-FileCopyrightText: © 2024 Solinum
- *
- * SPDX-License-Identifier: AGPL-3.0-only
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
 import mongoose from "mongoose";
 
 import {
@@ -26,9 +6,7 @@ import {
   UserStatus,
 } from "@soliguide/common";
 
-import { CampaignEmailsSchema } from "./campaignEmails.model";
 import { User } from "../../_models/users";
-import { CAMPAIGN_EMAILS_CONTENT_FOR_USERS } from "./default_values";
 import { languagesValidator } from "./validators";
 import { PhoneSchema } from "../../place/models";
 
@@ -42,53 +20,6 @@ const UserSchema = new mongoose.Schema<User>(
     blocked: {
       default: false,
       type: Boolean,
-    },
-
-    campaigns: {
-      MAJ_ETE_2022: {
-        default: CAMPAIGN_EMAILS_CONTENT_FOR_USERS,
-        type: CampaignEmailsSchema,
-      },
-
-      MAJ_ETE_2023: {
-        default: CAMPAIGN_EMAILS_CONTENT_FOR_USERS,
-        type: CampaignEmailsSchema,
-      },
-
-      MAJ_ETE_2024: {
-        default: CAMPAIGN_EMAILS_CONTENT_FOR_USERS,
-        type: CampaignEmailsSchema,
-      },
-
-      MAJ_HIVER_2022: {
-        default: CAMPAIGN_EMAILS_CONTENT_FOR_USERS,
-        type: CampaignEmailsSchema,
-      },
-
-      MAJ_HIVER_2023: {
-        default: CAMPAIGN_EMAILS_CONTENT_FOR_USERS,
-        type: CampaignEmailsSchema,
-      },
-
-      END_YEAR_2024: {
-        default: CAMPAIGN_EMAILS_CONTENT_FOR_USERS,
-        type: CampaignEmailsSchema,
-      },
-
-      MID_YEAR_2025: {
-        default: CAMPAIGN_EMAILS_CONTENT_FOR_USERS,
-        type: CampaignEmailsSchema,
-      },
-
-      END_YEAR_2025: {
-        default: CAMPAIGN_EMAILS_CONTENT_FOR_USERS,
-        type: CampaignEmailsSchema,
-      },
-
-      UKRAINE_2022: {
-        default: CAMPAIGN_EMAILS_CONTENT_FOR_USERS,
-        type: CampaignEmailsSchema,
-      },
     },
 
     // Restrictions for API users

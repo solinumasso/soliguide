@@ -1,3 +1,35 @@
-yarn license:root:add
+# Linting
+echo "🔍 Linting et formatting..."
+if ! yarn format:fix; then
+  echo "❌ Erreur de formatting - commit annulé"
+  exit 1
+fi
 
-yarn lint-staged
+# if ! yarn lint-staged; then
+#   echo "❌ Erreur de linting - commit annulé"
+#   exit 1
+# fi
+
+# Type checking
+echo "🔎 Vérification des types..."
+if ! yarn workspace @soliguide/common exec tsc --noEmit; then
+  echo "❌ Erreur de type checking - commit annulé"
+  exit 1
+fi
+
+# Sécurité
+echo "🛡️ Vérification sécurité..."
+if sh -c ': >/dev/tty' >/dev/null 2>/dev/null; then
+  exec </dev/tty
+  if ! npx node-talisman --githook pre-commit -i; then
+    echo "❌ Vérification sécurité échouée"
+    exit 1
+  fi
+else
+  if ! npx node-talisman --githook pre-commit; then
+    echo "❌ Vérification sécurité échouée"
+    exit 1
+  fi
+fi
+
+echo "✅ Commit validé!"

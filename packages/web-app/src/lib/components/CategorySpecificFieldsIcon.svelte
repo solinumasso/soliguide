@@ -37,7 +37,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     FaceRetouchingNatural,
     CleanHands,
     Badge,
-    Blind,
     SportsFootball,
     type types as DSTypes
   } from '@soliguide/design-system';
@@ -65,7 +64,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     otherProductTypePrecisions: ShoppingCart,
     hygieneProductType: CleanHands,
     jobsList: BusinessCenter,
-    mobilityAssistanceName: Blind,
     nationalOriginProductType: Flag,
     organicOriginProductType: EmojiNature,
     serviceStyleType: DinnerDining,

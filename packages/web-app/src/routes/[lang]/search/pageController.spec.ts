@@ -1,23 +1,3 @@
-/*
- * Soliguide: Useful information for those who need it
- *
- * SPDX-FileCopyrightText: © 2024 Solinum
- *
- * SPDX-License-Identifier: AGPL-3.0-only
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
 import { describe, it, expect, beforeEach, afterEach, vi, vitest } from 'vitest';
 import { get } from 'svelte/store';
 import { getSearchPageController } from './pageController';
@@ -31,7 +11,8 @@ import {
   CountryCodes,
   SupportedLanguagesCode,
   LocationAutoCompleteAddress,
-  type SearchAutoComplete
+  type SearchSuggestion,
+  AutoCompleteType
 } from '@soliguide/common';
 import { posthogService } from '$lib/services/posthogService';
 import type { LocationSuggestion } from '$lib/models/locationSuggestion';
@@ -128,30 +109,38 @@ const otherSampleSuggestionsServiceResult: LocationSuggestion[] = [
   }
 ];
 
-const categoryApiData: SearchAutoComplete = {
-  categories: [
-    {
-      categoryId: Categories.HYGIENE_PRODUCTS,
-      expressionId: null,
-      label: 'HYGIENE_PRODUCTS',
-      seo: 'produits-hygiene'
-    },
-    {
-      categoryId: Categories.DIGITAL_TOOLS_TRAINING,
-      expressionId: null,
-      label: 'DIGITAL_TOOLS_TRAINING',
-      seo: 'formation-numerique'
-    }
-  ],
-  terms: [
-    {
-      categoryId: null,
-      expressionId: 'pmi',
-      label: 'PMI - Protection maternelle et Infantile',
-      seo: 'pmi-protection-maternelle-infantile'
-    }
-  ]
-};
+const categoryApiData: SearchSuggestion[] = [
+  {
+    sourceId: 'hygiene_products',
+    lang: SupportedLanguagesCode.FR,
+    label: "Produits d'hygiène",
+    categoryId: Categories.HYGIENE_PRODUCTS,
+    slug: 'produits-hygiene',
+    country: CountryCodes.FR,
+    synonyms: [],
+    type: AutoCompleteType.CATEGORY,
+    content: '',
+    seoTitle: 'HYGIENE_PRODUCTS',
+    seoDescription: '',
+    createdAt: new Date(),
+    updatedAt: new Date()
+  },
+  {
+    sourceId: 'digital_tools_training',
+    lang: SupportedLanguagesCode.FR,
+    label: 'Formation numérique',
+    categoryId: Categories.DIGITAL_TOOLS_TRAINING,
+    slug: 'formation-numerique',
+    country: CountryCodes.FR,
+    synonyms: [],
+    type: AutoCompleteType.CATEGORY,
+    content: '',
+    seoTitle: 'DIGITAL_TOOLS_TRAINING',
+    seoDescription: '',
+    createdAt: new Date(),
+    updatedAt: new Date()
+  }
+];
 
 const sampleCategorySuggestions: Categories[] = [
   Categories.HYGIENE_PRODUCTS,
@@ -649,28 +638,53 @@ describe('Search page', () => {
         });
 
         it('When one of the result matches the category param, it is selected', async () => {
-          const categoryApiResult = {
-            categories: [
-              {
-                categoryId: Categories.HEALTH,
-                expressionId: null,
-                label: 'HEALTH',
-                seo: 'sante'
-              },
-              {
-                categoryId: Categories.HYGIENE_PRODUCTS,
-                expressionId: null,
-                label: 'HYGIENE_PRODUCTS',
-                seo: 'produits-hygiene'
-              },
-              {
-                categoryId: Categories.DIGITAL_TOOLS_TRAINING,
-                expressionId: null,
-                label: 'DIGITAL_TOOLS_TRAINING',
-                seo: 'formation-numerique'
-              }
-            ]
-          };
+          const categoryApiResult: SearchSuggestion[] = [
+            {
+              sourceId: 'health',
+              lang: SupportedLanguagesCode.FR,
+              label: 'Santé',
+              categoryId: Categories.HEALTH,
+              slug: 'sante',
+              country: CountryCodes.FR,
+              synonyms: [],
+              type: AutoCompleteType.CATEGORY,
+              content: '',
+              seoTitle: 'HEALTH',
+              seoDescription: '',
+              createdAt: new Date(),
+              updatedAt: new Date()
+            },
+            {
+              sourceId: 'hygiene_products',
+              lang: SupportedLanguagesCode.FR,
+              label: "Produits d'hygiène",
+              categoryId: Categories.HYGIENE_PRODUCTS,
+              slug: 'produits-hygiene',
+              country: CountryCodes.FR,
+              synonyms: [],
+              type: AutoCompleteType.CATEGORY,
+              content: '',
+              seoTitle: 'HYGIENE_PRODUCTS',
+              seoDescription: '',
+              createdAt: new Date(),
+              updatedAt: new Date()
+            },
+            {
+              sourceId: 'digital_tools_training',
+              lang: SupportedLanguagesCode.FR,
+              label: 'Formation numérique',
+              categoryId: Categories.DIGITAL_TOOLS_TRAINING,
+              slug: 'formation-numerique',
+              country: CountryCodes.FR,
+              synonyms: [],
+              type: AutoCompleteType.CATEGORY,
+              content: '',
+              seoTitle: 'DIGITAL_TOOLS_TRAINING',
+              seoDescription: '',
+              createdAt: new Date(),
+              updatedAt: new Date()
+            }
+          ];
           feedWith(locationApiResult);
           feedWithCategoriesData(categoryApiResult);
           await pageState.init(CountryCodes.FR, SupportedLanguagesCode.FR, pageParams);
@@ -678,22 +692,38 @@ describe('Search page', () => {
         });
 
         it('When none of the results matches the category param, no category is selected', async () => {
-          const categoryApiResult = {
-            categories: [
-              {
-                categoryId: Categories.HYGIENE_PRODUCTS,
-                expressionId: null,
-                label: 'HYGIENE_PRODUCTS',
-                seo: 'produits-hygiene'
-              },
-              {
-                categoryId: Categories.DIGITAL_TOOLS_TRAINING,
-                expressionId: null,
-                label: 'DIGITAL_TOOLS_TRAINING',
-                seo: 'formation-numerique'
-              }
-            ]
-          };
+          const categoryApiResult: SearchSuggestion[] = [
+            {
+              sourceId: 'hygiene_products',
+              lang: SupportedLanguagesCode.FR,
+              label: "Produits d'hygiène",
+              categoryId: Categories.HYGIENE_PRODUCTS,
+              slug: 'produits-hygiene',
+              country: CountryCodes.FR,
+              synonyms: [],
+              type: AutoCompleteType.CATEGORY,
+              content: '',
+              seoTitle: 'HYGIENE_PRODUCTS',
+              seoDescription: '',
+              createdAt: new Date(),
+              updatedAt: new Date()
+            },
+            {
+              sourceId: 'digital_tools_training',
+              lang: SupportedLanguagesCode.FR,
+              label: 'Formation numérique',
+              categoryId: Categories.DIGITAL_TOOLS_TRAINING,
+              slug: 'formation-numerique',
+              country: CountryCodes.FR,
+              synonyms: [],
+              type: AutoCompleteType.CATEGORY,
+              content: '',
+              seoTitle: 'DIGITAL_TOOLS_TRAINING',
+              seoDescription: '',
+              createdAt: new Date(),
+              updatedAt: new Date()
+            }
+          ];
           feedWith(locationApiResult);
           feedWithCategoriesData(categoryApiResult);
           await pageState.init(CountryCodes.FR, SupportedLanguagesCode.FR, pageParams);
@@ -790,28 +820,53 @@ describe('Search page', () => {
       });
 
       it('If we modify location selection, we go directly to results page instead of going to step 2 because we already have a category selected', async () => {
-        const categoryApiResult = {
-          categories: [
-            {
-              categoryId: Categories.HEALTH,
-              expressionId: null,
-              label: 'HEALTH',
-              seo: 'sante'
-            },
-            {
-              categoryId: Categories.HYGIENE_PRODUCTS,
-              expressionId: null,
-              label: 'HYGIENE_PRODUCTS',
-              seo: 'produits-hygiene'
-            },
-            {
-              categoryId: Categories.DIGITAL_TOOLS_TRAINING,
-              expressionId: null,
-              label: 'DIGITAL_TOOLS_TRAINING',
-              seo: 'formation-numerique'
-            }
-          ]
-        };
+        const categoryApiResult: SearchSuggestion[] = [
+          {
+            sourceId: 'health',
+            lang: SupportedLanguagesCode.FR,
+            label: 'Santé',
+            categoryId: Categories.HEALTH,
+            slug: 'sante',
+            country: CountryCodes.FR,
+            synonyms: [],
+            type: AutoCompleteType.CATEGORY,
+            content: '',
+            seoTitle: 'HEALTH',
+            seoDescription: '',
+            createdAt: new Date(),
+            updatedAt: new Date()
+          },
+          {
+            sourceId: 'hygiene_products',
+            lang: SupportedLanguagesCode.FR,
+            label: "Produits d'hygiène",
+            categoryId: Categories.HYGIENE_PRODUCTS,
+            slug: 'produits-hygiene',
+            country: CountryCodes.FR,
+            synonyms: [],
+            type: AutoCompleteType.CATEGORY,
+            content: '',
+            seoTitle: 'HYGIENE_PRODUCTS',
+            seoDescription: '',
+            createdAt: new Date(),
+            updatedAt: new Date()
+          },
+          {
+            sourceId: 'digital_tools_training',
+            lang: SupportedLanguagesCode.FR,
+            label: 'Formation numérique',
+            categoryId: Categories.DIGITAL_TOOLS_TRAINING,
+            slug: 'formation-numerique',
+            country: CountryCodes.FR,
+            synonyms: [],
+            type: AutoCompleteType.CATEGORY,
+            content: '',
+            seoTitle: 'DIGITAL_TOOLS_TRAINING',
+            seoDescription: '',
+            createdAt: new Date(),
+            updatedAt: new Date()
+          }
+        ];
         feedWith(locationApiResult);
         feedWithCategoriesData(categoryApiResult);
         await pageState.init(CountryCodes.FR, SupportedLanguagesCode.FR, pageParams);

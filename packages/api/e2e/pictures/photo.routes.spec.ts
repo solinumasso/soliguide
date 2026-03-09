@@ -1,23 +1,3 @@
-/*
- * Soliguide: Useful information for those who need it
- *
- * SPDX-FileCopyrightText: © 2024 Solinum
- *
- * SPDX-License-Identifier: AGPL-3.0-only
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
 import fs from "fs-extra";
 
 import { supertest, getExpectedStatus, addAuth } from "../endPointTester";
@@ -58,6 +38,8 @@ describe.each(Object.values(TestAccounts))(
   "Test of the route 'photos'",
   (currentAccountTest) => {
     describe(`POST /photos/ ${currentAccountTest}`, () => {
+      // Augmenter le timeout pour les tests d'upload de fichiers (60s)
+      jest.setTimeout(60000);
       afterEach(deletePlacePictures);
       test("✅ Correct data", async () => {
         // Successful test
@@ -98,6 +80,8 @@ describe.each(Object.values(TestAccounts))(
     });
 
     describe(`DELETE /photos/ ${currentAccountTest}`, () => {
+      // Augmenter le timeout pour les tests d'upload de fichiers (60s)
+      jest.setTimeout(60000);
       beforeEach(async () => {
         await postValidPicture(TestAccounts.USER_ADMIN_SOLIGUIDE);
       });

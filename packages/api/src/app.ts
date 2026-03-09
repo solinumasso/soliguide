@@ -1,42 +1,20 @@
-/*
- * Soliguide: Useful information for those who need it
- *
- * SPDX-FileCopyrightText: © 2024 Solinum
- *
- * SPDX-License-Identifier: AGPL-3.0-only
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
 // Import first to make it tracks as much as possible
 // see https://docs.sentry.io/platforms/javascript/guides/express/install/esm-without-import/
 import "./instrument";
+import { connectToDatabase } from "./config/database/connection";
 
 import express, { NextFunction, Request, Response } from "express";
 import compression from "compression";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import swaggerJSDoc from "swagger-jsdoc";
-
 import { anonymizeDb } from "./config/database/anonymizeDb";
 
 import { httpLogger, logger } from "./general/logger";
-
 import { CONFIG, ExpressRequest, ExpressResponse } from "./_models";
 
 logger.info(CONFIG);
 
-import { connectToDatabase } from "./config/database/connection";
 import "./config/i18n.config";
 
 import { s3Middleware } from "./general/services/s3";
@@ -48,7 +26,6 @@ import {
   handleRequest,
   setUserForLogs,
   handleAdminRight,
-  originGuard,
   handleApiRight,
 } from "./middleware";
 
@@ -87,9 +64,6 @@ import autoExportRoute from "./autoexport/routes/autoexport.routes";
 // Campaign
 import campaign from "./campaign/routes/campaign.routes";
 
-// Emailing
-import emailing from "./emailing/routes/emailing.routes";
-
 // Stats
 import stats from "./stats/routes/stats.routes";
 
@@ -109,6 +83,8 @@ import { serve, setup } from "swagger-ui-express";
 import autocompleteSuggestionService from "./search/services/search-suggestions.service";
 import SearchSuggestionsController from "./search/controllers/search-suggestions.controller";
 import { CountryCodes, SupportedLanguagesCode } from "@soliguide/common";
+import { initializeCronJobs } from "./cron/cron-manager";
+import { setIsOpenToday } from "./place/services/isOpenToday.service";
 
 const _app = express();
 
@@ -177,17 +153,9 @@ Disallow: /`);
 // First middlewares
 _app.use([
   getCurrentUser, // retrieve current user
-  handleRequest, // retrieve request informations like origin, referer, ...
+  handleRequest, // retrieve request informations like origin, referer, and validates origin for non-public routes
   setUserForLogs, // create a user for Log
 ]);
-
-_app.use((req: ExpressRequest, res, next) => {
-  if (isPublicRoute(req.path)) {
-    next();
-  } else {
-    originGuard(req, res, next);
-  }
-});
 
 // Auth middlewares
 _app.use([
@@ -225,7 +193,6 @@ _app.use("/stats", stats);
 
 _app.use("/campaign", campaign);
 
-_app.use("/emailing", emailing);
 _app.use("/v2/categories", categories);
 
 _app.use("/v2/soligare", soligare);
@@ -273,7 +240,9 @@ _app.use((req: Request, res: Response) => {
       SupportedLanguagesCode.FR
     );
     if (CONFIG.ENV !== "test" && CONFIG.CRON_ENABLED) {
-      await import("./cron/cron-manager");
+      console.log("Initializing cron jobs...");
+      initializeCronJobs();
+      await setIsOpenToday();
     }
 
     if (CONFIG.ENV !== "prod" && CONFIG.ENV !== "test" && CONFIG.DEV_ANON) {

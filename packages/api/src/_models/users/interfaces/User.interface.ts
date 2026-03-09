@@ -1,23 +1,3 @@
-/*
- * Soliguide: Useful information for those who need it
- *
- * SPDX-FileCopyrightText: © 2024 Solinum
- *
- * SPDX-License-Identifier: AGPL-3.0-only
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
 import {
   AnyDepartmentCode,
   CommonUser,
@@ -32,26 +12,11 @@ import mongoose from "mongoose";
 import { ModelWithId } from "../../mongo";
 import { OrganizationPopulate } from "../../organization";
 import { Origin } from "../enums";
-import type {
-  UserCampaignEmails,
-  UserRight,
-  UserRightOrganizationPopulate,
-} from "../types";
+import type { UserRight, UserRightOrganizationPopulate } from "../types";
 import { InvitationPopulate } from "./Invitation.interface";
 
 export interface User extends Omit<CommonUser, "_id"> {
   _id?: mongoose.Types.ObjectId;
-  campaigns: {
-    MAJ_ETE_2022: UserCampaignEmails;
-    MAJ_ETE_2023: UserCampaignEmails;
-    MAJ_HIVER_2022: UserCampaignEmails;
-    MAJ_HIVER_2023: UserCampaignEmails;
-    END_YEAR_2024: UserCampaignEmails;
-    MAJ_ETE_2024: UserCampaignEmails;
-    MID_YEAR_2025: UserCampaignEmails;
-    END_YEAR_2025: UserCampaignEmails;
-    UKRAINE_2022: UserCampaignEmails;
-  };
   invitations: mongoose.Types.ObjectId[];
   organizations: mongoose.Types.ObjectId[];
   passwordToken: string | null;
@@ -143,7 +108,7 @@ class UserPopulate implements ACurrentUser, UserPopulate {
   public categoriesLimitations;
   public translator;
   public verifiedAt;
-  public campaigns;
+
   public devToken;
   public passwordToken;
   public territories;
@@ -174,7 +139,7 @@ class UserPopulate implements ACurrentUser, UserPopulate {
     this.categoriesLimitations = user?.categoriesLimitations;
     this.translator = user?.translator;
     this.verifiedAt = user?.verifiedAt;
-    this.campaigns = user?.campaigns;
+
     this.devToken = user?.devToken;
     this.passwordToken = user?.passwordToken;
     this.territories = user?.territories;

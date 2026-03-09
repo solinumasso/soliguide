@@ -1,23 +1,3 @@
-/*
- * Soliguide: Useful information for those who need it
- *
- * SPDX-FileCopyrightText: © 2024 Solinum
- *
- * SPDX-License-Identifier: AGPL-3.0-only
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
 import { Categories } from "../enums";
 import type { LegacyCategory } from "../interfaces";
 
@@ -257,28 +237,28 @@ export const LEGACY_CATEGORIES: Record<number, LegacyCategory> = {
     label: "COVOITURAGE",
     seo: "covoiturage",
     title: "",
-    newCategory: Categories.CARPOOLING,
+    newCategory: Categories.TRANSPORTATION_MOBILITY,
   },
   1202: {
     description: "Mise à disposition de véhicule",
     label: "VEHICULE",
     seo: "vehicule",
     title: "",
-    newCategory: Categories.PROVISION_OF_VEHICLES,
+    newCategory: Categories.PERSONAL_VEHICLE_ACCESS,
   },
   1203: {
     description: "Transport avec chauffeur",
     label: "CHAUFFEUR",
     seo: "chauffeur",
     title: "",
-    newCategory: Categories.CHAUFFEUR_DRIVEN_TRANSPORT,
+    newCategory: Categories.TRANSPORTATION_MOBILITY,
   },
   1204: {
     description: "Aide à la mobilité",
     label: "PERMIS",
     seo: "permis",
     title: "",
-    newCategory: Categories.MOBILITY_ASSISTANCE,
+    newCategory: Categories.MOBILITY_FINANCING,
   },
   200: {
     label: "FORMATION_EMPLOI",

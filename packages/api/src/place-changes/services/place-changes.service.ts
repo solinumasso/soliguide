@@ -1,24 +1,4 @@
-/*
- * Soliguide: Useful information for those who need it
- *
- * SPDX-FileCopyrightText: © 2024 Solinum
- *
- * SPDX-License-Identifier: AGPL-3.0-only
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
-import mongoose, { FilterQuery } from "mongoose";
+import mongoose, { FilterQuery, QueryOptions } from "mongoose";
 import { PlaceChangesModel } from "../models/place-changes.model";
 import {
   PlaceChanges,
@@ -34,13 +14,13 @@ import { PlaceChangesSection } from "@soliguide/common";
  */
 export const findPlaceChanges = (
   params: FilterQuery<PlaceChanges>,
-  options: any = DEFAULT_SEARCH_OPTIONS,
+  options: QueryOptions = DEFAULT_SEARCH_OPTIONS,
   light = false
 ): Promise<PlaceChangesPopulate[]> => {
   return PlaceChangesModel.find(params)
     .populate([{ path: "place", select: "name" }])
-    .limit(options.limit)
-    .skip(options.skip)
+    .limit(options.limit as number)
+    .skip(options.skip as number)
     .sort(options.sort)
     .select(light ? "" : "-old -new -__v -updatedAt")
     .lean<PlaceChangesPopulate[]>()

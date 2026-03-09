@@ -100,7 +100,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       <div class="last-update">
         <AppIcon icon={Update} />
         <Text type="caption2" color="neutral">
-          {`${$i18n.t('EXPORTS_HEADER_LAST_UPDATE')} : ${formatToDateWithFullMonth(lastUpdate, $i18n.language)}`}
+          {`${$i18n.t('EXPORTS_HEADER_LAST_UPDATE')} ${formatToDateWithFullMonth(lastUpdate, $i18n.language)}`}
         </Text>
       </div>
       {#if sources.length}

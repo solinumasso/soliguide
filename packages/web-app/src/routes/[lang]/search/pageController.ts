@@ -1,23 +1,3 @@
-/*
- * Soliguide: Useful information for those who need it
- *
- * SPDX-FileCopyrightText: © 2024 Solinum
- *
- * SPDX-License-Identifier: AGPL-3.0-only
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
 import { get, writable } from 'svelte/store';
 import { debounce, DEFAULT_DEBOUNCE_DELAY } from '@soliguide/design-system';
 import {
@@ -321,14 +301,16 @@ export const getSearchPageController = (
    * Get information about categories based on the param (supposed to be a Categories object)
    */
   const getCategoryInfoFromParam = async (
-    category: string
+    category: string,
+    country: SoliguideCountries,
+    lang: SupportedLanguagesCode
   ): Promise<{
     suggestions: Categories[];
     selection: Categories | null;
     error: CategoriesErrors;
   }> => {
     try {
-      const suggestions = await categoryService.getCategorySuggestions(category);
+      const suggestions = await categoryService.getCategorySuggestions(category, country, lang);
       const selection = suggestions.find((suggestion) => suggestion === category) ?? null;
       return { suggestions, selection, error: CategoriesErrors.NONE };
     } catch (error) {
@@ -357,7 +339,7 @@ export const getSearchPageController = (
     if (geoValue && label && shouldInitCategory) {
       myPageStore.set({ ...initialState, loading: true });
       const locationInfo = await getLocationInfoFromParam(label, geoValue);
-      const categoryInfo = await getCategoryInfoFromParam(category);
+      const categoryInfo = await getCategoryInfoFromParam(category, country, lang);
 
       // Stay on step 1 if there is an error or an option needs to be selected
       const step =
@@ -422,7 +404,8 @@ export const getSearchPageController = (
   /** api is called with a 300ms debounce */
   const getDebouncedCategorySuggestions = debounce(async (search: string) => {
     try {
-      const result = await categoryService.getCategorySuggestions(search);
+      const { country, lang } = get(myPageStore);
+      const result = await categoryService.getCategorySuggestions(search, country, lang);
       myPageStore.update(
         (oldValue): PageState => ({
           ...oldValue,

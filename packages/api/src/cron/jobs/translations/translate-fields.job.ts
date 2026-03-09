@@ -1,30 +1,3 @@
-/*
- * Soliguide: Useful information for those who need it
- *
- * SPDX-FileCopyrightText: © 2024 Solinum
- *
- * SPDX-License-Identifier: AGPL-3.0-only
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
-import "../../../config/database/connection";
-import "../../../place/models/place.model";
-import "../../../place/models/document.model";
-import "../../../place/models/photo.model";
-import "../../../user/models/user.model";
-import "../../../user/models/invitation.model";
-
 import {
   SoliguideCountries,
   SUPPORTED_LANGUAGES_BY_COUNTRY,
@@ -33,7 +6,6 @@ import {
   TranslatedFieldLanguageStatus,
 } from "@soliguide/common";
 
-import { parentPort } from "worker_threads";
 import { logger } from "../../../general/logger";
 import { CONFIG } from "../../../_models";
 
@@ -164,27 +136,24 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
 /**
  * @summary Update a translation
  */
-(async () => {
+export async function translateFieldsJob(): Promise<void> {
   if (!CONFIG.GOOGLE_API_KEY || !CONFIG.GOOGLE_PROJECT_ID) {
     logger.warn(
       "[TRANSLATION] Google credentials not provided, not translating."
     );
-    if (parentPort) parentPort.postMessage("done");
     return;
   }
 
-  try {
-    await Promise.all(
-      Object.keys(SUPPORTED_LANGUAGES_BY_COUNTRY).map((countryCode) =>
-        translatedJobByCountry(countryCode as SoliguideCountries)
-      )
+  if (CONFIG.ENV !== "prod") {
+    logger.warn(
+      "[TRANSLATION] Skip translation in non-prod environment to avoid unnecessary costs and API calls."
     );
-  } catch (e) {
-    logger.error(e);
-    if (parentPort) {
-      parentPort.postMessage("Error while running job");
-    }
-  } finally {
-    if (parentPort) parentPort.postMessage("done");
+    return;
   }
-})();
+
+  await Promise.all(
+    Object.keys(SUPPORTED_LANGUAGES_BY_COUNTRY).map((countryCode) =>
+      translatedJobByCountry(countryCode as SoliguideCountries)
+    )
+  );
+}

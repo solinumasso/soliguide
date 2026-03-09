@@ -1,0 +1,8 @@
+fileignoreconfig:
+- filename: yarn.lock
+  checksum: 4e40871bb641184c2efd8a8701c7cc4b165343a6091a716a42fbb96f9f97aab7
+allowed_patterns:
+- uses:\s*[\w\-\.]+/[\w\-\.]+@[a-fA-F0-9]{40}
+- uses:\s*[\w\-\.]+/[\w\-\.]+/[\w\-\./]*@[a-fA-F0-9]{40}
+threshold: medium
+version: "1.0"

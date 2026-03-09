@@ -1,24 +1,3 @@
-/*
- * Soliguide: Useful information for those who need it
- *
- * SPDX-FileCopyrightText: © 2024 Solinum
- *
- * SPDX-License-Identifier: AGPL-3.0-only
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
-
 import {
   aggregateUsersForContacts,
   aggregateUsersForContactsEdition,
@@ -59,6 +38,7 @@ export const CONTACTS_FOR_ONE_PLACE: UserRightUserPopulate[] = [
       territories: [],
       verified: true,
       invitations: [],
+      lastLogin: new Date("2021-10-01T12:26:33.760Z"),
       phone: {
         label: null,
         phoneNumber: "0606060606",
@@ -84,6 +64,7 @@ export const CONTACTS_FOR_ONE_PLACE: UserRightUserPopulate[] = [
       lastname: "Thiery",
       mail: "henry@soliguide.dev",
       name: "Henry",
+      lastLogin: new Date("2021-10-01T12:28:47.872Z"),
       phone: {
         label: null,
         phoneNumber: "0606060606",
@@ -114,6 +95,7 @@ export const CONTACTS_FOR_ONE_PLACE: UserRightUserPopulate[] = [
     user: {
       _id: new mongoose.Types.ObjectId("5fd78bb917e8c5648075c785"),
       lastname: "John",
+      lastLogin: new Date("2021-10-01T12:26:33.760Z"),
       mail: "johndoe@soliguide.dev",
       name: "DOE",
       phone: {

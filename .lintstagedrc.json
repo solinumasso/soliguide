@@ -1,3 +1,4 @@
 {
-  "*": "yarn license:root:add"
+  "*.{ts,js}": "eslint --fix",
+  "*.svelte": "eslint --fix"
 }

@@ -1,29 +1,9 @@
-/*
- * Soliguide: Useful information for those who need it
- *
- * SPDX-FileCopyrightText: © 2024 Solinum
- *
- * SPDX-License-Identifier: AGPL-3.0-only
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
 import type { JSONSchemaType } from "env-schema";
 import type { Config } from "../interfaces";
 
 export const ENV_SCHEMA: JSONSchemaType<Config> = {
   type: "object",
-  required: ["JWT_SECRET", "MAILGUN_API_KEY", "S3_ACCESS_KEY", "S3_SECRET_KEY"],
+  required: ["JWT_SECRET", "S3_ACCESS_KEY", "S3_SECRET_KEY"],
   properties: {
     ENV: {
       type: "string",
@@ -103,9 +83,6 @@ export const ENV_SCHEMA: JSONSchemaType<Config> = {
     TEST_RECIPIENT_EMAIL: {
       type: "string",
       default: "tech@solinum.org",
-    },
-    MAILGUN_API_KEY: {
-      type: "string",
     },
     EMAIL_FROM_DOMAIN: {
       type: "string",

@@ -1,23 +1,3 @@
-/*
- * Soliguide: Useful information for those who need it
- *
- * SPDX-FileCopyrightText: © 2024 Solinum
- *
- * SPDX-License-Identifier: AGPL-3.0-only
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
 export enum Categories {
   HEALTH = "health",
   ADDICTION = "addiction",
@@ -54,10 +34,12 @@ export enum Categories {
   OSTEOPATHY = "osteopathy",
   ACUPUNCTURE = "acupuncture",
   MOBILITY = "mobility",
-  CARPOOLING = "carpooling",
-  PROVISION_OF_VEHICLES = "provision_of_vehicles",
-  CHAUFFEUR_DRIVEN_TRANSPORT = "chauffeur_driven_transport",
-  MOBILITY_ASSISTANCE = "mobility_assistance",
+  TRANSPORTATION_MOBILITY = "transportation_mobility",
+  PERSONAL_VEHICLE_ACCESS = "personal_vehicle_access",
+  VEHICLE_MAINTENANCE = "vehicle_maintenance",
+  MOBILITY_SUPPORT = "mobility_support",
+  DRIVING_LICENSE = "driving_license",
+  MOBILITY_FINANCING = "mobility_financing",
   TRAINING_AND_JOBS = "training_and_jobs",
   DIGITAL_TOOLS_TRAINING = "digital_tools_training",
   FRENCH_COURSE = "french_course",

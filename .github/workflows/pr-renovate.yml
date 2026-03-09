@@ -1,21 +1,3 @@
-# Soliguide: Useful information for those who need it
-#
-# SPDX-FileCopyrightText: © 2024 Solinum
-#
-# SPDX-License-Identifier: AGPL-3.0-only
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as published
-# by the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
 name: Renovate PR - Build and test
 
 on:
@@ -31,6 +13,31 @@ jobs:
   commitlint:
     uses: ./.github/workflows/_commitlint.yml
 
-  all:
-    uses: ./.github/workflows/_build-and-test.yml
+  # Build affected packages only (renovate PR optimization)
+  build:
+    name: Build affected packages
+    uses: ./.github/workflows/_build.yml
+    needs:
+      - commitlint
+    secrets: inherit
+
+  # Test using pre-built images
+  test:
+    name: Test affected packages
+    uses: ./.github/workflows/_test-only.yml
+    with:
+      docker_tag: pr-${{ github.event.pull_request.number }}
+      node_version: ${{ needs.build.outputs.node_version }}
+      test_api: ${{ contains(needs.build.outputs.to_deploy, 'api') }}
+      test_common: ${{ contains(needs.build.outputs.to_deploy, 'common') }}
+      test_common-angular: ${{ contains(needs.build.outputs.to_deploy, 'common-angular') }}
+      test_design-system: ${{ contains(needs.build.outputs.to_deploy, 'design-system') }}
+      test_frontend: ${{ contains(needs.build.outputs.to_deploy, 'frontend') }}
+      test_location-api: ${{ contains(needs.build.outputs.to_deploy, 'location-api') }}
+      test_maintenance: ${{ contains(needs.build.outputs.to_deploy, 'maintenance') }}
+      test_soligare: ${{ contains(needs.build.outputs.to_deploy, 'soligare') }}
+      test_web-app: ${{ contains(needs.build.outputs.to_deploy, 'web-app') }}
+      test_widget: ${{ contains(needs.build.outputs.to_deploy, 'widget') }}
+    needs:
+      - build
     secrets: inherit

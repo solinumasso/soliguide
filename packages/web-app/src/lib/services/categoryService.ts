@@ -1,33 +1,13 @@
-/*
- * Soliguide: Useful information for those who need it
- *
- * SPDX-FileCopyrightText: © 2024 Solinum
- *
- * SPDX-License-Identifier: AGPL-3.0-only
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
 import { env } from '$env/dynamic/public';
 import {
   CategoriesService,
   Categories,
   type FlatCategoriesTreeNode,
-  type SearchAutoComplete,
-  Themes
+  type SearchSuggestion,
+  Themes,
+  SupportedLanguagesCode
 } from '@soliguide/common';
 import { fetch } from '$lib/client';
-import { buildCategorySuggestion } from '$lib/models/categorySuggestion';
 import type { Fetcher } from '$lib/client/types';
 import { CategoriesErrors, type CategoryService } from './types';
 import { get } from 'svelte/store';
@@ -56,7 +36,7 @@ const buildParentToChildrenStructure = (categories: FlatCategoriesTreeNode[]): P
  */
 export const getCategoryService = (
   currentThemeName: Themes,
-  fetcher: Fetcher<SearchAutoComplete> = fetch
+  fetcher: Fetcher<SearchSuggestion[]> = fetch
 ): CategoryService => {
   const categoriesService = new CategoriesService(currentThemeName);
 
@@ -91,17 +71,24 @@ export const getCategoryService = (
 
   /**
    * Auto-complete feature for categories.
+   * Now uses the new search-suggestions endpoint with country and language support.
    */
-  const getCategorySuggestions = async (searchTerm: string): Promise<Categories[]> => {
+  const getCategorySuggestions = async (
+    searchTerm: string,
+    country: string,
+    lang: SupportedLanguagesCode
+  ): Promise<Categories[]> => {
     try {
       if (searchTerm.length === 0) {
         return [];
       }
 
-      const url = `${apiUrl}/new-search/auto-complete/${encodeURI(searchTerm.trim())}`;
+      const url = `${apiUrl}/new-search/search-suggestions/${country}/${lang}/${encodeURI(searchTerm.trim())}/categories`;
 
-      const result = await fetcher(url);
-      return buildCategorySuggestion(result);
+      const result: SearchSuggestion[] = await fetcher(url);
+
+      // Filter and extract only the categoryId values
+      return result.map((item) => item.categoryId).filter((id): id is Categories => id !== null);
     } catch {
       throw CategoriesErrors.ERROR_SERVER;
     }
