@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.125.4](https://github.com/solinumasso/soliguide/compare/v4.125.3...v4.125.4) (2026-03-09)
+
+
+### Bug Fixes
+
+* **api:** delete claud github ([9c2b393](https://github.com/solinumasso/soliguide/commit/9c2b393aa50ce09b30bc24a4acb0bf92ae9fe3d6))
+* **api:** fix api ([ec65038](https://github.com/solinumasso/soliguide/commit/ec65038005a5cd4521ad245bf954a47064eb6fcf))
+* **api:** fix cron update & launch ([6273c2a](https://github.com/solinumasso/soliguide/commit/6273c2a6045c4cf477686a7189eda07e0aa541c3))
+* **api:** fix gh token ([9e49f4d](https://github.com/solinumasso/soliguide/commit/9e49f4d02898fce23ae5843d7c414f3ef852287c))
+* **api:** fix github ci ([3a0eb70](https://github.com/solinumasso/soliguide/commit/3a0eb70695973eead1019e594e9a87bd1434bf46))
+* **api:** fix github workflow ([18944ef](https://github.com/solinumasso/soliguide/commit/18944eff309b3353909a25b9a28e06227cd9550a))
+* **api:** update husky ([222a656](https://github.com/solinumasso/soliguide/commit/222a65612320d0fef57b27de98ca745f351fea6e))
+* **api:** update husky ([0048a8c](https://github.com/solinumasso/soliguide/commit/0048a8caef220451d2aec2b07ebf4be0799244c5))
+* **api:** update yarn.lock ([6053938](https://github.com/solinumasso/soliguide/commit/605393844db848a8454af15637e89e2a38ff837c))
+* **common:** add pre-hooks ([4604acb](https://github.com/solinumasso/soliguide/commit/4604acbb43f0aa62d5c91a7e003c26212b5bd62d))
+
+
+
+
+
 ## [4.125.3](https://github.com/solinumasso/soliguide/compare/v4.125.2...v4.125.3) (2026-03-08)
 
 
