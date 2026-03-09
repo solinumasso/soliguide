@@ -54,6 +54,7 @@ jobs:
           GIT_COMMITTER_EMAIL: tech@solinum.org
           GIT_COMMITTER_NAME: Team Tech
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_REF: refs/heads/main
 
       # Cherry-pick the SR chore commit (CHANGELOG, package.json versions)
       # back into develop so that main and develop stay in sync.
