@@ -11,10 +11,11 @@ jobs:
   release:
     name: Create release from develop
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: develop
+          ref: main
           token: ${{ secrets.GH_TOKEN }}
           fetch-depth: 0
 
@@ -28,8 +29,7 @@ jobs:
       # This prevents a race condition with our own SR run below.
       - name: Merge develop into main
         run: |
-          git checkout main
-          git merge develop --no-ff -m "chore: merge develop for release"
+          git merge origin/develop --no-ff -m "chore: merge develop for release"
           git push origin main
 
       - name: Setup Node.js
@@ -54,14 +54,12 @@ jobs:
           GIT_COMMITTER_EMAIL: tech@solinum.org
           GIT_COMMITTER_NAME: Team Tech
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          GITHUB_REF: refs/heads/main
 
-      # Cherry-pick the SR chore commit (CHANGELOG, package.json versions)
-      # back into develop so that main and develop stay in sync.
+      # Rebase develop on main so it gets the version bump commit
+      # (CHANGELOG, package.json versions) and stays in sync.
       - name: Propagate version bump to develop
         if: steps.semantic.outputs.new_release_published == 'true'
         run: |
-          CHORE_COMMIT=$(git rev-parse HEAD)
           git checkout develop
-          git cherry-pick "$CHORE_COMMIT"
+          git rebase main
           git push origin develop
