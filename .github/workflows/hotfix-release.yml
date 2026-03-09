@@ -114,6 +114,7 @@ jobs:
           GIT_COMMITTER_EMAIL: tech@solinum.org
           GIT_COMMITTER_NAME: Team Tech
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_REF: refs/heads/main
 
       # Merge hotfix into develop, then cherry-pick SR version bump
       - name: Propagate hotfix and version bump to develop
