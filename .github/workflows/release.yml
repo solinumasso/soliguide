@@ -1,71 +1,66 @@
-# Soliguide: Useful information for those who need it
-#
-# SPDX-FileCopyrightText: © 2024 Solinum
-#
-# SPDX-License-Identifier: AGPL-3.0-only
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as published
-# by the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-name: Release - build, test and deploy
+name: Release - create from develop
 
 on:
-  push:
-    branches:
-      - v[0-9]+.[0-9]+.[0-9]+-rc
+  workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  group: release
+  cancel-in-progress: false
 
 jobs:
-  commitlint:
-    uses: ./.github/workflows/_commitlint.yml
+  release:
+    name: Create release from develop
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: develop
+          token: ${{ secrets.GH_BOT_TOKEN }}
+          fetch-depth: 0
 
-  # Build all packages for release candidate
-  build:
-    name: Build all packages
-    uses: ./.github/workflows/_build.yml
-    needs:
-      - commitlint
-    secrets: inherit
+      - name: Configure git
+        run: |
+          git config user.name "Team Tech"
+          git config user.email "tech@solinum.org"
 
-  # Test using pre-built images (blocking for release)
-  test:
-    name: Test all packages
-    uses: ./.github/workflows/_test-only.yml
-    with:
-      docker_tag: ${{ github.ref_name }}
-      node_version: ${{ needs.build.outputs.node_version }}
-      test_api: true
-      test_common: true
-      test_common-angular: true
-      test_design-system: true
-      test_frontend: true
-      test_location-api: true
-      test_maintenance: true
-      test_soligare: true
-      test_web-app: true
-      test_widget: true
-    needs:
-      - build
-    secrets: inherit
+      # --no-ff ensures the head commit is "chore:..." so that
+      # create-release.yml skips (its `if` filters out chore commits).
+      # This prevents a race condition with our own SR run below.
+      - name: Merge develop into main
+        run: |
+          git checkout main
+          git merge develop --no-ff -m "chore: merge develop for release"
+          git push origin main
 
-  deploy:
-    name: Deploy to staging
-    needs:
-      - build
-      - test
-    uses: ./.github/workflows/_deploy-to-environment.yml
-    with:
-      environment: staging
-    secrets: inherit
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Semantic Release
+        id: semantic
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          extra_plugins: ""
+        env:
+          GIT_AUTHOR_EMAIL: tech@solinum.org
+          GIT_AUTHOR_NAME: Team Tech
+          GIT_COMMITTER_EMAIL: tech@solinum.org
+          GIT_COMMITTER_NAME: Team Tech
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      # Cherry-pick the SR chore commit (CHANGELOG, package.json versions)
+      # back into develop so that main and develop stay in sync.
+      - name: Propagate version bump to develop
+        if: steps.semantic.outputs.new_release_published == 'true'
+        run: |
+          CHORE_COMMIT=$(git rev-parse HEAD)
+          git checkout develop
+          git cherry-pick "$CHORE_COMMIT"
+          git push origin develop

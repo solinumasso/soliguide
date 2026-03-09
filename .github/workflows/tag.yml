@@ -1,27 +1,9 @@
-# Soliguide: Useful information for those who need it
-#
-# SPDX-FileCopyrightText: © 2024 Solinum
-#
-# SPDX-License-Identifier: AGPL-3.0-only
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as published
-# by the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-name: Tag - build and test
+name: Tag - build, test and deploy to staging
 
 on:
   push:
     tags:
-      - v[0-9]+.[0-9]+.[0-9]+*
+      - v[0-9]+.[0-9]+.[0-9]+
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -31,7 +13,6 @@ jobs:
   commitlint:
     uses: ./.github/workflows/_commitlint.yml
 
-  # Build all packages for production tag
   build:
     name: Build all packages
     uses: ./.github/workflows/_build.yml
@@ -39,7 +20,6 @@ jobs:
       - commitlint
     secrets: inherit
 
-  # Test using pre-built images (blocking for production)
   test:
     name: Test all packages
     uses: ./.github/workflows/_test-only.yml
@@ -58,4 +38,15 @@ jobs:
       test_widget: true
     needs:
       - build
+    secrets: inherit
+
+  deploy-staging:
+    name: Deploy to staging
+    needs:
+      - build
+      - test
+    uses: ./.github/workflows/_deploy-to-environment.yml
+    with:
+      environment: staging
+      tag: ${{ github.ref_name }}
     secrets: inherit

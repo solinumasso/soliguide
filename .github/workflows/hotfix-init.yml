@@ -1,0 +1,24 @@
+name: Hotfix - init
+
+on:
+  workflow_dispatch:
+    inputs:
+      base_tag:
+        description: "Tag de base pour le hotfix (ex: v1.2.3)"
+        required: true
+        type: string
+
+jobs:
+  create-hotfix-branch:
+    name: Create hotfix branch from ${{ inputs.base_tag }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.base_tag }}
+          token: ${{ secrets.GH_BOT_TOKEN }}
+          fetch-depth: 0
+      - name: Create and push hotfix branch
+        run: |
+          git checkout -b hotfix
+          git push origin hotfix --force

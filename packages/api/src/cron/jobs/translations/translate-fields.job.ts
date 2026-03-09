@@ -144,6 +144,13 @@ export async function translateFieldsJob(): Promise<void> {
     return;
   }
 
+  if (CONFIG.ENV !== "prod") {
+    logger.warn(
+      "[TRANSLATION] Skip translation in non-prod environment to avoid unnecessary costs and API calls."
+    );
+    return;
+  }
+
   await Promise.all(
     Object.keys(SUPPORTED_LANGUAGES_BY_COUNTRY).map((countryCode) =>
       translatedJobByCountry(countryCode as SoliguideCountries)
