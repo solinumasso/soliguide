@@ -24,7 +24,7 @@ import { UserStatus } from "@soliguide/common";
 
 import { logger } from "../src/general/logger";
 import { amqpEventsSender } from "../src/events/services/AmqpEventsSender";
-import { AmqpSynchroBrevoUserEvent } from "../src/events/classes/AmqpSynchroBrevoUserEvent.class";
+import { AmqpSynchroAirtableUserEvent } from "../src/events/classes/AmqpSynchroAirtableUserEvent.class";
 import { Exchange, RoutingKey } from "../src/events/enums";
 import { CONFIG } from "../src/_models/config";
 import type { ModelWithId, User } from "../src/_models";
@@ -32,6 +32,34 @@ import type { ModelWithId, User } from "../src/_models";
 const message = "Sync all pro users to Brevo";
 const BATCH_SIZE = 100;
 
+/** Publishes a batch of users to the AMQP queue for Brevo sync. */
+const publishBatch = async (
+  users: ModelWithId<User>[]
+): Promise<{ processed: number; errors: number }> => {
+  let processed = 0;
+  let errors = 0;
+
+  for (const user of users) {
+    try {
+      const payload = new AmqpSynchroAirtableUserEvent(user, "", null, false);
+
+      await amqpEventsSender.sendToQueue(
+        Exchange.SYNCHRO_AT,
+        `${RoutingKey.SYNCHRO_AT}.user`,
+        payload
+      );
+
+      processed++;
+    } catch (e) {
+      logger.error(e, `[MIGRATION] - Failed to sync user ${String(user._id)}`);
+      errors++;
+    }
+  }
+
+  return { processed, errors };
+};
+
+/** Syncs all pro and admin-territory users to Brevo via AMQP. */
 export const up = async (db: Db) => {
   logger.info(`[MIGRATION] - ${message}`);
 
@@ -83,34 +111,8 @@ export const up = async (db: Db) => {
   );
 };
 
-const publishBatch = async (
-  users: ModelWithId<User>[]
-): Promise<{ processed: number; errors: number }> => {
-  let processed = 0;
-  let errors = 0;
-
-  for (const user of users) {
-    try {
-      const payload = new AmqpSynchroBrevoUserEvent(user, "", null, false);
-
-      await amqpEventsSender.sendToQueue(
-        Exchange.SYNCHRO_BREVO,
-        `${RoutingKey.SYNCHRO_BREVO}.user`,
-        payload
-      );
-
-      processed++;
-    } catch (e) {
-      logger.error(e, `[MIGRATION] - Failed to sync user ${String(user._id)}`);
-      errors++;
-    }
-  }
-
-  return { processed, errors };
-};
-
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const down = async (_db: Db) => {
+export const down = (_db: Db) => {
   logger.info(
     `[MIGRATION ROLLBACK] - ${message} (no-op: cannot unsync Brevo contacts from API)`
   );

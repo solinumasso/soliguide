@@ -34,7 +34,7 @@ export const sendUserChangesToMq = async (
   }
 };
 
-export const sendUserChangesToMqAndNext = async (
+export const sendUserChangesToMqAndNext = (
   req: ExpressRequest & {
     isUserDeleted: boolean;
     updatedUser: UserPopulateType;
@@ -42,7 +42,9 @@ export const sendUserChangesToMqAndNext = async (
   _res: ExpressResponse,
   next: NextFunction
 ) => {
-  sendUserChangesToMq(req);
+  sendUserChangesToMq(req).catch((e) =>
+    req.log.error(e, "Failed to send user changes to MQ")
+  );
 
   return next();
 };

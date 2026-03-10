@@ -92,18 +92,6 @@ export const ENV_SCHEMA: JSONSchemaType<Config> = {
       type: "string",
       nullable: true,
     },
-    BREVO_LIST_ID_FR: {
-      type: "number",
-      nullable: true,
-    },
-    BREVO_LIST_ID_ES: {
-      type: "number",
-      nullable: true,
-    },
-    BREVO_LIST_ID_AD: {
-      type: "number",
-      nullable: true,
-    },
     S3_ENDPOINT: {
       type: "string",
       default: "http://localhost:9000",
