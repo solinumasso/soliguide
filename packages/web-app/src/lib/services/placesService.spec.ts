@@ -15,7 +15,7 @@ const serviceResult = {
       id: 154,
       seoUrl: 'soupe-saint-eustache-paris-154',
       name: 'Soupe Saint-Eustache',
-      status: 'temporarilyClosed',
+      status: 'partiallyOpen',
       hours: { endDate: '2024-11-30T23:59:59.000Z', startDate: '2024-04-01T00:00:00.000Z' },
       address: '1 Rue Montmartre, 75001 Paris',
       dataForLogs: {

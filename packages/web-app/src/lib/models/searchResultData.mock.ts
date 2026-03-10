@@ -424,11 +424,16 @@ const samplePlaceTransformed: SearchResultPlaceCard = Object.freeze({
   seoUrl: 'soupe-saint-eustache-paris-154',
   services: [Categories.FOOD_DISTRIBUTION],
   sources: [],
-  status: PlaceOpeningStatus.TEMPORARILY_CLOSED,
+  status: PlaceOpeningStatus.PARTIALLY_OPEN,
   placeStatus: PlaceStatus.ONLINE,
   tempInfo: { hours: null, message: null, closure: TempInfoStatus.CURRENT },
   todayInfo: {
-    closingDays: { end: '2024-11-30T23:59:59.000Z', start: '2024-04-01T00:00:00.000Z' }
+    openingHours: [
+      {
+        end: '2015',
+        start: '1930'
+      }
+    ]
   }
 });
 
