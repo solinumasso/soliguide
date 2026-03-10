@@ -129,19 +129,19 @@ export class PairingService {
         and
           src.name = ANY (${sources}::text[])
         `;
-      return parseInt(nbresults[0].count, 10);
+      return Number.parseInt(nbresults[0].count, 10);
     } else if (territories) {
       const nbresults = await connection`
         ${prefixQuery}
         and
           pos.department_code = ANY (${territories}::text[])
         `;
-      return parseInt(nbresults[0].count, 10);
+      return Number.parseInt(nbresults[0].count, 10);
     }
     const nbresults = await connection`
       ${prefixQuery}
       `;
-    return parseInt(nbresults[0].count, 10);
+    return Number.parseInt(nbresults[0].count, 10);
   }
 
   public async pairingSourceWithSoliguide(

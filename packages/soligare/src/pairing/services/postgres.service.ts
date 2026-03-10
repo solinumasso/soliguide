@@ -56,7 +56,6 @@ export class PostgresService implements OnApplicationShutdown {
   async checkConnection() {
     try {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-
       await this.connection.begin(async (sql: any) => {
         await sql`SELECT NOW()`;
       });
