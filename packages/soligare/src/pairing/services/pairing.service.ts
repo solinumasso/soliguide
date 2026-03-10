@@ -175,6 +175,7 @@ export class PairingService {
     const connection = this.postgresService.getConnection();
 
     if (soliguide_id) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       await connection.begin(async (psql: any) => {
         await psql`
           update
