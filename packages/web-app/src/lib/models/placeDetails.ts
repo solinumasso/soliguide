@@ -407,7 +407,7 @@ const buildPlaceDetails = (
     sources: buildSources(placeResult.sources),
     status,
     todayInfo: computeTodayInfo({ ...placeResult, newhours: hoursToBuild }, status),
-    tempInfo: buildPlaceDetailsTempInfo(placeResult.tempInfos),
+    tempInfo: buildPlaceDetailsTempInfo(placeResult.tempInfos as IPlaceTempInfo),
     website: placeResult.entity.website ?? ''
   };
 };

@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable fp/no-rest-parameters */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { describe, expect, it, vi } from 'vitest';
 import { buildSearchResult, buildSearchResultWithParcours } from './searchResult';
 import {
@@ -81,7 +84,6 @@ describe('Search Result', () => {
       });
 
       it('ResultItem must be having a distance even if not provided by the API', () => {
-        // eslint-disable-next-line
         const { distance, ...samplePlaceWithoutDistance } = samplePlace;
 
         const result = buildSearchResult(
@@ -389,8 +391,8 @@ describe('Search Result', () => {
             closure: {
               ...samplePlace.tempInfos.closure,
               actif: true,
-              dateDebut: '2024-04-01T00:00:00.000Z',
-              dateFin: '2024-11-30T23:59:59.000Z'
+              dateDebut: new Date('2024-04-01T00:00:00.000Z'),
+              dateFin: new Date('2024-11-30T23:59:59.000Z')
             }
           }
         };

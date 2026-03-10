@@ -11,6 +11,7 @@ import {
   WelcomedPublics,
   SupportedLanguagesCode,
   CountryCodes,
+  PlaceTempInfo,
 } from "@soliguide/common";
 
 import { PARCOURS } from "../PARCOURS.mock";
@@ -132,51 +133,7 @@ export const ONLINE_ITINERARY: ApiPlace = {
     services: true,
     emplacement: true,
   },
-  tempInfos: {
-    hours: {
-      actif: false,
-      dateDebut: null,
-      dateFin: null,
-      description: null,
-      value: {
-        description: null,
-        friday: {
-          open: false,
-          timeslot: [],
-        },
-        monday: {
-          open: false,
-          timeslot: [],
-        },
-        saturday: {
-          open: false,
-          timeslot: [],
-        },
-        sunday: {
-          open: false,
-          timeslot: [],
-        },
-        thursday: {
-          open: false,
-          timeslot: [],
-        },
-        tuesday: {
-          open: false,
-          timeslot: [],
-        },
-        wednesday: {
-          open: false,
-          timeslot: [],
-        },
-      },
-    },
-    message: {
-      actif: false,
-      dateDebut: null,
-      description: null,
-      name: null,
-    },
-  },
+  tempInfos: new PlaceTempInfo(),
   updatedByUserAt: new Date("2022-04-05T11:36:40.000Z"),
   updatedAt: new Date("2022-04-05T11:36:40.000Z"),
   visibility: PlaceVisibility.ALL,

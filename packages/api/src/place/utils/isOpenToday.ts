@@ -1,6 +1,8 @@
 import {
   type ApiPlace,
   type CommonPlaceService,
+  computeTempIsActive,
+  getPosition,
   PlaceClosedHolidays,
   PlaceStatus,
 } from "@soliguide/common";
@@ -13,41 +15,39 @@ import holidaysService from "../services/holidays.service";
  * @param {Object} place
  */
 export const isPlaceOpenToday = async (place: ApiPlace): Promise<boolean> => {
-  if (place.status === PlaceStatus.PERMANENTLY_CLOSED) {
+  const position = getPosition(place);
+
+  if (
+    place.status === PlaceStatus.PERMANENTLY_CLOSED ||
+    place.status === PlaceStatus.DRAFT ||
+    !position?.country
+  ) {
     return false;
-  } else {
-    const today = new Date();
-    const day = getTodayName(today);
-
-    // We check whether it's a day off
-    const isHoliday = await holidaysService.isDayHolidayForPostalCode(place);
-
-    // If it's a day off and the place is closed on days off, then it's closed
-    if (
-      isHoliday &&
-      place.newhours.closedHolidays === PlaceClosedHolidays.CLOSED
-    ) {
-      return false;
-    }
-
-    // Effective temporary closures
-    if (
-      place.tempInfos.closure.actif &&
-      place.tempInfos.closure.dateDebut <= today
-    ) {
-      return false;
-    }
-
-    // Effective temporary opening hours
-    if (
-      place.tempInfos.hours.actif &&
-      place.tempInfos.hours.dateDebut <= today
-    ) {
-      return place.tempInfos.hours.hours[day].open;
-    }
-
-    return place.newhours[day].open;
   }
+
+  // Effective temporary closures
+  if (computeTempIsActive(place.tempInfos.closure)) {
+    return false;
+  }
+
+  // We check whether it's a day off
+  const isHoliday = await holidaysService.isDayHolidayForPostalCode(place);
+
+  if (
+    isHoliday &&
+    place.newhours.closedHolidays === PlaceClosedHolidays.CLOSED
+  ) {
+    return false;
+  }
+
+  const day = getTodayName(new Date());
+
+  // Effective temporary opening hours
+  if (computeTempIsActive(place.tempInfos.hours)) {
+    return place.tempInfos.hours.hours?.[day]?.open ?? false;
+  }
+
+  return place.newhours[day].open;
 };
 
 export const isServiceOpenToday = async (
@@ -63,43 +63,40 @@ export const isServiceOpenToday = async (
     | "country"
   >
 ): Promise<boolean> => {
-  if (place.status === PlaceStatus.PERMANENTLY_CLOSED) {
+  const position = getPosition(place);
+
+  if (
+    place.status === PlaceStatus.PERMANENTLY_CLOSED ||
+    place.status === PlaceStatus.DRAFT ||
+    !position?.country
+  ) {
     return false;
-  } else {
-    const today = new Date();
-    const day = getTodayName(today);
-
-    // We check whether it's a day off
-    const isHoliday = await holidaysService.isDayHolidayForPostalCode(place);
-
-    // If it's a day off and the place is closed on days off, then it's closed
-    if (
-      isHoliday &&
-      place.newhours.closedHolidays === PlaceClosedHolidays.CLOSED
-    ) {
-      return false;
-    }
-
-    // Effective temporary closures
-    if (
-      (service.close.actif &&
-        service.close.dateDebut &&
-        service.close.dateDebut <= today) ||
-      (place.tempInfos.closure.actif &&
-        place.tempInfos.closure.dateDebut <= today)
-    ) {
-      return false;
-    }
-
-    // Effective temporary opening hours
-    if (
-      !service.differentHours &&
-      place.tempInfos.hours.actif &&
-      place.tempInfos.hours.dateDebut <= today
-    ) {
-      return place.tempInfos.hours.hours[day].open;
-    }
-
-    return service.hours[day].open;
   }
+
+  // Effective temporary closures (service-level or place-level)
+  if (
+    computeTempIsActive(service.close) ||
+    computeTempIsActive(place.tempInfos.closure)
+  ) {
+    return false;
+  }
+
+  // We check whether it's a day off
+  const isHoliday = await holidaysService.isDayHolidayForPostalCode(place);
+
+  if (
+    isHoliday &&
+    place.newhours.closedHolidays === PlaceClosedHolidays.CLOSED
+  ) {
+    return false;
+  }
+
+  const day = getTodayName(new Date());
+
+  // Effective temporary opening hours (only if service uses place hours)
+  if (!service.differentHours && computeTempIsActive(place.tempInfos.hours)) {
+    return place.tempInfos.hours.hours?.[day]?.open ?? false;
+  }
+
+  return service.hours[day].open;
 };
