@@ -1,0 +1,85 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<!-- Loading spinner -->
+<div
+  *ngIf="isLoading"
+  class="d-flex justify-content-center align-items-center map-container"
+>
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Chargement de Google Maps...</span>
+  </div>
+</div>
+
+<!-- No API key — only shown once loading is done -->
+<div *ngIf="!isLoading && !hasApiKey" class="alert alert-warning">
+  Clé API Google Maps non configurée (<code>GOOGLE_MAPS_API_KEY</code>).
+</div>
+
+<!-- Load error -->
+<div *ngIf="loadError" class="alert alert-danger">
+  Erreur lors du chargement de l'API Google Maps. Vérifiez votre clé API et les
+  domaines autorisés dans la Google Cloud Console.
+</div>
+
+<ng-container *ngIf="hasApiKey">
+  <!-- Map type controls — only when map is ready -->
+  <div *ngIf="!isLoading && !loadError" class="map-controls mb-2 d-flex gap-2">
+    <div class="btn-group btn-group-sm" role="group">
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        [class.active]="currentMode === 'roadmap'"
+        (click)="setMode('roadmap')"
+      >
+        Plan
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        [class.active]="currentMode === 'satellite'"
+        (click)="setMode('satellite')"
+      >
+        Satellite
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        [class.active]="currentMode === 'hybrid'"
+        (click)="setMode('hybrid')"
+      >
+        Hybride
+      </button>
+    </div>
+  </div>
+
+  <!--
+    Always present in DOM once hasApiKey is true (no *ngIf here).
+    Google Maps must attach to a DOM element — hiding with d-none is safe
+    because initMap() is called only after isLoading becomes false and
+    Angular has had a tick to render this element.
+  -->
+  <div
+    [id]="mapId"
+    class="map-container"
+    [class.d-none]="isLoading || loadError"
+  ></div>
+</ng-container>

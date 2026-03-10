@@ -153,6 +153,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           donateLink: '{{ env "SOLIGUIDE_DONATE_LINK" }}'.length
             ? '{{ env "SOLIGUIDE_DONATE_LINK" }}'
             : undefined,
+          googleMapsApiKey: '{{ env "GOOGLE_MAPS_API_KEY" }}'.length
+            ? '{{ env "GOOGLE_MAPS_API_KEY" }}'
+            : undefined,
         },
       };
     </script>
