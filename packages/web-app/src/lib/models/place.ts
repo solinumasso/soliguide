@@ -71,7 +71,7 @@ export const computeTodayInfo = (
   }
 
   // closingDays can have just a start date without an end date
-  if (place.tempInfos.closure.actif) {
+  if (place.tempInfos.closure.actif && place.tempInfos.closure.dateDebut) {
     const start = new Date(place.tempInfos.closure.dateDebut).toISOString();
 
     return {

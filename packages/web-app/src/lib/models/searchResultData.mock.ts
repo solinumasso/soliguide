@@ -20,7 +20,9 @@ import {
   type ApiPlace,
   type CommonPlaceParcours,
   TempInfoStatus,
-  CommonPlacePosition
+  CommonPlacePosition,
+  PlaceTempInfo,
+  BasePlaceTempInfo
 } from '@soliguide/common';
 import type { SearchResultPlaceCard } from './types';
 
@@ -132,14 +134,14 @@ const samplePlace: ApiPlace = Object.freeze({
   },
   createdAt: new Date('2018-01-12T14:05:59.000Z'),
   tempInfos: {
-    closure: {
+    closure: new BasePlaceTempInfo({
       actif: true,
-      dateDebut: '2024-04-01T00:00:00.000Z',
-      dateFin: '2024-11-30T23:59:59.000Z',
+      dateDebut: new Date('2024-04-01T00:00:00.000Z'),
+      dateFin: new Date('2024-11-30T23:59:59.000Z'),
       description: '<p>Dispositif hivernal</p>'
-    },
-    hours: { actif: false, dateDebut: null, dateFin: null, description: null, hours: null },
-    message: { actif: false, dateDebut: null, dateFin: null, description: null, name: null }
+    }),
+    hours: new BasePlaceTempInfo(),
+    message: new BasePlaceTempInfo()
   },
   placeType: PlaceType.PLACE,
   position: {
@@ -804,28 +806,7 @@ const sampleItinerary: ApiPlace = Object.freeze({
   // eslint-disable-next-line camelcase
   seo_url: 'maraude-balades-des-lucioles-13e-paris-30965',
   status: PlaceStatus.ONLINE,
-  tempInfos: {
-    closure: {
-      actif: false,
-      dateDebut: null,
-      dateFin: null,
-      description: null
-    },
-    hours: {
-      actif: false,
-      dateDebut: null,
-      dateFin: null,
-      description: null,
-      hours: null
-    },
-    message: {
-      actif: false,
-      dateDebut: null,
-      dateFin: null,
-      description: null,
-      name: null
-    }
-  },
+  tempInfos: new PlaceTempInfo(),
   visibility: PlaceVisibility.ALL,
   parcours: [
     {
