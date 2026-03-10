@@ -24,7 +24,7 @@ import { UserStatus } from "@soliguide/common";
 
 import { logger } from "../src/general/logger";
 import { amqpEventsSender } from "../src/events/services/AmqpEventsSender";
-import { AmqpSynchroBrevoUserEvent } from "../src/events/classes/AmqpSynchroBrevoUserEvent.class";
+import { AmqpSynchroAirtableUserEvent } from "../src/events/classes/AmqpSynchroAirtableUserEvent.class";
 import { Exchange, RoutingKey } from "../src/events/enums";
 import { CONFIG } from "../src/_models/config";
 import type { ModelWithId, User } from "../src/_models";
@@ -91,11 +91,11 @@ const publishBatch = async (
 
   for (const user of users) {
     try {
-      const payload = new AmqpSynchroBrevoUserEvent(user, "", null, false);
+      const payload = new AmqpSynchroAirtableUserEvent(user, "", null, false);
 
       await amqpEventsSender.sendToQueue(
-        Exchange.SYNCHRO_BREVO,
-        `${RoutingKey.SYNCHRO_BREVO}.user`,
+        Exchange.SYNCHRO_AT,
+        `${RoutingKey.SYNCHRO_AT}.user`,
         payload
       );
 

@@ -49,11 +49,6 @@ export interface Config {
   // RabbitMQ
   AMQP_URL?: string;
 
-  // Brevo
-  BREVO_LIST_ID_FR?: number;
-  BREVO_LIST_ID_ES?: number;
-  BREVO_LIST_ID_AD?: number;
-
   // Dipeeo
   RGPD_EMAIL: string;
 }
