@@ -14,6 +14,7 @@ import { CommonOpeningHours } from "../../hours";
 import { SupportedLanguagesCode } from "../../translations";
 import { PlaceStepsDone } from "./PlaceStepsDone.interface";
 import { PlaceSlugs } from "./PlaceSlugs.interface";
+import type { PlaceTempInfo } from "../../temp-infos";
 
 export interface ApiPlace {
   _id?: string;
@@ -50,7 +51,7 @@ export interface ApiPlace {
 
   stepsDone: PlaceStepsDone;
 
-  tempInfos: any;
+  tempInfos: PlaceTempInfo;
 
   sources?: CommonPlaceSource[];
 

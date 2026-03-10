@@ -66,7 +66,9 @@ export class HolidaysService {
       })
     );
 
-    return Object.fromEntries(results);
+    const fetched = Object.fromEntries(results);
+    Object.assign(this.holidays, fetched);
+    return fetched;
   }
 
   public async getHolidaysByCountry(

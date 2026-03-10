@@ -1,5 +1,8 @@
-import { TempInfoStatus, TempInfoType } from "@soliguide/common";
-import type { TempInfoObject } from "../../../_models";
+import {
+  BasePlaceTempInfo,
+  TempInfoStatus,
+  TempInfoType,
+} from "@soliguide/common";
 import { PlaceModel } from "./../../../place/models/place.model";
 import { logger } from "../../../general/logger";
 import { TempInfoModel } from "../../../temp-info/models/temp-info.model";
@@ -80,7 +83,7 @@ export async function setCurrentTempInfoJob(): Promise<void> {
   let totalProcessed = 0;
 
   for await (const tempInfos of cursor) {
-    const basicContent: TempInfoObject = {
+    const basicContent: Partial<BasePlaceTempInfo> = {
       actif: true,
       dateDebut: tempInfos.dateDebut,
       dateFin: tempInfos.dateFin,

@@ -2,6 +2,7 @@ import { PlaceOpeningStatus } from "../enums";
 import { PlaceClosedHolidays } from "../../hours";
 import { ONLINE_PLACE } from "../mocks";
 import { computePlaceOpeningStatus } from "./computePlaceOpeningStatus";
+import { BasePlaceTempInfo } from "../../temp-infos";
 
 describe("Check if the opening status is well determined", () => {
   beforeEach(() => {
@@ -26,11 +27,11 @@ describe("Check if the opening status is well determined", () => {
       isOpenToday: true,
       tempInfos: {
         ...ONLINE_PLACE.tempInfos,
-        closure: {
+        closure: new BasePlaceTempInfo({
           actif: true,
-          dateDebut: "2024-11-01T00:00:00.000Z",
-          dateFin: "2024-11-30T23:59:59.000Z",
-        },
+          dateDebut: new Date("2024-11-01T00:00:00.000Z"),
+          dateFin: new Date("2024-11-30T23:59:59.000Z"),
+        }),
       },
     };
 
@@ -43,11 +44,11 @@ describe("Check if the opening status is well determined", () => {
       isOpenToday: false,
       tempInfos: {
         ...ONLINE_PLACE.tempInfos,
-        closure: {
+        closure: new BasePlaceTempInfo({
           actif: true,
-          dateDebut: "2024-11-01T00:00:00.000Z",
-          dateFin: "2024-11-30T23:59:59.000Z",
-        },
+          dateDebut: new Date("2024-11-01T00:00:00.000Z"),
+          dateFin: new Date("2024-11-30T23:59:59.000Z"),
+        }),
       },
     };
 
@@ -133,11 +134,11 @@ describe("Check tempInfos closure", () => {
       isOpenToday: false,
       tempInfos: {
         ...ONLINE_PLACE.tempInfos,
-        closure: {
+        closure: new BasePlaceTempInfo({
           actif: true,
-          dateDebut: "2024-04-01T00:00:00.000Z",
-          dateFin: "2024-11-30T23:59:59.000Z",
-        },
+          dateDebut: new Date("2024-04-01T00:00:00.000Z"),
+          dateFin: new Date("2024-11-30T23:59:59.000Z"),
+        }),
       },
     };
 
@@ -152,11 +153,11 @@ describe("Check tempInfos closure", () => {
       isOpenToday: false,
       tempInfos: {
         ...ONLINE_PLACE.tempInfos,
-        closure: {
+        closure: new BasePlaceTempInfo({
           actif: true,
-          dateDebut: "2024-04-01T00:00:00.000Z",
+          dateDebut: new Date("2024-04-01T00:00:00.000Z"),
           dateFin: null,
-        },
+        }),
       },
     };
     expect(computePlaceOpeningStatus(place)).toEqual(
@@ -170,11 +171,11 @@ describe("Check tempInfos closure", () => {
       isOpenToday: false,
       tempInfos: {
         ...ONLINE_PLACE.tempInfos,
-        closure: {
+        closure: new BasePlaceTempInfo({
           actif: true,
-          dateDebut: null,
-          dateFin: "2024-04-01T00:00:00.000Z",
-        },
+          dateDebut: undefined,
+          dateFin: new Date("2024-04-01T00:00:00.000Z"),
+        }),
       },
       newhours: {
         description: "Description des horaires",

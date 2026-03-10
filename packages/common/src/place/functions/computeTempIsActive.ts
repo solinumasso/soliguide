@@ -2,7 +2,7 @@ import { isWithinInterval } from "date-fns";
 
 export const computeTempIsActive = (tempInfo: {
   actif?: boolean;
-  dateDebut?: Date;
+  dateDebut?: Date | null;
   dateFin?: Date | null;
 }): boolean => {
   if (!tempInfo?.actif || !tempInfo?.dateDebut) {
