@@ -48,7 +48,7 @@ import { Subscription } from "rxjs";
 @Component({
   selector: "app-address-input",
   templateUrl: "./address-input.component.html",
-  styleUrls: ["./address-input.component.scss"],
+  styleUrls: ["./address-input.component.css"],
 })
 export class AddressInputComponent implements OnInit, OnDestroy {
   @Input() public position: PlacePosition;
@@ -82,6 +82,7 @@ export class AddressInputComponent implements OnInit, OnDestroy {
   public me!: User | null;
 
   private readonly subscription = new Subscription();
+  private manualModeSubscription: Subscription | null = null;
   private isUpdatingFromAutocomplete = false;
 
   public get f(): { [key: string]: AbstractControl } {
@@ -383,11 +384,15 @@ export class AddressInputComponent implements OnInit, OnDestroy {
     this.position.city = "";
     this.position.department = "";
     this.position.region = "";
+    this.position.location = null;
     this.positionForm.controls.address.setValue("", { emitEvent: false });
     this.positionForm.controls.postalCode.setValue("", { emitEvent: false });
     this.positionForm.controls.city.setValue("", { emitEvent: false });
     this.positionForm.controls.department.setValue("", { emitEvent: false });
     this.positionForm.controls.region.setValue("", { emitEvent: false });
+    this.positionForm.controls.location.setValue(null, { emitEvent: false });
+    this.positionForm.controls.latitude.setValue(null, { emitEvent: false });
+    this.positionForm.controls.longitude.setValue(null, { emitEvent: false });
     this.positionChange.emit(this.position);
     this.addressInvalid.emit(this.positionForm.invalid);
   }
@@ -405,6 +410,8 @@ export class AddressInputComponent implements OnInit, OnDestroy {
 
   public setManualMode = (manual: boolean): void => {
     this.manualMode = manual;
+    this.manualModeSubscription?.unsubscribe();
+    this.manualModeSubscription = null;
     if (manual) {
       this.manualStreetDisplay = this.position.address ?? "";
       this.positionForm.controls.latitude.setValue(
@@ -413,8 +420,8 @@ export class AddressInputComponent implements OnInit, OnDestroy {
       this.positionForm.controls.longitude.setValue(
         this.position.location?.coordinates?.[0] ?? null
       );
-      this.subscription.add(
-        this.positionForm.valueChanges.subscribe(() => {
+      this.manualModeSubscription = this.positionForm.valueChanges.subscribe(
+        () => {
           if (this.isUpdatingFromAutocomplete) return;
           const city = this.positionForm.controls.city.value || "";
           const postalCode = this.positionForm.controls.postalCode.value || "";
@@ -435,8 +442,9 @@ export class AddressInputComponent implements OnInit, OnDestroy {
           this.position.country = this.positionForm.controls.country.value;
           this.positionChange.emit(this.position);
           this.addressInvalid.emit(this.positionForm.invalid);
-        })
+        }
       );
+      this.subscription.add(this.manualModeSubscription);
     }
   };
 
