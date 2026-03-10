@@ -27,7 +27,6 @@ import {
 } from "../controllers/invite-user.controller";
 import { isUserInOrga } from "../controllers/user.controller";
 import {
-  sendAcceptedInvitationToMq,
   sendAcceptedInvitationToMqAndNext,
   sendDeteleInvitationToMq,
   sendNewInvitationToMqAndNext,
@@ -39,14 +38,7 @@ import {
   captureSendInvitation,
   captureWelcomeEvent,
 } from "../middlewares/capture-inivitation-event.middleware";
-import {
-  sendUserChangesToMq,
-  sendUserChangesToMqAndNext,
-} from "../middlewares/send-user-changes-event-to-mq.middleware";
-import {
-  sendUserBrevoSyncToMq,
-  sendUserBrevoSyncToMqAndNext,
-} from "../middlewares/send-user-brevo-sync-event-to-mq.middleware";
+import { sendUserChangesToMqAndNext } from "../middlewares/send-user-changes-event-to-mq.middleware";
 
 const router = express.Router();
 
@@ -109,7 +101,6 @@ router.post(
     return next();
   },
   sendUserChangesToMqAndNext,
-  sendUserBrevoSyncToMqAndNext,
   captureSendInvitation
 );
 
@@ -196,9 +187,8 @@ router.get(
       return res.status(400).json({ message: "VALIDATION_INVITATION_FAIL" });
     }
   },
-  sendAcceptedInvitationToMq,
-  sendUserChangesToMq,
-  sendUserBrevoSyncToMq
+  sendAcceptedInvitationToMqAndNext,
+  sendUserChangesToMqAndNext
 );
 
 /**
@@ -229,6 +219,7 @@ router.post(
       // sendWelcomeToMqAndNext needs the updated user in the invitation
       req.invitation.user = user;
       req.selectedUser = user;
+      req.updatedUser = user;
       req.organization = req.invitation.organization;
 
       res.status(200).json(user._id.toString());
@@ -242,7 +233,6 @@ router.post(
   sendWelcomeToMqAndNext,
   sendAcceptedInvitationToMqAndNext,
   sendUserChangesToMqAndNext,
-  sendUserBrevoSyncToMqAndNext,
   captureWelcomeEvent
 );
 
