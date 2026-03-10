@@ -15,6 +15,10 @@ export class AmqpSynchroAirtableUserEvent
 
   public parsedPhone?: string;
 
+  public createdAt: Date | null;
+
+  public lastLogin: Date | null;
+
   constructor(
     user: UserPopulateType | ModelWithId<User>,
     frontendUrl: string,
@@ -32,5 +36,9 @@ export class AmqpSynchroAirtableUserEvent
         parsePhoneNumber(this.phone, this.phone.countryCode as CountryCodes) ??
         "";
     }
+
+    this.createdAt = user.verifiedAt ?? user.createdAt ?? null;
+
+    this.lastLogin = user.lastLogin ?? null;
   }
 }
