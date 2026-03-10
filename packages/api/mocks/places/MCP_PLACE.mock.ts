@@ -703,9 +703,8 @@ export const MCP_PLACE: ApiPlace = {
       dateFin: new Date("2021-08-27T00:00:00.000Z"),
       description: "Vacances",
     }),
-    hours: new BasePlaceTempInfo({
-    }),
-    message:  new BasePlaceTempInfo({    }),
+    hours: new BasePlaceTempInfo({}),
+    message: new BasePlaceTempInfo({}),
   },
   updatedByUserAt: "2021-06-22T07:59:49.934Z",
   updatedAt: "2021-06-22T07:59:49.934Z",
