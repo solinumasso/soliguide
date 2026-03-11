@@ -1,6 +1,6 @@
 {
   "name": "@soliguide/common",
-  "version": "4.125.4",
+  "version": "4.125.5",
   "license": "AGPL-3.0-only",
   "module": "dist/esm/index.js",
   "main": "dist/cjs/index.js",
