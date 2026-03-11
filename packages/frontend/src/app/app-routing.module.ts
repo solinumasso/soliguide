@@ -203,6 +203,12 @@ export const routes: Routes = [
       ),
   },
 
+  {
+    path: ":lang/poc",
+    loadChildren: () =>
+      import("./modules/poc/poc.module").then((mod) => mod.PocModule),
+  },
+
   // Error routes
   {
     path: ":lang/404",

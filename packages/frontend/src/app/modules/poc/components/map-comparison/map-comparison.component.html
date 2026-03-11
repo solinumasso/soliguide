@@ -1,0 +1,159 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="container-fluid py-3">
+  <!-- Header -->
+  <div class="row mb-3">
+    <div class="col">
+      <h2 class="h4 mb-1">
+        POC – Comparaison Cartes Mayotte
+        <span class="badge bg-warning text-dark ms-2 fs-6">Démo interne</span>
+      </h2>
+      <p class="text-muted small mb-0">
+        Taux d'adressage à Mayotte&nbsp;: <strong>40%</strong> en 2026 —
+        comparaison Leaflet vs Google Maps pour le référencement par carte
+        d'adresses imprécises. Cliquez ou déplacez le marqueur pour positionner
+        une structure.
+      </p>
+    </div>
+  </div>
+
+  <!-- Version toggle -->
+  <div class="row mb-3">
+    <div class="col">
+      <div class="btn-group" role="group" aria-label="Version de carte">
+        <button
+          type="button"
+          class="btn btn-lg"
+          [class.btn-primary]="version === 'leaflet'"
+          [class.btn-outline-primary]="version !== 'leaflet'"
+          (click)="setVersion('leaflet')"
+        >
+          Version A – Leaflet
+        </button>
+        <button
+          type="button"
+          class="btn btn-lg"
+          [class.btn-primary]="version === 'google'"
+          [class.btn-outline-primary]="version !== 'google'"
+          (click)="setVersion('google')"
+        >
+          Version B – Google Maps
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Map area -->
+  <div class="row mb-3">
+    <div class="col">
+      <div *ngIf="version === 'leaflet'">
+        <app-leaflet-map-poc
+          (newCoordinates)="onNewCoordinates($event)"
+        ></app-leaflet-map-poc>
+      </div>
+      <div *ngIf="version === 'google'">
+        <app-google-map-poc
+          (newCoordinates)="onNewCoordinates($event)"
+        ></app-google-map-poc>
+      </div>
+    </div>
+  </div>
+
+  <!-- Info panels -->
+  <div class="row g-3">
+    <!-- Coordinates & reverse geocoding -->
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Position sélectionnée</h5>
+        </div>
+        <div class="card-body">
+          <div *ngIf="!coordinates" class="text-muted small">
+            Cliquez sur la carte ou déplacez le marqueur pour sélectionner une
+            position.
+          </div>
+          <div *ngIf="coordinates">
+            <div class="row g-2 mb-2">
+              <div class="col-sm-6">
+                <div class="text-muted small">Latitude</div>
+                <div class="fw-bold font-monospace">
+                  {{ coordinates.lat | number : "1.6-6" }}
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="text-muted small">Longitude</div>
+                <div class="fw-bold font-monospace">
+                  {{ coordinates.lng | number : "1.6-6" }}
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="isReverseLoading" class="mt-2">
+              <span
+                class="spinner-border spinner-border-sm text-primary"
+                role="status"
+              ></span>
+              <span class="ms-2 small text-muted">
+                Recherche de l'adresse...
+              </span>
+            </div>
+
+            <div *ngIf="!isReverseLoading" class="mt-2">
+              <div class="text-muted small">Adresse trouvée</div>
+              <div *ngIf="address" class="fw-semibold">{{ address }}</div>
+              <div *ngIf="!address" class="text-muted fst-italic small">
+                Aucune adresse trouvée (zone non adressée)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Free note -->
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Adresse indicative</h5>
+        </div>
+        <div class="card-body d-flex flex-column">
+          <label class="form-label" for="poc-note">
+            Note libre
+            <span class="text-muted small"
+              >(pour les structures sans adresse précise)</span
+            >
+          </label>
+          <textarea
+            id="poc-note"
+            class="form-control flex-grow-1"
+            rows="3"
+            [(ngModel)]="note"
+            placeholder="Ex: Près du marché de Mamoudzou, quartier Kawéni, à 200m du rond-point..."
+          ></textarea>
+          <div class="form-text mt-1">
+            Utile pour les 7% de structures sans adresse (toilettes, fontaines,
+            points d'eau…)
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
