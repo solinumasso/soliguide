@@ -1,5 +1,8 @@
-import { TempInfoStatus, TempInfoType } from "@soliguide/common";
-import { TempInfoObject } from "../../../_models";
+import {
+  BasePlaceTempInfo,
+  TempInfoStatus,
+  TempInfoType,
+} from "@soliguide/common";
 import { logger } from "../../../general/logger";
 import { PlaceModel } from "../../../place/models/place.model";
 import { TempInfoModel } from "../../../temp-info/models/temp-info.model";
@@ -30,7 +33,7 @@ export async function unsetObsoleteTempInfoJob(): Promise<void> {
   let totalProcessed = 0;
 
   for await (const tempInfos of cursor) {
-    const basicCleaning: TempInfoObject = {
+    const basicCleaning: Partial<BasePlaceTempInfo> = {
       actif: false,
       dateDebut: null,
       dateFin: null,

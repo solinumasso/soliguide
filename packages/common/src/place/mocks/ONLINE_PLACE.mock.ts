@@ -10,6 +10,7 @@ import { CountryCodes } from "../../location";
 import { PlaceStatus, PlaceType, PlaceVisibility } from "../enums";
 import { ApiPlace } from "../interfaces";
 import { SupportedLanguagesCode } from "../../translations";
+import { PlaceTempInfo } from "../../temp-infos";
 
 export const ONLINE_PLACE: ApiPlace = {
   auto: false,
@@ -171,7 +172,7 @@ export const ONLINE_PLACE: ApiPlace = {
     publics: true,
     services: true,
   },
-  tempInfos: {
+  tempInfos: new PlaceTempInfo({
     hours: {
       dateDebut: new Date("2021-07-14T00:00:00.000Z"),
       dateFin: new Date("2021-09-06T00:00:00.000Z"),
@@ -209,17 +210,17 @@ export const ONLINE_PLACE: ApiPlace = {
       },
     },
     message: {
-      actif: false,
-      dateDebut: null,
+      dateDebut: new Date(),
       dateFin: null,
       description: "null",
       name: "null",
     },
     closure: {
-      dateDebut: null,
+      dateDebut: new Date(),
       dateFin: null,
+      description: "",
     },
-  },
+  }),
   updatedAt: new Date("2021-09-10T09:49:09.572Z"),
   updatedByUserAt: new Date("2021-09-10T09:49:09.572Z"),
   visibility: PlaceVisibility.ALL,

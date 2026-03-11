@@ -5,5 +5,4 @@ export * from "./express";
 export * from "./mongo";
 export * from "./organization";
 export * from "./place";
-export * from "./temp-info";
 export * from "./users";

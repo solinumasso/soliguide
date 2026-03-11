@@ -124,12 +124,12 @@ export const patchTempInfoByType = async (
     const newTempInfo = {
       ...updatedPlace,
       tempInfos: updatedTempInfo,
-    };
+    } as unknown as ModelWithId<ApiPlace>;
 
     const oldTempInfo = {
       ...place,
       tempInfos: oldTempInfoFromDb,
-    };
+    } as unknown as ModelWithId<ApiPlace>;
 
     if (updatedTempInfo.tempInfoType !== TempInfoType.SERVICE_CLOSURE) {
       placeChanges = await saveTempChanges(
@@ -171,12 +171,12 @@ export const deleteTempInfo = async (
   const newTempInfo = {
     ...updatedPlace,
     tempInfos: null,
-  };
+  } as unknown as ModelWithId<ApiPlace>;
 
   const oldTempInfo = {
     ...updatedPlace,
     tempInfos: deletedTempInfo,
-  };
+  } as unknown as ModelWithId<ApiPlace>;
 
   await saveTempChanges(
     TEMP_INFO_HISTORY_SECTIONS[tempInfoType],

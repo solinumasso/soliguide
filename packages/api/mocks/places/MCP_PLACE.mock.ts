@@ -12,6 +12,7 @@ import {
   PlaceClosedHolidays,
   Categories,
   SupportedLanguagesCode,
+  BasePlaceTempInfo,
 } from "@soliguide/common";
 import { Types } from "mongoose";
 
@@ -696,26 +697,14 @@ export const MCP_PLACE: ApiPlace = {
     emplacement: true,
   },
   tempInfos: {
-    closure: {
+    closure: new BasePlaceTempInfo({
       actif: false,
-      dateDebut: "2021-07-12T00:00:00.000Z",
-      dateFin: "2021-08-27T00:00:00.000Z",
+      dateDebut: new Date("2021-07-12T00:00:00.000Z"),
+      dateFin: new Date("2021-08-27T00:00:00.000Z"),
       description: "Vacances",
-    },
-    hours: {
-      actif: false,
-      dateDebut: null,
-      dateFin: null,
-      description: null,
-      value: null,
-    },
-    message: {
-      actif: false,
-      dateDebut: null,
-      dateFin: null,
-      description: null,
-      name: null,
-    },
+    }),
+    hours: new BasePlaceTempInfo({}),
+    message: new BasePlaceTempInfo({}),
   },
   updatedByUserAt: "2021-06-22T07:59:49.934Z",
   updatedAt: "2021-06-22T07:59:49.934Z",

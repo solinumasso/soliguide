@@ -1,9 +1,8 @@
 import mongoose from "mongoose";
 
-import type { PlaceTempInfo } from "@soliguide/common";
-
 import { OpeningHoursSchema } from "./opening-hours.model";
 import { SubSchemaId } from "../../_models";
+import { PlaceTempInfo } from "@soliguide/common";
 
 const tempInfoDefaultSubSchema = {
   actif: {

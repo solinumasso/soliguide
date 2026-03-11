@@ -1,5 +1,6 @@
 import {
   ADMINISTRATIVE_DEFAULT_VALUES,
+  BasePlaceTempInfo,
   CommonTimeslot,
   CountryCodes,
   FAMILY_DEFAULT_VALUES,
@@ -143,26 +144,25 @@ export const ONLINE_PLACE_MOCK = new Place({
     services: true,
   },
   tempInfos: {
-    closure: {
+    closure: new BasePlaceTempInfo({
       actif: false,
       dateDebut: null,
       dateFin: null,
       description: null,
-    },
-    hours: {
+    }),
+    hours: new BasePlaceTempInfo({
       actif: false,
       dateDebut: null,
       dateFin: null,
       description: null,
       hours: null,
-    },
-    message: {
+    }),
+    message: new BasePlaceTempInfo({
       actif: false,
       dateDebut: null,
       dateFin: null,
       description: null,
-      message: null,
-    },
+    }),
   },
   updatedAt: new Date("2021-09-23T12:47:26.854Z"),
   updatedByUserAt: new Date("2021-09-23T12:47:26.854Z"),

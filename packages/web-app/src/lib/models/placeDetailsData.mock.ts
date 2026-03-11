@@ -16,7 +16,8 @@ import {
   FAMILY_DEFAULT_VALUES,
   GENDER_DEFAULT_VALUES,
   ADMINISTRATIVE_DEFAULT_VALUES,
-  OTHER_DEFAULT_VALUES
+  OTHER_DEFAULT_VALUES,
+  PlaceTempInfo
 } from '@soliguide/common';
 import { PlaceDetailsInfoType, type PlaceDetails } from './types';
 
@@ -281,11 +282,7 @@ const samplePlace: ApiPlace = Object.freeze({
     closedHolidays: PlaceClosedHolidays.UNKNOWN
   },
   createdAt: new Date('2018-01-12T14:05:59.000Z'),
-  tempInfos: {
-    closure: { actif: false, dateDebut: null, dateFin: null, description: null },
-    hours: { actif: false, dateDebut: null, dateFin: null, description: null, hours: null },
-    message: { actif: false, dateDebut: null, dateFin: null, description: null, name: null }
-  },
+  tempInfos: new PlaceTempInfo(),
   placeType: PlaceType.PLACE,
   position: {
     adresse: '1 Rue Montmartre, 75001 Paris',

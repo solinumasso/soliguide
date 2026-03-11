@@ -130,7 +130,11 @@ export const updateTempInfos = async (
     tempInfoType,
   });
 
-  place.tempInfos[tempInfoType] = {
+  // Dynamic access by tempInfoType key requires flexible typing
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const tempInfos = place.tempInfos as Record<string, any>;
+
+  tempInfos[tempInfoType] = {
     actif: false,
     dateDebut: null,
     dateFin: null,
@@ -142,7 +146,7 @@ export const updateTempInfos = async (
   if (currentTempInfos?.length) {
     const firstCurrentTempInfo = currentTempInfos[0];
 
-    place.tempInfos[tempInfoType] = {
+    tempInfos[tempInfoType] = {
       actif: true,
       dateDebut: firstCurrentTempInfo.dateDebut,
       dateFin: firstCurrentTempInfo.dateFin,
@@ -150,26 +154,26 @@ export const updateTempInfos = async (
     };
 
     if (tempInfoType === TempInfoType.HOURS) {
-      place.tempInfos[tempInfoType].hours = firstCurrentTempInfo.hours;
-      place.tempInfos[tempInfoType].name = null;
+      tempInfos[tempInfoType].hours = firstCurrentTempInfo.hours;
+      tempInfos[tempInfoType].name = null;
     } else if (tempInfoType === TempInfoType.MESSAGE) {
-      place.tempInfos[tempInfoType].name = firstCurrentTempInfo.name;
-      place.tempInfos[tempInfoType].hours = null;
+      tempInfos[tempInfoType].name = firstCurrentTempInfo.name;
+      tempInfos[tempInfoType].hours = null;
     } else {
-      place.tempInfos[tempInfoType].name = null;
+      tempInfos[tempInfoType].name = null;
     }
   } else {
     if (
       tempInfoType === TempInfoType.HOURS ||
       tempInfoType === TempInfoType.MESSAGE
     ) {
-      place.tempInfos[tempInfoType].name = null;
+      tempInfos[tempInfoType].name = null;
     }
     if (
       tempInfoType === TempInfoType.MESSAGE ||
       tempInfoType === TempInfoType.CLOSURE
     ) {
-      place.tempInfos[tempInfoType].hours = null;
+      tempInfos[tempInfoType].hours = null;
     }
   }
 
