@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.125.5](https://github.com/solinumasso/soliguide/compare/v4.125.4...v4.125.5) (2026-03-11)
+
+
+### Bug Fixes
+
+* **api:** fix ci ([5a18ca2](https://github.com/solinumasso/soliguide/commit/5a18ca234ac59d523d687bfe778205dcace694c2))
+* **api:** fix is open today  ([f8e3ee2](https://github.com/solinumasso/soliguide/commit/f8e3ee27e584a00e48c7b22923a34288b254c5c1))
+
+
+
+
+
 ## [4.125.4](https://github.com/solinumasso/soliguide/compare/v4.125.3...v4.125.4) (2026-03-09)
 
 
