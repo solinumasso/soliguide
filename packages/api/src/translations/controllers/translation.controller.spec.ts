@@ -98,6 +98,36 @@ describe("Tests the translations controller", () => {
     expect(fields.length).toEqual(1);
   });
 
+  it("Should delete translation fields when place becomes non-ONLINE", async () => {
+    // Place is currently ONLINE with 3 translated fields from the previous test
+    translatedFields = await searchTranslatedFields(
+      {
+        lieu_id: 7,
+        status: TranslatedFieldStatus.NEED_AUTO_TRANSLATE,
+        country: CountryCodes.FR,
+      },
+      req.user
+    );
+    expect(translatedFields.nbResults).toBe(3);
+
+    // Simulate place going DRAFT
+    const draftReq = {
+      ...req,
+      updatedPlace: { ...req.updatedPlace, status: PlaceStatus.DRAFT },
+    };
+    await generateElementsToTranslate(
+      draftReq,
+      {} as ExpressResponse,
+      () => {}
+    );
+
+    translatedFields = await searchTranslatedFields(
+      { lieu_id: 7, country: CountryCodes.FR },
+      req.user
+    );
+    expect(translatedFields.nbResults).toBe(0);
+  });
+
   it("Should delete created elements", async () => {
     await deleteTranslatedField({ lieu_id: 7 });
     translatedFields = await searchTranslatedFields({ lieu_id: 7 }, req.user);

@@ -31,6 +31,7 @@ import {
   countTranslatedFields,
   createFieldToTranslate,
   deleteTranslatedField,
+  deleteTranslationsForPlace,
   findParentElements,
   findServicesForPlace,
   findTranslatedField,
@@ -324,11 +325,17 @@ const createTranslatedElement = async (
       sourceLanguage,
     });
   } else {
-    // If there are potential duplicate translations, use the languages from the first one
+    // Prefer a duplicate that already has auto-translations so the new element
+    // inherits them immediately rather than waiting for the next cron run
+    const translatedDuplicate = potentialDuplicateTranslation.find((d) =>
+      Object.values(d.languages).some((l) => l?.auto?.content)
+    );
+    const source = translatedDuplicate ?? potentialDuplicateTranslation[0];
+
     return await createFieldToTranslate({
       ...newElement,
-      languages: potentialDuplicateTranslation[0].languages,
-      sourceLanguage: potentialDuplicateTranslation[0].sourceLanguage,
+      languages: source.languages,
+      sourceLanguage: source.sourceLanguage,
     });
   }
 };
@@ -488,6 +495,14 @@ export const generateElementsToTranslate = async (
       await getPlaceAndRebuildTranslation(place.lieu_id);
     } catch (e) {
       req.log.error("GENERATE_FIELDS_TRANSLATE_FAIL", e);
+    }
+  } else {
+    // Place is draft, offline or permanently closed — remove pending translation
+    // fields so they don't clog the auto-translation queue
+    try {
+      await deleteTranslationsForPlace(place.lieu_id);
+    } catch (e) {
+      req.log.error("DELETE_FIELDS_TRANSLATE_FAIL", e);
     }
   }
 
