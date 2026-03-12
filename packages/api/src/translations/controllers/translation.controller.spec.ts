@@ -76,7 +76,7 @@ describe("Tests the translations controller", () => {
 
     expect(translatedFields.nbResults).toBe(0);
 
-    await generateElementsToTranslate(req, {} as ExpressResponse, () => {});
+    await generateElementsToTranslate(req, {} as ExpressResponse, jest.fn());
 
     translatedFields = await searchTranslatedFields(
       {
@@ -96,6 +96,36 @@ describe("Tests the translations controller", () => {
         element.elementName === PlaceTranslatedFieldElement.DESCRIPTION
     );
     expect(fields.length).toEqual(1);
+  });
+
+  it("Should delete translation fields when place becomes non-ONLINE", async () => {
+    // Place is currently ONLINE with 3 translated fields from the previous test
+    translatedFields = await searchTranslatedFields(
+      {
+        lieu_id: 7,
+        status: TranslatedFieldStatus.NEED_AUTO_TRANSLATE,
+        country: CountryCodes.FR,
+      },
+      req.user
+    );
+    expect(translatedFields.nbResults).toBe(3);
+
+    // Simulate place going DRAFT
+    const draftReq = {
+      ...req,
+      updatedPlace: { ...req.updatedPlace, status: PlaceStatus.DRAFT },
+    };
+    await generateElementsToTranslate(
+      draftReq,
+      {} as ExpressResponse,
+      jest.fn()
+    );
+
+    translatedFields = await searchTranslatedFields(
+      { lieu_id: 7, country: CountryCodes.FR },
+      req.user
+    );
+    expect(translatedFields.nbResults).toBe(0);
   });
 
   it("Should delete created elements", async () => {
