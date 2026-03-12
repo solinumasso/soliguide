@@ -31,6 +31,7 @@ import {
   countTranslatedFields,
   createFieldToTranslate,
   deleteTranslatedField,
+  deleteTranslationsForPlace,
   findParentElements,
   findServicesForPlace,
   findTranslatedField,
@@ -246,45 +247,37 @@ const isTranslationCompleted = (translatedField: TranslatedField): boolean => {
 export const getPlaceAndRebuildTranslation = async (
   placeId: number
 ): Promise<void> => {
-  const placeToTranslate = await findTranslatedPlace({
+  const placeOrigin = await getPlaceByParams({
     lieu_id: placeId,
   });
 
-  if (!placeToTranslate) {
-    logger.error(
-      `[TRANSLATION] Place translated not found, placeId : ${placeId}`
-    );
-    return;
-  }
-
-  const placeOrigin = await getPlaceByParams({
-    lieu_id: placeToTranslate.lieu_id,
-  });
-
-  const parentElements = await findParentElements(placeToTranslate.lieu_id);
+  const parentElements = await findParentElements(placeId);
 
   const servicesElements = await findServicesForPlace({
     elementName: { $in: Object.values(ServiceTranslatedFieldElement) },
-    lieu_id: placeToTranslate.lieu_id,
+    lieu_id: placeId,
     serviceObjectId: { $ne: null },
   });
 
-  if (placeOrigin && (parentElements || servicesElements)) {
+  if (
+    placeOrigin &&
+    (parentElements.length > 0 || servicesElements.length > 0)
+  ) {
     const newTranslatedPlace = await rebuildTranslatedPlace(
       placeOrigin,
       parentElements,
       servicesElements
     );
 
-    await patchTranslatedPlace(placeToTranslate.lieu_id, {
+    await patchTranslatedPlace(placeId, {
       lastUpdate: newTranslatedPlace.lastUpdate,
-      placeObjectId: newTranslatedPlace.placeObjectId,
       languages: newTranslatedPlace.languages,
+      placeObjectId: new mongoose.Types.ObjectId(placeOrigin._id),
+      position: newTranslatedPlace.position,
+      sourceLanguage: newTranslatedPlace.sourceLanguage,
     });
   } else {
-    logger.warn(
-      `[TRANSLATIONSUCTION]: No elements for place N*${placeToTranslate.lieu_id}`
-    );
+    logger.warn(`[TRANSLATIONSUCTION]: No elements for place N*${placeId}`);
   }
 };
 
@@ -324,11 +317,17 @@ const createTranslatedElement = async (
       sourceLanguage,
     });
   } else {
-    // If there are potential duplicate translations, use the languages from the first one
+    // Prefer a duplicate that already has auto-translations so the new element
+    // inherits them immediately rather than waiting for the next cron run
+    const translatedDuplicate = potentialDuplicateTranslation.find((d) =>
+      Object.values(d.languages).some((l) => l?.auto?.content)
+    );
+    const source = translatedDuplicate ?? potentialDuplicateTranslation[0];
+
     return await createFieldToTranslate({
       ...newElement,
-      languages: potentialDuplicateTranslation[0].languages,
-      sourceLanguage: potentialDuplicateTranslation[0].sourceLanguage,
+      languages: source.languages,
+      sourceLanguage: source.sourceLanguage,
     });
   }
 };
@@ -488,6 +487,14 @@ export const generateElementsToTranslate = async (
       await getPlaceAndRebuildTranslation(place.lieu_id);
     } catch (e) {
       req.log.error("GENERATE_FIELDS_TRANSLATE_FAIL", e);
+    }
+  } else {
+    // Place is draft, offline or permanently closed — remove pending translation
+    // fields so they don't clog the auto-translation queue
+    try {
+      await deleteTranslationsForPlace(place.lieu_id);
+    } catch (e) {
+      req.log.error("DELETE_FIELDS_TRANSLATE_FAIL", e);
     }
   }
 
