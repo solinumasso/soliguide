@@ -120,6 +120,7 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
     defaultLanguage: SupportedLanguagesCode.CA,
     suggestedLanguages: [SupportedLanguagesCode.CA, SupportedLanguagesCode.ES],
     helpEnabled: false,
+    aboutSolinumLink: "https://landing.soliguia.cat/",
     becomeVolunteerEnabled: false,
     contactFormEnabled: true,
     locationAutocompletePlaceholder: "Barcelona Sants, Lleida, etc.",
@@ -145,6 +146,7 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
       SupportedLanguagesCode.FR,
     ],
     helpEnabled: false,
+    aboutSolinumLink: "https://landing.soliguia.cat/",
     becomeVolunteerEnabled: false,
     contactFormEnabled: true,
     locationAutocompletePlaceholder:
