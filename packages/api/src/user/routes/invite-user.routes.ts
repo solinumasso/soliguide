@@ -39,10 +39,7 @@ import {
   captureSendInvitation,
   captureWelcomeEvent,
 } from "../middlewares/capture-inivitation-event.middleware";
-import {
-  sendUserChangesToMq,
-  sendUserChangesToMqAndNext,
-} from "../middlewares/send-user-changes-event-to-mq.middleware";
+import { sendUserChangesToMqAndNext } from "../middlewares/send-user-changes-event-to-mq.middleware";
 
 const router = express.Router();
 
@@ -192,7 +189,7 @@ router.get(
     }
   },
   sendAcceptedInvitationToMq,
-  sendUserChangesToMq
+  sendUserChangesToMqAndNext
 );
 
 /**
