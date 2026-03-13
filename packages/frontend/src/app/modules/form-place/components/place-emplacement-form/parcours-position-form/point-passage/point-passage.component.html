@@ -46,7 +46,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <div class="col-12 service-form" *ngIf="point.show">
   <form [formGroup]="pointPassageForm" autocomplete="off">
     <div class="row">
-      <div class="col-md-8 col-12">
+      <div class="col-12">
         <app-address-input
           [(position)]="point.position"
           [title]="'WAYPOINT_LOCATION' | translate"

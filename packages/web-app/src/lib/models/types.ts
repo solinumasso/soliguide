@@ -71,6 +71,7 @@ export interface LightPlaceCard {
     orientation: boolean;
     campaign: PlaceCampaignBannerMessage | null;
   };
+  coordinates: [number, number]; // [longitude, latitude] in GeoJSON format
   crossingPointIndex?: number;
   id: number;
   name: string;
@@ -173,6 +174,7 @@ export interface Service {
 
 export interface LightPlace {
   address: string;
+  coordinates: [number, number]; // [longitude, latitude] in GeoJSON format
   name: string;
   status: PlaceOpeningStatus;
   todayInfo: TodayInfo;
@@ -183,6 +185,7 @@ export interface PlaceDetails {
   id: number;
   address: string;
   campaignBanner: PlaceCampaignBannerMessage | null;
+  coordinates: [number, number]; // [longitude, latitude] in GeoJSON format
   crossingPointIndex?: number;
   description: string;
   email: string;

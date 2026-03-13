@@ -43,6 +43,59 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <div class="col-md-9 col-12">
       <form [formGroup]="infosForm" (ngSubmit)="submitInfos()">
         <div class="form-container">
+          <div class="row mb-3">
+            <div class="col-12">
+              <label class="form-label">{{
+                "STRUCTURE_TYPE" | translate
+              }}</label>
+              <div>
+                <div class="input-description">
+                  <div>{{ "FIXED_ADDRESS_EXPLAIN" | translate }}</div>
+                  <div>{{ "ITINERARY_EXPLAIN" | translate }}</div>
+                </div>
+                <div
+                  class="d-flex gap-2"
+                  role="group"
+                  [attr.aria-label]="'STRUCTURE_TYPE' | translate"
+                >
+                  <button
+                    type="button"
+                    class="btn rounded-pill"
+                    [ngClass]="
+                      f.placeType.value === PlaceType.PLACE
+                        ? 'bg-danger bg-opacity-10 border border-danger text-danger'
+                        : 'btn-outline-dark'
+                    "
+                    (click)="f.placeType.setValue(PlaceType.PLACE)"
+                  >
+                    {{ "FIXED_ADDRESS" | translate }}
+                    <fa-icon
+                      [icon]="['fas', 'building']"
+                      class="ms-1"
+                      aria-hidden="true"
+                    ></fa-icon>
+                  </button>
+                  <button
+                    type="button"
+                    class="btn rounded-pill"
+                    [ngClass]="
+                      f.placeType.value === PlaceType.ITINERARY
+                        ? 'bg-danger bg-opacity-10 border border-danger text-danger'
+                        : 'btn-outline-dark'
+                    "
+                    (click)="f.placeType.setValue(PlaceType.ITINERARY)"
+                  >
+                    {{ "PARCOURS_MOBILE" | translate }}
+                    <fa-icon
+                      [icon]="['fas', 'route']"
+                      class="ms-1"
+                      aria-hidden="true"
+                    ></fa-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="row">
             <div class="mb-3 col-12 required">
               <label class="form-label" for="name">{{
