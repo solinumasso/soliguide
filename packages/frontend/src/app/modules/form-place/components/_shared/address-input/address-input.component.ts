@@ -413,7 +413,14 @@ export class AddressInputComponent implements OnInit, OnDestroy {
     this.manualModeSubscription?.unsubscribe();
     this.manualModeSubscription = null;
     if (manual) {
-      this.manualStreetDisplay = this.position.address ?? "";
+      const city = this.position.city ?? "";
+      const postalCode = this.position.postalCode ?? "";
+      const cityPart = [postalCode, city].filter(Boolean).join(" ");
+      let street = this.position.address ?? "";
+      if (cityPart && street.endsWith(`, ${cityPart}`)) {
+        street = street.slice(0, -`, ${cityPart}`.length);
+      }
+      this.manualStreetDisplay = street;
       this.positionForm.controls.latitude.setValue(
         this.position.location?.coordinates?.[1] ?? null
       );

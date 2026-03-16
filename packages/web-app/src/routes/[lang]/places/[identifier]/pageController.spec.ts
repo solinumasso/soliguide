@@ -8,6 +8,7 @@ import type { PageController } from './types';
 const defaultState: PlaceDetails = {
   address: '',
   campaignBanner: null,
+  coordinates: [0, 0] as [number, number],
   description: '',
   email: '',
   facebook: '',
