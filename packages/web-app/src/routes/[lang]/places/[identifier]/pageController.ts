@@ -44,6 +44,7 @@ const initialValue: PageState = {
     // lieu_id 7 does not exist in the database
     address: '',
     campaignBanner: null,
+    coordinates: [0, 0] as [number, number],
     description: '',
     email: '',
     facebook: '',

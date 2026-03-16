@@ -172,9 +172,9 @@ export class GoogleMapComponent
       center,
       zoom: DEFAULT_ZOOM,
       mapTypeId: this.currentMode,
-      streetViewControl: false,
-      mapTypeControl: false,
-      fullscreenControl: true,
+      disableDefaultUI: true,
+      zoomControl: true,
+      streetViewControl: true,
     });
 
     if (this.moveOnClick) {
@@ -209,6 +209,11 @@ export class GoogleMapComponent
 
     if (this.markers.length > 1) {
       this.googleMap.fitBounds(bounds, 50);
+    } else {
+      this.googleMap.panTo({
+        lat: this.markers[0].lat,
+        lng: this.markers[0].lng,
+      });
     }
   }
 

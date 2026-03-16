@@ -38,12 +38,20 @@ import {
   UntypedFormBuilder,
 } from "@angular/forms";
 
-import { LocationAutoCompleteAddress } from "@soliguide/common";
+import { GeoTypes, LocationAutoCompleteAddress } from "@soliguide/common";
 import { AuthService } from "../../../../users/services/auth.service";
 import { LocationService } from "../../../../shared/services/location.service";
 import { TranslateService } from "@ngx-translate/core";
 import { User } from "../../../../users/classes";
-import { Subscription } from "rxjs";
+import {
+  Observable,
+  Subscription,
+  catchError,
+  debounceTime,
+  distinctUntilChanged,
+  of,
+  switchMap,
+} from "rxjs";
 
 @Component({
   selector: "app-address-input",
@@ -74,7 +82,7 @@ export class AddressInputComponent implements OnInit, OnDestroy {
   public positionForm: UntypedFormGroup;
   public readonly addressesOnly = false;
   public manualMode = false;
-  public mapHintVisible = true;
+  public mapHintVisible = false;
   public manualStreetDisplay = "";
 
   public marker: MarkerOptions[];
@@ -98,8 +106,12 @@ export class AddressInputComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.me = this.authService.currentUserValue;
+    this.mapHintVisible = !this.position.address;
     this.initForm();
     this.initMarker();
+    if (this.position.isManualAddress) {
+      this.setManualMode(true);
+    }
   }
 
   public ngOnDestroy(): void {
@@ -168,8 +180,10 @@ export class AddressInputComponent implements OnInit, OnDestroy {
       timeZone: item?.timeZone,
     });
 
-    this.marker[0].lat = item.coordinates[1];
-    this.marker[0].lng = item.coordinates[0];
+    this.marker = [
+      { ...this.marker[0], lat: item.coordinates[1], lng: item.coordinates[0] },
+    ];
+    this.mapHintVisible = false;
 
     this.positionForm.controls.region.setValue(this.position.region);
     this.positionForm.controls.location.setValue(this.position.location);
@@ -209,6 +223,63 @@ export class AddressInputComponent implements OnInit, OnDestroy {
   }): void => {
     this.mapHintVisible = false;
     this.marker = [{ ...this.marker[0], lat: newCoord.lat, lng: newCoord.lng }];
+
+    if (this.manualMode) {
+      // In manual mode, map click only updates GPS coordinates independently of address fields
+      this.updatePositionFromCoordinates(newCoord);
+      this.positionForm.controls.latitude.setValue(newCoord.lat);
+      this.positionForm.controls.longitude.setValue(newCoord.lng);
+      this.subscription.add(
+        this.locationService.reverse(newCoord.lat, newCoord.lng).subscribe({
+          next: (results: LocationAutoCompleteAddress[]) => {
+            if (results?.length) {
+              const result = results[0];
+              if (result.cityCode) {
+                this.positionForm.controls.cityCode.setValue(result.cityCode);
+                this.position.cityCode = result.cityCode;
+              }
+              if (result.department) {
+                this.positionForm.controls.department.setValue(
+                  result.department
+                );
+                this.position.department = result.department;
+              }
+              if (result.departmentCode) {
+                this.positionForm.controls.departmentCode.setValue(
+                  result.departmentCode
+                );
+                this.position.departmentCode = result.departmentCode;
+              }
+              if (result.region) {
+                this.positionForm.controls.region.setValue(result.region);
+                this.position.region = result.region;
+              }
+              if (result.regionCode) {
+                this.positionForm.controls.regionCode.setValue(
+                  result.regionCode
+                );
+                this.position.regionCode = result.regionCode;
+              }
+              if (result.country) {
+                this.positionForm.controls.country.setValue(result.country);
+                this.position.country = result.country;
+              }
+              if (result.timeZone) {
+                this.positionForm.controls.timeZone.setValue(result.timeZone);
+                this.position.timeZone = result.timeZone;
+              }
+            }
+            this.positionChange.emit(this.position);
+            this.addressInvalid.emit(this.positionForm.invalid);
+          },
+          error: () => {
+            this.positionChange.emit(this.position);
+            this.addressInvalid.emit(this.positionForm.invalid);
+          },
+        })
+      );
+      return;
+    }
 
     // Try reverse geocoding to find an approximate address at the pin location
     this.subscription.add(
@@ -410,10 +481,18 @@ export class AddressInputComponent implements OnInit, OnDestroy {
 
   public setManualMode = (manual: boolean): void => {
     this.manualMode = manual;
+    this.position.isManualAddress = manual;
     this.manualModeSubscription?.unsubscribe();
     this.manualModeSubscription = null;
     if (manual) {
-      this.manualStreetDisplay = this.position.address ?? "";
+      const city = this.position.city ?? "";
+      const postalCode = this.position.postalCode ?? "";
+      const cityPart = [postalCode, city].filter(Boolean).join(" ");
+      let street = this.position.address ?? "";
+      if (cityPart && street.endsWith(`, ${cityPart}`)) {
+        street = street.slice(0, -`, ${cityPart}`.length);
+      }
+      this.manualStreetDisplay = street;
       this.positionForm.controls.latitude.setValue(
         this.position.location?.coordinates?.[1] ?? null
       );
@@ -447,6 +526,116 @@ export class AddressInputComponent implements OnInit, OnDestroy {
       this.subscription.add(this.manualModeSubscription);
     }
   };
+
+  public onManualStreetInput(value: string): void {
+    this.manualStreetDisplay = value;
+    const city = this.positionForm.controls.city.value || "";
+    const postalCode = this.positionForm.controls.postalCode.value || "";
+    const cityPart = [postalCode, city].filter(Boolean).join(" ");
+    const fullAddress = [value, cityPart].filter(Boolean).join(", ");
+    this.position.address = fullAddress;
+    this.positionForm.controls.address.setValue(fullAddress, {
+      emitEvent: false,
+    });
+    this.positionChange.emit(this.position);
+    this.addressInvalid.emit(this.positionForm.invalid);
+  }
+
+  public searchCity = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap((term) => {
+        if (term.trim().length <= 2) return of([]);
+        return this.locationService
+          .locationAutoComplete(term.trim(), false)
+          .pipe(
+            switchMap((results) =>
+              of(
+                results.filter(
+                  (r) =>
+                    r.geoType === GeoTypes.CITY ||
+                    r.geoType === GeoTypes.BOROUGH
+                )
+              )
+            ),
+            catchError(() => of([]))
+          );
+      })
+    );
+
+  public cityFormatter = (
+    item: LocationAutoCompleteAddress | string
+  ): string => {
+    if (typeof item === "string") return item;
+    return item.city ?? item.label;
+  };
+
+  public cityResultFormatter = (item: LocationAutoCompleteAddress): string => {
+    const parts = [item.city ?? item.label];
+    if (item.postalCode) parts.push(`(${item.postalCode})`);
+    return parts.join(" ");
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public onSelectCity(event: any): void {
+    event.preventDefault();
+    const item: LocationAutoCompleteAddress = event.item;
+    if (!item) return;
+
+    if (item.city) {
+      this.positionForm.controls.city.setValue(item.city);
+      this.position.city = item.city;
+    }
+    if (item.postalCode) {
+      this.positionForm.controls.postalCode.setValue(item.postalCode);
+      this.position.postalCode = item.postalCode;
+    }
+    if (item.cityCode) {
+      this.positionForm.controls.cityCode.setValue(item.cityCode);
+      this.position.cityCode = item.cityCode;
+    }
+    if (item.department) {
+      this.positionForm.controls.department.setValue(item.department);
+      this.position.department = item.department;
+    }
+    if (item.departmentCode) {
+      this.positionForm.controls.departmentCode.setValue(item.departmentCode);
+      this.position.departmentCode = item.departmentCode;
+    }
+    if (item.region) {
+      this.positionForm.controls.region.setValue(item.region);
+      this.position.region = item.region;
+    }
+    if (item.regionCode) {
+      this.positionForm.controls.regionCode.setValue(item.regionCode);
+      this.position.regionCode = item.regionCode;
+    }
+    if (item.country) {
+      this.positionForm.controls.country.setValue(item.country);
+      this.position.country = item.country;
+    }
+    if (item.timeZone) {
+      this.positionForm.controls.timeZone.setValue(item.timeZone);
+      this.position.timeZone = item.timeZone;
+    }
+    const hasExistingPoint = this.positionForm.controls.latitude.value !== null;
+    if (!hasExistingPoint && item.coordinates?.length) {
+      const location = { type: "Point", coordinates: item.coordinates };
+      this.positionForm.controls.location.setValue(location);
+      this.position.location = location;
+      this.marker = [
+        {
+          ...this.marker[0],
+          lat: item.coordinates[1],
+          lng: item.coordinates[0],
+        },
+      ];
+    }
+
+    this.positionChange.emit(this.position);
+    this.addressInvalid.emit(this.positionForm.invalid);
+  }
 
   public onManualCoordinatesChange = (): void => {
     const lat = this.positionForm.controls.latitude.value;

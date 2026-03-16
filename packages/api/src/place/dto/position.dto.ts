@@ -27,6 +27,7 @@ export const positionDto = (path = "") => [
   stringDto(`${path}departmentCode`),
   stringDto(`${path}region`),
   stringDto(`${path}timeZone`, false),
+  body(`${path}isManualAddress`).optional().isBoolean().toBoolean(),
   body(`${path}country`).exists().isIn(Object.values(CountryCodes)),
   body(`${path}location.type`)
     .if((value: any) => value)

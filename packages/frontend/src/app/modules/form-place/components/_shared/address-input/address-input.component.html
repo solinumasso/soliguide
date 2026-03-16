@@ -150,15 +150,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           <label class="form-label" for="addressAutocompleteManual">{{
             "STREET_NUMBER_AND_NAME" | translate
           }}</label>
-          <app-location-autocomplete
-            (clearAddress)="clearStreetField()"
-            (updateLocation)="updateStreetOnly($event)"
-            [addressesOnly]="true"
-            [currentAddress]="manualStreetDisplay"
+          <input
+            type="text"
+            class="form-control"
             id="addressAutocompleteManual"
-          ></app-location-autocomplete>
+            #manualStreetInput
+            [value]="manualStreetDisplay"
+            (input)="onManualStreetInput(manualStreetInput.value)"
+            autocomplete="off"
+          />
         </div>
-        <div class="mb-3">
+        <div class="mb-3 required">
           <label class="form-label" for="city">{{
             "GEOTYPE_VILLE" | translate
           }}</label>
@@ -167,12 +169,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             class="form-control"
             id="city"
             formControlName="city"
+            [ngbTypeahead]="searchCity"
+            [inputFormatter]="cityFormatter"
+            [resultFormatter]="cityResultFormatter"
+            (selectItem)="onSelectCity($event)"
+            autocomplete="off"
             [ngClass]="{
               'is-invalid': (f.city.dirty || submitted) && f.city.errors
             }"
           />
         </div>
-        <div class="mb-3">
+        <div class="mb-3 required">
           <label class="form-label" for="postalCode">{{
             "EXPORTS_HEADER_POSTAL_CODE" | translate
           }}</label>
