@@ -18,22 +18,44 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
-<div class="row" *ngIf="PLACE_LANGUAGES_LIST">
+@if (PLACE_LANGUAGES_LIST) {
+<div class="row">
   <div class="col-12">
-    <h2 *ngIf="!edit" class="mb-2">{{ "SPOKEN_LANGUAGES" | translate }}</h2>
-
-    <div class="languages" *ngFor="let chosenLang of languages">
+    @if (!edit) {
+    <h2 class="mb-2">{{ "SPOKEN_LANGUAGES" | translate }}</h2>
+    } @for (item of computedRemoved; track item.lang) {
+    <div class="languages lang-removed">
       <div class="d-flex align-items-center justify-content-between">
+        @if (item.hasFlag) {
         <img
-          *ngIf="flagExists(chosenLang) && chosenLang !== 'lsf'"
-          [alt]="'Langue ' + chosenLang"
-          src="/assets/images/languages/{{ chosenLang }}.png"
+          [alt]="'Langue ' + item.lang"
+          src="/assets/images/languages/{{ item.lang }}.png"
           class="rounded-circle"
           aria-hidden="true"
         />
+        }
+        <del>
+          <span>{{
+            "LANGUE_" + item.lang | uppercase | translate | ucFirst
+          }}</span>
+        </del>
+      </div>
+    </div>
+    } @for (item of computedLanguages; track item.lang) {
+    <div class="languages" [ngClass]="{ 'lang-added': item.isAdded }">
+      <div class="d-flex align-items-center justify-content-between">
+        @if (item.hasFlag) {
+        <img
+          [alt]="'Langue ' + item.lang"
+          src="/assets/images/languages/{{ item.lang }}.png"
+          class="rounded-circle"
+          aria-hidden="true"
+        />
+        }
         <span>
-          {{ "LANGUE_" + chosenLang | uppercase | translate | ucFirst }}
+          {{ "LANGUE_" + item.lang | uppercase | translate | ucFirst }}
         </span>
+        @if (edit) {
         <button
           [attr.aria-label]="
             'REMOVE_LANG'
@@ -41,18 +63,20 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 : {
                     language:
                       PLACE_LANGUAGES_LIST[currentLang][
-                        'LANGUE_' + chosenLang | uppercase
+                        'LANGUE_' + item.lang | uppercase
                       ]
                   }
           "
-          *ngIf="edit"
           class="ms-2 red-cross"
           type="button"
-          (click)="removeLang(chosenLang)"
+          (click)="removeLang(item.lang)"
         >
           <fa-icon aria-hidden="true" [icon]="faTimes"></fa-icon>
         </button>
+        }
       </div>
     </div>
+    }
   </div>
 </div>
+}

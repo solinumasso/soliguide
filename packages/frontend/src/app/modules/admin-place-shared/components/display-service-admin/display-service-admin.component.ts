@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import {
   Categories,
   TempInfoType,
+  OpeningHours,
   ServiceSaturation,
   getCategoriesSpecificFields,
 } from "@soliguide/common";
@@ -27,6 +28,13 @@ export class DisplayServiceAdminComponent implements OnInit {
   @Input() public index!: number;
   @Input() public specificField!: string;
   @Input() public forceDisplayTempInfo = false;
+  @Input() public oldHours?: OpeningHours | null;
+  @Input() public hoursAdded = false;
+  @Input() public hoursChanged = false;
+  @Input() public modalitiesAdded = false;
+  @Input() public modalitiesChanged = false;
+  @Input() public publicsAdded = false;
+  @Input() public publicsChanged = false;
 
   public readonly ServiceSaturation = ServiceSaturation;
   public readonly TempInfoType = TempInfoType;

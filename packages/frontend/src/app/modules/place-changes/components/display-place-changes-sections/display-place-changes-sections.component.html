@@ -49,14 +49,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <h4 class="fw-bold text-center mb-3">
           {{ "AFTER_MODIFICATION" | translate }}
         </h4>
-        <app-display-place-changes
-          changeSection="new"
-          [oldPlace]="placeChanges.old"
-          [typeOfEdition]="placeChanges.typeOfEdition"
-          [placeChanged]="placeChanges.new"
-          [section]="placeChanges.section"
-          [photosChanged]="true"
-        ></app-display-place-changes>
+        <div class="after-modification-wrapper">
+          <app-display-place-changes
+            changeSection="new"
+            [oldPlace]="placeChanges.old"
+            [typeOfEdition]="placeChanges.typeOfEdition"
+            [placeChanged]="placeChanges.new"
+            [section]="placeChanges.section"
+            [photosChanged]="true"
+          ></app-display-place-changes>
+        </div>
       </div>
     </div>
   </div>

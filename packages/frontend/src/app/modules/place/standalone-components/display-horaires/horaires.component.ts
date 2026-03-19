@@ -15,19 +15,17 @@ import { NgbTooltip } from "@ng-bootstrap/ng-bootstrap";
 })
 export class DisplayHorairesComponent implements OnInit {
   @Input() public hours!: OpeningHours | null;
+  @Input() public oldHours?: OpeningHours | null;
   @Input() public displayClosedDays!: boolean;
-  @Input() public isPlace!: boolean;
+  @Input() public isPlace = true;
   @Input() public daysMustBeOrdered?: boolean;
-  @Input() public isTempClosed: boolean;
-  @Input() public isPartiallyOpen: boolean;
+  @Input() public isTempClosed = false;
+  @Input() public isPartiallyOpen = false;
 
   public weekDays: DayName[];
   public indexToday: number;
   public dayToday: DayName;
-
-  public constructor() {
-    this.isPlace = true;
-  }
+  public changedDays = new Set<DayName>();
 
   ngOnInit(): void {
     this.indexToday = (new Date().getDay() + 6) % 7;
@@ -36,6 +34,19 @@ export class DisplayHorairesComponent implements OnInit {
       this.weekDays = weekDaysOrdering(WEEK_DAYS, this.indexToday);
     } else {
       this.weekDays = WEEK_DAYS;
+    }
+
+    if (this.oldHours && this.hours) {
+      for (const day of WEEK_DAYS) {
+        const oldDay = this.oldHours[day];
+        const newDay = this.hours[day];
+        if (
+          oldDay?.open !== newDay?.open ||
+          JSON.stringify(oldDay?.timeslot) !== JSON.stringify(newDay?.timeslot)
+        ) {
+          this.changedDays.add(day);
+        }
+      }
     }
   }
 }
