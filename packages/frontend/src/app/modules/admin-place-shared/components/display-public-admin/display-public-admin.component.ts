@@ -17,6 +17,8 @@ import { NgxTranslateI18nextAdapter } from "../../../shared/services/ngx-transla
 export class DisplayPublicAdminComponent implements OnInit {
   @Input() public publics!: Publics;
   @Input() public languages!: string[];
+  @Input() public languagesAdded: string[] = [];
+  @Input() public languagesRemoved: string[] = [];
 
   public publicsText: string = "";
 

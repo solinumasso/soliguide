@@ -19,47 +19,48 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<div
-  *ngIf="
-    placeChanged.services_all &&
-    changeSection === 'old' &&
-    section === PlaceChangesSection.services
-  "
->
+@if (placeChanged.services_all && changeSection === 'old' && section ===
+PlaceChangesSection.services) {
+<div>
+  @for (service of placeChanged.services_all; track service.serviceObjectId; let
+  i = $index) {
   <app-display-service-admin
-    *ngFor="let service of placeChanged.services_all; let i = index"
     [index]="i"
     [service]="service"
   ></app-display-service-admin>
+  }
 </div>
-<div
-  *ngIf="
-    placeChanged.services_all &&
-    changeSection === 'new' &&
-    section === PlaceChangesSection.services
-  "
->
-  <section *ngIf="servicesChanges.added.length >= 1">
+} @if (placeChanged.services_all && changeSection === 'new' && section ===
+PlaceChangesSection.services) {
+<div>
+  @if (servicesChanges.added.length >= 1) {
+  <section>
     <h2 class="my-3">{{ "SERVICES_ADDED" | translate }}</h2>
     <div class="history-update added">
+      @for (service of servicesChanges.added; track service.serviceObjectId; let
+      i = $index) {
       <app-display-service-admin
-        *ngFor="let service of servicesChanges.added; let i = index"
         [index]="i"
         [service]="service"
       ></app-display-service-admin>
+      }
     </div>
   </section>
-  <section *ngIf="servicesChanges.deleted.length >= 1">
+  } @if (servicesChanges.deleted.length >= 1) {
+  <section>
     <h2 class="my-3">{{ "SERVICES_DELETED" | translate }}</h2>
     <div class="history-update deleted">
+      @for (service of servicesChanges.deleted; track service.serviceObjectId;
+      let i = $index) {
       <app-display-service-admin
-        *ngFor="let service of servicesChanges.deleted; let i = index"
         [index]="i"
         [service]="service"
       ></app-display-service-admin>
+      }
     </div>
   </section>
-  <section *ngIf="servicesChanges.edited.length >= 1">
+  } @if (servicesChanges.edited.length >= 1) {
+  <section>
     <h2 class="my-3">{{ "SERVICES_EDITED" | translate }}</h2>
     <div class="row">
       <div class="col-6">
@@ -69,10 +70,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <h4>{{ "AFTER_MODIFICATION" | translate }}</h4>
       </div>
     </div>
-    <div
-      class="row px-3"
-      *ngFor="let service of servicesChanges.edited; let i = index"
-    >
+    @for (service of servicesChanges.edited; track service.serviceObjectId; let
+    i = $index) {
+    <div class="row px-3">
       <div class="col edited history-update">
         <app-display-service-admin
           [index]="i"
@@ -80,135 +80,250 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           [forceDisplayTempInfo]="true"
         ></app-display-service-admin>
       </div>
-
       <div class="col history-update edited">
         <app-display-service-admin
           [index]="i"
           [service]="service"
           [forceDisplayTempInfo]="true"
+          [oldHours]="
+            servicesChanges.oldServicesEdited[service.serviceObjectId]?.hours
+          "
+          [hoursAdded]="
+            serviceSubSectionChanges[service.serviceObjectId]?.hoursAdded ??
+            false
+          "
+          [hoursChanged]="
+            serviceSubSectionChanges[service.serviceObjectId]?.hoursChanged ??
+            false
+          "
+          [modalitiesAdded]="
+            serviceSubSectionChanges[service.serviceObjectId]
+              ?.modalitiesAdded ?? false
+          "
+          [modalitiesChanged]="
+            serviceSubSectionChanges[service.serviceObjectId]
+              ?.modalitiesChanged ?? false
+          "
+          [publicsAdded]="
+            serviceSubSectionChanges[service.serviceObjectId]?.publicsAdded ??
+            false
+          "
+          [publicsChanged]="
+            serviceSubSectionChanges[service.serviceObjectId]?.publicsChanged ??
+            false
+          "
         ></app-display-service-admin>
       </div>
     </div>
+    }
   </section>
-  <section *ngIf="servicesChanges.unchanged.length >= 1">
+  } @if (servicesChanges.unchanged.length >= 1) {
+  <section>
     <h2 class="my-3">{{ "SERVICES_UNCHANGED" | translate }}</h2>
     <div class="history-update unchanged">
+      @for (service of servicesChanges.unchanged; track service.serviceObjectId;
+      let i = $index) {
       <app-display-service-admin
-        *ngFor="let service of servicesChanges.unchanged; let i = index"
         [index]="i"
         [service]="service"
         [forceDisplayTempInfo]="true"
       ></app-display-service-admin>
+      }
     </div>
   </section>
+  }
 </div>
-
-<section *ngIf="section === PlaceChangesSection.public">
-  <h2 class="my-2">{{ "HOSTED_PUBLIC" | translate }}</h2>
+} @if (section === PlaceChangesSection.public) {
+<section>
+  <h2 class="my-2">
+    {{ "HOSTED_PUBLIC" | translate }}
+    @if (changeSection === 'new' && (publicsAccueilChanged ||
+    publicsDetailsChanged || languagesChanged)) {
+    <span class="badge change-tag ms-2" [ngClass]="publicsBadge.class">{{
+      publicsBadge.key | translate
+    }}</span>
+    }
+  </h2>
+  @if (placeChanged.publics) {
   <app-display-publics-admin
-    *ngIf="placeChanged.publics"
     [publics]="placeChanged.publics"
     [languages]="placeChanged.languages"
-  >
-  </app-display-publics-admin>
+    [languagesAdded]="changeSection === 'new' ? languagesAdded : []"
+    [languagesRemoved]="changeSection === 'new' ? languagesRemoved : []"
+  ></app-display-publics-admin>
+  } @if (changeSection === 'new' && publicsDescriptionDiff) {
+  <div class="description-card description-card-modified mt-2">
+    <p class="description-label">
+      {{ "DESCRIPTION" | translate }}
+      <span class="badge change-tag change-tag-modified ms-1">{{
+        "CHANGE_TAG_MODIFIED" | translate
+      }}</span>
+    </p>
+    <div class="diff-text" [innerHTML]="publicsDescriptionDiff"></div>
+  </div>
+  }
 </section>
-
-<section *ngIf="section === PlaceChangesSection.emplacement">
+} @if (section === PlaceChangesSection.emplacement) {
+<section>
+  @if (placeChanged.placeType === PlaceType.PLACE) {
   <app-display-position-admin
-    *ngIf="placeChanged.placeType === PlaceType.PLACE"
     [place]="placeChanged"
-  >
-  </app-display-position-admin>
-  <div class="row" *ngIf="placeChanged.placeType === PlaceType.ITINERARY">
+  ></app-display-position-admin>
+  } @if (placeChanged.placeType === PlaceType.ITINERARY) {
+  <div class="row">
     <div class="col-12">
       <app-display-parcours-mobile
         [place]="placeChanged"
       ></app-display-parcours-mobile>
     </div>
   </div>
+  }
 </section>
-
-<section *ngIf="section === PlaceChangesSection.photos">
-  <div *ngIf="photosChanged">
+} @if (section === PlaceChangesSection.photos) {
+<section>
+  @if (photosChanged) {
+  <div>
     <div>
       <h5>
         {{ placeChanged.photos.length }}
         {{ placeChanged.photos.length > 1 ? "photos" : "photo" }} sur la fiche
       </h5>
     </div>
-
     <app-display-photos
       [photos]="placeChanged.photos"
       [name]=""
       [history]="true"
     ></app-display-photos>
   </div>
-  <div *ngIf="!photosChanged">
+  } @else {
+  <div>
     <h5>
       {{ "PHOTOS_MODIFIED_AND_OR_DELETED" | translate }}
       {{ changesDate | dateProxy }}
     </h5>
   </div>
+  }
 </section>
-
-<section *ngIf="section === PlaceChangesSection.modalities">
+} @if (section === PlaceChangesSection.modalities) {
+<section>
+  <h2 class="my-2">
+    {{ "ACCESS_CONDITIONS" | translate }}
+    @if (changeSection === 'new' && modalitiesChanged) {
+    <span class="badge change-tag ms-2" [ngClass]="modalitiesBadge.class">{{
+      modalitiesBadge.key | translate
+    }}</span>
+    }
+  </h2>
+  @if (placeChanged.modalities) {
   <app-display-modalities
-    *ngIf="placeChanged.modalities"
     [modalities]="placeChanged.modalities"
     [isHistory]="true"
-  >
-  </app-display-modalities>
+    [oldModalities]="
+      changeSection === 'new' && oldPlace ? oldPlace.modalities : undefined
+    "
+  ></app-display-modalities>
+  }
 </section>
-
-<section *ngIf="section === PlaceChangesSection.status">
-  <b>
+} @if (section === PlaceChangesSection.status) {
+<section>
+  <b
+    [ngClass]="{
+      'text-field-modified': changeSection === 'new' && statusChanged
+    }"
+  >
     {{ placeChanged.status | translate }}
   </b>
+  @if (changeSection === 'new' && statusChanged) {
+  <span class="badge change-tag change-tag-modified ms-2">{{
+    "CHANGE_TAG_MODIFIED" | translate
+  }}</span>
+  }
 </section>
-
-<section *ngIf="section === PlaceChangesSection.visibility">
-  <b>
-    <span *ngIf="placeChanged.visibility === PlaceVisibility.ALL">{{
-      "PLACE_VISIBLE_FOR_EVERYONE" | translate
-    }}</span>
-    <span *ngIf="placeChanged.visibility === PlaceVisibility.PRO">{{
-      "PLACE_RESERVED_TO_PROFESSIONALS" | translate
-    }}</span>
+} @if (section === PlaceChangesSection.visibility) {
+<section>
+  <b
+    [ngClass]="{
+      'text-field-modified': changeSection === 'new' && visibilityChanged
+    }"
+  >
+    @if (placeChanged.visibility === PlaceVisibility.ALL) {
+    <span>{{ "PLACE_VISIBLE_FOR_EVERYONE" | translate }}</span>
+    } @if (placeChanged.visibility === PlaceVisibility.PRO) {
+    <span>{{ "PLACE_RESERVED_TO_PROFESSIONALS" | translate }}</span>
+    }
   </b>
+  @if (changeSection === 'new' && visibilityChanged) {
+  <span class="badge change-tag change-tag-modified ms-2">{{
+    "CHANGE_TAG_MODIFIED" | translate
+  }}</span>
+  }
 </section>
-
-<section *ngIf="section === PlaceChangesSection.hours">
+} @if (section === PlaceChangesSection.hours) {
+<section>
+  <h2 class="my-2">
+    {{ "TIME_TABLES" | translate }}
+    @if (changeSection === 'new' && hoursChanged) {
+    <span class="badge change-tag change-tag-modified ms-2">{{
+      "CHANGE_TAG_MODIFIED" | translate
+    }}</span>
+    }
+  </h2>
   <app-display-horaires
     [hours]="placeChanged.newhours"
+    [oldHours]="changeSection === 'new' ? oldPlace?.newhours : null"
     [displayClosedDays]="true"
-  >
-  </app-display-horaires>
+  ></app-display-horaires>
 </section>
-
-<section *ngIf="section === PlaceChangesSection.contacts">
+} @if (section === PlaceChangesSection.contacts) {
+<section>
+  @if (changeSection === 'new') { @for (contact of contactsAdded; track
+  contact.mail) {
+  <div class="change-indicator change-indicator-added mb-1">
+    <span class="badge change-tag change-tag-added me-2">{{
+      "CHANGE_TAG_ADDED" | translate
+    }}</span>
+    <strong>{{ contact.name }} {{ contact.lastname }}</strong>
+    @if (contact.title) {
+    <span class="ms-1 text-muted">— {{ contact.title }}</span>
+    }
+  </div>
+  } @for (contact of contactsRemoved; track contact.mail) {
+  <div class="change-indicator change-indicator-deleted mb-1">
+    <span class="badge change-tag change-tag-deleted me-2">{{
+      "CHANGE_TAG_DELETED" | translate
+    }}</span>
+    <del>
+      <strong>{{ contact.name }} {{ contact.lastname }}</strong>
+      @if (contact.title) {
+      <span class="ms-1">— {{ contact.title }}</span>
+      }
+    </del>
+  </div>
+  } }
   <app-display-contacts
     [allContacts]="placeChanged.contacts"
     [template]="'historique'"
   ></app-display-contacts>
 </section>
-
-<section *ngIf="section === PlaceChangesSection.tempMessage">
-  <div *ngIf="placeChanged.tempInfos.message">
+} @if (section === PlaceChangesSection.tempMessage) {
+<section>
+  @if (placeChanged.tempInfos.message) {
+  <div>
     <h5>
       <span class="badge bg-warning">{{
         "DELETING_TEMPORARY_INFORMATION" | translate
       }}</span>
     </h5>
   </div>
-  <div *ngIf="placeChanged.tempInfos.message">
+  <div>
     <h5>
       <span class="badge bg-info">{{
         "ADDING_OR_MODIFYING_TEMPORARY_INFORMATION" | translate
       }}</span>
     </h5>
   </div>
-
-  <div *ngIf="placeChanged.tempInfos.message.dateDebut">
+  } @if (placeChanged.tempInfos.message.dateDebut) {
+  <div>
     <b class="alert-link">
       <span class="fa-info-circle fa"> </span>
       {{ "TITLE" | translate }} : {{ placeChanged.tempInfos.message.name }}
@@ -224,30 +339,31 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       {{ placeChanged.tempInfos.message.dateFin | dateProxy }}
     </span>
   </div>
+  }
 </section>
-
-<section *ngIf="section === PlaceChangesSection.tempHours">
-  <div *ngIf="placeChanged.tempInfos.hours">
+} @if (section === PlaceChangesSection.tempHours) {
+<section>
+  @if (placeChanged.tempInfos.hours) {
+  <div>
     <h5>
       <span class="badge bg-warning">{{
         "REMOVE_TEMPORARY_WORKING_HOURS" | translate
       }}</span>
     </h5>
   </div>
-  <div *ngIf="placeChanged.tempInfos.hours">
+  <div>
     <h5>
       <span class="badge bg-info">{{
         "TEMPORARY_SCHEDULES_ADDED_OR_MODIFIED" | translate
       }}</span>
     </h5>
   </div>
-
-  <div *ngIf="placeChanged.tempInfos.hours.dateDebut">
+  } @if (placeChanged.tempInfos.hours.dateDebut) {
+  <div>
     <app-display-horaires
       [hours]="placeChanged.tempInfos.hours.hours"
       [displayClosedDays]="true"
-    >
-    </app-display-horaires>
+    ></app-display-horaires>
     <br />
     <p>
       <b>{{ "DESCRIPTION" | translate }}: </b>
@@ -261,10 +377,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       {{ placeChanged.tempInfos.hours.dateFin | dateProxy }}
     </p>
   </div>
+  }
 </section>
-
-<section *ngIf="section === PlaceChangesSection.tempClosure">
-  <div *ngIf="placeChanged.tempInfos.closure.dateDebut">
+} @if (section === PlaceChangesSection.tempClosure) {
+<section>
+  @if (placeChanged.tempInfos.closure.dateDebut) {
+  <div>
     <b>{{ "DESCRIPTION_TEMPORARY_CLOSURE" | translate }} : </b>
     <div [innerHTML]="placeChanged.tempInfos.closure.description"></div>
     <p>
@@ -273,31 +391,61 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     </p>
     <p>
       <b> {{ "END_DATE_INCLUDED" | translate }} : </b>
-      <span *ngIf="placeChanged.tempInfos.closure.dateFin === null">{{
-        "END_DATE_NOT_SPECIFIED" | translate
-      }}</span>
+      @if (placeChanged.tempInfos.closure.dateFin === null) {
+      <span>{{ "END_DATE_NOT_SPECIFIED" | translate }}</span>
+      }
       {{ placeChanged.tempInfos.closure.dateFin | dateProxy }}
     </p>
   </div>
+  }
 </section>
-
+} @if (section === PlaceChangesSection.generalinfo || section ===
+PlaceChangesSection.new) {
 <section
-  *ngIf="
-    section === PlaceChangesSection.generalinfo ||
-    section === PlaceChangesSection.new
-  "
-  [ngClass]="{
-    'form-container': section === PlaceChangesSection.generalinfo
-  }"
+  [ngClass]="{ 'form-container': section === PlaceChangesSection.generalinfo }"
 >
   <div class="row">
     <div class="col-12">
-      <h4>{{ placeChanged.name }}</h4>
+      <h4>
+        <span
+          [ngClass]="{
+            'text-field-modified': changeSection === 'new' && nameChanged
+          }"
+        >
+          {{ placeChanged.name }}
+        </span>
+        @if (changeSection === 'new' && nameChanged) {
+        <span class="badge change-tag change-tag-modified ms-2">{{
+          "CHANGE_TAG_MODIFIED" | translate
+        }}</span>
+        }
+      </h4>
     </div>
+    @if (placeChanged.description && !(changeSection === 'new' &&
+    descriptionDiff)) {
+    <div class="col-12">
+      <p class="description-label">{{ "DESCRIPTION" | translate }}</p>
+      <div [innerHTML]="placeChanged.description"></div>
+    </div>
+    } @if (changeSection === 'new' && descriptionDiff) {
+    <div class="col-12">
+      <div class="description-card description-card-modified">
+        <p class="description-label">
+          {{ "DESCRIPTION" | translate }}
+          <span class="badge change-tag change-tag-modified ms-1">{{
+            "CHANGE_TAG_MODIFIED" | translate
+          }}</span>
+        </p>
+        <div class="diff-text" [innerHTML]="descriptionDiff"></div>
+      </div>
+    </div>
+    }
     <div class="col-12">
       <app-display-general-info-admin
         [place]="placeChanged"
+        [hideDescription]="true"
       ></app-display-general-info-admin>
     </div>
   </div>
 </section>
+}

@@ -28,7 +28,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       <div
         class="d-flex align-items-center horaires ps-3 py-2"
         [ngClass]="{
-          todayClass: day === dayToday
+          todayClass: day === dayToday,
+          'day-changed': changedDays.has(day)
         }"
         *ngIf="displayClosedDays || (!displayClosedDays && hours[day].open)"
       >
