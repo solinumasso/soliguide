@@ -18,26 +18,16 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-.svg-form {
-  background-size: 60px;
-}
 
-.modality-added {
-  background-color: rgba(25, 135, 84, 0.1);
-  border-radius: 6px;
-  padding: 4px 8px;
-}
-
-.modality-removed {
-  background-color: rgba(220, 53, 69, 0.1);
-  border-radius: 6px;
-  padding: 4px 8px;
-  text-decoration: line-through;
-  color: #b02a37;
-}
-
-.precision-modified {
-  background-color: rgba(255, 193, 7, 0.25);
-  border-radius: 3px;
-  padding: 1px 4px;
+export function computeArrayDiff<T>(
+  oldArray: T[],
+  newArray: T[],
+  keyFn: (item: T) => unknown = (item) => item
+): { added: T[]; removed: T[] } {
+  const oldSet = new Set(oldArray.map(keyFn));
+  const newSet = new Set(newArray.map(keyFn));
+  return {
+    added: newArray.filter((item) => !oldSet.has(keyFn(item))),
+    removed: oldArray.filter((item) => !newSet.has(keyFn(item))),
+  };
 }
