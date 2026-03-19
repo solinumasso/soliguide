@@ -9,4 +9,5 @@ import { Place } from "../../../../models/place/classes";
 })
 export class DisplayGeneralInfoAdminComponent {
   @Input() public place!: Place;
+  @Input() public hideDescription = false;
 }

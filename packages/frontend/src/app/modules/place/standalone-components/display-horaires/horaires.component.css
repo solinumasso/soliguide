@@ -35,6 +35,12 @@
   background: #cfcedb;
 }
 
+.day-changed {
+  background-color: rgba(255, 193, 7, 0.15);
+  border-left: 4px solid #ffc107;
+  padding-left: 10px !important;
+}
+
 .hours-description {
   font-style: italic;
 }
