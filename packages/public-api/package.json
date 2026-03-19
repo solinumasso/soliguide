@@ -8,20 +8,16 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start:proposal-a": "nest start --entryFile proposal-a/main",
-    "start:proposal-b": "nest start --entryFile proposal-b/main",
-    "start:dev:proposal-a": "nest start --watch --entryFile proposal-a/main",
-    "start:dev:proposal-b": "nest start --watch --entryFile proposal-b/main",
-    "start:debug:proposal-a": "nest start --debug --watch --entryFile proposal-a/main",
-    "start:debug:proposal-b": "nest start --debug --watch --entryFile proposal-b/main",
+    "start:search-api": "nest start --entryFile main",
+    "start:dev:search-api": "nest start --watch --entryFile main",
+    "start:debug:search-api": "nest start --debug --watch --entryFile main",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
-    "generate:proposal-b:artifacts": "ts-node src/proposal-b/cli/generate-artifacts.cli.ts",
-    "check:proposal-b:artifacts": "yarn generate:proposal-b:artifacts && git diff --exit-code -- src/proposal-b/generated",
+    "generate:search-api:artifacts": "ts-node src/app/cli/generate-artifacts.cli.ts",
+    "check:search-api:artifacts": "yarn generate:search-api:artifacts && git diff --exit-code -- src/app/generated",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:vitest": "vitest run",
-    "test:version-mapper": "vitest run src/proposal-a/versioning/version-mapper.service.spec.ts",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
@@ -79,8 +75,6 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
-    "testPathIgnorePatterns": [
-      "src/proposal-a/versioning/version-mapper.service.spec.ts"
-    ]
+    "testPathIgnorePatterns": []
   }
 }

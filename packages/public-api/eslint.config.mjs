@@ -28,8 +28,46 @@ export default tseslint.config(
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-floating-promises': 'warn',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
       '@typescript-eslint/no-unsafe-argument': 'warn',
-      "prettier/prettier": ["error", { endOfLine: "auto" }],
+      'prettier/prettier': ['error', { endOfLine: 'auto' }],
+    },
+  },
+  {
+    files: ['src/api-versioning/**/*.ts'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: [
+                'src/app/*',
+                'src/app/**',
+                'app/*',
+                'app/**',
+                '../app/*',
+                '../app/**',
+                '../../app/*',
+                '../../app/**',
+                '../../../app/*',
+                '../../../app/**',
+                '**/app/*',
+                '**/app/**',
+              ],
+              message:
+                'api-versioning is a standalone bounded context and cannot import from app.',
+            },
+          ],
+        },
+      ],
     },
   },
 );

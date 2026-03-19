@@ -1,0 +1,194 @@
+{
+  "components": {
+    "schemas": {}
+  },
+  "info": {
+    "contact": {},
+    "description": "Static operation metadata from decorators with versioned payload schemas.",
+    "title": "Soliguide Search API",
+    "version": "2026-03-03"
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/search": {
+      "get": {
+        "operationId": "search_places",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "openToday",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "_links": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "next": {
+                          "properties": {
+                            "href": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "href"
+                          ],
+                          "type": "object"
+                        },
+                        "prev": {
+                          "properties": {
+                            "href": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "href"
+                          ],
+                          "type": "object"
+                        },
+                        "self": {
+                          "properties": {
+                            "href": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "href"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "self",
+                        "next",
+                        "prev"
+                      ],
+                      "type": "object"
+                    },
+                    "page": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "current": {
+                          "minimum": 1,
+                          "type": "integer"
+                        },
+                        "limit": {
+                          "minimum": 1,
+                          "type": "integer"
+                        },
+                        "totalPages": {
+                          "minimum": 1,
+                          "type": "integer"
+                        },
+                        "totalResults": {
+                          "minimum": 0,
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "current",
+                        "limit",
+                        "totalPages",
+                        "totalResults"
+                      ],
+                      "type": "object"
+                    },
+                    "results": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "description": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "isOpenToday": {
+                            "type": "boolean"
+                          },
+                          "languages": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "name": {
+                            "description": "Localized place name in the requested language",
+                            "example": "French Red Cross - Saint Benoit Local Branch",
+                            "type": "string"
+                          },
+                          "slug": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "enum": [
+                              "place",
+                              "itinerary"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "slug",
+                          "name",
+                          "description",
+                          "type",
+                          "isOpenToday",
+                          "languages"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "_links",
+                    "results",
+                    "page"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful search response"
+          }
+        },
+        "summary": "Search places",
+        "tags": [
+          "search"
+        ]
+      }
+    }
+  },
+  "servers": [],
+  "tags": []
+}
