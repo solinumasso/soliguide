@@ -21,3 +21,23 @@
 .svg-form {
   background-size: 60px;
 }
+
+.modality-added {
+  background-color: rgba(25, 135, 84, 0.1);
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+
+.modality-removed {
+  background-color: rgba(220, 53, 69, 0.1);
+  border-radius: 6px;
+  padding: 4px 8px;
+  text-decoration: line-through;
+  color: #b02a37;
+}
+
+.precision-modified {
+  background-color: rgba(255, 193, 7, 0.25);
+  border-radius: 3px;
+  padding: 1px 4px;
+}

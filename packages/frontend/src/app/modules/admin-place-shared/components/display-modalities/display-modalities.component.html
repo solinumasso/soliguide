@@ -20,76 +20,173 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <div class="row" *ngIf="modalities">
   <div class="col-md-5 col-12 align-self-center border-end text-center">
-    <div *ngIf="modalities.inconditionnel">
+    <div
+      *ngIf="modalities.inconditionnel || unconditionalRemoved"
+      [ngClass]="{
+        'modality-added': unconditionalAdded,
+        'modality-removed': unconditionalRemoved
+      }"
+    >
       <div class="svg-form inconditionnel"></div>
       <h4 class="subtitle-primary mt-1 text-capitalize">
-        {{ "UNCONDITIONAL" | translate }}
+        <del *ngIf="unconditionalRemoved">{{
+          "UNCONDITIONAL" | translate
+        }}</del>
+        <span *ngIf="!unconditionalRemoved">{{
+          "UNCONDITIONAL" | translate
+        }}</span>
       </h4>
-      <p class="condition-precision">
+      <p class="condition-precision" *ngIf="!unconditionalRemoved">
         {{ modalities.orientation.precisions }}
       </p>
     </div>
 
-    <div *ngIf="modalities.orientation.checked">
+    <div
+      *ngIf="modalities.orientation.checked || orientationRemoved"
+      [ngClass]="{
+        'modality-added': orientationAdded,
+        'modality-removed': orientationRemoved
+      }"
+    >
       <div class="svg-form orientation"></div>
       <h4 class="subtitle-primary mt-1">
-        {{ "ACCESS_CONDITION_ON_ORIENTATION" | translate | ucFirst }}
+        <del *ngIf="orientationRemoved">{{
+          "ACCESS_CONDITION_ON_ORIENTATION" | translate | ucFirst
+        }}</del>
+        <span *ngIf="!orientationRemoved">{{
+          "ACCESS_CONDITION_ON_ORIENTATION" | translate | ucFirst
+        }}</span>
       </h4>
-      <p class="condition-precision">
+      <p
+        class="condition-precision"
+        *ngIf="!orientationRemoved"
+        [ngClass]="{ 'precision-modified': orientationPrecisionsChanged }"
+      >
         {{ modalities.orientation.precisions }}
       </p>
     </div>
 
-    <div *ngIf="modalities.inscription.checked">
+    <div
+      *ngIf="modalities.inscription.checked || inscriptionRemoved"
+      [ngClass]="{
+        'modality-added': inscriptionAdded,
+        'modality-removed': inscriptionRemoved
+      }"
+    >
       <div class="svg-form inscription"></div>
-
       <h4 class="subtitle-primary mt-1">
-        {{ "ACCESS_CONDITION_ON_REGISTRATION" | translate | ucFirst }}
+        <del *ngIf="inscriptionRemoved">{{
+          "ACCESS_CONDITION_ON_REGISTRATION" | translate | ucFirst
+        }}</del>
+        <span *ngIf="!inscriptionRemoved">{{
+          "ACCESS_CONDITION_ON_REGISTRATION" | translate | ucFirst
+        }}</span>
       </h4>
-      <p class="condition-precision">
+      <p
+        class="condition-precision"
+        *ngIf="!inscriptionRemoved"
+        [ngClass]="{ 'precision-modified': inscriptionPrecisionsChanged }"
+      >
         {{ modalities.inscription.precisions }}
       </p>
     </div>
 
-    <div *ngIf="modalities.appointment.checked">
+    <div
+      *ngIf="modalities.appointment.checked || appointmentRemoved"
+      [ngClass]="{
+        'modality-added': appointmentAdded,
+        'modality-removed': appointmentRemoved
+      }"
+    >
       <div class="svg-form appointment"></div>
       <h4 class="subtitle-primary mt-1">
-        {{ "ACCESS_CONDITION_ON_APPOINTMENT" | translate | ucFirst }}
+        <del *ngIf="appointmentRemoved">{{
+          "ACCESS_CONDITION_ON_APPOINTMENT" | translate | ucFirst
+        }}</del>
+        <span *ngIf="!appointmentRemoved">{{
+          "ACCESS_CONDITION_ON_APPOINTMENT" | translate | ucFirst
+        }}</span>
       </h4>
-      <p class="condition-precision">
+      <p
+        class="condition-precision"
+        *ngIf="!appointmentRemoved"
+        [ngClass]="{ 'precision-modified': appointmentPrecisionsChanged }"
+      >
         {{ modalities.appointment.precisions }}
       </p>
     </div>
   </div>
 
   <div class="col-md-7 col-12">
-    <p class="my-2" *ngIf="modalities.pmr.checked">
-      <b>{{
+    <p
+      class="my-2"
+      *ngIf="modalities.pmr.checked || pmrRemoved"
+      [ngClass]="{ 'modality-added': pmrAdded, 'modality-removed': pmrRemoved }"
+    >
+      <del *ngIf="pmrRemoved"
+        ><b>{{
+          "ACCESS_CONDITION_PEOPLE_WITH_REDUCED_MOBILITY" | translate | ucFirst
+        }}</b></del
+      >
+      <b *ngIf="!pmrRemoved">{{
         "ACCESS_CONDITION_PEOPLE_WITH_REDUCED_MOBILITY" | translate | ucFirst
       }}</b>
     </p>
 
-    <p class="my-2" *ngIf="modalities.animal.checked">
-      <b>
-        {{ "ACCESS_CONDITION_ACCEPTED_ANIMALS" | translate | ucFirst }}
-      </b>
+    <p
+      class="my-2"
+      *ngIf="modalities.animal.checked || animalRemoved"
+      [ngClass]="{
+        'modality-added': animalAdded,
+        'modality-removed': animalRemoved
+      }"
+    >
+      <del *ngIf="animalRemoved"
+        ><b>{{
+          "ACCESS_CONDITION_ACCEPTED_ANIMALS" | translate | ucFirst
+        }}</b></del
+      >
+      <b *ngIf="!animalRemoved">{{
+        "ACCESS_CONDITION_ACCEPTED_ANIMALS" | translate | ucFirst
+      }}</b>
     </p>
 
-    <p class="my-2 mb-0" *ngIf="modalities.price.checked">
-      <b>{{
-        "ACCESS_CONDITION_FINANCIAL_PARTICIPATION_REQUIRED"
-          | translate
-          | ucFirst
-      }}</b>
-
-      <span *ngIf="modalities.price.precisions">
-        {{ modalities.price.precisions }}
-      </span>
+    <p
+      class="my-2 mb-0"
+      *ngIf="modalities.price.checked || priceRemoved"
+      [ngClass]="{
+        'modality-added': priceAdded,
+        'modality-removed': priceRemoved
+      }"
+    >
+      <del *ngIf="priceRemoved">
+        <b>{{
+          "ACCESS_CONDITION_FINANCIAL_PARTICIPATION_REQUIRED"
+            | translate
+            | ucFirst
+        }}</b>
+      </del>
+      <ng-container *ngIf="!priceRemoved">
+        <b>{{
+          "ACCESS_CONDITION_FINANCIAL_PARTICIPATION_REQUIRED"
+            | translate
+            | ucFirst
+        }}</b>
+        <span
+          *ngIf="modalities.price.precisions"
+          [ngClass]="{ 'precision-modified': pricePrecisionsChanged }"
+        >
+          {{ modalities.price.precisions }}
+        </span>
+      </ng-container>
     </p>
 
     <p class="my-2 mb-0" *ngIf="modalities.other">
       <b>{{ "ACCESS_CONDITION_OTHER_PRECISIONS" | translate | ucFirst }}</b>
-      <span [innerHTML]="modalities.other"></span>
+      <span
+        [innerHTML]="modalities.other"
+        [ngClass]="{ 'precision-modified': otherChanged }"
+      ></span>
     </p>
   </div>
 

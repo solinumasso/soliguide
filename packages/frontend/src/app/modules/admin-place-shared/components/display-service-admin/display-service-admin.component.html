@@ -102,7 +102,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <button
           type="button"
           (click)="service.showHoraires = !service.showHoraires"
-          class="btn-sm btn btn-outline-primary"
+          class="btn-sm btn"
+          [ngClass]="hoursAdded ? 'btn-outline-success' : 'btn-outline-primary'"
         >
           {{
             service.showHoraires ? ("HIDE" | translate) : ("SEE" | translate)
@@ -114,7 +115,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <button
           type="button"
           (click)="service.showModalities = !service.showModalities"
-          class="btn-sm btn btn-outline-primary"
+          class="btn-sm btn"
+          [ngClass]="
+            modalitiesAdded ? 'btn-outline-success' : 'btn-outline-primary'
+          "
         >
           {{
             service.showModalities ? ("HIDE" | translate) : ("SEE" | translate)
@@ -126,7 +130,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <button
           type="button"
           (click)="service.showPublics = !service.showPublics"
-          class="btn-sm btn btn-outline-primary"
+          class="btn-sm btn"
+          [ngClass]="
+            publicsAdded ? 'btn-outline-success' : 'btn-outline-primary'
+          "
         >
           {{ service.showPublics ? ("HIDE" | translate) : ("SEE" | translate) }}
           {{ "WELCOMED_PUBLIC" | translate }}
