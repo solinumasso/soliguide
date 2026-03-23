@@ -1,4 +1,4 @@
-import express, { type NextFunction } from "express";
+import express from "express";
 
 import { UserStatus } from "@soliguide/common";
 
@@ -14,7 +14,7 @@ import type {
 } from "../../_models";
 
 import { checkRights, getUserFromUrl, getFilteredData } from "../../middleware";
-import { sendUserChangesToMqAndNext } from "../middlewares/send-user-changes-event-to-mq.middleware";
+import { sendUserChangesToMq } from "../middlewares/send-user-changes-event-to-mq.middleware";
 
 const router = express.Router();
 /**
@@ -147,8 +147,7 @@ router.delete(
       selectedUser: Required<UserPopulateType>;
       isUserDeleted: boolean;
     },
-    res: ExpressResponse,
-    next: NextFunction
+    res: ExpressResponse
   ) => {
     try {
       await UserAdminController.deleteUser(req.selectedUser, req.log);
@@ -156,15 +155,15 @@ router.delete(
       req.updatedUser = req.selectedUser;
       req.isUserDeleted = true;
 
-      res.status(200).json({ message: "USER_DELETED" });
-
-      return next();
+      sendUserChangesToMq(req).catch((e) =>
+        req.log.error(e, "Failed to send user changes to MQ")
+      );
+      return res.status(200).json({ message: "USER_DELETED" });
     } catch (e) {
       req.log.error(e, "DELETE_USER_FAIL");
       return res.status(400).json({ message: "DELETE_USER_FAIL" });
     }
-  },
-  sendUserChangesToMqAndNext
+  }
 );
 
 export default router;
