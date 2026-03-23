@@ -1,13 +1,16 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-function-type */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 
 import type { ApiPropertyOptions } from '@nestjs/swagger';
+import { z } from 'zod';
 import type {
   DecoratorFreeApiPropertyOptions,
   OpenApiPropertyDescriptor,
   OpenApiPropertySchema,
 } from '../../versioning/versioning.types';
 import { isRecord } from '../../utils/type-guards';
+
+const IMPLICIT_INTEGER_MAXIMUM = Number.MAX_SAFE_INTEGER;
 
 function constructorToOpenApiType(
   constructorType: Function,
@@ -65,7 +68,7 @@ function normalizeExplicitType(inputType: unknown): {
     const normalized = constructorToOpenApiType(inputType[0]);
     if (!normalized) {
       throw new Error(
-        `Unsupported constructor type in apiProperty array: ${inputType[0].name}. Use rawProperty(...) for advanced schemas.`,
+        `Unsupported constructor type in apiProperty array: ${inputType[0]['name']}. Use rawProperty(...) for advanced schemas.`,
       );
     }
 
@@ -145,6 +148,49 @@ function toDescriptorSchema(
   }
 
   return schema as OpenApiPropertySchema;
+}
+
+function normalizeGeneratedOpenApiSchema(value: unknown): unknown {
+  if (Array.isArray(value)) {
+    return value.map((item) => normalizeGeneratedOpenApiSchema(item));
+  }
+
+  if (!isRecord(value)) {
+    return value;
+  }
+
+  const normalized = Object.entries(value).reduce<Record<string, unknown>>(
+    (accumulator, [key, child]) => {
+      accumulator[key] = normalizeGeneratedOpenApiSchema(child);
+      return accumulator;
+    },
+    {},
+  );
+
+  if (
+    normalized.type === 'integer' &&
+    normalized.maximum === IMPLICIT_INTEGER_MAXIMUM
+  ) {
+    delete normalized.maximum;
+  }
+
+  return normalized;
+}
+
+export function zodSchemaToOpenApiSchema(
+  schema: z.ZodTypeAny,
+): OpenApiPropertySchema {
+  const jsonSchema = z.toJSONSchema(schema, {
+    target: 'openapi-3.0',
+    reused: 'inline',
+  });
+  const normalized = normalizeGeneratedOpenApiSchema(jsonSchema);
+
+  if (!isRecord(normalized)) {
+    throw new Error('Generated OpenAPI schema must be an object.');
+  }
+
+  return normalized as OpenApiPropertySchema;
 }
 
 export function apiProperty(
