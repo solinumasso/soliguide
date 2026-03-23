@@ -127,6 +127,12 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
     showTranslationMenuDropdown: false,
     showSoligareMenu: false,
     websiteUrl: "soliguia.cat",
+    socialMedia: {
+      instagram: "https://www.instagram.com/soliguia/",
+      linkedin:
+        "https://www.linkedin.com/showcase/soliguia/posts/?feedView=all",
+      facebook: "https://www.facebook.com/people/Soliguia/61586492182496/",
+    },
   },
   [Themes.SOLIGUIA_AD]: {
     ...DEFAULT_THEME_VALUE,
@@ -154,6 +160,12 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
     showTranslationMenuDropdown: false,
     showSoligareMenu: false,
     websiteUrl: "soliguia.ad",
+    socialMedia: {
+      instagram: "https://www.instagram.com/soliguia/",
+      linkedin:
+        "https://www.linkedin.com/showcase/soliguia/posts/?feedView=all",
+      facebook: "https://www.facebook.com/people/Soliguia/61586492182496/",
+    },
   },
 } as const;
 
