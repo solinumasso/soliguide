@@ -3,10 +3,7 @@ import type {
   OpenApiPropertySchema,
 } from '../../versioning/versioning.types';
 import { parseObjectPath } from '../../versioning/object-path.utils';
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value !== null && !Array.isArray(value);
-}
+import { isRecord } from '../../utils/type-guards';
 
 function normalizeRequired(value: unknown): string[] {
   if (!Array.isArray(value)) {

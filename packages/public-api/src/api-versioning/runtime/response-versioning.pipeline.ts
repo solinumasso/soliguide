@@ -1,13 +1,18 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { VersionResolver } from '../versioning/version-resolver';
 import { VersionRegistry } from '../versioning/version-registry';
+import { VersionMigrationPlanner } from './version-migration-planner';
 
 @Injectable()
 export class ResponseVersioningPipeline {
+  private readonly migrationPlanner: VersionMigrationPlanner;
+
   constructor(
     private readonly registry: VersionRegistry,
     private readonly versionResolver: VersionResolver,
-  ) {}
+  ) {
+    this.migrationPlanner = new VersionMigrationPlanner(this.registry);
+  }
 
   async downgradeResponse(
     payload: unknown,
@@ -24,20 +29,14 @@ export class ResponseVersioningPipeline {
       return payload;
     }
 
-    const targetIndex = this.registry.getVersionIndex(normalizedVersion);
-    const canonicalIndex = this.registry.getVersionIndex(
+    const downgradePath = this.migrationPlanner.planResponseDowngradePath(
       this.registry.canonicalVersion,
+      normalizedVersion,
     );
 
     let transformedPayload = payload;
 
-    for (
-      let versionIndex = canonicalIndex;
-      versionIndex > targetIndex;
-      versionIndex -= 1
-    ) {
-      const version = this.registry.getCompiledVersionByIndex(versionIndex);
-
+    for (const version of downgradePath) {
       for (const change of version.responseChanges) {
         try {
           transformedPayload = await change.downgrade(transformedPayload);

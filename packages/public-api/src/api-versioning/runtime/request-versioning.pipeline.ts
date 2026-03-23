@@ -7,6 +7,7 @@ import {
 import { z } from 'zod';
 import { VersionResolver } from '../versioning/version-resolver';
 import { VersionRegistry } from '../versioning/version-registry';
+import { VersionMigrationPlanner } from './version-migration-planner';
 import { REQUEST_SCHEMAS_BY_VERSION } from './versioning.tokens';
 import type {
   ApiVersion,
@@ -15,12 +16,16 @@ import type {
 
 @Injectable()
 export class RequestVersioningPipeline {
+  private readonly migrationPlanner: VersionMigrationPlanner;
+
   constructor(
     private readonly registry: VersionRegistry,
     private readonly versionResolver: VersionResolver,
     @Inject(REQUEST_SCHEMAS_BY_VERSION)
     private readonly requestSchemasByVersion: ValidationSchemaCache,
-  ) {}
+  ) {
+    this.migrationPlanner = new VersionMigrationPlanner(this.registry);
+  }
 
   async upgradeRequest(
     payload: unknown,
@@ -46,20 +51,14 @@ export class RequestVersioningPipeline {
       return parsed.data;
     }
 
-    const sourceIndex = this.registry.getVersionIndex(normalizedVersion);
-    const canonicalIndex = this.registry.getVersionIndex(
+    const upgradePath = this.migrationPlanner.planRequestUpgradePath(
+      normalizedVersion,
       this.registry.canonicalVersion,
     );
 
     let transformedPayload = parsed.data;
 
-    for (
-      let versionIndex = sourceIndex + 1;
-      versionIndex <= canonicalIndex;
-      versionIndex += 1
-    ) {
-      const version = this.registry.getCompiledVersionByIndex(versionIndex);
-
+    for (const version of upgradePath) {
       for (const change of version.requestChanges) {
         try {
           transformedPayload = await change.upgrade(transformedPayload);
@@ -74,7 +73,9 @@ export class RequestVersioningPipeline {
       }
     }
 
-    const canonicalSchema = this.getRequestSchema(this.registry.canonicalVersion);
+    const canonicalSchema = this.getRequestSchema(
+      this.registry.canonicalVersion,
+    );
     const canonicalParsed = canonicalSchema.safeParse(transformedPayload);
 
     if (!canonicalParsed.success) {

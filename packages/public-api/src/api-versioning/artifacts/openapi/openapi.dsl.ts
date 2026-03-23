@@ -7,6 +7,7 @@ import type {
   OpenApiPropertyDescriptor,
   OpenApiPropertySchema,
 } from '../../versioning/versioning.types';
+import { isRecord } from '../../utils/type-guards';
 
 function constructorToOpenApiType(
   constructorType: Function,
@@ -32,10 +33,6 @@ function constructorToOpenApiType(
   }
 
   return null;
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
 function omitUndefined(

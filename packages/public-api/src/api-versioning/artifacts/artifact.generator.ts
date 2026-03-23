@@ -10,6 +10,7 @@ import { ResponseOpenApiProjector } from './openapi/response-openapi.projector';
 import { RequestSchemaProjector } from './schema/request-schema.projector';
 import { ResponseSchemaProjector } from './schema/response-schema.projector';
 import { emitZodSchemaModule } from './schema/zod-schema.emitter';
+import { isRecord } from '../utils/type-guards';
 import { VersionRegistry } from '../versioning/version-registry';
 import {
   ARTIFACTS_OUTPUT_DIRECTORY,
@@ -23,97 +24,6 @@ import type {
   RequestOpenApiSchemaCache,
   ResponseOpenApiSchemaCache,
 } from '../versioning/versioning.types';
-
-function sortKeysDeep(value: unknown): unknown {
-  if (Array.isArray(value)) {
-    return value.map((item) => sortKeysDeep(item));
-  }
-
-  if (value && typeof value === 'object') {
-    return Object.keys(value as Record<string, unknown>)
-      .sort()
-      .reduce<Record<string, unknown>>((accumulator, key) => {
-        accumulator[key] = sortKeysDeep(
-          (value as Record<string, unknown>)[key],
-        );
-        return accumulator;
-      }, {});
-  }
-
-  return value;
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value !== null && !Array.isArray(value);
-}
-
-function ensureRecord(
-  value: unknown,
-  errorMessage: string,
-): Record<string, unknown> {
-  if (!isRecord(value)) {
-    throw new Error(errorMessage);
-  }
-
-  return value;
-}
-
-function normalizeRequired(value: unknown): string[] {
-  if (!Array.isArray(value)) {
-    return [];
-  }
-
-  return value.filter((item): item is string => typeof item === 'string');
-}
-
-function toSchemaConstName(
-  version: ApiVersion,
-  kind: 'request' | 'response',
-): string {
-  const normalizedVersion = version.replace(/-/g, '');
-  return `v${normalizedVersion}${kind === 'request' ? 'Request' : 'Response'}Schema`;
-}
-
-function buildContractsManifest(versions: readonly ApiVersion[]): string {
-  const importLines: string[] = ["import { z } from 'zod';"];
-
-  for (const version of versions) {
-    importLines.push(
-      `import { ${toSchemaConstName(version, 'request')} } from './${version}.request.schema';`,
-    );
-    importLines.push(
-      `import { ${toSchemaConstName(version, 'response')} } from './${version}.response.schema';`,
-    );
-  }
-
-  const requestEntries = versions
-    .map(
-      (version) =>
-        `  ['${version}', ${toSchemaConstName(version, 'request')}] as [ApiVersion, z.ZodTypeAny],`,
-    )
-    .join('\n');
-  const responseEntries = versions
-    .map(
-      (version) =>
-        `  ['${version}', ${toSchemaConstName(version, 'response')}] as [ApiVersion, z.ZodTypeAny],`,
-    )
-    .join('\n');
-
-  return [
-    ...importLines,
-    '',
-    'type ApiVersion = `${number}-${number}-${number}`;',
-    '',
-    'export const requestSchemasByVersion: ReadonlyMap<ApiVersion, z.ZodTypeAny> = new Map<ApiVersion, z.ZodTypeAny>([',
-    requestEntries,
-    ']);',
-    '',
-    'export const responseSchemasByVersion: ReadonlyMap<ApiVersion, z.ZodTypeAny> = new Map<ApiVersion, z.ZodTypeAny>([',
-    responseEntries,
-    ']);',
-    '',
-  ].join('\n');
-}
 
 @Injectable()
 export class ArtifactGenerationService {
@@ -178,7 +88,7 @@ export class ArtifactGenerationService {
 
       await fs.writeFile(
         path.join(openApiDirectory, `${version}.json`),
-        `${JSON.stringify(sortKeysDeep(openApiDocument), null, 2)}\n`,
+        `${JSON.stringify(this.sortKeysDeep(openApiDocument), null, 2)}\n`,
         'utf8',
       );
 
@@ -191,7 +101,7 @@ export class ArtifactGenerationService {
       await fs.writeFile(
         path.join(contractsDirectory, `${version}.request.schema.ts`),
         emitZodSchemaModule(requestSchema, {
-          constName: toSchemaConstName(version, 'request'),
+          constName: this.toSchemaConstName(version, 'request'),
         }),
         'utf8',
       );
@@ -199,7 +109,7 @@ export class ArtifactGenerationService {
       await fs.writeFile(
         path.join(contractsDirectory, `${version}.response.schema.ts`),
         emitZodSchemaModule(responseSchema, {
-          constName: toSchemaConstName(version, 'response'),
+          constName: this.toSchemaConstName(version, 'response'),
         }),
         'utf8',
       );
@@ -207,7 +117,7 @@ export class ArtifactGenerationService {
 
     await fs.writeFile(
       path.join(contractsDirectory, 'index.ts'),
-      buildContractsManifest(this.registry.supportedVersions),
+      this.buildContractsManifest(this.registry.supportedVersions),
       'utf8',
     );
   }
@@ -266,36 +176,36 @@ export class ArtifactGenerationService {
     responseSchema: OpenApiPropertySchema,
   ): Record<string, unknown> {
     const document = cloneOpenApiSchema(baseOpenApiDocument);
-    const info = ensureRecord(
+    const info = this.ensureRecord(
       document.info,
       'OpenAPI document is missing info.',
     );
     info.version = version;
 
-    const paths = ensureRecord(
+    const paths = this.ensureRecord(
       document.paths,
       'OpenAPI document is missing paths.',
     );
-    const pathItem = ensureRecord(
+    const pathItem = this.ensureRecord(
       paths[this.openApiOperationTarget.path],
       `OpenAPI document is missing path "${this.openApiOperationTarget.path}".`,
     );
 
     const method = this.openApiOperationTarget.method;
-    const operation = ensureRecord(
+    const operation = this.ensureRecord(
       pathItem[method],
       `OpenAPI document is missing operation "${method.toUpperCase()} ${this.openApiOperationTarget.path}".`,
     );
 
     operation.parameters = this.buildQueryParameters(requestSchema);
 
-    const responses = ensureRecord(
+    const responses = this.ensureRecord(
       operation.responses ?? {},
       'OpenAPI operation responses must be an object when defined.',
     );
     operation.responses = responses;
 
-    const okResponse = ensureRecord(
+    const okResponse = this.ensureRecord(
       responses['200'] ?? {},
       'OpenAPI response "200" must be an object when defined.',
     );
@@ -304,13 +214,13 @@ export class ArtifactGenerationService {
       okResponse.description = 'Successful search response';
     }
 
-    const content = ensureRecord(
+    const content = this.ensureRecord(
       okResponse.content ?? {},
       'OpenAPI response content must be an object when defined.',
     );
     okResponse.content = content;
 
-    const applicationJsonContent = ensureRecord(
+    const applicationJsonContent = this.ensureRecord(
       content['application/json'] ?? {},
       'OpenAPI response content for application/json must be an object when defined.',
     );
@@ -338,7 +248,13 @@ export class ArtifactGenerationService {
       );
     }
 
-    const required = new Set(normalizeRequired(requestSchema.required));
+    const required = new Set(
+      Array.isArray(requestSchema.required)
+        ? requestSchema.required.filter(
+            (item): item is string => typeof item === 'string',
+          )
+        : [],
+    );
 
     return Object.keys(rawProperties)
       .sort()
@@ -380,5 +296,84 @@ export class ArtifactGenerationService {
     } finally {
       await app.close();
     }
+  }
+
+  private sortKeysDeep(value: unknown): unknown {
+    if (Array.isArray(value)) {
+      return value.map((item) => this.sortKeysDeep(item));
+    }
+
+    if (value && typeof value === 'object') {
+      return Object.keys(value as Record<string, unknown>)
+        .sort()
+        .reduce<Record<string, unknown>>((accumulator, key) => {
+          accumulator[key] = this.sortKeysDeep(
+            (value as Record<string, unknown>)[key],
+          );
+          return accumulator;
+        }, {});
+    }
+
+    return value;
+  }
+
+  private ensureRecord(
+    value: unknown,
+    errorMessage: string,
+  ): Record<string, unknown> {
+    if (!isRecord(value)) {
+      throw new Error(errorMessage);
+    }
+
+    return value;
+  }
+
+  private toSchemaConstName(
+    version: ApiVersion,
+    kind: 'request' | 'response',
+  ): string {
+    const normalizedVersion = version.replace(/-/g, '');
+    return `v${normalizedVersion}${kind === 'request' ? 'Request' : 'Response'}Schema`;
+  }
+
+  private buildContractsManifest(versions: readonly ApiVersion[]): string {
+    const importLines: string[] = ["import { z } from 'zod';"];
+
+    for (const version of versions) {
+      importLines.push(
+        `import { ${this.toSchemaConstName(version, 'request')} } from './${version}.request.schema';`,
+      );
+      importLines.push(
+        `import { ${this.toSchemaConstName(version, 'response')} } from './${version}.response.schema';`,
+      );
+    }
+
+    const requestEntries = versions
+      .map(
+        (version) =>
+          `  ['${version}', ${this.toSchemaConstName(version, 'request')}] as [ApiVersion, z.ZodTypeAny],`,
+      )
+      .join('\n');
+    const responseEntries = versions
+      .map(
+        (version) =>
+          `  ['${version}', ${this.toSchemaConstName(version, 'response')}] as [ApiVersion, z.ZodTypeAny],`,
+      )
+      .join('\n');
+
+    return [
+      ...importLines,
+      '',
+      'type ApiVersion = `${number}-${number}-${number}`;',
+      '',
+      'export const requestSchemasByVersion: ReadonlyMap<ApiVersion, z.ZodTypeAny> = new Map<ApiVersion, z.ZodTypeAny>([',
+      requestEntries,
+      ']);',
+      '',
+      'export const responseSchemasByVersion: ReadonlyMap<ApiVersion, z.ZodTypeAny> = new Map<ApiVersion, z.ZodTypeAny>([',
+      responseEntries,
+      ']);',
+      '',
+    ].join('\n');
   }
 }
