@@ -80,6 +80,10 @@ router.post(
       if (invitation) {
         req.invitation = invitation;
         req.updatedUser = req.invitation.user as UserPopulateType;
+        req.updatedUser.invitations = [
+          ...((req.updatedUser.invitations as InvitationPopulate[]) ?? []),
+          invitation as any,
+        ];
       } else {
         throw new Error("INVITATION WASN'T CREATED");
       }
@@ -177,6 +181,13 @@ router.get(
       req.selectedUser = updatedUser;
 
       req.updatedUser = updatedUser;
+      // Re-attach the original invitation (pending: true in memory) so that
+      // AmqpSynchroAirtableUserEvent can build invitationUrl for CRM tracking.
+      // validateInvitation removes it from the DB before this point.
+      (req.updatedUser.invitations as InvitationPopulate[]) = [
+        req.invitation,
+        ...((req.updatedUser.invitations as InvitationPopulate[]) ?? []),
+      ];
 
       sendAcceptedInvitationToMq(req).catch((e) =>
         req.log.error(e, "Failed to send accepted invitation to MQ")
@@ -220,6 +231,13 @@ router.post(
       req.invitation.user = user;
       req.selectedUser = user;
       req.updatedUser = user;
+      // Re-attach the original invitation (pending: true in memory) so that
+      // AmqpSynchroAirtableUserEvent can build invitationUrl for CRM tracking.
+      // acceptFirstInvitation removes it from the DB before this point.
+      (req.updatedUser.invitations as InvitationPopulate[]) = [
+        req.invitation,
+        ...((req.updatedUser.invitations as InvitationPopulate[]) ?? []),
+      ];
       req.organization = req.invitation.organization;
 
       sendWelcomeToMq(req).catch((e) =>
