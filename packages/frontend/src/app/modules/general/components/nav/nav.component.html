@@ -298,7 +298,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                   routePrefix,
                   'solidata',
                   'public',
-                  'search-tracking'
+                  'consultation-tracking'
                 ]"
                 (click)="captureEvent('click-solidata-search-tracking', {})"
                 ngbDropdownItem
@@ -351,6 +351,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 *ngIf="displaySolidataAnticipateClosures"
               >
                 {{ "ANTICIPATE_CLOSURES" | translate }}
+              </a>
+              <a
+                routerLinkActive="router-link-active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                [routerLink]="[routePrefix, 'solidata', 'acces_eau']"
+                (click)="captureEvent('click-solidata-water-access', {})"
+                ngbDropdownItem
+                *ngIf="displaySolidataWaterAccess"
+              >
+                {{ "SOLIDATA_WATER_ACCESS" | translate }}
               </a>
             </div>
           </div>
@@ -406,7 +416,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                   routePrefix,
                   'solidata',
                   'public',
-                  'search-tracking'
+                  'consultation-tracking'
                 ]"
                 (click)="captureEvent('click-solidata-search-tracking', {})"
                 ngbDropdownItem

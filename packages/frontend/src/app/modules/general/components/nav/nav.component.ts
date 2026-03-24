@@ -69,6 +69,9 @@ export class NavComponent implements OnInit, OnDestroy {
   public readonly displaySolidataAnticipateClosures = Boolean(
     THEME_CONFIGURATION.solidata?.anticipateClosures
   );
+  public readonly displaySolidataWaterAccess = Boolean(
+    THEME_CONFIGURATION.solidata?.waterAccess
+  );
   public readonly displaySolidataNavButtons = Boolean(
     THEME_CONFIGURATION.solidata
   );
