@@ -66,8 +66,8 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
       searchTracking: {
         label: "Suivi des recherches",
         dashboardUrl:
-          "https://superset.solinum.org/superset/dashboard/tableau-des-recherches/?standalone=2",
-        seoUrl: "search-tracking",
+          "https://superset.solinum.org/superset/dashboard/nsm/?standalone=2",
+        seoUrl: "consultation-tracking",
       },
       foodAccess: {
         label: "Analyse de l’accès à l’alimentation",
@@ -86,6 +86,12 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
         dashboardUrl:
           "https://superset.solinum.org/superset/dashboard/calendrier_des_fermetures/?standalone=2",
         seoUrl: "calendrier_des_fermetures",
+      },
+      waterAccess: {
+        label: "Accès à l'eau et à l'hygiène en métropoles de France",
+        dashboardUrl:
+          "https://superset.solinum.org/superset/dashboard/acces_eau/?standalone=2",
+        seoUrl: "acces_eau",
       },
       demoFoodAccess: {
         label: "Démo – Analyse de l'accès à l'alimentation",
