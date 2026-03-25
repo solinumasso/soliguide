@@ -19,6 +19,8 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
+# Test
+
 # Soliguide: useful information for those who need it
 
 Soliguide references all the services, initiatives and resources that are useful for those in need.
