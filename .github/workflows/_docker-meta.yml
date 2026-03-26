@@ -68,5 +68,5 @@ jobs:
             type=ref,event=pr,suffix=${{ inputs.suffix }}
             # develop
             type=ref,event=branch,suffix=${{ inputs.suffix }}
-            # pr-00000-<short_sha> or develop--<short_sha>
+            # pr-00000-<short_sha> or develop-<short_sha>
             type=sha,prefix=${{ steps.meta_classic.outputs.tags }}-,suffix=${{ inputs.suffix }}

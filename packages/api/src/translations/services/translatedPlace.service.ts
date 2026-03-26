@@ -41,7 +41,7 @@ export const patchTranslatedPlace = async (
   return await TranslatedPlaceModel.findOneAndUpdate(
     { lieu_id },
     { $set: data },
-    { new: true }
+    { new: true, upsert: true }
   )
     .lean()
     .exec();

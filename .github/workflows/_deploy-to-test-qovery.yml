@@ -63,6 +63,7 @@ jobs:
           echo "Blueprint name: $QOVERY_BLUEPRINT_ENVIRONMENT_NAME"
           echo "New environment name: $QOVERY_NEW_ENVIRONMENT_NAME"
           echo "Base domain name: $QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
+          echo "Image tag (SOLIGUIDE_TAG): $SOLIGUIDE_TAG"
       - name: Search for the environment in Qovery
         id: check_presence
         continue-on-error: true

@@ -4,6 +4,7 @@ import {
   SupportedLanguagesCode,
   TranslatedField,
   TranslatedFieldLanguageStatus,
+  TranslatedFieldStatus,
 } from "@soliguide/common";
 
 import { logger } from "../../../general/logger";
@@ -12,7 +13,6 @@ import { CONFIG } from "../../../_models";
 import { v2 } from "@google-cloud/translate";
 import {
   findTranslatedField,
-  findTranslatedFields,
   updateManyTranslatedFields,
 } from "../../../translations/services/translatedField.service";
 
@@ -20,6 +20,7 @@ import { getPlaceAndRebuildTranslation } from "../../../translations/controllers
 import isEmpty from "lodash.isempty";
 import { FilterQuery } from "mongoose";
 import { ApiTranslatedField } from "../../../translations/interfaces";
+import { TranslatedFieldModel } from "../../../translations/models";
 
 const GoogleTranslate = new v2.Translate({
   projectId: CONFIG.GOOGLE_PROJECT_ID,
@@ -27,35 +28,35 @@ const GoogleTranslate = new v2.Translate({
 });
 
 const translatedJobByCountry = async (country: SoliguideCountries) => {
-  const query: Array<FilterQuery<TranslatedField>> = [];
+  const matchQuery: Array<FilterQuery<TranslatedField>> = [];
 
   const sourceLanguage = SUPPORTED_LANGUAGES_BY_COUNTRY[country].source;
   const otherLanguages: SupportedLanguagesCode[] =
     SUPPORTED_LANGUAGES_BY_COUNTRY[country].otherLanguages;
 
   otherLanguages.forEach((language: SupportedLanguagesCode) => {
-    query.push({
+    matchQuery.push({
       [`languages.${language}.auto.content`]: { $in: [null, ""] },
       sourceLanguage,
     });
   });
 
-  const elements = await findTranslatedFields(
-    {
-      $or: query,
-    },
-    {
-      limit: 10,
-      page: 1,
-      skip: 0,
-      sort: { lieu_id: "ascending" },
-    }
-  );
+  // Group by content to process each unique text only once
+  const elements: ApiTranslatedField[] = await TranslatedFieldModel.aggregate([
+    { $match: { $or: matchQuery } },
+    { $group: { _id: "$content", doc: { $first: "$$ROOT" } } },
+    { $replaceRoot: { newRoot: "$doc" } },
+    { $limit: 100 },
+  ]);
+
+  const rebuiltPlaceIds = new Set<number>();
 
   for (const element of elements) {
     logger.info(
       `[TRANSLATION] [PLACE N*${element.lieu_id}] original content : ${element.content}`
     );
+
+    let hasError = false;
 
     for (const lang of otherLanguages) {
       if (
@@ -65,6 +66,7 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
         logger.error(
           `[TRANSLATEDFIELD CRON]: No human or auto elements for languages ${lang} for element ${element.elementName} of place ${element.lieu_id}`
         );
+        hasError = true;
         continue;
       }
       const sourceContent =
@@ -114,7 +116,7 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
           };
         }
 
-        // Update the translation
+        // Update ALL documents sharing this content
         await updateManyTranslatedFields(
           {
             content: element.content,
@@ -124,8 +126,33 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
       }
     }
 
-    // The place is put back for translation
-    await getPlaceAndRebuildTranslation(element.lieu_id);
+    // Advance status from NEED_AUTO_TRANSLATE to NEED_HUMAN_TRANSLATE now that
+    // all languages have been auto-translated. Only upgrade — never downgrade
+    // documents already at NEED_HUMAN_TRANSLATE or TRANSLATION_COMPLETE.
+    if (!hasError) {
+      await updateManyTranslatedFields(
+        {
+          content: element.content,
+          status: TranslatedFieldStatus.NEED_AUTO_TRANSLATE,
+        },
+        { status: TranslatedFieldStatus.NEED_HUMAN_TRANSLATE }
+      );
+    }
+
+    // Collect all place IDs sharing this content, not just the representative
+    // document's place, since updateManyTranslatedFields updated them all
+    const affectedFields = await TranslatedFieldModel.find(
+      { content: element.content },
+      { lieu_id: 1 }
+    ).lean();
+    for (const field of affectedFields) {
+      rebuiltPlaceIds.add(field.lieu_id);
+    }
+  }
+
+  // Rebuild once per unique place rather than once per element
+  for (const lieu_id of rebuiltPlaceIds) {
+    await getPlaceAndRebuildTranslation(lieu_id);
   }
 
   if (!elements.length) {

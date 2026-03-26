@@ -9,6 +9,7 @@ export enum PrivateDashboards {
   FoodAccess = "foodAccess",
   OlympicGames = "olympicGames",
   AnticipateClosures = "anticipateClosures",
+  WaterAccess = "waterAccess",
 }
 
 export enum PublicDashboards {
