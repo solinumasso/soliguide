@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.126.0](https://github.com/solinumasso/soliguide/compare/v4.125.5...v4.126.0) (2026-03-26)
+
+
+### Bug Fixes
+
+* **api:** fix and clean translations ([eba9cac](https://github.com/solinumasso/soliguide/commit/eba9cacd0556013d55e2ce6813705ee17b4594f1))
+* **api:** fix github ci ([4775568](https://github.com/solinumasso/soliguide/commit/47755685267a73c7afb4338cf4d84ca31a64eabe))
+
+
+### Features
+
+* **common:** add portuguese for spain and andorra ([606882a](https://github.com/solinumasso/soliguide/commit/606882a5dc06dda55524de2b7d5104682ee499d0))
+* **frontend:** add "Who are we?" link in footer for soliguia.cat and soliguia.ad ([8f0f994](https://github.com/solinumasso/soliguide/commit/8f0f994de195e8132c37a06f258600c974537430))
+* **frontend:** add socials for ad and es ([cf3d1a1](https://github.com/solinumasso/soliguide/commit/cf3d1a1f275ccdbb871d8294f12f379728a836da))
+* **frontend:** add water access dashboard ([e77ea3b](https://github.com/solinumasso/soliguide/commit/e77ea3ba69616616bed7b130d9d788b9e4ffd161))
+* test deployment ([2fbef7c](https://github.com/solinumasso/soliguide/commit/2fbef7cd4ec71515b37e3ad3f5e2056c37a10442))
+
+
+
+
+
 ## [4.125.5](https://github.com/solinumasso/soliguide/compare/v4.125.4...v4.125.5) (2026-03-11)
 
 
