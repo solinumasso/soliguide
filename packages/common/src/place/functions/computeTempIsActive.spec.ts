@@ -92,6 +92,7 @@ describe("computeTempIsActive", () => {
       tempInfos: {
         hours: {
           ...ONLINE_PLACE.tempInfos.hours,
+          actif: true,
           dateDebut: new Date("2024-01-01"),
           dateFin: null,
         },
