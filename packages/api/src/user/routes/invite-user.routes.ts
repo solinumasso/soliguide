@@ -28,21 +28,17 @@ import {
 import { isUserInOrga } from "../controllers/user.controller";
 import {
   sendAcceptedInvitationToMq,
-  sendAcceptedInvitationToMqAndNext,
   sendDeteleInvitationToMq,
   sendNewInvitationToMqAndNext,
   sendReNewInvitationToMqAndNext,
-  sendWelcomeToMqAndNext,
+  sendWelcomeToMq,
 } from "../middlewares/send-inivitation-event-to-mq.middleware";
 import {
   captureReSendInvitation,
   captureSendInvitation,
   captureWelcomeEvent,
 } from "../middlewares/capture-inivitation-event.middleware";
-import {
-  sendUserChangesToMq,
-  sendUserChangesToMqAndNext,
-} from "../middlewares/send-user-changes-event-to-mq.middleware";
+import { sendUserChangesToMq } from "../middlewares/send-user-changes-event-to-mq.middleware";
 
 const router = express.Router();
 
@@ -95,17 +91,17 @@ router.post(
   },
   sendNewInvitationToMqAndNext,
   (
-    _req: ExpressRequest & {
+    req: ExpressRequest & {
       invitation: InvitationPopulate;
     },
-    res: ExpressResponse,
-    next: NextFunction
+    res: ExpressResponse
   ) => {
-    res.status(200).json({ message: "INVITE_SENT" });
-    return next();
-  },
-  sendUserChangesToMqAndNext,
-  captureSendInvitation
+    sendUserChangesToMq(req).catch((e) =>
+      req.log.error(e, "Failed to send user changes to MQ")
+    );
+    captureSendInvitation(req);
+    return res.status(200).json({ message: "INVITE_SENT" });
+  }
 );
 
 /**
@@ -173,8 +169,7 @@ router.get(
     req: ExpressRequest & {
       invitation: InvitationPopulate;
     },
-    res: ExpressResponse,
-    next: NextFunction
+    res: ExpressResponse
   ) => {
     try {
       const updatedUser = await validateInvitation(req.invitation);
@@ -183,16 +178,18 @@ router.get(
 
       req.updatedUser = updatedUser;
 
-      res.status(200).json(updatedUser);
-
-      return next();
+      sendAcceptedInvitationToMq(req).catch((e) =>
+        req.log.error(e, "Failed to send accepted invitation to MQ")
+      );
+      sendUserChangesToMq(req).catch((e) =>
+        req.log.error(e, "Failed to send user changes to MQ")
+      );
+      return res.status(200).json(updatedUser);
     } catch (e) {
       req.log.error(e, "VALIDATION_INVITATION_FAIL");
       return res.status(400).json({ message: "VALIDATION_INVITATION_FAIL" });
     }
-  },
-  sendAcceptedInvitationToMq,
-  sendUserChangesToMq
+  }
 );
 
 /**
@@ -211,8 +208,7 @@ router.post(
     req: ExpressRequest & {
       invitation: InvitationPopulate;
     },
-    res: ExpressResponse,
-    next: NextFunction
+    res: ExpressResponse
   ) => {
     const userSignupInfos = req.bodyValidated;
     try {
@@ -220,23 +216,29 @@ router.post(
         req.invitation,
         userSignupInfos.password
       );
-      // sendWelcomeToMqAndNext needs the updated user in the invitation
+      // Set updated user in invitation before firing MQ events
       req.invitation.user = user;
       req.selectedUser = user;
+      req.updatedUser = user;
       req.organization = req.invitation.organization;
 
-      res.status(200).json(user._id.toString());
+      sendWelcomeToMq(req).catch((e) =>
+        req.log.error(e, "Failed to send welcome to MQ")
+      );
+      sendAcceptedInvitationToMq(req).catch((e) =>
+        req.log.error(e, "Failed to send accepted invitation to MQ")
+      );
+      sendUserChangesToMq(req).catch((e) =>
+        req.log.error(e, "Failed to send user changes to MQ")
+      );
+      captureWelcomeEvent(req);
 
-      next();
+      return res.status(200).json(user._id.toString());
     } catch (e) {
       req.log.error(e, "ACCEPT_FIRST_INVITATION_FAIL");
-      res.status(500).json({ message: "ACCEPT_FIRST_INVITATION_FAIL" });
+      return res.status(500).json({ message: "ACCEPT_FIRST_INVITATION_FAIL" });
     }
-  },
-  sendWelcomeToMqAndNext,
-  sendAcceptedInvitationToMqAndNext,
-  sendUserChangesToMqAndNext,
-  captureWelcomeEvent
+  }
 );
 
 /**
