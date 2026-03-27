@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { z } from 'zod';
 import { DslCompiler } from '../versioning/dsl-compiler';
+import { CustomTransformChange } from '../versioning/changes';
 import { ResponseVersioningPipeline } from './response-versioning.pipeline';
 import {
   catalogCanonicalResponse,
@@ -63,30 +64,7 @@ describe('ProposalC ResponseVersioningPipeline', () => {
           version: '2026-03-09',
           description: 'Breaks on downgrade',
           requestChanges: [],
-          responseChanges: [
-            {
-              description: 'Throws on downgrade',
-              operation: {
-                kind: 'customTransform',
-                payloadPath: '/results/*',
-                openApiPath: '/properties/results/items',
-                schemaPatch: {
-                  set: {
-                    seoUrl: {
-                      zod: z.string(),
-                      openApi: {
-                        schema: { type: 'string' },
-                        required: true,
-                      },
-                    },
-                  },
-                },
-                downgrade: async () => {
-                  throw new Error('boom');
-                },
-              },
-            },
-          ],
+          responseChanges: [new ThrowingDowngradeChange()],
         },
       ],
     };
@@ -101,3 +79,18 @@ describe('ProposalC ResponseVersioningPipeline', () => {
     ).rejects.toBeInstanceOf(InternalServerErrorException);
   });
 });
+
+class ThrowingDowngradeChange extends CustomTransformChange {
+  description = 'Throws on downgrade';
+  override payloadPath = '/results/*' as const;
+
+  protected override schemaPatchSet() {
+    return {
+      seoUrl: z.string(),
+    };
+  }
+
+  override async downgrade() {
+    throw new Error('boom');
+  }
+}

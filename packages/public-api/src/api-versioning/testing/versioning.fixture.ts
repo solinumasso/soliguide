@@ -1,11 +1,10 @@
 import { Controller, Get, Module } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { z } from 'zod';
-import { RequestSchemaProjector } from '../artifacts/schema/request-schema.projector';
-import { ResponseSchemaProjector } from '../artifacts/schema/response-schema.projector';
-import { rawProperty } from '../artifacts/openapi/openapi.dsl';
+import { RenameFieldChange, ReplaceFieldChange } from '../versioning/changes';
 import { DslCompiler } from '../versioning/dsl-compiler';
 import { VersionRegistry } from '../versioning/version-registry';
+import { applySchemaPatch } from './zod-schema-cache.utils';
 import type {
   ApiVersion,
   OpenApiOperationTarget,
@@ -23,16 +22,6 @@ const baseRequestSchema = z
     openToday: z.coerce.boolean().optional(),
   })
   .strict();
-
-const baseRequestOpenApiSchema = {
-  type: 'object',
-  additionalProperties: false,
-  properties: {
-    page: { type: 'integer', minimum: 1 },
-    limit: { type: 'integer', minimum: 1, maximum: 100 },
-    openToday: { type: 'boolean' },
-  },
-};
 
 const baseResponseSchema = z
   .object({
@@ -67,84 +56,6 @@ const baseResponseSchema = z
   })
   .strict();
 
-const baseResponseOpenApiSchema = {
-  type: 'object',
-  required: ['_links', 'results', 'page'],
-  additionalProperties: false,
-  properties: {
-    _links: {
-      type: 'object',
-      required: ['self', 'next', 'prev'],
-      additionalProperties: false,
-      properties: {
-        self: {
-          type: 'object',
-          required: ['href'],
-          properties: {
-            href: { type: 'string' },
-          },
-        },
-        next: {
-          type: 'object',
-          required: ['href'],
-          properties: {
-            href: { type: 'string' },
-          },
-        },
-        prev: {
-          type: 'object',
-          required: ['href'],
-          properties: {
-            href: { type: 'string' },
-          },
-        },
-      },
-    },
-    results: {
-      type: 'array',
-      items: {
-        type: 'object',
-        additionalProperties: false,
-        required: [
-          'id',
-          'slug',
-          'name',
-          'summary',
-          'type',
-          'isOpenToday',
-          'languages',
-        ],
-        properties: {
-          id: { type: 'string' },
-          slug: { type: 'string' },
-          name: { type: 'string' },
-          summary: { type: 'string' },
-          type: {
-            type: 'string',
-            enum: ['book', 'guide'],
-          },
-          isOpenToday: { type: 'boolean' },
-          languages: {
-            type: 'array',
-            items: { type: 'string' },
-          },
-        },
-      },
-    },
-    page: {
-      type: 'object',
-      additionalProperties: false,
-      required: ['current', 'limit', 'totalPages', 'totalResults'],
-      properties: {
-        current: { type: 'integer', minimum: 1 },
-        limit: { type: 'integer', minimum: 1 },
-        totalPages: { type: 'integer', minimum: 1 },
-        totalResults: { type: 'integer', minimum: 0 },
-      },
-    },
-  },
-};
-
 const v20260303: Version = {
   version: '2026-03-03',
   description: 'Initial catalog API version.',
@@ -152,107 +63,62 @@ const v20260303: Version = {
   responseChanges: [],
 };
 
+class RenameRequestOpenToday extends RenameFieldChange {
+  description = 'Renamed request field openToday to isOpenToday.';
+  from = 'openToday';
+  to = 'isOpenToday';
+  schema = z.coerce.boolean().optional();
+
+  override upgrade(value: unknown) {
+    return typeof value === 'boolean' ? value : Boolean(value);
+  }
+}
+
+class RenameResponseSlug extends RenameFieldChange {
+  description = 'Renamed response field slug to seoUrl.';
+  override payloadPath = '/results/*' as const;
+  from = 'slug';
+  to = 'seoUrl';
+  schema = z
+    .string()
+    .describe('URL-friendly identifier of the item.')
+    .meta({ example: 'atelier-ecriture-123' });
+}
+
+class ExpandResponseName extends ReplaceFieldChange {
+  description =
+    'Expanded response field name from string to object with original and translated values.';
+  override payloadPath = '/results/*' as const;
+  field = 'name';
+  schema = z
+    .object({
+      originalName: z.string().describe('Original name'),
+      translatedName: z.string().describe('Translated name'),
+    })
+    .strict();
+
+  override downgrade(value: unknown) {
+    if (typeof value !== 'object' || value === null) {
+      return value;
+    }
+
+    if ('translatedName' in value && typeof value.translatedName === 'string') {
+      return value.translatedName;
+    }
+
+    if ('originalName' in value && typeof value.originalName === 'string') {
+      return value.originalName;
+    }
+
+    return value;
+  }
+}
+
 const v20260309: Version = {
   version: '2026-03-09',
   description: 'Introduced clearer fields for request and response payloads.',
-  requestChanges: [
-    {
-      description: 'Renamed request field openToday to isOpenToday.',
-      operation: {
-        kind: 'renameField',
-        from: 'openToday',
-        to: 'isOpenToday',
-        toSpec: {
-          zod: z.coerce.boolean().optional(),
-          openApi: rawProperty({ type: 'boolean' }, { required: false }),
-        },
-      },
-    },
-  ],
-  responseChanges: [
-    {
-      description: 'Renamed response field slug to seoUrl.',
-      operation: {
-        kind: 'renameField',
-        from: 'slug',
-        to: 'seoUrl',
-        payloadPath: '/results/*',
-        openApiPath: '/properties/results/items',
-        toSpec: {
-          zod: z.string(),
-          openApi: rawProperty(
-            {
-              type: 'string',
-              description: 'URL-friendly identifier of the item.',
-              example: 'atelier-ecriture-123',
-            },
-            { required: true },
-          ),
-        },
-      },
-    },
-    {
-      description:
-        'Expanded response field name from string to object with original and translated values.',
-      operation: {
-        kind: 'replaceField',
-        field: 'name',
-        payloadPath: '/results/*',
-        openApiPath: '/properties/results/items',
-        spec: {
-          zod: z
-            .object({
-              originalName: z.string(),
-              translatedName: z.string(),
-            })
-            .strict(),
-          openApi: rawProperty(
-            {
-              type: 'object',
-              additionalProperties: false,
-              required: ['originalName', 'translatedName'],
-              properties: {
-                originalName: { type: 'string' },
-                translatedName: { type: 'string' },
-              },
-            },
-            { required: true },
-          ),
-        },
-        mapValue: (value: unknown) => {
-          if (typeof value !== 'string') {
-            return value;
-          }
-
-          return {
-            originalName: value,
-            translatedName: value,
-          };
-        },
-        downgradeValue: (value: unknown) => {
-          if (typeof value !== 'object' || value === null) {
-            return value;
-          }
-
-          if (
-            'translatedName' in value &&
-            typeof value.translatedName === 'string'
-          ) {
-            return value.translatedName;
-          }
-
-          if (
-            'originalName' in value &&
-            typeof value.originalName === 'string'
-          ) {
-            return value.originalName;
-          }
-
-          return value;
-        },
-      },
-    },
-  ],
+  requestChanges: [new RenameRequestOpenToday()],
+  responseChanges: [new RenameResponseSlug(), new ExpandResponseName()],
 };
 
 export const catalogVersions: readonly Version[] = [v20260303, v20260309];
@@ -262,8 +128,6 @@ export const catalogVersioningDefinition: VersioningDefinition = {
   versions: catalogVersions,
   baseRequestSchema,
   baseResponseSchema,
-  baseRequestOpenApiSchema,
-  baseResponseOpenApiSchema,
 };
 
 export const catalogOpenApiOperationTarget: OpenApiOperationTarget = {
@@ -323,16 +187,27 @@ export function buildSchemaCaches(
   supportedVersions: readonly ApiVersion[];
 } {
   const registry = new VersionRegistry(definition, new DslCompiler());
-  const requestSchemaProjector = new RequestSchemaProjector(registry);
-  const responseSchemaProjector = new ResponseSchemaProjector(registry);
+  let requestSchema = definition.baseRequestSchema;
+  let responseSchema = definition.baseResponseSchema;
+  const requestSchemasByVersion = new Map<ApiVersion, z.ZodTypeAny>();
+  const responseSchemasByVersion = new Map<ApiVersion, z.ZodTypeAny>();
+
+  for (const version of registry.compiledVersions) {
+    for (const change of version.requestChanges) {
+      requestSchema = applySchemaPatch(requestSchema, change.schemaPatch);
+    }
+
+    for (const change of version.responseChanges) {
+      responseSchema = applySchemaPatch(responseSchema, change.schemaPatch);
+    }
+
+    requestSchemasByVersion.set(version.version, requestSchema);
+    responseSchemasByVersion.set(version.version, responseSchema);
+  }
 
   return {
-    requestSchemasByVersion: requestSchemaProjector.buildRequestSchemaCache(
-      definition.baseRequestSchema,
-    ),
-    responseSchemasByVersion: responseSchemaProjector.buildResponseSchemaCache(
-      definition.baseResponseSchema,
-    ),
+    requestSchemasByVersion,
+    responseSchemasByVersion,
     supportedVersions: registry.supportedVersions,
   };
 }

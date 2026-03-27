@@ -1,32 +1,14 @@
 /* eslint-disable @typescript-eslint/no-redundant-type-constituents */
 import { z } from 'zod';
-import type { ApiPropertyOptions } from '@nestjs/swagger';
 import type {
-  ReferenceObject,
-  SchemaObject,
-} from '@nestjs/swagger/dist/interfaces/open-api-spec.interface';
+  RequestChangeDefinition,
+  ResponseChangeDefinition,
+} from './changes/change';
 
 export type ApiVersion = `${number}-${number}-${number}`;
 
-export type OpenApiPropertySchema =
-  | (SchemaObject & Partial<Record<`x-${string}`, unknown>>)
-  | (ReferenceObject & Partial<Record<`x-${string}`, unknown>>);
-
-export interface OpenApiPropertyDescriptor {
-  schema: OpenApiPropertySchema;
-  required?: boolean;
-}
-
-export interface ApiPropertyDescriptorOptions {
-  required?: boolean;
-}
-
-export type DecoratorFreeApiPropertyOptions = ApiPropertyOptions &
-  ApiPropertyDescriptorOptions;
-
 export interface FieldSpec {
   zod: z.ZodTypeAny;
-  openApi: OpenApiPropertyDescriptor;
 }
 
 export type ObjectPath = string;
@@ -100,26 +82,20 @@ export type TypedObjectPath<
     : ObjectPath;
 
 export type PayloadObjectPath<TPayload> = TypedObjectPath<TPayload, true>;
-export type OpenApiObjectPath<TOpenApiSchema> = TypedObjectPath<
-  TOpenApiSchema,
-  false
->;
 
-type CollectFieldKeys<
-  TValue,
-  Depth extends PathDepth = 6,
-> = Depth extends 0
+type CollectFieldKeys<TValue, Depth extends PathDepth = 6> = Depth extends 0
   ? never
   : TValue extends readonly (infer Item)[]
     ? CollectFieldKeys<Item, DecPathDepth[Depth]>
     : IsPathDerivableObject<TValue> extends true
-      ? | PathKeyOf<TValue>
-        | {
-            [TKey in PathKeyOf<TValue>]: CollectFieldKeys<
-              TValue[TKey],
-              DecPathDepth[Depth]
-            >;
-          }[PathKeyOf<TValue>]
+      ?
+          | PathKeyOf<TValue>
+          | {
+              [TKey in PathKeyOf<TValue>]: CollectFieldKeys<
+                TValue[TKey],
+                DecPathDepth[Depth]
+              >;
+            }[PathKeyOf<TValue>]
       : never;
 
 export type PayloadFieldKey<TPayload> = [CollectFieldKeys<TPayload>] extends [
@@ -147,272 +123,149 @@ export type ContainerMapper = (
   container: Record<string, unknown>,
 ) => Promise<Record<string, unknown> | void> | Record<string, unknown> | void;
 
-interface VersionOperationBase<
-  TPayloadPath extends ObjectPath = ObjectPath,
-  TOpenApiPath extends ObjectPath = ObjectPath,
-> {
+interface VersionOperationBase<TPayloadPath extends ObjectPath = ObjectPath> {
   payloadPath?: TPayloadPath;
-  openApiPath?: TOpenApiPath;
 }
 
 export interface AddFieldOperation<
   TPayloadPath extends ObjectPath = ObjectPath,
-  TOpenApiPath extends ObjectPath = ObjectPath,
   TField extends string = string,
-> extends VersionOperationBase<TPayloadPath, TOpenApiPath> {
+> extends VersionOperationBase<TPayloadPath> {
   kind: 'addField';
   field: TField;
-  spec: FieldSpec;
-  buildValue?: (
+  schema: z.ZodTypeAny;
+  upgrade?: (
     container: Record<string, unknown>,
   ) => Promise<unknown> | unknown;
 }
 
-export interface RemoveFieldOperation<
+export interface RequestRemoveFieldOperation<
   TPayloadPath extends ObjectPath = ObjectPath,
-  TOpenApiPath extends ObjectPath = ObjectPath,
   TField extends string = string,
-> extends VersionOperationBase<TPayloadPath, TOpenApiPath> {
+> extends VersionOperationBase<TPayloadPath> {
   kind: 'removeField';
   field: TField;
-  restoreValue?: (
+}
+
+export interface ResponseRemoveFieldOperation<
+  TPayloadPath extends ObjectPath = ObjectPath,
+  TField extends string = string,
+> extends VersionOperationBase<TPayloadPath> {
+  kind: 'removeField';
+  field: TField;
+  downgrade: (
     container: Record<string, unknown>,
   ) => Promise<unknown> | unknown;
 }
 
 export interface RenameFieldOperation<
   TPayloadPath extends ObjectPath = ObjectPath,
-  TOpenApiPath extends ObjectPath = ObjectPath,
   TFrom extends string = string,
-> extends VersionOperationBase<TPayloadPath, TOpenApiPath> {
+> extends VersionOperationBase<TPayloadPath> {
   kind: 'renameField';
   from: TFrom;
   to: string;
-  toSpec: FieldSpec;
-  mapValue?: ValueMapper;
-  downgradeValue?: ValueMapper;
-}
-
-export interface CopyFieldOperation<
-  TPayloadPath extends ObjectPath = ObjectPath,
-  TOpenApiPath extends ObjectPath = ObjectPath,
-  TFrom extends string = string,
-> extends VersionOperationBase<TPayloadPath, TOpenApiPath> {
-  kind: 'copyField';
-  from: TFrom;
-  to: string;
-  toSpec: FieldSpec;
-  mapValue?: ValueMapper;
-  downgradeValue?: ValueMapper;
-}
-
-export interface MoveFieldOperation<
-  TPayloadPath extends ObjectPath = ObjectPath,
-  TOpenApiPath extends ObjectPath = ObjectPath,
-  TFrom extends string = string,
-> extends VersionOperationBase<TPayloadPath, TOpenApiPath> {
-  kind: 'moveField';
-  from: TFrom;
-  to: string;
-  toSpec: FieldSpec;
-  mapValue?: ValueMapper;
-  downgradeValue?: ValueMapper;
+  schema: z.ZodTypeAny;
+  upgrade?: ValueMapper;
+  downgrade?: ValueMapper;
 }
 
 export interface ReplaceFieldOperation<
   TPayloadPath extends ObjectPath = ObjectPath,
-  TOpenApiPath extends ObjectPath = ObjectPath,
   TField extends string = string,
-> extends VersionOperationBase<TPayloadPath, TOpenApiPath> {
+> extends VersionOperationBase<TPayloadPath> {
   kind: 'replaceField';
   field: TField;
-  spec: FieldSpec;
-  mapValue: ValueMapper;
-  downgradeValue?: ValueMapper;
+  schema: z.ZodTypeAny;
+  upgrade: ValueMapper;
+  downgrade?: ValueMapper;
 }
 
 export interface SplitFieldOperation<
   TPayloadPath extends ObjectPath = ObjectPath,
-  TOpenApiPath extends ObjectPath = ObjectPath,
   TFrom extends string = string,
-> extends VersionOperationBase<TPayloadPath, TOpenApiPath> {
+> extends VersionOperationBase<TPayloadPath> {
   kind: 'splitField';
   from: TFrom;
-  into: Readonly<Record<string, FieldSpec>>;
-  split: SplitMapper;
-  merge?: MergeMapper;
+  schemas: Readonly<Record<string, z.ZodTypeAny>>;
+  upgrade: SplitMapper;
+  downgrade?: MergeMapper;
   removeSource?: boolean;
 }
 
 export interface MergeFieldsOperation<
   TPayloadPath extends ObjectPath = ObjectPath,
-  TOpenApiPath extends ObjectPath = ObjectPath,
   TFrom extends string = string,
-> extends VersionOperationBase<TPayloadPath, TOpenApiPath> {
+> extends VersionOperationBase<TPayloadPath> {
   kind: 'mergeFields';
   from: readonly TFrom[];
   to: string;
-  toSpec: FieldSpec;
-  merge: MergeMapper;
-  split?: SplitMapper;
+  schema: z.ZodTypeAny;
+  upgrade: MergeMapper;
+  downgrade?: SplitMapper;
   removeSources?: boolean;
 }
 
 export interface CustomTransformOperation<
   TPayloadPath extends ObjectPath = ObjectPath,
-  TOpenApiPath extends ObjectPath = ObjectPath,
   TField extends string = string,
-> extends VersionOperationBase<TPayloadPath, TOpenApiPath> {
+> extends VersionOperationBase<TPayloadPath> {
   kind: 'customTransform';
   schemaPatch?: {
-    set?: Readonly<Record<string, FieldSpec>>;
+    set?: Readonly<Record<string, z.ZodTypeAny>>;
     remove?: readonly TField[];
   };
 }
 
 export interface RequestCustomTransformOperation<
   TPayloadPath extends ObjectPath = ObjectPath,
-  TOpenApiPath extends ObjectPath = ObjectPath,
   TField extends string = string,
-> extends CustomTransformOperation<TPayloadPath, TOpenApiPath, TField> {
+> extends CustomTransformOperation<TPayloadPath, TField> {
   upgrade: ContainerMapper;
 }
 
 export interface ResponseCustomTransformOperation<
   TPayloadPath extends ObjectPath = ObjectPath,
-  TOpenApiPath extends ObjectPath = ObjectPath,
   TField extends string = string,
-> extends CustomTransformOperation<TPayloadPath, TOpenApiPath, TField> {
+> extends CustomTransformOperation<TPayloadPath, TField> {
   downgrade: ContainerMapper;
 }
 
-export type RequestOperation<TPayload = unknown, TOpenApiSchema = unknown> =
-  | AddFieldOperation<
+export type RequestOperation<TPayload = unknown> =
+  | AddFieldOperation<PayloadObjectPath<TPayload>, PayloadFieldKey<TPayload>>
+  | RequestRemoveFieldOperation<
       PayloadObjectPath<TPayload>,
-      OpenApiObjectPath<TOpenApiSchema>,
       PayloadFieldKey<TPayload>
     >
-  | RemoveFieldOperation<
-      PayloadObjectPath<TPayload>,
-      OpenApiObjectPath<TOpenApiSchema>,
-      PayloadFieldKey<TPayload>
-    >
-  | RenameFieldOperation<
-      PayloadObjectPath<TPayload>,
-      OpenApiObjectPath<TOpenApiSchema>,
-      PayloadFieldKey<TPayload>
-    >
-  | CopyFieldOperation<
-      PayloadObjectPath<TPayload>,
-      OpenApiObjectPath<TOpenApiSchema>,
-      PayloadFieldKey<TPayload>
-    >
-  | MoveFieldOperation<
-      PayloadObjectPath<TPayload>,
-      OpenApiObjectPath<TOpenApiSchema>,
-      PayloadFieldKey<TPayload>
-    >
+  | RenameFieldOperation<PayloadObjectPath<TPayload>, PayloadFieldKey<TPayload>>
   | ReplaceFieldOperation<
       PayloadObjectPath<TPayload>,
-      OpenApiObjectPath<TOpenApiSchema>,
       PayloadFieldKey<TPayload>
     >
-  | SplitFieldOperation<
-      PayloadObjectPath<TPayload>,
-      OpenApiObjectPath<TOpenApiSchema>,
-      PayloadFieldKey<TPayload>
-    >
-  | MergeFieldsOperation<
-      PayloadObjectPath<TPayload>,
-      OpenApiObjectPath<TOpenApiSchema>,
-      PayloadFieldKey<TPayload>
-    >
+  | SplitFieldOperation<PayloadObjectPath<TPayload>, PayloadFieldKey<TPayload>>
+  | MergeFieldsOperation<PayloadObjectPath<TPayload>, PayloadFieldKey<TPayload>>
   | RequestCustomTransformOperation<
       PayloadObjectPath<TPayload>,
-      OpenApiObjectPath<TOpenApiSchema>,
       PayloadFieldKey<TPayload>
     >;
 
-export type ResponseOperation<TPayload = unknown, TOpenApiSchema = unknown> =
-  | AddFieldOperation<
+export type ResponseOperation<TPayload = unknown> =
+  | AddFieldOperation<PayloadObjectPath<TPayload>, PayloadFieldKey<TPayload>>
+  | ResponseRemoveFieldOperation<
       PayloadObjectPath<TPayload>,
-      OpenApiObjectPath<TOpenApiSchema>,
       PayloadFieldKey<TPayload>
     >
-  | RemoveFieldOperation<
-      PayloadObjectPath<TPayload>,
-      OpenApiObjectPath<TOpenApiSchema>,
-      PayloadFieldKey<TPayload>
-    >
-  | RenameFieldOperation<
-      PayloadObjectPath<TPayload>,
-      OpenApiObjectPath<TOpenApiSchema>,
-      PayloadFieldKey<TPayload>
-    >
-  | CopyFieldOperation<
-      PayloadObjectPath<TPayload>,
-      OpenApiObjectPath<TOpenApiSchema>,
-      PayloadFieldKey<TPayload>
-    >
-  | MoveFieldOperation<
-      PayloadObjectPath<TPayload>,
-      OpenApiObjectPath<TOpenApiSchema>,
-      PayloadFieldKey<TPayload>
-    >
+  | RenameFieldOperation<PayloadObjectPath<TPayload>, PayloadFieldKey<TPayload>>
   | ReplaceFieldOperation<
       PayloadObjectPath<TPayload>,
-      OpenApiObjectPath<TOpenApiSchema>,
       PayloadFieldKey<TPayload>
     >
-  | SplitFieldOperation<
-      PayloadObjectPath<TPayload>,
-      OpenApiObjectPath<TOpenApiSchema>,
-      PayloadFieldKey<TPayload>
-    >
-  | MergeFieldsOperation<
-      PayloadObjectPath<TPayload>,
-      OpenApiObjectPath<TOpenApiSchema>,
-      PayloadFieldKey<TPayload>
-    >
+  | SplitFieldOperation<PayloadObjectPath<TPayload>, PayloadFieldKey<TPayload>>
+  | MergeFieldsOperation<PayloadObjectPath<TPayload>, PayloadFieldKey<TPayload>>
   | ResponseCustomTransformOperation<
       PayloadObjectPath<TPayload>,
-      OpenApiObjectPath<TOpenApiSchema>,
       PayloadFieldKey<TPayload>
     >;
-
-export interface RequestVersionChange<
-  TPayload = unknown,
-  TOpenApiSchema = unknown,
-> {
-  description: string;
-  operation: RequestOperation<TPayload, TOpenApiSchema>;
-}
-
-export interface ResponseVersionChange<
-  TPayload = unknown,
-  TOpenApiSchema = unknown,
-> {
-  description: string;
-  operation: ResponseOperation<TPayload, TOpenApiSchema>;
-}
-
-export interface Version<
-  TRequestPayload = unknown,
-  TResponsePayload = unknown,
-  TRequestOpenApiSchema = unknown,
-  TResponseOpenApiSchema = unknown,
-> {
-  version: ApiVersion;
-  description: string;
-  requestChanges: readonly RequestVersionChange<
-    TRequestPayload,
-    TRequestOpenApiSchema
-  >[];
-  responseChanges: readonly ResponseVersionChange<
-    TResponsePayload,
-    TResponseOpenApiSchema
-  >[];
-}
 
 export interface OpenApiOperationTarget {
   method: 'get' | 'post' | 'put' | 'patch' | 'delete';
@@ -424,8 +277,6 @@ export interface VersioningDefinition {
   versions: readonly Version[];
   baseRequestSchema: z.ZodTypeAny;
   baseResponseSchema: z.ZodTypeAny;
-  baseRequestOpenApiSchema: OpenApiPropertySchema;
-  baseResponseOpenApiSchema: OpenApiPropertySchema;
 }
 
 export interface CompiledSchemaPatch {
@@ -434,24 +285,27 @@ export interface CompiledSchemaPatch {
   remove?: readonly string[];
 }
 
-export interface CompiledOpenApiPatch {
-  objectPath: ObjectPath;
-  set?: Readonly<Record<string, OpenApiPropertyDescriptor>>;
-  remove?: readonly string[];
-}
-
 export interface CompiledRequestChange {
   description: string;
   schemaPatch: CompiledSchemaPatch;
-  openApiPatch: CompiledOpenApiPatch;
   upgrade(payload: unknown): Promise<unknown> | unknown;
 }
 
 export interface CompiledResponseChange {
   description: string;
   schemaPatch: CompiledSchemaPatch;
-  openApiPatch: CompiledOpenApiPatch;
   downgrade(payload: unknown): Promise<unknown> | unknown;
+}
+
+export type RequestVersionChange = CompiledRequestChange;
+
+export type ResponseVersionChange = CompiledResponseChange;
+
+export interface Version {
+  version: ApiVersion;
+  description: string;
+  requestChanges: readonly RequestChangeDefinition[];
+  responseChanges: readonly ResponseChangeDefinition[];
 }
 
 export interface CompiledVersion {
@@ -462,14 +316,6 @@ export interface CompiledVersion {
 }
 
 export type ValidationSchemaCache = ReadonlyMap<ApiVersion, z.ZodTypeAny>;
-export type RequestOpenApiSchemaCache = ReadonlyMap<
-  ApiVersion,
-  OpenApiPropertySchema
->;
-export type ResponseOpenApiSchemaCache = ReadonlyMap<
-  ApiVersion,
-  OpenApiPropertySchema
->;
 
 export interface ResolvedVersion {
   normalizedVersion: ApiVersion;

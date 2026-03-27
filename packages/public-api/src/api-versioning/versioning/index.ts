@@ -2,14 +2,14 @@ export { DslCompiler } from './dsl-compiler';
 export { VersionRegistry } from './version-registry';
 export { VersionResolver, normalizeVersion } from './version-resolver';
 export {
-  defineVersion,
-  materializeRequestChanges,
-  materializeResponseChanges,
-  RenameFieldRequestChange,
-  RenameFieldResponseChange,
-  ReplaceFieldResponseChange,
-  RequestChange,
-  ResponseChange,
+  AddFieldChange,
+  Change,
+  CustomTransformChange,
+  MergeFieldsChange,
+  RemoveFieldChange,
+  RenameFieldChange,
+  ReplaceFieldChange,
+  SplitFieldChange,
 } from './changes';
 export {
   parseObjectPath,
@@ -22,20 +22,16 @@ export type {
   CompiledRequestChange,
   CompiledResponseChange,
   CompiledVersion,
-  CopyFieldOperation,
   FieldSpec,
   MergeFieldsOperation,
-  MoveFieldOperation,
   ObjectPath,
-  OpenApiObjectPath,
   OpenApiOperationTarget,
-  OpenApiPropertyDescriptor,
-  OpenApiPropertySchema,
   PayloadFieldKey,
   PayloadObjectPath,
-  RemoveFieldOperation,
+  RequestRemoveFieldOperation,
   RenameFieldOperation,
   ReplaceFieldOperation,
+  ResponseRemoveFieldOperation,
   RequestOperation,
   RequestVersionChange,
   ResolvedVersion,
@@ -49,5 +45,5 @@ export type {
 export type {
   RequestChangeDefinition,
   ResponseChangeDefinition,
-  VersionDefinitionInput,
+  VersionDefinitionProvider,
 } from './changes';

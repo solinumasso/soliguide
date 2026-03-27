@@ -1,13 +1,55 @@
 import { z } from 'zod';
-import { rawProperty } from '../artifacts/openapi/openapi.dsl';
+import type {
+  RequestChangeDefinition,
+  ResponseChangeDefinition,
+} from './changes';
 import { DslCompiler } from './dsl-compiler';
 import { VersionRegistry } from './version-registry';
-import type { FieldSpec, VersioningDefinition } from './versioning.types';
+import type { VersioningDefinition } from './versioning.types';
 
-const stringSpec: FieldSpec = {
-  zod: z.string(),
-  openApi: rawProperty({ type: 'string' }, { required: true }),
-};
+interface DeclarativeSchemaPatch {
+  payloadPath: string;
+  set?: Readonly<Record<string, z.ZodTypeAny>>;
+  remove?: readonly string[];
+}
+
+const stringSpec = z.string();
+
+function requestChange(
+  description: string,
+  schemaPatch: DeclarativeSchemaPatch,
+): RequestChangeDefinition {
+  return {
+    description,
+    toRequestOperation: () => ({
+      kind: 'customTransform',
+      payloadPath: schemaPatch.payloadPath,
+      schemaPatch: {
+        set: schemaPatch.set,
+        remove: schemaPatch.remove,
+      },
+      upgrade: (container: Record<string, unknown>) => container,
+    }),
+  };
+}
+
+function responseChange(
+  description: string,
+  schemaPatch: DeclarativeSchemaPatch,
+): ResponseChangeDefinition {
+  return {
+    description,
+    toResponseOperation: () => ({
+      kind: 'customTransform',
+      payloadPath: schemaPatch.payloadPath,
+      schemaPatch: {
+        set: schemaPatch.set,
+        remove: schemaPatch.remove,
+      },
+      downgrade: (container: Record<string, unknown>) => container,
+    }),
+  };
+}
 
 function buildDefinition(
   overrides: Partial<VersioningDefinition> = {},
@@ -26,26 +68,6 @@ function buildDefinition(
         ),
       })
       .strict(),
-    baseRequestOpenApiSchema: {
-      type: 'object',
-      properties: {
-        openToday: { type: 'boolean' },
-      },
-    },
-    baseResponseOpenApiSchema: {
-      type: 'object',
-      properties: {
-        results: {
-          type: 'array',
-          items: {
-            type: 'object',
-            properties: {
-              slug: { type: 'string' },
-            },
-          },
-        },
-      },
-    },
     versions: [
       {
         version: '2026-03-03',
@@ -57,28 +79,22 @@ function buildDefinition(
         version: '2026-03-09',
         description: 'Second',
         requestChanges: [
-          {
-            description: 'Rename request field.',
-            operation: {
-              kind: 'renameField',
-              from: 'openToday',
-              to: 'isOpenToday',
-              toSpec: stringSpec,
+          requestChange('Rename request field.', {
+            payloadPath: '/',
+            remove: ['openToday'],
+            set: {
+              isOpenToday: stringSpec,
             },
-          },
+          }),
         ],
         responseChanges: [
-          {
-            description: 'Rename response field.',
-            operation: {
-              kind: 'renameField',
-              from: 'slug',
-              to: 'seoUrl',
-              payloadPath: '/results/*',
-              openApiPath: '/properties/results/items',
-              toSpec: stringSpec,
+          responseChange('Rename response field.', {
+            payloadPath: '/results/*',
+            remove: ['slug'],
+            set: {
+              seoUrl: stringSpec,
             },
-          },
+          }),
         ],
       },
     ],
@@ -130,7 +146,7 @@ describe('ProposalC VersionRegistry', () => {
     ).toThrow('strict chronological order');
   });
 
-  it('throws when payload path is invalid', () => {
+  it('throws when payload path is invalid in compiled request changes', () => {
     expect(
       () =>
         new VersionRegistry(
@@ -146,14 +162,10 @@ describe('ProposalC VersionRegistry', () => {
                 version: '2026-03-09',
                 description: 'Invalid path',
                 requestChanges: [
-                  {
-                    description: 'Bad request path',
-                    operation: {
-                      kind: 'removeField',
-                      field: 'openToday',
-                      payloadPath: 'invalid',
-                    },
-                  },
+                  requestChange('Bad request path', {
+                    payloadPath: 'invalid',
+                    remove: ['openToday'],
+                  }),
                 ],
                 responseChanges: [],
               },
@@ -163,7 +175,7 @@ describe('ProposalC VersionRegistry', () => {
     ).toThrow('Invalid payloadPath');
   });
 
-  it('throws when response splitField has no merge mapper', () => {
+  it('throws when compiled field spec has invalid zod schema', () => {
     expect(
       () =>
         new VersionRegistry(
@@ -177,164 +189,24 @@ describe('ProposalC VersionRegistry', () => {
               },
               {
                 version: '2026-03-09',
-                description: 'Invalid split',
-                requestChanges: [],
-                responseChanges: [
-                  {
-                    description: 'Split without merge',
-                    operation: {
-                      kind: 'splitField',
-                      from: 'name',
-                      into: {
-                        firstName: stringSpec,
-                      },
-                      split: () => ({ firstName: 'A' }),
-                    },
-                  },
-                ],
-              },
-            ],
-          }),
-        ),
-    ).toThrow('splitField must define merge');
-  });
-
-  it('throws when response mergeFields has no split mapper', () => {
-    expect(
-      () =>
-        new VersionRegistry(
-          buildDefinition({
-            versions: [
-              {
-                version: '2026-03-03',
-                description: 'Initial',
-                requestChanges: [],
-                responseChanges: [],
-              },
-              {
-                version: '2026-03-09',
-                description: 'Invalid merge',
-                requestChanges: [],
-                responseChanges: [
-                  {
-                    description: 'Merge without split',
-                    operation: {
-                      kind: 'mergeFields',
-                      from: ['firstName', 'lastName'],
-                      to: 'name',
-                      toSpec: stringSpec,
-                      merge: (values) =>
-                        `${values.firstName as string} ${values.lastName as string}`,
-                    },
-                  },
-                ],
-              },
-            ],
-          }),
-        ),
-    ).toThrow('mergeFields must define split');
-  });
-
-  it('throws when response replaceField has no downgrade mapper', () => {
-    expect(
-      () =>
-        new VersionRegistry(
-          buildDefinition({
-            versions: [
-              {
-                version: '2026-03-03',
-                description: 'Initial',
-                requestChanges: [],
-                responseChanges: [],
-              },
-              {
-                version: '2026-03-09',
-                description: 'Invalid replace',
-                requestChanges: [],
-                responseChanges: [
-                  {
-                    description: 'Replace without downgrade mapper',
-                    operation: {
-                      kind: 'replaceField',
-                      field: 'name',
-                      spec: stringSpec,
-                      mapValue: (value) => value,
-                    },
-                  },
-                ],
-              },
-            ],
-          }),
-        ),
-    ).toThrow('replaceField must define downgradeValue');
-  });
-
-  it('allows request customTransform without schema patch for value-only migrations', () => {
-    expect(
-      () =>
-        new VersionRegistry(
-          buildDefinition({
-            versions: [
-              {
-                version: '2026-03-03',
-                description: 'Initial',
-                requestChanges: [],
-                responseChanges: [],
-              },
-              {
-                version: '2026-03-09',
-                description: 'Value-only custom transform',
+                description: 'Invalid zod schema',
                 requestChanges: [
-                  {
-                    description: 'Trim only',
-                    operation: {
-                      kind: 'customTransform',
-                      upgrade: () => undefined,
+                  requestChange('Invalid patch set spec', {
+                    payloadPath: '/',
+                    set: {
+                      isOpenToday: null as never,
                     },
-                  },
+                  }),
                 ],
                 responseChanges: [],
               },
             ],
           }),
         ),
-    ).not.toThrow();
+    ).toThrow('must define a valid zod schema');
   });
 
-  it('throws when request addField has an empty field name', () => {
-    expect(
-      () =>
-        new VersionRegistry(
-          buildDefinition({
-            versions: [
-              {
-                version: '2026-03-03',
-                description: 'Initial',
-                requestChanges: [],
-                responseChanges: [],
-              },
-              {
-                version: '2026-03-09',
-                description: 'Invalid empty field',
-                requestChanges: [
-                  {
-                    description: 'Add empty field',
-                    operation: {
-                      kind: 'addField',
-                      field: ' ',
-                      spec: stringSpec,
-                    },
-                  },
-                ],
-                responseChanges: [],
-              },
-            ],
-          }),
-        ),
-    ).toThrow('empty field in addField');
-  });
-
-  it('throws when multiple response changes target the same field in one version', () => {
+  it('throws when multiple response changes target same field at same payloadPath', () => {
     expect(
       () =>
         new VersionRegistry(
@@ -351,31 +223,20 @@ describe('ProposalC VersionRegistry', () => {
                 description: 'Conflicting response operations',
                 requestChanges: [],
                 responseChanges: [
-                  {
-                    description: 'Rename name to fullName',
-                    operation: {
-                      kind: 'renameField',
-                      from: 'name',
-                      to: 'fullName',
-                      payloadPath: '/results/*',
-                      openApiPath: '/properties/results/items',
-                      toSpec: stringSpec,
+                  responseChange('First touch', {
+                    payloadPath: '/results/*',
+                    remove: ['name'],
+                    set: {
+                      fullName: stringSpec,
                     },
-                  },
-                  {
-                    description: 'Split fullName',
-                    operation: {
-                      kind: 'splitField',
-                      from: 'fullName',
-                      payloadPath: '/results/*',
-                      openApiPath: '/properties/results/items',
-                      into: {
-                        firstName: stringSpec,
-                      },
-                      split: () => ({ firstName: 'A' }),
-                      merge: () => 'A',
+                  }),
+                  responseChange('Second touch', {
+                    payloadPath: '/results/*',
+                    remove: ['fullName'],
+                    set: {
+                      firstName: stringSpec,
                     },
-                  },
+                  }),
                 ],
               },
             ],

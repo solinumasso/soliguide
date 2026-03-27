@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import type { CompiledSchemaPatch } from '../../versioning/versioning.types';
-import { parseObjectPath } from '../../versioning/object-path.utils';
+import { parseObjectPath } from '../versioning/object-path.utils';
+import type { CompiledSchemaPatch } from '../versioning/versioning.types';
 
 type ZodWrapper = 'optional' | 'nullable';
 

@@ -1,9 +1,8 @@
+import { z } from 'zod';
 import { parseObjectPath } from './object-path.utils';
 import type {
-  ApiVersion,
-  RequestOperation,
-  ResponseOperation,
-  Version,
+  CompiledVersion,
+  FieldSpec,
   VersioningDefinition,
 } from './versioning.types';
 
@@ -11,32 +10,133 @@ export class VersionDefinitionValidator {
   private static readonly DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 
   validateDefinition(definition: VersioningDefinition): void {
-    if (definition.versions.length === 0) {
-      throw new Error('At least one API version must be configured.');
+    const parsed = this.definitionSchema().safeParse(definition);
+    if (!parsed.success) {
+      const issue = parsed.error.issues[0];
+      throw new Error(issue?.message ?? 'Invalid versioning definition.');
     }
 
-    if (!definition.baseRequestOpenApiSchema) {
-      throw new Error('A baseRequestOpenApiSchema must be configured.');
+    const parsedDefinition = parsed.data as {
+      versions: readonly { version: string }[];
+    };
+    this.assertDistinctAndChronologicalVersions(parsedDefinition.versions);
+  }
+
+  validateCompiledVersions(versions: readonly CompiledVersion[]): void {
+    const parsed = this.compiledVersionsSchema().safeParse(versions);
+    if (!parsed.success) {
+      const issue = parsed.error.issues[0];
+      throw new Error(issue?.message ?? 'Invalid compiled versions.');
     }
 
-    if (!definition.baseResponseOpenApiSchema) {
-      throw new Error('A baseResponseOpenApiSchema must be configured.');
-    }
+    const parsedVersions = parsed.data as readonly {
+      version: string;
+      responseChanges: {
+        description: string;
+        schemaPatch: {
+          payloadPath: string;
+          set?: Readonly<Record<string, FieldSpec>>;
+          remove?: readonly string[];
+        };
+      }[];
+    }[];
 
-    if (!definition.baseRequestSchema) {
-      throw new Error('A baseRequestSchema must be configured.');
+    for (const version of parsedVersions) {
+      const conflictError = this.responseConflictError(version);
+      if (conflictError) {
+        throw new Error(conflictError);
+      }
     }
+  }
 
-    if (!definition.baseResponseSchema) {
-      throw new Error('A baseResponseSchema must be configured.');
-    }
+  private definitionSchema(): z.ZodTypeAny {
+    const changeDescriptionSchema = z.object({
+      description: z.string().trim().min(1),
+    });
 
+    const versionSchema = z.object({
+      version: z.iso.date(),
+      description: z.string(),
+      requestChanges: z.array(changeDescriptionSchema),
+      responseChanges: z.array(changeDescriptionSchema),
+    });
+
+    return z.object({
+      resource: z.string(),
+      versions: z.array(versionSchema).min(1, {
+        message: 'At least one API version must be configured.',
+      }),
+      baseRequestSchema: z.custom<unknown>((value) => Boolean(value), {
+        message: 'A baseRequestSchema must be configured.',
+      }),
+      baseResponseSchema: z.custom<unknown>((value) => Boolean(value), {
+        message: 'A baseResponseSchema must be configured.',
+      }),
+    });
+  }
+
+  private compiledVersionsSchema(): z.ZodTypeAny {
+    const payloadPathSchema = z.string().refine(
+      (objectPath) => {
+        try {
+          parseObjectPath(objectPath, { allowWildcard: true });
+          return true;
+        } catch {
+          return false;
+        }
+      },
+      {
+        message: 'Invalid payloadPath',
+      },
+    );
+
+    const fieldSpecSchema = z.custom<FieldSpec>(
+      (spec) =>
+        Boolean(spec) &&
+        typeof spec === 'object' &&
+        spec !== null &&
+        'zod' in spec &&
+        Boolean((spec as { zod?: unknown }).zod) &&
+        typeof (spec as { zod?: unknown }).zod === 'object',
+      {
+        message: 'must define a valid zod schema',
+      },
+    );
+
+    const compiledChangeSchema = z.object({
+      description: z.string(),
+      schemaPatch: z.object({
+        payloadPath: payloadPathSchema,
+        set: z.record(z.string(), fieldSpecSchema).optional(),
+        remove: z.array(z.string()).optional(),
+      }),
+    });
+
+    const compiledVersionSchema = z.object({
+      version: z.string(),
+      description: z.string(),
+      requestChanges: z.array(compiledChangeSchema),
+      responseChanges: z.array(compiledChangeSchema),
+    });
+
+    return z.array(compiledVersionSchema);
+  }
+
+  private isCalendarDate(version: string): boolean {
+    const parsed = new Date(`${version}T00:00:00.000Z`);
+    return (
+      !Number.isNaN(parsed.getTime()) &&
+      parsed.toISOString().slice(0, 10) === version
+    );
+  }
+
+  private assertDistinctAndChronologicalVersions(
+    versions: readonly { version: string }[],
+  ): void {
     const seenVersions = new Set<string>();
     let previousVersion: string | null = null;
 
-    for (const version of definition.versions) {
-      this.assertValidDateLiteral(version.version);
-
+    for (const version of versions) {
       if (seenVersions.has(version.version)) {
         throw new Error(
           `Duplicate API version detected: "${version.version}".`,
@@ -49,292 +149,51 @@ export class VersionDefinitionValidator {
         );
       }
 
-      for (const change of version.requestChanges) {
-        if (change.description.trim().length === 0) {
-          throw new Error(
-            `Version ${version.version} has an empty request change description.`,
-          );
-        }
-
-        this.assertRequestOperation(
-          change.operation,
-          version.version,
-          change.description,
-        );
-      }
-
-      for (const change of version.responseChanges) {
-        if (change.description.trim().length === 0) {
-          throw new Error(
-            `Version ${version.version} has an empty response change description.`,
-          );
-        }
-
-        this.assertResponseOperation(
-          change.operation,
-          version.version,
-          change.description,
-        );
-      }
-
-      this.assertNoConflictingResponseChanges(version);
-
       seenVersions.add(version.version);
       previousVersion = version.version;
     }
   }
 
-  private assertValidDateLiteral(version: string): void {
-    if (!VersionDefinitionValidator.DATE_PATTERN.test(version)) {
-      throw new Error(`Version "${version}" must follow YYYY-MM-DD format.`);
-    }
-
-    const parsed = new Date(`${version}T00:00:00.000Z`);
-    if (
-      Number.isNaN(parsed.getTime()) ||
-      parsed.toISOString().slice(0, 10) !== version
-    ) {
-      throw new Error(`Version "${version}" is not a valid calendar date.`);
-    }
-  }
-
-  private assertRequestOperation(
-    operation: RequestOperation,
-    version: ApiVersion,
-    changeDescription: string,
-  ): void {
-    this.assertOperationBase(operation, version, changeDescription);
-
-    switch (operation.kind) {
-      case 'addField':
-      case 'removeField':
-        this.assertNonEmpty(
-          operation.field,
-          `Version ${version} change "${changeDescription}" has an empty field in ${operation.kind}.`,
-        );
-        return;
-      case 'renameField':
-      case 'copyField':
-      case 'moveField':
-        this.assertNonEmpty(
-          operation.from,
-          `Version ${version} change "${changeDescription}" has an empty source field in ${operation.kind}.`,
-        );
-        this.assertNonEmpty(
-          operation.to,
-          `Version ${version} change "${changeDescription}" has an empty target field in ${operation.kind}.`,
-        );
-        return;
-      case 'replaceField':
-        this.assertNonEmpty(
-          operation.field,
-          `Version ${version} change "${changeDescription}" has an empty field in replaceField.`,
-        );
-        return;
-      case 'splitField':
-        this.assertNonEmpty(
-          operation.from,
-          `Version ${version} change "${changeDescription}" has an empty source field in splitField.`,
-        );
-        if (Object.keys(operation.into).length === 0) {
-          throw new Error(
-            `Version ${version} change "${changeDescription}" splitField must define at least one target field.`,
-          );
-        }
-        for (const field of Object.keys(operation.into)) {
-          this.assertNonEmpty(
-            field,
-            `Version ${version} change "${changeDescription}" has an empty target field in splitField.`,
-          );
-        }
-        return;
-      case 'mergeFields':
-        if (operation.from.length === 0) {
-          throw new Error(
-            `Version ${version} change "${changeDescription}" mergeFields must define at least one source field.`,
-          );
-        }
-        this.assertNonEmpty(
-          operation.to,
-          `Version ${version} change "${changeDescription}" has an empty target field in mergeFields.`,
-        );
-        for (const field of operation.from) {
-          this.assertNonEmpty(
-            field,
-            `Version ${version} change "${changeDescription}" has an empty source field in mergeFields.`,
-          );
-        }
-        return;
-      case 'customTransform':
-        return;
-    }
-  }
-
-  private assertResponseOperation(
-    operation: ResponseOperation,
-    version: ApiVersion,
-    changeDescription: string,
-  ): void {
-    this.assertOperationBase(operation, version, changeDescription);
-
-    switch (operation.kind) {
-      case 'addField':
-      case 'removeField':
-        this.assertNonEmpty(
-          operation.field,
-          `Version ${version} change "${changeDescription}" has an empty field in ${operation.kind}.`,
-        );
-        return;
-      case 'renameField':
-      case 'copyField':
-      case 'moveField':
-        this.assertNonEmpty(
-          operation.from,
-          `Version ${version} change "${changeDescription}" has an empty source field in ${operation.kind}.`,
-        );
-        this.assertNonEmpty(
-          operation.to,
-          `Version ${version} change "${changeDescription}" has an empty target field in ${operation.kind}.`,
-        );
-        return;
-      case 'replaceField':
-        this.assertNonEmpty(
-          operation.field,
-          `Version ${version} change "${changeDescription}" has an empty field in replaceField.`,
-        );
-        if (!operation.downgradeValue) {
-          throw new Error(
-            `Version ${version} change "${changeDescription}" replaceField must define downgradeValue for response compatibility.`,
-          );
-        }
-        return;
-      case 'splitField':
-        this.assertNonEmpty(
-          operation.from,
-          `Version ${version} change "${changeDescription}" has an empty source field in splitField.`,
-        );
-        if (Object.keys(operation.into).length === 0) {
-          throw new Error(
-            `Version ${version} change "${changeDescription}" splitField must define at least one target field.`,
-          );
-        }
-        for (const field of Object.keys(operation.into)) {
-          this.assertNonEmpty(
-            field,
-            `Version ${version} change "${changeDescription}" has an empty target field in splitField.`,
-          );
-        }
-        if (!operation.merge) {
-          throw new Error(
-            `Version ${version} change "${changeDescription}" splitField must define merge for response downgrades.`,
-          );
-        }
-        return;
-      case 'mergeFields':
-        if (operation.from.length === 0) {
-          throw new Error(
-            `Version ${version} change "${changeDescription}" mergeFields must define at least one source field.`,
-          );
-        }
-        this.assertNonEmpty(
-          operation.to,
-          `Version ${version} change "${changeDescription}" has an empty target field in mergeFields.`,
-        );
-        for (const field of operation.from) {
-          this.assertNonEmpty(
-            field,
-            `Version ${version} change "${changeDescription}" has an empty source field in mergeFields.`,
-          );
-        }
-        if (!operation.split) {
-          throw new Error(
-            `Version ${version} change "${changeDescription}" mergeFields must define split for response downgrades.`,
-          );
-        }
-        return;
-      case 'customTransform':
-        return;
-    }
-  }
-
-  private assertOperationBase(
-    operation: RequestOperation | ResponseOperation,
-    version: ApiVersion,
-    changeDescription: string,
-  ): void {
-    this.assertPath(
-      operation.payloadPath,
-      `Invalid payloadPath in version ${version} change "${changeDescription}"`,
-      true,
-    );
-
-    this.assertPath(
-      operation.openApiPath,
-      `Invalid openApiPath in version ${version} change "${changeDescription}"`,
-      false,
-    );
-  }
-
-  private assertPath(
-    objectPath: string | undefined,
-    label: string,
-    allowWildcard: boolean,
-  ): void {
-    try {
-      parseObjectPath(objectPath ?? '/', { allowWildcard });
-    } catch (error) {
-      throw new Error(`${label}: ${(error as Error).message}`);
-    }
-  }
-
-  private assertNoConflictingResponseChanges(version: Version): void {
+  private responseConflictError(version: {
+    version: string;
+    responseChanges: {
+      description: string;
+      schemaPatch: {
+        payloadPath: string;
+        set?: Readonly<Record<string, FieldSpec>>;
+        remove?: readonly string[];
+      };
+    }[];
+  }): string | undefined {
     const touchedByPath = new Map<string, string>();
 
     for (const change of version.responseChanges) {
-      const payloadPath = change.operation.payloadPath ?? '/';
+      const payloadPath = change.schemaPatch.payloadPath;
 
-      for (const field of this.touchedResponseFields(change.operation)) {
+      for (const field of this.touchedCompiledResponseFields(change)) {
         const conflictKey = `${payloadPath}::${field}`;
         const previousDescription = touchedByPath.get(conflictKey);
 
         if (previousDescription) {
-          throw new Error(
-            `Version ${version.version} has multiple response changes targeting field "${field}" at payloadPath "${payloadPath}" ("${previousDescription}" and "${change.description}"). Consolidate them into a single change.`,
-          );
+          return `Version ${version.version} has multiple response changes targeting field "${field}" at payloadPath "${payloadPath}" ("${previousDescription}" and "${change.description}"). Consolidate them into a single change.`;
         }
 
         touchedByPath.set(conflictKey, change.description);
       }
     }
+
+    return undefined;
   }
 
-  private touchedResponseFields(
-    operation: ResponseOperation,
-  ): readonly string[] {
-    switch (operation.kind) {
-      case 'addField':
-      case 'removeField':
-      case 'replaceField':
-        return [operation.field];
-      case 'renameField':
-      case 'copyField':
-      case 'moveField':
-        return [operation.from, operation.to];
-      case 'splitField':
-        return [operation.from, ...Object.keys(operation.into)];
-      case 'mergeFields':
-        return [...operation.from, operation.to];
-      case 'customTransform':
-        return [
-          ...(operation.schemaPatch?.remove ?? []),
-          ...Object.keys(operation.schemaPatch?.set ?? {}),
-        ];
-    }
-  }
-
-  private assertNonEmpty(value: string, errorMessage: string): void {
-    if (value.trim().length === 0) {
-      throw new Error(errorMessage);
-    }
+  private touchedCompiledResponseFields(change: {
+    schemaPatch: {
+      set?: Readonly<Record<string, FieldSpec>>;
+      remove?: readonly string[];
+    };
+  }): readonly string[] {
+    return [
+      ...(change.schemaPatch.remove ?? []),
+      ...Object.keys(change.schemaPatch.set ?? {}),
+    ];
   }
 }

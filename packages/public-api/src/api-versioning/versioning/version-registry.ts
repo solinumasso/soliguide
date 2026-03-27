@@ -33,6 +33,7 @@ export class VersionRegistry {
 
     const dslCompiler = compiler ?? new DslCompiler();
     this.compiledVersions = dslCompiler.compileVersions(this.versions);
+    definitionValidator.validateCompiledVersions(this.compiledVersions);
   }
 
   getVersionIndex(version: ApiVersion): number {

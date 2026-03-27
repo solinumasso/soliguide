@@ -3,8 +3,8 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { z } from 'zod';
-import { rawProperty } from '../artifacts/openapi/openapi.dsl';
 import { DslCompiler } from '../versioning/dsl-compiler';
+import { RenameFieldChange } from '../versioning/changes';
 import { RequestVersioningPipeline } from './request-versioning.pipeline';
 import { buildSchemaCaches, catalogVersioningDefinition } from '../testing';
 import { VersionRegistry } from '../versioning/version-registry';
@@ -69,16 +69,6 @@ describe('ProposalC RequestVersioningPipeline', () => {
       resource: 'request-canonical-validation',
       baseRequestSchema: z.object({ legacyName: z.string() }).strict(),
       baseResponseSchema: z.object({}).strict(),
-      baseRequestOpenApiSchema: {
-        type: 'object',
-        properties: {
-          legacyName: { type: 'string' },
-        },
-      },
-      baseResponseOpenApiSchema: {
-        type: 'object',
-        properties: {},
-      },
       versions: [
         {
           version: '2026-03-03',
@@ -89,21 +79,7 @@ describe('ProposalC RequestVersioningPipeline', () => {
         {
           version: '2026-03-09',
           description: 'Canonical',
-          requestChanges: [
-            {
-              description: 'Rename with invalid mapper output',
-              operation: {
-                kind: 'renameField',
-                from: 'legacyName',
-                to: 'canonicalName',
-                toSpec: {
-                  zod: z.string(),
-                  openApi: rawProperty({ type: 'string' }, { required: true }),
-                },
-                mapValue: () => 123,
-              },
-            },
-          ],
+          requestChanges: [new InvalidRenameLegacyName()],
           responseChanges: [],
         },
       ],
@@ -152,3 +128,14 @@ describe('ProposalC RequestVersioningPipeline', () => {
     ).rejects.toBeInstanceOf(InternalServerErrorException);
   });
 });
+
+class InvalidRenameLegacyName extends RenameFieldChange {
+  description = 'Rename with invalid mapper output';
+  from = 'legacyName';
+  to = 'canonicalName';
+  schema = z.string();
+
+  override upgrade() {
+    return 123;
+  }
+}

@@ -90,3 +90,27 @@ export async function transformContainersAtPath(
   const tokens = parseObjectPath(objectPath, { allowWildcard: true });
   return walkAndTransform(nextPayload, tokens, mapper);
 }
+
+export function removeKey(target: Record<string, unknown>, key: string): void {
+  delete target[key];
+}
+
+export function removeKeys(
+  target: Record<string, unknown>,
+  keys: readonly string[],
+): void {
+  for (const key of keys) {
+    removeKey(target, key);
+  }
+}
+
+export function replaceContainer(
+  target: Record<string, unknown>,
+  replacement: Record<string, unknown>,
+): void {
+  removeKeys(target, Object.keys(target));
+
+  for (const [key, value] of Object.entries(replacement)) {
+    target[key] = value;
+  }
+}

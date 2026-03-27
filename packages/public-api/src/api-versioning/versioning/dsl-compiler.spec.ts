@@ -1,315 +1,166 @@
 import { z } from 'zod';
-import { rawProperty } from '../artifacts/openapi/openapi.dsl';
+import {
+  AddFieldChange,
+  MergeFieldsChange,
+  RemoveFieldChange,
+  RenameFieldChange,
+  ReplaceFieldChange,
+} from './changes';
 import { DslCompiler } from './dsl-compiler';
-import type {
-  FieldSpec,
-  RequestVersionChange,
-  ResponseVersionChange,
-} from './versioning.types';
+import { readZodSchemaExpression } from './zod-schema-expression.utils';
+import type { Version } from './versioning.types';
 
-const stringSpec: FieldSpec = {
-  zod: z.string(),
-  openApi: rawProperty({ type: 'string' }, { required: true }),
-};
+class AddOpenToday extends AddFieldChange {
+  description = 'add open flag';
+  field = 'isOpenToday';
+  schema = z.boolean();
 
-const booleanSpec: FieldSpec = {
-  zod: z.boolean().optional(),
-  openApi: rawProperty({ type: 'boolean' }, { required: false }),
-};
+  override upgrade() {
+    return true;
+  }
+}
 
-const nameObjectSpec: FieldSpec = {
-  zod: z
-    .object({
-      translatedName: z.string(),
-    })
-    .strict(),
-  openApi: rawProperty(
-    {
-      type: 'object',
-      required: ['translatedName'],
-      properties: {
-        translatedName: { type: 'string' },
-      },
-    },
-    { required: true },
-  ),
-};
+class RenameSlug extends RenameFieldChange {
+  description = 'rename slug';
+  from = 'slug';
+  to = 'seoUrl';
+  schema = z.string();
+}
 
-describe('ProposalC DslCompiler', () => {
-  let compiler: DslCompiler;
+class ReplaceName extends ReplaceFieldChange {
+  description = 'replace name';
+  field = 'name';
+  schema = z.object({ translatedName: z.string() }).strict();
+}
 
-  beforeEach(() => {
-    compiler = new DslCompiler();
-  });
+class MergeName extends MergeFieldsChange {
+  description = 'merge names';
+  from = ['firstName', 'lastName'] as const;
+  to = 'name';
+  schema = z.string();
 
-  it('compiles addField request operation', async () => {
-    const change: RequestVersionChange = {
-      description: 'add',
-      operation: {
-        kind: 'addField',
-        field: 'isOpenToday',
-        spec: booleanSpec,
-        buildValue: () => true,
-      },
+  upgrade(values: Record<string, unknown>) {
+    return `${String(values.firstName)} ${String(values.lastName)}`;
+  }
+}
+
+class RemoveLegacyScore extends RemoveFieldChange {
+  description = 'remove legacy score';
+  field = 'legacyScore';
+
+  override downgrade(container: Record<string, unknown>) {
+    return container.slug ? 42 : 0;
+  }
+}
+
+describe('DslCompiler', () => {
+  it('compiles declarative changes into executable request/response changes', async () => {
+    const compiler = new DslCompiler();
+
+    const version: Version = {
+      version: '2026-03-09',
+      description: 'Second version',
+      requestChanges: [new AddOpenToday()],
+      responseChanges: [new RenameSlug()],
     };
 
-    const compiled = compiler.compileRequestChange(change);
+    const compiled = compiler.compileVersion(version);
 
-    await expect(compiled.upgrade({ page: 1 })).resolves.toEqual({
-      page: 1,
+    expect(compiled.version).toBe(version.version);
+    expect(compiled.description).toBe(version.description);
+    expect(compiled.requestChanges).toHaveLength(1);
+    expect(compiled.responseChanges).toHaveLength(1);
+    await expect(compiled.requestChanges[0].upgrade({})).resolves.toEqual({
       isOpenToday: true,
     });
-    expect(compiled.schemaPatch.set).toHaveProperty('isOpenToday');
-    expect(compiled.openApiPatch.set).toHaveProperty('isOpenToday');
+    await expect(
+      compiled.responseChanges[0].downgrade({ seoUrl: 'abc' }),
+    ).resolves.toEqual({ slug: 'abc' });
   });
 
-  it('compiles removeField request operation', async () => {
-    const change: RequestVersionChange = {
-      description: 'remove',
-      operation: {
-        kind: 'removeField',
-        field: 'openToday',
+  it('compiles multiple versions in order', () => {
+    const compiler = new DslCompiler();
+    const versions: readonly Version[] = [
+      {
+        version: '2026-03-03',
+        description: 'Initial',
+        requestChanges: [],
+        responseChanges: [],
       },
-    };
+      {
+        version: '2026-03-09',
+        description: 'Second',
+        requestChanges: [new AddOpenToday()],
+        responseChanges: [new RenameSlug()],
+      },
+    ];
 
-    const compiled = compiler.compileRequestChange(change);
+    const compiled = compiler.compileVersions(versions);
+
+    expect(compiled).toHaveLength(2);
+    expect(compiled.map((version) => version.version)).toEqual([
+      '2026-03-03',
+      '2026-03-09',
+    ]);
+  });
+
+  it('keeps removeField upgrade behavior and reintroduces on response downgrade', async () => {
+    const compiler = new DslCompiler();
+    const removeChange = new RemoveLegacyScore();
+
+    const compiledRequest = compiler.compileRequestChange(removeChange);
+    const compiledResponse = compiler.compileResponseChange(removeChange);
 
     await expect(
-      compiled.upgrade({ openToday: true, page: 1 }),
-    ).resolves.toEqual({
-      page: 1,
-    });
-    expect(compiled.schemaPatch.remove).toContain('openToday');
-  });
-
-  it('compiles renameField request operation', async () => {
-    const change: RequestVersionChange = {
-      description: 'rename',
-      operation: {
-        kind: 'renameField',
-        from: 'openToday',
-        to: 'isOpenToday',
-        toSpec: booleanSpec,
-      },
-    };
-
-    const compiled = compiler.compileRequestChange(change);
-
-    await expect(compiled.upgrade({ openToday: true })).resolves.toEqual({
-      isOpenToday: true,
-    });
-  });
-
-  it('compiles copyField request operation', async () => {
-    const change: RequestVersionChange = {
-      description: 'copy',
-      operation: {
-        kind: 'copyField',
-        from: 'title',
-        to: 'subtitle',
-        toSpec: stringSpec,
-      },
-    };
-
-    const compiled = compiler.compileRequestChange(change);
-
-    await expect(compiled.upgrade({ title: 'A' })).resolves.toEqual({
-      title: 'A',
-      subtitle: 'A',
-    });
-  });
-
-  it('compiles moveField request operation', async () => {
-    const change: RequestVersionChange = {
-      description: 'move',
-      operation: {
-        kind: 'moveField',
-        from: 'slug',
-        to: 'seoUrl',
-        toSpec: stringSpec,
-      },
-    };
-
-    const compiled = compiler.compileRequestChange(change);
-
-    await expect(compiled.upgrade({ slug: 'abc' })).resolves.toEqual({
-      seoUrl: 'abc',
-    });
-  });
-
-  it('compiles replaceField request operation', async () => {
-    const change: RequestVersionChange = {
-      description: 'replace',
-      operation: {
-        kind: 'replaceField',
-        field: 'title',
-        spec: stringSpec,
-        mapValue: (value) => String(value).toUpperCase(),
-      },
-    };
-
-    const compiled = compiler.compileRequestChange(change);
-
-    await expect(compiled.upgrade({ title: 'book' })).resolves.toEqual({
-      title: 'BOOK',
-    });
-  });
-
-  it('compiles splitField request operation', async () => {
-    const change: RequestVersionChange = {
-      description: 'split',
-      operation: {
-        kind: 'splitField',
-        from: 'name',
-        into: {
-          originalName: stringSpec,
-          translatedName: stringSpec,
-        },
-        split: (value) => ({
-          originalName: value,
-          translatedName: value,
-        }),
-      },
-    };
-
-    const compiled = compiler.compileRequestChange(change);
-
-    await expect(compiled.upgrade({ name: 'Book' })).resolves.toEqual({
-      originalName: 'Book',
-      translatedName: 'Book',
-    });
-  });
-
-  it('compiles mergeFields request operation', async () => {
-    const change: RequestVersionChange = {
-      description: 'merge',
-      operation: {
-        kind: 'mergeFields',
-        from: ['firstName', 'lastName'],
-        to: 'name',
-        toSpec: stringSpec,
-        merge: (values) =>
-          `${values.firstName as string} ${values.lastName as string}`,
-      },
-    };
-
-    const compiled = compiler.compileRequestChange(change);
-
-    await expect(
-      compiled.upgrade({ firstName: 'John', lastName: 'Doe' }),
-    ).resolves.toEqual({ name: 'John Doe' });
-  });
-
-  it('compiles customTransform request operation', async () => {
-    const change: RequestVersionChange = {
-      description: 'custom',
-      operation: {
-        kind: 'customTransform',
-        schemaPatch: {
-          set: {
-            normalized: stringSpec,
-          },
-        },
-        upgrade: (container) => ({
-          ...container,
-          normalized: 'ok',
-        }),
-      },
-    };
-
-    const compiled = compiler.compileRequestChange(change);
-
-    await expect(compiled.upgrade({ value: 1 })).resolves.toEqual({
-      value: 1,
-      normalized: 'ok',
-    });
-  });
-
-  it('compiles response downgrade for rename, replace and split/merge', async () => {
-    const renameChange: ResponseVersionChange = {
-      description: 'rename response',
-      operation: {
-        kind: 'renameField',
-        from: 'slug',
-        to: 'seoUrl',
-        payloadPath: '/results/*',
-        openApiPath: '/properties/results/items',
-        toSpec: stringSpec,
-      },
-    };
-
-    const replaceChange: ResponseVersionChange = {
-      description: 'replace response',
-      operation: {
-        kind: 'replaceField',
-        field: 'name',
-        payloadPath: '/results/*',
-        openApiPath: '/properties/results/items',
-        spec: nameObjectSpec,
-        mapValue: (value) => value,
-        downgradeValue: (value) =>
-          typeof value === 'object' && value
-            ? (value as Record<string, unknown>).translatedName
-            : value,
-      },
-    };
-
-    const splitChange: ResponseVersionChange = {
-      description: 'split response',
-      operation: {
-        kind: 'splitField',
-        from: 'name',
-        payloadPath: '/results/*',
-        openApiPath: '/properties/results/items',
-        into: {
-          firstName: stringSpec,
-          lastName: stringSpec,
-        },
-        split: () => ({ firstName: 'A', lastName: 'B' }),
-        merge: (values) =>
-          `${values.firstName as string} ${values.lastName as string}`,
-      },
-    };
-
-    const mergeChange: ResponseVersionChange = {
-      description: 'merge response',
-      operation: {
-        kind: 'mergeFields',
-        from: ['firstName', 'lastName'],
-        to: 'name',
-        payloadPath: '/results/*',
-        openApiPath: '/properties/results/items',
-        toSpec: stringSpec,
-        merge: (values) =>
-          `${values.firstName as string} ${values.lastName as string}`,
-        split: (value) => ({
-          firstName: String(value).split(' ')[0],
-          lastName: String(value).split(' ')[1] ?? '',
-        }),
-      },
-    };
-
-    const renameCompiled = compiler.compileResponseChange(renameChange);
-    const replaceCompiled = compiler.compileResponseChange(replaceChange);
-    const splitCompiled = compiler.compileResponseChange(splitChange);
-    const mergeCompiled = compiler.compileResponseChange(mergeChange);
-
-    await expect(
-      renameCompiled.downgrade({ results: [{ seoUrl: 'abc' }] }),
-    ).resolves.toEqual({ results: [{ slug: 'abc' }] });
-
-    await expect(
-      replaceCompiled.downgrade({
-        results: [{ name: { translatedName: 'Book' } }],
+      compiledRequest.upgrade({
+        legacyScore: 18,
+        slug: 'abc',
       }),
-    ).resolves.toEqual({ results: [{ name: 'Book' }] });
+    ).resolves.toEqual({
+      slug: 'abc',
+    });
+
+    await expect(compiledResponse.downgrade({ slug: 'abc' })).resolves.toEqual({
+      slug: 'abc',
+      legacyScore: 42,
+    });
+  });
+
+  it('overwrites existing value on removeField response downgrade', async () => {
+    const compiler = new DslCompiler();
+    const compiledResponse = compiler.compileResponseChange(
+      new RemoveLegacyScore(),
+    );
 
     await expect(
-      splitCompiled.downgrade({ results: [{ firstName: 'A', lastName: 'B' }] }),
-    ).resolves.toEqual({ results: [{ name: 'A B' }] });
+      compiledResponse.downgrade({ slug: 'abc', legacyScore: -1 }),
+    ).resolves.toEqual({
+      slug: 'abc',
+      legacyScore: 42,
+    });
+  });
 
-    await expect(
-      mergeCompiled.downgrade({ results: [{ name: 'A B' }] }),
-    ).resolves.toEqual({ results: [{ firstName: 'A', lastName: 'B' }] });
+  it('annotates Add/Rename/Replace/Merge schemas with source expressions', () => {
+    const compiler = new DslCompiler();
+
+    const addCompiled = compiler.compileRequestChange(new AddOpenToday());
+    const renameCompiled = compiler.compileRequestChange(new RenameSlug());
+    const replaceCompiled = compiler.compileRequestChange(new ReplaceName());
+    const mergeCompiled = compiler.compileRequestChange(new MergeName());
+
+    expect(
+      readZodSchemaExpression(addCompiled.schemaPatch.set!.isOpenToday.zod),
+    ).toContain('z.boolean()');
+    expect(
+      readZodSchemaExpression(renameCompiled.schemaPatch.set!.seoUrl.zod),
+    ).toContain('z.string()');
+    const replaceExpression = readZodSchemaExpression(
+      replaceCompiled.schemaPatch.set!.name.zod,
+    );
+    expect(replaceExpression).toContain('translatedName');
+    expect(replaceExpression).toContain('.strict()');
+    expect(
+      readZodSchemaExpression(mergeCompiled.schemaPatch.set!.name.zod),
+    ).toContain('z.string()');
   });
 });

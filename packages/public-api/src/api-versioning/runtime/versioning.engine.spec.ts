@@ -2,7 +2,6 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { z } from 'zod';
 import { DslCompiler } from '../versioning/dsl-compiler';
-import { rawProperty } from '../artifacts/openapi/openapi.dsl';
 import { RequestVersioningPipeline } from './request-versioning.pipeline';
 import { ResponseVersioningPipeline } from './response-versioning.pipeline';
 import {
@@ -12,11 +11,7 @@ import {
   expectedLegacyResponse,
 } from '../testing';
 import { VersioningEngine } from './versioning.engine';
-import {
-  defineVersion,
-  RenameFieldRequestChange,
-  RenameFieldResponseChange,
-} from '../versioning/changes';
+import { RenameFieldChange } from '../versioning/changes';
 import { VersionRegistry } from '../versioning/version-registry';
 import { VersionResolver } from '../versioning/version-resolver';
 import type {
@@ -131,21 +126,6 @@ function buildMixedDefinition(version20260309: Version): VersioningDefinition {
         catMood: z.string(),
       })
       .strict(),
-    baseRequestOpenApiSchema: {
-      type: 'object',
-      properties: {
-        bookName: { type: 'string' },
-        catMood: { type: 'string' },
-      },
-    },
-    baseResponseOpenApiSchema: {
-      type: 'object',
-      properties: {
-        bookName: { type: 'string' },
-        catMood: { type: 'string' },
-      },
-      required: ['bookName', 'catMood'],
-    },
     versions: [
       {
         version: '2026-03-03',
@@ -187,32 +167,23 @@ interface CatTextService {
 
 const CAT_TEXT_SERVICE = Symbol('CAT_TEXT_SERVICE');
 
-class RenameBookNameRequestChange extends RenameFieldRequestChange {
+class RenameBookNameRequestChange extends RenameFieldChange {
   override description = 'rename request bookName to bookTitle';
   override from = 'bookName';
   override to = 'bookTitle';
+  override schema = z.string();
 
-  protected override getZodSchema() {
-    return z.string();
-  }
-
-  protected override getOpenApiProperty() {
-    return rawProperty({ type: 'string' }, { required: false });
-  }
-
-  protected override upgradeValueMapper(
-    value: unknown,
-    _container: Record<string, unknown>,
-  ) {
+  override upgrade(value: unknown, _container: Record<string, unknown>) {
     return String(value).toUpperCase();
   }
 }
 
 @Injectable()
-class RenameCatMoodRequestChange extends RenameFieldRequestChange {
+class RenameCatMoodRequestChange extends RenameFieldChange {
   override description = 'rename request catMood to catEmotion';
   override from = 'catMood';
   override to = 'catEmotion';
+  override schema = z.string();
 
   constructor(
     @Inject(CAT_TEXT_SERVICE)
@@ -221,48 +192,28 @@ class RenameCatMoodRequestChange extends RenameFieldRequestChange {
     super();
   }
 
-  protected override getZodSchema() {
-    return z.string();
-  }
-
-  protected override getOpenApiProperty() {
-    return rawProperty({ type: 'string' }, { required: false });
-  }
-
-  protected override upgradeValueMapper(
-    value: unknown,
-    _container: Record<string, unknown>,
-  ) {
+  override upgrade(value: unknown, _container: Record<string, unknown>) {
     return this.catTextService.upgrade(value);
   }
 }
 
-class RenameBookTitleResponseChange extends RenameFieldResponseChange {
+class RenameBookTitleResponseChange extends RenameFieldChange {
   override description = 'rename response bookName to bookTitle';
   override from = 'bookName';
   override to = 'bookTitle';
+  override schema = z.string();
 
-  protected override getZodSchema() {
-    return z.string();
-  }
-
-  protected override getOpenApiProperty() {
-    return rawProperty({ type: 'string' }, { required: false });
-  }
-
-  protected override downgradeValueMapper(
-    value: unknown,
-    _container: Record<string, unknown>,
-  ) {
+  override downgrade(value: unknown, _container: Record<string, unknown>) {
     return String(value).toLowerCase();
   }
 }
 
 @Injectable()
-class RenameCatMoodResponseChange extends RenameFieldResponseChange {
+class RenameCatMoodResponseChange extends RenameFieldChange {
   override description = 'rename response catMood to catEmotion';
   override from = 'catMood';
   override to = 'catEmotion';
+  override schema = z.string();
 
   constructor(
     @Inject(CAT_TEXT_SERVICE)
@@ -271,18 +222,7 @@ class RenameCatMoodResponseChange extends RenameFieldResponseChange {
     super();
   }
 
-  protected override getZodSchema() {
-    return z.string();
-  }
-
-  protected override getOpenApiProperty() {
-    return rawProperty({ type: 'string' }, { required: false });
-  }
-
-  protected override downgradeValueMapper(
-    value: unknown,
-    _container: Record<string, unknown>,
-  ) {
+  override downgrade(value: unknown, _container: Record<string, unknown>) {
     return this.catTextService.downgrade(value);
   }
 }
@@ -295,7 +235,7 @@ class MixedBookCatVersionProvider {
   ) {}
 
   toVersion(): Version {
-    return defineVersion({
+    return {
       version: '2026-03-09',
       description: 'Mixed DI and non-DI field changes',
       requestChanges: [new RenameBookNameRequestChange(), this.requestDiChange],
@@ -303,6 +243,6 @@ class MixedBookCatVersionProvider {
         new RenameBookTitleResponseChange(),
         this.responseDiChange,
       ],
-    });
+    };
   }
 }
