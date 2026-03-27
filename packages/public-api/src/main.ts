@@ -153,6 +153,7 @@ async function bootstrap() {
     '/api/docs',
     apiReference({
       sources: buildScalarSources(supportedVersions, canonicalVersion),
+      orderSchemaPropertiesBy: 'preserve',
     }),
   );
 

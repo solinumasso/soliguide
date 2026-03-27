@@ -4,6 +4,8 @@ import { ArtifactGenerationService } from '../../api-versioning/artifacts';
 import { SearchModule } from '../search.module';
 
 async function run(): Promise<void> {
+  process.env.PUBLIC_API_GENERATE_ARTIFACTS = '1';
+
   const app = await NestFactory.createApplicationContext(SearchModule, {
     logger: false,
   });

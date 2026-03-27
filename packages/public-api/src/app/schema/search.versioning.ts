@@ -1,28 +1,17 @@
-import {
-  baseSearchRequestOpenApiSchema,
-  baseSearchRequestSchema,
-  baseSearchResponseOpenApiSchema,
-  baseSearchResponseSchema,
-} from './search.base';
-import {
-  searchVersion20260303ChangeProviders,
-  searchVersion20260303,
-  searchVersion20260303VersionProviders,
-} from '../versions/20260303.version';
-import {
-  searchVersion20260309ChangeProviders,
-  searchVersion20260309,
-  searchVersion20260309VersionProviders,
-} from '../versions/20260309.version';
 import type {
   OpenApiOperationTarget,
   Version,
   VersioningDefinition,
 } from '../../api-versioning/versioning/versioning.types';
+import {
+  SearchVersion20260323Provider,
+  searchVersion20260323VersionProviders,
+} from '../versions/20260323.version';
+import { searchRequestSchema } from './search.request/search.request';
+import { searchResponseSchema } from './search.response/search.response';
 
 export const searchVersions: readonly Version[] = [
-  searchVersion20260303,
-  searchVersion20260309,
+  new SearchVersion20260323Provider().toVersion(),
 ];
 
 export interface SearchVersionProvider {
@@ -30,13 +19,11 @@ export interface SearchVersionProvider {
 }
 
 export const searchVersionProviders = [
-  ...searchVersion20260303VersionProviders,
-  ...searchVersion20260309VersionProviders,
+  ...searchVersion20260323VersionProviders,
 ] as const;
 
 export const searchVersionChangeProviders = [
-  ...searchVersion20260303ChangeProviders,
-  ...searchVersion20260309ChangeProviders,
+  ...searchVersion20260323VersionProviders,
 ] as const;
 
 export function buildSearchVersions(
@@ -51,10 +38,8 @@ export function buildSearchVersioningDefinition(
   return {
     resource: 'search',
     versions,
-    baseRequestSchema: baseSearchRequestSchema,
-    baseResponseSchema: baseSearchResponseSchema,
-    baseRequestOpenApiSchema: baseSearchRequestOpenApiSchema,
-    baseResponseOpenApiSchema: baseSearchResponseOpenApiSchema,
+    baseRequestSchema: searchRequestSchema,
+    baseResponseSchema: searchResponseSchema,
   };
 }
 
