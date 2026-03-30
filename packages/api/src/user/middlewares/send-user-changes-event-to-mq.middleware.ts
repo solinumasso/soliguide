@@ -13,8 +13,8 @@ import {
 
 export const sendUserChangesToMq = async (
   req: ExpressRequest & {
-    isUserDeleted?: boolean;
-    updatedUser?: UserPopulateType;
+    isUserDeleted: boolean;
+    updatedUser: UserPopulateType;
   }
 ) => {
   if (req.updatedUser) {
@@ -34,17 +34,15 @@ export const sendUserChangesToMq = async (
   }
 };
 
-export const sendUserChangesToMqAndNext = (
+export const sendUserChangesToMqAndNext = async (
   req: ExpressRequest & {
-    isUserDeleted?: boolean;
-    updatedUser?: UserPopulateType;
+    isUserDeleted: boolean;
+    updatedUser: UserPopulateType;
   },
   _res: ExpressResponse,
   next: NextFunction
 ) => {
-  sendUserChangesToMq(req).catch((e) =>
-    req.log.error(e, "Failed to send user changes to MQ")
-  );
+  sendUserChangesToMq(req);
 
   return next();
 };

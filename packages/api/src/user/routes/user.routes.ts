@@ -45,7 +45,6 @@ import {
 } from "../middlewares/capture-user-event.middleware";
 import { addAreasToUser } from "../middlewares/add-areas-to-user.middleware";
 import { sendUserChangesToMq } from "../middlewares/send-user-changes-event-to-mq.middleware";
-
 import { addBreadcrumb, captureException, captureMessage } from "@sentry/node";
 import { updateLastLogin } from "../middlewares/update-last-login.middleware";
 
@@ -423,7 +422,7 @@ router.patch(
   "/me",
   patchMyAccountDto,
   getFilteredData,
-  async (req: ExpressRequest, res: ExpressResponse) => {
+  async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
     try {
       const patchedUser = await UserController.patchUserAccount(
         req.user._id,
@@ -435,15 +434,14 @@ router.patch(
       req.user = UserFactory.createUser(patchedUser!);
       req.updatedUser = req.user;
 
-      sendUserChangesToMq(req).catch((e) =>
-        req.log.error(e, "Failed to send user changes to MQ")
-      );
-      return res.status(200).json(req.user);
+      res.status(200).json(req.user);
+      return next();
     } catch (e) {
       req.log.error(e);
       return res.status(500).json({ message: "PATCH_ME_FAIL" });
     }
-  }
+  },
+  sendUserChangesToMq
 );
 
 router.patch(
@@ -507,7 +505,7 @@ router.patch(
   canEditUser,
   patchUserFromContactDto,
   getFilteredData,
-  async (req: ExpressRequest, res: ExpressResponse) => {
+  async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
     try {
       const user = await UserController.patchUserAccount(
         req.params.userObjectId,
@@ -518,15 +516,15 @@ router.patch(
         req.updatedUser = user;
       }
 
-      sendUserChangesToMq(req).catch((e) =>
-        req.log.error(e, "Failed to send user changes to MQ")
-      );
-      return res.status(200).json({ message: "USER_UPDATED" });
+      res.status(200).json({ message: "USER_UPDATED" });
+
+      return next();
     } catch (e) {
       req.log.error(e, "PATCH_USER_FAIL");
       return res.status(500).json({ message: "PATCH_USER_FAIL" });
     }
-  }
+  },
+  sendUserChangesToMq
 );
 
 /**
@@ -557,7 +555,7 @@ router.patch(
   patchUserDto,
   getFilteredData,
   addAreasToUser,
-  async (req: ExpressRequest, res: ExpressResponse) => {
+  async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
     try {
       const user = await UserController.patchUserAccount(
         req.params.userObjectId,
@@ -570,15 +568,15 @@ router.patch(
       req.selectedUser = user;
       req.updatedUser = user;
 
-      sendUserChangesToMq(req).catch((e) =>
-        req.log.error(e, "Failed to send user changes to MQ")
-      );
-      return res.status(200).json({ message: "USER_UPDATED" });
+      res.status(200).json({ message: "USER_UPDATED" });
+
+      return next();
     } catch (e) {
       req.log.error(e, "PATCH_USER_FAIL");
       return res.status(500).json({ message: "PATCH_USER_FAIL" });
     }
-  }
+  },
+  sendUserChangesToMq
 );
 
 export default router;
