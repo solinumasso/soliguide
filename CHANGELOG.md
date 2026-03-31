@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.127.0](https://github.com/solinumasso/soliguide/compare/v4.126.0...v4.127.0) (2026-03-31)
+
+
+### Bug Fixes
+
+* **common:** fix test ([d822fb9](https://github.com/solinumasso/soliguide/commit/d822fb99f17e44d780e5b8ed6e3b15066286230a))
+* **frontend:** add correct linkedin links for AD and ES ([418788a](https://github.com/solinumasso/soliguide/commit/418788a71f7e5b97243a2e9be721c1fcfdfb61d9))
+
+
+### Features
+
+* **frontend:** add synonyms for portugese ([836e165](https://github.com/solinumasso/soliguide/commit/836e16513b143b09751ef3d05e64db182692750a))
+
+
+
+
+
 # [4.126.0](https://github.com/solinumasso/soliguide/compare/v4.125.5...v4.126.0) (2026-03-26)
 
 
