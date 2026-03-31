@@ -135,8 +135,7 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
     websiteUrl: "soliguia.cat",
     socialMedia: {
       instagram: "https://www.instagram.com/soliguia/",
-      linkedin:
-        "https://www.linkedin.com/showcase/soliguia/posts/?feedView=all",
+      linkedin: "https://www.linkedin.com/showcase/soliguia/",
       facebook: "https://www.facebook.com/people/Soliguia/61586492182496/",
     },
   },
@@ -168,8 +167,7 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
     websiteUrl: "soliguia.ad",
     socialMedia: {
       instagram: "https://www.instagram.com/soliguia/",
-      linkedin:
-        "https://www.linkedin.com/showcase/soliguia/posts/?feedView=all",
+      linkedin: "https://www.linkedin.com/showcase/soliguia/",
       facebook: "https://www.facebook.com/people/Soliguia/61586492182496/",
     },
   },
