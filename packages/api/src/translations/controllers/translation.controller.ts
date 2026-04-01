@@ -328,6 +328,7 @@ const createTranslatedElement = async (
       ...newElement,
       languages: source.languages,
       sourceLanguage: source.sourceLanguage,
+      status: source.status,
     });
   }
 };

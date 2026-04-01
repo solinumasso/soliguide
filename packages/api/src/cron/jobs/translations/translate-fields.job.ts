@@ -42,8 +42,9 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
   });
 
   // Group by content to process each unique text only once
+  // TODO: remove department filter once hotfix is validated
   const elements: ApiTranslatedField[] = await TranslatedFieldModel.aggregate([
-    { $match: { $or: matchQuery } },
+    { $match: { $or: matchQuery, "position.departmentCode": "05" } },
     { $group: { _id: "$content", doc: { $first: "$$ROOT" } } },
     { $replaceRoot: { newRoot: "$doc" } },
     { $limit: 100 },
