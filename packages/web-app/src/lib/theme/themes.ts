@@ -20,7 +20,7 @@ const defaultTheme: ThemeDefinition = {
   brandName: 'Soliguide',
   country: CountryCodes.FR,
   defaultLanguage: SupportedLanguagesCode.FR,
-  supportedLanguages: SUPPORTED_LANGUAGES,
+  supportedLanguages: SUPPORTED_LANGUAGES.filter((lang) => lang !== SupportedLanguagesCode.PT),
   media: {
     homeIllustration: 'soliguide_illustration_home.svg',
     favoritesIllustration: 'soliguide_illustration_favorites.svg',
