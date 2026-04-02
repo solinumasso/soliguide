@@ -1,6 +1,6 @@
 {
   "name": "@soliguide/taxonomy",
-  "version": "4.127.2",
+  "version": "4.127.3",
   "private": true,
   "scripts": {
     "test": "vitest run",
