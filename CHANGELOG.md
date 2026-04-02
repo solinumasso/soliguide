@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.127.2](https://github.com/solinumasso/soliguide/compare/v4.127.1...v4.127.2) (2026-04-02)
+
+
+### Bug Fixes
+
+* **api:** fix translation duplicate issue ([861955a](https://github.com/solinumasso/soliguide/commit/861955aa18a3bba1d36a4a774e43e40e8e36a269))
+
+
+
+
+
 ## [4.127.1](https://github.com/solinumasso/soliguide/compare/v4.127.0...v4.127.1) (2026-04-01)
 
 
