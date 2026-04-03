@@ -77,6 +77,7 @@ import { PendingChangesGuard } from "../../guards/pending-changes.guard";
 import { AddressInputComponent } from "./components/_shared/address-input/address-input.component";
 
 import { DisplayHorairesComponent } from "../place/standalone-components/display-horaires/horaires.component";
+import { GoogleMapComponent } from "../place/standalone-components/google-map/google-map.component";
 import { SearchMapComponent } from "../place/standalone-components/search-map/search-map.component";
 import { FormatInternationalPhoneNumberPipe } from "../shared";
 import { FormIntlPhoneInputComponent } from "../shared/components/form-phone-input/form-intl-phone-input.component";
@@ -138,6 +139,7 @@ import { LocationAutocompleteComponent } from "../shared/components/location-aut
   imports: [
     AdminPlaceSharedModule,
     LocationAutocompleteComponent,
+    GoogleMapComponent,
     SearchMapComponent,
     CKEditorModule,
     CommonModule,

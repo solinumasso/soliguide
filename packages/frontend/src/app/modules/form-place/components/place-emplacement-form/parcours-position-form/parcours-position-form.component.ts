@@ -82,6 +82,12 @@ export class ParcoursPositionFormComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
+    if (!this.place.parcours.length) {
+      this.place.parcours.push(
+        new PlaceParcours({ position: this.place.position }, true)
+      );
+    }
+
     if (this.place.parcours.length) {
       for (const day of WEEK_DAYS) {
         if (this.place.parcours[0].hours[day].open) {
