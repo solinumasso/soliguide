@@ -22,7 +22,31 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <div class="col-12">
     <h2 *ngIf="!edit" class="mb-2">{{ "SPOKEN_LANGUAGES" | translate }}</h2>
 
-    <div class="languages" *ngFor="let chosenLang of languages">
+    <div
+      class="languages lang-removed"
+      *ngFor="let chosenLang of languagesRemoved"
+    >
+      <div class="d-flex align-items-center justify-content-between">
+        <img
+          *ngIf="flagExists(chosenLang) && chosenLang !== 'lsf'"
+          [alt]="'Langue ' + chosenLang"
+          src="/assets/images/languages/{{ chosenLang }}.png"
+          class="rounded-circle"
+          aria-hidden="true"
+        />
+        <del>
+          <span>{{
+            "LANGUE_" + chosenLang | uppercase | translate | ucFirst
+          }}</span>
+        </del>
+      </div>
+    </div>
+
+    <div
+      class="languages"
+      [ngClass]="{ 'lang-added': languagesAdded.includes(chosenLang) }"
+      *ngFor="let chosenLang of languages"
+    >
       <div class="d-flex align-items-center justify-content-between">
         <img
           *ngIf="flagExists(chosenLang) && chosenLang !== 'lsf'"

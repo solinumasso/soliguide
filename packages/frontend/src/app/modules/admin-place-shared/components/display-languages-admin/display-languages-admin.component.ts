@@ -19,6 +19,8 @@ export class DisplayLanguagesAdminComponent implements OnInit, OnDestroy {
 
   @Input() public languages: string[];
   @Input() public edit: boolean;
+  @Input() public languagesAdded: string[] = [];
+  @Input() public languagesRemoved: string[] = [];
 
   private readonly subscription: Subscription = new Subscription();
 

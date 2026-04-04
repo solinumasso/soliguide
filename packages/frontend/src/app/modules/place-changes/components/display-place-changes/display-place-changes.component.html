@@ -86,6 +86,18 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           [index]="i"
           [service]="service"
           [forceDisplayTempInfo]="true"
+          [hoursAdded]="
+            serviceSubSectionChanges[service.serviceObjectId]?.hoursAdded ??
+            false
+          "
+          [modalitiesAdded]="
+            serviceSubSectionChanges[service.serviceObjectId]
+              ?.modalitiesAdded ?? false
+          "
+          [publicsAdded]="
+            serviceSubSectionChanges[service.serviceObjectId]?.publicsAdded ??
+            false
+          "
         ></app-display-service-admin>
       </div>
     </div>
@@ -104,13 +116,38 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </div>
 
 <section *ngIf="section === PlaceChangesSection.public">
-  <h2 class="my-2">{{ "HOSTED_PUBLIC" | translate }}</h2>
+  <h2 class="my-2">
+    {{ "HOSTED_PUBLIC" | translate }}
+    <span
+      *ngIf="
+        changeSection === 'new' &&
+        (publicsAccueilChanged || publicsDetailsChanged || languagesChanged)
+      "
+      class="badge change-tag ms-2"
+      [ngClass]="publicsBadgeClass"
+      >{{ publicsBadgeKey | translate }}</span
+    >
+  </h2>
   <app-display-publics-admin
     *ngIf="placeChanged.publics"
     [publics]="placeChanged.publics"
     [languages]="placeChanged.languages"
+    [languagesAdded]="changeSection === 'new' ? languagesAdded : []"
+    [languagesRemoved]="changeSection === 'new' ? languagesRemoved : []"
   >
   </app-display-publics-admin>
+  <div
+    *ngIf="changeSection === 'new' && publicsDescriptionDiff"
+    class="description-card description-card-modified mt-2"
+  >
+    <p class="description-label">
+      {{ "DESCRIPTION" | translate }}
+      <span class="badge change-tag change-tag-modified ms-1">{{
+        "CHANGE_TAG_MODIFIED" | translate
+      }}</span>
+    </p>
+    <div class="diff-text" [innerHTML]="publicsDescriptionDiff"></div>
+  </div>
 </section>
 
 <section *ngIf="section === PlaceChangesSection.emplacement">
@@ -152,22 +189,47 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </section>
 
 <section *ngIf="section === PlaceChangesSection.modalities">
+  <h2 class="my-2">
+    {{ "ACCESS_CONDITIONS" | translate }}
+    <span
+      *ngIf="changeSection === 'new' && modalitiesChanged"
+      class="badge change-tag ms-2"
+      [ngClass]="modalitiesBadgeClass"
+      >{{ modalitiesBadgeKey | translate }}</span
+    >
+  </h2>
   <app-display-modalities
     *ngIf="placeChanged.modalities"
     [modalities]="placeChanged.modalities"
     [isHistory]="true"
+    [oldModalities]="
+      changeSection === 'new' && oldPlace ? oldPlace.modalities : undefined
+    "
   >
   </app-display-modalities>
 </section>
 
 <section *ngIf="section === PlaceChangesSection.status">
-  <b>
+  <b
+    [ngClass]="{
+      'text-field-modified': changeSection === 'new' && statusChanged
+    }"
+  >
     {{ placeChanged.status | translate }}
   </b>
+  <span
+    *ngIf="changeSection === 'new' && statusChanged"
+    class="badge change-tag change-tag-modified ms-2"
+    >{{ "CHANGE_TAG_MODIFIED" | translate }}</span
+  >
 </section>
 
 <section *ngIf="section === PlaceChangesSection.visibility">
-  <b>
+  <b
+    [ngClass]="{
+      'text-field-modified': changeSection === 'new' && visibilityChanged
+    }"
+  >
     <span *ngIf="placeChanged.visibility === PlaceVisibility.ALL">{{
       "PLACE_VISIBLE_FOR_EVERYONE" | translate
     }}</span>
@@ -175,6 +237,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       "PLACE_RESERVED_TO_PROFESSIONALS" | translate
     }}</span>
   </b>
+  <span
+    *ngIf="changeSection === 'new' && visibilityChanged"
+    class="badge change-tag change-tag-modified ms-2"
+    >{{ "CHANGE_TAG_MODIFIED" | translate }}</span
+  >
 </section>
 
 <section *ngIf="section === PlaceChangesSection.hours">
@@ -186,6 +253,34 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </section>
 
 <section *ngIf="section === PlaceChangesSection.contacts">
+  <ng-container *ngIf="changeSection === 'new'">
+    <div
+      *ngFor="let contact of contactsAdded"
+      class="change-indicator change-indicator-added mb-1"
+    >
+      <span class="badge change-tag change-tag-added me-2">{{
+        "CHANGE_TAG_ADDED" | translate
+      }}</span>
+      <strong>{{ contact.name }} {{ contact.lastname }}</strong>
+      <span *ngIf="contact.title" class="ms-1 text-muted"
+        >— {{ contact.title }}</span
+      >
+    </div>
+    <div
+      *ngFor="let contact of contactsRemoved"
+      class="change-indicator change-indicator-deleted mb-1"
+    >
+      <span class="badge change-tag change-tag-deleted me-2">{{
+        "CHANGE_TAG_DELETED" | translate
+      }}</span>
+      <del
+        ><strong>{{ contact.name }} {{ contact.lastname }}</strong>
+        <span *ngIf="contact.title" class="ms-1"
+          >— {{ contact.title }}</span
+        ></del
+      >
+    </div>
+  </ng-container>
   <app-display-contacts
     [allContacts]="placeChanged.contacts"
     [template]="'historique'"
@@ -292,11 +387,46 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 >
   <div class="row">
     <div class="col-12">
-      <h4>{{ placeChanged.name }}</h4>
+      <h4>
+        <span
+          [ngClass]="{
+            'text-field-modified': changeSection === 'new' && nameChanged
+          }"
+        >
+          {{ placeChanged.name }}
+        </span>
+        <span
+          *ngIf="changeSection === 'new' && nameChanged"
+          class="badge change-tag change-tag-modified ms-2"
+          >{{ "CHANGE_TAG_MODIFIED" | translate }}</span
+        >
+      </h4>
+    </div>
+    <div
+      class="col-12"
+      *ngIf="
+        placeChanged.description &&
+        !(changeSection === 'new' && descriptionDiff)
+      "
+    >
+      <p class="description-label">{{ "DESCRIPTION" | translate }}</p>
+      <div [innerHTML]="placeChanged.description"></div>
+    </div>
+    <div class="col-12" *ngIf="changeSection === 'new' && descriptionDiff">
+      <div class="description-card description-card-modified">
+        <p class="description-label">
+          {{ "DESCRIPTION" | translate }}
+          <span class="badge change-tag change-tag-modified ms-1">{{
+            "CHANGE_TAG_MODIFIED" | translate
+          }}</span>
+        </p>
+        <div class="diff-text" [innerHTML]="descriptionDiff"></div>
+      </div>
     </div>
     <div class="col-12">
       <app-display-general-info-admin
         [place]="placeChanged"
+        [hideDescription]="true"
       ></app-display-general-info-admin>
     </div>
   </div>

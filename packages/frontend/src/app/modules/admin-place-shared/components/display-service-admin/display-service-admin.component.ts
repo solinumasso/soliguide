@@ -27,6 +27,9 @@ export class DisplayServiceAdminComponent implements OnInit {
   @Input() public index!: number;
   @Input() public specificField!: string;
   @Input() public forceDisplayTempInfo = false;
+  @Input() public hoursAdded = false;
+  @Input() public modalitiesAdded = false;
+  @Input() public publicsAdded = false;
 
   public readonly ServiceSaturation = ServiceSaturation;
   public readonly TempInfoType = TempInfoType;
