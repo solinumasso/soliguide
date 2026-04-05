@@ -1,5 +1,5 @@
 
-FROM caddy:2.9-alpine AS base
+FROM caddy:2.11-alpine AS base
 
 COPY packages/maintenance/docker_cmd.sh /bin/docker_cmd.sh
 COPY packages/maintenance/maintenance.html /srv/maintenance.html
