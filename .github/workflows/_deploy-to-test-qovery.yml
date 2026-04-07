@@ -688,6 +688,6 @@ jobs:
               deployment_id: deployment.id,
               state: 'success',
               environment_url: deployFrontend ? `https://fr.${baseDomain}` : `https://api.${baseDomain}`,
-              description: urls.join('\n'),
+              description: `Qovery (${baseDomain})`,
               log_url: `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
             });
