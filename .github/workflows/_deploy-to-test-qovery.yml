@@ -78,6 +78,7 @@ jobs:
       - name: Create the Qovery environment
         id: create_environment
         if: steps.check_presence.outcome != 'success' && inputs.create
+        continue-on-error: true
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
         run: |
@@ -88,8 +89,23 @@ jobs:
             --environment "$QOVERY_BLUEPRINT_ENVIRONMENT_NAME" \
             --new-environment-name "$QOVERY_NEW_ENVIRONMENT_NAME"
 
+      # The clone API call is async: Qovery processes the request even if the CLI times out.
+      # Re-check existence so subsequent steps are not skipped on a false CLI failure.
+      - name: Verify environment is ready
+        id: env_ready
+        if: steps.check_presence.outcome != 'success'
+        continue-on-error: true
+        env:
+          QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
+        run: |
+          qovery environment list \
+            --organization "$QOVERY_ORGANIZATION_NAME" \
+            --project "$QOVERY_PROJECT_NAME" \
+            --json \
+            | jq -r '.[] | .name' | grep -e "^${{ env.QOVERY_NEW_ENVIRONMENT_NAME }}$"
+
       - name: Create the Posthog Proxy custom domain in Qovery
-        if: steps.create_environment.outcome == 'success'
+        if: steps.env_ready.outcome == 'success'
         id: ph_domain
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
@@ -114,7 +130,7 @@ jobs:
           echo "validation_domain=$VALIDATION_DOMAIN" >> "$GITHUB_OUTPUT"
 
       - name: Create DNS record for the Posthog Proxy
-        if: steps.create_environment.outcome == 'success'
+        if: steps.env_ready.outcome == 'success'
         uses: solinumasso/gcore-dns-action@v1
         with:
           api-key: ${{ secrets.GCORE_API_KEY }}
@@ -125,7 +141,7 @@ jobs:
           type: CNAME
 
       - name: Update API services
-        if: inputs.deploy_api && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
+        if: inputs.deploy_api && (steps.check_presence.outcome == 'success' || steps.env_ready.outcome == 'success')
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
         run: |
@@ -151,7 +167,7 @@ jobs:
             --tag "$SOLIGUIDE_TAG"
 
       - name: Create the API custom domain in Qovery
-        if: inputs.deploy_api && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
+        if: inputs.deploy_api && (steps.check_presence.outcome == 'success' || steps.env_ready.outcome == 'success')
         id: api_domain
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
@@ -203,7 +219,7 @@ jobs:
           type: CNAME
 
       - name: Update Location API
-        if: inputs.deploy_location-api && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
+        if: inputs.deploy_location-api && (steps.check_presence.outcome == 'success' || steps.env_ready.outcome == 'success')
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
         run: |
@@ -215,7 +231,7 @@ jobs:
             --tag "$SOLIGUIDE_TAG"
 
       - name: Create the Location API custom domain in Qovery
-        if: inputs.deploy_location-api && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
+        if: inputs.deploy_location-api && (steps.check_presence.outcome == 'success' || steps.env_ready.outcome == 'success')
         id: location-api_domain
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
@@ -267,7 +283,7 @@ jobs:
           type: CNAME
 
       - name: Update Soligare
-        if: inputs.deploy_soligare && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
+        if: inputs.deploy_soligare && (steps.check_presence.outcome == 'success' || steps.env_ready.outcome == 'success')
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
         run: |
@@ -279,7 +295,7 @@ jobs:
             --tag "$SOLIGUIDE_TAG"
 
       - name: Create Soligare custom domain in Qovery
-        if: inputs.deploy_soligare && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
+        if: inputs.deploy_soligare && (steps.check_presence.outcome == 'success' || steps.env_ready.outcome == 'success')
         id: soligare_domain
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
@@ -331,7 +347,7 @@ jobs:
           type: CNAME
 
       - name: Update Web app
-        if: inputs.deploy_web-app && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
+        if: inputs.deploy_web-app && (steps.check_presence.outcome == 'success' || steps.env_ready.outcome == 'success')
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
         run: |
@@ -343,7 +359,7 @@ jobs:
             --tag "$SOLIGUIDE_TAG"
 
       - name: Create Web app custom domain in Qovery
-        if: inputs.deploy_web-app && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
+        if: inputs.deploy_web-app && (steps.check_presence.outcome == 'success' || steps.env_ready.outcome == 'success')
         id: web-app_domain
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
@@ -395,7 +411,7 @@ jobs:
           type: CNAME
 
       - name: Update Frontend
-        if: inputs.deploy_frontend && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
+        if: inputs.deploy_frontend && (steps.check_presence.outcome == 'success' || steps.env_ready.outcome == 'success')
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
         run: |
@@ -414,7 +430,7 @@ jobs:
             --tag "${SOLIGUIDE_TAG}-frontend"
 
       - name: Create Frontend custom domains in Qovery
-        if: inputs.deploy_frontend && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
+        if: inputs.deploy_frontend && (steps.check_presence.outcome == 'success' || steps.env_ready.outcome == 'success')
         id: frontend_domain
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
@@ -531,7 +547,7 @@ jobs:
           type: CNAME
 
       - name: Update Widget
-        if: inputs.deploy_widget && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
+        if: inputs.deploy_widget && (steps.check_presence.outcome == 'success' || steps.env_ready.outcome == 'success')
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
         run: |
@@ -550,7 +566,7 @@ jobs:
             --tag "${SOLIGUIDE_TAG}-widget"
 
       - name: Create Widget custom domain in Qovery
-        if: inputs.deploy_widget && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
+        if: inputs.deploy_widget && (steps.check_presence.outcome == 'success' || steps.env_ready.outcome == 'success')
         id: widget_domain
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
@@ -602,7 +618,7 @@ jobs:
           type: CNAME
 
       - name: Deploy the environment
-        if: steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success'
+        if: steps.check_presence.outcome == 'success' || steps.env_ready.outcome == 'success'
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
         run: |
@@ -612,7 +628,7 @@ jobs:
             --environment "$QOVERY_NEW_ENVIRONMENT_NAME"
 
       - id: status
-        if: steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success'
+        if: steps.check_presence.outcome == 'success' || steps.env_ready.outcome == 'success'
         name: Get environment status
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
@@ -628,7 +644,7 @@ jobs:
           echo "EOF" >> "$GITHUB_OUTPUT"
 
       - name: Create GitHub Deployment
-        if: github.event_name == 'pull_request' && (steps.check_presence.outcome == 'success' || steps.create_environment.outcome == 'success')
+        if: github.event_name == 'pull_request' && (steps.check_presence.outcome == 'success' || steps.env_ready.outcome == 'success')
         uses: actions/github-script@v7
         with:
           script: |
