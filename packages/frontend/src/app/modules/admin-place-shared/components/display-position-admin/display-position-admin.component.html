@@ -25,10 +25,52 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     </div>
 
     <div class="col-md-9 col-12" *ngIf="place.position.address">
-      <span>{{ place.position.address }}</span>
-      <span *ngIf="place.position.additionalInformation"
-        ><br />{{ place.position.additionalInformation }}</span
+      <span
+        [ngClass]="
+          addressChangeType !== null
+            ? 'bg-warning bg-opacity-25 rounded-1 px-1'
+            : ''
+        "
+        >{{ place.position.address }}</span
       >
+      @if (addressChangeType === FieldChangeStatus.ADDED) {
+      <span class="badge bg-success align-middle ms-1">{{
+        "CHANGE_TAG_ADDED" | translate
+      }}</span>
+      } @else if (addressChangeType === FieldChangeStatus.MODIFIED) {
+      <span class="badge bg-warning text-dark align-middle ms-1">{{
+        "CHANGE_TAG_MODIFIED" | translate
+      }}</span>
+      }
+      <span
+        *ngIf="
+          place.position.additionalInformation ||
+          additionalInfoChangeType === FieldChangeStatus.DELETED
+        "
+      >
+        <br />
+        <span
+          [ngClass]="
+            additionalInfoChangeType !== null
+              ? 'bg-warning bg-opacity-25 rounded-1 px-1'
+              : ''
+          "
+          >{{ place.position.additionalInformation }}</span
+        >
+        @if (additionalInfoChangeType === FieldChangeStatus.ADDED) {
+        <span class="badge bg-success align-middle ms-1">{{
+          "CHANGE_TAG_ADDED" | translate
+        }}</span>
+        } @else if (additionalInfoChangeType === FieldChangeStatus.MODIFIED) {
+        <span class="badge bg-warning text-dark align-middle ms-1">{{
+          "CHANGE_TAG_MODIFIED" | translate
+        }}</span>
+        } @else if (additionalInfoChangeType === FieldChangeStatus.DELETED) {
+        <span class="badge bg-danger align-middle ms-1">{{
+          "CHANGE_TAG_DELETED" | translate
+        }}</span>
+        }
+      </span>
     </div>
   </div>
 </ng-container>

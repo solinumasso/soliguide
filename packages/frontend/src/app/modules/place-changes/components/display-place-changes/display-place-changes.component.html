@@ -33,104 +33,69 @@ PlaceChangesSection.services) {
 } @if (placeChanged.services_all && changeSection === 'new' && section ===
 PlaceChangesSection.services) {
 <div>
-  @if (servicesChanges.added.length >= 1) {
-  <section>
-    <h2 class="my-3">{{ "SERVICES_ADDED" | translate }}</h2>
-    <div class="history-update added">
-      @for (service of servicesChanges.added; track service.serviceObjectId; let
-      i = $index) {
-      <app-display-service-admin
-        [index]="i"
-        [service]="service"
-      ></app-display-service-admin>
-      }
-    </div>
-  </section>
-  } @if (servicesChanges.deleted.length >= 1) {
-  <section>
-    <h2 class="my-3">{{ "SERVICES_DELETED" | translate }}</h2>
-    <div class="history-update deleted">
-      @for (service of servicesChanges.deleted; track service.serviceObjectId;
-      let i = $index) {
-      <app-display-service-admin
-        [index]="i"
-        [service]="service"
-      ></app-display-service-admin>
-      }
-    </div>
-  </section>
-  } @if (servicesChanges.edited.length >= 1) {
-  <section>
-    <h2 class="my-3">{{ "SERVICES_EDITED" | translate }}</h2>
-    <div class="row">
-      <div class="col-6">
-        <h4>{{ "BEFORE_MODIFICATION" | translate }}</h4>
-      </div>
-      <div class="col-6">
-        <h4>{{ "AFTER_MODIFICATION" | translate }}</h4>
-      </div>
-    </div>
-    @for (service of servicesChanges.edited; track service.serviceObjectId; let
-    i = $index) {
-    <div class="row px-3">
-      <div class="col edited history-update">
-        <app-display-service-admin
-          [index]="i"
-          [service]="servicesChanges.oldServicesEdited[service.serviceObjectId]"
-          [forceDisplayTempInfo]="true"
-        ></app-display-service-admin>
-      </div>
-      <div class="col history-update edited">
-        <app-display-service-admin
-          [index]="i"
-          [service]="service"
-          [forceDisplayTempInfo]="true"
-          [oldHours]="
-            servicesChanges.oldServicesEdited[service.serviceObjectId]?.hours
-          "
-          [hoursAdded]="
-            serviceSubSectionChanges[service.serviceObjectId]?.hoursAdded ??
-            false
-          "
-          [hoursChanged]="
-            serviceSubSectionChanges[service.serviceObjectId]?.hoursChanged ??
-            false
-          "
-          [modalitiesAdded]="
-            serviceSubSectionChanges[service.serviceObjectId]
-              ?.modalitiesAdded ?? false
-          "
-          [modalitiesChanged]="
-            serviceSubSectionChanges[service.serviceObjectId]
-              ?.modalitiesChanged ?? false
-          "
-          [publicsAdded]="
-            serviceSubSectionChanges[service.serviceObjectId]?.publicsAdded ??
-            false
-          "
-          [publicsChanged]="
-            serviceSubSectionChanges[service.serviceObjectId]?.publicsChanged ??
-            false
-          "
-        ></app-display-service-admin>
-      </div>
-    </div>
-    }
-  </section>
-  } @if (servicesChanges.unchanged.length >= 1) {
-  <section>
-    <h2 class="my-3">{{ "SERVICES_UNCHANGED" | translate }}</h2>
-    <div class="history-update unchanged">
-      @for (service of servicesChanges.unchanged; track service.serviceObjectId;
-      let i = $index) {
-      <app-display-service-admin
-        [index]="i"
-        [service]="service"
-        [forceDisplayTempInfo]="true"
-      ></app-display-service-admin>
-      }
-    </div>
-  </section>
+  @for (service of servicesChanges.unchanged; track service.serviceObjectId; let
+  i = $index) {
+  <app-display-service-admin
+    [index]="i"
+    [service]="service"
+    [forceDisplayTempInfo]="true"
+  ></app-display-service-admin>
+  } @for (service of servicesChanges.edited; track service.serviceObjectId; let
+  i = $index) {
+  <div class="history-update edited">
+    <app-display-service-admin
+      [index]="i"
+      [service]="service"
+      [forceDisplayTempInfo]="true"
+      [oldService]="servicesChanges.oldServicesEdited[service.serviceObjectId]"
+      [oldHours]="
+        servicesChanges.oldServicesEdited[service.serviceObjectId]?.hours
+      "
+      [hoursAdded]="
+        serviceSubSectionChanges[service.serviceObjectId]?.hoursAdded ?? false
+      "
+      [hoursChanged]="
+        serviceSubSectionChanges[service.serviceObjectId]?.hoursChanged ?? false
+      "
+      [modalitiesAdded]="
+        serviceSubSectionChanges[service.serviceObjectId]?.modalitiesAdded ??
+        false
+      "
+      [modalitiesChanged]="
+        serviceSubSectionChanges[service.serviceObjectId]?.modalitiesChanged ??
+        false
+      "
+      [publicsAdded]="
+        serviceSubSectionChanges[service.serviceObjectId]?.publicsAdded ?? false
+      "
+      [publicsChanged]="
+        serviceSubSectionChanges[service.serviceObjectId]?.publicsChanged ??
+        false
+      "
+    ></app-display-service-admin>
+  </div>
+  } @for (service of servicesChanges.added; track service.serviceObjectId; let i
+  = $index) {
+  <div class="history-update added">
+    <span class="badge change-tag change-tag-added mb-1">{{
+      "CHANGE_TAG_ADDED" | translate
+    }}</span>
+    <app-display-service-admin
+      [index]="i"
+      [service]="service"
+    ></app-display-service-admin>
+  </div>
+  } @for (service of servicesChanges.deleted; track service.serviceObjectId; let
+  i = $index) {
+  <div class="history-update deleted">
+    <span class="badge change-tag change-tag-deleted mb-1">{{
+      "CHANGE_TAG_DELETED" | translate
+    }}</span>
+    <app-display-service-admin
+      [index]="i"
+      [service]="service"
+    ></app-display-service-admin>
+  </div>
   }
 </div>
 } @if (section === PlaceChangesSection.public) {
@@ -150,6 +115,7 @@ PlaceChangesSection.services) {
     [languages]="placeChanged.languages"
     [languagesAdded]="changeSection === 'new' ? languagesAdded : []"
     [languagesRemoved]="changeSection === 'new' ? languagesRemoved : []"
+    [oldPublics]="changeSection === 'new' ? oldPlace?.publics : undefined"
   ></app-display-publics-admin>
   } @if (changeSection === 'new' && publicsDescriptionDiff) {
   <div class="description-card description-card-modified mt-2">
@@ -168,6 +134,7 @@ PlaceChangesSection.services) {
   @if (placeChanged.placeType === PlaceType.PLACE) {
   <app-display-position-admin
     [place]="placeChanged"
+    [oldPlace]="changeSection === 'new' ? oldPlace : undefined"
   ></app-display-position-admin>
   } @if (placeChanged.placeType === PlaceType.ITINERARY) {
   <div class="row">
@@ -307,23 +274,16 @@ PlaceChangesSection.services) {
 </section>
 } @if (section === PlaceChangesSection.tempMessage) {
 <section>
-  @if (placeChanged.tempInfos.message) {
-  <div>
-    <h5>
-      <span class="badge bg-warning">{{
-        "DELETING_TEMPORARY_INFORMATION" | translate
-      }}</span>
-    </h5>
-  </div>
-  <div>
-    <h5>
-      <span class="badge bg-info">{{
-        "ADDING_OR_MODIFYING_TEMPORARY_INFORMATION" | translate
-      }}</span>
-    </h5>
-  </div>
+  @if (changeSection === 'new' && tempMessageBadge) {
+  <span class="badge change-tag ms-2" [ngClass]="tempMessageBadge.class">{{
+    tempMessageBadge.key | translate
+  }}</span>
   } @if (placeChanged.tempInfos.message.dateDebut) {
-  <div>
+  <div
+    [ngClass]="
+      changeSection === 'new' ? changeIndicatorClasses(tempMessageBadge) : {}
+    "
+  >
     <b class="alert-link">
       <span class="fa-info-circle fa"> </span>
       {{ "TITLE" | translate }} : {{ placeChanged.tempInfos.message.name }}
@@ -343,23 +303,16 @@ PlaceChangesSection.services) {
 </section>
 } @if (section === PlaceChangesSection.tempHours) {
 <section>
-  @if (placeChanged.tempInfos.hours) {
-  <div>
-    <h5>
-      <span class="badge bg-warning">{{
-        "REMOVE_TEMPORARY_WORKING_HOURS" | translate
-      }}</span>
-    </h5>
-  </div>
-  <div>
-    <h5>
-      <span class="badge bg-info">{{
-        "TEMPORARY_SCHEDULES_ADDED_OR_MODIFIED" | translate
-      }}</span>
-    </h5>
-  </div>
+  @if (changeSection === 'new' && tempHoursBadge) {
+  <span class="badge change-tag ms-2" [ngClass]="tempHoursBadge.class">{{
+    tempHoursBadge.key | translate
+  }}</span>
   } @if (placeChanged.tempInfos.hours.dateDebut) {
-  <div>
+  <div
+    [ngClass]="
+      changeSection === 'new' ? changeIndicatorClasses(tempHoursBadge) : {}
+    "
+  >
     <app-display-horaires
       [hours]="placeChanged.tempInfos.hours.hours"
       [displayClosedDays]="true"
@@ -381,8 +334,16 @@ PlaceChangesSection.services) {
 </section>
 } @if (section === PlaceChangesSection.tempClosure) {
 <section>
-  @if (placeChanged.tempInfos.closure.dateDebut) {
-  <div>
+  @if (changeSection === 'new' && tempClosureBadge) {
+  <span class="badge change-tag ms-2" [ngClass]="tempClosureBadge.class">{{
+    tempClosureBadge.key | translate
+  }}</span>
+  } @if (placeChanged.tempInfos.closure.dateDebut) {
+  <div
+    [ngClass]="
+      changeSection === 'new' ? changeIndicatorClasses(tempClosureBadge) : {}
+    "
+  >
     <b>{{ "DESCRIPTION_TEMPORARY_CLOSURE" | translate }} : </b>
     <div [innerHTML]="placeChanged.tempInfos.closure.description"></div>
     <p>

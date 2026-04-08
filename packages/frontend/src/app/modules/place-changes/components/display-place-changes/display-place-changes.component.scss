@@ -83,6 +83,11 @@ section {
   border-left: 3px solid #dc3545;
 }
 
+.change-indicator-modified {
+  background-color: rgba(255, 193, 7, 0.08);
+  border-left: 3px solid #ffc107;
+}
+
 .text-field-modified {
   background-color: rgba(255, 193, 7, 0.25);
   border-radius: 3px;
