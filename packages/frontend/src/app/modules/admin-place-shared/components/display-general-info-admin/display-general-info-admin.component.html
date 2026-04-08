@@ -19,106 +19,86 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <div class="row">
+  @if (!hideDescription) {
   <div
     class="col-md-12 col-12 place-description"
     [innerHTML]="place.description"
   ></div>
-
-  <div
-    *ngIf="
-      place.entity?.phones?.length ||
-      place.entity.mail ||
-      place.entity.website ||
-      place.entity.facebook ||
-      place.entity.fax ||
-      place.entity.instagram
-    "
-    class="col-md-12 col-12"
-  >
+  } @if ( place.entity?.phones?.length || place.entity.mail ||
+  place.entity.website || place.entity.facebook || place.entity.fax ||
+  place.entity.instagram ) {
+  <div class="col-md-12 col-12">
     <h4 class="soli-sub-title mt-3">{{ "CONTACT" | translate }}</h4>
   </div>
-
-  <ng-container *ngIf="place.entity?.phones?.length">
-    <div class="col-md-3 col-12 extra-info">{{ "PHONE" | translate }}</div>
-
-    <div class="col-md-9 col-12">
-      <div *ngFor="let phone of place.entity.phones">
-        {{ phone | formatInternationalPhoneNumber }}
-        <span *ngIf="phone.label"> ({{ phone.label }})</span>
-      </div>
+  } @if (place.entity?.phones?.length) {
+  <div class="col-md-3 col-12 extra-info">{{ "PHONE" | translate }}</div>
+  <div class="col-md-9 col-12">
+    @for (phone of place.entity.phones; track $index) {
+    <div>
+      {{ phone | formatInternationalPhoneNumber }}
+      @if (phone.label) {
+      <span> ({{ phone.label }})</span>
+      }
     </div>
-  </ng-container>
-
-  <ng-container *ngIf="place.entity?.mail">
-    <div class="col-md-3 col-12 extra-info">
-      {{ "EMAIL" | translate }}
-    </div>
-
-    <div class="col-md-9 col-12">
-      <span>
-        <a href="mailto:{{ place.entity.mail }}" target="_blank">
-          {{ place.entity.mail | decodePunycodeEmail }}
-        </a>
-      </span>
-    </div>
-  </ng-container>
-
-  <ng-container *ngIf="place.entity?.website">
-    <div class="col-md-3 col-12 extra-info">
-      {{ "WEBSITE" | translate }}
-    </div>
-
-    <div class="col-md-9 col-12">
-      <a
-        [attr.href]="place.entity.website"
-        target="_blank"
-        rel="external noreferrer"
-        aria-label="Voir le site web"
-      >
-        {{ place.entity.website }}
+    }
+  </div>
+  } @if (place.entity?.mail) {
+  <div class="col-md-3 col-12 extra-info">
+    {{ "EMAIL" | translate }}
+  </div>
+  <div class="col-md-9 col-12">
+    <span>
+      <a href="mailto:{{ place.entity.mail }}" target="_blank">
+        {{ place.entity.mail | decodePunycodeEmail }}
       </a>
-    </div>
-  </ng-container>
-
-  <ng-container *ngIf="place.entity?.fax">
-    <div class="col-md-3 col-12 extra-info">
-      {{ "FAX" | translate }}
-    </div>
-
-    <div class="col-md-9 col-12">
-      <span>{{ place.entity.fax }}</span>
-    </div>
-  </ng-container>
-
-  <ng-container *ngIf="place.entity?.facebook">
-    <div class="col-md-3 col-12 extra-info">{{ "FACEBOOK" | translate }}</div>
-
-    <div class="col-md-9 col-12">
-      <a
-        [attr.href]="place.entity.facebook"
-        target="_blank"
-        rel="external noreferrer"
-        aria-label="Voir la page Facebook"
-      >
-        {{ place.entity.facebook }}
-      </a>
-    </div>
-  </ng-container>
-
-  <ng-container *ngIf="place.entity?.instagram">
-    <div class="col-md-3 col-12 extra-info">
-      {{ "INSTAGRAM" | translate }}
-    </div>
-
-    <div class="col-md-9 col-12">
-      <a
-        [attr.href]="place.entity.instagram"
-        target="_blank"
-        rel="external noreferrer"
-        aria-label="Voir la page Instagram"
-      >
-        {{ place.entity.instagram }}
-      </a>
-    </div>
-  </ng-container>
+    </span>
+  </div>
+  } @if (place.entity?.website) {
+  <div class="col-md-3 col-12 extra-info">
+    {{ "WEBSITE" | translate }}
+  </div>
+  <div class="col-md-9 col-12">
+    <a
+      [attr.href]="place.entity.website"
+      target="_blank"
+      rel="external noreferrer"
+      aria-label="Voir le site web"
+    >
+      {{ place.entity.website }}
+    </a>
+  </div>
+  } @if (place.entity?.fax) {
+  <div class="col-md-3 col-12 extra-info">
+    {{ "FAX" | translate }}
+  </div>
+  <div class="col-md-9 col-12">
+    <span>{{ place.entity.fax }}</span>
+  </div>
+  } @if (place.entity?.facebook) {
+  <div class="col-md-3 col-12 extra-info">{{ "FACEBOOK" | translate }}</div>
+  <div class="col-md-9 col-12">
+    <a
+      [attr.href]="place.entity.facebook"
+      target="_blank"
+      rel="external noreferrer"
+      aria-label="Voir la page Facebook"
+    >
+      {{ place.entity.facebook }}
+    </a>
+  </div>
+  } @if (place.entity?.instagram) {
+  <div class="col-md-3 col-12 extra-info">
+    {{ "INSTAGRAM" | translate }}
+  </div>
+  <div class="col-md-9 col-12">
+    <a
+      [attr.href]="place.entity.instagram"
+      target="_blank"
+      rel="external noreferrer"
+      aria-label="Voir la page Instagram"
+    >
+      {{ place.entity.instagram }}
+    </a>
+  </div>
+  }
 </div>
