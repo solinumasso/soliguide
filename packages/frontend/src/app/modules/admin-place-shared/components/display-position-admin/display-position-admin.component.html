@@ -25,10 +25,36 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     </div>
 
     <div class="col-md-9 col-12" *ngIf="place.position.address">
-      <span>{{ place.position.address }}</span>
-      <span *ngIf="place.position.additionalInformation"
-        ><br />{{ place.position.additionalInformation }}</span
-      >
+      <span [ngClass]="{ 'text-field-modified': addressChangeType !== null }">{{
+        place.position.address
+      }}</span>
+      @if (addressChangeType === 'added') {
+      <span class="badge change-tag change-tag-added ms-1">{{
+        "CHANGE_TAG_ADDED" | translate
+      }}</span>
+      } @else if (addressChangeType === 'modified') {
+      <span class="badge change-tag change-tag-modified ms-1">{{
+        "CHANGE_TAG_MODIFIED" | translate
+      }}</span>
+      }
+      <span *ngIf="place.position.additionalInformation">
+        <br />
+        <span
+          [ngClass]="{
+            'text-field-modified': additionalInfoChangeType !== null
+          }"
+          >{{ place.position.additionalInformation }}</span
+        >
+        @if (additionalInfoChangeType === 'added') {
+        <span class="badge change-tag change-tag-added ms-1">{{
+          "CHANGE_TAG_ADDED" | translate
+        }}</span>
+        } @else if (additionalInfoChangeType === 'modified') {
+        <span class="badge change-tag change-tag-modified ms-1">{{
+          "CHANGE_TAG_MODIFIED" | translate
+        }}</span>
+        }
+      </span>
     </div>
   </div>
 </ng-container>

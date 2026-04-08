@@ -18,25 +18,27 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
-<div class="row my-3" *ngIf="publics">
+@if (publics) {
+<div class="row my-3">
   <div class="col-md-5 col-12 border-end align-self-center text-center mt2">
-    <div *ngIf="publics.accueil === WelcomedPublics.EXCLUSIVE">
+    @if (publics.accueil === WelcomedPublics.EXCLUSIVE) {
+    <div>
       <div class="svg-form exclusif"></div>
       <h4 class="subtitle-primary">
         {{ "PUBLICS_WELCOME_EXCLUSIVE" | translate }}
       </h4>
       <p>{{ "SPECIFIC_WELCOMED_PUBLIC" | translate }}</p>
     </div>
-
-    <div *ngIf="publics.accueil === WelcomedPublics.UNCONDITIONAL">
+    } @if (publics.accueil === WelcomedPublics.UNCONDITIONAL) {
+    <div>
       <div class="svg-form inconditionnel"></div>
       <h4 class="subtitle-primary">
         {{ "PUBLICS_WELCOME_UNCONDITIONAL" | translate }}
       </h4>
       <p>{{ "OPEN_TO_ALL_WITHOUT_CONDITIONS" | translate }}</p>
     </div>
-
-    <div *ngIf="publics.accueil === WelcomedPublics.PREFERENTIAL">
+    } @if (publics.accueil === WelcomedPublics.PREFERENTIAL) {
+    <div>
       <div class="svg-form preferentiel"></div>
       <h4 class="subtitle-primary">
         {{ "UNCONDITIONAL_RECEPTION_ADAPTED_TO_CERTAIN_GROUPS" | translate }}
@@ -45,22 +47,26 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         {{ "TARGETING_ONE_TYPE_AUDIENCE_BUT_OPEN_TO_EVERYONE" | translate }}
       </p>
     </div>
+    }
   </div>
+
   <div class="col-md-7 col-12 align-self-center">
     <p [innerHTML]="publicsText | safeHtml"></p>
-    <p class="my-3" *ngIf="publics.description">
+    @if (publics.description) {
+    <p class="my-3">
       <b>
         <fa-icon [icon]="['fas', 'info-circle']" class="me-1"></fa-icon>
         {{ "INFO_IMPORTANTE" | translate | ucFirst }}
       </b>
       <i>{{ publics.description }}</i>
     </p>
+    }
   </div>
 </div>
-
+} @if (languages) {
 <app-display-languages-admin
   [languages]="languages"
   [languagesAdded]="languagesAdded"
   [languagesRemoved]="languagesRemoved"
-  *ngIf="languages"
 ></app-display-languages-admin>
+}

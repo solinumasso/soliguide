@@ -85,6 +85,9 @@ PlaceChangesSection.services) {
           [index]="i"
           [service]="service"
           [forceDisplayTempInfo]="true"
+          [oldService]="
+            servicesChanges.oldServicesEdited[service.serviceObjectId]
+          "
           [oldHours]="
             servicesChanges.oldServicesEdited[service.serviceObjectId]?.hours
           "
@@ -168,6 +171,7 @@ PlaceChangesSection.services) {
   @if (placeChanged.placeType === PlaceType.PLACE) {
   <app-display-position-admin
     [place]="placeChanged"
+    [oldPlace]="changeSection === 'new' ? oldPlace : undefined"
   ></app-display-position-admin>
   } @if (placeChanged.placeType === PlaceType.ITINERARY) {
   <div class="row">

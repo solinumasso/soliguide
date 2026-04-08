@@ -18,3 +18,25 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
+.change-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+.change-tag-added {
+  background-color: #198754;
+  color: #fff;
+}
+
+.change-tag-modified {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.text-field-modified {
+  background-color: rgba(255, 193, 7, 0.25);
+  border-radius: 3px;
+  padding: 1px 4px;
+}

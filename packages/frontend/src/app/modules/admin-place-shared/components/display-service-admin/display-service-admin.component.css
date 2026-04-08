@@ -72,3 +72,59 @@
   margin: 0;
   padding: 0;
 }
+
+.change-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+.change-tag-added {
+  background-color: #198754;
+  color: #fff;
+}
+
+.change-tag-modified {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.change-tag-deleted {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.text-field-modified {
+  background-color: rgba(255, 193, 7, 0.25);
+  border-radius: 3px;
+  padding: 1px 4px;
+}
+
+.description-card {
+  border: 1px solid #dee2e6;
+  border-left: 4px solid #ced4da;
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.description-card-modified {
+  border-left-color: #ffc107;
+  background-color: rgba(255, 193, 7, 0.05);
+}
+
+.description-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6c757d;
+  margin-bottom: 0.5rem;
+}
+
+.specific-field-modified {
+  background-color: rgba(255, 193, 7, 0.08);
+  border-left: 3px solid #ffc107;
+  padding-left: 0.5rem;
+  border-radius: 2px;
+}
