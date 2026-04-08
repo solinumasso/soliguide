@@ -5,7 +5,7 @@ import {
   catalogVersioningDefinition,
   CatalogFixtureModule,
 } from '../testing';
-import { DslCompiler } from '../versioning/dsl-compiler';
+import { DslCompiler } from '../versioning/dsl/dsl-compiler';
 import { VersionRegistry } from '../versioning/version-registry';
 import { ArtifactGenerationService } from './artifact.generator';
 
@@ -38,57 +38,71 @@ describe('ProposalC ArtifactGenerationService', () => {
       CatalogFixtureModule,
       catalogOpenApiOperationTarget,
       generatedDirectory,
+      {
+        request: {
+          importPath: './2026-03-03.catalog.request',
+          exportName: 'v20260303RequestSchema',
+        },
+        response: {
+          importPath: './2026-03-03.catalog.response',
+          exportName: 'v20260303ResponseSchema',
+        },
+      },
     );
   };
 
-  it('generates openapi, changelog and contract files per version', async () => {
+  it('generates standalone contracts, openapi and changelog artifacts for all versions', async () => {
     const artifactGenerationService = buildService();
-    await seedFirstVersionContracts(generatedDirectory);
-    const existingOpenApiPath = path.join(
-      generatedDirectory,
-      'openapi',
-      '2026-03-03.json',
-    );
-    const existingChangelogPath = path.join(
-      generatedDirectory,
-      'changelog',
-      '2026-03-03.md',
-    );
-    await fs.mkdir(path.dirname(existingOpenApiPath), { recursive: true });
-    await fs.mkdir(path.dirname(existingChangelogPath), { recursive: true });
-    await fs.writeFile(
-      existingOpenApiPath,
-      '{\n  "preExisting": true\n}\n',
-      'utf8',
-    );
-    await fs.writeFile(existingChangelogPath, '# Existing changelog\n', 'utf8');
+    await seedFirstVersionSources(generatedDirectory);
 
     await artifactGenerationService.generateArtifacts();
 
     const paths = {
-      openApiOld: path.join(generatedDirectory, 'openapi', '2026-03-03.json'),
+      openApiFirst: path.join(
+        generatedDirectory,
+        '2026-03-03',
+        '2026-03-03.openapi.generated.json',
+      ),
       openApiCanonical: path.join(
         generatedDirectory,
-        'openapi',
-        '2026-03-09.json',
+        '2026-03-09',
+        '2026-03-09.openapi.generated.json',
       ),
-      changelogOld: path.join(generatedDirectory, 'changelog', '2026-03-03.md'),
+      changelogFirst: path.join(
+        generatedDirectory,
+        '2026-03-03',
+        '2026-03-03.changelog.generated.md',
+      ),
       changelogCanonical: path.join(
         generatedDirectory,
-        'changelog',
-        '2026-03-09.md',
+        '2026-03-09',
+        '2026-03-09.changelog.generated.md',
       ),
-      requestContract: path.join(
+      requestFirst: path.join(
         generatedDirectory,
-        'contracts',
-        '2026-03-09.request.schema.ts',
+        '2026-03-03',
+        'catalog.request',
+        '2026-03-03.catalog.request.generated.ts',
       ),
-      responseContract: path.join(
+      responseFirst: path.join(
         generatedDirectory,
-        'contracts',
-        '2026-03-09.response.schema.ts',
+        '2026-03-03',
+        'catalog.response',
+        '2026-03-03.catalog.response.generated.ts',
       ),
-      contractManifest: path.join(generatedDirectory, 'contracts', 'index.ts'),
+      requestCanonical: path.join(
+        generatedDirectory,
+        '2026-03-09',
+        'catalog.request',
+        '2026-03-09.catalog.request.generated.ts',
+      ),
+      responseCanonical: path.join(
+        generatedDirectory,
+        '2026-03-09',
+        'catalog.response',
+        '2026-03-09.catalog.response.generated.ts',
+      ),
+      contractManifest: path.join(generatedDirectory, 'contracts.generated.ts'),
     };
 
     await Promise.all(
@@ -96,16 +110,22 @@ describe('ProposalC ArtifactGenerationService', () => {
     );
 
     const [
-      openApiOld,
       openApiCanonical,
+      changelogFirst,
       changelogCanonical,
-      requestContract,
+      requestFirst,
+      responseFirst,
+      requestCanonical,
+      responseCanonical,
       contractManifest,
     ] = await Promise.all([
-      fs.readFile(paths.openApiOld, 'utf8'),
       fs.readFile(paths.openApiCanonical, 'utf8'),
+      fs.readFile(paths.changelogFirst, 'utf8'),
       fs.readFile(paths.changelogCanonical, 'utf8'),
-      fs.readFile(paths.requestContract, 'utf8'),
+      fs.readFile(paths.requestFirst, 'utf8'),
+      fs.readFile(paths.responseFirst, 'utf8'),
+      fs.readFile(paths.requestCanonical, 'utf8'),
+      fs.readFile(paths.responseCanonical, 'utf8'),
       fs.readFile(paths.contractManifest, 'utf8'),
     ]);
 
@@ -127,67 +147,103 @@ describe('ProposalC ArtifactGenerationService', () => {
 
     expect(readQueryParameterNames(parsedOpenApiCanonical)).toContain('isOpenToday');
 
-    const canonicalResponseSchema = ((((((
+    const canonicalResponseSchema = (((((
       parsedOpenApiCanonical.paths as Record<string, unknown>
     )['/catalog'] as Record<string, unknown>).get as Record<string, unknown>)
       .responses as Record<string, unknown>)['200'] as Record<string, unknown>)
-      .content as Record<string, unknown>)['application/json'] as Record<
-      string,
-      unknown
-    >;
-    const canonicalNameSchema = (((((canonicalResponseSchema
-      .schema as Record<string, unknown>).properties as Record<string, unknown>)
-      .results as Record<string, unknown>).items as Record<string, unknown>)
-      .properties as Record<string, unknown>).name as Record<string, unknown>;
-    expect(canonicalNameSchema.type).toBe('object');
+      .content as Record<string, unknown>;
+    const canonicalNameSchema = (((((canonicalResponseSchema[
+      'application/json'
+    ] as Record<string, unknown>).schema as Record<string, unknown>)
+      .properties as Record<string, unknown>).results as Record<string, unknown>)
+      .items as Record<string, unknown>).properties as Record<string, unknown>;
 
-    expect(changelogCanonical).toContain(
-      'Renamed response field slug to seoUrl',
+    expect((canonicalNameSchema.name as Record<string, unknown>).type).toBe(
+      'object',
     );
-    expect(requestContract).toContain('z.coerce.boolean().optional()');
+
+    expect(changelogFirst).toContain('DO NOT EDIT');
+    expect(changelogCanonical).toContain('Renamed response field slug to seoUrl');
+    expect(changelogCanonical).toContain('DO NOT EDIT');
+
+    expect(requestFirst).toContain('DO NOT EDIT');
+    expect(requestCanonical).toContain('isOpenToday: z.coerce.boolean().optional()');
+    expect(responseFirst).toContain('const catalogItemSchema');
+    expect(responseCanonical).toContain('seoUrl: z.string()');
+
+    expect(hasRelativeImport(requestFirst)).toBe(false);
+    expect(hasRelativeImport(responseFirst)).toBe(false);
+    expect(hasRelativeImport(requestCanonical)).toBe(false);
+    expect(hasRelativeImport(responseCanonical)).toBe(false);
+
     expect(contractManifest).toContain('type ApiVersion =');
     expect(contractManifest).toContain('requestSchemasByVersion');
     expect(contractManifest).toContain('responseSchemasByVersion');
-    expect(openApiOld.trim()).toBe('{\n  "preExisting": true\n}'.trim());
-    expect(
-      await fs.readFile(paths.changelogOld, 'utf8'),
-    ).toBe('# Existing changelog\n');
+    expect(contractManifest).toContain('DO NOT EDIT');
+    expect(parsedOpenApiCanonical['x-generated-file-warning']).toContain(
+      'DO NOT EDIT',
+    );
   });
 
-  it('does not regenerate openapi and changelog when no new contract version is created', async () => {
+  it('produces deterministic content on repeated generation', async () => {
     const artifactGenerationService = buildService();
-    await seedFirstVersionContracts(generatedDirectory);
+    await seedFirstVersionSources(generatedDirectory);
 
     await artifactGenerationService.generateArtifacts();
 
     const openApiPath = path.join(
       generatedDirectory,
-      'openapi',
-      '2026-03-09.json',
+      '2026-03-09',
+      '2026-03-09.openapi.generated.json',
     );
     const changelogPath = path.join(
       generatedDirectory,
-      'changelog',
-      '2026-03-09.md',
+      '2026-03-09',
+      '2026-03-09.changelog.generated.md',
     );
+    const responsePath = path.join(
+      generatedDirectory,
+      '2026-03-09',
+      'catalog.response',
+      '2026-03-09.catalog.response.generated.ts',
+    );
+
     const initialOpenApi = await fs.readFile(openApiPath, 'utf8');
     const initialChangelog = await fs.readFile(changelogPath, 'utf8');
+    const initialResponse = await fs.readFile(responsePath, 'utf8');
 
     await artifactGenerationService.generateArtifacts();
 
     const nextOpenApi = await fs.readFile(openApiPath, 'utf8');
     const nextChangelog = await fs.readFile(changelogPath, 'utf8');
+    const nextResponse = await fs.readFile(responsePath, 'utf8');
+
     expect(nextOpenApi).toBe(initialOpenApi);
     expect(nextChangelog).toBe(initialChangelog);
+    expect(nextResponse).toBe(initialResponse);
   });
 });
 
-async function seedFirstVersionContracts(outputDirectory: string): Promise<void> {
-  const contractsDirectory = path.join(outputDirectory, 'contracts');
-  await fs.mkdir(contractsDirectory, { recursive: true });
+function hasRelativeImport(sourceText: string): boolean {
+  return /from\s+['"]\.\.?\//.test(sourceText);
+}
+
+async function seedFirstVersionSources(outputDirectory: string): Promise<void> {
+  const requestDirectory = path.join(
+    outputDirectory,
+    '2026-03-03',
+    'catalog.request',
+  );
+  const responseDirectory = path.join(
+    outputDirectory,
+    '2026-03-03',
+    'catalog.response',
+  );
+  await fs.mkdir(requestDirectory, { recursive: true });
+  await fs.mkdir(responseDirectory, { recursive: true });
 
   await fs.writeFile(
-    path.join(contractsDirectory, '2026-03-03.request.schema.ts'),
+    path.join(requestDirectory, '2026-03-03.catalog.request.ts'),
     [
       "import { z } from 'zod';",
       '',
@@ -206,37 +262,49 @@ async function seedFirstVersionContracts(outputDirectory: string): Promise<void>
   );
 
   await fs.writeFile(
-    path.join(contractsDirectory, '2026-03-03.response.schema.ts'),
+    path.join(responseDirectory, 'catalog-item.ts'),
     [
       "import { z } from 'zod';",
       '',
+      'export const catalogItemSchema = z.object({',
+      '  id: z.string(),',
+      '  slug: z.string(),',
+      '  name: z.string(),',
+      '  summary: z.string(),',
+      "  type: z.enum(['book', 'guide']),",
+      '  isOpenToday: z.boolean(),',
+      '  languages: z.array(z.string()),',
+      '}).strict();',
+      '',
+    ].join('\n'),
+    'utf8',
+  );
+
+  await fs.writeFile(
+    path.join(responseDirectory, '2026-03-03.catalog.response.ts'),
+    [
+      "import { z } from 'zod';",
+      "import { catalogItemSchema } from './catalog-item';",
+      '',
+      'const linksSchema = z',
+      '  .object({',
+      '    self: z.object({ href: z.string() }).strict(),',
+      '    next: z.object({ href: z.string() }).strict(),',
+      '    prev: z.object({ href: z.string() }).strict(),',
+      '  })',
+      '  .strict();',
+      '',
       'export const v20260303ResponseSchema = z.object({',
-      '  _links: z.object({',
-      '    self: z.object({',
-      '      href: z.string(),',
-      '    }).strict(),',
-      '    next: z.object({',
-      '      href: z.string(),',
-      '    }).strict(),',
-      '    prev: z.object({',
-      '      href: z.string(),',
-      '    }).strict(),',
-      '  }).strict(),',
-      '  results: z.array(z.object({',
-      '    id: z.string(),',
-      '    slug: z.string(),',
-      '    name: z.string(),',
-      '    summary: z.string(),',
-      '    type: z.enum([\"book\", \"guide\"]),',
-      '    isOpenToday: z.boolean(),',
-      '    languages: z.array(z.string()),',
-      '  }).strict()),',
-      '  page: z.object({',
-      '    current: z.number().int().min(1),',
-      '    limit: z.number().int().min(1),',
-      '    totalPages: z.number().int().min(1),',
-      '    totalResults: z.number().int().min(0),',
-      '  }).strict(),',
+      '  _links: linksSchema,',
+      '  results: z.array(catalogItemSchema),',
+      '  page: z',
+      '    .object({',
+      '      current: z.number().int().min(1),',
+      '      limit: z.number().int().min(1),',
+      '      totalPages: z.number().int().min(1),',
+      '      totalResults: z.number().int().min(0),',
+      '    })',
+      '    .strict(),',
       '}).strict();',
       '',
       'export type v20260303ResponseSchemaType = z.infer<typeof v20260303ResponseSchema>;',

@@ -1,12 +1,4 @@
 export { Change } from './change';
-export type {
-  FieldKey,
-  MaybeAsync,
-  RequestChangeDefinition,
-  ResolvedContainer,
-  ResponseChangeDefinition,
-  VersionDefinitionProvider,
-} from './change';
 
 export { AddFieldChange } from './add-field.change';
 export { RemoveFieldChange } from './remove-field.change';

@@ -4,7 +4,7 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { z } from 'zod';
-import { DslCompiler } from '../versioning/dsl-compiler';
+import { DslCompiler } from '../versioning/dsl/dsl-compiler';
 import { CustomTransformChange } from '../versioning/changes';
 import { ResponseVersioningPipeline } from './response-versioning.pipeline';
 import {
@@ -15,6 +15,7 @@ import {
 import { VersionRegistry } from '../versioning/version-registry';
 import { VersionResolver } from '../versioning/version-resolver';
 import type { VersioningDefinition } from '../versioning/versioning.types';
+import { describe, expect, it } from 'vitest';
 
 describe('ProposalC ResponseVersioningPipeline', () => {
   it('returns payload unchanged when version header is missing', async () => {
@@ -78,6 +79,113 @@ describe('ProposalC ResponseVersioningPipeline', () => {
       pipeline.downgradeResponse(catalogCanonicalResponse, '2026-03-03'),
     ).rejects.toBeInstanceOf(InternalServerErrorException);
   });
+
+  it('downgrades type-discriminated results with branch-specific mapping', async () => {
+    const definition: VersioningDefinition = {
+      resource: 'search',
+      baseRequestSchema: z.object({}).strict(),
+      baseResponseSchema: z
+        .object({
+          results: z.array(z.unknown()),
+        })
+        .strict(),
+      versions: [
+        {
+          version: '2026-03-03',
+          description: 'Legacy',
+          requestChanges: [],
+          responseChanges: [],
+        },
+        {
+          version: '2026-03-09',
+          description: 'Type discriminated',
+          requestChanges: [],
+          responseChanges: [new TypeDiscriminatedPlaceChange()],
+        },
+      ],
+    };
+
+    const pipeline = new ResponseVersioningPipeline(
+      new VersionRegistry(definition, new DslCompiler()),
+      new VersionResolver(),
+    );
+
+    await expect(
+      pipeline.downgradeResponse(
+        {
+          results: [
+            {
+              type: 'fixedLocation',
+              location: { address: 'A' },
+              schedule: { status: 'open' },
+            },
+            {
+              type: 'itinerary',
+              stops: [{ location: { address: 'B' }, schedule: { status: 'open' } }],
+            },
+          ],
+        },
+        '2026-03-03',
+      ),
+    ).resolves.toEqual({
+      results: [
+        {
+          placeType: 'LIEU',
+          position: { address: 'A' },
+          newhours: { status: 'open' },
+        },
+        {
+          placeType: 'PARCOURS_MOBILE',
+          parcours: [{ position: { address: 'B' }, hours: { status: 'open' } }],
+        },
+      ],
+    });
+  });
+
+  it('returns 500 when a discriminated branch misses required fields', async () => {
+    const definition: VersioningDefinition = {
+      resource: 'search',
+      baseRequestSchema: z.object({}).strict(),
+      baseResponseSchema: z
+        .object({
+          results: z.array(z.unknown()),
+        })
+        .strict(),
+      versions: [
+        {
+          version: '2026-03-03',
+          description: 'Legacy',
+          requestChanges: [],
+          responseChanges: [],
+        },
+        {
+          version: '2026-03-09',
+          description: 'Type discriminated',
+          requestChanges: [],
+          responseChanges: [new TypeDiscriminatedPlaceChange()],
+        },
+      ],
+    };
+
+    const pipeline = new ResponseVersioningPipeline(
+      new VersionRegistry(definition, new DslCompiler()),
+      new VersionResolver(),
+    );
+
+    await expect(
+      pipeline.downgradeResponse(
+        {
+          results: [
+            {
+              type: 'fixedLocation',
+              location: { address: 'A' },
+            },
+          ],
+        },
+        '2026-03-03',
+      ),
+    ).rejects.toBeInstanceOf(InternalServerErrorException);
+  });
 });
 
 class ThrowingDowngradeChange extends CustomTransformChange {
@@ -92,5 +200,66 @@ class ThrowingDowngradeChange extends CustomTransformChange {
 
   override async downgrade() {
     throw new Error('boom');
+  }
+}
+
+class TypeDiscriminatedPlaceChange extends CustomTransformChange {
+  override description = 'replace place schema with type-discriminated branches';
+  override payloadPath = '/results/*' as const;
+
+  protected override schemaPatchReplace() {
+    return z.discriminatedUnion('type', [
+      z
+        .object({
+          type: z.literal('fixedLocation'),
+          location: z.object({ address: z.string() }),
+          schedule: z.object({ status: z.string() }),
+        })
+        .passthrough(),
+      z
+        .object({
+          type: z.literal('itinerary'),
+          stops: z.array(
+            z.object({
+              location: z.object({ address: z.string() }),
+              schedule: z.object({ status: z.string() }),
+            }),
+          ),
+        })
+        .passthrough(),
+    ]);
+  }
+
+  override downgrade(container: Record<string, unknown>) {
+    if (container.type === 'fixedLocation') {
+      if (!container.location || !container.schedule) {
+        throw new Error('fixedLocation requires location and schedule');
+      }
+
+      container.placeType = 'LIEU';
+      container.position = container.location;
+      container.newhours = container.schedule;
+      delete container.type;
+      delete container.location;
+      delete container.schedule;
+      return;
+    }
+
+    if (container.type === 'itinerary') {
+      if (!Array.isArray(container.stops)) {
+        throw new Error('itinerary requires stops');
+      }
+
+      container.placeType = 'PARCOURS_MOBILE';
+      container.parcours = container.stops.map((stop) => ({
+        position: (stop as Record<string, unknown>).location,
+        hours: (stop as Record<string, unknown>).schedule,
+      }));
+      delete container.type;
+      delete container.stops;
+      return;
+    }
+
+    throw new Error('Unknown type');
   }
 }

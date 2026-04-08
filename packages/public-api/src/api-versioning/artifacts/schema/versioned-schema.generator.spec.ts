@@ -65,6 +65,23 @@ const compiledVersions: readonly CompiledVersion[] = [
   },
 ];
 
+function schemaFilePathForVersion(
+  outputDirectory: string,
+  version: `${number}-${number}-${number}`,
+  kind: 'request' | 'response',
+): string {
+  return path.join(
+    outputDirectory,
+    version,
+    `search.${kind}`,
+    `${version}.search.${kind}.generated.ts`,
+  );
+}
+
+function hasRelativeImport(sourceText: string): boolean {
+  return /from\s+['"]\.\.?\//.test(sourceText);
+}
+
 describe('VersionedSchemaGenerator', () => {
   let outputDirectory = '';
 
@@ -78,74 +95,104 @@ describe('VersionedSchemaGenerator', () => {
     await fs.rm(outputDirectory, { recursive: true, force: true });
   });
 
-  it('patches next version files from previous version seeds', async () => {
-    await seedVersion20260303(outputDirectory);
-
+  it('regenerates all versions from standalone seed sources', async () => {
+    const firstVersionSeeds = await seedVersion20260303Sources(outputDirectory);
     const generator = new VersionedSchemaGenerator();
 
     const requestResult = await generator.generateVersionedSchemas({
-      contractsDirectory: outputDirectory,
       supportedVersions: versions,
       compiledVersions,
       kind: 'request',
+      firstVersionSeed: {
+        sourceFilePath: firstVersionSeeds.requestSourcePath,
+        exportName: 'v20260303RequestSchema',
+      },
       toSchemaConstName,
+      schemaFilePathForVersion: (version, kind) =>
+        schemaFilePathForVersion(outputDirectory, version, kind),
     });
 
     const responseResult = await generator.generateVersionedSchemas({
-      contractsDirectory: outputDirectory,
       supportedVersions: versions,
       compiledVersions,
       kind: 'response',
+      firstVersionSeed: {
+        sourceFilePath: firstVersionSeeds.responseSourcePath,
+        exportName: 'v20260303ResponseSchema',
+      },
       toSchemaConstName,
+      schemaFilePathForVersion: (version, kind) =>
+        schemaFilePathForVersion(outputDirectory, version, kind),
     });
 
+    const requestV1 = await fs.readFile(
+      schemaFilePathForVersion(outputDirectory, '2026-03-03', 'request'),
+      'utf8',
+    );
     const requestV2 = await fs.readFile(
-      path.join(outputDirectory, '2026-03-09.request.schema.ts'),
+      schemaFilePathForVersion(outputDirectory, '2026-03-09', 'request'),
+      'utf8',
+    );
+    const responseV1 = await fs.readFile(
+      schemaFilePathForVersion(outputDirectory, '2026-03-03', 'response'),
       'utf8',
     );
     const responseV2 = await fs.readFile(
-      path.join(outputDirectory, '2026-03-09.response.schema.ts'),
+      schemaFilePathForVersion(outputDirectory, '2026-03-09', 'response'),
       'utf8',
     );
 
+    expect(requestResult.createdVersions).toEqual(versions);
+    expect(responseResult.createdVersions).toEqual(versions);
+
+    expect(requestV1).toContain('DO NOT EDIT');
     expect(requestV2).toContain('export const v20260309RequestSchema');
     expect(requestV2).toContain('isOpenToday: z.coerce.boolean().optional()');
     expect(requestV2).not.toContain('openToday:');
 
+    expect(responseV1).toContain('const catalogItemSchema');
     expect(responseV2).toContain('export const v20260309ResponseSchema');
     expect(responseV2).toContain('seoUrl: z.string()');
     expect(responseV2).toContain(
       'name: z.object({ originalName: z.string(), translatedName: z.string() }).strict()',
     );
     expect(responseV2).not.toContain('slug: z.string()');
-    expect(requestResult.createdVersions).toEqual(['2026-03-09']);
-    expect(responseResult.createdVersions).toEqual(['2026-03-09']);
+
+    expect(hasRelativeImport(requestV1)).toBe(false);
+    expect(hasRelativeImport(requestV2)).toBe(false);
+    expect(hasRelativeImport(responseV1)).toBe(false);
+    expect(hasRelativeImport(responseV2)).toBe(false);
+
     expect(
-      requestResult.schemasByVersion.get('2026-03-09')?.safeParse({
-        isOpenToday: true,
-      }).success,
+      requestResult.schemasByVersion
+        .get('2026-03-09')
+        ?.safeParse({ isOpenToday: true }).success,
     ).toBe(true);
     expect(
-      responseResult.schemasByVersion.get('2026-03-09')?.safeParse({
-        results: [
-          {
-            seoUrl: 'x',
-            name: {
-              originalName: 'a',
-              translatedName: 'b',
+      responseResult.schemasByVersion
+        .get('2026-03-09')
+        ?.safeParse({
+          results: [
+            {
+              seoUrl: 'x',
+              name: {
+                originalName: 'a',
+                translatedName: 'b',
+              },
             },
-          },
-        ],
-      }).success,
+          ],
+        }).success,
     ).toBe(true);
   });
 
-  it('does not overwrite existing version schema files', async () => {
-    await seedVersion20260303(outputDirectory);
-    const existingVersionPath = path.join(
+  it('overwrites existing generated files deterministically', async () => {
+    const firstVersionSeeds = await seedVersion20260303Sources(outputDirectory);
+    const existingVersionPath = schemaFilePathForVersion(
       outputDirectory,
-      '2026-03-09.request.schema.ts',
+      '2026-03-09',
+      'request',
     );
+    await fs.mkdir(path.dirname(existingVersionPath), { recursive: true });
     await fs.writeFile(
       existingVersionPath,
       [
@@ -154,8 +201,6 @@ describe('VersionedSchemaGenerator', () => {
         'export const v20260309RequestSchema = z.object({',
         '  sentinel: z.literal(true),',
         '}).strict();',
-        '',
-        'export type v20260309RequestSchemaType = z.infer<typeof v20260309RequestSchema>;',
         '',
         'export default v20260309RequestSchema;',
         '',
@@ -166,36 +211,109 @@ describe('VersionedSchemaGenerator', () => {
     const generator = new VersionedSchemaGenerator();
 
     const result = await generator.generateVersionedSchemas({
-      contractsDirectory: outputDirectory,
       supportedVersions: versions,
       compiledVersions,
       kind: 'request',
+      firstVersionSeed: {
+        sourceFilePath: firstVersionSeeds.requestSourcePath,
+        exportName: 'v20260303RequestSchema',
+      },
       toSchemaConstName,
+      schemaFilePathForVersion: (version, kind) =>
+        schemaFilePathForVersion(outputDirectory, version, kind),
     });
 
-    const existingContent = await fs.readFile(existingVersionPath, 'utf8');
-    expect(existingContent).toContain('sentinel: z.literal(true)');
-    expect(result.createdVersions).toEqual([]);
-    expect(result.schemasByVersion.size).toBe(0);
+    const generatedContent = await fs.readFile(existingVersionPath, 'utf8');
+    expect(generatedContent).toContain('isOpenToday: z.coerce.boolean().optional()');
+    expect(generatedContent).not.toContain('sentinel: z.literal(true)');
+    expect(result.createdVersions).toEqual(versions);
   });
 
-  it('fails when first version seed file is missing', async () => {
+  it('applies replace patch then remove/set on the same payload path', async () => {
+    const firstVersionSeeds = await seedVersion20260303Sources(outputDirectory);
+    const generator = new VersionedSchemaGenerator();
+
+    const replaceAndPatchVersions: readonly CompiledVersion[] = [
+      compiledVersions[0],
+      {
+        ...compiledVersions[1],
+        requestChanges: [],
+        responseChanges: [
+          {
+            description: 'Replace item schema and patch fields',
+            schemaPatch: {
+              payloadPath: '/results/*',
+              replace: {
+                zod: annotateZodSchemaExpression(
+                  z
+                    .object({
+                      type: z.enum(['fixedLocation', 'itinerary']),
+                      location: z.string().optional(),
+                    })
+                    .strict(),
+                  "z.object({ type: z.enum(['fixedLocation', 'itinerary']), location: z.string().optional() }).strict()",
+                ),
+              },
+              remove: ['location'],
+              set: {
+                stops: {
+                  zod: annotateZodSchemaExpression(
+                    z.array(z.string()),
+                    'z.array(z.string())',
+                  ),
+                },
+              },
+            },
+            downgrade: (payload) => payload,
+          },
+        ],
+      },
+    ];
+
+    await generator.generateVersionedSchemas({
+      supportedVersions: versions,
+      compiledVersions: replaceAndPatchVersions,
+      kind: 'response',
+      firstVersionSeed: {
+        sourceFilePath: firstVersionSeeds.responseSourcePath,
+        exportName: 'v20260303ResponseSchema',
+      },
+      toSchemaConstName,
+      schemaFilePathForVersion: (version, kind) =>
+        schemaFilePathForVersion(outputDirectory, version, kind),
+    });
+
+    const responseV2 = await fs.readFile(
+      schemaFilePathForVersion(outputDirectory, '2026-03-09', 'response'),
+      'utf8',
+    );
+
+    expect(responseV2).toContain("type: z.enum(['fixedLocation', 'itinerary'])");
+    expect(responseV2).toContain('stops: z.array(z.string())');
+    expect(responseV2).not.toContain('location: z.string().optional()');
+  });
+
+  it('fails when first version seed source file is missing', async () => {
     const generator = new VersionedSchemaGenerator();
 
     await expect(
       generator.generateVersionedSchemas({
-        contractsDirectory: outputDirectory,
         supportedVersions: versions,
         compiledVersions,
         kind: 'request',
+        firstVersionSeed: {
+          sourceFilePath: path.join(outputDirectory, 'missing.seed.ts'),
+          exportName: 'v20260303RequestSchema',
+        },
         toSchemaConstName,
+        schemaFilePathForVersion: (version, kind) =>
+          schemaFilePathForVersion(outputDirectory, version, kind),
       }),
-    ).rejects.toThrow('Missing first-version schema seed file');
+    ).rejects.toThrow('Missing first-version schema seed source file');
   });
 
   it('fails when payload path cannot be resolved in source schema', async () => {
-    await seedVersion20260303(outputDirectory);
-
+    const firstVersionSeeds = await seedVersion20260303Sources(outputDirectory);
     const generator = new VersionedSchemaGenerator();
 
     const invalidCompiledVersions: readonly CompiledVersion[] = [
@@ -220,18 +338,22 @@ describe('VersionedSchemaGenerator', () => {
 
     await expect(
       generator.generateVersionedSchemas({
-        contractsDirectory: outputDirectory,
         supportedVersions: versions,
         compiledVersions: invalidCompiledVersions,
         kind: 'request',
+        firstVersionSeed: {
+          sourceFilePath: firstVersionSeeds.requestSourcePath,
+          exportName: 'v20260303RequestSchema',
+        },
         toSchemaConstName,
+        schemaFilePathForVersion: (version, kind) =>
+          schemaFilePathForVersion(outputDirectory, version, kind),
       }),
     ).rejects.toThrow('Missing segment "unknown"');
   });
 
   it('fails when zod schema expression metadata cannot be resolved', async () => {
-    await seedVersion20260303(outputDirectory);
-
+    const firstVersionSeeds = await seedVersion20260303Sources(outputDirectory);
     const generator = new VersionedSchemaGenerator();
 
     const invalidCompiledVersions: readonly CompiledVersion[] = [
@@ -256,21 +378,48 @@ describe('VersionedSchemaGenerator', () => {
 
     await expect(
       generator.generateVersionedSchemas({
-        contractsDirectory: outputDirectory,
         supportedVersions: versions,
         compiledVersions: invalidCompiledVersions,
         kind: 'request',
+        firstVersionSeed: {
+          sourceFilePath: firstVersionSeeds.requestSourcePath,
+          exportName: 'v20260303RequestSchema',
+        },
         toSchemaConstName,
+        schemaFilePathForVersion: (version, kind) =>
+          schemaFilePathForVersion(outputDirectory, version, kind),
       }),
     ).rejects.toThrow('Could not resolve zod schema expression');
   });
 });
 
-async function seedVersion20260303(contractsDirectory: string): Promise<void> {
-  await fs.mkdir(contractsDirectory, { recursive: true });
+async function seedVersion20260303Sources(outputDirectory: string): Promise<{
+  requestSourcePath: string;
+  responseSourcePath: string;
+}> {
+  const sourceDirectory = path.join(outputDirectory, 'seed');
+  await fs.mkdir(sourceDirectory, { recursive: true });
+
+  const helperPath = path.join(sourceDirectory, 'catalog-item.ts');
+  const requestSourcePath = path.join(sourceDirectory, '2026-03-03.request.ts');
+  const responseSourcePath = path.join(sourceDirectory, '2026-03-03.response.ts');
 
   await fs.writeFile(
-    path.join(contractsDirectory, '2026-03-03.request.schema.ts'),
+    helperPath,
+    [
+      "import { z } from 'zod';",
+      '',
+      'export const catalogItemSchema = z.object({',
+      '  slug: z.string(),',
+      '  name: z.string(),',
+      '}).strict();',
+      '',
+    ].join('\n'),
+    'utf8',
+  );
+
+  await fs.writeFile(
+    requestSourcePath,
     [
       "import { z } from 'zod';",
       '',
@@ -287,15 +436,13 @@ async function seedVersion20260303(contractsDirectory: string): Promise<void> {
   );
 
   await fs.writeFile(
-    path.join(contractsDirectory, '2026-03-03.response.schema.ts'),
+    responseSourcePath,
     [
       "import { z } from 'zod';",
+      "import { catalogItemSchema } from './catalog-item';",
       '',
       'export const v20260303ResponseSchema = z.object({',
-      '  results: z.array(z.object({',
-      '    slug: z.string(),',
-      '    name: z.string(),',
-      '  }).strict()),',
+      '  results: z.array(catalogItemSchema),',
       '}).strict();',
       '',
       'export type v20260303ResponseSchemaType = z.infer<typeof v20260303ResponseSchema>;',
@@ -305,6 +452,11 @@ async function seedVersion20260303(contractsDirectory: string): Promise<void> {
     ].join('\n'),
     'utf8',
   );
+
+  return {
+    requestSourcePath,
+    responseSourcePath,
+  };
 }
 
 function toSchemaConstName(

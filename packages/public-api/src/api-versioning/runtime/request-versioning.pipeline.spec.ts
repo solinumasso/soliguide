@@ -3,13 +3,14 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { z } from 'zod';
-import { DslCompiler } from '../versioning/dsl-compiler';
+import { DslCompiler } from '../versioning/dsl/dsl-compiler';
 import { RenameFieldChange } from '../versioning/changes';
 import { RequestVersioningPipeline } from './request-versioning.pipeline';
 import { buildSchemaCaches, catalogVersioningDefinition } from '../testing';
 import { VersionRegistry } from '../versioning/version-registry';
 import { VersionResolver } from '../versioning/version-resolver';
 import type { VersioningDefinition } from '../versioning/versioning.types';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 describe('ProposalC RequestVersioningPipeline', () => {
   let pipeline: RequestVersioningPipeline;

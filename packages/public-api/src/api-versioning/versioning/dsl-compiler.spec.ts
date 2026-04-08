@@ -1,12 +1,15 @@
 import { z } from 'zod';
 import {
   AddFieldChange,
+  Change,
+  CustomTransformChange,
   MergeFieldsChange,
   RemoveFieldChange,
   RenameFieldChange,
   ReplaceFieldChange,
 } from './changes';
-import { DslCompiler } from './dsl-compiler';
+import { DslCompiler } from './dsl/dsl-compiler';
+import type { RequestOperation, ResponseOperation } from './dsl/operations';
 import { readZodSchemaExpression } from './zod-schema-expression.utils';
 import type { Version } from './versioning.types';
 
@@ -50,6 +53,71 @@ class RemoveLegacyScore extends RemoveFieldChange {
 
   override downgrade(container: Record<string, unknown>) {
     return container.slug ? 42 : 0;
+  }
+}
+
+class MergeNameWithEmptyDowngrade extends MergeFieldsChange {
+  description = 'merge names with empty downgrade';
+  from = ['firstName', 'lastName'] as const;
+  to = 'name';
+  schema = z.string();
+
+  override upgrade(values: Record<string, unknown>) {
+    return `${String(values.firstName)} ${String(values.lastName)}`;
+  }
+
+  override downgrade() {
+    return {};
+  }
+}
+
+class MergeNameWithUndefinedDowngrade extends MergeFieldsChange {
+  description = 'merge names with undefined downgrade';
+  from = ['firstName', 'lastName'] as const;
+  to = 'name';
+  schema = z.string();
+
+  override upgrade(values: Record<string, unknown>) {
+    return `${String(values.firstName)} ${String(values.lastName)}`;
+  }
+
+  override downgrade() {
+    return undefined;
+  }
+}
+
+class ReplaceResultsItemSchema extends CustomTransformChange {
+  override description = 'replace results item schema';
+  override payloadPath = '/results/*' as const;
+
+  protected override schemaPatchReplace() {
+    return z
+      .object({
+        type: z.enum(['fixedLocation', 'itinerary']),
+      })
+      .strict();
+  }
+
+  protected override schemaPatchRemove() {
+    return ['slug'];
+  }
+
+  protected override schemaPatchSet() {
+    return {
+      seoUrl: z.string(),
+    };
+  }
+}
+
+class UnsupportedKindChange extends Change {
+  description = 'unsupported kind';
+
+  override toRequestOperation(): RequestOperation {
+    return { kind: 'unsupported' } as unknown as RequestOperation;
+  }
+
+  override toResponseOperation(): ResponseOperation {
+    return { kind: 'unsupported' } as unknown as ResponseOperation;
   }
 }
 
@@ -162,5 +230,45 @@ describe('DslCompiler', () => {
     expect(
       readZodSchemaExpression(mergeCompiled.schemaPatch.set!.name.zod),
     ).toContain('z.string()');
+  });
+
+  it('throws a clear error for unsupported operation kinds', () => {
+    const compiler = new DslCompiler();
+
+    expect(() =>
+      compiler.compileRequestChange(new UnsupportedKindChange()),
+    ).toThrow('Unsupported versioning operation kind: unsupported.');
+  });
+
+  it('compiles custom transform schema patch with replace/remove/set', () => {
+    const compiler = new DslCompiler();
+    const compiled = compiler.compileResponseChange(new ReplaceResultsItemSchema());
+
+    expect(compiled.schemaPatch.payloadPath).toBe('/results/*');
+    expect(compiled.schemaPatch.replace).toBeDefined();
+    expect(compiled.schemaPatch.remove).toEqual(['slug']);
+    expect(Object.keys(compiled.schemaPatch.set ?? {})).toEqual(['seoUrl']);
+  });
+
+  it('removes merged target when merge downgrade returns an empty object', async () => {
+    const compiler = new DslCompiler();
+    const compiledResponse = compiler.compileResponseChange(
+      new MergeNameWithEmptyDowngrade(),
+    );
+
+    await expect(
+      compiledResponse.downgrade({ name: 'Ada Lovelace' }),
+    ).resolves.toEqual({});
+  });
+
+  it('keeps merged target when merge downgrade explicitly returns undefined', async () => {
+    const compiler = new DslCompiler();
+    const compiledResponse = compiler.compileResponseChange(
+      new MergeNameWithUndefinedDowngrade(),
+    );
+
+    await expect(
+      compiledResponse.downgrade({ name: 'Ada Lovelace' }),
+    ).resolves.toEqual({ name: 'Ada Lovelace' });
   });
 });

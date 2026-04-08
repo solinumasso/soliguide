@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { isRecord } from '../../utils/type-guards';
+import { deepClone, isRecord } from '../../utils';
 import type {
   ApiVersion,
   OpenApiOperationTarget,
@@ -165,10 +165,6 @@ interface BuildVersionOpenApiDocumentInput {
   openApiOperationTarget: OpenApiOperationTarget;
   requestSchema: z.ZodTypeAny;
   responseSchema: z.ZodTypeAny;
-}
-
-function deepClone<T>(value: T): T {
-  return JSON.parse(JSON.stringify(value)) as T;
 }
 
 export function zodSchemaToOpenApiSchema(

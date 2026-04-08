@@ -1,14 +1,9 @@
 import { z } from 'zod';
-import type {
-  PayloadObjectPath,
-  SplitFieldOperation,
-} from '../versioning.types';
-import {
-  Change,
-  type FieldKey,
-  type MaybeAsync,
-  type ResolvedContainer,
-} from './change';
+import type { SplitFieldOperation } from '../dsl/operations/split-field.operation';
+import type { PayloadObjectPath } from '../versioning.types';
+import { Change } from './change';
+import { FieldKey, ResolvedContainer } from './types';
+import { MaybeAsync } from '../../utils';
 
 export abstract class SplitFieldChange<
   TPayload = unknown,

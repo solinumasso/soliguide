@@ -1,7 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { z } from 'zod';
-import { DslCompiler } from '../versioning/dsl-compiler';
+import { describe, expect, it, vi } from 'vitest';
+import { DslCompiler } from '../versioning/dsl/dsl-compiler';
 import { RequestVersioningPipeline } from './request-versioning.pipeline';
 import { ResponseVersioningPipeline } from './response-versioning.pipeline';
 import {
@@ -48,8 +49,8 @@ describe('ProposalC VersioningEngine', () => {
 
   describe('mixed version changes (DI + non-DI)', () => {
     it('applies mixed request upgrade and response downgrade chains in sequence', async () => {
-      const upgrade = jest.fn((value: unknown) => `svc:${String(value)}`);
-      const downgrade = jest.fn((value: unknown) =>
+      const upgrade = vi.fn((value: unknown) => `svc:${String(value)}`);
+      const downgrade = vi.fn((value: unknown) =>
         String(value).replace(/^svc:/, ''),
       );
 
@@ -74,7 +75,18 @@ describe('ProposalC VersioningEngine', () => {
               new RenameCatMoodResponseChange(service),
             inject: [CAT_TEXT_SERVICE],
           },
-          MixedBookCatVersionProvider,
+          {
+            provide: MixedBookCatVersionProvider,
+            useFactory: (
+              requestDiChange: RenameCatMoodRequestChange,
+              responseDiChange: RenameCatMoodResponseChange,
+            ) =>
+              new MixedBookCatVersionProvider(
+                requestDiChange,
+                responseDiChange,
+              ),
+            inject: [RenameCatMoodRequestChange, RenameCatMoodResponseChange],
+          },
         ],
       }).compile();
 

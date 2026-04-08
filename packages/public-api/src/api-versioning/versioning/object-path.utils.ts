@@ -1,5 +1,4 @@
-import { isRecord } from '../utils/type-guards';
-export { isRecord };
+import { deepClone, isRecord } from '../utils';
 
 function decodePointerToken(token: string): string {
   return token.replace(/~1/g, '/').replace(/~0/g, '~');
@@ -31,14 +30,6 @@ export function parseObjectPath(
   }
 
   return tokens;
-}
-
-function cloneDeep<T>(value: T): T {
-  if (typeof structuredClone === 'function') {
-    return structuredClone(value);
-  }
-
-  return JSON.parse(JSON.stringify(value)) as T;
 }
 
 async function walkAndTransform(
@@ -86,7 +77,8 @@ export async function transformContainersAtPath(
     return payload;
   }
 
-  const nextPayload = cloneDeep(payload);
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+  const nextPayload = deepClone(payload);
   const tokens = parseObjectPath(objectPath, { allowWildcard: true });
   return walkAndTransform(nextPayload, tokens, mapper);
 }

@@ -1,14 +1,9 @@
 import { z } from 'zod';
-import type {
-  MergeFieldsOperation,
-  PayloadObjectPath,
-} from '../versioning.types';
-import {
-  Change,
-  type FieldKey,
-  type MaybeAsync,
-  type ResolvedContainer,
-} from './change';
+import { MergeFieldsOperation } from '../dsl/operations/merge-fields.operation';
+import { PayloadObjectPath } from '../versioning.types';
+import { Change } from './change';
+import { FieldKey, ResolvedContainer } from './types';
+import { MaybeAsync } from '../../utils';
 
 export abstract class MergeFieldsChange<
   TPayload = unknown,
@@ -28,7 +23,7 @@ export abstract class MergeFieldsChange<
   downgrade(
     _value: unknown,
     _container: Record<string, unknown>,
-  ): MaybeAsync<Record<string, unknown>> | undefined {
+  ): MaybeAsync<Record<string, unknown> | undefined> {
     return undefined;
   }
 
@@ -37,15 +32,6 @@ export abstract class MergeFieldsChange<
   }
 
   override toRequestOperation(): MergeFieldsOperation {
-    const downgrade =
-      this.downgrade === MergeFieldsChange.prototype.downgrade
-        ? undefined
-        : (value: unknown, container: Record<string, unknown>) =>
-            this.downgrade(
-              value,
-              container,
-            ) as MaybeAsync<Record<string, unknown>>;
-
     return {
       kind: 'mergeFields',
       payloadPath: this.payloadPathValue(),
@@ -53,21 +39,12 @@ export abstract class MergeFieldsChange<
       to: this.to,
       schema: this.schema,
       upgrade: (values, container) => this.upgrade(values, container),
-      downgrade,
+      downgrade: this.createDowngradeMapper(),
       removeSources: this.removeSources(),
     };
   }
 
   override toResponseOperation(): MergeFieldsOperation {
-    const downgrade =
-      this.downgrade === MergeFieldsChange.prototype.downgrade
-        ? undefined
-        : (value: unknown, container: Record<string, unknown>) =>
-            this.downgrade(
-              value,
-              container,
-            ) as MaybeAsync<Record<string, unknown>>;
-
     return {
       kind: 'mergeFields',
       payloadPath: this.payloadPathValue(),
@@ -75,8 +52,21 @@ export abstract class MergeFieldsChange<
       to: this.to,
       schema: this.schema,
       upgrade: (values, container) => this.upgrade(values, container),
-      downgrade,
+      downgrade: this.createDowngradeMapper(),
       removeSources: this.removeSources(),
     };
+  }
+
+  private createDowngradeMapper():
+    | ((
+        value: unknown,
+        container: Record<string, unknown>,
+      ) => MaybeAsync<Record<string, unknown> | undefined>)
+    | undefined {
+    if (this.downgrade === MergeFieldsChange.prototype.downgrade) {
+      return undefined;
+    }
+
+    return (value, container) => this.downgrade(value, container);
   }
 }

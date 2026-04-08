@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { DslCompiler } from './dsl-compiler';
+import { DslCompiler } from './dsl/dsl-compiler';
 import { VersionDefinitionValidator } from './version-definition.validator';
 import type {
   ApiVersion,

@@ -1,11 +1,9 @@
 import { z } from 'zod';
-import type { AddFieldOperation, PayloadObjectPath } from '../versioning.types';
-import {
-  Change,
-  type FieldKey,
-  type MaybeAsync,
-  type ResolvedContainer,
-} from './change';
+import { AddFieldOperation } from '../dsl/operations/add-field.operation';
+import { PayloadObjectPath } from '../versioning.types';
+import { Change } from './change';
+import { MaybeAsync } from '../../utils';
+import { FieldKey, ResolvedContainer } from './types';
 
 export abstract class AddFieldChange<
   TPayload = unknown,

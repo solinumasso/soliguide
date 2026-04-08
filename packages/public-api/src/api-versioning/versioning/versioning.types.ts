@@ -1,9 +1,6 @@
-/* eslint-disable @typescript-eslint/no-redundant-type-constituents */
 import { z } from 'zod';
-import type {
-  RequestChangeDefinition,
-  ResponseChangeDefinition,
-} from './changes/change';
+import { Change } from './changes';
+import { MaybeAsync } from '../utils';
 
 export type ApiVersion = `${number}-${number}-${number}`;
 
@@ -104,169 +101,6 @@ export type PayloadFieldKey<TPayload> = [CollectFieldKeys<TPayload>] extends [
   ? string
   : CollectFieldKeys<TPayload>;
 
-export type ValueMapper = (
-  value: unknown,
-  container: Record<string, unknown>,
-) => Promise<unknown> | unknown;
-
-export type SplitMapper = (
-  value: unknown,
-  container: Record<string, unknown>,
-) => Promise<Record<string, unknown>> | Record<string, unknown>;
-
-export type MergeMapper = (
-  values: Record<string, unknown>,
-  container: Record<string, unknown>,
-) => Promise<unknown> | unknown;
-
-export type ContainerMapper = (
-  container: Record<string, unknown>,
-) => Promise<Record<string, unknown> | void> | Record<string, unknown> | void;
-
-interface VersionOperationBase<TPayloadPath extends ObjectPath = ObjectPath> {
-  payloadPath?: TPayloadPath;
-}
-
-export interface AddFieldOperation<
-  TPayloadPath extends ObjectPath = ObjectPath,
-  TField extends string = string,
-> extends VersionOperationBase<TPayloadPath> {
-  kind: 'addField';
-  field: TField;
-  schema: z.ZodTypeAny;
-  upgrade?: (
-    container: Record<string, unknown>,
-  ) => Promise<unknown> | unknown;
-}
-
-export interface RequestRemoveFieldOperation<
-  TPayloadPath extends ObjectPath = ObjectPath,
-  TField extends string = string,
-> extends VersionOperationBase<TPayloadPath> {
-  kind: 'removeField';
-  field: TField;
-}
-
-export interface ResponseRemoveFieldOperation<
-  TPayloadPath extends ObjectPath = ObjectPath,
-  TField extends string = string,
-> extends VersionOperationBase<TPayloadPath> {
-  kind: 'removeField';
-  field: TField;
-  downgrade: (
-    container: Record<string, unknown>,
-  ) => Promise<unknown> | unknown;
-}
-
-export interface RenameFieldOperation<
-  TPayloadPath extends ObjectPath = ObjectPath,
-  TFrom extends string = string,
-> extends VersionOperationBase<TPayloadPath> {
-  kind: 'renameField';
-  from: TFrom;
-  to: string;
-  schema: z.ZodTypeAny;
-  upgrade?: ValueMapper;
-  downgrade?: ValueMapper;
-}
-
-export interface ReplaceFieldOperation<
-  TPayloadPath extends ObjectPath = ObjectPath,
-  TField extends string = string,
-> extends VersionOperationBase<TPayloadPath> {
-  kind: 'replaceField';
-  field: TField;
-  schema: z.ZodTypeAny;
-  upgrade: ValueMapper;
-  downgrade?: ValueMapper;
-}
-
-export interface SplitFieldOperation<
-  TPayloadPath extends ObjectPath = ObjectPath,
-  TFrom extends string = string,
-> extends VersionOperationBase<TPayloadPath> {
-  kind: 'splitField';
-  from: TFrom;
-  schemas: Readonly<Record<string, z.ZodTypeAny>>;
-  upgrade: SplitMapper;
-  downgrade?: MergeMapper;
-  removeSource?: boolean;
-}
-
-export interface MergeFieldsOperation<
-  TPayloadPath extends ObjectPath = ObjectPath,
-  TFrom extends string = string,
-> extends VersionOperationBase<TPayloadPath> {
-  kind: 'mergeFields';
-  from: readonly TFrom[];
-  to: string;
-  schema: z.ZodTypeAny;
-  upgrade: MergeMapper;
-  downgrade?: SplitMapper;
-  removeSources?: boolean;
-}
-
-export interface CustomTransformOperation<
-  TPayloadPath extends ObjectPath = ObjectPath,
-  TField extends string = string,
-> extends VersionOperationBase<TPayloadPath> {
-  kind: 'customTransform';
-  schemaPatch?: {
-    set?: Readonly<Record<string, z.ZodTypeAny>>;
-    remove?: readonly TField[];
-  };
-}
-
-export interface RequestCustomTransformOperation<
-  TPayloadPath extends ObjectPath = ObjectPath,
-  TField extends string = string,
-> extends CustomTransformOperation<TPayloadPath, TField> {
-  upgrade: ContainerMapper;
-}
-
-export interface ResponseCustomTransformOperation<
-  TPayloadPath extends ObjectPath = ObjectPath,
-  TField extends string = string,
-> extends CustomTransformOperation<TPayloadPath, TField> {
-  downgrade: ContainerMapper;
-}
-
-export type RequestOperation<TPayload = unknown> =
-  | AddFieldOperation<PayloadObjectPath<TPayload>, PayloadFieldKey<TPayload>>
-  | RequestRemoveFieldOperation<
-      PayloadObjectPath<TPayload>,
-      PayloadFieldKey<TPayload>
-    >
-  | RenameFieldOperation<PayloadObjectPath<TPayload>, PayloadFieldKey<TPayload>>
-  | ReplaceFieldOperation<
-      PayloadObjectPath<TPayload>,
-      PayloadFieldKey<TPayload>
-    >
-  | SplitFieldOperation<PayloadObjectPath<TPayload>, PayloadFieldKey<TPayload>>
-  | MergeFieldsOperation<PayloadObjectPath<TPayload>, PayloadFieldKey<TPayload>>
-  | RequestCustomTransformOperation<
-      PayloadObjectPath<TPayload>,
-      PayloadFieldKey<TPayload>
-    >;
-
-export type ResponseOperation<TPayload = unknown> =
-  | AddFieldOperation<PayloadObjectPath<TPayload>, PayloadFieldKey<TPayload>>
-  | ResponseRemoveFieldOperation<
-      PayloadObjectPath<TPayload>,
-      PayloadFieldKey<TPayload>
-    >
-  | RenameFieldOperation<PayloadObjectPath<TPayload>, PayloadFieldKey<TPayload>>
-  | ReplaceFieldOperation<
-      PayloadObjectPath<TPayload>,
-      PayloadFieldKey<TPayload>
-    >
-  | SplitFieldOperation<PayloadObjectPath<TPayload>, PayloadFieldKey<TPayload>>
-  | MergeFieldsOperation<PayloadObjectPath<TPayload>, PayloadFieldKey<TPayload>>
-  | ResponseCustomTransformOperation<
-      PayloadObjectPath<TPayload>,
-      PayloadFieldKey<TPayload>
-    >;
-
 export interface OpenApiOperationTarget {
   method: 'get' | 'post' | 'put' | 'patch' | 'delete';
   path: string;
@@ -281,20 +115,25 @@ export interface VersioningDefinition {
 
 export interface CompiledSchemaPatch {
   payloadPath: ObjectPath;
+  replace?: FieldSpec;
   set?: Readonly<Record<string, FieldSpec>>;
   remove?: readonly string[];
 }
 
 export interface CompiledRequestChange {
+  changeClassName?: string;
   description: string;
+  sourceFilePath?: string;
   schemaPatch: CompiledSchemaPatch;
-  upgrade(payload: unknown): Promise<unknown> | unknown;
+  upgrade(payload: unknown): MaybeAsync<unknown>;
 }
 
 export interface CompiledResponseChange {
+  changeClassName?: string;
   description: string;
+  sourceFilePath?: string;
   schemaPatch: CompiledSchemaPatch;
-  downgrade(payload: unknown): Promise<unknown> | unknown;
+  downgrade(payload: unknown): MaybeAsync<unknown>;
 }
 
 export type RequestVersionChange = CompiledRequestChange;
@@ -304,8 +143,8 @@ export type ResponseVersionChange = CompiledResponseChange;
 export interface Version {
   version: ApiVersion;
   description: string;
-  requestChanges: readonly RequestChangeDefinition[];
-  responseChanges: readonly ResponseChangeDefinition[];
+  requestChanges: readonly Change[];
+  responseChanges: readonly Change[];
 }
 
 export interface CompiledVersion {

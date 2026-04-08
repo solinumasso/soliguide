@@ -7,8 +7,6 @@ import type {
 } from './versioning.types';
 
 export class VersionDefinitionValidator {
-  private static readonly DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
-
   validateDefinition(definition: VersioningDefinition): void {
     const parsed = this.definitionSchema().safeParse(definition);
     if (!parsed.success) {
@@ -35,6 +33,7 @@ export class VersionDefinitionValidator {
         description: string;
         schemaPatch: {
           payloadPath: string;
+          replace?: FieldSpec;
           set?: Readonly<Record<string, FieldSpec>>;
           remove?: readonly string[];
         };
@@ -90,23 +89,25 @@ export class VersionDefinitionValidator {
       },
     );
 
-    const fieldSpecSchema = z.custom<FieldSpec>(
-      (spec) =>
-        Boolean(spec) &&
-        typeof spec === 'object' &&
-        spec !== null &&
-        'zod' in spec &&
-        Boolean((spec as { zod?: unknown }).zod) &&
-        typeof (spec as { zod?: unknown }).zod === 'object',
+    const zodSchemaSchema = z.custom<z.ZodTypeAny>(
+      (value): value is z.ZodTypeAny =>
+        typeof value === 'object' &&
+        value !== null &&
+        typeof (value as { safeParse?: unknown }).safeParse === 'function',
       {
         message: 'must define a valid zod schema',
       },
     );
 
+    const fieldSpecSchema: z.ZodType<FieldSpec> = z.object({
+      zod: zodSchemaSchema,
+    });
+
     const compiledChangeSchema = z.object({
       description: z.string(),
       schemaPatch: z.object({
         payloadPath: payloadPathSchema,
+        replace: fieldSpecSchema.optional(),
         set: z.record(z.string(), fieldSpecSchema).optional(),
         remove: z.array(z.string()).optional(),
       }),
@@ -120,14 +121,6 @@ export class VersionDefinitionValidator {
     });
 
     return z.array(compiledVersionSchema);
-  }
-
-  private isCalendarDate(version: string): boolean {
-    const parsed = new Date(`${version}T00:00:00.000Z`);
-    return (
-      !Number.isNaN(parsed.getTime()) &&
-      parsed.toISOString().slice(0, 10) === version
-    );
   }
 
   private assertDistinctAndChronologicalVersions(
@@ -160,6 +153,7 @@ export class VersionDefinitionValidator {
       description: string;
       schemaPatch: {
         payloadPath: string;
+        replace?: FieldSpec;
         set?: Readonly<Record<string, FieldSpec>>;
         remove?: readonly string[];
       };
@@ -187,13 +181,20 @@ export class VersionDefinitionValidator {
 
   private touchedCompiledResponseFields(change: {
     schemaPatch: {
+      replace?: FieldSpec;
       set?: Readonly<Record<string, FieldSpec>>;
       remove?: readonly string[];
     };
   }): readonly string[] {
-    return [
+    const touchedFields = [
       ...(change.schemaPatch.remove ?? []),
       ...Object.keys(change.schemaPatch.set ?? {}),
     ];
+
+    if (change.schemaPatch.replace) {
+      touchedFields.push('$replace');
+    }
+
+    return touchedFields;
   }
 }

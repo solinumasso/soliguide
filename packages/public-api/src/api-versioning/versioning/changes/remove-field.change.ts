@@ -1,14 +1,11 @@
-import type {
-  PayloadObjectPath,
+import { MaybeAsync } from '../../utils';
+import {
   RequestRemoveFieldOperation,
   ResponseRemoveFieldOperation,
-} from '../versioning.types';
-import {
-  Change,
-  type FieldKey,
-  type MaybeAsync,
-  type ResolvedContainer,
-} from './change';
+} from '../dsl/operations/remove-field.operation';
+import { PayloadObjectPath } from '../versioning.types';
+import { Change } from './change';
+import { FieldKey, ResolvedContainer } from './types';
 
 export abstract class RemoveFieldChange<
   TPayload = unknown,

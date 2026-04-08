@@ -134,6 +134,25 @@ describe('ContractOpenApiGenerator', () => {
     expect(JSON.stringify(second)).toBe(JSON.stringify(first));
   });
 
+  it('does not mutate the base OpenAPI document', () => {
+    const requestSchema = z.object({ page: z.number().optional() }).strict();
+    const responseSchema = z.object({ ok: z.boolean() }).strict();
+    const generator = new ContractOpenApiGenerator();
+
+    const document = generator.buildVersionOpenApiDocument({
+      version: '2026-03-09',
+      baseOpenApiDocument,
+      openApiOperationTarget: operationTarget,
+      requestSchema,
+      responseSchema,
+    });
+
+    expect((baseOpenApiDocument.info as { version: string }).version).toBe(
+      '2026-03-03',
+    );
+    expect((document.info as { version: string }).version).toBe('2026-03-09');
+  });
+
   it('fails when request root is not a z.object schema', () => {
     const generator = new ContractOpenApiGenerator();
 

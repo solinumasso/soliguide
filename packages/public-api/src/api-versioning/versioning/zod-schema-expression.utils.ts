@@ -19,13 +19,13 @@ export function annotateZodSchemaExpression(
 }
 
 export function readZodSchemaExpression(
-  schema: z.ZodTypeAny,
+  schema: unknown,
 ): string | undefined {
-  if (!schema || typeof schema !== 'object') {
+  if (typeof schema !== 'object' || schema === null) {
     return undefined;
   }
 
-  const withMeta = schema as z.ZodTypeAny & {
+  const withMeta = schema as {
     [FIELD_SPEC_SCHEMA_EXPRESSION]?: unknown;
   };
 

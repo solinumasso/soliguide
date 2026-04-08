@@ -2,7 +2,7 @@ import { Controller, Get, Module } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { z } from 'zod';
 import { RenameFieldChange, ReplaceFieldChange } from '../versioning/changes';
-import { DslCompiler } from '../versioning/dsl-compiler';
+import { DslCompiler } from '../versioning/dsl/dsl-compiler';
 import { VersionRegistry } from '../versioning/version-registry';
 import { applySchemaPatch } from './zod-schema-cache.utils';
 import type {

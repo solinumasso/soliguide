@@ -1,14 +1,13 @@
 import { z } from 'zod';
-import type {
-  RequestChangeDefinition,
-  ResponseChangeDefinition,
-} from './changes';
-import { DslCompiler } from './dsl-compiler';
+import { Change } from './changes';
+import { DslCompiler } from './dsl/dsl-compiler';
+import type { RequestOperation, ResponseOperation } from './dsl/operations';
 import { VersionRegistry } from './version-registry';
 import type { VersioningDefinition } from './versioning.types';
 
 interface DeclarativeSchemaPatch {
   payloadPath: string;
+  replace?: z.ZodTypeAny;
   set?: Readonly<Record<string, z.ZodTypeAny>>;
   remove?: readonly string[];
 }
@@ -18,37 +17,71 @@ const stringSpec = z.string();
 function requestChange(
   description: string,
   schemaPatch: DeclarativeSchemaPatch,
-): RequestChangeDefinition {
-  return {
-    description,
-    toRequestOperation: () => ({
-      kind: 'customTransform',
-      payloadPath: schemaPatch.payloadPath,
-      schemaPatch: {
-        set: schemaPatch.set,
-        remove: schemaPatch.remove,
-      },
-      upgrade: (container: Record<string, unknown>) => container,
-    }),
-  };
+): Change {
+  return new (class extends Change {
+    override description = description;
+
+    override toRequestOperation(): RequestOperation {
+      return {
+        kind: 'customTransform',
+        payloadPath: schemaPatch.payloadPath,
+        schemaPatch: {
+          replace: schemaPatch.replace,
+          set: schemaPatch.set,
+          remove: schemaPatch.remove,
+        },
+        upgrade: (container: Record<string, unknown>) => container,
+      };
+    }
+
+    override toResponseOperation(): ResponseOperation {
+      return {
+        kind: 'customTransform',
+        payloadPath: schemaPatch.payloadPath,
+        schemaPatch: {
+          replace: schemaPatch.replace,
+          set: schemaPatch.set,
+          remove: schemaPatch.remove,
+        },
+        downgrade: (container: Record<string, unknown>) => container,
+      };
+    }
+  })();
 }
 
 function responseChange(
   description: string,
   schemaPatch: DeclarativeSchemaPatch,
-): ResponseChangeDefinition {
-  return {
-    description,
-    toResponseOperation: () => ({
-      kind: 'customTransform',
-      payloadPath: schemaPatch.payloadPath,
-      schemaPatch: {
-        set: schemaPatch.set,
-        remove: schemaPatch.remove,
-      },
-      downgrade: (container: Record<string, unknown>) => container,
-    }),
-  };
+): Change {
+  return new (class extends Change {
+    override description = description;
+
+    override toRequestOperation(): RequestOperation {
+      return {
+        kind: 'customTransform',
+        payloadPath: schemaPatch.payloadPath,
+        schemaPatch: {
+          replace: schemaPatch.replace,
+          set: schemaPatch.set,
+          remove: schemaPatch.remove,
+        },
+        upgrade: (container: Record<string, unknown>) => container,
+      };
+    }
+
+    override toResponseOperation(): ResponseOperation {
+      return {
+        kind: 'customTransform',
+        payloadPath: schemaPatch.payloadPath,
+        schemaPatch: {
+          replace: schemaPatch.replace,
+          set: schemaPatch.set,
+          remove: schemaPatch.remove,
+        },
+        downgrade: (container: Record<string, unknown>) => container,
+      };
+    }
+  })();
 }
 
 function buildDefinition(
@@ -243,5 +276,38 @@ describe('ProposalC VersionRegistry', () => {
           }),
         ),
     ).toThrow('multiple response changes targeting field "fullName"');
+  });
+
+  it('throws when multiple response changes replace the same payloadPath', () => {
+    expect(
+      () =>
+        new VersionRegistry(
+          buildDefinition({
+            versions: [
+              {
+                version: '2026-03-03',
+                description: 'Initial',
+                requestChanges: [],
+                responseChanges: [],
+              },
+              {
+                version: '2026-03-09',
+                description: 'Conflicting replacement operations',
+                requestChanges: [],
+                responseChanges: [
+                  responseChange('First replace', {
+                    payloadPath: '/results/*',
+                    replace: z.object({ id: z.string() }).strict(),
+                  }),
+                  responseChange('Second replace', {
+                    payloadPath: '/results/*',
+                    replace: z.object({ slug: z.string() }).strict(),
+                  }),
+                ],
+              },
+            ],
+          }),
+        ),
+    ).toThrow('multiple response changes targeting field "$replace"');
   });
 });

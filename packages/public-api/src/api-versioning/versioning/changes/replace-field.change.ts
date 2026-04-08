@@ -1,14 +1,9 @@
 import { z } from 'zod';
-import type {
-  PayloadObjectPath,
-  ReplaceFieldOperation,
-} from '../versioning.types';
-import {
-  Change,
-  type FieldKey,
-  type MaybeAsync,
-  type ResolvedContainer,
-} from './change';
+import { ReplaceFieldOperation } from '../dsl/operations/replace-field.operation';
+import { PayloadObjectPath } from '../versioning.types';
+import { Change } from './change';
+import { FieldKey, ResolvedContainer } from './types';
+import { MaybeAsync } from '../../utils';
 
 export abstract class ReplaceFieldChange<
   TPayload = unknown,

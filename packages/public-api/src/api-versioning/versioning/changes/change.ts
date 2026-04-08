@@ -1,14 +1,10 @@
-import type { RequestOperation, ResponseOperation, Version } from '../versioning.types';
-
-export type MaybeAsync<T = unknown> = Promise<T> | T;
-export type FieldKey<TContainer> = Extract<keyof TContainer, string>;
-
-export type ResolvedContainer<TPayload> =
-  TPayload extends Record<string, unknown> ? TPayload : Record<string, unknown>;
+import type { RequestOperation, ResponseOperation } from '../dsl/operations';
 
 const DEFAULT_PATH = '/';
 
 export abstract class Change {
+  sourceFilePath: string | undefined = resolveChangeSourceFilePath();
+
   abstract description: string;
 
   abstract toRequestOperation(): RequestOperation;
@@ -21,9 +17,32 @@ export abstract class Change {
   }
 }
 
-export type RequestChangeDefinition = Change;
-export type ResponseChangeDefinition = Change;
+function resolveChangeSourceFilePath(): string | undefined {
+  const stack = new Error().stack;
+  if (!stack) {
+    return undefined;
+  }
 
-export interface VersionDefinitionProvider {
-  toVersion(): Version;
+  const lines = stack.split('\n').slice(1);
+  for (const line of lines) {
+    const frame = line.trim();
+    const withParentheses = frame.match(/\((.+):\d+:\d+\)$/);
+    const bare = frame.match(/at (.+):\d+:\d+$/);
+    const candidate = withParentheses?.[1] ?? bare?.[1];
+    if (!candidate) {
+      continue;
+    }
+
+    if (
+      candidate.includes('/api-versioning/versioning/changes/change.') ||
+      candidate.startsWith('node:') ||
+      candidate.includes('internal/')
+    ) {
+      continue;
+    }
+
+    return candidate;
+  }
+
+  return undefined;
 }

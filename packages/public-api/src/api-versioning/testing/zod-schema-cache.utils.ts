@@ -90,6 +90,30 @@ function applyObjectPatch(
   return nextSchema;
 }
 
+function hasObjectPatch(patch: CompiledSchemaPatch): boolean {
+  return (patch.remove ?? []).length > 0 || Boolean(patch.set);
+}
+
+function applyPatchAtTarget(
+  schema: z.ZodTypeAny,
+  patch: CompiledSchemaPatch,
+): z.ZodTypeAny {
+  let nextSchema = patch.replace?.zod ?? schema;
+
+  if (!hasObjectPatch(patch)) {
+    return nextSchema;
+  }
+
+  if (!isZodObject(nextSchema)) {
+    throw new Error(
+      `Invalid payloadPath "${patch.payloadPath}". Target must resolve to a ZodObject.`,
+    );
+  }
+
+  nextSchema = applyObjectPatch(nextSchema, patch);
+  return nextSchema;
+}
+
 function updateSchemaAtPath(
   schema: z.ZodTypeAny,
   tokens: readonly string[],
@@ -100,13 +124,17 @@ function updateSchemaAtPath(
   let updatedBase: z.ZodTypeAny;
 
   if (tokens.length === 0) {
+    if (patch.replace) {
+      return applyPatchAtTarget(patch.replace.zod, patch);
+    }
+
     if (!isZodObject(base)) {
       throw new Error(
         `Invalid payloadPath "${patch.payloadPath}". Target must resolve to a ZodObject.`,
       );
     }
 
-    updatedBase = applyObjectPatch(base, patch);
+    updatedBase = applyPatchAtTarget(base, patch);
     return rewrapSchema(updatedBase, wrappers);
   }
 
