@@ -16,12 +16,16 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/search (GET)', () => {
+  it('/search (POST)', () => {
     return request(app.getHttpServer())
-      .get('/search')
+      .post('/search')
+      .send({
+        locationMode: 'country',
+        country: 'FR',
+      })
       .expect(200)
       .expect((response) => {
-        expect(response.body).toHaveProperty('results');
+        expect(response.body).toHaveProperty('_links');
       });
   });
 });
