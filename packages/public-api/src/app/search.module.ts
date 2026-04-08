@@ -5,45 +5,21 @@ import { PLACE_SEARCH_READER } from './search/ports/place-search-reader.port';
 import { SearchResultMapper } from './search/adapters/mongo/result-mapper/search-result.mapper';
 import { MongoPlaceSearchReaderAdapter } from './search/adapters/mongo/mongo-place-search-reader.adapter';
 import { PlaceSearchQueryBuilder } from './search/adapters/mongo/query-builder/place-search.query-builder';
-import { DslCompiler } from '../api-versioning/versioning/dsl/dsl-compiler';
 import { SearchController } from './api/search.controller';
 import { ApiVersioningInterceptor } from './api/api-versioning.interceptor';
-import {
-  REQUEST_SCHEMAS_BY_VERSION,
-  RESPONSE_SCHEMAS_BY_VERSION,
-  VERSIONING_DEFINITION,
-} from '../api-versioning/runtime/versioning.tokens';
-import {
-  ArtifactGenerationService,
-  ARTIFACTS_OUTPUT_DIRECTORY,
-  FIRST_VERSION_SCHEMA_SEED_CONFIG,
-  OPENAPI_DECORATED_MODULE,
-  OPENAPI_OPERATION_TARGET,
-} from '../api-versioning/artifacts';
-import { RequestVersioningPipeline } from '../api-versioning/runtime/request-versioning.pipeline';
-import { ResponseVersioningPipeline } from '../api-versioning/runtime/response-versioning.pipeline';
-import { VersioningEngine } from '../api-versioning/runtime';
-import {
+import { ApiVersioningModule } from '../api-versioning';
+import type {
+  ApiVersioningContracts,
   ValidationSchemaCache,
-  VersionRegistry,
-  VersionResolver,
-  VersioningDefinition,
-} from '../api-versioning/versioning';
-
-import { PlacesDatabaseService } from './search/adapters/mongo/places-database.service';
+} from '../api-versioning';
 import {
-  searchVersionChangeProviders,
-  searchVersionProviders,
-  SearchVersionProvider,
-  buildSearchVersioningDefinition,
-  buildSearchVersions,
   searchOpenApiOperationTarget,
+  searchVersioningDefinition,
 } from './api/schema';
 
-type GeneratedContractsModule = {
-  requestSchemasByVersion: ValidationSchemaCache;
-  responseSchemasByVersion: ValidationSchemaCache;
-};
+import { PlacesDatabaseService } from './search/adapters/mongo/places-database.service';
+
+type GeneratedContractsModule = ApiVersioningContracts;
 
 function readGeneratedContractsOverride():
   | GeneratedContractsModule
@@ -55,10 +31,7 @@ function readGeneratedContractsOverride():
   ).__PUBLIC_API_GENERATED_CONTRACTS__;
 }
 
-function loadGeneratedContractsModule(): {
-  requestSchemasByVersion: ValidationSchemaCache;
-  responseSchemasByVersion: ValidationSchemaCache;
-} {
+function loadGeneratedContractsModule(): GeneratedContractsModule {
   const emptyCache: ValidationSchemaCache = new Map();
   const override = readGeneratedContractsOverride();
   if (override) {
@@ -66,7 +39,7 @@ function loadGeneratedContractsModule(): {
   }
 
   try {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     const contractsModule = require('./api/schema/contracts.generated.ts') as {
       requestSchemasByVersion?: ValidationSchemaCache;
       responseSchemasByVersion?: ValidationSchemaCache;
@@ -90,29 +63,30 @@ function loadGeneratedContractsModule(): {
   }
 }
 
-function assertSchemaCoverage(
-  schemaKind: 'request' | 'response',
-  schemasByVersion: ValidationSchemaCache,
-  registry: VersionRegistry,
-): ValidationSchemaCache {
-  if (process.env.PUBLIC_API_GENERATE_ARTIFACTS === '1') {
-    return schemasByVersion;
-  }
-
-  const missingVersions = registry.supportedVersions.filter(
-    (version) => !schemasByVersion.has(version),
-  );
-
-  if (missingVersions.length > 0) {
-    throw new Error(
-      `Generated ${schemaKind} schemas are missing for API version(s): ${missingVersions.join(', ')}. Regenerate search-api artifacts.`,
-    );
-  }
-
-  return schemasByVersion;
-}
-
 @Module({
+  imports: [
+    ApiVersioningModule.forRoot({
+      versioningDefinition: searchVersioningDefinition,
+      contractsByVersionFactory: loadGeneratedContractsModule,
+      openApiOperationTarget: searchOpenApiOperationTarget,
+      openApiDecoratedModule: SearchModule,
+      artifactsOutputDirectory: path.resolve(
+        process.cwd(),
+        'src/app/api/schema',
+      ),
+      firstVersionSchemaSeedConfig: {
+        request: {
+          importPath: './2026-01-01.search.request',
+          exportName: 'v20260101SearchRequestSchema',
+        },
+        response: {
+          importPath: './2026-01-01.search.response',
+          exportName: 'v20260101SearchResponseSchema',
+        },
+      },
+      allowMissingSchemas: process.env.PUBLIC_API_GENERATE_ARTIFACTS === '1',
+    }),
+  ],
   controllers: [SearchController],
   providers: [
     SearchService,
@@ -125,89 +99,7 @@ function assertSchemaCoverage(
       provide: PLACE_SEARCH_READER,
       useExisting: MongoPlaceSearchReaderAdapter,
     },
-    VersionResolver,
-    DslCompiler,
-    ...searchVersionChangeProviders,
-    ...searchVersionProviders,
-    {
-      provide: VERSIONING_DEFINITION,
-      useFactory: (...versionProviders: SearchVersionProvider[]) => {
-        return buildSearchVersioningDefinition(
-          buildSearchVersions(versionProviders),
-        );
-      },
-      inject: [...searchVersionProviders],
-    },
-    {
-      provide: OPENAPI_OPERATION_TARGET,
-      useValue: searchOpenApiOperationTarget,
-    },
-    {
-      provide: OPENAPI_DECORATED_MODULE,
-      useValue: SearchModule,
-    },
-    {
-      provide: ARTIFACTS_OUTPUT_DIRECTORY,
-      useValue: path.resolve(process.cwd(), 'src/app/api/schema'),
-    },
-    {
-      provide: FIRST_VERSION_SCHEMA_SEED_CONFIG,
-      useValue: {
-        request: {
-          importPath: './2026-01-01.search.request',
-          exportName: 'v20260101SearchRequestSchema',
-        },
-        response: {
-          importPath: './2026-01-01.search.response',
-          exportName: 'v20260101SearchResponseSchema',
-        },
-      },
-    },
-    {
-      provide: VersionRegistry,
-      useFactory: (definition: VersioningDefinition, compiler: DslCompiler) => {
-        return new VersionRegistry(definition, compiler);
-      },
-      inject: [VERSIONING_DEFINITION, DslCompiler],
-    },
-    {
-      provide: REQUEST_SCHEMAS_BY_VERSION,
-      useFactory: (registry: VersionRegistry) => {
-        const { requestSchemasByVersion } = loadGeneratedContractsModule();
-        return assertSchemaCoverage(
-          'request',
-          new Map(requestSchemasByVersion),
-          registry,
-        );
-      },
-      inject: [VersionRegistry],
-    },
-    {
-      provide: RESPONSE_SCHEMAS_BY_VERSION,
-      useFactory: (registry: VersionRegistry) => {
-        const { responseSchemasByVersion } = loadGeneratedContractsModule();
-        return assertSchemaCoverage(
-          'response',
-          new Map(responseSchemasByVersion),
-          registry,
-        );
-      },
-      inject: [VersionRegistry],
-    },
-    RequestVersioningPipeline,
-    ResponseVersioningPipeline,
-    VersioningEngine,
-    ArtifactGenerationService,
   ],
-  exports: [
-    VersioningEngine,
-    ArtifactGenerationService,
-    VersionResolver,
-    VersionRegistry,
-    RequestVersioningPipeline,
-    ResponseVersioningPipeline,
-    REQUEST_SCHEMAS_BY_VERSION,
-    RESPONSE_SCHEMAS_BY_VERSION,
-  ],
+  exports: [ApiVersioningModule],
 })
 export class SearchModule {}

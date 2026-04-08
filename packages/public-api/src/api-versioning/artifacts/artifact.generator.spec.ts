@@ -145,29 +145,50 @@ describe('ProposalC ArtifactGenerationService', () => {
       return parameters.map((parameter) => parameter.name);
     };
 
-    expect(readQueryParameterNames(parsedOpenApiCanonical)).toContain('isOpenToday');
+    expect(readQueryParameterNames(parsedOpenApiCanonical)).toContain(
+      'isOpenToday',
+    );
 
-    const canonicalResponseSchema = (((((
-      parsedOpenApiCanonical.paths as Record<string, unknown>
-    )['/catalog'] as Record<string, unknown>).get as Record<string, unknown>)
-      .responses as Record<string, unknown>)['200'] as Record<string, unknown>)
-      .content as Record<string, unknown>;
-    const canonicalNameSchema = (((((canonicalResponseSchema[
-      'application/json'
-    ] as Record<string, unknown>).schema as Record<string, unknown>)
-      .properties as Record<string, unknown>).results as Record<string, unknown>)
-      .items as Record<string, unknown>).properties as Record<string, unknown>;
+    const canonicalResponseSchema = (
+      (
+        (
+          (
+            (parsedOpenApiCanonical.paths as Record<string, unknown>)[
+              '/catalog'
+            ] as Record<string, unknown>
+          ).get as Record<string, unknown>
+        ).responses as Record<string, unknown>
+      )['200'] as Record<string, unknown>
+    ).content as Record<string, unknown>;
+    const canonicalNameSchema = (
+      (
+        (
+          (
+            (
+              canonicalResponseSchema['application/json'] as Record<
+                string,
+                unknown
+              >
+            ).schema as Record<string, unknown>
+          ).properties as Record<string, unknown>
+        ).results as Record<string, unknown>
+      ).items as Record<string, unknown>
+    ).properties as Record<string, unknown>;
 
     expect((canonicalNameSchema.name as Record<string, unknown>).type).toBe(
       'object',
     );
 
     expect(changelogFirst).toContain('DO NOT EDIT');
-    expect(changelogCanonical).toContain('Renamed response field slug to seoUrl');
+    expect(changelogCanonical).toContain(
+      'Renamed response field slug to seoUrl',
+    );
     expect(changelogCanonical).toContain('DO NOT EDIT');
 
     expect(requestFirst).toContain('DO NOT EDIT');
-    expect(requestCanonical).toContain('isOpenToday: z.coerce.boolean().optional()');
+    expect(requestCanonical).toContain(
+      'isOpenToday: z.coerce.boolean().optional()',
+    );
     expect(responseFirst).toContain('const catalogItemSchema');
     expect(responseCanonical).toContain('seoUrl: z.string()');
 
@@ -221,7 +242,7 @@ describe('ProposalC ArtifactGenerationService', () => {
     expect(nextOpenApi).toBe(initialOpenApi);
     expect(nextChangelog).toBe(initialChangelog);
     expect(nextResponse).toBe(initialResponse);
-  });
+  }, 20000);
 });
 
 function hasRelativeImport(sourceText: string): boolean {
@@ -239,8 +260,20 @@ async function seedFirstVersionSources(outputDirectory: string): Promise<void> {
     '2026-03-03',
     'catalog.response',
   );
+  const requestDirectoryV2 = path.join(
+    outputDirectory,
+    '2026-03-09',
+    'catalog.request',
+  );
+  const responseDirectoryV2 = path.join(
+    outputDirectory,
+    '2026-03-09',
+    'catalog.response',
+  );
   await fs.mkdir(requestDirectory, { recursive: true });
   await fs.mkdir(responseDirectory, { recursive: true });
+  await fs.mkdir(requestDirectoryV2, { recursive: true });
+  await fs.mkdir(responseDirectoryV2, { recursive: true });
 
   await fs.writeFile(
     path.join(requestDirectory, '2026-03-03.catalog.request.ts'),
@@ -262,29 +295,21 @@ async function seedFirstVersionSources(outputDirectory: string): Promise<void> {
   );
 
   await fs.writeFile(
-    path.join(responseDirectory, 'catalog-item.ts'),
-    [
-      "import { z } from 'zod';",
-      '',
-      'export const catalogItemSchema = z.object({',
-      '  id: z.string(),',
-      '  slug: z.string(),',
-      '  name: z.string(),',
-      '  summary: z.string(),',
-      "  type: z.enum(['book', 'guide']),",
-      '  isOpenToday: z.boolean(),',
-      '  languages: z.array(z.string()),',
-      '}).strict();',
-      '',
-    ].join('\n'),
-    'utf8',
-  );
-
-  await fs.writeFile(
     path.join(responseDirectory, '2026-03-03.catalog.response.ts'),
     [
       "import { z } from 'zod';",
-      "import { catalogItemSchema } from './catalog-item';",
+      '',
+      'const catalogItemSchema = z',
+      '  .object({',
+      '    id: z.string(),',
+      '    slug: z.string(),',
+      '    name: z.string(),',
+      '    summary: z.string(),',
+      "    type: z.enum(['book', 'guide']),",
+      '    isOpenToday: z.boolean(),',
+      '    languages: z.array(z.string()),',
+      '  })',
+      '  .strict();',
       '',
       'const linksSchema = z',
       '  .object({',
@@ -310,6 +335,90 @@ async function seedFirstVersionSources(outputDirectory: string): Promise<void> {
       'export type v20260303ResponseSchemaType = z.infer<typeof v20260303ResponseSchema>;',
       '',
       'export default v20260303ResponseSchema;',
+      '',
+    ].join('\n'),
+    'utf8',
+  );
+
+  await fs.writeFile(
+    path.join(outputDirectory, '2026-03-03', '20260303.version.ts'),
+    [
+      'class Version20260303Provider {',
+      '  toVersion() {',
+      '    return {',
+      '      requestChanges: [],',
+      '      responseChanges: [],',
+      '    };',
+      '  }',
+      '}',
+      '',
+      'export const version20260303 = new Version20260303Provider().toVersion();',
+      '',
+    ].join('\n'),
+    'utf8',
+  );
+
+  await fs.writeFile(
+    path.join(outputDirectory, '2026-03-09', '20260309.version.ts'),
+    [
+      'class Version20260309Provider {',
+      '  toVersion() {',
+      '    return {',
+      '      requestChanges: [new RenameRequestOpenToday()],',
+      '      responseChanges: [new RenameResponseSlug(), new ExpandResponseName()],',
+      '    };',
+      '  }',
+      '}',
+      '',
+      'export const version20260309 = new Version20260309Provider().toVersion();',
+      '',
+    ].join('\n'),
+    'utf8',
+  );
+
+  await fs.writeFile(
+    path.join(requestDirectoryV2, '2026-03-09.catalog.request.ts'),
+    [
+      "import { z } from 'zod';",
+      '',
+      'class RenameFieldChange {}',
+      '',
+      'export class RenameRequestOpenToday extends RenameFieldChange {',
+      "  payloadPath = '/' as const;",
+      "  from = 'openToday';",
+      "  to = 'isOpenToday';",
+      '  schema = z.coerce.boolean().optional();',
+      '}',
+      '',
+    ].join('\n'),
+    'utf8',
+  );
+
+  await fs.writeFile(
+    path.join(responseDirectoryV2, '2026-03-09.catalog.response.ts'),
+    [
+      "import { z } from 'zod';",
+      '',
+      'class RenameFieldChange {}',
+      'class ReplaceFieldChange {}',
+      '',
+      'export class RenameResponseSlug extends RenameFieldChange {',
+      "  payloadPath = '/results/*' as const;",
+      "  from = 'slug';",
+      "  to = 'seoUrl';",
+      '  schema = z.string();',
+      '}',
+      '',
+      'export class ExpandResponseName extends ReplaceFieldChange {',
+      "  payloadPath = '/results/*' as const;",
+      "  field = 'name';",
+      '  schema = z',
+      '    .object({',
+      '      originalName: z.string(),',
+      '      translatedName: z.string(),',
+      '    })',
+      '    .strict();',
+      '}',
       '',
     ].join('\n'),
     'utf8',

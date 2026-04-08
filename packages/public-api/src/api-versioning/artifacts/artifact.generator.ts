@@ -9,10 +9,8 @@ import { z } from 'zod';
 import { ChangelogGenerator } from './changelog/changelog.generator';
 import { ContractOpenApiGenerator } from './openapi/contract-openapi.generator';
 import {
+  evaluateGeneratedVersionedSchema,
   VersionedSchemaGenerator,
-  type FirstVersionSeedSource,
-  type GenerateVersionedSchemasResult,
-  type SchemaKind,
 } from './schema/versioned-schema.generator';
 import { VersionRegistry } from '../versioning/version-registry';
 import {
@@ -32,6 +30,7 @@ import {
   REQUEST_SCHEMAS_BY_VERSION,
   RESPONSE_SCHEMAS_BY_VERSION,
 } from '../runtime/versioning.tokens';
+import { VersionedSchemaGeneratorConfig } from './schema/project.factory';
 
 const GENERATED_TS_HEADER = [
   '/**',
@@ -48,7 +47,6 @@ const GENERATED_OPENAPI_METADATA_NOTE =
 
 @Injectable()
 export class ArtifactGenerationService {
-  private readonly versionedSchemaGenerator = new VersionedSchemaGenerator();
   private readonly contractOpenApiGenerator = new ContractOpenApiGenerator();
   private readonly changelogGenerator = new ChangelogGenerator();
 
@@ -79,26 +77,9 @@ export class ArtifactGenerationService {
         this.resolveFirstVersionSeedSource('response'),
       ]);
 
-    const sharedInput = {
-      supportedVersions: this.registry.supportedVersions,
-      compiledVersions: this.registry.compiledVersions,
-      toSchemaConstName: (version: ApiVersion, kind: 'request' | 'response') =>
-        this.toSchemaConstName(version, kind),
-      schemaFilePathForVersion: (version: ApiVersion, kind: SchemaKind) =>
-        this.schemaFilePathForVersion(version, kind),
-    };
-
     const [requestResult, responseResult] = await Promise.all([
-      this.versionedSchemaGenerator.generateVersionedSchemas({
-        ...sharedInput,
-        kind: 'request',
-        firstVersionSeed: requestFirstVersionSeed,
-      }),
-      this.versionedSchemaGenerator.generateVersionedSchemas({
-        ...sharedInput,
-        kind: 'response',
-        firstVersionSeed: responseFirstVersionSeed,
-      }),
+      this.generateSchemaArtifactsByKind('request', requestFirstVersionSeed),
+      this.generateSchemaArtifactsByKind('response', responseFirstVersionSeed),
     ]);
 
     this.assertMatchingCreatedVersions(requestResult, responseResult);
@@ -270,8 +251,8 @@ export class ArtifactGenerationService {
   }
 
   private async resolveFirstVersionSeedSource(
-    kind: SchemaKind,
-  ): Promise<FirstVersionSeedSource> {
+    kind: 'request' | 'response',
+  ): Promise<{ sourceFilePath: string; exportName: string }> {
     const firstVersion = this.registry.supportedVersions[0];
     if (!firstVersion) {
       throw new Error('No supported API versions configured.');
@@ -335,7 +316,7 @@ export class ArtifactGenerationService {
 
   private schemaFilePathForVersion(
     version: ApiVersion,
-    kind: SchemaKind,
+    kind: 'request' | 'response',
   ): string {
     return path.join(
       this.outputDirectory,
@@ -347,7 +328,7 @@ export class ArtifactGenerationService {
 
   private schemaModuleImportPath(
     version: ApiVersion,
-    kind: SchemaKind,
+    kind: 'request' | 'response',
   ): string {
     return `./${version}/${this.registry.definition.resource}.${kind}/${version}.${this.registry.definition.resource}.${kind}.generated`;
   }
@@ -411,8 +392,8 @@ export class ArtifactGenerationService {
   }
 
   private assertMatchingCreatedVersions(
-    requestResult: GenerateVersionedSchemasResult,
-    responseResult: GenerateVersionedSchemasResult,
+    requestResult: GeneratedSchemasByKindResult,
+    responseResult: GeneratedSchemasByKindResult,
   ): readonly ApiVersion[] {
     const requestVersions = requestResult.createdVersions;
     const responseVersions = responseResult.createdVersions;
@@ -432,4 +413,98 @@ export class ArtifactGenerationService {
 
     return requestVersions;
   }
+
+  private async generateSchemaArtifactsByKind(
+    kind: 'request' | 'response',
+    firstVersionSeed: { sourceFilePath: string; exportName: string },
+  ): Promise<GeneratedSchemasByKindResult> {
+    const createdVersions: ApiVersion[] = [];
+    const schemasByVersion = new Map<ApiVersion, z.ZodTypeAny>();
+    const compactVersionByVersion = new Map(
+      this.registry.supportedVersions.map((version) => [
+        version,
+        version.replace(/-/g, ''),
+      ]),
+    );
+
+    let currentBaseSchemaPath = firstVersionSeed.sourceFilePath;
+    let currentInputSchemaConstName = firstVersionSeed.exportName;
+
+    for (const version of this.registry.supportedVersions) {
+      const compactVersion = compactVersionByVersion.get(version);
+      if (!compactVersion) {
+        throw new Error(`Could not resolve compact version for "${version}".`);
+      }
+
+      const outputSchemaConstName = this.toSchemaConstName(version, kind);
+      const outputSchemaTypeName = `${outputSchemaConstName}Type`;
+      const outputPayloadTypeName = outputSchemaConstName
+        .replace(/Schema$/u, '')
+        .replace(/^v\d+/u, (prefix) => `V${prefix.slice(1)}`);
+      const outputPath = this.schemaFilePathForVersion(version, kind);
+      const versionDefinitionPath = this.versionDefinitionFilePath(
+        version,
+        compactVersion,
+      );
+      const changesSourcePath = this.changesSourceFilePath(version, kind);
+
+      const generationConfig: VersionedSchemaGeneratorConfig = {
+        kind,
+        baseSchemaPath: currentBaseSchemaPath,
+        versionDefinitionPath,
+        changesSourcePath,
+        outputPath,
+        inputSchemaConstName: currentInputSchemaConstName,
+        outputSchemaConstName,
+        outputPayloadTypeName,
+        outputSchemaTypeName,
+      };
+
+      const generator = new VersionedSchemaGenerator(generationConfig);
+      const generated = await generator.generate();
+      const evaluatedSchema: z.ZodTypeAny = evaluateGeneratedVersionedSchema(
+        generated.sourceText,
+        outputSchemaConstName,
+        version,
+      );
+
+      createdVersions.push(version);
+      schemasByVersion.set(version, evaluatedSchema);
+      currentBaseSchemaPath = outputPath;
+      currentInputSchemaConstName = outputSchemaConstName;
+    }
+
+    return {
+      createdVersions,
+      schemasByVersion,
+    };
+  }
+
+  private versionDefinitionFilePath(
+    version: ApiVersion,
+    compactVersion: string,
+  ): string {
+    return path.join(
+      this.outputDirectory,
+      version,
+      `${compactVersion}.version.ts`,
+    );
+  }
+
+  private changesSourceFilePath(
+    version: ApiVersion,
+    kind: 'request' | 'response',
+  ): string {
+    return path.join(
+      this.outputDirectory,
+      version,
+      `${this.registry.definition.resource}.${kind}`,
+      `${version}.${this.registry.definition.resource}.${kind}.ts`,
+    );
+  }
 }
+
+type GeneratedSchemasByKindResult = {
+  createdVersions: readonly ApiVersion[];
+  schemasByVersion: ReadonlyMap<ApiVersion, z.ZodTypeAny>;
+};
