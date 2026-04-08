@@ -77,6 +77,9 @@ export class DisplayPlaceChangesComponent implements OnInit {
   public languagesChanged = false;
   public publicsBadge: BadgeConfig = BADGE_MODIFIED;
   public modalitiesBadge: BadgeConfig = BADGE_MODIFIED;
+  public tempClosureBadge: BadgeConfig | null = null;
+  public tempHoursBadge: BadgeConfig | null = null;
+  public tempMessageBadge: BadgeConfig | null = null;
 
   constructor(private readonly sanitizer: DomSanitizer) {}
 
@@ -111,6 +114,24 @@ export class DisplayPlaceChangesComponent implements OnInit {
         break;
       case PlaceChangesSection.contacts:
         this.computeContactsChanges();
+        break;
+      case PlaceChangesSection.tempClosure:
+        this.tempClosureBadge = this.computeTempInfoBadge(
+          this.oldPlace.tempInfos.closure,
+          this.placeChanged.tempInfos.closure
+        );
+        break;
+      case PlaceChangesSection.tempHours:
+        this.tempHoursBadge = this.computeTempInfoBadge(
+          this.oldPlace.tempInfos.hours,
+          this.placeChanged.tempInfos.hours
+        );
+        break;
+      case PlaceChangesSection.tempMessage:
+        this.tempMessageBadge = this.computeTempInfoBadge(
+          this.oldPlace.tempInfos.message,
+          this.placeChanged.tempInfos.message
+        );
         break;
     }
   }
@@ -247,6 +268,26 @@ export class DisplayPlaceChangesComponent implements OnInit {
     } else if (anyRemoved && !anyAdded) {
       this.modalitiesBadge = BADGE_DELETED;
     }
+  }
+
+  public changeIndicatorClasses(
+    badge: BadgeConfig | null
+  ): Record<string, boolean> {
+    return {
+      "change-indicator": !!badge,
+      "change-indicator-added": badge === BADGE_ADDED,
+      "change-indicator-modified": badge === BADGE_MODIFIED,
+    };
+  }
+
+  private computeTempInfoBadge(
+    oldInfo: { dateDebut: Date | null },
+    newInfo: { dateDebut: Date | null }
+  ): BadgeConfig | null {
+    if (JSON.stringify(oldInfo) === JSON.stringify(newInfo)) return null;
+    if (!oldInfo.dateDebut && newInfo.dateDebut) return BADGE_ADDED;
+    if (oldInfo.dateDebut && !newInfo.dateDebut) return BADGE_DELETED;
+    return BADGE_MODIFIED;
   }
 
   private computeContactsChanges(): void {

@@ -8,6 +8,19 @@ import { Place } from "../../../../models/place/classes";
   styleUrls: ["./display-general-info-admin.component.css"],
 })
 export class DisplayGeneralInfoAdminComponent {
-  @Input() public place!: Place;
+  @Input({ required: true }) public place!: Place;
   @Input() public hideDescription = false;
+
+  public get hasContactInfo(): boolean {
+    const { phones, mail, website, facebook, fax, instagram } =
+      this.place.entity;
+    return !!(
+      phones?.length ||
+      mail ||
+      website ||
+      facebook ||
+      fax ||
+      instagram
+    );
+  }
 }

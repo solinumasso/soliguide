@@ -1,41 +1,14 @@
 import { Component, Input, OnInit } from "@angular/core";
 
+import { ModalitiesElement } from "@soliguide/common";
 import type { Modalities } from "@soliguide/common";
 
-type CheckedChange = { added: boolean; removed: boolean };
-type CheckedWithPrecisionsChange = CheckedChange & {
-  precisionsChanged: boolean;
-};
-
-// Add keys here when a new modality field is introduced in Modalities
-const FIELDS_WITH_PRECISIONS = [
-  "orientation",
-  "inscription",
-  "appointment",
-  "price",
-] as const;
-const FIELDS_CHECKED_ONLY = ["pmr", "animal"] as const;
-
-type FieldWithPrecisions = (typeof FIELDS_WITH_PRECISIONS)[number];
-type FieldCheckedOnly = (typeof FIELDS_CHECKED_ONLY)[number];
-
-interface ModalitiesChanges
-  extends Record<FieldWithPrecisions, CheckedWithPrecisionsChange>,
-    Record<FieldCheckedOnly, CheckedChange> {
-  unconditional: CheckedChange;
-  other: boolean;
-}
-
-const NO_CHANGE: ModalitiesChanges = {
-  unconditional: { added: false, removed: false },
-  orientation: { added: false, removed: false, precisionsChanged: false },
-  inscription: { added: false, removed: false, precisionsChanged: false },
-  appointment: { added: false, removed: false, precisionsChanged: false },
-  price: { added: false, removed: false, precisionsChanged: false },
-  pmr: { added: false, removed: false },
-  animal: { added: false, removed: false },
-  other: false,
-};
+import {
+  FIELDS_CHECKED_ONLY,
+  FIELDS_WITH_PRECISIONS,
+  NO_CHANGE,
+} from "./display-modalities.models";
+import type { ModalitiesChanges } from "./display-modalities.models";
 
 @Component({
   selector: "app-display-modalities",
@@ -43,8 +16,8 @@ const NO_CHANGE: ModalitiesChanges = {
   styleUrls: ["./display-modalities.component.css"],
 })
 export class DisplayModalitiesComponent implements OnInit {
-  @Input() public modalities!: Modalities;
-  @Input() public isHistory!: boolean;
+  @Input({ required: true }) public modalities!: Modalities;
+  @Input({ required: true }) public isHistory!: boolean;
   @Input() public oldModalities?: Modalities;
 
   public changes: ModalitiesChanges = { ...NO_CHANGE };
@@ -56,8 +29,12 @@ export class DisplayModalitiesComponent implements OnInit {
     const newModalities = this.modalities;
 
     this.changes.unconditional = {
-      added: !oldModalities.inconditionnel && !!newModalities.inconditionnel,
-      removed: !!oldModalities.inconditionnel && !newModalities.inconditionnel,
+      added:
+        !oldModalities[ModalitiesElement.UNCONDITIONAL] &&
+        !!newModalities[ModalitiesElement.UNCONDITIONAL],
+      removed:
+        !!oldModalities[ModalitiesElement.UNCONDITIONAL] &&
+        !newModalities[ModalitiesElement.UNCONDITIONAL],
     };
 
     for (const key of FIELDS_WITH_PRECISIONS) {

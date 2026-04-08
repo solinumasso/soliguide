@@ -24,7 +24,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     @if (!edit) {
     <h2 class="mb-2">{{ "SPOKEN_LANGUAGES" | translate }}</h2>
     } @for (item of computedRemoved; track item.lang) {
-    <div class="languages lang-removed">
+    <div class="languages bg-danger bg-opacity-10 border-danger text-danger">
       <div class="d-flex align-items-center justify-content-between">
         @if (item.hasFlag) {
         <img
@@ -42,7 +42,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       </div>
     </div>
     } @for (item of computedLanguages; track item.lang) {
-    <div class="languages" [ngClass]="{ 'lang-added': item.isAdded }">
+    <div
+      class="languages"
+      [ngClass]="
+        item.isAdded
+          ? 'bg-success bg-opacity-25 border-success text-success'
+          : ''
+      "
+    >
       <div class="d-flex align-items-center justify-content-between">
         @if (item.hasFlag) {
         <img

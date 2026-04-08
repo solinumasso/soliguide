@@ -457,6 +457,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         @if (place.modalities) {
         <app-display-modalities
           [modalities]="place.modalities"
+          [isHistory]="false"
         ></app-display-modalities>
         } @else {
         <div class="alert alert-warning">

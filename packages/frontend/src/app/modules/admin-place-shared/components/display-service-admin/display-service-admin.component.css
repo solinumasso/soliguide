@@ -72,3 +72,25 @@
   margin: 0;
   padding: 0;
 }
+
+.description-card {
+  border: 1px solid #dee2e6;
+  border-left: 4px solid #ced4da;
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.description-card-modified {
+  border-left-color: #ffc107;
+  background-color: rgba(255, 193, 7, 0.05);
+}
+
+.description-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6c757d;
+  margin-bottom: 0.5rem;
+}

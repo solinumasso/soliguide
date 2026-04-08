@@ -25,8 +25,8 @@ export class DisplayLanguagesAdminComponent
   public readonly PLACE_LANGUAGES_LIST = PLACE_LANGUAGES_LIST;
   private readonly AVAILABLE_FLAGS: string[] = SUPPORTED_LANGUAGES;
 
-  @Input() public languages: string[];
-  @Input() public edit: boolean;
+  @Input({ required: true }) public languages!: string[];
+  @Input({ required: true }) public edit!: boolean;
   @Input() public languagesAdded: string[] = [];
   @Input() public languagesRemoved: string[] = [];
 
