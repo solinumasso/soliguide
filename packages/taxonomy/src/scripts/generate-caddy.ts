@@ -42,7 +42,7 @@ function generateCaddy() {
   // Generate redirection lines
   for (const { oldSlug, newSlug } of redirections) {
     lines.push(
-      `\t~^(.*/search/.*)/(${oldSlug})(.*)$ "\${2}" "\${1}/${newSlug}\${3}"`,
+      `\t~^(.*/search/.*)/(${oldSlug})(/.*)?$ "\${2}" "\${1}/${newSlug}\${3}"`,
     );
   }
 
