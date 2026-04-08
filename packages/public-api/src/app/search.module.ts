@@ -1,8 +1,13 @@
 import { Module } from '@nestjs/common';
 import * as path from 'node:path';
-import { SearchService } from './search.service';
-import { DslCompiler } from '../api-versioning/versioning/dsl-compiler';
-import { SearchController } from './search.controller';
+import { SearchService } from './search/search.service';
+import { PLACE_SEARCH_READER } from './search/ports/place-search-reader.port';
+import { SearchResultMapper } from './search/adapters/mongo/result-mapper/search-result.mapper';
+import { MongoPlaceSearchReaderAdapter } from './search/adapters/mongo/mongo-place-search-reader.adapter';
+import { PlaceSearchQueryBuilder } from './search/adapters/mongo/query-builder/place-search.query-builder';
+import { DslCompiler } from '../api-versioning/versioning/dsl/dsl-compiler';
+import { SearchController } from './api/search.controller';
+import { ApiVersioningInterceptor } from './api/api-versioning.interceptor';
 import {
   REQUEST_SCHEMAS_BY_VERSION,
   RESPONSE_SCHEMAS_BY_VERSION,
@@ -19,12 +24,13 @@ import { RequestVersioningPipeline } from '../api-versioning/runtime/request-ver
 import { ResponseVersioningPipeline } from '../api-versioning/runtime/response-versioning.pipeline';
 import { VersioningEngine } from '../api-versioning/runtime';
 import {
-  type ApiVersion,
   ValidationSchemaCache,
   VersionRegistry,
   VersionResolver,
   VersioningDefinition,
 } from '../api-versioning/versioning';
+
+import { PlacesDatabaseService } from './search/adapters/mongo/places-database.service';
 import {
   searchVersionChangeProviders,
   searchVersionProviders,
@@ -32,29 +38,55 @@ import {
   buildSearchVersioningDefinition,
   buildSearchVersions,
   searchOpenApiOperationTarget,
-} from './schema';
+} from './api/schema';
+
+type GeneratedContractsModule = {
+  requestSchemasByVersion: ValidationSchemaCache;
+  responseSchemasByVersion: ValidationSchemaCache;
+};
+
+function readGeneratedContractsOverride():
+  | GeneratedContractsModule
+  | undefined {
+  return (
+    globalThis as {
+      __PUBLIC_API_GENERATED_CONTRACTS__?: GeneratedContractsModule;
+    }
+  ).__PUBLIC_API_GENERATED_CONTRACTS__;
+}
 
 function loadGeneratedContractsModule(): {
   requestSchemasByVersion: ValidationSchemaCache;
   responseSchemasByVersion: ValidationSchemaCache;
 } {
+  const emptyCache: ValidationSchemaCache = new Map();
+  const override = readGeneratedContractsOverride();
+  if (override) {
+    return override;
+  }
+
   try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    return require('./generated/contracts') as {
-      requestSchemasByVersion: ValidationSchemaCache;
-      responseSchemasByVersion: ValidationSchemaCache;
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports
+    const contractsModule = require('./api/schema/contracts.generated.ts') as {
+      requestSchemasByVersion?: ValidationSchemaCache;
+      responseSchemasByVersion?: ValidationSchemaCache;
+    };
+
+    return {
+      requestSchemasByVersion:
+        contractsModule.requestSchemasByVersion ?? emptyCache,
+      responseSchemasByVersion:
+        contractsModule.responseSchemasByVersion ?? emptyCache,
     };
   } catch (error) {
     if (process.env.PUBLIC_API_GENERATE_ARTIFACTS === '1') {
       return {
-        requestSchemasByVersion: new Map<ApiVersion, never>(),
-        responseSchemasByVersion: new Map<ApiVersion, never>(),
+        requestSchemasByVersion: emptyCache,
+        responseSchemasByVersion: emptyCache,
       };
     }
 
-    throw new Error(
-      `Unable to load generated contracts module at src/app/generated/contracts. Regenerate search-api artifacts. Root cause: ${(error as Error).message}`,
-    );
+    throw error;
   }
 }
 
@@ -84,6 +116,15 @@ function assertSchemaCoverage(
   controllers: [SearchController],
   providers: [
     SearchService,
+    ApiVersioningInterceptor,
+    SearchResultMapper,
+    PlacesDatabaseService,
+    PlaceSearchQueryBuilder,
+    MongoPlaceSearchReaderAdapter,
+    {
+      provide: PLACE_SEARCH_READER,
+      useExisting: MongoPlaceSearchReaderAdapter,
+    },
     VersionResolver,
     DslCompiler,
     ...searchVersionChangeProviders,
@@ -107,18 +148,18 @@ function assertSchemaCoverage(
     },
     {
       provide: ARTIFACTS_OUTPUT_DIRECTORY,
-      useValue: path.resolve(process.cwd(), 'src/app/generated'),
+      useValue: path.resolve(process.cwd(), 'src/app/api/schema'),
     },
     {
       provide: FIRST_VERSION_SCHEMA_SEED_CONFIG,
       useValue: {
         request: {
-          importPath: '../../schema/search.request/search.request',
-          exportName: 'searchRequestSchema',
+          importPath: './2026-01-01.search.request',
+          exportName: 'v20260101SearchRequestSchema',
         },
         response: {
-          importPath: '../../schema/search.response/search.response',
-          exportName: 'searchResponseSchema',
+          importPath: './2026-01-01.search.response',
+          exportName: 'v20260101SearchResponseSchema',
         },
       },
     },

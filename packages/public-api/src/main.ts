@@ -30,11 +30,11 @@ async function pathExists(targetPath: string): Promise<boolean> {
   }
 }
 
-async function resolveOpenApiArtifactsDirectory(): Promise<string> {
+async function resolveSchemaArtifactsDirectory(): Promise<string> {
   const candidates = [
-    path.resolve(process.cwd(), 'src/app/generated/openapi'),
-    path.resolve(__dirname, 'app/generated/openapi'),
-    path.resolve(__dirname, '../src/app/generated/openapi'),
+    path.resolve(process.cwd(), 'src/app/api/schema'),
+    path.resolve(__dirname, 'app/api/schema'),
+    path.resolve(__dirname, '../../src/app/api/schema'),
   ];
 
   for (const candidate of candidates) {
@@ -44,7 +44,7 @@ async function resolveOpenApiArtifactsDirectory(): Promise<string> {
   }
 
   throw new Error(
-    `Missing search API OpenAPI artifacts directory. Checked: ${candidates.join(
+    `Missing search API schema artifacts directory. Checked: ${candidates.join(
       ', ',
     )}. Run "yarn --cwd packages/public-api generate:search-api:artifacts".`,
   );
@@ -53,11 +53,15 @@ async function resolveOpenApiArtifactsDirectory(): Promise<string> {
 async function loadVersionedOpenApiDocuments(
   versions: readonly string[],
 ): Promise<VersionedOpenApiDocuments> {
-  const directory = await resolveOpenApiArtifactsDirectory();
+  const directory = await resolveSchemaArtifactsDirectory();
   const documentsByVersion = new Map<string, OpenApiDocument>();
 
   for (const version of versions) {
-    const filePath = path.join(directory, `${version}.json`);
+    const filePath = path.join(
+      directory,
+      version,
+      `${version}.openapi.generated.json`,
+    );
     let rawContent: string;
 
     try {
