@@ -21,8 +21,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <div class="row">
   <div class="col-12">
     <h3 class="service-title">
+      @if (service.saturated) {
       <span
-        *ngIf="service.saturated"
         class="saturation"
         [ngbTooltip]="'SATURATION_' + service.saturated.status | translate"
         [ngClass]="{
@@ -31,46 +31,35 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           'bg-danger': service.saturated.status === ServiceSaturation.HIGH
         }"
       ></span>
-
-      <span *ngIf="isCategoryExist">
-        {{ service.category | categoryTranslateKey | translate }}
+      } @if (isCategoryExist) {
+      <span>{{ service.category | categoryTranslateKey | translate }}</span>
+      } @if (service.categorySpecificFields) { @for (specificField of
+      CATEGORIES_SPECIFIC_FIELDS_PLACE_DISPLAYED.title; track specificField) {
+      @if (service.categorySpecificFields[specificField]?.length) {
+      <span>
+        :
+        {{
+          service.categorySpecificFields[specificField]
+            | uppercase
+            | translate
+            | lowercase
+        }}
       </span>
-      <ng-container *ngIf="service.categorySpecificFields">
-        <ng-container
-          *ngFor="
-            let specificField of CATEGORIES_SPECIFIC_FIELDS_PLACE_DISPLAYED.title
-          "
-          ><span *ngIf="service.categorySpecificFields[specificField]?.length">
-            :
-            {{
-              service.categorySpecificFields[specificField]
-                | uppercase
-                | translate
-                | lowercase
-            }}</span
-          >
-        </ng-container>
-      </ng-container>
-      <span *ngIf="!isCategoryExist" class="text-danger">{{
-        "SERVICE_NOT_EXISTS" | translate
-      }}</span>
+      } } } @if (!isCategoryExist) {
+      <span class="text-danger">{{ "SERVICE_NOT_EXISTS" | translate }}</span>
+      }
     </h3>
-    <div
-      class="services-description"
-      *ngIf="service.description"
-      [innerHTML]="service.description"
-    ></div>
 
-    <span
-      class="fw-bold"
-      *ngIf="
-        service.saturated &&
-        service.saturated.precision &&
-        service.saturated.precision !== ''
-      "
+    @if (service.description) {
+    <div class="services-description" [innerHTML]="service.description"></div>
+    } @if ( service.saturated && service.saturated.precision &&
+    service.saturated.precision !== '' ) {
+    <span class="fw-bold"
       >{{ "SATURATION_" + service.saturated.status | translate }} :
       {{ service.saturated.precision }}</span
     >
+    }
+
     <app-display-temp-banner
       [tempInfoType]="TempInfoType.CLOSURE"
       [tempInfos]="service.close"
@@ -78,27 +67,20 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       [forceDisplay]="forceDisplayTempInfo"
     ></app-display-temp-banner>
 
-    <ng-container *ngIf="service.categorySpecificFields">
-      <ng-container
-        *ngFor="
-          let specificField of CATEGORIES_SPECIFIC_FIELDS_PLACE_DISPLAYED.body
-        "
-      >
-        <ng-container
-          *ngIf="service.categorySpecificFields[specificField]?.length"
-        >
-          <div class="specific-field">
-            <app-display-specific-fields
-              [specificField]="specificField"
-              [service]="service"
-            ></app-display-specific-fields>
-          </div>
-        </ng-container>
-      </ng-container>
-    </ng-container>
+    @if (service.categorySpecificFields) { @for (specificField of
+    CATEGORIES_SPECIFIC_FIELDS_PLACE_DISPLAYED.body; track specificField) { @if
+    (service.categorySpecificFields[specificField]?.length) {
+    <div class="specific-field">
+      <app-display-specific-fields
+        [specificField]="specificField"
+        [service]="service"
+      ></app-display-specific-fields>
+    </div>
+    } } }
 
     <ul class="service-differences">
-      <li *ngIf="service.differentHours">
+      @if (service.differentHours) {
+      <li>
         <button
           type="button"
           (click)="service.showHoraires = !service.showHoraires"
@@ -117,7 +99,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           {{ "TIME_TABLES" | translate }}
         </button>
       </li>
-      <li *ngIf="service.differentModalities">
+      } @if (service.differentModalities) {
+      <li>
         <button
           type="button"
           (click)="service.showModalities = !service.showModalities"
@@ -136,7 +119,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           {{ "ACCESS_CONDITIONS" | translate }}
         </button>
       </li>
-      <li *ngIf="service.differentPublics">
+      } @if (service.differentPublics) {
+      <li>
         <button
           type="button"
           (click)="service.showPublics = !service.showPublics"
@@ -153,25 +137,20 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           {{ "WELCOMED_PUBLIC" | translate }}
         </button>
       </li>
+      }
     </ul>
 
-    <div
-      class="service-container"
-      *ngIf="service.differentHours && service.showHoraires"
-    >
+    @if (service.differentHours && service.showHoraires) {
+    <div class="service-container">
       <span class="service-name">{{ "SPECIFIC_TIMETABLES" | translate }}</span>
       <app-display-horaires
         [hours]="service.hours"
         [oldHours]="oldHours"
         [displayClosedDays]="true"
-      >
-      </app-display-horaires>
+      ></app-display-horaires>
     </div>
-
-    <div
-      class="service-container"
-      *ngIf="service.differentModalities && service.showModalities"
-    >
+    } @if (service.differentModalities && service.showModalities) {
+    <div class="service-container">
       <span class="service-name">{{
         "SPECIFIC_ARRANGEMENTS" | translate
       }}</span>
@@ -179,15 +158,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         [modalities]="service.modalities"
       ></app-display-modalities-inline>
     </div>
-
-    <div
-      class="service-container"
-      *ngIf="service.differentPublics && service.showPublics"
-    >
+    } @if (service.differentPublics && service.showPublics) {
+    <div class="service-container">
       <span class="service-name">{{ "SPECIFIC_AUDIENCE" | translate }}</span>
       <app-display-publics-inline
         [publics]="service.publics"
       ></app-display-publics-inline>
     </div>
+    }
   </div>
 </div>
