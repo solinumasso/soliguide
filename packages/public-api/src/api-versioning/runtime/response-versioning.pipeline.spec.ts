@@ -5,7 +5,10 @@ import {
 } from '@nestjs/common';
 import { z } from 'zod';
 import { DslCompiler } from '../versioning/dsl/dsl-compiler';
-import { CustomTransformChange } from '../versioning/changes';
+import {
+  CustomTransformChange,
+  RemoveFieldChange,
+} from '../versioning/changes';
 import { ResponseVersioningPipeline } from './response-versioning.pipeline';
 import {
   catalogCanonicalResponse,
@@ -14,8 +17,11 @@ import {
 } from '../testing';
 import { VersionRegistry } from '../versioning/version-registry';
 import { VersionResolver } from '../versioning/version-resolver';
-import type { VersioningDefinition } from '../versioning/versioning.types';
-import { describe, expect, it } from 'vitest';
+import type {
+  ResponseDowngradeContext,
+  VersioningDefinition,
+} from '../versioning/versioning.types';
+import { describe, expect, it, vi } from 'vitest';
 
 describe('ProposalC ResponseVersioningPipeline', () => {
   it('returns payload unchanged when version header is missing', async () => {
@@ -121,7 +127,9 @@ describe('ProposalC ResponseVersioningPipeline', () => {
             },
             {
               type: 'itinerary',
-              stops: [{ location: { address: 'B' }, schedule: { status: 'open' } }],
+              stops: [
+                { location: { address: 'B' }, schedule: { status: 'open' } },
+              ],
             },
           ],
         },
@@ -186,6 +194,60 @@ describe('ProposalC ResponseVersioningPipeline', () => {
       ),
     ).rejects.toBeInstanceOf(InternalServerErrorException);
   });
+
+  it('prepares downgrade context once per version before applying response changes', async () => {
+    const events: string[] = [];
+    const prepareContext = vi.fn(
+      async (_payload: unknown, context: ResponseDowngradeContext) => {
+        events.push('prepare');
+        context.legacyId = 'legacy-123';
+      },
+    );
+
+    const definition: VersioningDefinition = {
+      resource: 'search',
+      baseRequestSchema: z.object({}).strict(),
+      baseResponseSchema: z
+        .object({
+          results: z.array(z.unknown()),
+        })
+        .strict(),
+      versions: [
+        {
+          version: '2026-03-03',
+          description: 'Legacy',
+          requestChanges: [],
+          responseChanges: [],
+        },
+        {
+          version: '2026-03-09',
+          description: 'Uses prepared context',
+          requestChanges: [],
+          responseChanges: [new ContextAwareLegacyIdChange(events)],
+          prepareResponseDowngradeContext: prepareContext,
+        },
+      ],
+    };
+
+    const pipeline = new ResponseVersioningPipeline(
+      new VersionRegistry(definition, new DslCompiler()),
+      new VersionResolver(),
+    );
+
+    await expect(
+      pipeline.downgradeResponse(
+        {
+          results: [{}],
+        },
+        '2026-03-03',
+      ),
+    ).resolves.toEqual({
+      results: [{ legacyId: 'legacy-123' }],
+    });
+
+    expect(prepareContext).toHaveBeenCalledTimes(1);
+    expect(events).toEqual(['prepare', 'change']);
+  });
 });
 
 class ThrowingDowngradeChange extends CustomTransformChange {
@@ -204,7 +266,8 @@ class ThrowingDowngradeChange extends CustomTransformChange {
 }
 
 class TypeDiscriminatedPlaceChange extends CustomTransformChange {
-  override description = 'replace place schema with type-discriminated branches';
+  override description =
+    'replace place schema with type-discriminated branches';
   override payloadPath = '/results/*' as const;
 
   protected override schemaPatchReplace() {
@@ -261,5 +324,23 @@ class TypeDiscriminatedPlaceChange extends CustomTransformChange {
     }
 
     throw new Error('Unknown type');
+  }
+}
+
+class ContextAwareLegacyIdChange extends RemoveFieldChange {
+  override description = 'restore legacyId from prepared context';
+  override payloadPath = '/results/*' as const;
+  override field = 'legacyId';
+
+  constructor(private readonly events: string[]) {
+    super();
+  }
+
+  override downgrade(
+    _container: Record<string, unknown>,
+    context?: ResponseDowngradeContext,
+  ) {
+    this.events.push('change');
+    return context?.legacyId;
   }
 }

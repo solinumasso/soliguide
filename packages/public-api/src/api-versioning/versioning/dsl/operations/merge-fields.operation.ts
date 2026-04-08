@@ -1,12 +1,16 @@
 import { removeKey, removeKeys } from '../../object-path.utils';
 import { z } from 'zod';
-import { ObjectPath } from '../../versioning.types';
+import {
+  ObjectPath,
+  type ResponseDowngradeContext,
+} from '../../versioning.types';
 import { OperationHandler } from './operation-handler.types';
 import { MaybeAsync } from '../../../utils';
 
 type SplitMapper = (
   value: unknown,
   container: Record<string, unknown>,
+  context?: ResponseDowngradeContext,
 ) => MaybeAsync<Record<string, unknown> | undefined>;
 
 type MergeMapper = (
@@ -63,7 +67,7 @@ export const mergeFieldsOperationHandler: OperationHandler<
     }
   },
 
-  async applyResponse(operation, container) {
+  async applyResponse(operation, container, context) {
     if (!(operation.to in container) || !operation.downgrade) {
       return;
     }
@@ -71,6 +75,7 @@ export const mergeFieldsOperationHandler: OperationHandler<
     const downgradeResult = await operation.downgrade(
       container[operation.to],
       container,
+      context,
     );
     if (downgradeResult === undefined) {
       return;

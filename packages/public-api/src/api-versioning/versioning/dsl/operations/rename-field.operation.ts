@@ -1,13 +1,14 @@
 import { z } from 'zod';
 
 import { removeKey } from '../../object-path.utils';
-import { ObjectPath } from '../../versioning.types';
+import { ObjectPath, ResponseDowngradeContext } from '../../versioning.types';
 import { OperationHandler } from './operation-handler.types';
 import { MaybeAsync } from '../../../utils';
 
 type ValueMapper = (
   value: unknown,
   container: Record<string, unknown>,
+  context?: ResponseDowngradeContext,
 ) => MaybeAsync<unknown>;
 
 export interface RenameFieldOperation<
@@ -53,7 +54,7 @@ export const renameFieldOperationHandler: OperationHandler<
     removeKey(container, operation.from);
   },
 
-  async applyResponse(operation, container) {
+  async applyResponse(operation, container, context) {
     if (!(operation.to in container)) {
       return;
     }
@@ -63,6 +64,7 @@ export const renameFieldOperationHandler: OperationHandler<
       container[operation.from] = await downgrade(
         container[operation.to],
         container,
+        context,
       );
     }
 

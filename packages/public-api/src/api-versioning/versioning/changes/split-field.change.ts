@@ -1,6 +1,9 @@
 import { z } from 'zod';
 import type { SplitFieldOperation } from '../dsl/operations/split-field.operation';
-import type { PayloadObjectPath } from '../versioning.types';
+import type {
+  PayloadObjectPath,
+  ResponseDowngradeContext,
+} from '../versioning.types';
 import { Change } from './change';
 import { FieldKey, ResolvedContainer } from './types';
 import { MaybeAsync } from '../../utils';
@@ -22,6 +25,7 @@ export abstract class SplitFieldChange<
   downgrade(
     _values: Record<string, unknown>,
     _container: Record<string, unknown>,
+    _context?: ResponseDowngradeContext,
   ): MaybeAsync<unknown> {
     return undefined;
   }
@@ -37,7 +41,8 @@ export abstract class SplitFieldChange<
       from: this.from,
       schemas: this.schemas,
       upgrade: (value, container) => this.upgrade(value, container),
-      downgrade: (values, container) => this.downgrade(values, container),
+      downgrade: (values, container, context) =>
+        this.downgrade(values, container, context),
       removeSource: this.removeSource(),
     };
   }
@@ -49,7 +54,8 @@ export abstract class SplitFieldChange<
       from: this.from,
       schemas: this.schemas,
       upgrade: (value, container) => this.upgrade(value, container),
-      downgrade: (values, container) => this.downgrade(values, container),
+      downgrade: (values, container, context) =>
+        this.downgrade(values, container, context),
       removeSource: this.removeSource(),
     };
   }

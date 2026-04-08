@@ -1,5 +1,8 @@
 import { z } from 'zod';
-import { PayloadObjectPath } from '../versioning.types';
+import {
+  PayloadObjectPath,
+  type ResponseDowngradeContext,
+} from '../versioning.types';
 import type {
   RequestCustomTransformOperation,
   ResponseCustomTransformOperation,
@@ -40,6 +43,7 @@ export abstract class CustomTransformChange<TPayload = unknown> extends Change {
 
   downgrade(
     _container: Record<string, unknown>,
+    _context?: ResponseDowngradeContext,
   ): MaybeAsync<Record<string, unknown> | void> {
     return undefined;
   }
@@ -78,7 +82,7 @@ export abstract class CustomTransformChange<TPayload = unknown> extends Change {
       kind: 'customTransform',
       payloadPath: this.payloadPathValue(),
       schemaPatch: this.schemaPatch,
-      downgrade: (container) => this.downgrade(container),
+      downgrade: (container, context) => this.downgrade(container, context),
     };
   }
 

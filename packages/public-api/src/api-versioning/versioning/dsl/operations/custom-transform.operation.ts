@@ -1,11 +1,15 @@
 import { isRecord } from '../../../utils';
 import { replaceContainer } from '../../object-path.utils';
 import { z } from 'zod';
-import type { ObjectPath } from '../../versioning.types';
+import type {
+  ObjectPath,
+  ResponseDowngradeContext,
+} from '../../versioning.types';
 import type { OperationHandler } from './operation-handler.types';
 
 type ContainerMapper = (
   container: Record<string, unknown>,
+  context?: ResponseDowngradeContext,
 ) => Promise<Record<string, unknown> | void> | Record<string, unknown> | void;
 
 interface CustomTransformSchemaPatch<TField extends string = string> {
@@ -58,8 +62,8 @@ export const customTransformOperationHandler: OperationHandler<
     }
   },
 
-  async applyResponse(operation, container) {
-    const result = await operation.downgrade(container);
+  async applyResponse(operation, container, context) {
+    const result = await operation.downgrade(container, context);
     if (isRecord(result)) {
       replaceContainer(container, result);
     }

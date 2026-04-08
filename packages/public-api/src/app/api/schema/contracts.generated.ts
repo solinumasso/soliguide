@@ -9,14 +9,14 @@ import { v20260303SearchResponseSchema } from './2026-03-03/search.response/2026
 
 type ApiVersion = `${number}-${number}-${number}`;
 
-export const requestSchemasByVersion: ReadonlyMap<ApiVersion, z.ZodTypeAny> =
-  new Map<ApiVersion, z.ZodTypeAny>([
-    ['2026-01-01', v20260101SearchRequestSchema] as [ApiVersion, z.ZodTypeAny],
-    ['2026-03-03', v20260303SearchRequestSchema] as [ApiVersion, z.ZodTypeAny],
-  ]);
+export const requestSchemasByVersion: ReadonlyMap<ApiVersion, z.ZodTypeAny> = new Map<ApiVersion, z.ZodTypeAny>(
+[
+  ['2026-01-01', v20260101SearchRequestSchema] as [ApiVersion, z.ZodTypeAny],
+  ['2026-03-03', v20260303SearchRequestSchema] as [ApiVersion, z.ZodTypeAny],
+]);
 
-export const responseSchemasByVersion: ReadonlyMap<ApiVersion, z.ZodTypeAny> =
-  new Map<ApiVersion, z.ZodTypeAny>([
-    ['2026-01-01', v20260101SearchResponseSchema] as [ApiVersion, z.ZodTypeAny],
-    ['2026-03-03', v20260303SearchResponseSchema] as [ApiVersion, z.ZodTypeAny],
-  ]);
+export const responseSchemasByVersion: ReadonlyMap<ApiVersion, z.ZodTypeAny> = new Map<ApiVersion, z.ZodTypeAny>(
+[
+  ['2026-01-01', v20260101SearchResponseSchema] as [ApiVersion, z.ZodTypeAny],
+  ['2026-03-03', v20260303SearchResponseSchema] as [ApiVersion, z.ZodTypeAny],
+]);

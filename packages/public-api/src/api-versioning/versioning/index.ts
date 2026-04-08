@@ -27,6 +27,7 @@ export type {
   PayloadObjectPath,
   RequestVersionChange,
   ResolvedVersion,
+  ResponseDowngradeContext,
   ResponseVersionChange,
   ValidationSchemaCache,
   Version,

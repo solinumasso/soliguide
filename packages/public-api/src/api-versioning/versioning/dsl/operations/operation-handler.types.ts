@@ -1,5 +1,9 @@
 import { z } from 'zod';
-import { CompiledSchemaPatch, FieldSpec } from '../../versioning.types';
+import {
+  CompiledSchemaPatch,
+  FieldSpec,
+  ResponseDowngradeContext,
+} from '../../versioning.types';
 import { MaybeAsync } from '../../../utils';
 
 export interface SchemaCompilationContext {
@@ -22,5 +26,6 @@ export interface OperationHandler<TRequestOperation, TResponseOperation> {
   applyResponse(
     operation: TResponseOperation,
     container: Record<string, unknown>,
+    context?: ResponseDowngradeContext,
   ): MaybeAsync<void>;
 }

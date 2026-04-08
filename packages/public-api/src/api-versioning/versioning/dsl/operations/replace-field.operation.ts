@@ -1,11 +1,12 @@
 import { z } from 'zod';
-import { ObjectPath } from '../../versioning.types';
+import { ObjectPath, ResponseDowngradeContext } from '../../versioning.types';
 import { OperationHandler } from './operation-handler.types';
 import { MaybeAsync } from '../../../utils';
 
 type ValueMapper = (
   value: unknown,
   container: Record<string, unknown>,
+  context?: ResponseDowngradeContext,
 ) => MaybeAsync<unknown>;
 
 export interface ReplaceFieldOperation<
@@ -40,11 +41,12 @@ export const replaceFieldOperationHandler: OperationHandler<
     );
   },
 
-  async applyResponse(operation, container) {
+  async applyResponse(operation, container, context) {
     const downgrade = operation.downgrade ?? ((value: unknown) => value);
     container[operation.field] = await downgrade(
       container[operation.field],
       container,
+      context,
     );
   },
 };

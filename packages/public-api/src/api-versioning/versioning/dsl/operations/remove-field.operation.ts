@@ -1,5 +1,5 @@
 import { removeKey } from '../../object-path.utils';
-import { ObjectPath } from '../../versioning.types';
+import { ObjectPath, ResponseDowngradeContext } from '../../versioning.types';
 import { OperationHandler } from './operation-handler.types';
 import { MaybeAsync } from '../../../utils';
 
@@ -19,7 +19,10 @@ export interface ResponseRemoveFieldOperation<
   kind: 'removeField';
   payloadPath?: TPayloadPath;
   field: TField;
-  downgrade: (container: Record<string, unknown>) => MaybeAsync<unknown>;
+  downgrade: (
+    container: Record<string, unknown>,
+    context?: ResponseDowngradeContext,
+  ) => MaybeAsync<unknown>;
 }
 
 export const removeFieldOperationHandler: OperationHandler<
@@ -37,7 +40,7 @@ export const removeFieldOperationHandler: OperationHandler<
     removeKey(container, operation.field);
   },
 
-  async applyResponse(operation, container) {
-    container[operation.field] = await operation.downgrade(container);
+  async applyResponse(operation, container, context) {
+    container[operation.field] = await operation.downgrade(container, context);
   },
 };

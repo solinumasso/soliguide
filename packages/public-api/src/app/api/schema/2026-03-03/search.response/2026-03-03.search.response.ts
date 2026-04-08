@@ -9,16 +9,17 @@ import {
   RemoveFieldChange,
   ReplaceFieldChange,
   RenameFieldChange,
+  type ResponseDowngradeContext,
 } from '../../../../../api-versioning/versioning';
-import { type Contact, contactSchema } from './contact';
-import { type Service, serviceSchema } from './service';
-import { type Access, accessSchema } from './access';
-import { type Audience, audienceSchema } from './audience';
+import { contactSchema, type Contact } from './contact';
+import { serviceSchema, type Service } from './service';
+import { accessSchema, type Access } from './access';
+import { audienceSchema, type Audience } from './audience';
 import { type Location, locationSchema } from './location';
 import { type Schedule, scheduleSchema } from './schedule';
 import {
-  type TemporaryInformation,
   temporaryInformationSchema,
+  type TemporaryInformation,
 } from './temporary-information';
 import { type V20260101SearchResponse } from '../../2026-01-01/search.response/2026-01-01.search.response.generated';
 
@@ -35,6 +36,250 @@ type LegacyPublics = NonNullable<V20260101SearchPlaceResponse['publics']>;
 type LegacyOpeningHours = NonNullable<V20260101SearchPlaceResponse['newhours']>;
 type LegacyPosition = NonNullable<V20260101SearchPlaceResponse['position']>;
 type LegacyParcours = NonNullable<V20260101SearchPlaceResponse['parcours']>;
+type LegacyPlaceSnapshot = Partial<V20260101SearchPlaceResponse>;
+type LegacyFieldReader = (
+  container: Record<string, unknown>,
+  field: string,
+  context?: ResponseDowngradeContext,
+) => unknown;
+
+interface V20260303LegacyLookupContext {
+  v20260303?: {
+    legacyById?: ReadonlyMap<string, LegacyPlaceSnapshot>;
+  };
+}
+
+abstract class SnapshotBackedRemoveFieldChange extends RemoveFieldChange {
+  constructor(private readonly readLegacyField: LegacyFieldReader) {
+    super();
+  }
+
+  override downgrade(
+    container: Record<string, unknown>,
+    context?: ResponseDowngradeContext,
+  ) {
+    return this.readLegacyField(container, this.field, context);
+  }
+}
+
+const audienceOtherStatusesToLegacyMap: Record<
+  Audience['otherStatuses'],
+  string
+> = {
+  violence: 'violence',
+  addiction: 'addiction',
+  disability: 'disability',
+  'lgbt+': 'lgbtqPlus',
+  hiv: 'hiv',
+  prostitution: 'sexWork',
+  prison: 'prison',
+  student: 'student',
+};
+
+function readLegacySnapshot(
+  container: Record<string, unknown>,
+  context?: ResponseDowngradeContext,
+): LegacyPlaceSnapshot | undefined {
+  const id = container.id;
+  if (typeof id !== 'string' && typeof id !== 'number') {
+    return undefined;
+  }
+
+  const legacyById = (context as V20260303LegacyLookupContext | undefined)
+    ?.v20260303?.legacyById;
+  return legacyById?.get(String(id));
+}
+
+function readLegacyServiceSnapshot(
+  legacyPlace: LegacyPlaceSnapshot | undefined,
+  serviceId: string,
+): LegacyService | undefined {
+  if (!legacyPlace?.services_all || !Array.isArray(legacyPlace.services_all)) {
+    return undefined;
+  }
+
+  return legacyPlace.services_all.find(
+    (service) => String(service.serviceObjectId) === serviceId,
+  );
+}
+
+function toLegacyModalities(
+  access: Access | undefined,
+  legacyModalities: LegacyModalities | undefined,
+): LegacyModalities {
+  if (!access) {
+    return legacyModalities ?? {};
+  }
+
+  return {
+    inconditionnel: access.isUnconditional,
+    appointment: {
+      checked: access.appointmentRequirement.isRequired,
+      precisions: access.appointmentRequirement.details,
+    },
+    inscription: {
+      checked: access.registrationRequirement.isRequired,
+      precisions: access.registrationRequirement.details,
+    },
+    orientation: {
+      checked: access.orientationRequirement.isRequired,
+      precisions: access.orientationRequirement.details,
+    },
+    price: {
+      checked: access.pricing.isPaid,
+      precisions: access.pricing.details,
+    },
+    animal: {
+      checked: access.allowPets,
+    },
+    pmr: {
+      checked: access.isWheelchairAccessible,
+    },
+    docs: legacyModalities?.docs ?? [],
+    other: access.otherDetails,
+  };
+}
+
+function toLegacyPublics(
+  audience: Audience | undefined,
+  legacyPublics: LegacyPublics | undefined,
+): LegacyPublics {
+  if (!audience) {
+    return legacyPublics ?? {};
+  }
+
+  const legacyOtherStatus =
+    audienceOtherStatusesToLegacyMap[audience.otherStatuses];
+  const supportContextDescription =
+    audience.specialSupportContexts.length > 0
+      ? `Special support contexts: ${audience.specialSupportContexts
+          .map((context) => `${context.label}: ${context.details}`)
+          .join(' | ')}`
+      : '';
+  const description = [audience.description, supportContextDescription]
+    .filter((value) => value.trim().length > 0)
+    .join('\n\n');
+
+  return {
+    accueil:
+      audience.admissionPolicy === 'open'
+        ? 0
+        : (legacyPublics?.accueil ??
+          (audience.isTargeted || audience.specialSupportContexts.length > 0
+            ? 2
+            : 1)),
+    administrative: [audience.administrativeStatuses],
+    familialle: [audience.familyStatuses],
+    other: legacyOtherStatus ? [legacyOtherStatus] : [],
+    gender: [audience.genders],
+    age: audience.ageRange
+      ? {
+          min: audience.ageRange.min,
+          max: audience.ageRange.max,
+        }
+      : undefined,
+    description,
+  };
+}
+
+function toLegacyOpeningHours(
+  schedule: Schedule,
+  legacyOpeningHours: LegacyOpeningHours | undefined,
+): LegacyOpeningHours {
+  const openingHours: LegacyOpeningHours = {
+    closedHolidays: toLegacyClosedHolidays(
+      schedule.publicHolidays,
+      legacyOpeningHours?.closedHolidays,
+    ),
+  };
+  const openingHoursByDay = openingHours as Record<string, unknown>;
+
+  for (const day of schedule.weeklySchedule) {
+    openingHoursByDay[day.dayOfWeek] = {
+      open: day.status === 'open',
+      timeslot: day.timeSlots.map((slot) => ({
+        start: toLegacyTimeNumber(slot.startTime),
+        end: toLegacyTimeNumber(slot.endTime),
+      })),
+    };
+  }
+
+  if (schedule.publicHolidays.status === 'specific') {
+    const legacyHolidayDescription = schedule.publicHolidays.openedHolidays
+      .map((holiday) => {
+        const timeSlots = holiday.timeSlots
+          .map((slot) => `${slot.startTime}-${slot.endTime}`)
+          .join(', ');
+        return `${holiday.label}: ${holiday.status}${
+          timeSlots.length > 0 ? ` (${timeSlots})` : ''
+        }`;
+      })
+      .join(' | ');
+
+    if (legacyHolidayDescription.length > 0) {
+      openingHours.description = legacyHolidayDescription;
+    } else if (typeof legacyOpeningHours?.description === 'string') {
+      openingHours.description = legacyOpeningHours.description;
+    }
+  }
+
+  return openingHours;
+}
+
+function toLegacyClosedHolidays(
+  publicHolidays: Schedule['publicHolidays'],
+  legacyClosedHolidays: PlaceClosedHolidays | undefined,
+): PlaceClosedHolidays {
+  if (publicHolidays.status === 'open') {
+    return PlaceClosedHolidays.OPEN;
+  }
+
+  if (publicHolidays.status === 'closed') {
+    return PlaceClosedHolidays.CLOSED;
+  }
+
+  if (publicHolidays.status === 'specific') {
+    if (publicHolidays.openedHolidays.length === 0) {
+      return PlaceClosedHolidays.UNKNOWN;
+    }
+
+    if (
+      publicHolidays.openedHolidays.every(
+        (holiday) => holiday.status === 'open',
+      )
+    ) {
+      return PlaceClosedHolidays.OPEN;
+    }
+
+    if (
+      publicHolidays.openedHolidays.every(
+        (holiday) => holiday.status === 'closed',
+      )
+    ) {
+      return PlaceClosedHolidays.CLOSED;
+    }
+  }
+
+  return legacyClosedHolidays ?? PlaceClosedHolidays.UNKNOWN;
+}
+
+function toLegacyTimeNumber(value: string): number {
+  const [hoursRaw, minutesRaw] = value.split(':');
+  const hours = Number.parseInt(hoursRaw ?? '0', 10);
+  const minutes = Number.parseInt(minutesRaw ?? '0', 10);
+  return hours * 100 + minutes;
+}
+
+function toLegacyDateValue(
+  value: unknown,
+  fallback: Date | string,
+): Date | string {
+  if (value instanceof Date || typeof value === 'string') {
+    return value;
+  }
+
+  return fallback;
+}
 
 export class RenameUniqueIdentifier extends RenameFieldChange {
   override description =
@@ -45,136 +290,136 @@ export class RenameUniqueIdentifier extends RenameFieldChange {
   override schema = z.number().int().describe('Numeric place identifier.');
 }
 
-export class RemoveMongoObjectId extends RemoveFieldChange {
+export class RemoveMongoObjectId extends SnapshotBackedRemoveFieldChange {
+  constructor(readLegacyField: LegacyFieldReader) {
+    super(readLegacyField);
+  }
+
   override description =
     'Remove deprecated MongoDB identifier "_id" from search response results so the public contract exposes only business identifiers and does not leak persistence-layer implementation details.';
   override payloadPath = '/places/*' as const;
   override field = '_id';
-
-  override downgrade() {
-    return undefined;
-  }
 }
 
-export class RemoveLegacyAutoFlag extends RemoveFieldChange {
+export class RemoveLegacyAutoFlag extends SnapshotBackedRemoveFieldChange {
+  constructor(readLegacyField: LegacyFieldReader) {
+    super(readLegacyField);
+  }
+
   override description =
     'Remove legacy "auto" flag from search response results because this internal automation marker is not part of the public API contract.';
   override payloadPath = '/places/*' as const;
   override field = 'auto';
-
-  override downgrade() {
-    return undefined;
-  }
 }
 
-export class RemoveLegacyStatusField extends RemoveFieldChange {
+export class RemoveLegacyStatusField extends SnapshotBackedRemoveFieldChange {
+  constructor(readLegacyField: LegacyFieldReader) {
+    super(readLegacyField);
+  }
+
   override description =
     'Remove legacy "status" field from search response results to avoid exposing back-office lifecycle state that is not part of the current public model.';
   override payloadPath = '/places/*' as const;
   override field = 'status';
-
-  override downgrade() {
-    return undefined;
-  }
 }
 
-export class RemoveLegacyVisibilityField extends RemoveFieldChange {
+export class RemoveLegacyVisibilityField extends SnapshotBackedRemoveFieldChange {
+  constructor(readLegacyField: LegacyFieldReader) {
+    super(readLegacyField);
+  }
+
   override description =
     'Remove legacy "visibility" field from search response results to keep visibility management concerns out of the public response contract.';
   override payloadPath = '/places/*' as const;
   override field = 'visibility';
-
-  override downgrade() {
-    return undefined;
-  }
 }
 
-export class RemoveLegacyCloseField extends RemoveFieldChange {
+export class RemoveLegacyCloseField extends SnapshotBackedRemoveFieldChange {
+  constructor(readLegacyField: LegacyFieldReader) {
+    super(readLegacyField);
+  }
+
   override description =
     'Remove legacy "close" field from search response results because open-state information is now represented through normalized schedule and temporary-information models.';
   override payloadPath = '/places/*' as const;
   override field = 'close';
-
-  override downgrade() {
-    return undefined;
-  }
 }
 
-export class RemoveLegacySourcesField extends RemoveFieldChange {
+export class RemoveLegacySourcesField extends SnapshotBackedRemoveFieldChange {
+  constructor(readLegacyField: LegacyFieldReader) {
+    super(readLegacyField);
+  }
+
   override description =
     'Remove legacy "sources" field from search response results to prevent leaking internal provenance metadata that is not exposed in the current API.';
   override payloadPath = '/places/*' as const;
   override field = 'sources';
-
-  override downgrade() {
-    return undefined;
-  }
 }
 
-export class RemoveLegacyUpdatedByUserAtField extends RemoveFieldChange {
+export class RemoveLegacyUpdatedByUserAtField extends SnapshotBackedRemoveFieldChange {
+  constructor(readLegacyField: LegacyFieldReader) {
+    super(readLegacyField);
+  }
+
   override description =
     'Remove legacy "updatedByUserAt" field from search response results because the public API exposes only a single canonical update timestamp.';
   override payloadPath = '/places/*' as const;
   override field = 'updatedByUserAt';
-
-  override downgrade() {
-    return undefined;
-  }
 }
 
-export class RemoveLegacySlugsField extends RemoveFieldChange {
+export class RemoveLegacySlugsField extends SnapshotBackedRemoveFieldChange {
+  constructor(readLegacyField: LegacyFieldReader) {
+    super(readLegacyField);
+  }
+
   override description =
     'Remove legacy "slugs" object from search response results after introducing the normalized "slug" field, avoiding duplicate SEO identifiers.';
   override payloadPath = '/places/*' as const;
   override field = 'slugs';
-
-  override downgrade() {
-    return undefined;
-  }
 }
 
-export class RemoveLegacyDistanceField extends RemoveFieldChange {
+export class RemoveLegacyDistanceField extends SnapshotBackedRemoveFieldChange {
+  constructor(readLegacyField: LegacyFieldReader) {
+    super(readLegacyField);
+  }
+
   override description =
     'Remove legacy "distance" field from search response results because distance presentation is query-context dependent and not part of the canonical place resource schema.';
   override payloadPath = '/places/*' as const;
   override field = 'distance';
-
-  override downgrade() {
-    return undefined;
-  }
 }
 
-export class RemoveLegacyPhotosField extends RemoveFieldChange {
+export class RemoveLegacyPhotosField extends SnapshotBackedRemoveFieldChange {
+  constructor(readLegacyField: LegacyFieldReader) {
+    super(readLegacyField);
+  }
+
   override description =
     'Remove legacy "photos" field from search response results to keep the minimal search payload focused on normalized resource information.';
   override payloadPath = '/places/*' as const;
   override field = 'photos';
-
-  override downgrade() {
-    return undefined;
-  }
 }
 
-export class RemoveLegacyGeoZonesField extends RemoveFieldChange {
+export class RemoveLegacyGeoZonesField extends SnapshotBackedRemoveFieldChange {
+  constructor(readLegacyField: LegacyFieldReader) {
+    super(readLegacyField);
+  }
+
   override description =
     'Remove legacy "geoZones" field from search response results because geographic targeting details are not part of the public search response contract.';
   override payloadPath = '/places/*' as const;
   override field = 'geoZones';
-
-  override downgrade() {
-    return undefined;
-  }
 }
 
-export class RemoveLegacyCreatedAtField extends RemoveFieldChange {
+export class RemoveLegacyCreatedAtField extends SnapshotBackedRemoveFieldChange {
+  constructor(readLegacyField: LegacyFieldReader) {
+    super(readLegacyField);
+  }
+
   override description =
     'Remove legacy "createdAt" field from search response results to keep temporal metadata aligned with the single public "updatedAt" reference date.';
   override payloadPath = '/places/*' as const;
   override field = 'createdAt';
-
-  override downgrade() {
-    return undefined;
-  }
 }
 
 export class RenameSeoUrl extends RenameFieldChange {
@@ -230,9 +475,7 @@ export class ReplaceEntityByContacts extends CustomTransformChange {
 
   protected override schemaPatchSet() {
     return {
-      contacts: z
-        .array(contactSchema)
-        .describe('Contact methods available for the place.'),
+      contacts: z.array(contactSchema),
     };
   }
 
@@ -297,9 +540,7 @@ export class ReplaceServicesAllByServices extends CustomTransformChange {
 
   protected override schemaPatchSet() {
     return {
-      services: z
-        .array(serviceSchema)
-        .describe('Services provided by the place.'),
+      services: z.array(serviceSchema),
     };
   }
 
@@ -307,11 +548,19 @@ export class ReplaceServicesAllByServices extends CustomTransformChange {
     return ['services_all'];
   }
 
-  override downgrade(container: Record<string, unknown>) {
+  override downgrade(
+    container: Record<string, unknown>,
+    context?: ResponseDowngradeContext,
+  ) {
     const services: Service[] = (container.services as Service[]) ?? [];
-    const fallbackCreatedAt = container.updatedAt ?? new Date().toISOString();
+    const legacyPlace = readLegacySnapshot(container, context);
+    const fallbackCreatedAt = toLegacyDateValue(
+      container.updatedAt,
+      new Date(0),
+    );
 
     container.services_all = services.map((service) => ({
+      ...(readLegacyServiceSnapshot(legacyPlace, service.id) ?? {}),
       category: service.category,
       description: service.description,
       differentHours: service.schedule !== null,
@@ -325,13 +574,30 @@ export class ReplaceServicesAllByServices extends CustomTransformChange {
             ? ServiceSaturation.HIGH
             : ServiceSaturation.LOW,
       },
-      // TODO(vNext): current "services" has no per-service creation timestamp.
-      createdAt: fallbackCreatedAt,
+      createdAt: toLegacyDateValue(
+        (service as Record<string, unknown>).createdAt,
+        readLegacyServiceSnapshot(legacyPlace, service.id)?.createdAt ??
+          fallbackCreatedAt,
+      ),
       serviceObjectId: service.id,
-      // TODO(vNext): current "access"/"audience"/"schedule" shapes are not reversible to legacy formats.
-      modalities: undefined,
-      publics: undefined,
-      hours: undefined,
+      modalities: service.access
+        ? toLegacyModalities(
+            service.access,
+            readLegacyServiceSnapshot(legacyPlace, service.id)?.modalities,
+          )
+        : readLegacyServiceSnapshot(legacyPlace, service.id)?.modalities,
+      publics: service.audience
+        ? toLegacyPublics(
+            service.audience,
+            readLegacyServiceSnapshot(legacyPlace, service.id)?.publics,
+          )
+        : readLegacyServiceSnapshot(legacyPlace, service.id)?.publics,
+      hours: service.schedule
+        ? toLegacyOpeningHours(
+            service.schedule,
+            readLegacyServiceSnapshot(legacyPlace, service.id)?.hours,
+          )
+        : readLegacyServiceSnapshot(legacyPlace, service.id)?.hours,
     })) as LegacyService[];
 
     delete container.services;
@@ -345,9 +611,7 @@ export class ReplaceTempInfosByTemporaryInformation extends CustomTransformChang
 
   protected override schemaPatchSet() {
     return {
-      temporaryInformation: temporaryInformationSchema.describe(
-        'Temporary changes affecting the place.',
-      ),
+      temporaryInformation: temporaryInformationSchema,
     };
   }
 
@@ -355,49 +619,142 @@ export class ReplaceTempInfosByTemporaryInformation extends CustomTransformChang
     return ['tempInfos'];
   }
 
-  override downgrade(container: Record<string, unknown>) {
+  override downgrade(
+    container: Record<string, unknown>,
+    context?: ResponseDowngradeContext,
+  ) {
     const temporaryInformation =
-      container.temporaryInformation as TemporaryInformation;
-
-    const firstClosure = temporaryInformation.closures[0];
-    const firstScheduleAdjustment = temporaryInformation.scheduleAdjustments[0];
-    const firstMessage = temporaryInformation.messages[0];
+      (container.temporaryInformation as TemporaryInformation | undefined) ??
+      ({
+        closures: [],
+        scheduleAdjustments: [],
+        messages: [],
+      } as TemporaryInformation);
+    const legacyTempInfos = readLegacySnapshot(container, context)?.tempInfos;
 
     const tempInfos: LegacyTempInfos = {
-      // TODO(vNext): legacy "tempInfos.closure" supports only one item; additional closures are dropped.
-      closure: firstClosure
-        ? {
-            actif: true,
-            dateDebut: firstClosure.startDate,
-            dateFin: firstClosure.endDate,
-            description: firstClosure.description,
-          }
-        : undefined,
-      // TODO(vNext): legacy "tempInfos.hours" supports only one item; additional adjustments are dropped.
-      hours: firstScheduleAdjustment
-        ? {
-            actif: true,
-            dateDebut: firstScheduleAdjustment.startDate,
-            dateFin: firstScheduleAdjustment.endDate,
-            description: firstScheduleAdjustment.description,
-            // TODO(vNext): current "schedule" shape is not reversible to legacy opening-hours format.
-            hours: undefined,
-          }
-        : undefined,
-      // TODO(vNext): legacy "tempInfos.message" supports only one item; additional messages are dropped.
-      message: firstMessage
-        ? {
-            actif: true,
-            dateDebut: firstMessage.startDate,
-            dateFin: firstMessage.endDate,
-            description: firstMessage.description,
-            name: firstMessage.title,
-          }
-        : undefined,
-    } as LegacyTempInfos;
+      closure: this.buildLegacyClosure(
+        temporaryInformation.closures,
+        legacyTempInfos?.closure,
+      ),
+      hours: this.buildLegacyHours(
+        temporaryInformation.scheduleAdjustments,
+        legacyTempInfos?.hours,
+      ),
+      message: this.buildLegacyMessage(
+        temporaryInformation.messages,
+        legacyTempInfos?.message,
+      ),
+    };
 
     container.tempInfos = tempInfos;
     delete container.temporaryInformation;
+  }
+
+  private buildLegacyClosure(
+    closures: TemporaryInformation['closures'],
+    legacyClosure: LegacyTempInfos['closure'],
+  ): LegacyTempInfos['closure'] {
+    const dateRange = this.mergeDateRange(closures);
+    if (!dateRange) {
+      return legacyClosure;
+    }
+
+    return {
+      actif: true,
+      dateDebut: dateRange.startDate,
+      dateFin: dateRange.endDate,
+      description: this.mergeTexts(
+        closures.map((closure) => closure.description),
+        '\n\n',
+      ),
+    };
+  }
+
+  private buildLegacyHours(
+    scheduleAdjustments: TemporaryInformation['scheduleAdjustments'],
+    legacyHours: LegacyTempInfos['hours'],
+  ): LegacyTempInfos['hours'] {
+    const dateRange = this.mergeDateRange(scheduleAdjustments);
+    if (!dateRange) {
+      return legacyHours;
+    }
+
+    const representativeSchedule = [...scheduleAdjustments].sort(
+      (left, right) => left.startDate.localeCompare(right.startDate),
+    )[0]?.schedule;
+
+    return {
+      actif: true,
+      dateDebut: dateRange.startDate,
+      dateFin: dateRange.endDate,
+      description: this.mergeTexts(
+        scheduleAdjustments.map((adjustment) => adjustment.description),
+        '\n\n',
+      ),
+      hours: representativeSchedule
+        ? toLegacyOpeningHours(
+            representativeSchedule,
+            legacyHours?.hours ?? undefined,
+          )
+        : (legacyHours?.hours ?? undefined),
+    };
+  }
+
+  private buildLegacyMessage(
+    messages: TemporaryInformation['messages'],
+    legacyMessage: LegacyTempInfos['message'],
+  ): LegacyTempInfos['message'] {
+    const dateRange = this.mergeDateRange(messages);
+    if (!dateRange) {
+      return legacyMessage;
+    }
+
+    return {
+      actif: true,
+      dateDebut: dateRange.startDate,
+      dateFin: dateRange.endDate,
+      description: this.mergeTexts(
+        messages.map((message) => `${message.title}: ${message.description}`),
+        '\n\n',
+      ),
+      name: this.mergeTexts(
+        messages.map((message) => message.title),
+        ' | ',
+      ),
+    };
+  }
+
+  private mergeDateRange(
+    entries: ReadonlyArray<{ startDate: string; endDate: string }>,
+  ): { startDate: string; endDate: string } | undefined {
+    if (entries.length === 0) {
+      return undefined;
+    }
+
+    return {
+      startDate: entries.reduce(
+        (lowest, entry) =>
+          entry.startDate < lowest ? entry.startDate : lowest,
+        entries[0].startDate,
+      ),
+      endDate: entries.reduce(
+        (highest, entry) => (entry.endDate > highest ? entry.endDate : highest),
+        entries[0].endDate,
+      ),
+    };
+  }
+
+  private mergeTexts(
+    values: ReadonlyArray<string>,
+    separator: string,
+  ): string | undefined {
+    const merged = values
+      .map((value) => value.trim())
+      .filter((value) => value.length > 0)
+      .join(separator);
+
+    return merged.length > 0 ? merged : undefined;
   }
 }
 
@@ -408,7 +765,7 @@ export class ReplaceModalitiesByAccess extends CustomTransformChange {
 
   protected override schemaPatchSet() {
     return {
-      access: accessSchema.describe('Access rules applying to the place.'),
+      access: accessSchema,
     };
   }
 
@@ -416,39 +773,15 @@ export class ReplaceModalitiesByAccess extends CustomTransformChange {
     return ['modalities'];
   }
 
-  override downgrade(container: Record<string, unknown>) {
-    const access = container.access as Access;
-
-    const modalities: LegacyModalities = {
-      inconditionnel: access.isUnconditional,
-      appointment: {
-        checked: access.appointmentRequirement.isRequired,
-        precisions: access.appointmentRequirement.details,
-      },
-      inscription: {
-        checked: access.registrationRequirement.isRequired,
-        precisions: access.registrationRequirement.details,
-      },
-      orientation: {
-        checked: access.orientationRequirement.isRequired,
-        precisions: access.orientationRequirement.details,
-      },
-      price: {
-        checked: access.pricing.isPaid,
-        precisions: access.pricing.details,
-      },
-      animal: {
-        checked: access.allowPets,
-      },
-      pmr: {
-        checked: access.isWheelchairAccessible,
-      },
-      // TODO(vNext): legacy "modalities.docs" has no equivalent in current "access" model.
-      docs: undefined,
-      other: access.otherDetails,
-    };
-
-    container.modalities = modalities;
+  override downgrade(
+    container: Record<string, unknown>,
+    context?: ResponseDowngradeContext,
+  ) {
+    const legacyModalities = readLegacySnapshot(container, context)?.modalities;
+    container.modalities = toLegacyModalities(
+      container.access as Access | undefined,
+      legacyModalities,
+    );
     delete container.access;
   }
 }
@@ -460,9 +793,7 @@ export class ReplacePublicsByAudience extends CustomTransformChange {
 
   protected override schemaPatchSet() {
     return {
-      audience: audienceSchema.describe(
-        'Audience rules and targeting information.',
-      ),
+      audience: audienceSchema,
     };
   }
 
@@ -470,40 +801,15 @@ export class ReplacePublicsByAudience extends CustomTransformChange {
     return ['publics'];
   }
 
-  override downgrade(container: Record<string, unknown>) {
-    const audience = container.audience as Audience;
-
-    const otherStatusesToLegacyMap: Record<Audience['otherStatuses'], string> =
-      {
-        violence: 'violence',
-        addiction: 'addiction',
-        disability: 'disability',
-        'lgbt+': 'lgbtqPlus',
-        hiv: 'hiv',
-        prostitution: 'sexWork',
-        prison: 'prison',
-        student: 'student',
-      };
-
-    const publics: LegacyPublics = {
-      // TODO(vNext): "audience" cannot distinguish legacy PREFERENTIAL (1) vs EXCLUSIVE (2) precisely.
-      accueil:
-        audience.admissionPolicy === 'open' ? 0 : audience.isTargeted ? 2 : 1,
-      administrative: [audience.administrativeStatuses],
-      familialle: [audience.familyStatuses],
-      other: [otherStatusesToLegacyMap[audience.otherStatuses]],
-      gender: [audience.genders],
-      age: audience.ageRange
-        ? {
-            min: audience.ageRange.min,
-            max: audience.ageRange.max,
-          }
-        : undefined,
-      description: audience.description,
-      // TODO(vNext): "specialSupportContexts" has no equivalent in legacy "publics" model.
-    };
-
-    container.publics = publics;
+  override downgrade(
+    container: Record<string, unknown>,
+    context?: ResponseDowngradeContext,
+  ) {
+    const legacyPublics = readLegacySnapshot(container, context)?.publics;
+    container.publics = toLegacyPublics(
+      container.audience as Audience | undefined,
+      legacyPublics,
+    );
     delete container.audience;
   }
 }
@@ -523,27 +829,72 @@ const itineraryStopSchema = z
   })
   .strict();
 
-const fixedLocationPlaceSchema = z
+const canonicalPlaceCommonSchema = z
   .object({
-    type: z.literal('fixedLocation'),
+    name: z.string().describe('Localized name of the place.').meta({
+      example: 'Community Support Center',
+    }),
+    description: z
+      .string()
+      .describe('Localized HTML content describing the place.')
+      .meta({
+        example:
+          '<p>A support center providing food distribution and social services.</p>',
+      }),
+    isOpenToday: z
+      .boolean()
+      .describe('Whether the place is open today.')
+      .meta({ example: true }),
+    sourceLanguage: z.string().optional(),
+    country: z.string().optional(),
+    languages: z
+      .array(z.string())
+      .describe('Languages spoken at the place. Format ISO 639-3')
+      .meta({ example: ['en', 'fr', 'rcf'] }),
+    id: z.number().int().describe('Numeric place identifier.'),
+    slug: z.string().describe('SEO-friendly unique slug for the place.'),
+    updatedAt: z.iso
+      .datetime()
+      .describe('Last update date and time of this place in ISO 8601 format.')
+      .meta({ example: '2026-03-26T10:15:00Z' }),
+    contacts: z
+      .array(contactSchema)
+      .describe('Contact methods available for the place.'),
+    services: z
+      .array(serviceSchema)
+      .describe('Services provided by the place.'),
+    temporaryInformation: temporaryInformationSchema.describe(
+      'Temporary changes affecting the place.',
+    ),
+    access: accessSchema.describe('Access rules applying to the place.'),
+    audience: audienceSchema.describe(
+      'Audience rules and targeting information.',
+    ),
+  })
+  .strict();
+
+const fixedLocationPlaceSchema = canonicalPlaceCommonSchema
+  .extend({
+    type: z.literal('fixedLocation').describe('Discriminates place shape.'),
     location: locationSchema.describe('Main location of the resource.'),
     schedule: scheduleSchema.describe('Main schedule of the resource.'),
   })
-  .loose();
+  .meta({ title: 'Fixed Location' });
 
-const itineraryPlaceSchema = z
-  .object({
-    type: z.literal('itinerary'),
+const itineraryPlaceSchema = canonicalPlaceCommonSchema
+  .extend({
+    type: z.literal('itinerary').describe('Discriminates place shape.'),
     stops: z
       .array(itineraryStopSchema)
-      .describe(
-        'Scheduled stops or route points where the itinerary service is available.',
-      ),
+      .describe('Scheduled stops or route points.'),
   })
-  .loose();
+  .meta({ title: 'Itinerary' });
 
-const placeTypeDiscriminatedSchema = z
+const placeSchemaByType = z
   .discriminatedUnion('type', [fixedLocationPlaceSchema, itineraryPlaceSchema])
+  .describe(
+    'Type-discriminated place payload. "fixedLocation" requires location/schedule; "itinerary" requires stops.',
+  )
   .meta({
     discriminator: {
       propertyName: 'type',
@@ -556,11 +907,15 @@ export class ReplaceLegacyPlaceTypeByTypeDiscriminatedBranches extends CustomTra
   override payloadPath = '/places/*' as const;
 
   protected override schemaPatchReplace() {
-    return placeTypeDiscriminatedSchema;
+    return placeSchemaByType;
   }
 
-  override downgrade(container: Record<string, unknown>) {
+  override downgrade(
+    container: Record<string, unknown>,
+    context?: ResponseDowngradeContext,
+  ) {
     const type = container.type;
+    const legacyPlace = readLegacySnapshot(container, context);
 
     if (type === 'fixedLocation') {
       if (!container.location || !container.schedule) {
@@ -575,6 +930,7 @@ export class ReplaceLegacyPlaceTypeByTypeDiscriminatedBranches extends CustomTra
       );
       container.newhours = this.toLegacyOpeningHours(
         container.schedule as Schedule,
+        legacyPlace?.newhours,
       );
       delete container.location;
       delete container.schedule;
@@ -591,19 +947,25 @@ export class ReplaceLegacyPlaceTypeByTypeDiscriminatedBranches extends CustomTra
       }
 
       container.placeType = PlaceType.ITINERARY;
-      container.parcours = container.stops.map((stop) => {
+      container.parcours = container.stops.map((stop, index) => {
         const typedStop = stop as {
           description: string | null;
           location: Location;
           schedule: Schedule;
         };
+        const legacyStop = legacyPlace?.parcours?.[index];
 
         return {
           description: typedStop.description,
           position: this.toLegacyPosition(typedStop.location),
-          hours: this.toLegacyOpeningHours(typedStop.schedule),
-          // TODO(vNext): current itinerary stop has no legacy "show" flag source.
-          show: true,
+          hours: this.toLegacyOpeningHours(
+            typedStop.schedule,
+            legacyStop?.hours,
+          ),
+          show: this.resolveLegacyParcoursVisibility(
+            typedStop,
+            legacyStop?.show,
+          ),
         };
       }) as LegacyParcours;
       delete container.stops;
@@ -637,46 +999,30 @@ export class ReplaceLegacyPlaceTypeByTypeDiscriminatedBranches extends CustomTra
     };
   }
 
-  private toLegacyOpeningHours(schedule: Schedule): LegacyOpeningHours {
-    const openingHours: LegacyOpeningHours = {
-      closedHolidays: this.toLegacyClosedHolidays(
-        schedule.publicHolidays.status,
-      ),
-    };
-    const openingHoursByDay = openingHours as Record<string, unknown>;
-
-    for (const day of schedule.weeklySchedule) {
-      openingHoursByDay[day.dayOfWeek] = {
-        open: day.status === 'open',
-        timeslot: day.timeSlots.map((slot) => ({
-          start: this.toLegacyTimeNumber(slot.startTime),
-          end: this.toLegacyTimeNumber(slot.endTime),
-        })),
-      };
-    }
-
-    return openingHours;
+  private toLegacyOpeningHours(
+    schedule: Schedule,
+    legacyOpeningHours: LegacyOpeningHours | undefined,
+  ): LegacyOpeningHours {
+    return toLegacyOpeningHours(schedule, legacyOpeningHours);
   }
 
-  private toLegacyClosedHolidays(
-    status: Schedule['publicHolidays']['status'],
-  ): PlaceClosedHolidays {
-    if (status === 'open') {
-      return PlaceClosedHolidays.OPEN;
+  private resolveLegacyParcoursVisibility(
+    stop: {
+      description: string | null;
+      schedule: Schedule;
+    },
+    legacyShow: boolean | undefined,
+  ): boolean {
+    if (typeof legacyShow === 'boolean') {
+      return legacyShow;
     }
 
-    if (status === 'closed') {
-      return PlaceClosedHolidays.CLOSED;
+    if (stop.description && stop.description.trim().length > 0) {
+      return true;
     }
 
-    // TODO(vNext): current "specific" holiday strategy cannot be represented in legacy enum.
-    return PlaceClosedHolidays.UNKNOWN;
-  }
-
-  private toLegacyTimeNumber(value: string): number {
-    const [hoursRaw, minutesRaw] = value.split(':');
-    const hours = Number.parseInt(hoursRaw ?? '0', 10);
-    const minutes = Number.parseInt(minutesRaw ?? '0', 10);
-    return hours * 100 + minutes;
+    return stop.schedule.weeklySchedule.some(
+      (day) => day.status === 'open' || day.timeSlots.length > 0,
+    );
   }
 }

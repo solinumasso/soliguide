@@ -3,7 +3,10 @@ import {
   RequestRemoveFieldOperation,
   ResponseRemoveFieldOperation,
 } from '../dsl/operations/remove-field.operation';
-import { PayloadObjectPath } from '../versioning.types';
+import {
+  PayloadObjectPath,
+  type ResponseDowngradeContext,
+} from '../versioning.types';
 import { Change } from './change';
 import { FieldKey, ResolvedContainer } from './types';
 
@@ -14,7 +17,10 @@ export abstract class RemoveFieldChange<
   abstract field: FieldKey<TContainer>;
   payloadPath: PayloadObjectPath<TPayload> = '/';
 
-  abstract downgrade(_container: Record<string, unknown>): MaybeAsync<unknown>;
+  abstract downgrade(
+    _container: Record<string, unknown>,
+    _context?: ResponseDowngradeContext,
+  ): MaybeAsync<unknown>;
 
   override toRequestOperation(): RequestRemoveFieldOperation {
     return {
@@ -29,7 +35,7 @@ export abstract class RemoveFieldChange<
       kind: 'removeField',
       payloadPath: this.payloadPathValue(),
       field: this.field,
-      downgrade: (container) => this.downgrade(container),
+      downgrade: (container, context) => this.downgrade(container, context),
     };
   }
 }

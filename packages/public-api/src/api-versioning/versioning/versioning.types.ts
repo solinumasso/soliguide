@@ -128,12 +128,17 @@ export interface CompiledRequestChange {
   upgrade(payload: unknown): MaybeAsync<unknown>;
 }
 
+export type ResponseDowngradeContext = Record<string, unknown>;
+
 export interface CompiledResponseChange {
   changeClassName?: string;
   description: string;
   sourceFilePath?: string;
   schemaPatch: CompiledSchemaPatch;
-  downgrade(payload: unknown): MaybeAsync<unknown>;
+  downgrade(
+    payload: unknown,
+    context?: ResponseDowngradeContext,
+  ): MaybeAsync<unknown>;
 }
 
 export type RequestVersionChange = CompiledRequestChange;
@@ -145,6 +150,10 @@ export interface Version {
   description: string;
   requestChanges: readonly Change[];
   responseChanges: readonly Change[];
+  prepareResponseDowngradeContext?(
+    payload: unknown,
+    context: ResponseDowngradeContext,
+  ): MaybeAsync<void>;
 }
 
 export interface CompiledVersion {
@@ -152,6 +161,10 @@ export interface CompiledVersion {
   description: string;
   requestChanges: readonly CompiledRequestChange[];
   responseChanges: readonly CompiledResponseChange[];
+  prepareResponseDowngradeContext?(
+    payload: unknown,
+    context: ResponseDowngradeContext,
+  ): MaybeAsync<void>;
 }
 
 export type ValidationSchemaCache = ReadonlyMap<ApiVersion, z.ZodTypeAny>;

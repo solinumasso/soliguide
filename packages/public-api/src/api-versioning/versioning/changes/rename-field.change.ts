@@ -1,6 +1,9 @@
 import { z } from 'zod';
 import { RenameFieldOperation } from '../dsl/operations/rename-field.operation';
-import { PayloadObjectPath } from '../versioning.types';
+import {
+  PayloadObjectPath,
+  type ResponseDowngradeContext,
+} from '../versioning.types';
 import { Change } from './change';
 import { FieldKey, ResolvedContainer } from './types';
 import { MaybeAsync } from '../../utils';
@@ -25,6 +28,7 @@ export abstract class RenameFieldChange<
   downgrade(
     value: unknown,
     _container: Record<string, unknown>,
+    _context?: ResponseDowngradeContext,
   ): MaybeAsync<unknown> {
     return value;
   }
@@ -37,7 +41,8 @@ export abstract class RenameFieldChange<
       to: this.to,
       schema: this.schema,
       upgrade: (value, container) => this.upgrade(value, container),
-      downgrade: (value, container) => this.downgrade(value, container),
+      downgrade: (value, container, context) =>
+        this.downgrade(value, container, context),
     };
   }
 
@@ -49,7 +54,8 @@ export abstract class RenameFieldChange<
       to: this.to,
       schema: this.schema,
       upgrade: (value, container) => this.upgrade(value, container),
-      downgrade: (value, container) => this.downgrade(value, container),
+      downgrade: (value, container, context) =>
+        this.downgrade(value, container, context),
     };
   }
 }

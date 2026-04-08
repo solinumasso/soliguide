@@ -48,6 +48,10 @@ export class VersionedSchemaOutputProcessor {
       typeAlias.setIsExported(false);
     }
 
+    for (const typeAliasName of [outputPayloadTypeName, outputSchemaTypeName]) {
+      sourceFile.getTypeAlias(typeAliasName)?.remove();
+    }
+
     for (const exportDeclaration of sourceFile.getExportDeclarations()) {
       exportDeclaration.remove();
     }

@@ -15,6 +15,7 @@ import type {
   CompiledSchemaPatch,
   CompiledVersion,
   FieldSpec,
+  ResponseDowngradeContext,
   Version,
 } from '../versioning.types';
 import {
@@ -55,12 +56,12 @@ export class DslCompiler {
       description: change.description,
       sourceFilePath: this.readChangeSourceFilePath(change),
       schemaPatch,
-      downgrade: (payload: unknown) =>
+      downgrade: (payload: unknown, context?: ResponseDowngradeContext) =>
         transformContainersAtPath(
           payload,
           schemaPatch.payloadPath,
           async (container) =>
-            this.applyResponseOperation(operation, container),
+            this.applyResponseOperation(operation, container, context),
         ),
     };
   }
@@ -75,6 +76,10 @@ export class DslCompiler {
       responseChanges: version.responseChanges.map((change) =>
         this.compileResponseChange(change),
       ),
+      prepareResponseDowngradeContext: version.prepareResponseDowngradeContext
+        ? (payload, context) =>
+            version.prepareResponseDowngradeContext?.(payload, context)
+        : undefined,
     };
   }
 
@@ -171,33 +176,56 @@ export class DslCompiler {
   private async applyResponseOperation(
     operation: ResponseOperation,
     container: Record<string, unknown>,
+    context?: ResponseDowngradeContext,
   ): Promise<void> {
     switch (operation.kind) {
       case 'addField':
-        await operationHandlers.addField.applyResponse(operation, container);
+        await operationHandlers.addField.applyResponse(
+          operation,
+          container,
+          context,
+        );
         return;
       case 'removeField':
-        await operationHandlers.removeField.applyResponse(operation, container);
+        await operationHandlers.removeField.applyResponse(
+          operation,
+          container,
+          context,
+        );
         return;
       case 'renameField':
-        await operationHandlers.renameField.applyResponse(operation, container);
+        await operationHandlers.renameField.applyResponse(
+          operation,
+          container,
+          context,
+        );
         return;
       case 'replaceField':
         await operationHandlers.replaceField.applyResponse(
           operation,
           container,
+          context,
         );
         return;
       case 'splitField':
-        await operationHandlers.splitField.applyResponse(operation, container);
+        await operationHandlers.splitField.applyResponse(
+          operation,
+          container,
+          context,
+        );
         return;
       case 'mergeFields':
-        await operationHandlers.mergeFields.applyResponse(operation, container);
+        await operationHandlers.mergeFields.applyResponse(
+          operation,
+          container,
+          context,
+        );
         return;
       case 'customTransform':
         await operationHandlers.customTransform.applyResponse(
           operation,
           container,
+          context,
         );
         return;
       default:

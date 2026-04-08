@@ -1,6 +1,9 @@
 import { z } from 'zod';
 import { MergeFieldsOperation } from '../dsl/operations/merge-fields.operation';
-import { PayloadObjectPath } from '../versioning.types';
+import {
+  PayloadObjectPath,
+  type ResponseDowngradeContext,
+} from '../versioning.types';
 import { Change } from './change';
 import { FieldKey, ResolvedContainer } from './types';
 import { MaybeAsync } from '../../utils';
@@ -23,6 +26,7 @@ export abstract class MergeFieldsChange<
   downgrade(
     _value: unknown,
     _container: Record<string, unknown>,
+    _context?: ResponseDowngradeContext,
   ): MaybeAsync<Record<string, unknown> | undefined> {
     return undefined;
   }
@@ -61,12 +65,14 @@ export abstract class MergeFieldsChange<
     | ((
         value: unknown,
         container: Record<string, unknown>,
+        context?: ResponseDowngradeContext,
       ) => MaybeAsync<Record<string, unknown> | undefined>)
     | undefined {
     if (this.downgrade === MergeFieldsChange.prototype.downgrade) {
       return undefined;
     }
 
-    return (value, container) => this.downgrade(value, container);
+    return (value, container, context) =>
+      this.downgrade(value, container, context);
   }
 }

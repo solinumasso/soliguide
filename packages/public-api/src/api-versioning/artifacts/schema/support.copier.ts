@@ -19,6 +19,10 @@ export class VersionedSchemaSupportCopier {
     changesSource: SourceFile;
     orderedChanges: ExtractedChange[];
   }): void {
+    const changeExpressionIdentifiers = this.readIdentifiersFromChanges(
+      input.changesSource,
+      input.orderedChanges,
+    );
     const localDeclarations = this.readRequiredLocalDeclarations(
       input.changesSource,
       input.orderedChanges,
@@ -30,6 +34,7 @@ export class VersionedSchemaSupportCopier {
     const inlinedModuleDeclarations = this.readRequiredLocalModuleDeclarations(
       input.changesSource,
       localDeclarationTexts,
+      changeExpressionIdentifiers,
     );
 
     this.insertStatementsAtTop(input.workingSource, [
@@ -64,19 +69,30 @@ export class VersionedSchemaSupportCopier {
   private readRequiredLocalModuleDeclarations(
     changesSource: SourceFile,
     localDeclarationTexts: string[],
+    changeExpressionIdentifiers: Set<string>,
   ): string[] {
-    if (localDeclarationTexts.length === 0) {
+    if (
+      localDeclarationTexts.length === 0 &&
+      changeExpressionIdentifiers.size === 0
+    ) {
       return [];
     }
 
-    const helperIdentifiers = this.readIdentifiersFromStatements(
-      changesSource,
-      localDeclarationTexts,
-      'helpers',
-    );
+    const helperIdentifiers =
+      localDeclarationTexts.length > 0
+        ? this.readIdentifiersFromStatements(
+            changesSource,
+            localDeclarationTexts,
+            'helpers',
+          )
+        : new Set<string>();
+    for (const identifier of changeExpressionIdentifiers) {
+      helperIdentifiers.add(identifier);
+    }
 
     const result: string[] = [];
     const inlinedModulePaths = new Set<string>();
+    const seenStatements = new Set<string>();
 
     for (const importDeclaration of changesSource.getImportDeclarations()) {
       if (!this.isRelativeValueImport(importDeclaration)) {
@@ -98,13 +114,13 @@ export class VersionedSchemaSupportCopier {
       }
 
       const modulePath = moduleSource.getFilePath();
-      if (inlinedModulePaths.has(modulePath)) {
-        continue;
-      }
-
-      inlinedModulePaths.add(modulePath);
       result.push(
-        ...this.readInlinedModuleDeclarations(moduleSource, importedNames),
+        ...this.readInlinedModuleDeclarations({
+          moduleSource,
+          importedNames,
+          inlinedModulePaths,
+          seenStatements,
+        }),
       );
     }
 
@@ -224,6 +240,21 @@ export class VersionedSchemaSupportCopier {
           });
         }
       }
+
+      if (
+        Node.isEnumDeclaration(statement) &&
+        (!onlyNonExported || !statement.isExported())
+      ) {
+        declarations.push({
+          name: statement.getName(),
+          text: statement.getText(),
+          order: statement.getStart(),
+          references: this.readReferencedIdentifiers(
+            statement,
+            statement.getName(),
+          ),
+        });
+      }
     }
 
     return declarations;
@@ -304,10 +335,20 @@ export class VersionedSchemaSupportCopier {
     return usedImportedNames;
   }
 
-  private readInlinedModuleDeclarations(
-    moduleSource: SourceFile,
-    importedNames: string[],
-  ): string[] {
+  private readInlinedModuleDeclarations(input: {
+    moduleSource: SourceFile;
+    importedNames: string[];
+    inlinedModulePaths: Set<string>;
+    seenStatements: Set<string>;
+  }): string[] {
+    const { moduleSource, importedNames, inlinedModulePaths, seenStatements } =
+      input;
+    const modulePath = moduleSource.getFilePath();
+    if (inlinedModulePaths.has(modulePath)) {
+      return [];
+    }
+    inlinedModulePaths.add(modulePath);
+
     const allModuleDeclarations = this.readNonClassDeclarations(
       moduleSource,
       false,
@@ -327,16 +368,55 @@ export class VersionedSchemaSupportCopier {
       .filter((declaration) => requiredNames.has(declaration.name))
       .sort((left, right) => left.order - right.order);
 
+    const selectedTexts = selected.map((declaration) =>
+      this.stripExportKeyword(declaration.text),
+    );
+    const helperIdentifiers =
+      selectedTexts.length > 0
+        ? this.readIdentifiersFromStatements(
+            moduleSource,
+            selectedTexts,
+            `helpers-${Math.random().toString(36).slice(2)}`,
+          )
+        : new Set<string>();
     const inlinedText: string[] = [];
-    const seen = new Set<string>();
 
-    for (const declaration of selected) {
-      if (seen.has(declaration.text)) {
+    for (const importDeclaration of moduleSource.getImportDeclarations()) {
+      if (!this.isRelativeValueImport(importDeclaration)) {
         continue;
       }
 
-      seen.add(declaration.text);
-      inlinedText.push(this.stripExportKeyword(declaration.text));
+      const nestedModuleSource = importDeclaration.getModuleSpecifierSourceFile();
+      if (!nestedModuleSource) {
+        continue;
+      }
+
+      const nestedImportedNames = this.readImportedNamesUsedByHelpers(
+        importDeclaration,
+        helperIdentifiers,
+      );
+
+      if (nestedImportedNames.length === 0) {
+        continue;
+      }
+
+      inlinedText.push(
+        ...this.readInlinedModuleDeclarations({
+          moduleSource: nestedModuleSource,
+          importedNames: nestedImportedNames,
+          inlinedModulePaths,
+          seenStatements,
+        }),
+      );
+    }
+
+    for (const statementText of selectedTexts) {
+      if (seenStatements.has(statementText)) {
+        continue;
+      }
+
+      seenStatements.add(statementText);
+      inlinedText.push(statementText);
     }
 
     return inlinedText;

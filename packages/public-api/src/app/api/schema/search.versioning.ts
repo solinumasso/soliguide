@@ -4,20 +4,20 @@ import type {
   VersioningDefinition,
 } from '../../../api-versioning/versioning/versioning.types';
 import {
-  SearchVersion20260101Provider,
+  searchVersion20260101,
   searchVersion20260101ChangeProviders,
   searchVersion20260101VersionProviders,
 } from './2026-01-01/20260101.version';
 import {
-  SearchVersion20260303Provider,
+  searchVersion20260303,
   searchVersion20260303ChangeProviders,
   searchVersion20260303VersionProviders,
 } from './2026-03-03/20260303.version';
 import { v20260101SearchRequestSchema } from './2026-01-01/search.request/2026-01-01.search.request';
 import { v20260101SearchResponseSchema } from './2026-01-01/search.response/2026-01-01.search.response';
 export const searchVersions: readonly Version[] = [
-  new SearchVersion20260101Provider().toVersion(),
-  new SearchVersion20260303Provider().toVersion(),
+  searchVersion20260101,
+  searchVersion20260303,
 ];
 
 export interface SearchVersionProvider {

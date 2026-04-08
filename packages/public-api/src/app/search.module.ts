@@ -13,8 +13,12 @@ import type {
   ValidationSchemaCache,
 } from '../api-versioning';
 import {
+  buildSearchVersioningDefinition,
+  buildSearchVersions,
   searchOpenApiOperationTarget,
-  searchVersioningDefinition,
+  type SearchVersionProvider,
+  searchVersionProviders,
+  searchVersionChangeProviders,
 } from './api/schema';
 
 import { PlacesDatabaseService } from './search/adapters/mongo/places-database.service';
@@ -31,6 +35,12 @@ function readGeneratedContractsOverride():
   ).__PUBLIC_API_GENERATED_CONTRACTS__;
 }
 
+function buildVersioningDefinition(
+  ...providers: readonly SearchVersionProvider[]
+) {
+  return buildSearchVersioningDefinition(buildSearchVersions(providers));
+}
+
 function loadGeneratedContractsModule(): GeneratedContractsModule {
   const emptyCache: ValidationSchemaCache = new Map();
   const override = readGeneratedContractsOverride();
@@ -40,7 +50,7 @@ function loadGeneratedContractsModule(): GeneratedContractsModule {
 
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const contractsModule = require('./api/schema/contracts.generated.ts') as {
+    const contractsModule = require('./api/schema/contracts.generated') as {
       requestSchemasByVersion?: ValidationSchemaCache;
       responseSchemasByVersion?: ValidationSchemaCache;
     };
@@ -66,7 +76,13 @@ function loadGeneratedContractsModule(): GeneratedContractsModule {
 @Module({
   imports: [
     ApiVersioningModule.forRoot({
-      versioningDefinition: searchVersioningDefinition,
+      providers: [
+        PlacesDatabaseService,
+        ...searchVersionProviders,
+        ...searchVersionChangeProviders,
+      ],
+      versioningDefinitionFactory: buildVersioningDefinition,
+      versioningDefinitionInject: [...searchVersionProviders],
       contractsByVersionFactory: loadGeneratedContractsModule,
       openApiOperationTarget: searchOpenApiOperationTarget,
       openApiDecoratedModule: SearchModule,

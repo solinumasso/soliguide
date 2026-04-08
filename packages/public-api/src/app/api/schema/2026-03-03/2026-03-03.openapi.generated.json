@@ -27,11 +27,1338 @@
                           {
                             "type": "object",
                             "properties": {
+                              "name": {
+                                "type": "string",
+                                "description": "Localized name of the place.",
+                                "example": "Community Support Center"
+                              },
+                              "description": {
+                                "type": "string",
+                                "description": "Localized HTML content describing the place.",
+                                "example": "<p>A support center providing food distribution and social services.</p>"
+                              },
+                              "isOpenToday": {
+                                "type": "boolean",
+                                "description": "Whether the place is open today.",
+                                "example": true
+                              },
+                              "sourceLanguage": {
+                                "type": "string"
+                              },
+                              "country": {
+                                "type": "string"
+                              },
+                              "languages": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "description": "Languages spoken at the place. Format ISO 639-3",
+                                "example": [
+                                  "en",
+                                  "fr",
+                                  "rcf"
+                                ]
+                              },
+                              "id": {
+                                "type": "integer",
+                                "minimum": -9007199254740991,
+                                "maximum": 9007199254740991,
+                                "description": "Numeric place identifier."
+                              },
+                              "slug": {
+                                "type": "string",
+                                "description": "SEO-friendly unique slug for the place."
+                              },
+                              "updatedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$",
+                                "description": "Last update date and time of this place in ISO 8601 format.",
+                                "example": "2026-03-26T10:15:00Z"
+                              },
+                              "contacts": {
+                                "type": "array",
+                                "items": {
+                                  "oneOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "email"
+                                          ],
+                                          "description": "Contact method type."
+                                        },
+                                        "label": {
+                                          "type": "string",
+                                          "description": "Display label for this contact method.",
+                                          "example": "Main email"
+                                        },
+                                        "value": {
+                                          "type": "string",
+                                          "format": "email",
+                                          "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$",
+                                          "description": "Email address.",
+                                          "example": "contact@example.org"
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "label",
+                                        "value"
+                                      ],
+                                      "additionalProperties": false,
+                                      "title": "Email contact"
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "phone"
+                                          ],
+                                          "description": "Contact method type."
+                                        },
+                                        "label": {
+                                          "type": "string",
+                                          "description": "Display label for this contact method.",
+                                          "example": "Reception"
+                                        },
+                                        "value": {
+                                          "type": "string",
+                                          "description": "Phone number.",
+                                          "example": "+33102030405"
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "label",
+                                        "value"
+                                      ],
+                                      "additionalProperties": false,
+                                      "title": "Phone contact"
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "fax"
+                                          ],
+                                          "description": "Contact method type."
+                                        },
+                                        "label": {
+                                          "type": "string",
+                                          "description": "Display label for this contact method.",
+                                          "example": "Fax"
+                                        },
+                                        "value": {
+                                          "type": "string",
+                                          "description": "Fax number.",
+                                          "example": "+33102030406"
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "label",
+                                        "value"
+                                      ],
+                                      "additionalProperties": false,
+                                      "title": "Fax contact"
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "website"
+                                          ],
+                                          "description": "Contact method type."
+                                        },
+                                        "label": {
+                                          "type": "string",
+                                          "description": "Display label for this contact method.",
+                                          "example": "Official website"
+                                        },
+                                        "value": {
+                                          "type": "string",
+                                          "format": "uri",
+                                          "description": "Website URL.",
+                                          "example": "https://example.org"
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "label",
+                                        "value"
+                                      ],
+                                      "additionalProperties": false,
+                                      "title": "Website contact"
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "social"
+                                          ],
+                                          "description": "Contact method type."
+                                        },
+                                        "platform": {
+                                          "type": "string",
+                                          "description": "Social media platform name. Only present for social contacts.",
+                                          "example": "facebook"
+                                        },
+                                        "label": {
+                                          "type": "string",
+                                          "description": "Display label for this contact method.",
+                                          "example": "Facebook page"
+                                        },
+                                        "value": {
+                                          "type": "string",
+                                          "format": "uri",
+                                          "description": "Social media profile or page URL.",
+                                          "example": "https://facebook.com/example"
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "platform",
+                                        "label",
+                                        "value"
+                                      ],
+                                      "additionalProperties": false,
+                                      "title": "Social contact"
+                                    }
+                                  ],
+                                  "description": "A contact method for the place or service.",
+                                  "discriminator": {
+                                    "propertyName": "type"
+                                  }
+                                },
+                                "description": "Contact methods available for the place."
+                              },
+                              "services": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "string",
+                                      "description": "Unique service identifier.",
+                                      "example": "service_1"
+                                    },
+                                    "category": {
+                                      "type": "string",
+                                      "enum": [
+                                        "health",
+                                        "addiction",
+                                        "std_testing",
+                                        "psychological_support",
+                                        "child_care",
+                                        "general_practitioner",
+                                        "dental_care",
+                                        "pregnancy_care",
+                                        "vaccination",
+                                        "infirmary",
+                                        "vet_care",
+                                        "health_specialists",
+                                        "allergology",
+                                        "cardiology",
+                                        "dermatology",
+                                        "echography",
+                                        "endocrinology",
+                                        "gastroenterology",
+                                        "gynecology",
+                                        "kinesitherapy",
+                                        "mammography",
+                                        "ophthalmology",
+                                        "otorhinolaryngology",
+                                        "nutrition",
+                                        "pedicure",
+                                        "phlebology",
+                                        "pneumology",
+                                        "radiology",
+                                        "rheumatology",
+                                        "urology",
+                                        "speech_therapy",
+                                        "stomatology",
+                                        "osteopathy",
+                                        "acupuncture",
+                                        "mobility",
+                                        "carpooling",
+                                        "provision_of_vehicles",
+                                        "chauffeur_driven_transport",
+                                        "mobility_assistance",
+                                        "training_and_jobs",
+                                        "digital_tools_training",
+                                        "french_course",
+                                        "job_coaching",
+                                        "integration_through_economic_activity",
+                                        "tutoring",
+                                        "hygiene_and_wellness",
+                                        "shower",
+                                        "laundry",
+                                        "wellness",
+                                        "toilets",
+                                        "hygiene_products",
+                                        "face_masks",
+                                        "counseling",
+                                        "legal_advice",
+                                        "domiciliation",
+                                        "social_accompaniment",
+                                        "public_writer",
+                                        "disability_advice",
+                                        "administrative_assistance",
+                                        "parent_assistance",
+                                        "budget_advice",
+                                        "technology",
+                                        "computers_at_your_disposal",
+                                        "wifi",
+                                        "electrical_outlets_available",
+                                        "telephone_at_your_disposal",
+                                        "digital_safe",
+                                        "food",
+                                        "food_distribution",
+                                        "seated_catering",
+                                        "food_packages",
+                                        "social_grocery_stores",
+                                        "fountain",
+                                        "solidarity_fridge",
+                                        "shared_kitchen",
+                                        "cooking_workshop",
+                                        "baby_parcel",
+                                        "food_voucher",
+                                        "community_garden",
+                                        "welcome",
+                                        "day_hosting",
+                                        "rest_area",
+                                        "babysitting",
+                                        "family_area",
+                                        "information_point",
+                                        "activities",
+                                        "sport_activities",
+                                        "museums",
+                                        "libraries",
+                                        "other_activities",
+                                        "equipment",
+                                        "luggage_storage",
+                                        "solidarity_store",
+                                        "clothing",
+                                        "animal_assitance",
+                                        "accomodation_and_housing",
+                                        "overnight_stop",
+                                        "emergency_accommodation",
+                                        "long_term_accomodation",
+                                        "citizen_housing",
+                                        "access_to_housing"
+                                      ],
+                                      "description": "- health: Health\n- addiction: Addiction\n- std_testing: Screening\n- psychological_support: Psychology\n- child_care: Childcare\n- general_practitioner: General Practitioner\n- dental_care: Dental\n- pregnancy_care: Pregnancy Monitoring\n- vaccination: Vaccination\n- infirmary: Infirmary\n- vet_care: Veterinary\n- health_specialists: Specialists\n- allergology: Allergology\n- cardiology: Cardiology\n- dermatology: Dermatology\n- echography: Ultrasound\n- endocrinology: Endocrinology\n- gastroenterology: Gastroenterology\n- gynecology: Gynecology\n- kinesitherapy: Physiotherapy\n- mammography: Mammography\n- ophthalmology: Ophtalmology\n- otorhinolaryngology: Otorhinolaryngology\n- nutrition: Nutrition\n- pedicure: Podiatry\n- phlebology: Phlebology\n- pneumology: Pneumology\n- radiology: Radiology\n- rheumatology: Rheumatology\n- urology: Urology\n- speech_therapy: Speech Therapy\n- stomatology: Stomatology\n- osteopathy: Osteopathy\n- acupuncture: Acupuncture\n- mobility: Transportation & Mobility\n- carpooling: Carpooling\n- provision_of_vehicles: Vehicle Provision\n- chauffeur_driven_transport: Transport with Driver\n- mobility_assistance: Mobility Assistance\n- training_and_jobs: Training and Employment\n- digital_tools_training: Digital Workshop\n- french_course: French Classes\n- job_coaching: Employment Support\n- integration_through_economic_activity: Integration through Economic Activity\n- tutoring: Educational Support\n- hygiene_and_wellness: Hygiene and Well-being\n- shower: Shower\n- laundry: Laundry\n- wellness: Well-being\n- toilets: Toilets\n- hygiene_products: Hygiene Products\n- face_masks: Masks\n- counseling: Counseling\n- legal_advice: Legal Consultation\n- domiciliation: Domiciliation\n- social_accompaniment: Social Support\n- public_writer: Public Writer\n- disability_advice: Disability Consultation\n- administrative_assistance: Administrative Consultation\n- parent_assistance: Parental Advice\n- budget_advice: Budget Advice\n- technology: Technology\n- computers_at_your_disposal: Computer\n- wifi: Wifi\n- electrical_outlets_available: Outlet\n- telephone_at_your_disposal: Phone\n- digital_safe: Digital Safe\n- food: Food\n- food_distribution: Meal Distribution\n- seated_catering: Seated Dining\n- food_packages: Food Package\n- social_grocery_stores: Social and Solidarity Grocery\n- fountain: Water Fountain\n- solidarity_fridge: Solidarity fridge\n- shared_kitchen: Shared kitchen\n- cooking_workshop: Cooking workshop\n- baby_parcel: Baby parcel\n- food_voucher: Food voucher\n- community_garden: Community garden\n- welcome: Welcome\n- day_hosting: Day Center\n- rest_area: Rest Area\n- babysitting: Babysitting\n- family_area: Family Space\n- information_point: Information Point\n- activities: Activities\n- sport_activities: Sports Activities\n- museums: Museum\n- libraries: Library\n- other_activities: Various Activities\n- equipment: Equipment\n- luggage_storage: Luggage\n- solidarity_store: Solidarity Shop\n- clothing: Clothing\n- animal_assitance: Animals\n- accomodation_and_housing: Housing & Accommodation\n- overnight_stop: Night Stop\n- emergency_accommodation: Emergency Housing\n- long_term_accomodation: Long-Term Housing\n- citizen_housing: Citizen Housing\n- access_to_housing: Housing Advice",
+                                      "example": "food_distribution"
+                                    },
+                                    "description": {
+                                      "type": "string",
+                                      "description": "Description of the service.",
+                                      "example": "Breakfast and hot drinks."
+                                    },
+                                    "saturation": {
+                                      "type": "object",
+                                      "properties": {
+                                        "level": {
+                                          "type": "string",
+                                          "enum": [
+                                            "low",
+                                            "moderate",
+                                            "high"
+                                          ],
+                                          "description": "Saturation level of the service.",
+                                          "example": "high"
+                                        },
+                                        "details": {
+                                          "nullable": true,
+                                          "description": "Additional details about service saturation.",
+                                          "example": "Very busy on Mondays.",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "level",
+                                        "details"
+                                      ],
+                                      "additionalProperties": false,
+                                      "description": "Saturation information for the service."
+                                    },
+                                    "isOpenToday": {
+                                      "type": "boolean",
+                                      "description": "Whether the service is open today",
+                                      "example": true
+                                    },
+                                    "access": {
+                                      "nullable": true,
+                                      "description": "Service-specific access rules. Null means the service inherits access rules from the place.",
+                                      "type": "object",
+                                      "properties": {
+                                        "isUnconditional": {
+                                          "type": "boolean",
+                                          "description": "If true, access to the facility is unconditional and there are no requirements"
+                                        },
+                                        "allowPets": {
+                                          "type": "boolean",
+                                          "description": "Whether pets are allowed."
+                                        },
+                                        "isWheelchairAccessible": {
+                                          "type": "boolean",
+                                          "description": "Whether the place is accessible to wheelchair"
+                                        },
+                                        "appointmentRequirement": {
+                                          "type": "object",
+                                          "properties": {
+                                            "isRequired": {
+                                              "type": "boolean",
+                                              "description": "Whether an this requirement applies."
+                                            },
+                                            "details": {
+                                              "nullable": true,
+                                              "description": "Additional details about",
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "isRequired",
+                                            "details"
+                                          ],
+                                          "additionalProperties": false,
+                                          "description": "Appointement requirement."
+                                        },
+                                        "registrationRequirement": {
+                                          "type": "object",
+                                          "properties": {
+                                            "isRequired": {
+                                              "type": "boolean",
+                                              "description": "Whether an this requirement applies."
+                                            },
+                                            "details": {
+                                              "nullable": true,
+                                              "description": "Additional details about",
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "isRequired",
+                                            "details"
+                                          ],
+                                          "additionalProperties": false,
+                                          "description": "Registration requirement."
+                                        },
+                                        "orientationRequirement": {
+                                          "type": "object",
+                                          "properties": {
+                                            "isRequired": {
+                                              "type": "boolean",
+                                              "description": "Whether an this requirement applies."
+                                            },
+                                            "details": {
+                                              "nullable": true,
+                                              "description": "Additional details about",
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "isRequired",
+                                            "details"
+                                          ],
+                                          "additionalProperties": false,
+                                          "description": "Orientation requirement."
+                                        },
+                                        "pricing": {
+                                          "type": "object",
+                                          "properties": {
+                                            "isPaid": {
+                                              "type": "boolean",
+                                              "description": "Whether the place or service requires payment.",
+                                              "example": false
+                                            },
+                                            "details": {
+                                              "nullable": true,
+                                              "description": "Additional pricing details.",
+                                              "example": "2€ per meal",
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "isPaid",
+                                            "details"
+                                          ],
+                                          "additionalProperties": false
+                                        },
+                                        "otherDetails": {
+                                          "nullable": true,
+                                          "description": "Additional free-text information related to access conditions.",
+                                          "example": "Bring an ID document on your first visit.",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "isUnconditional",
+                                        "allowPets",
+                                        "isWheelchairAccessible",
+                                        "appointmentRequirement",
+                                        "registrationRequirement",
+                                        "orientationRequirement",
+                                        "pricing",
+                                        "otherDetails"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    "audience": {
+                                      "nullable": true,
+                                      "description": "Service-specific audience rules. Null means the service inherits audience rules from the place.",
+                                      "type": "object",
+                                      "properties": {
+                                        "admissionPolicy": {
+                                          "type": "string",
+                                          "enum": [
+                                            "open",
+                                            "restricted"
+                                          ],
+                                          "description": "Whether the place or service is open to everyone or restricted to specific audiences.",
+                                          "example": "open"
+                                        },
+                                        "isTargeted": {
+                                          "type": "boolean",
+                                          "description": "Whether the place or service is designed for certain audiences, even if broad admission is open.",
+                                          "example": true
+                                        },
+                                        "description": {
+                                          "type": "string",
+                                          "description": "Free-text description of the intended or accepted audience.",
+                                          "example": "Young adults in unstable housing."
+                                        },
+                                        "ageRange": {
+                                          "nullable": true,
+                                          "description": "Age restriction. Null means there is no age restriction.",
+                                          "example": {
+                                            "min": 18,
+                                            "max": 30
+                                          },
+                                          "type": "object",
+                                          "properties": {
+                                            "min": {
+                                              "type": "integer",
+                                              "minimum": 0,
+                                              "maximum": 9007199254740991,
+                                              "description": "Minimum age accepted.",
+                                              "example": 18
+                                            },
+                                            "max": {
+                                              "type": "integer",
+                                              "minimum": 0,
+                                              "maximum": 9007199254740991,
+                                              "description": "Maximum age accepted.",
+                                              "example": 30
+                                            }
+                                          },
+                                          "required": [
+                                            "min",
+                                            "max"
+                                          ],
+                                          "additionalProperties": false
+                                        },
+                                        "administrativeStatuses": {
+                                          "type": "string",
+                                          "enum": [
+                                            "regular",
+                                            "asylum",
+                                            "refugee",
+                                            "undocumented"
+                                          ],
+                                          "description": "Accepted or targeted administrative statuses.\n- regular: Person in regular situation. \n- asylum: Person in asylum. \n- refugee: Person with refugee status. \n- undocumente: Person without passport or ID."
+                                        },
+                                        "familyStatuses": {
+                                          "type": "string",
+                                          "enum": [
+                                            "isolated",
+                                            "family",
+                                            "couple",
+                                            "pregnant"
+                                          ],
+                                          "description": "Accepted or targeted family situations.\n- isolated: Isolated person.\n- family: Family.\n- couple: Couple.\n- pregnant: Pregnant Woman."
+                                        },
+                                        "otherStatuses": {
+                                          "type": "string",
+                                          "enum": [
+                                            "violence",
+                                            "addiction",
+                                            "disability",
+                                            "lgbt+",
+                                            "hiv",
+                                            "prostitution",
+                                            "prison",
+                                            "student"
+                                          ],
+                                          "description": "Other accepted or targeted statuses.\n- violence: Person victim of violence.\n- addiction: Person suffering from addition.\n- disability: Person with disabilities.\n- lgbt+: Person among LGBT+ communities.\n- hiv: Person suffering from HIV.\n- prostitution: Person suffering from prostitution.\n- prison: Person getting out of prison.\n- student: Student."
+                                        },
+                                        "genders": {
+                                          "type": "string",
+                                          "enum": [
+                                            "men",
+                                            "women"
+                                          ],
+                                          "description": "Accepted or targeted genders.\n- men: Men.\n- women: Women"
+                                        },
+                                        "specialSupportContexts": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "type": {
+                                                "type": "string",
+                                                "description": "Broad category of support context.",
+                                                "example": "humanitarianCrisis"
+                                              },
+                                              "key": {
+                                                "type": "string",
+                                                "description": "Stable machine-readable identifier for the support context.",
+                                                "example": "ukraine-displacement"
+                                              },
+                                              "label": {
+                                                "type": "string",
+                                                "description": "Human-readable label for the support context.",
+                                                "example": "Support for displaced people from Ukraine"
+                                              },
+                                              "details": {
+                                                "type": "string",
+                                                "description": "Additional details about the support available in this context.",
+                                                "example": "Ukrainian-speaking volunteers available."
+                                              }
+                                            },
+                                            "required": [
+                                              "type",
+                                              "key",
+                                              "label",
+                                              "details"
+                                            ],
+                                            "additionalProperties": false,
+                                            "description": "Special support context related to a crisis or exceptional situation."
+                                          },
+                                          "description": "Special support contexts such as crisis-specific support."
+                                        }
+                                      },
+                                      "required": [
+                                        "admissionPolicy",
+                                        "isTargeted",
+                                        "description",
+                                        "ageRange",
+                                        "administrativeStatuses",
+                                        "familyStatuses",
+                                        "otherStatuses",
+                                        "genders",
+                                        "specialSupportContexts"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    "schedule": {
+                                      "nullable": true,
+                                      "description": "Service-specific schedule. Null means the service inherits schedule from the place.",
+                                      "type": "object",
+                                      "properties": {
+                                        "weeklySchedule": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "dayOfWeek": {
+                                                "type": "string",
+                                                "enum": [
+                                                  "monday",
+                                                  "tuesday",
+                                                  "wednesday",
+                                                  "thursday",
+                                                  "friday",
+                                                  "saturday",
+                                                  "sunday"
+                                                ],
+                                                "description": "Days of the week.",
+                                                "example": "monday"
+                                              },
+                                              "status": {
+                                                "type": "string",
+                                                "enum": [
+                                                  "open",
+                                                  "closed",
+                                                  "unknown"
+                                                ],
+                                                "description": "Opening status for a day or public holiday.",
+                                                "example": "open"
+                                              },
+                                              "timeSlots": {
+                                                "type": "array",
+                                                "items": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "startTime": {
+                                                      "type": "string",
+                                                      "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?$"
+                                                    },
+                                                    "endTime": {
+                                                      "type": "string",
+                                                      "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?$"
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "startTime",
+                                                    "endTime"
+                                                  ],
+                                                  "additionalProperties": false
+                                                },
+                                                "description": "Opening time slots for this day. May be empty when status is closed or unknown."
+                                              }
+                                            },
+                                            "required": [
+                                              "dayOfWeek",
+                                              "status",
+                                              "timeSlots"
+                                            ],
+                                            "additionalProperties": false,
+                                            "description": "Opening information for one day of the week."
+                                          },
+                                          "description": "Weekly opening schedule."
+                                        },
+                                        "publicHolidays": {
+                                          "type": "object",
+                                          "properties": {
+                                            "status": {
+                                              "type": "string",
+                                              "enum": [
+                                                "open",
+                                                "closed",
+                                                "unknown",
+                                                "specific"
+                                              ],
+                                              "description": "Default public holiday behavior. Use \"specific\" when holiday-specific entries are provided.",
+                                              "example": "specific"
+                                            },
+                                            "openedHolidays": {
+                                              "type": "array",
+                                              "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "label": {
+                                                    "type": "string",
+                                                    "description": "Human-readable name of the public holiday.",
+                                                    "example": "New Year"
+                                                  },
+                                                  "status": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "open",
+                                                      "closed"
+                                                    ],
+                                                    "description": "Opening status for this public holiday.",
+                                                    "example": "closed"
+                                                  },
+                                                  "timeSlots": {
+                                                    "type": "array",
+                                                    "items": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "startTime": {
+                                                          "type": "string",
+                                                          "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?$"
+                                                        },
+                                                        "endTime": {
+                                                          "type": "string",
+                                                          "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?$"
+                                                        }
+                                                      },
+                                                      "required": [
+                                                        "startTime",
+                                                        "endTime"
+                                                      ],
+                                                      "additionalProperties": false
+                                                    },
+                                                    "description": "Opening time slots for this holiday when applicable."
+                                                  }
+                                                },
+                                                "required": [
+                                                  "label",
+                                                  "status",
+                                                  "timeSlots"
+                                                ],
+                                                "additionalProperties": false,
+                                                "description": "Specific opening rule for one public holiday."
+                                              },
+                                              "description": "Holiday-specific opening rules."
+                                            }
+                                          },
+                                          "required": [
+                                            "status",
+                                            "openedHolidays"
+                                          ],
+                                          "additionalProperties": false,
+                                          "description": "Public holiday opening information."
+                                        }
+                                      },
+                                      "required": [
+                                        "weeklySchedule",
+                                        "publicHolidays"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  },
+                                  "required": [
+                                    "id",
+                                    "category",
+                                    "description",
+                                    "saturation",
+                                    "isOpenToday",
+                                    "access",
+                                    "audience",
+                                    "schedule"
+                                  ],
+                                  "additionalProperties": false,
+                                  "description": "Service provided by the place."
+                                },
+                                "description": "Services provided by the place."
+                              },
+                              "temporaryInformation": {
+                                "type": "object",
+                                "properties": {
+                                  "closures": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "startDate": {
+                                          "type": "string",
+                                          "format": "date-time",
+                                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$",
+                                          "description": "Start date and time of the temporary closure in ISO 8601 format.",
+                                          "example": "2026-04-01T00:00:00Z"
+                                        },
+                                        "endDate": {
+                                          "type": "string",
+                                          "format": "date-time",
+                                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$",
+                                          "description": "End date and time of the temporary closure in ISO 8601 format.",
+                                          "example": "2026-04-03T23:59:59Z"
+                                        },
+                                        "description": {
+                                          "type": "string",
+                                          "description": "Explanation of the temporary closure.",
+                                          "example": "Renovation work."
+                                        }
+                                      },
+                                      "required": [
+                                        "startDate",
+                                        "endDate",
+                                        "description"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    "description": "List of temporary closures affecting the place."
+                                  },
+                                  "scheduleAdjustments": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "startDate": {
+                                          "type": "string",
+                                          "format": "date-time",
+                                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$",
+                                          "description": "Start date and time of the temporary schedule adjustment in ISO 8601 format."
+                                        },
+                                        "endDate": {
+                                          "type": "string",
+                                          "format": "date-time",
+                                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$",
+                                          "description": "End date and time of the temporary schedule adjustment in ISO 8601 format."
+                                        },
+                                        "description": {
+                                          "type": "string",
+                                          "description": "Explanation of the temporary schedule adjustment.",
+                                          "example": "Reduced opening hours during school holidays."
+                                        },
+                                        "schedule": {
+                                          "type": "object",
+                                          "properties": {
+                                            "weeklySchedule": {
+                                              "type": "array",
+                                              "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "dayOfWeek": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "monday",
+                                                      "tuesday",
+                                                      "wednesday",
+                                                      "thursday",
+                                                      "friday",
+                                                      "saturday",
+                                                      "sunday"
+                                                    ],
+                                                    "description": "Days of the week.",
+                                                    "example": "monday"
+                                                  },
+                                                  "status": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "open",
+                                                      "closed",
+                                                      "unknown"
+                                                    ],
+                                                    "description": "Opening status for a day or public holiday.",
+                                                    "example": "open"
+                                                  },
+                                                  "timeSlots": {
+                                                    "type": "array",
+                                                    "items": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "startTime": {
+                                                          "type": "string",
+                                                          "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?$"
+                                                        },
+                                                        "endTime": {
+                                                          "type": "string",
+                                                          "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?$"
+                                                        }
+                                                      },
+                                                      "required": [
+                                                        "startTime",
+                                                        "endTime"
+                                                      ],
+                                                      "additionalProperties": false
+                                                    },
+                                                    "description": "Opening time slots for this day. May be empty when status is closed or unknown."
+                                                  }
+                                                },
+                                                "required": [
+                                                  "dayOfWeek",
+                                                  "status",
+                                                  "timeSlots"
+                                                ],
+                                                "additionalProperties": false,
+                                                "description": "Opening information for one day of the week."
+                                              },
+                                              "description": "Weekly opening schedule."
+                                            },
+                                            "publicHolidays": {
+                                              "type": "object",
+                                              "properties": {
+                                                "status": {
+                                                  "type": "string",
+                                                  "enum": [
+                                                    "open",
+                                                    "closed",
+                                                    "unknown",
+                                                    "specific"
+                                                  ],
+                                                  "description": "Default public holiday behavior. Use \"specific\" when holiday-specific entries are provided.",
+                                                  "example": "specific"
+                                                },
+                                                "openedHolidays": {
+                                                  "type": "array",
+                                                  "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "label": {
+                                                        "type": "string",
+                                                        "description": "Human-readable name of the public holiday.",
+                                                        "example": "New Year"
+                                                      },
+                                                      "status": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                          "open",
+                                                          "closed"
+                                                        ],
+                                                        "description": "Opening status for this public holiday.",
+                                                        "example": "closed"
+                                                      },
+                                                      "timeSlots": {
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "startTime": {
+                                                              "type": "string",
+                                                              "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?$"
+                                                            },
+                                                            "endTime": {
+                                                              "type": "string",
+                                                              "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?$"
+                                                            }
+                                                          },
+                                                          "required": [
+                                                            "startTime",
+                                                            "endTime"
+                                                          ],
+                                                          "additionalProperties": false
+                                                        },
+                                                        "description": "Opening time slots for this holiday when applicable."
+                                                      }
+                                                    },
+                                                    "required": [
+                                                      "label",
+                                                      "status",
+                                                      "timeSlots"
+                                                    ],
+                                                    "additionalProperties": false,
+                                                    "description": "Specific opening rule for one public holiday."
+                                                  },
+                                                  "description": "Holiday-specific opening rules."
+                                                }
+                                              },
+                                              "required": [
+                                                "status",
+                                                "openedHolidays"
+                                              ],
+                                              "additionalProperties": false,
+                                              "description": "Public holiday opening information."
+                                            }
+                                          },
+                                          "required": [
+                                            "weeklySchedule",
+                                            "publicHolidays"
+                                          ],
+                                          "additionalProperties": false,
+                                          "description": "Schedule applied during the temporary adjustment period."
+                                        }
+                                      },
+                                      "required": [
+                                        "startDate",
+                                        "endDate",
+                                        "description",
+                                        "schedule"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    "description": "List of temporary schedule changes affecting the place."
+                                  },
+                                  "messages": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "title": {
+                                          "type": "string",
+                                          "description": "Short title of the temporary message.",
+                                          "example": "Important notice"
+                                        },
+                                        "startDate": {
+                                          "type": "string",
+                                          "format": "date-time",
+                                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$",
+                                          "description": "Start date and time from which the message is active in ISO 8601 format."
+                                        },
+                                        "endDate": {
+                                          "type": "string",
+                                          "format": "date-time",
+                                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$",
+                                          "description": "End date and time until which the message is active in ISO 8601 format."
+                                        },
+                                        "description": {
+                                          "type": "string",
+                                          "description": "Message content.",
+                                          "example": "Bring an ID document on your first visit."
+                                        }
+                                      },
+                                      "required": [
+                                        "title",
+                                        "startDate",
+                                        "endDate",
+                                        "description"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    "description": "List of temporary informational messages displayed for the place."
+                                  }
+                                },
+                                "required": [
+                                  "closures",
+                                  "scheduleAdjustments",
+                                  "messages"
+                                ],
+                                "additionalProperties": false,
+                                "description": "Temporary changes affecting the place."
+                              },
+                              "access": {
+                                "type": "object",
+                                "properties": {
+                                  "isUnconditional": {
+                                    "type": "boolean",
+                                    "description": "If true, access to the facility is unconditional and there are no requirements"
+                                  },
+                                  "allowPets": {
+                                    "type": "boolean",
+                                    "description": "Whether pets are allowed."
+                                  },
+                                  "isWheelchairAccessible": {
+                                    "type": "boolean",
+                                    "description": "Whether the place is accessible to wheelchair"
+                                  },
+                                  "appointmentRequirement": {
+                                    "type": "object",
+                                    "properties": {
+                                      "isRequired": {
+                                        "type": "boolean",
+                                        "description": "Whether an this requirement applies."
+                                      },
+                                      "details": {
+                                        "nullable": true,
+                                        "description": "Additional details about",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "isRequired",
+                                      "details"
+                                    ],
+                                    "additionalProperties": false,
+                                    "description": "Appointement requirement."
+                                  },
+                                  "registrationRequirement": {
+                                    "type": "object",
+                                    "properties": {
+                                      "isRequired": {
+                                        "type": "boolean",
+                                        "description": "Whether an this requirement applies."
+                                      },
+                                      "details": {
+                                        "nullable": true,
+                                        "description": "Additional details about",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "isRequired",
+                                      "details"
+                                    ],
+                                    "additionalProperties": false,
+                                    "description": "Registration requirement."
+                                  },
+                                  "orientationRequirement": {
+                                    "type": "object",
+                                    "properties": {
+                                      "isRequired": {
+                                        "type": "boolean",
+                                        "description": "Whether an this requirement applies."
+                                      },
+                                      "details": {
+                                        "nullable": true,
+                                        "description": "Additional details about",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "isRequired",
+                                      "details"
+                                    ],
+                                    "additionalProperties": false,
+                                    "description": "Orientation requirement."
+                                  },
+                                  "pricing": {
+                                    "type": "object",
+                                    "properties": {
+                                      "isPaid": {
+                                        "type": "boolean",
+                                        "description": "Whether the place or service requires payment.",
+                                        "example": false
+                                      },
+                                      "details": {
+                                        "nullable": true,
+                                        "description": "Additional pricing details.",
+                                        "example": "2€ per meal",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "isPaid",
+                                      "details"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  "otherDetails": {
+                                    "nullable": true,
+                                    "description": "Additional free-text information related to access conditions.",
+                                    "example": "Bring an ID document on your first visit.",
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "isUnconditional",
+                                  "allowPets",
+                                  "isWheelchairAccessible",
+                                  "appointmentRequirement",
+                                  "registrationRequirement",
+                                  "orientationRequirement",
+                                  "pricing",
+                                  "otherDetails"
+                                ],
+                                "additionalProperties": false,
+                                "description": "Access rules applying to the place."
+                              },
+                              "audience": {
+                                "type": "object",
+                                "properties": {
+                                  "admissionPolicy": {
+                                    "type": "string",
+                                    "enum": [
+                                      "open",
+                                      "restricted"
+                                    ],
+                                    "description": "Whether the place or service is open to everyone or restricted to specific audiences.",
+                                    "example": "open"
+                                  },
+                                  "isTargeted": {
+                                    "type": "boolean",
+                                    "description": "Whether the place or service is designed for certain audiences, even if broad admission is open.",
+                                    "example": true
+                                  },
+                                  "description": {
+                                    "type": "string",
+                                    "description": "Free-text description of the intended or accepted audience.",
+                                    "example": "Young adults in unstable housing."
+                                  },
+                                  "ageRange": {
+                                    "nullable": true,
+                                    "description": "Age restriction. Null means there is no age restriction.",
+                                    "example": {
+                                      "min": 18,
+                                      "max": 30
+                                    },
+                                    "type": "object",
+                                    "properties": {
+                                      "min": {
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 9007199254740991,
+                                        "description": "Minimum age accepted.",
+                                        "example": 18
+                                      },
+                                      "max": {
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 9007199254740991,
+                                        "description": "Maximum age accepted.",
+                                        "example": 30
+                                      }
+                                    },
+                                    "required": [
+                                      "min",
+                                      "max"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  "administrativeStatuses": {
+                                    "type": "string",
+                                    "enum": [
+                                      "regular",
+                                      "asylum",
+                                      "refugee",
+                                      "undocumented"
+                                    ],
+                                    "description": "Accepted or targeted administrative statuses.\n- regular: Person in regular situation. \n- asylum: Person in asylum. \n- refugee: Person with refugee status. \n- undocumente: Person without passport or ID."
+                                  },
+                                  "familyStatuses": {
+                                    "type": "string",
+                                    "enum": [
+                                      "isolated",
+                                      "family",
+                                      "couple",
+                                      "pregnant"
+                                    ],
+                                    "description": "Accepted or targeted family situations.\n- isolated: Isolated person.\n- family: Family.\n- couple: Couple.\n- pregnant: Pregnant Woman."
+                                  },
+                                  "otherStatuses": {
+                                    "type": "string",
+                                    "enum": [
+                                      "violence",
+                                      "addiction",
+                                      "disability",
+                                      "lgbt+",
+                                      "hiv",
+                                      "prostitution",
+                                      "prison",
+                                      "student"
+                                    ],
+                                    "description": "Other accepted or targeted statuses.\n- violence: Person victim of violence.\n- addiction: Person suffering from addition.\n- disability: Person with disabilities.\n- lgbt+: Person among LGBT+ communities.\n- hiv: Person suffering from HIV.\n- prostitution: Person suffering from prostitution.\n- prison: Person getting out of prison.\n- student: Student."
+                                  },
+                                  "genders": {
+                                    "type": "string",
+                                    "enum": [
+                                      "men",
+                                      "women"
+                                    ],
+                                    "description": "Accepted or targeted genders.\n- men: Men.\n- women: Women"
+                                  },
+                                  "specialSupportContexts": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "description": "Broad category of support context.",
+                                          "example": "humanitarianCrisis"
+                                        },
+                                        "key": {
+                                          "type": "string",
+                                          "description": "Stable machine-readable identifier for the support context.",
+                                          "example": "ukraine-displacement"
+                                        },
+                                        "label": {
+                                          "type": "string",
+                                          "description": "Human-readable label for the support context.",
+                                          "example": "Support for displaced people from Ukraine"
+                                        },
+                                        "details": {
+                                          "type": "string",
+                                          "description": "Additional details about the support available in this context.",
+                                          "example": "Ukrainian-speaking volunteers available."
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "key",
+                                        "label",
+                                        "details"
+                                      ],
+                                      "additionalProperties": false,
+                                      "description": "Special support context related to a crisis or exceptional situation."
+                                    },
+                                    "description": "Special support contexts such as crisis-specific support."
+                                  }
+                                },
+                                "required": [
+                                  "admissionPolicy",
+                                  "isTargeted",
+                                  "description",
+                                  "ageRange",
+                                  "administrativeStatuses",
+                                  "familyStatuses",
+                                  "otherStatuses",
+                                  "genders",
+                                  "specialSupportContexts"
+                                ],
+                                "additionalProperties": false,
+                                "description": "Audience rules and targeting information."
+                              },
                               "type": {
                                 "type": "string",
                                 "enum": [
                                   "fixedLocation"
-                                ]
+                                ],
+                                "description": "Discriminates place shape."
                               },
                               "location": {
                                 "type": "object",
@@ -290,20 +1617,1360 @@
                               }
                             },
                             "required": [
+                              "name",
+                              "description",
+                              "isOpenToday",
+                              "languages",
+                              "id",
+                              "slug",
+                              "updatedAt",
+                              "contacts",
+                              "services",
+                              "temporaryInformation",
+                              "access",
+                              "audience",
                               "type",
                               "location",
                               "schedule"
                             ],
-                            "additionalProperties": {}
+                            "additionalProperties": false,
+                            "title": "Fixed Location"
                           },
                           {
                             "type": "object",
                             "properties": {
+                              "name": {
+                                "type": "string",
+                                "description": "Localized name of the place.",
+                                "example": "Community Support Center"
+                              },
+                              "description": {
+                                "type": "string",
+                                "description": "Localized HTML content describing the place.",
+                                "example": "<p>A support center providing food distribution and social services.</p>"
+                              },
+                              "isOpenToday": {
+                                "type": "boolean",
+                                "description": "Whether the place is open today.",
+                                "example": true
+                              },
+                              "sourceLanguage": {
+                                "type": "string"
+                              },
+                              "country": {
+                                "type": "string"
+                              },
+                              "languages": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "description": "Languages spoken at the place. Format ISO 639-3",
+                                "example": [
+                                  "en",
+                                  "fr",
+                                  "rcf"
+                                ]
+                              },
+                              "id": {
+                                "type": "integer",
+                                "minimum": -9007199254740991,
+                                "maximum": 9007199254740991,
+                                "description": "Numeric place identifier."
+                              },
+                              "slug": {
+                                "type": "string",
+                                "description": "SEO-friendly unique slug for the place."
+                              },
+                              "updatedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$",
+                                "description": "Last update date and time of this place in ISO 8601 format.",
+                                "example": "2026-03-26T10:15:00Z"
+                              },
+                              "contacts": {
+                                "type": "array",
+                                "items": {
+                                  "oneOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "email"
+                                          ],
+                                          "description": "Contact method type."
+                                        },
+                                        "label": {
+                                          "type": "string",
+                                          "description": "Display label for this contact method.",
+                                          "example": "Main email"
+                                        },
+                                        "value": {
+                                          "type": "string",
+                                          "format": "email",
+                                          "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$",
+                                          "description": "Email address.",
+                                          "example": "contact@example.org"
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "label",
+                                        "value"
+                                      ],
+                                      "additionalProperties": false,
+                                      "title": "Email contact"
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "phone"
+                                          ],
+                                          "description": "Contact method type."
+                                        },
+                                        "label": {
+                                          "type": "string",
+                                          "description": "Display label for this contact method.",
+                                          "example": "Reception"
+                                        },
+                                        "value": {
+                                          "type": "string",
+                                          "description": "Phone number.",
+                                          "example": "+33102030405"
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "label",
+                                        "value"
+                                      ],
+                                      "additionalProperties": false,
+                                      "title": "Phone contact"
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "fax"
+                                          ],
+                                          "description": "Contact method type."
+                                        },
+                                        "label": {
+                                          "type": "string",
+                                          "description": "Display label for this contact method.",
+                                          "example": "Fax"
+                                        },
+                                        "value": {
+                                          "type": "string",
+                                          "description": "Fax number.",
+                                          "example": "+33102030406"
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "label",
+                                        "value"
+                                      ],
+                                      "additionalProperties": false,
+                                      "title": "Fax contact"
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "website"
+                                          ],
+                                          "description": "Contact method type."
+                                        },
+                                        "label": {
+                                          "type": "string",
+                                          "description": "Display label for this contact method.",
+                                          "example": "Official website"
+                                        },
+                                        "value": {
+                                          "type": "string",
+                                          "format": "uri",
+                                          "description": "Website URL.",
+                                          "example": "https://example.org"
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "label",
+                                        "value"
+                                      ],
+                                      "additionalProperties": false,
+                                      "title": "Website contact"
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "social"
+                                          ],
+                                          "description": "Contact method type."
+                                        },
+                                        "platform": {
+                                          "type": "string",
+                                          "description": "Social media platform name. Only present for social contacts.",
+                                          "example": "facebook"
+                                        },
+                                        "label": {
+                                          "type": "string",
+                                          "description": "Display label for this contact method.",
+                                          "example": "Facebook page"
+                                        },
+                                        "value": {
+                                          "type": "string",
+                                          "format": "uri",
+                                          "description": "Social media profile or page URL.",
+                                          "example": "https://facebook.com/example"
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "platform",
+                                        "label",
+                                        "value"
+                                      ],
+                                      "additionalProperties": false,
+                                      "title": "Social contact"
+                                    }
+                                  ],
+                                  "description": "A contact method for the place or service.",
+                                  "discriminator": {
+                                    "propertyName": "type"
+                                  }
+                                },
+                                "description": "Contact methods available for the place."
+                              },
+                              "services": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "string",
+                                      "description": "Unique service identifier.",
+                                      "example": "service_1"
+                                    },
+                                    "category": {
+                                      "type": "string",
+                                      "enum": [
+                                        "health",
+                                        "addiction",
+                                        "std_testing",
+                                        "psychological_support",
+                                        "child_care",
+                                        "general_practitioner",
+                                        "dental_care",
+                                        "pregnancy_care",
+                                        "vaccination",
+                                        "infirmary",
+                                        "vet_care",
+                                        "health_specialists",
+                                        "allergology",
+                                        "cardiology",
+                                        "dermatology",
+                                        "echography",
+                                        "endocrinology",
+                                        "gastroenterology",
+                                        "gynecology",
+                                        "kinesitherapy",
+                                        "mammography",
+                                        "ophthalmology",
+                                        "otorhinolaryngology",
+                                        "nutrition",
+                                        "pedicure",
+                                        "phlebology",
+                                        "pneumology",
+                                        "radiology",
+                                        "rheumatology",
+                                        "urology",
+                                        "speech_therapy",
+                                        "stomatology",
+                                        "osteopathy",
+                                        "acupuncture",
+                                        "mobility",
+                                        "carpooling",
+                                        "provision_of_vehicles",
+                                        "chauffeur_driven_transport",
+                                        "mobility_assistance",
+                                        "training_and_jobs",
+                                        "digital_tools_training",
+                                        "french_course",
+                                        "job_coaching",
+                                        "integration_through_economic_activity",
+                                        "tutoring",
+                                        "hygiene_and_wellness",
+                                        "shower",
+                                        "laundry",
+                                        "wellness",
+                                        "toilets",
+                                        "hygiene_products",
+                                        "face_masks",
+                                        "counseling",
+                                        "legal_advice",
+                                        "domiciliation",
+                                        "social_accompaniment",
+                                        "public_writer",
+                                        "disability_advice",
+                                        "administrative_assistance",
+                                        "parent_assistance",
+                                        "budget_advice",
+                                        "technology",
+                                        "computers_at_your_disposal",
+                                        "wifi",
+                                        "electrical_outlets_available",
+                                        "telephone_at_your_disposal",
+                                        "digital_safe",
+                                        "food",
+                                        "food_distribution",
+                                        "seated_catering",
+                                        "food_packages",
+                                        "social_grocery_stores",
+                                        "fountain",
+                                        "solidarity_fridge",
+                                        "shared_kitchen",
+                                        "cooking_workshop",
+                                        "baby_parcel",
+                                        "food_voucher",
+                                        "community_garden",
+                                        "welcome",
+                                        "day_hosting",
+                                        "rest_area",
+                                        "babysitting",
+                                        "family_area",
+                                        "information_point",
+                                        "activities",
+                                        "sport_activities",
+                                        "museums",
+                                        "libraries",
+                                        "other_activities",
+                                        "equipment",
+                                        "luggage_storage",
+                                        "solidarity_store",
+                                        "clothing",
+                                        "animal_assitance",
+                                        "accomodation_and_housing",
+                                        "overnight_stop",
+                                        "emergency_accommodation",
+                                        "long_term_accomodation",
+                                        "citizen_housing",
+                                        "access_to_housing"
+                                      ],
+                                      "description": "- health: Health\n- addiction: Addiction\n- std_testing: Screening\n- psychological_support: Psychology\n- child_care: Childcare\n- general_practitioner: General Practitioner\n- dental_care: Dental\n- pregnancy_care: Pregnancy Monitoring\n- vaccination: Vaccination\n- infirmary: Infirmary\n- vet_care: Veterinary\n- health_specialists: Specialists\n- allergology: Allergology\n- cardiology: Cardiology\n- dermatology: Dermatology\n- echography: Ultrasound\n- endocrinology: Endocrinology\n- gastroenterology: Gastroenterology\n- gynecology: Gynecology\n- kinesitherapy: Physiotherapy\n- mammography: Mammography\n- ophthalmology: Ophtalmology\n- otorhinolaryngology: Otorhinolaryngology\n- nutrition: Nutrition\n- pedicure: Podiatry\n- phlebology: Phlebology\n- pneumology: Pneumology\n- radiology: Radiology\n- rheumatology: Rheumatology\n- urology: Urology\n- speech_therapy: Speech Therapy\n- stomatology: Stomatology\n- osteopathy: Osteopathy\n- acupuncture: Acupuncture\n- mobility: Transportation & Mobility\n- carpooling: Carpooling\n- provision_of_vehicles: Vehicle Provision\n- chauffeur_driven_transport: Transport with Driver\n- mobility_assistance: Mobility Assistance\n- training_and_jobs: Training and Employment\n- digital_tools_training: Digital Workshop\n- french_course: French Classes\n- job_coaching: Employment Support\n- integration_through_economic_activity: Integration through Economic Activity\n- tutoring: Educational Support\n- hygiene_and_wellness: Hygiene and Well-being\n- shower: Shower\n- laundry: Laundry\n- wellness: Well-being\n- toilets: Toilets\n- hygiene_products: Hygiene Products\n- face_masks: Masks\n- counseling: Counseling\n- legal_advice: Legal Consultation\n- domiciliation: Domiciliation\n- social_accompaniment: Social Support\n- public_writer: Public Writer\n- disability_advice: Disability Consultation\n- administrative_assistance: Administrative Consultation\n- parent_assistance: Parental Advice\n- budget_advice: Budget Advice\n- technology: Technology\n- computers_at_your_disposal: Computer\n- wifi: Wifi\n- electrical_outlets_available: Outlet\n- telephone_at_your_disposal: Phone\n- digital_safe: Digital Safe\n- food: Food\n- food_distribution: Meal Distribution\n- seated_catering: Seated Dining\n- food_packages: Food Package\n- social_grocery_stores: Social and Solidarity Grocery\n- fountain: Water Fountain\n- solidarity_fridge: Solidarity fridge\n- shared_kitchen: Shared kitchen\n- cooking_workshop: Cooking workshop\n- baby_parcel: Baby parcel\n- food_voucher: Food voucher\n- community_garden: Community garden\n- welcome: Welcome\n- day_hosting: Day Center\n- rest_area: Rest Area\n- babysitting: Babysitting\n- family_area: Family Space\n- information_point: Information Point\n- activities: Activities\n- sport_activities: Sports Activities\n- museums: Museum\n- libraries: Library\n- other_activities: Various Activities\n- equipment: Equipment\n- luggage_storage: Luggage\n- solidarity_store: Solidarity Shop\n- clothing: Clothing\n- animal_assitance: Animals\n- accomodation_and_housing: Housing & Accommodation\n- overnight_stop: Night Stop\n- emergency_accommodation: Emergency Housing\n- long_term_accomodation: Long-Term Housing\n- citizen_housing: Citizen Housing\n- access_to_housing: Housing Advice",
+                                      "example": "food_distribution"
+                                    },
+                                    "description": {
+                                      "type": "string",
+                                      "description": "Description of the service.",
+                                      "example": "Breakfast and hot drinks."
+                                    },
+                                    "saturation": {
+                                      "type": "object",
+                                      "properties": {
+                                        "level": {
+                                          "type": "string",
+                                          "enum": [
+                                            "low",
+                                            "moderate",
+                                            "high"
+                                          ],
+                                          "description": "Saturation level of the service.",
+                                          "example": "high"
+                                        },
+                                        "details": {
+                                          "nullable": true,
+                                          "description": "Additional details about service saturation.",
+                                          "example": "Very busy on Mondays.",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "level",
+                                        "details"
+                                      ],
+                                      "additionalProperties": false,
+                                      "description": "Saturation information for the service."
+                                    },
+                                    "isOpenToday": {
+                                      "type": "boolean",
+                                      "description": "Whether the service is open today",
+                                      "example": true
+                                    },
+                                    "access": {
+                                      "nullable": true,
+                                      "description": "Service-specific access rules. Null means the service inherits access rules from the place.",
+                                      "type": "object",
+                                      "properties": {
+                                        "isUnconditional": {
+                                          "type": "boolean",
+                                          "description": "If true, access to the facility is unconditional and there are no requirements"
+                                        },
+                                        "allowPets": {
+                                          "type": "boolean",
+                                          "description": "Whether pets are allowed."
+                                        },
+                                        "isWheelchairAccessible": {
+                                          "type": "boolean",
+                                          "description": "Whether the place is accessible to wheelchair"
+                                        },
+                                        "appointmentRequirement": {
+                                          "type": "object",
+                                          "properties": {
+                                            "isRequired": {
+                                              "type": "boolean",
+                                              "description": "Whether an this requirement applies."
+                                            },
+                                            "details": {
+                                              "nullable": true,
+                                              "description": "Additional details about",
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "isRequired",
+                                            "details"
+                                          ],
+                                          "additionalProperties": false,
+                                          "description": "Appointement requirement."
+                                        },
+                                        "registrationRequirement": {
+                                          "type": "object",
+                                          "properties": {
+                                            "isRequired": {
+                                              "type": "boolean",
+                                              "description": "Whether an this requirement applies."
+                                            },
+                                            "details": {
+                                              "nullable": true,
+                                              "description": "Additional details about",
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "isRequired",
+                                            "details"
+                                          ],
+                                          "additionalProperties": false,
+                                          "description": "Registration requirement."
+                                        },
+                                        "orientationRequirement": {
+                                          "type": "object",
+                                          "properties": {
+                                            "isRequired": {
+                                              "type": "boolean",
+                                              "description": "Whether an this requirement applies."
+                                            },
+                                            "details": {
+                                              "nullable": true,
+                                              "description": "Additional details about",
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "isRequired",
+                                            "details"
+                                          ],
+                                          "additionalProperties": false,
+                                          "description": "Orientation requirement."
+                                        },
+                                        "pricing": {
+                                          "type": "object",
+                                          "properties": {
+                                            "isPaid": {
+                                              "type": "boolean",
+                                              "description": "Whether the place or service requires payment.",
+                                              "example": false
+                                            },
+                                            "details": {
+                                              "nullable": true,
+                                              "description": "Additional pricing details.",
+                                              "example": "2€ per meal",
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "isPaid",
+                                            "details"
+                                          ],
+                                          "additionalProperties": false
+                                        },
+                                        "otherDetails": {
+                                          "nullable": true,
+                                          "description": "Additional free-text information related to access conditions.",
+                                          "example": "Bring an ID document on your first visit.",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "isUnconditional",
+                                        "allowPets",
+                                        "isWheelchairAccessible",
+                                        "appointmentRequirement",
+                                        "registrationRequirement",
+                                        "orientationRequirement",
+                                        "pricing",
+                                        "otherDetails"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    "audience": {
+                                      "nullable": true,
+                                      "description": "Service-specific audience rules. Null means the service inherits audience rules from the place.",
+                                      "type": "object",
+                                      "properties": {
+                                        "admissionPolicy": {
+                                          "type": "string",
+                                          "enum": [
+                                            "open",
+                                            "restricted"
+                                          ],
+                                          "description": "Whether the place or service is open to everyone or restricted to specific audiences.",
+                                          "example": "open"
+                                        },
+                                        "isTargeted": {
+                                          "type": "boolean",
+                                          "description": "Whether the place or service is designed for certain audiences, even if broad admission is open.",
+                                          "example": true
+                                        },
+                                        "description": {
+                                          "type": "string",
+                                          "description": "Free-text description of the intended or accepted audience.",
+                                          "example": "Young adults in unstable housing."
+                                        },
+                                        "ageRange": {
+                                          "nullable": true,
+                                          "description": "Age restriction. Null means there is no age restriction.",
+                                          "example": {
+                                            "min": 18,
+                                            "max": 30
+                                          },
+                                          "type": "object",
+                                          "properties": {
+                                            "min": {
+                                              "type": "integer",
+                                              "minimum": 0,
+                                              "maximum": 9007199254740991,
+                                              "description": "Minimum age accepted.",
+                                              "example": 18
+                                            },
+                                            "max": {
+                                              "type": "integer",
+                                              "minimum": 0,
+                                              "maximum": 9007199254740991,
+                                              "description": "Maximum age accepted.",
+                                              "example": 30
+                                            }
+                                          },
+                                          "required": [
+                                            "min",
+                                            "max"
+                                          ],
+                                          "additionalProperties": false
+                                        },
+                                        "administrativeStatuses": {
+                                          "type": "string",
+                                          "enum": [
+                                            "regular",
+                                            "asylum",
+                                            "refugee",
+                                            "undocumented"
+                                          ],
+                                          "description": "Accepted or targeted administrative statuses.\n- regular: Person in regular situation. \n- asylum: Person in asylum. \n- refugee: Person with refugee status. \n- undocumente: Person without passport or ID."
+                                        },
+                                        "familyStatuses": {
+                                          "type": "string",
+                                          "enum": [
+                                            "isolated",
+                                            "family",
+                                            "couple",
+                                            "pregnant"
+                                          ],
+                                          "description": "Accepted or targeted family situations.\n- isolated: Isolated person.\n- family: Family.\n- couple: Couple.\n- pregnant: Pregnant Woman."
+                                        },
+                                        "otherStatuses": {
+                                          "type": "string",
+                                          "enum": [
+                                            "violence",
+                                            "addiction",
+                                            "disability",
+                                            "lgbt+",
+                                            "hiv",
+                                            "prostitution",
+                                            "prison",
+                                            "student"
+                                          ],
+                                          "description": "Other accepted or targeted statuses.\n- violence: Person victim of violence.\n- addiction: Person suffering from addition.\n- disability: Person with disabilities.\n- lgbt+: Person among LGBT+ communities.\n- hiv: Person suffering from HIV.\n- prostitution: Person suffering from prostitution.\n- prison: Person getting out of prison.\n- student: Student."
+                                        },
+                                        "genders": {
+                                          "type": "string",
+                                          "enum": [
+                                            "men",
+                                            "women"
+                                          ],
+                                          "description": "Accepted or targeted genders.\n- men: Men.\n- women: Women"
+                                        },
+                                        "specialSupportContexts": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "type": {
+                                                "type": "string",
+                                                "description": "Broad category of support context.",
+                                                "example": "humanitarianCrisis"
+                                              },
+                                              "key": {
+                                                "type": "string",
+                                                "description": "Stable machine-readable identifier for the support context.",
+                                                "example": "ukraine-displacement"
+                                              },
+                                              "label": {
+                                                "type": "string",
+                                                "description": "Human-readable label for the support context.",
+                                                "example": "Support for displaced people from Ukraine"
+                                              },
+                                              "details": {
+                                                "type": "string",
+                                                "description": "Additional details about the support available in this context.",
+                                                "example": "Ukrainian-speaking volunteers available."
+                                              }
+                                            },
+                                            "required": [
+                                              "type",
+                                              "key",
+                                              "label",
+                                              "details"
+                                            ],
+                                            "additionalProperties": false,
+                                            "description": "Special support context related to a crisis or exceptional situation."
+                                          },
+                                          "description": "Special support contexts such as crisis-specific support."
+                                        }
+                                      },
+                                      "required": [
+                                        "admissionPolicy",
+                                        "isTargeted",
+                                        "description",
+                                        "ageRange",
+                                        "administrativeStatuses",
+                                        "familyStatuses",
+                                        "otherStatuses",
+                                        "genders",
+                                        "specialSupportContexts"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    "schedule": {
+                                      "nullable": true,
+                                      "description": "Service-specific schedule. Null means the service inherits schedule from the place.",
+                                      "type": "object",
+                                      "properties": {
+                                        "weeklySchedule": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "dayOfWeek": {
+                                                "type": "string",
+                                                "enum": [
+                                                  "monday",
+                                                  "tuesday",
+                                                  "wednesday",
+                                                  "thursday",
+                                                  "friday",
+                                                  "saturday",
+                                                  "sunday"
+                                                ],
+                                                "description": "Days of the week.",
+                                                "example": "monday"
+                                              },
+                                              "status": {
+                                                "type": "string",
+                                                "enum": [
+                                                  "open",
+                                                  "closed",
+                                                  "unknown"
+                                                ],
+                                                "description": "Opening status for a day or public holiday.",
+                                                "example": "open"
+                                              },
+                                              "timeSlots": {
+                                                "type": "array",
+                                                "items": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "startTime": {
+                                                      "type": "string",
+                                                      "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?$"
+                                                    },
+                                                    "endTime": {
+                                                      "type": "string",
+                                                      "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?$"
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "startTime",
+                                                    "endTime"
+                                                  ],
+                                                  "additionalProperties": false
+                                                },
+                                                "description": "Opening time slots for this day. May be empty when status is closed or unknown."
+                                              }
+                                            },
+                                            "required": [
+                                              "dayOfWeek",
+                                              "status",
+                                              "timeSlots"
+                                            ],
+                                            "additionalProperties": false,
+                                            "description": "Opening information for one day of the week."
+                                          },
+                                          "description": "Weekly opening schedule."
+                                        },
+                                        "publicHolidays": {
+                                          "type": "object",
+                                          "properties": {
+                                            "status": {
+                                              "type": "string",
+                                              "enum": [
+                                                "open",
+                                                "closed",
+                                                "unknown",
+                                                "specific"
+                                              ],
+                                              "description": "Default public holiday behavior. Use \"specific\" when holiday-specific entries are provided.",
+                                              "example": "specific"
+                                            },
+                                            "openedHolidays": {
+                                              "type": "array",
+                                              "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "label": {
+                                                    "type": "string",
+                                                    "description": "Human-readable name of the public holiday.",
+                                                    "example": "New Year"
+                                                  },
+                                                  "status": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "open",
+                                                      "closed"
+                                                    ],
+                                                    "description": "Opening status for this public holiday.",
+                                                    "example": "closed"
+                                                  },
+                                                  "timeSlots": {
+                                                    "type": "array",
+                                                    "items": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "startTime": {
+                                                          "type": "string",
+                                                          "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?$"
+                                                        },
+                                                        "endTime": {
+                                                          "type": "string",
+                                                          "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?$"
+                                                        }
+                                                      },
+                                                      "required": [
+                                                        "startTime",
+                                                        "endTime"
+                                                      ],
+                                                      "additionalProperties": false
+                                                    },
+                                                    "description": "Opening time slots for this holiday when applicable."
+                                                  }
+                                                },
+                                                "required": [
+                                                  "label",
+                                                  "status",
+                                                  "timeSlots"
+                                                ],
+                                                "additionalProperties": false,
+                                                "description": "Specific opening rule for one public holiday."
+                                              },
+                                              "description": "Holiday-specific opening rules."
+                                            }
+                                          },
+                                          "required": [
+                                            "status",
+                                            "openedHolidays"
+                                          ],
+                                          "additionalProperties": false,
+                                          "description": "Public holiday opening information."
+                                        }
+                                      },
+                                      "required": [
+                                        "weeklySchedule",
+                                        "publicHolidays"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  },
+                                  "required": [
+                                    "id",
+                                    "category",
+                                    "description",
+                                    "saturation",
+                                    "isOpenToday",
+                                    "access",
+                                    "audience",
+                                    "schedule"
+                                  ],
+                                  "additionalProperties": false,
+                                  "description": "Service provided by the place."
+                                },
+                                "description": "Services provided by the place."
+                              },
+                              "temporaryInformation": {
+                                "type": "object",
+                                "properties": {
+                                  "closures": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "startDate": {
+                                          "type": "string",
+                                          "format": "date-time",
+                                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$",
+                                          "description": "Start date and time of the temporary closure in ISO 8601 format.",
+                                          "example": "2026-04-01T00:00:00Z"
+                                        },
+                                        "endDate": {
+                                          "type": "string",
+                                          "format": "date-time",
+                                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$",
+                                          "description": "End date and time of the temporary closure in ISO 8601 format.",
+                                          "example": "2026-04-03T23:59:59Z"
+                                        },
+                                        "description": {
+                                          "type": "string",
+                                          "description": "Explanation of the temporary closure.",
+                                          "example": "Renovation work."
+                                        }
+                                      },
+                                      "required": [
+                                        "startDate",
+                                        "endDate",
+                                        "description"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    "description": "List of temporary closures affecting the place."
+                                  },
+                                  "scheduleAdjustments": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "startDate": {
+                                          "type": "string",
+                                          "format": "date-time",
+                                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$",
+                                          "description": "Start date and time of the temporary schedule adjustment in ISO 8601 format."
+                                        },
+                                        "endDate": {
+                                          "type": "string",
+                                          "format": "date-time",
+                                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$",
+                                          "description": "End date and time of the temporary schedule adjustment in ISO 8601 format."
+                                        },
+                                        "description": {
+                                          "type": "string",
+                                          "description": "Explanation of the temporary schedule adjustment.",
+                                          "example": "Reduced opening hours during school holidays."
+                                        },
+                                        "schedule": {
+                                          "type": "object",
+                                          "properties": {
+                                            "weeklySchedule": {
+                                              "type": "array",
+                                              "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "dayOfWeek": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "monday",
+                                                      "tuesday",
+                                                      "wednesday",
+                                                      "thursday",
+                                                      "friday",
+                                                      "saturday",
+                                                      "sunday"
+                                                    ],
+                                                    "description": "Days of the week.",
+                                                    "example": "monday"
+                                                  },
+                                                  "status": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "open",
+                                                      "closed",
+                                                      "unknown"
+                                                    ],
+                                                    "description": "Opening status for a day or public holiday.",
+                                                    "example": "open"
+                                                  },
+                                                  "timeSlots": {
+                                                    "type": "array",
+                                                    "items": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "startTime": {
+                                                          "type": "string",
+                                                          "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?$"
+                                                        },
+                                                        "endTime": {
+                                                          "type": "string",
+                                                          "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?$"
+                                                        }
+                                                      },
+                                                      "required": [
+                                                        "startTime",
+                                                        "endTime"
+                                                      ],
+                                                      "additionalProperties": false
+                                                    },
+                                                    "description": "Opening time slots for this day. May be empty when status is closed or unknown."
+                                                  }
+                                                },
+                                                "required": [
+                                                  "dayOfWeek",
+                                                  "status",
+                                                  "timeSlots"
+                                                ],
+                                                "additionalProperties": false,
+                                                "description": "Opening information for one day of the week."
+                                              },
+                                              "description": "Weekly opening schedule."
+                                            },
+                                            "publicHolidays": {
+                                              "type": "object",
+                                              "properties": {
+                                                "status": {
+                                                  "type": "string",
+                                                  "enum": [
+                                                    "open",
+                                                    "closed",
+                                                    "unknown",
+                                                    "specific"
+                                                  ],
+                                                  "description": "Default public holiday behavior. Use \"specific\" when holiday-specific entries are provided.",
+                                                  "example": "specific"
+                                                },
+                                                "openedHolidays": {
+                                                  "type": "array",
+                                                  "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "label": {
+                                                        "type": "string",
+                                                        "description": "Human-readable name of the public holiday.",
+                                                        "example": "New Year"
+                                                      },
+                                                      "status": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                          "open",
+                                                          "closed"
+                                                        ],
+                                                        "description": "Opening status for this public holiday.",
+                                                        "example": "closed"
+                                                      },
+                                                      "timeSlots": {
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "startTime": {
+                                                              "type": "string",
+                                                              "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?$"
+                                                            },
+                                                            "endTime": {
+                                                              "type": "string",
+                                                              "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?$"
+                                                            }
+                                                          },
+                                                          "required": [
+                                                            "startTime",
+                                                            "endTime"
+                                                          ],
+                                                          "additionalProperties": false
+                                                        },
+                                                        "description": "Opening time slots for this holiday when applicable."
+                                                      }
+                                                    },
+                                                    "required": [
+                                                      "label",
+                                                      "status",
+                                                      "timeSlots"
+                                                    ],
+                                                    "additionalProperties": false,
+                                                    "description": "Specific opening rule for one public holiday."
+                                                  },
+                                                  "description": "Holiday-specific opening rules."
+                                                }
+                                              },
+                                              "required": [
+                                                "status",
+                                                "openedHolidays"
+                                              ],
+                                              "additionalProperties": false,
+                                              "description": "Public holiday opening information."
+                                            }
+                                          },
+                                          "required": [
+                                            "weeklySchedule",
+                                            "publicHolidays"
+                                          ],
+                                          "additionalProperties": false,
+                                          "description": "Schedule applied during the temporary adjustment period."
+                                        }
+                                      },
+                                      "required": [
+                                        "startDate",
+                                        "endDate",
+                                        "description",
+                                        "schedule"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    "description": "List of temporary schedule changes affecting the place."
+                                  },
+                                  "messages": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "title": {
+                                          "type": "string",
+                                          "description": "Short title of the temporary message.",
+                                          "example": "Important notice"
+                                        },
+                                        "startDate": {
+                                          "type": "string",
+                                          "format": "date-time",
+                                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$",
+                                          "description": "Start date and time from which the message is active in ISO 8601 format."
+                                        },
+                                        "endDate": {
+                                          "type": "string",
+                                          "format": "date-time",
+                                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$",
+                                          "description": "End date and time until which the message is active in ISO 8601 format."
+                                        },
+                                        "description": {
+                                          "type": "string",
+                                          "description": "Message content.",
+                                          "example": "Bring an ID document on your first visit."
+                                        }
+                                      },
+                                      "required": [
+                                        "title",
+                                        "startDate",
+                                        "endDate",
+                                        "description"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    "description": "List of temporary informational messages displayed for the place."
+                                  }
+                                },
+                                "required": [
+                                  "closures",
+                                  "scheduleAdjustments",
+                                  "messages"
+                                ],
+                                "additionalProperties": false,
+                                "description": "Temporary changes affecting the place."
+                              },
+                              "access": {
+                                "type": "object",
+                                "properties": {
+                                  "isUnconditional": {
+                                    "type": "boolean",
+                                    "description": "If true, access to the facility is unconditional and there are no requirements"
+                                  },
+                                  "allowPets": {
+                                    "type": "boolean",
+                                    "description": "Whether pets are allowed."
+                                  },
+                                  "isWheelchairAccessible": {
+                                    "type": "boolean",
+                                    "description": "Whether the place is accessible to wheelchair"
+                                  },
+                                  "appointmentRequirement": {
+                                    "type": "object",
+                                    "properties": {
+                                      "isRequired": {
+                                        "type": "boolean",
+                                        "description": "Whether an this requirement applies."
+                                      },
+                                      "details": {
+                                        "nullable": true,
+                                        "description": "Additional details about",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "isRequired",
+                                      "details"
+                                    ],
+                                    "additionalProperties": false,
+                                    "description": "Appointement requirement."
+                                  },
+                                  "registrationRequirement": {
+                                    "type": "object",
+                                    "properties": {
+                                      "isRequired": {
+                                        "type": "boolean",
+                                        "description": "Whether an this requirement applies."
+                                      },
+                                      "details": {
+                                        "nullable": true,
+                                        "description": "Additional details about",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "isRequired",
+                                      "details"
+                                    ],
+                                    "additionalProperties": false,
+                                    "description": "Registration requirement."
+                                  },
+                                  "orientationRequirement": {
+                                    "type": "object",
+                                    "properties": {
+                                      "isRequired": {
+                                        "type": "boolean",
+                                        "description": "Whether an this requirement applies."
+                                      },
+                                      "details": {
+                                        "nullable": true,
+                                        "description": "Additional details about",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "isRequired",
+                                      "details"
+                                    ],
+                                    "additionalProperties": false,
+                                    "description": "Orientation requirement."
+                                  },
+                                  "pricing": {
+                                    "type": "object",
+                                    "properties": {
+                                      "isPaid": {
+                                        "type": "boolean",
+                                        "description": "Whether the place or service requires payment.",
+                                        "example": false
+                                      },
+                                      "details": {
+                                        "nullable": true,
+                                        "description": "Additional pricing details.",
+                                        "example": "2€ per meal",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "isPaid",
+                                      "details"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  "otherDetails": {
+                                    "nullable": true,
+                                    "description": "Additional free-text information related to access conditions.",
+                                    "example": "Bring an ID document on your first visit.",
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "isUnconditional",
+                                  "allowPets",
+                                  "isWheelchairAccessible",
+                                  "appointmentRequirement",
+                                  "registrationRequirement",
+                                  "orientationRequirement",
+                                  "pricing",
+                                  "otherDetails"
+                                ],
+                                "additionalProperties": false,
+                                "description": "Access rules applying to the place."
+                              },
+                              "audience": {
+                                "type": "object",
+                                "properties": {
+                                  "admissionPolicy": {
+                                    "type": "string",
+                                    "enum": [
+                                      "open",
+                                      "restricted"
+                                    ],
+                                    "description": "Whether the place or service is open to everyone or restricted to specific audiences.",
+                                    "example": "open"
+                                  },
+                                  "isTargeted": {
+                                    "type": "boolean",
+                                    "description": "Whether the place or service is designed for certain audiences, even if broad admission is open.",
+                                    "example": true
+                                  },
+                                  "description": {
+                                    "type": "string",
+                                    "description": "Free-text description of the intended or accepted audience.",
+                                    "example": "Young adults in unstable housing."
+                                  },
+                                  "ageRange": {
+                                    "nullable": true,
+                                    "description": "Age restriction. Null means there is no age restriction.",
+                                    "example": {
+                                      "min": 18,
+                                      "max": 30
+                                    },
+                                    "type": "object",
+                                    "properties": {
+                                      "min": {
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 9007199254740991,
+                                        "description": "Minimum age accepted.",
+                                        "example": 18
+                                      },
+                                      "max": {
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 9007199254740991,
+                                        "description": "Maximum age accepted.",
+                                        "example": 30
+                                      }
+                                    },
+                                    "required": [
+                                      "min",
+                                      "max"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  "administrativeStatuses": {
+                                    "type": "string",
+                                    "enum": [
+                                      "regular",
+                                      "asylum",
+                                      "refugee",
+                                      "undocumented"
+                                    ],
+                                    "description": "Accepted or targeted administrative statuses.\n- regular: Person in regular situation. \n- asylum: Person in asylum. \n- refugee: Person with refugee status. \n- undocumente: Person without passport or ID."
+                                  },
+                                  "familyStatuses": {
+                                    "type": "string",
+                                    "enum": [
+                                      "isolated",
+                                      "family",
+                                      "couple",
+                                      "pregnant"
+                                    ],
+                                    "description": "Accepted or targeted family situations.\n- isolated: Isolated person.\n- family: Family.\n- couple: Couple.\n- pregnant: Pregnant Woman."
+                                  },
+                                  "otherStatuses": {
+                                    "type": "string",
+                                    "enum": [
+                                      "violence",
+                                      "addiction",
+                                      "disability",
+                                      "lgbt+",
+                                      "hiv",
+                                      "prostitution",
+                                      "prison",
+                                      "student"
+                                    ],
+                                    "description": "Other accepted or targeted statuses.\n- violence: Person victim of violence.\n- addiction: Person suffering from addition.\n- disability: Person with disabilities.\n- lgbt+: Person among LGBT+ communities.\n- hiv: Person suffering from HIV.\n- prostitution: Person suffering from prostitution.\n- prison: Person getting out of prison.\n- student: Student."
+                                  },
+                                  "genders": {
+                                    "type": "string",
+                                    "enum": [
+                                      "men",
+                                      "women"
+                                    ],
+                                    "description": "Accepted or targeted genders.\n- men: Men.\n- women: Women"
+                                  },
+                                  "specialSupportContexts": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "description": "Broad category of support context.",
+                                          "example": "humanitarianCrisis"
+                                        },
+                                        "key": {
+                                          "type": "string",
+                                          "description": "Stable machine-readable identifier for the support context.",
+                                          "example": "ukraine-displacement"
+                                        },
+                                        "label": {
+                                          "type": "string",
+                                          "description": "Human-readable label for the support context.",
+                                          "example": "Support for displaced people from Ukraine"
+                                        },
+                                        "details": {
+                                          "type": "string",
+                                          "description": "Additional details about the support available in this context.",
+                                          "example": "Ukrainian-speaking volunteers available."
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "key",
+                                        "label",
+                                        "details"
+                                      ],
+                                      "additionalProperties": false,
+                                      "description": "Special support context related to a crisis or exceptional situation."
+                                    },
+                                    "description": "Special support contexts such as crisis-specific support."
+                                  }
+                                },
+                                "required": [
+                                  "admissionPolicy",
+                                  "isTargeted",
+                                  "description",
+                                  "ageRange",
+                                  "administrativeStatuses",
+                                  "familyStatuses",
+                                  "otherStatuses",
+                                  "genders",
+                                  "specialSupportContexts"
+                                ],
+                                "additionalProperties": false,
+                                "description": "Audience rules and targeting information."
+                              },
                               "type": {
                                 "type": "string",
                                 "enum": [
                                   "itinerary"
-                                ]
+                                ],
+                                "description": "Discriminates place shape."
                               },
                               "stops": {
                                 "type": "array",
@@ -578,16 +3245,30 @@
                                   ],
                                   "additionalProperties": false
                                 },
-                                "description": "Scheduled stops or route points where the itinerary service is available."
+                                "description": "Scheduled stops or route points."
                               }
                             },
                             "required": [
+                              "name",
+                              "description",
+                              "isOpenToday",
+                              "languages",
+                              "id",
+                              "slug",
+                              "updatedAt",
+                              "contacts",
+                              "services",
+                              "temporaryInformation",
+                              "access",
+                              "audience",
                               "type",
                               "stops"
                             ],
-                            "additionalProperties": {}
+                            "additionalProperties": false,
+                            "title": "Itinerary"
                           }
                         ],
+                        "description": "Type-discriminated place payload. \"fixedLocation\" requires location/schedule; \"itinerary\" requires stops.",
                         "discriminator": {
                           "propertyName": "type"
                         }
@@ -777,10 +3458,12 @@
                       "osteopathy",
                       "acupuncture",
                       "mobility",
-                      "carpooling",
-                      "provision_of_vehicles",
-                      "chauffeur_driven_transport",
-                      "mobility_assistance",
+                      "transportation_mobility",
+                      "personal_vehicle_access",
+                      "vehicle_maintenance",
+                      "mobility_support",
+                      "driving_license",
+                      "mobility_financing",
                       "training_and_jobs",
                       "digital_tools_training",
                       "french_course",
@@ -889,10 +3572,12 @@
                         "osteopathy",
                         "acupuncture",
                         "mobility",
-                        "carpooling",
-                        "provision_of_vehicles",
-                        "chauffeur_driven_transport",
-                        "mobility_assistance",
+                        "transportation_mobility",
+                        "personal_vehicle_access",
+                        "vehicle_maintenance",
+                        "mobility_support",
+                        "driving_license",
+                        "mobility_financing",
                         "training_and_jobs",
                         "digital_tools_training",
                         "french_course",

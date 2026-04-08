@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { removeKey, removeKeys } from '../../object-path.utils';
-import { ObjectPath } from '../../versioning.types';
+import { ObjectPath, ResponseDowngradeContext } from '../../versioning.types';
 import { OperationHandler } from './operation-handler.types';
 import { MaybeAsync } from '../../../utils';
 
@@ -12,6 +12,7 @@ type SplitMapper = (
 type MergeMapper = (
   values: Record<string, unknown>,
   container: Record<string, unknown>,
+  context?: ResponseDowngradeContext,
 ) => MaybeAsync<unknown>;
 
 export interface SplitFieldOperation<
@@ -57,7 +58,7 @@ export const splitFieldOperationHandler: OperationHandler<
     }
   },
 
-  async applyResponse(operation, container) {
+  async applyResponse(operation, container, context) {
     if (!operation.downgrade) {
       return;
     }
@@ -69,7 +70,11 @@ export const splitFieldOperationHandler: OperationHandler<
       return accumulator;
     }, {});
 
-    container[operation.from] = await operation.downgrade(values, container);
+    container[operation.from] = await operation.downgrade(
+      values,
+      container,
+      context,
+    );
     removeKeys(container, Object.keys(operation.schemas));
   },
 };

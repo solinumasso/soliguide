@@ -2,6 +2,7 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { VersionResolver } from '../versioning/version-resolver';
 import { VersionRegistry } from '../versioning/version-registry';
 import { VersionMigrationPlanner } from './version-migration-planner';
+import type { ResponseDowngradeContext } from '../versioning/versioning.types';
 
 @Injectable()
 export class ResponseVersioningPipeline {
@@ -17,6 +18,7 @@ export class ResponseVersioningPipeline {
   async downgradeResponse(
     payload: unknown,
     requestedVersion: string | null | undefined,
+    context?: ResponseDowngradeContext,
   ): Promise<unknown> {
     const { normalizedVersion, isMissing } =
       this.versionResolver.resolveVersion(
@@ -34,12 +36,32 @@ export class ResponseVersioningPipeline {
       normalizedVersion,
     );
 
+    const downgradeContext = context ?? {};
     let transformedPayload = payload;
 
     for (const version of downgradePath) {
+      if (version.prepareResponseDowngradeContext) {
+        try {
+          await version.prepareResponseDowngradeContext(
+            transformedPayload,
+            downgradeContext,
+          );
+        } catch (error) {
+          throw new InternalServerErrorException(
+            `Failed to prepare response downgrade context for version ${version.version}.`,
+            {
+              cause: error,
+            },
+          );
+        }
+      }
+
       for (const change of version.responseChanges) {
         try {
-          transformedPayload = await change.downgrade(transformedPayload);
+          transformedPayload = await change.downgrade(
+            transformedPayload,
+            downgradeContext,
+          );
         } catch (error) {
           throw new InternalServerErrorException(
             `Failed to apply response downgrade change "${change.description}" for version ${version.version}.`,

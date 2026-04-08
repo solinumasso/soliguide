@@ -1,6 +1,9 @@
 import { z } from 'zod';
 import { ReplaceFieldOperation } from '../dsl/operations/replace-field.operation';
-import { PayloadObjectPath } from '../versioning.types';
+import {
+  PayloadObjectPath,
+  type ResponseDowngradeContext,
+} from '../versioning.types';
 import { Change } from './change';
 import { FieldKey, ResolvedContainer } from './types';
 import { MaybeAsync } from '../../utils';
@@ -24,6 +27,7 @@ export abstract class ReplaceFieldChange<
   downgrade(
     value: unknown,
     _container: Record<string, unknown>,
+    _context?: ResponseDowngradeContext,
   ): MaybeAsync<unknown> {
     return value;
   }
@@ -35,7 +39,8 @@ export abstract class ReplaceFieldChange<
       field: this.field,
       schema: this.schema,
       upgrade: (value, container) => this.upgrade(value, container),
-      downgrade: (value, container) => this.downgrade(value, container),
+      downgrade: (value, container, context) =>
+        this.downgrade(value, container, context),
     };
   }
 
@@ -46,7 +51,8 @@ export abstract class ReplaceFieldChange<
       field: this.field,
       schema: this.schema,
       upgrade: (value, container) => this.upgrade(value, container),
-      downgrade: (value, container) => this.downgrade(value, container),
+      downgrade: (value, container, context) =>
+        this.downgrade(value, container, context),
     };
   }
 }

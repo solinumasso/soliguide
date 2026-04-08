@@ -11,7 +11,7 @@ import {
 import { DslCompiler } from './dsl/dsl-compiler';
 import type { RequestOperation, ResponseOperation } from './dsl/operations';
 import { readZodSchemaExpression } from './zod-schema-expression.utils';
-import type { Version } from './versioning.types';
+import type { ResponseDowngradeContext, Version } from './versioning.types';
 
 class AddOpenToday extends AddFieldChange {
   description = 'add open flag';
@@ -53,6 +53,18 @@ class RemoveLegacyScore extends RemoveFieldChange {
 
   override downgrade(container: Record<string, unknown>) {
     return container.slug ? 42 : 0;
+  }
+}
+
+class RemoveLegacyScoreFromContext extends RemoveFieldChange {
+  description = 'restore score from context';
+  field = 'legacyScore';
+
+  override downgrade(
+    _container: Record<string, unknown>,
+    context?: ResponseDowngradeContext,
+  ) {
+    return context?.legacyScore;
   }
 }
 
@@ -208,6 +220,25 @@ describe('DslCompiler', () => {
     });
   });
 
+  it('forwards optional downgrade context to response operations', async () => {
+    const compiler = new DslCompiler();
+    const compiledResponse = compiler.compileResponseChange(
+      new RemoveLegacyScoreFromContext(),
+    );
+
+    await expect(
+      compiledResponse.downgrade(
+        { slug: 'abc' },
+        {
+          legacyScore: 19,
+        },
+      ),
+    ).resolves.toEqual({
+      slug: 'abc',
+      legacyScore: 19,
+    });
+  });
+
   it('annotates Add/Rename/Replace/Merge schemas with source expressions', () => {
     const compiler = new DslCompiler();
 
@@ -242,7 +273,9 @@ describe('DslCompiler', () => {
 
   it('compiles custom transform schema patch with replace/remove/set', () => {
     const compiler = new DslCompiler();
-    const compiled = compiler.compileResponseChange(new ReplaceResultsItemSchema());
+    const compiled = compiler.compileResponseChange(
+      new ReplaceResultsItemSchema(),
+    );
 
     expect(compiled.schemaPatch.payloadPath).toBe('/results/*');
     expect(compiled.schemaPatch.replace).toBeDefined();

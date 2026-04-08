@@ -1,7 +1,10 @@
 import { z } from 'zod';
 
 import { removeKey } from '../../object-path.utils';
-import { ObjectPath } from '../../versioning.types';
+import {
+  ObjectPath,
+  type ResponseDowngradeContext,
+} from '../../versioning.types';
 import { OperationHandler } from './operation-handler.types';
 import { MaybeAsync } from '../../../utils';
 
@@ -37,7 +40,7 @@ export const addFieldOperationHandler: OperationHandler<
     container[operation.field] = await operation.upgrade(container);
   },
 
-  applyResponse(operation, container) {
+  applyResponse(operation, container, _context?: ResponseDowngradeContext) {
     removeKey(container, operation.field);
   },
 };

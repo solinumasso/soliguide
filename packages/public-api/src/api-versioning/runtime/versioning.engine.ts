@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { RequestVersioningPipeline } from './request-versioning.pipeline';
 import { ResponseVersioningPipeline } from './response-versioning.pipeline';
+import type { ResponseDowngradeContext } from '../versioning/versioning.types';
 
 @Injectable()
 export class VersioningEngine {
@@ -19,10 +20,12 @@ export class VersioningEngine {
   async downgradeResponse(
     output: unknown,
     versionHeader: string | null | undefined,
+    context?: ResponseDowngradeContext,
   ): Promise<unknown> {
     return this.responseVersioningPipeline.downgradeResponse(
       output,
       versionHeader,
+      context,
     );
   }
 }
