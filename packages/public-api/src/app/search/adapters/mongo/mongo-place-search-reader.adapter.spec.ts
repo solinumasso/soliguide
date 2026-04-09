@@ -26,7 +26,7 @@ describe('MongoPlaceSearchReaderAdapter', () => {
   });
 
   it('translates query to pipelines and aggregates both records and total count', async () => {
-    const query: SearchQuery = { locationMode: 'country', country: 'FR' };
+    const query: SearchQuery = { location: { country: 'FR' } };
     const resultsPipeline = [{ $match: { status: 'ONLINE' } }];
     const countPipeline = [
       { $match: { status: 'ONLINE' } },
@@ -71,7 +71,7 @@ describe('MongoPlaceSearchReaderAdapter', () => {
       .mockResolvedValueOnce([]);
 
     const result = await adapter.search(
-      { locationMode: 'country', country: 'FR' },
+      { location: { country: 'FR' } },
       { page: 1, limit: 20 },
     );
 

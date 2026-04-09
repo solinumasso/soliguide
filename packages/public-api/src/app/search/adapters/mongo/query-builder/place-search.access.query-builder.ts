@@ -14,22 +14,24 @@ const ACCESS_MODE_FIELD_MAP: Record<string, string> = {
 export class AccessQueryBuilder implements SearchQueryBuilder {
   build(context: SearchContext): SearchContext {
     const query = context.query;
+    const accessKind = query.access?.kind;
+    const accessModes = query.access?.modes;
     const conditions: Document[] = [];
 
-    if (query.accessKind === 'unconditional') {
+    if (accessKind === 'unconditional') {
       conditions.push(
         buildPlaceAndServiceCondition('modalities.inconditionnel', true),
       );
     }
 
-    if (query.accessKind === 'conditional') {
+    if (accessKind === 'conditional') {
       conditions.push(
         buildPlaceAndServiceCondition('modalities.inconditionnel', false),
       );
     }
 
-    if (query.accessModes?.length) {
-      const modeConditions = query.accessModes
+    if (accessModes?.length) {
+      const modeConditions = accessModes
         .map((mode) => ACCESS_MODE_FIELD_MAP[mode])
         .filter((legacyFieldName): legacyFieldName is string =>
           Boolean(legacyFieldName),

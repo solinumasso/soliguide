@@ -1,97 +1,100 @@
 import { type Document } from 'mongodb';
+
 import {
   type SearchContext,
   type SearchQueryBuilder,
 } from './search.query-builder';
-import { appendAndConditions } from './utils';
+import { appendAndConditions, buildMatchStage } from './utils';
+import { CountryCodes, slugLocation } from '@soliguide/common';
 
 export class LocationQueryBuilder implements SearchQueryBuilder {
   build(context: SearchContext): SearchContext {
     const query = context.query;
     const conditions: Document[] = [];
-
-    if (query.locationMode === 'country') {
-      const country = query.country;
-      if (country) {
-        conditions.push({ 'position.country': country });
-      }
-      return appendAndConditions(context, conditions);
+    const country = this.normalizeCountry(query.location?.country);
+    if (country) {
+      conditions.push({ 'position.country': country });
     }
 
-    if (query.locationMode === 'administrativeDivision') {
-      const country = query.country;
-      if (country) {
-        conditions.push({ 'position.country': country });
-      }
-
-      const departmentCode = query.departmentCode;
-      const department = query.department;
-      const regionCode = query.regionCode;
-      const region = query.region;
-
-      if (regionCode) {
-        conditions.push({
-          'position.regionCode': regionCode.toUpperCase(),
-        });
-      }
-
-      if (departmentCode) {
-        conditions.push({
-          'position.departmentCode': departmentCode.toUpperCase(),
-        });
-      }
-
-      if (region) {
-        conditions.push({
-          'position.slugs.region': this.slugifyLocation(region),
-        });
-      }
-
-      if (department) {
-        conditions.push({
-          'position.slugs.department': this.slugifyLocation(department),
-        });
-      }
-
-      return appendAndConditions(context, conditions);
-    }
-
-    if (query.locationMode === 'city') {
-      const cityValue = query.cityValue;
-      if (!cityValue) {
-        return context;
-      }
-
-      if (query.cityType === 'postalCode') {
-        conditions.push({ 'position.postalCode': cityValue });
-        return appendAndConditions(context, conditions);
-      }
-
+    const regionCode = query.location?.administrativeDivision?.regionCode;
+    if (regionCode) {
       conditions.push({
-        'position.slugs.city': this.slugifyLocation(cityValue),
+        'position.regionCode': regionCode,
       });
-      return appendAndConditions(context, conditions);
     }
 
-    if (query.locationMode === 'pointRadius') {
-      const country = query.country;
-      if (country) {
-        conditions.push({
-          'position.country': country.toUpperCase(),
-        });
+    const region = query.location?.administrativeDivision?.region;
+    const normalizedRegion = this.normalizeSlug(region);
+    if (normalizedRegion) {
+      conditions.push({
+        'position.slugs.region': normalizedRegion,
+      });
+    }
+
+    const departmentCode =
+      query.location?.administrativeDivision?.departmentCode;
+    if (departmentCode) {
+      conditions.push({
+        'position.departmentCode': departmentCode,
+      });
+    }
+
+    const department = query.location?.administrativeDivision?.department;
+    const normalizedDepartment = this.normalizeSlug(department);
+    if (normalizedDepartment) {
+      conditions.push({
+        'position.slugs.department': normalizedDepartment,
+      });
+    }
+
+    const cityValue = query.location?.city?.value;
+    if (cityValue) {
+      const cityType = query.location?.city?.type;
+      if (cityType === 'postalCode') {
+        conditions.push({ 'position.postalCode': cityValue });
+      } else {
+        const normalizedCity = this.normalizeSlug(cityValue);
+        if (normalizedCity) {
+          conditions.push({
+            'position.slugs.city': normalizedCity,
+          });
+        }
       }
-      return appendAndConditions(context, conditions);
     }
 
-    return context;
+    const nextContext = appendAndConditions(context, conditions);
+
+    const latitude = query.location?.coordinates?.latitude;
+    const longitude = query.location?.coordinates?.longitude;
+    if (latitude === undefined || longitude === undefined) {
+      return nextContext;
+    }
+
+    const radiusKm = query.location?.radiusKm;
+    const maxDistance =
+      typeof radiusKm === 'number' && radiusKm > 0 ? radiusKm * 1000 : null;
+
+    return {
+      ...nextContext,
+      geoNearStage: {
+        near: {
+          type: 'Point',
+          coordinates: [longitude, latitude],
+        },
+        distanceField: 'distance',
+        spherical: true,
+        ...(maxDistance ? { maxDistance } : {}),
+        key: 'position.location',
+        query: buildMatchStage(nextContext.andConditions),
+      },
+    };
   }
 
-  private slugifyLocation(value: string): string {
-    return value
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '');
+  private normalizeCountry(country: string | undefined): string {
+    return (country ?? CountryCodes.FR).trim().toLowerCase();
+  }
+
+  private normalizeSlug(value: string | undefined): string {
+    return value ? slugLocation(value) : '';
   }
 }

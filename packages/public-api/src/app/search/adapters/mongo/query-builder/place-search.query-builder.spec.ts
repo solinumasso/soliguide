@@ -11,13 +11,14 @@ describe('MongoPlaceSearchQueryBuilder', () => {
 
   it('builds a country-based match pipeline', () => {
     const { resultsPipeline, countPipeline } = build({
-      locationMode: 'country',
-      country: 'FR',
+      location: {
+        country: 'FR',
+      },
     });
 
     expect(resultsPipeline[0]).toEqual({
       $match: {
-        $and: [{ 'position.country': 'FR' }],
+        $and: [{ 'position.country': 'fr' }],
       },
     });
     expect(countPipeline[countPipeline.length - 1]).toEqual({
@@ -25,13 +26,16 @@ describe('MongoPlaceSearchQueryBuilder', () => {
     });
   });
 
-  it('builds geo-near pipeline for point radius with distance sort', () => {
+  it('builds geo-near pipeline for coordinates with distance sort', () => {
     const { resultsPipeline } = build({
-      locationMode: 'pointRadius',
-      latitude: 48.85,
-      longitude: 2.35,
-      radiusKm: 10,
-      country: 'fr',
+      location: {
+        country: 'FR',
+        radiusKm: 10,
+        coordinates: {
+          latitude: 48.85,
+          longitude: 2.35,
+        },
+      },
     });
     const geoNearStage = resultsPipeline[0] as {
       $geoNear: {
@@ -51,27 +55,99 @@ describe('MongoPlaceSearchQueryBuilder', () => {
       }),
     );
     expect(geoNearStage.$geoNear.query.$and).toContainEqual({
-      'position.country': 'FR',
+      'position.country': 'fr',
     });
     expect(resultsPipeline[1]).toEqual({
       $sort: { distance: 1, updatedAt: -1 },
     });
   });
 
+  it('supports coordinates and radius with non-point location mode', () => {
+    const { resultsPipeline } = build({
+      location: {
+        country: 'fr',
+        city: { value: 'Paris' },
+        coordinates: {
+          latitude: 48.85,
+          longitude: 2.35,
+        },
+        radiusKm: 5,
+      },
+    });
+
+    const geoNearStage = resultsPipeline[0] as {
+      $geoNear: {
+        near: { type: 'Point'; coordinates: [number, number] };
+        maxDistance?: number;
+        query: { $and: Record<string, unknown>[] };
+      };
+    };
+
+    expect(geoNearStage.$geoNear).toEqual(
+      expect.objectContaining({
+        near: {
+          type: 'Point',
+          coordinates: [2.35, 48.85],
+        },
+        maxDistance: 5000,
+      }),
+    );
+    expect(geoNearStage.$geoNear.query.$and).toContainEqual({
+      'position.country': 'fr',
+    });
+    expect(geoNearStage.$geoNear.query.$and).toContainEqual({
+      'position.slugs.city': 'paris',
+    });
+  });
+
+  it('applies category constraints when geo-near is enabled', () => {
+    const { resultsPipeline } = build({
+      location: {
+        country: 'fr',
+        coordinates: {
+          latitude: 48.85,
+          longitude: 2.35,
+        },
+        radiusKm: 5,
+      },
+      categories: ['disability_advice'],
+    });
+
+    const geoNearStage = resultsPipeline[0] as {
+      $geoNear: {
+        query: { $and: Record<string, unknown>[] };
+      };
+    };
+
+    expect(geoNearStage.$geoNear.query.$and).toContainEqual({
+      services_all: {
+        $elemMatch: {
+          category: {
+            $in: ['disability_advice'],
+          },
+        },
+      },
+    });
+  });
+
   it('applies administrative division filters from sanitized input', () => {
     const { resultsPipeline } = build({
-      locationMode: 'administrativeDivision',
-      country: 'FR',
-      departmentCode: '75',
-      regionCode: '11',
-      region: 'Ile-de-France',
+      location: {
+        country: 'FR',
+        administrativeDivision: {
+          departmentCode: '75',
+          regionCode: '11',
+          region: 'Île-de-France',
+        },
+      },
     });
     const matchStage = resultsPipeline[0] as {
       $match: { $and: Record<string, unknown>[] };
     };
     const andConditions = matchStage.$match.$and;
 
-    expect(andConditions).toContainEqual({ 'position.country': 'FR' });
+    expect(andConditions).toContainEqual({ 'position.country': 'fr' });
+    expect(andConditions).not.toContainEqual({ 'position.country': 'FR' });
     expect(andConditions).toContainEqual({ 'position.regionCode': '11' });
     expect(andConditions).toContainEqual({ 'position.departmentCode': '75' });
     expect(andConditions).toContainEqual({
@@ -84,12 +160,17 @@ describe('MongoPlaceSearchQueryBuilder', () => {
 
   it('adds category, access, audience, and language constraints', () => {
     const { resultsPipeline } = build({
-      locationMode: 'country',
-      country: 'FR',
+      location: {
+        country: 'FR',
+      },
       categories: ['food'],
-      accessKind: 'conditional',
-      accessModes: ['appointment'],
-      audienceGenders: ['women'],
+      access: {
+        kind: 'conditional',
+        modes: ['appointment'],
+      },
+      audience: {
+        genders: ['women'],
+      },
       language: 'fr',
     });
 
@@ -103,13 +184,35 @@ describe('MongoPlaceSearchQueryBuilder', () => {
     expect(serialized).toContain('"languages"');
   });
 
-  it('uses updatedOn as an exact day filter and ignores range overlap', () => {
+  it('uses mongo-native audience values for publics.other filters', () => {
     const { resultsPipeline } = build({
-      locationMode: 'country',
-      country: 'FR',
-      updatedOn: '2026-03-26',
-      updatedBefore: '2026-03-25',
-      updatedAfter: '2026-03-24',
+      location: {
+        country: 'FR',
+      },
+      audience: {
+        otherCharacteristics: ['handicap', 'lgbt', 'mentalHealth'],
+      },
+    });
+
+    const serialized = JSON.stringify(resultsPipeline);
+    expect(serialized).toContain('"publics.other"');
+    expect(serialized).toContain('"handicap"');
+    expect(serialized).toContain('"lgbt"');
+    expect(serialized).toContain('"mentalHealth"');
+    expect(serialized).not.toContain('"lgbt+"');
+    expect(serialized).not.toContain('"disability"');
+  });
+
+  it('uses updatedAt.on as an exact day filter and ignores range overlap', () => {
+    const { resultsPipeline } = build({
+      location: {
+        country: 'FR',
+      },
+      updatedAt: {
+        on: '2026-03-26',
+        before: '2026-03-25',
+        after: '2026-03-24',
+      },
     });
 
     const serialized = JSON.stringify(resultsPipeline);

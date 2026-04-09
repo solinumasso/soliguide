@@ -6,7 +6,9 @@ import { appendAndConditions } from './utils';
 
 export class OpenTodayConstraintQueryBuilder implements SearchQueryBuilder {
   build(context: SearchContext): SearchContext {
-    if (!context.query.openToday) {
+    const openToday = context.query.availability?.openToday;
+
+    if (!openToday) {
       return context;
     }
 

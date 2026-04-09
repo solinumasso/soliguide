@@ -7,8 +7,9 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 function getBaseQuery(overrides: Partial<SearchQuery> = {}): SearchQuery {
   return {
-    locationMode: 'country',
-    country: 'FR',
+    location: {
+      country: 'FR',
+    },
     ...overrides,
   };
 }
@@ -92,51 +93,49 @@ describe('SearchService', () => {
     vi.mocked(mockSearchResultMapper.mapPlace).mockReturnValue(mappedResult);
   });
 
-  it('normalizes pagination, delegates search, and builds links', async () => {
+  it('normalizes pagination, delegates search, and returns matched count', async () => {
     vi.mocked(mockPlaceSearchReader.search).mockResolvedValue({
       records: [searchRecord],
       totalResults: 25,
     });
 
     const response = await service.search(
-      getBaseQuery({ page: 2, limit: 10, openToday: true }),
+      getBaseQuery({
+        pagination: { page: 2, limit: 10 },
+        availability: { openToday: true },
+      }),
     );
 
     expect(mockPlaceSearchReader.search).toHaveBeenCalledWith(
       expect.objectContaining({
-        locationMode: 'country',
-        country: 'FR',
-        openToday: true,
-        page: 2,
-        limit: 10,
+        location: {
+          country: 'FR',
+        },
+        pagination: { page: 2, limit: 10 },
+        availability: { openToday: true },
       }),
       { page: 2, limit: 10 },
     );
     expect(mockSearchResultMapper.mapPlace).toHaveBeenCalledWith(searchRecord);
-    expect(response.page).toEqual({
-      current: 2,
-      limit: 10,
-      totalPages: 3,
-      totalResults: 25,
-    });
-    expect(response._links.self.href).toContain('page=2');
-    expect(response._links.next?.href).toContain('page=3');
-    expect(response._links.prev?.href).toContain('page=1');
+    expect(response.nbResults).toBe(25);
+    expect(response.results).toEqual([mappedResult]);
   });
 
-  it('caps limit at max and keeps at least one total page', async () => {
+  it('caps limit at max', async () => {
     vi.mocked(mockPlaceSearchReader.search).mockResolvedValue({
       records: [],
       totalResults: 0,
     });
 
-    const response = await service.search(getBaseQuery({ limit: 999 }));
+    const response = await service.search(
+      getBaseQuery({ pagination: { limit: 999 } }),
+    );
 
     expect(mockPlaceSearchReader.search).toHaveBeenCalledWith(
       expect.any(Object),
       { page: 1, limit: 100 },
     );
-    expect(response.page.totalPages).toBe(1);
+    expect(response.nbResults).toBe(0);
     expect(response.results).toEqual([]);
   });
 });

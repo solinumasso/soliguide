@@ -6,7 +6,6 @@ import { AudienceQueryBuilder } from './place-search.audience.query-builder';
 import { LanguagePreferenceQueryBuilder } from './place-search.language-preference.query-builder';
 import { LocationQueryBuilder } from './place-seach.location.query-builder';
 import { OpenTodayConstraintQueryBuilder } from './place-search.open-today-constraint.query-builder';
-import { ProximityRankingQueryBuilder } from './place-search.proximity-ranking.query-builder';
 import { CategoriesQueryBuilder } from './place-search.categories.query-builder';
 import { TextQueryBuilder } from './place-search.text.query-builder';
 import { UpdateQueryBuilder } from './place-search.update.query-builder';
@@ -27,7 +26,6 @@ export class PlaceSearchQueryBuilder {
       new OpenTodayConstraintQueryBuilder(),
       new UpdateQueryBuilder(),
       new LanguagePreferenceQueryBuilder(),
-      new ProximityRankingQueryBuilder(),
     ];
   }
 
@@ -58,11 +56,17 @@ export class PlaceSearchQueryBuilder {
   ): MongoSearchPipelines {
     const skip = Math.max(0, pagination.page - 1) * pagination.limit;
     const matchStage = buildMatchStage(context.andConditions);
-    const hasGeoNearStage = Boolean(context.geoNearStage);
+    const finalGeoNearStage = context.geoNearStage
+      ? {
+          ...context.geoNearStage,
+          query: matchStage,
+        }
+      : null;
+    const hasGeoNearStage = Boolean(finalGeoNearStage);
 
     const basePipeline = [
-      ...(context.geoNearStage ? [{ $geoNear: context.geoNearStage }] : []),
-      ...(context.geoNearStage ? [] : [{ $match: matchStage }]),
+      ...(finalGeoNearStage ? [{ $geoNear: finalGeoNearStage }] : []),
+      ...(finalGeoNearStage ? [] : [{ $match: matchStage }]),
     ];
 
     return {

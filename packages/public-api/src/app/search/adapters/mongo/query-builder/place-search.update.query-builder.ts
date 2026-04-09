@@ -9,30 +9,33 @@ import { DateTime } from 'luxon';
 export class UpdateQueryBuilder implements SearchQueryBuilder {
   build(context: SearchContext): SearchContext {
     const query = context.query;
+    const updatedOn = query.updatedAt?.on;
+    const updatedAfter = query.updatedAt?.after;
+    const updatedBefore = query.updatedAt?.before;
     const conditions: Document[] = [];
 
-    if (query.updatedOn) {
+    if (updatedOn) {
       conditions.push({
         updatedAt: {
-          $gte: this.asStartOfUtcDay(query.updatedOn),
-          $lte: this.asEndOfUtcDay(query.updatedOn),
+          $gte: this.asStartOfUtcDay(updatedOn),
+          $lte: this.asEndOfUtcDay(updatedOn),
         },
       });
       return appendAndConditions(context, conditions);
     }
 
-    if (query.updatedAfter) {
+    if (updatedAfter) {
       conditions.push({
         updatedAt: {
-          $gte: this.asStartOfUtcDay(query.updatedAfter),
+          $gte: this.asStartOfUtcDay(updatedAfter),
         },
       });
     }
 
-    if (query.updatedBefore) {
+    if (updatedBefore) {
       conditions.push({
         updatedAt: {
-          $lte: this.asEndOfUtcDay(query.updatedBefore),
+          $lte: this.asEndOfUtcDay(updatedBefore),
         },
       });
     }

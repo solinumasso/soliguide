@@ -1,104 +1,84 @@
 import { type Document } from 'mongodb';
-import { type SearchAudience } from '../../../search.types';
 import {
   type SearchContext,
   type SearchQueryBuilder,
 } from './search.query-builder';
 import { appendAndConditions, buildPlaceAndServiceCondition } from './utils';
 
-const AUDIENCE_OTHER_STATUS_MAP: Record<
-  string,
-  SearchAudience['otherStatuses']
-> = {
-  violence: 'violence',
-  addiction: 'addiction',
-  disability: 'disability',
-  lgbtqPlus: 'lgbt+',
-  'lgbt+': 'lgbt+',
-  hiv: 'hiv',
-  sexWork: 'prostitution',
-  prostitution: 'prostitution',
-  prison: 'prison',
-  student: 'student',
-};
-
 export class AudienceQueryBuilder implements SearchQueryBuilder {
   build(context: SearchContext): SearchContext {
     const query = context.query;
+    const audience = query.audience;
     const conditions: Document[] = [];
+    const admissionPolicy = audience?.admissionPolicy;
+    const isTargeted = audience?.isTargeted;
+    const administrativeStatuses = audience?.administrativeStatuses;
+    const familySituations = audience?.familySituations;
+    const genders = audience?.genders;
+    const otherCharacteristics = audience?.otherCharacteristics;
+    const minAge = audience?.age?.min;
+    const maxAge = audience?.age?.max;
 
-    if (query.audienceAdmissionPolicy) {
-      const expectedAccueilValue =
-        query.audienceAdmissionPolicy === 'open' ? 0 : { $ne: 0 };
+    if (admissionPolicy) {
+      const expectedAccueilValue = admissionPolicy === 'open' ? 0 : { $ne: 0 };
       conditions.push(
         buildPlaceAndServiceCondition('publics.accueil', expectedAccueilValue),
       );
     }
 
-    if (query.audienceIsTargeted !== undefined) {
+    if (isTargeted !== undefined) {
       conditions.push(
         buildPlaceAndServiceCondition(
           'publics.accueil',
-          query.audienceIsTargeted ? { $ne: 0 } : 0,
+          isTargeted ? { $ne: 0 } : 0,
         ),
       );
     }
 
-    if (query.audienceAdministrativeStatuses?.length) {
+    if (administrativeStatuses?.length) {
       conditions.push(
         buildPlaceAndServiceCondition(`publics.administrative`, {
-          $in: query.audienceAdministrativeStatuses,
+          $in: administrativeStatuses,
         }),
       );
     }
 
-    if (query.audienceFamilySituations?.length) {
+    if (familySituations?.length) {
       conditions.push(
         buildPlaceAndServiceCondition(`publics.familialle`, {
-          $in: query.audienceFamilySituations,
+          $in: familySituations,
         }),
       );
     }
 
-    if (query.audienceGenders?.length) {
+    if (genders?.length) {
       conditions.push(
         buildPlaceAndServiceCondition(`publics.gender`, {
-          $in: query.audienceGenders,
+          $in: genders,
         }),
       );
     }
 
-    if (query.audienceOtherCharacteristics?.length) {
-      const normalizedOtherStatuses = query.audienceOtherCharacteristics
-        .map((value) => AUDIENCE_OTHER_STATUS_MAP[value])
-        .filter((value): value is SearchAudience['otherStatuses'] =>
-          Boolean(value),
-        );
-
-      if (normalizedOtherStatuses.length) {
-        conditions.push(
-          buildPlaceAndServiceCondition(`publics.other`, {
-            $in: normalizedOtherStatuses,
-          }),
-        );
-      }
+    if (otherCharacteristics?.length) {
+      conditions.push(
+        buildPlaceAndServiceCondition(`publics.other`, {
+          $in: otherCharacteristics,
+        }),
+      );
     }
 
-    if (
-      query.audienceMinAge !== undefined ||
-      query.audienceMaxAge !== undefined
-    ) {
+    if (minAge !== undefined || maxAge !== undefined) {
       const placeAgeCondition: Document = {};
       const serviceAgeCondition: Document = {};
 
-      if (query.audienceMinAge !== undefined) {
-        placeAgeCondition['publics.age.max'] = { $gte: query.audienceMinAge };
-        serviceAgeCondition['publics.age.max'] = { $gte: query.audienceMinAge };
+      if (minAge !== undefined) {
+        placeAgeCondition['publics.age.max'] = { $gte: minAge };
+        serviceAgeCondition['publics.age.max'] = { $gte: minAge };
       }
 
-      if (query.audienceMaxAge !== undefined) {
-        placeAgeCondition['publics.age.min'] = { $lte: query.audienceMaxAge };
-        serviceAgeCondition['publics.age.min'] = { $lte: query.audienceMaxAge };
+      if (maxAge !== undefined) {
+        placeAgeCondition['publics.age.min'] = { $lte: maxAge };
+        serviceAgeCondition['publics.age.min'] = { $lte: maxAge };
       }
 
       conditions.push({
