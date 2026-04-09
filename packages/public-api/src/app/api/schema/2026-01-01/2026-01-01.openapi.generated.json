@@ -2112,10 +2112,12 @@
                       },
                       "geoValue": {
                         "description": "Geographic identifier for non-position searches (country, region, department, city, etc.).",
+                        "nullable": true,
                         "type": "string"
                       },
                       "coordinates": {
                         "description": "Longitude/latitude coordinates used when geoType is position.",
+                        "nullable": true,
                         "minItems": 2,
                         "maxItems": 2,
                         "type": "array",
@@ -2125,36 +2127,44 @@
                       },
                       "distance": {
                         "description": "Search radius in kilometers for position-based search.",
+                        "nullable": true,
                         "type": "number"
                       },
                       "label": {
+                        "nullable": true,
                         "type": "string"
                       },
                       "department": {
+                        "nullable": true,
                         "type": "string"
                       },
                       "regionCode": {
+                        "nullable": true,
                         "type": "string"
                       },
                       "departmentCode": {
+                        "nullable": true,
                         "type": "string"
                       },
                       "region": {
+                        "nullable": true,
                         "type": "string"
                       },
                       "country": {
                         "description": "Country code. Restricted to Soliguide countries for non-API users.",
+                        "nullable": true,
                         "type": "string"
                       }
                     },
                     "required": [
                       "geoType"
                     ],
-                    "additionalProperties": false,
+                    "additionalProperties": {},
                     "description": "Primary location constraint (required by route validation)."
                   },
                   "locations": {
                     "description": "Optional list of locations for widget-like multi-location search.",
+                    "nullable": true,
                     "type": "array",
                     "items": {
                       "type": "object",
@@ -2175,10 +2185,12 @@
                         },
                         "geoValue": {
                           "description": "Geographic identifier for non-position searches (country, region, department, city, etc.).",
+                          "nullable": true,
                           "type": "string"
                         },
                         "coordinates": {
                           "description": "Longitude/latitude coordinates used when geoType is position.",
+                          "nullable": true,
                           "minItems": 2,
                           "maxItems": 2,
                           "type": "array",
@@ -2188,35 +2200,43 @@
                         },
                         "distance": {
                           "description": "Search radius in kilometers for position-based search.",
+                          "nullable": true,
                           "type": "number"
                         },
                         "label": {
+                          "nullable": true,
                           "type": "string"
                         },
                         "department": {
+                          "nullable": true,
                           "type": "string"
                         },
                         "regionCode": {
+                          "nullable": true,
                           "type": "string"
                         },
                         "departmentCode": {
+                          "nullable": true,
                           "type": "string"
                         },
                         "region": {
+                          "nullable": true,
                           "type": "string"
                         },
                         "country": {
                           "description": "Country code. Restricted to Soliguide countries for non-API users.",
+                          "nullable": true,
                           "type": "string"
                         }
                       },
                       "required": [
                         "geoType"
                       ],
-                      "additionalProperties": false
+                      "additionalProperties": {}
                     }
                   },
                   "category": {
+                    "nullable": true,
                     "type": "string",
                     "enum": [
                       "health",
@@ -2329,6 +2349,7 @@
                   },
                   "categories": {
                     "description": "Multiple categories (restricted by user status at route level).",
+                    "nullable": true,
                     "type": "array",
                     "items": {
                       "type": "string",
@@ -2452,38 +2473,49 @@
                     ]
                   },
                   "word": {
+                    "nullable": true,
                     "type": "string"
                   },
                   "openToday": {
                     "description": "Only return results that are open today.",
                     "example": true,
+                    "nullable": true,
                     "type": "boolean"
                   },
                   "modalities": {
+                    "nullable": true,
                     "type": "object",
                     "properties": {
                       "animal": {
+                        "nullable": true,
                         "type": "boolean"
                       },
                       "appointment": {
+                        "nullable": true,
                         "type": "boolean"
                       },
                       "inconditionnel": {
+                        "nullable": true,
                         "type": "boolean"
                       },
                       "inscription": {
+                        "nullable": true,
                         "type": "boolean"
                       },
                       "orientation": {
+                        "nullable": true,
                         "type": "boolean"
                       },
                       "pmr": {
+                        "nullable": true,
                         "type": "boolean"
                       },
                       "price": {
+                        "nullable": true,
                         "type": "boolean"
                       },
                       "sign": {
+                        "nullable": true,
                         "type": "boolean"
                       }
                     },
@@ -2491,9 +2523,11 @@
                     "description": "Legacy modalities filter. Unknown extra keys are accepted by the route."
                   },
                   "publics": {
+                    "nullable": true,
                     "type": "object",
                     "properties": {
                       "accueil": {
+                        "nullable": true,
                         "type": "number",
                         "enum": [
                           0,
@@ -2502,11 +2536,13 @@
                         ]
                       },
                       "age": {
+                        "nullable": true,
                         "type": "integer",
                         "minimum": 0,
                         "maximum": 99
                       },
                       "gender": {
+                        "nullable": true,
                         "type": "array",
                         "items": {
                           "type": "string",
@@ -2518,6 +2554,7 @@
                         }
                       },
                       "administrative": {
+                        "nullable": true,
                         "type": "array",
                         "items": {
                           "type": "string",
@@ -2531,6 +2568,7 @@
                         }
                       },
                       "familialle": {
+                        "nullable": true,
                         "type": "array",
                         "items": {
                           "type": "string",
@@ -2544,6 +2582,7 @@
                         }
                       },
                       "other": {
+                        "nullable": true,
                         "type": "array",
                         "items": {
                           "type": "string",
@@ -2562,19 +2601,23 @@
                         }
                       }
                     },
-                    "additionalProperties": false,
+                    "additionalProperties": {},
                     "description": "Public audience filters."
                   },
                   "languages": {
+                    "nullable": true,
                     "type": "string"
                   },
                   "widgetId": {
+                    "nullable": true,
                     "type": "string"
                   },
                   "updatedAt": {
+                    "nullable": true,
                     "type": "object",
                     "properties": {
                       "intervalType": {
+                        "nullable": true,
                         "type": "string",
                         "enum": [
                           "SPECIFIC_DAY",
@@ -2582,14 +2625,18 @@
                           "AFTER_DAY"
                         ]
                       },
-                      "value": {}
+                      "value": {
+                        "nullable": true
+                      }
                     },
-                    "additionalProperties": false
+                    "additionalProperties": {}
                   },
                   "options": {
+                    "nullable": true,
                     "type": "object",
                     "properties": {
                       "sortBy": {
+                        "nullable": true,
                         "type": "string",
                         "enum": [
                           "createdAt",
@@ -2602,30 +2649,34 @@
                         ]
                       },
                       "sortValue": {
+                        "nullable": true,
                         "type": "number"
                       },
                       "page": {
+                        "nullable": true,
                         "type": "integer",
                         "minimum": -9007199254740991,
                         "maximum": 9007199254740991
                       },
                       "limit": {
+                        "nullable": true,
                         "type": "integer",
                         "minimum": -9007199254740991,
                         "maximum": 9007199254740991
                       },
                       "fields": {
+                        "nullable": true,
                         "type": "string",
                         "minLength": 1
                       }
                     },
-                    "additionalProperties": false
+                    "additionalProperties": {}
                   }
                 },
                 "required": [
                   "location"
                 ],
-                "additionalProperties": false,
+                "additionalProperties": {},
                 "description": "Exhaustive request body schema for POST /new-search/:lang? (non-admin route)."
               }
             }
