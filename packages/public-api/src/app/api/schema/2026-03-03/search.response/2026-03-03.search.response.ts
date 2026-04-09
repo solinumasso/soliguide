@@ -37,29 +37,11 @@ type LegacyOpeningHours = NonNullable<V20260101SearchPlaceResponse['newhours']>;
 type LegacyPosition = NonNullable<V20260101SearchPlaceResponse['position']>;
 type LegacyParcours = NonNullable<V20260101SearchPlaceResponse['parcours']>;
 type LegacyPlaceSnapshot = Partial<V20260101SearchPlaceResponse>;
-type LegacyFieldReader = (
-  container: Record<string, unknown>,
-  field: string,
-  context?: ResponseDowngradeContext,
-) => unknown;
 
 interface V20260303LegacyLookupContext {
   v20260303?: {
     legacyById?: ReadonlyMap<string, LegacyPlaceSnapshot>;
   };
-}
-
-abstract class SnapshotBackedRemoveFieldChange extends RemoveFieldChange {
-  constructor(private readonly readLegacyField: LegacyFieldReader) {
-    super();
-  }
-
-  override downgrade(
-    container: Record<string, unknown>,
-    context?: ResponseDowngradeContext,
-  ) {
-    return this.readLegacyField(container, this.field, context);
-  }
 }
 
 const audienceOtherStatusesToLegacyMap: Record<
@@ -290,136 +272,172 @@ export class RenameUniqueIdentifier extends RenameFieldChange {
   override schema = z.number().int().describe('Numeric place identifier.');
 }
 
-export class RemoveMongoObjectId extends SnapshotBackedRemoveFieldChange {
-  constructor(readLegacyField: LegacyFieldReader) {
-    super(readLegacyField);
-  }
-
+export class RemoveMongoObjectId extends RemoveFieldChange {
   override description =
     'Remove deprecated MongoDB identifier "_id" from search response results so the public contract exposes only business identifiers and does not leak persistence-layer implementation details.';
   override payloadPath = '/places/*' as const;
   override field = '_id';
+
+  override downgrade(
+    container: Record<string, unknown>,
+    context?: ResponseDowngradeContext,
+  ) {
+    return readLegacySnapshot(container, context)?._id;
+  }
 }
 
-export class RemoveLegacyAutoFlag extends SnapshotBackedRemoveFieldChange {
-  constructor(readLegacyField: LegacyFieldReader) {
-    super(readLegacyField);
-  }
-
+export class RemoveLegacyAutoFlag extends RemoveFieldChange {
   override description =
     'Remove legacy "auto" flag from search response results because this internal automation marker is not part of the public API contract.';
   override payloadPath = '/places/*' as const;
   override field = 'auto';
+
+  override downgrade(
+    container: Record<string, unknown>,
+    context?: ResponseDowngradeContext,
+  ) {
+    return readLegacySnapshot(container, context)?.auto;
+  }
 }
 
-export class RemoveLegacyStatusField extends SnapshotBackedRemoveFieldChange {
-  constructor(readLegacyField: LegacyFieldReader) {
-    super(readLegacyField);
-  }
-
+export class RemoveLegacyStatusField extends RemoveFieldChange {
   override description =
     'Remove legacy "status" field from search response results to avoid exposing back-office lifecycle state that is not part of the current public model.';
   override payloadPath = '/places/*' as const;
   override field = 'status';
+
+  override downgrade(
+    container: Record<string, unknown>,
+    context?: ResponseDowngradeContext,
+  ) {
+    return readLegacySnapshot(container, context)?.status;
+  }
 }
 
-export class RemoveLegacyVisibilityField extends SnapshotBackedRemoveFieldChange {
-  constructor(readLegacyField: LegacyFieldReader) {
-    super(readLegacyField);
-  }
-
+export class RemoveLegacyVisibilityField extends RemoveFieldChange {
   override description =
     'Remove legacy "visibility" field from search response results to keep visibility management concerns out of the public response contract.';
   override payloadPath = '/places/*' as const;
   override field = 'visibility';
+
+  override downgrade(
+    container: Record<string, unknown>,
+    context?: ResponseDowngradeContext,
+  ) {
+    return readLegacySnapshot(container, context)?.visibility;
+  }
 }
 
-export class RemoveLegacyCloseField extends SnapshotBackedRemoveFieldChange {
-  constructor(readLegacyField: LegacyFieldReader) {
-    super(readLegacyField);
-  }
-
+export class RemoveLegacyCloseField extends RemoveFieldChange {
   override description =
     'Remove legacy "close" field from search response results because open-state information is now represented through normalized schedule and temporary-information models.';
   override payloadPath = '/places/*' as const;
   override field = 'close';
+
+  override downgrade(
+    container: Record<string, unknown>,
+    context?: ResponseDowngradeContext,
+  ) {
+    return readLegacySnapshot(container, context)?.close;
+  }
 }
 
-export class RemoveLegacySourcesField extends SnapshotBackedRemoveFieldChange {
-  constructor(readLegacyField: LegacyFieldReader) {
-    super(readLegacyField);
-  }
-
+export class RemoveLegacySourcesField extends RemoveFieldChange {
   override description =
     'Remove legacy "sources" field from search response results to prevent leaking internal provenance metadata that is not exposed in the current API.';
   override payloadPath = '/places/*' as const;
   override field = 'sources';
+
+  override downgrade(
+    container: Record<string, unknown>,
+    context?: ResponseDowngradeContext,
+  ) {
+    return readLegacySnapshot(container, context)?.sources;
+  }
 }
 
-export class RemoveLegacyUpdatedByUserAtField extends SnapshotBackedRemoveFieldChange {
-  constructor(readLegacyField: LegacyFieldReader) {
-    super(readLegacyField);
-  }
-
+export class RemoveLegacyUpdatedByUserAtField extends RemoveFieldChange {
   override description =
     'Remove legacy "updatedByUserAt" field from search response results because the public API exposes only a single canonical update timestamp.';
   override payloadPath = '/places/*' as const;
   override field = 'updatedByUserAt';
+
+  override downgrade(
+    container: Record<string, unknown>,
+    context?: ResponseDowngradeContext,
+  ) {
+    return readLegacySnapshot(container, context)?.updatedByUserAt;
+  }
 }
 
-export class RemoveLegacySlugsField extends SnapshotBackedRemoveFieldChange {
-  constructor(readLegacyField: LegacyFieldReader) {
-    super(readLegacyField);
-  }
-
+export class RemoveLegacySlugsField extends RemoveFieldChange {
   override description =
     'Remove legacy "slugs" object from search response results after introducing the normalized "slug" field, avoiding duplicate SEO identifiers.';
   override payloadPath = '/places/*' as const;
   override field = 'slugs';
+
+  override downgrade(
+    container: Record<string, unknown>,
+    context?: ResponseDowngradeContext,
+  ) {
+    return readLegacySnapshot(container, context)?.slugs;
+  }
 }
 
-export class RemoveLegacyDistanceField extends SnapshotBackedRemoveFieldChange {
-  constructor(readLegacyField: LegacyFieldReader) {
-    super(readLegacyField);
-  }
-
+export class RemoveLegacyDistanceField extends RemoveFieldChange {
   override description =
     'Remove legacy "distance" field from search response results because distance presentation is query-context dependent and not part of the canonical place resource schema.';
   override payloadPath = '/places/*' as const;
   override field = 'distance';
+
+  override downgrade(
+    container: Record<string, unknown>,
+    context?: ResponseDowngradeContext,
+  ) {
+    return readLegacySnapshot(container, context)?.distance;
+  }
 }
 
-export class RemoveLegacyPhotosField extends SnapshotBackedRemoveFieldChange {
-  constructor(readLegacyField: LegacyFieldReader) {
-    super(readLegacyField);
-  }
-
+export class RemoveLegacyPhotosField extends RemoveFieldChange {
   override description =
     'Remove legacy "photos" field from search response results to keep the minimal search payload focused on normalized resource information.';
   override payloadPath = '/places/*' as const;
   override field = 'photos';
+
+  override downgrade(
+    container: Record<string, unknown>,
+    context?: ResponseDowngradeContext,
+  ) {
+    return readLegacySnapshot(container, context)?.photos;
+  }
 }
 
-export class RemoveLegacyGeoZonesField extends SnapshotBackedRemoveFieldChange {
-  constructor(readLegacyField: LegacyFieldReader) {
-    super(readLegacyField);
-  }
-
+export class RemoveLegacyGeoZonesField extends RemoveFieldChange {
   override description =
     'Remove legacy "geoZones" field from search response results because geographic targeting details are not part of the public search response contract.';
   override payloadPath = '/places/*' as const;
   override field = 'geoZones';
+
+  override downgrade(
+    container: Record<string, unknown>,
+    context?: ResponseDowngradeContext,
+  ) {
+    return readLegacySnapshot(container, context)?.geoZones;
+  }
 }
 
-export class RemoveLegacyCreatedAtField extends SnapshotBackedRemoveFieldChange {
-  constructor(readLegacyField: LegacyFieldReader) {
-    super(readLegacyField);
-  }
-
+export class RemoveLegacyCreatedAtField extends RemoveFieldChange {
   override description =
     'Remove legacy "createdAt" field from search response results to keep temporal metadata aligned with the single public "updatedAt" reference date.';
   override payloadPath = '/places/*' as const;
   override field = 'createdAt';
+
+  override downgrade(
+    container: Record<string, unknown>,
+    context?: ResponseDowngradeContext,
+  ) {
+    return readLegacySnapshot(container, context)?.createdAt;
+  }
 }
 
 export class RenameSeoUrl extends RenameFieldChange {

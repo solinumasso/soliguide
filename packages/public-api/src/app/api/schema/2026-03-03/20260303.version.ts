@@ -42,12 +42,6 @@ interface V20260303ResponseDowngradeContextContainer {
   v20260303?: V20260303ResponseDowngradeContextEntry;
 }
 
-type LegacyFieldReader = (
-  container: Record<string, unknown>,
-  field: string,
-  context?: ResponseDowngradeContext,
-) => unknown;
-
 @Injectable()
 export class SearchVersion20260303Provider {
   constructor(
@@ -58,9 +52,6 @@ export class SearchVersion20260303Provider {
   ) {}
 
   toVersion(): Version {
-    const readLegacyField: LegacyFieldReader = (container, field, context) =>
-      this.readLegacyField(container, field, context);
-
     return {
       version: '2026-03-03',
       description:
@@ -68,7 +59,7 @@ export class SearchVersion20260303Provider {
       requestChanges: [],
       responseChanges: [
         new RenameUniqueIdentifier(),
-        new RemoveMongoObjectId(readLegacyField),
+        new RemoveMongoObjectId(),
         new RenameSeoUrl(),
         new IsoFormatOnUpdatedAt(),
         new ReplaceEntityByContacts(),
@@ -76,17 +67,17 @@ export class SearchVersion20260303Provider {
         new ReplaceTempInfosByTemporaryInformation(),
         new ReplaceModalitiesByAccess(),
         new ReplacePublicsByAudience(),
-        new RemoveLegacyAutoFlag(readLegacyField),
-        new RemoveLegacyStatusField(readLegacyField),
-        new RemoveLegacyVisibilityField(readLegacyField),
-        new RemoveLegacyCloseField(readLegacyField),
-        new RemoveLegacySourcesField(readLegacyField),
-        new RemoveLegacyUpdatedByUserAtField(readLegacyField),
-        new RemoveLegacySlugsField(readLegacyField),
-        new RemoveLegacyDistanceField(readLegacyField),
-        new RemoveLegacyPhotosField(readLegacyField),
-        new RemoveLegacyGeoZonesField(readLegacyField),
-        new RemoveLegacyCreatedAtField(readLegacyField),
+        new RemoveLegacyAutoFlag(),
+        new RemoveLegacyStatusField(),
+        new RemoveLegacyVisibilityField(),
+        new RemoveLegacyCloseField(),
+        new RemoveLegacySourcesField(),
+        new RemoveLegacyUpdatedByUserAtField(),
+        new RemoveLegacySlugsField(),
+        new RemoveLegacyDistanceField(),
+        new RemoveLegacyPhotosField(),
+        new RemoveLegacyGeoZonesField(),
+        new RemoveLegacyCreatedAtField(),
         new ReplaceLegacyPlaceTypeByTypeDiscriminatedBranches(),
       ],
       prepareResponseDowngradeContext: async (payload, context) =>
@@ -107,23 +98,6 @@ export class SearchVersion20260303Provider {
     (context as V20260303ResponseDowngradeContextContainer).v20260303 = {
       legacyById,
     };
-  }
-
-  private readLegacyField(
-    container: Record<string, unknown>,
-    field: string,
-    context?: ResponseDowngradeContext,
-  ): unknown {
-    const placeId = container.id;
-    if (typeof placeId !== 'string' && typeof placeId !== 'number') {
-      return undefined;
-    }
-
-    const legacyById = (
-      context as V20260303ResponseDowngradeContextContainer | undefined
-    )?.v20260303?.legacyById;
-
-    return legacyById?.get(String(placeId))?.[field];
   }
 
   private extractPlaceIds(payload: unknown): string[] {
