@@ -688,7 +688,7 @@ export const v20260303SearchResponseSchema = z
       .int()
       .min(0)
       .describe('Total number of matching places.'),
-    places: z
+    results: z
       .array(placeSchemaByType)
       .describe('List of matching place payloads.'),
   })

@@ -7,12 +7,21 @@ import type {
 } from './2026-03-03.legacy-place-snapshot-reader.port';
 
 describe('SearchVersion20260303Provider', () => {
+  it('wires request changes in the expected deterministic order', () => {
+    const version = new SearchVersion20260303Provider().toVersion();
+
+    expect(
+      version.requestChanges.map((change) => change.constructor.name),
+    ).toEqual(['NormalizeLegacySearchRequestToCanonical']);
+  });
+
   it('wires response changes in the expected deterministic order', () => {
     const version = new SearchVersion20260303Provider().toVersion();
 
     expect(
       version.responseChanges.map((change) => change.constructor.name),
     ).toEqual([
+      'RenameSearchResponseResultsCollection',
       'RenameUniqueIdentifier',
       'RemoveMongoObjectId',
       'RenameSeoUrl',
@@ -58,7 +67,7 @@ describe('SearchVersion20260303Provider', () => {
     const context: Record<string, unknown> = {};
     await version.prepareResponseDowngradeContext?.(
       {
-        places: [{ id: 1 }, { id: '2' }, { id: '2' }],
+        results: [{ id: 1 }, { id: '2' }, { id: '2' }],
       },
       context,
     );
@@ -99,7 +108,7 @@ describe('SearchVersion20260303Provider', () => {
     const context: Record<string, unknown> = {};
     await version.prepareResponseDowngradeContext?.(
       {
-        places: [{ id: 1 }],
+        results: [{ id: 1 }],
       },
       context,
     );
@@ -108,13 +117,13 @@ describe('SearchVersion20260303Provider', () => {
       .compileResponseChange(removeMongoObjectId!)
       .downgrade(
         {
-          places: [{ id: 1 }],
+          results: [{ id: 1 }],
         },
         context,
       );
 
     expect(
-      (downgraded as { places: Array<Record<string, unknown>> }).places[0],
+      (downgraded as { results: Array<Record<string, unknown>> }).results[0],
     ).toEqual({
       id: 1,
       _id: '507f1f77bcf86cd799439011',

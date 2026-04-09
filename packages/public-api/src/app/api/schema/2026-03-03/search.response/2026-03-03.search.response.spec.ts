@@ -75,13 +75,13 @@ describe('2026-03-03 remove-field downgrades', () => {
       const compiled = compiler.compileResponseChange(change);
 
       const downgraded = await compiled.downgrade(
-        { places: [{ id: '123' }] },
+        { results: [{ id: '123' }] },
         context,
       );
 
-      const place = (downgraded as { places: Array<Record<string, unknown>> })
-        .places[0];
-      const fieldName = String(change.field);
+      const place = (downgraded as { results: Array<Record<string, unknown>> })
+        .results[0];
+      const fieldName = String(change['field']);
       expect(place[fieldName]).toEqual(snapshots.get('123')?.[fieldName]);
     }
   });
@@ -103,7 +103,7 @@ describe('2026-03-03 remove-field downgrades', () => {
     );
 
     const downgraded = await compiled.downgrade(
-      { places: [{ id: 'missing' }] },
+      { results: [{ id: 'missing' }] },
       {
         v20260303: {
           legacyById: new Map(),
@@ -112,7 +112,7 @@ describe('2026-03-03 remove-field downgrades', () => {
     );
 
     expect(
-      (downgraded as { places: Array<Record<string, unknown>> }).places[0],
+      (downgraded as { results: Array<Record<string, unknown>> }).results[0],
     ).toEqual({
       id: 'missing',
       _id: undefined,
@@ -126,7 +126,7 @@ describe('2026-03-03 remove-field downgrades', () => {
 
     const downgraded = await compiled.downgrade(
       {
-        places: [
+        results: [
           {
             id: '123',
             updatedAt: '2026-04-01T00:00:00.000Z',
@@ -210,8 +210,8 @@ describe('2026-03-03 remove-field downgrades', () => {
       },
     );
 
-    const service = (downgraded as { places: Array<Record<string, unknown>> })
-      .places[0].services_all as Array<Record<string, unknown>>;
+    const service = (downgraded as { results: Array<Record<string, unknown>> })
+      .results[0].services_all as Array<Record<string, unknown>>;
 
     expect(service[0]).toMatchObject({
       createdAt: '2025-12-24T00:00:00.000Z',
@@ -238,7 +238,7 @@ describe('2026-03-03 remove-field downgrades', () => {
     );
 
     const downgraded = await compiled.downgrade({
-      places: [
+      results: [
         {
           temporaryInformation: {
             closures: [
@@ -298,8 +298,9 @@ describe('2026-03-03 remove-field downgrades', () => {
       ],
     });
 
-    const tempInfos = (downgraded as { places: Array<Record<string, unknown>> })
-      .places[0].tempInfos as Record<string, unknown>;
+    const tempInfos = (
+      downgraded as { results: Array<Record<string, unknown>> }
+    ).results[0].tempInfos as Record<string, unknown>;
 
     expect(tempInfos.closure).toMatchObject({
       dateDebut: '2026-05-01T00:00:00.000Z',
@@ -329,7 +330,7 @@ describe('2026-03-03 remove-field downgrades', () => {
 
     const downgraded = await compiled.downgrade(
       {
-        places: [
+        results: [
           {
             id: 'legacy-temp',
             temporaryInformation: {
@@ -358,7 +359,7 @@ describe('2026-03-03 remove-field downgrades', () => {
 
     expect(
       (
-        (downgraded as { places: Array<Record<string, unknown>> }).places[0]
+        (downgraded as { results: Array<Record<string, unknown>> }).results[0]
           .tempInfos as { closure?: { description?: string } }
       ).closure?.description,
     ).toBe('Legacy closure');
@@ -375,7 +376,7 @@ describe('2026-03-03 remove-field downgrades', () => {
 
     const withModalities = await accessDowngrade.downgrade(
       {
-        places: [
+        results: [
           {
             id: 'lookup',
             access: {
@@ -409,7 +410,7 @@ describe('2026-03-03 remove-field downgrades', () => {
 
     const withPublics = await audienceDowngrade.downgrade(
       {
-        places: [
+        results: [
           {
             id: 'lookup',
             audience: {
@@ -450,7 +451,7 @@ describe('2026-03-03 remove-field downgrades', () => {
     );
 
     expect(
-      (withModalities as { places: Array<Record<string, unknown>> }).places[0]
+      (withModalities as { results: Array<Record<string, unknown>> }).results[0]
         .modalities,
     ).toMatchObject({
       docs: ['id-document'],
@@ -458,14 +459,14 @@ describe('2026-03-03 remove-field downgrades', () => {
     });
 
     expect(
-      (withPublics as { places: Array<Record<string, unknown>> }).places[0]
+      (withPublics as { results: Array<Record<string, unknown>> }).results[0]
         .publics,
     ).toMatchObject({
       accueil: 1,
     });
     expect(
       (
-        (withPublics as { places: Array<Record<string, unknown>> }).places[0]
+        (withPublics as { results: Array<Record<string, unknown>> }).results[0]
           .publics as { description: string }
       ).description,
     ).toContain('Special support contexts: Flood support: Emergency desk');
@@ -478,7 +479,7 @@ describe('2026-03-03 remove-field downgrades', () => {
 
     const downgraded = await compiled.downgrade(
       {
-        places: [
+        results: [
           {
             id: 'itinerary-id',
             type: 'itinerary',
@@ -540,7 +541,7 @@ describe('2026-03-03 remove-field downgrades', () => {
     );
 
     const stop = (
-      (downgraded as { places: Array<Record<string, unknown>> }).places[0]
+      (downgraded as { results: Array<Record<string, unknown>> }).results[0]
         .parcours as Array<Record<string, unknown>>
     )[0];
 

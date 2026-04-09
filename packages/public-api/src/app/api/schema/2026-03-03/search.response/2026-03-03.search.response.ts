@@ -266,7 +266,7 @@ function toLegacyDateValue(
 export class RenameUniqueIdentifier extends RenameFieldChange {
   override description =
     'Rename place field "lieu_id" to "id" in search response results to align with the canonical identifier naming in the current API and remove legacy field naming.';
-  override payloadPath = '/places/*' as const;
+  override payloadPath = '/results/*' as const;
   override from = 'lieu_id';
   override to = 'id';
   override schema = z.number().int().describe('Numeric place identifier.');
@@ -275,7 +275,7 @@ export class RenameUniqueIdentifier extends RenameFieldChange {
 export class RemoveMongoObjectId extends RemoveFieldChange {
   override description =
     'Remove deprecated MongoDB identifier "_id" from search response results so the public contract exposes only business identifiers and does not leak persistence-layer implementation details.';
-  override payloadPath = '/places/*' as const;
+  override payloadPath = '/results/*' as const;
   override field = '_id';
 
   override downgrade(
@@ -289,7 +289,7 @@ export class RemoveMongoObjectId extends RemoveFieldChange {
 export class RemoveLegacyAutoFlag extends RemoveFieldChange {
   override description =
     'Remove legacy "auto" flag from search response results because this internal automation marker is not part of the public API contract.';
-  override payloadPath = '/places/*' as const;
+  override payloadPath = '/results/*' as const;
   override field = 'auto';
 
   override downgrade(
@@ -303,7 +303,7 @@ export class RemoveLegacyAutoFlag extends RemoveFieldChange {
 export class RemoveLegacyStatusField extends RemoveFieldChange {
   override description =
     'Remove legacy "status" field from search response results to avoid exposing back-office lifecycle state that is not part of the current public model.';
-  override payloadPath = '/places/*' as const;
+  override payloadPath = '/results/*' as const;
   override field = 'status';
 
   override downgrade(
@@ -317,7 +317,7 @@ export class RemoveLegacyStatusField extends RemoveFieldChange {
 export class RemoveLegacyVisibilityField extends RemoveFieldChange {
   override description =
     'Remove legacy "visibility" field from search response results to keep visibility management concerns out of the public response contract.';
-  override payloadPath = '/places/*' as const;
+  override payloadPath = '/results/*' as const;
   override field = 'visibility';
 
   override downgrade(
@@ -331,7 +331,7 @@ export class RemoveLegacyVisibilityField extends RemoveFieldChange {
 export class RemoveLegacyCloseField extends RemoveFieldChange {
   override description =
     'Remove legacy "close" field from search response results because open-state information is now represented through normalized schedule and temporary-information models.';
-  override payloadPath = '/places/*' as const;
+  override payloadPath = '/results/*' as const;
   override field = 'close';
 
   override downgrade(
@@ -345,7 +345,7 @@ export class RemoveLegacyCloseField extends RemoveFieldChange {
 export class RemoveLegacySourcesField extends RemoveFieldChange {
   override description =
     'Remove legacy "sources" field from search response results to prevent leaking internal provenance metadata that is not exposed in the current API.';
-  override payloadPath = '/places/*' as const;
+  override payloadPath = '/results/*' as const;
   override field = 'sources';
 
   override downgrade(
@@ -359,7 +359,7 @@ export class RemoveLegacySourcesField extends RemoveFieldChange {
 export class RemoveLegacyUpdatedByUserAtField extends RemoveFieldChange {
   override description =
     'Remove legacy "updatedByUserAt" field from search response results because the public API exposes only a single canonical update timestamp.';
-  override payloadPath = '/places/*' as const;
+  override payloadPath = '/results/*' as const;
   override field = 'updatedByUserAt';
 
   override downgrade(
@@ -373,7 +373,7 @@ export class RemoveLegacyUpdatedByUserAtField extends RemoveFieldChange {
 export class RemoveLegacySlugsField extends RemoveFieldChange {
   override description =
     'Remove legacy "slugs" object from search response results after introducing the normalized "slug" field, avoiding duplicate SEO identifiers.';
-  override payloadPath = '/places/*' as const;
+  override payloadPath = '/results/*' as const;
   override field = 'slugs';
 
   override downgrade(
@@ -387,7 +387,7 @@ export class RemoveLegacySlugsField extends RemoveFieldChange {
 export class RemoveLegacyDistanceField extends RemoveFieldChange {
   override description =
     'Remove legacy "distance" field from search response results because distance presentation is query-context dependent and not part of the canonical place resource schema.';
-  override payloadPath = '/places/*' as const;
+  override payloadPath = '/results/*' as const;
   override field = 'distance';
 
   override downgrade(
@@ -401,7 +401,7 @@ export class RemoveLegacyDistanceField extends RemoveFieldChange {
 export class RemoveLegacyPhotosField extends RemoveFieldChange {
   override description =
     'Remove legacy "photos" field from search response results to keep the minimal search payload focused on normalized resource information.';
-  override payloadPath = '/places/*' as const;
+  override payloadPath = '/results/*' as const;
   override field = 'photos';
 
   override downgrade(
@@ -415,7 +415,7 @@ export class RemoveLegacyPhotosField extends RemoveFieldChange {
 export class RemoveLegacyGeoZonesField extends RemoveFieldChange {
   override description =
     'Remove legacy "geoZones" field from search response results because geographic targeting details are not part of the public search response contract.';
-  override payloadPath = '/places/*' as const;
+  override payloadPath = '/results/*' as const;
   override field = 'geoZones';
 
   override downgrade(
@@ -429,7 +429,7 @@ export class RemoveLegacyGeoZonesField extends RemoveFieldChange {
 export class RemoveLegacyCreatedAtField extends RemoveFieldChange {
   override description =
     'Remove legacy "createdAt" field from search response results to keep temporal metadata aligned with the single public "updatedAt" reference date.';
-  override payloadPath = '/places/*' as const;
+  override payloadPath = '/results/*' as const;
   override field = 'createdAt';
 
   override downgrade(
@@ -443,7 +443,7 @@ export class RemoveLegacyCreatedAtField extends RemoveFieldChange {
 export class RenameSeoUrl extends RenameFieldChange {
   override description =
     'Rename place field "seo_url" to "slug" in search response results to standardize SEO identifier naming with the current schema and improve API readability.';
-  override payloadPath = '/places/*' as const;
+  override payloadPath = '/results/*' as const;
   override from = 'seo_url';
   override to = 'slug';
   override schema = z
@@ -454,7 +454,7 @@ export class RenameSeoUrl extends RenameFieldChange {
 export class IsoFormatOnUpdatedAt extends ReplaceFieldChange {
   override description =
     'Replace "updatedAt" by an ISO 8601 datetime string to provide a stable and locale-independent timestamp format that matches the current response contract.';
-  override payloadPath = '/places/*' as const;
+  override payloadPath = '/results/*' as const;
   override field = 'updatedAt';
   override schema = z.iso
     .datetime()
@@ -489,7 +489,7 @@ export class IsoFormatOnUpdatedAt extends ReplaceFieldChange {
 export class ReplaceEntityByContacts extends CustomTransformChange {
   override description =
     'Replace legacy "entity" with "contact" in search response results and convert the legacy contact object into a normalized contact list so clients receive consistent, typed contact entries aligned with the current schema.';
-  override payloadPath = '/places/*' as const;
+  override payloadPath = '/results/*' as const;
 
   protected override schemaPatchSet() {
     return {
@@ -554,7 +554,7 @@ export class ReplaceEntityByContacts extends CustomTransformChange {
 export class ReplaceServicesAllByServices extends CustomTransformChange {
   override description =
     'Replace legacy "services_all" with "services" in search response results to expose normalized service resources aligned with the current schema while preserving backward compatibility for older API versions.';
-  override payloadPath = '/places/*' as const;
+  override payloadPath = '/results/*' as const;
 
   protected override schemaPatchSet() {
     return {
@@ -625,7 +625,7 @@ export class ReplaceServicesAllByServices extends CustomTransformChange {
 export class ReplaceTempInfosByTemporaryInformation extends CustomTransformChange {
   override description =
     'Replace legacy "tempInfos" with "temporaryInformation" in search response results to expose a normalized temporary-information model with explicit collections for closures, schedule adjustments, and messages.';
-  override payloadPath = '/places/*' as const;
+  override payloadPath = '/results/*' as const;
 
   protected override schemaPatchSet() {
     return {
@@ -779,7 +779,7 @@ export class ReplaceTempInfosByTemporaryInformation extends CustomTransformChang
 export class ReplaceModalitiesByAccess extends CustomTransformChange {
   override description =
     'Replace legacy "modalities" with "access" in search response results to expose explicit and structured access rules consistent with the current API model.';
-  override payloadPath = '/places/*' as const;
+  override payloadPath = '/results/*' as const;
 
   protected override schemaPatchSet() {
     return {
@@ -807,7 +807,7 @@ export class ReplaceModalitiesByAccess extends CustomTransformChange {
 export class ReplacePublicsByAudience extends CustomTransformChange {
   override description =
     'Replace legacy "publics" with "audience" in search response results to expose normalized audience eligibility and targeting rules aligned with the current API contract.';
-  override payloadPath = '/places/*' as const;
+  override payloadPath = '/results/*' as const;
 
   protected override schemaPatchSet() {
     return {
@@ -919,10 +919,28 @@ const placeSchemaByType = z
     },
   });
 
+export class RenameSearchResponseResultsCollection extends RenameFieldChange {
+  override description =
+    'Rename search response collection field from "places" to "results" to align the payload envelope with the canonical contract while preserving backward compatibility for version downgrades.';
+  override payloadPath = '/' as const;
+  override from = 'places';
+  override to = 'results';
+  override schema = z
+    .array(
+      z
+        .object({})
+        .loose()
+        .describe('Intermediate place payload before schema migrations.'),
+    )
+    .describe(
+      'List of matching place payloads while applying progressive schema migrations.',
+    );
+}
+
 export class ReplaceLegacyPlaceTypeByTypeDiscriminatedBranches extends CustomTransformChange {
   override description =
     'Replace legacy place-type representation with a type-discriminated schema so "itinerary" always requires "stops" and "fixedLocation" always requires "location" and "schedule", preventing structurally ambiguous place payloads.';
-  override payloadPath = '/places/*' as const;
+  override payloadPath = '/results/*' as const;
 
   protected override schemaPatchReplace() {
     return placeSchemaByType;

@@ -24,6 +24,7 @@ import {
   RemoveLegacyUpdatedByUserAtField,
   RemoveLegacyVisibilityField,
   RemoveMongoObjectId,
+  RenameSearchResponseResultsCollection,
   RenameSeoUrl,
   RenameUniqueIdentifier,
   ReplaceEntityByContacts,
@@ -58,6 +59,7 @@ export class SearchVersion20260303Provider {
         'TODO: explain that this version allows to a more robust API models, reducing risk of breakings changes and adding consistency in naming',
       requestChanges: [],
       responseChanges: [
+        new RenameSearchResponseResultsCollection(),
         new RenameUniqueIdentifier(),
         new RemoveMongoObjectId(),
         new RenameSeoUrl(),
@@ -105,14 +107,14 @@ export class SearchVersion20260303Provider {
       return [];
     }
 
-    const places = (payload as { places?: unknown }).places;
-    if (!Array.isArray(places)) {
+    const results = (payload as { results?: unknown }).results;
+    if (!Array.isArray(results)) {
       return [];
     }
 
     const ids = new Set<string>();
 
-    for (const place of places) {
+    for (const place of results) {
       if (!place || typeof place !== 'object') {
         continue;
       }
