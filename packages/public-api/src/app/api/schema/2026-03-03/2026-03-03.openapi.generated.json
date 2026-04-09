@@ -3297,589 +3297,181 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "categories": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "q": {
+                    "nullable": true,
+                    "type": "string"
+                  },
+                  "language": {
+                    "nullable": true,
+                    "type": "string"
+                  },
                   "location": {
                     "type": "object",
                     "properties": {
-                      "geoType": {
-                        "type": "string",
-                        "enum": [
-                          "codePostal",
-                          "ville",
-                          "pays",
-                          "departement",
-                          "position",
-                          "region",
-                          "citiesGroup",
-                          "inconnu"
-                        ],
-                        "description": "Geographic mode used by the search location."
-                      },
-                      "geoValue": {
-                        "description": "Geographic identifier for non-position searches (country, region, department, city, etc.).",
-                        "nullable": true,
+                      "country": {
                         "type": "string"
+                      },
+                      "administrativeDivision": {
+                        "type": "object",
+                        "properties": {
+                          "regionCode": {
+                            "type": "string"
+                          },
+                          "region": {
+                            "type": "string"
+                          },
+                          "departmentCode": {
+                            "type": "string"
+                          },
+                          "department": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "city": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "city",
+                              "postalCode"
+                            ]
+                          },
+                          "value": {
+                            "type": "string"
+                          }
+                        }
                       },
                       "coordinates": {
-                        "description": "Longitude/latitude coordinates used when geoType is position.",
-                        "nullable": true,
-                        "minItems": 2,
-                        "maxItems": 2,
-                        "type": "array",
-                        "items": {
-                          "type": "number"
-                        }
-                      },
-                      "distance": {
-                        "description": "Search radius in kilometers for position-based search.",
-                        "nullable": true,
-                        "type": "number"
-                      },
-                      "label": {
-                        "nullable": true,
-                        "type": "string"
-                      },
-                      "department": {
-                        "nullable": true,
-                        "type": "string"
-                      },
-                      "regionCode": {
-                        "nullable": true,
-                        "type": "string"
-                      },
-                      "departmentCode": {
-                        "nullable": true,
-                        "type": "string"
-                      },
-                      "region": {
-                        "nullable": true,
-                        "type": "string"
-                      },
-                      "country": {
-                        "description": "Country code. Restricted to Soliguide countries for non-API users.",
-                        "nullable": true,
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "geoType"
-                    ],
-                    "additionalProperties": {},
-                    "description": "Primary location constraint (required by route validation)."
-                  },
-                  "locations": {
-                    "description": "Optional list of locations for widget-like multi-location search.",
-                    "nullable": true,
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "geoType": {
-                          "type": "string",
-                          "enum": [
-                            "codePostal",
-                            "ville",
-                            "pays",
-                            "departement",
-                            "position",
-                            "region",
-                            "citiesGroup",
-                            "inconnu"
-                          ],
-                          "description": "Geographic mode used by the search location."
-                        },
-                        "geoValue": {
-                          "description": "Geographic identifier for non-position searches (country, region, department, city, etc.).",
-                          "nullable": true,
-                          "type": "string"
-                        },
-                        "coordinates": {
-                          "description": "Longitude/latitude coordinates used when geoType is position.",
-                          "nullable": true,
-                          "minItems": 2,
-                          "maxItems": 2,
-                          "type": "array",
-                          "items": {
+                        "type": "object",
+                        "properties": {
+                          "latitude": {
+                            "type": "number"
+                          },
+                          "longitude": {
                             "type": "number"
                           }
-                        },
-                        "distance": {
-                          "description": "Search radius in kilometers for position-based search.",
-                          "nullable": true,
-                          "type": "number"
-                        },
-                        "label": {
-                          "nullable": true,
-                          "type": "string"
-                        },
-                        "department": {
-                          "nullable": true,
-                          "type": "string"
-                        },
-                        "regionCode": {
-                          "nullable": true,
-                          "type": "string"
-                        },
-                        "departmentCode": {
-                          "nullable": true,
-                          "type": "string"
-                        },
-                        "region": {
-                          "nullable": true,
-                          "type": "string"
-                        },
-                        "country": {
-                          "description": "Country code. Restricted to Soliguide countries for non-API users.",
-                          "nullable": true,
-                          "type": "string"
                         }
                       },
-                      "required": [
-                        "geoType"
-                      ],
-                      "additionalProperties": {}
+                      "radiusKm": {
+                        "type": "number"
+                      }
                     }
                   },
-                  "category": {
-                    "nullable": true,
-                    "type": "string",
-                    "enum": [
-                      "health",
-                      "addiction",
-                      "std_testing",
-                      "psychological_support",
-                      "child_care",
-                      "general_practitioner",
-                      "dental_care",
-                      "pregnancy_care",
-                      "vaccination",
-                      "infirmary",
-                      "vet_care",
-                      "health_specialists",
-                      "allergology",
-                      "cardiology",
-                      "dermatology",
-                      "echography",
-                      "endocrinology",
-                      "gastroenterology",
-                      "gynecology",
-                      "kinesitherapy",
-                      "mammography",
-                      "ophthalmology",
-                      "otorhinolaryngology",
-                      "nutrition",
-                      "pedicure",
-                      "phlebology",
-                      "pneumology",
-                      "radiology",
-                      "rheumatology",
-                      "urology",
-                      "speech_therapy",
-                      "stomatology",
-                      "osteopathy",
-                      "acupuncture",
-                      "mobility",
-                      "transportation_mobility",
-                      "personal_vehicle_access",
-                      "vehicle_maintenance",
-                      "mobility_support",
-                      "driving_license",
-                      "mobility_financing",
-                      "training_and_jobs",
-                      "digital_tools_training",
-                      "french_course",
-                      "catalan_course",
-                      "spanish_course",
-                      "job_coaching",
-                      "integration_through_economic_activity",
-                      "tutoring",
-                      "hygiene_and_wellness",
-                      "shower",
-                      "laundry",
-                      "wellness",
-                      "toilets",
-                      "hygiene_products",
-                      "face_masks",
-                      "counseling",
-                      "legal_advice",
-                      "domiciliation",
-                      "social_accompaniment",
-                      "public_writer",
-                      "disability_advice",
-                      "administrative_assistance",
-                      "parent_assistance",
-                      "budget_advice",
-                      "technology",
-                      "computers_at_your_disposal",
-                      "wifi",
-                      "electrical_outlets_available",
-                      "telephone_at_your_disposal",
-                      "digital_safe",
-                      "food",
-                      "food_distribution",
-                      "food_packages",
-                      "social_grocery_stores",
-                      "fountain",
-                      "solidarity_fridge",
-                      "shared_kitchen",
-                      "cooking_workshop",
-                      "baby_parcel",
-                      "food_voucher",
-                      "community_garden",
-                      "welcome",
-                      "day_hosting",
-                      "rest_area",
-                      "babysitting",
-                      "family_area",
-                      "information_point",
-                      "activities",
-                      "sport_activities",
-                      "museums",
-                      "libraries",
-                      "other_activities",
-                      "equipment",
-                      "luggage_storage",
-                      "solidarity_store",
-                      "clothing",
-                      "animal_assitance",
-                      "accomodation_and_housing",
-                      "overnight_stop",
-                      "emergency_accommodation",
-                      "long_term_accomodation",
-                      "citizen_housing",
-                      "access_to_housing",
-                      "hairdresser",
-                      "legal_protection"
-                    ]
-                  },
-                  "categories": {
-                    "description": "Multiple categories (restricted by user status at route level).",
-                    "nullable": true,
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "enum": [
-                        "health",
-                        "addiction",
-                        "std_testing",
-                        "psychological_support",
-                        "child_care",
-                        "general_practitioner",
-                        "dental_care",
-                        "pregnancy_care",
-                        "vaccination",
-                        "infirmary",
-                        "vet_care",
-                        "health_specialists",
-                        "allergology",
-                        "cardiology",
-                        "dermatology",
-                        "echography",
-                        "endocrinology",
-                        "gastroenterology",
-                        "gynecology",
-                        "kinesitherapy",
-                        "mammography",
-                        "ophthalmology",
-                        "otorhinolaryngology",
-                        "nutrition",
-                        "pedicure",
-                        "phlebology",
-                        "pneumology",
-                        "radiology",
-                        "rheumatology",
-                        "urology",
-                        "speech_therapy",
-                        "stomatology",
-                        "osteopathy",
-                        "acupuncture",
-                        "mobility",
-                        "transportation_mobility",
-                        "personal_vehicle_access",
-                        "vehicle_maintenance",
-                        "mobility_support",
-                        "driving_license",
-                        "mobility_financing",
-                        "training_and_jobs",
-                        "digital_tools_training",
-                        "french_course",
-                        "catalan_course",
-                        "spanish_course",
-                        "job_coaching",
-                        "integration_through_economic_activity",
-                        "tutoring",
-                        "hygiene_and_wellness",
-                        "shower",
-                        "laundry",
-                        "wellness",
-                        "toilets",
-                        "hygiene_products",
-                        "face_masks",
-                        "counseling",
-                        "legal_advice",
-                        "domiciliation",
-                        "social_accompaniment",
-                        "public_writer",
-                        "disability_advice",
-                        "administrative_assistance",
-                        "parent_assistance",
-                        "budget_advice",
-                        "technology",
-                        "computers_at_your_disposal",
-                        "wifi",
-                        "electrical_outlets_available",
-                        "telephone_at_your_disposal",
-                        "digital_safe",
-                        "food",
-                        "food_distribution",
-                        "food_packages",
-                        "social_grocery_stores",
-                        "fountain",
-                        "solidarity_fridge",
-                        "shared_kitchen",
-                        "cooking_workshop",
-                        "baby_parcel",
-                        "food_voucher",
-                        "community_garden",
-                        "welcome",
-                        "day_hosting",
-                        "rest_area",
-                        "babysitting",
-                        "family_area",
-                        "information_point",
-                        "activities",
-                        "sport_activities",
-                        "museums",
-                        "libraries",
-                        "other_activities",
-                        "equipment",
-                        "luggage_storage",
-                        "solidarity_store",
-                        "clothing",
-                        "animal_assitance",
-                        "accomodation_and_housing",
-                        "overnight_stop",
-                        "emergency_accommodation",
-                        "long_term_accomodation",
-                        "citizen_housing",
-                        "access_to_housing",
-                        "hairdresser",
-                        "legal_protection"
-                      ]
-                    }
-                  },
-                  "placeType": {
-                    "default": "LIEU",
-                    "description": "Resource type to search: fixed places or itineraries.",
-                    "type": "string",
-                    "enum": [
-                      "LIEU",
-                      "PARCOURS_MOBILE"
-                    ]
-                  },
-                  "word": {
-                    "nullable": true,
-                    "type": "string"
-                  },
-                  "openToday": {
-                    "description": "Only return results that are open today.",
-                    "example": true,
-                    "nullable": true,
-                    "type": "boolean"
-                  },
-                  "modalities": {
-                    "nullable": true,
+                  "availability": {
                     "type": "object",
                     "properties": {
-                      "animal": {
-                        "nullable": true,
-                        "type": "boolean"
-                      },
-                      "appointment": {
-                        "nullable": true,
-                        "type": "boolean"
-                      },
-                      "inconditionnel": {
-                        "nullable": true,
-                        "type": "boolean"
-                      },
-                      "inscription": {
-                        "nullable": true,
-                        "type": "boolean"
-                      },
-                      "orientation": {
-                        "nullable": true,
-                        "type": "boolean"
-                      },
-                      "pmr": {
-                        "nullable": true,
-                        "type": "boolean"
-                      },
-                      "price": {
-                        "nullable": true,
-                        "type": "boolean"
-                      },
-                      "sign": {
-                        "nullable": true,
+                      "openToday": {
                         "type": "boolean"
                       }
-                    },
-                    "additionalProperties": {},
-                    "description": "Legacy modalities filter. Unknown extra keys are accepted by the route."
+                    }
                   },
-                  "publics": {
-                    "nullable": true,
+                  "access": {
                     "type": "object",
                     "properties": {
-                      "accueil": {
-                        "nullable": true,
-                        "type": "number",
+                      "kind": {
+                        "type": "string",
                         "enum": [
-                          0,
-                          1,
-                          2
+                          "unconditional",
+                          "conditional"
                         ]
+                      },
+                      "modes": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "appointment",
+                            "registration",
+                            "orientation"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "audience": {
+                    "type": "object",
+                    "properties": {
+                      "admissionPolicy": {
+                        "type": "string",
+                        "enum": [
+                          "open",
+                          "restricted"
+                        ]
+                      },
+                      "isTargeted": {
+                        "type": "boolean"
+                      },
+                      "administrativeStatuses": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
                       },
                       "age": {
-                        "nullable": true,
-                        "type": "integer",
-                        "minimum": 0,
-                        "maximum": 99
-                      },
-                      "gender": {
-                        "nullable": true,
-                        "type": "array",
-                        "items": {
-                          "type": "string",
-                          "enum": [
-                            "all",
-                            "men",
-                            "women"
-                          ]
+                        "type": "object",
+                        "properties": {
+                          "min": {
+                            "type": "number"
+                          },
+                          "max": {
+                            "type": "number"
+                          }
                         }
                       },
-                      "administrative": {
-                        "nullable": true,
+                      "familySituations": {
                         "type": "array",
                         "items": {
-                          "type": "string",
-                          "enum": [
-                            "all",
-                            "regular",
-                            "asylum",
-                            "refugee",
-                            "undocumented"
-                          ]
+                          "type": "string"
                         }
                       },
-                      "familialle": {
-                        "nullable": true,
+                      "genders": {
                         "type": "array",
                         "items": {
-                          "type": "string",
-                          "enum": [
-                            "all",
-                            "isolated",
-                            "family",
-                            "couple",
-                            "pregnant"
-                          ]
+                          "type": "string"
                         }
                       },
-                      "other": {
-                        "nullable": true,
+                      "otherCharacteristics": {
                         "type": "array",
                         "items": {
-                          "type": "string",
-                          "enum": [
-                            "addiction",
-                            "all",
-                            "handicap",
-                            "hiv",
-                            "lgbt",
-                            "prison",
-                            "prostitution",
-                            "student",
-                            "mentalHealth",
-                            "violence"
-                          ]
+                          "type": "string"
                         }
                       }
-                    },
-                    "additionalProperties": {},
-                    "description": "Public audience filters."
-                  },
-                  "languages": {
-                    "nullable": true,
-                    "type": "string"
-                  },
-                  "widgetId": {
-                    "nullable": true,
-                    "type": "string"
+                    }
                   },
                   "updatedAt": {
-                    "nullable": true,
                     "type": "object",
                     "properties": {
-                      "intervalType": {
-                        "nullable": true,
-                        "type": "string",
-                        "enum": [
-                          "SPECIFIC_DAY",
-                          "BEFORE_DAY",
-                          "AFTER_DAY"
-                        ]
+                      "on": {
+                        "type": "string"
                       },
-                      "value": {
-                        "nullable": true
+                      "before": {
+                        "type": "string"
+                      },
+                      "after": {
+                        "type": "string"
                       }
-                    },
-                    "additionalProperties": {}
+                    }
                   },
-                  "options": {
-                    "nullable": true,
+                  "pagination": {
                     "type": "object",
                     "properties": {
-                      "sortBy": {
-                        "nullable": true,
-                        "type": "string",
-                        "enum": [
-                          "createdAt",
-                          "lieu_id",
-                          "name",
-                          "distance",
-                          "slugs.infos.name",
-                          "status",
-                          "updatedAt"
-                        ]
-                      },
-                      "sortValue": {
-                        "nullable": true,
+                      "page": {
                         "type": "number"
                       },
-                      "page": {
-                        "nullable": true,
-                        "type": "integer",
-                        "minimum": -9007199254740991,
-                        "maximum": 9007199254740991
-                      },
                       "limit": {
-                        "nullable": true,
-                        "type": "integer",
-                        "minimum": -9007199254740991,
-                        "maximum": 9007199254740991
-                      },
-                      "fields": {
-                        "nullable": true,
-                        "type": "string",
-                        "minLength": 1
+                        "type": "number"
                       }
-                    },
-                    "additionalProperties": {}
+                    }
                   }
                 },
-                "required": [
-                  "location"
-                ],
                 "additionalProperties": {},
                 "description": "Exhaustive request body schema for POST /new-search/:lang? (non-admin route)."
               }

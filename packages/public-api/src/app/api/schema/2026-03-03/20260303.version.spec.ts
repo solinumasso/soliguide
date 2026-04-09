@@ -12,7 +12,18 @@ describe('SearchVersion20260303Provider', () => {
 
     expect(
       version.requestChanges.map((change) => change.constructor.name),
-    ).toEqual(['NormalizeLegacySearchRequestToCanonical']);
+    ).toEqual([
+      'RenameLegacyWordToQuery',
+      'RenameLegacyLanguagesToLanguage',
+      'NormalizeLegacyCategoriesChange',
+      'NormalizeLegacyLocationChange',
+      'RenameLegacyOpenTodayToAvailability',
+      'RenameLegacyModalitiesToAccess',
+      'RenameLegacyPublicsToAudience',
+      'ReplaceLegacyUpdatedAtChange',
+      'RenameLegacyOptionsToPagination',
+      'DropLegacySearchRequestFieldsChange',
+    ]);
   });
 
   it('wires response changes in the expected deterministic order', () => {

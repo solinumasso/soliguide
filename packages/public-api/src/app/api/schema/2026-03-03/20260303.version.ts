@@ -34,6 +34,18 @@ import {
   ReplaceServicesAllByServices,
   ReplaceTempInfosByTemporaryInformation,
 } from './search.response/2026-03-03.search.response';
+import {
+  DropLegacySearchRequestFieldsChange,
+  NormalizeLegacyCategoriesChange,
+  NormalizeLegacyLocationChange,
+  RenameLegacyLanguagesToLanguage,
+  RenameLegacyModalitiesToAccess,
+  RenameLegacyOpenTodayToAvailability,
+  RenameLegacyOptionsToPagination,
+  RenameLegacyPublicsToAudience,
+  RenameLegacyWordToQuery,
+  ReplaceLegacyUpdatedAtChange,
+} from './search.request/2026-03-03.search.request';
 
 interface V20260303ResponseDowngradeContextEntry {
   legacyById: ReadonlyMap<string, V20260303LegacyPlaceSnapshot>;
@@ -57,7 +69,18 @@ export class SearchVersion20260303Provider {
       version: '2026-03-03',
       description:
         'TODO: explain that this version allows to a more robust API models, reducing risk of breakings changes and adding consistency in naming',
-      requestChanges: [],
+      requestChanges: [
+        new RenameLegacyWordToQuery(),
+        new RenameLegacyLanguagesToLanguage(),
+        new NormalizeLegacyCategoriesChange(),
+        new NormalizeLegacyLocationChange(),
+        new RenameLegacyOpenTodayToAvailability(),
+        new RenameLegacyModalitiesToAccess(),
+        new RenameLegacyPublicsToAudience(),
+        new ReplaceLegacyUpdatedAtChange(),
+        new RenameLegacyOptionsToPagination(),
+        new DropLegacySearchRequestFieldsChange(),
+      ],
       responseChanges: [
         new RenameSearchResponseResultsCollection(),
         new RenameUniqueIdentifier(),

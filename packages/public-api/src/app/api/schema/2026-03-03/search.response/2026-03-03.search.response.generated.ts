@@ -690,7 +690,9 @@ export const v20260303SearchResponseSchema = z
       .describe('Total number of matching places.'),
     results: z
       .array(placeSchemaByType)
-      .describe('List of matching place payloads.'),
+      .describe(
+        'List of matching place payloads while applying progressive schema migrations.',
+      ),
   })
   .strict()
   .describe(

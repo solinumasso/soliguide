@@ -41,14 +41,10 @@ describe('Search versioning definition', () => {
       },
     };
     const currentRequest = {
-      location: {
-        geoType: GeoTypes.COUNTRY,
-        geoValue: 'FR',
-      },
-      options: {
-        page: 1,
-        limit: 20,
-      },
+      locationMode: 'country',
+      country: 'FR',
+      page: 1,
+      limit: 20,
     };
 
     expect(
@@ -76,7 +72,7 @@ describe('Search versioning definition', () => {
     };
     const currentResponse = {
       nbResults: 1,
-      places: [
+      results: [
         {
           type: 'fixedLocation',
           id: 123,
