@@ -268,16 +268,12 @@ export interface SearchItineraryResult extends SearchResultBase {
 export type SearchResult = SearchFixedLocationResult | SearchItineraryResult;
 
 export interface SearchResponse {
-  _links: {
-    self: SearchLink;
-    next: SearchLink | null;
-    prev: SearchLink | null;
-  };
   results: SearchResult[];
-  page: {
-    current: number;
-    limit: number;
-    totalPages: number;
-    totalResults: number;
-  };
+  nbResults: number;
+  // page: {
+  //   current: number;
+  //   limit: number;
+  //   totalPages: number;
+  //   totalResults: number;
+  // };
 }

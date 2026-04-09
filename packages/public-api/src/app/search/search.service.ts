@@ -30,66 +30,9 @@ export class SearchService {
       },
     );
 
-    const totalPages = Math.max(1, Math.ceil(totalResults / limit));
-
     return {
-      _links: this.buildLinks(query, page, limit, totalPages),
       results: records.map((document) => this.resultMapper.mapPlace(document)),
-      page: {
-        current: page,
-        limit,
-        totalPages,
-        totalResults,
-      },
+      nbResults: totalResults,
     };
   }
-
-  private buildLinks(
-    query: SearchQuery,
-    currentPage: number,
-    limit: number,
-    totalPages: number,
-  ): SearchResponse['_links'] {
-    const selfHref = buildSearchHref(query, currentPage, limit);
-
-    return {
-      self: { href: selfHref },
-      next:
-        currentPage < totalPages
-          ? { href: buildSearchHref(query, currentPage + 1, limit) }
-          : null,
-      prev:
-        currentPage > 1
-          ? { href: buildSearchHref(query, currentPage - 1, limit) }
-          : null,
-    };
-  }
-}
-
-function buildSearchHref(
-  query: SearchQuery,
-  page: number,
-  limit: number,
-): string {
-  const searchParams = new URLSearchParams();
-
-  for (const [key, value] of Object.entries(query)) {
-    if (value === undefined || key === 'page' || key === 'limit') {
-      continue;
-    }
-
-    if (Array.isArray(value)) {
-      for (const item of value) {
-        searchParams.append(key, String(item));
-      }
-      continue;
-    }
-
-    searchParams.set(key, String(value));
-  }
-
-  searchParams.set('page', String(page));
-  searchParams.set('limit', String(limit));
-
-  return `/search?${searchParams.toString()}`;
 }
