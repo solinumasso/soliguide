@@ -41,6 +41,7 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
     });
   });
 
+  // Group by content to process each unique text only once
   const elements: ApiTranslatedField[] = await TranslatedFieldModel.aggregate([
     { $match: { $or: matchQuery } },
     { $group: { _id: "$content", doc: { $first: "$$ROOT" } } },
