@@ -80,9 +80,9 @@ router.post(
       if (invitation) {
         req.invitation = invitation;
         req.updatedUser = req.invitation.user as UserPopulateType;
-        req.updatedUser.invitations = [
+        (req.updatedUser.invitations as InvitationPopulate[]) = [
           ...((req.updatedUser.invitations as InvitationPopulate[]) ?? []),
-          invitation as any,
+          invitation,
         ];
       } else {
         throw new Error("INVITATION WASN'T CREATED");
