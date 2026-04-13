@@ -86,29 +86,37 @@ export const up = async (db: Db) => {
 
   let batch: ModelWithId<User>[] = [];
 
-  for await (const user of cursor) {
-    batch.push(user);
+  try {
+    for await (const user of cursor) {
+      batch.push(user);
 
-    if (batch.length >= BATCH_SIZE) {
+      if (batch.length >= BATCH_SIZE) {
+        const results = await publishBatch(batch);
+        processedCount += results.processed;
+        errorCount += results.errors;
+        batch = [];
+        logger.info(
+          `[MIGRATION] - Progress: ${processedCount}/${totalCount} synced`
+        );
+      }
+    }
+
+    if (batch.length > 0) {
       const results = await publishBatch(batch);
       processedCount += results.processed;
       errorCount += results.errors;
-      batch = [];
-      logger.info(
-        `[MIGRATION] - Progress: ${processedCount}/${totalCount} synced`
-      );
+    }
+
+    logger.info(
+      `[MIGRATION] - Brevo sync complete: ${processedCount} users published, ${errorCount} errors`
+    );
+  } finally {
+    try {
+      await amqpEventsSender.close();
+    } catch (e) {
+      logger.error(e, "[MIGRATION] - Failed to close AMQP connection");
     }
   }
-
-  if (batch.length > 0) {
-    const results = await publishBatch(batch);
-    processedCount += results.processed;
-    errorCount += results.errors;
-  }
-
-  logger.info(
-    `[MIGRATION] - Brevo sync complete: ${processedCount} users published, ${errorCount} errors`
-  );
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
