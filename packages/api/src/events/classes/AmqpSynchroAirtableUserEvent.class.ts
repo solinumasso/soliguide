@@ -50,7 +50,7 @@ export class AmqpSynchroAirtableUserEvent
 
     this.deleted = deleted;
 
-    if (this.phone && this.phone.phoneNumber) {
+    if (this.phone?.phoneNumber) {
       this.parsedPhone =
         parsePhoneNumber(this.phone, this.phone.countryCode as CountryCodes) ??
         "";
