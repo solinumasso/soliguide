@@ -111,10 +111,9 @@ export const sendDeteleInvitationToMq = async (
   );
 };
 
-export const sendWelcomeToMqAndNext = async (
-  req: ExpressRequest & { invitation: InvitationPopulate },
-  _res: ExpressResponse,
-  next: NextFunction
+/** Sends a welcome event to the message queue for the invitation on the request. */
+export const sendWelcomeToMq = async (
+  req: ExpressRequest & { invitation: InvitationPopulate }
 ) => {
   await sendInvitationEventToMq(
     req.invitation,
@@ -123,5 +122,4 @@ export const sendWelcomeToMqAndNext = async (
     "welcome",
     req.log
   );
-  next();
 };
