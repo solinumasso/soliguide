@@ -49,7 +49,7 @@ if [ -z "${MONGODB_INTERNAL_URL:-}" ]; then
 fi
 
 # Clean and prepare MongoDB URI
-MONGODB_INTERNAL_URL="${MONGODB_INTERNAL_URL%/admin}/soliguide"
+MONGODB_INTERNAL_URL="${MONGODB_INTERNAL_URL%/admin}/soliguide_test?authSource=admin"
 
 # Extract and display connection info for debugging
 DB_NAME=$(extract_db_name "$MONGODB_INTERNAL_URL")

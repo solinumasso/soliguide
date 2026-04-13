@@ -28,21 +28,17 @@ import {
 import { isUserInOrga } from "../controllers/user.controller";
 import {
   sendAcceptedInvitationToMq,
-  sendAcceptedInvitationToMqAndNext,
   sendDeteleInvitationToMq,
   sendNewInvitationToMqAndNext,
   sendReNewInvitationToMqAndNext,
-  sendWelcomeToMqAndNext,
+  sendWelcomeToMq,
 } from "../middlewares/send-inivitation-event-to-mq.middleware";
 import {
   captureReSendInvitation,
   captureSendInvitation,
   captureWelcomeEvent,
 } from "../middlewares/capture-inivitation-event.middleware";
-import {
-  sendUserChangesToMq,
-  sendUserChangesToMqAndNext,
-} from "../middlewares/send-user-changes-event-to-mq.middleware";
+import { sendUserChangesToMq } from "../middlewares/send-user-changes-event-to-mq.middleware";
 
 const router = express.Router();
 
@@ -84,6 +80,10 @@ router.post(
       if (invitation) {
         req.invitation = invitation;
         req.updatedUser = req.invitation.user as UserPopulateType;
+        (req.updatedUser.invitations as InvitationPopulate[]) = [
+          ...((req.updatedUser.invitations as InvitationPopulate[]) ?? []),
+          invitation,
+        ];
       } else {
         throw new Error("INVITATION WASN'T CREATED");
       }
@@ -95,17 +95,17 @@ router.post(
   },
   sendNewInvitationToMqAndNext,
   (
-    _req: ExpressRequest & {
+    req: ExpressRequest & {
       invitation: InvitationPopulate;
     },
-    res: ExpressResponse,
-    next: NextFunction
+    res: ExpressResponse
   ) => {
-    res.status(200).json({ message: "INVITE_SENT" });
-    return next();
-  },
-  sendUserChangesToMqAndNext,
-  captureSendInvitation
+    sendUserChangesToMq(req).catch((e) =>
+      req.log.error(e, "Failed to send user changes to MQ")
+    );
+    captureSendInvitation(req);
+    return res.status(200).json({ message: "INVITE_SENT" });
+  }
 );
 
 /**
@@ -173,8 +173,7 @@ router.get(
     req: ExpressRequest & {
       invitation: InvitationPopulate;
     },
-    res: ExpressResponse,
-    next: NextFunction
+    res: ExpressResponse
   ) => {
     try {
       const updatedUser = await validateInvitation(req.invitation);
@@ -182,17 +181,26 @@ router.get(
       req.selectedUser = updatedUser;
 
       req.updatedUser = updatedUser;
+      // Re-attach the original invitation (pending: true in memory) so that
+      // AmqpSynchroAirtableUserEvent can build invitationUrl for CRM tracking.
+      // validateInvitation removes it from the DB before this point.
+      (req.updatedUser.invitations as InvitationPopulate[]) = [
+        req.invitation,
+        ...((req.updatedUser.invitations as InvitationPopulate[]) ?? []),
+      ];
 
-      res.status(200).json(updatedUser);
-
-      return next();
+      sendAcceptedInvitationToMq(req).catch((e) =>
+        req.log.error(e, "Failed to send accepted invitation to MQ")
+      );
+      sendUserChangesToMq(req).catch((e) =>
+        req.log.error(e, "Failed to send user changes to MQ")
+      );
+      return res.status(200).json(updatedUser);
     } catch (e) {
       req.log.error(e, "VALIDATION_INVITATION_FAIL");
       return res.status(400).json({ message: "VALIDATION_INVITATION_FAIL" });
     }
-  },
-  sendAcceptedInvitationToMq,
-  sendUserChangesToMq
+  }
 );
 
 /**
@@ -211,8 +219,7 @@ router.post(
     req: ExpressRequest & {
       invitation: InvitationPopulate;
     },
-    res: ExpressResponse,
-    next: NextFunction
+    res: ExpressResponse
   ) => {
     const userSignupInfos = req.bodyValidated;
     try {
@@ -220,23 +227,36 @@ router.post(
         req.invitation,
         userSignupInfos.password
       );
-      // sendWelcomeToMqAndNext needs the updated user in the invitation
+      // Set updated user in invitation before firing MQ events
       req.invitation.user = user;
       req.selectedUser = user;
+      req.updatedUser = user;
+      // Re-attach the original invitation (pending: true in memory) so that
+      // AmqpSynchroAirtableUserEvent can build invitationUrl for CRM tracking.
+      // acceptFirstInvitation removes it from the DB before this point.
+      (req.updatedUser.invitations as InvitationPopulate[]) = [
+        req.invitation,
+        ...((req.updatedUser.invitations as InvitationPopulate[]) ?? []),
+      ];
       req.organization = req.invitation.organization;
 
-      res.status(200).json(user._id.toString());
+      sendWelcomeToMq(req).catch((e) =>
+        req.log.error(e, "Failed to send welcome to MQ")
+      );
+      sendAcceptedInvitationToMq(req).catch((e) =>
+        req.log.error(e, "Failed to send accepted invitation to MQ")
+      );
+      sendUserChangesToMq(req).catch((e) =>
+        req.log.error(e, "Failed to send user changes to MQ")
+      );
+      captureWelcomeEvent(req);
 
-      next();
+      return res.status(200).json(user._id.toString());
     } catch (e) {
       req.log.error(e, "ACCEPT_FIRST_INVITATION_FAIL");
-      res.status(500).json({ message: "ACCEPT_FIRST_INVITATION_FAIL" });
+      return res.status(500).json({ message: "ACCEPT_FIRST_INVITATION_FAIL" });
     }
-  },
-  sendWelcomeToMqAndNext,
-  sendAcceptedInvitationToMqAndNext,
-  sendUserChangesToMqAndNext,
-  captureWelcomeEvent
+  }
 );
 
 /**
