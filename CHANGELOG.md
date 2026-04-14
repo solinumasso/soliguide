@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.129.0](https://github.com/solinumasso/soliguide/compare/v4.128.0...v4.129.0) (2026-04-14)
+
+
+### Bug Fixes
+
+* **api:** add try and close to migration so connection closes ([f64dbec](https://github.com/solinumasso/soliguide/commit/f64dbec70e94bbbacba6b398f051b482ccc2b571))
+* **api:** fix failing tests ([ac326bf](https://github.com/solinumasso/soliguide/commit/ac326bf44e2c4f1fee89348042c10fd99eb158c4))
+* **api:** restore seed MongoDB dump to correct database namespace ([76dff9a](https://github.com/solinumasso/soliguide/commit/76dff9afa3caf577b4d9d02c11dcf6bfe4f1c82a))
+* **ci:** handle qovery clone CLI timeout by re-checking environment existence ([909519c](https://github.com/solinumasso/soliguide/commit/909519c060d84f48276559936be578976a52d642))
+* **ci:** seed-mongo connexion to mongodb as an admin ([d72920e](https://github.com/solinumasso/soliguide/commit/d72920e2e37ac3785c17370f962e5936504e440f))
+* **frontend:** loop rediction for hygiene and osteo ([6fa616a](https://github.com/solinumasso/soliguide/commit/6fa616acb6ca333f7433c1594430380036ca54c2))
+
+
+### Features
+
+* **api:** do brevo user sync in batches ([0a55da3](https://github.com/solinumasso/soliguide/commit/0a55da37c64a352c5188c8443403325d438831c3))
+* **api:** Sync users to brevo ([#1243](https://github.com/solinumasso/soliguide/issues/1243)) ([93bff91](https://github.com/solinumasso/soliguide/commit/93bff91a724e1b9b500a61416272e3d14d654d2e))
+
+
+### Reverts
+
+* Revert "feat: test deployment" ([f82f34a](https://github.com/solinumasso/soliguide/commit/f82f34a688eed3631e3f768925574fe1977e3c2a))
+* Revert "chore(deps): bump undici from 6.21.2 to 6.24.1" ([1f1e7fc](https://github.com/solinumasso/soliguide/commit/1f1e7fccf71a741a13d5621a5c215455df01af32))
+
+
+
+
+
 # [4.128.0](https://github.com/solinumasso/soliguide/compare/v4.127.3...v4.128.0) (2026-04-13)
 
 
