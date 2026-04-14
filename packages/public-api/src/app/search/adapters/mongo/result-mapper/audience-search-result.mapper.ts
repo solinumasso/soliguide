@@ -32,7 +32,11 @@ export class AudienceSearchResultMapper {
       ],
       'violence',
     );
-    const genders = firstMatchingValue(publics?.gender, ['men', 'women'], 'men');
+    const genders = firstMatchingValue(
+      publics?.gender,
+      ['men', 'women'],
+      'men',
+    );
 
     return {
       admissionPolicy: accueil === 0 ? 'open' : 'restricted',

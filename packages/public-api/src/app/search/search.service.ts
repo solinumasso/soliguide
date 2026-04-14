@@ -20,10 +20,7 @@ export class SearchService {
 
   async search(query: SearchQuery): Promise<SearchResponse> {
     const page = query.pagination?.page ?? DEFAULT_PAGE;
-    const limit = Math.min(
-      query.pagination?.limit ?? DEFAULT_LIMIT,
-      MAX_LIMIT,
-    );
+    const limit = Math.min(query.pagination?.limit ?? DEFAULT_LIMIT, MAX_LIMIT);
 
     const { records, totalResults } = await this.placeSearchReader.search(
       query,
