@@ -56,7 +56,11 @@ export class ResponseVersioningPipeline {
         }
       }
 
-      for (const change of version.responseChanges) {
+      const responseChangesInDowngradeOrder = [
+        ...version.responseChanges,
+      ].reverse();
+
+      for (const change of responseChangesInDowngradeOrder) {
         try {
           transformedPayload = await change.downgrade(
             transformedPayload,

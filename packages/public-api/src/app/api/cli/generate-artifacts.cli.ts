@@ -1,6 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import { ArtifactGenerationService } from '../../../api-versioning/artifacts';
 import { SearchModule } from '../../search.module';
+import { config } from 'dotenv';
+
+config();
 
 async function run(): Promise<void> {
   process.env.PUBLIC_API_GENERATE_ARTIFACTS = '1';

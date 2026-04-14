@@ -9,6 +9,9 @@ import { apiReference } from '@scalar/nestjs-api-reference';
 import { INestApplication } from '@nestjs/common';
 import { SearchModule } from './app/search.module';
 import { VersionRegistry } from './api-versioning/versioning';
+import { config } from 'dotenv';
+
+config();
 
 type OpenApiDocument = Record<string, unknown>;
 type VersionedOpenApiDocuments = ReadonlyMap<string, OpenApiDocument>;
@@ -161,7 +164,7 @@ async function bootstrap() {
     }),
   );
 
-  await app.listen(process.env.PORT ?? 3001);
+  await app.listen(process.env.PORT ?? 3002);
 }
 
 void bootstrap();

@@ -251,7 +251,8 @@ export class VersionedSchemaChangeApplier {
 
     if (
       Node.isPropertyAccessExpression(callExpression) &&
-      callExpression.getName() === 'object'
+      (callExpression.getName() === 'object' ||
+        callExpression.getName() === 'looseObject')
     ) {
       const firstArgument = unwrapped.getArguments()[0];
       if (firstArgument && Node.isObjectLiteralExpression(firstArgument)) {
