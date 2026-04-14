@@ -17,68 +17,19 @@ import {
 } from "@soliguide/common";
 import { z } from "zod";
 
-const categoriesEnumSchema = z
-  .enum(Categories)
-  .meta({ id: "Common_Categories" });
-const countryCodesEnumSchema = z
-  .enum(CountryCodes)
-  .describe("Country code. Format ISO 3166-1 alpha-2.")
-  .meta({ id: "Common_CountryCodes" });
-const placeTypeEnumSchema = z.enum(PlaceType).meta({ id: "Common_PlaceType" });
-const publicsAdministrativeEnumSchema = z
-  .enum(PublicsAdministrative)
-  .meta({ id: "Common_PublicsAdministrative" });
-const publicsFamilyEnumSchema = z
-  .enum(PublicsFamily)
-  .meta({ id: "Common_PublicsFamily" });
-const publicsGenderEnumSchema = z
-  .enum(PublicsGender)
-  .meta({ id: "Common_PublicsGender" });
-const publicsOtherEnumSchema = z
-  .enum(PublicsOther)
-  .meta({ id: "Common_PublicsOther" });
-const updatedAtIntervalEnumSchema = z
-  .enum(UpdatedAtInterval)
-  .meta({ id: "Common_UpdatedAtInterval" });
-const welcomedPublicsEnumSchema = z
-  .enum(WelcomedPublics)
-  .meta({ id: "Common_WelcomedPublics" });
-
 const locationSharedFields = {
   distance: z.coerce
     .number()
     .nullable()
     .optional()
-    .describe("Search radius in kilometers for position-based search.")
-    .meta({ example: 5 }),
-  label: z
-    .string()
-    .nullable()
-    .optional()
-    .describe("Free-text label associated with the searched geographic area."),
-  department: z
-    .string()
-    .nullable()
-    .optional()
-    .describe("Department name of the searched area."),
-  regionCode: z
-    .string()
-    .nullable()
-    .optional()
-    .describe("Administrative code of the searched region."),
-  departmentCode: z
-    .string()
-    .nullable()
-    .optional()
-    .describe(
-      "Department code of the searched area. Examples: `974`, `2A`, `91`, `06`."
-    ),
-  region: z
-    .string()
-    .nullable()
-    .optional()
-    .describe("Region name of the searched area."),
-  country: countryCodesEnumSchema
+    .describe("Search radius in kilometers for position-based search."),
+  label: z.string().nullable().optional(),
+  department: z.string().nullable().optional(),
+  regionCode: z.string().nullable().optional(),
+  departmentCode: z.string().nullable().optional(),
+  region: z.string().nullable().optional(),
+  country: z
+    .enum(CountryCodes)
     .nullable()
     .optional()
     .describe(
@@ -101,9 +52,8 @@ const locationSchema = z
         .array(z.coerce.number())
         .length(2)
         .describe(
-          "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON."
-        )
-        .meta({ example: [2.3522, 48.8566] }),
+          "Longitude/latitude coordinates used when geoType is position."
+        ),
       ...locationSharedFields,
     }),
     z.looseObject({
@@ -121,7 +71,7 @@ const locationSchema = z
         .nullable()
         .optional()
         .describe(
-          "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON."
+          "Longitude/latitude coordinates used when geoType is position."
         ),
       ...locationSharedFields,
     }),
@@ -131,16 +81,15 @@ const locationSchema = z
         .string()
         .min(1)
         .describe(
-          "Geographic identifier for a borough search. This value usually includes the postal code."
-        )
-        .meta({ example: "75013" }),
+          "Geographic identifier for non-position searches (country, region, department, city, etc.)."
+        ),
       coordinates: z
         .array(z.coerce.number())
         .length(2)
         .nullable()
         .optional()
         .describe(
-          "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON."
+          "Longitude/latitude coordinates used when geoType is position."
         ),
       ...locationSharedFields,
     }),
@@ -150,16 +99,15 @@ const locationSchema = z
         .string()
         .min(1)
         .describe(
-          "Geographic identifier for a city search. This value can include the postal code suffix used by Soliguide."
-        )
-        .meta({ example: "paris-75013" }),
+          "Geographic identifier for non-position searches (country, region, department, city, etc.)."
+        ),
       coordinates: z
         .array(z.coerce.number())
         .length(2)
         .nullable()
         .optional()
         .describe(
-          "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON."
+          "Longitude/latitude coordinates used when geoType is position."
         ),
       ...locationSharedFields,
     }),
@@ -169,16 +117,15 @@ const locationSchema = z
         .string()
         .min(1)
         .describe(
-          "Country code searched when `geoType` is `country`. Format ISO 3166-1 alpha-2."
-        )
-        .meta({ example: "fr" }),
+          "Geographic identifier for non-position searches (country, region, department, city, etc.)."
+        ),
       coordinates: z
         .array(z.coerce.number())
         .length(2)
         .nullable()
         .optional()
         .describe(
-          "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON."
+          "Longitude/latitude coordinates used when geoType is position."
         ),
       ...locationSharedFields,
     }),
@@ -187,15 +134,16 @@ const locationSchema = z
       geoValue: z
         .string()
         .min(1)
-        .describe("Geographic identifier for a department search.")
-        .meta({ example: "75" }),
+        .describe(
+          "Geographic identifier for non-position searches (country, region, department, city, etc.)."
+        ),
       coordinates: z
         .array(z.coerce.number())
         .length(2)
         .nullable()
         .optional()
         .describe(
-          "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON."
+          "Longitude/latitude coordinates used when geoType is position."
         ),
       ...locationSharedFields,
     }),
@@ -204,15 +152,16 @@ const locationSchema = z
       geoValue: z
         .string()
         .min(1)
-        .describe("Geographic identifier for a region search.")
-        .meta({ example: "ile-de-france" }),
+        .describe(
+          "Geographic identifier for non-position searches (country, region, department, city, etc.)."
+        ),
       coordinates: z
         .array(z.coerce.number())
         .length(2)
         .nullable()
         .optional()
         .describe(
-          "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON."
+          "Longitude/latitude coordinates used when geoType is position."
         ),
       ...locationSharedFields,
     }),
@@ -221,201 +170,82 @@ const locationSchema = z
       geoValue: z
         .string()
         .min(1)
-        .describe("Free-text search value used to target a group of cities.")
-        .meta({ example: "paris" }),
+        .describe(
+          "Geographic identifier for non-position searches (country, region, department, city, etc.)."
+        ),
       coordinates: z
         .array(z.coerce.number())
         .length(2)
         .nullable()
         .optional()
         .describe(
-          "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON."
+          "Longitude/latitude coordinates used when geoType is position."
         ),
       ...locationSharedFields,
     }),
   ])
-  .describe("Geographic mode used by the search location.")
-  .meta({ id: "SearchRequest_Location" });
+  .describe("Geographic mode used by the search location.");
 
 const modalitiesSchema = z
   .looseObject({
-    animal: z.coerce
-      .boolean()
-      .nullable()
-      .optional()
-      .describe("Filter on places accepting animals."),
-    appointment: z.coerce
-      .boolean()
-      .nullable()
-      .optional()
-      .describe("Filter on places requiring an appointment."),
-    inconditionnel: z.coerce
-      .boolean()
-      .nullable()
-      .optional()
-      .describe(
-        "Filter on places with unconditional access. When `true`, it targets places where unconditional access is the applicable access mode."
-      ),
-    inscription: z.coerce
-      .boolean()
-      .nullable()
-      .optional()
-      .describe("Filter on places requiring prior registration."),
-    orientation: z.coerce
-      .boolean()
-      .nullable()
-      .optional()
-      .describe("Filter on places requiring orientation."),
-    pmr: z.coerce
-      .boolean()
-      .nullable()
-      .optional()
-      .describe("Filter on places accessible to people with reduced mobility."),
-    price: z.coerce
-      .boolean()
-      .nullable()
-      .optional()
-      .describe("Filter on fee-based places or services."),
-    sign: z.coerce
-      .boolean()
-      .nullable()
-      .optional()
-      .describe("Filter on places offering sign-language accessibility."),
+    animal: z.coerce.boolean().nullable().optional(),
+    appointment: z.coerce.boolean().nullable().optional(),
+    inconditionnel: z.coerce.boolean().nullable().optional(),
+    inscription: z.coerce.boolean().nullable().optional(),
+    orientation: z.coerce.boolean().nullable().optional(),
+    pmr: z.coerce.boolean().nullable().optional(),
+    price: z.coerce.boolean().nullable().optional(),
+    sign: z.coerce.boolean().nullable().optional(),
   })
-  .catchall(z.unknown())
-  .describe("Access condition filters.")
-  .meta({ id: "SearchRequest_Modalities" });
+  .catchall(z.unknown());
 
 const publicsSchema = z
   .looseObject({
-    accueil: welcomedPublicsEnumSchema
-      .nullable()
-      .optional()
-      .describe(
-        "Type of welcome expected for the public: unconditional, preferential or exclusive."
-      ),
+    accueil: z.enum(WelcomedPublics).nullable().optional(),
     age: z
       .object({
-        min: z.coerce
-          .number()
-          .int()
-          .min(0)
-          .max(99)
-          .nullable()
-          .optional()
-          .describe(
-            "Minimum age used by the audience filter. Values from `0` to `99` are accepted."
-          ),
-        max: z.coerce
-          .number()
-          .int()
-          .min(0)
-          .max(99)
-          .nullable()
-          .optional()
-          .describe(
-            "Maximum age used by the audience filter. Values from `0` to `99` are accepted."
-          ),
+        min: z.coerce.number().int().min(0).max(99).nullable().optional(),
+        max: z.coerce.number().int().min(0).max(99).nullable().optional(),
       })
       .nullable()
-      .optional()
-      .describe("Age filter for the welcomed public."),
-    gender: z
-      .array(publicsGenderEnumSchema)
-      .nullable()
-      .optional()
-      .describe(
-        "Gender-related audience filters. If all possible values are selected, it is treated as no restriction."
-      ),
+      .optional(),
+    gender: z.array(z.enum(PublicsGender)).nullable().optional(),
     administrative: z
-      .array(publicsAdministrativeEnumSchema)
+      .array(z.enum(PublicsAdministrative))
       .nullable()
-      .optional()
-      .describe(
-        "Administrative-status audience filters. If all possible values are selected, it is treated as no restriction."
-      ),
-    familialle: z
-      .array(publicsFamilyEnumSchema)
-      .nullable()
-      .optional()
-      .describe(
-        "Family-situation audience filters. If all possible values are selected, it is treated as no restriction."
-      ),
-    other: z
-      .array(publicsOtherEnumSchema)
-      .nullable()
-      .optional()
-      .describe(
-        "Other audience filters. If all possible values are selected, it is treated as no restriction."
-      ),
+      .optional(),
+    familialle: z.array(z.enum(PublicsFamily)).nullable().optional(),
+    other: z.array(z.enum(PublicsOther)).nullable().optional(),
   })
-  .describe("Public audience filters.")
-  .meta({ id: "SearchRequest_Publics" });
+  .describe("Public audience filters.");
 
-const updatedAtSchema = z
-  .looseObject({
-    intervalType: updatedAtIntervalEnumSchema
-      .nullable()
-      .optional()
-      .describe("Comparison mode used for the update-date filter."),
-    value: z
-      .string()
-      .nullable()
-      .optional()
-      .describe("Date used by the update filter. Format ISO 8601.")
-      .meta({ example: "2026-01-01T00:00:00.000Z" }),
-  })
-  .describe("Filter places by update date.")
-  .meta({ id: "SearchRequest_UpdatedAt" });
+const updatedAtSchema = z.looseObject({
+  intervalType: z.enum(UpdatedAtInterval).nullable().optional(),
+  value: z.coerce.date().nullable().optional(),
+});
 
-const optionsSchema = z
-  .looseObject({
-    sortBy: z
-      .enum([
-        "createdAt",
-        "lieu_id",
-        "name",
-        "distance",
-        "slugs.infos.name",
-        "status",
-        "updatedAt",
-      ])
-      .nullable()
-      .optional()
-      .describe("Field used to sort the search results."),
-    sortValue: z.coerce
-      .number()
-      .refine((value) => value === 1 || value === -1)
-      .nullable()
-      .optional()
-      .describe("Sorting direction: `1` ascending, `-1` descending.")
-      .meta({ example: 1 }),
-    page: z.coerce
-      .number()
-      .int()
-      .nullable()
-      .optional()
-      .describe("Page number of the paginated results.")
-      .meta({ example: 1 }),
-    limit: z.coerce
-      .number()
-      .int()
-      .nullable()
-      .optional()
-      .describe("Maximum number of results returned per page.")
-      .meta({ example: 10 }),
-    fields: z
-      .string()
-      .min(1)
-      .nullable()
-      .optional()
-      .describe(
-        "Space-separated list of fields to include in the response payload."
-      ),
-  })
-  .describe("Pagination, sorting and field-selection options.")
-  .meta({ id: "SearchRequest_Options" });
-
+const optionsSchema = z.looseObject({
+  sortBy: z
+    .enum([
+      "createdAt",
+      "lieu_id",
+      "name",
+      "distance",
+      "slugs.infos.name",
+      "status",
+      "updatedAt",
+    ])
+    .nullable()
+    .optional(),
+  sortValue: z.coerce
+    .number()
+    .refine((value) => value === 1 || value === -1)
+    .nullable()
+    .optional(),
+  page: z.coerce.number().int().nullable().optional(),
+  limit: z.coerce.number().int().nullable().optional(),
+  fields: z.string().min(1).nullable().optional(),
+});
 export const v20260101SearchRequestSchema = z
   .looseObject({
     location: locationSchema.describe(
@@ -428,26 +258,19 @@ export const v20260101SearchRequestSchema = z
       .describe(
         "Optional list of locations for widget-like multi-location search."
       ),
-    category: categoriesEnumSchema
-      .nullable()
-      .optional()
-      .describe("Single service category filter."),
+    category: z.enum(Categories).nullable().optional(),
     categories: z
-      .array(categoriesEnumSchema)
+      .array(z.enum(Categories))
       .nullable()
       .optional()
       .describe(
         "Multiple categories (restricted by user status at route level)."
       ),
-    placeType: placeTypeEnumSchema
+    placeType: z
+      .enum(PlaceType)
       .default(PlaceType.PLACE)
-      .describe("Resource type to search: fixed places or itineraries.")
-      .meta({ example: PlaceType.PLACE }),
-    word: z
-      .string()
-      .nullable()
-      .optional()
-      .describe("Free-text search applied to place and service content."),
+      .describe("Resource type to search: fixed places or itineraries."),
+    word: z.string().nullable().optional(),
     openToday: z.coerce
       .boolean()
       .nullable()
@@ -459,11 +282,12 @@ export const v20260101SearchRequestSchema = z
     modalities: modalitiesSchema.nullable().optional(),
     publics: publicsSchema.nullable().optional(),
     languages: z
-      .array(z.enum(PLACE_LANGUAGES_LIST_MAP_KEY))
+      .string()
+      .refine((value) => PLACE_LANGUAGES_LIST_MAP_KEY.includes(value), {
+        message: "languages must be one of PLACE_LANGUAGES_LIST_MAP_KEY",
+      })
       .nullable()
-      .optional()
-      .describe("Language spoken at the place. Format ISO 639-3.")
-      .meta({ example: "fr" }),
+      .optional(),
     widgetId: z
       .string()
       .refine(
@@ -476,23 +300,13 @@ export const v20260101SearchRequestSchema = z
         }
       )
       .nullable()
-      .optional()
-      .describe(
-        "Widget identifier used to apply widget-specific search rules."
-      ),
-    updatedAt: updatedAtSchema
-      .nullable()
-      .optional()
-      .describe("Update-date filter."),
-    options: optionsSchema
-      .nullable()
-      .optional()
-      .describe("Search result options."),
+      .optional(),
+    updatedAt: updatedAtSchema.nullable().optional(),
+    options: optionsSchema.nullable().optional(),
   })
   .describe(
     "Exhaustive request body schema for POST /new-search/:lang? (non-admin route)."
-  )
-  .meta({ id: "v20260101SearchRequest" });
+  );
 export type V20260101SearchRequest = z.infer<
   typeof v20260101SearchRequestSchema
 >;
