@@ -30,8 +30,11 @@
     "@nestjs/core": "^11.1.16",
     "@nestjs/platform-fastify": "^11.1.16",
     "@nestjs/swagger": "^11.2.6",
+    "@soliguide/api": "workspace:*",
     "@soliguide/common": "workspace:*",
     "helmet": "^7.2.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^8.16.3",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
     "zod": "^4.3.6"
