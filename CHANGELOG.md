@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.129.1](https://github.com/solinumasso/soliguide/compare/v4.129.0...v4.129.1) (2026-04-15)
+
+
+### Bug Fixes
+
+* **api:** fix orga info for user brevo sync ([f83589c](https://github.com/solinumasso/soliguide/commit/f83589ceb0f0edc13bcc7e05f8666eee997a9286))
+
+
+
+
+
 # [4.129.0](https://github.com/solinumasso/soliguide/compare/v4.128.0...v4.129.0) (2026-04-14)
 
 
