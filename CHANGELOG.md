@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.129.2](https://github.com/solinumasso/soliguide/compare/v4.129.1...v4.129.2) (2026-04-16)
+
+
+### Bug Fixes
+
+* **api:** deactivate translations and remove sync migration ([c761840](https://github.com/solinumasso/soliguide/commit/c761840edef4a6e8243bd509d629c2dedaab84ae))
+
+
+
+
+
 ## [4.129.1](https://github.com/solinumasso/soliguide/compare/v4.129.0...v4.129.1) (2026-04-15)
 
 
