@@ -3,7 +3,6 @@ import {
   FastifyAdapter,
   NestFastifyApplication,
 } from "@nestjs/platform-fastify";
-import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import helmet from "helmet";
 import { PlaceModel } from "@soliguide/api";
 import { AppModule } from "./app.module";
@@ -33,17 +32,6 @@ config();
     AppModule,
     new FastifyAdapter()
   );
-
-  const swaggerConfig = new DocumentBuilder()
-    .setTitle("Soliguide Public API")
-    .setDescription(
-      "This API exposes public Soliguide data for search and integrations."
-    )
-    .setVersion("1.0")
-    .build();
-
-  const document = SwaggerModule.createDocument(app, swaggerConfig);
-  SwaggerModule.setup("doc", app, document);
 
   app.use(helmet());
   app.enableShutdownHooks();

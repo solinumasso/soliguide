@@ -1,0 +1,2400 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/search": {
+      "post": {
+        "operationId": "search-places",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "nbResults": {
+                      "nullable": true,
+                      "description": "Total number of matching places.",
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "places": {
+                      "nullable": true,
+                      "description": "List of matching place payloads.",
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/v20260101SearchPlaceResponse"
+                      }
+                    }
+                  },
+                  "required": [
+                    "nbResults",
+                    "places"
+                  ],
+                  "additionalProperties": false,
+                  "id": "v20260101SearchResponse"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Search places",
+        "tags": [
+          "search"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "location": {
+                    "description": "Primary location constraint (required by route validation).",
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/SearchRequest_Location"
+                      }
+                    ]
+                  },
+                  "locations": {
+                    "description": "Optional list of locations for widget-like multi-location search.",
+                    "nullable": true,
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/SearchRequest_Location"
+                    }
+                  },
+                  "category": {
+                    "nullable": true,
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/Common_Categories"
+                      }
+                    ]
+                  },
+                  "categories": {
+                    "description": "Multiple categories (restricted by user status at route level).",
+                    "nullable": true,
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Common_Categories"
+                    }
+                  },
+                  "placeType": {
+                    "default": "LIEU",
+                    "description": "Resource type to search: fixed places or itineraries.",
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/Common_PlaceType"
+                      }
+                    ]
+                  },
+                  "word": {
+                    "nullable": true,
+                    "type": "string"
+                  },
+                  "openToday": {
+                    "description": "Only return results that are open today.",
+                    "example": true,
+                    "nullable": true,
+                    "type": "boolean"
+                  },
+                  "modalities": {
+                    "nullable": true,
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/SearchRequest_Modalities"
+                      }
+                    ]
+                  },
+                  "publics": {
+                    "nullable": true,
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/SearchRequest_Publics"
+                      }
+                    ]
+                  },
+                  "languages": {
+                    "nullable": true,
+                    "type": "string"
+                  },
+                  "widgetId": {
+                    "nullable": true,
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "nullable": true,
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/SearchRequest_UpdatedAt"
+                      }
+                    ]
+                  },
+                  "options": {
+                    "nullable": true,
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/SearchRequest_Options"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "location"
+                ],
+                "additionalProperties": {},
+                "description": "Exhaustive request body schema for POST /new-search/:lang? (non-admin route).",
+                "id": "v20260101SearchRequest"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "info": {
+    "title": "Soliguide Public API",
+    "description": "This API exposes public Soliguide data for search and integrations.",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "Common_CountryCodes": {
+        "type": "string",
+        "enum": [
+          "fr",
+          "re",
+          "gf",
+          "pf",
+          "tf",
+          "gp",
+          "mq",
+          "yt",
+          "bl",
+          "mf",
+          "pm",
+          "wf",
+          "es",
+          "ad"
+        ],
+        "id": "Common_CountryCodes"
+      },
+      "SearchRequest_Location": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "geoType": {
+                "type": "string",
+                "enum": [
+                  "position"
+                ]
+              },
+              "geoValue": {
+                "description": "Geographic identifier for non-position searches (country, region, department, city, etc.).",
+                "nullable": true,
+                "type": "string"
+              },
+              "coordinates": {
+                "minItems": 2,
+                "maxItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "description": "Longitude/latitude coordinates used when geoType is position."
+              },
+              "distance": {
+                "description": "Search radius in kilometers for position-based search.",
+                "nullable": true,
+                "type": "number"
+              },
+              "label": {
+                "nullable": true,
+                "type": "string"
+              },
+              "department": {
+                "nullable": true,
+                "type": "string"
+              },
+              "regionCode": {
+                "nullable": true,
+                "type": "string"
+              },
+              "departmentCode": {
+                "nullable": true,
+                "type": "string"
+              },
+              "region": {
+                "nullable": true,
+                "type": "string"
+              },
+              "country": {
+                "description": "Country code. Restricted to Soliguide countries for non-API users.",
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Common_CountryCodes"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "geoType",
+              "coordinates"
+            ],
+            "additionalProperties": {}
+          },
+          {
+            "type": "object",
+            "properties": {
+              "geoType": {
+                "type": "string",
+                "enum": [
+                  "inconnu"
+                ]
+              },
+              "geoValue": {
+                "description": "Geographic identifier for non-position searches (country, region, department, city, etc.).",
+                "nullable": true,
+                "type": "string"
+              },
+              "coordinates": {
+                "description": "Longitude/latitude coordinates used when geoType is position.",
+                "nullable": true,
+                "minItems": 2,
+                "maxItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "distance": {
+                "description": "Search radius in kilometers for position-based search.",
+                "nullable": true,
+                "type": "number"
+              },
+              "label": {
+                "nullable": true,
+                "type": "string"
+              },
+              "department": {
+                "nullable": true,
+                "type": "string"
+              },
+              "regionCode": {
+                "nullable": true,
+                "type": "string"
+              },
+              "departmentCode": {
+                "nullable": true,
+                "type": "string"
+              },
+              "region": {
+                "nullable": true,
+                "type": "string"
+              },
+              "country": {
+                "description": "Country code. Restricted to Soliguide countries for non-API users.",
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Common_CountryCodes"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "geoType"
+            ],
+            "additionalProperties": {}
+          },
+          {
+            "type": "object",
+            "properties": {
+              "geoType": {
+                "type": "string",
+                "enum": [
+                  "codePostal"
+                ]
+              },
+              "geoValue": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Geographic identifier for non-position searches (country, region, department, city, etc.)."
+              },
+              "coordinates": {
+                "description": "Longitude/latitude coordinates used when geoType is position.",
+                "nullable": true,
+                "minItems": 2,
+                "maxItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "distance": {
+                "description": "Search radius in kilometers for position-based search.",
+                "nullable": true,
+                "type": "number"
+              },
+              "label": {
+                "nullable": true,
+                "type": "string"
+              },
+              "department": {
+                "nullable": true,
+                "type": "string"
+              },
+              "regionCode": {
+                "nullable": true,
+                "type": "string"
+              },
+              "departmentCode": {
+                "nullable": true,
+                "type": "string"
+              },
+              "region": {
+                "nullable": true,
+                "type": "string"
+              },
+              "country": {
+                "description": "Country code. Restricted to Soliguide countries for non-API users.",
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Common_CountryCodes"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "geoType",
+              "geoValue"
+            ],
+            "additionalProperties": {}
+          },
+          {
+            "type": "object",
+            "properties": {
+              "geoType": {
+                "type": "string",
+                "enum": [
+                  "ville"
+                ]
+              },
+              "geoValue": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Geographic identifier for non-position searches (country, region, department, city, etc.)."
+              },
+              "coordinates": {
+                "description": "Longitude/latitude coordinates used when geoType is position.",
+                "nullable": true,
+                "minItems": 2,
+                "maxItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "distance": {
+                "description": "Search radius in kilometers for position-based search.",
+                "nullable": true,
+                "type": "number"
+              },
+              "label": {
+                "nullable": true,
+                "type": "string"
+              },
+              "department": {
+                "nullable": true,
+                "type": "string"
+              },
+              "regionCode": {
+                "nullable": true,
+                "type": "string"
+              },
+              "departmentCode": {
+                "nullable": true,
+                "type": "string"
+              },
+              "region": {
+                "nullable": true,
+                "type": "string"
+              },
+              "country": {
+                "description": "Country code. Restricted to Soliguide countries for non-API users.",
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Common_CountryCodes"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "geoType",
+              "geoValue"
+            ],
+            "additionalProperties": {}
+          },
+          {
+            "type": "object",
+            "properties": {
+              "geoType": {
+                "type": "string",
+                "enum": [
+                  "pays"
+                ]
+              },
+              "geoValue": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Geographic identifier for non-position searches (country, region, department, city, etc.)."
+              },
+              "coordinates": {
+                "description": "Longitude/latitude coordinates used when geoType is position.",
+                "nullable": true,
+                "minItems": 2,
+                "maxItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "distance": {
+                "description": "Search radius in kilometers for position-based search.",
+                "nullable": true,
+                "type": "number"
+              },
+              "label": {
+                "nullable": true,
+                "type": "string"
+              },
+              "department": {
+                "nullable": true,
+                "type": "string"
+              },
+              "regionCode": {
+                "nullable": true,
+                "type": "string"
+              },
+              "departmentCode": {
+                "nullable": true,
+                "type": "string"
+              },
+              "region": {
+                "nullable": true,
+                "type": "string"
+              },
+              "country": {
+                "description": "Country code. Restricted to Soliguide countries for non-API users.",
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Common_CountryCodes"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "geoType",
+              "geoValue"
+            ],
+            "additionalProperties": {}
+          },
+          {
+            "type": "object",
+            "properties": {
+              "geoType": {
+                "type": "string",
+                "enum": [
+                  "departement"
+                ]
+              },
+              "geoValue": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Geographic identifier for non-position searches (country, region, department, city, etc.)."
+              },
+              "coordinates": {
+                "description": "Longitude/latitude coordinates used when geoType is position.",
+                "nullable": true,
+                "minItems": 2,
+                "maxItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "distance": {
+                "description": "Search radius in kilometers for position-based search.",
+                "nullable": true,
+                "type": "number"
+              },
+              "label": {
+                "nullable": true,
+                "type": "string"
+              },
+              "department": {
+                "nullable": true,
+                "type": "string"
+              },
+              "regionCode": {
+                "nullable": true,
+                "type": "string"
+              },
+              "departmentCode": {
+                "nullable": true,
+                "type": "string"
+              },
+              "region": {
+                "nullable": true,
+                "type": "string"
+              },
+              "country": {
+                "description": "Country code. Restricted to Soliguide countries for non-API users.",
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Common_CountryCodes"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "geoType",
+              "geoValue"
+            ],
+            "additionalProperties": {}
+          },
+          {
+            "type": "object",
+            "properties": {
+              "geoType": {
+                "type": "string",
+                "enum": [
+                  "region"
+                ]
+              },
+              "geoValue": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Geographic identifier for non-position searches (country, region, department, city, etc.)."
+              },
+              "coordinates": {
+                "description": "Longitude/latitude coordinates used when geoType is position.",
+                "nullable": true,
+                "minItems": 2,
+                "maxItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "distance": {
+                "description": "Search radius in kilometers for position-based search.",
+                "nullable": true,
+                "type": "number"
+              },
+              "label": {
+                "nullable": true,
+                "type": "string"
+              },
+              "department": {
+                "nullable": true,
+                "type": "string"
+              },
+              "regionCode": {
+                "nullable": true,
+                "type": "string"
+              },
+              "departmentCode": {
+                "nullable": true,
+                "type": "string"
+              },
+              "region": {
+                "nullable": true,
+                "type": "string"
+              },
+              "country": {
+                "description": "Country code. Restricted to Soliguide countries for non-API users.",
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Common_CountryCodes"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "geoType",
+              "geoValue"
+            ],
+            "additionalProperties": {}
+          },
+          {
+            "type": "object",
+            "properties": {
+              "geoType": {
+                "type": "string",
+                "enum": [
+                  "citiesGroup"
+                ]
+              },
+              "geoValue": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Geographic identifier for non-position searches (country, region, department, city, etc.)."
+              },
+              "coordinates": {
+                "description": "Longitude/latitude coordinates used when geoType is position.",
+                "nullable": true,
+                "minItems": 2,
+                "maxItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "distance": {
+                "description": "Search radius in kilometers for position-based search.",
+                "nullable": true,
+                "type": "number"
+              },
+              "label": {
+                "nullable": true,
+                "type": "string"
+              },
+              "department": {
+                "nullable": true,
+                "type": "string"
+              },
+              "regionCode": {
+                "nullable": true,
+                "type": "string"
+              },
+              "departmentCode": {
+                "nullable": true,
+                "type": "string"
+              },
+              "region": {
+                "nullable": true,
+                "type": "string"
+              },
+              "country": {
+                "description": "Country code. Restricted to Soliguide countries for non-API users.",
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Common_CountryCodes"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "geoType",
+              "geoValue"
+            ],
+            "additionalProperties": {}
+          }
+        ],
+        "description": "Geographic mode used by the search location.",
+        "id": "SearchRequest_Location"
+      },
+      "Common_Categories": {
+        "type": "string",
+        "enum": [
+          "health",
+          "addiction",
+          "std_testing",
+          "psychological_support",
+          "child_care",
+          "general_practitioner",
+          "dental_care",
+          "pregnancy_care",
+          "vaccination",
+          "infirmary",
+          "vet_care",
+          "health_specialists",
+          "allergology",
+          "cardiology",
+          "dermatology",
+          "echography",
+          "endocrinology",
+          "gastroenterology",
+          "gynecology",
+          "kinesitherapy",
+          "mammography",
+          "ophthalmology",
+          "otorhinolaryngology",
+          "nutrition",
+          "pedicure",
+          "phlebology",
+          "pneumology",
+          "radiology",
+          "rheumatology",
+          "urology",
+          "speech_therapy",
+          "stomatology",
+          "osteopathy",
+          "acupuncture",
+          "mobility",
+          "transportation_mobility",
+          "personal_vehicle_access",
+          "vehicle_maintenance",
+          "mobility_support",
+          "driving_license",
+          "mobility_financing",
+          "training_and_jobs",
+          "digital_tools_training",
+          "french_course",
+          "catalan_course",
+          "spanish_course",
+          "job_coaching",
+          "integration_through_economic_activity",
+          "tutoring",
+          "hygiene_and_wellness",
+          "shower",
+          "laundry",
+          "wellness",
+          "toilets",
+          "hygiene_products",
+          "face_masks",
+          "counseling",
+          "legal_advice",
+          "domiciliation",
+          "social_accompaniment",
+          "public_writer",
+          "disability_advice",
+          "administrative_assistance",
+          "parent_assistance",
+          "budget_advice",
+          "technology",
+          "computers_at_your_disposal",
+          "wifi",
+          "electrical_outlets_available",
+          "telephone_at_your_disposal",
+          "digital_safe",
+          "food",
+          "food_distribution",
+          "food_packages",
+          "social_grocery_stores",
+          "fountain",
+          "solidarity_fridge",
+          "shared_kitchen",
+          "cooking_workshop",
+          "baby_parcel",
+          "food_voucher",
+          "community_garden",
+          "welcome",
+          "day_hosting",
+          "rest_area",
+          "babysitting",
+          "family_area",
+          "information_point",
+          "activities",
+          "sport_activities",
+          "museums",
+          "libraries",
+          "other_activities",
+          "equipment",
+          "luggage_storage",
+          "solidarity_store",
+          "clothing",
+          "animal_assitance",
+          "accomodation_and_housing",
+          "overnight_stop",
+          "emergency_accommodation",
+          "long_term_accomodation",
+          "citizen_housing",
+          "access_to_housing",
+          "hairdresser",
+          "legal_protection"
+        ],
+        "id": "Common_Categories"
+      },
+      "Common_PlaceType": {
+        "type": "string",
+        "enum": [
+          "LIEU",
+          "PARCOURS_MOBILE"
+        ],
+        "id": "Common_PlaceType"
+      },
+      "SearchRequest_Modalities": {
+        "type": "object",
+        "properties": {
+          "animal": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "appointment": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "inconditionnel": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "inscription": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "orientation": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "pmr": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "price": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "sign": {
+            "nullable": true,
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchRequest_Modalities"
+      },
+      "SearchRequest_Publics": {
+        "type": "object",
+        "properties": {
+          "accueil": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Common_WelcomedPublics"
+              }
+            ]
+          },
+          "age": {
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "min": {
+                "nullable": true,
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 99
+              },
+              "max": {
+                "nullable": true,
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 99
+              }
+            }
+          },
+          "gender": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Common_PublicsGender"
+            }
+          },
+          "administrative": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Common_PublicsAdministrative"
+            }
+          },
+          "familialle": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Common_PublicsFamily"
+            }
+          },
+          "other": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Common_PublicsOther"
+            }
+          }
+        },
+        "additionalProperties": {},
+        "description": "Public audience filters.",
+        "id": "SearchRequest_Publics"
+      },
+      "Common_WelcomedPublics": {
+        "type": "number",
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "id": "Common_WelcomedPublics"
+      },
+      "Common_PublicsGender": {
+        "type": "string",
+        "enum": [
+          "all",
+          "men",
+          "women"
+        ],
+        "id": "Common_PublicsGender"
+      },
+      "Common_PublicsAdministrative": {
+        "type": "string",
+        "enum": [
+          "all",
+          "regular",
+          "asylum",
+          "refugee",
+          "undocumented"
+        ],
+        "id": "Common_PublicsAdministrative"
+      },
+      "Common_PublicsFamily": {
+        "type": "string",
+        "enum": [
+          "all",
+          "isolated",
+          "family",
+          "couple",
+          "pregnant"
+        ],
+        "id": "Common_PublicsFamily"
+      },
+      "Common_PublicsOther": {
+        "type": "string",
+        "enum": [
+          "addiction",
+          "all",
+          "handicap",
+          "hiv",
+          "lgbt",
+          "prison",
+          "prostitution",
+          "student",
+          "mentalHealth",
+          "violence"
+        ],
+        "id": "Common_PublicsOther"
+      },
+      "SearchRequest_UpdatedAt": {
+        "type": "object",
+        "properties": {
+          "intervalType": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Common_UpdatedAtInterval"
+              }
+            ]
+          },
+          "value": {
+            "nullable": true
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchRequest_UpdatedAt"
+      },
+      "Common_UpdatedAtInterval": {
+        "type": "string",
+        "enum": [
+          "SPECIFIC_DAY",
+          "BEFORE_DAY",
+          "AFTER_DAY"
+        ],
+        "id": "Common_UpdatedAtInterval"
+      },
+      "SearchRequest_Options": {
+        "type": "object",
+        "properties": {
+          "sortBy": {
+            "nullable": true,
+            "type": "string",
+            "enum": [
+              "createdAt",
+              "lieu_id",
+              "name",
+              "distance",
+              "slugs.infos.name",
+              "status",
+              "updatedAt"
+            ]
+          },
+          "sortValue": {
+            "nullable": true,
+            "type": "number"
+          },
+          "page": {
+            "nullable": true,
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "limit": {
+            "nullable": true,
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "fields": {
+            "nullable": true,
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchRequest_Options"
+      },
+      "v20260101SearchPlaceResponse": {
+        "type": "object",
+        "properties": {
+          "lieu_id": {
+            "description": "Numeric place identifier.",
+            "nullable": true,
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "_id": {
+            "nullable": true,
+            "type": "string"
+          },
+          "seo_url": {
+            "nullable": true,
+            "type": "string"
+          },
+          "auto": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "name": {
+            "description": "Localized name of the place.",
+            "example": "Community Support Center",
+            "nullable": true,
+            "type": "string"
+          },
+          "description": {
+            "description": "Localized HTML content describing the place.",
+            "example": "<p>A support center providing food distribution and social services.</p>",
+            "nullable": true,
+            "type": "string"
+          },
+          "status": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Common_PlaceStatus"
+              }
+            ]
+          },
+          "visibility": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Common_PlaceVisibility"
+              }
+            ]
+          },
+          "isOpenToday": {
+            "description": "Whether the place is open today.",
+            "example": true,
+            "nullable": true,
+            "type": "boolean"
+          },
+          "close": {
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "actif": {
+                "nullable": true,
+                "type": "boolean"
+              },
+              "dateDebut": {
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SearchResponse_Date"
+                  }
+                ]
+              },
+              "dateFin": {
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SearchResponse_Date"
+                  }
+                ]
+              },
+              "precision": {
+                "nullable": true,
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "photos": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchResponse_Photo"
+            }
+          },
+          "placeType": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Common_PlaceType"
+              }
+            ]
+          },
+          "services_all": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchResponse_Service"
+            }
+          },
+          "position": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_Position"
+              }
+            ]
+          },
+          "parcours": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchResponse_Parcours"
+            }
+          },
+          "entity": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_Entity"
+              }
+            ]
+          },
+          "geoZones": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchResponse_GeoZone"
+            }
+          },
+          "newhours": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_OpeningHours"
+              }
+            ]
+          },
+          "modalities": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_Modalities"
+              }
+            ]
+          },
+          "publics": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_Publics"
+              }
+            ]
+          },
+          "sourceLanguage": {
+            "nullable": true,
+            "type": "string"
+          },
+          "country": {
+            "nullable": true,
+            "type": "string"
+          },
+          "languages": {
+            "description": "Languages spoken at the place. Format ISO 639-3",
+            "example": [
+              "en",
+              "fr",
+              "rcf"
+            ],
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "createdAt": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_Date"
+              }
+            ]
+          },
+          "updatedAt": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_Date"
+              }
+            ]
+          },
+          "updatedByUserAt": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_Date"
+              }
+            ]
+          },
+          "tempInfos": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_TempInfo"
+              }
+            ]
+          },
+          "sources": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchResponse_Source"
+            }
+          },
+          "slugs": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_Slugs"
+              }
+            ]
+          },
+          "distance": {
+            "nullable": true,
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "id": "v20260101SearchPlaceResponse"
+      },
+      "Common_PlaceStatus": {
+        "type": "string",
+        "enum": [
+          "DRAFT",
+          "ONLINE",
+          "PERMANENTLY_CLOSED",
+          "OFFLINE"
+        ],
+        "id": "Common_PlaceStatus"
+      },
+      "Common_PlaceVisibility": {
+        "type": "string",
+        "enum": [
+          "ALL",
+          "PRO"
+        ],
+        "id": "Common_PlaceVisibility"
+      },
+      "SearchResponse_Date": {
+        "anyOf": [
+          {},
+          {
+            "type": "string"
+          }
+        ],
+        "id": "SearchResponse_Date"
+      },
+      "SearchResponse_Photo": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "nullable": true,
+            "type": "string"
+          },
+          "encoding": {
+            "nullable": true,
+            "type": "string"
+          },
+          "filename": {
+            "nullable": true,
+            "type": "string"
+          },
+          "mimetype": {
+            "nullable": true,
+            "type": "string"
+          },
+          "parcours_id": {
+            "nullable": true,
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "path": {
+            "nullable": true,
+            "type": "string"
+          },
+          "lieu_id": {
+            "nullable": true,
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "size": {
+            "nullable": true,
+            "type": "number"
+          },
+          "createdAt": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_Date"
+              }
+            ]
+          },
+          "updatedAt": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_Date"
+              }
+            ]
+          }
+        },
+        "required": [
+          "filename",
+          "mimetype",
+          "path",
+          "lieu_id"
+        ],
+        "additionalProperties": {},
+        "id": "SearchResponse_Photo"
+      },
+      "SearchResponse_Service": {
+        "type": "object",
+        "properties": {
+          "categorie": {
+            "nullable": true,
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "category": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Common_Categories"
+              }
+            ]
+          },
+          "close": {
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "actif": {
+                "nullable": true,
+                "type": "boolean"
+              },
+              "dateDebut": {
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SearchResponse_Date"
+                  }
+                ]
+              },
+              "dateFin": {
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SearchResponse_Date"
+                  }
+                ]
+              },
+              "precision": {
+                "nullable": true,
+                "type": "string"
+              },
+              "closeType": {
+                "nullable": true,
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
+          },
+          "description": {
+            "nullable": true,
+            "type": "string"
+          },
+          "differentHours": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "differentModalities": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "differentPublics": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "hours": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_OpeningHours"
+              }
+            ]
+          },
+          "isOpenToday": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "modalities": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_Modalities"
+              }
+            ]
+          },
+          "publics": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_Publics"
+              }
+            ]
+          },
+          "saturated": {
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "precision": {
+                "nullable": true,
+                "type": "string"
+              },
+              "status": {
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Common_ServiceSaturation"
+                  }
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "serviceObjectId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "createdAt": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_Date"
+              }
+            ]
+          },
+          "categorySpecificFields": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_CategorySpecificFields"
+              }
+            ]
+          },
+          "jobsList": {
+            "nullable": true,
+            "type": "string"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "required": [
+          "category",
+          "isOpenToday",
+          "serviceObjectId",
+          "createdAt"
+        ],
+        "additionalProperties": {},
+        "id": "SearchResponse_Service"
+      },
+      "SearchResponse_OpeningHours": {
+        "type": "object",
+        "properties": {
+          "closedHolidays": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Common_PlaceClosedHolidays"
+              }
+            ]
+          },
+          "description": {
+            "nullable": true,
+            "type": "string"
+          },
+          "monday": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_DayOpeningHours"
+              }
+            ]
+          },
+          "tuesday": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_DayOpeningHours"
+              }
+            ]
+          },
+          "wednesday": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_DayOpeningHours"
+              }
+            ]
+          },
+          "thursday": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_DayOpeningHours"
+              }
+            ]
+          },
+          "friday": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_DayOpeningHours"
+              }
+            ]
+          },
+          "saturday": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_DayOpeningHours"
+              }
+            ]
+          },
+          "sunday": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_DayOpeningHours"
+              }
+            ]
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_OpeningHours"
+      },
+      "Common_PlaceClosedHolidays": {
+        "type": "string",
+        "enum": [
+          "CLOSED",
+          "OPEN",
+          "UNKNOWN"
+        ],
+        "id": "Common_PlaceClosedHolidays"
+      },
+      "SearchResponse_DayOpeningHours": {
+        "type": "object",
+        "properties": {
+          "open": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "timeslot": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchResponse_Timeslot"
+            }
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_DayOpeningHours"
+      },
+      "SearchResponse_Timeslot": {
+        "type": "object",
+        "properties": {
+          "end": {
+            "nullable": true,
+            "type": "number"
+          },
+          "start": {
+            "nullable": true,
+            "type": "number"
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_Timeslot"
+      },
+      "SearchResponse_Modalities": {
+        "type": "object",
+        "properties": {
+          "inconditionnel": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "appointment": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_ModalitiesCheck"
+              }
+            ]
+          },
+          "inscription": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_ModalitiesCheck"
+              }
+            ]
+          },
+          "orientation": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_ModalitiesCheck"
+              }
+            ]
+          },
+          "price": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_ModalitiesCheck"
+              }
+            ]
+          },
+          "animal": {
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "checked": {
+                "nullable": true,
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": false
+          },
+          "pmr": {
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "checked": {
+                "nullable": true,
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": false
+          },
+          "docs": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "other": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_Modalities"
+      },
+      "SearchResponse_ModalitiesCheck": {
+        "type": "object",
+        "properties": {
+          "checked": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "precisions": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_ModalitiesCheck"
+      },
+      "SearchResponse_Publics": {
+        "type": "object",
+        "properties": {
+          "accueil": {
+            "nullable": true,
+            "anyOf": [
+              {
+                "type": "number",
+                "enum": [
+                  0
+                ]
+              },
+              {
+                "type": "number",
+                "enum": [
+                  1
+                ]
+              },
+              {
+                "type": "number",
+                "enum": [
+                  2
+                ]
+              }
+            ]
+          },
+          "administrative": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "age": {
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "max": {
+                "nullable": true,
+                "type": "number"
+              },
+              "min": {
+                "nullable": true,
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
+          },
+          "description": {
+            "nullable": true,
+            "type": "string"
+          },
+          "familialle": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "gender": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "other": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_Publics"
+      },
+      "Common_ServiceSaturation": {
+        "type": "string",
+        "enum": [
+          "LOW",
+          "MODERATE",
+          "HIGH"
+        ],
+        "id": "Common_ServiceSaturation"
+      },
+      "SearchResponse_CategorySpecificFields": {
+        "type": "object",
+        "properties": {
+          "activityName": {
+            "nullable": true,
+            "type": "string"
+          },
+          "availableEquipmentPrecisions": {
+            "nullable": true,
+            "type": "string"
+          },
+          "availableEquipmentType": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "babyParcelAgeType": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "canteensMealType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "courseType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "degreeOfChoiceType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "dietaryAdaptationsType": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "dietaryRegimesType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "domiciliationType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "foodProductType": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "otherProductTypePrecisions": {
+            "nullable": true,
+            "type": "string"
+          },
+          "hygieneProductType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "jobsList": {
+            "nullable": true,
+            "type": "string"
+          },
+          "nationalOriginProductType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "organicOriginProductType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "serviceStyleType": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "usageModality": {
+            "nullable": true,
+            "type": "string"
+          },
+          "voucherType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "voucherTypePrecisions": {
+            "nullable": true,
+            "type": "string"
+          },
+          "wellnessActivityName": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_CategorySpecificFields"
+      },
+      "SearchResponse_Position": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "type": {
+                "nullable": true,
+                "type": "string",
+                "enum": [
+                  "Point"
+                ]
+              },
+              "coordinates": {
+                "nullable": true,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              }
+            },
+            "additionalProperties": false
+          },
+          "address": {
+            "nullable": true,
+            "type": "string"
+          },
+          "additionalInformation": {
+            "nullable": true,
+            "type": "string"
+          },
+          "city": {
+            "nullable": true,
+            "type": "string"
+          },
+          "cityCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "postalCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "department": {
+            "nullable": true,
+            "type": "string"
+          },
+          "departmentCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "departementCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "region": {
+            "nullable": true,
+            "type": "string"
+          },
+          "regionCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "slugs": {
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "city": {
+                "nullable": true,
+                "type": "string"
+              },
+              "country": {
+                "nullable": true,
+                "type": "string"
+              },
+              "departement": {
+                "nullable": true,
+                "type": "string"
+              },
+              "department": {
+                "nullable": true,
+                "type": "string"
+              },
+              "pays": {
+                "nullable": true,
+                "type": "string"
+              },
+              "region": {
+                "nullable": true,
+                "type": "string"
+              },
+              "ville": {
+                "nullable": true,
+                "type": "string"
+              }
+            },
+            "additionalProperties": {}
+          },
+          "country": {
+            "nullable": true,
+            "type": "string"
+          },
+          "timeZone": {
+            "nullable": true,
+            "type": "string"
+          },
+          "adresse": {
+            "nullable": true,
+            "type": "string"
+          },
+          "codePostal": {
+            "nullable": true,
+            "type": "string"
+          },
+          "complementAdresse": {
+            "nullable": true,
+            "type": "string"
+          },
+          "departement": {
+            "nullable": true,
+            "type": "string"
+          },
+          "pays": {
+            "nullable": true,
+            "type": "string"
+          },
+          "ville": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_Position"
+      },
+      "SearchResponse_Parcours": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "nullable": true,
+            "type": "string"
+          },
+          "hours": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_OpeningHours"
+              }
+            ]
+          },
+          "position": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_Position"
+              }
+            ]
+          },
+          "photos": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchResponse_Photo"
+            }
+          },
+          "show": {
+            "nullable": true,
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_Parcours"
+      },
+      "SearchResponse_Entity": {
+        "type": "object",
+        "properties": {
+          "facebook": {
+            "nullable": true,
+            "type": "string"
+          },
+          "fax": {
+            "nullable": true,
+            "type": "string"
+          },
+          "instagram": {
+            "nullable": true,
+            "type": "string"
+          },
+          "mail": {
+            "nullable": true,
+            "type": "string"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "phones": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchResponse_Phone"
+            }
+          },
+          "website": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_Entity"
+      },
+      "SearchResponse_Phone": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "nullable": true,
+            "type": "string"
+          },
+          "phoneNumber": {
+            "nullable": true,
+            "type": "string"
+          },
+          "countryCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "isSpecialPhoneNumber": {
+            "nullable": true,
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_Phone"
+      },
+      "SearchResponse_GeoZone": {
+        "type": "object",
+        "properties": {
+          "geoType": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Common_GeoTypes"
+              }
+            ]
+          },
+          "geoValue": {
+            "nullable": true,
+            "type": "string"
+          },
+          "label": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_GeoZone"
+      },
+      "Common_GeoTypes": {
+        "type": "string",
+        "enum": [
+          "codePostal",
+          "ville",
+          "pays",
+          "departement",
+          "position",
+          "region",
+          "citiesGroup",
+          "inconnu"
+        ],
+        "id": "Common_GeoTypes"
+      },
+      "SearchResponse_TempInfo": {
+        "type": "object",
+        "properties": {
+          "closure": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_TempInfoBase"
+              }
+            ]
+          },
+          "hours": {
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "actif": {
+                "nullable": true,
+                "type": "boolean"
+              },
+              "dateDebut": {
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SearchResponse_Date"
+                  }
+                ]
+              },
+              "dateFin": {
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SearchResponse_Date"
+                  }
+                ]
+              },
+              "description": {
+                "nullable": true,
+                "type": "string"
+              },
+              "hours": {
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SearchResponse_OpeningHours"
+                  }
+                ]
+              }
+            },
+            "additionalProperties": {}
+          },
+          "message": {
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "actif": {
+                "nullable": true,
+                "type": "boolean"
+              },
+              "dateDebut": {
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SearchResponse_Date"
+                  }
+                ]
+              },
+              "dateFin": {
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SearchResponse_Date"
+                  }
+                ]
+              },
+              "description": {
+                "nullable": true,
+                "type": "string"
+              },
+              "name": {
+                "nullable": true,
+                "type": "string"
+              }
+            },
+            "additionalProperties": {}
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_TempInfo"
+      },
+      "SearchResponse_TempInfoBase": {
+        "type": "object",
+        "properties": {
+          "actif": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "dateDebut": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_Date"
+              }
+            ]
+          },
+          "dateFin": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_Date"
+              }
+            ]
+          },
+          "description": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_TempInfoBase"
+      },
+      "SearchResponse_Source": {
+        "type": "object",
+        "properties": {
+          "ids": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "nullable": true,
+                  "type": "string"
+                },
+                "url": {
+                  "nullable": true,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id"
+              ],
+              "additionalProperties": {}
+            }
+          },
+          "isOrigin": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "license": {
+            "nullable": true,
+            "type": "string"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "required": [
+          "isOrigin",
+          "name"
+        ],
+        "additionalProperties": {},
+        "id": "SearchResponse_Source"
+      },
+      "SearchResponse_Slugs": {
+        "type": "object",
+        "properties": {
+          "infos": {
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "description": {
+                "nullable": true,
+                "type": "string"
+              },
+              "name": {
+                "nullable": true,
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_Slugs"
+      }
+    }
+  }
+}

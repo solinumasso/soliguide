@@ -18,6 +18,7 @@
     "start:prod": "node dist/main",
     "lint:fix": "eslint --cache ./src --fix",
     "lint": "eslint --cache ./src",
+    "openapi:generate": "ts-node --transpile-only src/versioning-engine/open-api.generator.cli.ts",
     "test": "vitest run --testTimeout=15000",
     "test:watch": "vitest --testTimeout=15000",
     "test:cov": "vitest run --coverage --testTimeout=15000",

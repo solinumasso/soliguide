@@ -17,6 +17,32 @@ import {
 } from "@soliguide/common";
 import { z } from "zod";
 
+const categoriesEnumSchema = z
+  .enum(Categories)
+  .meta({ id: "Common_Categories" });
+const countryCodesEnumSchema = z
+  .enum(CountryCodes)
+  .meta({ id: "Common_CountryCodes" });
+const placeTypeEnumSchema = z.enum(PlaceType).meta({ id: "Common_PlaceType" });
+const publicsAdministrativeEnumSchema = z
+  .enum(PublicsAdministrative)
+  .meta({ id: "Common_PublicsAdministrative" });
+const publicsFamilyEnumSchema = z
+  .enum(PublicsFamily)
+  .meta({ id: "Common_PublicsFamily" });
+const publicsGenderEnumSchema = z
+  .enum(PublicsGender)
+  .meta({ id: "Common_PublicsGender" });
+const publicsOtherEnumSchema = z
+  .enum(PublicsOther)
+  .meta({ id: "Common_PublicsOther" });
+const updatedAtIntervalEnumSchema = z
+  .enum(UpdatedAtInterval)
+  .meta({ id: "Common_UpdatedAtInterval" });
+const welcomedPublicsEnumSchema = z
+  .enum(WelcomedPublics)
+  .meta({ id: "Common_WelcomedPublics" });
+
 const locationSharedFields = {
   distance: z.coerce
     .number()
@@ -28,8 +54,7 @@ const locationSharedFields = {
   regionCode: z.string().nullable().optional(),
   departmentCode: z.string().nullable().optional(),
   region: z.string().nullable().optional(),
-  country: z
-    .enum(CountryCodes)
+  country: countryCodesEnumSchema
     .nullable()
     .optional()
     .describe(
@@ -184,7 +209,8 @@ const locationSchema = z
       ...locationSharedFields,
     }),
   ])
-  .describe("Geographic mode used by the search location.");
+  .describe("Geographic mode used by the search location.")
+  .meta({ id: "SearchRequest_Location" });
 
 const modalitiesSchema = z
   .looseObject({
@@ -197,11 +223,12 @@ const modalitiesSchema = z
     price: z.coerce.boolean().nullable().optional(),
     sign: z.coerce.boolean().nullable().optional(),
   })
-  .catchall(z.unknown());
+  .catchall(z.unknown())
+  .meta({ id: "SearchRequest_Modalities" });
 
 const publicsSchema = z
   .looseObject({
-    accueil: z.enum(WelcomedPublics).nullable().optional(),
+    accueil: welcomedPublicsEnumSchema.nullable().optional(),
     age: z
       .object({
         min: z.coerce.number().int().min(0).max(99).nullable().optional(),
@@ -209,43 +236,49 @@ const publicsSchema = z
       })
       .nullable()
       .optional(),
-    gender: z.array(z.enum(PublicsGender)).nullable().optional(),
+    gender: z.array(publicsGenderEnumSchema).nullable().optional(),
     administrative: z
-      .array(z.enum(PublicsAdministrative))
+      .array(publicsAdministrativeEnumSchema)
       .nullable()
       .optional(),
-    familialle: z.array(z.enum(PublicsFamily)).nullable().optional(),
-    other: z.array(z.enum(PublicsOther)).nullable().optional(),
+    familialle: z.array(publicsFamilyEnumSchema).nullable().optional(),
+    other: z.array(publicsOtherEnumSchema).nullable().optional(),
   })
-  .describe("Public audience filters.");
+  .describe("Public audience filters.")
+  .meta({ id: "SearchRequest_Publics" });
 
-const updatedAtSchema = z.looseObject({
-  intervalType: z.enum(UpdatedAtInterval).nullable().optional(),
-  value: z.coerce.date().nullable().optional(),
-});
+const updatedAtSchema = z
+  .looseObject({
+    intervalType: updatedAtIntervalEnumSchema.nullable().optional(),
+    value: z.coerce.date().nullable().optional(),
+  })
+  .meta({ id: "SearchRequest_UpdatedAt" });
 
-const optionsSchema = z.looseObject({
-  sortBy: z
-    .enum([
-      "createdAt",
-      "lieu_id",
-      "name",
-      "distance",
-      "slugs.infos.name",
-      "status",
-      "updatedAt",
-    ])
-    .nullable()
-    .optional(),
-  sortValue: z.coerce
-    .number()
-    .refine((value) => value === 1 || value === -1)
-    .nullable()
-    .optional(),
-  page: z.coerce.number().int().nullable().optional(),
-  limit: z.coerce.number().int().nullable().optional(),
-  fields: z.string().min(1).nullable().optional(),
-});
+const optionsSchema = z
+  .looseObject({
+    sortBy: z
+      .enum([
+        "createdAt",
+        "lieu_id",
+        "name",
+        "distance",
+        "slugs.infos.name",
+        "status",
+        "updatedAt",
+      ])
+      .nullable()
+      .optional(),
+    sortValue: z.coerce
+      .number()
+      .refine((value) => value === 1 || value === -1)
+      .nullable()
+      .optional(),
+    page: z.coerce.number().int().nullable().optional(),
+    limit: z.coerce.number().int().nullable().optional(),
+    fields: z.string().min(1).nullable().optional(),
+  })
+  .meta({ id: "SearchRequest_Options" });
+
 export const v20260101SearchRequestSchema = z
   .looseObject({
     location: locationSchema.describe(
@@ -258,16 +291,15 @@ export const v20260101SearchRequestSchema = z
       .describe(
         "Optional list of locations for widget-like multi-location search."
       ),
-    category: z.enum(Categories).nullable().optional(),
+    category: categoriesEnumSchema.nullable().optional(),
     categories: z
-      .array(z.enum(Categories))
+      .array(categoriesEnumSchema)
       .nullable()
       .optional()
       .describe(
         "Multiple categories (restricted by user status at route level)."
       ),
-    placeType: z
-      .enum(PlaceType)
+    placeType: placeTypeEnumSchema
       .default(PlaceType.PLACE)
       .describe("Resource type to search: fixed places or itineraries."),
     word: z.string().nullable().optional(),
@@ -306,7 +338,8 @@ export const v20260101SearchRequestSchema = z
   })
   .describe(
     "Exhaustive request body schema for POST /new-search/:lang? (non-admin route)."
-  );
+  )
+  .meta({ id: "v20260101SearchRequest" });
 export type V20260101SearchRequest = z.infer<
   typeof v20260101SearchRequestSchema
 >;
