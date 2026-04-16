@@ -14,7 +14,7 @@ describe("getLegacyCategoryRangeFromId", () => {
     { id: 700, from: 701, to: 705 },
     { id: 800, from: 801, to: 804 },
     { id: 900, from: 901, to: 904 },
-    { id: 1100, from: 1101, to: 1122 },
+    { id: 1100, from: 1101, to: 1121 },
     { id: 1200, from: 1201, to: 1204 },
     { id: 1300, from: 1301, to: 1305 },
   ].forEach((value) => {

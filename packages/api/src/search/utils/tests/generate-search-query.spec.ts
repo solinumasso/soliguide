@@ -1,7 +1,6 @@
 import {
   Categories,
   CategoriesService,
-  Themes,
   CountryAreaTerritories,
   CountryCodes,
   FR_DEPARTMENT_CODES,
@@ -13,6 +12,7 @@ import {
   PublicsAdministrative,
   SearchFilterUpdatedAt,
   SearchPlaceStatus,
+  Themes,
   UpdatedAtInterval,
   UserStatus,
   WelcomedPublics,
@@ -84,7 +84,7 @@ describe("Testing of the search query generation", () => {
           $elemMatch: {
             category: {
               $nin: [
-                Categories.ADDICTION,
+                Categories.ADDICTION_PREVENTION_AND_MATERIAL,
                 Categories.TOILETS,
                 Categories.WIFI,
                 Categories.ELECTRICAL_OUTLETS_AVAILABLE,
@@ -187,7 +187,7 @@ describe("Testing of the search query generation", () => {
                 isOpenToday: true,
                 category: {
                   $nin: [
-                    Categories.ADDICTION,
+                    Categories.ADDICTION_PREVENTION_AND_MATERIAL,
                     Categories.TOILETS,
                     Categories.WIFI,
                     Categories.ELECTRICAL_OUTLETS_AVAILABLE,
@@ -211,7 +211,7 @@ describe("Testing of the search query generation", () => {
                   $elemMatch: {
                     category: {
                       $nin: [
-                        Categories.ADDICTION,
+                        Categories.ADDICTION_PREVENTION_AND_MATERIAL,
                         Categories.TOILETS,
                         Categories.WIFI,
                         Categories.ELECTRICAL_OUTLETS_AVAILABLE,
@@ -512,7 +512,7 @@ describe("Testing of the search query generation", () => {
               $elemMatch: {
                 category: {
                   $nin: [
-                    Categories.ADDICTION,
+                    Categories.ADDICTION_PREVENTION_AND_MATERIAL,
                     Categories.TOILETS,
                     Categories.WIFI,
                     Categories.ELECTRICAL_OUTLETS_AVAILABLE,
@@ -529,7 +529,7 @@ describe("Testing of the search query generation", () => {
                   $elemMatch: {
                     category: {
                       $nin: [
-                        Categories.ADDICTION,
+                        Categories.ADDICTION_PREVENTION_AND_MATERIAL,
                         Categories.TOILETS,
                         Categories.WIFI,
                         Categories.ELECTRICAL_OUTLETS_AVAILABLE,
@@ -657,7 +657,7 @@ describe("Testing of the search query generation", () => {
               $elemMatch: {
                 category: {
                   $nin: [
-                    Categories.ADDICTION,
+                    Categories.ADDICTION_PREVENTION_AND_MATERIAL,
                     Categories.TOILETS,
                     Categories.WIFI,
                     Categories.ELECTRICAL_OUTLETS_AVAILABLE,
@@ -674,7 +674,7 @@ describe("Testing of the search query generation", () => {
                   $elemMatch: {
                     category: {
                       $nin: [
-                        Categories.ADDICTION,
+                        Categories.ADDICTION_PREVENTION_AND_MATERIAL,
                         Categories.TOILETS,
                         Categories.WIFI,
                         Categories.ELECTRICAL_OUTLETS_AVAILABLE,
@@ -718,7 +718,7 @@ describe("Testing of the search query generation", () => {
           $elemMatch: {
             category: {
               $nin: [
-                Categories.ADDICTION,
+                Categories.ADDICTION_PREVENTION_AND_MATERIAL,
                 Categories.TOILETS,
                 Categories.WIFI,
                 Categories.ELECTRICAL_OUTLETS_AVAILABLE,
