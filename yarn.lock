@@ -8637,6 +8637,53 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@scalar/client-side-rendering@npm:0.1.1":
+  version: 0.1.1
+  resolution: "@scalar/client-side-rendering@npm:0.1.1"
+  dependencies:
+    "@scalar/types": "npm:0.9.0"
+  checksum: 10/bc0691ce34ce5643921ed1a9179c49e39d0c56fffcd32fa9644553dc8ae6842649205b2c5e65523cb17de908f97d3b4a9dfd0bca9c572aced75b9c53b6e285eb
+  languageName: node
+  linkType: hard
+
+"@scalar/core@npm:0.5.1":
+  version: 0.5.1
+  resolution: "@scalar/core@npm:0.5.1"
+  dependencies:
+    "@scalar/client-side-rendering": "npm:0.1.1"
+    "@scalar/types": "npm:0.9.0"
+  checksum: 10/64994f68502985d93af034432a2a65c2dfd12e891d253d94daf0420cc0258b70025052e15e7f0f5e7aa3c7ecb80284a3713ee39115e13587ac15ea571252bee7
+  languageName: node
+  linkType: hard
+
+"@scalar/helpers@npm:0.5.0":
+  version: 0.5.0
+  resolution: "@scalar/helpers@npm:0.5.0"
+  checksum: 10/649078a70617fc7a82511b01344bd6bb0103e04e9e5d5d6f718956300d163c26a7b004f0fe54f8ae747325bbab9392fed302a53d4f35d078932338af1bad30f2
+  languageName: node
+  linkType: hard
+
+"@scalar/nestjs-api-reference@npm:^1.1.8":
+  version: 1.1.8
+  resolution: "@scalar/nestjs-api-reference@npm:1.1.8"
+  dependencies:
+    "@scalar/core": "npm:0.5.1"
+  checksum: 10/30b6addacc9ca97249c220ba93089858555ab0409f17adbdbbf3eb657bbb5de109253ee10766ca75bda4a733b8e1883883921eedbf1e3ecf35ca004f4dbaa09e
+  languageName: node
+  linkType: hard
+
+"@scalar/types@npm:0.9.0":
+  version: 0.9.0
+  resolution: "@scalar/types@npm:0.9.0"
+  dependencies:
+    "@scalar/helpers": "npm:0.5.0"
+    nanoid: "npm:^5.1.6"
+    type-fest: "npm:^5.3.1"
+    zod: "npm:^4.3.5"
+  checksum: 10/f86295753aa19ea952a915379c330b1bf4ce0307080c25ff464befec5113581b091e1d258ffb7ce64097cdceb3b1671ec58aceff13e0f6aec6a42460e299f4a8
+  languageName: node
+  linkType: hard
+
 "@scarf/scarf@npm:=1.4.0":
   version: 1.4.0
   resolution: "@scarf/scarf@npm:1.4.0"
@@ -10785,6 +10832,7 @@ __metadata:
     "@nestjs/schematics": "npm:^11.0.10"
     "@nestjs/swagger": "npm:^11.2.6"
     "@nestjs/testing": "npm:^11.1.19"
+    "@scalar/nestjs-api-reference": "npm:^1.1.8"
     "@soliguide/api": "workspace:*"
     "@soliguide/common": "workspace:*"
     "@types/jsonwebtoken": "npm:^9.0.10"
@@ -25227,6 +25275,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nanoid@npm:^5.1.6":
+  version: 5.1.9
+  resolution: "nanoid@npm:5.1.9"
+  bin:
+    nanoid: bin/nanoid.js
+  checksum: 10/a8cc355ed2176165a0fb5e0dbbac0b72f05d9ac08af50bf652ace22252d7a1455ef307b54681e39baf609a4da84600cad843bf01d9bd1cc1440f6fd166e19589
+  languageName: node
+  linkType: hard
+
 "natural-compare@npm:^1.4.0":
   version: 1.4.0
   resolution: "natural-compare@npm:1.4.0"
@@ -31553,6 +31610,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tagged-tag@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "tagged-tag@npm:1.0.0"
+  checksum: 10/e37653df3e495daa7ea7790cb161b810b00075bba2e4d6c93fb06a709e747e3ae9da11a120d0489833203926511b39e038a2affbd9d279cfb7a2f3fcccd30b5d
+  languageName: node
+  linkType: hard
+
 "tapable@npm:^2.1.1, tapable@npm:^2.2.1, tapable@npm:^2.3.0":
   version: 2.3.0
   resolution: "tapable@npm:2.3.0"
@@ -32600,6 +32664,15 @@ __metadata:
   version: 4.40.0
   resolution: "type-fest@npm:4.40.0"
   checksum: 10/dbca20979d18c6b8c87ca28cd999d9ae6b34e0c54c3a87ac65530a32f7a178d38d3788044a589f47c9fde3f3c81422e7b021ec1455f7242b724a2d9c642ce8b8
+  languageName: node
+  linkType: hard
+
+"type-fest@npm:^5.3.1":
+  version: 5.5.0
+  resolution: "type-fest@npm:5.5.0"
+  dependencies:
+    tagged-tag: "npm:^1.0.0"
+  checksum: 10/b5423e991f29dd8cb6ba1bf613f6ab95065673706bf6ffbc8319a457256af8e9844de013801b4ab94572cee32eb35e3ebc9ff67db2bd4b2937cc153a2b91a093
   languageName: node
   linkType: hard
 
@@ -34726,7 +34799,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^4.3.6":
+"zod@npm:^4.3.5, zod@npm:^4.3.6":
   version: 4.3.6
   resolution: "zod@npm:4.3.6"
   checksum: 10/25fc0f62e01b557b4644bf0b393bbaf47542ab30877c37837ea8caf314a8713d220c7d7fe51f68ffa72f0e1018ddfa34d96f1973d23033f5a2a5a9b6b9d9da01
