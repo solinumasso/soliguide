@@ -237,7 +237,7 @@ const isTranslationCompleted = (translatedField: TranslatedField): boolean => {
     const humanTranslation =
       translatedField.languages[language as SupportedLanguagesCode]!.human;
 
-    if (humanTranslation.content !== null && humanTranslation.content !== "") {
+    if (humanTranslation.content === null || humanTranslation.content === "") {
       return false;
     }
   }

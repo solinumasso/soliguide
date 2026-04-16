@@ -38,12 +38,16 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
     matchQuery.push({
       [`languages.${language}.auto.content`]: { $in: [null, ""] },
       sourceLanguage,
+      status: TranslatedFieldStatus.NEED_AUTO_TRANSLATE,
     });
   });
 
-  // Group by content to process each unique text only once
+  // Group by content to process each unique text only once.
+  // Sort by status ascending so NEED_AUTO_TRANSLATE documents are preferred
+  // as representatives over documents already at a later stage.
   const elements: ApiTranslatedField[] = await TranslatedFieldModel.aggregate([
     { $match: { $or: matchQuery } },
+    { $sort: { status: 1 } },
     { $group: { _id: "$content", doc: { $first: "$$ROOT" } } },
     { $replaceRoot: { newRoot: "$doc" } },
     { $limit: 100 },
@@ -101,13 +105,23 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
             [`languages.${lang}.human.updatedAt`]: new Date(),
           };
         } else {
-          // check if content exist with human translate
           logger.info(`[GOOGLE TRANSLATE] Translation in ${lang}`);
 
           const translation = await GoogleTranslate.translate(
             element.content,
             lang
           );
+
+          if (!translation[0]) {
+            logger.error(
+              `[GOOGLE TRANSLATE] Empty result for lang=${lang} content="${element.content.slice(
+                0,
+                80
+              )}"`
+            );
+            hasError = true;
+            continue;
+          }
 
           newData = {
             [`languages.${lang}.auto.content`]: translation[0],
