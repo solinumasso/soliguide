@@ -223,12 +223,10 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
         id: Categories.LEGAL_ADVICE,
         rank: 100,
       },
-
       {
         id: Categories.SOCIAL_ACCOMPANIMENT,
         rank: 300,
       },
-
       {
         id: Categories.DISABILITY_ADVICE,
         rank: 500,
@@ -323,7 +321,6 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
         id: Categories.LONG_TERM_ACCOMODATION,
         rank: 300,
       },
-
       {
         id: Categories.ACCESS_TO_HOUSING,
         rank: 500,
@@ -452,31 +449,85 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
     id: Categories.HEALTH,
     children: [
       {
-        id: Categories.ADDICTION,
+        id: Categories.HEALTH_ACCESS,
         rank: 100,
       },
       {
-        id: Categories.STD_TESTING,
+        id: Categories.PHYSICAL_HEALTH,
         rank: 200,
       },
       {
-        id: Categories.PSYCHOLOGICAL_SUPPORT,
+        id: Categories.MENTAL_HEALTH,
         rank: 300,
       },
       {
-        id: Categories.CHILD_CARE,
+        id: Categories.ADDICTIONS,
         rank: 400,
       },
       {
-        id: Categories.GENERAL_PRACTITIONER,
+        id: Categories.SEXUAL_HEALTH,
         rank: 500,
       },
       {
-        id: Categories.DENTAL_CARE,
+        id: Categories.PARENTHOOD,
         rank: 600,
       },
       {
-        id: Categories.PREGNANCY_CARE,
+        id: Categories.HEALTH_SPECIALISTS,
+        rank: 700,
+      },
+    ],
+  },
+  {
+    id: Categories.HEALTH_ACCESS,
+    children: [
+      {
+        id: Categories.HEALTH_COVERAGE,
+        rank: 100,
+      },
+      {
+        id: Categories.FIND_HEALTHCARE,
+        rank: 200,
+      },
+    ],
+  },
+  {
+    id: Categories.HEALTH_COVERAGE,
+    children: [],
+  },
+  {
+    id: Categories.FIND_HEALTHCARE,
+    children: [],
+  },
+  {
+    id: Categories.PHYSICAL_HEALTH,
+    children: [
+      {
+        id: Categories.GENERAL_PRACTITIONER,
+        rank: 100,
+      },
+      {
+        id: Categories.HEALTH_ASSESSMENT,
+        rank: 200,
+      },
+      {
+        id: Categories.CHILD_CARE,
+        rank: 300,
+      },
+      {
+        id: Categories.DENTAL_CARE,
+        rank: 400,
+      },
+      {
+        id: Categories.OPTICAL_CARE,
+        rank: 500,
+      },
+      {
+        id: Categories.HEARING_CARE,
+        rank: 600,
+      },
+      {
+        id: Categories.INFIRMARY,
         rank: 700,
       },
       {
@@ -484,29 +535,29 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
         rank: 800,
       },
       {
-        id: Categories.INFIRMARY,
+        id: Categories.STD_TESTING,
         rank: 900,
       },
       {
-        id: Categories.VET_CARE,
+        id: Categories.CHRONIC_DISEASES,
         rank: 1000,
       },
       {
-        id: Categories.HEALTH_SPECIALISTS,
+        id: Categories.NUTRITION,
         rank: 1100,
+      },
+      {
+        id: Categories.MEDICAL_ACCOMMODATION,
+        rank: 1200,
       },
     ],
   },
   {
-    id: Categories.ADDICTION,
+    id: Categories.GENERAL_PRACTITIONER,
     children: [],
   },
   {
-    id: Categories.STD_TESTING,
-    children: [],
-  },
-  {
-    id: Categories.PSYCHOLOGICAL_SUPPORT,
+    id: Categories.HEALTH_ASSESSMENT,
     children: [],
   },
   {
@@ -514,19 +565,15 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
     children: [],
   },
   {
-    id: Categories.GENERAL_PRACTITIONER,
-    children: [],
-  },
-  {
     id: Categories.DENTAL_CARE,
     children: [],
   },
   {
-    id: Categories.PREGNANCY_CARE,
+    id: Categories.OPTICAL_CARE,
     children: [],
   },
   {
-    id: Categories.VACCINATION,
+    id: Categories.HEARING_CARE,
     children: [],
   },
   {
@@ -534,7 +581,203 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
     children: [],
   },
   {
-    id: Categories.VET_CARE,
+    id: Categories.VACCINATION,
+    children: [],
+  },
+  {
+    id: Categories.STD_TESTING,
+    children: [],
+  },
+  {
+    id: Categories.CHRONIC_DISEASES,
+    children: [],
+  },
+  {
+    id: Categories.NUTRITION,
+    children: [],
+  },
+  {
+    id: Categories.MEDICAL_ACCOMMODATION,
+    children: [],
+  },
+  {
+    id: Categories.MENTAL_HEALTH,
+    children: [
+      {
+        id: Categories.PSYCHOLOGICAL_SUPPORT,
+        rank: 100,
+      },
+      {
+        id: Categories.PSYCHIATRY,
+        rank: 200,
+      },
+      {
+        id: Categories.SUPPORT_GROUPS,
+        rank: 300,
+      },
+      {
+        id: Categories.MEDICAL_ACCOMMODATION,
+        rank: 400,
+      },
+      {
+        id: Categories.MENTAL_HEALTH_EDUCATION,
+        rank: 500,
+      },
+      {
+        id: Categories.THERAPEUTIC_ACTIVITIES,
+        rank: 600,
+      },
+    ],
+  },
+  {
+    id: Categories.PSYCHOLOGICAL_SUPPORT,
+    children: [],
+  },
+  {
+    id: Categories.PSYCHIATRY,
+    children: [],
+  },
+  {
+    id: Categories.SUPPORT_GROUPS,
+    children: [],
+  },
+  {
+    id: Categories.MEDICAL_ACCOMMODATION,
+    children: [],
+  },
+  {
+    id: Categories.MENTAL_HEALTH_EDUCATION,
+    children: [],
+  },
+  {
+    id: Categories.THERAPEUTIC_ACTIVITIES,
+    children: [],
+  },
+  {
+    id: Categories.ADDICTIONS,
+    children: [
+      {
+        id: Categories.ADDICTION_CARE,
+        rank: 100,
+      },
+      {
+        id: Categories.ADDICTION_PREVENTION_AND_MATERIAL,
+        rank: 200,
+      },
+    ],
+  },
+  {
+    id: Categories.ADDICTION_CARE,
+    children: [],
+  },
+  {
+    id: Categories.ADDICTION_PREVENTION_AND_MATERIAL,
+    children: [],
+  },
+  {
+    id: Categories.SEXUAL_HEALTH,
+    children: [
+      {
+        id: Categories.EMERGENCY_CONTRACEPTION,
+        rank: 100,
+      },
+      {
+        id: Categories.CONTRACEPTION,
+        rank: 200,
+      },
+      {
+        id: Categories.GYNECOLOGY,
+        rank: 300,
+      },
+      {
+        id: Categories.STI_PREVENTION_TESTING,
+        rank: 400,
+      },
+      {
+        id: Categories.HIV_PREVENTION,
+        rank: 500,
+      },
+      {
+        id: Categories.SEXUAL_HEALTH_VACCINATION,
+        rank: 600,
+      },
+      {
+        id: Categories.SEXUAL_HEALTH_EDUCATION,
+        rank: 700,
+      },
+      {
+        id: Categories.SEXUAL_VIOLENCE_SUPPORT,
+        rank: 800,
+      },
+      {
+        id: Categories.AFFECTIVE_LIFE,
+        rank: 900,
+      },
+    ],
+  },
+  {
+    id: Categories.EMERGENCY_CONTRACEPTION,
+    children: [],
+  },
+  {
+    id: Categories.CONTRACEPTION,
+    children: [],
+  },
+  {
+    id: Categories.GYNECOLOGY,
+    children: [],
+  },
+  {
+    id: Categories.STI_PREVENTION_TESTING,
+    children: [],
+  },
+  {
+    id: Categories.HIV_PREVENTION,
+    children: [],
+  },
+  {
+    id: Categories.SEXUAL_HEALTH_VACCINATION,
+    children: [],
+  },
+  {
+    id: Categories.SEXUAL_HEALTH_EDUCATION,
+    children: [],
+  },
+  {
+    id: Categories.SEXUAL_VIOLENCE_SUPPORT,
+    children: [],
+  },
+  {
+    id: Categories.AFFECTIVE_LIFE,
+    children: [],
+  },
+  {
+    id: Categories.PARENTHOOD,
+    children: [
+      {
+        id: Categories.CHILD_CARE,
+        rank: 100,
+      },
+      {
+        id: Categories.PREGNANCY_CARE,
+        rank: 200,
+      },
+      {
+        id: Categories.PARENT_ASSISTANCE,
+        rank: 300,
+      },
+    ],
+  },
+  {
+    id: Categories.CHILD_CARE,
+    children: [],
+  },
+  {
+    id: Categories.PREGNANCY_CARE,
+    children: [],
+  },
+  {
+    id: Categories.PARENT_ASSISTANCE,
     children: [],
   },
   {
@@ -553,80 +796,60 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
         rank: 300,
       },
       {
-        id: Categories.ECHOGRAPHY,
+        id: Categories.ENDOCRINOLOGY,
         rank: 400,
       },
       {
-        id: Categories.ENDOCRINOLOGY,
+        id: Categories.GASTROENTEROLOGY,
         rank: 500,
       },
       {
-        id: Categories.GASTROENTEROLOGY,
+        id: Categories.KINESITHERAPY,
         rank: 600,
       },
       {
-        id: Categories.GYNECOLOGY,
+        id: Categories.OTORHINOLARYNGOLOGY,
         rank: 700,
       },
       {
-        id: Categories.KINESITHERAPY,
+        id: Categories.SPEECH_THERAPY,
         rank: 800,
       },
       {
-        id: Categories.MAMMOGRAPHY,
+        id: Categories.PEDICURE,
         rank: 900,
       },
       {
-        id: Categories.OPHTHALMOLOGY,
+        id: Categories.PNEUMOLOGY,
         rank: 1000,
       },
       {
-        id: Categories.OTORHINOLARYNGOLOGY,
+        id: Categories.PSYCHIATRY,
         rank: 1100,
       },
       {
-        id: Categories.NUTRITION,
+        id: Categories.PSYCHOLOGICAL_SUPPORT,
         rank: 1200,
       },
       {
-        id: Categories.PEDICURE,
+        id: Categories.RADIOLOGY,
         rank: 1300,
       },
       {
-        id: Categories.PHLEBOLOGY,
+        id: Categories.RHEUMATOLOGY,
         rank: 1400,
       },
       {
-        id: Categories.PNEUMOLOGY,
+        id: Categories.STOMATOLOGY,
         rank: 1500,
       },
       {
-        id: Categories.RADIOLOGY,
+        id: Categories.UROLOGY,
         rank: 1600,
       },
       {
-        id: Categories.RHEUMATOLOGY,
+        id: Categories.VET_CARE,
         rank: 1700,
-      },
-      {
-        id: Categories.UROLOGY,
-        rank: 1800,
-      },
-      {
-        id: Categories.SPEECH_THERAPY,
-        rank: 1900,
-      },
-      {
-        id: Categories.STOMATOLOGY,
-        rank: 2000,
-      },
-      {
-        id: Categories.OSTEOPATHY,
-        rank: 2100,
-      },
-      {
-        id: Categories.ACUPUNCTURE,
-        rank: 2200,
       },
     ],
   },
@@ -643,10 +866,6 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
     children: [],
   },
   {
-    id: Categories.ECHOGRAPHY,
-    children: [],
-  },
-  {
     id: Categories.ENDOCRINOLOGY,
     children: [],
   },
@@ -655,19 +874,7 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
     children: [],
   },
   {
-    id: Categories.GYNECOLOGY,
-    children: [],
-  },
-  {
     id: Categories.KINESITHERAPY,
-    children: [],
-  },
-  {
-    id: Categories.MAMMOGRAPHY,
-    children: [],
-  },
-  {
-    id: Categories.OPHTHALMOLOGY,
     children: [],
   },
   {
@@ -675,7 +882,7 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
     children: [],
   },
   {
-    id: Categories.NUTRITION,
+    id: Categories.SPEECH_THERAPY,
     children: [],
   },
   {
@@ -683,11 +890,15 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
     children: [],
   },
   {
-    id: Categories.PHLEBOLOGY,
+    id: Categories.PNEUMOLOGY,
     children: [],
   },
   {
-    id: Categories.PNEUMOLOGY,
+    id: Categories.PSYCHIATRY,
+    children: [],
+  },
+  {
+    id: Categories.PSYCHOLOGICAL_SUPPORT,
     children: [],
   },
   {
@@ -699,23 +910,15 @@ export const CATEGORIES: FlatCategoriesTreeNode[] = [
     children: [],
   },
   {
-    id: Categories.UROLOGY,
-    children: [],
-  },
-  {
-    id: Categories.SPEECH_THERAPY,
-    children: [],
-  },
-  {
     id: Categories.STOMATOLOGY,
     children: [],
   },
   {
-    id: Categories.OSTEOPATHY,
+    id: Categories.UROLOGY,
     children: [],
   },
   {
-    id: Categories.ACUPUNCTURE,
+    id: Categories.VET_CARE,
     children: [],
   },
   {
@@ -802,7 +1005,6 @@ export const CATEGORIES_SOLIGUIDE_FR: FlatCategoriesTreeNode[] = [
         id: Categories.DOMICILIATION,
         rank: 200,
       },
-
       {
         id: Categories.PUBLIC_WRITER,
         rank: 400,
@@ -845,6 +1047,28 @@ export const CATEGORIES_SOLIGUIDE_FR: FlatCategoriesTreeNode[] = [
     ],
   },
   {
+    id: Categories.SEXUAL_HEALTH,
+    children: [
+      {
+        id: Categories.ABORTION,
+        rank: 150,
+      },
+    ],
+  },
+  {
+    id: Categories.HEALTH_SPECIALISTS,
+    children: [
+      {
+        id: Categories.OSTEOPATHY,
+        rank: 850,
+      },
+      {
+        id: Categories.PHLEBOLOGY,
+        rank: 950,
+      },
+    ],
+  },
+  {
     id: Categories.CITIZEN_HOUSING,
     children: [],
   },
@@ -872,6 +1096,18 @@ export const CATEGORIES_SOLIGUIDE_FR: FlatCategoriesTreeNode[] = [
     id: Categories.VEHICLE_MAINTENANCE,
     children: [],
   },
+  {
+    id: Categories.ABORTION,
+    children: [],
+  },
+  {
+    id: Categories.PHLEBOLOGY,
+    children: [],
+  },
+  {
+    id: Categories.OSTEOPATHY,
+    children: [],
+  },
 ];
 
 export const CATEGORIES_SOLIGUIA_ES: FlatCategoriesTreeNode[] = [
@@ -889,11 +1125,45 @@ export const CATEGORIES_SOLIGUIA_ES: FlatCategoriesTreeNode[] = [
     ],
   },
   {
+    id: Categories.SEXUAL_HEALTH,
+    children: [
+      {
+        id: Categories.ABORTION,
+        rank: 150,
+      },
+    ],
+  },
+  {
+    id: Categories.HEALTH_SPECIALISTS,
+    children: [
+      {
+        id: Categories.NEUROLOGY,
+        rank: 1800,
+      },
+      {
+        id: Categories.VASCULAR_SURGERY,
+        rank: 1900,
+      },
+    ],
+  },
+  {
     id: Categories.SPANISH_COURSE,
     children: [],
   },
   {
     id: Categories.CATALAN_COURSE,
+    children: [],
+  },
+  {
+    id: Categories.ABORTION,
+    children: [],
+  },
+  {
+    id: Categories.NEUROLOGY,
+    children: [],
+  },
+  {
+    id: Categories.VASCULAR_SURGERY,
     children: [],
   },
 ];
@@ -922,6 +1192,19 @@ export const CATEGORIES_SOLIGUIA_AD: FlatCategoriesTreeNode[] = [
     ],
   },
   {
+    id: Categories.HEALTH_SPECIALISTS,
+    children: [
+      {
+        id: Categories.NEUROLOGY,
+        rank: 1800,
+      },
+      {
+        id: Categories.VASCULAR_SURGERY,
+        rank: 1900,
+      },
+    ],
+  },
+  {
     id: Categories.SPANISH_COURSE,
     children: [],
   },
@@ -929,9 +1212,16 @@ export const CATEGORIES_SOLIGUIA_AD: FlatCategoriesTreeNode[] = [
     id: Categories.CATALAN_COURSE,
     children: [],
   },
-
   {
     id: Categories.LEGAL_PROTECTION,
+    children: [],
+  },
+  {
+    id: Categories.NEUROLOGY,
+    children: [],
+  },
+  {
+    id: Categories.VASCULAR_SURGERY,
     children: [],
   },
 ];
