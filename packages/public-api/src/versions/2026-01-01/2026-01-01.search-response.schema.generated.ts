@@ -12,350 +12,412 @@ import {
 } from "@soliguide/common";
 import { z } from "zod";
 
-const dateSchema = z.union([z.date(), z.string()]);
+const categoriesEnumSchema = z
+  .enum(Categories)
+  .meta({ id: "Common_Categories" });
+const geoTypesEnumSchema = z.enum(GeoTypes).meta({ id: "Common_GeoTypes" });
+const placeClosedHolidaysEnumSchema = z
+  .enum(PlaceClosedHolidays)
+  .meta({ id: "Common_PlaceClosedHolidays" });
+const placeStatusEnumSchema = z
+  .enum(PlaceStatus)
+  .meta({ id: "Common_PlaceStatus" });
+const placeTypeEnumSchema = z
+  .enum(PlaceType)
+  .meta({ id: "Common_PlaceType" });
+const placeVisibilityEnumSchema = z
+  .enum(PlaceVisibility)
+  .meta({ id: "Common_PlaceVisibility" });
+const serviceSaturationEnumSchema = z
+  .enum(ServiceSaturation)
+  .meta({ id: "Common_ServiceSaturation" });
 
-const positionSchema = z.looseObject({
-  location: z
-    .object({
-      type: z.literal("Point").nullable().optional(),
-      coordinates: z.array(z.number()).nullable().optional(),
-    })
-    .nullable()
-    .optional(),
-  address: z.string().nullable().optional(),
-  additionalInformation: z.string().nullable().optional(),
-  city: z.string().nullable().optional(),
-  cityCode: z.string().nullable().optional(),
-  postalCode: z.string().nullable().optional(),
-  department: z.string().nullable().optional(),
-  departmentCode: z.string().nullable().optional(),
-  departementCode: z.string().nullable().optional(),
-  region: z.string().nullable().optional(),
-  regionCode: z.string().nullable().optional(),
-  slugs: z
-    .looseObject({
-      city: z.string().nullable().optional(),
-      country: z.string().nullable().optional(),
-      departement: z.string().nullable().optional(),
-      department: z.string().nullable().optional(),
-      pays: z.string().nullable().optional(),
-      region: z.string().nullable().optional(),
-      ville: z.string().nullable().optional(),
-    })
-    .nullable()
-    .optional(),
-  country: z.string().nullable().optional(),
-  timeZone: z.string().nullable().optional(),
-  adresse: z.string().nullable().optional(),
-  codePostal: z.string().nullable().optional(),
-  complementAdresse: z.string().nullable().optional(),
-  departement: z.string().nullable().optional(),
-  pays: z.string().nullable().optional(),
-  ville: z.string().nullable().optional(),
-});
+const dateSchema = z
+  .union([z.date(), z.string()])
+  .meta({ id: "SearchResponse_Date" });
 
-const photoSchema = z.looseObject({
-  _id: z.string().nullable().optional(),
-  encoding: z.string().nullable().optional(),
-  filename: z.string().nullable(),
-  mimetype: z.string().nullable(),
-  parcours_id: z.number().int().nullable().optional(),
-  path: z.string().nullable(),
-  lieu_id: z.number().int().nullable(),
-  size: z.number().nullable().optional(),
-  createdAt: dateSchema.nullable().optional(),
-  updatedAt: dateSchema.nullable().optional(),
-});
-
-const timeslotSchema = z.looseObject({
-  end: z.number().nullable().optional(),
-  start: z.number().nullable().optional(),
-});
-
-const dayOpeningHoursSchema = z.looseObject({
-  open: z.boolean().nullable().optional(),
-  timeslot: z.array(timeslotSchema).nullable().optional(),
-});
-
-const openingHoursSchema = z.looseObject({
-  closedHolidays: z.enum(PlaceClosedHolidays).nullable().optional(),
-  description: z.string().nullable().optional(),
-  monday: dayOpeningHoursSchema.nullable().optional(),
-  tuesday: dayOpeningHoursSchema.nullable().optional(),
-  wednesday: dayOpeningHoursSchema.nullable().optional(),
-  thursday: dayOpeningHoursSchema.nullable().optional(),
-  friday: dayOpeningHoursSchema.nullable().optional(),
-  saturday: dayOpeningHoursSchema.nullable().optional(),
-  sunday: dayOpeningHoursSchema.nullable().optional(),
-});
-
-const modalitiesCheckSchema = z.looseObject({
-  checked: z.boolean().nullable().optional(),
-  precisions: z.string().nullable().optional(),
-});
-
-const modalitiesSchema = z.looseObject({
-  inconditionnel: z.boolean().nullable().optional(),
-  appointment: modalitiesCheckSchema.nullable().optional(),
-  inscription: modalitiesCheckSchema.nullable().optional(),
-  orientation: modalitiesCheckSchema.nullable().optional(),
-  price: modalitiesCheckSchema.nullable().optional(),
-  animal: z
-    .object({
-      checked: z.boolean().nullable().optional(),
-    })
-    .nullable()
-    .optional(),
-  pmr: z
-    .object({
-      checked: z.boolean().nullable().optional(),
-    })
-    .nullable()
-    .optional(),
-  docs: z.array(z.string()).nullable().optional(),
-  other: z.string().nullable().optional(),
-});
-
-const publicsSchema = z.looseObject({
-  accueil: z
-    .union([z.literal(0), z.literal(1), z.literal(2)])
-    .nullable()
-    .optional(),
-  administrative: z.array(z.string()).nullable().optional(),
-  age: z
-    .object({
-      max: z.number().nullable().optional(),
-      min: z.number().nullable().optional(),
-    })
-    .nullable()
-    .optional(),
-  description: z.string().nullable().optional(),
-  familialle: z.array(z.string()).nullable().optional(),
-  gender: z.array(z.string()).nullable().optional(),
-  other: z.array(z.string()).nullable().optional(),
-});
-
-const categorySpecificFieldsSchema = z.looseObject({
-  activityName: z.string().nullable().optional(),
-  availableEquipmentPrecisions: z.string().nullable().optional(),
-  availableEquipmentType: z.array(z.string()).nullable().optional(),
-  babyParcelAgeType: z.array(z.string()).nullable().optional(),
-  canteensMealType: z.string().nullable().optional(),
-  courseType: z.string().nullable().optional(),
-  degreeOfChoiceType: z.string().nullable().optional(),
-  dietaryAdaptationsType: z.array(z.string()).nullable().optional(),
-  dietaryRegimesType: z.string().nullable().optional(),
-  domiciliationType: z.string().nullable().optional(),
-  foodProductType: z.array(z.string()).nullable().optional(),
-  otherProductTypePrecisions: z.string().nullable().optional(),
-  hygieneProductType: z.string().nullable().optional(),
-  jobsList: z.string().nullable().optional(),
-  nationalOriginProductType: z.string().nullable().optional(),
-  organicOriginProductType: z.string().nullable().optional(),
-  serviceStyleType: z.array(z.string()).nullable().optional(),
-  usageModality: z.string().nullable().optional(),
-  voucherType: z.string().nullable().optional(),
-  voucherTypePrecisions: z.string().nullable().optional(),
-  wellnessActivityName: z.string().nullable().optional(),
-});
-
-const serviceSchema = z.looseObject({
-  categorie: z.number().int().nullable().optional(),
-  category: z.enum(Categories).nullable(),
-  close: z
-    .object({
-      actif: z.boolean().nullable().optional(),
-      dateDebut: dateSchema.nullable().optional(),
-      dateFin: dateSchema.nullable().optional(),
-      precision: z.string().nullable().optional(),
-      closeType: z.number().nullable().optional(),
-    })
-    .nullable()
-    .optional(),
-  description: z.string().nullable().optional(),
-  differentHours: z.boolean().nullable().optional(),
-  differentModalities: z.boolean().nullable().optional(),
-  differentPublics: z.boolean().nullable().optional(),
-  hours: openingHoursSchema.nullable().optional(),
-  isOpenToday: z.boolean().nullable(),
-  modalities: modalitiesSchema.nullable().optional(),
-  publics: publicsSchema.nullable().optional(),
-  saturated: z
-    .object({
-      precision: z.string().nullable().optional(),
-      status: z.enum(ServiceSaturation).nullable().optional(),
-    })
-    .nullable()
-    .optional(),
-  serviceObjectId: z.string().nullable(),
-  createdAt: dateSchema.nullable(),
-  categorySpecificFields: categorySpecificFieldsSchema.nullable().optional(),
-  jobsList: z.string().nullable().optional(),
-  name: z.string().nullable().optional(),
-});
-
-const geoZoneSchema = z.looseObject({
-  geoType: z.enum(GeoTypes).nullable().optional(),
-  geoValue: z.string().nullable().optional(),
-  label: z.string().nullable().optional(),
-});
-
-const tempInfoBaseSchema = z.looseObject({
-  actif: z.boolean().nullable().optional(),
-  dateDebut: dateSchema.nullable().optional(),
-  dateFin: dateSchema.nullable().optional(),
-  description: z.string().nullable().optional(),
-});
-
-const tempInfoSchema = z.looseObject({
-  closure: tempInfoBaseSchema.nullable().optional(),
-  hours: tempInfoBaseSchema
-    .extend({
-      hours: openingHoursSchema.nullable().optional(),
-    })
-    .nullable()
-    .optional(),
-  message: tempInfoBaseSchema
-    .extend({
-      name: z.string().nullable().optional(),
-    })
-    .nullable()
-    .optional(),
-});
-
-const sourceSchema = z.looseObject({
-  ids: z
-    .array(
-      z.looseObject({
-        id: z.string().nullable(),
-        url: z.string().nullable().optional(),
+const positionSchema = z
+  .looseObject({
+    location: z
+      .object({
+        type: z.literal("Point").nullable().optional(),
+        coordinates: z.array(z.number()).nullable().optional(),
       })
-    )
-    .nullable()
-    .optional(),
-  isOrigin: z.boolean().nullable(),
-  license: z.string().nullable().optional(),
-  name: z.string().nullable(),
-});
+      .nullable()
+      .optional(),
+    address: z.string().nullable().optional(),
+    additionalInformation: z.string().nullable().optional(),
+    city: z.string().nullable().optional(),
+    cityCode: z.string().nullable().optional(),
+    postalCode: z.string().nullable().optional(),
+    department: z.string().nullable().optional(),
+    departmentCode: z.string().nullable().optional(),
+    departementCode: z.string().nullable().optional(),
+    region: z.string().nullable().optional(),
+    regionCode: z.string().nullable().optional(),
+    slugs: z
+      .looseObject({
+        city: z.string().nullable().optional(),
+        country: z.string().nullable().optional(),
+        departement: z.string().nullable().optional(),
+        department: z.string().nullable().optional(),
+        pays: z.string().nullable().optional(),
+        region: z.string().nullable().optional(),
+        ville: z.string().nullable().optional(),
+      })
+      .nullable()
+      .optional(),
+    country: z.string().nullable().optional(),
+    timeZone: z.string().nullable().optional(),
+    adresse: z.string().nullable().optional(),
+    codePostal: z.string().nullable().optional(),
+    complementAdresse: z.string().nullable().optional(),
+    departement: z.string().nullable().optional(),
+    pays: z.string().nullable().optional(),
+    ville: z.string().nullable().optional(),
+  })
+  .meta({ id: "SearchResponse_Position" });
 
-const parcoursSchema = z.looseObject({
-  description: z.string().nullable().optional(),
-  hours: openingHoursSchema.nullable().optional(),
-  position: positionSchema.nullable().optional(),
-  photos: z.array(photoSchema).nullable().optional(),
-  show: z.boolean().nullable().optional(),
-});
+const photoSchema = z
+  .looseObject({
+    _id: z.string().nullable().optional(),
+    encoding: z.string().nullable().optional(),
+    filename: z.string().nullable(),
+    mimetype: z.string().nullable(),
+    parcours_id: z.number().int().nullable().optional(),
+    path: z.string().nullable(),
+    lieu_id: z.number().int().nullable(),
+    size: z.number().nullable().optional(),
+    createdAt: dateSchema.nullable().optional(),
+    updatedAt: dateSchema.nullable().optional(),
+  })
+  .meta({ id: "SearchResponse_Photo" });
 
-const phoneSchema = z.looseObject({
-  label: z.string().nullable().optional(),
-  phoneNumber: z.string().nullable().optional(),
-  countryCode: z.string().nullable().optional(),
-  isSpecialPhoneNumber: z.boolean().nullable().optional(),
-});
+const timeslotSchema = z
+  .looseObject({
+    end: z.number().nullable().optional(),
+    start: z.number().nullable().optional(),
+  })
+  .meta({ id: "SearchResponse_Timeslot" });
 
-const entitySchema = z.looseObject({
-  facebook: z.string().nullable().optional(),
-  fax: z.string().nullable().optional(),
-  instagram: z.string().nullable().optional(),
-  mail: z.string().nullable().optional(),
-  name: z.string().nullable().optional(),
-  phones: z.array(phoneSchema).nullable().optional(),
-  website: z.string().nullable().optional(),
-});
+const dayOpeningHoursSchema = z
+  .looseObject({
+    open: z.boolean().nullable().optional(),
+    timeslot: z.array(timeslotSchema).nullable().optional(),
+  })
+  .meta({ id: "SearchResponse_DayOpeningHours" });
 
-const slugsSchema = z.looseObject({
-  infos: z
-    .object({
-      description: z.string().nullable().optional(),
-      name: z.string().nullable().optional(),
-    })
-    .nullable()
-    .optional(),
-});
+const openingHoursSchema = z
+  .looseObject({
+    closedHolidays: placeClosedHolidaysEnumSchema.nullable().optional(),
+    description: z.string().nullable().optional(),
+    monday: dayOpeningHoursSchema.nullable().optional(),
+    tuesday: dayOpeningHoursSchema.nullable().optional(),
+    wednesday: dayOpeningHoursSchema.nullable().optional(),
+    thursday: dayOpeningHoursSchema.nullable().optional(),
+    friday: dayOpeningHoursSchema.nullable().optional(),
+    saturday: dayOpeningHoursSchema.nullable().optional(),
+    sunday: dayOpeningHoursSchema.nullable().optional(),
+  })
+  .meta({ id: "SearchResponse_OpeningHours" });
 
-const v20260101SearchPlaceResponseSchema = z.object({
-  lieu_id: z
-    .number()
-    .int()
-    .nullable()
-    .optional()
-    .describe("Numeric place identifier."),
-  _id: z.string().nullable().optional(),
-  seo_url: z.string().nullable().optional(),
-  auto: z.boolean().nullable().optional(),
-  name: z
-    .string()
-    .nullable()
-    .optional()
-    .describe("Localized name of the place.")
-    .meta({
-      example: "Community Support Center",
-    }),
-  description: z
-    .string()
-    .nullable()
-    .optional()
-    .describe("Localized HTML content describing the place.")
-    .meta({
-      example:
-        "<p>A support center providing food distribution and social services.</p>",
-    }),
-  status: z.enum(PlaceStatus).nullable().optional(),
-  visibility: z.enum(PlaceVisibility).nullable().optional(),
-  isOpenToday: z
-    .boolean()
-    .nullable()
-    .optional()
-    .describe("Whether the place is open today.")
-    .meta({ example: true }),
-  close: z
-    .object({
-      actif: z.boolean().nullable().optional(),
-      dateDebut: dateSchema.nullable().optional(),
-      dateFin: dateSchema.nullable().optional(),
-      precision: z.string().nullable().optional(),
-    })
-    .nullable()
-    .optional(),
-  photos: z.array(photoSchema).nullable().optional(),
-  placeType: z.enum(PlaceType).nullable().optional(),
-  services_all: z.array(serviceSchema).nullable().optional(),
-  position: positionSchema.nullable().optional(),
-  parcours: z.array(parcoursSchema).nullable().optional(),
-  entity: entitySchema.nullable().optional(),
-  geoZones: z.array(geoZoneSchema).nullable().optional(),
-  newhours: openingHoursSchema.nullable().optional(),
-  modalities: modalitiesSchema.nullable().optional(),
-  publics: publicsSchema.nullable().optional(),
-  sourceLanguage: z.string().nullable().optional(),
-  country: z.string().nullable().optional(),
-  languages: z
-    .array(z.string())
-    .nullable()
-    .optional()
-    .describe("Languages spoken at the place. Format ISO 639-3")
-    .meta({ example: ["en", "fr", "rcf"] }),
-  createdAt: dateSchema.nullable().optional(),
-  updatedAt: dateSchema.nullable().optional(),
-  updatedByUserAt: dateSchema.nullable().optional(),
-  tempInfos: tempInfoSchema.nullable().optional(),
-  sources: z.array(sourceSchema).nullable().optional(),
-  slugs: slugsSchema.nullable().optional(),
-  distance: z.number().nullable().optional(),
-});
+const modalitiesCheckSchema = z
+  .looseObject({
+    checked: z.boolean().nullable().optional(),
+    precisions: z.string().nullable().optional(),
+  })
+  .meta({ id: "SearchResponse_ModalitiesCheck" });
 
-export const v20260101SearchResponseSchema = z.object({
-  nbResults: z
-    .number()
-    .int()
-    .min(0)
-    .nullable()
-    .describe("Total number of matching places."),
-  places: z
-    .array(v20260101SearchPlaceResponseSchema)
-    .nullable()
-    .describe("List of matching place payloads."),
-});
+const modalitiesSchema = z
+  .looseObject({
+    inconditionnel: z.boolean().nullable().optional(),
+    appointment: modalitiesCheckSchema.nullable().optional(),
+    inscription: modalitiesCheckSchema.nullable().optional(),
+    orientation: modalitiesCheckSchema.nullable().optional(),
+    price: modalitiesCheckSchema.nullable().optional(),
+    animal: z
+      .object({
+        checked: z.boolean().nullable().optional(),
+      })
+      .nullable()
+      .optional(),
+    pmr: z
+      .object({
+        checked: z.boolean().nullable().optional(),
+      })
+      .nullable()
+      .optional(),
+    docs: z.array(z.string()).nullable().optional(),
+    other: z.string().nullable().optional(),
+  })
+  .meta({ id: "SearchResponse_Modalities" });
+
+const publicsSchema = z
+  .looseObject({
+    accueil: z
+      .union([z.literal(0), z.literal(1), z.literal(2)])
+      .nullable()
+      .optional(),
+    administrative: z.array(z.string()).nullable().optional(),
+    age: z
+      .object({
+        max: z.number().nullable().optional(),
+        min: z.number().nullable().optional(),
+      })
+      .nullable()
+      .optional(),
+    description: z.string().nullable().optional(),
+    familialle: z.array(z.string()).nullable().optional(),
+    gender: z.array(z.string()).nullable().optional(),
+    other: z.array(z.string()).nullable().optional(),
+  })
+  .meta({ id: "SearchResponse_Publics" });
+
+const categorySpecificFieldsSchema = z
+  .looseObject({
+    activityName: z.string().nullable().optional(),
+    availableEquipmentPrecisions: z.string().nullable().optional(),
+    availableEquipmentType: z.array(z.string()).nullable().optional(),
+    babyParcelAgeType: z.array(z.string()).nullable().optional(),
+    canteensMealType: z.string().nullable().optional(),
+    courseType: z.string().nullable().optional(),
+    degreeOfChoiceType: z.string().nullable().optional(),
+    dietaryAdaptationsType: z.array(z.string()).nullable().optional(),
+    dietaryRegimesType: z.string().nullable().optional(),
+    domiciliationType: z.string().nullable().optional(),
+    foodProductType: z.array(z.string()).nullable().optional(),
+    otherProductTypePrecisions: z.string().nullable().optional(),
+    hygieneProductType: z.string().nullable().optional(),
+    jobsList: z.string().nullable().optional(),
+    nationalOriginProductType: z.string().nullable().optional(),
+    organicOriginProductType: z.string().nullable().optional(),
+    serviceStyleType: z.array(z.string()).nullable().optional(),
+    usageModality: z.string().nullable().optional(),
+    voucherType: z.string().nullable().optional(),
+    voucherTypePrecisions: z.string().nullable().optional(),
+    wellnessActivityName: z.string().nullable().optional(),
+  })
+  .meta({ id: "SearchResponse_CategorySpecificFields" });
+
+const serviceSchema = z
+  .looseObject({
+    categorie: z.number().int().nullable().optional(),
+    category: categoriesEnumSchema.nullable(),
+    close: z
+      .object({
+        actif: z.boolean().nullable().optional(),
+        dateDebut: dateSchema.nullable().optional(),
+        dateFin: dateSchema.nullable().optional(),
+        precision: z.string().nullable().optional(),
+        closeType: z.number().nullable().optional(),
+      })
+      .nullable()
+      .optional(),
+    description: z.string().nullable().optional(),
+    differentHours: z.boolean().nullable().optional(),
+    differentModalities: z.boolean().nullable().optional(),
+    differentPublics: z.boolean().nullable().optional(),
+    hours: openingHoursSchema.nullable().optional(),
+    isOpenToday: z.boolean().nullable(),
+    modalities: modalitiesSchema.nullable().optional(),
+    publics: publicsSchema.nullable().optional(),
+    saturated: z
+      .object({
+        precision: z.string().nullable().optional(),
+        status: serviceSaturationEnumSchema.nullable().optional(),
+      })
+      .nullable()
+      .optional(),
+    serviceObjectId: z.string().nullable(),
+    createdAt: dateSchema.nullable(),
+    categorySpecificFields: categorySpecificFieldsSchema.nullable().optional(),
+    jobsList: z.string().nullable().optional(),
+    name: z.string().nullable().optional(),
+  })
+  .meta({ id: "SearchResponse_Service" });
+
+const geoZoneSchema = z
+  .looseObject({
+    geoType: geoTypesEnumSchema.nullable().optional(),
+    geoValue: z.string().nullable().optional(),
+    label: z.string().nullable().optional(),
+  })
+  .meta({ id: "SearchResponse_GeoZone" });
+
+const tempInfoBaseSchema = z
+  .looseObject({
+    actif: z.boolean().nullable().optional(),
+    dateDebut: dateSchema.nullable().optional(),
+    dateFin: dateSchema.nullable().optional(),
+    description: z.string().nullable().optional(),
+  })
+  .meta({ id: "SearchResponse_TempInfoBase" });
+
+const tempInfoSchema = z
+  .looseObject({
+    closure: tempInfoBaseSchema.nullable().optional(),
+    hours: tempInfoBaseSchema
+      .extend({
+        hours: openingHoursSchema.nullable().optional(),
+      })
+      .nullable()
+      .optional(),
+    message: tempInfoBaseSchema
+      .extend({
+        name: z.string().nullable().optional(),
+      })
+      .nullable()
+      .optional(),
+  })
+  .meta({ id: "SearchResponse_TempInfo" });
+
+const sourceSchema = z
+  .looseObject({
+    ids: z
+      .array(
+        z.looseObject({
+          id: z.string().nullable(),
+          url: z.string().nullable().optional(),
+        })
+      )
+      .nullable()
+      .optional(),
+    isOrigin: z.boolean().nullable(),
+    license: z.string().nullable().optional(),
+    name: z.string().nullable(),
+  })
+  .meta({ id: "SearchResponse_Source" });
+
+const parcoursSchema = z
+  .looseObject({
+    description: z.string().nullable().optional(),
+    hours: openingHoursSchema.nullable().optional(),
+    position: positionSchema.nullable().optional(),
+    photos: z.array(photoSchema).nullable().optional(),
+    show: z.boolean().nullable().optional(),
+  })
+  .meta({ id: "SearchResponse_Parcours" });
+
+const phoneSchema = z
+  .looseObject({
+    label: z.string().nullable().optional(),
+    phoneNumber: z.string().nullable().optional(),
+    countryCode: z.string().nullable().optional(),
+    isSpecialPhoneNumber: z.boolean().nullable().optional(),
+  })
+  .meta({ id: "SearchResponse_Phone" });
+
+const entitySchema = z
+  .looseObject({
+    facebook: z.string().nullable().optional(),
+    fax: z.string().nullable().optional(),
+    instagram: z.string().nullable().optional(),
+    mail: z.string().nullable().optional(),
+    name: z.string().nullable().optional(),
+    phones: z.array(phoneSchema).nullable().optional(),
+    website: z.string().nullable().optional(),
+  })
+  .meta({ id: "SearchResponse_Entity" });
+
+const slugsSchema = z
+  .looseObject({
+    infos: z
+      .object({
+        description: z.string().nullable().optional(),
+        name: z.string().nullable().optional(),
+      })
+      .nullable()
+      .optional(),
+  })
+  .meta({ id: "SearchResponse_Slugs" });
+
+const v20260101SearchPlaceResponseSchema = z
+  .object({
+    lieu_id: z
+      .number()
+      .int()
+      .nullable()
+      .optional()
+      .describe("Numeric place identifier."),
+    _id: z.string().nullable().optional(),
+    seo_url: z.string().nullable().optional(),
+    auto: z.boolean().nullable().optional(),
+    name: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Localized name of the place.")
+      .meta({
+        example: "Community Support Center",
+      }),
+    description: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Localized HTML content describing the place.")
+      .meta({
+        example:
+          "<p>A support center providing food distribution and social services.</p>",
+      }),
+    status: placeStatusEnumSchema.nullable().optional(),
+    visibility: placeVisibilityEnumSchema.nullable().optional(),
+    isOpenToday: z
+      .boolean()
+      .nullable()
+      .optional()
+      .describe("Whether the place is open today.")
+      .meta({ example: true }),
+    close: z
+      .object({
+        actif: z.boolean().nullable().optional(),
+        dateDebut: dateSchema.nullable().optional(),
+        dateFin: dateSchema.nullable().optional(),
+        precision: z.string().nullable().optional(),
+      })
+      .nullable()
+      .optional(),
+    photos: z.array(photoSchema).nullable().optional(),
+    placeType: placeTypeEnumSchema.nullable().optional(),
+    services_all: z.array(serviceSchema).nullable().optional(),
+    position: positionSchema.nullable().optional(),
+    parcours: z.array(parcoursSchema).nullable().optional(),
+    entity: entitySchema.nullable().optional(),
+    geoZones: z.array(geoZoneSchema).nullable().optional(),
+    newhours: openingHoursSchema.nullable().optional(),
+    modalities: modalitiesSchema.nullable().optional(),
+    publics: publicsSchema.nullable().optional(),
+    sourceLanguage: z.string().nullable().optional(),
+    country: z.string().nullable().optional(),
+    languages: z
+      .array(z.string())
+      .nullable()
+      .optional()
+      .describe("Languages spoken at the place. Format ISO 639-3")
+      .meta({ example: ["en", "fr", "rcf"] }),
+    createdAt: dateSchema.nullable().optional(),
+    updatedAt: dateSchema.nullable().optional(),
+    updatedByUserAt: dateSchema.nullable().optional(),
+    tempInfos: tempInfoSchema.nullable().optional(),
+    sources: z.array(sourceSchema).nullable().optional(),
+    slugs: slugsSchema.nullable().optional(),
+    distance: z.number().nullable().optional(),
+  })
+  .meta({ id: "v20260101SearchPlaceResponse" });
+
+export const v20260101SearchResponseSchema = z
+  .object({
+    nbResults: z
+      .number()
+      .int()
+      .min(0)
+      .nullable()
+      .describe("Total number of matching places."),
+    places: z
+      .array(v20260101SearchPlaceResponseSchema)
+      .nullable()
+      .describe("List of matching place payloads."),
+  })
+  .meta({ id: "v20260101SearchResponse" });
 
 export type V20260101SearchResponse = z.infer<
   typeof v20260101SearchResponseSchema
