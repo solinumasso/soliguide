@@ -8,6 +8,7 @@ import { PlaceModel } from "@soliguide/api";
 import { AppModule } from "./app.module";
 
 import { config } from "dotenv";
+import { setupOpenApi } from "./openapi";
 
 config();
 
@@ -32,6 +33,8 @@ config();
     AppModule,
     new FastifyAdapter()
   );
+
+  await setupOpenApi(app);
 
   app.use(helmet());
   app.enableShutdownHooks();
