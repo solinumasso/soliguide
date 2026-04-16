@@ -7,7 +7,7 @@ describe("updateServicesWithNewCategories", () => {
     const regularService = new CommonPlaceService({ categorie: 101 });
 
     expect(updateServicesWithNewCategories(regularService).category).toEqual(
-      Categories.ADDICTION
+      Categories.ADDICTIONS
     );
   });
 
