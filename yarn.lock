@@ -10772,6 +10772,7 @@ __metadata:
     "@nestjs/testing": "npm:^11.1.19"
     "@soliguide/api": "workspace:*"
     "@soliguide/common": "workspace:*"
+    "@types/jsonwebtoken": "npm:^9.0.10"
     "@types/node": "npm:^22.10.7"
     "@types/supertest": "npm:^6.0.3"
     eslint: "npm:^10.2.0"
