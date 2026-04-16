@@ -31,6 +31,7 @@
     "@nestjs/core": "^11.1.16",
     "@nestjs/platform-fastify": "^11.1.16",
     "@nestjs/swagger": "^11.2.6",
+    "@scalar/nestjs-api-reference": "^1.1.8",
     "@soliguide/api": "workspace:*",
     "@soliguide/common": "workspace:*",
     "helmet": "^7.2.0",
