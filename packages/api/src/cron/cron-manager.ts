@@ -7,7 +7,7 @@ import { setCurrentTempInfoJob } from "./jobs/places/set-current-temp-info.job";
 import { setIsOpenTodayJob } from "./jobs/places/set-isOpenToday.job";
 import { setOfflineJob } from "./jobs/places/set-offline.job";
 import { syncPlacesToAirtableJob } from "./jobs/places/sync-places-to-airtable.job";
-import { translateFieldsJob } from "./jobs/translations/translate-fields.job";
+// import { translateFieldsJob } from "./jobs/translations/translate-fields.job";
 import { unsetObsoleteTempInfoJob } from "./jobs/places/unset-obsolete-temp-info.job";
 
 export const Schedule = {
@@ -97,11 +97,12 @@ export function initializeCronJobs() {
     syncPlacesToAirtableJob
   );
 
-  createMonitoredCron(
-    "translate-fields",
-    Schedule.EVERY_10_MINUTES,
-    translateFieldsJob
-  );
+  // DEACTIVATED UNTIL FIXED
+  // createMonitoredCron(
+  //   "translate-fields",
+  //   Schedule.EVERY_10_MINUTES,
+  //   translateFieldsJob
+  // );
 
   logger.info("All cron jobs initialized successfully");
 }
