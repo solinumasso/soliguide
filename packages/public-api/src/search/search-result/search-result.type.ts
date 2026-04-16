@@ -137,6 +137,7 @@ export interface SearchService {
     dateDebut?: LegacyDate | null;
     dateFin?: LegacyDate | null;
     closeType?: number | null;
+    precision?: string | null;
   };
   description?: string | null;
   differentHours?: boolean;
@@ -239,7 +240,13 @@ export interface SearchPlace {
   status?: PlaceStatus;
   visibility?: PlaceVisibility;
   isOpenToday?: boolean;
-  close?: boolean;
+  close?: {
+    actif?: boolean;
+    dateDebut?: LegacyDate | null;
+    dateFin?: LegacyDate | null;
+    closeType?: number | null;
+    precision?: string | null;
+  };
   photos?: SearchPhoto[];
   placeType?: PlaceType;
   services_all?: SearchService[];
