@@ -64,7 +64,7 @@ describe("Categories", () => {
     });
   });
 
-  // We may want to remove this test at some point, but for now we have no use for a enum key which isn't ins the categories tree
+  // We may want to remove this test at some point, but for now we have no use for a enum key which isn't in the categories tree
   describe("All keys of Categories enum should be used", () => {
     Object.entries(Categories).forEach((nodeId) => {
       if (
@@ -72,6 +72,8 @@ describe("Categories", () => {
           Categories.CATALAN_COURSE,
           Categories.SPANISH_COURSE,
           Categories.LEGAL_PROTECTION,
+          Categories.NEUROLOGY,
+          Categories.VASCULAR_SURGERY,
         ].includes(nodeId[1])
       ) {
         it(`${nodeId[0]} should not be in the categories tree`, () => {
@@ -101,7 +103,7 @@ describe("Categories", () => {
   it("leaves", () => {
     const CATEGORIES_LEAF_NODES =
       getCategoriesService().getCategoriesLeafNodes();
-    expect(CATEGORIES_LEAF_NODES.length).toEqual(91);
+    expect(CATEGORIES_LEAF_NODES.length).toEqual(108);
   });
 
   it("roots", () => {
