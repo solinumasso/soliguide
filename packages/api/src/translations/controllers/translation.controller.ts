@@ -35,7 +35,6 @@ import {
   findParentElements,
   findServicesForPlace,
   findTranslatedField,
-  findTranslatedFieldLieuIds,
   findTranslatedFields,
   updateManyTranslatedFields,
 } from "../services/translatedField.service";
@@ -421,24 +420,6 @@ export const patchTranslatedField = async (
   );
 
   await getPlaceAndRebuildTranslation(translatedField.lieu_id);
-
-  // Rebuild all other places sharing this content in the background
-  findTranslatedFieldLieuIds({ content: translatedField.content })
-    .then((affectedLieuIds) =>
-      Promise.all(
-        affectedLieuIds
-          .filter((lieuId) => lieuId !== translatedField.lieu_id)
-          .map((lieuId) => getPlaceAndRebuildTranslation(lieuId))
-      )
-    )
-    .catch((err) =>
-      logger.error(
-        `[PATCH_TRANSLATED_FIELD] Error rebuilding affected places for content "${translatedField.content.slice(
-          0,
-          80
-        )}": ${err}`
-      )
-    );
 };
 
 // Update elements to translate
