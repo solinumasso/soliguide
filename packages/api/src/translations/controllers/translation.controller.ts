@@ -35,6 +35,7 @@ import {
   findParentElements,
   findServicesForPlace,
   findTranslatedField,
+  findTranslatedFieldLieuIds,
   findTranslatedFields,
   updateManyTranslatedFields,
 } from "../services/translatedField.service";
@@ -237,7 +238,7 @@ const isTranslationCompleted = (translatedField: TranslatedField): boolean => {
     const humanTranslation =
       translatedField.languages[language as SupportedLanguagesCode]!.human;
 
-    if (humanTranslation.content !== null && humanTranslation.content !== "") {
+    if (humanTranslation.content === null || humanTranslation.content === "") {
       return false;
     }
   }
@@ -287,15 +288,13 @@ const createTranslatedElement = async (
   elementName: TranslatedFieldElement,
   serviceObjectId: null | mongoose.Types.ObjectId
 ): Promise<ApiTranslatedField> => {
-  const potentialDuplicateTranslation = await findTranslatedFields(
-    {
-      content,
-    },
-    {}
-  );
-
   const position = new CommonPositionForTranslation(getPosition(place));
   const sourceLanguage = SUPPORTED_LANGUAGES_BY_COUNTRY[place.country].source;
+
+  const potentialDuplicateTranslation = await findTranslatedFields(
+    { content, sourceLanguage },
+    {}
+  );
 
   const newElement: Partial<ApiTranslatedField> = {
     content,
@@ -422,6 +421,24 @@ export const patchTranslatedField = async (
   );
 
   await getPlaceAndRebuildTranslation(translatedField.lieu_id);
+
+  // Rebuild all other places sharing this content in the background
+  findTranslatedFieldLieuIds({ content: translatedField.content })
+    .then((affectedLieuIds) =>
+      Promise.all(
+        affectedLieuIds
+          .filter((lieuId) => lieuId !== translatedField.lieu_id)
+          .map((lieuId) => getPlaceAndRebuildTranslation(lieuId))
+      )
+    )
+    .catch((err) =>
+      logger.error(
+        `[PATCH_TRANSLATED_FIELD] Error rebuilding affected places for content "${translatedField.content.slice(
+          0,
+          80
+        )}": ${err}`
+      )
+    );
 };
 
 // Update elements to translate

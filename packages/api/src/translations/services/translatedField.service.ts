@@ -93,6 +93,15 @@ export const findServicesForPlace = async (
     .exec();
 };
 
+export const findTranslatedFieldLieuIds = async (
+  params: FilterQuery<ApiTranslatedField>
+): Promise<number[]> => {
+  const docs = await TranslatedFieldModel.find(params, { lieu_id: 1 })
+    .lean()
+    .exec();
+  return [...new Set(docs.map((d) => d.lieu_id))];
+};
+
 export const deleteTranslatedField = async (
   params: FilterQuery<ApiTranslatedField>
 ): Promise<void> => {

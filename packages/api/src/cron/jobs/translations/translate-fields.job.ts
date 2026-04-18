@@ -36,12 +36,12 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
 
   otherLanguages.forEach((language: SupportedLanguagesCode) => {
     matchQuery.push({
-      [`languages.${language}.auto.content`]: { $in: [null, ""] },
+      [`languages.${language}.auto.content`]: { $not: { $regex: /\S/ } },
       sourceLanguage,
     });
   });
 
-  // Group by content to process each unique text only once
+  // Group by content to process each unique text only once.
   const elements: ApiTranslatedField[] = await TranslatedFieldModel.aggregate([
     { $match: { $or: matchQuery } },
     { $group: { _id: "$content", doc: { $first: "$$ROOT" } } },
@@ -101,13 +101,23 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
             [`languages.${lang}.human.updatedAt`]: new Date(),
           };
         } else {
-          // check if content exist with human translate
           logger.info(`[GOOGLE TRANSLATE] Translation in ${lang}`);
 
           const translation = await GoogleTranslate.translate(
             element.content,
             lang
           );
+
+          if (!translation[0]?.trim()) {
+            logger.error(
+              `[GOOGLE TRANSLATE] Unexpected empty translation for lang=${lang} content="${element.content.slice(
+                0,
+                80
+              )}" — will retry on next run`
+            );
+            hasError = true;
+            continue;
+          }
 
           newData = {
             [`languages.${lang}.auto.content`]: translation[0],
