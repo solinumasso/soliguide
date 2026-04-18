@@ -14,7 +14,7 @@ export const LEGACY_CATEGORIES: Record<number, LegacyCategory> = {
     label: "ADDICTION",
     seo: "addiction",
     title: "",
-    newCategory: Categories.ADDICTION,
+    newCategory: Categories.ADDICTIONS,
   },
   102: {
     description:
@@ -113,7 +113,7 @@ export const LEGACY_CATEGORIES: Record<number, LegacyCategory> = {
     label: "ECHOGRAPHIE",
     seo: "echographie",
     title: "",
-    newCategory: Categories.ECHOGRAPHY,
+    newCategory: Categories.PREGNANCY_CARE,
   },
   1105: {
     label: "ENDOCRINOLOGIE",
@@ -144,13 +144,13 @@ export const LEGACY_CATEGORIES: Record<number, LegacyCategory> = {
     label: "MAMMOGRAPHIE",
     seo: "mammographie",
     title: "",
-    newCategory: Categories.MAMMOGRAPHY,
+    newCategory: Categories.STD_TESTING,
   },
   1110: {
     label: "OPHTALMOLOGIE",
     seo: "ophtalmologie",
     title: "",
-    newCategory: Categories.OPHTHALMOLOGY,
+    newCategory: Categories.OPTICAL_CARE,
   },
   1111: {
     label: "OTO_RHINO_LARYNGOLOGIE",
@@ -220,12 +220,6 @@ export const LEGACY_CATEGORIES: Record<number, LegacyCategory> = {
     seo: "osteo",
     title: "",
     newCategory: Categories.OSTEOPATHY,
-  },
-  1122: {
-    label: "ACUPUNCTURE",
-    seo: "acupuncture",
-    title: "",
-    newCategory: Categories.ACUPUNCTURE,
   },
   1200: {
     label: "TRANSPORT_MOBILITY",
