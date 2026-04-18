@@ -1,4 +1,4 @@
-import { SupportedLanguagesCode } from "@soliguide/common";
+import { AutoCompleteType, SupportedLanguagesCode } from "@soliguide/common";
 import autocompleteSuggestionService from "../../services/search-suggestions.service";
 import { FormattedSuggestion } from "../../types";
 import { parseTextSearch } from "./parse-text-search";
@@ -27,7 +27,15 @@ function buildSynonymSearch(
   suggestion: FormattedSuggestion
 ): void {
   const allTerms = [suggestion.label, ...suggestion.synonyms].filter(Boolean);
-  if (allTerms.length > 0) {
+  if (allTerms.length === 0) return;
+
+  if (suggestion.type === AutoCompleteType.ORGANIZATION) {
+    // Open-ended boundary: matches "Services" when searching "Service"
+    const regexTerms = allTerms.map((term) =>
+      createOpenEndedWordBoundaryRegex(term)
+    );
+    nosqlQuery["slugs.infos.name"] = { $in: regexTerms };
+  } else {
     const regexTerms = allTerms.map((term) => createWordBoundaryRegex(term));
     nosqlQuery["slugs.infos.name"] = { $in: regexTerms };
   }
@@ -58,4 +66,13 @@ export function findSuggestionBySynonym(
 function createWordBoundaryRegex(term: string): RegExp {
   const escaped = term.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, String.raw`\$&`);
   return new RegExp(String.raw`\b${escaped}\b`, "i");
+}
+
+/**
+ * Like createWordBoundaryRegex but without the closing \b, so that
+ * plurals work.
+ */
+function createOpenEndedWordBoundaryRegex(term: string): RegExp {
+  const escaped = term.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, String.raw`\$&`);
+  return new RegExp(String.raw`\b${escaped}`, "i");
 }
