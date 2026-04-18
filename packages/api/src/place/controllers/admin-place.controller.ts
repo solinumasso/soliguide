@@ -575,7 +575,7 @@ export const patchStatus = async (
     const isOpenToday = await isPlaceOpenToday(updatedPlace);
     updatedPlace = await updatePlaceByPlaceId(lieu_id, { isOpenToday });
   }
-  updatedPlace = await updateServices(updatedPlace);
+  updatedPlace = await updateServices(updatedPlace, false);
 
   const placeChanges = await savePatchChanges(
     PlaceChangesSection.status,
@@ -588,6 +588,13 @@ export const patchStatus = async (
   // We check whether this place has to be updated as part of the campaign when the campaign is on
   if (isCampaignActiveForPlace(updatedPlace)) {
     updatedPlace = await changeCampaignUpdateStatus(updatedPlace, oldPlace);
+  }
+  if (updatedPlace.status !== newStatus) {
+    updatedPlace = await updatePlaceByPlaceId(
+      lieu_id,
+      { status: newStatus },
+      false
+    );
   }
 
   return { placeChanges, updatedPlace };
