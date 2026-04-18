@@ -1,4 +1,6 @@
 fileignoreconfig:
+- filename: skills-lock.json
+  checksum: 84fce80bb17b47c33b35982ade7616f7cb0a15e7025c03d0049012faf1040f1b
 - filename: yarn.lock
   checksum: 4e40871bb641184c2efd8a8701c7cc4b165343a6091a716a42fbb96f9f97aab7
 allowed_patterns:

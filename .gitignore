@@ -1,7 +1,9 @@
 
+# Claude settings (keep .claude/ tracked but not settings)
+.claude/settings.json
+.claude/settings.local.json
+
 # Yarn
-**/.claude
-.claude/*
 .pnp.*
 .yarn/*
 !.yarn/patches

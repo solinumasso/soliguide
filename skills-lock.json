@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "skills": {
+    "mongodb-connection": {
+      "source": "mongodb/agent-skills",
+      "sourceType": "github",
+      "computedHash": "5eb79fab35b821215eb5dbb5f1f49ef6c621efcbe3b20f276b9b0a279b298cd2"
+    },
+    "mongodb-query-optimizer": {
+      "source": "mongodb/agent-skills",
+      "sourceType": "github",
+      "computedHash": "661ff75d8dc771b96aba5ccab7fb0cb689fcb9a902c4a0ce1a36c4be984d6518"
+    },
+    "mongodb-schema-design": {
+      "source": "mongodb/agent-skills",
+      "sourceType": "github",
+      "computedHash": "46d658eaab2b13e9b8e571b5b084ae62cc9b3866bbbd98d23e4b9af9c1c26626"
+    },
+    "mongodb-search-and-ai": {
+      "source": "mongodb/agent-skills",
+      "sourceType": "github",
+      "computedHash": "cb61e5d2405b20b3cf2e8316cf0475af2d82a0ad8798f4b52da1ffc68e90e5c3"
+    },
+    "node": {
+      "source": "mcollina/skills",
+      "sourceType": "github",
+      "computedHash": "aba2163ddb3fcf3e6a9d101ac370fabc94055b3e628b125dd084969f1a945993"
+    },
+    "typescript-magician": {
+      "source": "mcollina/skills",
+      "sourceType": "github",
+      "computedHash": "99e61d29c107b3c52adbb70c6ee8cfbfb7830ea0649dba4ec89557fdf5c46b54"
+    }
+  }
+}
