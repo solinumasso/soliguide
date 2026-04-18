@@ -30,6 +30,7 @@ export const searchResultMock: SearchResult = {
         orientation: false,
         campaign: null
       },
+      coordinates: [0, 0] as [number, number],
       dataForLogs: {
         id: '169',
         lieuId: 169,
@@ -56,6 +57,7 @@ export const searchResultMock: SearchResult = {
         orientation: false,
         campaign: null
       },
+      coordinates: [0, 0] as [number, number],
       dataForLogs: {
         id: '34120',
         lieuId: 34120,
@@ -96,6 +98,7 @@ export const searchResultMock: SearchResult = {
         orientation: false,
         campaign: null
       },
+      coordinates: [0, 0] as [number, number],
       dataForLogs: {
         id: '26287',
         lieuId: 26287,
@@ -123,6 +126,7 @@ export const searchResultMock: SearchResult = {
     {
       address: '1 Rue Montmartre, 75001 Paris',
       banners: { orientation: false, holidays: PlaceClosedHolidays.UNKNOWN, campaign: null },
+      coordinates: [0, 0] as [number, number],
       dataForLogs: {
         id: '154',
         lieuId: 154,
@@ -158,6 +162,7 @@ export const placeDetailsMock: PlaceDetails = {
   id: 154,
   address: '1 Rue Montmartre, 75001 Paris',
   campaignBanner: null,
+  coordinates: [2.345897, 48.86323609999999],
   description:
     "<p>Repas complets servis sur le parvis de l'église Saint-Eustache. Il est conseillé d'arriver en avance.</p><p><strong>Attention : il s'agit d'un dispositif hivernal qui commence le 1er décembre et qui finit le 31 mars.</strong></p>",
   email: 'lasoupe@saint-eustache.org',

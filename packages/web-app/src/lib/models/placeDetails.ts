@@ -314,6 +314,7 @@ const buildLightPlaces = (
     params.set('crossingPointIndex', String(index));
     return {
       address: computeAddress(crossingPoint.position, onOrientation),
+      coordinates: crossingPoint.position.location.coordinates as [number, number],
       url: `${apiPlace.seo_url}?${params.toString()}`,
       name: apiPlace.name,
       status,
@@ -380,6 +381,7 @@ const buildPlaceDetails = (
   return {
     id: placeResult.lieu_id,
     address: computeAddress(positionToCompute, onOrientation),
+    coordinates: positionToCompute.location.coordinates as [number, number],
     campaignBanner: computeCampaignBanner(placeResult),
     ...(isItinerary && { crossingPointIndex: validItineraryIndex }),
     description: placeResult.description ?? '',

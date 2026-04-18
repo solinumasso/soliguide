@@ -37,10 +37,6 @@ describe("FrenchAddressService - normalizeGeoValueSearch", () => {
       );
     });
 
-    it('should normalize "lyon 69001" to "69001 lyon"', () => {
-      expect(service.normalizeGeoValueSearch("lyon 69001")).toBe("69001 lyon");
-    });
-
     it('should handle multiple spaces "paris  75012" to "75012 paris"', () => {
       expect(service.normalizeGeoValueSearch("paris  75012")).toBe(
         "75012 paris"

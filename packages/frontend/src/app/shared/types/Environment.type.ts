@@ -1,6 +1,7 @@
 export interface Environment {
   apiUrl: string;
   locationApiUrl: string;
+  googleMapsApiKey?: string;
   chatWebsiteId?: string;
   enableTracing: boolean;
   environment: "DEV" | "PROD" | "PREPROD";

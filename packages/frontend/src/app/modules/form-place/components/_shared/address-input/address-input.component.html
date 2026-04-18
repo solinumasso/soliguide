@@ -20,89 +20,251 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
 <form *ngIf="position" [formGroup]="positionForm" autocomplete="off">
-  <div class="my-2">
-    <div style="height: 300px; width: 100%" *ngIf="showMap">
-      <app-search-map
-        [markers]="marker"
-        [moveOnClick]="true"
-        [mapIndex]="mapIndex"
-        (newCoordinates)="handleNewCoordinates($event)"
-      ></app-search-map>
-    </div>
-  </div>
-  <div class="required my-4">
-    <app-location-autocomplete
-      (clearAddress)="clearAddress()"
-      (updateLocation)="updateLocation($event)"
-      [addressesOnly]="true"
-      [currentAddress]="position.address"
-    ></app-location-autocomplete>
-    <div *ngIf="helpAddress" class="input-description">
-      {{ "ENTER_INFO_MAP" | translate }}
-    </div>
-    <div
-      *ngIf="
-        (f.address.dirty || submitted) &&
-        (f.address.errors || f.address.invalid)
-      "
-      class="invalid-feedback"
-    >
-      <div *ngIf="f.address.errors.required">
-        {{ titleError }}
-      </div>
-      <div
-        *ngIf="f.address.errors.noGoogleMaps"
-        [innerHtml]="'USING_SUGGESTION_TOOL' | translate"
-      ></div>
-      <div
-        *ngIf="f.address.errors.departementSearch"
-        [innerHtml]="
-          'SOLIGUIDE_NOT_ALLOW_YOU_TO_LOCATE_A_PLACE_ON_A_DEPARTEMENT_SCALE'
-            | translate : { brandName: THEME_CONFIGURATION.brandName }
-        "
-      ></div>
-    </div>
-    <div
-      *ngIf="f.address.value && submitted && f.postalCode.errors"
-      class="invalid-feedback"
-    >
-      <p *ngIf="f.postalCode.errors.required">
-        {{ "ADDRESS_ENTERED_APPEARS_INVALID" | translate }}
-      </p>
-      <p *ngIf="f.postalCode.errors.invalidCityCode">
-        {{ "ADDRESS_IS_OUTSIDE_THE_TERRITORIES_YOU_MANAGE" | translate }}
-      </p>
-    </div>
-  </div>
+  <div class="row g-4 align-items-start">
+    <div [ngClass]="showMap ? 'col-6' : 'col-12'">
+      <fieldset class="mb-3">
+        <legend class="visually-hidden">{{ "ADDRESS" | translate }}</legend>
+        <div class="d-flex gap-2">
+          <button
+            type="button"
+            class="btn"
+            [ngClass]="
+              !manualMode
+                ? 'bg-danger bg-opacity-10 border border-danger text-danger'
+                : 'btn-outline-secondary'
+            "
+            (click)="setManualMode(false)"
+          >
+            <fa-icon
+              [icon]="['fas', 'location-crosshairs']"
+              class="me-1"
+              aria-hidden="true"
+            ></fa-icon>
+            {{ "PRECISE_ADDRESS" | translate }}
+          </button>
+          <button
+            type="button"
+            class="btn"
+            [ngClass]="
+              manualMode
+                ? 'bg-danger bg-opacity-10 border border-danger text-danger'
+                : 'btn-outline-secondary'
+            "
+            (click)="setManualMode(true)"
+          >
+            <fa-icon
+              [icon]="['fas', 'marker']"
+              aria-hidden="true"
+              class="me-1"
+            ></fa-icon>
+            {{ "MANUAL_ADDRESS" | translate }}
+          </button>
+        </div>
+      </fieldset>
 
-  <div class="my-2">
-    <label class="form-label" for="additionalInformation">{{
-      "ADDITIONAL_ADDRESS" | translate
-    }}</label>
-    <input
-      type="text"
-      class="form-control"
-      id="additionalInformation"
-      formControlName="additionalInformation"
-      (ngModelChange)="setAdditionalInformation($event)"
-      [placeholder]="additionalInformationPlaceholder"
-      autocomplete="off"
-      [ngClass]="{
-        'is-invalid':
-          f.additionalInformation.dirty && f.additionalInformation.errors
-      }"
-    />
-    <div
-      *ngIf="f.additionalInformation.value && submitted"
-      class="invalid-feedback"
-    ></div>
-    <div *ngIf="helpComplementAddresse" class="input-description">
-      <fa-icon
-        [icon]="['fas', 'info-circle']"
-        aria-hidden="true"
-        class="btn-icon"
-      ></fa-icon>
-      {{ "EXAMPLE_ADDITIONAL_ADDRESS" | translate }}
+      <div *ngIf="!manualMode" class="required">
+        <p class="fw-medium mb-3">{{ "SEARCH_ADDRESS" | translate }}</p>
+        <label class="form-label" for="addressInput">{{
+          "LOCATION" | translate
+        }}</label>
+        <app-location-autocomplete
+          (clearAddress)="clearAddress()"
+          (updateLocation)="updateLocation($event)"
+          [addressesOnly]="addressesOnly"
+          [currentAddress]="position.address"
+          id="addressInput"
+        ></app-location-autocomplete>
+        <div *ngIf="helpAddress" class="input-description">
+          {{ "ENTER_INFO_MAP" | translate }}
+        </div>
+        <div
+          *ngIf="
+            (f.address.dirty || submitted) &&
+            (f.address.errors || f.address.invalid)
+          "
+          class="invalid-feedback"
+        >
+          <div *ngIf="f.address.errors.required">
+            {{ titleError }}
+          </div>
+          <div
+            *ngIf="f.address.errors.noGoogleMaps"
+            [innerHtml]="'USING_SUGGESTION_TOOL' | translate"
+          ></div>
+          <div
+            *ngIf="f.address.errors.departementSearch"
+            [innerHtml]="
+              'SOLIGUIDE_NOT_ALLOW_YOU_TO_LOCATE_A_PLACE_ON_A_DEPARTEMENT_SCALE'
+                | translate : { brandName: THEME_CONFIGURATION.brandName }
+            "
+          ></div>
+        </div>
+        <div
+          *ngIf="f.address.value && submitted && f.postalCode.errors"
+          class="invalid-feedback"
+        >
+          <p *ngIf="f.postalCode.errors.required">
+            {{ "ADDRESS_ENTERED_APPEARS_INVALID" | translate }}
+          </p>
+          <p *ngIf="f.postalCode.errors.invalidCityCode">
+            {{ "ADDRESS_IS_OUTSIDE_THE_TERRITORIES_YOU_MANAGE" | translate }}
+          </p>
+        </div>
+      </div>
+
+      <div *ngIf="!manualMode" class="mt-3">
+        <label class="form-label" for="additionalInformation"
+          >{{ "ADDITIONAL_ADDRESS" | translate }}
+          <span class="text-muted fw-normal">(si applicable)</span></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="additionalInformation"
+          formControlName="additionalInformation"
+          (ngModelChange)="setAdditionalInformation($event)"
+          [placeholder]="additionalInformationPlaceholder"
+          autocomplete="off"
+          [ngClass]="{
+            'is-invalid':
+              f.additionalInformation.dirty && f.additionalInformation.errors
+          }"
+        />
+        <div
+          *ngIf="f.additionalInformation.value && submitted"
+          class="invalid-feedback"
+        ></div>
+        <div *ngIf="helpComplementAddresse" class="input-description">
+          <fa-icon
+            [icon]="['fas', 'info-circle']"
+            aria-hidden="true"
+            class="btn-icon"
+          ></fa-icon>
+          {{ "EXAMPLE_ADDITIONAL_ADDRESS" | translate }}
+        </div>
+      </div>
+
+      <div *ngIf="manualMode">
+        <p class="fw-medium mb-3">{{ "ENTER_ADDRESS_MANUALLY" | translate }}</p>
+        <div class="mb-3 required">
+          <label class="form-label" for="addressAutocompleteManual">{{
+            "STREET_NUMBER_AND_NAME" | translate
+          }}</label>
+          <app-location-autocomplete
+            (clearAddress)="clearStreetField()"
+            (updateLocation)="updateStreetOnly($event)"
+            [addressesOnly]="true"
+            [currentAddress]="manualStreetDisplay"
+            id="addressAutocompleteManual"
+          ></app-location-autocomplete>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="city">{{
+            "GEOTYPE_VILLE" | translate
+          }}</label>
+          <input
+            type="text"
+            class="form-control"
+            id="city"
+            formControlName="city"
+            [ngClass]="{
+              'is-invalid': (f.city.dirty || submitted) && f.city.errors
+            }"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="postalCode">{{
+            "EXPORTS_HEADER_POSTAL_CODE" | translate
+          }}</label>
+          <input
+            type="text"
+            class="form-control"
+            id="postalCode"
+            formControlName="postalCode"
+            [ngClass]="{
+              'is-invalid':
+                (f.postalCode.dirty || submitted) && f.postalCode.errors
+            }"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="additionalInformationManual"
+            >{{ "ADDITIONAL_ADDRESS" | translate }}
+            <span class="text-muted fw-normal">(si applicable)</span></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="additionalInformationManual"
+            formControlName="additionalInformation"
+            (ngModelChange)="setAdditionalInformation($event)"
+            [placeholder]="additionalInformationPlaceholder"
+            autocomplete="off"
+            [ngClass]="{
+              'is-invalid':
+                f.additionalInformation.dirty && f.additionalInformation.errors
+            }"
+          />
+          <div *ngIf="helpComplementAddresse" class="input-description">
+            <fa-icon
+              [icon]="['fas', 'info-circle']"
+              aria-hidden="true"
+              class="btn-icon"
+            ></fa-icon>
+            {{ "EXAMPLE_ADDITIONAL_ADDRESS" | translate }}
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="department">{{
+            "DEPARTMENT" | translate
+          }}</label>
+          <input
+            type="text"
+            class="form-control bg-light text-muted"
+            id="department"
+            formControlName="department"
+            readonly
+            [placeholder]="'AUTOMATICALLY_DETERMINED' | translate"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="region">{{
+            "GEOTYPE_REGION" | translate
+          }}</label>
+          <input
+            type="text"
+            class="form-control bg-light text-muted"
+            id="region"
+            formControlName="region"
+            readonly
+            [placeholder]="'AUTOMATICALLY_DETERMINED' | translate"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Right column: map -->
+    <div class="col-6" *ngIf="showMap">
+      <div class="position-relative" style="height: 497px">
+        <app-google-map
+          [markers]="marker"
+          [moveOnClick]="true"
+          [mapIndex]="mapIndex"
+          (newCoordinates)="handleNewCoordinates($event)"
+        ></app-google-map>
+        <div
+          *ngIf="mapHintVisible"
+          class="position-absolute top-50 start-50 translate-middle bg-white rounded shadow px-3 py-2 small text-center pe-none"
+          style="z-index: 1000"
+        >
+          <fa-icon
+            [icon]="['fas', 'location-dot']"
+            aria-hidden="true"
+            class="me-1 text-warning"
+          ></fa-icon>
+          {{ "CLICK_ON_MAP_TO_PLACE_POINT" | translate }}
+        </div>
+      </div>
     </div>
   </div>
 </form>
