@@ -38,3 +38,15 @@ img {
   height: 20px;
   margin-right: 13px;
 }
+
+.lang-added {
+  background-color: rgba(25, 135, 84, 0.2);
+  border-color: #198754;
+  color: #0d6e3f;
+}
+
+.lang-removed {
+  background-color: rgba(220, 53, 69, 0.15);
+  border-color: #dc3545;
+  color: #b02a37;
+}
