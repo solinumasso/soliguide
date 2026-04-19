@@ -1,19 +1,19 @@
-import { env } from '$env/dynamic/public';
+import Fuse from 'fuse.js';
 import {
   CategoriesService,
   Categories,
   type FlatCategoriesTreeNode,
-  type SearchSuggestion,
+  type FormattedSuggestion,
   Themes,
-  SupportedLanguagesCode
+  SupportedLanguagesCode,
+  AutoCompleteType,
+  FUSE_SEARCH_SUGGESTIONS_OPTIONS,
+  type SoliguideCountries
 } from '@soliguide/common';
-import { fetch } from '$lib/client';
-import type { Fetcher } from '$lib/client/types';
-import { CategoriesErrors, type CategoryService } from './types';
+import type { CategoryService } from './types';
 import { get } from 'svelte/store';
 import { themeStore } from '$lib/theme';
-
-const apiUrl = env.PUBLIC_API_URL;
+import { loadSuggestionsData } from './searchSuggestionsData';
 
 type ParentToChildren = Record<Categories, Categories[]>;
 
@@ -24,7 +24,10 @@ type ParentToChildren = Record<Categories, Categories[]>;
 const buildParentToChildrenStructure = (categories: FlatCategoriesTreeNode[]): ParentToChildren => {
   return categories.reduce((acc: ParentToChildren, category: FlatCategoriesTreeNode) => {
     // Keep only the ids
-    return { ...acc, [category.id]: category.children.map((child) => child.id) };
+    return {
+      ...acc,
+      [category.id]: category.children.map((child) => child.id)
+    };
   }, {} as ParentToChildren);
 };
 
@@ -34,10 +37,7 @@ const buildParentToChildrenStructure = (categories: FlatCategoriesTreeNode[]): P
  *
  * Gets the category service
  */
-export const getCategoryService = (
-  currentThemeName: Themes,
-  fetcher: Fetcher<SearchSuggestion[]> = fetch
-): CategoryService => {
+export const getCategoryService = (currentThemeName: Themes): CategoryService => {
   const categoriesService = new CategoriesService(currentThemeName);
 
   const allCategories = categoriesService.getCategories();
@@ -69,29 +69,35 @@ export const getCategoryService = (
     return categoriesService.hasChildren(categoryId);
   };
 
+  let fuseCache: { key: string; fuse: Fuse<FormattedSuggestion> } | null = null;
+
   /**
    * Auto-complete feature for categories.
-   * Now uses the new search-suggestions endpoint with country and language support.
+   * Uses Fuse.js locally with JSON data from @soliguide/common.
    */
   const getCategorySuggestions = async (
     searchTerm: string,
     country: string,
     lang: SupportedLanguagesCode
   ): Promise<Categories[]> => {
-    try {
-      if (searchTerm.length === 0) {
-        return [];
-      }
-
-      const url = `${apiUrl}/new-search/search-suggestions/${country}/${lang}/${encodeURI(searchTerm.trim())}/categories`;
-
-      const result: SearchSuggestion[] = await fetcher(url);
-
-      // Filter and extract only the categoryId values
-      return result.map((item) => item.categoryId).filter((id): id is Categories => id !== null);
-    } catch {
-      throw CategoriesErrors.ERROR_SERVER;
+    if (searchTerm.length === 0) {
+      return [];
     }
+
+    const key = `${country}/${lang}`;
+    if (fuseCache?.key !== key) {
+      const data = await loadSuggestionsData(country as SoliguideCountries, lang);
+      fuseCache = {
+        key,
+        fuse: new Fuse(data, FUSE_SEARCH_SUGGESTIONS_OPTIONS)
+      };
+    }
+
+    return fuseCache.fuse
+      .search(searchTerm)
+      .filter((r) => r.item.type === AutoCompleteType.CATEGORY)
+      .map((r) => r.item.categoryId)
+      .filter((id): id is Categories => id !== null);
   };
 
   return {
@@ -106,4 +112,4 @@ export const getCategoryService = (
 
 const themeName = get(themeStore.getTheme()).name;
 
-export const categoryService = getCategoryService(themeName, fetch);
+export const categoryService = getCategoryService(themeName);

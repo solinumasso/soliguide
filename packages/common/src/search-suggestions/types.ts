@@ -1,4 +1,4 @@
-import { SearchSuggestion } from "@soliguide/common";
+import { SearchSuggestion } from "../auto-complete";
 
 export type FormattedSuggestion = Pick<
   SearchSuggestion,

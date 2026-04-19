@@ -17,6 +17,7 @@ export * from "./place";
 export * from "./place-changes";
 export * from "./publics";
 export * from "./search-places";
+export * from "./search-suggestions";
 export * from "./services";
 export * from "./soligare";
 export * from "./sources";

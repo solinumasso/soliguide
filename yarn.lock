@@ -10077,6 +10077,7 @@ __metadata:
     eslint-plugin-jest: "npm:^28.8.3"
     eslint-plugin-n: "npm:^16.6.2"
     eslint-plugin-promise: "npm:^6.4.0"
+    fuse.js: "npm:^7.1.0"
     google-libphonenumber: "npm:^3.2.40"
     html-entities: "npm:^2.6.0"
     i18next: "npm:^22.5.1"
@@ -10408,6 +10409,7 @@ __metadata:
     eslint-config-prettier: "npm:^9.1.0"
     eslint-plugin-fp: "npm:^2.3.0"
     eslint-plugin-svelte: "npm:^2.36.0"
+    fuse.js: "npm:^7.0.0"
     globals: "npm:^15.15.0"
     i18next: "npm:^23.11.5"
     i18next-browser-languagedetector: "npm:^8.1.0"
@@ -18652,6 +18654,13 @@ __metadata:
   version: 1.2.3
   resolution: "functions-have-names@npm:1.2.3"
   checksum: 10/0ddfd3ed1066a55984aaecebf5419fbd9344a5c38dd120ffb0739fac4496758dcf371297440528b115e4367fc46e3abc86a2cc0ff44612181b175ae967a11a05
+  languageName: node
+  linkType: hard
+
+"fuse.js@npm:^7.0.0":
+  version: 7.3.0
+  resolution: "fuse.js@npm:7.3.0"
+  checksum: 10/b2cdc39e46acb9524fe900356af74c987ecb1dbc67412df651a5291fa072d212e6d74457f0b5d1c39baf79539481f62b613ac792afd8995dd1fc3d20b5354914
   languageName: node
   linkType: hard
 

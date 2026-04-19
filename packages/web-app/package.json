@@ -6,6 +6,9 @@
   "license": "AGPL-3.0-only",
   "main": "dist/index.js",
   "scripts": {
+    "copy:suggestions": "mkdir -p src/lib/data/search-suggestions && cp -r ../common/src/search-suggestions/data/* src/lib/data/search-suggestions/",
+    "prebuild": "yarn copy:suggestions",
+    "predev": "yarn copy:suggestions",
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
@@ -66,6 +69,7 @@
     "@soliguide/common": "workspace:*",
     "@soliguide/design-system": "workspace:*",
     "date-fns": "^4.1.0",
+    "fuse.js": "^7.0.0",
     "i18next": "^23.11.5",
     "i18next-browser-languagedetector": "^8.1.0",
     "isomorphic-dompurify": "^2.16.0",
