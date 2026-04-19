@@ -1,4 +1,8 @@
-import { SupportedLanguagesCode } from "@soliguide/common";
+import {
+  CountryCodes,
+  SoliguideCountries,
+  SupportedLanguagesCode,
+} from "@soliguide/common";
 import {
   searchSuggestionsService,
   FormattedSuggestion,
@@ -8,14 +12,15 @@ import { parseTextSearch } from "./parse-text-search";
 export function buildEnhancedWordSearch(
   searchData: any,
   nosqlQuery: any,
-  lang: SupportedLanguagesCode = SupportedLanguagesCode.FR
+  lang: SupportedLanguagesCode = SupportedLanguagesCode.FR,
+  country: SoliguideCountries = CountryCodes.FR
 ): void {
   if (!searchData?.word) {
     return;
   }
 
   const searchTerm = searchData.word;
-  const foundSuggestion = findSuggestionBySynonym(searchTerm, lang);
+  const foundSuggestion = findSuggestionBySynonym(searchTerm, lang, country);
 
   if (foundSuggestion) {
     buildSynonymSearch(nosqlQuery, foundSuggestion);
@@ -44,17 +49,19 @@ function buildSimpleSearch(nosqlQuery: any, searchTerm: string): void {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function findSuggestionBySynonym(
   searchTerm: string,
-  lang: SupportedLanguagesCode
+  lang: SupportedLanguagesCode,
+  country: SoliguideCountries = CountryCodes.FR
 ): FormattedSuggestion | null {
   const suggestionBySlug = searchSuggestionsService.findBySlugAndLang(
     searchTerm,
-    lang
+    lang,
+    country
   );
   if (suggestionBySlug) {
     return suggestionBySlug;
   }
 
-  return searchSuggestionsService.findBySynonym(searchTerm, lang);
+  return searchSuggestionsService.findBySynonym(searchTerm, lang, country);
 }
 
 function createWordBoundaryRegex(term: string): RegExp {

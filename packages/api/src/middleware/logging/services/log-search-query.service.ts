@@ -5,7 +5,7 @@ import { LogSearchPlacesModel } from "../../../logging/models/log-search.model";
 import { getAreasFromLocation } from "../../../search/services";
 import { LogSearchPlaces } from "../../../logging/interfaces";
 import { findSuggestionBySynonym } from "../../../search/utils/parsers/parse-word";
-import { AutoCompleteType } from "@soliguide/common";
+import { AutoCompleteType, CountryCodes } from "@soliguide/common";
 
 export const logSearchQuery = async (
   req: ExpressRequest,
@@ -37,7 +37,8 @@ export const logSearchQuery = async (
     const searchTerm = req.bodyValidated?.word;
     const foundSuggestion = findSuggestionBySynonym(
       searchTerm,
-      searchData.languages
+      searchData.languages,
+      req.bodyValidated?.country ?? CountryCodes.FR
     );
 
     if (foundSuggestion) {

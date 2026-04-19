@@ -1,4 +1,3 @@
-import Fuse from "fuse.js";
 import {
   AutoCompleteType,
   CountryCodes,
@@ -7,7 +6,6 @@ import {
   SUPPORTED_LANGUAGES_BY_COUNTRY,
   SoliguideCountries,
   SupportedLanguagesCode,
-  FUSE_SEARCH_SUGGESTIONS_OPTIONS,
   type FormattedSuggestion,
 } from "@soliguide/common";
 import { ensureDir, writeFile } from "fs-extra";
@@ -22,12 +20,6 @@ const SOURCE_ROOT = join(
 );
 
 class SearchSuggestionsService {
-  private fuseIndex: {
-    [country in SoliguideCountries]?: {
-      [lang in SupportedLanguagesCode]?: Fuse<FormattedSuggestion>;
-    };
-  } = {};
-
   private suggestionsCache: {
     [country in SoliguideCountries]?: {
       [lang in SupportedLanguagesCode]?: FormattedSuggestion[];
@@ -47,7 +39,6 @@ class SearchSuggestionsService {
 
     for (const country of countries) {
       const langs = getLangsForCountry(country);
-      this.fuseIndex[country] = {};
       this.suggestionsCache[country] = {};
 
       for (const lang of langs) {
@@ -59,10 +50,6 @@ class SearchSuggestionsService {
         }
 
         this.suggestionsCache[country]![lang] = data;
-        this.fuseIndex[country]![lang] = new Fuse(
-          data,
-          FUSE_SEARCH_SUGGESTIONS_OPTIONS
-        );
 
         logger.info(
           `✅ Loaded country=${country}, lang=${lang} with ${data.length} elements`
