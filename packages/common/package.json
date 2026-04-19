@@ -7,7 +7,7 @@
   "types": "dist/cjs/index.d.ts",
   "scripts": {
     "prebuild": "rimraf dist",
-    "postbuild": "cp -r ./src/translations/locales ./dist/cjs/translations && cp -r ./src/translations/locales ./dist/esm/translations",
+    "postbuild": "cp -r ./src/translations/locales ./dist/cjs/translations && cp -r ./src/translations/locales ./dist/esm/translations && cp -r ./src/search-suggestions/data ./dist/cjs/search-suggestions && cp -r ./src/search-suggestions/data ./dist/esm/search-suggestions",
     "build": "yarn prebuild && tsc -b tsconfig.build.json tsconfig.build.esm.json && yarn postbuild",
     "watch": "tsc --watch",
     "format": "prettier --cache -c .",

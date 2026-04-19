@@ -80,9 +80,7 @@ import ops from "./ops/routes/ops.routes";
 
 // Jobs
 import { serve, setup } from "swagger-ui-express";
-import autocompleteSuggestionService from "./search/services/search-suggestions.service";
-import SearchSuggestionsController from "./search/controllers/search-suggestions.controller";
-import { CountryCodes, SupportedLanguagesCode } from "@soliguide/common";
+import { searchSuggestionsService } from "./search-suggestions";
 import { initializeCronJobs } from "./cron/cron-manager";
 import { setIsOpenToday } from "./place/services/isOpenToday.service";
 
@@ -230,15 +228,11 @@ _app.use((req: Request, res: Response) => {
     // Connect to MongoDB with retry logic before starting the application
     await connectToDatabase();
 
-    // Initialize search suggestions for all countries and languages (uses Fuse.js)
+    // Load search suggestions from JSON files into Fuse.js indexes
     if (CONFIG.ENV !== "test") {
-      await SearchSuggestionsController.initialize();
+      searchSuggestionsService.initialize();
     }
 
-    await autocompleteSuggestionService.loadSuggestions(
-      CountryCodes.FR,
-      SupportedLanguagesCode.FR
-    );
     if (CONFIG.ENV !== "test" && CONFIG.CRON_ENABLED) {
       console.log("Initializing cron jobs...");
       initializeCronJobs();

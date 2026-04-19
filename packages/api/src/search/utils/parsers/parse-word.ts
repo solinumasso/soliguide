@@ -1,6 +1,8 @@
 import { SupportedLanguagesCode } from "@soliguide/common";
-import autocompleteSuggestionService from "../../services/search-suggestions.service";
-import { FormattedSuggestion } from "../../types";
+import {
+  searchSuggestionsService,
+  FormattedSuggestion,
+} from "../../../search-suggestions";
 import { parseTextSearch } from "./parse-text-search";
 
 export function buildEnhancedWordSearch(
@@ -44,7 +46,7 @@ export function findSuggestionBySynonym(
   searchTerm: string,
   lang: SupportedLanguagesCode
 ): FormattedSuggestion | null {
-  const suggestionBySlug = autocompleteSuggestionService.findBySlugAndLang(
+  const suggestionBySlug = searchSuggestionsService.findBySlugAndLang(
     searchTerm,
     lang
   );
@@ -52,7 +54,7 @@ export function findSuggestionBySynonym(
     return suggestionBySlug;
   }
 
-  return autocompleteSuggestionService.findBySynonym(searchTerm, lang);
+  return searchSuggestionsService.findBySynonym(searchTerm, lang);
 }
 
 function createWordBoundaryRegex(term: string): RegExp {
