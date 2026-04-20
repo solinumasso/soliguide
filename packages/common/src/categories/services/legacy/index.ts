@@ -5,3 +5,4 @@ export * from "./getLegacyCategoryRangeFromId";
 export * from "./isLegacyMainCategory";
 export * from "./getCategoryFromLegacyCategory";
 export * from "../taxonomyMobilityConverting.service";
+export * from "../taxonomyHealthConverting.service";
