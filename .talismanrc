@@ -1,10 +1,10 @@
 fileignoreconfig:
-- filename: skills-lock.json
-  checksum: 84fce80bb17b47c33b35982ade7616f7cb0a15e7025c03d0049012faf1040f1b
+- filename: .yarn/releases/yarn-4.14.1.cjs
+- filename: packages/common/src/search-suggestions/config.ts
+  checksum: db47bb50156072db5e1d62458a948d3eb1f9acff5cad7b339fb0cbdd4d85117c
 - filename: yarn.lock
-  checksum: 84e804c6b4b10982b138da4209d85f8e46381466e81f580b989ce83b04187967
-allowed_patterns:
-- uses:\s*[\w\-\.]+/[\w\-\.]+@[a-fA-F0-9]{40}
-- uses:\s*[\w\-\.]+/[\w\-\.]+/[\w\-\./]*@[a-fA-F0-9]{40}
-threshold: medium
+  checksum: 18607cf4b7ad5dd259f6a8c232aec1925bc38744011507a032b9a7d58dcbd4a2
+  allowed_patterns:
+  - uses:\s\*[\w\-\.]+/[\w\-\.]+@[a-fA-F0-9]{40}
+  - uses:\s*[\w\-\.]+/[\w\-\.]+/[\w\-\./]*@[a-fA-F0-9]{40}
 version: "1.0"
