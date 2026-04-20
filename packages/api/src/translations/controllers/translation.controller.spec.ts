@@ -98,6 +98,35 @@ describe("Tests the translations controller", () => {
     expect(fields.length).toEqual(1);
   });
 
+  it("Should not log errors when called concurrently", async () => {
+    await deleteTranslatedField({ lieu_id: 7 });
+
+    const logError = jest.fn();
+    const concurrentReq = { ...req, log: { error: logError } };
+
+    await Promise.all(
+      Array.from({ length: 5 }, () =>
+        generateElementsToTranslate(
+          concurrentReq,
+          {} as ExpressResponse,
+          jest.fn()
+        )
+      )
+    );
+
+    translatedFields = await searchTranslatedFields(
+      {
+        lieu_id: 7,
+        status: TranslatedFieldStatus.NEED_AUTO_TRANSLATE,
+        country: CountryCodes.FR,
+      },
+      req.user
+    );
+
+    expect(translatedFields.nbResults).toBe(3);
+    expect(logError).not.toHaveBeenCalled();
+  });
+
   it("Should delete translation fields when place becomes non-ONLINE", async () => {
     // Place is currently ONLINE with 3 translated fields from the previous test
     translatedFields = await searchTranslatedFields(

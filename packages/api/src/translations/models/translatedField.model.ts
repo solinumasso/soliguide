@@ -66,7 +66,7 @@ const TranslatedFieldSchema = new mongoose.Schema<ApiTranslatedField>(
 TranslatedFieldSchema.index({ createdAt: 1, updatedAt: 1 });
 TranslatedFieldSchema.index(
   { lieu_id: 1, elementName: 1, serviceObjectId: 1 },
-  { unique: true }
+  { unique: true, name: "unique_translated_field_per_element" }
 );
 
 TranslatedFieldSchema.virtual("place", {

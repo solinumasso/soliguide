@@ -25,7 +25,7 @@ import { logger } from "../src/general/logger";
 const message =
   "Deduplicate translatedFields on (lieu_id, elementName, serviceObjectId) and enforce unique index";
 
-const INDEX_NAME = "lieu_id_1_elementName_1_serviceObjectId_1";
+const UNIQUE_INDEX_NAME = "unique_translated_field_per_element";
 const BATCH_SIZE = 500;
 
 export const up = async (db: Db) => {
@@ -99,18 +99,18 @@ export const up = async (db: Db) => {
   // Create unique index now that duplicates are gone
   await collection.createIndex(
     { lieu_id: 1, elementName: 1, serviceObjectId: 1 },
-    { unique: true, name: INDEX_NAME }
+    { unique: true, name: UNIQUE_INDEX_NAME }
   );
 
-  logger.info(`[MIGRATION] Unique index "${INDEX_NAME}" created`);
+  logger.info(`[MIGRATION] Unique index "${UNIQUE_INDEX_NAME}" created`);
 };
 
 export const down = async (db: Db) => {
   logger.info(`[ROLLBACK] - ${message}`);
 
-  await db.collection("translatedFields").dropIndex(INDEX_NAME);
+  await db.collection("translatedFields").dropIndex(UNIQUE_INDEX_NAME);
 
   logger.info(
-    `[ROLLBACK] Unique index "${INDEX_NAME}" dropped — deleted duplicates cannot be restored`
+    `[ROLLBACK] Unique index "${UNIQUE_INDEX_NAME}" dropped — deleted duplicates cannot be restored`
   );
 };

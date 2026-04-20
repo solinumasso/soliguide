@@ -1,4 +1,3 @@
-import { TranslatedPlace } from "@soliguide/common";
 import { FilterQuery, QueryOptions } from "mongoose";
 import { ApiTranslatedPlace } from "../interfaces";
 import { TranslatedPlaceModel } from "../models/translatedPlace.model";
@@ -17,7 +16,7 @@ export const countTranslatedPlaces = async (
 export const findTranslatedPlaces = async (
   params: FilterQuery<ApiTranslatedPlace>,
   options: QueryOptions
-): Promise<TranslatedPlace[]> => {
+): Promise<ApiTranslatedPlace[]> => {
   return await TranslatedPlaceModel.find(params)
     .limit(options?.limit ?? 100)
     .skip(options?.skip ?? 0)
@@ -35,7 +34,7 @@ export const findTranslatedPlace = async (
 export const patchTranslatedPlace = async (
   lieu_id: number,
   data: Partial<ApiTranslatedPlace>
-): Promise<TranslatedPlace | null> => {
+): Promise<ApiTranslatedPlace | null> => {
   // Set the right value
   // Update the element in the database
   return await TranslatedPlaceModel.findOneAndUpdate(

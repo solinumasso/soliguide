@@ -36,6 +36,7 @@ import {
   findServicesForPlace,
   findTranslatedField,
   findTranslatedFields,
+  findTranslatedFieldLieuIds,
   updateManyTranslatedFields,
 } from "../services/translatedField.service";
 
@@ -198,14 +199,13 @@ export const getTranslatedPlacesForSearch = async (
     options
   );
 
-  const translatedPlacesByPlaceId: Record<string, ApiTranslatedPlace> =
-    translatedPlaces.reduce(
-      (acc: Record<string, ApiTranslatedPlace>, place: ApiTranslatedPlace) => {
-        acc[place.placeObjectId.toString()] = place;
-        return acc;
-      },
-      {}
-    );
+  const translatedPlacesByPlaceId = translatedPlaces.reduce(
+    (acc: Record<string, ApiTranslatedPlace>, place: ApiTranslatedPlace) => {
+      acc[place.placeObjectId.toString()] = place;
+      return acc;
+    },
+    {} as Record<string, ApiTranslatedPlace>
+  );
 
   return places.reduce((acc: ApiPlace[], place: ApiPlace) => {
     if (
@@ -331,11 +331,22 @@ const createTranslatedElement = async (
   }
 };
 
+const translationQueue = new Map<string, Promise<void>>();
+
+const enqueueTranslation = (
+  key: string,
+  fn: () => Promise<void>
+): Promise<void> => {
+  const prev = translationQueue.get(key) ?? Promise.resolve();
+  const next = prev.then(fn).finally(() => {
+    if (translationQueue.get(key) === next) translationQueue.delete(key);
+  });
+  translationQueue.set(key, next);
+  return next;
+};
+
 /**
- * @summary Save a field
- * @param  {Object} place
- * @param  {string} content
- * @param  {TranslatedFieldElement} elementName
+ * @summary Save a field — serialised per (lieu_id, elementName, serviceObjectId) to avoid duplicate-key races.
  */
 const generateTranslatedField = async (
   place: ApiPlace,
@@ -343,35 +354,45 @@ const generateTranslatedField = async (
   elementName: TranslatedFieldElement,
   fieldServiceId: null | string | mongoose.Types.ObjectId
 ): Promise<void> => {
-  let serviceObjectId: null | mongoose.Types.ObjectId = null;
-
-  serviceObjectId =
+  const serviceObjectId: null | mongoose.Types.ObjectId =
     typeof fieldServiceId === "string"
       ? new mongoose.Types.ObjectId(fieldServiceId)
       : fieldServiceId;
 
-  // Does this element exists in teh database?
-  const element = await findTranslatedField({
-    elementName,
-    lieu_id: place.lieu_id,
-    serviceObjectId,
-  });
+  const key = `${place.lieu_id}_${elementName}_${String(serviceObjectId)}`;
 
-  if (!element) {
-    await createTranslatedElement(place, content, elementName, serviceObjectId);
-  } else {
-    // If the text hasn't change, we do nothing
-    if (content === element.content) {
-      return;
-    }
-    // Remove the old one
-    await deleteTranslatedField({
-      _id: element._id,
+  await enqueueTranslation(key, async () => {
+    const element = await findTranslatedField({
+      elementName,
+      lieu_id: place.lieu_id,
+      serviceObjectId,
     });
 
-    // Create the new one
-    await createTranslatedElement(place, content, elementName, serviceObjectId);
-  }
+    if (!element) {
+      await createTranslatedElement(
+        place,
+        content,
+        elementName,
+        serviceObjectId
+      );
+    } else {
+      // If the text hasn't change, we do nothing
+      if (content === element.content) {
+        return;
+      }
+      // Remove the old one
+      await deleteTranslatedField({
+        _id: element._id,
+      });
+      // Create the new one
+      await createTranslatedElement(
+        place,
+        content,
+        elementName,
+        serviceObjectId
+      );
+    }
+  });
 };
 
 /**
@@ -411,15 +432,19 @@ export const patchTranslatedField = async (
     ? TranslatedFieldStatus.TRANSLATION_COMPLETE
     : TranslatedFieldStatus.NEED_HUMAN_TRANSLATE;
 
-  await updateManyTranslatedFields(
-    { content: translatedField.content },
-    {
-      [fieldPath]: humanTranslate,
-      status,
-    }
-  );
+  const contentFilter = {
+    content: translatedField.content,
+    sourceLanguage: translatedField.sourceLanguage,
+  };
 
-  await getPlaceAndRebuildTranslation(translatedField.lieu_id);
+  await updateManyTranslatedFields(contentFilter, {
+    [fieldPath]: humanTranslate,
+    status,
+  });
+
+  const affectedLieuIds = await findTranslatedFieldLieuIds(contentFilter);
+
+  await Promise.all(affectedLieuIds.map(getPlaceAndRebuildTranslation));
 };
 
 // Update elements to translate
