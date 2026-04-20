@@ -3,13 +3,29 @@
 | Category | Countries | Created At | Slug | History |
 | --- | --- | --- | --- | --- |
 | HEALTH | FR, ES, AD | 2023-11-20 | `health` | `sante` until: 2023-11-20<br>`health` from: 2023-11-20 |
-| ADDICTION | FR, ES, AD | 2023-11-20 | `addiction` | `addiction` from: 2023-11-20 |
-| STD_TESTING | FR, ES, AD | 2023-11-20 | `std_testing` | `depistage` until: 2023-11-20<br>`std_testing` from: 2023-11-20 |
+| HEALTH_ACCESS | FR, ES, AD | 2026-05-01 | `health_access` | `health_access` from: 2026-05-01 |
+| HEALTH_COVERAGE | FR, ES, AD | 2026-05-01 | `health_coverage` | `health_coverage` from: 2026-05-01 |
+| FIND_HEALTHCARE | FR, ES, AD | 2026-05-01 | `find_healthcare` | `find_healthcare` from: 2026-05-01 |
+| PHYSICAL_HEALTH | FR, ES, AD | 2026-05-01 | `physical_health` | `physical_health` from: 2026-05-01 |
+| HEALTH_ASSESSMENT | FR, ES, AD | 2026-05-01 | `health_assessment` | `health_assessment` from: 2026-05-01 |
+| OPTICAL_CARE | FR, ES, AD | 2026-05-01 | `optical_care` | `ophtalmologie` until: 2023-11-20<br>`ophthalmology` from: 2023-11-20 until: 2026-05-01<br>`optical_care` from: 2026-05-01 |
+| HEARING_CARE | FR, ES, AD | 2026-05-01 | `hearing_care` | `hearing_care` from: 2026-05-01 |
+| CHRONIC_DISEASES | FR, ES, AD | 2026-05-01 | `chronic_diseases` | `chronic_diseases` from: 2026-05-01 |
+| MEDICAL_ACCOMMODATION | FR, ES, AD | 2026-05-01 | `medical_accommodation` | `medical_accommodation` from: 2026-05-01 |
+| MENTAL_HEALTH | FR, ES, AD | 2026-05-01 | `mental_health` | `mental_health` from: 2026-05-01 |
+| PSYCHIATRY | FR, ES, AD | 2026-05-01 | `psychiatry` | `psychiatry` from: 2026-05-01 |
+| SUPPORT_GROUPS | FR, ES, AD | 2026-05-01 | `support_groups` | `support_groups` from: 2026-05-01 |
+| MENTAL_HEALTH_EDUCATION | FR, ES, AD | 2026-05-01 | `mental_health_education` | `mental_health_education` from: 2026-05-01 |
+| THERAPEUTIC_ACTIVITIES | FR, ES, AD | 2026-05-01 | `therapeutic_activities` | `therapeutic_activities` from: 2026-05-01 |
+| ADDICTIONS | FR, ES, AD | 2026-05-01 | `addictions` | `addiction` from: 2023-11-20 until: 2026-05-01<br>`addictions` from: 2026-05-01 |
+| ADDICTION_CARE | FR, ES, AD | 2026-05-01 | `addiction_care` | `addiction_care` from: 2026-05-01 |
+| ADDICTION_PREVENTION_AND_MATERIAL | FR, ES, AD | 2026-05-01 | `addiction_prevention_and_material` | `addiction_prevention_and_material` from: 2026-05-01 |
+| STD_TESTING | FR, ES, AD | 2023-11-20 | `std_testing` | `depistage` until: 2023-11-20<br>`mammographie` until: 2023-11-20<br>`mammography` from: 2023-11-20 until: 2026-05-01<br>`std_testing` from: 2023-11-20 |
 | PSYCHOLOGICAL_SUPPORT | FR, ES, AD | 2023-11-20 | `psychological_support` | `psychologie` until: 2023-11-20<br>`psychological_support` from: 2023-11-20 |
 | CHILD_CARE | FR, ES, AD | 2023-11-20 | `child_care` | `soins-enfants` until: 2023-11-20<br>`child_care` from: 2023-11-20 |
 | GENERAL_PRACTITIONER | FR, ES, AD | 2023-11-20 | `general_practitioner` | `generaliste` until: 2023-11-20<br>`general_practitioner` from: 2023-11-20 |
 | DENTAL_CARE | FR, ES, AD | 2023-11-20 | `dental_care` | `dentaire` until: 2023-11-20<br>`dental_care` from: 2023-11-20 |
-| PREGNANCY_CARE | FR, ES, AD | 2023-11-20 | `pregnancy_care` | `planification` until: 2023-11-20<br>`pregnancy_care` from: 2023-11-20 |
+| PREGNANCY_CARE | FR, ES, AD | 2023-11-20 | `pregnancy_care` | `planification` until: 2023-11-20<br>`echographie` until: 2023-11-20<br>`echography` from: 2023-11-20 until: 2026-05-01<br>`pregnancy_care` from: 2023-11-20 |
 | VACCINATION | FR, ES, AD | 2023-11-20 | `vaccination` | `vaccination` from: 2023-11-20 |
 | INFIRMARY | FR, ES, AD | 2023-11-20 | `infirmary` | `infirmerie` until: 2023-11-20<br>`infirmary` from: 2023-11-20 |
 | VET_CARE | FR, ES, AD | 2023-11-20 | `vet_care` | `veterinaire` until: 2023-11-20<br>`vet_care` from: 2023-11-20 |
@@ -17,13 +33,23 @@
 | ALLERGOLOGY | FR, ES, AD | 2023-11-20 | `allergology` | `allergologie` until: 2023-11-20<br>`allergology` from: 2023-11-20 |
 | CARDIOLOGY | FR, ES, AD | 2023-11-20 | `cardiology` | `cardiologie` until: 2023-11-20<br>`cardiology` from: 2023-11-20 |
 | DERMATOLOGY | FR, ES, AD | 2023-11-20 | `dermatology` | `dermatologie` until: 2023-11-20<br>`dermatology` from: 2023-11-20 |
-| ECHOGRAPHY | FR, ES, AD | 2023-11-20 | `echography` | `echographie` until: 2023-11-20<br>`echography` from: 2023-11-20 |
+| SEXUAL_HEALTH | FR, ES, AD | 2026-05-01 | `sexual_health` | `sexual_health` from: 2026-05-01 |
+| EMERGENCY_CONTRACEPTION | FR, ES, AD | 2026-05-01 | `emergency_contraception` | `emergency_contraception` from: 2026-05-01 |
+| ABORTION | FR, ES | 2026-05-01 | `abortion` | `abortion` from: 2026-05-01 |
+| CONTRACEPTION | FR, ES, AD | 2026-05-01 | `contraception` | `contraception` from: 2026-05-01 |
+| STI_PREVENTION_TESTING | FR, ES, AD | 2026-05-01 | `sti_prevention_testing` | `sti_prevention_testing` from: 2026-05-01 |
+| HIV_PREVENTION | FR, ES, AD | 2026-05-01 | `hiv_prevention` | `hiv_prevention` from: 2026-05-01 |
+| SEXUAL_HEALTH_VACCINATION | FR, ES, AD | 2026-05-01 | `sexual_health_vaccination` | `sexual_health_vaccination` from: 2026-05-01 |
+| SEXUAL_HEALTH_EDUCATION | FR, ES, AD | 2026-05-01 | `sexual_health_education` | `sexual_health_education` from: 2026-05-01 |
+| SEXUAL_VIOLENCE_SUPPORT | FR, ES, AD | 2026-05-01 | `sexual_violence_support` | `sexual_violence_support` from: 2026-05-01 |
+| AFFECTIVE_LIFE | FR, ES, AD | 2026-05-01 | `affective_life` | `affective_life` from: 2026-05-01 |
+| PARENTHOOD | FR, ES, AD | 2026-05-01 | `parenthood` | `parenthood` from: 2026-05-01 |
+| NEUROLOGY | ES, AD | 2026-05-01 | `neurology` | `neurology` from: 2026-05-01 |
+| VASCULAR_SURGERY | ES, AD | 2026-05-01 | `vascular_surgery` | `vascular_surgery` from: 2026-05-01 |
 | ENDOCRINOLOGY | FR, ES, AD | 2023-11-20 | `endocrinology` | `endocrinologie` until: 2023-11-20<br>`endocrinology` from: 2023-11-20 |
 | GASTROENTEROLOGY | FR, ES, AD | 2023-11-20 | `gastroenterology` | `gastro-enterologie` until: 2023-11-20<br>`gastroenterology` from: 2023-11-20 |
 | GYNECOLOGY | FR, ES, AD | 2023-11-20 | `gynecology` | `gynecologie` until: 2023-11-20<br>`gynecology` from: 2023-11-20 |
 | KINESITHERAPY | FR, ES, AD | 2023-11-20 | `kinesitherapy` | `kinesitherapie` until: 2023-11-20<br>`kinesitherapy` from: 2023-11-20 |
-| MAMMOGRAPHY | FR, ES, AD | 2023-11-20 | `mammography` | `mammographie` until: 2023-11-20<br>`mammography` from: 2023-11-20 |
-| OPHTHALMOLOGY | FR, ES, AD | 2023-11-20 | `ophthalmology` | `ophtalmologie` until: 2023-11-20<br>`ophthalmology` from: 2023-11-20 |
 | OTORHINOLARYNGOLOGY | FR, ES, AD | 2023-11-20 | `otorhinolaryngology` | `oto-rhino-laryngologie` until: 2023-11-20<br>`otorhinolaryngology` from: 2023-11-20 |
 | NUTRITION | FR, ES, AD | 2023-11-20 | `nutrition` | `nutrition` from: 2023-11-20 |
 | PEDICURE | FR, ES, AD | 2023-11-20 | `pedicure` | `pedicure` from: 2023-11-20 |
@@ -35,7 +61,6 @@
 | SPEECH_THERAPY | FR, ES, AD | 2023-11-20 | `speech_therapy` | `orthophonie` until: 2023-11-20<br>`speech_therapy` from: 2023-11-20 |
 | STOMATOLOGY | FR, ES, AD | 2023-11-20 | `stomatology` | `stomatologie` until: 2023-11-20<br>`stomatology` from: 2023-11-20 |
 | OSTEOPATHY | FR, ES, AD | 2023-11-20 | `osteopathy` | `osteo` until: 2023-11-20<br>`osteopathy` from: 2023-11-20 |
-| ACUPUNCTURE | FR, ES, AD | 2023-11-20 | `acupuncture` | `acupuncture` from: 2023-11-20 |
 | MOBILITY | FR, ES, AD | 2023-11-20 | `mobility` | `transport-mobilite` until: 2023-11-20<br>`mobility` from: 2023-11-20 |
 | TRANSPORTATION_MOBILITY | FR, ES, AD | 2025-12-31 | `transportation_mobility` | `covoiturage` until: 2023-11-20<br>`carpooling` from: 2023-11-20 until: 2025-12-31<br>`chauffeur` until: 2023-11-20<br>`chauffeur_driven_transport` from: 2023-11-20 until: 2025-12-31<br>`transportation_mobility` from: 2025-12-31 |
 | PERSONAL_VEHICLE_ACCESS | FR | 2025-12-31 | `personal_vehicle_access` | `vehicule` until: 2023-11-20<br>`provision_of_vehicles` from: 2023-11-20 until: 2025-12-31<br>`personal_vehicle_access` from: 2025-12-31 |

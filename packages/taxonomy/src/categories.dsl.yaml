@@ -11,13 +11,149 @@ categories:
       - slug: health
         from: "2023-11-20"
 
-  ADDICTION:
-    slug: addiction
+  HEALTH_ACCESS:
+    slug: health_access
     countries: [FR, ES, AD]
-    createdAt: "2023-11-20"
+    createdAt: "2026-05-01"
+    history:
+      - slug: health_access
+        from: "2026-05-01"
+
+  HEALTH_COVERAGE:
+    slug: health_coverage
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: health_coverage
+        from: "2026-05-01"
+
+  FIND_HEALTHCARE:
+    slug: find_healthcare
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: find_healthcare
+        from: "2026-05-01"
+
+  PHYSICAL_HEALTH:
+    slug: physical_health
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: physical_health
+        from: "2026-05-01"
+
+  HEALTH_ASSESSMENT:
+    slug: health_assessment
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: health_assessment
+        from: "2026-05-01"
+
+  OPTICAL_CARE:
+    slug: optical_care
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: ophtalmologie
+        until: "2023-11-20"
+      - slug: ophthalmology
+        from: "2023-11-20"
+        until: "2026-05-01"
+      - slug: optical_care
+        from: "2026-05-01"
+
+  HEARING_CARE:
+    slug: hearing_care
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: hearing_care
+        from: "2026-05-01"
+
+  CHRONIC_DISEASES:
+    slug: chronic_diseases
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: chronic_diseases
+        from: "2026-05-01"
+
+  MEDICAL_ACCOMMODATION:
+    slug: medical_accommodation
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: medical_accommodation
+        from: "2026-05-01"
+
+  MENTAL_HEALTH:
+    slug: mental_health
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: mental_health
+        from: "2026-05-01"
+
+  PSYCHIATRY:
+    slug: psychiatry
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: psychiatry
+        from: "2026-05-01"
+
+  SUPPORT_GROUPS:
+    slug: support_groups
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: support_groups
+        from: "2026-05-01"
+
+  MENTAL_HEALTH_EDUCATION:
+    slug: mental_health_education
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: mental_health_education
+        from: "2026-05-01"
+
+  THERAPEUTIC_ACTIVITIES:
+    slug: therapeutic_activities
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: therapeutic_activities
+        from: "2026-05-01"
+
+  ADDICTIONS:
+    slug: addictions
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
     history:
       - slug: addiction
         from: "2023-11-20"
+        until: "2026-05-01"
+      - slug: addictions
+        from: "2026-05-01"
+
+  ADDICTION_CARE:
+    slug: addiction_care
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: addiction_care
+        from: "2026-05-01"
+
+  ADDICTION_PREVENTION_AND_MATERIAL:
+    slug: addiction_prevention_and_material
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: addiction_prevention_and_material
+        from: "2026-05-01"
 
   STD_TESTING:
     slug: std_testing
@@ -26,6 +162,11 @@ categories:
     history:
       - slug: depistage
         until: "2023-11-20"
+      - slug: mammographie
+        until: "2023-11-20"
+      - slug: mammography
+        from: "2023-11-20"
+        until: "2026-05-01"
       - slug: std_testing
         from: "2023-11-20"
 
@@ -76,6 +217,11 @@ categories:
     history:
       - slug: planification
         until: "2023-11-20"
+      - slug: echographie
+        until: "2023-11-20"
+      - slug: echography
+        from: "2023-11-20"
+        until: "2026-05-01"
       - slug: pregnancy_care
         from: "2023-11-20"
 
@@ -147,15 +293,109 @@ categories:
       - slug: dermatology
         from: "2023-11-20"
 
-  ECHOGRAPHY:
-    slug: echography
+  SEXUAL_HEALTH:
+    slug: sexual_health
     countries: [FR, ES, AD]
-    createdAt: "2023-11-20"
+    createdAt: "2026-05-01"
     history:
-      - slug: echographie
-        until: "2023-11-20"
-      - slug: echography
-        from: "2023-11-20"
+      - slug: sexual_health
+        from: "2026-05-01"
+
+  EMERGENCY_CONTRACEPTION:
+    slug: emergency_contraception
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: emergency_contraception
+        from: "2026-05-01"
+
+  ABORTION:
+    slug: abortion
+    countries: [FR, ES]
+    createdAt: "2026-05-01"
+    history:
+      - slug: abortion
+        from: "2026-05-01"
+
+  CONTRACEPTION:
+    slug: contraception
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: contraception
+        from: "2026-05-01"
+
+  STI_PREVENTION_TESTING:
+    slug: sti_prevention_testing
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: sti_prevention_testing
+        from: "2026-05-01"
+
+  HIV_PREVENTION:
+    slug: hiv_prevention
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: hiv_prevention
+        from: "2026-05-01"
+
+  SEXUAL_HEALTH_VACCINATION:
+    slug: sexual_health_vaccination
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: sexual_health_vaccination
+        from: "2026-05-01"
+
+  SEXUAL_HEALTH_EDUCATION:
+    slug: sexual_health_education
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: sexual_health_education
+        from: "2026-05-01"
+
+  SEXUAL_VIOLENCE_SUPPORT:
+    slug: sexual_violence_support
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: sexual_violence_support
+        from: "2026-05-01"
+
+  AFFECTIVE_LIFE:
+    slug: affective_life
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: affective_life
+        from: "2026-05-01"
+
+  PARENTHOOD:
+    slug: parenthood
+    countries: [FR, ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: parenthood
+        from: "2026-05-01"
+
+  NEUROLOGY:
+    slug: neurology
+    countries: [ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: neurology
+        from: "2026-05-01"
+
+  VASCULAR_SURGERY:
+    slug: vascular_surgery
+    countries: [ES, AD]
+    createdAt: "2026-05-01"
+    history:
+      - slug: vascular_surgery
+        from: "2026-05-01"
 
   ENDOCRINOLOGY:
     slug: endocrinology
@@ -197,25 +437,6 @@ categories:
       - slug: kinesitherapy
         from: "2023-11-20"
 
-  MAMMOGRAPHY:
-    slug: mammography
-    countries: [FR, ES, AD]
-    createdAt: "2023-11-20"
-    history:
-      - slug: mammographie
-        until: "2023-11-20"
-      - slug: mammography
-        from: "2023-11-20"
-
-  OPHTHALMOLOGY:
-    slug: ophthalmology
-    countries: [FR, ES, AD]
-    createdAt: "2023-11-20"
-    history:
-      - slug: ophtalmologie
-        until: "2023-11-20"
-      - slug: ophthalmology
-        from: "2023-11-20"
 
   OTORHINOLARYNGOLOGY:
     slug: otorhinolaryngology
@@ -323,13 +544,6 @@ categories:
       - slug: osteopathy
         from: "2023-11-20"
 
-  ACUPUNCTURE:
-    slug: acupuncture
-    countries: [FR, ES, AD]
-    createdAt: "2023-11-20"
-    history:
-      - slug: acupuncture
-        from: "2023-11-20"
 
   MOBILITY:
     slug: mobility
