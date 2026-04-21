@@ -4514,17 +4514,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fastify/static@npm:^8.3.0":
-  version: 8.3.0
-  resolution: "@fastify/static@npm:8.3.0"
+"@fastify/static@npm:^9.1.1":
+  version: 9.1.3
+  resolution: "@fastify/static@npm:9.1.3"
   dependencies:
     "@fastify/accept-negotiator": "npm:^2.0.0"
     "@fastify/send": "npm:^4.0.0"
-    content-disposition: "npm:^0.5.4"
+    content-disposition: "npm:^1.0.1"
     fastify-plugin: "npm:^5.0.0"
     fastq: "npm:^1.17.1"
-    glob: "npm:^11.0.0"
-  checksum: 10/6f1401f9f72c8efd49acc602e7bcd67b72a3526e3ca0612b870d89f07e369beb9eeb6822a97342d2856414d7438887c4f7f3b299f0b3820a6daa669dc413fda7
+    glob: "npm:^13.0.0"
+  checksum: 10/e8a6d77f081522466b5086b738ac925ffb79518b7b92a7d01a8235bd3190fb406669bbc6a1c8a7ef6f3219952f4a88110f48b9f6c54a6b7b67b2da70b7116bcf
   languageName: node
   linkType: hard
 
@@ -10249,7 +10249,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soliguide/location-api@workspace:packages/location-api"
   dependencies:
-    "@fastify/static": "npm:^8.3.0"
+    "@fastify/static": "npm:^9.1.1"
     "@fastify/swagger": "npm:^9.7.0"
     "@nestjs/axios": "npm:^4.0.1"
     "@nestjs/cache-manager": "npm:^3.1.0"
@@ -10323,7 +10323,7 @@ __metadata:
   resolution: "@soliguide/soligare@workspace:packages/soligare"
   dependencies:
     "@darraghor/eslint-plugin-nestjs-typed": "npm:^5.2.1"
-    "@fastify/static": "npm:^8.3.0"
+    "@fastify/static": "npm:^9.1.1"
     "@fastify/swagger": "npm:^9.7.0"
     "@nestjs/axios": "npm:^4.0.1"
     "@nestjs/cli": "npm:^11.0.16"
@@ -15006,12 +15006,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"content-disposition@npm:0.5.4, content-disposition@npm:^0.5.4":
+"content-disposition@npm:0.5.4":
   version: 0.5.4
   resolution: "content-disposition@npm:0.5.4"
   dependencies:
     safe-buffer: "npm:5.2.1"
   checksum: 10/b7f4ce176e324f19324be69b05bf6f6e411160ac94bc523b782248129eb1ef3be006f6cff431aaea5e337fe5d176ce8830b8c2a1b721626ead8933f0cbe78720
+  languageName: node
+  linkType: hard
+
+"content-disposition@npm:^1.0.1":
+  version: 1.1.0
+  resolution: "content-disposition@npm:1.1.0"
+  checksum: 10/c4f65e3c001a4a8eb87d0d24c0f112abb139836fb13b8ea67276715e7dce09570ef666ba7848ee8b660d467e6588d030c8ed7e8d0128db6ca78a0800dcd8c7a8
   languageName: node
   linkType: hard
 
@@ -19047,7 +19054,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^13.0.3, glob@npm:^13.0.6":
+"glob@npm:^13.0.0, glob@npm:^13.0.3, glob@npm:^13.0.6":
   version: 13.0.6
   resolution: "glob@npm:13.0.6"
   dependencies:
