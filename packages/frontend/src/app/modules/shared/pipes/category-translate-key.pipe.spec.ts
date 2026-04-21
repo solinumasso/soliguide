@@ -31,7 +31,7 @@ describe("CategoryTranslateKeyPipe", () => {
     });
 
     if (missingTranslations.length > 0) {
-      fail(
+      throw new Error(
         `Missing translations for the following category keys:\n${missingTranslations.join(
           "\n"
         )}`
@@ -51,7 +51,7 @@ describe("CategoryTranslateKeyPipe", () => {
     });
 
     it("should transform 'addiction' to 'CAT_ADDICTION'", () => {
-      expect(pipe.transform("addiction")).toBe("CAT_ADDICTION");
+      expect(pipe.transform("addictions")).toBe("CAT_ADDICTIONS");
     });
 
     it("should transform 'std_testing' to 'CAT_STD_TESTING'", () => {
@@ -71,7 +71,7 @@ describe("CategoryTranslateKeyPipe", () => {
     });
 
     it("should transform Categories.ADDICTION to 'CAT_ADDICTION'", () => {
-      expect(pipe.transform(Categories.ADDICTION)).toBe("CAT_ADDICTION");
+      expect(pipe.transform(Categories.ADDICTIONS)).toBe("CAT_ADDICTIONS");
     });
 
     it("should transform Categories.STD_TESTING to 'CAT_STD_TESTING'", () => {
@@ -134,8 +134,10 @@ describe("CategoryTranslateKeyPipe", () => {
       expect(pipe.transform(Categories.DERMATOLOGY)).toBe("CAT_DERMATOLOGY");
     });
 
-    it("should transform Categories.ECHOGRAPHY to 'CAT_ECHOGRAPHY'", () => {
-      expect(pipe.transform(Categories.ECHOGRAPHY)).toBe("CAT_ECHOGRAPHY");
+    it("should transform Categories.PREGNANCY_CARE to 'CAT_PREGNANCY_CARE'", () => {
+      expect(pipe.transform(Categories.PREGNANCY_CARE)).toBe(
+        "CAT_PREGNANCY_CARE"
+      );
     });
 
     it("should transform Categories.ENDOCRINOLOGY to 'CAT_ENDOCRINOLOGY'", () => {
