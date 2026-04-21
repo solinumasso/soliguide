@@ -3,7 +3,6 @@ import {
   SearchSuggestion,
   SUPPORTED_LANGUAGES_BY_COUNTRY,
   SoliguideCountries,
-  SupportedLanguagesCode,
 } from "@soliguide/common";
 import Anthropic from "@anthropic-ai/sdk";
 import { getLangsForCountry } from "../utils/getLangsForCountry";

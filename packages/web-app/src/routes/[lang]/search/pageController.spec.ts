@@ -170,13 +170,9 @@ describe('Search page', () => {
   // skipcq: JS-0119
   let pageState: SearchPageController;
   const { fetch, feedWith, setError } = fakeFetch();
-  const {
-    fetch: categoryFetch,
-    feedWith: feedWithCategoriesData,
-    setError: setCategoryError
-  } = fakeFetch();
+  const { feedWith: feedWithCategoriesData, setError: setCategoryError } = fakeFetch();
   const locationService = getLocationService(fetch);
-  const categoryService = getCategoryService(Themes.SOLIGUIDE_FR, categoryFetch);
+  const categoryService = getCategoryService(Themes.SOLIGUIDE_FR);
 
   beforeEach(() => {
     pageState = getSearchPageController(locationService, categoryService);
