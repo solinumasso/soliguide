@@ -47,10 +47,7 @@ export const up = async (db: Db) => {
                 $cond: [
                   { $eq: ["$$service.category", "mammography"] },
                   {
-                    $mergeObjects: [
-                      "$$service",
-                      { category: "std_testing" },
-                    ],
+                    $mergeObjects: ["$$service", { category: "std_testing" }],
                   },
                   "$$service",
                 ],

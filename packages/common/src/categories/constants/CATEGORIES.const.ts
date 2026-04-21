@@ -125,7 +125,7 @@ export const CATEGORIES_GRAPH: CategoriesGraph = {
   [Categories.PHYSICAL_HEALTH]: [
     { id: Categories.GENERAL_PRACTITIONER, rank: 100 },
     { id: Categories.HEALTH_ASSESSMENT, rank: 200 },
-    { id: Categories.CHILD_CARE, rank: 300 },        // multi-parental: also under PARENTHOOD
+    { id: Categories.CHILD_CARE, rank: 300 }, // multi-parental: also under PARENTHOOD
     { id: Categories.DENTAL_CARE, rank: 400 },
     { id: Categories.OPTICAL_CARE, rank: 500 },
     { id: Categories.HEARING_CARE, rank: 600 },
@@ -139,7 +139,7 @@ export const CATEGORIES_GRAPH: CategoriesGraph = {
 
   [Categories.MENTAL_HEALTH]: [
     { id: Categories.PSYCHOLOGICAL_SUPPORT, rank: 100 }, // multi-parental: also under HEALTH_SPECIALISTS
-    { id: Categories.PSYCHIATRY, rank: 200 },            // multi-parental: also under HEALTH_SPECIALISTS
+    { id: Categories.PSYCHIATRY, rank: 200 }, // multi-parental: also under HEALTH_SPECIALISTS
     { id: Categories.SUPPORT_GROUPS, rank: 300 },
     { id: Categories.MEDICAL_ACCOMMODATION, rank: 400 }, // multi-parental: also under PHYSICAL_HEALTH
     { id: Categories.MENTAL_HEALTH_EDUCATION, rank: 500 },
@@ -164,9 +164,9 @@ export const CATEGORIES_GRAPH: CategoriesGraph = {
   ],
 
   [Categories.PARENTHOOD]: [
-    { id: Categories.CHILD_CARE, rank: 100 },          // multi-parental: also under PHYSICAL_HEALTH
+    { id: Categories.CHILD_CARE, rank: 100 }, // multi-parental: also under PHYSICAL_HEALTH
     { id: Categories.PREGNANCY_CARE, rank: 200 },
-    { id: Categories.PARENT_ASSISTANCE, rank: 300 },   // multi-parental: also under COUNSELING
+    { id: Categories.PARENT_ASSISTANCE, rank: 300 }, // multi-parental: also under COUNSELING
   ],
 
   [Categories.HEALTH_SPECIALISTS]: [
@@ -180,7 +180,7 @@ export const CATEGORIES_GRAPH: CategoriesGraph = {
     { id: Categories.SPEECH_THERAPY, rank: 800 },
     { id: Categories.PEDICURE, rank: 900 },
     { id: Categories.PNEUMOLOGY, rank: 1000 },
-    { id: Categories.PSYCHIATRY, rank: 1100 },            // multi-parental: also under MENTAL_HEALTH
+    { id: Categories.PSYCHIATRY, rank: 1100 }, // multi-parental: also under MENTAL_HEALTH
     { id: Categories.PSYCHOLOGICAL_SUPPORT, rank: 1200 }, // multi-parental: also under MENTAL_HEALTH
     { id: Categories.RADIOLOGY, rank: 1300 },
     { id: Categories.RHEUMATOLOGY, rank: 1400 },
@@ -224,12 +224,8 @@ export const CATEGORIES_GRAPH_SOLIGUIDE_FR: CategoriesGraph = {
     { id: Categories.VEHICLE_MAINTENANCE, rank: 300 },
     { id: Categories.DRIVING_LICENSE, rank: 500 },
   ],
-  [Categories.TRAINING_AND_JOBS]: [
-    { id: Categories.FRENCH_COURSE, rank: 150 },
-  ],
-  [Categories.SEXUAL_HEALTH]: [
-    { id: Categories.ABORTION, rank: 150 },
-  ],
+  [Categories.TRAINING_AND_JOBS]: [{ id: Categories.FRENCH_COURSE, rank: 150 }],
+  [Categories.SEXUAL_HEALTH]: [{ id: Categories.ABORTION, rank: 150 }],
   [Categories.HEALTH_SPECIALISTS]: [
     { id: Categories.OSTEOPATHY, rank: 850 },
     { id: Categories.PHLEBOLOGY, rank: 950 },
@@ -244,9 +240,7 @@ export const CATEGORIES_GRAPH_SOLIGUIA_ES: CategoriesGraph = {
     { id: Categories.SPANISH_COURSE, rank: 130 },
     { id: Categories.CATALAN_COURSE, rank: 170 },
   ],
-  [Categories.SEXUAL_HEALTH]: [
-    { id: Categories.ABORTION, rank: 150 },
-  ],
+  [Categories.SEXUAL_HEALTH]: [{ id: Categories.ABORTION, rank: 150 }],
   [Categories.HEALTH_SPECIALISTS]: [
     { id: Categories.NEUROLOGY, rank: 1800 },
     { id: Categories.VASCULAR_SURGERY, rank: 1900 },
@@ -261,9 +255,7 @@ export const CATEGORIES_GRAPH_SOLIGUIA_AD: CategoriesGraph = {
     { id: Categories.SPANISH_COURSE, rank: 130 },
     { id: Categories.CATALAN_COURSE, rank: 170 },
   ],
-  [Categories.COUNSELING]: [
-    { id: Categories.LEGAL_PROTECTION, rank: 820 },
-  ],
+  [Categories.COUNSELING]: [{ id: Categories.LEGAL_PROTECTION, rank: 820 }],
   [Categories.HEALTH_SPECIALISTS]: [
     { id: Categories.NEUROLOGY, rank: 1800 },
     { id: Categories.VASCULAR_SURGERY, rank: 1900 },

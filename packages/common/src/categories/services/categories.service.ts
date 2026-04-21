@@ -166,9 +166,7 @@ export class CategoriesService {
    * Multi-parental categories may have multiple root ancestors (deduplicated).
    */
   private computeRootParentsIndex(): Map<Categories, Categories[]> {
-    const rootSet = new Set<Categories>(
-      ROOT_CATEGORIES.map((rc) => rc.id)
-    );
+    const rootSet = new Set<Categories>(ROOT_CATEGORIES.map((rc) => rc.id));
     const index = new Map<Categories, Categories[]>();
 
     const findRoots = (category: Categories): Categories[] => {
@@ -345,9 +343,7 @@ export class CategoriesService {
     const childDepth = depth + 1;
 
     return children.map((child) => {
-      const catNode = this.categoriesByTheme.find(
-        (cat) => child.id === cat.id
-      );
+      const catNode = this.categoriesByTheme.find((cat) => child.id === cat.id);
       let nodeOrderChildren = catNode?.children ?? [];
       if (nodeOrderChildren.length) {
         nodeOrderChildren = sortByRank(nodeOrderChildren);
@@ -395,9 +391,8 @@ export class CategoriesService {
    * visible groups instead.
    */
   private computeNodesWithLeafChildren(): FlatCategoriesTreeNode[] {
-    const nodesWithChildren: FlatCategoriesTreeNode[] = this
-      .getCategories()
-      .filter((node) => node.children.length);
+    const nodesWithChildren: FlatCategoriesTreeNode[] =
+      this.getCategories().filter((node) => node.children.length);
 
     const parentIds = new Set<Categories>(
       nodesWithChildren.map((node) => node.id)
@@ -406,9 +401,7 @@ export class CategoriesService {
     return nodesWithChildren
       .map((node) => ({
         ...node,
-        children: node.children.filter(
-          (child) => !parentIds.has(child.id)
-        ),
+        children: node.children.filter((child) => !parentIds.has(child.id)),
       }))
       .filter((node) => node.children.length > 0);
   }

@@ -65,23 +65,20 @@ describe("CategoriesService", () => {
     });
 
     it("should not contain nodes with empty children", () => {
-      const nodes =
-        categoriesService.geCategoriesNodesWithOneDepthChildren();
+      const nodes = categoriesService.geCategoriesNodesWithOneDepthChildren();
       for (const node of nodes) {
         expect(node.children.length).toBeGreaterThan(0);
       }
     });
 
     it("should not include HEALTH since all its children have sub-children", () => {
-      const nodes =
-        categoriesService.geCategoriesNodesWithOneDepthChildren();
+      const nodes = categoriesService.geCategoriesNodesWithOneDepthChildren();
       const nodeIds = nodes.map((n) => n.id);
       expect(nodeIds).not.toContain(Categories.HEALTH);
     });
 
     it("should include intermediate health categories as separate groups", () => {
-      const nodes =
-        categoriesService.geCategoriesNodesWithOneDepthChildren();
+      const nodes = categoriesService.geCategoriesNodesWithOneDepthChildren();
       const nodeIds = nodes.map((n) => n.id);
       expect(nodeIds).toContain(Categories.PHYSICAL_HEALTH);
       expect(nodeIds).toContain(Categories.MENTAL_HEALTH);
@@ -92,12 +89,9 @@ describe("CategoriesService", () => {
     });
 
     it("should show multi-parental categories under each parent group", () => {
-      const nodes =
-        categoriesService.geCategoriesNodesWithOneDepthChildren();
+      const nodes = categoriesService.geCategoriesNodesWithOneDepthChildren();
 
-      const mentalHealth = nodes.find(
-        (n) => n.id === Categories.MENTAL_HEALTH
-      );
+      const mentalHealth = nodes.find((n) => n.id === Categories.MENTAL_HEALTH);
       const healthSpecialists = nodes.find(
         (n) => n.id === Categories.HEALTH_SPECIALISTS
       );
