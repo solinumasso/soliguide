@@ -29,9 +29,9 @@ const message = "Migrate 'echography' category to 'pregnancy_care'";
 export const up = async (db: Db) => {
   logger.info(`[MIGRATION] - ${message}`);
 
-  const result = await db.collection("lieux").updateMany(
-    { services_all: { $elemMatch: { category: "echography" } } },
-    [
+  const result = await db
+    .collection("lieux")
+    .updateMany({ services_all: { $elemMatch: { category: "echography" } } }, [
       {
         $set: {
           services_all: {
@@ -54,8 +54,7 @@ export const up = async (db: Db) => {
           },
         },
       },
-    ]
-  );
+    ]);
 
   logger.info(
     `[MIGRATION] - echography -> pregnancy_care: ${result.matchedCount} matched, ${result.modifiedCount} modified`
@@ -65,30 +64,32 @@ export const up = async (db: Db) => {
 export const down = async (db: Db) => {
   logger.info(`[ROLLBACK] - ${message}`);
 
-  const result = await db.collection("lieux").updateMany(
-    { services_all: { $elemMatch: { category: Categories.PREGNANCY_CARE } } },
-    [
-      {
-        $set: {
-          services_all: {
-            $map: {
-              input: "$services_all",
-              as: "service",
-              in: {
-                $cond: [
-                  { $eq: ["$$service.category", Categories.PREGNANCY_CARE] },
-                  {
-                    $mergeObjects: ["$$service", { category: "echography" }],
-                  },
-                  "$$service",
-                ],
+  const result = await db
+    .collection("lieux")
+    .updateMany(
+      { services_all: { $elemMatch: { category: Categories.PREGNANCY_CARE } } },
+      [
+        {
+          $set: {
+            services_all: {
+              $map: {
+                input: "$services_all",
+                as: "service",
+                in: {
+                  $cond: [
+                    { $eq: ["$$service.category", Categories.PREGNANCY_CARE] },
+                    {
+                      $mergeObjects: ["$$service", { category: "echography" }],
+                    },
+                    "$$service",
+                  ],
+                },
               },
             },
           },
         },
-      },
-    ]
-  );
+      ]
+    );
 
   logger.info(
     `[ROLLBACK] - pregnancy_care -> echography: ${result.matchedCount} matched, ${result.modifiedCount} modified`

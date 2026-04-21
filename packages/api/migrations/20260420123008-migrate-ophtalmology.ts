@@ -89,10 +89,7 @@ export const down = async (db: Db) => {
                 $cond: [
                   { $eq: ["$$service.category", Categories.OPTICAL_CARE] },
                   {
-                    $mergeObjects: [
-                      "$$service",
-                      { category: "ophthalmology" },
-                    ],
+                    $mergeObjects: ["$$service", { category: "ophthalmology" }],
                   },
                   "$$service",
                 ],

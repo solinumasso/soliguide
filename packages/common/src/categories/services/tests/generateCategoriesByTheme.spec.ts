@@ -4,12 +4,15 @@ import { FlatCategoriesTreeNode } from "../../interfaces";
 import { generateCategoriesByTheme } from "../generateCategoriesByTheme";
 
 describe("Country-specific categories", () => {
-  const spanishResults: FlatCategoriesTreeNode[] =
-    generateCategoriesByTheme(Themes.SOLIGUIA_ES);
-  const andorraResults: FlatCategoriesTreeNode[] =
-    generateCategoriesByTheme(Themes.SOLIGUIA_AD);
-  const frenchResults: FlatCategoriesTreeNode[] =
-    generateCategoriesByTheme(Themes.SOLIGUIDE_FR);
+  const spanishResults: FlatCategoriesTreeNode[] = generateCategoriesByTheme(
+    Themes.SOLIGUIA_ES
+  );
+  const andorraResults: FlatCategoriesTreeNode[] = generateCategoriesByTheme(
+    Themes.SOLIGUIA_AD
+  );
+  const frenchResults: FlatCategoriesTreeNode[] = generateCategoriesByTheme(
+    Themes.SOLIGUIDE_FR
+  );
 
   it("should include Spanish-specific categories in Spanish theme", () => {
     const spanishCategories = spanishResults.filter(
