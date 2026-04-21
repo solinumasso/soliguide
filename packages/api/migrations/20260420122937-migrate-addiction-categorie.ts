@@ -37,7 +37,7 @@ export const up = async (db: Db) => {
           category: "addiction",
           description: {
             $regex:
-              "Addictologie|sevrage|addictologue|consultation addictologie",
+              "\\bAddictologie\\b|\\bsevrage\\b|\\baddictologue\\b|\\bconsultation addictologie\\b",
             $options: "i",
           },
         },
@@ -58,7 +58,7 @@ export const up = async (db: Db) => {
                       {
                         $regexMatch: {
                           input: "$$service.description",
-                          regex: "Addictologie|sevrage|addictologue|consultation addictologie",
+                          regex: "\\bAddictologie\\b|\\bsevrage\\b|\\baddictologue\\b|\\bconsultation addictologie\\b",
                           options: "i",
                         },
                       },
@@ -87,12 +87,12 @@ export const up = async (db: Db) => {
   const resultGroups = await db.collection("lieux").updateMany(
     {
       $or: [
-        { name: { $regex: "Alcooliques anonymes", $options: "i" } },
+        { name: { $regex: "\\bAlcooliques anonymes\\b", $options: "i" } },
         {
           services_all: {
             $elemMatch: {
               category: "addiction",
-              description: { $regex: "Alcooliques anonymes", $options: "i" },
+              description: { $regex: "\\bAlcooliques anonymes\\b", $options: "i" },
             },
           },
         },
@@ -115,7 +115,7 @@ export const up = async (db: Db) => {
                           {
                             $regexMatch: {
                               input: "$name",
-                              regex: "Alcooliques anonymes",
+                              regex: "\\bAlcooliques anonymes\\b",
                               options: "i",
                             },
                           },
@@ -125,7 +125,7 @@ export const up = async (db: Db) => {
                                 $not: {
                                   $regexMatch: {
                                     input: "$name",
-                                    regex: "Alcooliques anonymes",
+                                    regex: "\\bAlcooliques anonymes\\b",
                                     options: "i",
                                   },
                                 },
@@ -133,7 +133,7 @@ export const up = async (db: Db) => {
                               {
                                 $regexMatch: {
                                   input: "$$service.description",
-                                  regex: "Alcooliques anonymes",
+                                  regex: "\\bAlcooliques anonymes\\b",
                                   options: "i",
                                 },
                               },
