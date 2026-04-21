@@ -4,7 +4,7 @@ import type {
   SupportedLanguagesCode
 } from '@soliguide/common';
 
-const dataModules = import.meta.glob<FormattedSuggestion[]>(
+const dataModules = import.meta.glob<{ default: FormattedSuggestion[] }>(
   '$lib/data/search-suggestions/*/*.json',
   { eager: false }
 );
