@@ -134,10 +134,6 @@ export class SearchBarService implements OnDestroy {
     }
   }
 
-  private getFuseOptions() {
-    return FUSE_SEARCH_SUGGESTIONS_OPTIONS;
-  }
-
   private async loadSuggestions(
     country: string,
     lang: SupportedLanguagesCode
@@ -204,7 +200,7 @@ export class SearchBarService implements OnDestroy {
     }
 
     this.allSuggestions = data;
-    this.fuse = new Fuse(data, this.getFuseOptions());
+    this.fuse = new Fuse(data, FUSE_SEARCH_SUGGESTIONS_OPTIONS);
     this.isInitialized = true;
     this.loadedLanguage = this.currentLanguage;
     this.initializationSubject.next(true);
