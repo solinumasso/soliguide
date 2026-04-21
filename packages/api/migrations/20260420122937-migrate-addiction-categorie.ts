@@ -58,7 +58,8 @@ export const up = async (db: Db) => {
                       {
                         $regexMatch: {
                           input: "$$service.description",
-                          regex: "\\bAddictologie\\b|\\bsevrage\\b|\\baddictologue\\b|\\bconsultation addictologie\\b",
+                          regex:
+                            "\\bAddictologie\\b|\\bsevrage\\b|\\baddictologue\\b|\\bconsultation addictologie\\b",
                           options: "i",
                         },
                       },
@@ -92,7 +93,10 @@ export const up = async (db: Db) => {
           services_all: {
             $elemMatch: {
               category: "addiction",
-              description: { $regex: "\\bAlcooliques anonymes\\b", $options: "i" },
+              description: {
+                $regex: "\\bAlcooliques anonymes\\b",
+                $options: "i",
+              },
             },
           },
         },
@@ -163,9 +167,9 @@ export const up = async (db: Db) => {
   );
 
   // 3. remaining addiction -> addiction_prevention_and_material (fallback)
-  const resultPrevention = await db.collection("lieux").updateMany(
-    { services_all: { $elemMatch: { category: "addiction" } } },
-    [
+  const resultPrevention = await db
+    .collection("lieux")
+    .updateMany({ services_all: { $elemMatch: { category: "addiction" } } }, [
       {
         $set: {
           services_all: {
@@ -178,7 +182,9 @@ export const up = async (db: Db) => {
                   {
                     $mergeObjects: [
                       "$$service",
-                      { category: Categories.ADDICTION_PREVENTION_AND_MATERIAL },
+                      {
+                        category: Categories.ADDICTION_PREVENTION_AND_MATERIAL,
+                      },
                     ],
                   },
                   "$$service",
@@ -188,8 +194,7 @@ export const up = async (db: Db) => {
           },
         },
       },
-    ]
-  );
+    ]);
   logger.info(
     `[MIGRATION] - addiction -> addiction_prevention_and_material: ${resultPrevention.matchedCount} matchés, ${resultPrevention.modifiedCount} modifiés`
   );
@@ -204,28 +209,30 @@ export const down = async (db: Db) => {
     Categories.ADDICTION_PREVENTION_AND_MATERIAL,
   ];
 
-  const result = await db.collection("lieux").updateMany(
-    { services_all: { $elemMatch: { category: { $in: newCategories } } } },
-    [
-      {
-        $set: {
-          services_all: {
-            $map: {
-              input: "$services_all",
-              as: "service",
-              in: {
-                $cond: [
-                  { $in: ["$$service.category", newCategories] },
-                  { $mergeObjects: ["$$service", { category: "addiction" }] },
-                  "$$service",
-                ],
+  const result = await db
+    .collection("lieux")
+    .updateMany(
+      { services_all: { $elemMatch: { category: { $in: newCategories } } } },
+      [
+        {
+          $set: {
+            services_all: {
+              $map: {
+                input: "$services_all",
+                as: "service",
+                in: {
+                  $cond: [
+                    { $in: ["$$service.category", newCategories] },
+                    { $mergeObjects: ["$$service", { category: "addiction" }] },
+                    "$$service",
+                  ],
+                },
               },
             },
           },
         },
-      },
-    ]
-  );
+      ]
+    );
   logger.info(
     `[ROLLBACK] - addiction_care/support_groups/addiction_prevention_and_material -> addiction: ${result.matchedCount} matchés, ${result.modifiedCount} modifiés`
   );
