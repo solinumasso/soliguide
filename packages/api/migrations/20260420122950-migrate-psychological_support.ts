@@ -48,6 +48,7 @@ export const up = async (db: Db) => {
           },
         },
       },
+      "services_all.category": { $ne: Categories.PSYCHIATRY },
     },
     {
       $push: {
