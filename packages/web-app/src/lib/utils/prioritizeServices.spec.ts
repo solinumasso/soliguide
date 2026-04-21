@@ -126,16 +126,16 @@ describe('Prioritize the order of services based on a given category.', () => {
     const services: Partial<CommonNewPlaceService>[] = [
       { category: Categories.FOOD_DISTRIBUTION },
       { category: Categories.BUDGET_ADVICE },
-      { category: Categories.ADDICTION },
+      { category: Categories.ADDICTION_PREVENTION_AND_MATERIAL },
       { category: Categories.DAY_HOSTING },
       { category: Categories.GYNECOLOGY },
-      { category: Categories.ECHOGRAPHY }
+      { category: Categories.CONTRACEPTION }
     ];
 
     const expected = [
       { category: Categories.GYNECOLOGY },
-      { category: Categories.ECHOGRAPHY },
-      { category: Categories.ADDICTION },
+      { category: Categories.CONTRACEPTION },
+      { category: Categories.ADDICTION_PREVENTION_AND_MATERIAL },
       { category: Categories.FOOD_DISTRIBUTION },
       { category: Categories.BUDGET_ADVICE },
       { category: Categories.DAY_HOSTING }
@@ -157,20 +157,20 @@ describe('Prioritize the order of services based on a given category and theme',
 
     const services: Partial<CommonNewPlaceService>[] = [
       { category: Categories.BUDGET_ADVICE },
-      { category: Categories.ADDICTION },
+      { category: Categories.ADDICTION_PREVENTION_AND_MATERIAL },
       { category: Categories.DAY_HOSTING },
       { category: Categories.FRENCH_COURSE },
       { category: Categories.JOB_COACHING },
-      { category: Categories.ECHOGRAPHY }
+      { category: Categories.PREGNANCY_CARE }
     ];
 
     const expected = [
       { category: Categories.FRENCH_COURSE },
       { category: Categories.JOB_COACHING },
       { category: Categories.BUDGET_ADVICE },
-      { category: Categories.ADDICTION },
+      { category: Categories.ADDICTION_PREVENTION_AND_MATERIAL },
       { category: Categories.DAY_HOSTING },
-      { category: Categories.ECHOGRAPHY }
+      { category: Categories.PREGNANCY_CARE }
     ];
 
     const result = sortServicesByRelevance(
@@ -187,12 +187,12 @@ describe('Prioritize the order of services based on a given category and theme',
 
     const services: Partial<CommonNewPlaceService>[] = [
       { category: Categories.BUDGET_ADVICE },
-      { category: Categories.ADDICTION },
+      { category: Categories.ADDICTION_PREVENTION_AND_MATERIAL },
       { category: Categories.DAY_HOSTING },
       { category: Categories.SPANISH_COURSE },
       { category: Categories.CATALAN_COURSE },
       { category: Categories.JOB_COACHING },
-      { category: Categories.ECHOGRAPHY }
+      { category: Categories.PREGNANCY_CARE }
     ];
 
     const expected = [
@@ -200,9 +200,9 @@ describe('Prioritize the order of services based on a given category and theme',
       { category: Categories.CATALAN_COURSE },
       { category: Categories.JOB_COACHING },
       { category: Categories.BUDGET_ADVICE },
-      { category: Categories.ADDICTION },
+      { category: Categories.ADDICTION_PREVENTION_AND_MATERIAL },
       { category: Categories.DAY_HOSTING },
-      { category: Categories.ECHOGRAPHY }
+      { category: Categories.PREGNANCY_CARE }
     ];
 
     const result = sortServicesByRelevance(
@@ -219,12 +219,12 @@ describe('Prioritize the order of services based on a given category and theme',
 
     const services: Partial<CommonNewPlaceService>[] = [
       { category: Categories.BUDGET_ADVICE },
-      { category: Categories.ADDICTION },
+      { category: Categories.ADDICTION_PREVENTION_AND_MATERIAL },
       { category: Categories.DAY_HOSTING },
       { category: Categories.SPANISH_COURSE },
       { category: Categories.CATALAN_COURSE },
       { category: Categories.JOB_COACHING },
-      { category: Categories.ECHOGRAPHY }
+      { category: Categories.PREGNANCY_CARE }
     ];
 
     const expected = [
@@ -232,9 +232,9 @@ describe('Prioritize the order of services based on a given category and theme',
       { category: Categories.SPANISH_COURSE },
       { category: Categories.JOB_COACHING },
       { category: Categories.BUDGET_ADVICE },
-      { category: Categories.ADDICTION },
+      { category: Categories.ADDICTION_PREVENTION_AND_MATERIAL },
       { category: Categories.DAY_HOSTING },
-      { category: Categories.ECHOGRAPHY }
+      { category: Categories.PREGNANCY_CARE }
     ];
 
     const result = sortServicesByRelevance(

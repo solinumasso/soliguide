@@ -675,11 +675,11 @@ describe('Place details Result', () => {
     it('should have the correct category name', () => {
       modifiedPlace.services_all[0].category = Categories.FOOD_DISTRIBUTION;
       modifiedPlace.services_all[1].category = Categories.DAY_HOSTING;
-      modifiedPlace.services_all[2].category = Categories.ADDICTION;
+      modifiedPlace.services_all[2].category = Categories.ADDICTION_PREVENTION_AND_MATERIAL;
 
       modifiedPlaceResult.services[0].category = Categories.FOOD_DISTRIBUTION;
       modifiedPlaceResult.services[1].category = Categories.DAY_HOSTING;
-      modifiedPlaceResult.services[2].category = Categories.ADDICTION;
+      modifiedPlaceResult.services[2].category = Categories.ADDICTION_PREVENTION_AND_MATERIAL;
 
       const result = buildPlaceDetails(modifiedPlace, category, lang);
       expect(result.services).toStrictEqual(modifiedPlaceResult.services);
