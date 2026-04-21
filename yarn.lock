@@ -9991,6 +9991,7 @@ __metadata:
     swagger-ui-express: "npm:4.6.3"
     ts-jest: "npm:^29.3.2"
     ts-node: "npm:^10.9.2"
+    tsx: "npm:^4.21.0"
     typescript: "npm:5.8.3"
     validator: "npm:^13.15.26"
     xlsx: "npm:^0.18.5"
