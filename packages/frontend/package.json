@@ -6,7 +6,7 @@
   "license": "AGPL-3.0-only",
   "scripts": {
     "ng": "ng",
-    "prebuild": "cp -r ../common/dist/esm/translations/locales ./src/assets",
+    "prebuild": "cp -r ../common/dist/esm/translations/locales ./src/assets && mkdir -p ./src/assets/files && cp -r ../common/dist/esm/search-suggestions/data/* ./src/assets/files/",
     "start": "yarn prebuild && ng serve --configuration=development_fr -o",
     "start:ad": "yarn prebuild && ng serve --configuration=development_ad -o",
     "start:es": "yarn prebuild && ng serve --configuration=development_es -o",
@@ -60,7 +60,7 @@
     "deep-diff": "^1.0.2",
     "deep-equal": "^2.2.3",
     "file-saver": "2.0.5",
-    "fuse.js": "^7.1.0",
+    "fuse.js": "^7.3.0",
     "google-libphonenumber": "^3.2.40",
     "intl-tel-input": "19",
     "jwt-decode": "4.0.0",

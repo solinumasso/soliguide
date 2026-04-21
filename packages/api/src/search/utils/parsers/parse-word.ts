@@ -1,19 +1,26 @@
-import { SupportedLanguagesCode } from "@soliguide/common";
-import autocompleteSuggestionService from "../../services/search-suggestions.service";
-import { FormattedSuggestion } from "../../types";
+import {
+  CountryCodes,
+  SoliguideCountries,
+  SupportedLanguagesCode,
+} from "@soliguide/common";
+import {
+  searchSuggestionsService,
+  FormattedSuggestion,
+} from "../../../search-suggestions";
 import { parseTextSearch } from "./parse-text-search";
 
 export function buildEnhancedWordSearch(
   searchData: any,
   nosqlQuery: any,
-  lang: SupportedLanguagesCode = SupportedLanguagesCode.FR
+  lang: SupportedLanguagesCode = SupportedLanguagesCode.FR,
+  country: SoliguideCountries = CountryCodes.FR
 ): void {
   if (!searchData?.word) {
     return;
   }
 
   const searchTerm = searchData.word;
-  const foundSuggestion = findSuggestionBySynonym(searchTerm, lang);
+  const foundSuggestion = findSuggestionBySynonym(searchTerm, lang, country);
 
   if (foundSuggestion) {
     buildSynonymSearch(nosqlQuery, foundSuggestion);
@@ -42,17 +49,19 @@ function buildSimpleSearch(nosqlQuery: any, searchTerm: string): void {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function findSuggestionBySynonym(
   searchTerm: string,
-  lang: SupportedLanguagesCode
+  lang: SupportedLanguagesCode,
+  country: SoliguideCountries = CountryCodes.FR
 ): FormattedSuggestion | null {
-  const suggestionBySlug = autocompleteSuggestionService.findBySlugAndLang(
+  const suggestionBySlug = searchSuggestionsService.findBySlugAndLang(
     searchTerm,
-    lang
+    lang,
+    country
   );
   if (suggestionBySlug) {
     return suggestionBySlug;
   }
 
-  return autocompleteSuggestionService.findBySynonym(searchTerm, lang);
+  return searchSuggestionsService.findBySynonym(searchTerm, lang, country);
 }
 
 function createWordBoundaryRegex(term: string): RegExp {

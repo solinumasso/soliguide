@@ -9958,7 +9958,7 @@ __metadata:
     express-validator: "npm:^7.2.1"
     fastest-levenshtein: "npm:^1.0.16"
     franc-min: "npm:^6.2.0"
-    fuse.js: "npm:^7.1.0"
+    fuse.js: "npm:^7.3.0"
     google-libphonenumber: "npm:^3.2.40"
     html-entities: "npm:^2.6.0"
     i18next: "npm:^22.5.1"
@@ -10209,7 +10209,7 @@ __metadata:
     eslint-plugin-no-lookahead-lookbehind-regexp: "npm:^0.3.0"
     fake-indexeddb: "npm:^6.2.5"
     file-saver: "npm:2.0.5"
-    fuse.js: "npm:^7.1.0"
+    fuse.js: "npm:^7.3.0"
     google-libphonenumber: "npm:^3.2.40"
     intl-tel-input: "npm:19"
     jest: "npm:^29.7.0"
@@ -10284,7 +10284,7 @@ __metadata:
     eslint-plugin-import: "npm:^2.31.0"
     eslint-plugin-n: "npm:^17.10.3"
     eslint-plugin-promise: "npm:^7.1.0"
-    fuse.js: "npm:^7.1.0"
+    fuse.js: "npm:^7.3.0"
     helmet: "npm:^7.2.0"
     i18n-iso-countries: "npm:^7.14.0"
     jest: "npm:^29.7.0"
@@ -10408,6 +10408,7 @@ __metadata:
     eslint-config-prettier: "npm:^9.1.0"
     eslint-plugin-fp: "npm:^2.3.0"
     eslint-plugin-svelte: "npm:^2.36.0"
+    fuse.js: "npm:^7.3.0"
     globals: "npm:^15.15.0"
     i18next: "npm:^23.11.5"
     i18next-browser-languagedetector: "npm:^8.1.0"
@@ -18655,10 +18656,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fuse.js@npm:^7.1.0":
-  version: 7.1.0
-  resolution: "fuse.js@npm:7.1.0"
-  checksum: 10/9f9105e54372897a46cb3e04074f0db5bd0a428320d4618276a57e6142d7502235a556f05cf87aa3c5d6d9c6fdfa06b901b78379c48aa0951672ccbc4a1bfe70
+"fuse.js@npm:^7.3.0":
+  version: 7.3.0
+  resolution: "fuse.js@npm:7.3.0"
+  checksum: 10/b2cdc39e46acb9524fe900356af74c987ecb1dbc67412df651a5291fa072d212e6d74457f0b5d1c39baf79539481f62b613ac792afd8995dd1fc3d20b5354914
   languageName: node
   linkType: hard
 

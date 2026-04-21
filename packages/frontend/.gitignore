@@ -51,6 +51,7 @@ node_modules
 .eslintcache
 
 src/assets/locales
+src/assets/files
 src/environments/environment.ts
 
 VERSION.json
