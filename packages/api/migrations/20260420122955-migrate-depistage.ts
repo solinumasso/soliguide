@@ -55,7 +55,7 @@ export const up = async (db: Db) => {
                           $regexMatch: {
                             input: "$$service.description",
                             regex:
-                              "cancer|tuberculose|dépistage cancer|dépistage pulmonaire|mammographie|coloscopie|frottis cancer",
+                              "\\bcancer\\b|\\btuberculose\\b|\\bdépistage cancer\\b|\\bdépistage pulmonaire\\b|\\bmammographie\\b|\\bcoloscopie\\b|\\bfrottis cancer\\b",
                             options: "i",
                           },
                         },

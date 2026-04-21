@@ -28,7 +28,7 @@ const message =
   "Add psychiatry service to places with psychological_support mentioning psychiatry";
 
 const PSYCHIATRY_REGEX =
-  "psychiatr(e|ie)|consultation psychiatrique|trouble psychiatrique";
+  "\\bpsychiatr(e|ie)\\b|\\bconsultation psychiatrique\\b|\\btrouble psychiatrique\\b";
 
 export const up = async (db: Db) => {
   logger.info(`[MIGRATION] - ${message}`);
