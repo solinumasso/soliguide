@@ -69,7 +69,7 @@ export const getCategoryService = (currentThemeName: Themes): CategoryService =>
     return categoriesService.hasChildren(categoryId);
   };
 
-  let fuseCache: { key: string; fuse: Fuse<FormattedSuggestion> } | null = null;
+  const fuseCache = new Map<string, Fuse<FormattedSuggestion>>();
 
   /**
    * Auto-complete feature for categories.
@@ -85,18 +85,16 @@ export const getCategoryService = (currentThemeName: Themes): CategoryService =>
     }
 
     const key = `${country}/${lang}`;
-    if (fuseCache?.key !== key) {
+    if (!fuseCache.has(key)) {
       const data = await loadSuggestionsData(country as SoliguideCountries, lang);
-      fuseCache = {
-        key,
-        fuse: new Fuse(data, FUSE_SEARCH_SUGGESTIONS_OPTIONS)
-      };
+      fuseCache.set(key, new Fuse(data, FUSE_SEARCH_SUGGESTIONS_OPTIONS));
     }
 
-    return fuseCache.fuse
+    return fuseCache
+      .get(key)!
       .search(searchTerm)
-      .filter((r) => r.item.type === AutoCompleteType.CATEGORY)
-      .map((r) => r.item.categoryId)
+      .filter((result) => result.item.type === AutoCompleteType.CATEGORY)
+      .map((result) => result.item.categoryId)
       .filter((id): id is Categories => id !== null);
   };
 

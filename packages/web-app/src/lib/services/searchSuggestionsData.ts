@@ -11,30 +11,30 @@ const dataModules = import.meta.glob<{ default: FormattedSuggestion[] }>(
 
 const dataLoaders = new Map<string, () => Promise<{ default: FormattedSuggestion[] }>>();
 
-for (const [path, loader] of Object.entries(dataModules)) {
-  const match = path.match(/search-suggestions\/([^/]+)\/([^/]+)\.json$/);
-  if (match) {
+Object.entries(dataModules).forEach(([path, loader]) => {
+  const match = path.match(/search-suggestions\/(?<country>[^/]+)\/(?<lang>[^/]+)\.json$/u);
+  if (match?.groups) {
     dataLoaders.set(
-      `${match[1]}/${match[2]}`,
+      `${match.groups.country}/${match.groups.lang}`,
       loader as () => Promise<{ default: FormattedSuggestion[] }>
     );
   }
-}
+});
 
-let cache: { key: string; data: FormattedSuggestion[] } | null = null;
+const cache = new Map<string, FormattedSuggestion[]>();
 
-export async function loadSuggestionsData(
+export const loadSuggestionsData = async (
   country: SoliguideCountries,
   lang: SupportedLanguagesCode
-): Promise<FormattedSuggestion[]> {
+): Promise<FormattedSuggestion[]> => {
   const key = `${country}/${lang}`;
-  if (cache?.key === key) return cache.data;
+  if (cache.has(key)) return cache.get(key)!;
 
   const loader = dataLoaders.get(key);
   if (!loader) return [];
 
   const module = await loader();
   const data = module.default ?? (module as unknown as FormattedSuggestion[]);
-  cache = { key, data };
+  cache.set(key, data);
   return data;
-}
+};
