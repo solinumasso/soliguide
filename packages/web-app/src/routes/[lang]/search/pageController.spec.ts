@@ -10,9 +10,7 @@ import {
   Themes,
   CountryCodes,
   SupportedLanguagesCode,
-  LocationAutoCompleteAddress,
-  type SearchSuggestion,
-  AutoCompleteType
+  LocationAutoCompleteAddress
 } from '@soliguide/common';
 import { posthogService } from '$lib/services/posthogService';
 import type { LocationSuggestion } from '$lib/models/locationSuggestion';
@@ -109,39 +107,6 @@ const otherSampleSuggestionsServiceResult: LocationSuggestion[] = [
   }
 ];
 
-const categoryApiData: SearchSuggestion[] = [
-  {
-    sourceId: 'hygiene_products',
-    lang: SupportedLanguagesCode.FR,
-    label: "Produits d'hygiène",
-    categoryId: Categories.HYGIENE_PRODUCTS,
-    slug: 'produits-hygiene',
-    country: CountryCodes.FR,
-    synonyms: [],
-    type: AutoCompleteType.CATEGORY,
-    content: '',
-    seoTitle: 'HYGIENE_PRODUCTS',
-    seoDescription: '',
-    createdAt: new Date(),
-    updatedAt: new Date()
-  },
-  {
-    sourceId: 'digital_tools_training',
-    lang: SupportedLanguagesCode.FR,
-    label: 'Formation numérique',
-    categoryId: Categories.DIGITAL_TOOLS_TRAINING,
-    slug: 'formation-numerique',
-    country: CountryCodes.FR,
-    synonyms: [],
-    type: AutoCompleteType.CATEGORY,
-    content: '',
-    seoTitle: 'DIGITAL_TOOLS_TRAINING',
-    seoDescription: '',
-    createdAt: new Date(),
-    updatedAt: new Date()
-  }
-];
-
 const sampleCategorySuggestions: Categories[] = [
   Categories.HYGIENE_PRODUCTS,
   Categories.DIGITAL_TOOLS_TRAINING
@@ -170,17 +135,33 @@ describe('Search page', () => {
   // skipcq: JS-0119
   let pageState: SearchPageController;
   const { fetch, feedWith, setError } = fakeFetch();
-  const { feedWith: feedWithCategoriesData, setError: setCategoryError } = fakeFetch();
   const locationService = getLocationService(fetch);
   const categoryService = getCategoryService(Themes.SOLIGUIDE_FR);
 
+  let mockCategoryData: Categories[] = [];
+  let mockCategoryError: unknown = null;
+
+  vi.spyOn(categoryService, 'getCategorySuggestions').mockImplementation(() => {
+    if (mockCategoryError) throw mockCategoryError;
+    return Promise.resolve(mockCategoryData);
+  });
+
+  const feedWithCategoriesData = (data: Categories[]): void => {
+    mockCategoryData = data;
+    mockCategoryError = null;
+  };
+
+  const setCategoryError = (error: { status: number; statusText: string } | null): void => {
+    mockCategoryError = error;
+  };
+
   beforeEach(() => {
+    mockCategoryData = [];
+    mockCategoryError = null;
     pageState = getSearchPageController(locationService, categoryService);
     pageState.init(CountryCodes.FR, SupportedLanguagesCode.FR, {});
     feedWith([]);
     setError(null);
-    feedWithCategoriesData([]);
-    setCategoryError(null);
   });
 
   afterEach(() => {
@@ -416,14 +397,14 @@ describe('Search page', () => {
     });
 
     it('When I type characters, I get category suggestions', async () => {
-      feedWithCategoriesData(categoryApiData);
+      feedWithCategoriesData(sampleCategorySuggestions);
       await pageState.getCategorySuggestions({ value: 'abc' });
       await vi.runAllTimersAsync();
       expect(get(pageState).categorySuggestions).toEqual(sampleCategorySuggestions);
     });
 
     it('When we search for categories, there is a loading state until the operation finishes', async () => {
-      feedWithCategoriesData(categoryApiData);
+      feedWithCategoriesData(sampleCategorySuggestions);
       pageState.getCategorySuggestions({ value: 'abc' });
       expect(get(pageState).loadingCategorySuggestions).toBeTruthy();
       await vi.advanceTimersToNextTimerAsync();
@@ -431,14 +412,14 @@ describe('Search page', () => {
     });
 
     it('When I type no character, I get no category suggestions', async () => {
-      feedWithCategoriesData(categoryApiData);
+      feedWithCategoriesData(sampleCategorySuggestions);
       await pageState.getCategorySuggestions({ value: '' });
       await vi.runAllTimersAsync();
       expect(get(pageState).categorySuggestions).toEqual([]);
     });
 
     it('When I select a category, it is memorized', async () => {
-      feedWithCategoriesData(categoryApiData);
+      feedWithCategoriesData(sampleCategorySuggestions);
       await pageState.getCategorySuggestions({ value: 'abc' });
       await vi.runAllTimersAsync();
       expect(get(pageState).categorySuggestions).toEqual(sampleCategorySuggestions);
@@ -451,7 +432,7 @@ describe('Search page', () => {
     });
 
     it('When the category is cleared, the suggestions disappear', async () => {
-      feedWithCategoriesData(categoryApiData);
+      feedWithCategoriesData(sampleCategorySuggestions);
       await pageState.getCategorySuggestions({ value: 'abc' });
       await vi.runAllTimersAsync();
       expect(get(pageState).categorySuggestions).toEqual(sampleCategorySuggestions);
@@ -460,7 +441,7 @@ describe('Search page', () => {
     });
 
     it('When the categoryService fails, I have an error and no suggestion', async () => {
-      feedWithCategoriesData(categoryApiData);
+      feedWithCategoriesData(sampleCategorySuggestions);
       setCategoryError({ status: 500, statusText: 'Internal server error' });
       await pageState.getCategorySuggestions({ value: 'abc' });
       await vi.runAllTimersAsync();
@@ -504,7 +485,7 @@ describe('Search page', () => {
     it('On step 1, calling getCategorySuggestions has no effect', async () => {
       expect(get(pageState).currentStep).toEqual(Steps.STEP_LOCATION);
       vi.useFakeTimers();
-      feedWithCategoriesData(categoryApiData);
+      feedWithCategoriesData(sampleCategorySuggestions);
       await pageState.getCategorySuggestions({ value: 'abc' });
       await vi.runAllTimersAsync();
       expect(get(pageState).categorySuggestions).toEqual([]);
@@ -580,7 +561,7 @@ describe('Search page', () => {
       it('The page is loading while data is retrieved', async () => {
         vi.useFakeTimers();
         feedWith(locationApiResult);
-        feedWithCategoriesData(categoryApiData);
+        feedWithCategoriesData(sampleCategorySuggestions);
         pageState.init(CountryCodes.FR, SupportedLanguagesCode.FR, pageParams);
         expect(get(pageState).loading).toBeTruthy();
         await vi.advanceTimersToNextTimerAsync();
@@ -589,7 +570,7 @@ describe('Search page', () => {
 
       it('The current step is STEP_CATEGORY', async () => {
         feedWith(locationApiResult);
-        feedWithCategoriesData(categoryApiData);
+        feedWithCategoriesData(sampleCategorySuggestions);
         await pageState.init(CountryCodes.FR, SupportedLanguagesCode.FR, pageParams);
         expect(get(pageState).currentStep).toEqual(Steps.STEP_CATEGORY);
       });
@@ -597,28 +578,28 @@ describe('Search page', () => {
       describe('On location side', () => {
         it('There are location suggestions resulting of a search of the location param', async () => {
           feedWith(locationApiResult);
-          feedWithCategoriesData(categoryApiData);
+          feedWithCategoriesData(sampleCategorySuggestions);
           await pageState.init(CountryCodes.FR, SupportedLanguagesCode.FR, pageParams);
           expect(get(pageState).locationSuggestions).toEqual(locationSuggestions);
         });
 
         it('When one of the suggestions matches the location geoValue param, it is selected', async () => {
           feedWith(locationApiResult);
-          feedWithCategoriesData(categoryApiData);
+          feedWithCategoriesData(sampleCategorySuggestions);
           await pageState.init(CountryCodes.FR, SupportedLanguagesCode.FR, pageParams);
           expect(get(pageState).selectedLocationSuggestion).toEqual(selectedLocationSuggestion);
         });
 
         it('When no suggestion matches the location geoValue param, there is no selection', async () => {
           feedWith(sampleSuggestions);
-          feedWithCategoriesData(categoryApiData);
+          feedWithCategoriesData(sampleCategorySuggestions);
           await pageState.init(CountryCodes.FR, SupportedLanguagesCode.FR, pageParams);
           expect(get(pageState).selectedLocationSuggestion).toBeNull();
         });
 
         it('When no location suggestion can be selected, we are on page 1 (location)', async () => {
           feedWith(sampleSuggestions);
-          feedWithCategoriesData(categoryApiData);
+          feedWithCategoriesData(sampleCategorySuggestions);
           await pageState.init(CountryCodes.FR, SupportedLanguagesCode.FR, pageParams);
           expect(get(pageState).selectedLocationSuggestion).toBeNull();
           expect(get(pageState).currentStep).toEqual(Steps.STEP_LOCATION);
@@ -628,107 +609,28 @@ describe('Search page', () => {
       describe('On category side', () => {
         it('There are category suggestions resulting of a search of the category param', async () => {
           feedWith(locationApiResult);
-          feedWithCategoriesData(categoryApiData);
+          feedWithCategoriesData(sampleCategorySuggestions);
           await pageState.init(CountryCodes.FR, SupportedLanguagesCode.FR, pageParams);
           expect(get(pageState).categorySuggestions).toEqual(sampleCategorySuggestions);
         });
 
         it('When one of the result matches the category param, it is selected', async () => {
-          const categoryApiResult: SearchSuggestion[] = [
-            {
-              sourceId: 'health',
-              lang: SupportedLanguagesCode.FR,
-              label: 'Santé',
-              categoryId: Categories.HEALTH,
-              slug: 'sante',
-              country: CountryCodes.FR,
-              synonyms: [],
-              type: AutoCompleteType.CATEGORY,
-              content: '',
-              seoTitle: 'HEALTH',
-              seoDescription: '',
-              createdAt: new Date(),
-              updatedAt: new Date()
-            },
-            {
-              sourceId: 'hygiene_products',
-              lang: SupportedLanguagesCode.FR,
-              label: "Produits d'hygiène",
-              categoryId: Categories.HYGIENE_PRODUCTS,
-              slug: 'produits-hygiene',
-              country: CountryCodes.FR,
-              synonyms: [],
-              type: AutoCompleteType.CATEGORY,
-              content: '',
-              seoTitle: 'HYGIENE_PRODUCTS',
-              seoDescription: '',
-              createdAt: new Date(),
-              updatedAt: new Date()
-            },
-            {
-              sourceId: 'digital_tools_training',
-              lang: SupportedLanguagesCode.FR,
-              label: 'Formation numérique',
-              categoryId: Categories.DIGITAL_TOOLS_TRAINING,
-              slug: 'formation-numerique',
-              country: CountryCodes.FR,
-              synonyms: [],
-              type: AutoCompleteType.CATEGORY,
-              content: '',
-              seoTitle: 'DIGITAL_TOOLS_TRAINING',
-              seoDescription: '',
-              createdAt: new Date(),
-              updatedAt: new Date()
-            }
-          ];
           feedWith(locationApiResult);
-          feedWithCategoriesData(categoryApiResult);
+          feedWithCategoriesData([Categories.HEALTH, ...sampleCategorySuggestions]);
           await pageState.init(CountryCodes.FR, SupportedLanguagesCode.FR, pageParams);
           expect(get(pageState).selectedCategory).toEqual(Categories.HEALTH);
         });
 
         it('When none of the results matches the category param, no category is selected', async () => {
-          const categoryApiResult: SearchSuggestion[] = [
-            {
-              sourceId: 'hygiene_products',
-              lang: SupportedLanguagesCode.FR,
-              label: "Produits d'hygiène",
-              categoryId: Categories.HYGIENE_PRODUCTS,
-              slug: 'produits-hygiene',
-              country: CountryCodes.FR,
-              synonyms: [],
-              type: AutoCompleteType.CATEGORY,
-              content: '',
-              seoTitle: 'HYGIENE_PRODUCTS',
-              seoDescription: '',
-              createdAt: new Date(),
-              updatedAt: new Date()
-            },
-            {
-              sourceId: 'digital_tools_training',
-              lang: SupportedLanguagesCode.FR,
-              label: 'Formation numérique',
-              categoryId: Categories.DIGITAL_TOOLS_TRAINING,
-              slug: 'formation-numerique',
-              country: CountryCodes.FR,
-              synonyms: [],
-              type: AutoCompleteType.CATEGORY,
-              content: '',
-              seoTitle: 'DIGITAL_TOOLS_TRAINING',
-              seoDescription: '',
-              createdAt: new Date(),
-              updatedAt: new Date()
-            }
-          ];
           feedWith(locationApiResult);
-          feedWithCategoriesData(categoryApiResult);
+          feedWithCategoriesData(sampleCategorySuggestions);
           await pageState.init(CountryCodes.FR, SupportedLanguagesCode.FR, pageParams);
           expect(get(pageState).selectedCategory).toBeNull();
         });
 
         it('When a specialist category is provided, we may have suggestions, but no selection', async () => {
           feedWith(locationApiResult);
-          feedWithCategoriesData(categoryApiData);
+          feedWithCategoriesData(sampleCategorySuggestions);
           await pageState.init(CountryCodes.FR, SupportedLanguagesCode.FR, {
             geoValue: 'poul-pout-22610-pleubian',
             label: 'Poul Pout, 22610 Pleubian',
@@ -741,14 +643,14 @@ describe('Search page', () => {
       describe('When the location service fails', () => {
         it('We stay on page 1', async () => {
           setError({ status: 500, statusText: 'Something went wrong' });
-          feedWithCategoriesData(categoryApiData);
+          feedWithCategoriesData(sampleCategorySuggestions);
           await pageState.init(CountryCodes.FR, SupportedLanguagesCode.FR, pageParams);
           expect(get(pageState).currentStep).toEqual(Steps.STEP_LOCATION);
         });
 
         it('If the category service succeeds, we have category suggestions', async () => {
           setError({ status: 500, statusText: 'Something went wrong' });
-          feedWithCategoriesData(categoryApiData);
+          feedWithCategoriesData(sampleCategorySuggestions);
           await pageState.init(CountryCodes.FR, SupportedLanguagesCode.FR, pageParams);
           expect(get(pageState).categorySuggestions).toEqual(sampleCategorySuggestions);
         });
@@ -816,55 +718,8 @@ describe('Search page', () => {
       });
 
       it('If we modify location selection, we go directly to results page instead of going to step 2 because we already have a category selected', async () => {
-        const categoryApiResult: SearchSuggestion[] = [
-          {
-            sourceId: 'health',
-            lang: SupportedLanguagesCode.FR,
-            label: 'Santé',
-            categoryId: Categories.HEALTH,
-            slug: 'sante',
-            country: CountryCodes.FR,
-            synonyms: [],
-            type: AutoCompleteType.CATEGORY,
-            content: '',
-            seoTitle: 'HEALTH',
-            seoDescription: '',
-            createdAt: new Date(),
-            updatedAt: new Date()
-          },
-          {
-            sourceId: 'hygiene_products',
-            lang: SupportedLanguagesCode.FR,
-            label: "Produits d'hygiène",
-            categoryId: Categories.HYGIENE_PRODUCTS,
-            slug: 'produits-hygiene',
-            country: CountryCodes.FR,
-            synonyms: [],
-            type: AutoCompleteType.CATEGORY,
-            content: '',
-            seoTitle: 'HYGIENE_PRODUCTS',
-            seoDescription: '',
-            createdAt: new Date(),
-            updatedAt: new Date()
-          },
-          {
-            sourceId: 'digital_tools_training',
-            lang: SupportedLanguagesCode.FR,
-            label: 'Formation numérique',
-            categoryId: Categories.DIGITAL_TOOLS_TRAINING,
-            slug: 'formation-numerique',
-            country: CountryCodes.FR,
-            synonyms: [],
-            type: AutoCompleteType.CATEGORY,
-            content: '',
-            seoTitle: 'DIGITAL_TOOLS_TRAINING',
-            seoDescription: '',
-            createdAt: new Date(),
-            updatedAt: new Date()
-          }
-        ];
         feedWith(locationApiResult);
-        feedWithCategoriesData(categoryApiResult);
+        feedWithCategoriesData([Categories.HEALTH, ...sampleCategorySuggestions]);
         await pageState.init(CountryCodes.FR, SupportedLanguagesCode.FR, pageParams);
 
         expect(get(pageState).selectedCategory).not.toBeNull();
@@ -904,7 +759,7 @@ describe('Search page', () => {
           city: 'Pleubian'
         }
       ]);
-      feedWithCategoriesData(categoryApiData);
+      feedWithCategoriesData(sampleCategorySuggestions);
       pageState.selectLocationSuggestion(sampleLocationSuggestion);
       pageState.selectCategorySuggestion(Categories.HEALTH);
       await pageState.init(CountryCodes.FR, SupportedLanguagesCode.FR, {

@@ -8,6 +8,9 @@ import {
   type FormattedSuggestion
 } from '@soliguide/common';
 import { getCategoryService } from './categoryService';
+import { loadSuggestionsData } from './searchSuggestionsData';
+
+vi.mock('./searchSuggestionsData');
 
 const suggestionsData: FormattedSuggestion[] = [
   {
@@ -34,14 +37,11 @@ const suggestionsData: FormattedSuggestion[] = [
   }
 ];
 
-vi.mock('./searchSuggestionsData', () => ({
-  loadSuggestionsData: vi.fn().mockResolvedValue(suggestionsData)
-}));
-
 describe('Category Service', () => {
   let service = getCategoryService(Themes.SOLIGUIDE_FR);
 
   beforeEach(() => {
+    vi.mocked(loadSuggestionsData).mockResolvedValue(suggestionsData);
     service = getCategoryService(Themes.SOLIGUIDE_FR);
   });
 
