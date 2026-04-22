@@ -730,7 +730,7 @@
   },
   {
     "categoryId": "parent_assistance",
-    "label": "Conseil aux parents",
+    "label": "Soutien à la parentalité",
     "slug": "conseil-parents",
     "synonyms": [
       "parentalité",
@@ -1459,7 +1459,7 @@
   },
   {
     "categoryId": "psychological_support",
-    "label": "Psychologie",
+    "label": "Psychologue",
     "slug": "psychologie",
     "synonyms": [
       "psychologue",
@@ -1486,7 +1486,7 @@
   },
   {
     "categoryId": "child_care",
-    "label": "Soins enfants",
+    "label": "Soins pour les enfants",
     "slug": "soins-enfants",
     "synonyms": [
       "pédiatrie",
@@ -1513,7 +1513,7 @@
   },
   {
     "categoryId": "general_practitioner",
-    "label": "Médecin généraliste",
+    "label": "Médecine générale",
     "slug": "generaliste",
     "synonyms": [
       "consultation",
@@ -1540,7 +1540,7 @@
   },
   {
     "categoryId": "dental_care",
-    "label": "Dentaire",
+    "label": "Soins dentaires",
     "slug": "dentaire",
     "synonyms": [
       "dents",
@@ -1567,7 +1567,7 @@
   },
   {
     "categoryId": "pregnancy_care",
-    "label": "Suivi grossesse",
+    "label": "Suivi de grossesse",
     "slug": "planification",
     "synonyms": [
       "grossesse",
@@ -1621,7 +1621,7 @@
   },
   {
     "categoryId": "infirmary",
-    "label": "Infirmerie",
+    "label": "Soins infirmiers",
     "slug": "infirmerie",
     "synonyms": [
       "soins",
@@ -1702,7 +1702,7 @@
   },
   {
     "categoryId": "allergology",
-    "label": "Allergologie",
+    "label": "Allergologue",
     "slug": "allergologie",
     "synonyms": [
       "allergie",
@@ -1729,7 +1729,7 @@
   },
   {
     "categoryId": "cardiology",
-    "label": "Cardiologie",
+    "label": "Cardiologue",
     "slug": "cardiologie",
     "synonyms": [
       "cœur",
@@ -1756,7 +1756,7 @@
   },
   {
     "categoryId": "dermatology",
-    "label": "Dermatologie",
+    "label": "Dermatologue",
     "slug": "dermatologie",
     "synonyms": [
       "peau",
@@ -1783,7 +1783,7 @@
   },
   {
     "categoryId": "endocrinology",
-    "label": "Endocrinologie",
+    "label": "Endocrinologue",
     "slug": "endocrinologie",
     "synonyms": [
       "diabète",
@@ -1810,7 +1810,7 @@
   },
   {
     "categoryId": "gastroenterology",
-    "label": "Gastro-entérologie",
+    "label": "Gastro-entérologue",
     "slug": "gastro-enterologie",
     "synonyms": [
       "estomac",
@@ -1864,7 +1864,7 @@
   },
   {
     "categoryId": "kinesitherapy",
-    "label": "Kinésithérapie",
+    "label": "Kinésithérapeute",
     "slug": "kinesitherapie",
     "synonyms": [
       "rééducation",
@@ -1891,7 +1891,7 @@
   },
   {
     "categoryId": "otorhinolaryngology",
-    "label": "Oto-rhino-laryngologie",
+    "label": "ORL",
     "slug": "oto-rhino-laryngologie",
     "synonyms": [
       "oreille",
@@ -1945,7 +1945,7 @@
   },
   {
     "categoryId": "pedicure",
-    "label": "Pédicure",
+    "label": "Pédicure-podologue",
     "slug": "pedicure",
     "synonyms": [
       "pieds",
@@ -1972,7 +1972,7 @@
   },
   {
     "categoryId": "pneumology",
-    "label": "Pneumologie",
+    "label": "Pneumologue",
     "slug": "pneumologie",
     "synonyms": [
       "respiration",
@@ -1999,7 +1999,7 @@
   },
   {
     "categoryId": "radiology",
-    "label": "Radiologie",
+    "label": "Radiologue",
     "slug": "radiologie",
     "synonyms": [
       "scanner",
@@ -2026,7 +2026,7 @@
   },
   {
     "categoryId": "rheumatology",
-    "label": "Rhumatologie",
+    "label": "Rhumatologue",
     "slug": "rhumatologie",
     "synonyms": [
       "articulations",
@@ -2053,7 +2053,7 @@
   },
   {
     "categoryId": "urology",
-    "label": "Urologie",
+    "label": "Urologue",
     "slug": "urologie",
     "synonyms": [
       "urologue",
@@ -2080,7 +2080,7 @@
   },
   {
     "categoryId": "speech_therapy",
-    "label": "Orthophonie",
+    "label": "Orthophoniste",
     "slug": "orthophonie",
     "synonyms": [
       "parole",
@@ -2107,7 +2107,7 @@
   },
   {
     "categoryId": "stomatology",
-    "label": "Stomatologie",
+    "label": "Stomatologue",
     "slug": "stomatologie",
     "synonyms": [
       "dentaire",
@@ -2323,7 +2323,7 @@
   },
   {
     "categoryId": "spanish_course",
-    "label": "categories.spanish_course",
+    "label": "Cours d'espagnol",
     "slug": "cours-espagnol",
     "synonyms": [
       "espagnol",
@@ -2350,7 +2350,7 @@
   },
   {
     "categoryId": "catalan_course",
-    "label": "categories.catalan_course",
+    "label": "Cours de catalan",
     "slug": "cours-catalan",
     "synonyms": [
       "catalan",
@@ -2414,7 +2414,11 @@
     "categoryId": null,
     "label": "Quàlia",
     "slug": "qualia",
-    "synonyms": ["Qualia", "Fundació Quàlia", "Fundación Qualia"],
+    "synonyms": [
+      "Qualia",
+      "Fundació Quàlia",
+      "Fundación Qualia"
+    ],
     "type": "ORGANIZATION",
     "lang": "fr",
     "country": "es",
@@ -2425,7 +2429,11 @@
     "categoryId": null,
     "label": "Amisol",
     "slug": "amisol",
-    "synonyms": ["AMISOL", "Associació Amisol", "Asociación Amisol"],
+    "synonyms": [
+      "AMISOL",
+      "Associació Amisol",
+      "Asociación Amisol"
+    ],
     "type": "ORGANIZATION",
     "lang": "fr",
     "country": "es",
@@ -2771,7 +2779,7 @@
     "seoDescription": "Soliguide vous aide à financer vos déplacements. Découvrez les aides pour transports, carburant ou permis de conduire en Espagne."
   },
   {
-    "label": "health_access",
+    "label": "Accès à la santé",
     "categoryId": "health_access",
     "slug": "health_access",
     "synonyms": [
@@ -2798,7 +2806,7 @@
     "seoDescription": "Soliguide vous aide à trouver des consultations médicales gratuites, des vaccinations et des soins dentaires près de chez vous en Espagne."
   },
   {
-    "label": "physical_health",
+    "label": "Santé du corps",
     "categoryId": "physical_health",
     "slug": "physical_health",
     "synonyms": [
@@ -2825,7 +2833,7 @@
     "seoDescription": "Soliguide vous aide à trouver des soins gratuits en Espagne. Consultations médicales, vaccins, suivi de santé près de chez vous."
   },
   {
-    "label": "mental_health",
+    "label": "Santé mentale",
     "categoryId": "mental_health",
     "slug": "mental_health",
     "synonyms": [
@@ -2852,7 +2860,7 @@
     "seoDescription": "Soliguide vous aide à trouver des espaces d'écoute, des psychologues et des groupes de parole gratuits en Espagne pour votre bien-être mental."
   },
   {
-    "label": "addictions",
+    "label": "Addictions",
     "categoryId": "addictions",
     "slug": "addictions",
     "synonyms": [
@@ -2879,7 +2887,7 @@
     "seoDescription": "Soliguide vous aide à trouver des services gratuits en Espagne : consultations médicales, groupes de soutien, centres de désintoxication et accompagnement personnalisé."
   },
   {
-    "label": "sexual_health",
+    "label": "Santé sexuelle",
     "categoryId": "sexual_health",
     "slug": "sexual_health",
     "synonyms": [
@@ -2906,7 +2914,7 @@
     "seoDescription": "Soliguide vous aide à trouver des services de santé sexuelle gratuits. Contraception, dépistage IST, consultations gynécologiques près de vous."
   },
   {
-    "label": "parenthood",
+    "label": "Parentalité",
     "categoryId": "parenthood",
     "slug": "parenthood",
     "synonyms": [
@@ -2933,7 +2941,7 @@
     "seoDescription": "Soliguide vous aide à trouver des services de parentalité en Espagne. Accédez à des aides pour la garde, l'éducation et le soutien familial."
   },
   {
-    "label": "health_coverage",
+    "label": "Obtenir une couverture santé",
     "categoryId": "health_coverage",
     "slug": "health_coverage",
     "synonyms": [
@@ -2960,7 +2968,7 @@
     "seoDescription": "Soliguide vous aide à accéder aux soins gratuits en Espagne. Découvrez les centres de santé, mutuelles et programmes d'aide médicale près de vous."
   },
   {
-    "label": "find_healthcare",
+    "label": "Trouver de l'aide pour se soigner",
     "categoryId": "find_healthcare",
     "slug": "find_healthcare",
     "synonyms": [
@@ -2987,7 +2995,7 @@
     "seoDescription": "Soliguide vous aide à trouver des soins gratuits en Espagne. Consultations médicales, vaccins, urgences, pharmacies sociales."
   },
   {
-    "label": "health_assessment",
+    "label": "Bilan de santé",
     "categoryId": "health_assessment",
     "slug": "health_assessment",
     "synonyms": [
@@ -3014,7 +3022,7 @@
     "seoDescription": "Soliguide vous aide à trouver des consultations médicales gratuites, des dépistages de santé et des vaccinations près de chez vous en Espagne."
   },
   {
-    "label": "optical_care",
+    "label": "Soins optiques",
     "categoryId": "optical_care",
     "slug": "optical_care",
     "synonyms": [
@@ -3041,7 +3049,7 @@
     "seoDescription": "Soliguide vous aide à trouver des soins visuels gratuits. Lunettes, examens, lentilles en Espagne pour tous."
   },
   {
-    "label": "hearing_care",
+    "label": "Soins auditifs",
     "categoryId": "hearing_care",
     "slug": "hearing_care",
     "synonyms": [
@@ -3068,7 +3076,7 @@
     "seoDescription": "Soliguide vous aide à trouver des soins auditifs gratuits. Appareils auditifs, tests d'audition, consultations chez l'audioprothésiste près de vous."
   },
   {
-    "label": "chronic_diseases",
+    "label": "Maladies chroniques",
     "categoryId": "chronic_diseases",
     "slug": "chronic_diseases",
     "synonyms": [
@@ -3095,7 +3103,7 @@
     "seoDescription": "Soliguide vous aide à trouver des soins gratuits pour diabète, asthme, hypertension. Consultations, médicaments, suivi médical près de vous."
   },
   {
-    "label": "medical_accommodation",
+    "label": "Hébergement médicalisé et thérapeutique",
     "categoryId": "medical_accommodation",
     "slug": "medical_accommodation",
     "synonyms": [
@@ -3122,7 +3130,7 @@
     "seoDescription": "Soliguide vous aide à trouver un logement médical. Accès à des résidences sanitaires, hébergement thérapeutique ou maisons de santé près de vous."
   },
   {
-    "label": "psychiatry",
+    "label": "Psychiatre",
     "categoryId": "psychiatry",
     "slug": "psychiatry",
     "synonyms": [
@@ -3149,7 +3157,7 @@
     "seoDescription": "Soliguide vous aide à trouver des soins psychiatriques gratuits en Espagne. Consultations, thérapies, urgences psychologiques près de chez vous."
   },
   {
-    "label": "support_groups",
+    "label": "Groupes de parole et d'entraide",
     "categoryId": "support_groups",
     "slug": "support_groups",
     "synonyms": [
@@ -3176,7 +3184,7 @@
     "seoDescription": "Soliguide vous aide à trouver des groupes d'entraide en Espagne. Alcooliques anonymes, associations de parents, collectifs de femmes."
   },
   {
-    "label": "mental_health_education",
+    "label": "Information et sensibilisation",
     "categoryId": "mental_health_education",
     "slug": "mental_health_education",
     "synonyms": [
@@ -3203,7 +3211,7 @@
     "seoDescription": "Soliguide vous aide à trouver des ressources gratuites pour votre bien-être mental. Consultations psychologiques, groupes de parole, ateliers de gestion du stress en Espagne."
   },
   {
-    "label": "therapeutic_activities",
+    "label": "Activités thérapeutiques",
     "categoryId": "therapeutic_activities",
     "slug": "therapeutic_activities",
     "synonyms": [
@@ -3230,7 +3238,7 @@
     "seoDescription": "Soliguide vous aide à trouver des activités thérapeutiques gratuites : yoga, méditation, art-thérapie, groupes de parole et ateliers bien-être près de chez vous."
   },
   {
-    "label": "addiction_care",
+    "label": "Consultations et soins",
     "categoryId": "addiction_care",
     "slug": "addiction_care",
     "synonyms": [
@@ -3257,7 +3265,7 @@
     "seoDescription": "Soliguide vous aide à trouver des soins addiction gratuits en Espagne. Consultations médicales, groupes d'entraide, centres de désintoxication disponibles."
   },
   {
-    "label": "addiction_prevention_and_material",
+    "label": "Prévention et matériel",
     "categoryId": "addiction_prevention_and_material",
     "slug": "addiction_prevention_and_material",
     "synonyms": [
@@ -3284,7 +3292,7 @@
     "seoDescription": "Soliguide vous aide face aux addictions. Trouvez des centres de désintoxication, des hébergements d'urgence et des repas gratuits près de vous."
   },
   {
-    "label": "emergency_contraception",
+    "label": "Contraception d'urgence",
     "categoryId": "emergency_contraception",
     "slug": "emergency_contraception",
     "synonyms": [
@@ -3311,7 +3319,7 @@
     "seoDescription": "Soliguide vous aide à trouver une contraception d'urgence gratuite. Pharmacies, cliniques, centres de santé près de vous en Espagne."
   },
   {
-    "label": "abortion",
+    "label": "Avortement (IVG)",
     "categoryId": "abortion",
     "slug": "abortion",
     "synonyms": [
@@ -3338,7 +3346,7 @@
     "seoDescription": "Soliguide vous aide à trouver des services d'avortement sécurisé, des consultations médicales et des accompagnements en Espagne."
   },
   {
-    "label": "contraception",
+    "label": "Contraception",
     "categoryId": "contraception",
     "slug": "contraception",
     "synonyms": [
@@ -3365,7 +3373,7 @@
     "seoDescription": "Soliguide vous aide à trouver des contraceptifs gratuits, des consultations gynécologiques et des informations sur la contraception en Espagne."
   },
   {
-    "label": "sti_prevention_testing",
+    "label": "Dépistage et traitement des IST et du VIH",
     "categoryId": "sti_prevention_testing",
     "slug": "sti_prevention_testing",
     "synonyms": [
@@ -3392,7 +3400,7 @@
     "seoDescription": "Soliguide vous aide à trouver des tests gratuits près de chez vous. Dépistage VIH, chlamydia, syphilis sans rendez-vous en Espagne."
   },
   {
-    "label": "hiv_prevention",
+    "label": "Prévention du VIH",
     "categoryId": "hiv_prevention",
     "slug": "hiv_prevention",
     "synonyms": [
@@ -3419,7 +3427,7 @@
     "seoDescription": "Soliguide vous aide à trouver des centres de dépistage VIH gratuit, des préservatifs et des conseils de prévention près de chez vous en Espagne."
   },
   {
-    "label": "sexual_health_vaccination",
+    "label": "Vaccination",
     "categoryId": "sexual_health_vaccination",
     "slug": "sexual_health_vaccination",
     "synonyms": [
@@ -3446,7 +3454,7 @@
     "seoDescription": "Soliguide vous aide à trouver des vaccins gratuits, des dépistages et des conseils en santé sexuelle près de chez vous en Espagne."
   },
   {
-    "label": "sexual_health_education",
+    "label": "Information et prévention",
     "categoryId": "sexual_health_education",
     "slug": "sexual_health_education",
     "synonyms": [
@@ -3473,7 +3481,7 @@
     "seoDescription": "Soliguide vous aide à trouver des ressources gratuites pour l'éducation sexuelle, la contraception et les dépistages en Espagne."
   },
   {
-    "label": "sexual_violence_support",
+    "label": "Violences Sexistes et Sexuelles",
     "categoryId": "sexual_violence_support",
     "slug": "sexual_violence_support",
     "synonyms": [
@@ -3500,7 +3508,7 @@
     "seoDescription": "Soliguide vous aide à trouver des ressources gratuites : centres d'accueil, psychologues, numéros d'urgence et accompagnement juridique en Espagne."
   },
   {
-    "label": "affective_life",
+    "label": "Vie affective et sexuelle",
     "categoryId": "affective_life",
     "slug": "affective_life",
     "synonyms": [
@@ -3527,7 +3535,7 @@
     "seoDescription": "Soliguide vous aide à trouver du soutien émotionnel en Espagne. Consultations psychologiques gratuites, groupes de parole, espaces d'écoute bienveillante."
   },
   {
-    "label": "neurology",
+    "label": "Neurologue",
     "categoryId": "neurology",
     "slug": "neurology",
     "synonyms": [
@@ -3554,7 +3562,7 @@
     "seoDescription": "Soliguide vous aide à trouver des consultations neurologiques gratuites, des thérapies et des centres de rééducation en Espagne."
   },
   {
-    "label": "vascular_surgery",
+    "label": "Chirurgien vasculaire",
     "categoryId": "vascular_surgery",
     "slug": "vascular_surgery",
     "synonyms": [

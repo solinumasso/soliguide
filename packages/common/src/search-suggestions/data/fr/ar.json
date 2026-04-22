@@ -2610,7 +2610,11 @@
     "categoryId": null,
     "label": "La CIMADE",
     "slug": "cimade",
-    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
+    "synonyms": [
+      "la cimade",
+      "CIMADE",
+      "service œcuménique d'entraide"
+    ],
     "type": "ORGANIZATION",
     "lang": "ar",
     "country": "fr",
@@ -2797,7 +2801,11 @@
     "categoryId": null,
     "label": "Centre socioculturel",
     "slug": "centre-socioculturel",
-    "synonyms": ["centre socio culturel", "csc", "centre social"],
+    "synonyms": [
+      "centre socio culturel",
+      "csc",
+      "centre social"
+    ],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "ar",
     "country": "fr",
@@ -3084,7 +3092,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "التنقل والمواصلات",
+    "label": "للتنقل والتنقل",
     "slug": "transportation_mobility",
     "synonyms": [
       "حافلة",
@@ -3111,7 +3119,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "دعم التنقل",
+    "label": "دعم الحركة",
     "slug": "mobility_support",
     "synonyms": [
       "نقل",
@@ -3165,7 +3173,7 @@
   },
   {
     "categoryId": "driving_license",
-    "label": "رخصة القيادة",
+    "label": "التحضير لرخصة القيادة",
     "slug": "driving_license",
     "synonyms": [
       "رخصة السيارة",
@@ -3192,7 +3200,7 @@
   },
   {
     "categoryId": "personal_vehicle_access",
-    "label": "الوصول إلى المركبات الشخصية",
+    "label": "إمكانية الوصول إلى مركبة شخصية",
     "slug": "personal_vehicle_access",
     "synonyms": [
       "النقل",
@@ -3219,7 +3227,7 @@
   },
   {
     "categoryId": "vehicle_maintenance",
-    "label": "صيانة السيارات",
+    "label": "صيانة وإصلاح المركبات",
     "slug": "vehicle_maintenance",
     "synonyms": [
       "إصلاح السيارة",
@@ -3245,7 +3253,7 @@
     "seoDescription": "Soliguide يساعدك في صيانة سيارتك. إصلاح مجاني، قطع غيار، ورش عمل بالقرب منك."
   },
   {
-    "label": "health_access",
+    "label": "الحصول على الرعاية الصحية",
     "categoryId": "health_access",
     "slug": "health_access",
     "synonyms": [
@@ -3272,7 +3280,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على عيادات مجانية وأدوية وفحوصات طبية بالقرب منك في فرنسا"
   },
   {
-    "label": "physical_health",
+    "label": "صحة الجسم",
     "categoryId": "physical_health",
     "slug": "physical_health",
     "synonyms": [
@@ -3299,7 +3307,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على عيادات صحية مجانية وأطباء بالقرب منك في فرنسا وخدمات طبية للجميع"
   },
   {
-    "label": "mental_health",
+    "label": "الصحة العقلية",
     "categoryId": "mental_health",
     "slug": "mental_health",
     "synonyms": [
@@ -3326,7 +3334,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على خدمات الصحة النفسية المجانية بالقرب منك. استشارات نفسية، مراكز استقبال، خطوط دعم في فرنسا."
   },
   {
-    "label": "addictions",
+    "label": "الإدمان",
     "categoryId": "addictions",
     "slug": "addictions",
     "synonyms": [
@@ -3353,7 +3361,7 @@
     "seoDescription": "سوليغيد يساعدك في العثور على مراكز علاج الإدمان المجانية والاستشارات والمأوى في فرنسا"
   },
   {
-    "label": "sexual_health",
+    "label": "الصحة الجنسية",
     "categoryId": "sexual_health",
     "slug": "sexual_health",
     "synonyms": [
@@ -3380,7 +3388,7 @@
     "seoDescription": "سوليغيد يساعدك في الوصول إلى الرعاية الصحية الجنسية المجانية. اختبارات، استشارات، وقاية من الأمراض في فرنسا."
   },
   {
-    "label": "parenthood",
+    "label": "الوالدين",
     "categoryId": "parenthood",
     "slug": "parenthood",
     "synonyms": [
@@ -3407,7 +3415,7 @@
     "seoDescription": "سوليجيد يساعدكم في العثور على خدمات الأبوة والأمومة. حضانة، دعم نفسي، مساعدات مالية في فرنسا."
   },
   {
-    "label": "health_coverage",
+    "label": "الحصول على التغطية الصحية",
     "categoryId": "health_coverage",
     "slug": "health_coverage",
     "synonyms": [
@@ -3434,7 +3442,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على مراكز صحية مجانية وتأمين صحي وعيادات قريبة منك في فرنسا"
   },
   {
-    "label": "find_healthcare",
+    "label": "العثور على مساعدة العلاج",
     "categoryId": "find_healthcare",
     "slug": "find_healthcare",
     "synonyms": [
@@ -3461,7 +3469,7 @@
     "seoDescription": "سوليغيد يساعدك في العثور على عيادات طبية مجانية وأدوية وفحوصات صحية بالقرب منك في فرنسا"
   },
   {
-    "label": "health_assessment",
+    "label": "الفحص الطبي",
     "categoryId": "health_assessment",
     "slug": "health_assessment",
     "synonyms": [
@@ -3488,7 +3496,7 @@
     "seoDescription": "سوليجيد يساعدك على إيجاد فحوصات طبية مجانية وعيادات صحية قريبة منك وأطباء يتكلمون لغتك"
   },
   {
-    "label": "optical_care",
+    "label": "العناية بالبصر",
     "categoryId": "optical_care",
     "slug": "optical_care",
     "synonyms": [
@@ -3515,7 +3523,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على عيادات لفحص النظر والنظارات والعدسات اللاصقة بالقرب منك"
   },
   {
-    "label": "hearing_care",
+    "label": "العناية بالسمع",
     "categoryId": "hearing_care",
     "slug": "hearing_care",
     "synonyms": [
@@ -3542,7 +3550,7 @@
     "seoDescription": "سوليجيد يساعدك في إيجاد خدمات رعاية السمع. اختبارات سمع مجانية وأجهزة تضخيم الصوت وعيادات متخصصة بالقرب منك."
   },
   {
-    "label": "chronic_diseases",
+    "label": "الأمراض المزمنة",
     "categoryId": "chronic_diseases",
     "slug": "chronic_diseases",
     "synonyms": [
@@ -3569,7 +3577,7 @@
     "seoDescription": "سوليغيد يساعدك في العثور على عيادات صحية مجانية وأدوية وفحوصات طبية قريبة منك في فرنسا"
   },
   {
-    "label": "medical_accommodation",
+    "label": "السكن الطبي والعلاجي",
     "categoryId": "medical_accommodation",
     "slug": "medical_accommodation",
     "synonyms": [
@@ -3596,7 +3604,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على سكن طبي آمن. شقة مجهزة، مأوى صحي، أو مركز استقبال قريب منك."
   },
   {
-    "label": "psychiatry",
+    "label": "طبيب نفساني",
     "categoryId": "psychiatry",
     "slug": "psychiatry",
     "synonyms": [
@@ -3650,7 +3658,7 @@
     "seoDescription": "اكتشف مجموعات الدعم القريبة منك عبر سوليجيد. مساعدة نفسية، تجمعات للنقاش، ملتقيات للعائلات والأشخاص في صعوبة."
   },
   {
-    "label": "mental_health_education",
+    "label": "الإعلام والتوعية",
     "categoryId": "mental_health_education",
     "slug": "mental_health_education",
     "synonyms": [
@@ -3677,7 +3685,7 @@
     "seoDescription": "سوليجيد يساعدك في الحصول على دعم نفسي مجاني. استشارات نفسية بباريس، مراكز الاستماع بليون، عيادات الصحة العقلية بمارسيليا"
   },
   {
-    "label": "therapeutic_activities",
+    "label": "أنشطة العلاج",
     "categoryId": "therapeutic_activities",
     "slug": "therapeutic_activities",
     "synonyms": [
@@ -3704,7 +3712,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على أنشطة علاجية مجانية: جلسات استرخاء، رياضة صحية، ورش عمل نفسية قريبة منك"
   },
   {
-    "label": "addiction_care",
+    "label": "المشاورات والرعاية",
     "categoryId": "addiction_care",
     "slug": "addiction_care",
     "synonyms": [
@@ -3731,7 +3739,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على مراكز علاج الإدمان والدعم النفسي والاستشارات الطبية المجانية بالقرب منك"
   },
   {
-    "label": "addiction_prevention_and_material",
+    "label": "الوقاية والمعدات",
     "categoryId": "addiction_prevention_and_material",
     "slug": "addiction_prevention_and_material",
     "synonyms": [
@@ -3758,7 +3766,7 @@
     "seoDescription": "سوليجيد يساعدك في الوقاية من الإدمان والحصول على مساعدة مادية. اكتشف مراكز العلاج والإيواء والمساعدات الغذائية بالقرب منك."
   },
   {
-    "label": "emergency_contraception",
+    "label": "وسائل منع الحمل الطارئة",
     "categoryId": "emergency_contraception",
     "slug": "emergency_contraception",
     "synonyms": [
@@ -3785,7 +3793,7 @@
     "seoDescription": "Soliguide يساعدك في الوصول إلى وسائل منع الحمل الطارئة. اعثري على عيادات صحية وصيدليات وخدمات طبية قريبة منك."
   },
   {
-    "label": "abortion",
+    "label": "الإجهاض (IVG)",
     "categoryId": "abortion",
     "slug": "abortion",
     "synonyms": [
@@ -3812,7 +3820,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على عيادات طبية مجانية وآمنة. استشارة سرية وحنونة بالقرب منك."
   },
   {
-    "label": "contraception",
+    "label": "منع الحمل",
     "categoryId": "contraception",
     "slug": "contraception",
     "synonyms": [
@@ -3839,7 +3847,7 @@
     "seoDescription": "سوليغيد يساعدك في الوصول لوسائل منع الحمل. اكتشفي عيادات صحية مجانية وصيدليات وجمعيات في فرنسا"
   },
   {
-    "label": "sti_prevention_testing",
+    "label": "فحص وعلاج الأمراض المنقولة عن طريق الاتصال الجنسي وفيروس نقص المناعة البشرية",
     "categoryId": "sti_prevention_testing",
     "slug": "sti_prevention_testing",
     "synonyms": [
@@ -3866,7 +3874,7 @@
     "seoDescription": "سوليغيد يساعدك في العثور على فحوصات مجانية وسرية. اختبارات في العيادات والمراكز الصحية بالقرب منك."
   },
   {
-    "label": "hiv_prevention",
+    "label": "الوقاية من فيروس نقص المناعة البشرية",
     "categoryId": "hiv_prevention",
     "slug": "hiv_prevention",
     "synonyms": [
@@ -3893,7 +3901,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على عيادات مجانية للفحص والوقاية والعلاج من فيروس نقص المناعة في فرنسا"
   },
   {
-    "label": "sexual_health_vaccination",
+    "label": "لقاحات",
     "categoryId": "sexual_health_vaccination",
     "slug": "sexual_health_vaccination",
     "synonyms": [
@@ -3920,7 +3928,7 @@
     "seoDescription": "سوليجيد يساعدكم في العثور على عيادات التلقيح والفحوصات الطبية والاستشارات الصحية بالقرب منكم"
   },
   {
-    "label": "sexual_health_education",
+    "label": "الإعلام والوقاية",
     "categoryId": "sexual_health_education",
     "slug": "sexual_health_education",
     "synonyms": [
@@ -3947,7 +3955,7 @@
     "seoDescription": "سوليجيد يوفر معلومات عن الصحة الجنسية والإنجابية. اعثر على عيادات مجانية وخدمات استشارة وموارد تثقيفية في فرنسا."
   },
   {
-    "label": "sexual_violence_support",
+    "label": "العنف الجنساني والجنساني",
     "categoryId": "sexual_violence_support",
     "slug": "sexual_violence_support",
     "synonyms": [
@@ -3974,7 +3982,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على مراكز الاستقبال والمشورة والعلاج النفسي والطبي بالمجان في فرنسا"
   },
   {
-    "label": "affective_life",
+    "label": "الحياة الإنجابية والجنسية",
     "categoryId": "affective_life",
     "slug": "affective_life",
     "synonyms": [

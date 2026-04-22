@@ -1243,7 +1243,7 @@
   },
   {
     "categoryId": "hygiene_products",
-    "label": "د پاکوالي محصولات",
+    "label": "د پاملرنې محصولات",
     "slug": "produits-hygiene",
     "synonyms": [
       "صابون",
@@ -1270,7 +1270,7 @@
   },
   {
     "categoryId": "face_masks",
-    "label": "ماسک",
+    "label": "ماسکونه",
     "slug": "masques",
     "synonyms": [
       "ماسک",
@@ -1567,7 +1567,7 @@
   },
   {
     "categoryId": "dental_care",
-    "label": "د غاښونو پاملرنه",
+    "label": "غاښونه",
     "slug": "dentaire",
     "synonyms": [
       "غاښونه",
@@ -1729,7 +1729,7 @@
   },
   {
     "categoryId": "allergology",
-    "label": "الرجي",
+    "label": "الرجولوژي",
     "slug": "allergologie",
     "synonyms": [
       "الرجي",
@@ -1810,7 +1810,7 @@
   },
   {
     "categoryId": "endocrinology",
-    "label": "د غدودو ناروغۍ",
+    "label": "Endocrinology",
     "slug": "endocrinologie",
     "synonyms": [
       "غدودونه",
@@ -1918,7 +1918,7 @@
   },
   {
     "categoryId": "otorhinolaryngology",
-    "label": "د غوږو، پزې او ستونې درملنه",
+    "label": "Otorhinolaryngology",
     "slug": "oto-rhino-laryngologie",
     "synonyms": [
       "غوږونه",
@@ -1999,7 +1999,7 @@
   },
   {
     "categoryId": "phlebology",
-    "label": "د رګونو درملنه",
+    "label": "Phlebology",
     "slug": "phlebologie",
     "synonyms": [
       "رګونه",
@@ -2610,7 +2610,11 @@
     "categoryId": null,
     "label": "La CIMADE",
     "slug": "cimade",
-    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
+    "synonyms": [
+      "la cimade",
+      "CIMADE",
+      "service œcuménique d'entraide"
+    ],
     "type": "ORGANIZATION",
     "lang": "ps",
     "country": "fr",
@@ -2796,7 +2800,11 @@
     "categoryId": null,
     "label": "Centre socioculturel",
     "slug": "centre-socioculturel",
-    "synonyms": ["centre socio culturel", "csc", "centre social"],
+    "synonyms": [
+      "centre socio culturel",
+      "csc",
+      "centre social"
+    ],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "ps",
     "country": "fr",
@@ -3082,7 +3090,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "د ټرانسپورټ او تګ راتګ",
+    "label": "د ګرځېدو او لېږدولو لپاره",
     "slug": "transportation_mobility",
     "synonyms": [
       "بس",
@@ -3109,7 +3117,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "د تګ راتګ مرسته",
+    "label": "د خوځښت ملاتړ",
     "slug": "mobility_support",
     "synonyms": [
       "بس",
@@ -3136,7 +3144,7 @@
   },
   {
     "categoryId": "mobility_financing",
-    "label": "د تحرک مالي مرسته",
+    "label": "د خوځښت تمویل",
     "slug": "mobility_financing",
     "synonyms": [
       "ټرانسپورټ",
@@ -3163,7 +3171,7 @@
   },
   {
     "categoryId": "driving_license",
-    "label": "د رانندګي جواز",
+    "label": "د موټر چلولو جواز چمتووالی",
     "slug": "driving_license",
     "synonyms": [
       "رانندګي جواز",
@@ -3190,7 +3198,7 @@
   },
   {
     "categoryId": "personal_vehicle_access",
-    "label": "د شخصي موټر لاسرسي",
+    "label": "شخصي موټر ته لاسرسی",
     "slug": "personal_vehicle_access",
     "synonyms": [
       "موټر کرایه",
@@ -3217,7 +3225,7 @@
   },
   {
     "categoryId": "vehicle_maintenance",
-    "label": "د موټر مراقبت",
+    "label": "د موټرو ساتنه او ترمیم",
     "slug": "vehicle_maintenance",
     "synonyms": [
       "موټر مرمت",
@@ -3459,7 +3467,7 @@
     "seoDescription": "Soliguide تاسو سره د صحت خدمات موندلو لپاره مرسته کوي. د ډاکتر ملاقات، درملنې، او روغتیا کلینیکونه په فرانسه کې."
   },
   {
-    "label": "health_assessment",
+    "label": "روغتیایی معاینه",
     "categoryId": "health_assessment",
     "slug": "health_assessment",
     "synonyms": [
@@ -3513,7 +3521,7 @@
     "seoDescription": "Soliguide تاسو ته د چشم معاینې، عینکو او درملنې لپاره سوله ځایونه وړاندې کوي. د فرانسې کې وړیا مرستې."
   },
   {
-    "label": "hearing_care",
+    "label": "د اورېدو پاملرنه",
     "categoryId": "hearing_care",
     "slug": "hearing_care",
     "synonyms": [
@@ -3594,7 +3602,7 @@
     "seoDescription": "Soliguide تاسو سره د شپې پناه، ډاکتر ملاقات، او درملنې لپاره سوله ځایونه موندي"
   },
   {
-    "label": "psychiatry",
+    "label": "رواني ډاکټر",
     "categoryId": "psychiatry",
     "slug": "psychiatry",
     "synonyms": [
@@ -3756,7 +3764,7 @@
     "seoDescription": "Soliguide تاسو ته د درملنې، د روغتیا مرکزونو او د مواد مخنیوی خدمتونو لیست وړاندې کوي"
   },
   {
-    "label": "emergency_contraception",
+    "label": "د امیندوارۍ بیړني درمل",
     "categoryId": "emergency_contraception",
     "slug": "emergency_contraception",
     "synonyms": [
@@ -3810,7 +3818,7 @@
     "seoDescription": "Soliguide تاسو ته د طبي مشورې، روغتيايي مرکزونو او روانی مرستې لپاره سوله پیدا کولو کې مرسته کوي."
   },
   {
-    "label": "contraception",
+    "label": "د حمل مخنیوی",
     "categoryId": "contraception",
     "slug": "contraception",
     "synonyms": [
@@ -3891,7 +3899,7 @@
     "seoDescription": "Soliguide تاسو ته د HIV د مخنیوي لپاره سوچ شوي ځایونه وړاندې کوي. د ازمایشونو، درملنې او مشورې لپاره نږدې کلینیکونه."
   },
   {
-    "label": "sexual_health_vaccination",
+    "label": "واکسین کول",
     "categoryId": "sexual_health_vaccination",
     "slug": "sexual_health_vaccination",
     "synonyms": [

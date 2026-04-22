@@ -352,7 +352,7 @@
   },
   {
     "categoryId": "food_packages",
-    "label": "Banc d'aliments",
+    "label": "Centre de distribució d'aliments",
     "slug": "colis-alimentaire",
     "synonyms": [
       "menjar",
@@ -541,7 +541,7 @@
   },
   {
     "categoryId": "food_voucher",
-    "label": "Val / xec alimentari",
+    "label": "Targeta per compra d'aliments",
     "slug": "bon-alimentaire",
     "synonyms": [
       "menjar",
@@ -1351,7 +1351,7 @@
   },
   {
     "categoryId": "clothing",
-    "label": "Roba",
+    "label": "Rober",
     "slug": "vetements",
     "synonyms": [
       "vestimenta",
@@ -2323,7 +2323,7 @@
   },
   {
     "categoryId": "spanish_course",
-    "label": "categories.spanish_course",
+    "label": "Curs de castellà",
     "slug": "cours-espagnol",
     "synonyms": [
       "aprendre",
@@ -2350,7 +2350,7 @@
   },
   {
     "categoryId": "catalan_course",
-    "label": "categories.catalan_course",
+    "label": "Curs de català",
     "slug": "cours-catalan",
     "synonyms": [
       "aprendre",
@@ -2414,7 +2414,11 @@
     "categoryId": null,
     "label": "Quàlia",
     "slug": "qualia",
-    "synonyms": ["Qualia", "Fundació Quàlia", "Fundación Qualia"],
+    "synonyms": [
+      "Qualia",
+      "Fundació Quàlia",
+      "Fundación Qualia"
+    ],
     "type": "ORGANIZATION",
     "lang": "ca",
     "country": "es",
@@ -2425,7 +2429,11 @@
     "categoryId": null,
     "label": "Amisol",
     "slug": "amisol",
-    "synonyms": ["AMISOL", "Associació Amisol", "Asociación Amisol"],
+    "synonyms": [
+      "AMISOL",
+      "Associació Amisol",
+      "Asociación Amisol"
+    ],
     "type": "ORGANIZATION",
     "lang": "ca",
     "country": "es",
@@ -2691,7 +2699,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "Transport i Mobilitat",
+    "label": "Desplaçament i transport",
     "slug": "transportation_mobility",
     "synonyms": [
       "autobús",
@@ -2718,7 +2726,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "Suport de Mobilitat",
+    "label": "Acompanyament i tràmits a la mobilitat",
     "slug": "mobility_support",
     "synonyms": [
       "transport",
@@ -2745,7 +2753,7 @@
   },
   {
     "categoryId": "mobility_financing",
-    "label": "Finançament de mobilitat",
+    "label": "Ajudes econòmiques a la mobilitat",
     "slug": "mobility_financing",
     "synonyms": [
       "transport",
@@ -2771,7 +2779,7 @@
     "seoDescription": "Soliguide us ajuda a trobar finançament per transport, autobús, tren o taxi. Accediu a ajudes de mobilitat a la vostra ciutat."
   },
   {
-    "label": "health_access",
+    "label": "Accés a la salut",
     "categoryId": "health_access",
     "slug": "health_access",
     "synonyms": [
@@ -2798,7 +2806,7 @@
     "seoDescription": "Soliguide us ajuda a accedir a centres de salut, consultes mèdiques i farmàcies gratuïtes. Trobar atenció sanitària prop de vosaltres."
   },
   {
-    "label": "physical_health",
+    "label": "Salut corporal",
     "categoryId": "physical_health",
     "slug": "physical_health",
     "synonyms": [
@@ -2825,7 +2833,7 @@
     "seoDescription": "Soliguide us ofereix centenars de llocs per a consultes mèdiques, vacunacions i revisió de salut a Espanya."
   },
   {
-    "label": "mental_health",
+    "label": "Salut Mental",
     "categoryId": "mental_health",
     "slug": "mental_health",
     "synonyms": [
@@ -2852,7 +2860,7 @@
     "seoDescription": "Soliguide us ajuda a trobar recursos de salut mental gratuïts. Psicòlegs, grups de suport, centres de crisi i teràpia accessible prop de vosaltres."
   },
   {
-    "label": "addictions",
+    "label": "Addiccions",
     "categoryId": "addictions",
     "slug": "addictions",
     "synonyms": [
@@ -2879,7 +2887,7 @@
     "seoDescription": "Soliguide ofereix llocs d'ajuda per a addicions. Tractaments gratuïts, grups de suport i desintoxicació a Espanya."
   },
   {
-    "label": "sexual_health",
+    "label": "Salut sexual",
     "categoryId": "sexual_health",
     "slug": "sexual_health",
     "synonyms": [
@@ -2906,7 +2914,7 @@
     "seoDescription": "Soliguide us ajuda a trobar serveis de salut sexual gratuïts. Anticonceptius, proves VIH, informació sobre infeccions de transmissió sexual."
   },
   {
-    "label": "parenthood",
+    "label": "Parentalitat",
     "categoryId": "parenthood",
     "slug": "parenthood",
     "synonyms": [
@@ -2933,7 +2941,7 @@
     "seoDescription": "Soliguide us ofereix ajuda per a pares: guarderies, beques escolars, assessorament familiar i suport emocional. Trobeu recursos propers."
   },
   {
-    "label": "health_coverage",
+    "label": "Obtenir cobertura sanitària",
     "categoryId": "health_coverage",
     "slug": "health_coverage",
     "synonyms": [
@@ -2960,7 +2968,7 @@
     "seoDescription": "Soliguide us ajuda a accedir a centres de salut, assegurança mèdica i consultes sense cost. Trobar clíniques, farmàcies i programes de vacunació."
   },
   {
-    "label": "find_healthcare",
+    "label": "Buscar ajuda per curar",
     "categoryId": "find_healthcare",
     "slug": "find_healthcare",
     "synonyms": [
@@ -2987,7 +2995,7 @@
     "seoDescription": "Soliguide us ajuda a trobar centres de salut, consultes mèdiques i farmàcies a Espanya. Accés a sanitat per a tothom."
   },
   {
-    "label": "health_assessment",
+    "label": "Revisió mèdica",
     "categoryId": "health_assessment",
     "slug": "health_assessment",
     "synonyms": [
@@ -3014,7 +3022,7 @@
     "seoDescription": "Soliguide us ajuda a trobar centres de salut gratuïts, revisió mèdica i consultes sense cost a Espanya."
   },
   {
-    "label": "optical_care",
+    "label": "Atenció òptica",
     "categoryId": "optical_care",
     "slug": "optical_care",
     "synonyms": [
@@ -3041,7 +3049,7 @@
     "seoDescription": "Soliguide us ajuda a trobar serveis gratuïts de visió. Gafes, revisió ocular, lents de contacte. Centres propers a vosaltres."
   },
   {
-    "label": "hearing_care",
+    "label": "Atenció auditiva",
     "categoryId": "hearing_care",
     "slug": "hearing_care",
     "synonyms": [
@@ -3068,7 +3076,7 @@
     "seoDescription": "Soliguide us ajuda a trobar serveis d'audició gratuïts. Audiòlegs, protèsis auditives, revisions mèdiques a Espanya."
   },
   {
-    "label": "chronic_diseases",
+    "label": "Malalties cròniques",
     "categoryId": "chronic_diseases",
     "slug": "chronic_diseases",
     "synonyms": [
@@ -3095,7 +3103,7 @@
     "seoDescription": "Soliguide us connecta amb centres de salut, farmàcies gratuïtes i programes per controlar diabetis, hipertensió o asma a Espanya."
   },
   {
-    "label": "medical_accommodation",
+    "label": "Allotjament mèdic i terapèutic",
     "categoryId": "medical_accommodation",
     "slug": "medical_accommodation",
     "synonyms": [
@@ -3122,7 +3130,7 @@
     "seoDescription": "Soliguide us ajuda a trobar allotjament mèdic. Accés a centres de salut, residències assistides i consultes gratuïtes prop de vosaltres."
   },
   {
-    "label": "psychiatry",
+    "label": "Psiquiatra",
     "categoryId": "psychiatry",
     "slug": "psychiatry",
     "synonyms": [
@@ -3176,7 +3184,7 @@
     "seoDescription": "Soliguide us connecta amb grups de suport a Espanya. Trobar espais per parlar, compartir experiències i rebre ajuda emocional prop de casa."
   },
   {
-    "label": "mental_health_education",
+    "label": "Informació i sensibilització",
     "categoryId": "mental_health_education",
     "slug": "mental_health_education",
     "synonyms": [
@@ -3203,7 +3211,7 @@
     "seoDescription": "Soliguide ofereix recursos d'educació en salut mental. Accedeix a tallers de benestar, grups de suport i consells per cuidar la teva ment."
   },
   {
-    "label": "therapeutic_activities",
+    "label": "Activitats de teràpia",
     "categoryId": "therapeutic_activities",
     "slug": "therapeutic_activities",
     "synonyms": [
@@ -3230,7 +3238,7 @@
     "seoDescription": "Soliguide us ajuda a trobar activitats terapèutiques: grups de suport, teràpia, relaxació i benestar a Espanya."
   },
   {
-    "label": "addiction_care",
+    "label": "Consultes i atenció",
     "categoryId": "addiction_care",
     "slug": "addiction_care",
     "synonyms": [
@@ -3257,7 +3265,7 @@
     "seoDescription": "Soliguide us ofereix recursos per deixar les drogues, l'alcohol o altres addiccions. Centres de desintoxicació, grups de suport i tractaments gratuïts propers a vosaltres."
   },
   {
-    "label": "addiction_prevention_and_material",
+    "label": "Prevenció i equipament",
     "categoryId": "addiction_prevention_and_material",
     "slug": "addiction_prevention_and_material",
     "synonyms": [
@@ -3284,7 +3292,7 @@
     "seoDescription": "Soliguide us ajuda a trobar recursos per a la prevenció d'addiccions. Accés a programes de desintoxicació, materials educatius i suport psicològic a Espanya."
   },
   {
-    "label": "emergency_contraception",
+    "label": "Anticoncepció d'emergència",
     "categoryId": "emergency_contraception",
     "slug": "emergency_contraception",
     "synonyms": [
@@ -3311,7 +3319,7 @@
     "seoDescription": "Soliguide us ofereix recursos per accedir a anticonceptius d'emergència gratuïts. Clíniques, farmàcies i centres de salut a prop vostre."
   },
   {
-    "label": "abortion",
+    "label": "Avortament (IVG)",
     "categoryId": "abortion",
     "slug": "abortion",
     "synonyms": [
@@ -3338,7 +3346,7 @@
     "seoDescription": "Soliguide us ajuda a trobar serveis d'avortament segur, clíniques de salut reproductiva i assessorament confidencial a Espanya."
   },
   {
-    "label": "contraception",
+    "label": "Anticoncepció",
     "categoryId": "contraception",
     "slug": "contraception",
     "synonyms": [
@@ -3365,7 +3373,7 @@
     "seoDescription": "Soliguide us ofereix centres de salut per accedir a anticonceptius gratuïts, píndoles, dispositius intrauterins i assessorament mèdic a prop vostre."
   },
   {
-    "label": "sti_prevention_testing",
+    "label": "Presentació i tractament de malalties de transmissió sexual i VIH",
     "categoryId": "sti_prevention_testing",
     "slug": "sti_prevention_testing",
     "synonyms": [
@@ -3392,7 +3400,7 @@
     "seoDescription": "Soliguide us ajuda a trobar proves d'ITS gratuïtes, consultes de prevenció i centres de salut sexual a Espanya sense cost."
   },
   {
-    "label": "hiv_prevention",
+    "label": "Prevenció del VIH",
     "categoryId": "hiv_prevention",
     "slug": "hiv_prevention",
     "synonyms": [
@@ -3419,7 +3427,7 @@
     "seoDescription": "Soliguide us ofereix llocs per a proves de VIH, preservatius gratuïts i consells de salut sexual a Espanya."
   },
   {
-    "label": "sexual_health_vaccination",
+    "label": "Vacunació",
     "categoryId": "sexual_health_vaccination",
     "slug": "sexual_health_vaccination",
     "synonyms": [
@@ -3446,7 +3454,7 @@
     "seoDescription": "Soliguide us ajuda a trobar vacunacions, proves de salut sexual i anticonceptius gratuïts. Clíniques, centres de salut i farmàcies a prop vostre."
   },
   {
-    "label": "sexual_health_education",
+    "label": "Informació i prevenció",
     "categoryId": "sexual_health_education",
     "slug": "sexual_health_education",
     "synonyms": [
@@ -3473,7 +3481,7 @@
     "seoDescription": "Soliguide us ajuda a trobar recursos sobre salut sexual. Accés a clíniques, informació anticonceptius i assessorament gratuït a prop vostre."
   },
   {
-    "label": "sexual_violence_support",
+    "label": "Gènere i violència de gènere",
     "categoryId": "sexual_violence_support",
     "slug": "sexual_violence_support",
     "synonyms": [
@@ -3500,7 +3508,7 @@
     "seoDescription": "Soliguide us ofereix recursos per a víctimes de violència sexual. Telèfons d'emergència, assessorament legal, teràpia psicològica i acollida segura."
   },
   {
-    "label": "affective_life",
+    "label": "Vida afectiva i sexual",
     "categoryId": "affective_life",
     "slug": "affective_life",
     "synonyms": [
@@ -3527,7 +3535,7 @@
     "seoDescription": "Soliguide us ajuda a trobar espais d'escolta, grups de suport i consell psicològic gratuït. Conversar, sentir-se acompanyat, superar dificultats."
   },
   {
-    "label": "neurology",
+    "label": "Neuròleg",
     "categoryId": "neurology",
     "slug": "neurology",
     "synonyms": [
@@ -3554,7 +3562,7 @@
     "seoDescription": "Soliguide us connecta amb centres de neurologia, consultes mèdiques i suport per a malalties neurològiques. Trobar ajuda prop de vosaltres."
   },
   {
-    "label": "vascular_surgery",
+    "label": "Cirurgia vascular",
     "categoryId": "vascular_surgery",
     "slug": "vascular_surgery",
     "synonyms": [

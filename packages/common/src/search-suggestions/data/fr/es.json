@@ -352,7 +352,7 @@
   },
   {
     "categoryId": "food_packages",
-    "label": "Banco de alimentos",
+    "label": "Centro de distribución de alimentos",
     "slug": "colis-alimentaire",
     "synonyms": [
       "alimentos",
@@ -541,7 +541,7 @@
   },
   {
     "categoryId": "food_voucher",
-    "label": "Vale/cheque alimentario",
+    "label": "Tarjeta para compra de alimentos",
     "slug": "bon-alimentaire",
     "synonyms": [
       "cupones",
@@ -2610,7 +2610,11 @@
     "categoryId": null,
     "label": "La CIMADE",
     "slug": "cimade",
-    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
+    "synonyms": [
+      "la cimade",
+      "CIMADE",
+      "service œcuménique d'entraide"
+    ],
     "type": "ORGANIZATION",
     "lang": "es",
     "country": "fr",
@@ -2796,7 +2800,11 @@
     "categoryId": null,
     "label": "Centre socioculturel",
     "slug": "centre-socioculturel",
-    "synonyms": ["centre socio culturel", "csc", "centre social"],
+    "synonyms": [
+      "centre socio culturel",
+      "csc",
+      "centre social"
+    ],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "es",
     "country": "fr",
@@ -3082,7 +3090,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "Movilidad de Transporte",
+    "label": "Desplazamiento y transporte",
     "slug": "transportation_mobility",
     "synonyms": [
       "autobús",
@@ -3109,7 +3117,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "Apoyo a la Movilidad",
+    "label": "Apoyo a la movilidad",
     "slug": "mobility_support",
     "synonyms": [
       "transporte",
@@ -3136,7 +3144,7 @@
   },
   {
     "categoryId": "mobility_financing",
-    "label": "Financiación de Movilidad",
+    "label": "Ayudas económicas a la movilidad",
     "slug": "mobility_financing",
     "synonyms": [
       "transporte",
@@ -3163,7 +3171,7 @@
   },
   {
     "categoryId": "driving_license",
-    "label": "Licencia de Conducir",
+    "label": "Preparación para el permiso de conducir",
     "slug": "driving_license",
     "synonyms": [
       "carnet de conducir",
@@ -3190,7 +3198,7 @@
   },
   {
     "categoryId": "personal_vehicle_access",
-    "label": "Acceso a vehículo personal",
+    "label": "Acceso a un vehículo personal",
     "slug": "personal_vehicle_access",
     "synonyms": [
       "transporte",
@@ -3217,7 +3225,7 @@
   },
   {
     "categoryId": "vehicle_maintenance",
-    "label": "Mantenimiento de Vehículos",
+    "label": "Mantenimiento y reparación de vehículos",
     "slug": "vehicle_maintenance",
     "synonyms": [
       "reparación",
@@ -3243,7 +3251,7 @@
     "seoDescription": "Soliguide le conecta con recursos para reparaciones de vehículos, inspecciones técnicas y talleres accesibles en Francia."
   },
   {
-    "label": "health_access",
+    "label": "Acceso a la salud",
     "categoryId": "health_access",
     "slug": "health_access",
     "synonyms": [
@@ -3270,7 +3278,7 @@
     "seoDescription": "Soliguide le conecta con centros de salud gratuitos, consultas médicas sin cita y medicamentos en Francia."
   },
   {
-    "label": "physical_health",
+    "label": "Salud corporal",
     "categoryId": "physical_health",
     "slug": "physical_health",
     "synonyms": [
@@ -3297,7 +3305,7 @@
     "seoDescription": "Soliguide le conecta con centros de salud, consultas médicas gratuitas y medicamentos en Francia. Acceso fácil a cuidados sin costo."
   },
   {
-    "label": "mental_health",
+    "label": "Salud mental",
     "categoryId": "mental_health",
     "slug": "mental_health",
     "synonyms": [
@@ -3324,7 +3332,7 @@
     "seoDescription": "Soliguide le conecta con espacios de escucha gratuitos, psicólogos y centros de crisis en Francia. Hable, descanse, reciba ayuda."
   },
   {
-    "label": "addictions",
+    "label": "Adicciones",
     "categoryId": "addictions",
     "slug": "addictions",
     "synonyms": [
@@ -3351,7 +3359,7 @@
     "seoDescription": "Soliguide le conecta con centros de desintoxicación, médicos especializados y grupos de apoyo gratuitos en su región francesa."
   },
   {
-    "label": "sexual_health",
+    "label": "Salud sexual",
     "categoryId": "sexual_health",
     "slug": "sexual_health",
     "synonyms": [
@@ -3378,7 +3386,7 @@
     "seoDescription": "Soliguide le conecta con servicios de salud sexual gratuitos en Francia. Acceso a anticonceptivos, pruebas de ITS, asesoramiento confidencial."
   },
   {
-    "label": "parenthood",
+    "label": "Parentalidad",
     "categoryId": "parenthood",
     "slug": "parenthood",
     "synonyms": [
@@ -3405,7 +3413,7 @@
     "seoDescription": "Soliguide le conecta con recursos para familias: guarderías, ayudas económicas, espacios de juego y apoyo parental en Francia."
   },
   {
-    "label": "health_coverage",
+    "label": "Obtener cobertura de salud",
     "categoryId": "health_coverage",
     "slug": "health_coverage",
     "synonyms": [
@@ -3432,7 +3440,7 @@
     "seoDescription": "Soliguide le conecta con centros de salud, médicos sin cita y seguros médicos. Acceso a cuidados en Francia."
   },
   {
-    "label": "find_healthcare",
+    "label": "Encontrar ayuda para curar",
     "categoryId": "find_healthcare",
     "slug": "find_healthcare",
     "synonyms": [
@@ -3459,7 +3467,7 @@
     "seoDescription": "Soliguide le conecta con cientos de lugares para consultas médicas, vacunas, medicinas y centros de salud cerca de usted en Francia."
   },
   {
-    "label": "health_assessment",
+    "label": "chequeo médico",
     "categoryId": "health_assessment",
     "slug": "health_assessment",
     "synonyms": [
@@ -3486,7 +3494,7 @@
     "seoDescription": "Soliguide le conecta con centros de salud gratuitos en Francia. Acceso a médicos, vacunas, chequeos médicos y atención sanitaria sin costo."
   },
   {
-    "label": "optical_care",
+    "label": "Cuidado óptico",
     "categoryId": "optical_care",
     "slug": "optical_care",
     "synonyms": [
@@ -3513,7 +3521,7 @@
     "seoDescription": "Soliguide le ayuda a encontrar cuidado de los ojos. Gafas gratis, examen visual, lentes de contacto en Francia."
   },
   {
-    "label": "hearing_care",
+    "label": "Cuidado auditivo",
     "categoryId": "hearing_care",
     "slug": "hearing_care",
     "synonyms": [
@@ -3540,7 +3548,7 @@
     "seoDescription": "Soliguide le conecta con centros de audición gratuitos. Pruebas auditivas, audífonos, seguimiento médico en Francia."
   },
   {
-    "label": "chronic_diseases",
+    "label": "Enfermedades crónicas",
     "categoryId": "chronic_diseases",
     "slug": "chronic_diseases",
     "synonyms": [
@@ -3567,7 +3575,7 @@
     "seoDescription": "Soliguide le conecta con centros de salud, medicinas gratuitas y seguimiento médico para vivir mejor con sus enfermedades."
   },
   {
-    "label": "medical_accommodation",
+    "label": "Alojamiento médico y terapéutico",
     "categoryId": "medical_accommodation",
     "slug": "medical_accommodation",
     "synonyms": [
@@ -3594,7 +3602,7 @@
     "seoDescription": "Soliguide le conecta con lugares para consultas médicas, medicinas gratis y cuidados de salud. Centros de salud, farmacias sociales, consultorios."
   },
   {
-    "label": "psychiatry",
+    "label": "Psiquiatra",
     "categoryId": "psychiatry",
     "slug": "psychiatry",
     "synonyms": [
@@ -3648,7 +3656,7 @@
     "seoDescription": "Soliguide le conecta con grupos de apoyo: reuniones para dejar de fumar, espacios de escucha para padres, círculos de recuperación."
   },
   {
-    "label": "mental_health_education",
+    "label": "Información y sensibilización",
     "categoryId": "mental_health_education",
     "slug": "mental_health_education",
     "synonyms": [
@@ -3675,7 +3683,7 @@
     "seoDescription": "Soliguide le conecta con recursos de salud mental. Encuentre psicólogos, grupos de apoyo, líneas de crisis y talleres en Francia."
   },
   {
-    "label": "therapeutic_activities",
+    "label": "Actividades de terapia",
     "categoryId": "therapeutic_activities",
     "slug": "therapeutic_activities",
     "synonyms": [
@@ -3702,7 +3710,7 @@
     "seoDescription": "Soliguide le conecta con espacios de bienestar: talleres de arte, yoga, meditación y grupos de apoyo cerca de usted en Francia."
   },
   {
-    "label": "addiction_care",
+    "label": "Consultas y cuidados",
     "categoryId": "addiction_care",
     "slug": "addiction_care",
     "synonyms": [
@@ -3729,7 +3737,7 @@
     "seoDescription": "Soliguide le conecta con centros de desintoxicación, médicos especializados y grupos de apoyo. Acceso a tratamientos en Francia sin costo."
   },
   {
-    "label": "addiction_prevention_and_material",
+    "label": "Prevención y equipo",
     "categoryId": "addiction_prevention_and_material",
     "slug": "addiction_prevention_and_material",
     "synonyms": [
@@ -3756,7 +3764,7 @@
     "seoDescription": "Soliguide le conecta con centros de desintoxicación gratuitos, alojamiento de emergencia y programas de reinserción en Francia."
   },
   {
-    "label": "emergency_contraception",
+    "label": "anticoncepción de emergencia",
     "categoryId": "emergency_contraception",
     "slug": "emergency_contraception",
     "synonyms": [
@@ -3783,7 +3791,7 @@
     "seoDescription": "Soliguide le conecta con centros de salud para anticonceptivos de emergencia, píldora del día después y asesoramiento confidencial en Francia."
   },
   {
-    "label": "abortion",
+    "label": "Aborto (IVG)",
     "categoryId": "abortion",
     "slug": "abortion",
     "synonyms": [
@@ -3810,7 +3818,7 @@
     "seoDescription": "Soliguide le conecta con centros de salud, asesoramiento médico y apoyo emocional para aborto en Francia de forma gratuita."
   },
   {
-    "label": "contraception",
+    "label": "Anticoncepción",
     "categoryId": "contraception",
     "slug": "contraception",
     "synonyms": [
@@ -3837,7 +3845,7 @@
     "seoDescription": "Soliguide le conecta con centros de salud para anticonceptivos gratis, píldoras, dispositivos intrauterinos y asesoramiento en Francia."
   },
   {
-    "label": "sti_prevention_testing",
+    "label": "Screening and treatment of STDs and HIV",
     "categoryId": "sti_prevention_testing",
     "slug": "sti_prevention_testing",
     "synonyms": [
@@ -3864,7 +3872,7 @@
     "seoDescription": "Soliguide le ayuda a encontrar pruebas de ITS gratuitas, consultas médicas y centros de salud cerca de usted en Francia."
   },
   {
-    "label": "hiv_prevention",
+    "label": "Prevención del VIH",
     "categoryId": "hiv_prevention",
     "slug": "hiv_prevention",
     "synonyms": [
@@ -3891,7 +3899,7 @@
     "seoDescription": "Soliguide le conecta con centros de pruebas gratuitas, preservativos y información sobre prevención del VIH en Francia."
   },
   {
-    "label": "sexual_health_vaccination",
+    "label": "Vacunación",
     "categoryId": "sexual_health_vaccination",
     "slug": "sexual_health_vaccination",
     "synonyms": [
@@ -3918,7 +3926,7 @@
     "seoDescription": "Soliguide le conecta con centros de vacunación, pruebas de ITS y anticoncepción gratuita. Acceso fácil a cuidados de salud sexual."
   },
   {
-    "label": "sexual_health_education",
+    "label": "Información y prevención",
     "categoryId": "sexual_health_education",
     "slug": "sexual_health_education",
     "synonyms": [
@@ -3945,7 +3953,7 @@
     "seoDescription": "Soliguide le conecta con recursos de salud sexual. Acceso a anticonceptivos, pruebas de ITS, consultas confidenciales en Francia."
   },
   {
-    "label": "sexual_violence_support",
+    "label": "Violencia de género y género",
     "categoryId": "sexual_violence_support",
     "slug": "sexual_violence_support",
     "synonyms": [
@@ -3972,7 +3980,7 @@
     "seoDescription": "Soliguide le conecta con centros de acogida, psicólogos y líneas de escucha gratuitas para víctimas de violencia sexual en Francia."
   },
   {
-    "label": "affective_life",
+    "label": "Vida afectiva y sexual",
     "categoryId": "affective_life",
     "slug": "affective_life",
     "synonyms": [

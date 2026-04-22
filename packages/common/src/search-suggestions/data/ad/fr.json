@@ -730,7 +730,7 @@
   },
   {
     "categoryId": "parent_assistance",
-    "label": "Conseil aux parents",
+    "label": "Soutien à la parentalité",
     "slug": "conseil-parents",
     "synonyms": [
       "parental",
@@ -1459,7 +1459,7 @@
   },
   {
     "categoryId": "psychological_support",
-    "label": "Psychologie",
+    "label": "Psychologue",
     "slug": "psychologie",
     "synonyms": [
       "psychologue",
@@ -1486,7 +1486,7 @@
   },
   {
     "categoryId": "child_care",
-    "label": "Soins enfants",
+    "label": "Soins pour les enfants",
     "slug": "soins-enfants",
     "synonyms": [
       "pédiatre",
@@ -1513,7 +1513,7 @@
   },
   {
     "categoryId": "general_practitioner",
-    "label": "Médecin généraliste",
+    "label": "Médecine générale",
     "slug": "generaliste",
     "synonyms": [
       "consultation",
@@ -1540,7 +1540,7 @@
   },
   {
     "categoryId": "dental_care",
-    "label": "Dentaire",
+    "label": "Soins dentaires",
     "slug": "dentaire",
     "synonyms": [
       "dents",
@@ -1567,7 +1567,7 @@
   },
   {
     "categoryId": "pregnancy_care",
-    "label": "Suivi grossesse",
+    "label": "Suivi de grossesse",
     "slug": "planification",
     "synonyms": [
       "grossesse",
@@ -1621,7 +1621,7 @@
   },
   {
     "categoryId": "infirmary",
-    "label": "Infirmerie",
+    "label": "Soins infirmiers",
     "slug": "infirmerie",
     "synonyms": [
       "soins",
@@ -1702,7 +1702,7 @@
   },
   {
     "categoryId": "allergology",
-    "label": "Allergologie",
+    "label": "Allergologue",
     "slug": "allergologie",
     "synonyms": [
       "allergie",
@@ -1729,7 +1729,7 @@
   },
   {
     "categoryId": "cardiology",
-    "label": "Cardiologie",
+    "label": "Cardiologue",
     "slug": "cardiologie",
     "synonyms": [
       "cœur",
@@ -1756,7 +1756,7 @@
   },
   {
     "categoryId": "dermatology",
-    "label": "Dermatologie",
+    "label": "Dermatologue",
     "slug": "dermatologie",
     "synonyms": [
       "peau",
@@ -1783,7 +1783,7 @@
   },
   {
     "categoryId": "endocrinology",
-    "label": "Endocrinologie",
+    "label": "Endocrinologue",
     "slug": "endocrinologie",
     "synonyms": [
       "diabète",
@@ -1810,7 +1810,7 @@
   },
   {
     "categoryId": "gastroenterology",
-    "label": "Gastro-entérologie",
+    "label": "Gastro-entérologue",
     "slug": "gastro-enterologie",
     "synonyms": [
       "digestif",
@@ -1864,7 +1864,7 @@
   },
   {
     "categoryId": "kinesitherapy",
-    "label": "Kinésithérapie",
+    "label": "Kinésithérapeute",
     "slug": "kinesitherapie",
     "synonyms": [
       "rééducation",
@@ -1891,7 +1891,7 @@
   },
   {
     "categoryId": "otorhinolaryngology",
-    "label": "Oto-rhino-laryngologie",
+    "label": "ORL",
     "slug": "oto-rhino-laryngologie",
     "synonyms": [
       "oreille",
@@ -1945,7 +1945,7 @@
   },
   {
     "categoryId": "pedicure",
-    "label": "Pédicure",
+    "label": "Pédicure-podologue",
     "slug": "pedicure",
     "synonyms": [
       "pieds",
@@ -1972,7 +1972,7 @@
   },
   {
     "categoryId": "pneumology",
-    "label": "Pneumologie",
+    "label": "Pneumologue",
     "slug": "pneumologie",
     "synonyms": [
       "respiration",
@@ -1999,7 +1999,7 @@
   },
   {
     "categoryId": "radiology",
-    "label": "Radiologie",
+    "label": "Radiologue",
     "slug": "radiologie",
     "synonyms": [
       "radiographie",
@@ -2026,7 +2026,7 @@
   },
   {
     "categoryId": "rheumatology",
-    "label": "Rhumatologie",
+    "label": "Rhumatologue",
     "slug": "rhumatologie",
     "synonyms": [
       "articulations",
@@ -2053,7 +2053,7 @@
   },
   {
     "categoryId": "urology",
-    "label": "Urologie",
+    "label": "Urologue",
     "slug": "urologie",
     "synonyms": [
       "vessie",
@@ -2080,7 +2080,7 @@
   },
   {
     "categoryId": "speech_therapy",
-    "label": "Orthophonie",
+    "label": "Orthophoniste",
     "slug": "orthophonie",
     "synonyms": [
       "orthophoniste",
@@ -2107,7 +2107,7 @@
   },
   {
     "categoryId": "stomatology",
-    "label": "Stomatologie",
+    "label": "Stomatologue",
     "slug": "stomatologie",
     "synonyms": [
       "dentaire",
@@ -2323,7 +2323,7 @@
   },
   {
     "categoryId": "spanish_course",
-    "label": "categories.spanish_course",
+    "label": "Cours d'espagnol",
     "slug": "cours-espagnol",
     "synonyms": [
       "espagnol",
@@ -2350,7 +2350,7 @@
   },
   {
     "categoryId": "catalan_course",
-    "label": "categories.catalan_course",
+    "label": "Cours de catalan",
     "slug": "cours-catalan",
     "synonyms": [
       "catalan",
@@ -2635,7 +2635,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "Soutien à la mobilité",
+    "label": "Accompagnement à la mobilité",
     "slug": "mobility_support",
     "synonyms": [
       "transport",
@@ -2688,7 +2688,7 @@
     "seoDescription": "Soliguide vous aide à financer vos déplacements. Découvrez les aides pour transports, permis de conduire et véhicules adaptés en Andorre."
   },
   {
-    "label": "health_access",
+    "label": "Accès à la santé",
     "categoryId": "health_access",
     "slug": "health_access",
     "synonyms": [
@@ -2715,7 +2715,7 @@
     "seoDescription": "Soliguide vous aide à trouver des consultations médicales, des vaccinations et des soins dentaires gratuits ou à bas coût en Andorre."
   },
   {
-    "label": "physical_health",
+    "label": "Santé du corps",
     "categoryId": "physical_health",
     "slug": "physical_health",
     "synonyms": [
@@ -2742,7 +2742,7 @@
     "seoDescription": "Soliguide vous aide à trouver des soins gratuits en Andorre. Consultations médicales, vaccinations, dépistages et suivi de santé près de chez vous."
   },
   {
-    "label": "mental_health",
+    "label": "Santé mentale",
     "categoryId": "mental_health",
     "slug": "mental_health",
     "synonyms": [
@@ -2769,7 +2769,7 @@
     "seoDescription": "Soliguide vous aide à trouver des professionnels pour écouter vos préoccupations. Consultations gratuites, groupes de parole, soutien psychologique en Andorre."
   },
   {
-    "label": "addictions",
+    "label": "Addictions",
     "categoryId": "addictions",
     "slug": "addictions",
     "synonyms": [
@@ -2796,7 +2796,7 @@
     "seoDescription": "Soliguide vous aide face aux addictions en Andorre. Consultations gratuites, groupes de soutien, sevrage accompagné. Ressources locales accessibles."
   },
   {
-    "label": "sexual_health",
+    "label": "Santé sexuelle",
     "categoryId": "sexual_health",
     "slug": "sexual_health",
     "synonyms": [
@@ -2823,7 +2823,7 @@
     "seoDescription": "Soliguide vous aide à trouver des services de santé sexuelle en Andorre. Consultations gratuites, contraception, dépistage et informations confidentielles."
   },
   {
-    "label": "parenthood",
+    "label": "Parentalité",
     "categoryId": "parenthood",
     "slug": "parenthood",
     "synonyms": [
@@ -2850,7 +2850,7 @@
     "seoDescription": "Soliguide vous aide à trouver des services de parentalité en Andorre : garde d'enfants, allocations familiales, soutien éducatif et ressources locales."
   },
   {
-    "label": "health_coverage",
+    "label": "Obtenir une couverture santé",
     "categoryId": "health_coverage",
     "slug": "health_coverage",
     "synonyms": [
@@ -2877,7 +2877,7 @@
     "seoDescription": "Soliguide vous aide à accéder aux soins en Andorre. Découvrez les centres de santé, mutuelles et dispositifs d'aide médicale près de vous."
   },
   {
-    "label": "find_healthcare",
+    "label": "Trouver de l'aide pour se soigner",
     "categoryId": "find_healthcare",
     "slug": "find_healthcare",
     "synonyms": [
@@ -2904,7 +2904,7 @@
     "seoDescription": "Soliguide vous aide à trouver des soins gratuits en Andorre. Consultations médicales, pharmacies sociales, centres de santé accessibles à tous."
   },
   {
-    "label": "health_assessment",
+    "label": "Bilan de santé",
     "categoryId": "health_assessment",
     "slug": "health_assessment",
     "synonyms": [
@@ -2931,7 +2931,7 @@
     "seoDescription": "Soliguide vous aide à trouver des consultations médicales, dépistages gratuits et suivi de santé adaptés à votre situation en Andorre."
   },
   {
-    "label": "optical_care",
+    "label": "Soins optiques",
     "categoryId": "optical_care",
     "slug": "optical_care",
     "synonyms": [
@@ -2958,7 +2958,7 @@
     "seoDescription": "Soliguide vous aide à trouver des soins visuels gratuits en Andorre. Lunettes, examens, verres correcteurs pour tous."
   },
   {
-    "label": "hearing_care",
+    "label": "Soins auditifs",
     "categoryId": "hearing_care",
     "slug": "hearing_care",
     "synonyms": [
@@ -2985,7 +2985,7 @@
     "seoDescription": "Soliguide vous aide à trouver des soins auditifs gratuits en Andorre. Appareils auditifs, tests d'audition, consultations spécialisées."
   },
   {
-    "label": "chronic_diseases",
+    "label": "Maladies chroniques",
     "categoryId": "chronic_diseases",
     "slug": "chronic_diseases",
     "synonyms": [
@@ -3012,7 +3012,7 @@
     "seoDescription": "Soliguide vous aide à trouver des soins pour le diabète, l'asthme ou l'hypertension en Andorre. Consultations gratuites et suivi médical."
   },
   {
-    "label": "medical_accommodation",
+    "label": "Hébergement médicalisé et thérapeutique",
     "categoryId": "medical_accommodation",
     "slug": "medical_accommodation",
     "synonyms": [
@@ -3039,7 +3039,7 @@
     "seoDescription": "Soliguide vous aide à trouver un logement médical en Andorre. Accès à des structures d'accueil, maisons de santé et hébergements adaptés."
   },
   {
-    "label": "psychiatry",
+    "label": "Psychiatre",
     "categoryId": "psychiatry",
     "slug": "psychiatry",
     "synonyms": [
@@ -3066,7 +3066,7 @@
     "seoDescription": "Soliguide vous aide à trouver des consultations psychiatriques, des thérapies et des espaces d'écoute gratuits en Andorre."
   },
   {
-    "label": "support_groups",
+    "label": "Groupes de parole et d'entraide",
     "categoryId": "support_groups",
     "slug": "support_groups",
     "synonyms": [
@@ -3093,7 +3093,7 @@
     "seoDescription": "Soliguide vous aide à trouver des groupes d'entraide en Andorre. Rencontrez d'autres personnes, partagez vos expériences, recevez du soutien bienveillant."
   },
   {
-    "label": "mental_health_education",
+    "label": "Information et sensibilisation",
     "categoryId": "mental_health_education",
     "slug": "mental_health_education",
     "synonyms": [
@@ -3120,7 +3120,7 @@
     "seoDescription": "Soliguide vous aide à trouver des ressources pour votre bien-être mental en Andorre. Consultations, groupes de parole, formations gratuites."
   },
   {
-    "label": "therapeutic_activities",
+    "label": "Activités thérapeutiques",
     "categoryId": "therapeutic_activities",
     "slug": "therapeutic_activities",
     "synonyms": [
@@ -3147,7 +3147,7 @@
     "seoDescription": "Soliguide vous aide à trouver des activités thérapeutiques gratuites en Andorre. Yoga, méditation, ateliers créatifs et groupes de parole pour votre bien-être."
   },
   {
-    "label": "addiction_care",
+    "label": "Consultations et soins",
     "categoryId": "addiction_care",
     "slug": "addiction_care",
     "synonyms": [
@@ -3174,7 +3174,7 @@
     "seoDescription": "Soliguide vous aide à trouver des soins addiction en Andorre. Consultations gratuites, groupes d'entraide, centres de désintoxication disponibles."
   },
   {
-    "label": "addiction_prevention_and_material",
+    "label": "Prévention et matériel",
     "categoryId": "addiction_prevention_and_material",
     "slug": "addiction_prevention_and_material",
     "synonyms": [
@@ -3201,7 +3201,7 @@
     "seoDescription": "Soliguide vous aide à trouver des ressources contre l'addiction en Andorre : centres de soins, hébergement d'urgence, aide alimentaire et accompagnement social gratuit."
   },
   {
-    "label": "emergency_contraception",
+    "label": "Contraception d'urgence",
     "categoryId": "emergency_contraception",
     "slug": "emergency_contraception",
     "synonyms": [
@@ -3228,7 +3228,7 @@
     "seoDescription": "Soliguide vous aide à trouver une contraception d'urgence gratuite en Andorre. Pharmacies, cliniques, centres de santé près de vous."
   },
   {
-    "label": "contraception",
+    "label": "Contraception",
     "categoryId": "contraception",
     "slug": "contraception",
     "synonyms": [
@@ -3255,7 +3255,7 @@
     "seoDescription": "Soliguide vous aide à trouver des contraceptifs gratuits, des consultations médicales et des informations en Andorre. Services accessibles à tous."
   },
   {
-    "label": "sti_prevention_testing",
+    "label": "Dépistage et traitement des IST et du VIH",
     "categoryId": "sti_prevention_testing",
     "slug": "sti_prevention_testing",
     "synonyms": [
@@ -3282,7 +3282,7 @@
     "seoDescription": "Soliguide vous aide à trouver des lieux de dépistage gratuit en Andorre. Tests confidentiels, consultations médicales et prévention accessible."
   },
   {
-    "label": "hiv_prevention",
+    "label": "Prévention du VIH",
     "categoryId": "hiv_prevention",
     "slug": "hiv_prevention",
     "synonyms": [
@@ -3309,7 +3309,7 @@
     "seoDescription": "Soliguide vous aide à trouver des dépistages gratuits, des préservatifs et des conseils de prévention du VIH en Andorre."
   },
   {
-    "label": "sexual_health_vaccination",
+    "label": "Vaccination",
     "categoryId": "sexual_health_vaccination",
     "slug": "sexual_health_vaccination",
     "synonyms": [
@@ -3336,7 +3336,7 @@
     "seoDescription": "Soliguide vous aide à trouver des vaccins gratuits, des consultations santé sexuelle et des dépistages près de chez vous en Andorre."
   },
   {
-    "label": "sexual_health_education",
+    "label": "Information et prévention",
     "categoryId": "sexual_health_education",
     "slug": "sexual_health_education",
     "synonyms": [
@@ -3363,7 +3363,7 @@
     "seoDescription": "Soliguide vous aide à trouver des ressources en éducation sexuelle. Consultations médicales, informations contraception, dépistage gratuit en Andorre."
   },
   {
-    "label": "sexual_violence_support",
+    "label": "Violences Sexistes et Sexuelles",
     "categoryId": "sexual_violence_support",
     "slug": "sexual_violence_support",
     "synonyms": [
@@ -3390,7 +3390,7 @@
     "seoDescription": "Soliguide vous aide à trouver des ressources en Andorre : écoute psychologique, signalement sécurisé, hébergement d'urgence pour victimes."
   },
   {
-    "label": "affective_life",
+    "label": "Vie affective et sexuelle",
     "categoryId": "affective_life",
     "slug": "affective_life",
     "synonyms": [
@@ -3417,7 +3417,7 @@
     "seoDescription": "Soliguide vous aide à trouver du soutien émotionnel en Andorre. Parlez avec des professionnels, rejoignez des groupes d'écoute ou trouvez des espaces de confiance."
   },
   {
-    "label": "neurology",
+    "label": "Neurologue",
     "categoryId": "neurology",
     "slug": "neurology",
     "synonyms": [
@@ -3444,7 +3444,7 @@
     "seoDescription": "Soliguide vous aide à trouver des soins neurologiques en Andorre. Consultations, suivi médical, centres spécialisés près de vous."
   },
   {
-    "label": "vascular_surgery",
+    "label": "Chirurgien vasculaire",
     "categoryId": "vascular_surgery",
     "slug": "vascular_surgery",
     "synonyms": [

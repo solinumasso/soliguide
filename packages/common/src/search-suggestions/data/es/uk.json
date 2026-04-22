@@ -2323,7 +2323,7 @@
   },
   {
     "categoryId": "spanish_course",
-    "label": "categories.spanish_course",
+    "label": "Курси іспанської мови",
     "slug": "cours-espagnol",
     "synonyms": [
       "вивчення",
@@ -2350,7 +2350,7 @@
   },
   {
     "categoryId": "catalan_course",
-    "label": "categories.catalan_course",
+    "label": "Курси каталону",
     "slug": "cours-catalan",
     "synonyms": [
       "каталанська",
@@ -2414,7 +2414,11 @@
     "categoryId": null,
     "label": "Quàlia",
     "slug": "qualia",
-    "synonyms": ["Qualia", "Fundació Quàlia", "Fundación Qualia"],
+    "synonyms": [
+      "Qualia",
+      "Fundació Quàlia",
+      "Fundación Qualia"
+    ],
     "type": "ORGANIZATION",
     "lang": "uk",
     "country": "es",
@@ -2425,7 +2429,11 @@
     "categoryId": null,
     "label": "Amisol",
     "slug": "amisol",
-    "synonyms": ["AMISOL", "Associació Amisol", "Asociación Amisol"],
+    "synonyms": [
+      "AMISOL",
+      "Associació Amisol",
+      "Asociación Amisol"
+    ],
     "type": "ORGANIZATION",
     "lang": "uk",
     "country": "es",
@@ -2691,7 +2699,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "Транспортна мобільність",
+    "label": "Пересуватися та перевозитися",
     "slug": "transportation_mobility",
     "synonyms": [
       "проїзний квиток",
@@ -2771,7 +2779,7 @@
     "seoDescription": "Soliguide допомагає знайти фінансування для проїзду. Дотримки на транспорт, абонементи метро, квитки автобуса в Іспанії."
   },
   {
-    "label": "health_access",
+    "label": "Доступ до здоров'я",
     "categoryId": "health_access",
     "slug": "health_access",
     "synonyms": [
@@ -2798,7 +2806,7 @@
     "seoDescription": "Soliguide допомагає знайти медичні послуги в Іспанії: безплатні клініки, вакцинацію, консультації лікаря та допомогу з документами."
   },
   {
-    "label": "physical_health",
+    "label": "Здоров'я тіла",
     "categoryId": "physical_health",
     "slug": "physical_health",
     "synonyms": [
@@ -2825,7 +2833,7 @@
     "seoDescription": "Soliguide допомагає знайти медичні послуги: безплатні клініки, консультації лікарів, прийоми в поліклініках поблизу вас."
   },
   {
-    "label": "mental_health",
+    "label": "Чоловіче здоров'я",
     "categoryId": "mental_health",
     "slug": "mental_health",
     "synonyms": [
@@ -2852,7 +2860,7 @@
     "seoDescription": "Soliguide допомагає знайти безплатну психологічну підтримку в Іспанії. Консультації психолога, групи підтримки, кризові лінії для вас."
   },
   {
-    "label": "addictions",
+    "label": "Вироки",
     "categoryId": "addictions",
     "slug": "addictions",
     "synonyms": [
@@ -2879,7 +2887,7 @@
     "seoDescription": "Soliguide допомагає людям з залежностями. Знайдіть безплатні консультації, лікування та групи підтримки в Іспанії."
   },
   {
-    "label": "sexual_health",
+    "label": "Сексуальні матусі",
     "categoryId": "sexual_health",
     "slug": "sexual_health",
     "synonyms": [
@@ -2906,7 +2914,7 @@
     "seoDescription": "Soliguide допомагає вам знайти безпечні послуги в Іспанії. Консультації лікарів, тестування, контрацепція та підтримка доступні безкоштовно."
   },
   {
-    "label": "parenthood",
+    "label": "Батьки",
     "categoryId": "parenthood",
     "slug": "parenthood",
     "synonyms": [
@@ -2933,7 +2941,7 @@
     "seoDescription": "Soliguide допомагає батькам знайти безплатні послуги в Іспанії: дитячі садки, матеріальну допомогу, консультації психолога."
   },
   {
-    "label": "health_coverage",
+    "label": "Отримати здорове покриття",
     "categoryId": "health_coverage",
     "slug": "health_coverage",
     "synonyms": [
@@ -2960,7 +2968,7 @@
     "seoDescription": "Soliguide допомагає знайти медичне страхування, безплатні клініки та лікарні в Іспанії для вас та вашої родини"
   },
   {
-    "label": "find_healthcare",
+    "label": "Знайти допомогу для лікування",
     "categoryId": "find_healthcare",
     "slug": "find_healthcare",
     "synonyms": [
@@ -2987,7 +2995,7 @@
     "seoDescription": "Soliguide допомагає знайти лікарні, клініки та медичні послуги. Безплатні огляди, вакцинація, консультації лікарів поблизу вас."
   },
   {
-    "label": "health_assessment",
+    "label": "Перевірка здоров'я",
     "categoryId": "health_assessment",
     "slug": "health_assessment",
     "synonyms": [
@@ -3041,7 +3049,7 @@
     "seoDescription": "Soliguide допомагає знайти безплатні послуги офтальмолога, окуляри та обстеження зору в Іспанії для вразливих груп населення."
   },
   {
-    "label": "hearing_care",
+    "label": "Догляд за слухом",
     "categoryId": "hearing_care",
     "slug": "hearing_care",
     "synonyms": [
@@ -3095,7 +3103,7 @@
     "seoDescription": "Soliguide допомагає знайти безплатне лікування, ліки та медичні послуги в Іспанії. Центри здоров'я, консультації лікарів, реабілітація."
   },
   {
-    "label": "medical_accommodation",
+    "label": "Медичне та лікувальне проживання",
     "categoryId": "medical_accommodation",
     "slug": "medical_accommodation",
     "synonyms": [
@@ -3230,7 +3238,7 @@
     "seoDescription": "Soliguide допомагає знайти терапевтичні заняття: арт-терапія, йога, медитація в Іспанії. Безплатна підтримка для вас."
   },
   {
-    "label": "addiction_care",
+    "label": "Консультації та догляд",
     "categoryId": "addiction_care",
     "slug": "addiction_care",
     "synonyms": [
@@ -3257,7 +3265,7 @@
     "seoDescription": "Soliguide допомагає знайти безплатні послуги лікування залежності в Іспанії. Консультації, реабілітація, групи підтримки поблизу вас."
   },
   {
-    "label": "addiction_prevention_and_material",
+    "label": "Профілактика та обладнання",
     "categoryId": "addiction_prevention_and_material",
     "slug": "addiction_prevention_and_material",
     "synonyms": [
@@ -3284,7 +3292,7 @@
     "seoDescription": "Soliguide пропонує сотні місць для лікування залежності. Консультації, притулки, матеріальна допомога в Іспанії."
   },
   {
-    "label": "emergency_contraception",
+    "label": "Екстрена контрацепція",
     "categoryId": "emergency_contraception",
     "slug": "emergency_contraception",
     "synonyms": [
@@ -3311,7 +3319,7 @@
     "seoDescription": "Soliguide допомагає знайти екстрену контрацепцію, консультації лікаря та медичні послуги в Іспанії безплатно для вас."
   },
   {
-    "label": "abortion",
+    "label": "Аборція (IVG)",
     "categoryId": "abortion",
     "slug": "abortion",
     "synonyms": [
@@ -3338,7 +3346,7 @@
     "seoDescription": "Soliguide допомагає знайти безплатні консультації, медичні послуги та психологічну підтримку при абортах в Іспанії для вразливих груп населення."
   },
   {
-    "label": "contraception",
+    "label": "Контрацепція",
     "categoryId": "contraception",
     "slug": "contraception",
     "synonyms": [
@@ -3419,7 +3427,7 @@
     "seoDescription": "Soliguide допомагає знайти безкоштовні тести на ВІЛ, консультації та профілактичні послуги в Іспанії для вразливих груп населення."
   },
   {
-    "label": "sexual_health_vaccination",
+    "label": "Вакцинація",
     "categoryId": "sexual_health_vaccination",
     "slug": "sexual_health_vaccination",
     "synonyms": [
@@ -3446,7 +3454,7 @@
     "seoDescription": "Soliguide допомагає вам знайти безплатну вакцинацію, консультації лікаря та медичні послуги в Іспанії. Центри здоров'я, клініки та програми профілактики."
   },
   {
-    "label": "sexual_health_education",
+    "label": "Інформація та профілактика",
     "categoryId": "sexual_health_education",
     "slug": "sexual_health_education",
     "synonyms": [
@@ -3473,7 +3481,7 @@
     "seoDescription": "Soliguide допомагає знайти безплатні консультації з контрацепції, тестування на ІПСШ та інформацію про репродуктивне здоров'я в Іспанії."
   },
   {
-    "label": "sexual_violence_support",
+    "label": "Гендерно-гендерне насильство",
     "categoryId": "sexual_violence_support",
     "slug": "sexual_violence_support",
     "synonyms": [
@@ -3500,7 +3508,7 @@
     "seoDescription": "Soliguide пропонує безпечні місця для жінок та чоловіків. Психологічна допомога, притулки, гарячі лінії в Іспанії."
   },
   {
-    "label": "affective_life",
+    "label": "Ефективне та сексуальне життя",
     "categoryId": "affective_life",
     "slug": "affective_life",
     "synonyms": [
@@ -3527,7 +3535,7 @@
     "seoDescription": "Soliguide допомагає знайти психолога, групи підтримки та консультації. Безкоштовна допомога при депресії, самотності та стресі в Іспанії."
   },
   {
-    "label": "neurology",
+    "label": "Нейролог",
     "categoryId": "neurology",
     "slug": "neurology",
     "synonyms": [
@@ -3554,7 +3562,7 @@
     "seoDescription": "Soliguide допомагає знайти безкоштовну медичну допомогу при мігренях, епілепсії та інших неврологічних захворюваннях в Іспанії."
   },
   {
-    "label": "vascular_surgery",
+    "label": "Судинна хірургія",
     "categoryId": "vascular_surgery",
     "slug": "vascular_surgery",
     "synonyms": [

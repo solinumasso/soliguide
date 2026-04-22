@@ -621,7 +621,7 @@
   },
   {
     "categoryId": "legal_advice",
-    "label": "Permanența legală",
+    "label": "Consiliere juridică",
     "slug": "permanence-juridique",
     "synonyms": [
       "permis",
@@ -729,7 +729,7 @@
   },
   {
     "categoryId": "parent_assistance",
-    "label": "Sfaturi pentru parinti",
+    "label": "Sfaturi pentru părinți",
     "slug": "conseil-parents",
     "synonyms": [
       "parenting",
@@ -1916,7 +1916,7 @@
   },
   {
     "categoryId": "otorhinolaryngology",
-    "label": "Otolaringologie",
+    "label": "ORL",
     "slug": "oto-rhino-laryngologie",
     "synonyms": [
       "urechi",
@@ -2375,7 +2375,7 @@
   },
   {
     "categoryId": "mobility",
-    "label": "Transport / Mobilitate",
+    "label": "Transport / Deplasare",
     "slug": "transport-mobilite",
     "synonyms": [
       "transport",
@@ -2608,7 +2608,11 @@
     "categoryId": null,
     "label": "La CIMADE",
     "slug": "cimade",
-    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
+    "synonyms": [
+      "la cimade",
+      "CIMADE",
+      "service œcuménique d'entraide"
+    ],
     "type": "ORGANIZATION",
     "lang": "ro",
     "country": "fr",
@@ -2794,7 +2798,11 @@
     "categoryId": null,
     "label": "Centre socioculturel",
     "slug": "centre-socioculturel",
-    "synonyms": ["centre socio culturel", "csc", "centre social"],
+    "synonyms": [
+      "centre socio culturel",
+      "csc",
+      "centre social"
+    ],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "ro",
     "country": "fr",
@@ -3080,7 +3088,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "Mobilitate Transport",
+    "label": "Să te miști și să fii transportat",
     "slug": "transportation_mobility",
     "synonyms": [
       "transport",
@@ -3107,7 +3115,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "Suport pentru Mobilitate",
+    "label": "Suport pentru mobilitate",
     "slug": "mobility_support",
     "synonyms": [
       "transport",
@@ -3134,7 +3142,7 @@
   },
   {
     "categoryId": "mobility_financing",
-    "label": "Finanțarea Mobilității",
+    "label": "Finanțarea mobilității",
     "slug": "mobility_financing",
     "synonyms": [
       "transport gratuit",
@@ -3161,7 +3169,7 @@
   },
   {
     "categoryId": "driving_license",
-    "label": "Permis de conducere",
+    "label": "Pregătirea permisului de conducere",
     "slug": "driving_license",
     "synonyms": [
       "permis de conducere",
@@ -3188,7 +3196,7 @@
   },
   {
     "categoryId": "personal_vehicle_access",
-    "label": "Acces la Vehicul Personal",
+    "label": "Accesul la un vehicul personal",
     "slug": "personal_vehicle_access",
     "synonyms": [
       "transport",
@@ -3215,7 +3223,7 @@
   },
   {
     "categoryId": "vehicle_maintenance",
-    "label": "Întreținerea vehiculului",
+    "label": "Întreținerea și repararea vehiculelor",
     "slug": "vehicle_maintenance",
     "synonyms": [
       "reparații auto",
@@ -3457,7 +3465,7 @@
     "seoDescription": "Soliguide vă oferă sute de locuri pentru consultații gratuite, medicamente și centre de sănătate. Găsiți ajutor medical aproape de dumneavoastră."
   },
   {
-    "label": "health_assessment",
+    "label": "Control medical",
     "categoryId": "health_assessment",
     "slug": "health_assessment",
     "synonyms": [
@@ -3511,7 +3519,7 @@
     "seoDescription": "Soliguide vă ajută să găsiți servicii oftalmologice gratuite în Franța. Ochelari, examen vedere, lentile de contact pentru persoane în dificultate."
   },
   {
-    "label": "hearing_care",
+    "label": "Îngrijirea auzului",
     "categoryId": "hearing_care",
     "slug": "hearing_care",
     "synonyms": [
@@ -3592,7 +3600,7 @@
     "seoDescription": "Soliguide vă ajută să găsiți locuri pentru consultații gratuite, medicamente și cazare medicală în Francia. Descoperit sute de resurse."
   },
   {
-    "label": "psychiatry",
+    "label": "Psihiatru",
     "categoryId": "psychiatry",
     "slug": "psychiatry",
     "synonyms": [
@@ -3754,7 +3762,7 @@
     "seoDescription": "Soliguide vă conectează cu centre de dezintoxicare, programe de reabilitare și materiale de prevenție în Francia. Găsiți sprijin local acum."
   },
   {
-    "label": "emergency_contraception",
+    "label": "Contracepție de urgență",
     "categoryId": "emergency_contraception",
     "slug": "emergency_contraception",
     "synonyms": [
@@ -3808,7 +3816,7 @@
     "seoDescription": "Soliguide vă conectează cu clinici, medici și organizații care oferă servicii de avort în Francia. Informații gratuite și confidențiale."
   },
   {
-    "label": "contraception",
+    "label": "Contracepție",
     "categoryId": "contraception",
     "slug": "contraception",
     "synonyms": [
@@ -3889,7 +3897,7 @@
     "seoDescription": "Soliguide vă conectează cu centre de testare HIV, consiliere și tratament gratuit în Francia. Locuri sigure și confidențiale lângă dvs."
   },
   {
-    "label": "sexual_health_vaccination",
+    "label": "Vaccinare",
     "categoryId": "sexual_health_vaccination",
     "slug": "sexual_health_vaccination",
     "synonyms": [

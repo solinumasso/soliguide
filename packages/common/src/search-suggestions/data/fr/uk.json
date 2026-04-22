@@ -2610,7 +2610,11 @@
     "categoryId": null,
     "label": "La CIMADE",
     "slug": "cimade",
-    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
+    "synonyms": [
+      "la cimade",
+      "CIMADE",
+      "service œcuménique d'entraide"
+    ],
     "type": "ORGANIZATION",
     "lang": "uk",
     "country": "fr",
@@ -2796,7 +2800,11 @@
     "categoryId": null,
     "label": "Centre socioculturel",
     "slug": "centre-socioculturel",
-    "synonyms": ["centre socio culturel", "csc", "centre social"],
+    "synonyms": [
+      "centre socio culturel",
+      "csc",
+      "centre social"
+    ],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "uk",
     "country": "fr",
@@ -3082,7 +3090,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "Транспортна мобільність",
+    "label": "Пересуватися та перевозитися",
     "slug": "transportation_mobility",
     "synonyms": [
       "проїзд",
@@ -3163,7 +3171,7 @@
   },
   {
     "categoryId": "driving_license",
-    "label": "Водійське посвідчення",
+    "label": "Підготовка водійських прав",
     "slug": "driving_license",
     "synonyms": [
       "посвідчення водія",
@@ -3190,7 +3198,7 @@
   },
   {
     "categoryId": "personal_vehicle_access",
-    "label": "Доступ до особистого транспорту",
+    "label": "Доступ до особистого транспортного засобу",
     "slug": "personal_vehicle_access",
     "synonyms": [
       "автомобіль",
@@ -3217,7 +3225,7 @@
   },
   {
     "categoryId": "vehicle_maintenance",
-    "label": "Обслуговування транспортних засобів",
+    "label": "Технічне обслуговування та ремонт транспортних засобів",
     "slug": "vehicle_maintenance",
     "synonyms": [
       "ремонт автомобіля",
@@ -3243,7 +3251,7 @@
     "seoDescription": "Soliguide допомагає знайти безплатні послуги з ремонту авто, техническому огляду та страхуванню для людей у складній ситуації у Франції."
   },
   {
-    "label": "health_access",
+    "label": "Доступ до здоров'я",
     "categoryId": "health_access",
     "slug": "health_access",
     "synonyms": [
@@ -3270,7 +3278,7 @@
     "seoDescription": "Soliguide допомагає знайти медичні послуги: безплатні клініки, консультації лікарів, вакцинацію та допомогу при хронічних захворюваннях."
   },
   {
-    "label": "physical_health",
+    "label": "Здоров'я тіла",
     "categoryId": "physical_health",
     "slug": "physical_health",
     "synonyms": [
@@ -3297,7 +3305,7 @@
     "seoDescription": "Soliguide допомагає знайти медичні послуги: безплатні огляди, стоматологічну допомогу, вакцинацію у Франції"
   },
   {
-    "label": "mental_health",
+    "label": "Чоловіче здоров'я",
     "categoryId": "mental_health",
     "slug": "mental_health",
     "synonyms": [
@@ -3324,7 +3332,7 @@
     "seoDescription": "Soliguide допомагає знайти безплатну психологічну допомогу, консультації психолога та групи підтримки у вашому місті."
   },
   {
-    "label": "addictions",
+    "label": "Вироки",
     "categoryId": "addictions",
     "slug": "addictions",
     "synonyms": [
@@ -3351,7 +3359,7 @@
     "seoDescription": "Soliguide допомагає знайти безплатну допомогу при залежностях у Франції. Консультації, лікування, групи підтримки та реабілітаційні центри."
   },
   {
-    "label": "sexual_health",
+    "label": "Сексуальні матусі",
     "categoryId": "sexual_health",
     "slug": "sexual_health",
     "synonyms": [
@@ -3378,7 +3386,7 @@
     "seoDescription": "Soliguide пропонує сотні місць для консультацій, тестування та лікування. Безплатні послуги контрацепції, тестування на ІПСШ та психологічної підтримки."
   },
   {
-    "label": "parenthood",
+    "label": "Батьки",
     "categoryId": "parenthood",
     "slug": "parenthood",
     "synonyms": [
@@ -3405,7 +3413,7 @@
     "seoDescription": "Soliguide допомагає батькам знайти безплатні послуги: дитячі садки, матеріальну допомогу, консультації психолога."
   },
   {
-    "label": "health_coverage",
+    "label": "Отримати здорове покриття",
     "categoryId": "health_coverage",
     "slug": "health_coverage",
     "synonyms": [
@@ -3432,7 +3440,7 @@
     "seoDescription": "Soliguide допомагає знайти медичні послуги: безплатні огляди, страхування здоров'я, консультації лікарів у Франції"
   },
   {
-    "label": "find_healthcare",
+    "label": "Знайти допомогу для лікування",
     "categoryId": "find_healthcare",
     "slug": "find_healthcare",
     "synonyms": [
@@ -3459,7 +3467,7 @@
     "seoDescription": "Soliguide допомагає знайти медичні послуги у Франції. Консультація лікаря, стоматолог, психолог, вакцинація - все безплатно."
   },
   {
-    "label": "health_assessment",
+    "label": "Перевірка здоров'я",
     "categoryId": "health_assessment",
     "slug": "health_assessment",
     "synonyms": [
@@ -3513,7 +3521,7 @@
     "seoDescription": "Soliguide допоможе вам знайти безплатні очні послуги, окуляри та перевірку зору у Франції. Пошук поблизу вас."
   },
   {
-    "label": "hearing_care",
+    "label": "Догляд за слухом",
     "categoryId": "hearing_care",
     "slug": "hearing_care",
     "synonyms": [
@@ -3567,7 +3575,7 @@
     "seoDescription": "Soliguide допомагає знайти медичні послуги, ліки та підтримку. Безплатні консультації, амбулаторії, програми реабілітації у вашому місті."
   },
   {
-    "label": "medical_accommodation",
+    "label": "Медичне та лікувальне проживання",
     "categoryId": "medical_accommodation",
     "slug": "medical_accommodation",
     "synonyms": [
@@ -3702,7 +3710,7 @@
     "seoDescription": "Soliguide допомагає знайти місця для арт-терапії, йоги та психологічної підтримки у Франції безкоштовно."
   },
   {
-    "label": "addiction_care",
+    "label": "Консультації та догляд",
     "categoryId": "addiction_care",
     "slug": "addiction_care",
     "synonyms": [
@@ -3729,7 +3737,7 @@
     "seoDescription": "Soliguide пропонує сотні місць для лікування залежності, консультацій та підтримки. Детоксикація, групи взаємодопомоги, реабілітаційні центри."
   },
   {
-    "label": "addiction_prevention_and_material",
+    "label": "Профілактика та обладнання",
     "categoryId": "addiction_prevention_and_material",
     "slug": "addiction_prevention_and_material",
     "synonyms": [
@@ -3756,7 +3764,7 @@
     "seoDescription": "Soliguide пропонує сотні місць для лікування залежності, консультацій та матеріальної підтримки у Франції"
   },
   {
-    "label": "emergency_contraception",
+    "label": "Екстрена контрацепція",
     "categoryId": "emergency_contraception",
     "slug": "emergency_contraception",
     "synonyms": [
@@ -3783,7 +3791,7 @@
     "seoDescription": "Soliguide допомагає знайти екстрену контрацепцію. Безплатні консультації в клініках, аптеках та центрах здоров'я Франції."
   },
   {
-    "label": "abortion",
+    "label": "Аборція (IVG)",
     "categoryId": "abortion",
     "slug": "abortion",
     "synonyms": [
@@ -3810,7 +3818,7 @@
     "seoDescription": "Soliguide допомагає знайти медичні послуги, консультації та підтримку при абортах у Франції безплатно."
   },
   {
-    "label": "contraception",
+    "label": "Контрацепція",
     "categoryId": "contraception",
     "slug": "contraception",
     "synonyms": [
@@ -3891,7 +3899,7 @@
     "seoDescription": "Soliguide допомагає знайти тестування на ВІЛ, консультації та профілактичні препарати у Франції безплатно"
   },
   {
-    "label": "sexual_health_vaccination",
+    "label": "Вакцинація",
     "categoryId": "sexual_health_vaccination",
     "slug": "sexual_health_vaccination",
     "synonyms": [
@@ -3918,7 +3926,7 @@
     "seoDescription": "Soliguide допомагає знайти безплатну вакцинацію, консультації лікаря та медичні послуги поблизу вас у Франції."
   },
   {
-    "label": "sexual_health_education",
+    "label": "Інформація та профілактика",
     "categoryId": "sexual_health_education",
     "slug": "sexual_health_education",
     "synonyms": [
@@ -3945,7 +3953,7 @@
     "seoDescription": "Soliguide допомагає знайти безкоштовні консультації з контрацепції, ІПСШ-тестування та інформацію про репродуктивне здоров'я у Франції."
   },
   {
-    "label": "sexual_violence_support",
+    "label": "Гендерно-гендерне насильство",
     "categoryId": "sexual_violence_support",
     "slug": "sexual_violence_support",
     "synonyms": [
@@ -3972,7 +3980,7 @@
     "seoDescription": "Soliguide допомагає жертвам насильства знайти безпечне місце, консультацію психолога та юридичну допомогу у Франції."
   },
   {
-    "label": "affective_life",
+    "label": "Ефективне та сексуальне життя",
     "categoryId": "affective_life",
     "slug": "affective_life",
     "synonyms": [

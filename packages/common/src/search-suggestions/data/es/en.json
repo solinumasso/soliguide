@@ -919,7 +919,7 @@
   },
   {
     "categoryId": "accomodation_and_housing",
-    "label": "Accommodation and housing",
+    "label": "Lodging and housing",
     "slug": "hebergement-et-logement",
     "synonyms": [
       "shelter",
@@ -1000,7 +1000,7 @@
   },
   {
     "categoryId": "long_term_accomodation",
-    "label": "Long-term shelters",
+    "label": "Long-terme shelters",
     "slug": "hebergement-long-terme",
     "synonyms": [
       "housing",
@@ -2080,7 +2080,7 @@
   },
   {
     "categoryId": "speech_therapy",
-    "label": "Speech Therapy",
+    "label": "Orthophony",
     "slug": "orthophonie",
     "synonyms": [
       "speech",
@@ -2323,7 +2323,7 @@
   },
   {
     "categoryId": "spanish_course",
-    "label": "categories.spanish_course",
+    "label": "Spanish courses",
     "slug": "cours-espagnol",
     "synonyms": [
       "spanish",
@@ -2350,7 +2350,7 @@
   },
   {
     "categoryId": "catalan_course",
-    "label": "categories.catalan_course",
+    "label": "Catalan courses",
     "slug": "cours-catalan",
     "synonyms": [
       "catalan",
@@ -2414,7 +2414,11 @@
     "categoryId": null,
     "label": "Quàlia",
     "slug": "qualia",
-    "synonyms": ["Qualia", "Fundació Quàlia", "Fundación Qualia"],
+    "synonyms": [
+      "Qualia",
+      "Fundació Quàlia",
+      "Fundación Qualia"
+    ],
     "type": "ORGANIZATION",
     "lang": "en",
     "country": "es",
@@ -2425,7 +2429,11 @@
     "categoryId": null,
     "label": "Amisol",
     "slug": "amisol",
-    "synonyms": ["AMISOL", "Associació Amisol", "Asociación Amisol"],
+    "synonyms": [
+      "AMISOL",
+      "Associació Amisol",
+      "Asociación Amisol"
+    ],
     "type": "ORGANIZATION",
     "lang": "en",
     "country": "es",
@@ -2691,7 +2699,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "Transportation Mobility",
+    "label": "To move around and be transported",
     "slug": "transportation_mobility",
     "synonyms": [
       "bus passes",
@@ -2718,7 +2726,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "Mobility Support",
+    "label": "Mobility support",
     "slug": "mobility_support",
     "synonyms": [
       "transport",
@@ -2745,7 +2753,7 @@
   },
   {
     "categoryId": "mobility_financing",
-    "label": "Mobility Financing",
+    "label": "Mobility funding",
     "slug": "mobility_financing",
     "synonyms": [
       "transport vouchers",
@@ -2771,7 +2779,7 @@
     "seoDescription": "Soliguide connects you with mobility financing options. Access transport vouchers, vehicle assistance, or fuel support in your area."
   },
   {
-    "label": "health_access",
+    "label": "Access to health",
     "categoryId": "health_access",
     "slug": "health_access",
     "synonyms": [
@@ -2798,7 +2806,7 @@
     "seoDescription": "Soliguide connects you to hundreds of health services in Spain. Access free clinics, vaccination centers, mental health support, and medical consultations near you."
   },
   {
-    "label": "physical_health",
+    "label": "Body health",
     "categoryId": "physical_health",
     "slug": "physical_health",
     "synonyms": [
@@ -2825,7 +2833,7 @@
     "seoDescription": "Soliguide connects you with hundreds of health services in Spain. Access free clinics, health centers, and medical care near you."
   },
   {
-    "label": "mental_health",
+    "label": "Mental health",
     "categoryId": "mental_health",
     "slug": "mental_health",
     "synonyms": [
@@ -2852,7 +2860,7 @@
     "seoDescription": "Soliguide connects you with mental health services in Spain. Access counseling, therapy, crisis support, and psychological care near you."
   },
   {
-    "label": "addictions",
+    "label": "Addictions",
     "categoryId": "addictions",
     "slug": "addictions",
     "synonyms": [
@@ -2879,7 +2887,7 @@
     "seoDescription": "Soliguide connects you with addiction services in Spain. Access counseling, detox programs, support groups, and recovery resources near you."
   },
   {
-    "label": "sexual_health",
+    "label": "Sexual health",
     "categoryId": "sexual_health",
     "slug": "sexual_health",
     "synonyms": [
@@ -2906,7 +2914,7 @@
     "seoDescription": "Soliguide connects you with sexual health services in Spain. Access contraception, STI testing, pregnancy support, and confidential counseling near you."
   },
   {
-    "label": "parenthood",
+    "label": "Parentality",
     "categoryId": "parenthood",
     "slug": "parenthood",
     "synonyms": [
@@ -2933,7 +2941,7 @@
     "seoDescription": "Soliguide connects you with free parenthood services in Spain. Find childcare assistance, family counseling, and parenting resources near you."
   },
   {
-    "label": "health_coverage",
+    "label": "Get health coverage",
     "categoryId": "health_coverage",
     "slug": "health_coverage",
     "synonyms": [
@@ -2960,7 +2968,7 @@
     "seoDescription": "Soliguide connects you with hundreds of health services in Spain. Access free medical care, health insurance help, and doctor visits near you."
   },
   {
-    "label": "find_healthcare",
+    "label": "Find help to cure",
     "categoryId": "find_healthcare",
     "slug": "find_healthcare",
     "synonyms": [
@@ -2987,7 +2995,7 @@
     "seoDescription": "Soliguide helps you find free medical care, health centers, and doctor appointments. Access clinics, emergency services, and health programs near you."
   },
   {
-    "label": "health_assessment",
+    "label": "Health check-up",
     "categoryId": "health_assessment",
     "slug": "health_assessment",
     "synonyms": [
@@ -3014,7 +3022,7 @@
     "seoDescription": "Soliguide connects you with hundreds of health services in Spain. Get free medical exams, mental health support, or vaccination clinics near you."
   },
   {
-    "label": "optical_care",
+    "label": "Optical care",
     "categoryId": "optical_care",
     "slug": "optical_care",
     "synonyms": [
@@ -3041,7 +3049,7 @@
     "seoDescription": "Soliguide helps you find free eye exams, affordable glasses, and vision care services near you in Spain. Access optical assistance today."
   },
   {
-    "label": "hearing_care",
+    "label": "Hearing care",
     "categoryId": "hearing_care",
     "slug": "hearing_care",
     "synonyms": [
@@ -3068,7 +3076,7 @@
     "seoDescription": "Soliguide connects you to hearing care services in Spain. Get free hearing tests, hearing aids, or audiologist support near you."
   },
   {
-    "label": "chronic_diseases",
+    "label": "Chronic diseases",
     "categoryId": "chronic_diseases",
     "slug": "chronic_diseases",
     "synonyms": [
@@ -3095,7 +3103,7 @@
     "seoDescription": "Soliguide connects you with hundreds of places for diabetes care, heart disease support, and asthma management in Spain."
   },
   {
-    "label": "medical_accommodation",
+    "label": "Medical and therapeutic accommodation",
     "categoryId": "medical_accommodation",
     "slug": "medical_accommodation",
     "synonyms": [
@@ -3122,7 +3130,7 @@
     "seoDescription": "Soliguide connects you with free medical housing, health clinics, and emergency care in Spain. Access shelter with healthcare, medical consultations, and wellness support."
   },
   {
-    "label": "psychiatry",
+    "label": "Psychiatrist",
     "categoryId": "psychiatry",
     "slug": "psychiatry",
     "synonyms": [
@@ -3176,7 +3184,7 @@
     "seoDescription": "Soliguide connects you with support groups in Spain. Find peer support for addiction recovery, mental health, or family challenges near you."
   },
   {
-    "label": "mental_health_education",
+    "label": "Information and awareness-raising",
     "categoryId": "mental_health_education",
     "slug": "mental_health_education",
     "synonyms": [
@@ -3203,7 +3211,7 @@
     "seoDescription": "Soliguide connects you with mental health services in Spain. Access free counseling, stress management, and emotional support near you."
   },
   {
-    "label": "therapeutic_activities",
+    "label": "Therapy activities",
     "categoryId": "therapeutic_activities",
     "slug": "therapeutic_activities",
     "synonyms": [
@@ -3230,7 +3238,7 @@
     "seoDescription": "Soliguide connects you with free therapeutic activities in Spain. Art therapy, yoga classes, counseling groups, and healing workshops near you."
   },
   {
-    "label": "addiction_care",
+    "label": "Consultations and care",
     "categoryId": "addiction_care",
     "slug": "addiction_care",
     "synonyms": [
@@ -3257,7 +3265,7 @@
     "seoDescription": "Soliguide connects you with addiction care services in Spain. Access counseling, detox programs, and recovery support near you today."
   },
   {
-    "label": "addiction_prevention_and_material",
+    "label": "Prevention and equipment",
     "categoryId": "addiction_prevention_and_material",
     "slug": "addiction_prevention_and_material",
     "synonyms": [
@@ -3284,7 +3292,7 @@
     "seoDescription": "Soliguide connects you with hundreds of addiction prevention services in Spain. Access counseling, rehabilitation programs, food assistance, and safe housing options near you."
   },
   {
-    "label": "emergency_contraception",
+    "label": "Emergency contraception",
     "categoryId": "emergency_contraception",
     "slug": "emergency_contraception",
     "synonyms": [
@@ -3311,7 +3319,7 @@
     "seoDescription": "Soliguide connects you with emergency contraception services in Spain. Access free pills, medical advice, and confidential support near you."
   },
   {
-    "label": "abortion",
+    "label": "Abortion (IVG)",
     "categoryId": "abortion",
     "slug": "abortion",
     "synonyms": [
@@ -3338,7 +3346,7 @@
     "seoDescription": "Soliguide connects you to abortion services in Spain. Access medical care, counseling, and financial help. Find clinics, hotlines, and support near you."
   },
   {
-    "label": "contraception",
+    "label": "Contraception",
     "categoryId": "contraception",
     "slug": "contraception",
     "synonyms": [
@@ -3392,7 +3400,7 @@
     "seoDescription": "Soliguide helps you find free STI testing centers in Spain. Access confidential screening, counseling, and prevention services nearby."
   },
   {
-    "label": "hiv_prevention",
+    "label": "HIV prevention",
     "categoryId": "hiv_prevention",
     "slug": "hiv_prevention",
     "synonyms": [
@@ -3419,7 +3427,7 @@
     "seoDescription": "Soliguide connects you with HIV prevention services in Spain. Access free testing, health counseling, and support groups near you."
   },
   {
-    "label": "sexual_health_vaccination",
+    "label": "Vaccinations",
     "categoryId": "sexual_health_vaccination",
     "slug": "sexual_health_vaccination",
     "synonyms": [
@@ -3446,7 +3454,7 @@
     "seoDescription": "Soliguide helps you find sexual health vaccination clinics, STI testing centers, and family planning services near you in Spain."
   },
   {
-    "label": "sexual_health_education",
+    "label": "Information and prevention",
     "categoryId": "sexual_health_education",
     "slug": "sexual_health_education",
     "synonyms": [
@@ -3473,7 +3481,7 @@
     "seoDescription": "Soliguide connects you with sexual health services in Spain. Access contraception information, STI testing, pregnancy support, and confidential health advice."
   },
   {
-    "label": "sexual_violence_support",
+    "label": "Gender and gender violence",
     "categoryId": "sexual_violence_support",
     "slug": "sexual_violence_support",
     "synonyms": [
@@ -3500,7 +3508,7 @@
     "seoDescription": "Soliguide connects you with free counseling, safe shelters, and legal help for sexual violence survivors in Spain. Confidential support available now."
   },
   {
-    "label": "affective_life",
+    "label": "Affective and sexual life",
     "categoryId": "affective_life",
     "slug": "affective_life",
     "synonyms": [
@@ -3527,7 +3535,7 @@
     "seoDescription": "Soliguide connects you with free emotional support services in Spain. Find counseling, therapy groups, crisis helplines, and mental health resources near you."
   },
   {
-    "label": "neurology",
+    "label": "Neurologist",
     "categoryId": "neurology",
     "slug": "neurology",
     "synonyms": [
@@ -3554,7 +3562,7 @@
     "seoDescription": "Soliguide connects you with free neurological services in Spain. Access brain health clinics, seizure support, and neurologist appointments near you."
   },
   {
-    "label": "vascular_surgery",
+    "label": "Vascular surgery",
     "categoryId": "vascular_surgery",
     "slug": "vascular_surgery",
     "synonyms": [

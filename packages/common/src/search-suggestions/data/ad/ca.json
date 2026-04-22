@@ -352,7 +352,7 @@
   },
   {
     "categoryId": "food_packages",
-    "label": "Banc d'aliments",
+    "label": "Centre de distribució d'aliments",
     "slug": "colis-alimentaire",
     "synonyms": [
       "menjar",
@@ -541,7 +541,7 @@
   },
   {
     "categoryId": "food_voucher",
-    "label": "Val / xec alimentari",
+    "label": "Targeta per compra d'aliments",
     "slug": "bon-alimentaire",
     "synonyms": [
       "menjar",
@@ -1351,7 +1351,7 @@
   },
   {
     "categoryId": "clothing",
-    "label": "Robatori",
+    "label": "Rober",
     "slug": "vetements",
     "synonyms": [
       "víctima",
@@ -2323,7 +2323,7 @@
   },
   {
     "categoryId": "spanish_course",
-    "label": "categories.spanish_course",
+    "label": "Curs de castellà",
     "slug": "cours-espagnol",
     "synonyms": [
       "espanyol",
@@ -2350,7 +2350,7 @@
   },
   {
     "categoryId": "catalan_course",
-    "label": "categories.catalan_course",
+    "label": "Curs de català",
     "slug": "cours-catalan",
     "synonyms": [
       "aprendre",
@@ -2608,7 +2608,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "Mobilitat de transport",
+    "label": "Desplaçament i transport",
     "slug": "transportation_mobility",
     "synonyms": [
       "autobús",
@@ -2635,7 +2635,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "Suport de Mobilitat",
+    "label": "Acompanyament i tràmits a la mobilitat",
     "slug": "mobility_support",
     "synonyms": [
       "transport",
@@ -2662,7 +2662,7 @@
   },
   {
     "categoryId": "mobility_financing",
-    "label": "Finançament de mobilitat",
+    "label": "Ajudes econòmiques a la mobilitat",
     "slug": "mobility_financing",
     "synonyms": [
       "transport",
@@ -2688,7 +2688,7 @@
     "seoDescription": "Soliguide us ajuda a trobar ajuda per transport, carnet de conduir i desplaçaments a Andorra. Accés a subvencions i recursos locals."
   },
   {
-    "label": "health_access",
+    "label": "Accés a la salut",
     "categoryId": "health_access",
     "slug": "health_access",
     "synonyms": [
@@ -2715,7 +2715,7 @@
     "seoDescription": "Soliguide us ajuda a accedir a consultes mèdiques, farmàcia gratuïta i centres de salut a Andorra. Trobar recursos sanitaris propers."
   },
   {
-    "label": "physical_health",
+    "label": "Salut corporal",
     "categoryId": "physical_health",
     "slug": "physical_health",
     "synonyms": [
@@ -2742,7 +2742,7 @@
     "seoDescription": "Soliguide us ofereix llocs per a consultes mèdiques, farmàcia social i centres de salut a Andorra. Accés fàcil a cures de salut."
   },
   {
-    "label": "mental_health",
+    "label": "Salut Mental",
     "categoryId": "mental_health",
     "slug": "mental_health",
     "synonyms": [
@@ -2769,7 +2769,7 @@
     "seoDescription": "Soliguide us ofereix recursos per a la salut mental a Andorra. Consells psicològics, grups de suport i centres d'escolta gratuïts."
   },
   {
-    "label": "addictions",
+    "label": "Addiccions",
     "categoryId": "addictions",
     "slug": "addictions",
     "synonyms": [
@@ -2796,7 +2796,7 @@
     "seoDescription": "Soliguide us ofereix recursos per deixar les addicions. Trobar centres de desintoxicació, grups de suport i professionals a Andorra."
   },
   {
-    "label": "sexual_health",
+    "label": "Salut sexual",
     "categoryId": "sexual_health",
     "slug": "sexual_health",
     "synonyms": [
@@ -2823,7 +2823,7 @@
     "seoDescription": "Soliguide us ajuda a trobar serveis de salut sexual gratuïts a Andorra. Consells de contracepció, proves VIH, informació sobre infeccions."
   },
   {
-    "label": "parenthood",
+    "label": "Parentalitat",
     "categoryId": "parenthood",
     "slug": "parenthood",
     "synonyms": [
@@ -2850,7 +2850,7 @@
     "seoDescription": "Soliguide us ajuda a trobar recursos per a famílies. Guarderies, beques escolars, assessorament parental i suport emocional a Andorra."
   },
   {
-    "label": "health_coverage",
+    "label": "Obtenir cobertura sanitària",
     "categoryId": "health_coverage",
     "slug": "health_coverage",
     "synonyms": [
@@ -2877,7 +2877,7 @@
     "seoDescription": "Soliguide us ajuda a accedir a serveis de salut. Trobareu clíniques, farmàcies amb ajuda i consultes mèdiques gratuïtes a Andorra."
   },
   {
-    "label": "find_healthcare",
+    "label": "Buscar ajuda per curar",
     "categoryId": "find_healthcare",
     "slug": "find_healthcare",
     "synonyms": [
@@ -2904,7 +2904,7 @@
     "seoDescription": "Soliguide us ajuda a trobar serveis de salut a Andorra. Consultes mèdiques, farmàcies, centres de salut mental i urgències disponibles."
   },
   {
-    "label": "health_assessment",
+    "label": "Revisió mèdica",
     "categoryId": "health_assessment",
     "slug": "health_assessment",
     "synonyms": [
@@ -2931,7 +2931,7 @@
     "seoDescription": "Soliguide us ajuda a trobar avaluacions de salut gratuïtes a Andorra. Consultes mèdiques, revisió de tensió, serveis de salut mental."
   },
   {
-    "label": "optical_care",
+    "label": "Atenció òptica",
     "categoryId": "optical_care",
     "slug": "optical_care",
     "synonyms": [
@@ -2958,7 +2958,7 @@
     "seoDescription": "Soliguide us ajuda a trobar serveis d'òptica gratuïts o assequibles. Gafes, revisions visuals, lents de contacte a Andorra."
   },
   {
-    "label": "hearing_care",
+    "label": "Atenció auditiva",
     "categoryId": "hearing_care",
     "slug": "hearing_care",
     "synonyms": [
@@ -2985,7 +2985,7 @@
     "seoDescription": "Soliguide us ofereix recursos per a la cura auditiva a Andorra. Audioprotèsies, audiòlegs, centres de salut i suport per a persones amb problemes d'audició."
   },
   {
-    "label": "chronic_diseases",
+    "label": "Malalties cròniques",
     "categoryId": "chronic_diseases",
     "slug": "chronic_diseases",
     "synonyms": [
@@ -3012,7 +3012,7 @@
     "seoDescription": "Soliguide us connecta amb recursos per a malalties cròniques a Andorra. Consultes mèdiques, medicaments i seguiment sanitari gratuït."
   },
   {
-    "label": "medical_accommodation",
+    "label": "Allotjament mèdic i terapèutic",
     "categoryId": "medical_accommodation",
     "slug": "medical_accommodation",
     "synonyms": [
@@ -3039,7 +3039,7 @@
     "seoDescription": "Soliguide us ofereix llocs per a allotjament mèdic a Andorra. Trobareu residències sanitàries, centres de salut i suport mèdic proper."
   },
   {
-    "label": "psychiatry",
+    "label": "Psiquiatra",
     "categoryId": "psychiatry",
     "slug": "psychiatry",
     "synonyms": [
@@ -3093,7 +3093,7 @@
     "seoDescription": "Soliguide us ofereix grups de suport a Andorra. Trobar espais per parlar, compartir experiències i rebre ajuda emocional."
   },
   {
-    "label": "mental_health_education",
+    "label": "Informació i sensibilització",
     "categoryId": "mental_health_education",
     "slug": "mental_health_education",
     "synonyms": [
@@ -3120,7 +3120,7 @@
     "seoDescription": "Soliguide us ofereix recursos per cuidar la vostra salut mental. Trobareu consells, grups de suport i professionals a Andorra."
   },
   {
-    "label": "therapeutic_activities",
+    "label": "Activitats de teràpia",
     "categoryId": "therapeutic_activities",
     "slug": "therapeutic_activities",
     "synonyms": [
@@ -3147,7 +3147,7 @@
     "seoDescription": "Soliguide us ajuda a trobar activitats terapèutiques a Andorra. Teràpia, relaxació, meditació i suport emocional gratuït."
   },
   {
-    "label": "addiction_care",
+    "label": "Consultes i atenció",
     "categoryId": "addiction_care",
     "slug": "addiction_care",
     "synonyms": [
@@ -3174,7 +3174,7 @@
     "seoDescription": "Soliguide us ofereix recursos per deixar les drogues, l'alcohol o altres addiccions. Trobar centres de tractament, grups de suport i consells a Andorra."
   },
   {
-    "label": "addiction_prevention_and_material",
+    "label": "Prevenció i equipament",
     "categoryId": "addiction_prevention_and_material",
     "slug": "addiction_prevention_and_material",
     "synonyms": [
@@ -3201,7 +3201,7 @@
     "seoDescription": "Soliguide us ofereix recursos per a la prevenció de l'adicció a Andorra. Accés a programes de desintoxicació, materials educatius i suport psicosocial gratuït."
   },
   {
-    "label": "emergency_contraception",
+    "label": "Anticoncepció d'emergència",
     "categoryId": "emergency_contraception",
     "slug": "emergency_contraception",
     "synonyms": [
@@ -3228,7 +3228,7 @@
     "seoDescription": "Soliguide us ajuda a trobar anticonceptius d'emergència gratuïts a Andorra. Accés a farmàcies, centres de salut i consultes mèdiques."
   },
   {
-    "label": "contraception",
+    "label": "Anticoncepció",
     "categoryId": "contraception",
     "slug": "contraception",
     "synonyms": [
@@ -3255,7 +3255,7 @@
     "seoDescription": "Soliguide us ajuda a accedir a contraception gratuïta a Andorra. Consultes mèdiques, preservatius i informació sobre mètodes anticonceptius."
   },
   {
-    "label": "sti_prevention_testing",
+    "label": "Presentació i tractament de malalties de transmissió sexual i VIH",
     "categoryId": "sti_prevention_testing",
     "slug": "sti_prevention_testing",
     "synonyms": [
@@ -3282,7 +3282,7 @@
     "seoDescription": "Soliguide us ajuda a trobar proves gratuïtes d'ITS a Andorra. Centres de salut, consultes confidencials i resultats ràpids per a tothom."
   },
   {
-    "label": "hiv_prevention",
+    "label": "Prevenció del VIH",
     "categoryId": "hiv_prevention",
     "slug": "hiv_prevention",
     "synonyms": [
@@ -3309,7 +3309,7 @@
     "seoDescription": "Soliguide us ajuda a trobar serveis de prevenció del VIH a Andorra. Proves gratuïtes, preservatius i informació sanitària."
   },
   {
-    "label": "sexual_health_vaccination",
+    "label": "Vacunació",
     "categoryId": "sexual_health_vaccination",
     "slug": "sexual_health_vaccination",
     "synonyms": [
@@ -3336,7 +3336,7 @@
     "seoDescription": "Soliguide us ajuda a trobar vacunacions de salut sexual gratuïtes a Andorra. Clíniques mèdiques, centres de salut i programes de prevenció."
   },
   {
-    "label": "sexual_health_education",
+    "label": "Informació i prevenció",
     "categoryId": "sexual_health_education",
     "slug": "sexual_health_education",
     "synonyms": [
@@ -3363,7 +3363,7 @@
     "seoDescription": "Soliguide us ofereix recursos sobre salut sexual a Andorra. Trobareu informació sobre contraceptius, infeccions de transmissió sexual i salut reproductiva."
   },
   {
-    "label": "sexual_violence_support",
+    "label": "Gènere i violència de gènere",
     "categoryId": "sexual_violence_support",
     "slug": "sexual_violence_support",
     "synonyms": [
@@ -3390,7 +3390,7 @@
     "seoDescription": "Soliguide us connecta amb serveis de protecció, assessorament psicològic i acollida per a víctimes de violència sexual a Andorra."
   },
   {
-    "label": "affective_life",
+    "label": "Vida afectiva i sexual",
     "categoryId": "affective_life",
     "slug": "affective_life",
     "synonyms": [
@@ -3417,7 +3417,7 @@
     "seoDescription": "Soliguide us ajuda a trobar espais d'escolta, grups de suport i consell psicològic a Andorra. Parlar amb professionals, compartir amb altres persones."
   },
   {
-    "label": "neurology",
+    "label": "Neuròleg",
     "categoryId": "neurology",
     "slug": "neurology",
     "synonyms": [
@@ -3444,7 +3444,7 @@
     "seoDescription": "Soliguide us ajuda a trobar centres de neurologia, consultes gratuïtes i seguiment mèdic a Andorra. Accés fàcil a l'atenció sanitària."
   },
   {
-    "label": "vascular_surgery",
+    "label": "Cirurgia vascular",
     "categoryId": "vascular_surgery",
     "slug": "vascular_surgery",
     "synonyms": [
