@@ -8,7 +8,6 @@ import {
 import { Categories } from "../enums";
 import {
   CategoriesGraph,
-  ChildCategory,
   FlatCategoriesTreeNode,
 } from "../interfaces";
 import { sortByRank } from "./categories.service";
@@ -64,7 +63,7 @@ export const graphToFlatCategories = (
 
   // Second pass: ensure every child has an entry (leaves get children: [])
   for (const children of Object.values(graph)) {
-    for (const child of children as ChildCategory[]) {
+    for (const child of children) {
       if (!result.has(child.id)) {
         result.set(child.id, { id: child.id, children: [] });
       }
