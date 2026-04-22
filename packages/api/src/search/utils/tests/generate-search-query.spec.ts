@@ -84,6 +84,7 @@ describe("Testing of the search query generation", () => {
           $elemMatch: {
             category: {
               $nin: [
+                Categories.ADDICTION_CARE,
                 Categories.ADDICTION_PREVENTION_AND_MATERIAL,
                 Categories.TOILETS,
                 Categories.WIFI,
@@ -187,6 +188,7 @@ describe("Testing of the search query generation", () => {
                 isOpenToday: true,
                 category: {
                   $nin: [
+                    Categories.ADDICTION_CARE,
                     Categories.ADDICTION_PREVENTION_AND_MATERIAL,
                     Categories.TOILETS,
                     Categories.WIFI,
@@ -211,6 +213,7 @@ describe("Testing of the search query generation", () => {
                   $elemMatch: {
                     category: {
                       $nin: [
+                        Categories.ADDICTION_CARE,
                         Categories.ADDICTION_PREVENTION_AND_MATERIAL,
                         Categories.TOILETS,
                         Categories.WIFI,
@@ -402,37 +405,54 @@ describe("Testing of the search query generation", () => {
           $elemMatch: {
             category: {
               $in: [
-                Categories.STD_TESTING,
-                Categories.PSYCHOLOGICAL_SUPPORT,
-                Categories.CHILD_CARE,
+                Categories.HEALTH_COVERAGE,
+                Categories.FIND_HEALTHCARE,
                 Categories.GENERAL_PRACTITIONER,
+                Categories.HEALTH_ASSESSMENT,
+                Categories.CHILD_CARE,
                 Categories.DENTAL_CARE,
-                Categories.PREGNANCY_CARE,
-                Categories.VACCINATION,
+                Categories.OPTICAL_CARE,
+                Categories.HEARING_CARE,
                 Categories.INFIRMARY,
-                Categories.VET_CARE,
+                Categories.VACCINATION,
+                Categories.STD_TESTING,
+                Categories.CHRONIC_DISEASES,
+                Categories.NUTRITION,
+                Categories.MEDICAL_ACCOMMODATION,
+                Categories.PSYCHOLOGICAL_SUPPORT,
+                Categories.PSYCHIATRY,
+                Categories.SUPPORT_GROUPS,
+                Categories.MENTAL_HEALTH_EDUCATION,
+                Categories.THERAPEUTIC_ACTIVITIES,
+                Categories.EMERGENCY_CONTRACEPTION,
+                Categories.ABORTION,
+                Categories.CONTRACEPTION,
+                Categories.GYNECOLOGY,
+                Categories.STI_PREVENTION_TESTING,
+                Categories.HIV_PREVENTION,
+                Categories.SEXUAL_HEALTH_VACCINATION,
+                Categories.SEXUAL_HEALTH_EDUCATION,
+                Categories.SEXUAL_VIOLENCE_SUPPORT,
+                Categories.AFFECTIVE_LIFE,
+                Categories.PREGNANCY_CARE,
+                Categories.PARENT_ASSISTANCE,
                 Categories.ALLERGOLOGY,
                 Categories.CARDIOLOGY,
                 Categories.DERMATOLOGY,
-                Categories.ECHOGRAPHY,
                 Categories.ENDOCRINOLOGY,
                 Categories.GASTROENTEROLOGY,
-                Categories.GYNECOLOGY,
                 Categories.KINESITHERAPY,
-                Categories.MAMMOGRAPHY,
-                Categories.OPHTHALMOLOGY,
                 Categories.OTORHINOLARYNGOLOGY,
-                Categories.NUTRITION,
+                Categories.SPEECH_THERAPY,
+                Categories.OSTEOPATHY,
                 Categories.PEDICURE,
                 Categories.PHLEBOLOGY,
                 Categories.PNEUMOLOGY,
                 Categories.RADIOLOGY,
                 Categories.RHEUMATOLOGY,
-                Categories.UROLOGY,
-                Categories.SPEECH_THERAPY,
                 Categories.STOMATOLOGY,
-                Categories.OSTEOPATHY,
-                Categories.ACUPUNCTURE,
+                Categories.UROLOGY,
+                Categories.VET_CARE,
               ],
             },
           },
@@ -512,6 +532,7 @@ describe("Testing of the search query generation", () => {
               $elemMatch: {
                 category: {
                   $nin: [
+                    Categories.ADDICTION_CARE,
                     Categories.ADDICTION_PREVENTION_AND_MATERIAL,
                     Categories.TOILETS,
                     Categories.WIFI,
@@ -529,6 +550,7 @@ describe("Testing of the search query generation", () => {
                   $elemMatch: {
                     category: {
                       $nin: [
+                        Categories.ADDICTION_CARE,
                         Categories.ADDICTION_PREVENTION_AND_MATERIAL,
                         Categories.TOILETS,
                         Categories.WIFI,
@@ -657,6 +679,7 @@ describe("Testing of the search query generation", () => {
               $elemMatch: {
                 category: {
                   $nin: [
+                    Categories.ADDICTION_CARE,
                     Categories.ADDICTION_PREVENTION_AND_MATERIAL,
                     Categories.TOILETS,
                     Categories.WIFI,
@@ -674,6 +697,7 @@ describe("Testing of the search query generation", () => {
                   $elemMatch: {
                     category: {
                       $nin: [
+                        Categories.ADDICTION_CARE,
                         Categories.ADDICTION_PREVENTION_AND_MATERIAL,
                         Categories.TOILETS,
                         Categories.WIFI,
@@ -718,6 +742,7 @@ describe("Testing of the search query generation", () => {
           $elemMatch: {
             category: {
               $nin: [
+                Categories.ADDICTION_CARE,
                 Categories.ADDICTION_PREVENTION_AND_MATERIAL,
                 Categories.TOILETS,
                 Categories.WIFI,
