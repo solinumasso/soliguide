@@ -130,7 +130,8 @@ packages/
 ├── web-app/          - SvelteKit public interface (SSR)
 ├── design-system/    - Svelte component library
 ├── common/           - Shared TypeScript types and utilities (dual build: CJS + ESM)
-└── common-angular/   - Shared Angular services
+├── common-angular/   - Shared Angular services
+└── taxonomy/         - Category taxonomy: icons, fonts, Caddy redirects (formerly icons-generator)
 ```
 
 ### Dependency Graph
@@ -140,6 +141,7 @@ common (base types & utilities)
     ↓
     ├── common-angular → frontend, widget
     ├── design-system → web-app
+    ├── taxonomy → generates assets for api, frontend, web-app
     └── api, location-api, soligare
 ```
 
@@ -387,3 +389,23 @@ Required: Node.js 22+ (specified in package.json engines)
   - Phone number utilities
 - **Adding types**: Add to appropriate domain folder, export from index.ts
 - **After changes**: Rebuild all dependent packages
+
+### Taxonomy (@soliguide/taxonomy)
+
+- **Purpose**: Central management of category taxonomy — icons, fonts, Caddy redirects, documentation
+- **Formerly**: `@soliguide/icons-generator` (renamed to reflect expanded scope)
+- **Key files**:
+  - `scripts/caddy/categories.dsl.yaml`: Single source of truth for category metadata (slugs, history, countries)
+  - `scripts/icons-generator/index.ts`: Icon font + PNG generation from SVGs
+  - `scripts/caddy/generate-caddy.ts`: Generates Caddy redirect rules for old category slugs
+  - `scripts/caddy/generate-md.ts`: Generates `generated/categories.md` documentation
+- **Key commands**:
+  - `yarn workspace @soliguide/taxonomy icons-full-process`: Full pipeline (generate icons + copy to api/frontend/web-app)
+  - `yarn workspace @soliguide/taxonomy generate:caddy`: Generate Caddy redirect config
+  - `yarn workspace @soliguide/taxonomy generate:md`: Generate categories documentation
+  - `yarn workspace @soliguide/taxonomy check-icons`: Validate all categories have matching SVG icons
+- **Outputs assets to**:
+  - `packages/api/resources/auto-export/pictos/` (PNG icons)
+  - `packages/frontend/src/assets/fonts/icons/` (font files + SCSS)
+  - `packages/web-app/src/assets/fonts/icons/` (font files)
+  - `packages/frontend/caddy/category-redirects.caddy` (redirect rules)

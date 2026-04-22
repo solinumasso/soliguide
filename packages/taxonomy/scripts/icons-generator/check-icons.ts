@@ -1,5 +1,5 @@
-import { readdirSync, existsSync } from "fs";
-import { extname, basename, join } from "path";
+import { readdirSync, existsSync } from "node:fs";
+import { extname, basename, join } from "node:path";
 import chalk from "chalk";
 import { Categories } from "@soliguide/common";
 import ora from "ora";

@@ -13,7 +13,7 @@ import {
   readFileSync,
   writeFileSync,
 } from "fs";
-import { extname, basename, join } from "path";
+import { extname, basename, join } from "node:path";
 import { Categories } from "@soliguide/common";
 import ora from "ora";
 import chalk from "chalk";

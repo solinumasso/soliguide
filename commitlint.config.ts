@@ -45,7 +45,7 @@ const Configuration: UserConfig = {
         "design-system",
         "common",
         "common-angular",
-        "icons-generator",
+        "taxonomy",
       ],
     ],
     // Make scope optional instead of required
