@@ -313,8 +313,8 @@ export const getSearchPageController = (
       const suggestions = await categoryService.getCategorySuggestions(category, country, lang);
       const selection = suggestions.find((suggestion) => suggestion === category) ?? null;
       return { suggestions, selection, error: CategoriesErrors.NONE };
-    } catch (error) {
-      return { suggestions: [], selection: null, error: error as CategoriesErrors };
+    } catch {
+      return { suggestions: [], selection: null, error: CategoriesErrors.ERROR_SERVER };
     }
   };
 
