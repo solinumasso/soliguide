@@ -125,7 +125,7 @@ export class CategoriesService {
     // Collect every category that appears anywhere in the graph
     for (const [parentId, children] of Object.entries(this.graph)) {
       allNodes.add(parentId as Categories);
-      for (const child of children as ChildCategory[]) {
+      for (const child of children) {
         allNodes.add(child.id);
       }
     }
@@ -149,11 +149,14 @@ export class CategoriesService {
     const index = new Map<Categories, Categories[]>();
 
     for (const [parentId, children] of Object.entries(this.graph)) {
-      for (const child of children as ChildCategory[]) {
+      for (const child of children) {
         if (!index.has(child.id)) {
           index.set(child.id, []);
         }
-        index.get(child.id)!.push(parentId as Categories);
+        const parents = index.get(child.id);
+        if (parents) {
+          parents.push(parentId as Categories);
+        }
       }
     }
 
@@ -171,7 +174,10 @@ export class CategoriesService {
 
     const findRoots = (category: Categories): Categories[] => {
       if (index.has(category)) {
-        return index.get(category)!;
+        const result = index.get(category);
+        if (result) {
+          return result;
+        }
       }
 
       // Root categories are their own root parent
@@ -216,7 +222,10 @@ export class CategoriesService {
 
     const collectLeaves = (category: Categories): Categories[] => {
       if (index.has(category)) {
-        return index.get(category)!;
+        const result = index.get(category);
+        if (result) {
+          return result;
+        }
       }
 
       // Leaf node: its own descendant set is just itself
@@ -263,7 +272,7 @@ export class CategoriesService {
     const nodes = new Set<Categories>();
     for (const [parentId, children] of Object.entries(this.graph)) {
       nodes.add(parentId as Categories);
-      for (const child of children as ChildCategory[]) {
+      for (const child of children) {
         nodes.add(child.id);
       }
     }
@@ -379,7 +388,10 @@ export class CategoriesService {
     if (!this.flatOrderCategoriesTreeCompleted[node.id]) {
       this.flatOrderCategoriesTreeCompleted[node.id] = [];
     }
-    this.flatOrderCategoriesTreeCompleted[node.id]!.push({ ...node });
+    const nodeArray = this.flatOrderCategoriesTreeCompleted[node.id];
+    if (nodeArray) {
+      nodeArray.push({ ...node });
+    }
   }
 
   /**
