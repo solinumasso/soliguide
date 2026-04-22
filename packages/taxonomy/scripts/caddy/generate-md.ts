@@ -1,9 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
-import { loadCategoriesDsl } from "../dsl/loadCategoriesDsl";
+import { loadCategoriesDsl } from "./dsl/loadCategoriesDsl";
 
 function generateMarkdown() {
-  const dsl = loadCategoriesDsl(path.join(__dirname, "../categories.dsl.yaml"));
+  const dsl = loadCategoriesDsl(path.join(__dirname, "categories.dsl.yaml"));
 
   const lines: string[] = [];
 
@@ -34,7 +34,7 @@ function generateMarkdown() {
     lines.push(`| ${key} | ${countries} | ${createdAt} | ${slug} | ${history} |`);
   }
 
-  const outputPath = path.join(__dirname, "../generated/categories.md");
+  const outputPath = path.join(__dirname, "../../generated/categories.md");
 
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, lines.join("\n"));

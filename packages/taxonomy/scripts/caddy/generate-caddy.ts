@@ -1,12 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
-import { loadCategoriesDsl } from "../dsl/loadCategoriesDsl";
+import { loadCategoriesDsl } from "./dsl/loadCategoriesDsl";
 
 /**
  * Generates Caddy redirect rules using map syntax
  */
 function generateCaddy() {
-  const dsl = loadCategoriesDsl(path.join(__dirname, "../categories.dsl.yaml"));
+  const dsl = loadCategoriesDsl(path.join(__dirname, "categories.dsl.yaml"));
 
   const lines: string[] = [];
 

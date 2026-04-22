@@ -4,7 +4,7 @@ import path from "node:path";
 
 describe("generate-md script", () => {
   it("generates a markdown file", async () => {
-    const generatedFile = path.join(__dirname, "../../generated/categories.md");
+    const generatedFile = path.join(__dirname, "../../../generated/categories.md");
 
     if (fs.existsSync(generatedFile)) {
       fs.unlinkSync(generatedFile);

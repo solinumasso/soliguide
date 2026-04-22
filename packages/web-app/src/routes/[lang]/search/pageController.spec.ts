@@ -2,20 +2,19 @@ import { describe, it, expect, beforeEach, afterEach, vi, vitest } from 'vitest'
 import { get } from 'svelte/store';
 import { getSearchPageController } from './pageController';
 import getLocationService from '$lib/services/locationService';
-import { getCategoryService } from '$lib/services/categoryService';
 import { fakeFetch } from '$lib/client/index';
 import {
   GeoTypes,
   Categories,
-  Themes,
   CountryCodes,
   SupportedLanguagesCode,
-  LocationAutoCompleteAddress
+  LocationAutoCompleteAddress,
+  type SearchSuggestion
 } from '@soliguide/common';
 import { posthogService } from '$lib/services/posthogService';
 import type { LocationSuggestion } from '$lib/models/locationSuggestion';
 import { Steps, Focus, type SearchPageController } from './types';
-import { CategoriesErrors, LocationErrors } from '$lib/services/types';
+import { CategoriesErrors, LocationErrors, type CategoryService } from '$lib/services/types';
 
 const sampleSuggestions: LocationAutoCompleteAddress[] = [
   {
@@ -129,31 +128,53 @@ const geolocFn = (): Promise<GeolocationPosition> =>
   });
 const geolocFnError = () => Promise.reject(new Error('UNAUTHORIZED_LOCATION'));
 
+const createMockCategoryService = (): {
+  service: CategoryService;
+  feedWith: (data: SearchSuggestion[]) => void;
+  setError: (error: { status: number; statusText: string } | null) => void;
+} => {
+  let responseData: SearchSuggestion[] = [];
+  let responseError: { status: number; statusText: string } | null = null;
+
+  const service: CategoryService = {
+    getAllCategories: () => [],
+    getRootCategories: () => [],
+    getChildrenCategories: () => [],
+    isCategoryRoot: () => false,
+    hasChildren: () => false,
+    getCategorySuggestions: (): Promise<Categories[]> => {
+      if (responseError) {
+        throw responseError;
+      }
+      return Promise.resolve(
+        responseData.map((item) => item.categoryId).filter((id): id is Categories => id !== null)
+      );
+    }
+  };
+
+  return {
+    service,
+    feedWith: (data: SearchSuggestion[]) => {
+      responseData = data;
+    },
+    setError: (error: { status: number; statusText: string } | null) => {
+      responseError = error;
+    }
+  };
+};
+
 vitest.spyOn(posthogService, 'capture').mockImplementation(() => 'captured');
 
 describe('Search page', () => {
   // skipcq: JS-0119
   let pageState: SearchPageController;
   const { fetch, feedWith, setError } = fakeFetch();
+  const {
+    service: categoryService,
+    feedWith: feedWithCategoriesData,
+    setError: setCategoryError
+  } = createMockCategoryService();
   const locationService = getLocationService(fetch);
-  const categoryService = getCategoryService(Themes.SOLIGUIDE_FR);
-
-  let mockCategoryData: Categories[] = [];
-  let mockCategoryError: unknown = null;
-
-  vi.spyOn(categoryService, 'getCategorySuggestions').mockImplementation(() => {
-    if (mockCategoryError) throw mockCategoryError;
-    return Promise.resolve(mockCategoryData);
-  });
-
-  const feedWithCategoriesData = (data: Categories[]): void => {
-    mockCategoryData = data;
-    mockCategoryError = null;
-  };
-
-  const setCategoryError = (error: { status: number; statusText: string } | null): void => {
-    mockCategoryError = error;
-  };
 
   beforeEach(() => {
     mockCategoryData = [];

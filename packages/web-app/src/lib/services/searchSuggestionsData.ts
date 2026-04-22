@@ -9,17 +9,18 @@ const dataModules = import.meta.glob<{ default: FormattedSuggestion[] }>(
   { eager: false }
 );
 
-const dataLoaders = new Map<string, () => Promise<{ default: FormattedSuggestion[] }>>();
+type DataLoader = () => Promise<{ default: FormattedSuggestion[] }>;
 
-Object.entries(dataModules).forEach(([path, loader]) => {
-  const match = path.match(/search-suggestions\/(?<country>[^/]+)\/(?<lang>[^/]+)\.json$/u);
-  if (match?.groups) {
-    dataLoaders.set(
-      `${match.groups.country}/${match.groups.lang}`,
-      loader as () => Promise<{ default: FormattedSuggestion[] }>
-    );
-  }
-});
+const dataLoaders: Map<string, DataLoader> = Object.entries(dataModules).reduce(
+  (acc, [path, loader]) => {
+    const match = /search-suggestions\/(?<country>[^/]+)\/(?<lang>[^/]+)\.json$/u.exec(path);
+    if (match?.groups) {
+      acc.set(`${match.groups.country}/${match.groups.lang}`, loader);
+    }
+    return acc;
+  },
+  new Map<string, DataLoader>()
+);
 
 const cache = new Map<string, FormattedSuggestion[]>();
 
