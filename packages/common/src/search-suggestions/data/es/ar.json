@@ -2323,7 +2323,7 @@
   },
   {
     "categoryId": "spanish_course",
-    "label": "categories.spanish_course",
+    "label": "الدورات الدراسية الإسبانية",
     "slug": "cours-espagnol",
     "synonyms": [
       "تعليم",
@@ -2350,7 +2350,7 @@
   },
   {
     "categoryId": "catalan_course",
-    "label": "categories.catalan_course",
+    "label": "دورات كاتالين",
     "slug": "cours-catalan",
     "synonyms": [
       "كتالانية",
@@ -2414,7 +2414,11 @@
     "categoryId": null,
     "label": "Quàlia",
     "slug": "qualia",
-    "synonyms": ["Qualia", "Fundació Quàlia", "Fundación Qualia"],
+    "synonyms": [
+      "Qualia",
+      "Fundació Quàlia",
+      "Fundación Qualia"
+    ],
     "type": "ORGANIZATION",
     "lang": "ar",
     "country": "es",
@@ -2425,7 +2429,11 @@
     "categoryId": null,
     "label": "Amisol",
     "slug": "amisol",
-    "synonyms": ["AMISOL", "Associació Amisol", "Asociación Amisol"],
+    "synonyms": [
+      "AMISOL",
+      "Associació Amisol",
+      "Asociación Amisol"
+    ],
     "type": "ORGANIZATION",
     "lang": "ar",
     "country": "es",
@@ -2691,7 +2699,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "النقل والتنقل",
+    "label": "للتنقل والتنقل",
     "slug": "transportation_mobility",
     "synonyms": [
       "النقل المجاني",
@@ -2718,7 +2726,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "دعم التنقل",
+    "label": "دعم الحركة",
     "slug": "mobility_support",
     "synonyms": [
       "النقل المجاني",
@@ -2771,7 +2779,7 @@
     "seoDescription": "سوليجيد يساعدك في إيجاد خدمات تمويل التنقل. اكتشف مراكز الدعم والمساعدة في إسبانيا بسهولة."
   },
   {
-    "label": "health_access",
+    "label": "الحصول على الرعاية الصحية",
     "categoryId": "health_access",
     "slug": "health_access",
     "synonyms": [
@@ -2798,7 +2806,7 @@
     "seoDescription": "سوليجيد يساعدك في إسبانيا للحصول على الرعاية الصحية المجانية والعيادات والأدوية والفحوصات الطبية بسهولة"
   },
   {
-    "label": "physical_health",
+    "label": "صحة الجسم",
     "categoryId": "physical_health",
     "slug": "physical_health",
     "synonyms": [
@@ -2825,7 +2833,7 @@
     "seoDescription": "سوليغايد يساعدك في إسبانيا للعثور على عيادات صحية مجانية وفحوصات طبية وأدوية بدون تكاليف"
   },
   {
-    "label": "mental_health",
+    "label": "الصحة العقلية",
     "categoryId": "mental_health",
     "slug": "mental_health",
     "synonyms": [
@@ -2852,7 +2860,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على خدمات الصحة النفسية المجانية. استشارات نفسية، مراكز علاج الإدمان، ومجموعات دعم في مدينتك."
   },
   {
-    "label": "addictions",
+    "label": "الإدمان",
     "categoryId": "addictions",
     "slug": "addictions",
     "synonyms": [
@@ -2879,7 +2887,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على مراكز علاج الإدمان والدعم النفسي والاستشارات الطبية المجانية في إسبانيا"
   },
   {
-    "label": "sexual_health",
+    "label": "الصحة الجنسية",
     "categoryId": "sexual_health",
     "slug": "sexual_health",
     "synonyms": [
@@ -2906,7 +2914,7 @@
     "seoDescription": "سوليجيد يساعدك في إسبانيا للحصول على استشارات صحية مجانية وفحوصات طبية وأدوية وقائية بالقرب منك"
   },
   {
-    "label": "parenthood",
+    "label": "الوالدين",
     "categoryId": "parenthood",
     "slug": "parenthood",
     "synonyms": [
@@ -2933,7 +2941,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على خدمات الأطفال والعائلات. حضانات مجانية، استشارات تربوية، ومساعدات مالية للعائلات في إسبانيا."
   },
   {
-    "label": "health_coverage",
+    "label": "الحصول على التغطية الصحية",
     "categoryId": "health_coverage",
     "slug": "health_coverage",
     "synonyms": [
@@ -2960,7 +2968,7 @@
     "seoDescription": "سوليجيد يساعدكم في إسبانيا للحصول على الرعاية الصحية المجانية والتأمين الطبي والعيادات القريبة"
   },
   {
-    "label": "find_healthcare",
+    "label": "العثور على مساعدة العلاج",
     "categoryId": "find_healthcare",
     "slug": "find_healthcare",
     "synonyms": [
@@ -2987,7 +2995,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على عيادات صحية مجانية وخدمات طبية في إسبانيا. مراكز صحية وأطباء وعلاجات قريبة منك"
   },
   {
-    "label": "health_assessment",
+    "label": "الفحص الطبي",
     "categoryId": "health_assessment",
     "slug": "health_assessment",
     "synonyms": [
@@ -3014,7 +3022,7 @@
     "seoDescription": "سوليجيد يساعدك على إيجاد فحوصات صحية مجانية وعيادات قريبة وأطباء متخصصين في مدينتك"
   },
   {
-    "label": "optical_care",
+    "label": "العناية بالبصر",
     "categoryId": "optical_care",
     "slug": "optical_care",
     "synonyms": [
@@ -3041,7 +3049,7 @@
     "seoDescription": "سوليجيد يساعدك في إيجاد خدمات رعاية العيون المجانية في إسبانيا. نظارات طبية وفحوصات عيون وعلاجات"
   },
   {
-    "label": "hearing_care",
+    "label": "العناية بالسمع",
     "categoryId": "hearing_care",
     "slug": "hearing_care",
     "synonyms": [
@@ -3068,7 +3076,7 @@
     "seoDescription": "Soliguide يوفر لك مئات الأماكن لفحص السمع المجاني والأجهزة السمعية والاستشارات الطبية بالقرب منك"
   },
   {
-    "label": "chronic_diseases",
+    "label": "الأمراض المزمنة",
     "categoryId": "chronic_diseases",
     "slug": "chronic_diseases",
     "synonyms": [
@@ -3095,7 +3103,7 @@
     "seoDescription": "سوليغيد يساعدكم في إسبانيا للعثور على عيادات طبية مجانية وأدوية وفحوصات صحية للأمراض المزمنة"
   },
   {
-    "label": "medical_accommodation",
+    "label": "السكن الطبي والعلاجي",
     "categoryId": "medical_accommodation",
     "slug": "medical_accommodation",
     "synonyms": [
@@ -3122,7 +3130,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على سكن طبي آمن. شقق مدعومة، مراكز صحية، بيوت استقبال قريبة منك."
   },
   {
-    "label": "psychiatry",
+    "label": "طبيب نفساني",
     "categoryId": "psychiatry",
     "slug": "psychiatry",
     "synonyms": [
@@ -3176,7 +3184,7 @@
     "seoDescription": "اكتشف مجموعات الدعم القريبة منك عبر سوليجيد. مساعدة نفسية، تجمعات للعاطلين، ملتقيات للاجئين والمشردين."
   },
   {
-    "label": "mental_health_education",
+    "label": "الإعلام والتوعية",
     "categoryId": "mental_health_education",
     "slug": "mental_health_education",
     "synonyms": [
@@ -3203,7 +3211,7 @@
     "seoDescription": "سوليجيد يساعدك في الوصول إلى خدمات الصحة النفسية المجانية في إسبانيا. استشارات نفسية، مجموعات دعم، وعيادات متخصصة بالقرب منك."
   },
   {
-    "label": "therapeutic_activities",
+    "label": "أنشطة العلاج",
     "categoryId": "therapeutic_activities",
     "slug": "therapeutic_activities",
     "synonyms": [
@@ -3230,7 +3238,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على أنشطة علاجية مجانية في إسبانيا. جلسات نفسية، رياضة صحية، ورش عمل إعادة تأهيل بالقرب منك."
   },
   {
-    "label": "addiction_care",
+    "label": "المشاورات والرعاية",
     "categoryId": "addiction_care",
     "slug": "addiction_care",
     "synonyms": [
@@ -3257,7 +3265,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على مراكز علاج الإدمان المجانية. برامج إزالة السموم والاستشارات والدعم النفسي في مدينتك."
   },
   {
-    "label": "addiction_prevention_and_material",
+    "label": "الوقاية والمعدات",
     "categoryId": "addiction_prevention_and_material",
     "slug": "addiction_prevention_and_material",
     "synonyms": [
@@ -3284,7 +3292,7 @@
     "seoDescription": "سوليجيد يساعدك في الوقاية من الإدمان والحصول على المساعدة المادية. برامج علاجية وملاجئ آمنة وأغذية في إسبانيا"
   },
   {
-    "label": "emergency_contraception",
+    "label": "وسائل منع الحمل الطارئة",
     "categoryId": "emergency_contraception",
     "slug": "emergency_contraception",
     "synonyms": [
@@ -3311,7 +3319,7 @@
     "seoDescription": "سوليغيد يساعدك في الوصول لوسائل منع الحمل الطارئة. عيادات صحية مجانية وصيدليات وخدمات طبية قريبة منك في إسبانيا"
   },
   {
-    "label": "abortion",
+    "label": "الإجهاض (IVG)",
     "categoryId": "abortion",
     "slug": "abortion",
     "synonyms": [
@@ -3338,7 +3346,7 @@
     "seoDescription": "سوليجيد يساعدك على إيجاد عيادات طبية مجانية وآمنة. استشارة طبية سرية وخدمات صحية موثوقة بالقرب منك"
   },
   {
-    "label": "contraception",
+    "label": "منع الحمل",
     "categoryId": "contraception",
     "slug": "contraception",
     "synonyms": [
@@ -3365,7 +3373,7 @@
     "seoDescription": "سوليجيد يساعدك في إسبانيا للحصول على وسائل منع الحمل مجانا. عيادات صحية وصيدليات وعيادات نسائية قريبة منك"
   },
   {
-    "label": "sti_prevention_testing",
+    "label": "فحص وعلاج الأمراض المنقولة عن طريق الاتصال الجنسي وفيروس نقص المناعة البشرية",
     "categoryId": "sti_prevention_testing",
     "slug": "sti_prevention_testing",
     "synonyms": [
@@ -3392,7 +3400,7 @@
     "seoDescription": "سوليجيد يساعدك في إيجاد فحوصات مجانية وسرية. اختبارات في العيادات والمراكز الصحية بإسبانيا بدون تكاليف"
   },
   {
-    "label": "hiv_prevention",
+    "label": "الوقاية من فيروس نقص المناعة البشرية",
     "categoryId": "hiv_prevention",
     "slug": "hiv_prevention",
     "synonyms": [
@@ -3419,7 +3427,7 @@
     "seoDescription": "سوليجيد يساعدك على إيجاد خدمات الوقاية من الإيدز والفحوصات المجانية والاستشارات الطبية في إسبانيا"
   },
   {
-    "label": "sexual_health_vaccination",
+    "label": "لقاحات",
     "categoryId": "sexual_health_vaccination",
     "slug": "sexual_health_vaccination",
     "synonyms": [
@@ -3446,7 +3454,7 @@
     "seoDescription": "سوليجيد يساعدكم في إسبانيا للحصول على لقاحات وفحوصات صحية مجانية. اكتشفوا عيادات قريبة وخدمات طبية موثوقة"
   },
   {
-    "label": "sexual_health_education",
+    "label": "الإعلام والوقاية",
     "categoryId": "sexual_health_education",
     "slug": "sexual_health_education",
     "synonyms": [
@@ -3473,7 +3481,7 @@
     "seoDescription": "سوليجيد يوفر معلومات صحية جنسية آمنة وموثوقة. اكتشف عيادات مجانية وخدمات استشارة وبرامج توعية صحية بالقرب منك"
   },
   {
-    "label": "sexual_violence_support",
+    "label": "العنف الجنساني والجنساني",
     "categoryId": "sexual_violence_support",
     "slug": "sexual_violence_support",
     "synonyms": [
@@ -3500,7 +3508,7 @@
     "seoDescription": "Soliguide يساعدك في إيجاد مراكز الحماية والاستشارة المجانية. خدمات طبية وقانونية وملاجئ آمنة في إسبانيا."
   },
   {
-    "label": "affective_life",
+    "label": "الحياة الإنجابية والجنسية",
     "categoryId": "affective_life",
     "slug": "affective_life",
     "synonyms": [
@@ -3527,7 +3535,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على خدمات الدعم النفسي والعاطفي. استشارات مجانية، مجموعات دعم، ومراكز استماع في جميع أنحاء إسبانيا"
   },
   {
-    "label": "neurology",
+    "label": "علم الأعصاب",
     "categoryId": "neurology",
     "slug": "neurology",
     "synonyms": [
@@ -3554,7 +3562,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على عيادات الأعصاب والمستشفيات والمراكز الصحية المجانية في إسبانيا بسهولة"
   },
   {
-    "label": "vascular_surgery",
+    "label": "الجراحة الوعائية",
     "categoryId": "vascular_surgery",
     "slug": "vascular_surgery",
     "synonyms": [

@@ -2323,7 +2323,7 @@
   },
   {
     "categoryId": "spanish_course",
-    "label": "categories.spanish_course",
+    "label": "الدورات الدراسية الإسبانية",
     "slug": "cours-espagnol",
     "synonyms": [
       "تعلم",
@@ -2350,7 +2350,7 @@
   },
   {
     "categoryId": "catalan_course",
-    "label": "categories.catalan_course",
+    "label": "دورات كاتالين",
     "slug": "cours-catalan",
     "synonyms": [
       "تعلم",
@@ -2608,7 +2608,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "النقل والتنقل",
+    "label": "للتنقل والتنقل",
     "slug": "transportation_mobility",
     "synonyms": [
       "الحافلات المجانية",
@@ -2635,7 +2635,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "دعم التنقل",
+    "label": "دعم الحركة",
     "slug": "mobility_support",
     "synonyms": [
       "النقل المجاني",
@@ -2688,7 +2688,7 @@
     "seoDescription": "سوليجيد يساعدك في الحصول على خدمات التنقل. اكتشف مراكز النقل والمساعدة في أندورا بسهولة."
   },
   {
-    "label": "health_access",
+    "label": "الحصول على الرعاية الصحية",
     "categoryId": "health_access",
     "slug": "health_access",
     "synonyms": [
@@ -2715,7 +2715,7 @@
     "seoDescription": "سوليغايد يساعدك في العثور على عيادات صحية مجانية وأدوية وفحوصات طبية في أندورا"
   },
   {
-    "label": "physical_health",
+    "label": "صحة الجسم",
     "categoryId": "physical_health",
     "slug": "physical_health",
     "synonyms": [
@@ -2742,7 +2742,7 @@
     "seoDescription": "سوليغيد يساعدك في العثور على عيادات صحية وأطباء ومستشفيات في أندورا. احصل على الرعاية الطبية والأدوية والفحوصات الصحية بسهولة."
   },
   {
-    "label": "mental_health",
+    "label": "الصحة العقلية",
     "categoryId": "mental_health",
     "slug": "mental_health",
     "synonyms": [
@@ -2769,7 +2769,7 @@
     "seoDescription": "سوليغيد يساعدك في العثور على خدمات الصحة النفسية المجانية. استشارات نفسية، مجموعات دعم، أماكن للاستماع في أندورا"
   },
   {
-    "label": "addictions",
+    "label": "الإدمان",
     "categoryId": "addictions",
     "slug": "addictions",
     "synonyms": [
@@ -2796,7 +2796,7 @@
     "seoDescription": "سوليغيد يساعدك في أندورا. اعثر على مراكز علاج الإدمان والاستشارات النفسية والبرامج العلاجية بالقرب منك"
   },
   {
-    "label": "sexual_health",
+    "label": "الصحة الجنسية",
     "categoryId": "sexual_health",
     "slug": "sexual_health",
     "synonyms": [
@@ -2823,7 +2823,7 @@
     "seoDescription": "سوليجيد يساعدك على إيجاد خدمات الصحة الجنسية مجاناً. استشارات طبية، فحوصات صحية، وموارد موثوقة في أندورا."
   },
   {
-    "label": "parenthood",
+    "label": "الوالدين",
     "categoryId": "parenthood",
     "slug": "parenthood",
     "synonyms": [
@@ -2850,7 +2850,7 @@
     "seoDescription": "سوليغيد يساعدك في العثور على خدمات رعاية الأطفال والدعم العائلي في أندورا. حضانات آمنة وملاجئ عائلية ومراكز استشارة الوالدين"
   },
   {
-    "label": "health_coverage",
+    "label": "الحصول على التغطية الصحية",
     "categoryId": "health_coverage",
     "slug": "health_coverage",
     "synonyms": [
@@ -2877,7 +2877,7 @@
     "seoDescription": "سوليجيد يساعدك في الحصول على الرعاية الصحية المجانية والتأمين الطبي والفحوصات الطبية في أندورا"
   },
   {
-    "label": "find_healthcare",
+    "label": "العثور على مساعدة العلاج",
     "categoryId": "find_healthcare",
     "slug": "find_healthcare",
     "synonyms": [
@@ -2904,7 +2904,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على عيادات طبية مجانية وأدوية وفحوصات صحية في أندورا"
   },
   {
-    "label": "health_assessment",
+    "label": "الفحص الطبي",
     "categoryId": "health_assessment",
     "slug": "health_assessment",
     "synonyms": [
@@ -2931,7 +2931,7 @@
     "seoDescription": "سوليجيد يساعدك في الحصول على فحوصات صحية مجانية وعيادات قريبة وخدمات طبية في أندورا"
   },
   {
-    "label": "optical_care",
+    "label": "العناية بالبصر",
     "categoryId": "optical_care",
     "slug": "optical_care",
     "synonyms": [
@@ -2958,7 +2958,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على عيادات عينية مجانية وفحوصات نظر وتوفير نظارات طبية في أندورا"
   },
   {
-    "label": "hearing_care",
+    "label": "العناية بالسمع",
     "categoryId": "hearing_care",
     "slug": "hearing_care",
     "synonyms": [
@@ -2985,7 +2985,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على خدمات العناية بالسمع في أندورا. فحوصات سمعية مجانية وأجهزة سمعية وعيادات متخصصة بالقرب منك."
   },
   {
-    "label": "chronic_diseases",
+    "label": "الأمراض المزمنة",
     "categoryId": "chronic_diseases",
     "slug": "chronic_diseases",
     "synonyms": [
@@ -3012,7 +3012,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على عيادات طبية وأدوية وفحوصات صحية مجانية في أندورا للأشخاص المصابين بأمراض مزمنة"
   },
   {
-    "label": "medical_accommodation",
+    "label": "السكن الطبي والعلاجي",
     "categoryId": "medical_accommodation",
     "slug": "medical_accommodation",
     "synonyms": [
@@ -3039,7 +3039,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على أماكن إقامة طبية آمنة. مراكز صحية وملاجئ وخدمات طبية قريبة منك في أندورا"
   },
   {
-    "label": "psychiatry",
+    "label": "طبيب نفساني",
     "categoryId": "psychiatry",
     "slug": "psychiatry",
     "synonyms": [
@@ -3093,7 +3093,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على مجموعات دعم في أندورا. التقاء مع أشخاص يفهمون وضعك. دعم نفسي وعملي قريب منك."
   },
   {
-    "label": "mental_health_education",
+    "label": "الإعلام والتوعية",
     "categoryId": "mental_health_education",
     "slug": "mental_health_education",
     "synonyms": [
@@ -3120,7 +3120,7 @@
     "seoDescription": "سوليغيد يساعدك في الوصول إلى خدمات الصحة النفسية المجانية في أندورا. استشارات نفسية، مجموعات دعم، وورش عمل للصحة العقلية"
   },
   {
-    "label": "therapeutic_activities",
+    "label": "أنشطة العلاج",
     "categoryId": "therapeutic_activities",
     "slug": "therapeutic_activities",
     "synonyms": [
@@ -3147,7 +3147,7 @@
     "seoDescription": "سوليغيد يساعدك على إيجاد أنشطة علاجية مجانية. جلسات نفسية، رياضة صحية، ورش عمل في أندورا"
   },
   {
-    "label": "addiction_care",
+    "label": "المشاورات والرعاية",
     "categoryId": "addiction_care",
     "slug": "addiction_care",
     "synonyms": [
@@ -3174,7 +3174,7 @@
     "seoDescription": "سوليغيد يساعدك في العثور على مراكز علاج الإدمان والاستشارات النفسية والدعم الطبي في أندورا بكل سهولة"
   },
   {
-    "label": "addiction_prevention_and_material",
+    "label": "الوقاية والمعدات",
     "categoryId": "addiction_prevention_and_material",
     "slug": "addiction_prevention_and_material",
     "synonyms": [
@@ -3201,7 +3201,7 @@
     "seoDescription": "سوليجيد يساعدك في الوقاية من الإدمان والحصول على المساعدة المادية. برامج علاجية مجانية وملاجئ آمنة وأغذية في أندورا"
   },
   {
-    "label": "emergency_contraception",
+    "label": "وسائل منع الحمل الطارئة",
     "categoryId": "emergency_contraception",
     "slug": "emergency_contraception",
     "synonyms": [
@@ -3228,7 +3228,7 @@
     "seoDescription": "سوليغيد يساعدك في الحصول على وسائل منع الحمل الطارئة. عيادات صحية مجانية وصيدليات وخدمات طبية قريبة منك في أندورا."
   },
   {
-    "label": "contraception",
+    "label": "منع الحمل",
     "categoryId": "contraception",
     "slug": "contraception",
     "synonyms": [
@@ -3255,7 +3255,7 @@
     "seoDescription": "سوليجيد يساعدك في الوصول لخدمات منع الحمل المجانية. استشارات طبية وموارد صحية في أندورا للجميع."
   },
   {
-    "label": "sti_prevention_testing",
+    "label": "فحص وعلاج الأمراض المنقولة عن طريق الاتصال الجنسي وفيروس نقص المناعة البشرية",
     "categoryId": "sti_prevention_testing",
     "slug": "sti_prevention_testing",
     "synonyms": [
@@ -3282,7 +3282,7 @@
     "seoDescription": "سوليغايد يساعدك على إيجاد فحوصات طبية مجانية وآمنة. اختبارات سرية وعيادات صحية قريبة منك في أندورا"
   },
   {
-    "label": "hiv_prevention",
+    "label": "الوقاية من فيروس نقص المناعة البشرية",
     "categoryId": "hiv_prevention",
     "slug": "hiv_prevention",
     "synonyms": [
@@ -3309,7 +3309,7 @@
     "seoDescription": "سوليغيد يساعدك على إيجاد عيادات صحية مجانية وفحوصات طبية وأدوية في أندورا بكل سهولة"
   },
   {
-    "label": "sexual_health_vaccination",
+    "label": "لقاحات",
     "categoryId": "sexual_health_vaccination",
     "slug": "sexual_health_vaccination",
     "synonyms": [
@@ -3336,7 +3336,7 @@
     "seoDescription": "سوليغيد يساعدك على الوصول للقاحات والفحوصات الصحية. خدمات مجانية في أندورا لا تتردد في طلب المساعدة"
   },
   {
-    "label": "sexual_health_education",
+    "label": "الإعلام والوقاية",
     "categoryId": "sexual_health_education",
     "slug": "sexual_health_education",
     "synonyms": [
@@ -3363,7 +3363,7 @@
     "seoDescription": "سوليغيد يساعدك في الوصول إلى معلومات صحية موثوقة. استشارات طبية مجانية وعيادات صحية وبرامج توعية صحية في أندورا"
   },
   {
-    "label": "sexual_violence_support",
+    "label": "العنف الجنساني والجنساني",
     "categoryId": "sexual_violence_support",
     "slug": "sexual_violence_support",
     "synonyms": [
@@ -3390,7 +3390,7 @@
     "seoDescription": "سوليجيد يوفر لك أماكن آمنة للاستشارة والحماية من العنف الجنسي في أندورا. استشارات سرية وآمنة ودعم نفسي مجاني."
   },
   {
-    "label": "affective_life",
+    "label": "الحياة الإنجابية والجنسية",
     "categoryId": "affective_life",
     "slug": "affective_life",
     "synonyms": [
@@ -3417,7 +3417,7 @@
     "seoDescription": "سوليجيد يساعدك في الحياة العاطفية. استشارة نفسية مجانية، مجموعات دعم، ومراكز الاستماع في أندورا"
   },
   {
-    "label": "neurology",
+    "label": "علم الأعصاب",
     "categoryId": "neurology",
     "slug": "neurology",
     "synonyms": [
@@ -3444,7 +3444,7 @@
     "seoDescription": "سوليجيد يساعدك في العثور على عيادات الأعصاب والفحوصات الطبية والاستشارات المتخصصة في أندورا بسهولة"
   },
   {
-    "label": "vascular_surgery",
+    "label": "الجراحة الوعائية",
     "categoryId": "vascular_surgery",
     "slug": "vascular_surgery",
     "synonyms": [

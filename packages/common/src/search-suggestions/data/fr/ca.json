@@ -352,7 +352,7 @@
   },
   {
     "categoryId": "food_packages",
-    "label": "Banc d'aliments",
+    "label": "Centre de distribució d'aliments",
     "slug": "colis-alimentaire",
     "synonyms": [
       "menjar",
@@ -541,7 +541,7 @@
   },
   {
     "categoryId": "food_voucher",
-    "label": "Val / xec alimentari",
+    "label": "Targeta per compra d'aliments",
     "slug": "bon-alimentaire",
     "synonyms": [
       "menjar",
@@ -1378,7 +1378,7 @@
   },
   {
     "categoryId": "clothing",
-    "label": "Roba",
+    "label": "Rober",
     "slug": "vetements",
     "synonyms": [
       "vestimenta",
@@ -2610,7 +2610,11 @@
     "categoryId": null,
     "label": "La CIMADE",
     "slug": "cimade",
-    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
+    "synonyms": [
+      "la cimade",
+      "CIMADE",
+      "service œcuménique d'entraide"
+    ],
     "type": "ORGANIZATION",
     "lang": "ca",
     "country": "fr",
@@ -2796,7 +2800,11 @@
     "categoryId": null,
     "label": "Centre socioculturel",
     "slug": "centre-socioculturel",
-    "synonyms": ["centre socio culturel", "csc", "centre social"],
+    "synonyms": [
+      "centre socio culturel",
+      "csc",
+      "centre social"
+    ],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "ca",
     "country": "fr",
@@ -3082,7 +3090,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "Mobilitat i Transport",
+    "label": "Desplaçament i transport",
     "slug": "transportation_mobility",
     "synonyms": [
       "desplaçar",
@@ -3109,7 +3117,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "Suport de Mobilitat",
+    "label": "Acompanyament i tràmits a la mobilitat",
     "slug": "mobility_support",
     "synonyms": [
       "transport",
@@ -3136,7 +3144,7 @@
   },
   {
     "categoryId": "mobility_financing",
-    "label": "Finançament de la mobilitat",
+    "label": "Ajudes econòmiques a la mobilitat",
     "slug": "mobility_financing",
     "synonyms": [
       "transport",
@@ -3163,7 +3171,7 @@
   },
   {
     "categoryId": "driving_license",
-    "label": "Permís de conduir",
+    "label": "Preparació del permís de conduir",
     "slug": "driving_license",
     "synonyms": [
       "permís",
@@ -3190,7 +3198,7 @@
   },
   {
     "categoryId": "personal_vehicle_access",
-    "label": "Accés a vehicle personal",
+    "label": "Accés a un vehicle personal",
     "slug": "personal_vehicle_access",
     "synonyms": [
       "transport",
@@ -3217,7 +3225,7 @@
   },
   {
     "categoryId": "vehicle_maintenance",
-    "label": "Manteniment de vehicles",
+    "label": "Manteniment i reparació de vehicles",
     "slug": "vehicle_maintenance",
     "synonyms": [
       "reparació",
@@ -3243,7 +3251,7 @@
     "seoDescription": "Soliguide us ofereix llocs per reparar el vehicle, obtenir peces de recanvi o ajuda amb assegurances. Trobar recursos propers."
   },
   {
-    "label": "health_access",
+    "label": "Accés a la salut",
     "categoryId": "health_access",
     "slug": "health_access",
     "synonyms": [
@@ -3270,7 +3278,7 @@
     "seoDescription": "Soliguide us ofereix centenars de llocs per accedir a salut: consultes mèdiques gratuïtes, farmàcies socials, centres de vacunació."
   },
   {
-    "label": "physical_health",
+    "label": "Salut corporal",
     "categoryId": "physical_health",
     "slug": "physical_health",
     "synonyms": [
@@ -3297,7 +3305,7 @@
     "seoDescription": "Soliguide us ofereix centenars de llocs per a consultes mèdiques, vacunacions i revisió de salut a França."
   },
   {
-    "label": "mental_health",
+    "label": "Salut Mental",
     "categoryId": "mental_health",
     "slug": "mental_health",
     "synonyms": [
@@ -3324,7 +3332,7 @@
     "seoDescription": "Soliguide us ofereix llocs per parlar amb professionals, accedir a teràpia gratuïta o trobar grups de suport a França."
   },
   {
-    "label": "addictions",
+    "label": "Addiccions",
     "categoryId": "addictions",
     "slug": "addictions",
     "synonyms": [
@@ -3351,7 +3359,7 @@
     "seoDescription": "Soliguide us ofereix recursos per a les addiccions. Trobar centres de desintoxicació, grups de suport i tractaments gratuïts a prop vostre."
   },
   {
-    "label": "sexual_health",
+    "label": "Salut sexual",
     "categoryId": "sexual_health",
     "slug": "sexual_health",
     "synonyms": [
@@ -3378,7 +3386,7 @@
     "seoDescription": "Soliguide us ofereix llocs per a consells de salut sexual, proves de VIH gratuïtes i anticonceptius a França."
   },
   {
-    "label": "parenthood",
+    "label": "Parentalitat",
     "categoryId": "parenthood",
     "slug": "parenthood",
     "synonyms": [
@@ -3405,7 +3413,7 @@
     "seoDescription": "Soliguide us ofereix llocs per a cura de fills, ajuda econòmica familiar i formació de pares a França."
   },
   {
-    "label": "health_coverage",
+    "label": "Obtenir cobertura sanitària",
     "categoryId": "health_coverage",
     "slug": "health_coverage",
     "synonyms": [
@@ -3432,7 +3440,7 @@
     "seoDescription": "Soliguide us ajuda a accedir a sanitaris gratuïts, mutualitats i centres de salut. Trobar metge, dentista o farmàcia prop vostre."
   },
   {
-    "label": "find_healthcare",
+    "label": "Buscar ajuda per curar",
     "categoryId": "find_healthcare",
     "slug": "find_healthcare",
     "synonyms": [
@@ -3459,7 +3467,7 @@
     "seoDescription": "Soliguide us ofereix centenars de llocs per a consultes mèdiques, vacunacions i medicaments a França. Accés fàcil i gratuït."
   },
   {
-    "label": "health_assessment",
+    "label": "Revisió mèdica",
     "categoryId": "health_assessment",
     "slug": "health_assessment",
     "synonyms": [
@@ -3486,7 +3494,7 @@
     "seoDescription": "Soliguide us ofereix llocs per fer revisions mèdiques, accedir a farmàcia gratuïta o consultar un metge sense cost."
   },
   {
-    "label": "optical_care",
+    "label": "Atenció òptica",
     "categoryId": "optical_care",
     "slug": "optical_care",
     "synonyms": [
@@ -3513,7 +3521,7 @@
     "seoDescription": "Soliguide us ofereix llocs per a exàmens de vista, ulleres gratuïtes i lents de contacte a França."
   },
   {
-    "label": "hearing_care",
+    "label": "Atenció auditiva",
     "categoryId": "hearing_care",
     "slug": "hearing_care",
     "synonyms": [
@@ -3540,7 +3548,7 @@
     "seoDescription": "Soliguide us ofereix llocs per a audiòlegs, protèsis auditives i revisions de l'oïda. Trobar ajuda prop de casa vostra."
   },
   {
-    "label": "chronic_diseases",
+    "label": "Malalties cròniques",
     "categoryId": "chronic_diseases",
     "slug": "chronic_diseases",
     "synonyms": [
@@ -3567,7 +3575,7 @@
     "seoDescription": "Soliguide us connecta amb centres de salut, farmàcies gratuïtes i programes de seguiment mèdic a França per gestionar millor la vostra salut."
   },
   {
-    "label": "medical_accommodation",
+    "label": "Allotjament mèdic i terapèutic",
     "categoryId": "medical_accommodation",
     "slug": "medical_accommodation",
     "synonyms": [
@@ -3594,7 +3602,7 @@
     "seoDescription": "Soliguide us ajuda a trobar allotjament mèdic. Centres de salut, consultes gratuïtes, farmàcies d'ajuda."
   },
   {
-    "label": "psychiatry",
+    "label": "Psiquiatra",
     "categoryId": "psychiatry",
     "slug": "psychiatry",
     "synonyms": [
@@ -3648,7 +3656,7 @@
     "seoDescription": "Soliguide us ofereix grups de suport a França. Trobareu espais per parlar, compartir experiències i rebre ajuda de professionals."
   },
   {
-    "label": "mental_health_education",
+    "label": "Informació i sensibilització",
     "categoryId": "mental_health_education",
     "slug": "mental_health_education",
     "synonyms": [
@@ -3675,7 +3683,7 @@
     "seoDescription": "Soliguide ofereix educació sobre salut mental. Trobi psicòlegs, tallers d'estrès, grups de suport a França."
   },
   {
-    "label": "therapeutic_activities",
+    "label": "Activitats de teràpia",
     "categoryId": "therapeutic_activities",
     "slug": "therapeutic_activities",
     "synonyms": [
@@ -3702,7 +3710,7 @@
     "seoDescription": "Soliguide us ofereix llocs per a teràpia, meditació, grups de suport i activitats de benestar. Trobar recursos propers a vosaltres."
   },
   {
-    "label": "addiction_care",
+    "label": "Consultes i atenció",
     "categoryId": "addiction_care",
     "slug": "addiction_care",
     "synonyms": [
@@ -3729,7 +3737,7 @@
     "seoDescription": "Soliguide us ofereix llocs per deixar les drogues, parlar amb professionals i recuperar-vos. Desintoxicació, teràpia, acollida."
   },
   {
-    "label": "addiction_prevention_and_material",
+    "label": "Prevenció i equipament",
     "categoryId": "addiction_prevention_and_material",
     "slug": "addiction_prevention_and_material",
     "synonyms": [
@@ -3756,7 +3764,7 @@
     "seoDescription": "Soliguide us ofereix llocs per deixar les drogues, obtenir medicaments o parlar amb professionals. Centres de desintoxicació, farmàcies i grups de suport."
   },
   {
-    "label": "emergency_contraception",
+    "label": "Anticoncepció d'emergència",
     "categoryId": "emergency_contraception",
     "slug": "emergency_contraception",
     "synonyms": [
@@ -3783,7 +3791,7 @@
     "seoDescription": "Soliguide us ajuda a accedir a anticonceptius d'emergència gratuïts. Farmàcies, clíniques i centres de salut propers a vosaltres."
   },
   {
-    "label": "abortion",
+    "label": "Avortament (IVG)",
     "categoryId": "abortion",
     "slug": "abortion",
     "synonyms": [
@@ -3810,7 +3818,7 @@
     "seoDescription": "Soliguide us ofereix recursos per a l'avortament segur. Accés a clíniques, informació mèdica i suport emocional a França."
   },
   {
-    "label": "contraception",
+    "label": "Anticoncepció",
     "categoryId": "contraception",
     "slug": "contraception",
     "synonyms": [
@@ -3837,7 +3845,7 @@
     "seoDescription": "Soliguide us ajuda a accedir a anticonceptius gratuïts. Píndoles, DIU, preservatius. Centres de salut propers a vosaltres."
   },
   {
-    "label": "sti_prevention_testing",
+    "label": "Presentació i tractament de malalties de transmissió sexual i VIH",
     "categoryId": "sti_prevention_testing",
     "slug": "sti_prevention_testing",
     "synonyms": [
@@ -3864,7 +3872,7 @@
     "seoDescription": "Soliguide us ajuda a trobar centres de prova gratuïta per a ITS. Proves confidencials, consell mèdic i seguiment prop de vosaltres."
   },
   {
-    "label": "hiv_prevention",
+    "label": "Prevenció del VIH",
     "categoryId": "hiv_prevention",
     "slug": "hiv_prevention",
     "synonyms": [
@@ -3891,7 +3899,7 @@
     "seoDescription": "Soliguide us ajuda a trobar serveis de prevenció del VIH a França. Accés a proves gratuïtes, preservatius i consell mèdic proper a vosaltres."
   },
   {
-    "label": "sexual_health_vaccination",
+    "label": "Vacunació",
     "categoryId": "sexual_health_vaccination",
     "slug": "sexual_health_vaccination",
     "synonyms": [
@@ -3918,7 +3926,7 @@
     "seoDescription": "Soliguide us ajuda a trobar centres de vacunació, consultes de salut sexual i anticonceptius gratuïts a prop vostre."
   },
   {
-    "label": "sexual_health_education",
+    "label": "Informació i prevenció",
     "categoryId": "sexual_health_education",
     "slug": "sexual_health_education",
     "synonyms": [
@@ -3945,7 +3953,7 @@
     "seoDescription": "Soliguide us ajuda a trobar serveis d'educació sexual gratuïts. Consultes anticonceptius, proves VIH, informació sobre contraceptció a París, Marsella i Lió."
   },
   {
-    "label": "sexual_violence_support",
+    "label": "Gènere i violència de gènere",
     "categoryId": "sexual_violence_support",
     "slug": "sexual_violence_support",
     "synonyms": [
@@ -3972,7 +3980,7 @@
     "seoDescription": "Soliguide us connecta amb recursos per a víctimes de violència sexual a França. Trobareu acollida, assessorament legal i atenció mèdica gratuïta."
   },
   {
-    "label": "affective_life",
+    "label": "Vida afectiva i sexual",
     "categoryId": "affective_life",
     "slug": "affective_life",
     "synonyms": [

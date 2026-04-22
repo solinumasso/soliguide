@@ -919,7 +919,7 @@
   },
   {
     "categoryId": "accomodation_and_housing",
-    "label": "مسکن و اسکان",
+    "label": "مسکن و مسکن",
     "slug": "hebergement-et-logement",
     "synonyms": [
       "خانه",
@@ -2610,7 +2610,11 @@
     "categoryId": null,
     "label": "La CIMADE",
     "slug": "cimade",
-    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
+    "synonyms": [
+      "la cimade",
+      "CIMADE",
+      "service œcuménique d'entraide"
+    ],
     "type": "ORGANIZATION",
     "lang": "fa",
     "country": "fr",
@@ -2796,7 +2800,11 @@
     "categoryId": null,
     "label": "Centre socioculturel",
     "slug": "centre-socioculturel",
-    "synonyms": ["centre socio culturel", "csc", "centre social"],
+    "synonyms": [
+      "centre socio culturel",
+      "csc",
+      "centre social"
+    ],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "fa",
     "country": "fr",
@@ -3082,7 +3090,7 @@
   },
   {
     "categoryId": "transportation_mobility",
-    "label": "تحرک و حمل‌ونقل",
+    "label": "برای جابجایی و حمل و نقل",
     "slug": "transportation_mobility",
     "synonyms": [
       "مترو",
@@ -3109,7 +3117,7 @@
   },
   {
     "categoryId": "mobility_support",
-    "label": "پشتیبانی تحرک",
+    "label": "پشتیبانی حرکتی",
     "slug": "mobility_support",
     "synonyms": [
       "بلیط",
@@ -3136,7 +3144,7 @@
   },
   {
     "categoryId": "mobility_financing",
-    "label": "تامین مالی تحرک",
+    "label": "بودجه تحرک",
     "slug": "mobility_financing",
     "synonyms": [
       "بلیط",
@@ -3163,7 +3171,7 @@
   },
   {
     "categoryId": "driving_license",
-    "label": "گواهینامه رانندگی",
+    "label": "آماده سازی گواهینامه رانندگی",
     "slug": "driving_license",
     "synonyms": [
       "گواهینامه",
@@ -3190,7 +3198,7 @@
   },
   {
     "categoryId": "personal_vehicle_access",
-    "label": "دسترسی به وسایل نقلیه شخصی",
+    "label": "دسترسی به وسیله نقلیه شخصی",
     "slug": "personal_vehicle_access",
     "synonyms": [
       "حمل‌ونقل",
@@ -3217,7 +3225,7 @@
   },
   {
     "categoryId": "vehicle_maintenance",
-    "label": "تعمیر و نگهداری خودرو",
+    "label": "نگهداری و تعمیر خودرو",
     "slug": "vehicle_maintenance",
     "synonyms": [
       "تعمیر خودرو",
@@ -3243,7 +3251,7 @@
     "seoDescription": "Soliguide شما را به مکان‌های تعمیر رایگان و ارزان قیمت متصل می‌کند. خدمات تعمیر موتور، تایر و سرویس منظم در فرانسه."
   },
   {
-    "label": "health_access",
+    "label": "دسترسی به سلامتی",
     "categoryId": "health_access",
     "slug": "health_access",
     "synonyms": [
@@ -3270,7 +3278,7 @@
     "seoDescription": "سولیگاید مکان های درمانی را برای شما پیدا می کند. کلینیک رایگان، واکسیناسیون، مشاوره پزشکی در فرانسه."
   },
   {
-    "label": "physical_health",
+    "label": "سلامت بدن",
     "categoryId": "physical_health",
     "slug": "physical_health",
     "synonyms": [
@@ -3297,7 +3305,7 @@
     "seoDescription": "سولیگاید مراکز درمانی رایگان، کلینیک‌های بهداشتی و خدمات پزشکی را در فرانسه برای شما پیدا می‌کند."
   },
   {
-    "label": "mental_health",
+    "label": "سلامت روان",
     "categoryId": "mental_health",
     "slug": "mental_health",
     "synonyms": [
@@ -3324,7 +3332,7 @@
     "seoDescription": "سولیگاید مکان‌های کمک روانشناختی را برای شما معرفی می‌کند. مشاوره، درمان و پشتیبانی روانی در فرانسه."
   },
   {
-    "label": "addictions",
+    "label": "اعتیاد",
     "categoryId": "addictions",
     "slug": "addictions",
     "synonyms": [
@@ -3351,7 +3359,7 @@
     "seoDescription": "سولیگاید مکان های درمانی اعتیاد را نزدیک شما پیدا می کند. مشاوره رایگان، برنامه ترک اعتیاد، گروه های حمایتی در فرانسه."
   },
   {
-    "label": "sexual_health",
+    "label": "سلامت جنسی",
     "categoryId": "sexual_health",
     "slug": "sexual_health",
     "synonyms": [
@@ -3378,7 +3386,7 @@
     "seoDescription": "Soliguide شما را به مراکز درمانی رایگان متصل می‌کند. کنسلتاسیون، آموزش و حمایت برای سلامت جنسی در فرانسه."
   },
   {
-    "label": "parenthood",
+    "label": "والدین",
     "categoryId": "parenthood",
     "slug": "parenthood",
     "synonyms": [
@@ -3405,7 +3413,7 @@
     "seoDescription": "Soliguide برای والدین: پیدا کنید مراکز مراقبت کودک، کمک مالی، آموزش والدین و خدمات خانوادگی در فرانسه"
   },
   {
-    "label": "health_coverage",
+    "label": "بیمه سلامت",
     "categoryId": "health_coverage",
     "slug": "health_coverage",
     "synonyms": [
@@ -3432,7 +3440,7 @@
     "seoDescription": "سولیگاید مکان‌های درمانی رایگان را معرفی می‌کند. کلینیک‌های بهداشتی، داروخانه‌های کمک‌رسان و مراکز پزشکی در فرانسه."
   },
   {
-    "label": "find_healthcare",
+    "label": "یافتن کمک برای درمان",
     "categoryId": "find_healthcare",
     "slug": "find_healthcare",
     "synonyms": [
@@ -3459,7 +3467,7 @@
     "seoDescription": "سولیگاید شما را به مراکز درمانی، کلینیک های رایگان و خدمات بهداشتی در فرانسه متصل می کند."
   },
   {
-    "label": "health_assessment",
+    "label": "بررسی سلامت",
     "categoryId": "health_assessment",
     "slug": "health_assessment",
     "synonyms": [
@@ -3486,7 +3494,7 @@
     "seoDescription": "سولیگاید مراکز درمانی رایگان، کلینیک‌های بهداشتی و پزشکان متخصص را برای شما پیدا می‌کند."
   },
   {
-    "label": "optical_care",
+    "label": "مراقبت‌های چشمی",
     "categoryId": "optical_care",
     "slug": "optical_care",
     "synonyms": [
@@ -3513,7 +3521,7 @@
     "seoDescription": "سولیگاید مکان‌های بسیاری برای معاینه چشم، عینک رایگان و لنز تماسی در فرانسه پیشنهاد می‌دهد"
   },
   {
-    "label": "hearing_care",
+    "label": "مراقبت از شنوایی",
     "categoryId": "hearing_care",
     "slug": "hearing_care",
     "synonyms": [
@@ -3540,7 +3548,7 @@
     "seoDescription": "سولیگاید مکان‌های کمک برای شنوایی را نزدیک شما معرفی می‌کند. آزمایش شنوایی، سمعک، و مشاوره رایگان."
   },
   {
-    "label": "chronic_diseases",
+    "label": "بیماری های مزمن",
     "categoryId": "chronic_diseases",
     "slug": "chronic_diseases",
     "synonyms": [
@@ -3567,7 +3575,7 @@
     "seoDescription": "سولیگاید مکان های کمک برای بیماری های مزمن را معرفی می کند. پزشک، دارو، مشاوره رایگان در فرانسه."
   },
   {
-    "label": "medical_accommodation",
+    "label": "پزشکی و درمانی",
     "categoryId": "medical_accommodation",
     "slug": "medical_accommodation",
     "synonyms": [
@@ -3594,7 +3602,7 @@
     "seoDescription": "Soliguide شما را به مراکز درمانی رایگان، پناهگاه‌های صحی و خدمات پزشکی متصل می‌کند. برای بی‌خانمان‌ها و پناهندگان در فرانسه."
   },
   {
-    "label": "psychiatry",
+    "label": "روانپزشک",
     "categoryId": "psychiatry",
     "slug": "psychiatry",
     "synonyms": [
@@ -3621,7 +3629,7 @@
     "seoDescription": "سولیگاید مراکز درمان روانی را برای شما پیدا می‌کند. مشاوره رایگان، دارو و بستری در فرانسه."
   },
   {
-    "label": "support_groups",
+    "label": "گروه های سخنرانی و کمک متقابل",
     "categoryId": "support_groups",
     "slug": "support_groups",
     "synonyms": [
@@ -3648,7 +3656,7 @@
     "seoDescription": "سولیگاید شما را به گروه‌های حمایتی متصل می‌کند. مشاوره رایگان، دیدار با افراد هم‌احساس و کمک عملی در فرانسه."
   },
   {
-    "label": "mental_health_education",
+    "label": "اطلاعات و آگاهی",
     "categoryId": "mental_health_education",
     "slug": "mental_health_education",
     "synonyms": [
@@ -3675,7 +3683,7 @@
     "seoDescription": "Soliguide برای شما مراکز مشاوره روانی، کلاس‌های آموزشی و گروه‌های حمایتی را معرفی می‌کند. درمان استرس، اضطراب و افسردگی."
   },
   {
-    "label": "therapeutic_activities",
+    "label": "فعالیت های درمانی",
     "categoryId": "therapeutic_activities",
     "slug": "therapeutic_activities",
     "synonyms": [
@@ -3702,7 +3710,7 @@
     "seoDescription": "سولی‌گاید مکان‌های درمانی را برای شما پیدا می‌کند. یوگا، مراقبه، گروه‌های حمایتی و مشاوره روانی رایگان در فرانسه."
   },
   {
-    "label": "addiction_care",
+    "label": "مشاوره و مراقبت",
     "categoryId": "addiction_care",
     "slug": "addiction_care",
     "synonyms": [
@@ -3756,7 +3764,7 @@
     "seoDescription": "سولیگاید مکان‌های درمانی رایگان برای ترک اعتیاد، مشاوره و کمک مالی در فرانسه را معرفی می‌کند"
   },
   {
-    "label": "emergency_contraception",
+    "label": "پیشگیری از بارداری اضطراری",
     "categoryId": "emergency_contraception",
     "slug": "emergency_contraception",
     "synonyms": [
@@ -3783,7 +3791,7 @@
     "seoDescription": "Soliguide مکان های درمانی رایگان برای پیشگیری اضطراری را معرفی می کند. داروخانه ها، کلینیک ها و مراکز بهداشتی در فرانسه."
   },
   {
-    "label": "abortion",
+    "label": "سقط جنین (IVG)",
     "categoryId": "abortion",
     "slug": "abortion",
     "synonyms": [
@@ -3810,7 +3818,7 @@
     "seoDescription": "سولیگاید مراکز درمانی و مشاوره سقط جنین را معرفی می‌کند. خدمات رایگان، مشاوره پزشکی و حمایت روانی در فرانسه."
   },
   {
-    "label": "contraception",
+    "label": "پیشگیری از بارداری",
     "categoryId": "contraception",
     "slug": "contraception",
     "synonyms": [
@@ -3837,7 +3845,7 @@
     "seoDescription": "سولیگاید برای شما مکان‌های درمانی پیشگیری بارداری را معرفی می‌کند. کلینیک‌های بهداشتی، داروخانه‌ها و مراکز درمانی در فرانسه."
   },
   {
-    "label": "sti_prevention_testing",
+    "label": "غربالگری و درمان STDs و HIV",
     "categoryId": "sti_prevention_testing",
     "slug": "sti_prevention_testing",
     "synonyms": [
@@ -3864,7 +3872,7 @@
     "seoDescription": "Soliguide شما را به مراکز تست رایگان، مشاوره و درمان بیماری های منتقل شده از طریق رابطه جنسی در فرانسه متصل می کند."
   },
   {
-    "label": "hiv_prevention",
+    "label": "پیشگیری از HIV",
     "categoryId": "hiv_prevention",
     "slug": "hiv_prevention",
     "synonyms": [
@@ -3891,7 +3899,7 @@
     "seoDescription": "Soliguide راهنمای شما برای پیشگیری از HIV است. تست رایگان، مشاوره، و داروهای پیشگیری در شهر شما."
   },
   {
-    "label": "sexual_health_vaccination",
+    "label": "واکسیناسیون",
     "categoryId": "sexual_health_vaccination",
     "slug": "sexual_health_vaccination",
     "synonyms": [
@@ -3918,7 +3926,7 @@
     "seoDescription": "سولیگاید مکان‌های رایگان برای واکسیناسیون و مشاوره سلامت جنسی را نزدیک شما پیدا می‌کند"
   },
   {
-    "label": "sexual_health_education",
+    "label": "اطلاعات و پیشگیری",
     "categoryId": "sexual_health_education",
     "slug": "sexual_health_education",
     "synonyms": [
@@ -3945,7 +3953,7 @@
     "seoDescription": "Soliguide راهنمایی درباره پیشگیری از بیماری‌ها، مشاوره زناشویی و خدمات سلامت جنسی رایگان در فرانسه"
   },
   {
-    "label": "sexual_violence_support",
+    "label": "خشونت جنسیتی و جنسیتی",
     "categoryId": "sexual_violence_support",
     "slug": "sexual_violence_support",
     "synonyms": [
@@ -3972,7 +3980,7 @@
     "seoDescription": "سولیگاید مکان‌های کمک را برای شما پیدا می‌کند. مشاوره رایگان، پناهگاه امن، و حقوقی در فرانسه."
   },
   {
-    "label": "affective_life",
+    "label": "زندگی عاطفی و جنسی",
     "categoryId": "affective_life",
     "slug": "affective_life",
     "synonyms": [

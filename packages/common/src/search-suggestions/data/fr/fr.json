@@ -732,7 +732,7 @@
   },
   {
     "categoryId": "parent_assistance",
-    "label": "Conseil aux parents",
+    "label": "Soutien à la parentalité",
     "slug": "conseil-parents",
     "synonyms": [
       "parentalité",
@@ -1489,7 +1489,7 @@
   },
   {
     "categoryId": "psychological_support",
-    "label": "Psychologie",
+    "label": "Psychologue",
     "slug": "psychologie",
     "synonyms": [
       "consultation",
@@ -1516,7 +1516,7 @@
   },
   {
     "categoryId": "child_care",
-    "label": "Soins enfants",
+    "label": "Soins pour les enfants",
     "slug": "soins-enfants",
     "synonyms": [
       "pédiatre",
@@ -1543,7 +1543,7 @@
   },
   {
     "categoryId": "general_practitioner",
-    "label": "Médecin généraliste",
+    "label": "Médecine générale",
     "slug": "generaliste",
     "synonyms": [
       "consultation",
@@ -1570,7 +1570,7 @@
   },
   {
     "categoryId": "dental_care",
-    "label": "Dentaire",
+    "label": "Soins dentaires",
     "slug": "dentaire",
     "synonyms": [
       "dents",
@@ -1597,7 +1597,7 @@
   },
   {
     "categoryId": "pregnancy_care",
-    "label": "Suivi grossesse",
+    "label": "Suivi de grossesse",
     "slug": "planification",
     "synonyms": [
       "enceinte",
@@ -1651,7 +1651,7 @@
   },
   {
     "categoryId": "infirmary",
-    "label": "Infirmerie",
+    "label": "Soins infirmiers",
     "slug": "infirmerie",
     "synonyms": [
       "soins",
@@ -1732,7 +1732,7 @@
   },
   {
     "categoryId": "allergology",
-    "label": "Allergologie",
+    "label": "Allergologue",
     "slug": "allergologie",
     "synonyms": [
       "allergie",
@@ -1759,7 +1759,7 @@
   },
   {
     "categoryId": "cardiology",
-    "label": "Cardiologie",
+    "label": "Cardiologue",
     "slug": "cardiologie",
     "synonyms": [
       "cœur",
@@ -1786,7 +1786,7 @@
   },
   {
     "categoryId": "dermatology",
-    "label": "Dermatologie",
+    "label": "Dermatologue",
     "slug": "dermatologie",
     "synonyms": [
       "peau",
@@ -1813,7 +1813,7 @@
   },
   {
     "categoryId": "endocrinology",
-    "label": "Endocrinologie",
+    "label": "Endocrinologue",
     "slug": "endocrinologie",
     "synonyms": [
       "diabète",
@@ -1840,7 +1840,7 @@
   },
   {
     "categoryId": "gastroenterology",
-    "label": "Gastro-entérologie",
+    "label": "Gastro-entérologue",
     "slug": "gastro-enterologie",
     "synonyms": [
       "digestif",
@@ -1894,7 +1894,7 @@
   },
   {
     "categoryId": "kinesitherapy",
-    "label": "Kinésithérapie",
+    "label": "Kinésithérapeute",
     "slug": "kinesitherapie",
     "synonyms": [
       "rééducation",
@@ -1921,7 +1921,7 @@
   },
   {
     "categoryId": "otorhinolaryngology",
-    "label": "Oto-rhino-laryngologie",
+    "label": "ORL",
     "slug": "oto-rhino-laryngologie",
     "synonyms": [
       "oreille",
@@ -1975,7 +1975,7 @@
   },
   {
     "categoryId": "pedicure",
-    "label": "Pédicure",
+    "label": "Pédicure-podologue",
     "slug": "pedicure",
     "synonyms": [
       "pieds",
@@ -2002,7 +2002,7 @@
   },
   {
     "categoryId": "phlebology",
-    "label": "Phlébologie",
+    "label": "Phlébologue",
     "slug": "phlebologie",
     "synonyms": [
       "veines",
@@ -2029,7 +2029,7 @@
   },
   {
     "categoryId": "pneumology",
-    "label": "Pneumologie",
+    "label": "Pneumologue",
     "slug": "pneumologie",
     "synonyms": [
       "respiration",
@@ -2056,7 +2056,7 @@
   },
   {
     "categoryId": "radiology",
-    "label": "Radiologie",
+    "label": "Radiologue",
     "slug": "radiologie",
     "synonyms": [
       "scanner",
@@ -2083,7 +2083,7 @@
   },
   {
     "categoryId": "rheumatology",
-    "label": "Rhumatologie",
+    "label": "Rhumatologue",
     "slug": "rhumatologie",
     "synonyms": [
       "arthrose",
@@ -2110,7 +2110,7 @@
   },
   {
     "categoryId": "urology",
-    "label": "Urologie",
+    "label": "Urologue",
     "slug": "urologie",
     "synonyms": [
       "urinaire",
@@ -2137,7 +2137,7 @@
   },
   {
     "categoryId": "speech_therapy",
-    "label": "Orthophonie",
+    "label": "Orthophoniste",
     "slug": "orthophonie",
     "synonyms": [
       "orthophoniste",
@@ -2164,7 +2164,7 @@
   },
   {
     "categoryId": "stomatology",
-    "label": "Stomatologie",
+    "label": "Stomatologue",
     "slug": "stomatologie",
     "synonyms": [
       "dentaire",
@@ -2614,7 +2614,11 @@
     "categoryId": null,
     "label": "La CIMADE",
     "slug": "cimade",
-    "synonyms": ["la cimade", "CIMADE", "service œcuménique d'entraide"],
+    "synonyms": [
+      "la cimade",
+      "CIMADE",
+      "service œcuménique d'entraide"
+    ],
     "type": "ORGANIZATION",
     "lang": "fr",
     "country": "fr",
@@ -2800,7 +2804,11 @@
     "categoryId": null,
     "label": "Centre socioculturel",
     "slug": "centre-socioculturel",
-    "synonyms": ["centre socio culturel", "csc", "centre social"],
+    "synonyms": [
+      "centre socio culturel",
+      "csc",
+      "centre social"
+    ],
     "type": "ESTABLISHMENT_TYPE",
     "lang": "fr",
     "country": "fr",
@@ -3231,7 +3239,7 @@
     "seoDescription": "Soliguide vous aide à trouver des services d'entretien automobile accessibles : réparation moteur, changement pneus, révision gratuite."
   },
   {
-    "label": "health_access",
+    "label": "Accès à la santé",
     "categoryId": "health_access",
     "slug": "health_access",
     "synonyms": [
@@ -3258,7 +3266,7 @@
     "seoDescription": "Soliguide vous aide à trouver des consultations gratuites, des vaccinations et des dépistages près de chez vous en France."
   },
   {
-    "label": "physical_health",
+    "label": "Santé du corps",
     "categoryId": "physical_health",
     "slug": "physical_health",
     "synonyms": [
@@ -3285,7 +3293,7 @@
     "seoDescription": "Soliguide vous aide à trouver des soins gratuits : consultations médicales, vaccinations, dépistages. Accédez aux services de santé près de chez vous."
   },
   {
-    "label": "mental_health",
+    "label": "Santé mentale",
     "categoryId": "mental_health",
     "slug": "mental_health",
     "synonyms": [
@@ -3312,7 +3320,7 @@
     "seoDescription": "Soliguide vous aide à trouver des professionnels pour écoute, thérapie ou crise psychologique. Consultations gratuites près de chez vous."
   },
   {
-    "label": "addictions",
+    "label": "Addictions",
     "categoryId": "addictions",
     "slug": "addictions",
     "synonyms": [
@@ -3339,7 +3347,7 @@
     "seoDescription": "Soliguide vous aide face aux addictions. Découvrez les centres de désintoxication, groupes d'entraide et consultations gratuites en France."
   },
   {
-    "label": "sexual_health",
+    "label": "Santé sexuelle",
     "categoryId": "sexual_health",
     "slug": "sexual_health",
     "synonyms": [
@@ -3366,7 +3374,7 @@
     "seoDescription": "Soliguide vous aide à trouver des services de santé sexuelle gratuits : contraception, dépistage IST, consultations gynécologiques et accompagnement."
   },
   {
-    "label": "parenthood",
+    "label": "Parentalité",
     "categoryId": "parenthood",
     "slug": "parenthood",
     "synonyms": [
@@ -3393,7 +3401,7 @@
     "seoDescription": "Soliguide vous aide à trouver des services de parentalité : garde d'enfants, allocations familiales, médiation parentale, soutien psychologique gratuit."
   },
   {
-    "label": "health_coverage",
+    "label": "Obtenir une couverture santé",
     "categoryId": "health_coverage",
     "slug": "health_coverage",
     "synonyms": [
@@ -3420,7 +3428,7 @@
     "seoDescription": "Soliguide vous aide à accéder aux soins : mutuelle gratuite, CMU-C, aide médicale d'État. Trouvez les organismes près de vous."
   },
   {
-    "label": "find_healthcare",
+    "label": "Trouver de l'aide pour se soigner",
     "categoryId": "find_healthcare",
     "slug": "find_healthcare",
     "synonyms": [
@@ -3447,7 +3455,7 @@
     "seoDescription": "Soliguide vous aide à trouver des consultations gratuites, des vaccinations et des dépistages près de chez vous en France."
   },
   {
-    "label": "health_assessment",
+    "label": "Bilan de santé",
     "categoryId": "health_assessment",
     "slug": "health_assessment",
     "synonyms": [
@@ -3474,7 +3482,7 @@
     "seoDescription": "Soliguide vous aide à trouver des bilans de santé, consultations médicales gratuites et dépistages près de chez vous en France."
   },
   {
-    "label": "optical_care",
+    "label": "Soins optiques",
     "categoryId": "optical_care",
     "slug": "optical_care",
     "synonyms": [
@@ -3501,7 +3509,7 @@
     "seoDescription": "Soliguide vous aide à trouver des lunettes gratuites, des examens de vue et des soins oculaires près de chez vous en France."
   },
   {
-    "label": "hearing_care",
+    "label": "Soins auditifs",
     "categoryId": "hearing_care",
     "slug": "hearing_care",
     "synonyms": [
@@ -3528,7 +3536,7 @@
     "seoDescription": "Soliguide vous aide à trouver des soins auditifs gratuits. Appareils auditifs, tests d'audition, consultations spécialisées près de chez vous."
   },
   {
-    "label": "chronic_diseases",
+    "label": "Maladies chroniques",
     "categoryId": "chronic_diseases",
     "slug": "chronic_diseases",
     "synonyms": [
@@ -3555,7 +3563,7 @@
     "seoDescription": "Soliguide vous aide face aux maladies chroniques. Trouvez des consultations gratuites, des médicaments et un suivi médical près de chez vous."
   },
   {
-    "label": "medical_accommodation",
+    "label": "Hébergement médicalisé et thérapeutique",
     "categoryId": "medical_accommodation",
     "slug": "medical_accommodation",
     "synonyms": [
@@ -3582,7 +3590,7 @@
     "seoDescription": "Soliguide vous aide à trouver des logements accessibles : résidences médicalisées, foyers d'accueil, studios adaptés aux personnes en situation de handicap ou de précarité."
   },
   {
-    "label": "psychiatry",
+    "label": "Psychiatre",
     "categoryId": "psychiatry",
     "slug": "psychiatry",
     "synonyms": [
@@ -3609,7 +3617,7 @@
     "seoDescription": "Soliguide vous aide à trouver des consultations psychiatriques, des thérapies et des centres de crise accessibles et gratuits en France."
   },
   {
-    "label": "support_groups",
+    "label": "Groupes de parole et d'entraide",
     "categoryId": "support_groups",
     "slug": "support_groups",
     "synonyms": [
@@ -3636,7 +3644,7 @@
     "seoDescription": "Soliguide vous aide à trouver des groupes d'entraide: alcooliques anonymes, associations de parents, collectifs de femmes, espaces de parole gratuits."
   },
   {
-    "label": "mental_health_education",
+    "label": "Information et sensibilisation",
     "categoryId": "mental_health_education",
     "slug": "mental_health_education",
     "synonyms": [
@@ -3663,7 +3671,7 @@
     "seoDescription": "Soliguide vous aide à trouver des ressources gratuites pour votre bien-être : écoute psychologique, ateliers de gestion du stress, groupes de parole."
   },
   {
-    "label": "therapeutic_activities",
+    "label": "Activités thérapeutiques",
     "categoryId": "therapeutic_activities",
     "slug": "therapeutic_activities",
     "synonyms": [
@@ -3690,7 +3698,7 @@
     "seoDescription": "Soliguide vous aide à trouver des activités thérapeutiques gratuites : yoga, méditation, art-thérapie, groupes de parole et ateliers bien-être près de chez vous."
   },
   {
-    "label": "addiction_care",
+    "label": "Consultations et soins",
     "categoryId": "addiction_care",
     "slug": "addiction_care",
     "synonyms": [
@@ -3717,7 +3725,7 @@
     "seoDescription": "Soliguide vous aide à trouver des centres de désintoxication, des groupes d'entraide et des médecins spécialisés en addiction près de vous."
   },
   {
-    "label": "addiction_prevention_and_material",
+    "label": "Prévention et matériel",
     "categoryId": "addiction_prevention_and_material",
     "slug": "addiction_prevention_and_material",
     "synonyms": [
@@ -3744,7 +3752,7 @@
     "seoDescription": "Soliguide vous aide face aux addictions. Trouvez des centres de sevrage, des hébergements d'urgence et du soutien psychologique près de vous."
   },
   {
-    "label": "emergency_contraception",
+    "label": "Contraception d'urgence",
     "categoryId": "emergency_contraception",
     "slug": "emergency_contraception",
     "synonyms": [
@@ -3771,7 +3779,7 @@
     "seoDescription": "Soliguide vous aide à trouver une contraception d'urgence gratuite. Pharmacies, centres de santé, accueil sans jugement et confidentiel."
   },
   {
-    "label": "abortion",
+    "label": "Avortement (IVG)",
     "categoryId": "abortion",
     "slug": "abortion",
     "synonyms": [
@@ -3798,7 +3806,7 @@
     "seoDescription": "Soliguide vous aide à trouver des services pour l'interruption de grossesse : consultations médicales, accompagnement psychologique, informations pratiques et ressources locales."
   },
   {
-    "label": "contraception",
+    "label": "Contraception",
     "categoryId": "contraception",
     "slug": "contraception",
     "synonyms": [
@@ -3825,7 +3833,7 @@
     "seoDescription": "Soliguide vous aide à trouver une contraception gratuite : pilule, implant, pose de stérilet ou consultation gynécologique près de chez vous."
   },
   {
-    "label": "sti_prevention_testing",
+    "label": "Dépistage et traitement des IST et du VIH",
     "categoryId": "sti_prevention_testing",
     "slug": "sti_prevention_testing",
     "synonyms": [
@@ -3852,7 +3860,7 @@
     "seoDescription": "Soliguide vous aide à trouver des centres de dépistage gratuit, des tests rapides ou des consultations confidentielles près de chez vous."
   },
   {
-    "label": "hiv_prevention",
+    "label": "Prévention du VIH",
     "categoryId": "hiv_prevention",
     "slug": "hiv_prevention",
     "synonyms": [
@@ -3879,7 +3887,7 @@
     "seoDescription": "Soliguide vous aide à trouver des tests VIH gratuits, des préservatifs et des conseils de prévention près de chez vous en France."
   },
   {
-    "label": "sexual_health_vaccination",
+    "label": "Vaccination",
     "categoryId": "sexual_health_vaccination",
     "slug": "sexual_health_vaccination",
     "synonyms": [
@@ -3906,7 +3914,7 @@
     "seoDescription": "Soliguide vous aide à trouver des vaccins gratuits, des dépistages IST et des consultations contraception sans frais en France."
   },
   {
-    "label": "sexual_health_education",
+    "label": "Information et prévention",
     "categoryId": "sexual_health_education",
     "slug": "sexual_health_education",
     "synonyms": [
@@ -3933,7 +3941,7 @@
     "seoDescription": "Soliguide vous aide à trouver des informations sur la contraception, les infections sexuelles et la santé reproductive près de chez vous."
   },
   {
-    "label": "sexual_violence_support",
+    "label": "Violences Sexistes et Sexuelles",
     "categoryId": "sexual_violence_support",
     "slug": "sexual_violence_support",
     "synonyms": [
@@ -3960,7 +3968,7 @@
     "seoDescription": "Soliguide vous aide à trouver des services gratuits : écoute téléphonique, suivi médical, accompagnement juridique pour les victimes."
   },
   {
-    "label": "affective_life",
+    "label": "Vie affective et sexuelle",
     "categoryId": "affective_life",
     "slug": "affective_life",
     "synonyms": [
