@@ -8,8 +8,7 @@ import {
   Categories,
   CountryCodes,
   SupportedLanguagesCode,
-  LocationAutoCompleteAddress,
-  type SearchSuggestion
+  LocationAutoCompleteAddress
 } from '@soliguide/common';
 import { posthogService } from '$lib/services/posthogService';
 import type { LocationSuggestion } from '$lib/models/locationSuggestion';
@@ -130,10 +129,10 @@ const geolocFnError = () => Promise.reject(new Error('UNAUTHORIZED_LOCATION'));
 
 const createMockCategoryService = (): {
   service: CategoryService;
-  feedWith: (data: SearchSuggestion[]) => void;
+  feedWith: (data: Categories[]) => void;
   setError: (error: { status: number; statusText: string } | null) => void;
 } => {
-  let responseData: SearchSuggestion[] = [];
+  let responseData: Categories[] = [];
   let responseError: { status: number; statusText: string } | null = null;
 
   const service: CategoryService = {
@@ -146,15 +145,13 @@ const createMockCategoryService = (): {
       if (responseError) {
         throw responseError;
       }
-      return Promise.resolve(
-        responseData.map((item) => item.categoryId).filter((id): id is Categories => id !== null)
-      );
+      return Promise.resolve(responseData);
     }
   };
 
   return {
     service,
-    feedWith: (data: SearchSuggestion[]) => {
+    feedWith: (data: Categories[]) => {
       responseData = data;
     },
     setError: (error: { status: number; statusText: string } | null) => {
@@ -177,12 +174,12 @@ describe('Search page', () => {
   const locationService = getLocationService(fetch);
 
   beforeEach(() => {
-    mockCategoryData = [];
-    mockCategoryError = null;
     pageState = getSearchPageController(locationService, categoryService);
     pageState.init(CountryCodes.FR, SupportedLanguagesCode.FR, {});
     feedWith([]);
     setError(null);
+    feedWithCategoriesData([]);
+    setCategoryError(null);
   });
 
   afterEach(() => {
