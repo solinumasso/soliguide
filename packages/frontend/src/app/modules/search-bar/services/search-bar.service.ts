@@ -6,8 +6,9 @@ import {
   getSeoSlug,
   SearchSuggestion,
   SupportedLanguagesCode,
+  FUSE_SEARCH_SUGGESTIONS_OPTIONS,
 } from "@soliguide/common";
-import Fuse, { FuseResult, IFuseOptions } from "fuse.js";
+import Fuse, { FuseResult } from "fuse.js";
 import { BehaviorSubject, firstValueFrom, Subscription } from "rxjs";
 import { CurrentLanguageService } from "../../general/services/current-language.service";
 import { THEME_CONFIGURATION } from "../../../models";
@@ -133,28 +134,6 @@ export class SearchBarService implements OnDestroy {
     }
   }
 
-  private getFuseOptions(): IFuseOptions<SearchSuggestion> {
-    return {
-      isCaseSensitive: false,
-      ignoreDiacritics: true,
-      includeScore: true,
-      includeMatches: false,
-      minMatchCharLength: 2,
-      shouldSort: true,
-      findAllMatches: false,
-      keys: [
-        { name: "label", weight: 10 },
-        { name: "synonyms", weight: 1 },
-      ],
-      location: 0,
-      threshold: 0.1,
-      distance: 100,
-      ignoreLocation: true,
-      useExtendedSearch: false,
-      ignoreFieldNorm: true,
-    };
-  }
-
   private async loadSuggestions(
     country: string,
     lang: SupportedLanguagesCode
@@ -221,7 +200,7 @@ export class SearchBarService implements OnDestroy {
     }
 
     this.allSuggestions = data;
-    this.fuse = new Fuse(data, this.getFuseOptions());
+    this.fuse = new Fuse(data, FUSE_SEARCH_SUGGESTIONS_OPTIONS);
     this.isInitialized = true;
     this.loadedLanguage = this.currentLanguage;
     this.initializationSubject.next(true);

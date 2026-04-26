@@ -8,9 +8,8 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "rootDir": "./src",
     "outDir": "dist",
     "types": ["node"]
   },
-  "include": ["src", "src/tests/categories.dsl.test.ts"]
+  "include": ["scripts"]
 }

@@ -4,7 +4,8 @@ import {
   Categories,
   CountryCodes,
   SupportedLanguagesCode,
-  type SoliguideCountries
+  type SoliguideCountries,
+  type FormattedSuggestion
 } from '@soliguide/common';
 import {
   Focus,
@@ -305,16 +306,17 @@ export const getSearchPageController = (
     country: SoliguideCountries,
     lang: SupportedLanguagesCode
   ): Promise<{
-    suggestions: Categories[];
+    suggestions: FormattedSuggestion[];
     selection: Categories | null;
     error: CategoriesErrors;
   }> => {
     try {
       const suggestions = await categoryService.getCategorySuggestions(category, country, lang);
-      const selection = suggestions.find((suggestion) => suggestion === category) ?? null;
+      const match = suggestions.find((suggestion) => suggestion.categoryId === category);
+      const selection = match?.categoryId ?? null;
       return { suggestions, selection, error: CategoriesErrors.NONE };
-    } catch (error) {
-      return { suggestions: [], selection: null, error: error as CategoriesErrors };
+    } catch {
+      return { suggestions: [], selection: null, error: CategoriesErrors.ERROR_SERVER };
     }
   };
 

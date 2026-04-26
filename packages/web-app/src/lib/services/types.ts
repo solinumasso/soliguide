@@ -6,7 +6,8 @@ import {
   GeoTypes,
   type SoliguideCountries,
   type SupportedLanguagesCode,
-  type FlatCategoriesTreeNode
+  type FlatCategoriesTreeNode,
+  type FormattedSuggestion
 } from '@soliguide/common';
 
 export interface LocationService {
@@ -27,7 +28,11 @@ export interface CategoryService {
   getChildrenCategories(categoryId: Categories): Categories[];
   isCategoryRoot(categoryId: Categories): boolean;
   hasChildren(categoryId: Categories): boolean;
-  getCategorySuggestions(searchTerm: string, country: string, lang: string): Promise<Categories[]>;
+  getCategorySuggestions(
+    searchTerm: string,
+    country: string,
+    lang: string
+  ): Promise<FormattedSuggestion[]>;
 }
 
 // Search service

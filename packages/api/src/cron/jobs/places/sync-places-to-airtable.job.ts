@@ -1,10 +1,4 @@
-import {
-  ApiPlace,
-  CountryCodes,
-  getPosition,
-  PlaceStatus,
-  Themes,
-} from "@soliguide/common";
+import { ApiPlace, CountryCodes, getPosition, Themes } from "@soliguide/common";
 
 import { logger } from "../../../general/logger";
 import { FRONT_URLS_MAPPINGS } from "../../../_models/config/constants/domains/THEMES_MAPPING.const";
@@ -46,10 +40,6 @@ function sleep(ms: number): Promise<void> {
 export async function syncPlacesToAirtableJob(): Promise<void> {
   logger.info("JOB - SYNC ALL PLACES TO AIRTABLE\tSTART");
 
-  const filter = {
-    status: { $nin: [PlaceStatus.DRAFT, PlaceStatus.PERMANENTLY_CLOSED] },
-  };
-
   let lastId: string | null = null;
   let totalSent = 0;
   let throttleCpt = 0;
@@ -58,7 +48,6 @@ export async function syncPlacesToAirtableJob(): Promise<void> {
   while (true) {
     const paginatedFilter = {
       ...(lastId ? { _id: { $gt: lastId } } : {}),
-      ...filter,
     };
 
     const places: ModelWithId<ApiPlace>[] = await PlaceModel.find<

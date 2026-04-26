@@ -21,14 +21,14 @@ import Fuse, { FuseResult, IFuseOptions } from "fuse.js";
 import { GEO_TYPES_KEYS } from "../constants";
 import { getGeoValue } from "./get-geo-value";
 
-export const COMMON_FUSE_CONFIG: IFuseOptions<unknown> = {
+export const COMMON_FUSE_CONFIG = {
   threshold: 0.2,
   location: 0,
   minMatchCharLength: 4,
   shouldSort: true,
   distance: 2,
   findAllMatches: false,
-};
+} as const satisfies IFuseOptions<unknown>;
 
 @Injectable()
 export class DepartmentsAndRegionsService {
@@ -62,7 +62,7 @@ export class DepartmentsAndRegionsService {
     ...COMMON_FUSE_CONFIG,
   };
 
-  private fuseDepartments: {
+  private readonly fuseDepartments: {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key in SoliguideCountries]?: Fuse<any>;
   } = {
@@ -83,7 +83,7 @@ export class DepartmentsAndRegionsService {
     ),
   };
 
-  private fuseRegions: {
+  private readonly fuseRegions: {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key in SoliguideCountries]?: Fuse<any>;
   } = {
@@ -100,10 +100,7 @@ export class DepartmentsAndRegionsService {
     let positions: LocationAutoCompleteAddress[] = [];
 
     if (geoType === GeoTypes.DEPARTMENT) {
-      const items =
-        this.fuseDepartments[countryCode].search<
-          DepartmentInfoContent<typeof countryCode>
-        >(search);
+      const items = this.fuseDepartments[countryCode].search(search);
 
       items.forEach(
         ({ item }: FuseResult<DepartmentInfoContent<typeof countryCode>>) => {
@@ -133,10 +130,7 @@ export class DepartmentsAndRegionsService {
         }
       );
     } else {
-      const items =
-        this.fuseRegions[countryCode].search<RegionDef<typeof countryCode>>(
-          search
-        );
+      const items = this.fuseRegions[countryCode].search(search);
 
       items.forEach(({ item }: FuseResult<RegionDef<typeof countryCode>>) => {
         const position: LocationAutoCompleteAddress = {

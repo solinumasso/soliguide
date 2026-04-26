@@ -13,7 +13,24 @@ const TRANSLATED_PLACE_FIELDS_TO_POPULATE = {
 export const createFieldToTranslate = async (
   newElement: Partial<ApiTranslatedField>
 ): Promise<ApiTranslatedField> => {
-  return await TranslatedFieldModel.create(newElement);
+  try {
+    return await TranslatedFieldModel.create(newElement);
+  } catch (e: unknown) {
+    if ((e as { code?: number })?.code === 11000) {
+      const updated = await TranslatedFieldModel.findOneAndUpdate(
+        {
+          lieu_id: newElement.lieu_id,
+          elementName: newElement.elementName,
+          serviceObjectId: newElement.serviceObjectId ?? null,
+        },
+        { $set: newElement },
+        { new: true, lean: true }
+      ).exec();
+
+      if (updated) return updated;
+    }
+    throw e;
+  }
 };
 
 /**
@@ -91,6 +108,15 @@ export const findServicesForPlace = async (
     .sort({ serviceObjectId: 1 })
     .lean()
     .exec();
+};
+
+export const findTranslatedFieldLieuIds = async (
+  params: FilterQuery<ApiTranslatedField>
+): Promise<number[]> => {
+  const docs = await TranslatedFieldModel.find(params, { lieu_id: 1 })
+    .lean()
+    .exec();
+  return [...new Set(docs.map((d) => d.lieu_id))];
 };
 
 export const deleteTranslatedField = async (

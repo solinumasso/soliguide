@@ -1,82 +1,84 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   AutoCompleteType,
   Categories,
   CountryCodes,
   SupportedLanguagesCode,
   Themes,
-  type SearchSuggestion
+  type FormattedSuggestion
 } from '@soliguide/common';
 import { getCategoryService } from './categoryService';
-import { fakeFetch } from '$lib/client';
-import type { Fetcher } from '$lib/client/types';
-import { CategoriesErrors } from './types';
+import { loadSuggestionsData } from './searchSuggestionsData';
 
-const apiSuggestions: SearchSuggestion[] = [
+vi.mock('./searchSuggestionsData');
+
+const suggestionsData: FormattedSuggestion[] = [
   {
-    sourceId: 'hygiene_products',
-    lang: SupportedLanguagesCode.FR,
-    label: "Produits d'hygiène",
     categoryId: Categories.HYGIENE_PRODUCTS,
+    label: "Produits d'hygiène",
     slug: 'produits-hygiene',
-    country: CountryCodes.FR,
-    synonyms: [],
+    synonyms: ['savon', 'shampoing', 'dentifrice'],
     type: AutoCompleteType.CATEGORY,
-    content: '',
+    lang: SupportedLanguagesCode.FR,
+    country: CountryCodes.FR,
     seoTitle: 'HYGIENE_PRODUCTS',
-    seoDescription: '',
-    createdAt: new Date(),
-    updatedAt: new Date()
+    seoDescription: ''
   },
   {
-    sourceId: 'digital_tools_training',
-    lang: SupportedLanguagesCode.FR,
-    label: 'Formation numérique',
     categoryId: Categories.DIGITAL_TOOLS_TRAINING,
+    label: 'Formation numérique',
     slug: 'formation-numerique',
-    country: CountryCodes.FR,
-
-    synonyms: [],
+    synonyms: ['informatique', 'ordinateur'],
     type: AutoCompleteType.CATEGORY,
-    content: '',
+    lang: SupportedLanguagesCode.FR,
+    country: CountryCodes.FR,
     seoTitle: 'DIGITAL_TOOLS_TRAINING',
-    seoDescription: '',
-    createdAt: new Date(),
-    updatedAt: new Date()
+    seoDescription: ''
   }
 ];
 
-const builtSuggestions = ['hygiene_products', 'digital_tools_training'];
-
 describe('Category Service', () => {
-  const { fetch, feedWith, setError } = fakeFetch();
   let service = getCategoryService(Themes.SOLIGUIDE_FR);
 
   beforeEach(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    service = getCategoryService(Themes.SOLIGUIDE_FR, fetch as Fetcher<any>);
-    feedWith([]);
-    setError(null);
+    vi.mocked(loadSuggestionsData).mockResolvedValue(suggestionsData);
+    service = getCategoryService(Themes.SOLIGUIDE_FR);
   });
 
   describe('getCategorySuggestions', () => {
     it('I get category suggestions with a search term', async () => {
-      feedWith(apiSuggestions);
-      const result = await service.getCategorySuggestions('abc', 'fr', 'fr');
-      expect(result).toEqual(builtSuggestions);
+      const result = await service.getCategorySuggestions(
+        'hygiène',
+        'fr',
+        SupportedLanguagesCode.FR
+      );
+      expect(result.some((_service) => _service.categoryId === Categories.HYGIENE_PRODUCTS)).toBe(
+        true
+      );
+      expect(result[0]).toHaveProperty('label');
+      expect(result[0]).toHaveProperty('slug');
+      expect(result[0]).toHaveProperty('type', AutoCompleteType.CATEGORY);
     });
 
     it('I get no category suggestion with an empty search term', async () => {
-      feedWith(apiSuggestions);
-      const result = await service.getCategorySuggestions('', 'fr', 'fr');
+      const result = await service.getCategorySuggestions('', 'fr', SupportedLanguagesCode.FR);
       expect(result).toEqual([]);
     });
 
-    it('Returns nothing when search has a server error', () => {
-      setError({ status: 500, statusText: 'Internal server error' });
-      expect(() => service.getCategorySuggestions('bob', 'fr', 'fr')).rejects.toThrowError(
-        CategoriesErrors.ERROR_SERVER
+    it('I get category suggestions matching a synonym', async () => {
+      const result = await service.getCategorySuggestions('savon', 'fr', SupportedLanguagesCode.FR);
+      expect(result.some((_service) => _service.categoryId === Categories.HYGIENE_PRODUCTS)).toBe(
+        true
       );
+    });
+
+    it('Returns empty array when no match', async () => {
+      const result = await service.getCategorySuggestions(
+        'zzzzzzzzz',
+        'fr',
+        SupportedLanguagesCode.FR
+      );
+      expect(result).toEqual([]);
     });
   });
 });

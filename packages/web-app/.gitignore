@@ -23,3 +23,6 @@ vite.config.ts.timestamp-*
 vite.config.ts.timestamp-*
 
 test-results
+
+# Copied search suggestions data
+src/lib/data/search-suggestions/

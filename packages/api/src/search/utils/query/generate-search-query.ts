@@ -106,7 +106,12 @@ export const generateSearchQuery = (
   }
 
   if (searchData?.word) {
-    buildEnhancedWordSearch(searchData, nosqlQuery, SupportedLanguagesCode.FR);
+    buildEnhancedWordSearch(
+      searchData,
+      nosqlQuery,
+      searchData.languages ?? SupportedLanguagesCode.FR,
+      searchData.country ?? CountryCodes.FR
+    );
   }
 
   if (searchData.openToday) {
