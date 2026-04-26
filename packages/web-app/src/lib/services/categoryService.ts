@@ -79,7 +79,7 @@ export const getCategoryService = (currentThemeName: Themes): CategoryService =>
     searchTerm: string,
     country: string,
     lang: SupportedLanguagesCode
-  ): Promise<Categories[]> => {
+  ): Promise<FormattedSuggestion[]> => {
     if (searchTerm.length === 0) {
       return [];
     }
@@ -94,8 +94,7 @@ export const getCategoryService = (currentThemeName: Themes): CategoryService =>
       .get(key)!
       .search(searchTerm)
       .filter((result) => result.item.type === AutoCompleteType.CATEGORY)
-      .map((result) => result.item.categoryId)
-      .filter((id): id is Categories => id !== null);
+      .map((result) => result.item);
   };
 
   return {

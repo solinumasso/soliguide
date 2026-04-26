@@ -1,8 +1,8 @@
 import {
   type SupportedLanguagesCode,
-  Categories,
   GeoTypes,
-  type SoliguideCountries
+  type SoliguideCountries,
+  type FormattedSuggestion
 } from '@soliguide/common';
 import type { CategoriesErrors, LocationErrors, PosthogCaptureFunction } from '$lib/services/types';
 import type { LocationSuggestion } from '$lib/models/locationSuggestion';
@@ -62,7 +62,7 @@ export interface PageState {
   selectedLocationSuggestion: LocationSuggestion | null;
   locationSuggestionError: LocationErrors;
   currentPositionError: string | null;
-  categorySuggestions: Categories[];
+  categorySuggestions: FormattedSuggestion[];
   selectedCategory: CategorySearch | null;
   categorySuggestionError: CategoriesErrors;
   searchParams: SearchPageParams | null;

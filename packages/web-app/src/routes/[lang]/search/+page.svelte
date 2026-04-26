@@ -1,23 +1,3 @@
-<!--
-Soliguide: Useful information for those who need it
-
-SPDX-FileCopyrightText: © 2024 Solinum
-
-SPDX-License-Identifier: AGPL-3.0-only
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Affero General Public License as published
-by the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Affero General Public License for more details.
-
-You should have received a copy of the GNU Affero General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.
--->
 <script lang="ts">
   import { getContext, setContext, onMount } from 'svelte';
   import { get } from 'svelte/store';
@@ -38,6 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import type { ThemeDefinition } from '$lib/theme/types';
   import type { LocationSuggestion } from '$lib/models/locationSuggestion';
+  import { SupportedLanguagesCode } from '@soliguide/common';
   import { CategoriesErrors, LocationErrors } from '$lib/services/types';
   import { type CategorySearch, ALL_CATEGORIES } from '$lib/constants';
   import { getCategorySearchTranslationKey } from '$lib/utils/categoryTranslation';
@@ -51,8 +32,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   const categoryParam = url.searchParams.get('category');
 
-  // Initialize the page store
-  pageStore.init(theme.country, theme.defaultLanguage, {
+  // Initialize the page store with the current user language, not the theme default
+  pageStore.init(theme.country, $i18n.language as SupportedLanguagesCode, {
     geoValue: url.searchParams.get('location'),
     label: url.searchParams.get('label'),
     category: categoryParam
@@ -200,9 +181,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       <CategorySuggestionList
         items={$pageStore.categorySuggestions}
         on:click={(event) => {
-          selectCategory(event.detail);
+          const suggestion = event.detail;
+          if (suggestion.categoryId) {
+            selectCategory(suggestion.categoryId);
+          }
           pageStore.captureEvent('category-suggestion-click', {
-            category: event.detail
+            category: suggestion.categoryId ?? undefined
           });
         }}
         loading={$pageStore.loadingCategorySuggestions}
