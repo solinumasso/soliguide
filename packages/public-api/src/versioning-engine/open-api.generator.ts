@@ -303,11 +303,41 @@ export class OpenApiGenerator {
       io,
     }) as JsonSchemaNode;
 
+    this.removeImplicitIntegerBounds(jsonSchema);
+
     return this.promoteJsonSchemaDefinitions(
       openApiDocument,
       jsonSchema,
       componentPrefix
     ) as SchemaObject;
+  }
+
+  private removeImplicitIntegerBounds(value: unknown): void {
+    if (Array.isArray(value)) {
+      for (const item of value) {
+        this.removeImplicitIntegerBounds(item);
+      }
+
+      return;
+    }
+
+    if (!this.isRecord(value)) {
+      return;
+    }
+
+    if (value.type === "integer") {
+      if (value.minimum === ZOD_SAFEINT_MINIMUM) {
+        delete value.minimum;
+      }
+
+      if (value.maximum === ZOD_SAFEINT_MAXIMUM) {
+        delete value.maximum;
+      }
+    }
+
+    for (const nestedValue of Object.values(value)) {
+      this.removeImplicitIntegerBounds(nestedValue);
+    }
   }
 
   private promoteJsonSchemaDefinitions(
@@ -514,6 +544,8 @@ const OPEN_API_JSON_SCHEMA_OPTIONS = {
   target: "openapi-3.0",
   unrepresentable: "any",
 } as const;
+const ZOD_SAFEINT_MINIMUM = Number.MIN_SAFE_INTEGER;
+const ZOD_SAFEINT_MAXIMUM = Number.MAX_SAFE_INTEGER;
 const SUPPORTED_HTTP_METHODS = [
   "delete",
   "get",
