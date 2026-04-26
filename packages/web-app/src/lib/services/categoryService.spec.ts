@@ -52,7 +52,9 @@ describe('Category Service', () => {
         'fr',
         SupportedLanguagesCode.FR
       );
-      expect(result.some((s) => s.categoryId === Categories.HYGIENE_PRODUCTS)).toBe(true);
+      expect(result.some((_service) => _service.categoryId === Categories.HYGIENE_PRODUCTS)).toBe(
+        true
+      );
       expect(result[0]).toHaveProperty('label');
       expect(result[0]).toHaveProperty('slug');
       expect(result[0]).toHaveProperty('type', AutoCompleteType.CATEGORY);
@@ -65,7 +67,9 @@ describe('Category Service', () => {
 
     it('I get category suggestions matching a synonym', async () => {
       const result = await service.getCategorySuggestions('savon', 'fr', SupportedLanguagesCode.FR);
-      expect(result.some((s) => s.categoryId === Categories.HYGIENE_PRODUCTS)).toBe(true);
+      expect(result.some((_service) => _service.categoryId === Categories.HYGIENE_PRODUCTS)).toBe(
+        true
+      );
     });
 
     it('Returns empty array when no match', async () => {
