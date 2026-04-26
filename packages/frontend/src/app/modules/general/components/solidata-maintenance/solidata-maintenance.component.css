@@ -1,36 +1,39 @@
-.maintenance-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 80vh;
-  padding: 2rem;
-}
-
-.maintenance-content {
-  text-align: center;
-  max-width: 600px;
-}
-
-.maintenance-icon {
+.maintenance-flag {
   font-size: 4rem;
-  margin-bottom: 1.5rem;
+  flex-shrink: 0;
+  line-height: 1;
 }
 
-h1 {
-  font-size: 1.8rem;
+h2 {
+  font-size: 1.5rem;
   font-weight: 700;
   color: #333;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .maintenance-message {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: #666;
   line-height: 1.6;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .maintenance-thanks {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #888;
+  margin-bottom: 0.75rem;
+}
+
+.maintenance-contact {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.maintenance-contact a {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.min-vh-75 {
+  min-height: 75vh;
 }
