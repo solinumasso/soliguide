@@ -1,13 +1,57 @@
-<div class="maintenance-container">
-  <div class="maintenance-content">
-    <div class="maintenance-icon">🔧</div>
-    <h1>Solidata est actuellement en maintenance</h1>
-    <p class="maintenance-message">
-      Nous travaillons à améliorer votre expérience.<br />
-      Les données seront de nouveau disponibles prochainement.
-    </p>
-    <p class="maintenance-thanks">
-      Merci de votre patience et de votre compréhension 🙏
-    </p>
+<div class="d-flex flex-column align-items-center min-vh-75 py-5 px-3">
+  <div class="w-100" style="max-width: 800px">
+    <div class="d-flex align-items-center py-4">
+      <div class="maintenance-flag px-5">🇫🇷</div>
+      <div class="border-start ps-5">
+        <h2>🔧 Solidata est actuellement en maintenance</h2>
+        <p class="maintenance-message">
+          Nous travaillons à améliorer votre expérience.<br />
+          Les données seront de nouveau disponibles prochainement.
+        </p>
+        <p class="maintenance-thanks">
+          Merci de votre patience et de votre compréhension 🙏
+        </p>
+        <p class="maintenance-contact">
+          En cas de besoin, vous pouvez nous contacter via notre
+          <a [routerLink]="[routePrefix, 'contact']">formulaire de contact</a>.
+        </p>
+      </div>
+    </div>
+
+    <div class="d-flex align-items-center py-4">
+      <div class="maintenance-flag px-5">🇬🇧</div>
+      <div class="border-start ps-5">
+        <h2>🔧 Solidata is currently under maintenance</h2>
+        <p class="maintenance-message">
+          We are working to improve your experience.<br />
+          Data will be available again shortly.
+        </p>
+        <p class="maintenance-thanks">
+          Thank you for your patience and understanding 🙏
+        </p>
+        <p class="maintenance-contact">
+          If needed, you can reach us through our
+          <a [routerLink]="[routePrefix, 'contact']">contact form</a>.
+        </p>
+      </div>
+    </div>
+
+    <div class="d-flex align-items-center py-4">
+      <div class="maintenance-flag px-5">🇪🇸</div>
+      <div class="border-start ps-5">
+        <h2>🔧 Solidata es troba actualment en manteniment</h2>
+        <p class="maintenance-message">
+          Estem treballant per millorar la vostra experiència.<br />
+          Les dades tornaran a estar disponibles properament.
+        </p>
+        <p class="maintenance-thanks">
+          Gràcies per la vostra paciència i comprensió 🙏
+        </p>
+        <p class="maintenance-contact">
+          Si ho necessiteu, podeu contactar-nos a través del nostre
+          <a [routerLink]="[routePrefix, 'contact']">formulari de contacte</a>.
+        </p>
+      </div>
+    </div>
   </div>
 </div>
