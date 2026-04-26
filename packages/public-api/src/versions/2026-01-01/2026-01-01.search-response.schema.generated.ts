@@ -8,6 +8,10 @@ import {
   PlaceStatus,
   PlaceType,
   PlaceVisibility,
+  PublicsAdministrative,
+  PublicsFamily,
+  PublicsGender,
+  PublicsOther,
   ServiceSaturation,
 } from "@soliguide/common";
 import { z } from "zod";
@@ -21,40 +25,127 @@ const placeClosedHolidaysEnumSchema = z
   .meta({ id: "Common_PlaceClosedHolidays" });
 const placeStatusEnumSchema = z
   .enum(PlaceStatus)
-  .meta({ id: "Common_PlaceStatus" });
-const placeTypeEnumSchema = z
-  .enum(PlaceType)
-  .meta({ id: "Common_PlaceType" });
+  .describe("Indicate if this place is currently published.")
+  .meta({ id: "Common_PlaceStatus", example: PlaceStatus.ONLINE });
+const placeTypeEnumSchema = z.enum(PlaceType).meta({ id: "Common_PlaceType" });
 const placeVisibilityEnumSchema = z
   .enum(PlaceVisibility)
-  .meta({ id: "Common_PlaceVisibility" });
+  .describe("Indicates who has access to information about this place.")
+  .meta({ id: "Common_PlaceVisibility", example: "ALL" });
 const serviceSaturationEnumSchema = z
   .enum(ServiceSaturation)
   .meta({ id: "Common_ServiceSaturation" });
+const publicsAdministrativeEnumSchema = z
+  .enum(PublicsAdministrative)
+  .meta({ id: "Common_PublicsAdministrative" });
+const publicsFamilyEnumSchema = z
+  .enum(PublicsFamily)
+  .meta({ id: "Common_PublicsFamily" });
+const publicsGenderEnumSchema = z
+  .enum(PublicsGender)
+  .meta({ id: "Common_PublicsGender" });
+const publicsOtherEnumSchema = z
+  .enum(PublicsOther)
+  .meta({ id: "Common_PublicsOther" });
 
 const dateSchema = z
-  .union([z.date(), z.string()])
+  .string()
+  .describe("Date-time value. Format ISO 8601.")
   .meta({ id: "SearchResponse_Date" });
 
 const positionSchema = z
   .looseObject({
     location: z
       .object({
-        type: z.literal("Point").nullable().optional(),
-        coordinates: z.array(z.number()).nullable().optional(),
+        type: z
+          .literal("Point")
+          .nullable()
+          .optional()
+          .describe("Geographic object type. Always `Point`."),
+        coordinates: z
+          .array(z.number())
+          .nullable()
+          .optional()
+          .describe(
+            "Geographic coordinates of the place as `[longitude, latitude]`. Format GeoJSON.."
+          ),
       })
       .nullable()
-      .optional(),
-    address: z.string().nullable().optional(),
-    additionalInformation: z.string().nullable().optional(),
-    city: z.string().nullable().optional(),
-    cityCode: z.string().nullable().optional(),
-    postalCode: z.string().nullable().optional(),
-    department: z.string().nullable().optional(),
-    departmentCode: z.string().nullable().optional(),
-    departementCode: z.string().nullable().optional(),
-    region: z.string().nullable().optional(),
-    regionCode: z.string().nullable().optional(),
+      .optional()
+      .describe("Geographic location of the place."),
+    address: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Street address of the place."),
+    addresse: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Street address of the place."),
+    additionalInformation: z
+      .string()
+      .nullable()
+      .optional()
+      .describe(
+        "Additional address information such as building, floor or access details."
+      ),
+    complementAdresse: z
+      .string()
+      .nullable()
+      .optional()
+      .describe(
+        "Additional address information such as building, floor or access details."
+      ),
+    city: z.string().nullable().optional().describe("City name of the place."),
+    ville: z.string().nullable().optional().describe("Same as `city`."),
+    cityCode: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Administrative code of the city."),
+    postalCode: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Postal code of the place."),
+    codePostal: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Same as `postalCode`."),
+    department: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Department name of the place."),
+    departement: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Same as `department`."),
+    departmentCode: z
+      .string()
+      .nullable()
+      .optional()
+      .describe(
+        "Department code of the place. Examples: `974`, `2A`, `91`, `06`."
+      ),
+    departementCode: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Same as `departmentCode`."),
+    region: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Region name of the place."),
+    regionCode: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Administrative code of the region."),
     slugs: z
       .looseObject({
         city: z.string().nullable().optional(),
@@ -66,15 +157,21 @@ const positionSchema = z
         ville: z.string().nullable().optional(),
       })
       .nullable()
-      .optional(),
-    country: z.string().nullable().optional(),
-    timeZone: z.string().nullable().optional(),
-    adresse: z.string().nullable().optional(),
-    codePostal: z.string().nullable().optional(),
-    complementAdresse: z.string().nullable().optional(),
-    departement: z.string().nullable().optional(),
-    pays: z.string().nullable().optional(),
-    ville: z.string().nullable().optional(),
+      .optional()
+      .describe("URL compatible labels for position's text properties"),
+    country: z
+      .string()
+      .nullable()
+      .optional()
+      .describe(
+        "Country code of the place. Format ISO 3166-1 alpha-2. Lower case"
+      ),
+    pays: z.string().nullable().optional().describe("Same as `country`."),
+    timeZone: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Time zone of the place. Format IANA time zone identifier."),
   })
   .meta({ id: "SearchResponse_Position" });
 
@@ -95,60 +192,154 @@ const photoSchema = z
 
 const timeslotSchema = z
   .looseObject({
-    end: z.number().nullable().optional(),
-    start: z.number().nullable().optional(),
+    start: z
+      .number()
+      .nullable()
+      .optional()
+      .describe(
+        "Start time of the opening slot, encoded as `HHmm` without separator, using 3 or 4 digits."
+      ),
+    end: z
+      .number()
+      .nullable()
+      .optional()
+      .describe(
+        "End time of the opening slot, encoded as `HHmm` without separator, using 3 or 4 digits."
+      ),
   })
   .meta({ id: "SearchResponse_Timeslot" });
 
 const dayOpeningHoursSchema = z
   .looseObject({
-    open: z.boolean().nullable().optional(),
-    timeslot: z.array(timeslotSchema).nullable().optional(),
+    open: z
+      .boolean()
+      .nullable()
+      .optional()
+      .describe("Indicates whether the place or service is open on that day."),
+    timeslot: z
+      .array(timeslotSchema)
+      .nullable()
+      .optional()
+      .describe("Opening slots for the day. Up to 3 slots can be defined."),
   })
   .meta({ id: "SearchResponse_DayOpeningHours" });
 
 const openingHoursSchema = z
   .looseObject({
-    closedHolidays: placeClosedHolidaysEnumSchema.nullable().optional(),
-    description: z.string().nullable().optional(),
-    monday: dayOpeningHoursSchema.nullable().optional(),
-    tuesday: dayOpeningHoursSchema.nullable().optional(),
-    wednesday: dayOpeningHoursSchema.nullable().optional(),
-    thursday: dayOpeningHoursSchema.nullable().optional(),
-    friday: dayOpeningHoursSchema.nullable().optional(),
-    saturday: dayOpeningHoursSchema.nullable().optional(),
-    sunday: dayOpeningHoursSchema.nullable().optional(),
+    closedHolidays: placeClosedHolidaysEnumSchema
+      .nullable()
+      .optional()
+      .describe(
+        "Opening behavior on public holidays: `UNKNOWN` when not specified, `OPEN` when open, `CLOSED` when closed."
+      ),
+    description: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Free-text details about opening hours."),
+    monday: dayOpeningHoursSchema
+      .nullable()
+      .optional()
+      .describe("Opening hours for Monday."),
+    tuesday: dayOpeningHoursSchema
+      .nullable()
+      .optional()
+      .describe("Opening hours for Tuesday."),
+    wednesday: dayOpeningHoursSchema
+      .nullable()
+      .optional()
+      .describe("Opening hours for Wednesday."),
+    thursday: dayOpeningHoursSchema
+      .nullable()
+      .optional()
+      .describe("Opening hours for Thursday."),
+    friday: dayOpeningHoursSchema
+      .nullable()
+      .optional()
+      .describe("Opening hours for Friday."),
+    saturday: dayOpeningHoursSchema
+      .nullable()
+      .optional()
+      .describe("Opening hours for Saturday."),
+    sunday: dayOpeningHoursSchema
+      .nullable()
+      .optional()
+      .describe("Opening hours for Sunday."),
   })
   .meta({ id: "SearchResponse_OpeningHours" });
 
 const modalitiesCheckSchema = z
   .looseObject({
-    checked: z.boolean().nullable().optional(),
-    precisions: z.string().nullable().optional(),
+    checked: z
+      .boolean()
+      .nullable()
+      .optional()
+      .describe("Indicates whether the access condition applies."),
+    precisions: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Additional details about the access condition."),
   })
   .meta({ id: "SearchResponse_ModalitiesCheck" });
 
 const modalitiesSchema = z
   .looseObject({
-    inconditionnel: z.boolean().nullable().optional(),
-    appointment: modalitiesCheckSchema.nullable().optional(),
-    inscription: modalitiesCheckSchema.nullable().optional(),
-    orientation: modalitiesCheckSchema.nullable().optional(),
-    price: modalitiesCheckSchema.nullable().optional(),
+    inconditionnel: z
+      .boolean()
+      .nullable()
+      .optional()
+      .describe(
+        "Indicates unconditional access. When `true`, it is the only access condition to consider."
+      ),
+    appointment: modalitiesCheckSchema
+      .nullable()
+      .optional()
+      .describe("Access by appointment."),
+    inscription: modalitiesCheckSchema
+      .nullable()
+      .optional()
+      .describe("Access requiring prior registration."),
+    orientation: modalitiesCheckSchema
+      .nullable()
+      .optional()
+      .describe(
+        "Access requiring orientation. When this condition applies, address and coordinates must not be displayed publicly unless explicitly allowed by agreement."
+      ),
+    price: modalitiesCheckSchema
+      .nullable()
+      .optional()
+      .describe("Indicates the service is fee-based."),
     animal: z
       .object({
-        checked: z.boolean().nullable().optional(),
+        checked: z
+          .boolean()
+          .nullable()
+          .optional()
+          .describe("Indicates whether animals are accepted."),
       })
       .nullable()
-      .optional(),
+      .optional()
+      .describe("Animal access policy."),
     pmr: z
       .object({
-        checked: z.boolean().nullable().optional(),
+        checked: z
+          .boolean()
+          .nullable()
+          .optional()
+          .describe(
+            "Indicates whether the place is accessible to people with reduced mobility."
+          ),
       })
       .nullable()
-      .optional(),
+      .optional()
+      .describe("Accessibility for people with reduced mobility."),
     docs: z.array(z.string()).nullable().optional(),
-    other: z.string().nullable().optional(),
+    other: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Additional details about access conditions."),
   })
   .meta({ id: "SearchResponse_Modalities" });
 
@@ -157,19 +348,66 @@ const publicsSchema = z
     accueil: z
       .union([z.literal(0), z.literal(1), z.literal(2)])
       .nullable()
-      .optional(),
-    administrative: z.array(z.string()).nullable().optional(),
+      .optional()
+      .describe(
+        "Type of welcome for the public: `0` unconditional, `1` unconditional adapted to a specific public, `2` exclusive."
+      ),
+    administrative: z
+      .array(publicsAdministrativeEnumSchema)
+      .nullable()
+      .optional()
+      .describe(
+        "Administrative statuses accepted by the place. If every possible value is selected, it means there is no restriction."
+      ),
     age: z
       .object({
-        max: z.number().nullable().optional(),
-        min: z.number().nullable().optional(),
+        min: z.number().nullable().optional().describe("Minimum accepted age."),
+        max: z
+          .number()
+          .nullable()
+          .optional()
+          .describe("Maximum accepted age. "),
       })
       .nullable()
-      .optional(),
-    description: z.string().nullable().optional(),
-    familialle: z.array(z.string()).nullable().optional(),
-    gender: z.array(z.string()).nullable().optional(),
-    other: z.array(z.string()).nullable().optional(),
+      .optional()
+      .describe(
+        "Age restrictions for the accepted public. Values from `0` to `99` mean no age restriction."
+      ),
+    description: z
+      .string()
+      .nullable()
+      .optional()
+      .describe(
+        "Free-text details about specific public restrictions or adaptations."
+      ),
+    familialle: z
+      .array(publicsFamilyEnumSchema)
+      .nullable()
+      .optional()
+      .describe(
+        "Family situations accepted by the place. If every possible value is selected, it means there is no restriction."
+      ),
+    gender: z
+      .array(publicsGenderEnumSchema)
+      .nullable()
+      .optional()
+      .describe(
+        "Gender-related restrictions or adaptations. If every possible value is selected, it means there is no restriction."
+      ),
+    other: z
+      .array(publicsOtherEnumSchema)
+      .nullable()
+      .optional()
+      .describe(
+        "Other audience restrictions or adaptations. If every possible value is selected, it means there is no restriction."
+      ),
+    ukrainePrecisions: z
+      .string()
+      .nullable()
+      .optional()
+      .describe(
+        "Additional details about what the place offers for displaced Ukrainians."
+      ),
   })
   .meta({ id: "SearchResponse_Publics" });
 
@@ -197,12 +435,23 @@ const categorySpecificFieldsSchema = z
     voucherTypePrecisions: z.string().nullable().optional(),
     wellnessActivityName: z.string().nullable().optional(),
   })
+  .describe(
+    "Category-specific service details. Available fields depend on the service category."
+  )
   .meta({ id: "SearchResponse_CategorySpecificFields" });
 
 const serviceSchema = z
   .looseObject({
-    categorie: z.number().int().nullable().optional(),
-    category: categoriesEnumSchema.nullable(),
+    categorie: z
+      .number()
+      .int()
+      .nullable()
+      .optional()
+      .describe("Deprecated numeric category identifier of the service.")
+      .meta({ deprecated: true }),
+    category: categoriesEnumSchema
+      .nullable()
+      .describe("Category of the service."),
     close: z
       .object({
         actif: z.boolean().nullable().optional(),
@@ -212,27 +461,83 @@ const serviceSchema = z
         closeType: z.number().nullable().optional(),
       })
       .nullable()
-      .optional(),
-    description: z.string().nullable().optional(),
-    differentHours: z.boolean().nullable().optional(),
-    differentModalities: z.boolean().nullable().optional(),
-    differentPublics: z.boolean().nullable().optional(),
-    hours: openingHoursSchema.nullable().optional(),
-    isOpenToday: z.boolean().nullable(),
-    modalities: modalitiesSchema.nullable().optional(),
-    publics: publicsSchema.nullable().optional(),
+      .optional()
+      .describe("Temporary closure settings for the service."),
+    description: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Localized HTML content describing the service."),
+    differentHours: z
+      .boolean()
+      .nullable()
+      .optional()
+      .describe(
+        "Indicates whether the service has opening hours different from the place."
+      ),
+    differentModalities: z
+      .boolean()
+      .nullable()
+      .optional()
+      .describe(
+        "Indicates whether the service has access conditions different from the place."
+      ),
+    differentPublics: z
+      .boolean()
+      .nullable()
+      .optional()
+      .describe(
+        "Indicates whether the service welcomes a public different from the place."
+      ),
+    hours: openingHoursSchema
+      .nullable()
+      .optional()
+      .describe("Opening hours specific to the service."),
+    isOpenToday: z
+      .boolean()
+      .nullable()
+      .describe("Whether the service is open today. Recalculated daily."),
+    modalities: modalitiesSchema
+      .nullable()
+      .optional()
+      .describe("Access conditions specific to the service."),
+    publics: publicsSchema
+      .nullable()
+      .optional()
+      .describe("Audience information specific to the service."),
     saturated: z
       .object({
         precision: z.string().nullable().optional(),
         status: serviceSaturationEnumSchema.nullable().optional(),
       })
       .nullable()
-      .optional(),
-    serviceObjectId: z.string().nullable(),
-    createdAt: dateSchema.nullable(),
-    categorySpecificFields: categorySpecificFieldsSchema.nullable().optional(),
-    jobsList: z.string().nullable().optional(),
-    name: z.string().nullable().optional(),
+      .optional()
+      .describe("Current saturation status of the service."),
+    serviceObjectId: z
+      .string()
+      .nullable()
+      .describe("Internal identifier of the service."),
+    createdAt: dateSchema
+      .nullable()
+      .describe("Creation date of the service. Format ISO 8601."),
+    categorySpecificFields: categorySpecificFieldsSchema
+      .nullable()
+      .optional()
+      .describe("Details specific to the service category."),
+    jobsList: z
+      .string()
+      .nullable()
+      .optional()
+      .describe(
+        "Deprecated field used for insertion-by-economic-activity professions."
+      )
+      .meta({ deprecated: true }),
+    name: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Deprecated additional label for some service categories.")
+      .meta({ deprecated: true }),
   })
   .meta({ id: "SearchResponse_Service" });
 
@@ -246,22 +551,44 @@ const geoZoneSchema = z
 
 const tempInfoBaseSchema = z
   .looseObject({
-    actif: z.boolean().nullable().optional(),
-    dateDebut: dateSchema.nullable().optional(),
-    dateFin: dateSchema.nullable().optional(),
-    description: z.string().nullable().optional(),
+    actif: z
+      .boolean()
+      .nullable()
+      .optional()
+      .describe(
+        "Indicates whether the temporary information is currently active."
+      ),
+    dateDebut: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Start date of the temporary information. Format ISO 8601."),
+    dateFin: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("End date of the temporary information. Format ISO 8601."),
+    description: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Message describing the temporary information."),
   })
   .meta({ id: "SearchResponse_TempInfoBase" });
 
 const tempInfoSchema = z
   .looseObject({
-    closure: tempInfoBaseSchema.nullable().optional(),
+    closure: tempInfoBaseSchema
+      .nullable()
+      .optional()
+      .describe("Temporary closure of the place."),
     hours: tempInfoBaseSchema
       .extend({
         hours: openingHoursSchema.nullable().optional(),
       })
       .nullable()
-      .optional(),
+      .optional()
+      .describe("Temporary opening hours of the place."),
     message: tempInfoBaseSchema
       .extend({
         name: z.string().nullable().optional(),
@@ -276,15 +603,34 @@ const sourceSchema = z
     ids: z
       .array(
         z.looseObject({
-          id: z.string().nullable(),
-          url: z.string().nullable().optional(),
+          id: z
+            .string()
+            .nullable()
+            .describe(
+              "Formatted external identifier of the source. Format UUID."
+            ),
+          url: z
+            .string()
+            .nullable()
+            .optional()
+            .describe("Source URL when available."),
         })
       )
       .nullable()
-      .optional(),
-    isOrigin: z.boolean().nullable(),
-    license: z.string().nullable().optional(),
-    name: z.string().nullable(),
+      .optional()
+      .describe(
+        "Various sources of information providing data about this place."
+      ),
+    isOrigin: z
+      .boolean()
+      .nullable()
+      .describe("Indicates if the place has been created by the source."),
+    license: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("URL of the license associated to the data."),
+    name: z.string().nullable().describe("Name of the source"),
   })
   .meta({ id: "SearchResponse_Source" });
 
@@ -300,22 +646,70 @@ const parcoursSchema = z
 
 const phoneSchema = z
   .looseObject({
-    label: z.string().nullable().optional(),
-    phoneNumber: z.string().nullable().optional(),
-    countryCode: z.string().nullable().optional(),
-    isSpecialPhoneNumber: z.boolean().nullable().optional(),
+    label: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Label describing the phone contact."),
+    phoneNumber: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Phone number of the contact."),
+    countryCode: z
+      .string()
+      .nullable()
+      .optional()
+      .describe(
+        "Country code used to interpret the phone number. Format ISO 3166-1 alpha-2."
+      ),
+    isSpecialPhoneNumber: z
+      .boolean()
+      .nullable()
+      .optional()
+      .describe(
+        "Indicates whether the phone number is a special short number."
+      ),
   })
   .meta({ id: "SearchResponse_Phone" });
 
 const entitySchema = z
   .looseObject({
-    facebook: z.string().nullable().optional(),
-    fax: z.string().nullable().optional(),
-    instagram: z.string().nullable().optional(),
-    mail: z.string().nullable().optional(),
-    name: z.string().nullable().optional(),
-    phones: z.array(phoneSchema).nullable().optional(),
-    website: z.string().nullable().optional(),
+    facebook: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Facebook page URL of the organization."),
+    fax: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Fax number of the organization."),
+    instagram: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Instagram page URL of the organization."),
+    mail: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Email address of the organization."),
+    name: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Name of the organization."),
+    phones: z
+      .array(phoneSchema)
+      .nullable()
+      .optional()
+      .describe("Phone contacts of the organization."),
+    website: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Website URL of the organization."),
   })
   .meta({ id: "SearchResponse_Entity" });
 
@@ -334,41 +728,55 @@ const slugsSchema = z
 const v20260101SearchPlaceResponseSchema = z
   .object({
     lieu_id: z
-      .number()
       .int()
       .nullable()
       .optional()
       .describe("Numeric place identifier."),
-    _id: z.string().nullable().optional(),
-    seo_url: z.string().nullable().optional(),
-    auto: z.boolean().nullable().optional(),
+    _id: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Internal identifier of the place"),
+    seo_url: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("SEO-friendly URL slug of the place."),
+    auto: z
+      .boolean()
+      .nullable()
+      .optional()
+      .describe(
+        "Indicates whether the place comes from an automated data source."
+      ),
     name: z
       .string()
       .nullable()
       .optional()
-      .describe("Localized name of the place.")
-      .meta({
-        example: "Community Support Center",
-      }),
+      .describe("Localized name of the place."),
     description: z
       .string()
       .nullable()
       .optional()
-      .describe("Localized HTML content describing the place.")
-      .meta({
-        example:
-          "<p>A support center providing food distribution and social services.</p>",
-      }),
-    status: placeStatusEnumSchema.nullable().optional(),
-    visibility: placeVisibilityEnumSchema.nullable().optional(),
+      .describe("Localized HTML content describing the place."),
+    status: placeStatusEnumSchema
+      .nullable()
+      .optional()
+      .describe(
+        "Publication status of the place: `DRAFT`, `ONLINE`, `OFFLINE` or `CLOSED`."
+      ),
+    visibility: placeVisibilityEnumSchema
+      .nullable()
+      .optional()
+      .describe("Indicates who can access information about this place."),
     isOpenToday: z
       .boolean()
       .nullable()
       .optional()
-      .describe("Whether the place is open today.")
-      .meta({ example: true }),
+      .describe("Whether the place is open today. Recalculated daily."),
     close: z
       .object({
+        closeType: z.int().nullable().optional(),
         actif: z.boolean().nullable().optional(),
         dateDebut: dateSchema.nullable().optional(),
         dateFin: dateSchema.nullable().optional(),
@@ -378,31 +786,85 @@ const v20260101SearchPlaceResponseSchema = z
       .optional(),
     photos: z.array(photoSchema).nullable().optional(),
     placeType: placeTypeEnumSchema.nullable().optional(),
-    services_all: z.array(serviceSchema).nullable().optional(),
-    position: positionSchema.nullable().optional(),
-    parcours: z.array(parcoursSchema).nullable().optional(),
-    entity: entitySchema.nullable().optional(),
+    services_all: z
+      .array(serviceSchema)
+      .nullable()
+      .optional()
+      .describe("List of services available at the place."),
+    position: positionSchema
+      .nullable()
+      .optional()
+      .describe("Address and geographic information of the place."),
+    parcours: z
+      .array(parcoursSchema)
+      .nullable()
+      .optional()
+      .describe(
+        'Details about the Parcours of a facility when `placeType` is "PARCOURS_MOBILE"'
+      ),
+    entity: entitySchema
+      .nullable()
+      .optional()
+      .describe("Organization contact information."),
     geoZones: z.array(geoZoneSchema).nullable().optional(),
-    newhours: openingHoursSchema.nullable().optional(),
-    modalities: modalitiesSchema.nullable().optional(),
-    publics: publicsSchema.nullable().optional(),
-    sourceLanguage: z.string().nullable().optional(),
-    country: z.string().nullable().optional(),
+    newhours: openingHoursSchema
+      .nullable()
+      .optional()
+      .describe("Opening hours of the place."),
+    modalities: modalitiesSchema
+      .nullable()
+      .optional()
+      .describe("Access conditions of the place."),
+    publics: publicsSchema
+      .nullable()
+      .optional()
+      .describe("Audience welcomed at the place."),
+    sourceLanguage: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Language used by the original source data. Format ISO 639-3."),
+    country: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Country code of the place. Format ISO 3166-1 alpha-2."),
     languages: z
       .array(z.string())
       .nullable()
       .optional()
-      .describe("Languages spoken at the place. Format ISO 639-3")
-      .meta({ example: ["en", "fr", "rcf"] }),
-    createdAt: dateSchema.nullable().optional(),
-    updatedAt: dateSchema.nullable().optional(),
-    updatedByUserAt: dateSchema.nullable().optional(),
-    tempInfos: tempInfoSchema.nullable().optional(),
-    sources: z.array(sourceSchema).nullable().optional(),
+      .describe("Languages spoken at the place. Format ISO 639-3."),
+    createdAt: dateSchema
+      .nullable()
+      .optional()
+      .describe("Creation date of the place. Format ISO 8601."),
+    updatedAt: dateSchema
+      .nullable()
+      .optional()
+      .describe("Last update date of the place. Format ISO 8601."),
+    updatedByUserAt: dateSchema
+      .nullable()
+      .optional()
+      .describe("Last user update date of the place. Format ISO 8601."),
+    tempInfos: tempInfoSchema
+      .nullable()
+      .optional()
+      .describe("Temporary closure, opening hours and message information."),
+    sources: z
+      .array(sourceSchema)
+      .nullable()
+      .optional()
+      .describe("External data sources paired with the place."),
     slugs: slugsSchema.nullable().optional(),
-    distance: z.number().nullable().optional(),
+    distance: z
+      .number()
+      .nullable()
+      .optional()
+      .describe("Distance between the search center and the place, in meters."),
   })
-  .meta({ id: "v20260101SearchPlaceResponse" });
+  .meta({
+    id: "v20260101SearchPlaceResponse",
+  });
 
 export const v20260101SearchResponseSchema = z
   .object({
@@ -411,11 +873,11 @@ export const v20260101SearchResponseSchema = z
       .int()
       .min(0)
       .nullable()
-      .describe("Total number of matching places."),
+      .describe("Total number of places matching the request."),
     places: z
       .array(v20260101SearchPlaceResponseSchema)
       .nullable()
-      .describe("List of matching place payloads."),
+      .describe("List of place matching the request."),
   })
   .meta({ id: "v20260101SearchResponse" });
 

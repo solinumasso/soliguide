@@ -114,6 +114,54 @@ describe("OpenApiGenerator", () => {
     );
   });
 
+  it("omits implicit safe integer bounds for unconstrained int fields", async () => {
+    const generator = new OpenApiGenerator();
+
+    await generator.generateVersionedOpenApi({
+      baseOpenApiDocument: createBaseOpenApiDocument(),
+      outputPath,
+      version: VERSION,
+      versionRegistryByVersion: createRegistryByVersion({
+        "search-places": {
+          openApi: {
+            requestSchema: z.object({
+              plain: z.number().int(),
+              minOnly: z.number().int().min(0),
+              maxOnly: z.number().int().max(5),
+              bounded: z.number().int().min(1).max(9),
+            }),
+            responses: {
+              200: z.object({ ok: z.boolean() }),
+            },
+          },
+        },
+      }),
+    });
+
+    const generatedDocument = await readGeneratedDocument(outputPath);
+    const requestSchema = asOpenApiNode(
+      readRequestJsonSchema(readOperation(generatedDocument, "/search", "post"))
+    );
+    const properties = asOpenApiNode(requestSchema.properties);
+
+    expect(asOpenApiNode(properties.plain)).toEqual({
+      type: "integer",
+    });
+    expect(asOpenApiNode(properties.minOnly)).toEqual({
+      minimum: 0,
+      type: "integer",
+    });
+    expect(asOpenApiNode(properties.maxOnly)).toEqual({
+      maximum: 5,
+      type: "integer",
+    });
+    expect(asOpenApiNode(properties.bounded)).toEqual({
+      maximum: 9,
+      minimum: 1,
+      type: "integer",
+    });
+  });
+
   it("promotes reused definitions to components.schemas and removes definitions/$defs", async () => {
     const generator = new OpenApiGenerator();
     const sharedNestedObject = z

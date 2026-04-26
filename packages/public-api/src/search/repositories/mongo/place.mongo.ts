@@ -18,8 +18,6 @@ export type MongoObjectIdLike = {
   toHexString?: () => string;
 };
 
-export type MongoLegacyDate = Date | string;
-
 export type MongoPhoto = {
   _id?: string | MongoObjectIdLike;
   encoding?: string;
@@ -295,7 +293,7 @@ export type MongoPlace = {
   tempInfos?: MongoTempInfo;
   updatedByUserAt?: Date;
   visibility?: PlaceVisibility;
-  createdAt?: MongoLegacyDate;
-  updatedAt?: MongoLegacyDate;
+  createdAt?: Date;
+  updatedAt?: Date;
   distance?: number;
 };

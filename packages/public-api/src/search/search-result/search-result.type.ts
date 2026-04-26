@@ -5,10 +5,12 @@ import {
   PlaceStatus,
   PlaceType,
   PlaceVisibility,
+  PublicsAdministrative,
+  PublicsFamily,
+  PublicsGender,
+  PublicsOther,
   ServiceSaturation,
 } from "@soliguide/common";
-
-export type LegacyDate = Date | string;
 
 export interface SearchPosition {
   location?: {
@@ -44,8 +46,8 @@ export interface SearchPhoto {
   path: string;
   lieu_id: number;
   size?: number;
-  createdAt?: LegacyDate;
-  updatedAt?: LegacyDate;
+  createdAt?: string;
+  updatedAt?: string;
   [key: string]: unknown;
 }
 
@@ -95,12 +97,12 @@ export interface SearchModalities {
 
 export interface SearchPublics {
   accueil?: 0 | 1 | 2;
-  administrative?: string[];
+  administrative?: PublicsAdministrative[];
   age?: { max?: number; min?: number };
   description?: string | null;
-  familialle?: string[];
-  gender?: string[];
-  other?: string[];
+  familialle?: PublicsFamily[];
+  gender?: PublicsGender[];
+  other?: PublicsOther[];
   [key: string]: unknown;
 }
 
@@ -134,8 +136,8 @@ export interface SearchService {
   category: Categories;
   close?: {
     actif?: boolean;
-    dateDebut?: LegacyDate | null;
-    dateFin?: LegacyDate | null;
+    dateDebut?: string | null;
+    dateFin?: string | null;
     closeType?: number | null;
     precision?: string | null;
   };
@@ -152,7 +154,7 @@ export interface SearchService {
     status?: ServiceSaturation;
   };
   serviceObjectId: string;
-  createdAt: LegacyDate;
+  createdAt: string;
   categorySpecificFields?: SearchCategorySpecificFields;
   jobsList?: string | null;
   name?: string | null;
@@ -168,8 +170,8 @@ export interface SearchGeoZone {
 
 export interface SearchTempInfoBase {
   actif?: boolean;
-  dateDebut?: LegacyDate | null;
-  dateFin?: LegacyDate | null;
+  dateDebut?: string | null;
+  dateFin?: string | null;
   description?: string;
   [key: string]: unknown;
 }
@@ -242,8 +244,8 @@ export interface SearchPlace {
   isOpenToday?: boolean;
   close?: {
     actif?: boolean;
-    dateDebut?: LegacyDate | null;
-    dateFin?: LegacyDate | null;
+    dateDebut?: string | null;
+    dateFin?: string | null;
     closeType?: number | null;
     precision?: string | null;
   };
@@ -260,9 +262,9 @@ export interface SearchPlace {
   sourceLanguage?: string;
   country?: string;
   languages?: string[];
-  createdAt?: LegacyDate;
-  updatedAt?: LegacyDate;
-  updatedByUserAt?: LegacyDate;
+  createdAt?: string;
+  updatedAt?: string;
+  updatedByUserAt?: string;
   tempInfos?: SearchTempInfo;
   sources?: SearchSource[];
   slugs?: SearchSlugs;
