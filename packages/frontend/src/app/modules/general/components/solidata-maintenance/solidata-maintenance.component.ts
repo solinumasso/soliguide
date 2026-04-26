@@ -11,9 +11,7 @@ export class SolidataMaintenanceComponent implements OnInit, OnDestroy {
   private readonly subscription = new Subscription();
   public routePrefix: string;
 
-  constructor(
-    private readonly currentLanguageService: CurrentLanguageService
-  ) {
+  constructor(private readonly currentLanguageService: CurrentLanguageService) {
     this.routePrefix = this.currentLanguageService.routePrefix;
   }
 
