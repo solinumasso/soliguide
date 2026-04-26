@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.130.0](https://github.com/solinumasso/soliguide/compare/v4.129.2...v4.130.0) (2026-04-26)
+
+
+### Bug Fixes
+
+* **api:** fix issues with translations ([c1c436a](https://github.com/solinumasso/soliguide/commit/c1c436a0c5ab9d797f5451e7fc56fb405000aa0b))
+* **api:** fix lint error in api and type error in web-app ([53716e4](https://github.com/solinumasso/soliguide/commit/53716e4b6ce7c4925c0d9ee45cb5492da51a8195))
+* **api:** fix place status synchronisation ([5c8e17d](https://github.com/solinumasso/soliguide/commit/5c8e17d051cee05636e2addfa68ddbcf69c3ee33))
+* **frontend:** add maintenance page ([2c69d9f](https://github.com/solinumasso/soliguide/commit/2c69d9fb3f27011bcc328f0132e99b95a66a6fc3))
+* **frontend:** add maintenance page ([921f2a6](https://github.com/solinumasso/soliguide/commit/921f2a65a5f37fe5e217c862140ee89794e455b8))
+* **web-app:** adapt tests to the new categories suggestions workflow ([b447504](https://github.com/solinumasso/soliguide/commit/b44750453a638ae58e72fae02d9895b9ac2b9767))
+* **web-app:** add maintenance page ([a4d79f0](https://github.com/solinumasso/soliguide/commit/a4d79f08d9ad8bae1b4bde3422b2ef97be4a000a))
+* **web-app:** add maintenance page ([3e5c79e](https://github.com/solinumasso/soliguide/commit/3e5c79efb05e78f8bc1ff5e4d224e2bcecf56909))
+* **web-app:** fix autocomplete ([e939274](https://github.com/solinumasso/soliguide/commit/e939274ed0e71ae3aabb0558a937a7348309085c))
+* **web-app:** fix lint ([9f88e48](https://github.com/solinumasso/soliguide/commit/9f88e48a92e5685c1616de690176a792bf653943))
+* **web-app:** fix unit tests ([809be20](https://github.com/solinumasso/soliguide/commit/809be2032d80f0c6ec3974a5f7794e447637cbd6))
+* **web-app:** linting errors ([a2d873a](https://github.com/solinumasso/soliguide/commit/a2d873ab9b6c2625201088fe2bbdb50ecedeabce))
+
+
+### Features
+
+* **api:** add skills ([08d5350](https://github.com/solinumasso/soliguide/commit/08d5350bbcce525f8edad97075e73ab8edb86ed1))
+
+
+
+
+
 ## [4.129.2](https://github.com/solinumasso/soliguide/compare/v4.129.1...v4.129.2) (2026-04-16)
 
 
