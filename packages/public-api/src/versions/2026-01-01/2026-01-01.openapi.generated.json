@@ -15,14 +15,13 @@
                   "properties": {
                     "nbResults": {
                       "nullable": true,
-                      "description": "Total number of matching places.",
+                      "description": "Total number of places matching the request.",
                       "type": "integer",
-                      "minimum": 0,
-                      "maximum": 9007199254740991
+                      "minimum": 0
                     },
                     "places": {
                       "nullable": true,
-                      "description": "List of matching place payloads.",
+                      "description": "List of place matching the request.",
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/v20260101SearchPlaceResponse"
@@ -67,6 +66,7 @@
                     }
                   },
                   "category": {
+                    "description": "Single service category filter.",
                     "nullable": true,
                     "allOf": [
                       {
@@ -85,6 +85,7 @@
                   "placeType": {
                     "default": "LIEU",
                     "description": "Resource type to search: fixed places or itineraries.",
+                    "example": "LIEU",
                     "allOf": [
                       {
                         "$ref": "#/components/schemas/Common_PlaceType"
@@ -92,6 +93,7 @@
                     ]
                   },
                   "word": {
+                    "description": "Free-text search applied to place and service content.",
                     "nullable": true,
                     "type": "string"
                   },
@@ -118,14 +120,18 @@
                     ]
                   },
                   "languages": {
+                    "description": "Language spoken at the place. Format ISO 639-3.",
+                    "example": "fr",
                     "nullable": true,
                     "type": "string"
                   },
                   "widgetId": {
+                    "description": "Widget identifier used to apply widget-specific search rules.",
                     "nullable": true,
                     "type": "string"
                   },
                   "updatedAt": {
+                    "description": "Update-date filter.",
                     "nullable": true,
                     "allOf": [
                       {
@@ -134,6 +140,7 @@
                     ]
                   },
                   "options": {
+                    "description": "Search result options.",
                     "nullable": true,
                     "allOf": [
                       {
@@ -183,6 +190,7 @@
           "es",
           "ad"
         ],
+        "description": "Country code. Format ISO 3166-1 alpha-2.",
         "id": "Common_CountryCodes"
       },
       "SearchRequest_Location": {
@@ -208,30 +216,40 @@
                 "items": {
                   "type": "number"
                 },
-                "description": "Longitude/latitude coordinates used when geoType is position."
+                "description": "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON.",
+                "example": [
+                  2.3522,
+                  48.8566
+                ]
               },
               "distance": {
                 "description": "Search radius in kilometers for position-based search.",
+                "example": 5,
                 "nullable": true,
                 "type": "number"
               },
               "label": {
+                "description": "Free-text label associated with the searched geographic area.",
                 "nullable": true,
                 "type": "string"
               },
               "department": {
+                "description": "Department name of the searched area.",
                 "nullable": true,
                 "type": "string"
               },
               "regionCode": {
+                "description": "Administrative code of the searched region.",
                 "nullable": true,
                 "type": "string"
               },
               "departmentCode": {
+                "description": "Department code of the searched area. Examples: `974`, `2A`, `91`, `06`.",
                 "nullable": true,
                 "type": "string"
               },
               "region": {
+                "description": "Region name of the searched area.",
                 "nullable": true,
                 "type": "string"
               },
@@ -266,7 +284,7 @@
                 "type": "string"
               },
               "coordinates": {
-                "description": "Longitude/latitude coordinates used when geoType is position.",
+                "description": "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON.",
                 "nullable": true,
                 "minItems": 2,
                 "maxItems": 2,
@@ -277,26 +295,32 @@
               },
               "distance": {
                 "description": "Search radius in kilometers for position-based search.",
+                "example": 5,
                 "nullable": true,
                 "type": "number"
               },
               "label": {
+                "description": "Free-text label associated with the searched geographic area.",
                 "nullable": true,
                 "type": "string"
               },
               "department": {
+                "description": "Department name of the searched area.",
                 "nullable": true,
                 "type": "string"
               },
               "regionCode": {
+                "description": "Administrative code of the searched region.",
                 "nullable": true,
                 "type": "string"
               },
               "departmentCode": {
+                "description": "Department code of the searched area. Examples: `974`, `2A`, `91`, `06`.",
                 "nullable": true,
                 "type": "string"
               },
               "region": {
+                "description": "Region name of the searched area.",
                 "nullable": true,
                 "type": "string"
               },
@@ -327,10 +351,11 @@
               "geoValue": {
                 "type": "string",
                 "minLength": 1,
-                "description": "Geographic identifier for non-position searches (country, region, department, city, etc.)."
+                "description": "Geographic identifier for a borough search. This value usually includes the postal code.",
+                "example": "75013"
               },
               "coordinates": {
-                "description": "Longitude/latitude coordinates used when geoType is position.",
+                "description": "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON.",
                 "nullable": true,
                 "minItems": 2,
                 "maxItems": 2,
@@ -341,26 +366,32 @@
               },
               "distance": {
                 "description": "Search radius in kilometers for position-based search.",
+                "example": 5,
                 "nullable": true,
                 "type": "number"
               },
               "label": {
+                "description": "Free-text label associated with the searched geographic area.",
                 "nullable": true,
                 "type": "string"
               },
               "department": {
+                "description": "Department name of the searched area.",
                 "nullable": true,
                 "type": "string"
               },
               "regionCode": {
+                "description": "Administrative code of the searched region.",
                 "nullable": true,
                 "type": "string"
               },
               "departmentCode": {
+                "description": "Department code of the searched area. Examples: `974`, `2A`, `91`, `06`.",
                 "nullable": true,
                 "type": "string"
               },
               "region": {
+                "description": "Region name of the searched area.",
                 "nullable": true,
                 "type": "string"
               },
@@ -392,10 +423,11 @@
               "geoValue": {
                 "type": "string",
                 "minLength": 1,
-                "description": "Geographic identifier for non-position searches (country, region, department, city, etc.)."
+                "description": "Geographic identifier for a city search. This value can include the postal code suffix used by Soliguide.",
+                "example": "paris-75013"
               },
               "coordinates": {
-                "description": "Longitude/latitude coordinates used when geoType is position.",
+                "description": "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON.",
                 "nullable": true,
                 "minItems": 2,
                 "maxItems": 2,
@@ -406,26 +438,32 @@
               },
               "distance": {
                 "description": "Search radius in kilometers for position-based search.",
+                "example": 5,
                 "nullable": true,
                 "type": "number"
               },
               "label": {
+                "description": "Free-text label associated with the searched geographic area.",
                 "nullable": true,
                 "type": "string"
               },
               "department": {
+                "description": "Department name of the searched area.",
                 "nullable": true,
                 "type": "string"
               },
               "regionCode": {
+                "description": "Administrative code of the searched region.",
                 "nullable": true,
                 "type": "string"
               },
               "departmentCode": {
+                "description": "Department code of the searched area. Examples: `974`, `2A`, `91`, `06`.",
                 "nullable": true,
                 "type": "string"
               },
               "region": {
+                "description": "Region name of the searched area.",
                 "nullable": true,
                 "type": "string"
               },
@@ -457,10 +495,11 @@
               "geoValue": {
                 "type": "string",
                 "minLength": 1,
-                "description": "Geographic identifier for non-position searches (country, region, department, city, etc.)."
+                "description": "Country code searched when `geoType` is `country`. Format ISO 3166-1 alpha-2.",
+                "example": "fr"
               },
               "coordinates": {
-                "description": "Longitude/latitude coordinates used when geoType is position.",
+                "description": "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON.",
                 "nullable": true,
                 "minItems": 2,
                 "maxItems": 2,
@@ -471,26 +510,32 @@
               },
               "distance": {
                 "description": "Search radius in kilometers for position-based search.",
+                "example": 5,
                 "nullable": true,
                 "type": "number"
               },
               "label": {
+                "description": "Free-text label associated with the searched geographic area.",
                 "nullable": true,
                 "type": "string"
               },
               "department": {
+                "description": "Department name of the searched area.",
                 "nullable": true,
                 "type": "string"
               },
               "regionCode": {
+                "description": "Administrative code of the searched region.",
                 "nullable": true,
                 "type": "string"
               },
               "departmentCode": {
+                "description": "Department code of the searched area. Examples: `974`, `2A`, `91`, `06`.",
                 "nullable": true,
                 "type": "string"
               },
               "region": {
+                "description": "Region name of the searched area.",
                 "nullable": true,
                 "type": "string"
               },
@@ -522,10 +567,11 @@
               "geoValue": {
                 "type": "string",
                 "minLength": 1,
-                "description": "Geographic identifier for non-position searches (country, region, department, city, etc.)."
+                "description": "Geographic identifier for a department search.",
+                "example": "75"
               },
               "coordinates": {
-                "description": "Longitude/latitude coordinates used when geoType is position.",
+                "description": "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON.",
                 "nullable": true,
                 "minItems": 2,
                 "maxItems": 2,
@@ -536,26 +582,32 @@
               },
               "distance": {
                 "description": "Search radius in kilometers for position-based search.",
+                "example": 5,
                 "nullable": true,
                 "type": "number"
               },
               "label": {
+                "description": "Free-text label associated with the searched geographic area.",
                 "nullable": true,
                 "type": "string"
               },
               "department": {
+                "description": "Department name of the searched area.",
                 "nullable": true,
                 "type": "string"
               },
               "regionCode": {
+                "description": "Administrative code of the searched region.",
                 "nullable": true,
                 "type": "string"
               },
               "departmentCode": {
+                "description": "Department code of the searched area. Examples: `974`, `2A`, `91`, `06`.",
                 "nullable": true,
                 "type": "string"
               },
               "region": {
+                "description": "Region name of the searched area.",
                 "nullable": true,
                 "type": "string"
               },
@@ -587,10 +639,11 @@
               "geoValue": {
                 "type": "string",
                 "minLength": 1,
-                "description": "Geographic identifier for non-position searches (country, region, department, city, etc.)."
+                "description": "Geographic identifier for a region search.",
+                "example": "ile-de-france"
               },
               "coordinates": {
-                "description": "Longitude/latitude coordinates used when geoType is position.",
+                "description": "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON.",
                 "nullable": true,
                 "minItems": 2,
                 "maxItems": 2,
@@ -601,26 +654,32 @@
               },
               "distance": {
                 "description": "Search radius in kilometers for position-based search.",
+                "example": 5,
                 "nullable": true,
                 "type": "number"
               },
               "label": {
+                "description": "Free-text label associated with the searched geographic area.",
                 "nullable": true,
                 "type": "string"
               },
               "department": {
+                "description": "Department name of the searched area.",
                 "nullable": true,
                 "type": "string"
               },
               "regionCode": {
+                "description": "Administrative code of the searched region.",
                 "nullable": true,
                 "type": "string"
               },
               "departmentCode": {
+                "description": "Department code of the searched area. Examples: `974`, `2A`, `91`, `06`.",
                 "nullable": true,
                 "type": "string"
               },
               "region": {
+                "description": "Region name of the searched area.",
                 "nullable": true,
                 "type": "string"
               },
@@ -652,10 +711,11 @@
               "geoValue": {
                 "type": "string",
                 "minLength": 1,
-                "description": "Geographic identifier for non-position searches (country, region, department, city, etc.)."
+                "description": "Free-text search value used to target a group of cities.",
+                "example": "paris"
               },
               "coordinates": {
-                "description": "Longitude/latitude coordinates used when geoType is position.",
+                "description": "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON.",
                 "nullable": true,
                 "minItems": 2,
                 "maxItems": 2,
@@ -666,26 +726,32 @@
               },
               "distance": {
                 "description": "Search radius in kilometers for position-based search.",
+                "example": 5,
                 "nullable": true,
                 "type": "number"
               },
               "label": {
+                "description": "Free-text label associated with the searched geographic area.",
                 "nullable": true,
                 "type": "string"
               },
               "department": {
+                "description": "Department name of the searched area.",
                 "nullable": true,
                 "type": "string"
               },
               "regionCode": {
+                "description": "Administrative code of the searched region.",
                 "nullable": true,
                 "type": "string"
               },
               "departmentCode": {
+                "description": "Department code of the searched area. Examples: `974`, `2A`, `91`, `06`.",
                 "nullable": true,
                 "type": "string"
               },
               "region": {
+                "description": "Region name of the searched area.",
                 "nullable": true,
                 "type": "string"
               },
@@ -833,45 +899,55 @@
         "type": "object",
         "properties": {
           "animal": {
+            "description": "Filter on places accepting animals.",
             "nullable": true,
             "type": "boolean"
           },
           "appointment": {
+            "description": "Filter on places requiring an appointment.",
             "nullable": true,
             "type": "boolean"
           },
           "inconditionnel": {
+            "description": "Filter on places with unconditional access. When `true`, it targets places where unconditional access is the applicable access mode.",
             "nullable": true,
             "type": "boolean"
           },
           "inscription": {
+            "description": "Filter on places requiring prior registration.",
             "nullable": true,
             "type": "boolean"
           },
           "orientation": {
+            "description": "Filter on places requiring orientation.",
             "nullable": true,
             "type": "boolean"
           },
           "pmr": {
+            "description": "Filter on places accessible to people with reduced mobility.",
             "nullable": true,
             "type": "boolean"
           },
           "price": {
+            "description": "Filter on fee-based places or services.",
             "nullable": true,
             "type": "boolean"
           },
           "sign": {
+            "description": "Filter on places offering sign-language accessibility.",
             "nullable": true,
             "type": "boolean"
           }
         },
         "additionalProperties": {},
+        "description": "Access condition filters.",
         "id": "SearchRequest_Modalities"
       },
       "SearchRequest_Publics": {
         "type": "object",
         "properties": {
           "accueil": {
+            "description": "Type of welcome expected for the public: unconditional, preferential or exclusive.",
             "nullable": true,
             "allOf": [
               {
@@ -880,16 +956,19 @@
             ]
           },
           "age": {
+            "description": "Age filter for the welcomed public.",
             "nullable": true,
             "type": "object",
             "properties": {
               "min": {
+                "description": "Minimum age used by the audience filter. Values from `0` to `99` are accepted.",
                 "nullable": true,
                 "type": "integer",
                 "minimum": 0,
                 "maximum": 99
               },
               "max": {
+                "description": "Maximum age used by the audience filter. Values from `0` to `99` are accepted.",
                 "nullable": true,
                 "type": "integer",
                 "minimum": 0,
@@ -898,6 +977,7 @@
             }
           },
           "gender": {
+            "description": "Gender-related audience filters. If all possible values are selected, it is treated as no restriction.",
             "nullable": true,
             "type": "array",
             "items": {
@@ -905,6 +985,7 @@
             }
           },
           "administrative": {
+            "description": "Administrative-status audience filters. If all possible values are selected, it is treated as no restriction.",
             "nullable": true,
             "type": "array",
             "items": {
@@ -912,6 +993,7 @@
             }
           },
           "familialle": {
+            "description": "Family-situation audience filters. If all possible values are selected, it is treated as no restriction.",
             "nullable": true,
             "type": "array",
             "items": {
@@ -919,6 +1001,7 @@
             }
           },
           "other": {
+            "description": "Other audience filters. If all possible values are selected, it is treated as no restriction.",
             "nullable": true,
             "type": "array",
             "items": {
@@ -990,6 +1073,7 @@
         "type": "object",
         "properties": {
           "intervalType": {
+            "description": "Comparison mode used for the update-date filter.",
             "nullable": true,
             "allOf": [
               {
@@ -998,10 +1082,13 @@
             ]
           },
           "value": {
+            "description": "Date used by the update filter. Format ISO 8601.",
+            "example": "2026-01-01T00:00:00.000Z",
             "nullable": true
           }
         },
         "additionalProperties": {},
+        "description": "Filter places by update date.",
         "id": "SearchRequest_UpdatedAt"
       },
       "Common_UpdatedAtInterval": {
@@ -1017,6 +1104,7 @@
         "type": "object",
         "properties": {
           "sortBy": {
+            "description": "Field used to sort the search results.",
             "nullable": true,
             "type": "string",
             "enum": [
@@ -1030,28 +1118,32 @@
             ]
           },
           "sortValue": {
+            "description": "Sorting direction: `1` ascending, `-1` descending.",
+            "example": 1,
             "nullable": true,
             "type": "number"
           },
           "page": {
+            "description": "Page number of the paginated results.",
+            "example": 1,
             "nullable": true,
-            "type": "integer",
-            "minimum": -9007199254740991,
-            "maximum": 9007199254740991
+            "type": "integer"
           },
           "limit": {
+            "description": "Maximum number of results returned per page.",
+            "example": 10,
             "nullable": true,
-            "type": "integer",
-            "minimum": -9007199254740991,
-            "maximum": 9007199254740991
+            "type": "integer"
           },
           "fields": {
+            "description": "Space-separated list of fields to include in the response payload.",
             "nullable": true,
             "type": "string",
             "minLength": 1
           }
         },
         "additionalProperties": {},
+        "description": "Pagination, sorting and field-selection options.",
         "id": "SearchRequest_Options"
       },
       "v20260101SearchPlaceResponse": {
@@ -1059,36 +1151,43 @@
         "properties": {
           "lieu_id": {
             "description": "Numeric place identifier.",
+            "example": 169,
             "nullable": true,
-            "type": "integer",
-            "minimum": -9007199254740991,
-            "maximum": 9007199254740991
+            "type": "integer"
           },
           "_id": {
+            "description": "Internal identifier of the place",
+            "deprecated": true,
+            "example": "5a58c0c7c1797fe45e377333",
             "nullable": true,
             "type": "string"
           },
           "seo_url": {
+            "description": "SEO-friendly URL slug of the place.",
+            "example": "camions-des-restos-du-coeur-salpetriere-paris-169",
             "nullable": true,
             "type": "string"
           },
           "auto": {
+            "description": "Indicates whether the place comes from an automated data source.",
             "nullable": true,
             "type": "boolean"
           },
           "name": {
             "description": "Localized name of the place.",
-            "example": "Community Support Center",
+            "example": "Restos du Coeur - Camion de Paris 5e",
             "nullable": true,
             "type": "string"
           },
           "description": {
             "description": "Localized HTML content describing the place.",
-            "example": "<p>A support center providing food distribution and social services.</p>",
+            "example": "<p>Les équipes des Restos du Coeur se rendent sur des points fixes pour partager des moments de rencontre et de convivialité autour d’un repas à consommer sur place. En fonction des besoins, ils peuvent proposer des réponses : dons de textiles, vêtements, eau, des livres, des ateliers de français, des jeux pour les enfants, des propositions de sorties et des aides pour l’accès aux droits.&nbsp;</p>",
             "nullable": true,
             "type": "string"
           },
           "status": {
+            "description": "Publication status of the place: `DRAFT`, `ONLINE`, `OFFLINE` or `CLOSED`.",
+            "example": "ONLINE",
             "nullable": true,
             "allOf": [
               {
@@ -1097,6 +1196,8 @@
             ]
           },
           "visibility": {
+            "description": "Indicates who can access information about this place.",
+            "example": "ALL",
             "nullable": true,
             "allOf": [
               {
@@ -1105,7 +1206,7 @@
             ]
           },
           "isOpenToday": {
-            "description": "Whether the place is open today.",
+            "description": "Whether the place is open today. Recalculated daily.",
             "example": true,
             "nullable": true,
             "type": "boolean"
@@ -1114,6 +1215,10 @@
             "nullable": true,
             "type": "object",
             "properties": {
+              "closeType": {
+                "nullable": true,
+                "type": "integer"
+              },
               "actif": {
                 "nullable": true,
                 "type": "boolean"
@@ -1149,6 +1254,7 @@
             }
           },
           "placeType": {
+            "example": "LIEU",
             "nullable": true,
             "allOf": [
               {
@@ -1157,6 +1263,138 @@
             ]
           },
           "services_all": {
+            "description": "List of services available at the place.",
+            "example": [
+              {
+                "categorie": 601,
+                "category": "food_distribution",
+                "close": {
+                  "actif": false,
+                  "dateDebut": null,
+                  "dateFin": null
+                },
+                "description": "<p>Distribution de repas chauds</p>",
+                "differentHours": false,
+                "differentModalities": false,
+                "differentPublics": false,
+                "hours": {
+                  "closedHolidays": "UNKNOWN",
+                  "description": null,
+                  "friday": {
+                    "open": false,
+                    "timeslot": []
+                  },
+                  "monday": {
+                    "open": true,
+                    "timeslot": [
+                      {
+                        "end": 2130,
+                        "start": 2000
+                      }
+                    ]
+                  },
+                  "saturday": {
+                    "open": false,
+                    "timeslot": []
+                  },
+                  "sunday": {
+                    "open": false,
+                    "timeslot": []
+                  },
+                  "thursday": {
+                    "open": true,
+                    "timeslot": [
+                      {
+                        "end": 2130,
+                        "start": 2000
+                      }
+                    ]
+                  },
+                  "tuesday": {
+                    "open": false,
+                    "timeslot": []
+                  },
+                  "wednesday": {
+                    "open": false,
+                    "timeslot": []
+                  }
+                },
+                "isOpenToday": false,
+                "modalities": {
+                  "inconditionnel": true,
+                  "appointment": {
+                    "checked": false,
+                    "precisions": null
+                  },
+                  "inscription": {
+                    "checked": false,
+                    "precisions": null
+                  },
+                  "orientation": {
+                    "checked": false,
+                    "precisions": null
+                  },
+                  "price": {
+                    "checked": false,
+                    "precisions": null
+                  },
+                  "animal": {
+                    "checked": false
+                  },
+                  "pmr": {
+                    "checked": false
+                  },
+                  "other": null
+                },
+                "publics": {
+                  "accueil": 0,
+                  "administrative": [
+                    "regular",
+                    "asylum",
+                    "refugee",
+                    "undocumented"
+                  ],
+                  "age": {
+                    "max": 99,
+                    "min": 0
+                  },
+                  "description": null,
+                  "familialle": [
+                    "isolated",
+                    "family",
+                    "couple",
+                    "pregnant"
+                  ],
+                  "gender": [
+                    "men",
+                    "women"
+                  ],
+                  "other": [
+                    "violence",
+                    "addiction",
+                    "handicap",
+                    "lgbt",
+                    "hiv",
+                    "prostitution",
+                    "prison",
+                    "student",
+                    "mentalHealth"
+                  ]
+                },
+                "saturated": {
+                  "precision": null,
+                  "status": "LOW"
+                },
+                "serviceObjectId": "6181a6dc8ac6b179ffb9ff51",
+                "createdAt": "2021-11-02T21:00:12.000Z",
+                "categorySpecificFields": {
+                  "dietaryAdaptationsType": [],
+                  "serviceStyleType": []
+                },
+                "jobsList": "",
+                "name": "Distribution alimentaire"
+              }
+            ],
             "nullable": true,
             "type": "array",
             "items": {
@@ -1164,6 +1402,43 @@
             }
           },
           "position": {
+            "description": "Address and geographic information of the place.",
+            "example": {
+              "adresse": "2 Quai Saint-Bernard, 75005 Paris",
+              "codePostal": "75005",
+              "complementAdresse": "Jardin Tino Rossi",
+              "departement": "Paris",
+              "departementCode": "75",
+              "location": {
+                "coordinates": [
+                  2.3608583,
+                  48.8470637
+                ],
+                "type": "Point"
+              },
+              "pays": "fr",
+              "region": "Île-de-France",
+              "slugs": {
+                "ville": "paris",
+                "departement": "paris",
+                "pays": "fr",
+                "department": "paris",
+                "country": "fr",
+                "region": "ile-de-france",
+                "city": "paris"
+              },
+              "ville": "Paris",
+              "address": "2 Quai Saint-Bernard, 75005 Paris",
+              "additionalInformation": "Jardin Tino Rossi",
+              "city": "Paris",
+              "postalCode": "75005",
+              "cityCode": "75005",
+              "department": "Paris",
+              "departmentCode": "75",
+              "country": "fr",
+              "regionCode": "11",
+              "timeZone": "Europe/Paris"
+            },
             "nullable": true,
             "allOf": [
               {
@@ -1172,6 +1447,7 @@
             ]
           },
           "parcours": {
+            "description": "Details about the Parcours of a facility when `placeType` is \"PARCOURS_MOBILE\"",
             "nullable": true,
             "type": "array",
             "items": {
@@ -1179,6 +1455,16 @@
             }
           },
           "entity": {
+            "description": "Organization contact information.",
+            "example": {
+              "facebook": "https://www.facebook.com/LesRestos75/",
+              "fax": null,
+              "instagram": "https://www.instagram.com/lesrestos75/",
+              "mail": null,
+              "name": null,
+              "website": "https://ad75.restosducoeur.org/",
+              "phones": []
+            },
             "nullable": true,
             "allOf": [
               {
@@ -1194,6 +1480,7 @@
             }
           },
           "newhours": {
+            "description": "Opening hours of the place.",
             "nullable": true,
             "allOf": [
               {
@@ -1202,6 +1489,33 @@
             ]
           },
           "modalities": {
+            "description": "Access conditions of the place.",
+            "example": {
+              "animal": {
+                "checked": false
+              },
+              "appointment": {
+                "checked": false,
+                "precisions": null
+              },
+              "inconditionnel": true,
+              "inscription": {
+                "checked": false,
+                "precisions": null
+              },
+              "orientation": {
+                "checked": false,
+                "precisions": null
+              },
+              "other": null,
+              "pmr": {
+                "checked": false
+              },
+              "price": {
+                "checked": false,
+                "precisions": null
+              }
+            },
             "nullable": true,
             "allOf": [
               {
@@ -1210,6 +1524,42 @@
             ]
           },
           "publics": {
+            "description": "Audience welcomed at the place.",
+            "example": {
+              "accueil": 0,
+              "administrative": [
+                "regular",
+                "asylum",
+                "refugee",
+                "undocumented"
+              ],
+              "age": {
+                "min": 0,
+                "max": 99
+              },
+              "description": null,
+              "familialle": [
+                "isolated",
+                "family",
+                "couple",
+                "pregnant"
+              ],
+              "gender": [
+                "men",
+                "women"
+              ],
+              "other": [
+                "violence",
+                "addiction",
+                "handicap",
+                "lgbt",
+                "hiv",
+                "prostitution",
+                "prison",
+                "student",
+                "mentalHealth"
+              ]
+            },
             "nullable": true,
             "allOf": [
               {
@@ -1218,19 +1568,21 @@
             ]
           },
           "sourceLanguage": {
+            "description": "Language used by the original source data. Format ISO 639-3.",
+            "example": "fr",
             "nullable": true,
             "type": "string"
           },
           "country": {
+            "description": "Country code of the place. Format ISO 3166-1 alpha-2.",
+            "example": "fr",
             "nullable": true,
             "type": "string"
           },
           "languages": {
-            "description": "Languages spoken at the place. Format ISO 639-3",
+            "description": "Languages spoken at the place. Format ISO 639-3.",
             "example": [
-              "en",
-              "fr",
-              "rcf"
+              "fr"
             ],
             "nullable": true,
             "type": "array",
@@ -1239,6 +1591,7 @@
             }
           },
           "createdAt": {
+            "description": "Creation date of the place. Format ISO 8601.",
             "nullable": true,
             "allOf": [
               {
@@ -1247,6 +1600,7 @@
             ]
           },
           "updatedAt": {
+            "description": "Last update date of the place. Format ISO 8601.",
             "nullable": true,
             "allOf": [
               {
@@ -1255,6 +1609,7 @@
             ]
           },
           "updatedByUserAt": {
+            "description": "Last user update date of the place. Format ISO 8601.",
             "nullable": true,
             "allOf": [
               {
@@ -1263,6 +1618,29 @@
             ]
           },
           "tempInfos": {
+            "description": "Temporary closure, opening hours and message information.",
+            "example": {
+              "closure": {
+                "actif": false,
+                "dateDebut": null,
+                "dateFin": null,
+                "description": ""
+              },
+              "hours": {
+                "actif": false,
+                "dateDebut": null,
+                "dateFin": null,
+                "description": "",
+                "hours": null
+              },
+              "message": {
+                "actif": false,
+                "dateDebut": null,
+                "dateFin": null,
+                "description": "",
+                "name": ""
+              }
+            },
             "nullable": true,
             "allOf": [
               {
@@ -1271,6 +1649,7 @@
             ]
           },
           "sources": {
+            "description": "External data sources paired with the place.",
             "nullable": true,
             "type": "array",
             "items": {
@@ -1286,6 +1665,8 @@
             ]
           },
           "distance": {
+            "description": "Distance between the search center and the place, in meters.",
+            "example": 135.8752364969176,
             "nullable": true,
             "type": "number"
           }
@@ -1301,7 +1682,9 @@
           "PERMANENTLY_CLOSED",
           "OFFLINE"
         ],
-        "id": "Common_PlaceStatus"
+        "description": "Indicate if this place is currently published.",
+        "id": "Common_PlaceStatus",
+        "example": "ONLINE"
       },
       "Common_PlaceVisibility": {
         "type": "string",
@@ -1309,15 +1692,13 @@
           "ALL",
           "PRO"
         ],
-        "id": "Common_PlaceVisibility"
+        "description": "Indicates who has access to information about this place.",
+        "id": "Common_PlaceVisibility",
+        "example": "ALL"
       },
       "SearchResponse_Date": {
-        "anyOf": [
-          {},
-          {
-            "type": "string"
-          }
-        ],
+        "type": "string",
+        "description": "Date-time value. Format ISO 8601.",
         "id": "SearchResponse_Date"
       },
       "SearchResponse_Photo": {
@@ -1341,9 +1722,7 @@
           },
           "parcours_id": {
             "nullable": true,
-            "type": "integer",
-            "minimum": -9007199254740991,
-            "maximum": 9007199254740991
+            "type": "integer"
           },
           "path": {
             "nullable": true,
@@ -1351,9 +1730,7 @@
           },
           "lieu_id": {
             "nullable": true,
-            "type": "integer",
-            "minimum": -9007199254740991,
-            "maximum": 9007199254740991
+            "type": "integer"
           },
           "size": {
             "nullable": true,
@@ -1389,13 +1766,14 @@
         "type": "object",
         "properties": {
           "categorie": {
+            "description": "Deprecated numeric category identifier of the service.",
+            "deprecated": true,
             "nullable": true,
-            "type": "integer",
-            "minimum": -9007199254740991,
-            "maximum": 9007199254740991
+            "type": "integer"
           },
           "category": {
             "nullable": true,
+            "description": "Category of the service.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/Common_Categories"
@@ -1403,6 +1781,7 @@
             ]
           },
           "close": {
+            "description": "Temporary closure settings for the service.",
             "nullable": true,
             "type": "object",
             "properties": {
@@ -1438,22 +1817,27 @@
             "additionalProperties": false
           },
           "description": {
+            "description": "Localized HTML content describing the service.",
             "nullable": true,
             "type": "string"
           },
           "differentHours": {
+            "description": "Indicates whether the service has opening hours different from the place.",
             "nullable": true,
             "type": "boolean"
           },
           "differentModalities": {
+            "description": "Indicates whether the service has access conditions different from the place.",
             "nullable": true,
             "type": "boolean"
           },
           "differentPublics": {
+            "description": "Indicates whether the service welcomes a public different from the place.",
             "nullable": true,
             "type": "boolean"
           },
           "hours": {
+            "description": "Opening hours specific to the service.",
             "nullable": true,
             "allOf": [
               {
@@ -1463,9 +1847,11 @@
           },
           "isOpenToday": {
             "nullable": true,
+            "description": "Whether the service is open today. Recalculated daily.",
             "type": "boolean"
           },
           "modalities": {
+            "description": "Access conditions specific to the service.",
             "nullable": true,
             "allOf": [
               {
@@ -1474,6 +1860,7 @@
             ]
           },
           "publics": {
+            "description": "Audience information specific to the service.",
             "nullable": true,
             "allOf": [
               {
@@ -1482,6 +1869,7 @@
             ]
           },
           "saturated": {
+            "description": "Current saturation status of the service.",
             "nullable": true,
             "type": "object",
             "properties": {
@@ -1502,10 +1890,12 @@
           },
           "serviceObjectId": {
             "nullable": true,
+            "description": "Internal identifier of the service.",
             "type": "string"
           },
           "createdAt": {
             "nullable": true,
+            "description": "Creation date of the service. Format ISO 8601.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/SearchResponse_Date"
@@ -1513,6 +1903,7 @@
             ]
           },
           "categorySpecificFields": {
+            "description": "Details specific to the service category.",
             "nullable": true,
             "allOf": [
               {
@@ -1521,10 +1912,14 @@
             ]
           },
           "jobsList": {
+            "description": "Deprecated field used for insertion-by-economic-activity professions.",
+            "deprecated": true,
             "nullable": true,
             "type": "string"
           },
           "name": {
+            "description": "Deprecated additional label for some service categories.",
+            "deprecated": true,
             "nullable": true,
             "type": "string"
           }
@@ -1542,6 +1937,7 @@
         "type": "object",
         "properties": {
           "closedHolidays": {
+            "description": "Opening behavior on public holidays: `UNKNOWN` when not specified, `OPEN` when open, `CLOSED` when closed.",
             "nullable": true,
             "allOf": [
               {
@@ -1550,10 +1946,12 @@
             ]
           },
           "description": {
+            "description": "Free-text details about opening hours.",
             "nullable": true,
             "type": "string"
           },
           "monday": {
+            "description": "Opening hours for Monday.",
             "nullable": true,
             "allOf": [
               {
@@ -1562,6 +1960,7 @@
             ]
           },
           "tuesday": {
+            "description": "Opening hours for Tuesday.",
             "nullable": true,
             "allOf": [
               {
@@ -1570,6 +1969,7 @@
             ]
           },
           "wednesday": {
+            "description": "Opening hours for Wednesday.",
             "nullable": true,
             "allOf": [
               {
@@ -1578,6 +1978,7 @@
             ]
           },
           "thursday": {
+            "description": "Opening hours for Thursday.",
             "nullable": true,
             "allOf": [
               {
@@ -1586,6 +1987,7 @@
             ]
           },
           "friday": {
+            "description": "Opening hours for Friday.",
             "nullable": true,
             "allOf": [
               {
@@ -1594,6 +1996,7 @@
             ]
           },
           "saturday": {
+            "description": "Opening hours for Saturday.",
             "nullable": true,
             "allOf": [
               {
@@ -1602,6 +2005,7 @@
             ]
           },
           "sunday": {
+            "description": "Opening hours for Sunday.",
             "nullable": true,
             "allOf": [
               {
@@ -1626,10 +2030,12 @@
         "type": "object",
         "properties": {
           "open": {
+            "description": "Indicates whether the place or service is open on that day.",
             "nullable": true,
             "type": "boolean"
           },
           "timeslot": {
+            "description": "Opening slots for the day. Up to 3 slots can be defined.",
             "nullable": true,
             "type": "array",
             "items": {
@@ -1643,11 +2049,13 @@
       "SearchResponse_Timeslot": {
         "type": "object",
         "properties": {
-          "end": {
+          "start": {
+            "description": "Start time of the opening slot, encoded as `HHmm` without separator, using 3 or 4 digits.",
             "nullable": true,
             "type": "number"
           },
-          "start": {
+          "end": {
+            "description": "End time of the opening slot, encoded as `HHmm` without separator, using 3 or 4 digits.",
             "nullable": true,
             "type": "number"
           }
@@ -1659,10 +2067,12 @@
         "type": "object",
         "properties": {
           "inconditionnel": {
+            "description": "Indicates unconditional access. When `true`, it is the only access condition to consider.",
             "nullable": true,
             "type": "boolean"
           },
           "appointment": {
+            "description": "Access by appointment.",
             "nullable": true,
             "allOf": [
               {
@@ -1671,6 +2081,7 @@
             ]
           },
           "inscription": {
+            "description": "Access requiring prior registration.",
             "nullable": true,
             "allOf": [
               {
@@ -1679,6 +2090,7 @@
             ]
           },
           "orientation": {
+            "description": "Access requiring orientation. When this condition applies, address and coordinates must not be displayed publicly unless explicitly allowed by agreement.",
             "nullable": true,
             "allOf": [
               {
@@ -1687,6 +2099,7 @@
             ]
           },
           "price": {
+            "description": "Indicates the service is fee-based.",
             "nullable": true,
             "allOf": [
               {
@@ -1695,10 +2108,12 @@
             ]
           },
           "animal": {
+            "description": "Animal access policy.",
             "nullable": true,
             "type": "object",
             "properties": {
               "checked": {
+                "description": "Indicates whether animals are accepted.",
                 "nullable": true,
                 "type": "boolean"
               }
@@ -1706,10 +2121,12 @@
             "additionalProperties": false
           },
           "pmr": {
+            "description": "Accessibility for people with reduced mobility.",
             "nullable": true,
             "type": "object",
             "properties": {
               "checked": {
+                "description": "Indicates whether the place is accessible to people with reduced mobility.",
                 "nullable": true,
                 "type": "boolean"
               }
@@ -1724,6 +2141,7 @@
             }
           },
           "other": {
+            "description": "Additional details about access conditions.",
             "nullable": true,
             "type": "string"
           }
@@ -1735,10 +2153,12 @@
         "type": "object",
         "properties": {
           "checked": {
+            "description": "Indicates whether the access condition applies.",
             "nullable": true,
             "type": "boolean"
           },
           "precisions": {
+            "description": "Additional details about the access condition.",
             "nullable": true,
             "type": "string"
           }
@@ -1750,6 +2170,7 @@
         "type": "object",
         "properties": {
           "accueil": {
+            "description": "Type of welcome for the public: `0` unconditional, `1` unconditional adapted to a specific public, `2` exclusive.",
             "nullable": true,
             "anyOf": [
               {
@@ -1773,21 +2194,25 @@
             ]
           },
           "administrative": {
+            "description": "Administrative statuses accepted by the place. If every possible value is selected, it means there is no restriction.",
             "nullable": true,
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/Common_PublicsAdministrative"
             }
           },
           "age": {
+            "description": "Age restrictions for the accepted public. Values from `0` to `99` mean no age restriction.",
             "nullable": true,
             "type": "object",
             "properties": {
-              "max": {
+              "min": {
+                "description": "Minimum accepted age.",
                 "nullable": true,
                 "type": "number"
               },
-              "min": {
+              "max": {
+                "description": "Maximum accepted age. ",
                 "nullable": true,
                 "type": "number"
               }
@@ -1795,29 +2220,38 @@
             "additionalProperties": false
           },
           "description": {
+            "description": "Free-text details about specific public restrictions or adaptations.",
             "nullable": true,
             "type": "string"
           },
           "familialle": {
+            "description": "Family situations accepted by the place. If every possible value is selected, it means there is no restriction.",
             "nullable": true,
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/Common_PublicsFamily"
             }
           },
           "gender": {
+            "description": "Gender-related restrictions or adaptations. If every possible value is selected, it means there is no restriction.",
             "nullable": true,
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/Common_PublicsGender"
             }
           },
           "other": {
+            "description": "Other audience restrictions or adaptations. If every possible value is selected, it means there is no restriction.",
             "nullable": true,
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/Common_PublicsOther"
             }
+          },
+          "ukrainePrecisions": {
+            "description": "Additional details about what the place offers for displaced Ukrainians.",
+            "nullable": true,
+            "type": "string"
           }
         },
         "additionalProperties": {},
@@ -1936,16 +2370,19 @@
           }
         },
         "additionalProperties": {},
+        "description": "Category-specific service details. Available fields depend on the service category.",
         "id": "SearchResponse_CategorySpecificFields"
       },
       "SearchResponse_Position": {
         "type": "object",
         "properties": {
           "location": {
+            "description": "Geographic location of the place.",
             "nullable": true,
             "type": "object",
             "properties": {
               "type": {
+                "description": "Geographic object type. Always `Point`.",
                 "nullable": true,
                 "type": "string",
                 "enum": [
@@ -1953,6 +2390,7 @@
                 ]
               },
               "coordinates": {
+                "description": "Geographic coordinates of the place as `[longitude, latitude]`. Format GeoJSON..",
                 "nullable": true,
                 "type": "array",
                 "items": {
@@ -1963,46 +2401,82 @@
             "additionalProperties": false
           },
           "address": {
+            "description": "Street address of the place.",
+            "nullable": true,
+            "type": "string"
+          },
+          "addresse": {
+            "description": "Street address of the place.",
             "nullable": true,
             "type": "string"
           },
           "additionalInformation": {
+            "description": "Additional address information such as building, floor or access details.",
+            "nullable": true,
+            "type": "string"
+          },
+          "complementAdresse": {
+            "description": "Additional address information such as building, floor or access details.",
             "nullable": true,
             "type": "string"
           },
           "city": {
+            "description": "City name of the place.",
+            "nullable": true,
+            "type": "string"
+          },
+          "ville": {
+            "description": "Same as `city`.",
             "nullable": true,
             "type": "string"
           },
           "cityCode": {
+            "description": "Administrative code of the city.",
             "nullable": true,
             "type": "string"
           },
           "postalCode": {
+            "description": "Postal code of the place.",
+            "nullable": true,
+            "type": "string"
+          },
+          "codePostal": {
+            "description": "Same as `postalCode`.",
             "nullable": true,
             "type": "string"
           },
           "department": {
+            "description": "Department name of the place.",
+            "nullable": true,
+            "type": "string"
+          },
+          "departement": {
+            "description": "Same as `department`.",
             "nullable": true,
             "type": "string"
           },
           "departmentCode": {
+            "description": "Department code of the place. Examples: `974`, `2A`, `91`, `06`.",
             "nullable": true,
             "type": "string"
           },
           "departementCode": {
+            "description": "Same as `departmentCode`.",
             "nullable": true,
             "type": "string"
           },
           "region": {
+            "description": "Region name of the place.",
             "nullable": true,
             "type": "string"
           },
           "regionCode": {
+            "description": "Administrative code of the region.",
             "nullable": true,
             "type": "string"
           },
           "slugs": {
+            "description": "URL compatible labels for position's text properties",
             "nullable": true,
             "type": "object",
             "properties": {
@@ -2038,34 +2512,17 @@
             "additionalProperties": {}
           },
           "country": {
-            "nullable": true,
-            "type": "string"
-          },
-          "timeZone": {
-            "nullable": true,
-            "type": "string"
-          },
-          "adresse": {
-            "nullable": true,
-            "type": "string"
-          },
-          "codePostal": {
-            "nullable": true,
-            "type": "string"
-          },
-          "complementAdresse": {
-            "nullable": true,
-            "type": "string"
-          },
-          "departement": {
+            "description": "Country code of the place. Format ISO 3166-1 alpha-2. Lower case",
             "nullable": true,
             "type": "string"
           },
           "pays": {
+            "description": "Same as `country`.",
             "nullable": true,
             "type": "string"
           },
-          "ville": {
+          "timeZone": {
+            "description": "Time zone of the place. Format IANA time zone identifier.",
             "nullable": true,
             "type": "string"
           }
@@ -2115,26 +2572,32 @@
         "type": "object",
         "properties": {
           "facebook": {
+            "description": "Facebook page URL of the organization.",
             "nullable": true,
             "type": "string"
           },
           "fax": {
+            "description": "Fax number of the organization.",
             "nullable": true,
             "type": "string"
           },
           "instagram": {
+            "description": "Instagram page URL of the organization.",
             "nullable": true,
             "type": "string"
           },
           "mail": {
+            "description": "Email address of the organization.",
             "nullable": true,
             "type": "string"
           },
           "name": {
+            "description": "Name of the organization.",
             "nullable": true,
             "type": "string"
           },
           "phones": {
+            "description": "Phone contacts of the organization.",
             "nullable": true,
             "type": "array",
             "items": {
@@ -2142,6 +2605,7 @@
             }
           },
           "website": {
+            "description": "Website URL of the organization.",
             "nullable": true,
             "type": "string"
           }
@@ -2153,18 +2617,22 @@
         "type": "object",
         "properties": {
           "label": {
+            "description": "Label describing the phone contact.",
             "nullable": true,
             "type": "string"
           },
           "phoneNumber": {
+            "description": "Phone number of the contact.",
             "nullable": true,
             "type": "string"
           },
           "countryCode": {
+            "description": "Country code used to interpret the phone number. Format ISO 3166-1 alpha-2.",
             "nullable": true,
             "type": "string"
           },
           "isSpecialPhoneNumber": {
+            "description": "Indicates whether the phone number is a special short number.",
             "nullable": true,
             "type": "boolean"
           }
@@ -2213,6 +2681,7 @@
         "type": "object",
         "properties": {
           "closure": {
+            "description": "Temporary closure of the place.",
             "nullable": true,
             "allOf": [
               {
@@ -2221,30 +2690,27 @@
             ]
           },
           "hours": {
+            "description": "Temporary opening hours of the place.",
             "nullable": true,
             "type": "object",
             "properties": {
               "actif": {
+                "description": "Indicates whether the temporary information is currently active.",
                 "nullable": true,
                 "type": "boolean"
               },
               "dateDebut": {
+                "description": "Start date of the temporary information. Format ISO 8601.",
                 "nullable": true,
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/SearchResponse_Date"
-                  }
-                ]
+                "type": "string"
               },
               "dateFin": {
+                "description": "End date of the temporary information. Format ISO 8601.",
                 "nullable": true,
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/SearchResponse_Date"
-                  }
-                ]
+                "type": "string"
               },
               "description": {
+                "description": "Message describing the temporary information.",
                 "nullable": true,
                 "type": "string"
               },
@@ -2264,26 +2730,22 @@
             "type": "object",
             "properties": {
               "actif": {
+                "description": "Indicates whether the temporary information is currently active.",
                 "nullable": true,
                 "type": "boolean"
               },
               "dateDebut": {
+                "description": "Start date of the temporary information. Format ISO 8601.",
                 "nullable": true,
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/SearchResponse_Date"
-                  }
-                ]
+                "type": "string"
               },
               "dateFin": {
+                "description": "End date of the temporary information. Format ISO 8601.",
                 "nullable": true,
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/SearchResponse_Date"
-                  }
-                ]
+                "type": "string"
               },
               "description": {
+                "description": "Message describing the temporary information.",
                 "nullable": true,
                 "type": "string"
               },
@@ -2302,26 +2764,22 @@
         "type": "object",
         "properties": {
           "actif": {
+            "description": "Indicates whether the temporary information is currently active.",
             "nullable": true,
             "type": "boolean"
           },
           "dateDebut": {
+            "description": "Start date of the temporary information. Format ISO 8601.",
             "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SearchResponse_Date"
-              }
-            ]
+            "type": "string"
           },
           "dateFin": {
+            "description": "End date of the temporary information. Format ISO 8601.",
             "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SearchResponse_Date"
-              }
-            ]
+            "type": "string"
           },
           "description": {
+            "description": "Message describing the temporary information.",
             "nullable": true,
             "type": "string"
           }
@@ -2333,6 +2791,7 @@
         "type": "object",
         "properties": {
           "ids": {
+            "description": "Various sources of information providing data about this place.",
             "nullable": true,
             "type": "array",
             "items": {
@@ -2340,9 +2799,11 @@
               "properties": {
                 "id": {
                   "nullable": true,
+                  "description": "Formatted external identifier of the source. Format UUID.",
                   "type": "string"
                 },
                 "url": {
+                  "description": "Source URL when available.",
                   "nullable": true,
                   "type": "string"
                 }
@@ -2355,14 +2816,17 @@
           },
           "isOrigin": {
             "nullable": true,
+            "description": "Indicates if the place has been created by the source.",
             "type": "boolean"
           },
           "license": {
+            "description": "URL of the license associated to the data.",
             "nullable": true,
             "type": "string"
           },
           "name": {
             "nullable": true,
+            "description": "Name of the source",
             "type": "string"
           }
         },

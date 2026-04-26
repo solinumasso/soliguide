@@ -73,6 +73,5 @@ async function loadVersionedOpenApiSpecifications(): Promise<
     })
   );
 
-  console.log(specs);
   return specs;
 }

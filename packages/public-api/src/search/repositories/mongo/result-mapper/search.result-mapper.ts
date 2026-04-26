@@ -44,6 +44,12 @@ import type {
   SearchTempInfoBase,
   SearchTimeslot,
 } from "../../../search-result/search-result.type";
+import {
+  PublicsAdministrative,
+  PublicsFamily,
+  PublicsGender,
+  PublicsOther,
+} from "@soliguide/common";
 
 @Injectable()
 export class SearchResultMapper {
@@ -80,9 +86,9 @@ export class SearchResultMapper {
       publics: this.mapPublics(place.publics),
       country: place.country,
       languages: place.languages,
-      createdAt: place.createdAt,
-      updatedAt: place.updatedAt,
-      updatedByUserAt: place.updatedByUserAt,
+      createdAt: place.createdAt?.toISOString(),
+      updatedAt: place.updatedAt?.toISOString(),
+      updatedByUserAt: place.updatedByUserAt?.toISOString(),
       tempInfos: this.mapTempInfo(place.tempInfos),
       sources: place.sources?.map((source) => this.mapSource(source)),
       slugs: this.mapSlugs(place.slugs),
@@ -105,8 +111,8 @@ export class SearchResultMapper {
       close: service.close
         ? this.compact({
             actif: service.close.actif,
-            dateDebut: service.close.dateDebut,
-            dateFin: service.close.dateFin,
+            dateDebut: service.close.dateDebut?.toISOString(),
+            dateFin: service.close.dateFin?.toISOString(),
           })
         : undefined,
       description: service.description,
@@ -124,7 +130,7 @@ export class SearchResultMapper {
           })
         : undefined,
       serviceObjectId,
-      createdAt: service.createdAt,
+      createdAt: service.createdAt?.toISOString(),
       categorySpecificFields: service.categorySpecificFields
         ? this.compact({ ...service.categorySpecificFields })
         : undefined,
@@ -165,8 +171,8 @@ export class SearchResultMapper {
       path: photo.path,
       lieu_id: photo.lieu_id,
       size: photo.size,
-      createdAt: photo.createdAt,
-      updatedAt: photo.updatedAt,
+      createdAt: photo.createdAt?.toISOString(),
+      updatedAt: photo.updatedAt?.toISOString(),
     });
   }
 
@@ -343,7 +349,7 @@ export class SearchResultMapper {
 
     return this.compact({
       accueil: publics.accueil,
-      administrative: publics.administrative,
+      administrative: publics.administrative as PublicsAdministrative[],
       age: publics.age
         ? this.compact({
             max: publics.age.max,
@@ -351,9 +357,9 @@ export class SearchResultMapper {
           })
         : undefined,
       description: publics.description,
-      familialle: publics.familialle,
-      gender: publics.gender,
-      other: publics.other,
+      familialle: publics.familialle as PublicsFamily[],
+      gender: publics.gender as PublicsGender[],
+      other: publics.other as PublicsOther[],
     });
   }
 
@@ -390,8 +396,8 @@ export class SearchResultMapper {
 
     return this.compact({
       actif: tempInfo.actif,
-      dateDebut: tempInfo.dateDebut,
-      dateFin: tempInfo.dateFin,
+      dateDebut: tempInfo.dateDebut?.toISOString(),
+      dateFin: tempInfo.dateFin?.toISOString(),
       description: tempInfo.description,
     });
   }
