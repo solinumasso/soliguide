@@ -5,7 +5,7 @@ import type {
 } from '@soliguide/common';
 
 const dataModules = import.meta.glob<{ default: FormattedSuggestion[] }>(
-  '$lib/data/search-suggestions/*/*.json',
+  '$suggestions-data/*/*.json',
   { eager: false }
 );
 
@@ -13,7 +13,7 @@ type DataLoader = () => Promise<{ default: FormattedSuggestion[] }>;
 
 const dataLoaders: Map<string, DataLoader> = Object.entries(dataModules).reduce(
   (acc, [path, loader]) => {
-    const match = /search-suggestions\/(?<country>[^/]+)\/(?<lang>[^/]+)\.json$/u.exec(path);
+    const match = /\/(?<country>[^/]+)\/(?<lang>[^/]+)\.json$/u.exec(path);
     if (match?.groups) {
       acc.set(`${match.groups.country}/${match.groups.lang}`, loader);
     }

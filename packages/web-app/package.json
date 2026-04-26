@@ -6,9 +6,6 @@
   "license": "AGPL-3.0-only",
   "main": "dist/index.js",
   "scripts": {
-    "copy:suggestions": "mkdir -p src/lib/data/search-suggestions && cp -r ../common/src/search-suggestions/data/* src/lib/data/search-suggestions/",
-    "prebuild": "yarn copy:suggestions",
-    "predev": "yarn copy:suggestions",
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
