@@ -1,0 +1,36 @@
+.maintenance-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  padding: 2rem;
+}
+
+.maintenance-content {
+  text-align: center;
+  max-width: 600px;
+}
+
+.maintenance-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.maintenance-message {
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.maintenance-thanks {
+  font-size: 1rem;
+  color: #888;
+}
