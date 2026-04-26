@@ -4,6 +4,14 @@ fileignoreconfig:
   checksum: db47bb50156072db5e1d62458a948d3eb1f9acff5cad7b339fb0cbdd4d85117c
 - filename: packages/web-app/src/lib/services/categoryService.ts
   checksum: 7002e4f6fe7b74eb7516a14b09ec8bbd1ad429a33b017cda5329ef6c6b835d17
+- filename: packages/web-app/static/images/organizations-logos/fr/fondation-pour-le-logement.svg
+  checksum: a9f3b5a4f303722e2f959921a7be60fd915476ddfdd8a8f3cae41d58a57037f0
+- filename: packages/web-app/static/images/organizations-logos/fr/france-services.svg
+  checksum: 44f28bab8edbc3167258a74ddaf4aa6db1173ed77ff6dc419d1481cd3fed501d
+- filename: packages/web-app/static/images/organizations-logos/fr/point-justice.svg
+  checksum: 4a9f9399125a1b7096273a18b4c617221f81d8f38fbab4d9238d40d73a62f1d2
+- filename: packages/web-app/static/images/organizations-logos/fr/secours-islamique.svg
+  checksum: 09d951bec75ab70c67a967d95b63b5da29fb8d21f7fe9d5566ac8d9b004983b3
 - filename: yarn.lock
   checksum: 367db76d059c9e13c481743d0f450f041d3a38215c52d961879492e22691c920
 version: "1.0"

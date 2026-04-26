@@ -8,7 +8,9 @@ import {
   Categories,
   CountryCodes,
   SupportedLanguagesCode,
-  LocationAutoCompleteAddress
+  LocationAutoCompleteAddress,
+  AutoCompleteType,
+  type FormattedSuggestion
 } from '@soliguide/common';
 import { posthogService } from '$lib/services/posthogService';
 import type { LocationSuggestion } from '$lib/models/locationSuggestion';
@@ -105,9 +107,29 @@ const otherSampleSuggestionsServiceResult: LocationSuggestion[] = [
   }
 ];
 
-const sampleCategorySuggestions: Categories[] = [
-  Categories.HYGIENE_PRODUCTS,
-  Categories.DIGITAL_TOOLS_TRAINING
+const sampleCategorySuggestions: FormattedSuggestion[] = [
+  {
+    categoryId: Categories.HYGIENE_PRODUCTS,
+    label: "Produits d'hygiène",
+    slug: 'produits-hygiene',
+    synonyms: ['savon', 'shampoing', 'dentifrice'],
+    type: AutoCompleteType.CATEGORY,
+    lang: SupportedLanguagesCode.FR,
+    country: CountryCodes.FR,
+    seoTitle: 'HYGIENE_PRODUCTS',
+    seoDescription: ''
+  },
+  {
+    categoryId: Categories.DIGITAL_TOOLS_TRAINING,
+    label: 'Formation numérique',
+    slug: 'formation-numerique',
+    synonyms: ['informatique', 'ordinateur'],
+    type: AutoCompleteType.CATEGORY,
+    lang: SupportedLanguagesCode.FR,
+    country: CountryCodes.FR,
+    seoTitle: 'DIGITAL_TOOLS_TRAINING',
+    seoDescription: ''
+  }
 ];
 
 const geolocFn = (): Promise<GeolocationPosition> =>
@@ -129,10 +151,10 @@ const geolocFnError = () => Promise.reject(new Error('UNAUTHORIZED_LOCATION'));
 
 const createMockCategoryService = (): {
   service: CategoryService;
-  feedWith: (data: Categories[]) => void;
+  feedWith: (data: FormattedSuggestion[]) => void;
   setError: (error: { status: number; statusText: string } | null) => void;
 } => {
-  let responseData: Categories[] = [];
+  let responseData: FormattedSuggestion[] = [];
   let responseError: { status: number; statusText: string } | null = null;
 
   const service: CategoryService = {
@@ -141,7 +163,7 @@ const createMockCategoryService = (): {
     getChildrenCategories: () => [],
     isCategoryRoot: () => false,
     hasChildren: () => false,
-    getCategorySuggestions: (): Promise<Categories[]> => {
+    getCategorySuggestions: (): Promise<FormattedSuggestion[]> => {
       if (responseError) {
         throw responseError;
       }
@@ -151,7 +173,7 @@ const createMockCategoryService = (): {
 
   return {
     service,
-    feedWith: (data: Categories[]) => {
+    feedWith: (data: FormattedSuggestion[]) => {
       responseData = data;
     },
     setError: (error: { status: number; statusText: string } | null) => {
@@ -445,8 +467,8 @@ describe('Search page', () => {
 
     it('When a suggestion is selected, category errors are cleared', () => {
       const [selectedSuggestion] = sampleCategorySuggestions;
-      pageState.selectCategorySuggestion(selectedSuggestion);
-      expect(get(pageState).selectedCategory).toEqual(selectedSuggestion);
+      pageState.selectCategorySuggestion(selectedSuggestion.categoryId!);
+      expect(get(pageState).selectedCategory).toEqual(selectedSuggestion.categoryId);
     });
 
     it('When the category is cleared, the suggestions disappear', async () => {
@@ -634,7 +656,18 @@ describe('Search page', () => {
 
         it('When one of the result matches the category param, it is selected', async () => {
           feedWith(locationApiResult);
-          feedWithCategoriesData([Categories.HEALTH, ...sampleCategorySuggestions]);
+          const healthSuggestion: FormattedSuggestion = {
+            categoryId: Categories.HEALTH,
+            label: 'Santé',
+            slug: 'sante',
+            synonyms: [],
+            type: AutoCompleteType.CATEGORY,
+            lang: SupportedLanguagesCode.FR,
+            country: CountryCodes.FR,
+            seoTitle: 'HEALTH',
+            seoDescription: ''
+          };
+          feedWithCategoriesData([healthSuggestion, ...sampleCategorySuggestions]);
           await pageState.init(CountryCodes.FR, SupportedLanguagesCode.FR, pageParams);
           expect(get(pageState).selectedCategory).toEqual(Categories.HEALTH);
         });
@@ -737,7 +770,18 @@ describe('Search page', () => {
 
       it('If we modify location selection, we go directly to results page instead of going to step 2 because we already have a category selected', async () => {
         feedWith(locationApiResult);
-        feedWithCategoriesData([Categories.HEALTH, ...sampleCategorySuggestions]);
+        const healthSuggestion: FormattedSuggestion = {
+          categoryId: Categories.HEALTH,
+          label: 'Santé',
+          slug: 'sante',
+          synonyms: [],
+          type: AutoCompleteType.CATEGORY,
+          lang: SupportedLanguagesCode.FR,
+          country: CountryCodes.FR,
+          seoTitle: 'HEALTH',
+          seoDescription: ''
+        };
+        feedWithCategoriesData([healthSuggestion, ...sampleCategorySuggestions]);
         await pageState.init(CountryCodes.FR, SupportedLanguagesCode.FR, pageParams);
 
         expect(get(pageState).selectedCategory).not.toBeNull();
