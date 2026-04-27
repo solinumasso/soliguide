@@ -186,7 +186,7 @@
             selectCategory(suggestion.categoryId);
           }
           pageStore.captureEvent('category-suggestion-click', {
-            category: suggestion.categoryId ?? undefined
+            category: suggestion.categoryId ?? undefined // eslint-disable-line no-undefined
           });
         }}
         loading={$pageStore.loadingCategorySuggestions}
