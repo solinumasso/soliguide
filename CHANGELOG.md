@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.131.0](https://github.com/solinumasso/soliguide/compare/v4.130.0...v4.131.0) (2026-04-27)
+
+
+### Bug Fixes
+
+* **frontend:** remove solidata.guard.ts for linting ([7f19c62](https://github.com/solinumasso/soliguide/commit/7f19c62c69a6a3986a62693ed2616511bb954c39))
+* **web-app:** build & search suggestion ([a77f183](https://github.com/solinumasso/soliguide/commit/a77f1833c28aa6b8c86c618b12c3d127aff31fe1))
+
+
+### Features
+
+* **common:** add health categories description translation keys ([fd6d9ea](https://github.com/solinumasso/soliguide/commit/fd6d9ea50bd0c2eb0954bdb034f5bb2a89795ae4))
+
+
+
+
+
 # [4.130.0](https://github.com/solinumasso/soliguide/compare/v4.129.2...v4.130.0) (2026-04-26)
 
 
