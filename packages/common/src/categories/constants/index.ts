@@ -1,6 +1,7 @@
 // @index('./*', f => `export * from '${f.path}'`)
 export * from "./CATEGORIES_SPECIFIC_FIELDS.const";
 export * from "./CATEGORIES.const";
+export * from "./CATEGORIES_DESCRIPTION.const";
 export * from "./LEGACY_CATEGORIES.const";
 export * from "./LEGACY_CATEGORIES_RANGE.const";
 export * from "./LEGACY_CATEGORIES_SEO.const";

@@ -22,10 +22,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { ListItem } from '@soliguide/design-system';
 
   export let title;
+  export let subTitle = '';
   export let navigable = false;
 </script>
 
-<ListItem {title} shape="default" type={navigable ? 'actionFull' : 'display'} on:click>
+<ListItem {subTitle} {title} shape="default" type={navigable ? 'actionFull' : 'display'} on:click>
   <span class="icon-container" slot="icon">
     <slot name="icon" />
   </span>

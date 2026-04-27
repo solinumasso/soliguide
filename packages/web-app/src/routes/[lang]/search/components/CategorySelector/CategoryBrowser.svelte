@@ -27,7 +27,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { CategoryIcon } from '$lib/components';
   import { getCategoryBrowserController } from './CategoryBrowserController';
   import { CategoryBrowserState } from './types';
-  import { getCategoryTranslationKey, type Categories } from '@soliguide/common';
+  import {
+    CATEGORIES_DESCRIPTION,
+    getCategoryTranslationKey,
+    type Categories
+  } from '@soliguide/common';
   import type { I18nStore } from '$lib/client/types';
   import type { PosthogCaptureFunction } from '$lib/services/types';
   import { categoryService } from '$lib/services/categoryService';
@@ -111,6 +115,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     {#each categories as category}
       <CategoryListItem
         title={$i18n.t(getCategoryTranslationKey(category))}
+        subTitle={$i18n.t(CATEGORIES_DESCRIPTION[category])}
         navigable
         on:click={() => clickCategory(category)}
       >
