@@ -1,7 +1,6 @@
 import { Injectable } from "@nestjs/common";
 
 import type {
-  MongoGeoZone,
   MongoModalitiesCheck,
   MongoOpeningHours,
   MongoObjectIdLike,
@@ -24,9 +23,8 @@ import type {
 } from "../place.mongo";
 
 import type {
-  SearchDayOpeningHours,
   SearchEntity,
-  SearchGeoZone,
+  SearchDayOpeningHours,
   SearchModalities,
   SearchModalitiesCheck,
   SearchOpeningHours,
@@ -37,6 +35,7 @@ import type {
   SearchPublics,
   SearchResult,
   SearchService,
+  SearchSpecialSupportContext,
   SearchSlugs,
   SearchSource,
   SearchSourceId,
@@ -61,10 +60,10 @@ export class SearchResultMapper {
   }
 
   private mapPlace(place: MongoPlace): SearchPlace {
-    return this.compact({
+    const mappedPlace = this.compact({
       _id: this.normalizeId(place._id),
       lieu_id: place.lieu_id,
-      seo_url: place.seo_url,
+      seoUrl: place.seo_url,
       name: place.name,
       description: place.description,
       status: place.status,
@@ -72,16 +71,11 @@ export class SearchResultMapper {
       isOpenToday: place.isOpenToday,
       photos: this.mapPhotos(place.photos),
       placeType: place.placeType,
-      services_all: place.services_all?.map((service) =>
-        this.mapService(service)
-      ),
+      services: place.services_all?.map((service) => this.mapService(service)),
       position: this.mapPosition(place.position),
-      parcours: place.parcours?.map((parcours) => this.mapParcours(parcours)),
-      entity: this.mapEntity(place.entity),
-      geoZones: place.geoZones?.map((geoZone: MongoGeoZone) =>
-        this.mapGeoZone(geoZone)
-      ),
-      newhours: this.mapOpeningHours(place.newhours),
+      waypoints: place.parcours?.map((parcours) => this.mapParcours(parcours)),
+      organizationInfo: this.mapEntity(place.entity),
+      openingHours: this.mapOpeningHours(place.newhours),
       modalities: this.mapModalities(place.modalities),
       publics: this.mapPublics(place.publics),
       country: place.country,
@@ -89,11 +83,22 @@ export class SearchResultMapper {
       createdAt: place.createdAt?.toISOString(),
       updatedAt: place.updatedAt?.toISOString(),
       updatedByUserAt: place.updatedByUserAt?.toISOString(),
-      tempInfos: this.mapTempInfo(place.tempInfos),
+      tempInfo: this.mapTempInfo(place.tempInfos),
       sources: place.sources?.map((source) => this.mapSource(source)),
       slugs: this.mapSlugs(place.slugs),
       distance: place.distance,
     });
+
+    if (place.placeType === "LIEU") {
+      delete mappedPlace.waypoints;
+    }
+
+    if (place.placeType === "PARCOURS_MOBILE") {
+      delete mappedPlace.openingHours;
+      delete mappedPlace.position;
+    }
+
+    return mappedPlace;
   }
 
   private mapService(service: MongoService): SearchService {
@@ -106,13 +111,12 @@ export class SearchResultMapper {
     }
 
     return this.compact({
-      categorie: service.categorie,
       category: service.category,
-      close: service.close
+      tempClosure: service.close
         ? this.compact({
-            actif: service.close.actif,
-            dateDebut: service.close.dateDebut?.toISOString(),
-            dateFin: service.close.dateFin?.toISOString(),
+            active: service.close.actif,
+            startDate: service.close.dateDebut?.toISOString(),
+            endDate: service.close.dateFin?.toISOString(),
           })
         : undefined,
       description: service.description,
@@ -134,7 +138,6 @@ export class SearchResultMapper {
       categorySpecificFields: service.categorySpecificFields
         ? this.compact({ ...service.categorySpecificFields })
         : undefined,
-      jobsList: service.jobsList,
       name: service.name,
     });
   }
@@ -221,12 +224,6 @@ export class SearchResultMapper {
       regionCode: position.regionCode,
       country: position.country,
       timeZone: position.timeZone,
-      adresse: position.adresse,
-      codePostal: position.codePostal,
-      complementAdresse: position.complementAdresse,
-      departement: position.departement,
-      pays: position.pays,
-      ville: position.ville,
     });
   }
 
@@ -250,14 +247,6 @@ export class SearchResultMapper {
         })
       ),
       website: entity.website,
-    });
-  }
-
-  private mapGeoZone(geoZone: MongoGeoZone): SearchGeoZone {
-    return this.compact({
-      geoType: geoZone.geoType,
-      geoValue: geoZone.geoValue,
-      label: geoZone.label,
     });
   }
 
@@ -309,21 +298,22 @@ export class SearchResultMapper {
     }
 
     return this.compact({
-      inconditionnel: modalities.inconditionnel,
+      unconditional: modalities.inconditionnel,
       appointment: this.mapModalitiesCheck(modalities.appointment),
-      inscription: this.mapModalitiesCheck(modalities.inscription),
-      orientation: this.mapModalitiesCheck(modalities.orientation),
+      registration: this.mapModalitiesCheck(modalities.inscription),
+      referral: this.mapModalitiesCheck(modalities.orientation),
       price: this.mapModalitiesCheck(modalities.price),
-      animal: modalities.animal
+      animals: modalities.animal
         ? this.compact({ checked: modalities.animal.checked })
         : undefined,
-      pmr: modalities.pmr
-        ? this.compact({ checked: modalities.pmr.checked })
+      accessibility: modalities.pmr
+        ? this.compact({ wheelchair: modalities.pmr.checked })
         : undefined,
       docs: modalities.docs
         ?.map((doc) => this.normalizeId(doc))
         .filter((doc): doc is string => typeof doc === "string"),
       other: modalities.other,
+      _text: null,
     });
   }
 
@@ -348,7 +338,7 @@ export class SearchResultMapper {
     }
 
     return this.compact({
-      accueil: publics.accueil,
+      welcomeType: publics.accueil,
       administrative: publics.administrative as PublicsAdministrative[],
       age: publics.age
         ? this.compact({
@@ -357,10 +347,29 @@ export class SearchResultMapper {
           })
         : undefined,
       description: publics.description,
-      familialle: publics.familialle as PublicsFamily[],
+      family: publics.familialle as PublicsFamily[],
       gender: publics.gender as PublicsGender[],
       other: publics.other as PublicsOther[],
+      specialSupportContext: this.mapSpecialSupportContext(
+        publics.ukrainePrecisions
+      ),
+      _text: null,
     });
+  }
+
+  private mapSpecialSupportContext(
+    details: string | null | undefined
+  ): SearchSpecialSupportContext | null {
+    if (!details) {
+      return null;
+    }
+
+    return {
+      type: "humanitarianCrisis",
+      key: "ukraine-displacement",
+      label: "Support for displaced people from Ukraine",
+      details,
+    };
   }
 
   private mapTempInfo(
@@ -395,9 +404,9 @@ export class SearchResultMapper {
     }
 
     return this.compact({
-      actif: tempInfo.actif,
-      dateDebut: tempInfo.dateDebut?.toISOString(),
-      dateFin: tempInfo.dateFin?.toISOString(),
+      active: tempInfo.actif,
+      startDate: tempInfo.dateDebut?.toISOString(),
+      endDate: tempInfo.dateFin?.toISOString(),
       description: tempInfo.description,
     });
   }
@@ -438,7 +447,8 @@ export class SearchResultMapper {
   private compact<T extends Record<string, unknown>>(value: T): T {
     return Object.fromEntries(
       Object.entries(value).filter(
-        ([, currentValue]) => currentValue !== undefined
+        ([, currentValue]) =>
+          currentValue !== undefined && currentValue !== null
       )
     ) as T;
   }

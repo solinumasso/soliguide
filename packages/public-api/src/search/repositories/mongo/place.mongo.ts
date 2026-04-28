@@ -128,6 +128,7 @@ export type MongoPublics = {
   familialle?: string[];
   gender?: string[];
   other?: string[];
+  ukrainePrecisions?: string | null;
 };
 
 export type MongoService = {
