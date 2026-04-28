@@ -5,7 +5,7 @@ import {
 } from "@nestjs/platform-fastify";
 import { DocumentBuilder, OpenAPIObject, SwaggerModule } from "@nestjs/swagger";
 
-import { AppModule } from "../app.module";
+import { AppModule } from "../../app.module";
 
 export async function buildProductionBaseOpenApiDocument(): Promise<OpenAPIObject> {
   const app = await NestFactory.create<NestFastifyApplication>(
