@@ -64,7 +64,7 @@ export class SchemaAstEditor {
       mainSchemaDeclaration
     );
 
-    for (const change of options.changes) {
+    for (const change of orderChangesForBaseSchemaPaths(options.changes)) {
       this.applyChange(applyContext, change);
     }
 
@@ -376,13 +376,13 @@ export class SchemaAstEditor {
 
       if (UNSUPPORTED_TYPED_TRAVERSAL_METHOD_NAMES.has(methodName)) {
         throw new Error(
-          `Unsupported AST shape for typed change at ${context}: ${methodName} internals require CustomChange`
+          `Unsupported AST shape for typed change at ${context}: ${methodName} internals require PatchChange`
         );
       }
 
       if (methodName === "extend") {
         throw new Error(
-          `Unsupported AST shape for typed change at ${context}: extend(...) requires CustomChange`
+          `Unsupported AST shape for typed change at ${context}: extend(...) requires PatchChange`
         );
       }
 
@@ -533,6 +533,34 @@ export class SchemaAstEditor {
         .map((declaration) => declaration.getName())
         .join(", ")}`
     );
+  }
+}
+
+function orderChangesForBaseSchemaPaths(
+  changes: AnyParsedChangeDefinition[]
+): AnyParsedChangeDefinition[] {
+  return changes
+    .map((change, index) => ({ change, index }))
+    .sort((left, right) => {
+      const depthDifference =
+        getChangePathDepth(right.change) - getChangePathDepth(left.change);
+
+      return depthDifference || left.index - right.index;
+    })
+    .map(({ change }) => change);
+}
+
+function getChangePathDepth(change: AnyParsedChangeDefinition): number {
+  switch (change.type) {
+    case "add":
+    case "rename":
+      return splitPayloadPath(change.payload.payloadPath).length + 1;
+    case "remove":
+    case "replaceSchema":
+    case "patch":
+      return splitPayloadPath(change.payload.payloadPath).length;
+    default:
+      return 0;
   }
 }
 
