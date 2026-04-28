@@ -3,18 +3,20 @@ import {
   renameNestedAt,
   restore,
   ResourceChangesFactory,
+  deleteAt,
 } from "../../../versioning-engine";
 import v20260101SearchResponseSchema from "../../2026-01-01/2026-01-01.search-response.schema.generated";
 import {
   accessibilitySchema,
   searchPlacesByTypeSchema,
+  specialSupportContextSchema,
   tempInfoSchema,
 } from "./schemas";
 
 export const searchResponseChanges: ResourceChangesFactory<
   typeof v20260101SearchResponseSchema,
   "response"
-> = ({ patch, remove, rename, replaceSchema }) => [
+> = ({ add, patch, remove, rename, replaceSchema }) => [
   patch({
     title: "Remove hidden root place fields",
     impact: "breaking",
@@ -199,6 +201,12 @@ export const searchResponseChanges: ResourceChangesFactory<
       remove({
         payloadPath: "places.publics.ukrainePrecisions",
         downgrade: restore("places.publics.ukrainePrecisions"),
+      }),
+      add({
+        payloadPath: "places.publics",
+        field: "specialSupportContext",
+        schema: specialSupportContextSchema,
+        downgrade: deleteAt("places.publics.specialSupportContext"),
       }),
     ],
   }),
