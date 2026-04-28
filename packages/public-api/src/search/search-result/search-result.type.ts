@@ -83,26 +83,36 @@ export interface SearchModalitiesCheck {
 }
 
 export interface SearchModalities {
-  inconditionnel?: boolean;
+  unconditional?: boolean;
   appointment?: SearchModalitiesCheck;
-  inscription?: SearchModalitiesCheck;
-  orientation?: SearchModalitiesCheck;
+  registration?: SearchModalitiesCheck;
+  referral?: SearchModalitiesCheck;
   price?: SearchModalitiesCheck;
-  animal?: { checked?: boolean };
-  pmr?: { checked?: boolean };
+  animals?: { checked?: boolean };
+  accessibility?: { wheelchair?: boolean };
   docs?: string[];
   other?: string | null;
+  _text?: string | null;
   [key: string]: unknown;
 }
 
+export interface SearchSpecialSupportContext {
+  type: string;
+  key: string;
+  label: string;
+  details: string;
+}
+
 export interface SearchPublics {
-  accueil?: 0 | 1 | 2;
+  welcomeType?: 0 | 1 | 2;
   administrative?: PublicsAdministrative[];
   age?: { max?: number; min?: number };
   description?: string | null;
-  familialle?: PublicsFamily[];
+  family?: PublicsFamily[];
   gender?: PublicsGender[];
   other?: PublicsOther[];
+  specialSupportContext?: SearchSpecialSupportContext;
+  _text?: string | null;
   [key: string]: unknown;
 }
 
@@ -132,12 +142,11 @@ export interface SearchCategorySpecificFields {
 }
 
 export interface SearchService {
-  categorie?: number;
   category: Categories;
-  close?: {
-    actif?: boolean;
-    dateDebut?: string | null;
-    dateFin?: string | null;
+  tempClosure?: {
+    active?: boolean;
+    startDate?: string | null;
+    endDate?: string | null;
     closeType?: number | null;
     precision?: string | null;
   };
@@ -156,7 +165,6 @@ export interface SearchService {
   serviceObjectId: string;
   createdAt: string;
   categorySpecificFields?: SearchCategorySpecificFields;
-  jobsList?: string | null;
   name?: string | null;
   [key: string]: unknown;
 }
@@ -169,9 +177,9 @@ export interface SearchGeoZone {
 }
 
 export interface SearchTempInfoBase {
-  actif?: boolean;
-  dateDebut?: string | null;
-  dateFin?: string | null;
+  active?: boolean;
+  startDate?: string | null;
+  endDate?: string | null;
   description?: string;
   [key: string]: unknown;
 }
@@ -236,36 +244,27 @@ export interface SearchSlugs {
 export interface SearchPlace {
   lieu_id?: number;
   _id?: string;
-  seo_url?: string;
+  seoUrl?: string;
   name?: string;
   description?: string | null;
   status?: PlaceStatus;
   visibility?: PlaceVisibility;
   isOpenToday?: boolean;
-  close?: {
-    actif?: boolean;
-    dateDebut?: string | null;
-    dateFin?: string | null;
-    closeType?: number | null;
-    precision?: string | null;
-  };
   photos?: SearchPhoto[];
   placeType?: PlaceType;
-  services_all?: SearchService[];
+  services?: SearchService[];
   position?: SearchPosition;
-  parcours?: SearchParcours[];
-  entity?: SearchEntity;
-  geoZones?: SearchGeoZone[];
-  newhours?: SearchOpeningHours;
+  waypoints?: SearchParcours[];
+  organizationInfo?: SearchEntity;
+  openingHours?: SearchOpeningHours;
   modalities?: SearchModalities;
   publics?: SearchPublics;
-  sourceLanguage?: string;
   country?: string;
   languages?: string[];
   createdAt?: string;
   updatedAt?: string;
   updatedByUserAt?: string;
-  tempInfos?: SearchTempInfo;
+  tempInfo?: SearchTempInfo;
   sources?: SearchSource[];
   slugs?: SearchSlugs;
   distance?: number;

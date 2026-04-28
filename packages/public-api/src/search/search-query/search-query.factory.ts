@@ -10,12 +10,15 @@ import {
 } from "@soliguide/common";
 import type { SoliguideCountries } from "@soliguide/common";
 
-import { V20260101SearchRequest } from "../../versions/2026-01-01/2026-01-01.search-request.schema.generated";
+import { V20260426SearchRequest } from "../../versions/2026-04-26/2026-04-26.search-request.schema.generated";
 
 import { SearchLocation, SearchQuery } from "./search-query";
 
-type LegacyCompatibleSearchRequest = V20260101SearchRequest & {
-  updatedByUserAt?: V20260101SearchRequest["updatedAt"] | null;
+type LegacyCompatibleSearchRequest = V20260426SearchRequest & {
+  category?: V20260426SearchRequest["categories"][number] | null;
+  location?: V20260426SearchRequest["locations"][number] | null;
+  updatedByUserAt?: V20260426SearchRequest["updatedAt"] | null;
+  word?: string | null;
 };
 
 export class SearchQueryFactory {
@@ -25,18 +28,14 @@ export class SearchQueryFactory {
     const modalities = this.mapModalities(request.modalities);
     const audiences = this.mapAudiences(request.publics);
     const updatedAt = request.updatedAt ?? request.updatedByUserAt;
-    const requestQuery = request as unknown as Partial<SearchQuery>;
     const query: SearchQuery = {
       placeType: request.placeType,
-      word: request.word ?? undefined,
+      word: request.q ?? request.word ?? undefined,
       openToday:
         typeof request.openToday === "boolean" ? request.openToday : undefined,
       languages: request.languages ?? undefined,
       widgetId: request.widgetId ?? undefined,
       options: request.options ?? undefined,
-      status: requestQuery.status,
-      visibility: requestQuery.visibility,
-      serviceFiltersEnabled: requestQuery.serviceFiltersEnabled,
     };
 
     if (categories?.length) {
@@ -215,37 +214,58 @@ export class SearchQueryFactory {
     }
 
     const mappedModalities: SearchQuery["modalities"] = {};
+    const legacyModalities = modalities as typeof modalities & {
+      animal?: boolean;
+      inconditionnel?: boolean;
+      inscription?: boolean;
+      orientation?: boolean;
+      pmr?: boolean;
+      price?: boolean;
+      sign?: boolean;
+    };
+    const unconditional =
+      modalities.unconditional ?? legacyModalities.inconditionnel;
+    const appointmentRequired =
+      modalities.appointmentRequired ?? legacyModalities.appointment;
+    const registrationRequired =
+      modalities.registrationRequired ?? legacyModalities.inscription;
+    const referalRequired =
+      modalities.referalRequired ?? legacyModalities.orientation;
+    const isAccessible = modalities.isAccessible ?? legacyModalities.pmr;
+    const hasFees = modalities.hasFees ?? legacyModalities.price;
+    const acceptsPets = modalities.acceptsPets ?? legacyModalities.animal;
+    const hasSignLanguage = modalities.hasSignLanguage ?? legacyModalities.sign;
 
-    if (typeof modalities.inconditionnel === "boolean") {
-      mappedModalities.isUnconditional = modalities.inconditionnel;
+    if (typeof unconditional === "boolean") {
+      mappedModalities.isUnconditional = unconditional;
     }
 
-    if (typeof modalities.appointment === "boolean") {
-      mappedModalities.isAppointmentRequired = modalities.appointment;
+    if (typeof appointmentRequired === "boolean") {
+      mappedModalities.isAppointmentRequired = appointmentRequired;
     }
 
-    if (typeof modalities.inscription === "boolean") {
-      mappedModalities.isRegistrationRequired = modalities.inscription;
+    if (typeof registrationRequired === "boolean") {
+      mappedModalities.isRegistrationRequired = registrationRequired;
     }
 
-    if (typeof modalities.orientation === "boolean") {
-      mappedModalities.isOrientationRequired = modalities.orientation;
+    if (typeof referalRequired === "boolean") {
+      mappedModalities.isOrientationRequired = referalRequired;
     }
 
-    if (typeof modalities.pmr === "boolean") {
-      mappedModalities.hasWeelchairAccess = modalities.pmr;
+    if (typeof isAccessible === "boolean") {
+      mappedModalities.hasWeelchairAccess = isAccessible;
     }
 
-    if (typeof modalities.price === "boolean") {
-      mappedModalities.isPaid = modalities.price;
+    if (typeof hasFees === "boolean") {
+      mappedModalities.isPaid = hasFees;
     }
 
-    if (typeof modalities.animal === "boolean") {
-      mappedModalities.acceptsPets = modalities.animal;
+    if (typeof acceptsPets === "boolean") {
+      mappedModalities.acceptsPets = acceptsPets;
     }
 
-    if (typeof modalities.sign === "boolean") {
-      mappedModalities.sign = modalities.sign;
+    if (typeof hasSignLanguage === "boolean") {
+      mappedModalities.sign = hasSignLanguage;
     }
 
     return Object.keys(mappedModalities).length ? mappedModalities : undefined;
@@ -258,12 +278,19 @@ export class SearchQueryFactory {
       return undefined;
     }
 
-    const admissionPolicy = this.mapAdmissionPolicy(publics.accueil);
+    const legacyPublics = publics as typeof publics & {
+      accueil?: WelcomedPublics | null;
+      familialle?: PublicsFamily[];
+      other?: PublicsOther[];
+    };
+    const admissionPolicy = this.mapAdmissionPolicy(
+      publics.welcomeType ?? legacyPublics.accueil
+    );
     const age = this.mapAge(publics.age);
     const genders = publics.gender ?? [];
     const administrativeStatuses = publics.administrative ?? [];
-    const familyStatuses = publics.familialle ?? [];
-    const otherStatuses = publics.other ?? [];
+    const familyStatuses = publics.family ?? legacyPublics.familialle ?? [];
+    const otherStatuses = publics.specific ?? legacyPublics.other ?? [];
 
     if (
       !admissionPolicy &&

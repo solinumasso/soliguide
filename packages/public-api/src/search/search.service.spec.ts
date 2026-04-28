@@ -76,12 +76,9 @@ describe("SearchService", () => {
       buildUserContext({ status: UserStatus.PRO })
     );
 
-    expect(placesRepository.search).toHaveBeenCalledWith(
-      expect.objectContaining({
-        visibility: undefined,
-      }),
-      { page: 1, limit: 100 }
-    );
+    const [query, pagination] = placesRepository.search.mock.calls[0];
+    expect(query).not.toHaveProperty("visibility");
+    expect(pagination).toEqual({ page: 1, limit: 100 });
   });
 
   it.each([
