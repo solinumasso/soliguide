@@ -6,7 +6,7 @@ import {
   VariableDeclaration,
 } from "ts-morph";
 
-import { ChangeType } from "../../dsl/version-change";
+import { ChangeType } from "../../dsl/changes/version-change";
 import {
   ParsedChangeDefinition,
   ParsedChangePayloadByType,
