@@ -122,8 +122,6 @@ export type NonAdminUserStatus =
 export type SearchQuery = {
   locations?: SearchLocation[];
   categories?: Categories[];
-  status?: PlaceStatus;
-  visibility?: PlaceVisibility;
   placeType?: PlaceType;
   word?: string;
   openToday?: boolean;
@@ -133,6 +131,8 @@ export type SearchQuery = {
   widgetId?: string;
   updatedAt?: SearchUpdatedAt;
   options?: SearchOptions;
+  status?: PlaceStatus;
+  visibility?: PlaceVisibility;
   serviceFiltersEnabled?: boolean;
   apiUserRestrictions?: Record<string, unknown>;
 };

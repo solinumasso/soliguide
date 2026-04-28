@@ -47,7 +47,13 @@ describe("PlacesMongoRepository", () => {
     const aggregate = vi
       .fn()
       .mockReturnValueOnce({
-        allowDiskUse: vi.fn().mockResolvedValue([{ lieu_id: 1, name: "x" }]),
+        allowDiskUse: vi.fn().mockResolvedValue([
+          {
+            lieu_id: 1,
+            name: "x",
+            publics: { ukrainePrecisions: "Accueil possible" },
+          },
+        ]),
       })
       .mockReturnValueOnce({
         allowDiskUse: vi.fn().mockResolvedValue([{ totalResults: 1 }]),
@@ -62,7 +68,20 @@ describe("PlacesMongoRepository", () => {
 
     expect(result).toEqual({
       nbResults: 1,
-      places: [{ lieu_id: 1, name: "x" }],
+      places: [
+        {
+          lieu_id: 1,
+          name: "x",
+          publics: {
+            specialSupportContext: {
+              type: "humanitarianCrisis",
+              key: "ukraine-displacement",
+              label: "Support for displaced people from Ukraine",
+              details: "Accueil possible",
+            },
+          },
+        },
+      ],
     });
     expect(queryBuilder.build).toHaveBeenCalled();
     expect(aggregate).toHaveBeenCalledTimes(2);
