@@ -7,7 +7,7 @@ import {
   writeFile,
 } from "node:fs/promises";
 import { existsSync } from "node:fs";
-import { dirname, resolve } from "node:path";
+import { dirname, relative, resolve } from "node:path";
 import { execFileSync } from "node:child_process";
 
 import { Project } from "ts-morph";
@@ -127,6 +127,7 @@ export class SchemaVersionGenerator {
 
     const generatedRegistryPath = await this.rebuildRegistryFile({
       baseVersion: parsedVersionDefinition.baseVersion,
+      packageRootDir,
       sourceVersionDirectoryPath,
       targetVersion: parsedVersionDefinition.version,
       targetVersionDirectoryPath,
@@ -202,6 +203,7 @@ export class SchemaVersionGenerator {
     sourceVersionDirectoryPath: string;
     targetVersionDirectoryPath: string;
     baseVersion: string;
+    packageRootDir: string;
     targetVersion: string;
   }): Promise<string> {
     const sourceRegistryPath = resolve(
@@ -218,10 +220,14 @@ export class SchemaVersionGenerator {
     }
 
     const sourceRegistryText = await readFile(sourceRegistryPath, "utf-8");
-    const rewrittenRegistryText = replaceVersionTokensInText(
-      sourceRegistryText,
-      options.baseVersion,
-      options.targetVersion
+    const rewrittenRegistryText = rewriteSrcImportPathsInText(
+      replaceVersionTokensInText(
+        sourceRegistryText,
+        options.baseVersion,
+        options.targetVersion
+      ),
+      targetRegistryPath,
+      options.packageRootDir
     );
 
     await writeFile(targetRegistryPath, rewrittenRegistryText, "utf-8");
@@ -282,7 +288,7 @@ export class SchemaVersionGenerator {
     });
 
     const indexFileContent = [
-      'import { VersionRegistry } from "../versioning-engine/version-registry";',
+      'import { VersionRegistry } from "../versioning-engine";',
       ...importLines,
       "",
       "export const versionRegistry: Record<string, VersionRegistry> = {",
@@ -386,4 +392,27 @@ function replaceVersionTokensInText(
   }
 
   return rewrittenText;
+}
+
+function rewriteSrcImportPathsInText(
+  sourceText: string,
+  targetFilePath: string,
+  packageRootDir: string
+): string {
+  return sourceText.replace(
+    /(\bfrom\s+["']|^\s*import\s+["'])(src\/[^"']+)(["'])/gm,
+    (_, importPrefix: string, importPath: string, importSuffix: string) => {
+      const absoluteImportPath = resolve(packageRootDir, importPath);
+      const relativeImportPath = relative(
+        dirname(targetFilePath),
+        absoluteImportPath
+      ).replaceAll("\\", "/");
+
+      return `${importPrefix}${
+        relativeImportPath.startsWith(".")
+          ? relativeImportPath
+          : `./${relativeImportPath}`
+      }${importSuffix}`;
+    }
+  );
 }
