@@ -28,7 +28,7 @@ describe("2026-04-26 runtime versioning", () => {
             slugs: { departement: "paris", pays: "france" },
             ville: "Paris",
           },
-          publics: { ukrainePrecisions: "Accueil possible" },
+          publics: { ukrainePrecisions: "Accueil legacy" },
           services_all: [{ categorie: "food", jobsList: ["cook"] }],
           sourceLanguage: "fr",
         },
@@ -122,6 +122,12 @@ describe("2026-04-26 runtime versioning", () => {
             },
             publics: {
               family: ["family"],
+              specialSupportContext: {
+                type: "humanitarianCrisis",
+                key: "ukraine-displacement",
+                label: "Support for displaced people from Ukraine",
+                details: "Accueil possible",
+              },
               welcomeType: 1,
             },
             seoUrl: "org-paris",
