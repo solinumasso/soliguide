@@ -1,0 +1,2832 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/search": {
+      "post": {
+        "operationId": "search-places",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "nbResults": {
+                      "nullable": true,
+                      "description": "Total number of places matching the request.",
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "places": {
+                      "type": "array",
+                      "items": {
+                        "nullable": true,
+                        "description": "List of place matching the request.",
+                        "oneOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "lieu_id": {
+                                "description": "Numeric place identifier.",
+                                "nullable": true,
+                                "type": "integer"
+                              },
+                              "_id": {
+                                "description": "Internal identifier of the place",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "seoUrl": {
+                                "description": "SEO-friendly URL slug of the place.",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "name": {
+                                "description": "Localized name of the place.",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "description": {
+                                "description": "Localized HTML content describing the place.",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "status": {
+                                "description": "Publication status of the place: `DRAFT`, `ONLINE`, `OFFLINE` or `CLOSED`.",
+                                "nullable": true,
+                                "allOf": [
+                                  {
+                                    "$ref": "#/components/schemas/Common_PlaceStatus"
+                                  }
+                                ]
+                              },
+                              "visibility": {
+                                "description": "Indicates who can access information about this place.",
+                                "nullable": true,
+                                "allOf": [
+                                  {
+                                    "$ref": "#/components/schemas/Common_PlaceVisibility"
+                                  }
+                                ]
+                              },
+                              "isOpenToday": {
+                                "description": "Whether the place is open today. Recalculated daily.",
+                                "nullable": true,
+                                "type": "boolean"
+                              },
+                              "photos": {
+                                "nullable": true,
+                                "type": "array",
+                                "items": {
+                                  "$ref": "#/components/schemas/SearchResponse_Photo"
+                                }
+                              },
+                              "placeType": {
+                                "type": "string",
+                                "enum": [
+                                  "LIEU"
+                                ]
+                              },
+                              "services": {
+                                "description": "List of services available at the place.",
+                                "nullable": true,
+                                "type": "array",
+                                "items": {
+                                  "$ref": "#/components/schemas/SearchResponse_Service"
+                                }
+                              },
+                              "position": {
+                                "description": "Address and geographic information of the place.",
+                                "nullable": true,
+                                "allOf": [
+                                  {
+                                    "$ref": "#/components/schemas/SearchResponse_Position"
+                                  }
+                                ]
+                              },
+                              "organizationInfo": {
+                                "description": "Organization contact information.",
+                                "nullable": true,
+                                "allOf": [
+                                  {
+                                    "$ref": "#/components/schemas/SearchResponse_Entity"
+                                  }
+                                ]
+                              },
+                              "openingHours": {
+                                "description": "Opening hours of the place.",
+                                "nullable": true,
+                                "allOf": [
+                                  {
+                                    "$ref": "#/components/schemas/SearchResponse_OpeningHours"
+                                  }
+                                ]
+                              },
+                              "modalities": {
+                                "description": "Access conditions of the place.",
+                                "nullable": true,
+                                "allOf": [
+                                  {
+                                    "$ref": "#/components/schemas/SearchResponse_Modalities"
+                                  }
+                                ]
+                              },
+                              "publics": {
+                                "description": "Audience welcomed at the place.",
+                                "nullable": true,
+                                "allOf": [
+                                  {
+                                    "$ref": "#/components/schemas/SearchResponse_Publics"
+                                  }
+                                ]
+                              },
+                              "country": {
+                                "description": "Country code of the place. Format ISO 3166-1 alpha-2.",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "languages": {
+                                "description": "Languages spoken at the place. Format ISO 639-3.",
+                                "nullable": true,
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "createdAt": {
+                                "description": "Creation date of the place. Format ISO 8601.",
+                                "nullable": true,
+                                "allOf": [
+                                  {
+                                    "$ref": "#/components/schemas/SearchResponse_Date"
+                                  }
+                                ]
+                              },
+                              "updatedAt": {
+                                "description": "Last update date of the place. Format ISO 8601.",
+                                "nullable": true,
+                                "allOf": [
+                                  {
+                                    "$ref": "#/components/schemas/SearchResponse_Date"
+                                  }
+                                ]
+                              },
+                              "updatedByUserAt": {
+                                "description": "Last user update date of the place. Format ISO 8601.",
+                                "nullable": true,
+                                "allOf": [
+                                  {
+                                    "$ref": "#/components/schemas/SearchResponse_Date"
+                                  }
+                                ]
+                              },
+                              "tempInfo": {
+                                "description": "Temporary closure, opening hours and message information.",
+                                "nullable": true,
+                                "type": "object",
+                                "properties": {
+                                  "closure": {
+                                    "description": "Temporary closure of the place.",
+                                    "nullable": true,
+                                    "type": "object",
+                                    "properties": {
+                                      "active": {
+                                        "description": "Indicates whether the temporary information is currently active.",
+                                        "nullable": true,
+                                        "type": "boolean"
+                                      },
+                                      "startDate": {
+                                        "description": "Start date of the temporary information. Format ISO 8601.",
+                                        "nullable": true,
+                                        "type": "string"
+                                      },
+                                      "endDate": {
+                                        "description": "End date of the temporary information. Format ISO 8601.",
+                                        "nullable": true,
+                                        "type": "string"
+                                      },
+                                      "description": {
+                                        "description": "Message describing the temporary information.",
+                                        "nullable": true,
+                                        "type": "string"
+                                      }
+                                    },
+                                    "additionalProperties": {}
+                                  },
+                                  "hours": {
+                                    "description": "Temporary opening hours of the place.",
+                                    "nullable": true,
+                                    "type": "object",
+                                    "properties": {
+                                      "active": {
+                                        "description": "Indicates whether the temporary information is currently active.",
+                                        "nullable": true,
+                                        "type": "boolean"
+                                      },
+                                      "startDate": {
+                                        "description": "Start date of the temporary information. Format ISO 8601.",
+                                        "nullable": true,
+                                        "type": "string"
+                                      },
+                                      "endDate": {
+                                        "description": "End date of the temporary information. Format ISO 8601.",
+                                        "nullable": true,
+                                        "type": "string"
+                                      },
+                                      "description": {
+                                        "description": "Message describing the temporary information.",
+                                        "nullable": true,
+                                        "type": "string"
+                                      },
+                                      "hours": {
+                                        "description": "Temporary opening hours of the place.",
+                                        "nullable": true,
+                                        "type": "object",
+                                        "properties": {},
+                                        "additionalProperties": {}
+                                      }
+                                    },
+                                    "additionalProperties": {}
+                                  },
+                                  "message": {
+                                    "nullable": true,
+                                    "type": "object",
+                                    "properties": {
+                                      "active": {
+                                        "description": "Indicates whether the temporary information is currently active.",
+                                        "nullable": true,
+                                        "type": "boolean"
+                                      },
+                                      "startDate": {
+                                        "description": "Start date of the temporary information. Format ISO 8601.",
+                                        "nullable": true,
+                                        "type": "string"
+                                      },
+                                      "endDate": {
+                                        "description": "End date of the temporary information. Format ISO 8601.",
+                                        "nullable": true,
+                                        "type": "string"
+                                      },
+                                      "description": {
+                                        "description": "Message describing the temporary information.",
+                                        "nullable": true,
+                                        "type": "string"
+                                      },
+                                      "name": {
+                                        "nullable": true,
+                                        "type": "string"
+                                      }
+                                    },
+                                    "additionalProperties": {}
+                                  }
+                                },
+                                "additionalProperties": {}
+                              },
+                              "sources": {
+                                "description": "External data sources paired with the place.",
+                                "nullable": true,
+                                "type": "array",
+                                "items": {
+                                  "$ref": "#/components/schemas/SearchResponse_Source"
+                                }
+                              },
+                              "slugs": {
+                                "nullable": true,
+                                "allOf": [
+                                  {
+                                    "$ref": "#/components/schemas/SearchResponse_Slugs"
+                                  }
+                                ]
+                              },
+                              "distance": {
+                                "description": "Distance between the search center and the place, in meters.",
+                                "nullable": true,
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "placeType"
+                            ],
+                            "additionalProperties": false,
+                            "title": "FixedPosition"
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "lieu_id": {
+                                "description": "Numeric place identifier.",
+                                "nullable": true,
+                                "type": "integer"
+                              },
+                              "_id": {
+                                "description": "Internal identifier of the place",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "seoUrl": {
+                                "description": "SEO-friendly URL slug of the place.",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "name": {
+                                "description": "Localized name of the place.",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "description": {
+                                "description": "Localized HTML content describing the place.",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "status": {
+                                "description": "Publication status of the place: `DRAFT`, `ONLINE`, `OFFLINE` or `CLOSED`.",
+                                "nullable": true,
+                                "allOf": [
+                                  {
+                                    "$ref": "#/components/schemas/Common_PlaceStatus"
+                                  }
+                                ]
+                              },
+                              "visibility": {
+                                "description": "Indicates who can access information about this place.",
+                                "nullable": true,
+                                "allOf": [
+                                  {
+                                    "$ref": "#/components/schemas/Common_PlaceVisibility"
+                                  }
+                                ]
+                              },
+                              "isOpenToday": {
+                                "description": "Whether the place is open today. Recalculated daily.",
+                                "nullable": true,
+                                "type": "boolean"
+                              },
+                              "photos": {
+                                "nullable": true,
+                                "type": "array",
+                                "items": {
+                                  "$ref": "#/components/schemas/SearchResponse_Photo"
+                                }
+                              },
+                              "placeType": {
+                                "type": "string",
+                                "enum": [
+                                  "PARCOURS_MOBILE"
+                                ]
+                              },
+                              "services": {
+                                "description": "List of services available at the place.",
+                                "nullable": true,
+                                "type": "array",
+                                "items": {
+                                  "$ref": "#/components/schemas/SearchResponse_Service"
+                                }
+                              },
+                              "waypoints": {
+                                "description": "Details about the Parcours of a facility when `placeType` is \"PARCOURS_MOBILE\"",
+                                "nullable": true,
+                                "type": "array",
+                                "items": {
+                                  "$ref": "#/components/schemas/SearchResponse_Parcours"
+                                }
+                              },
+                              "organizationInfo": {
+                                "description": "Organization contact information.",
+                                "nullable": true,
+                                "allOf": [
+                                  {
+                                    "$ref": "#/components/schemas/SearchResponse_Entity"
+                                  }
+                                ]
+                              },
+                              "modalities": {
+                                "description": "Access conditions of the place.",
+                                "nullable": true,
+                                "allOf": [
+                                  {
+                                    "$ref": "#/components/schemas/SearchResponse_Modalities"
+                                  }
+                                ]
+                              },
+                              "publics": {
+                                "description": "Audience welcomed at the place.",
+                                "nullable": true,
+                                "allOf": [
+                                  {
+                                    "$ref": "#/components/schemas/SearchResponse_Publics"
+                                  }
+                                ]
+                              },
+                              "country": {
+                                "description": "Country code of the place. Format ISO 3166-1 alpha-2.",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "languages": {
+                                "description": "Languages spoken at the place. Format ISO 639-3.",
+                                "nullable": true,
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "createdAt": {
+                                "description": "Creation date of the place. Format ISO 8601.",
+                                "nullable": true,
+                                "allOf": [
+                                  {
+                                    "$ref": "#/components/schemas/SearchResponse_Date"
+                                  }
+                                ]
+                              },
+                              "updatedAt": {
+                                "description": "Last update date of the place. Format ISO 8601.",
+                                "nullable": true,
+                                "allOf": [
+                                  {
+                                    "$ref": "#/components/schemas/SearchResponse_Date"
+                                  }
+                                ]
+                              },
+                              "updatedByUserAt": {
+                                "description": "Last user update date of the place. Format ISO 8601.",
+                                "nullable": true,
+                                "allOf": [
+                                  {
+                                    "$ref": "#/components/schemas/SearchResponse_Date"
+                                  }
+                                ]
+                              },
+                              "tempInfo": {
+                                "description": "Temporary closure, opening hours and message information.",
+                                "nullable": true,
+                                "type": "object",
+                                "properties": {
+                                  "closure": {
+                                    "description": "Temporary closure of the place.",
+                                    "nullable": true,
+                                    "type": "object",
+                                    "properties": {
+                                      "active": {
+                                        "description": "Indicates whether the temporary information is currently active.",
+                                        "nullable": true,
+                                        "type": "boolean"
+                                      },
+                                      "startDate": {
+                                        "description": "Start date of the temporary information. Format ISO 8601.",
+                                        "nullable": true,
+                                        "type": "string"
+                                      },
+                                      "endDate": {
+                                        "description": "End date of the temporary information. Format ISO 8601.",
+                                        "nullable": true,
+                                        "type": "string"
+                                      },
+                                      "description": {
+                                        "description": "Message describing the temporary information.",
+                                        "nullable": true,
+                                        "type": "string"
+                                      }
+                                    },
+                                    "additionalProperties": {}
+                                  },
+                                  "hours": {
+                                    "description": "Temporary opening hours of the place.",
+                                    "nullable": true,
+                                    "type": "object",
+                                    "properties": {
+                                      "active": {
+                                        "description": "Indicates whether the temporary information is currently active.",
+                                        "nullable": true,
+                                        "type": "boolean"
+                                      },
+                                      "startDate": {
+                                        "description": "Start date of the temporary information. Format ISO 8601.",
+                                        "nullable": true,
+                                        "type": "string"
+                                      },
+                                      "endDate": {
+                                        "description": "End date of the temporary information. Format ISO 8601.",
+                                        "nullable": true,
+                                        "type": "string"
+                                      },
+                                      "description": {
+                                        "description": "Message describing the temporary information.",
+                                        "nullable": true,
+                                        "type": "string"
+                                      },
+                                      "hours": {
+                                        "description": "Temporary opening hours of the place.",
+                                        "nullable": true,
+                                        "type": "object",
+                                        "properties": {},
+                                        "additionalProperties": {}
+                                      }
+                                    },
+                                    "additionalProperties": {}
+                                  },
+                                  "message": {
+                                    "nullable": true,
+                                    "type": "object",
+                                    "properties": {
+                                      "active": {
+                                        "description": "Indicates whether the temporary information is currently active.",
+                                        "nullable": true,
+                                        "type": "boolean"
+                                      },
+                                      "startDate": {
+                                        "description": "Start date of the temporary information. Format ISO 8601.",
+                                        "nullable": true,
+                                        "type": "string"
+                                      },
+                                      "endDate": {
+                                        "description": "End date of the temporary information. Format ISO 8601.",
+                                        "nullable": true,
+                                        "type": "string"
+                                      },
+                                      "description": {
+                                        "description": "Message describing the temporary information.",
+                                        "nullable": true,
+                                        "type": "string"
+                                      },
+                                      "name": {
+                                        "nullable": true,
+                                        "type": "string"
+                                      }
+                                    },
+                                    "additionalProperties": {}
+                                  }
+                                },
+                                "additionalProperties": {}
+                              },
+                              "sources": {
+                                "description": "External data sources paired with the place.",
+                                "nullable": true,
+                                "type": "array",
+                                "items": {
+                                  "$ref": "#/components/schemas/SearchResponse_Source"
+                                }
+                              },
+                              "slugs": {
+                                "nullable": true,
+                                "allOf": [
+                                  {
+                                    "$ref": "#/components/schemas/SearchResponse_Slugs"
+                                  }
+                                ]
+                              },
+                              "distance": {
+                                "description": "Distance between the search center and the place, in meters.",
+                                "nullable": true,
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "placeType"
+                            ],
+                            "additionalProperties": false,
+                            "title": "Itinerary"
+                          }
+                        ],
+                        "discriminator": {
+                          "propertyName": "type"
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "nbResults",
+                    "places"
+                  ],
+                  "additionalProperties": false,
+                  "id": "v20260426SearchResponse"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Search places",
+        "tags": [
+          "search"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "locations": {
+                    "description": "Optional list of locations for widget-like multi-location search.",
+                    "nullable": true,
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/SearchRequest_Location"
+                    }
+                  },
+                  "categories": {
+                    "description": "Multiple categories (restricted by user status at route level).",
+                    "nullable": true,
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Common_Categories"
+                    }
+                  },
+                  "placeType": {
+                    "default": "LIEU",
+                    "description": "Resource type to search: fixed places or itineraries.",
+                    "example": "LIEU",
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/Common_PlaceType"
+                      }
+                    ]
+                  },
+                  "q": {
+                    "description": "Free-text search applied to place and service content.",
+                    "nullable": true,
+                    "type": "string"
+                  },
+                  "openToday": {
+                    "description": "Only return results that are open today.",
+                    "example": true,
+                    "nullable": true,
+                    "type": "boolean"
+                  },
+                  "modalities": {
+                    "nullable": true,
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/SearchRequest_Modalities"
+                      }
+                    ]
+                  },
+                  "publics": {
+                    "nullable": true,
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/SearchRequest_Publics"
+                      }
+                    ]
+                  },
+                  "languages": {
+                    "description": "Language spoken at the place. Format ISO 639-3.",
+                    "example": "fr",
+                    "nullable": true,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "aa",
+                        "ab",
+                        "af",
+                        "ak",
+                        "am",
+                        "an",
+                        "ar",
+                        "ay",
+                        "az",
+                        "ba",
+                        "be",
+                        "bg",
+                        "bh",
+                        "bi",
+                        "bm",
+                        "bn",
+                        "bo",
+                        "brc",
+                        "brk",
+                        "bs",
+                        "ca",
+                        "ce",
+                        "co",
+                        "cs",
+                        "cv",
+                        "da",
+                        "dar",
+                        "de",
+                        "dv",
+                        "ee",
+                        "el",
+                        "en",
+                        "eo",
+                        "es",
+                        "et",
+                        "eus",
+                        "fa",
+                        "ff",
+                        "fi",
+                        "fo",
+                        "fr",
+                        "ga",
+                        "gl",
+                        "gn",
+                        "gsw",
+                        "gu",
+                        "he",
+                        "hi",
+                        "ho",
+                        "hr",
+                        "ht",
+                        "hu",
+                        "hy",
+                        "id",
+                        "ig",
+                        "ii",
+                        "is",
+                        "it",
+                        "ja",
+                        "ka",
+                        "kg",
+                        "ki",
+                        "kj",
+                        "kk",
+                        "km",
+                        "ko",
+                        "ks",
+                        "ku",
+                        "kw",
+                        "ky",
+                        "lb",
+                        "lg",
+                        "li",
+                        "ln",
+                        "lo",
+                        "lsf",
+                        "lt",
+                        "lu",
+                        "lv",
+                        "mg",
+                        "mh",
+                        "mk",
+                        "ml",
+                        "mn",
+                        "mr",
+                        "ms",
+                        "mt",
+                        "my",
+                        "na",
+                        "nd",
+                        "ne",
+                        "ng",
+                        "nl",
+                        "nr",
+                        "nv",
+                        "ny",
+                        "oc",
+                        "om",
+                        "os",
+                        "pa",
+                        "pac",
+                        "pe",
+                        "pl",
+                        "ps",
+                        "pt",
+                        "qu",
+                        "rcf",
+                        "rm",
+                        "rn",
+                        "ro",
+                        "rom",
+                        "ru",
+                        "rw",
+                        "sa",
+                        "sd",
+                        "sg",
+                        "si",
+                        "sk",
+                        "sl",
+                        "sm",
+                        "sn",
+                        "so",
+                        "son",
+                        "sq",
+                        "sr",
+                        "ss",
+                        "st",
+                        "sv",
+                        "sw",
+                        "swb",
+                        "ta",
+                        "te",
+                        "tg",
+                        "th",
+                        "tk",
+                        "tl",
+                        "tr",
+                        "ts",
+                        "tt",
+                        "tw",
+                        "ty",
+                        "ug",
+                        "uk",
+                        "ur",
+                        "uz",
+                        "vi",
+                        "wo",
+                        "yi",
+                        "zh"
+                      ]
+                    }
+                  },
+                  "widgetId": {
+                    "description": "Widget identifier used to apply widget-specific search rules.",
+                    "nullable": true,
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "description": "Update-date filter.",
+                    "nullable": true,
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/SearchRequest_UpdatedAt"
+                      }
+                    ]
+                  },
+                  "options": {
+                    "description": "Search result options.",
+                    "nullable": true,
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/SearchRequest_Options"
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": {},
+                "description": "Exhaustive request body schema for POST /new-search/:lang? (non-admin route).",
+                "id": "v20260426SearchRequest"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "info": {
+    "title": "Soliguide Public API",
+    "description": "This API exposes public Soliguide data for search and integrations.",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "SearchRequest_Location": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "geoType": {
+                "type": "string",
+                "enum": [
+                  "position"
+                ]
+              },
+              "geoValue": {
+                "description": "Geographic identifier for non-position searches (country, region, department, city, etc.).",
+                "nullable": true,
+                "type": "string"
+              },
+              "coordinates": {
+                "minItems": 2,
+                "maxItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "description": "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON.",
+                "example": [
+                  2.3522,
+                  48.8566
+                ]
+              },
+              "distance": {
+                "description": "Search radius in kilometers for position-based search.",
+                "example": 5,
+                "nullable": true,
+                "type": "number"
+              },
+              "label": {
+                "description": "Free-text label associated with the searched geographic area.",
+                "nullable": true,
+                "type": "string"
+              },
+              "department": {
+                "description": "Department name of the searched area.",
+                "nullable": true,
+                "type": "string"
+              },
+              "regionCode": {
+                "description": "Administrative code of the searched region.",
+                "nullable": true,
+                "type": "string"
+              },
+              "departmentCode": {
+                "description": "Department code of the searched area. Examples: `974`, `2A`, `91`, `06`.",
+                "nullable": true,
+                "type": "string"
+              },
+              "region": {
+                "description": "Region name of the searched area.",
+                "nullable": true,
+                "type": "string"
+              },
+              "country": {
+                "description": "Country code. Restricted to Soliguide countries for non-API users.",
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Common_CountryCodes"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "geoType",
+              "coordinates"
+            ],
+            "additionalProperties": {}
+          },
+          {
+            "type": "object",
+            "properties": {
+              "geoType": {
+                "type": "string",
+                "enum": [
+                  "inconnu"
+                ]
+              },
+              "geoValue": {
+                "description": "Geographic identifier for non-position searches (country, region, department, city, etc.).",
+                "nullable": true,
+                "type": "string"
+              },
+              "coordinates": {
+                "description": "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON.",
+                "nullable": true,
+                "minItems": 2,
+                "maxItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "distance": {
+                "description": "Search radius in kilometers for position-based search.",
+                "example": 5,
+                "nullable": true,
+                "type": "number"
+              },
+              "label": {
+                "description": "Free-text label associated with the searched geographic area.",
+                "nullable": true,
+                "type": "string"
+              },
+              "department": {
+                "description": "Department name of the searched area.",
+                "nullable": true,
+                "type": "string"
+              },
+              "regionCode": {
+                "description": "Administrative code of the searched region.",
+                "nullable": true,
+                "type": "string"
+              },
+              "departmentCode": {
+                "description": "Department code of the searched area. Examples: `974`, `2A`, `91`, `06`.",
+                "nullable": true,
+                "type": "string"
+              },
+              "region": {
+                "description": "Region name of the searched area.",
+                "nullable": true,
+                "type": "string"
+              },
+              "country": {
+                "description": "Country code. Restricted to Soliguide countries for non-API users.",
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Common_CountryCodes"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "geoType"
+            ],
+            "additionalProperties": {}
+          },
+          {
+            "type": "object",
+            "properties": {
+              "geoType": {
+                "type": "string",
+                "enum": [
+                  "codePostal"
+                ]
+              },
+              "geoValue": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Geographic identifier for a borough search. This value usually includes the postal code.",
+                "example": "75013"
+              },
+              "coordinates": {
+                "description": "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON.",
+                "nullable": true,
+                "minItems": 2,
+                "maxItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "distance": {
+                "description": "Search radius in kilometers for position-based search.",
+                "example": 5,
+                "nullable": true,
+                "type": "number"
+              },
+              "label": {
+                "description": "Free-text label associated with the searched geographic area.",
+                "nullable": true,
+                "type": "string"
+              },
+              "department": {
+                "description": "Department name of the searched area.",
+                "nullable": true,
+                "type": "string"
+              },
+              "regionCode": {
+                "description": "Administrative code of the searched region.",
+                "nullable": true,
+                "type": "string"
+              },
+              "departmentCode": {
+                "description": "Department code of the searched area. Examples: `974`, `2A`, `91`, `06`.",
+                "nullable": true,
+                "type": "string"
+              },
+              "region": {
+                "description": "Region name of the searched area.",
+                "nullable": true,
+                "type": "string"
+              },
+              "country": {
+                "description": "Country code. Restricted to Soliguide countries for non-API users.",
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Common_CountryCodes"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "geoType",
+              "geoValue"
+            ],
+            "additionalProperties": {}
+          },
+          {
+            "type": "object",
+            "properties": {
+              "geoType": {
+                "type": "string",
+                "enum": [
+                  "ville"
+                ]
+              },
+              "geoValue": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Geographic identifier for a city search. This value can include the postal code suffix used by Soliguide.",
+                "example": "paris-75013"
+              },
+              "coordinates": {
+                "description": "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON.",
+                "nullable": true,
+                "minItems": 2,
+                "maxItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "distance": {
+                "description": "Search radius in kilometers for position-based search.",
+                "example": 5,
+                "nullable": true,
+                "type": "number"
+              },
+              "label": {
+                "description": "Free-text label associated with the searched geographic area.",
+                "nullable": true,
+                "type": "string"
+              },
+              "department": {
+                "description": "Department name of the searched area.",
+                "nullable": true,
+                "type": "string"
+              },
+              "regionCode": {
+                "description": "Administrative code of the searched region.",
+                "nullable": true,
+                "type": "string"
+              },
+              "departmentCode": {
+                "description": "Department code of the searched area. Examples: `974`, `2A`, `91`, `06`.",
+                "nullable": true,
+                "type": "string"
+              },
+              "region": {
+                "description": "Region name of the searched area.",
+                "nullable": true,
+                "type": "string"
+              },
+              "country": {
+                "description": "Country code. Restricted to Soliguide countries for non-API users.",
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Common_CountryCodes"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "geoType",
+              "geoValue"
+            ],
+            "additionalProperties": {}
+          },
+          {
+            "type": "object",
+            "properties": {
+              "geoType": {
+                "type": "string",
+                "enum": [
+                  "pays"
+                ]
+              },
+              "geoValue": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Country code searched when `geoType` is `country`. Format ISO 3166-1 alpha-2.",
+                "example": "fr"
+              },
+              "coordinates": {
+                "description": "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON.",
+                "nullable": true,
+                "minItems": 2,
+                "maxItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "distance": {
+                "description": "Search radius in kilometers for position-based search.",
+                "example": 5,
+                "nullable": true,
+                "type": "number"
+              },
+              "label": {
+                "description": "Free-text label associated with the searched geographic area.",
+                "nullable": true,
+                "type": "string"
+              },
+              "department": {
+                "description": "Department name of the searched area.",
+                "nullable": true,
+                "type": "string"
+              },
+              "regionCode": {
+                "description": "Administrative code of the searched region.",
+                "nullable": true,
+                "type": "string"
+              },
+              "departmentCode": {
+                "description": "Department code of the searched area. Examples: `974`, `2A`, `91`, `06`.",
+                "nullable": true,
+                "type": "string"
+              },
+              "region": {
+                "description": "Region name of the searched area.",
+                "nullable": true,
+                "type": "string"
+              },
+              "country": {
+                "description": "Country code. Restricted to Soliguide countries for non-API users.",
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Common_CountryCodes"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "geoType",
+              "geoValue"
+            ],
+            "additionalProperties": {}
+          },
+          {
+            "type": "object",
+            "properties": {
+              "geoType": {
+                "type": "string",
+                "enum": [
+                  "departement"
+                ]
+              },
+              "geoValue": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Geographic identifier for a department search.",
+                "example": "75"
+              },
+              "coordinates": {
+                "description": "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON.",
+                "nullable": true,
+                "minItems": 2,
+                "maxItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "distance": {
+                "description": "Search radius in kilometers for position-based search.",
+                "example": 5,
+                "nullable": true,
+                "type": "number"
+              },
+              "label": {
+                "description": "Free-text label associated with the searched geographic area.",
+                "nullable": true,
+                "type": "string"
+              },
+              "department": {
+                "description": "Department name of the searched area.",
+                "nullable": true,
+                "type": "string"
+              },
+              "regionCode": {
+                "description": "Administrative code of the searched region.",
+                "nullable": true,
+                "type": "string"
+              },
+              "departmentCode": {
+                "description": "Department code of the searched area. Examples: `974`, `2A`, `91`, `06`.",
+                "nullable": true,
+                "type": "string"
+              },
+              "region": {
+                "description": "Region name of the searched area.",
+                "nullable": true,
+                "type": "string"
+              },
+              "country": {
+                "description": "Country code. Restricted to Soliguide countries for non-API users.",
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Common_CountryCodes"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "geoType",
+              "geoValue"
+            ],
+            "additionalProperties": {}
+          },
+          {
+            "type": "object",
+            "properties": {
+              "geoType": {
+                "type": "string",
+                "enum": [
+                  "region"
+                ]
+              },
+              "geoValue": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Geographic identifier for a region search.",
+                "example": "ile-de-france"
+              },
+              "coordinates": {
+                "description": "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON.",
+                "nullable": true,
+                "minItems": 2,
+                "maxItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "distance": {
+                "description": "Search radius in kilometers for position-based search.",
+                "example": 5,
+                "nullable": true,
+                "type": "number"
+              },
+              "label": {
+                "description": "Free-text label associated with the searched geographic area.",
+                "nullable": true,
+                "type": "string"
+              },
+              "department": {
+                "description": "Department name of the searched area.",
+                "nullable": true,
+                "type": "string"
+              },
+              "regionCode": {
+                "description": "Administrative code of the searched region.",
+                "nullable": true,
+                "type": "string"
+              },
+              "departmentCode": {
+                "description": "Department code of the searched area. Examples: `974`, `2A`, `91`, `06`.",
+                "nullable": true,
+                "type": "string"
+              },
+              "region": {
+                "description": "Region name of the searched area.",
+                "nullable": true,
+                "type": "string"
+              },
+              "country": {
+                "description": "Country code. Restricted to Soliguide countries for non-API users.",
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Common_CountryCodes"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "geoType",
+              "geoValue"
+            ],
+            "additionalProperties": {}
+          },
+          {
+            "type": "object",
+            "properties": {
+              "geoType": {
+                "type": "string",
+                "enum": [
+                  "citiesGroup"
+                ]
+              },
+              "geoValue": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Free-text search value used to target a group of cities.",
+                "example": "paris"
+              },
+              "coordinates": {
+                "description": "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON.",
+                "nullable": true,
+                "minItems": 2,
+                "maxItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "distance": {
+                "description": "Search radius in kilometers for position-based search.",
+                "example": 5,
+                "nullable": true,
+                "type": "number"
+              },
+              "label": {
+                "description": "Free-text label associated with the searched geographic area.",
+                "nullable": true,
+                "type": "string"
+              },
+              "department": {
+                "description": "Department name of the searched area.",
+                "nullable": true,
+                "type": "string"
+              },
+              "regionCode": {
+                "description": "Administrative code of the searched region.",
+                "nullable": true,
+                "type": "string"
+              },
+              "departmentCode": {
+                "description": "Department code of the searched area. Examples: `974`, `2A`, `91`, `06`.",
+                "nullable": true,
+                "type": "string"
+              },
+              "region": {
+                "description": "Region name of the searched area.",
+                "nullable": true,
+                "type": "string"
+              },
+              "country": {
+                "description": "Country code. Restricted to Soliguide countries for non-API users.",
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Common_CountryCodes"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "geoType",
+              "geoValue"
+            ],
+            "additionalProperties": {}
+          }
+        ],
+        "description": "Geographic mode used by the search location.",
+        "id": "SearchRequest_Location"
+      },
+      "Common_CountryCodes": {
+        "type": "string",
+        "enum": [
+          "fr",
+          "re",
+          "gf",
+          "pf",
+          "tf",
+          "gp",
+          "mq",
+          "yt",
+          "bl",
+          "mf",
+          "pm",
+          "wf",
+          "es",
+          "ad"
+        ],
+        "description": "Country code. Format ISO 3166-1 alpha-2.",
+        "id": "Common_CountryCodes"
+      },
+      "Common_Categories": {
+        "type": "string",
+        "enum": [
+          "health",
+          "addiction",
+          "std_testing",
+          "psychological_support",
+          "child_care",
+          "general_practitioner",
+          "dental_care",
+          "pregnancy_care",
+          "vaccination",
+          "infirmary",
+          "vet_care",
+          "health_specialists",
+          "allergology",
+          "cardiology",
+          "dermatology",
+          "echography",
+          "endocrinology",
+          "gastroenterology",
+          "gynecology",
+          "kinesitherapy",
+          "mammography",
+          "ophthalmology",
+          "otorhinolaryngology",
+          "nutrition",
+          "pedicure",
+          "phlebology",
+          "pneumology",
+          "radiology",
+          "rheumatology",
+          "urology",
+          "speech_therapy",
+          "stomatology",
+          "osteopathy",
+          "acupuncture",
+          "mobility",
+          "transportation_mobility",
+          "personal_vehicle_access",
+          "vehicle_maintenance",
+          "mobility_support",
+          "driving_license",
+          "mobility_financing",
+          "training_and_jobs",
+          "digital_tools_training",
+          "french_course",
+          "catalan_course",
+          "spanish_course",
+          "job_coaching",
+          "integration_through_economic_activity",
+          "tutoring",
+          "hygiene_and_wellness",
+          "shower",
+          "laundry",
+          "wellness",
+          "toilets",
+          "hygiene_products",
+          "face_masks",
+          "counseling",
+          "legal_advice",
+          "domiciliation",
+          "social_accompaniment",
+          "public_writer",
+          "disability_advice",
+          "administrative_assistance",
+          "parent_assistance",
+          "budget_advice",
+          "technology",
+          "computers_at_your_disposal",
+          "wifi",
+          "electrical_outlets_available",
+          "telephone_at_your_disposal",
+          "digital_safe",
+          "food",
+          "food_distribution",
+          "food_packages",
+          "social_grocery_stores",
+          "fountain",
+          "solidarity_fridge",
+          "shared_kitchen",
+          "cooking_workshop",
+          "baby_parcel",
+          "food_voucher",
+          "community_garden",
+          "welcome",
+          "day_hosting",
+          "rest_area",
+          "babysitting",
+          "family_area",
+          "information_point",
+          "activities",
+          "sport_activities",
+          "museums",
+          "libraries",
+          "other_activities",
+          "equipment",
+          "luggage_storage",
+          "solidarity_store",
+          "clothing",
+          "animal_assitance",
+          "accomodation_and_housing",
+          "overnight_stop",
+          "emergency_accommodation",
+          "long_term_accomodation",
+          "citizen_housing",
+          "access_to_housing",
+          "hairdresser",
+          "legal_protection"
+        ],
+        "id": "Common_Categories"
+      },
+      "Common_PlaceType": {
+        "type": "string",
+        "enum": [
+          "LIEU",
+          "PARCOURS_MOBILE"
+        ],
+        "id": "Common_PlaceType"
+      },
+      "SearchRequest_Modalities": {
+        "type": "object",
+        "properties": {
+          "acceptsPets": {
+            "description": "Filter on places accepting animals.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "appointmentRequired": {
+            "description": "Filter on places requiring an appointment.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "unconditional": {
+            "description": "Filter on places with unconditional access. When `true`, it targets places where unconditional access is the applicable access mode.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "registrationRequired": {
+            "description": "Filter on places requiring prior registration.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "referalRequired": {
+            "description": "Filter on places requiring orientation.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "isAccessible": {
+            "description": "Filter on places accessible to people with reduced mobility.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "hasFees": {
+            "description": "Filter on fee-based places or services.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "hasSignLanguage": {
+            "description": "Filter on places offering sign-language accessibility.",
+            "nullable": true,
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": {},
+        "description": "Access condition filters.",
+        "id": "SearchRequest_Modalities"
+      },
+      "SearchRequest_Publics": {
+        "type": "object",
+        "properties": {
+          "welcomeType": {
+            "description": "Type of welcome expected for the public: unconditional, preferential or exclusive.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Common_WelcomedPublics"
+              }
+            ]
+          },
+          "age": {
+            "description": "Age filter for the welcomed public.",
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "min": {
+                "description": "Minimum age used by the audience filter. Values from `0` to `99` are accepted.",
+                "nullable": true,
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 99
+              },
+              "max": {
+                "description": "Maximum age used by the audience filter. Values from `0` to `99` are accepted.",
+                "nullable": true,
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 99
+              }
+            }
+          },
+          "gender": {
+            "description": "Gender-related audience filters. If all possible values are selected, it is treated as no restriction.",
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Common_PublicsGender"
+            }
+          },
+          "administrative": {
+            "description": "Administrative-status audience filters. If all possible values are selected, it is treated as no restriction.",
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Common_PublicsAdministrative"
+            }
+          },
+          "family": {
+            "description": "Family-situation audience filters. If all possible values are selected, it is treated as no restriction.",
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Common_PublicsFamily"
+            }
+          },
+          "specific": {
+            "description": "Other audience filters. If all possible values are selected, it is treated as no restriction.",
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Common_PublicsOther"
+            }
+          }
+        },
+        "additionalProperties": {},
+        "description": "Public audience filters.",
+        "id": "SearchRequest_Publics"
+      },
+      "Common_WelcomedPublics": {
+        "type": "number",
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "id": "Common_WelcomedPublics"
+      },
+      "Common_PublicsGender": {
+        "type": "string",
+        "enum": [
+          "all",
+          "men",
+          "women"
+        ],
+        "id": "Common_PublicsGender"
+      },
+      "Common_PublicsAdministrative": {
+        "type": "string",
+        "enum": [
+          "all",
+          "regular",
+          "asylum",
+          "refugee",
+          "undocumented"
+        ],
+        "id": "Common_PublicsAdministrative"
+      },
+      "Common_PublicsFamily": {
+        "type": "string",
+        "enum": [
+          "all",
+          "isolated",
+          "family",
+          "couple",
+          "pregnant"
+        ],
+        "id": "Common_PublicsFamily"
+      },
+      "Common_PublicsOther": {
+        "type": "string",
+        "enum": [
+          "addiction",
+          "all",
+          "handicap",
+          "hiv",
+          "lgbt",
+          "prison",
+          "prostitution",
+          "student",
+          "mentalHealth",
+          "violence"
+        ],
+        "id": "Common_PublicsOther"
+      },
+      "SearchRequest_UpdatedAt": {
+        "type": "object",
+        "properties": {
+          "intervalType": {
+            "description": "Comparison mode used for the update-date filter.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Common_UpdatedAtInterval"
+              }
+            ]
+          },
+          "value": {
+            "description": "Date used by the update filter. Format ISO 8601.",
+            "example": "2026-04-26T00:00:00.000Z",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "additionalProperties": {},
+        "description": "Filter places by update date.",
+        "id": "SearchRequest_UpdatedAt"
+      },
+      "Common_UpdatedAtInterval": {
+        "type": "string",
+        "enum": [
+          "SPECIFIC_DAY",
+          "BEFORE_DAY",
+          "AFTER_DAY"
+        ],
+        "id": "Common_UpdatedAtInterval"
+      },
+      "SearchRequest_Options": {
+        "type": "object",
+        "properties": {
+          "sortBy": {
+            "description": "Field used to sort the search results.",
+            "nullable": true,
+            "type": "string",
+            "enum": [
+              "createdAt",
+              "lieu_id",
+              "name",
+              "distance",
+              "slugs.infos.name",
+              "status",
+              "updatedAt"
+            ]
+          },
+          "sortValue": {
+            "description": "Sorting direction: `1` ascending, `-1` descending.",
+            "example": 1,
+            "nullable": true,
+            "type": "number"
+          },
+          "page": {
+            "description": "Page number of the paginated results.",
+            "example": 1,
+            "nullable": true,
+            "type": "integer"
+          },
+          "limit": {
+            "description": "Maximum number of results returned per page.",
+            "example": 10,
+            "nullable": true,
+            "type": "integer"
+          },
+          "fields": {
+            "description": "Space-separated list of fields to include in the response payload.",
+            "nullable": true,
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": {},
+        "description": "Pagination, sorting and field-selection options.",
+        "id": "SearchRequest_Options"
+      },
+      "Common_PlaceStatus": {
+        "type": "string",
+        "enum": [
+          "DRAFT",
+          "ONLINE",
+          "PERMANENTLY_CLOSED",
+          "OFFLINE"
+        ],
+        "description": "Indicate if this place is currently published.",
+        "id": "Common_PlaceStatus",
+        "example": "ONLINE"
+      },
+      "Common_PlaceVisibility": {
+        "type": "string",
+        "enum": [
+          "ALL",
+          "PRO"
+        ],
+        "description": "Indicates who has access to information about this place.",
+        "id": "Common_PlaceVisibility",
+        "example": "ALL"
+      },
+      "SearchResponse_Photo": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "nullable": true,
+            "type": "string"
+          },
+          "encoding": {
+            "nullable": true,
+            "type": "string"
+          },
+          "filename": {
+            "nullable": true,
+            "type": "string"
+          },
+          "mimetype": {
+            "nullable": true,
+            "type": "string"
+          },
+          "parcours_id": {
+            "nullable": true,
+            "type": "integer"
+          },
+          "path": {
+            "nullable": true,
+            "type": "string"
+          },
+          "lieu_id": {
+            "nullable": true,
+            "type": "integer"
+          },
+          "size": {
+            "nullable": true,
+            "type": "number"
+          },
+          "createdAt": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_Date"
+              }
+            ]
+          },
+          "updatedAt": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_Date"
+              }
+            ]
+          }
+        },
+        "required": [
+          "filename",
+          "mimetype",
+          "path",
+          "lieu_id"
+        ],
+        "additionalProperties": {},
+        "id": "SearchResponse_Photo"
+      },
+      "SearchResponse_Date": {
+        "type": "string",
+        "description": "Date-time value. Format ISO 8601.",
+        "id": "SearchResponse_Date"
+      },
+      "SearchResponse_Service": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "nullable": true,
+            "description": "Category of the service.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Common_Categories"
+              }
+            ]
+          },
+          "tempClosure": {
+            "description": "Temporary closure settings for the service.",
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "active": {
+                "nullable": true,
+                "type": "boolean"
+              },
+              "startDate": {
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SearchResponse_Date"
+                  }
+                ]
+              },
+              "endDate": {
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SearchResponse_Date"
+                  }
+                ]
+              },
+              "precision": {
+                "nullable": true,
+                "type": "string"
+              },
+              "closeType": {
+                "nullable": true,
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
+          },
+          "description": {
+            "description": "Localized HTML content describing the service.",
+            "nullable": true,
+            "type": "string"
+          },
+          "differentHours": {
+            "description": "Indicates whether the service has opening hours different from the place.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "differentModalities": {
+            "description": "Indicates whether the service has access conditions different from the place.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "differentPublics": {
+            "description": "Indicates whether the service welcomes a public different from the place.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "hours": {
+            "description": "Opening hours specific to the service.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_OpeningHours"
+              }
+            ]
+          },
+          "isOpenToday": {
+            "nullable": true,
+            "description": "Whether the service is open today. Recalculated daily.",
+            "type": "boolean"
+          },
+          "modalities": {
+            "description": "Access conditions specific to the service.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_Modalities"
+              }
+            ]
+          },
+          "publics": {
+            "description": "Audience information specific to the service.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_Publics"
+              }
+            ]
+          },
+          "saturated": {
+            "description": "Current saturation status of the service.",
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "precision": {
+                "nullable": true,
+                "type": "string"
+              },
+              "status": {
+                "nullable": true,
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Common_ServiceSaturation"
+                  }
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "serviceObjectId": {
+            "nullable": true,
+            "description": "Internal identifier of the service.",
+            "type": "string"
+          },
+          "createdAt": {
+            "nullable": true,
+            "description": "Creation date of the service. Format ISO 8601.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_Date"
+              }
+            ]
+          },
+          "categorySpecificFields": {
+            "description": "Details specific to the service category.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_CategorySpecificFields"
+              }
+            ]
+          },
+          "name": {
+            "description": "Deprecated additional label for some service categories.",
+            "deprecated": true,
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "required": [
+          "category",
+          "isOpenToday",
+          "serviceObjectId",
+          "createdAt"
+        ],
+        "additionalProperties": {},
+        "id": "SearchResponse_Service"
+      },
+      "SearchResponse_OpeningHours": {
+        "type": "object",
+        "properties": {
+          "closedHolidays": {
+            "description": "Opening behavior on public holidays: `UNKNOWN` when not specified, `OPEN` when open, `CLOSED` when closed.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Common_PlaceClosedHolidays"
+              }
+            ]
+          },
+          "description": {
+            "description": "Free-text details about opening hours.",
+            "nullable": true,
+            "type": "string"
+          },
+          "monday": {
+            "description": "Opening hours for Monday.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_DayOpeningHours"
+              }
+            ]
+          },
+          "tuesday": {
+            "description": "Opening hours for Tuesday.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_DayOpeningHours"
+              }
+            ]
+          },
+          "wednesday": {
+            "description": "Opening hours for Wednesday.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_DayOpeningHours"
+              }
+            ]
+          },
+          "thursday": {
+            "description": "Opening hours for Thursday.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_DayOpeningHours"
+              }
+            ]
+          },
+          "friday": {
+            "description": "Opening hours for Friday.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_DayOpeningHours"
+              }
+            ]
+          },
+          "saturday": {
+            "description": "Opening hours for Saturday.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_DayOpeningHours"
+              }
+            ]
+          },
+          "sunday": {
+            "description": "Opening hours for Sunday.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_DayOpeningHours"
+              }
+            ]
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_OpeningHours"
+      },
+      "Common_PlaceClosedHolidays": {
+        "type": "string",
+        "enum": [
+          "CLOSED",
+          "OPEN",
+          "UNKNOWN"
+        ],
+        "id": "Common_PlaceClosedHolidays"
+      },
+      "SearchResponse_DayOpeningHours": {
+        "type": "object",
+        "properties": {
+          "open": {
+            "description": "Indicates whether the place or service is open on that day.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "timeslot": {
+            "description": "Opening slots for the day. Up to 3 slots can be defined.",
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchResponse_Timeslot"
+            }
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_DayOpeningHours"
+      },
+      "SearchResponse_Timeslot": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "description": "Start time of the opening slot, encoded as `HHmm` without separator, using 3 or 4 digits.",
+            "nullable": true,
+            "type": "number"
+          },
+          "end": {
+            "description": "End time of the opening slot, encoded as `HHmm` without separator, using 3 or 4 digits.",
+            "nullable": true,
+            "type": "number"
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_Timeslot"
+      },
+      "SearchResponse_Modalities": {
+        "type": "object",
+        "properties": {
+          "unconditional": {
+            "description": "Indicates unconditional access. When `true`, it is the only access condition to consider.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "appointment": {
+            "description": "Access by appointment.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_ModalitiesCheck"
+              }
+            ]
+          },
+          "registration": {
+            "description": "Access requiring prior registration.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_ModalitiesCheck"
+              }
+            ]
+          },
+          "referral": {
+            "description": "Access requiring orientation. When this condition applies, address and coordinates must not be displayed publicly unless explicitly allowed by agreement.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_ModalitiesCheck"
+              }
+            ]
+          },
+          "price": {
+            "description": "Indicates the service is fee-based.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_ModalitiesCheck"
+              }
+            ]
+          },
+          "animals": {
+            "description": "Animal access policy.",
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "checked": {
+                "description": "Indicates whether animals are accepted.",
+                "nullable": true,
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": false
+          },
+          "accessibility": {
+            "description": "Accessibility details for the place.",
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "wheelchair": {
+                "description": "Indicates whether the place is accessible to wheelchair users.",
+                "nullable": true,
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": false
+          },
+          "docs": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "other": {
+            "description": "Additional details about access conditions.",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_Modalities"
+      },
+      "SearchResponse_ModalitiesCheck": {
+        "type": "object",
+        "properties": {
+          "checked": {
+            "description": "Indicates whether the access condition applies.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "precisions": {
+            "description": "Additional details about the access condition.",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_ModalitiesCheck"
+      },
+      "SearchResponse_Publics": {
+        "type": "object",
+        "properties": {
+          "welcomeType": {
+            "description": "Type of welcome for the public: `0` unconditional, `1` unconditional adapted to a specific public, `2` exclusive.",
+            "nullable": true,
+            "anyOf": [
+              {
+                "type": "number",
+                "enum": [
+                  0
+                ]
+              },
+              {
+                "type": "number",
+                "enum": [
+                  1
+                ]
+              },
+              {
+                "type": "number",
+                "enum": [
+                  2
+                ]
+              }
+            ]
+          },
+          "administrative": {
+            "description": "Administrative statuses accepted by the place. If every possible value is selected, it means there is no restriction.",
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Common_PublicsAdministrative"
+            }
+          },
+          "age": {
+            "description": "Age restrictions for the accepted public. Values from `0` to `99` mean no age restriction.",
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "min": {
+                "description": "Minimum accepted age.",
+                "nullable": true,
+                "type": "number"
+              },
+              "max": {
+                "description": "Maximum accepted age. ",
+                "nullable": true,
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
+          },
+          "description": {
+            "description": "Free-text details about specific public restrictions or adaptations.",
+            "nullable": true,
+            "type": "string"
+          },
+          "family": {
+            "description": "Family situations accepted by the place. If every possible value is selected, it means there is no restriction.",
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Common_PublicsFamily"
+            }
+          },
+          "gender": {
+            "description": "Gender-related restrictions or adaptations. If every possible value is selected, it means there is no restriction.",
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Common_PublicsGender"
+            }
+          },
+          "other": {
+            "description": "Other audience restrictions or adaptations. If every possible value is selected, it means there is no restriction.",
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Common_PublicsOther"
+            }
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_Publics"
+      },
+      "Common_ServiceSaturation": {
+        "type": "string",
+        "enum": [
+          "LOW",
+          "MODERATE",
+          "HIGH"
+        ],
+        "id": "Common_ServiceSaturation"
+      },
+      "SearchResponse_CategorySpecificFields": {
+        "type": "object",
+        "properties": {
+          "activityName": {
+            "nullable": true,
+            "type": "string"
+          },
+          "availableEquipmentPrecisions": {
+            "nullable": true,
+            "type": "string"
+          },
+          "availableEquipmentType": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "babyParcelAgeType": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "canteensMealType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "courseType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "degreeOfChoiceType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "dietaryAdaptationsType": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "dietaryRegimesType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "domiciliationType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "foodProductType": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "otherProductTypePrecisions": {
+            "nullable": true,
+            "type": "string"
+          },
+          "hygieneProductType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "jobsList": {
+            "nullable": true,
+            "type": "string"
+          },
+          "nationalOriginProductType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "organicOriginProductType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "serviceStyleType": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "usageModality": {
+            "nullable": true,
+            "type": "string"
+          },
+          "voucherType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "voucherTypePrecisions": {
+            "nullable": true,
+            "type": "string"
+          },
+          "wellnessActivityName": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "additionalProperties": {},
+        "description": "Category-specific service details. Available fields depend on the service category.",
+        "id": "SearchResponse_CategorySpecificFields"
+      },
+      "SearchResponse_Position": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "description": "Geographic location of the place.",
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "type": {
+                "description": "Geographic object type. Always `Point`.",
+                "nullable": true,
+                "type": "string",
+                "enum": [
+                  "Point"
+                ]
+              },
+              "coordinates": {
+                "description": "Geographic coordinates of the place as `[longitude, latitude]`. Format GeoJSON..",
+                "nullable": true,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              }
+            },
+            "additionalProperties": false
+          },
+          "address": {
+            "description": "Street address of the place.",
+            "nullable": true,
+            "type": "string"
+          },
+          "additionalInformation": {
+            "description": "Additional address information such as building, floor or access details.",
+            "nullable": true,
+            "type": "string"
+          },
+          "city": {
+            "description": "City name of the place.",
+            "nullable": true,
+            "type": "string"
+          },
+          "cityCode": {
+            "description": "Administrative code of the city.",
+            "nullable": true,
+            "type": "string"
+          },
+          "postalCode": {
+            "description": "Postal code of the place.",
+            "nullable": true,
+            "type": "string"
+          },
+          "department": {
+            "description": "Department name of the place.",
+            "nullable": true,
+            "type": "string"
+          },
+          "departmentCode": {
+            "description": "Department code of the place. Examples: `974`, `2A`, `91`, `06`.",
+            "nullable": true,
+            "type": "string"
+          },
+          "region": {
+            "description": "Region name of the place.",
+            "nullable": true,
+            "type": "string"
+          },
+          "regionCode": {
+            "description": "Administrative code of the region.",
+            "nullable": true,
+            "type": "string"
+          },
+          "slugs": {
+            "description": "URL compatible labels for position's text properties",
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "city": {
+                "nullable": true,
+                "type": "string"
+              },
+              "country": {
+                "nullable": true,
+                "type": "string"
+              },
+              "department": {
+                "nullable": true,
+                "type": "string"
+              },
+              "region": {
+                "nullable": true,
+                "type": "string"
+              },
+              "ville": {
+                "nullable": true,
+                "type": "string"
+              }
+            },
+            "additionalProperties": {}
+          },
+          "country": {
+            "description": "Country code of the place. Format ISO 3166-1 alpha-2. Lower case",
+            "nullable": true,
+            "type": "string"
+          },
+          "timeZone": {
+            "description": "Time zone of the place. Format IANA time zone identifier.",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_Position"
+      },
+      "SearchResponse_Entity": {
+        "type": "object",
+        "properties": {
+          "facebook": {
+            "description": "Facebook page URL of the organization.",
+            "nullable": true,
+            "type": "string"
+          },
+          "fax": {
+            "description": "Fax number of the organization.",
+            "nullable": true,
+            "type": "string"
+          },
+          "instagram": {
+            "description": "Instagram page URL of the organization.",
+            "nullable": true,
+            "type": "string"
+          },
+          "mail": {
+            "description": "Email address of the organization.",
+            "nullable": true,
+            "type": "string"
+          },
+          "name": {
+            "description": "Name of the organization.",
+            "nullable": true,
+            "type": "string"
+          },
+          "phones": {
+            "description": "Phone contacts of the organization.",
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchResponse_Phone"
+            }
+          },
+          "website": {
+            "description": "Website URL of the organization.",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_Entity"
+      },
+      "SearchResponse_Phone": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "description": "Label describing the phone contact.",
+            "nullable": true,
+            "type": "string"
+          },
+          "phoneNumber": {
+            "description": "Phone number of the contact.",
+            "nullable": true,
+            "type": "string"
+          },
+          "countryCode": {
+            "description": "Country code used to interpret the phone number. Format ISO 3166-1 alpha-2.",
+            "nullable": true,
+            "type": "string"
+          },
+          "isSpecialPhoneNumber": {
+            "description": "Indicates whether the phone number is a special short number.",
+            "nullable": true,
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_Phone"
+      },
+      "SearchResponse_Source": {
+        "type": "object",
+        "properties": {
+          "ids": {
+            "description": "Various sources of information providing data about this place.",
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "nullable": true,
+                  "description": "Formatted external identifier of the source. Format UUID.",
+                  "type": "string"
+                },
+                "url": {
+                  "description": "Source URL when available.",
+                  "nullable": true,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id"
+              ],
+              "additionalProperties": {}
+            }
+          },
+          "isOrigin": {
+            "nullable": true,
+            "description": "Indicates if the place has been created by the source.",
+            "type": "boolean"
+          },
+          "license": {
+            "description": "URL of the license associated to the data.",
+            "nullable": true,
+            "type": "string"
+          },
+          "name": {
+            "nullable": true,
+            "description": "Name of the source",
+            "type": "string"
+          }
+        },
+        "required": [
+          "isOrigin",
+          "name"
+        ],
+        "additionalProperties": {},
+        "id": "SearchResponse_Source"
+      },
+      "SearchResponse_Slugs": {
+        "type": "object",
+        "properties": {
+          "infos": {
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "description": {
+                "nullable": true,
+                "type": "string"
+              },
+              "name": {
+                "nullable": true,
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_Slugs"
+      },
+      "SearchResponse_Parcours": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "nullable": true,
+            "type": "string"
+          },
+          "hours": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_OpeningHours"
+              }
+            ]
+          },
+          "position": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SearchResponse_Position"
+              }
+            ]
+          },
+          "photos": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchResponse_Photo"
+            }
+          },
+          "show": {
+            "nullable": true,
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": {},
+        "id": "SearchResponse_Parcours"
+      }
+    }
+  }
+}
