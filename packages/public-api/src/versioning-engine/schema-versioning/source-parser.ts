@@ -1,22 +1,28 @@
 import { existsSync } from "fs";
-import { join } from "path";
+import { dirname, join, resolve } from "path";
 
 import {
   ArrayLiteralExpression,
+  ArrowFunction,
   CallExpression,
   Expression,
+  FunctionDeclaration,
+  FunctionExpression,
+  Identifier,
   Node,
   ObjectLiteralExpression,
   Project,
   PropertyAssignment,
   SourceFile,
+  VariableDeclaration,
 } from "ts-morph";
 
-import { ChangeType } from "../dsl/version-change";
+import { ChangeType } from "../dsl/changes/version-change";
 import { changeHandlers, ChangeParseContext } from "./change-handlers";
 import {
   AnyParsedChangeDefinition,
   ParsedChangeDefinition,
+  ParsedChangeMetadata,
   ParsedChangePayloadByType,
   ParsedResourceDefinition,
   ParsedSchemaExpression,
@@ -34,9 +40,7 @@ const CHANGE_NAMES = new Set<ChangeType>([
   "remove",
   "rename",
   "replaceSchema",
-  "merge",
-  "split",
-  "custom",
+  "patch",
 ]);
 
 export class VersionSourceParser {
@@ -125,17 +129,19 @@ export class VersionSourceParser {
       0,
       `resource(...) at index ${resourceIndex} in ${sourceFilePath}`
     );
+    const resourceOptions = this.readResourceOptionsObject(
+      resourceCall,
+      resourceName
+    );
 
     return {
-      changes: this.readArrayArgument(
-        resourceCall,
-        1,
-        `resource("${resourceName}", ...)`
-      )
+      changes: this.readResourceChangesArray(resourceOptions, resourceName)
         .getElements()
-        .map((changeNode, changeIndex) =>
+        .flatMap((changeNode, changeIndex) =>
           this.parseChangeDefinition(changeNode, resourceName, changeIndex)
         ),
+      contextProvider: this.readResourceContextProvider(resourceOptions),
+      kind: this.readResourceKind(resourceOptions),
       resourceName,
     };
   }
@@ -144,7 +150,7 @@ export class VersionSourceParser {
     changeNode: Node,
     resourceName: string,
     changeIndex: number
-  ): AnyParsedChangeDefinition {
+  ): AnyParsedChangeDefinition[] {
     const changeCall = this.readCallExpression(
       changeNode,
       `Change at index ${changeIndex} for resource ${resourceName}`
@@ -157,23 +163,213 @@ export class VersionSourceParser {
       );
     }
 
+    const payloadObject = this.readObjectArgument(
+      changeCall,
+      0,
+      `${changeType}(...) for resource ${resourceName}`
+    );
+
+    if (changeType === "patch") {
+      return this.parsePatchGroupDefinitions(
+        payloadObject,
+        resourceName,
+        changeIndex,
+        changeCall.getSourceFile().getFilePath()
+      );
+    }
+
     const parsedChange = this.createParsedChangeDefinition(
       `${resourceName}:${changeType}#${changeIndex + 1}`,
       changeType as ChangeType,
       this.parseChangePayloadByType(
         changeType as ChangeType,
-        this.readObjectArgument(
-          changeCall,
-          0,
-          `${changeType}(...) for resource ${resourceName}`
-        ),
+        payloadObject,
         changeCall.getSourceFile().getFilePath(),
         resourceName
       ),
+      this.readChangeMetadata(payloadObject),
       changeCall.getSourceFile().getFilePath()
     );
 
-    return parsedChange as AnyParsedChangeDefinition;
+    return [parsedChange as AnyParsedChangeDefinition];
+  }
+
+  private parsePatchGroupDefinitions(
+    groupPayloadObject: ObjectLiteralExpression,
+    resourceName: string,
+    groupIndex: number,
+    sourceFilePath: string
+  ): AnyParsedChangeDefinition[] {
+    this.readRequiredStringProperty(groupPayloadObject, "payloadPath");
+
+    const groupTitle = this.readOptionalStringProperty(
+      groupPayloadObject,
+      "title"
+    );
+    const groupMetadata = this.readChangeMetadata(groupPayloadObject);
+
+    return this.readRequiredArrayProperty(groupPayloadObject, "changes")
+      .getElements()
+      .map((changeNode, childIndex) => {
+        const changeCall = this.readCallExpression(
+          changeNode,
+          `Change at index ${childIndex} in patch group ${
+            groupTitle ?? groupIndex + 1
+          } for resource ${resourceName}`
+        );
+        const changeType = this.getCallName(changeCall);
+
+        if (!CHANGE_NAMES.has(changeType as ChangeType)) {
+          throw new Error(
+            `Unsupported change helper ${changeCall.getText()} for patch group ${
+              groupTitle ?? groupIndex + 1
+            }`
+          );
+        }
+
+        if (changeType === "patch") {
+          throw new Error(
+            `patch group ${
+              groupTitle ?? groupIndex + 1
+            } cannot contain nested patch changes`
+          );
+        }
+
+        const payloadObject = this.readObjectArgument(
+          changeCall,
+          0,
+          `${changeType}(...) in patch group ${groupTitle ?? groupIndex + 1}`
+        );
+        const childMetadata = this.readChangeMetadata(payloadObject);
+
+        return this.createParsedChangeDefinition(
+          `${resourceName}:${
+            groupTitle ?? `patch#${groupIndex + 1}`
+          }:${changeType}#${childIndex + 1}`,
+          changeType as ChangeType,
+          this.parseChangePayloadByType(
+            changeType as ChangeType,
+            payloadObject,
+            sourceFilePath,
+            resourceName
+          ),
+          this.mergeChangeMetadata(groupMetadata, childMetadata, groupTitle),
+          sourceFilePath
+        ) as AnyParsedChangeDefinition;
+      });
+  }
+
+  private readResourceChangesArray(
+    resourceOptions: ObjectLiteralExpression,
+    resourceName: string
+  ): ArrayLiteralExpression {
+    const contextLabel = `resource("${resourceName}", ...)`;
+    const changesProperty = this.readRequiredPropertyInitializer(
+      resourceOptions,
+      "changes"
+    );
+
+    return this.readChangesArrayFromNode(
+      changesProperty,
+      `${contextLabel} changes`
+    );
+  }
+
+  private readChangesArrayFromNode(
+    node: Node | undefined,
+    contextLabel: string
+  ): ArrayLiteralExpression {
+    if (Node.isArrayLiteralExpression(node)) {
+      return node;
+    }
+
+    if (Node.isArrowFunction(node) || Node.isFunctionExpression(node)) {
+      return this.readChangesArrayFromFactory(node, contextLabel);
+    }
+
+    if (Node.isIdentifier(node)) {
+      return this.readChangesArrayFromIdentifier(node, contextLabel);
+    }
+
+    throw new Error(
+      `${contextLabel} must be a change array, a change factory, or a resolvable changes identifier`
+    );
+  }
+
+  private readChangesArrayFromFactory(
+    factory: ArrowFunction | FunctionExpression,
+    contextLabel: string
+  ): ArrayLiteralExpression {
+    const body = factory.getBody();
+
+    if (Node.isArrayLiteralExpression(body)) {
+      return body;
+    }
+
+    if (Node.isBlock(body)) {
+      const returnStatement = body.getStatements().find(Node.isReturnStatement);
+      const expression = returnStatement?.getExpression();
+
+      if (expression && Node.isArrayLiteralExpression(expression)) {
+        return expression;
+      }
+    }
+
+    throw new Error(
+      `${contextLabel} change factory must return an array literal`
+    );
+  }
+
+  private readChangesArrayFromIdentifier(
+    identifier: Identifier,
+    contextLabel: string
+  ): ArrayLiteralExpression {
+    const declaration = this.resolveIdentifierDeclaration(
+      identifier,
+      contextLabel
+    );
+
+    if (Node.isVariableDeclaration(declaration)) {
+      return this.readChangesArrayFromNode(
+        declaration.getInitializer(),
+        `${contextLabel} identifier ${identifier.getText()}`
+      );
+    }
+
+    if (Node.isFunctionDeclaration(declaration)) {
+      return this.readChangesArrayFromFunctionDeclaration(
+        declaration,
+        `${contextLabel} identifier ${identifier.getText()}`
+      );
+    }
+
+    throw new Error(
+      `${contextLabel} identifier ${identifier.getText()} must resolve to a changes array or factory`
+    );
+  }
+
+  private readChangesArrayFromFunctionDeclaration(
+    declaration: FunctionDeclaration,
+    contextLabel: string
+  ): ArrayLiteralExpression {
+    const body = declaration.getBody();
+
+    if (!body || !Node.isBlock(body)) {
+      throw new Error(
+        `${contextLabel} change factory must return an array literal`
+      );
+    }
+
+    const returnStatement = body.getStatements().find(Node.isReturnStatement);
+    const expression = returnStatement?.getExpression();
+
+    if (expression && Node.isArrayLiteralExpression(expression)) {
+      return expression;
+    }
+
+    throw new Error(
+      `${contextLabel} change factory must return an array literal`
+    );
   }
 
   private parseChangePayloadByType<TType extends ChangeType>(
@@ -194,10 +390,12 @@ export class VersionSourceParser {
     changeName: string,
     changeType: TType,
     payload: ParsedChangePayloadByType[TType],
+    metadata: ParsedChangeMetadata,
     sourceFilePath: string
   ): ParsedChangeDefinition<TType> {
     return {
       changeName,
+      metadata,
       payload,
       sourceFilePath,
       type: changeType,
@@ -288,17 +486,6 @@ export class VersionSourceParser {
     return this.requireObjectLiteral(
       callExpression.getArguments()[argumentIndex],
       `${contextLabel} requires an object literal argument`
-    );
-  }
-
-  private readArrayArgument(
-    callExpression: CallExpression,
-    argumentIndex: number,
-    contextLabel: string
-  ): ArrayLiteralExpression {
-    return this.requireArrayLiteral(
-      callExpression.getArguments()[argumentIndex],
-      `${contextLabel} requires an array literal argument`
     );
   }
 
@@ -395,6 +582,34 @@ export class VersionSourceParser {
       );
   }
 
+  private readChangeMetadata(
+    objectLiteral: ObjectLiteralExpression
+  ): ParsedChangeMetadata {
+    const impact = this.readOptionalStringProperty(objectLiteral, "impact");
+
+    return {
+      description: this.readOptionalStringProperty(
+        objectLiteral,
+        "description"
+      ),
+      impact: impact as ParsedChangeMetadata["impact"],
+      title: this.readOptionalStringProperty(objectLiteral, "title"),
+    };
+  }
+
+  private mergeChangeMetadata(
+    groupMetadata: ParsedChangeMetadata,
+    childMetadata: ParsedChangeMetadata,
+    groupTitle: string | undefined
+  ): ParsedChangeMetadata {
+    return {
+      description: childMetadata.description ?? groupMetadata.description,
+      groupTitle,
+      impact: childMetadata.impact ?? groupMetadata.impact,
+      title: childMetadata.title ?? groupMetadata.title,
+    };
+  }
+
   private readRequiredSchemaExpression(
     objectLiteral: ObjectLiteralExpression,
     propertyName: string
@@ -477,6 +692,27 @@ export class VersionSourceParser {
     expression: Node | undefined,
     contextLabel: string
   ): ParsedSchemaExpression {
+    if (expression && Node.isIdentifier(expression)) {
+      const declaration = this.resolveIdentifierDeclaration(
+        expression,
+        contextLabel
+      );
+      const initializer = Node.isVariableDeclaration(declaration)
+        ? declaration.getInitializer()
+        : undefined;
+
+      if (!initializer) {
+        throw new Error(
+          `${contextLabel} schema identifiers must reference a local const initialized with schema(...)`
+        );
+      }
+
+      return this.readSchemaExpressionFromNode(
+        initializer,
+        `${contextLabel} identifier ${expression.getText()}`
+      );
+    }
+
     const schemaCall = this.readNamedCall(expression, "schema", contextLabel);
     const schemaExpression = schemaCall.getArguments()[0];
 
@@ -521,6 +757,139 @@ export class VersionSourceParser {
           Node.isPropertyAssignment(propertyNode) &&
           this.getPropertyName(propertyNode) === propertyName
       ) as PropertyAssignment | undefined;
+  }
+
+  private resolveIdentifierDeclaration(
+    identifier: Identifier,
+    contextLabel: string
+  ): VariableDeclaration | FunctionDeclaration {
+    const identifierName = identifier.getText();
+    const sourceFile = identifier.getSourceFile();
+    const localVariable = sourceFile.getVariableDeclaration(identifierName);
+
+    if (localVariable) {
+      return localVariable;
+    }
+
+    const localFunction = sourceFile.getFunction(identifierName);
+
+    if (localFunction) {
+      return localFunction;
+    }
+
+    for (const importDeclaration of sourceFile.getImportDeclarations()) {
+      const namedImport = importDeclaration
+        .getNamedImports()
+        .find(
+          (specifier) =>
+            (specifier.getAliasNode()?.getText() ?? specifier.getName()) ===
+            identifierName
+        );
+
+      if (namedImport) {
+        const importedSourceFile = this.resolveImportSourceFile(
+          sourceFile,
+          importDeclaration.getModuleSpecifierValue(),
+          contextLabel
+        );
+        const importedName = namedImport.getName();
+        const importedVariable =
+          importedSourceFile.getVariableDeclaration(importedName);
+
+        if (importedVariable) {
+          return importedVariable;
+        }
+
+        const importedFunction = importedSourceFile.getFunction(importedName);
+
+        if (importedFunction) {
+          return importedFunction;
+        }
+      }
+
+      const defaultImport = importDeclaration.getDefaultImport();
+
+      if (defaultImport?.getText() === identifierName) {
+        throw new Error(
+          `${contextLabel} identifier ${identifierName} uses a default import; use a named export instead`
+        );
+      }
+    }
+
+    throw new Error(
+      `${contextLabel} cannot resolve identifier ${identifierName}`
+    );
+  }
+
+  private resolveImportSourceFile(
+    sourceFile: SourceFile,
+    moduleSpecifier: string,
+    contextLabel: string
+  ): SourceFile {
+    if (!moduleSpecifier.startsWith(".")) {
+      throw new Error(
+        `${contextLabel} cannot resolve non-relative import ${moduleSpecifier}`
+      );
+    }
+
+    const absoluteImportPath = resolve(
+      dirname(sourceFile.getFilePath()),
+      moduleSpecifier
+    );
+    const candidatePaths = [
+      absoluteImportPath,
+      `${absoluteImportPath}.ts`,
+      join(absoluteImportPath, "index.ts"),
+    ];
+    const project = sourceFile.getProject();
+    const importedSourceFile = candidatePaths
+      .map((candidatePath) =>
+        project.addSourceFileAtPathIfExists(candidatePath)
+      )
+      .find((candidateSourceFile): candidateSourceFile is SourceFile =>
+        Boolean(candidateSourceFile)
+      );
+
+    if (!importedSourceFile) {
+      throw new Error(
+        `${contextLabel} cannot resolve import ${moduleSpecifier} from ${sourceFile.getFilePath()}`
+      );
+    }
+
+    return importedSourceFile;
+  }
+
+  private readResourceOptionsObject(
+    resourceCall: CallExpression,
+    resourceName: string
+  ): ObjectLiteralExpression {
+    return this.requireObjectLiteral(
+      resourceCall.getArguments()[1],
+      `resource("${resourceName}", ...) requires an options object literal`
+    );
+  }
+
+  private readResourceKind(
+    resourceOptions: ObjectLiteralExpression
+  ): ParsedResourceDefinition["kind"] {
+    const kind = this.readRequiredStringProperty(resourceOptions, "kind");
+
+    if (kind !== "request" && kind !== "response") {
+      throw new Error(`resource kind must be request or response, got ${kind}`);
+    }
+
+    return kind;
+  }
+
+  private readResourceContextProvider(
+    resourceOptions: ObjectLiteralExpression
+  ): string | undefined {
+    return this.getOptionalPropertyAssignment(
+      resourceOptions,
+      "contextProvider"
+    )
+      ?.getInitializer()
+      ?.getText();
   }
 
   private readPropertyAssignment(
