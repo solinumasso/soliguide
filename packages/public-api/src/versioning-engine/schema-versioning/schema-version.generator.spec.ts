@@ -83,6 +83,9 @@ describe("SchemaVersionGenerator", () => {
     const generatedRegistry = await readFile(generatedRegistryPath, "utf-8");
 
     expect(generatedRegistry).toContain(
+      'import { VersionRegistry } from "../../versioning-engine";'
+    );
+    expect(generatedRegistry).toContain(
       'import v20260417SampleSchema from "./2026-04-17.sample.schema.generated";'
     );
 
@@ -205,7 +208,7 @@ async function createSyntheticPackageRoot(): Promise<string> {
 
   await writeFile(
     join(tempDirectoryPath, "src/versions/index.ts"),
-    `import { VersionRegistry } from "../versioning-engine/version-registry";
+    `import { VersionRegistry } from "../versioning-engine";
 import v20260101Registry from "./2026-01-01/open-api.registry";
 
 export const versionRegistry: Record<string, VersionRegistry> = {
@@ -267,7 +270,7 @@ export default v20260101UntouchedSchema;
 
   await writeFile(
     join(tempDirectoryPath, "src/versions/2026-01-01/open-api.registry.ts"),
-    `import { VersionRegistry } from "src/versioning-engine/version-registry";
+    `import { VersionRegistry } from "src/versioning-engine";
 import v20260101SampleSchema from "./2026-01-01.sample.schema.generated";
 import v20260101UntouchedSchema from "./2026-01-01.untouched.schema.generated";
 
@@ -361,7 +364,7 @@ async function createIntegrationPackageRoot(): Promise<string> {
 
   await writeFile(
     join(tempDirectoryPath, "src/versions/index.ts"),
-    `import { VersionRegistry } from "../versioning-engine/version-registry";
+    `import { VersionRegistry } from "../versioning-engine";
 import v20260101Registry from "./2026-01-01/open-api.registry";
 
 export const versionRegistry: Record<string, VersionRegistry> = {
