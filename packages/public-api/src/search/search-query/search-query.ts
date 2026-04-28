@@ -129,7 +129,7 @@ export type SearchQuery = {
   openToday?: boolean;
   modalities?: SearchModalities;
   audiences?: SearchAudiences;
-  languages?: string;
+  languages?: string[];
   widgetId?: string;
   updatedAt?: SearchUpdatedAt;
   options?: SearchOptions;
