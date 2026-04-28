@@ -45,12 +45,9 @@ async function loadVersionedOpenApiSpecifications(): Promise<
   VersionedOpenApiSpec[]
 > {
   const versionsDirectory = resolve(cwd(), "src/versions");
-  console.log(versionsDirectory);
   const directoryEntries = await readdir(versionsDirectory, {
     withFileTypes: true,
   });
-
-  console.log(directoryEntries);
 
   const versionNames = directoryEntries
     .filter((entry) => entry.isDirectory())
