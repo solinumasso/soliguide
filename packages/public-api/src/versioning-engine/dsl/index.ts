@@ -1,41 +1,23 @@
-export {
-  SchemaFieldAtPath,
-  SchemaObjectPath,
-  SchemaPath,
-  SchemaPathValue,
-} from "./schema-path";
+export { SchemaPath, SchemaPathValue } from "./schema-path";
 export {
   add,
-  AddChangePayload,
   AnyVersionChange,
-  assertChangesDoNotConflict,
-  assertFieldToken,
-  assertPayloadPath,
-  assertUniqueResourceNames,
-  assertVersionToken,
-  ChangePayloadByType,
+  ChangeImpact,
   ChangeType,
-  custom,
-  CustomAction,
-  CustomChangePayload,
-  CustomSelector,
-  merge,
-  MergeChangePayload,
+  patch,
   remove,
-  RemoveChangePayload,
   rename,
-  RenameChangePayload,
   replaceSchema,
-  ReplaceSchemaChangePayload,
   schema,
-  SchemaExpression,
-  split,
-  SplitChangePayload,
-  VersionChange,
-} from "./version-change";
+} from "./changes/version-change";
+export { ResourceKind } from "./changes/runtime";
 export {
   defineVersion,
+  ResourceChangesFactory,
   resource,
+  VersionContextInput,
+  VersionContextProvider,
+  VersionContextProviderToken,
   VersionDefinition,
   VersionedResourceDefinition,
 } from "./version-definition";
