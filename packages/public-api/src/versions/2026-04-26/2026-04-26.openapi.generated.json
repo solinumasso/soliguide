@@ -2410,6 +2410,40 @@
             "items": {
               "$ref": "#/components/schemas/Common_PublicsOther"
             }
+          },
+          "specialSupportContext": {
+            "description": "Special support context related to a crisis or exceptional situation.",
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Broad category of support context.",
+                "example": "humanitarianCrisis"
+              },
+              "key": {
+                "type": "string",
+                "description": "Stable machine-readable identifier for the support context.",
+                "example": "ukraine-displacement"
+              },
+              "label": {
+                "type": "string",
+                "description": "Human-readable label for the support context.",
+                "example": "Support for displaced people from Ukraine"
+              },
+              "details": {
+                "type": "string",
+                "description": "Additional details about the support available in this context.",
+                "example": "Ukrainian-speaking volunteers available."
+              }
+            },
+            "required": [
+              "type",
+              "key",
+              "label",
+              "details"
+            ],
+            "additionalProperties": false
           }
         },
         "additionalProperties": {},

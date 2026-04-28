@@ -253,54 +253,54 @@ const modalitiesCheckSchema = z
 const modalitiesSchema = z
   .looseObject({
     unconditional: z
-            .boolean()
-            .nullable()
-            .optional()
-            .describe(
-              "Indicates unconditional access. When `true`, it is the only access condition to consider."
-            ),
+      .boolean()
+      .nullable()
+      .optional()
+      .describe(
+        "Indicates unconditional access. When `true`, it is the only access condition to consider."
+      ),
     appointment: modalitiesCheckSchema
       .nullable()
       .optional()
       .describe("Access by appointment."),
     registration: modalitiesCheckSchema
-          .nullable()
-          .optional()
-          .describe("Access requiring prior registration."),
+      .nullable()
+      .optional()
+      .describe("Access requiring prior registration."),
     referral: modalitiesCheckSchema
-          .nullable()
-          .optional()
-          .describe(
-            "Access requiring orientation. When this condition applies, address and coordinates must not be displayed publicly unless explicitly allowed by agreement."
-          ),
+      .nullable()
+      .optional()
+      .describe(
+        "Access requiring orientation. When this condition applies, address and coordinates must not be displayed publicly unless explicitly allowed by agreement."
+      ),
     price: modalitiesCheckSchema
       .nullable()
       .optional()
       .describe("Indicates the service is fee-based."),
     animals: z
-          .object({
-            checked: z
-              .boolean()
-              .nullable()
-              .optional()
-              .describe("Indicates whether animals are accepted."),
-          })
+      .object({
+        checked: z
+          .boolean()
           .nullable()
           .optional()
-          .describe("Animal access policy."),
+          .describe("Indicates whether animals are accepted."),
+      })
+      .nullable()
+      .optional()
+      .describe("Animal access policy."),
     accessibility: z
-                .object({
-                  wheelchair: z
-                    .boolean()
-                    .nullable()
-                    .optional()
-                    .describe(
-                      "Indicates whether the place is accessible to wheelchair users."
-                    ),
-                })
-                .nullable()
-                .optional()
-                .describe("Accessibility details for the place."),
+      .object({
+        wheelchair: z
+          .boolean()
+          .nullable()
+          .optional()
+          .describe(
+            "Indicates whether the place is accessible to wheelchair users."
+          ),
+      })
+      .nullable()
+      .optional()
+      .describe("Accessibility details for the place."),
     docs: z.array(z.string()).nullable().optional(),
     other: z
       .string()
@@ -313,12 +313,12 @@ const modalitiesSchema = z
 const publicsSchema = z
   .looseObject({
     welcomeType: z
-            .union([z.literal(0), z.literal(1), z.literal(2)])
-            .nullable()
-            .optional()
-            .describe(
-              "Type of welcome for the public: `0` unconditional, `1` unconditional adapted to a specific public, `2` exclusive."
-            ),
+      .union([z.literal(0), z.literal(1), z.literal(2)])
+      .nullable()
+      .optional()
+      .describe(
+        "Type of welcome for the public: `0` unconditional, `1` unconditional adapted to a specific public, `2` exclusive."
+      ),
     administrative: z
       .array(publicsAdministrativeEnumSchema)
       .nullable()
@@ -348,12 +348,12 @@ const publicsSchema = z
         "Free-text details about specific public restrictions or adaptations."
       ),
     family: z
-          .array(publicsFamilyEnumSchema)
-          .nullable()
-          .optional()
-          .describe(
-            "Family situations accepted by the place. If every possible value is selected, it means there is no restriction."
-          ),
+      .array(publicsFamilyEnumSchema)
+      .nullable()
+      .optional()
+      .describe(
+        "Family situations accepted by the place. If every possible value is selected, it means there is no restriction."
+      ),
     gender: z
       .array(publicsGenderEnumSchema)
       .nullable()
@@ -367,7 +367,40 @@ const publicsSchema = z
       .optional()
       .describe(
         "Other audience restrictions or adaptations. If every possible value is selected, it means there is no restriction."
-      )
+      ),
+    specialSupportContext: z
+      .object({
+        type: z.string().describe("Broad category of support context.").meta({
+          example: "humanitarianCrisis",
+        }),
+        key: z
+          .string()
+          .describe(
+            "Stable machine-readable identifier for the support context."
+          )
+          .meta({
+            example: "ukraine-displacement",
+          }),
+        label: z
+          .string()
+          .describe("Human-readable label for the support context.")
+          .meta({
+            example: "Support for displaced people from Ukraine",
+          }),
+        details: z
+          .string()
+          .describe(
+            "Additional details about the support available in this context."
+          )
+          .meta({
+            example: "Ukrainian-speaking volunteers available.",
+          }),
+      })
+      .nullable()
+      .optional()
+      .describe(
+        "Special support context related to a crisis or exceptional situation."
+      ),
   })
   .meta({ id: "SearchResponse_Publics" });
 
@@ -406,16 +439,16 @@ const serviceSchema = z
       .nullable()
       .describe("Category of the service."),
     tempClosure: z
-            .object({
-              active: z.boolean().nullable().optional(),
-              startDate: dateSchema.nullable().optional(),
-              endDate: dateSchema.nullable().optional(),
-              precision: z.string().nullable().optional(),
-              closeType: z.number().nullable().optional(),
-            })
-            .nullable()
-            .optional()
-            .describe("Temporary closure settings for the service."),
+      .object({
+        active: z.boolean().nullable().optional(),
+        startDate: dateSchema.nullable().optional(),
+        endDate: dateSchema.nullable().optional(),
+        precision: z.string().nullable().optional(),
+        closeType: z.number().nullable().optional(),
+      })
+      .nullable()
+      .optional()
+      .describe("Temporary closure settings for the service."),
     description: z
       .string()
       .nullable()
@@ -625,10 +658,10 @@ const v20260426SearchPlaceResponseSchema = z
       .optional()
       .describe("Internal identifier of the place"),
     seoUrl: z
-          .string()
-          .nullable()
-          .optional()
-          .describe("SEO-friendly URL slug of the place."),
+      .string()
+      .nullable()
+      .optional()
+      .describe("SEO-friendly URL slug of the place."),
     name: z
       .string()
       .nullable()
@@ -657,29 +690,29 @@ const v20260426SearchPlaceResponseSchema = z
     photos: z.array(photoSchema).nullable().optional(),
     placeType: placeTypeEnumSchema.nullable().optional(),
     services: z
-          .array(serviceSchema)
-          .nullable()
-          .optional()
-          .describe("List of services available at the place."),
+      .array(serviceSchema)
+      .nullable()
+      .optional()
+      .describe("List of services available at the place."),
     position: positionSchema
       .nullable()
       .optional()
       .describe("Address and geographic information of the place."),
     waypoints: z
-          .array(parcoursSchema)
-          .nullable()
-          .optional()
-          .describe(
-            'Details about the Parcours of a facility when `placeType` is "PARCOURS_MOBILE"'
-          ),
+      .array(parcoursSchema)
+      .nullable()
+      .optional()
+      .describe(
+        'Details about the Parcours of a facility when `placeType` is "PARCOURS_MOBILE"'
+      ),
     organizationInfo: entitySchema
-          .nullable()
-          .optional()
-          .describe("Organization contact information."),
+      .nullable()
+      .optional()
+      .describe("Organization contact information."),
     openingHours: openingHoursSchema
-          .nullable()
-          .optional()
-          .describe("Opening hours of the place."),
+      .nullable()
+      .optional()
+      .describe("Opening hours of the place."),
     modalities: modalitiesSchema
       .nullable()
       .optional()
@@ -711,112 +744,112 @@ const v20260426SearchPlaceResponseSchema = z
       .optional()
       .describe("Last user update date of the place. Format ISO 8601."),
     tempInfo: z
-                .looseObject({
-                  closure: z
-                    .looseObject({
-                      active: z
-                        .boolean()
-                        .nullable()
-                        .optional()
-                        .describe(
-                          "Indicates whether the temporary information is currently active."
-                        ),
-                      startDate: z
-                        .string()
-                        .nullable()
-                        .optional()
-                        .describe(
-                          "Start date of the temporary information. Format ISO 8601."
-                        ),
-                      endDate: z
-                        .string()
-                        .nullable()
-                        .optional()
-                        .describe(
-                          "End date of the temporary information. Format ISO 8601."
-                        ),
-                      description: z
-                        .string()
-                        .nullable()
-                        .optional()
-                        .describe("Message describing the temporary information."),
-                    })
-                    .nullable()
-                    .optional()
-                    .describe("Temporary closure of the place."),
-                  hours: z
-                    .looseObject({
-                      active: z
-                        .boolean()
-                        .nullable()
-                        .optional()
-                        .describe(
-                          "Indicates whether the temporary information is currently active."
-                        ),
-                      startDate: z
-                        .string()
-                        .nullable()
-                        .optional()
-                        .describe(
-                          "Start date of the temporary information. Format ISO 8601."
-                        ),
-                      endDate: z
-                        .string()
-                        .nullable()
-                        .optional()
-                        .describe(
-                          "End date of the temporary information. Format ISO 8601."
-                        ),
-                      description: z
-                        .string()
-                        .nullable()
-                        .optional()
-                        .describe("Message describing the temporary information."),
-                      hours: z
-                        .looseObject({})
-                        .nullable()
-                        .optional()
-                        .describe("Temporary opening hours of the place."),
-                    })
-                    .nullable()
-                    .optional()
-                    .describe("Temporary opening hours of the place."),
-                  message: z
-                    .looseObject({
-                      active: z
-                        .boolean()
-                        .nullable()
-                        .optional()
-                        .describe(
-                          "Indicates whether the temporary information is currently active."
-                        ),
-                      startDate: z
-                        .string()
-                        .nullable()
-                        .optional()
-                        .describe(
-                          "Start date of the temporary information. Format ISO 8601."
-                        ),
-                      endDate: z
-                        .string()
-                        .nullable()
-                        .optional()
-                        .describe(
-                          "End date of the temporary information. Format ISO 8601."
-                        ),
-                      description: z
-                        .string()
-                        .nullable()
-                        .optional()
-                        .describe("Message describing the temporary information."),
-                      name: z.string().nullable().optional(),
-                    })
-                    .nullable()
-                    .optional(),
-                })
-                .nullable()
-                .optional()
-                .describe("Temporary closure, opening hours and message information."),
+      .looseObject({
+        closure: z
+          .looseObject({
+            active: z
+              .boolean()
+              .nullable()
+              .optional()
+              .describe(
+                "Indicates whether the temporary information is currently active."
+              ),
+            startDate: z
+              .string()
+              .nullable()
+              .optional()
+              .describe(
+                "Start date of the temporary information. Format ISO 8601."
+              ),
+            endDate: z
+              .string()
+              .nullable()
+              .optional()
+              .describe(
+                "End date of the temporary information. Format ISO 8601."
+              ),
+            description: z
+              .string()
+              .nullable()
+              .optional()
+              .describe("Message describing the temporary information."),
+          })
+          .nullable()
+          .optional()
+          .describe("Temporary closure of the place."),
+        hours: z
+          .looseObject({
+            active: z
+              .boolean()
+              .nullable()
+              .optional()
+              .describe(
+                "Indicates whether the temporary information is currently active."
+              ),
+            startDate: z
+              .string()
+              .nullable()
+              .optional()
+              .describe(
+                "Start date of the temporary information. Format ISO 8601."
+              ),
+            endDate: z
+              .string()
+              .nullable()
+              .optional()
+              .describe(
+                "End date of the temporary information. Format ISO 8601."
+              ),
+            description: z
+              .string()
+              .nullable()
+              .optional()
+              .describe("Message describing the temporary information."),
+            hours: z
+              .looseObject({})
+              .nullable()
+              .optional()
+              .describe("Temporary opening hours of the place."),
+          })
+          .nullable()
+          .optional()
+          .describe("Temporary opening hours of the place."),
+        message: z
+          .looseObject({
+            active: z
+              .boolean()
+              .nullable()
+              .optional()
+              .describe(
+                "Indicates whether the temporary information is currently active."
+              ),
+            startDate: z
+              .string()
+              .nullable()
+              .optional()
+              .describe(
+                "Start date of the temporary information. Format ISO 8601."
+              ),
+            endDate: z
+              .string()
+              .nullable()
+              .optional()
+              .describe(
+                "End date of the temporary information. Format ISO 8601."
+              ),
+            description: z
+              .string()
+              .nullable()
+              .optional()
+              .describe("Message describing the temporary information."),
+            name: z.string().nullable().optional(),
+          })
+          .nullable()
+          .optional(),
+      })
+      .nullable()
+      .optional()
+      .describe("Temporary closure, opening hours and message information."),
     sources: z
       .array(sourceSchema)
       .nullable()
@@ -842,31 +875,29 @@ export const v20260426SearchResponseSchema = z
       .nullable()
       .describe("Total number of places matching the request."),
     places: z.array(
-              z
-                .discriminatedUnion("placeType", [
-                  v20260426SearchPlaceResponseSchema
-                    // @ts-ignore
-                    .omit({ waypoints: true })
-                    .extend({
-                      placeType: z.literal(PlaceType.PLACE),
-                    })
-                    .meta({ title: "FixedPosition" }),
-                  v20260426SearchPlaceResponseSchema
-                    // @ts-ignore
-                    .omit({ openingHours: true, position: true })
-                    .extend({
-                      placeType: z.literal(PlaceType.ITINERARY),
-                    })
-                    .meta({ title: "Itinerary" }),
-                ])
-                .meta({
-                  discriminator: {
-                    propertyName: "type",
-                  },
-                })
-                .nullable()
-                .describe("List of place matching the request.")
-            ),
+      z
+        .discriminatedUnion("placeType", [
+          v20260426SearchPlaceResponseSchema
+            .omit({ waypoints: true })
+            .extend({
+              placeType: z.literal(PlaceType.PLACE),
+            })
+            .meta({ title: "FixedPosition" }),
+          v20260426SearchPlaceResponseSchema
+            .omit({ openingHours: true, position: true })
+            .extend({
+              placeType: z.literal(PlaceType.ITINERARY),
+            })
+            .meta({ title: "Itinerary" }),
+        ])
+        .meta({
+          discriminator: {
+            propertyName: "type",
+          },
+        })
+        .nullable()
+        .describe("List of place matching the request.")
+    ),
   })
   .meta({ id: "v20260426SearchResponse" });
 
