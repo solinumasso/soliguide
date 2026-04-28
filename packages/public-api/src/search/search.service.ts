@@ -7,8 +7,8 @@ import {
 import { SearchQueryPolicyPipeline } from "./search-query/search-query-policy.pipeline";
 import { SearchQueryFactory } from "./search-query/search-query.factory";
 import { SearchPaginationFactory } from "./search-query/search-pagination.factory";
-import { SearchResult } from "./search-result/search-result.type";
-import { V20260101SearchRequest } from "../versions/2026-01-01/2026-01-01.search-request.schema.generated";
+import { CanonicalSearchRequest } from "./canonical-search-request";
+import { CanonicalSearchResponse } from "./canonical-search-response";
 import { SearchPolicyContext } from "./search-query/search-query-policy";
 import { SearchUserContext } from "./auth/search-auth.resolver";
 
@@ -24,15 +24,17 @@ export class SearchService {
   ) {}
 
   async search(
-    request: V20260101SearchRequest,
+    request: CanonicalSearchRequest,
     user: SearchUserContext
-  ): Promise<SearchResult> {
+  ): Promise<CanonicalSearchResponse> {
     const query = this.searchQueryFactory.create(request);
     const context = this.buildPolicyContext(user);
     const adaptedQuery = this.searchQueryPolicyPipeline.apply(query, context);
     const pagination = this.searchPaginationFactory.create(adaptedQuery);
 
-    return this.placesRepository.search(adaptedQuery, pagination);
+    const result = await this.placesRepository.search(adaptedQuery, pagination);
+
+    return result as unknown as CanonicalSearchResponse;
   }
 
   protected buildPolicyContext(user: SearchUserContext): SearchPolicyContext {
