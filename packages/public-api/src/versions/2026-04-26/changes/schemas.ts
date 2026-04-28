@@ -130,19 +130,53 @@ export const accessibilitySchema = schema(
     .describe("Accessibility details for the place.")
 );
 
+export const specialSupportContextSchema = schema(
+  z
+    .object({
+      type: z.string().describe("Broad category of support context.").meta({
+        example: "humanitarianCrisis",
+      }),
+      key: z
+        .string()
+        .describe("Stable machine-readable identifier for the support context.")
+        .meta({
+          example: "ukraine-displacement",
+        }),
+      label: z
+        .string()
+        .describe("Human-readable label for the support context.")
+        .meta({
+          example: "Support for displaced people from Ukraine",
+        }),
+      details: z
+        .string()
+        .describe(
+          "Additional details about the support available in this context."
+        )
+        .meta({
+          example: "Ukrainian-speaking volunteers available.",
+        }),
+    })
+    .nullable()
+    .optional()
+    .describe(
+      "Special support context related to a crisis or exceptional situation."
+    )
+);
+
 export const searchPlacesByTypeSchema = schema(
   z.array(
     z
       .discriminatedUnion("placeType", [
         v20260426SearchPlaceResponseSchema
-          // @ts-ignore
+          // @ts-expect-error generated placeholder schema is extended later.
           .omit({ waypoints: true })
           .extend({
             placeType: z.literal(PlaceType.PLACE),
           })
           .meta({ title: "FixedPosition" }),
         v20260426SearchPlaceResponseSchema
-          // @ts-ignore
+          // @ts-expect-error generated placeholder schema is extended later.
           .omit({ openingHours: true, position: true })
           .extend({
             placeType: z.literal(PlaceType.ITINERARY),

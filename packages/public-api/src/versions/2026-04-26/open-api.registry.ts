@@ -1,4 +1,4 @@
-import { VersionRegistry } from "src/versioning-engine/open-api/version-registry";
+import { VersionRegistry } from "../../versioning-engine";
 import v20260426SearchRequestSchema from "./2026-04-26.search-request.schema.generated";
 import v20260426SearchResponseSchema from "./2026-04-26.search-response.schema.generated";
 

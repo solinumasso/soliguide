@@ -240,47 +240,47 @@ const locationSchema = z
 const modalitiesSchema = z
   .looseObject({
     acceptsPets: z.coerce
-            .boolean()
-            .nullable()
-            .optional()
-            .describe("Filter on places accepting animals."),
+      .boolean()
+      .nullable()
+      .optional()
+      .describe("Filter on places accepting animals."),
     appointmentRequired: z.coerce
-            .boolean()
-            .nullable()
-            .optional()
-            .describe("Filter on places requiring an appointment."),
+      .boolean()
+      .nullable()
+      .optional()
+      .describe("Filter on places requiring an appointment."),
     unconditional: z.coerce
-          .boolean()
-          .nullable()
-          .optional()
-          .describe(
-            "Filter on places with unconditional access. When `true`, it targets places where unconditional access is the applicable access mode."
-          ),
+      .boolean()
+      .nullable()
+      .optional()
+      .describe(
+        "Filter on places with unconditional access. When `true`, it targets places where unconditional access is the applicable access mode."
+      ),
     registrationRequired: z.coerce
-          .boolean()
-          .nullable()
-          .optional()
-          .describe("Filter on places requiring prior registration."),
+      .boolean()
+      .nullable()
+      .optional()
+      .describe("Filter on places requiring prior registration."),
     referalRequired: z.coerce
-          .boolean()
-          .nullable()
-          .optional()
-          .describe("Filter on places requiring orientation."),
+      .boolean()
+      .nullable()
+      .optional()
+      .describe("Filter on places requiring orientation."),
     isAccessible: z.coerce
-          .boolean()
-          .nullable()
-          .optional()
-          .describe("Filter on places accessible to people with reduced mobility."),
+      .boolean()
+      .nullable()
+      .optional()
+      .describe("Filter on places accessible to people with reduced mobility."),
     hasFees: z.coerce
-          .boolean()
-          .nullable()
-          .optional()
-          .describe("Filter on fee-based places or services."),
+      .boolean()
+      .nullable()
+      .optional()
+      .describe("Filter on fee-based places or services."),
     hasSignLanguage: z.coerce
-          .boolean()
-          .nullable()
-          .optional()
-          .describe("Filter on places offering sign-language accessibility."),
+      .boolean()
+      .nullable()
+      .optional()
+      .describe("Filter on places offering sign-language accessibility."),
   })
   .catchall(z.unknown())
   .describe("Access condition filters.")
@@ -289,11 +289,11 @@ const modalitiesSchema = z
 const publicsSchema = z
   .looseObject({
     welcomeType: welcomedPublicsEnumSchema
-            .nullable()
-            .optional()
-            .describe(
-              "Type of welcome expected for the public: unconditional, preferential or exclusive."
-            ),
+      .nullable()
+      .optional()
+      .describe(
+        "Type of welcome expected for the public: unconditional, preferential or exclusive."
+      ),
     age: z
       .object({
         min: z.coerce
@@ -335,19 +335,19 @@ const publicsSchema = z
         "Administrative-status audience filters. If all possible values are selected, it is treated as no restriction."
       ),
     family: z
-          .array(publicsFamilyEnumSchema)
-          .nullable()
-          .optional()
-          .describe(
-            "Family-situation audience filters. If all possible values are selected, it is treated as no restriction."
-          ),
+      .array(publicsFamilyEnumSchema)
+      .nullable()
+      .optional()
+      .describe(
+        "Family-situation audience filters. If all possible values are selected, it is treated as no restriction."
+      ),
     specific: z
-          .array(publicsOtherEnumSchema)
-          .nullable()
-          .optional()
-          .describe(
-            "Other audience filters. If all possible values are selected, it is treated as no restriction."
-          ),
+      .array(publicsOtherEnumSchema)
+      .nullable()
+      .optional()
+      .describe(
+        "Other audience filters. If all possible values are selected, it is treated as no restriction."
+      ),
   })
   .describe("Public audience filters.")
   .meta({ id: "SearchRequest_Publics" });
@@ -437,10 +437,10 @@ export const v20260426SearchRequestSchema = z
       .describe("Resource type to search: fixed places or itineraries.")
       .meta({ example: PlaceType.PLACE }),
     q: z
-          .string()
-          .nullable()
-          .optional()
-          .describe("Free-text search applied to place and service content."),
+      .string()
+      .nullable()
+      .optional()
+      .describe("Free-text search applied to place and service content."),
     openToday: z.coerce
       .boolean()
       .nullable()
