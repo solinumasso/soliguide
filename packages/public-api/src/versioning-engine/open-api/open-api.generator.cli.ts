@@ -1,6 +1,6 @@
 import { resolve } from "node:path";
 
-import { versionRegistry } from "../versions";
+import { versionRegistry } from "../../versions";
 import { buildProductionBaseOpenApiDocument } from "./open-api.base-document.provider";
 import { OpenApiGenerator } from "./open-api.generator";
 
@@ -31,6 +31,7 @@ Promise.resolve()
     const version = parseVersionFromArgs(process.argv.slice(2));
     const outputPath = resolve(
       __dirname,
+      "..",
       "..",
       "versions",
       version,
