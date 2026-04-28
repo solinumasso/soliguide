@@ -1,4 +1,12 @@
-import { ChangeType } from "../dsl/version-change";
+import { ResourceKind } from "../dsl/changes/runtime";
+import { ChangeImpact, ChangeType } from "../dsl/changes/version-change";
+
+export type ParsedChangeMetadata = {
+  title?: string;
+  description?: string;
+  impact?: ChangeImpact;
+  groupTitle?: string;
+};
 
 export type ParsedSchemaExpression = {
   text: string;
@@ -26,47 +34,8 @@ export type ParsedReplaceSchemaPayload = {
   schema: ParsedSchemaExpression;
 };
 
-export type ParsedMergePayload = {
+export type ParsedPatchPayload = {
   payloadPath: string;
-  from: string[];
-  to: string;
-  schema: ParsedSchemaExpression;
-};
-
-export type ParsedSplitPayload = {
-  payloadPath: string;
-  from: string;
-  to: Record<string, ParsedSchemaExpression>;
-};
-
-export type ParsedCustomSelector =
-  | {
-      type: "self";
-    }
-  | {
-      type: "field";
-      field: string;
-    };
-
-export type ParsedCustomAction =
-  | {
-      type: "replace";
-      schema: ParsedSchemaExpression;
-    }
-  | {
-      type: "insert";
-      field: string;
-      schema: ParsedSchemaExpression;
-    }
-  | {
-      type: "remove";
-      field?: string;
-    };
-
-export type ParsedCustomPayload = {
-  payloadPath: string;
-  selector?: ParsedCustomSelector;
-  action: ParsedCustomAction;
 };
 
 export type ParsedChangePayloadByType = {
@@ -74,14 +43,13 @@ export type ParsedChangePayloadByType = {
   remove: ParsedRemovePayload;
   rename: ParsedRenamePayload;
   replaceSchema: ParsedReplaceSchemaPayload;
-  merge: ParsedMergePayload;
-  split: ParsedSplitPayload;
-  custom: ParsedCustomPayload;
+  patch: ParsedPatchPayload;
 };
 
 export type ParsedChangeDefinition<TType extends ChangeType = ChangeType> = {
   changeName: string;
   type: TType;
+  metadata: ParsedChangeMetadata;
   payload: ParsedChangePayloadByType[TType];
   sourceFilePath: string;
 };
@@ -92,6 +60,8 @@ export type AnyParsedChangeDefinition = {
 
 export type ParsedResourceDefinition = {
   resourceName: string;
+  kind?: ResourceKind;
+  contextProvider?: string;
   changes: AnyParsedChangeDefinition[];
 };
 

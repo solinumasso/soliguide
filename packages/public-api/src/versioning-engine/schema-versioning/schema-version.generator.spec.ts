@@ -21,7 +21,7 @@ afterEach(async () => {
 });
 
 describe("SchemaVersionGenerator", () => {
-  it("applies add/remove/rename/replace/merge/split/custom changes and prunes unused nodes", async () => {
+  it("applies add/remove/rename/replace/patch-group changes and prunes unused nodes", async () => {
     const packageRootDir = await createSyntheticPackageRoot();
 
     await new SchemaVersionGenerator().generate({
@@ -53,23 +53,11 @@ describe("SchemaVersionGenerator", () => {
       "replaceMe: z.number().int().nullable().optional()"
     );
     expect(generatedSampleSchema).toContain(
-      "mergedField: z.object({ value: z.string().nullable().optional() })"
-    );
-    expect(generatedSampleSchema).toContain(
-      "splitOne: z.string().nullable().optional()"
-    );
-    expect(generatedSampleSchema).toContain(
-      "splitTwo: z.number().nullable().optional()"
-    );
-    expect(generatedSampleSchema).toContain(
-      "customTarget: z.boolean().nullable().optional()"
+      "patchTarget: z.boolean().nullable().optional()"
     );
 
     expect(generatedSampleSchema).not.toContain("removeMe:");
     expect(generatedSampleSchema).not.toContain("renameMe:");
-    expect(generatedSampleSchema).not.toContain("mergeA:");
-    expect(generatedSampleSchema).not.toContain("mergeB:");
-    expect(generatedSampleSchema).not.toContain("splitMe:");
 
     expect(generatedSampleSchema).not.toContain("unusedLocal");
     expect(generatedSampleSchema).not.toContain("ZodType");
@@ -242,10 +230,7 @@ export const v20260101SampleSchema = z
       removeMe: z.string().nullable().optional(),
       renameMe: z.string().nullable().optional(),
       replaceMe: z.string().nullable().optional(),
-      mergeA: z.string().nullable().optional(),
-      mergeB: z.number().nullable().optional(),
-      splitMe: z.string().nullable().optional(),
-      customTarget: z.string().nullable().optional(),
+      patchTarget: z.string().nullable().optional(),
     }),
     places: z.array(
       z.object({
@@ -307,65 +292,51 @@ export default versionRegistry;
     `import { z } from "zod";
 import {
   add,
-  custom,
+  patch,
   defineVersion,
-  merge,
   remove,
   rename,
   replaceSchema,
   resource,
   schema,
-  split,
 } from "src/versioning-engine/dsl";
 
 export default defineVersion({
   version: "2026-04-17",
   baseVersion: "2026-01-01",
   resources: [
-    resource("sample", [
-      add<any>({
-        payloadPath: "root",
-        field: "addedField",
-        schema: schema(z.string().nullable().optional()),
-      }),
-      remove<any>({
-        payloadPath: "root.removeMe",
-      }),
-      rename<any>({
-        payloadPath: "root",
-        from: "renameMe",
-        to: "renamedMe",
-      }),
-      replaceSchema<any>({
-        payloadPath: "root.replaceMe",
-        schema: schema(z.number().int().nullable().optional()),
-      }),
-      merge<any>({
-        payloadPath: "root",
-        from: ["mergeA", "mergeB"],
-        to: "mergedField",
-        schema: schema(z.object({ value: z.string().nullable().optional() })),
-      }),
-      split<any>({
-        payloadPath: "root",
-        from: "splitMe",
-        to: {
-          splitOne: schema(z.string().nullable().optional()),
-          splitTwo: schema(z.number().nullable().optional()),
-        },
-      }),
-      custom<any>({
-        payloadPath: "root",
-        selector: {
-          type: "field",
-          field: "customTarget",
-        },
-        action: {
-          type: "replace",
-          schema: schema(z.boolean().nullable().optional()),
-        },
-      }),
-    ]),
+    resource("sample", {
+      kind: "request",
+      changes: [
+        add<any>({
+          payloadPath: "root",
+          field: "addedField",
+          schema: schema(z.string().nullable().optional()),
+        }),
+        remove<any>({
+          payloadPath: "root.removeMe",
+        }),
+        rename<any>({
+          payloadPath: "root",
+          from: "renameMe",
+          to: "renamedMe",
+        }),
+        replaceSchema<any>({
+          payloadPath: "root.replaceMe",
+          schema: schema(z.number().int().nullable().optional()),
+        }),
+        patch<any>({
+          title: "Patch target",
+          payloadPath: "root",
+          changes: [
+            replaceSchema<any>({
+              payloadPath: "root.patchTarget",
+              schema: schema(z.boolean().nullable().optional()),
+            }),
+          ],
+        }),
+      ],
+    }),
   ],
 });
 `,
