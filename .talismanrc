@@ -12,6 +12,8 @@ fileignoreconfig:
   checksum: 360a52b9b28535dd75558c6d0ab23a29b6a0346b732ffa1e4be84f4123e5dca7
 - filename: packages/frontend/src/app/modules/place/standalone-components/google-map/google-map.component.ts
   checksum: c3c67e611385e32c11c8f06c4847d48b5cd6201e027391bdc867307c42fc1d17
+- filename: packages/frontend/src/app/modules/campaign-shared/components/campaign-source-update/campaign-source-update.component.html
+  checksum: 74d0f39f0df5068d1a4da6601e61046d1d4a3e83b494bdd70d0193b7f9370081
 - filename: packages/web-app/src/lib/services/categoryService.ts
   checksum: 7002e4f6fe7b74eb7516a14b09ec8bbd1ad429a33b017cda5329ef6c6b835d17
 - filename: packages/web-app/static/images/organizations-logos/fr/fondation-pour-le-logement.svg
