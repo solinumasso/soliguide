@@ -11,7 +11,9 @@ export const statusIncludeInMAJ = {
   status: { $in: [PlaceStatus.ONLINE, PlaceStatus.OFFLINE] },
 };
 // Countries to include in the MAJ campaign
-export const countryIncludeInMAJ = { country: { $in: [CountryCodes.FR] } };
+export const countryIncludeInMAJ = {
+  country: { $in: [CountryCodes.FR, CountryCodes.ES, CountryCodes.AD] },
+};
 
 // Include places except those with sources that make updates themselves
 // or ALISOL/DORA if they are the origin of the data

@@ -6,6 +6,7 @@ import {
   type ApiPlace,
   CountryCodes,
   CAMPAIGN_LIST,
+  type SoliguideCountries,
 } from "@soliguide/common";
 
 import type {
@@ -14,6 +15,12 @@ import type {
   UserRight,
 } from "../../_models";
 import { PRIORITARY_CATEGORIES } from "../../categories/constants/prioritary-categories.const";
+
+const CAMPAIGN_SUPPORTED_COUNTRIES: SoliguideCountries[] = [
+  CountryCodes.FR,
+  CountryCodes.ES,
+  CountryCodes.AD,
+];
 
 export const getPlaces = (
   user: UserPopulateType,
@@ -25,7 +32,9 @@ export const getPlaces = (
       (place.status === PlaceStatus.ONLINE ||
         place.status === PlaceStatus.OFFLINE) &&
       place.campaigns[CAMPAIGN_DEFAULT_NAME].toUpdate &&
-      place?.country !== CountryCodes.FR
+      CAMPAIGN_SUPPORTED_COUNTRIES.includes(
+        place?.country as SoliguideCountries
+      )
     );
   });
 
@@ -90,5 +99,8 @@ export const isCampaignActive = (
 };
 
 export const isCampaignActiveForPlace = (place: ApiPlace): boolean => {
-  return isCampaignActive() && place?.country === CountryCodes.FR;
+  return (
+    isCampaignActive() &&
+    CAMPAIGN_SUPPORTED_COUNTRIES.includes(place?.country as SoliguideCountries)
+  );
 };

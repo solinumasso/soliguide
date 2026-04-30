@@ -160,4 +160,28 @@ export const CAMPAIGN_LIST: { [key in CampaignName]: CampaignInfos } = {
     specificServiceMessage: "",
     territories: [...DEPARTMENT_CODES[CountryCodes.FR]],
   },
+  MID_YEAR_2026: {
+    adjective: "estivale",
+    closingFormula: "Bel été",
+    dateDebutAffichage: new Date("2026-07-15T00:00:00.000Z"),
+    dateDebutCampagne: new Date("2026-06-01T00:00:00.000Z"),
+    dateFin: new Date("2026-08-31T23:59:59.000Z"),
+    description: "Mise à jour été 2026",
+    icon: "sun",
+    name: "été",
+    period: "juin-août",
+    placesToUpdate: null,
+    sections: [
+      CampaignChangesSection.tempClosure,
+      CampaignChangesSection.services,
+      CampaignChangesSection.tempHours,
+      CampaignChangesSection.tempMessage,
+    ],
+    specificServiceMessage: "",
+    territories: [
+      ...DEPARTMENT_CODES[CountryCodes.FR],
+      ...DEPARTMENT_CODES[CountryCodes.ES],
+      ...DEPARTMENT_CODES[CountryCodes.AD],
+    ],
+  },
 };

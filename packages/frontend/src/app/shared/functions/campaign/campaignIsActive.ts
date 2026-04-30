@@ -5,16 +5,23 @@ import {
   CAMPAIGN_LIST,
   campaignIsActive,
   getDepartmentCodeFromPostalCode,
+  type SoliguideCountries,
 } from "@soliguide/common";
 
 import { THEME_CONFIGURATION } from "../../../models";
+
+const CAMPAIGN_SUPPORTED_COUNTRIES: SoliguideCountries[] = [
+  CountryCodes.FR,
+  CountryCodes.ES,
+  CountryCodes.AD,
+];
 
 export const campaignIsActiveWithTheme = (
   territories?: AnyDepartmentCode[]
 ): boolean => {
   //! Todo - Remove this when working on manage MAJ filters
   return (
-    THEME_CONFIGURATION.country === CountryCodes.FR &&
+    CAMPAIGN_SUPPORTED_COUNTRIES.includes(THEME_CONFIGURATION.country) &&
     campaignIsActive(territories)
   );
 };
@@ -34,10 +41,10 @@ export const campaignIsAvailable = (
 
 export const getIsCampaignActive = (postalCode: string): boolean => {
   return (
-    THEME_CONFIGURATION.country === CountryCodes.FR &&
-    postalCode &&
+    CAMPAIGN_SUPPORTED_COUNTRIES.includes(THEME_CONFIGURATION.country) &&
+    !!postalCode &&
     campaignIsActiveWithTheme([
-      getDepartmentCodeFromPostalCode(CountryCodes.FR, postalCode),
+      getDepartmentCodeFromPostalCode(THEME_CONFIGURATION.country, postalCode),
     ])
   );
 };

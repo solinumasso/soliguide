@@ -1,10 +1,10 @@
 import {
   ApiPlace,
   CampaignChangesSection,
-  CountryCodes,
   getDepartmentCodeFromPostalCode,
   PlaceChangesSection,
   PlaceStatus,
+  type SoliguideCountries,
 } from "@soliguide/common";
 
 import express, { NextFunction } from "express";
@@ -155,7 +155,7 @@ router.get(
   canEditPlace,
   (req: ExpressRequest, res: ExpressResponse) => {
     const territory = getDepartmentCodeFromPostalCode(
-      CountryCodes.FR,
+      req.lieu.country as SoliguideCountries,
       req.lieu.postalCode
     );
 
