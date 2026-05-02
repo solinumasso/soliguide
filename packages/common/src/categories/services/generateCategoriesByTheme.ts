@@ -6,10 +6,7 @@ import {
   CATEGORIES_GRAPH_SOLIGUIA_AD,
 } from "../constants";
 import { Categories } from "../enums";
-import {
-  CategoriesGraph,
-  FlatCategoriesTreeNode,
-} from "../interfaces";
+import { CategoriesGraph, FlatCategoriesTreeNode } from "../interfaces";
 import { sortByRank } from "./categories.service";
 
 /**
