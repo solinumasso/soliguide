@@ -31,9 +31,16 @@ export const parseCategories = (
     categoriesToExclude = DEFAULT_SERVICES_TO_EXCLUDE_WITH_ADDICTION;
   }
 
-  categoriesToExclude = categoriesToExclude.filter(
-    (categoryToExclude: Categories) => !categories.includes(categoryToExclude)
-  );
+  categoriesToExclude = categoriesToExclude.filter((categoryToExclude) => {
+    const leavesToExclude = categoryService.getFlatLeavesFromRootCategories([
+      categoryToExclude,
+    ]);
+    return !categories.some(
+      (searchedCategory) =>
+        searchedCategory === categoryToExclude ||
+        leavesToExclude.includes(searchedCategory)
+    );
+  });
 
   const leafCategoriesToExclude =
     categoryService.getFlatLeavesFromRootCategories(categoriesToExclude);
