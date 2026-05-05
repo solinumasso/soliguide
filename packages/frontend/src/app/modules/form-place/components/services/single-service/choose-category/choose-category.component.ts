@@ -4,7 +4,6 @@ import {
   AvailableEquipmentType,
   Categories,
   DietaryRegimesType,
-  getCategoriesService,
   getCategoriesSpecificFields,
   VoucherType,
 } from "@soliguide/common";
@@ -27,8 +26,6 @@ export class FormChooseCategoryFicheComponent {
   @Input() public service: Service;
   @Input() public serviceIndex: number;
 
-  public readonly CATEGORIES_NODES_WITH_ONE_DEPTH_CHILDREN =
-    getCategoriesService().geCategoriesNodesWithOneDepthChildren();
   public readonly CATEGORIES_SPECIFIC_FIELDS_CATEGORY_MAPPING =
     getCategoriesSpecificFields(THEME_CONFIGURATION.country);
   public readonly CATEGORIES_SPECIFIC_FIELDS_FIELD_TYPE =
@@ -40,12 +37,12 @@ export class FormChooseCategoryFicheComponent {
 
   @Output() public readonly noCategory = new EventEmitter<boolean>();
 
-  public generateSortedArray = (from: number, to: number): number[] => {
-    const n = to - from + 1;
-    return [...Array(n).keys()].map((i) => i + from);
-  };
+  public generateSortedArray(from: number, to: number): number[] {
+    const count = to - from + 1;
+    return [...Array(count).keys()].map((offset) => offset + from);
+  }
 
-  public updateCategory = (category: Categories): void => {
+  public updateCategory(category: Categories): void {
     if (this.CATEGORIES_SPECIFIC_FIELDS_CATEGORY_MAPPING[category]) {
       const newCategorySpecificFields = {};
 
@@ -62,15 +59,15 @@ export class FormChooseCategoryFicheComponent {
       delete this.service.categorySpecificFields;
     }
     this.service.category = category;
-  };
+  }
 
-  public updateCategorySpecificField = (
+  public updateCategorySpecificField(
     categorySpecificFieldValue: string,
     categorySpecificField: string
-  ): void => {
+  ): void {
     this.service.categorySpecificFields[categorySpecificField] =
       categorySpecificFieldValue;
-  };
+  }
 
   public displayTextareaForm(categorySpecificField: string): boolean {
     return !!(
@@ -94,7 +91,7 @@ export class FormChooseCategoryFicheComponent {
     );
   }
 
-  public displayChecklistForm = (categorySpecificField: string): boolean => {
+  public displayChecklistForm(categorySpecificField: string): boolean {
     return !!(
       CATEGORIES_SPECIFIC_FIELDS_FIELD_TYPE.checklist.includes(
         categorySpecificField
@@ -104,5 +101,5 @@ export class FormChooseCategoryFicheComponent {
           this.service.categorySpecificFields?.dietaryRegimesType ===
             DietaryRegimesType.WE_ADAPT))
     );
-  };
+  }
 }

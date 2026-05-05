@@ -11,6 +11,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { TranslateModule } from "@ngx-translate/core";
 
+import { CategorySelectComponent } from "./components/services/single-service/choose-category/category-select/category-select.component";
 import { ReturnToPlaceComponent } from "./components/_shared/return-to-place/return-to-place.component";
 import { FormStartAndEndDateFicheComponent } from "./components/_shared/start-and-date/start-and-end-date.component";
 import { FormTypePublicsFicheComponent } from "./components/_shared/type-publics/type-publics.component";
@@ -85,6 +86,7 @@ import { LocationAutocompleteComponent } from "../shared/components/location-aut
 
 @NgModule({
   declarations: [
+    CategorySelectComponent,
     AddContactModalComponent,
     EditContactsFormComponent,
     PlaceFormPhonesComponent,
