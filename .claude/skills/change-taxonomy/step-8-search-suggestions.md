@@ -1,9 +1,9 @@
 # Step 8 — Search suggestions
 
-Search suggestions are `SearchSuggestion` documents stored in MongoDB.
-They power the autocomplete and are generated per `(category, lang, country)` combination.
+Search suggestions power the autocomplete and are stored as JSON files in `packages/common/src/search-suggestions/data/`.
+They are generated per `(category, lang, country)` combination using the Claude API.
 
-This step requires the Claude API (Anthropic) to generate multilingual content.
+The script lives in `packages/api` and operates on the JSON source files in `@soliguide/common`.
 
 ---
 
@@ -14,66 +14,40 @@ If not, ask the developer to add it before continuing.
 
 ---
 
-## Adding suggestions for new categories
+## Running the sync
 
-Create a migration:
+A single command handles all three cases (add, remove, migrate):
+
 ```bash
-yarn workspace @soliguide/api migrate-create generate-search-suggestions-{slug}
+yarn workspace @soliguide/api categories:sync
 ```
 
-The migration must:
-1. Insert one `SearchSuggestion` per `(category, lang, country)` combination
-2. Use the Claude API to generate `label`, `seoTitle`, `seoDescription`, `synonyms` in each supported language
-3. Set `sourceId` as `CATEGORY_{SLUG_UPPERCASE}` (e.g. `CATEGORY_REGULARIZATION`)
-4. Set `type: "CATEGORY"`
-5. Set `slug` to the category slug
-6. Set `categoryId` to the `Categories` enum value
+The script automatically:
+1. Scans the `Categories` enum and the JSON source files to detect missing, obsolete, or untranslated entries
+2. Creates missing entries for new categories (per country × language)
+3. Translates new entries via the Claude API (`label`, `seoTitle`, `seoDescription`, `synonyms`)
+4. Removes obsolete entries for deleted/renamed categories
+5. Exports the updated JSON files to `packages/common/src/search-suggestions/data/{country}/{lang}.json`
 
-Reference for Claude API integration pattern:
-`packages/api/migrations/templates/xxxxxx-claude-verify-search-suggestions-language.ts`
+To preview what will change without applying:
+```bash
+yarn workspace @soliguide/api categories:analyze
+```
 
-The `down` function should delete the inserted documents:
-```ts
-await db.collection("search_suggestions").deleteMany({ sourceId: "CATEGORY_NEW_SLUG" });
+To remove only obsolete entries:
+```bash
+yarn workspace @soliguide/api categories:cleanup
 ```
 
 ---
 
-## Removing suggestions for deleted categories
+## Output location
 
-Create a migration:
-```bash
-yarn workspace @soliguide/api migrate-create remove-search-suggestions-{slug}
+`packages/common/src/search-suggestions/data/`
+```
+es/ca.json   es/es.json   es/fr.json   es/en.json   es/ar.json   es/uk.json   es/pt.json
+fr/fr.json   fr/ar.json   fr/en.json   ...
+ad/ca.json   ...
 ```
 
-```ts
-export const up = async (db: Db) => {
-  await db.collection("search_suggestions").deleteMany({
-    sourceId: "CATEGORY_OLD_SLUG_UPPERCASE",
-  });
-};
-
-export const down = async () => {
-  // Suggestions must be regenerated manually if needed
-  logger.info("[ROLLBACK] - No rollback: regenerate suggestions manually");
-};
-```
-
----
-
-## Migrating suggestions (slug rename)
-
-Delete old suggestions and generate new ones for the new slug:
-- One migration to `deleteMany({ sourceId: "CATEGORY_OLD_SLUG" })`
-- One migration (or same) to insert new suggestions for the new `sourceId`
-
----
-
-## Running migrations
-
-```bash
-yarn workspace @soliguide/api migrate-up
-
-# Update test database dump
-./packages/api/db.sh dump -t
-```
+The generated files are committed to the repository as part of the PR.

@@ -3419,7 +3419,7 @@
     "seoDescription": "Soliguide us ofereix llocs per a proves de VIH, preservatius gratuïts i consells de salut sexual a Espanya."
   },
   {
-    "label": "Vacunació",
+    "label": "Vacunació (ITS)",
     "categoryId": "sexual_health_vaccination",
     "slug": "sexual_health_vaccination",
     "synonyms": [
@@ -3579,5 +3579,32 @@
     "country": "es",
     "seoTitle": "Trobeu cirurgia vascular gratuïta amb Soliguide a Espanya",
     "seoDescription": "Soliguide us ajuda a trobar centres de cirurgia vascular. Consultes gratuïtes, tractaments i seguiment mèdic per a persones sense recursos."
+  },
+  {
+    "label": "Regularització",
+    "categoryId": "regularization",
+    "slug": "regularization",
+    "synonyms": [
+      "documentació",
+      "permís de residència",
+      "assessoria legal",
+      "oficina d'immigració",
+      "tràmits administratius",
+      "certificat oficial",
+      "empadronament",
+      "NIE",
+      "autorització",
+      "legalització",
+      "expedient",
+      "gestió de papers",
+      "drets de residència",
+      "consulat",
+      "validació"
+    ],
+    "type": "CATEGORY",
+    "lang": "ca",
+    "country": "es",
+    "seoTitle": "Regularització de la vostra situació amb Soliguide a Espanya",
+    "seoDescription": "Soliguide us ajuda a regularitzar la vostra situació. Trobareu oficines d'immigració, assessoria legal gratuïta i documentació oficial."
   }
 ]
