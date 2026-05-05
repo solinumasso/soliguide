@@ -95,6 +95,15 @@ handle {
 		header Expires 720d
 	}
 
+	# JSON files: always revalidate (browser sends If-None-Match, gets 304 if unchanged)
+	@json {
+		path *.json
+		file
+	}
+	route @json {
+		header Cache-Control "no-cache"
+	}
+
 	route {
 		try_files {path} /index.html
 		header /index.html Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
