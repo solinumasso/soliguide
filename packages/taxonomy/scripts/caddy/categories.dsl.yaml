@@ -437,7 +437,6 @@ categories:
       - slug: kinesitherapy
         from: "2023-11-20"
 
-
   OTORHINOLARYNGOLOGY:
     slug: otorhinolaryngology
     countries: [FR, ES, AD]
@@ -466,7 +465,7 @@ categories:
 
   PHLEBOLOGY:
     slug: phlebology
-    countries: [FR, ES, AD]
+    countries: [FR]
     createdAt: "2023-11-20"
     history:
       - slug: phlebologie
@@ -536,14 +535,13 @@ categories:
 
   OSTEOPATHY:
     slug: osteopathy
-    countries: [FR, ES, AD]
+    countries: [FR]
     createdAt: "2023-11-20"
     history:
       - slug: osteo
         until: "2023-11-20"
       - slug: osteopathy
         from: "2023-11-20"
-
 
   MOBILITY:
     slug: mobility
@@ -1223,3 +1221,11 @@ categories:
     slug: legal_protection
     countries: [AD]
     history: []
+
+  REGULARIZATION:
+    slug: regularization
+    countries: [ES]
+    createdAt: "2026-05-05"
+    history:
+      - slug: regularization
+        from: "2026-05-05"
