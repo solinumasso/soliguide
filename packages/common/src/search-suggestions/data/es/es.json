@@ -3419,7 +3419,7 @@
     "seoDescription": "Soliguide le conecta con centros de pruebas VIH gratuitas, preservativos y asesoramiento confidencial en su zona."
   },
   {
-    "label": "Vacunación",
+    "label": "Vacunación (ITS)",
     "categoryId": "sexual_health_vaccination",
     "slug": "sexual_health_vaccination",
     "synonyms": [
@@ -3579,5 +3579,32 @@
     "country": "es",
     "seoTitle": "Cirugía vascular gratuita cerca de usted con Soliguide",
     "seoDescription": "Soliguide le ayuda a encontrar consultas de cirugía vascular, operaciones sin costo y seguimiento médico especializado en su región."
+  },
+  {
+    "label": "Regularización",
+    "categoryId": "regularization",
+    "slug": "regularization",
+    "synonyms": [
+      "documentación",
+      "empadronamiento",
+      "NIE",
+      "pasaporte",
+      "permiso de residencia",
+      "trámites legales",
+      "certificados",
+      "registro civil",
+      "identidad",
+      "papeles",
+      "legalización",
+      "gestión administrativa",
+      "derechos",
+      "ciudadanía",
+      "validación"
+    ],
+    "type": "CATEGORY",
+    "lang": "es",
+    "country": "es",
+    "seoTitle": "Regularización de documentos con Soliguide, encuentra ayuda cerca de ti",
+    "seoDescription": "Soliguide te conecta con servicios de regularización. Obtén ayuda con tu NIE, empadronamiento o documentación legal en tu zona."
   }
 ]

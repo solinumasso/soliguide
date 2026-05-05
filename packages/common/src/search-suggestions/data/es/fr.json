@@ -3419,7 +3419,7 @@
     "seoDescription": "Soliguide vous aide à trouver des centres de dépistage VIH gratuit, des préservatifs et des conseils de prévention près de chez vous en Espagne."
   },
   {
-    "label": "Vaccination",
+    "label": "Vaccination (IST)",
     "categoryId": "sexual_health_vaccination",
     "slug": "sexual_health_vaccination",
     "synonyms": [
@@ -3579,5 +3579,32 @@
     "country": "es",
     "seoTitle": "Soins vasculaires gratuits en Espagne avec Soliguide",
     "seoDescription": "Soliguide vous aide à trouver des soins vasculaires gratuits en Espagne. Consultations, traitements, suivi médical près de chez vous."
+  },
+  {
+    "label": "Régularisation",
+    "categoryId": "regularization",
+    "slug": "regularization",
+    "synonyms": [
+      "domiciliation",
+      "documents administratifs",
+      "papiers officiels",
+      "consultation juridique",
+      "accompagnement légal",
+      "dossier administratif",
+      "reconnaissance officielle",
+      "statut légal",
+      "formalités",
+      "procédures",
+      "droits civiques",
+      "inscription officielle",
+      "légalisation",
+      "certification",
+      "autorisation"
+    ],
+    "type": "CATEGORY",
+    "lang": "fr",
+    "country": "es",
+    "seoTitle": "Régularisation de situation en Espagne, trouvez de l'aide avec Soliguide",
+    "seoDescription": "Soliguide vous aide à régulariser votre situation. Accédez à des services de domiciliation, consultations juridiques gratuites et accompagnement administratif en Espagne."
   }
 ]

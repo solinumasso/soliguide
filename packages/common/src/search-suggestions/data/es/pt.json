@@ -3105,7 +3105,7 @@
     "seoDescription": "Soliguide oferece centenas de locais para testes de HIV gratuitos, preservativos e orientação em Espanha. Acesso fácil e confidencial."
   },
   {
-    "label": "Vacinação",
+    "label": "Vacinação (IST)",
     "categoryId": "sexual_health_vaccination",
     "slug": "sexual_health_vaccination",
     "synonyms": [
@@ -3265,5 +3265,32 @@
     "country": "es",
     "seoTitle": "Encontre cirurgia vascular gratuita com Soliguide na Espanha",
     "seoDescription": "Soliguide conecta você a centros de cirurgia vascular. Consultas gratuitas, tratamentos de varizes, avaliação de úlceras venosas perto de você."
+  },
+  {
+    "label": "Regularização",
+    "categoryId": "regularization",
+    "slug": "regularization",
+    "synonyms": [
+      "documentação",
+      "legalização",
+      "papéis",
+      "residência",
+      "visto",
+      "permissão",
+      "identidade",
+      "registro",
+      "certificado",
+      "autorização",
+      "tramitação",
+      "orientação",
+      "atendimento",
+      "escritório",
+      "consulta"
+    ],
+    "type": "CATEGORY",
+    "lang": "pt",
+    "country": "es",
+    "seoTitle": "Regularização de documentos com Soliguide encontre ajuda perto de você",
+    "seoDescription": "Soliguide ajuda você a regularizar documentos. Encontre centros de atendimento, orientação legal e apoio para residência em Espanha."
   }
 ]
