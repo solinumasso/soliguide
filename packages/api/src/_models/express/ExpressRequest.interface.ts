@@ -56,4 +56,6 @@ export interface ExpressRequest extends Request {
 
   // Flag to indicate if mobility categories should be converted back to legacy format in results
   shouldConvertMobilityCategories?: boolean;
+  // Flag to indicate if health categories should be converted back to legacy format in results
+  shouldConvertHealthCategories?: boolean;
 }

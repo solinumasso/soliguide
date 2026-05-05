@@ -1,5 +1,6 @@
 import {
   CAMPAIGN_DEFAULT_NAME,
+  CampaignName,
   CampaignPlaceAutonomy,
   CampaignStatus,
   CommonNewPlaceService,
@@ -9,17 +10,36 @@ import {
   PlaceStatus,
   PlaceVisibility,
   SupportedLanguagesCode,
+  Themes,
+  TempInfoType,
   type AnyDepartmentCode,
   type ApiPlace,
   type CommonPlaceSource,
   type CountryCodes,
   type PlaceType,
-  type Themes,
 } from "@soliguide/common";
 import type { ModelWithId } from "../../_models";
 import { AmqpEvent, SynchroAirtableEvent } from "../interfaces";
 import { translateServiceName } from "../../autoexport/services/parsers";
+import { parseHours } from "../../autoexport/services/parsers/parse-hours.parser";
+import { parseTempInfo } from "../../autoexport/services/parsers/parse-temp-info";
 import { isCampaignActive } from "../../campaign/controllers";
+import { translator } from "../../config";
+import { FRONT_URLS_MAPPINGS } from "../../_models/config/constants/domains/THEMES_MAPPING.const";
+
+function getLangFromTheme(theme: Themes | null): string {
+  if (!theme) return SupportedLanguagesCode.FR;
+
+  const url = FRONT_URLS_MAPPINGS[theme] ?? "";
+
+  if (url.includes("soliguia.es")) {
+    return SupportedLanguagesCode.ES;
+  }
+  if (url.includes("soliguia.ad") || url.includes("soliguia.cat")) {
+    return SupportedLanguagesCode.CA;
+  }
+  return SupportedLanguagesCode.FR;
+}
 
 export class AmqpSynchroAirtablePlaceEvent
   implements AmqpEvent, SynchroAirtableEvent
@@ -50,6 +70,15 @@ export class AmqpSynchroAirtablePlaceEvent
   public autonomy?: CampaignPlaceAutonomy;
   public remindMeDate?: Date;
   public campaignStatus?: CampaignStatus;
+
+  // Brevo-specific fields
+  public schedules: string;
+  public temporarySchedules: string;
+  public updateCampaignLink: string;
+  public publicSiteLink: string;
+  public updateCampaignMidYear: boolean;
+  public updateCampaignEndYear: boolean;
+  public allPlacesLink: string;
 
   constructor(
     place: ModelWithId<ApiPlace>,
@@ -124,5 +153,82 @@ export class AmqpSynchroAirtablePlaceEvent
         }
       }
     }
+
+    // Brevo-specific fields
+
+    // Regular schedules formatted as human-readable string
+    this.schedules = place.newhours
+      ? parseHours(place.newhours, SupportedLanguagesCode.FR, false, true, true)
+      : "";
+
+    // Temporary schedules (hours and closures) formatted as human-readable string
+    const tempInfoItems: Parameters<typeof parseTempInfo>[2] = [];
+
+    if (place.tempInfos?.hours?.actif) {
+      tempInfoItems.push({
+        tempInfoType: TempInfoType.HOURS,
+        dateDebut: place.tempInfos.hours.dateDebut ?? undefined,
+        dateFin: place.tempInfos.hours.dateFin ?? undefined,
+        name: place.tempInfos.hours.name ?? undefined,
+        description: place.tempInfos.hours.description ?? undefined,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        hours: (place.tempInfos.hours.hours ?? undefined) as any,
+      });
+    }
+
+    if (place.tempInfos?.closure?.actif) {
+      tempInfoItems.push({
+        tempInfoType: TempInfoType.CLOSURE,
+        dateDebut: place.tempInfos.closure.dateDebut ?? undefined,
+        dateFin: place.tempInfos.closure.dateFin ?? undefined,
+        name: place.tempInfos.closure.name ?? undefined,
+        description: place.tempInfos.closure.description ?? undefined,
+      });
+    }
+
+    const tempHoursString = tempInfoItems.some(
+      (t) => t.tempInfoType === TempInfoType.HOURS
+    )
+      ? parseTempInfo(
+          translator,
+          SupportedLanguagesCode.FR,
+          tempInfoItems.filter((t) => t.tempInfoType === TempInfoType.HOURS),
+          TempInfoType.HOURS,
+          true
+        )
+      : "";
+
+    const tempClosureString = tempInfoItems.some(
+      (t) => t.tempInfoType === TempInfoType.CLOSURE
+    )
+      ? parseTempInfo(
+          translator,
+          SupportedLanguagesCode.FR,
+          tempInfoItems.filter((t) => t.tempInfoType === TempInfoType.CLOSURE),
+          TempInfoType.CLOSURE,
+          true
+        )
+      : "";
+
+    this.temporarySchedules = [tempHoursString, tempClosureString]
+      .filter(Boolean)
+      .join("\n\n");
+
+    const lang = getLangFromTheme(theme);
+
+    this.updateCampaignLink = `${frontendUrl}${lang}/campaign/fiche/${place.lieu_id}`;
+
+    this.publicSiteLink = `${frontendUrl}${lang}/fiche/${place.lieu_id}`;
+
+    const firstOrg = place.organizations?.[0];
+    this.allPlacesLink = firstOrg?.organization_id
+      ? `${frontendUrl}${lang}/organisations/${firstOrg.organization_id}`
+      : "";
+
+    // Campaign booleans: whether the place reported changes during each campaign period
+    this.updateCampaignMidYear =
+      place.campaigns?.[CampaignName.MID_YEAR_2025]?.general?.changes ?? false;
+    this.updateCampaignEndYear =
+      place.campaigns?.[CampaignName.END_YEAR_2025]?.general?.changes ?? false;
   }
 }

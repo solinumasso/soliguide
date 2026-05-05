@@ -22,12 +22,16 @@ import {
   handleLanguage,
   overrideLocationWithAreasInfo,
   mobilityConverting,
+  healthConverting,
   locationApiCountryHandling,
 } from "../../middleware";
 
 import { getTranslatedPlacesForSearch } from "../../translations/controllers/translation.controller";
 import { trackSearchPlaces } from "../../middleware/analytics";
-import { convertPlaceFromNewMobilityToOld } from "../utils";
+import {
+  convertPlaceFromNewMobilityToOld,
+  convertPlaceFromNewHealthToOld,
+} from "../utils";
 
 const router = Router();
 
@@ -125,6 +129,7 @@ router.post(
   handleLanguage,
   locationApiCountryHandling,
   mobilityConverting,
+  healthConverting,
   searchDto,
   getFilteredData,
   async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
@@ -161,6 +166,13 @@ router.post(
       // Convert new mobility categories back to legacy format for API users
       if (req.shouldConvertMobilityCategories && searchResults.places) {
         searchResults.places = convertPlaceFromNewMobilityToOld([
+          ...searchResults.places,
+        ]);
+      }
+
+      // Convert new health categories back to legacy format for API users
+      if (req.shouldConvertHealthCategories && searchResults.places) {
+        searchResults.places = convertPlaceFromNewHealthToOld([
           ...searchResults.places,
         ]);
       }

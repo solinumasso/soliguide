@@ -39,7 +39,8 @@ export const parseTempInfo = (
       >
     >
   >,
-  tempInfoType: TempInfoType
+  tempInfoType: TempInfoType,
+  hideHolidays = false
 ): string => {
   let message = "";
 
@@ -80,7 +81,13 @@ export const parseTempInfo = (
     }
 
     if (tempInfoType === TempInfoType.HOURS && temp.hours) {
-      tempInfoMessage += `\n${parseHours(temp.hours, lng)}`;
+      tempInfoMessage += `\n${parseHours(
+        temp.hours,
+        lng,
+        false,
+        true,
+        hideHolidays
+      )}`;
     }
 
     message += `${tempInfoMessage.trim()}\n\n`;

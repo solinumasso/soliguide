@@ -246,7 +246,7 @@ const samplePlace: ApiPlace = Object.freeze({
       saturated: { precision: null, status: ServiceSaturation.LOW },
       serviceObjectId: '6181a6d08ac6b179ffb9fcc3',
       createdAt: new Date('2021-11-02T21:00:00.000Z'),
-      category: Categories.ADDICTION
+      category: Categories.ADDICTION_PREVENTION_AND_MATERIAL
     }
   ],
   languages: ['fr'],
@@ -611,7 +611,7 @@ const samplePlaceTransformed: PlaceDetails = {
       info: []
     },
     {
-      category: Categories.ADDICTION,
+      category: Categories.ADDICTION_PREVENTION_AND_MATERIAL,
       description: '01 43 72 12 72&#10;R&#233;unions de groupe des Narcotiques Anonymes',
       info: []
     }

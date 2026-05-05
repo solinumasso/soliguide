@@ -62,7 +62,8 @@ export const parseHours = (
   hours: CommonOpeningHours,
   language: SupportedLanguagesCode,
   displayClosedDays = false,
-  hideMinutes = true
+  hideMinutes = true,
+  hideHolidays = false
 ): string => {
   let weekOpeningHoursString = "";
 
@@ -141,7 +142,7 @@ export const parseHours = (
   }
 
   // Add holidays information at the beginning if the place is closed on holidays
-  if (hours?.closedHolidays === PlaceClosedHolidays.CLOSED) {
+  if (!hideHolidays && hours?.closedHolidays === PlaceClosedHolidays.CLOSED) {
     const closedHolidaysText = translator.t("EXPORT_CLOSED_HOLIDAYS", {
       lng: language,
     });
