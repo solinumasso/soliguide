@@ -18,33 +18,12 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
-<div class="required">
-  <label class="form-label" for="category_{{ serviceIndex }}">
-    {{ "CATEGORY" | translate }}
-  </label>
-  <select
-    [ngModel]="service.category"
-    id="category_{{ serviceIndex }}"
-    name="category_{{ serviceIndex }}"
-    class="form-select w-100"
-    (ngModelChange)="updateCategory($event)"
-    required
-  >
-    <ng-container
-      *ngFor="let categoryNode of CATEGORIES_NODES_WITH_ONE_DEPTH_CHILDREN"
-    >
-      <optgroup
-        label=" {{ categoryNode.id | categoryTranslateKey | translate }}"
-      >
-        <ng-container *ngFor="let subcategory of categoryNode.children">
-          <option *ngIf="subcategory" [value]="subcategory.id">
-            {{ subcategory.id | categoryTranslateKey | translate }}
-          </option>
-        </ng-container>
-      </optgroup>
-    </ng-container>
-  </select>
-</div>
+<app-category-select
+  [value]="service.category"
+  [serviceIndex]="serviceIndex"
+  [required]="true"
+  (selectionChange)="updateCategory($event)"
+></app-category-select>
 <ng-container
   *ngFor="
     let categorySpecificField of CATEGORIES_SPECIFIC_FIELDS_CATEGORY_MAPPING[
