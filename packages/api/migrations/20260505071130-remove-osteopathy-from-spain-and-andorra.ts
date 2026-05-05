@@ -22,7 +22,8 @@ import { Db } from "mongodb";
 
 import { logger } from "../src/general/logger";
 
-const message = "Remove services with legacy 'osteopathy' category from Spain and Andorra";
+const message =
+  "Remove services with legacy 'osteopathy' category from Spain and Andorra";
 
 export const up = async (db: Db) => {
   logger.info(`[MIGRATION] - ${message}`);
