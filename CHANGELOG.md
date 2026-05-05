@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.132.0](https://github.com/solinumasso/soliguide/compare/v4.131.0...v4.132.0) (2026-05-05)
+
+
+### Bug Fixes
+
+* **api:** adapt default exclusion constants for new Addictions categories ([48fc3eb](https://github.com/solinumasso/soliguide/commit/48fc3eb67fd2857b78ae581cb4b6b515195b21ff))
+* **api:** temporaly remove migrations using rabbitmq to deploy on test environment ([e122d2c](https://github.com/solinumasso/soliguide/commit/e122d2c3f645283c9ff66d9c72929c34c7c3651a))
+* **common:** fix format on all packages ([9907ac3](https://github.com/solinumasso/soliguide/commit/9907ac39b75788a6fa215db84ec708d0e3547350))
+* **common:** format search-suggestions files ([eb3091b](https://github.com/solinumasso/soliguide/commit/eb3091b865017cb5004e8166a75c49a415a49178))
+* **common:** improve code for linting ([9805eeb](https://github.com/solinumasso/soliguide/commit/9805eeb6cc58c8cd9157b1e92463edf4d53d726a))
+* **frontend:** deprecated usage of fail in jest test ([6c362c7](https://github.com/solinumasso/soliguide/commit/6c362c755a6658258478d40da14b1a0f4a67045b))
+* **frontend:** fix tests using old health categories ([f4e40b1](https://github.com/solinumasso/soliguide/commit/f4e40b12a86e5921c28aac2184f60e924681d164))
+* **frontend:** format suggestions files ([14bd5ed](https://github.com/solinumasso/soliguide/commit/14bd5edd286cc4f494189b766cc3c60b411869e7))
+* **web-app:** fix tests who was using old categories ([1fa70ce](https://github.com/solinumasso/soliguide/commit/1fa70cec15c4abdb99b619249c63a1cb69f5ab4a))
+* **web-app:** missing scss file for icons ([c7515e5](https://github.com/solinumasso/soliguide/commit/c7515e56baac636790d5d6eb54c390f68de01d27))
+
+
+### Features
+
+* **api:** adapt tests to new taxonomy health ([540f658](https://github.com/solinumasso/soliguide/commit/540f65837651a547f409bf20231fea4d92ea4695))
+* **api:** exclude directly Addictions from cateogires to exclude instead of his childs ([6437325](https://github.com/solinumasso/soliguide/commit/6437325ede35c98af519fba0526d8c09c187ad35))
+* **api:** generate pictos for export and regen icons for frontend/web-app ([695214f](https://github.com/solinumasso/soliguide/commit/695214fed080e798bdc1970a9a9f8ed0f0cce96b))
+* **api:** improve pyschological_support migration to avoid duplication ([a33e940](https://github.com/solinumasso/soliguide/commit/a33e940efcb277cdd814b26f657876e883e9c34e))
+* **api:** improve regex filter for taxonomy migration ([547cef0](https://github.com/solinumasso/soliguide/commit/547cef099db1b6b64a167577ddf475256ad992c2))
+* **api:** migration and retro compatibility for health taxonomy ([ef75b8f](https://github.com/solinumasso/soliguide/commit/ef75b8f2304dd16fea0e4aece4e65ed03e139a26))
+* **api:** migration to remove acupuncture services ([309dc05](https://github.com/solinumasso/soliguide/commit/309dc057e260cbbe576fae3930885ef9eeb04d1f))
+* **api:** migration to sync users to brevo ([563cd16](https://github.com/solinumasso/soliguide/commit/563cd16a1fc47120fe3cedcbaa6f1842dc44e205))
+* **api:** regenerate search suggestions for taxonomy health ([c3c54a1](https://github.com/solinumasso/soliguide/commit/c3c54a186bd8628525e68b95f1735b8f4c54c212))
+* **api:** remove osteopathy from spain and andorra ([9455666](https://github.com/solinumasso/soliguide/commit/9455666908cdaa0ffbc8f1b2b74d87d223743d70))
+* **api:** update airtable place sync for brevo sync ([6925309](https://github.com/solinumasso/soliguide/commit/6925309673d490f6e86979994bdf973e14461b0b))
+* **common:** add health categories descriptions ([bb7bb5d](https://github.com/solinumasso/soliguide/commit/bb7bb5de33804819b861c8d02ab176b28dc0df40))
+* **common:** add manually traductions key for french (TO REMOVE) ([c769010](https://github.com/solinumasso/soliguide/commit/c7690108daf1c98425ef5da8ee30d709763d7c5c))
+* **common:** integrate health taxonomy into categories constants and types ([d7a3615](https://github.com/solinumasso/soliguide/commit/d7a3615c6e1bf86cd1ad88bfe6a47359db8318c6))
+* **common:** make categories graph for multi-parental connexions ([8341d8b](https://github.com/solinumasso/soliguide/commit/8341d8b0d404a5fcc4657b89c88fe000e4405a73))
+* **common:** remove filter of addiction services into manage ([6636021](https://github.com/solinumasso/soliguide/commit/663602116f130ea2eead194bac288e30c5f052af))
+* **common:** translate label for suggestion result ([514d6b5](https://github.com/solinumasso/soliguide/commit/514d6b5fbf296d37c6ebfc84a626a47992404ab2))
+* **icons-generator:** add neurology and vascular_surgery icons ([d995c35](https://github.com/solinumasso/soliguide/commit/d995c35d5157409339f10b39718080050f178f36))
+* **icons-generator:** adding some health taxonomy icons ([411974e](https://github.com/solinumasso/soliguide/commit/411974e1a5a956244a7242d0cbe47533cb809f3b))
+* **icons-generator:** generate categories icons ([64eb64a](https://github.com/solinumasso/soliguide/commit/64eb64ae45ddcc7277797b3107fdd3cb52e4d4df))
+* **taxonomy:** generate new Caddyfile and add categories icons to frontend/webapp ([792bfa5](https://github.com/solinumasso/soliguide/commit/792bfa51c9cd37286cc57fc592d483f392f475b9))
+* **taxonomy:** update taxonomy dsl with new categories ([cb3c9e7](https://github.com/solinumasso/soliguide/commit/cb3c9e77d82358a3e46682dd1bd14f56a6084fda))
+* **web-app:** add description into categories list ([ecabd39](https://github.com/solinumasso/soliguide/commit/ecabd391b5f8c70181ab90ba5f6732c95311847d))
+* **web-app:** get search suggestions files from common dist instead od source code ([b5eb21d](https://github.com/solinumasso/soliguide/commit/b5eb21d0e38d7da0d4c4843ea1b3e9f2f4f575ea))
+* **web-app:** remove old search suggestions data folder ([edc2aaa](https://github.com/solinumasso/soliguide/commit/edc2aaa5a3b011be268499a266df01331e00259f))
+
+
+
+
+
 # [4.131.0](https://github.com/solinumasso/soliguide/compare/v4.130.0...v4.131.0) (2026-04-27)
 
 
