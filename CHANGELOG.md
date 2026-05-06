@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.133.0](https://github.com/solinumasso/soliguide/compare/v4.132.0...v4.133.0) (2026-05-06)
+
+
+### Features
+
+* **common:** change regularization traduction and search labels ([12d1c9b](https://github.com/solinumasso/soliguide/commit/12d1c9b75fdd613602bc896a2f93f5b183bf8e8d))
+* create category regularization for spain ([d381f8c](https://github.com/solinumasso/soliguide/commit/d381f8cd9c8fa2bf886f83b45b69007b0c44b39d))
+* **fontend:** use cache control from caddy for json files ([dbc60ee](https://github.com/solinumasso/soliguide/commit/dbc60ee0aa52fafaf9ff8dd7c28846b0c79f6a07))
+* generate search suggestions for regularization ([efaaf59](https://github.com/solinumasso/soliguide/commit/efaaf59eb31b31dec67ae86cc27e47ddf6b8a89e))
+
+
+
+
+
 # [4.132.0](https://github.com/solinumasso/soliguide/compare/v4.131.0...v4.132.0) (2026-05-05)
 
 
