@@ -1,5 +1,11 @@
 fileignoreconfig:
 - filename: .yarn/releases/yarn-4.14.1.cjs
+- filename: packages/api/src/scripts/README.md
+  checksum: 2ea52eee3fee9b4598bed5434990f1fde40c6dd49c79f2434a322047161f4869
+- filename: packages/api/src/scripts/sync-places.ts
+  checksum: 33dabd5bf31402a8baa05bc1f2913e4f84a31f1fbd19de60d0c737d14df0454a
+- filename: packages/api/src/scripts/sync-user-place-associations.ts
+  checksum: 728031daa85c35030d60d4e75fe51510f9cc1e0e74213fd31def6cfabe4a97c0
 - filename: packages/common/src/search-suggestions/config.ts
   checksum: db47bb50156072db5e1d62458a948d3eb1f9acff5cad7b339fb0cbdd4d85117c
 - filename: packages/frontend/src/app/modules/admin-place-shared/components/display-general-info-admin/display-general-info-admin.component.ts
