@@ -245,6 +245,7 @@ export const CATEGORIES_GRAPH_SOLIGUIA_ES: CategoriesGraph = {
     { id: Categories.NEUROLOGY, rank: 1800 },
     { id: Categories.VASCULAR_SURGERY, rank: 1900 },
   ],
+  [Categories.COUNSELING]: [{ id: Categories.REGULARIZATION, rank: 850 }],
 };
 
 /**

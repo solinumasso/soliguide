@@ -53,14 +53,14 @@
 | OTORHINOLARYNGOLOGY | FR, ES, AD | 2023-11-20 | `otorhinolaryngology` | `oto-rhino-laryngologie` until: 2023-11-20<br>`otorhinolaryngology` from: 2023-11-20 |
 | NUTRITION | FR, ES, AD | 2023-11-20 | `nutrition` | `nutrition` from: 2023-11-20 |
 | PEDICURE | FR, ES, AD | 2023-11-20 | `pedicure` | `pedicure` from: 2023-11-20 |
-| PHLEBOLOGY | FR, ES, AD | 2023-11-20 | `phlebology` | `phlebologie` until: 2023-11-20<br>`phlebology` from: 2023-11-20 |
+| PHLEBOLOGY | FR | 2023-11-20 | `phlebology` | `phlebologie` until: 2023-11-20<br>`phlebology` from: 2023-11-20 |
 | PNEUMOLOGY | FR, ES, AD | 2023-11-20 | `pneumology` | `pneumologie` until: 2023-11-20<br>`pneumology` from: 2023-11-20 |
 | RADIOLOGY | FR, ES, AD | 2023-11-20 | `radiology` | `radiologie` until: 2023-11-20<br>`radiology` from: 2023-11-20 |
 | RHEUMATOLOGY | FR, ES, AD | 2023-11-20 | `rheumatology` | `rhumatologie` until: 2023-11-20<br>`rheumatology` from: 2023-11-20 |
 | UROLOGY | FR, ES, AD | 2023-11-20 | `urology` | `urologie` until: 2023-11-20<br>`urology` from: 2023-11-20 |
 | SPEECH_THERAPY | FR, ES, AD | 2023-11-20 | `speech_therapy` | `orthophonie` until: 2023-11-20<br>`speech_therapy` from: 2023-11-20 |
 | STOMATOLOGY | FR, ES, AD | 2023-11-20 | `stomatology` | `stomatologie` until: 2023-11-20<br>`stomatology` from: 2023-11-20 |
-| OSTEOPATHY | FR, ES, AD | 2023-11-20 | `osteopathy` | `osteo` until: 2023-11-20<br>`osteopathy` from: 2023-11-20 |
+| OSTEOPATHY | FR | 2023-11-20 | `osteopathy` | `osteo` until: 2023-11-20<br>`osteopathy` from: 2023-11-20 |
 | MOBILITY | FR, ES, AD | 2023-11-20 | `mobility` | `transport-mobilite` until: 2023-11-20<br>`mobility` from: 2023-11-20 |
 | TRANSPORTATION_MOBILITY | FR, ES, AD | 2025-12-31 | `transportation_mobility` | `covoiturage` until: 2023-11-20<br>`carpooling` from: 2023-11-20 until: 2025-12-31<br>`chauffeur` until: 2023-11-20<br>`chauffeur_driven_transport` from: 2023-11-20 until: 2025-12-31<br>`transportation_mobility` from: 2025-12-31 |
 | PERSONAL_VEHICLE_ACCESS | FR | 2025-12-31 | `personal_vehicle_access` | `vehicule` until: 2023-11-20<br>`provision_of_vehicles` from: 2023-11-20 until: 2025-12-31<br>`personal_vehicle_access` from: 2025-12-31 |
@@ -133,3 +133,4 @@
 | ACCESS_TO_HOUSING | FR, ES, AD | 2023-11-20 | `access_to_housing` | `conseil-logement` until: 2023-11-20<br>`access_to_housing` from: 2023-11-20 |
 | HAIRDRESSER | FR, ES, AD | N/A | `hairdresser` | none |
 | LEGAL_PROTECTION | AD | N/A | `legal_protection` | none |
+| REGULARIZATION | ES | 2026-05-05 | `regularization` | `regularization` from: 2026-05-05 |

@@ -138,4 +138,5 @@ export const CATEGORIES_DESCRIPTION: Record<Categories, string> = {
   [Categories.ACCESS_TO_HOUSING]: "",
   [Categories.HAIRDRESSER]: "",
   [Categories.LEGAL_PROTECTION]: "",
+  [Categories.REGULARIZATION]: "",
 };

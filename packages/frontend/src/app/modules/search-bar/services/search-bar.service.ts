@@ -3,15 +3,15 @@ import { Injectable, OnDestroy } from "@angular/core";
 import {
   AutoCompleteType,
   Categories,
+  FUSE_SEARCH_SUGGESTIONS_OPTIONS,
   getSeoSlug,
   SearchSuggestion,
   SupportedLanguagesCode,
-  FUSE_SEARCH_SUGGESTIONS_OPTIONS,
 } from "@soliguide/common";
 import Fuse, { FuseResult } from "fuse.js";
 import { BehaviorSubject, firstValueFrom, Subscription } from "rxjs";
-import { CurrentLanguageService } from "../../general/services/current-language.service";
 import { THEME_CONFIGURATION } from "../../../models";
+import { CurrentLanguageService } from "../../general/services/current-language.service";
 
 interface SuggestionData {
   lang: SupportedLanguagesCode;
@@ -36,7 +36,6 @@ export class SearchBarService implements OnDestroy {
   private readonly DB_NAME = "SoliguideDB";
   private readonly STORE_NAME = "suggestions";
   private readonly COUNTRY = THEME_CONFIGURATION.country;
-  private readonly CACHE_VALIDITY_MS = 24 * 60 * 60 * 1000; // 24 heures
 
   public initialization$ = this.initializationSubject.asObservable();
 
@@ -138,31 +137,17 @@ export class SearchBarService implements OnDestroy {
     country: string,
     lang: SupportedLanguagesCode
   ): Promise<SearchSuggestion[]> {
-    const cached = await this.getFromDB(country, lang);
+    const url = `/assets/files/${country}/${lang}.json`;
 
-    // Si le cache existe et n'a pas >24h, l'utiliser
-    if (cached) {
-      const cacheAge = Date.now() - new Date(cached.updatedAt).getTime();
-      if (cacheAge < this.CACHE_VALIDITY_MS) {
-        console.log(`Data found in IndexedDB for ${country}/${lang}`);
-        return cached.content;
-      }
-    }
-
-    // Cache absent ou expiré, recharger depuis l'API
     try {
       console.log(`Loading ${country}/${lang}.json from server`);
-      const data = await firstValueFrom(
-        this.http.get<SearchSuggestion[]>(
-          `/assets/files/${country}/${lang}.json`
-        )
-      );
-
+      const data = await firstValueFrom(this.http.get<SearchSuggestion[]>(url));
       await this.saveToDB(country, lang, data);
       return data;
     } catch (error) {
       console.error(`Error loading ${country}/${lang}.json:`, error);
-      return [];
+      const cached = await this.getFromDB(country, lang);
+      return cached?.content ?? [];
     }
   }
 

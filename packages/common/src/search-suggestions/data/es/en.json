@@ -3419,7 +3419,7 @@
     "seoDescription": "Soliguide connects you with HIV prevention services in Spain. Access free testing, health counseling, and support groups near you."
   },
   {
-    "label": "Vaccinations",
+    "label": "Vaccinations (STI)",
     "categoryId": "sexual_health_vaccination",
     "slug": "sexual_health_vaccination",
     "synonyms": [
@@ -3579,5 +3579,32 @@
     "country": "es",
     "seoTitle": "Find vascular surgery care with Soliguide in Spain",
     "seoDescription": "Soliguide helps you find free vascular surgery services in Spain. Access hospital care, vein treatment, or circulation help near you."
+  },
+  {
+    "label": "Exceptional regularization",
+    "categoryId": "regularization",
+    "slug": "regularization",
+    "synonyms": [
+      "legal status",
+      "documentation",
+      "immigration support",
+      "residency",
+      "visa assistance",
+      "citizenship",
+      "paperwork help",
+      "administrative support",
+      "identity documents",
+      "residence permit",
+      "official recognition",
+      "legal recognition",
+      "status verification",
+      "document processing",
+      "official registration"
+    ],
+    "type": "CATEGORY",
+    "lang": "en",
+    "country": "es",
+    "seoTitle": "Get help with regularization in Spain with Soliguide",
+    "seoDescription": "Soliguide connects you with hundreds of places for legal help, document support, and immigration assistance across Spain."
   }
 ]
