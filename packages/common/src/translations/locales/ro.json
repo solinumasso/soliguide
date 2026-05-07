@@ -226,6 +226,7 @@
   "CATEGORIES_SERVICES": "Categorii și servicii",
   "CATEGORY": "Categorie",
   "CATEGORY_AND_ADRESS": "{{category}}, {{adress}}",
+  "CATEGORY_CHOOSE_PLACEHOLDER": "Vă rugăm să selectați un serviciu",
   "CATEGORY_SUGGESTIONS": "Sugestii de categorii",
   "CATEGORY_SUGGESTION_NO_RESULTS": "Eroare referitoare la nevoie, nu putem găsi o categorie asociată. Exemplu de nevoie: masa",
   "CAT_ABORTION": "Avort (GIV)",

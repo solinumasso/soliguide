@@ -226,6 +226,7 @@
   "CATEGORIES_SERVICES": "کټګورۍ او خدمات",
   "CATEGORY": "کټګوري",
   "CATEGORY_AND_ADRESS": "{{category}}، {{adress}}",
+  "CATEGORY_CHOOSE_PLACEHOLDER": "مهرباني وکړئ یو خدمت غوره کړئ",
   "CATEGORY_SUGGESTIONS": "د کټګورۍ وړاندیزونه",
   "CATEGORY_SUGGESTION_NO_RESULTS": "په اړتیا کې تېروتنه، موږ نشو کولی یو تړلی کټګورۍ پیدا کړو. د اړتیا بیلګه: خواړه",
   "CAT_ABORTION": "سقط جنین (IVG)",
