@@ -226,6 +226,7 @@
   "CATEGORIES_SERVICES": "Категорії та послуги",
   "CATEGORY": "Категорія",
   "CATEGORY_AND_ADRESS": "{{category}}, {{adress}}",
+  "CATEGORY_CHOOSE_PLACEHOLDER": "Будь ласка, виберіть послугу",
   "CATEGORY_SUGGESTIONS": "Пропозиції категорій",
   "CATEGORY_SUGGESTION_NO_RESULTS": "Помилка потреби, ми не можемо знайти відповідну категорію. Приклад потреби: їжа",
   "CAT_ABORTION": "Аборція (IVG)",

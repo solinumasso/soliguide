@@ -226,6 +226,7 @@
   "CATEGORIES_SERVICES": "Catégories et services",
   "CATEGORY": "Catégorie",
   "CATEGORY_AND_ADRESS": "{{category}}, {{adress}}",
+  "CATEGORY_CHOOSE_PLACEHOLDER": "Veuillez choisir un service",
   "CATEGORY_SUGGESTIONS": "Suggestions de catégories",
   "CATEGORY_SUGGESTION_NO_RESULTS": "Erreur sur le besoin, nous ne trouvons pas de catégorie associée. Exemple de besoin : repas",
   "CAT_ABORTION": "Avortement (IVG)",
