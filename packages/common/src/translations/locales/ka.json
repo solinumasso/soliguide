@@ -226,6 +226,7 @@
   "CATEGORIES_SERVICES": "კატეგორიები და სერვისები",
   "CATEGORY": "კატეგორია",
   "CATEGORY_AND_ADRESS": "{{category}}, {{adress}}",
+  "CATEGORY_CHOOSE_PLACEHOLDER": "გთხოვთ, აირჩიოთ სერვისი",
   "CATEGORY_SUGGESTIONS": "კატეგორიის წინადადებები",
   "CATEGORY_SUGGESTION_NO_RESULTS": "შეცდომა საჭიროების შესახებ, ჩვენ ვერ ვპოულობთ ასოცირებულ კატეგორიას. საჭიროების მაგალითი: კვება",
   "CAT_ABORTION": "აბორტი (IVG)",

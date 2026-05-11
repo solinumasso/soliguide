@@ -226,6 +226,7 @@
   "CATEGORIES_SERVICES": "الفئات والخدمات",
   "CATEGORY": "فئة",
   "CATEGORY_AND_ADRESS": "{{category}}، {{adress}}",
+  "CATEGORY_CHOOSE_PLACEHOLDER": "يرجى اختيار خدمة",
   "CATEGORY_SUGGESTIONS": "اقتراحات الفئة",
   "CATEGORY_SUGGESTION_NO_RESULTS": "خطأ في الحاجة، لا يمكننا العثور على فئة مرتبطة. مثال الحاجة: وجبة",
   "CAT_ABORTION": "الإجهاض (IVG)",

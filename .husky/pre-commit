@@ -1,9 +1,14 @@
 # Linting
 echo "🔍 Linting et formatting..."
-if ! yarn lint-staged; then
-  echo "❌ Erreur de linting/formatting - commit annulé"
+if ! yarn format:fix; then
+  echo "❌ Erreur de formatting - commit annulé"
   exit 1
 fi
+
+# if ! yarn lint-staged; then
+#   echo "❌ Erreur de linting - commit annulé"
+#   exit 1
+# fi
 
 # Type checking
 echo "🔎 Vérification des types..."

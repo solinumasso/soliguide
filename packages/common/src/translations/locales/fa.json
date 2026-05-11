@@ -226,6 +226,7 @@
   "CATEGORIES_SERVICES": "دسته بندی ها و خدمات",
   "CATEGORY": "دسته بندی",
   "CATEGORY_AND_ADRESS": "{{category}}، {{adress}}",
+  "CATEGORY_CHOOSE_PLACEHOLDER": "لطفا یک سرویس انتخاب کنید",
   "CATEGORY_SUGGESTIONS": "پیشنهادات دسته بندی",
   "CATEGORY_SUGGESTION_NO_RESULTS": "خطا در مورد نیاز، ما نمی توانیم یک دسته مرتبط را پیدا کنیم. مثال نیاز: غذا",
   "CAT_ABORTION": "سقط جنین (IVG)",
