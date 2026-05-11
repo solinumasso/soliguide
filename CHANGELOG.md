@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.134.0](https://github.com/solinumasso/soliguide/compare/v4.133.0...v4.134.0) (2026-05-11)
+
+
+### Features
+
+* **frontend:** add CategorySelectComponent with 3-level drill-down ([69c5b19](https://github.com/solinumasso/soliguide/commit/69c5b197001defbbcb6846eb9d99b7bafd671a4f))
+
+
+
+
+
 # [4.133.0](https://github.com/solinumasso/soliguide/compare/v4.132.0...v4.133.0) (2026-05-06)
 
 
