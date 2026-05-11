@@ -132,6 +132,7 @@ jobs:
           docker run \
             -v ./packages/api/coverage:/app/packages/api/coverage/ \
             -e ENV=CI \
+            -e GOOGLE_MAPS_API_KEY=${{ secrets.GOOGLE_MAPS_API_KEY }} \
             --network host \
             "$API_IMAGE" \
             sh -c 'yarn workspace @soliguide/api migrate-up && yarn workspace @soliguide/api test --coverage'

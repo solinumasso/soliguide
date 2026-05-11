@@ -163,6 +163,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     todayInfo={$pageStore.placeDetails.todayInfo}
     phones={$pageStore.placeDetails.phones}
     address={$pageStore.placeDetails.address}
+    coordinates={$pageStore.placeDetails.coordinates}
     status={$pageStore.placeDetails.status}
     onOrientation={$pageStore.placeDetails.onOrientation}
     tempInfo={$pageStore.placeDetails.tempInfo}
@@ -207,6 +208,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
       <PlaceHowToGoSection
         address={$pageStore.placeDetails.address}
+        coordinates={$pageStore.placeDetails.coordinates}
         onOrientation={$pageStore.placeDetails.onOrientation}
       />
 
@@ -228,6 +230,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <PlaceFooter
       phones={$pageStore.placeDetails.phones}
       address={$pageStore.placeDetails.address}
+      coordinates={$pageStore.placeDetails.coordinates}
       onOrientation={$pageStore.placeDetails.onOrientation}
     />
   </div>

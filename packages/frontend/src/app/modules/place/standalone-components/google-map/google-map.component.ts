@@ -114,6 +114,7 @@ export class GoogleMapComponent
     }
   }
 
+  /** Switches the map base layer. If the map is already initialised, the change is applied immediately. */
   public setMode(mode: MapMode): void {
     this.currentMode = mode;
     if (this.googleMap) {
@@ -121,11 +122,19 @@ export class GoogleMapComponent
     }
   }
 
+  /**
+   * Loads the Google Maps script and initialises the map.
+   *
+   * Sets `isLoading` while the script is fetching, then defers `initMap()`
+   * by one change-detection cycle (`setTimeout(0)`) so Angular has time to
+   * render the map container div before Google Maps tries to attach to it.
+   * Sets `loadError` if the script fails to load.
+   */
   private async loadAndInit(): Promise<void> {
     this.isLoading = true;
     try {
       const apiKey = environment.googleMapsApiKey ?? "";
-      this.hasApiKey = !!apiKey;
+      this.hasApiKey = Boolean(apiKey);
       if (this.hasApiKey) {
         await this.loadGoogleMapsScript(apiKey);
       }

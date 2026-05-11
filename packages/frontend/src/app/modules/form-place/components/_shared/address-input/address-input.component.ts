@@ -114,6 +114,7 @@ export class AddressInputComponent implements OnInit, OnDestroy {
     }
   }
 
+  /** Unsubscribes from all active subscriptions to prevent memory leaks. */
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
@@ -298,6 +299,17 @@ export class AddressInputComponent implements OnInit, OnDestroy {
     );
   };
 
+  /**
+   * Updates the position model and form controls after a reverse-geocoding lookup.
+   *
+   * Called when the user drags the map pin: the reverse-geocode result provides
+   * the human-readable address fields, while `coord` supplies the exact GPS
+   * coordinates from the drag event — ensuring the pin location is preserved
+   * rather than snapping to the geocoded address centroid.
+   *
+   * @param result - Reverse-geocoded address returned by the location API.
+   * @param coord  - Exact latitude/longitude of the dragged pin.
+   */
   private updatePositionFromReverseGeocode(
     result: LocationAutoCompleteAddress,
     coord: { lat: number; lng: number }
@@ -399,6 +411,22 @@ export class AddressInputComponent implements OnInit, OnDestroy {
     ];
   }
 
+  /**
+   * Applies an autocomplete suggestion to the street/address fields while
+   * leaving unrelated form state (e.g. additional information) untouched.
+   *
+   * Used in manual mode when the user selects a suggestion from the street
+   * autocomplete: address, GPS coordinates, and any available administrative
+   * fields (city, postal code, department, region, country, time zone) are
+   * updated on both the position model and the reactive form. The map marker
+   * is repositioned to the suggestion's coordinates and `positionChange` is
+   * emitted so parent components stay in sync.
+   *
+   * Fields absent from the suggestion result are left at their current values
+   * rather than being cleared.
+   *
+   * @param item - Autocomplete suggestion selected by the user.
+   */
   public updateStreetOnly(item: LocationAutoCompleteAddress): void {
     this.isUpdatingFromAutocomplete = true;
     this.mapHintVisible = false;
@@ -448,6 +476,16 @@ export class AddressInputComponent implements OnInit, OnDestroy {
     this.addressInvalid.emit(this.positionForm.invalid);
   }
 
+  /**
+   * Resets the street/address fields to an empty state without clearing the
+   * entire position (compare with {@link clearAddress}).
+   *
+   * Clears address, postal code, city, department, region, and GPS location on
+   * both the position model and the reactive form. Form controls are updated
+   * with `emitEvent: false` to avoid triggering intermediate validation cycles.
+   * `positionChange` and `addressInvalid` are emitted once at the end so
+   * parent components receive exactly one update.
+   */
   public clearStreetField(): void {
     this.manualStreetDisplay = "";
     this.position.address = "";
@@ -527,6 +565,18 @@ export class AddressInputComponent implements OnInit, OnDestroy {
     }
   };
 
+  /**
+   * Handles free-text input in the manual street field.
+   *
+   * Keeps `manualStreetDisplay` in sync with the raw typed value, then
+   * reconstructs the full address string by appending the current postal code
+   * and city from the form (e.g. `"12 rue de la Paix, 75001 Paris"`). The
+   * composite address is written to both the position model and the form
+   * control (without triggering an extra change event), and `positionChange`
+   * is emitted so parent components receive the updated position.
+   *
+   * @param value - Current raw value of the street input field.
+   */
   public onManualStreetInput(value: string): void {
     this.manualStreetDisplay = value;
     const city = this.positionForm.controls.city.value || "";
@@ -564,6 +614,7 @@ export class AddressInputComponent implements OnInit, OnDestroy {
       })
     );
 
+  // eslint-disable-next-line class-methods-use-this
   public cityFormatter = (
     item: LocationAutoCompleteAddress | string
   ): string => {

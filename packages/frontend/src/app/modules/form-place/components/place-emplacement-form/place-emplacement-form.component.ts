@@ -108,6 +108,16 @@ export class PlaceEmplacementFormComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  /**
+   * Reconciles place data when the user switches place type between LIEU and PARCOURS.
+   *
+   * When switching from PARCOURS → LIEU, promotes the first waypoint's position
+   * to `place.position` and clears the waypoints array.
+   *
+   * When switching from LIEU → PARCOURS, no action is needed here: the
+   * parcours-position-form initialises the first waypoint from `place.position`
+   * whenever `place.parcours` is empty.
+   */
   private convertTypeIfNeeded(): void {
     if (
       this.place.placeType === PlaceType.PLACE &&

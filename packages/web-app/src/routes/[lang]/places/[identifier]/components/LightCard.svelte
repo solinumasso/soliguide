@@ -70,7 +70,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             size="small"
             iconPosition="iconOnly"
             type="primaryOutline"
-            href={getMapLink(place.address)}><NearMe slot="icon" /></ButtonLink
+            href={getMapLink(place.address, place.coordinates)}><NearMe slot="icon" /></ButtonLink
           >
         </div>
       </div>

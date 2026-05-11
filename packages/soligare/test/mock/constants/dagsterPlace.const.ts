@@ -102,6 +102,7 @@ export const dummyExpectedResultsFormatSourceIdToSoliguideFormat: Pick<
     complementAdresse: null,
     departement: 'Paris',
     departementCode: '75',
+    isManualAddress: false,
     location: {
       type: 'Point',
       coordinates: [2.285676, 48.845172],
