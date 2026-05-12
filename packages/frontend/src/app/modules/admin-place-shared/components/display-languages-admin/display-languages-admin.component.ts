@@ -1,12 +1,20 @@
-import { Component, Input, OnChanges, OnInit, OnDestroy } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+} from "@angular/core";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import {
   PLACE_LANGUAGES_LIST,
   SUPPORTED_LANGUAGES,
   SupportedLanguagesCode,
 } from "@soliguide/common";
-import { CurrentLanguageService } from "../../../general/services/current-language.service";
 import { Subscription } from "rxjs";
+import { CurrentLanguageService } from "../../../general/services/current-language.service";
 
 export interface LanguageMeta {
   lang: string;
@@ -30,6 +38,8 @@ export class DisplayLanguagesAdminComponent
   @Input() public languagesAdded: string[] = [];
   @Input() public languagesRemoved: string[] = [];
 
+  @Output() public readonly languageRemoved = new EventEmitter<string>();
+
   public computedLanguages: LanguageMeta[] = [];
   public computedRemoved: LanguageMeta[] = [];
 
@@ -46,7 +56,7 @@ export class DisplayLanguagesAdminComponent
     this.compute();
   }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.subscription.add(
       this.currentLanguageService.subscribe((lang) => {
         this.currentLang = lang;
@@ -59,9 +69,7 @@ export class DisplayLanguagesAdminComponent
   }
 
   public removeLang = (shortLang: string): void => {
-    const indexLang = this.languages.indexOf(shortLang);
-    this.languages.splice(indexLang, 1);
-    this.compute();
+    this.languageRemoved.emit(shortLang);
   };
 
   private compute(): void {

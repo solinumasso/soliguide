@@ -185,9 +185,7 @@ PlaceChangesSection.services) {
   <app-display-modalities
     [modalities]="placeChanged.modalities"
     [isHistory]="true"
-    [oldModalities]="
-      changeSection === 'new' && oldPlace ? oldPlace.modalities : undefined
-    "
+    [oldModalities]="changeSection === 'new' ? oldPlace?.modalities : undefined"
   ></app-display-modalities>
   }
 </section>
@@ -363,7 +361,9 @@ PlaceChangesSection.services) {
 } @if (section === PlaceChangesSection.generalinfo || section ===
 PlaceChangesSection.new) {
 <section
-  [ngClass]="{ 'form-container': section === PlaceChangesSection.generalinfo }"
+  [ngClass]="{
+    'form-container': section === PlaceChangesSection.generalinfo
+  }"
 >
   <div class="row">
     <div class="col-12">
@@ -405,6 +405,7 @@ PlaceChangesSection.new) {
       <app-display-general-info-admin
         [place]="placeChanged"
         [hideDescription]="true"
+        [oldEntity]="changeSection === 'new' ? oldPlace?.entity : undefined"
       ></app-display-general-info-admin>
     </div>
   </div>

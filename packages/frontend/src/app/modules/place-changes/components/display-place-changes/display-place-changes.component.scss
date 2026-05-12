@@ -97,13 +97,13 @@ section {
 ::ng-deep .diff-text {
   .diff-added {
     background-color: rgba(25, 135, 84, 0.2);
-    color: #0d6e3f;
+    color: #0a5c34;
     border-radius: 2px;
   }
 
   del.diff-deleted {
     background-color: rgba(220, 53, 69, 0.15);
-    color: #b02a37;
+    color: #842029;
     text-decoration: line-through;
   }
 }

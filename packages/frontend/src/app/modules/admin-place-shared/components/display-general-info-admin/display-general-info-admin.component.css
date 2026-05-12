@@ -24,3 +24,44 @@
   font-weight: normal;
   color: #383838;
 }
+
+.field-added {
+  background-color: rgba(25, 135, 84, 0.15);
+  border-radius: 3px;
+  padding: 1px 4px;
+}
+
+.field-modified {
+  background-color: rgba(255, 193, 7, 0.25);
+  border-radius: 3px;
+  padding: 1px 4px;
+}
+
+.field-removed {
+  background-color: rgba(220, 53, 69, 0.12);
+  border-radius: 3px;
+  padding: 1px 4px;
+  text-decoration: line-through;
+  color: #842029;
+}
+
+.change-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+.change-tag-added {
+  background-color: #198754;
+  color: #fff;
+}
+
+.change-tag-modified {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.change-tag-deleted {
+  background-color: #dc3545;
+  color: #fff;
+}

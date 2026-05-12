@@ -18,6 +18,8 @@ describe("DisplayLanguagesAdminComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DisplayLanguagesAdminComponent);
     component = fixture.componentInstance;
+    component.languages = [];
+    component.edit = false;
     fixture.detectChanges();
   });
 
