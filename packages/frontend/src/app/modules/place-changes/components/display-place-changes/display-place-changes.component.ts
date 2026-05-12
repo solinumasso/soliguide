@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
+import { Component, Input, OnInit, SecurityContext } from "@angular/core";
+import { DomSanitizer } from "@angular/platform-browser";
 
 import {
   CampaignChangesSection,
@@ -11,8 +11,8 @@ import {
 } from "@soliguide/common";
 
 import { CAMPAIGN_SOURCE_LABELS } from "../../../../models/campaign";
-import { PlaceChangesTypeEdition } from "../../../../models/place-changes";
 import { Place } from "../../../../models/place";
+import { PlaceChangesTypeEdition } from "../../../../models/place-changes";
 import { computeArrayDiff, ServicesChanges } from "../../classes";
 
 type BadgeConfig = { class: string; key: string };
@@ -45,13 +45,15 @@ interface ServiceSubSectionChange {
   styleUrls: ["./display-place-changes.component.scss"],
 })
 export class DisplayPlaceChangesComponent implements OnInit {
-  @Input() public oldPlace!: Place;
-  @Input() public placeChanged!: Place;
-  @Input() public section!: PlaceChangesSection | CampaignChangesSection;
-  @Input() public photosChanged!: boolean;
-  @Input() public changesDate!: Date;
-  @Input() public changeSection!: "old" | "new";
-  @Input() public typeOfEdition!: PlaceChangesTypeEdition;
+  @Input() public oldPlace?: Place;
+  @Input({ required: true }) public placeChanged!: Place;
+  @Input({ required: true }) public section!:
+    | PlaceChangesSection
+    | CampaignChangesSection;
+  @Input({ required: true }) public photosChanged!: boolean;
+  @Input() public changesDate?: Date;
+  @Input({ required: true }) public changeSection!: "old" | "new";
+  @Input({ required: true }) public typeOfEdition!: PlaceChangesTypeEdition;
 
   public readonly CAMPAIGN_SOURCE_LABELS = CAMPAIGN_SOURCE_LABELS;
   public readonly PlaceChangesSection = PlaceChangesSection;
@@ -61,11 +63,11 @@ export class DisplayPlaceChangesComponent implements OnInit {
 
   public servicesChanges: ServicesChanges = new ServicesChanges([], []);
   public serviceSubSectionChanges: Record<string, ServiceSubSectionChange> = {};
-  public descriptionDiff: SafeHtml | null = null;
+  public descriptionDiff: string | null = null;
   public nameChanged = false;
   public publicsAccueilChanged = false;
   public publicsDetailsChanged = false;
-  public publicsDescriptionDiff: SafeHtml | null = null;
+  public publicsDescriptionDiff: string | null = null;
   public hoursChanged = false;
   public statusChanged = false;
   public visibilityChanged = false;
@@ -81,64 +83,95 @@ export class DisplayPlaceChangesComponent implements OnInit {
   public tempHoursBadge: BadgeConfig | null = null;
   public tempMessageBadge: BadgeConfig | null = null;
 
+  private readonly sectionHandlers = new Map<
+    PlaceChangesSection | CampaignChangesSection,
+    (oldPlace: Place) => void
+  >([
+    [
+      PlaceChangesSection.services,
+      (oldPlace) => this.computeServicesChanges(oldPlace),
+    ],
+    [
+      PlaceChangesSection.generalinfo,
+      (oldPlace) => this.computeGeneralInfoChanges(oldPlace),
+    ],
+    [
+      PlaceChangesSection.new,
+      (oldPlace) => this.computeGeneralInfoChanges(oldPlace),
+    ],
+    [
+      PlaceChangesSection.public,
+      (oldPlace) => this.computePublicsChanges(oldPlace),
+    ],
+    [
+      PlaceChangesSection.status,
+      (oldPlace) => {
+        this.statusChanged = oldPlace.status !== this.placeChanged.status;
+      },
+    ],
+    [
+      PlaceChangesSection.visibility,
+      (oldPlace) => {
+        this.visibilityChanged =
+          oldPlace.visibility !== this.placeChanged.visibility;
+      },
+    ],
+    [
+      PlaceChangesSection.hours,
+      (oldPlace) => {
+        this.hoursChanged =
+          JSON.stringify(oldPlace.newhours) !==
+          JSON.stringify(this.placeChanged.newhours);
+      },
+    ],
+    [
+      PlaceChangesSection.modalities,
+      (oldPlace) => this.computeModalitiesChanges(oldPlace),
+    ],
+    [
+      PlaceChangesSection.contacts,
+      (oldPlace) => this.computeContactsChanges(oldPlace),
+    ],
+    [
+      PlaceChangesSection.tempClosure,
+      (oldPlace) => {
+        this.tempClosureBadge = this.computeTempInfoBadge(
+          oldPlace.tempInfos.closure,
+          this.placeChanged.tempInfos.closure
+        );
+      },
+    ],
+    [
+      PlaceChangesSection.tempHours,
+      (oldPlace) => {
+        this.tempHoursBadge = this.computeTempInfoBadge(
+          oldPlace.tempInfos.hours,
+          this.placeChanged.tempInfos.hours
+        );
+      },
+    ],
+    [
+      PlaceChangesSection.tempMessage,
+      (oldPlace) => {
+        this.tempMessageBadge = this.computeTempInfoBadge(
+          oldPlace.tempInfos.message,
+          this.placeChanged.tempInfos.message
+        );
+      },
+    ],
+  ]);
+
   constructor(private readonly sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
-    if (this.changeSection !== "new" || !this.oldPlace) return;
-
-    switch (this.section) {
-      case PlaceChangesSection.services:
-        this.computeServicesChanges();
-        break;
-      case PlaceChangesSection.generalinfo:
-      case PlaceChangesSection.new:
-        this.computeGeneralInfoChanges();
-        break;
-      case PlaceChangesSection.public:
-        this.computePublicsChanges();
-        break;
-      case PlaceChangesSection.status:
-        this.statusChanged = this.oldPlace.status !== this.placeChanged.status;
-        break;
-      case PlaceChangesSection.visibility:
-        this.visibilityChanged =
-          this.oldPlace.visibility !== this.placeChanged.visibility;
-        break;
-      case PlaceChangesSection.hours:
-        this.hoursChanged =
-          JSON.stringify(this.oldPlace.newhours) !==
-          JSON.stringify(this.placeChanged.newhours);
-        break;
-      case PlaceChangesSection.modalities:
-        this.computeModalitiesChanges();
-        break;
-      case PlaceChangesSection.contacts:
-        this.computeContactsChanges();
-        break;
-      case PlaceChangesSection.tempClosure:
-        this.tempClosureBadge = this.computeTempInfoBadge(
-          this.oldPlace.tempInfos.closure,
-          this.placeChanged.tempInfos.closure
-        );
-        break;
-      case PlaceChangesSection.tempHours:
-        this.tempHoursBadge = this.computeTempInfoBadge(
-          this.oldPlace.tempInfos.hours,
-          this.placeChanged.tempInfos.hours
-        );
-        break;
-      case PlaceChangesSection.tempMessage:
-        this.tempMessageBadge = this.computeTempInfoBadge(
-          this.oldPlace.tempInfos.message,
-          this.placeChanged.tempInfos.message
-        );
-        break;
-    }
+    const oldPlace = this.oldPlace;
+    if (this.changeSection !== "new" || !oldPlace) return;
+    this.sectionHandlers.get(this.section)?.(oldPlace);
   }
 
-  private computeServicesChanges(): void {
+  private computeServicesChanges(oldPlace: Place): void {
     this.servicesChanges = new ServicesChanges(
-      this.oldPlace.services_all,
+      oldPlace.services_all,
       this.placeChanged.services_all
     );
     for (const newService of this.servicesChanges.edited) {
@@ -146,24 +179,27 @@ export class DisplayPlaceChangesComponent implements OnInit {
         this.servicesChanges.oldServicesEdited[newService.serviceObjectId];
       if (oldService) {
         this.serviceSubSectionChanges[newService.serviceObjectId] = {
-          hoursAdded: !oldService.differentHours && !!newService.differentHours,
+          hoursAdded:
+            !oldService.differentHours && Boolean(newService.differentHours),
           hoursChanged:
-            !!oldService.differentHours &&
-            !!newService.differentHours &&
+            Boolean(oldService.differentHours) &&
+            Boolean(newService.differentHours) &&
             JSON.stringify(oldService.hours) !==
               JSON.stringify(newService.hours),
           modalitiesAdded:
-            !oldService.differentModalities && !!newService.differentModalities,
+            !oldService.differentModalities &&
+            Boolean(newService.differentModalities),
           modalitiesChanged:
-            !!oldService.differentModalities &&
-            !!newService.differentModalities &&
+            Boolean(oldService.differentModalities) &&
+            Boolean(newService.differentModalities) &&
             JSON.stringify(oldService.modalities) !==
               JSON.stringify(newService.modalities),
           publicsAdded:
-            !oldService.differentPublics && !!newService.differentPublics,
+            !oldService.differentPublics &&
+            Boolean(newService.differentPublics),
           publicsChanged:
-            !!oldService.differentPublics &&
-            !!newService.differentPublics &&
+            Boolean(oldService.differentPublics) &&
+            Boolean(newService.differentPublics) &&
             JSON.stringify(oldService.publics) !==
               JSON.stringify(newService.publics),
         };
@@ -171,19 +207,20 @@ export class DisplayPlaceChangesComponent implements OnInit {
     }
   }
 
-  private computeGeneralInfoChanges(): void {
-    this.nameChanged = this.oldPlace.name !== this.placeChanged.name;
-    const oldDesc = this.stripHtml(this.oldPlace.description ?? "");
+  private computeGeneralInfoChanges(oldPlace: Place): void {
+    this.nameChanged = oldPlace.name !== this.placeChanged.name;
+    const oldDesc = this.stripHtml(oldPlace.description ?? "");
     const newDesc = this.stripHtml(this.placeChanged.description ?? "");
     if (oldDesc !== newDesc) {
-      this.descriptionDiff = this.sanitizer.bypassSecurityTrustHtml(
+      this.descriptionDiff = this.sanitizer.sanitize(
+        SecurityContext.HTML,
         this.buildDiffHtml(oldDesc, newDesc)
       );
     }
   }
 
-  private computePublicsChanges(): void {
-    const oldPublics = this.oldPlace.publics;
+  private computePublicsChanges(oldPlace: Place): void {
+    const oldPublics = oldPlace.publics;
     const newPublics = this.placeChanged.publics;
     if (oldPublics && newPublics) {
       this.publicsAccueilChanged = oldPublics.accueil !== newPublics.accueil;
@@ -198,7 +235,8 @@ export class DisplayPlaceChangesComponent implements OnInit {
         oldPublics.age?.min !== newPublics.age?.min ||
         oldPublics.age?.max !== newPublics.age?.max;
       if (oldPublics.description !== newPublics.description) {
-        this.publicsDescriptionDiff = this.sanitizer.bypassSecurityTrustHtml(
+        this.publicsDescriptionDiff = this.sanitizer.sanitize(
+          SecurityContext.HTML,
           this.buildDiffHtml(
             oldPublics.description ?? "",
             newPublics.description ?? ""
@@ -209,7 +247,7 @@ export class DisplayPlaceChangesComponent implements OnInit {
 
     ({ added: this.languagesAdded, removed: this.languagesRemoved } =
       computeArrayDiff(
-        this.oldPlace.languages ?? [],
+        oldPlace.languages ?? [],
         this.placeChanged.languages ?? []
       ));
     this.languagesChanged =
@@ -218,7 +256,7 @@ export class DisplayPlaceChangesComponent implements OnInit {
     const anyPublicChange =
       this.publicsAccueilChanged ||
       this.publicsDetailsChanged ||
-      !!this.publicsDescriptionDiff;
+      Boolean(this.publicsDescriptionDiff);
     if (
       this.languagesAdded.length > 0 &&
       this.languagesRemoved.length === 0 &&
@@ -234,32 +272,43 @@ export class DisplayPlaceChangesComponent implements OnInit {
     }
   }
 
-  private computeModalitiesChanges(): void {
+  private computeModalitiesChanges(oldPlace: Place): void {
     this.modalitiesChanged =
-      JSON.stringify(this.oldPlace.modalities) !==
+      JSON.stringify(oldPlace.modalities) !==
       JSON.stringify(this.placeChanged.modalities);
     if (!this.modalitiesChanged) return;
 
-    const oldModalities = this.oldPlace.modalities;
+    const oldModalities = oldPlace.modalities;
     const newModalities = this.placeChanged.modalities;
-    // Each pair is [oldValue, newValue] for a boolean modality flag
     const modalityFlags: [boolean, boolean][] = [
-      [!!oldModalities?.inconditionnel, !!newModalities?.inconditionnel],
       [
-        !!oldModalities?.orientation?.checked,
-        !!newModalities?.orientation?.checked,
+        Boolean(oldModalities?.inconditionnel),
+        Boolean(newModalities?.inconditionnel),
       ],
       [
-        !!oldModalities?.inscription?.checked,
-        !!newModalities?.inscription?.checked,
+        Boolean(oldModalities?.orientation?.checked),
+        Boolean(newModalities?.orientation?.checked),
       ],
       [
-        !!oldModalities?.appointment?.checked,
-        !!newModalities?.appointment?.checked,
+        Boolean(oldModalities?.inscription?.checked),
+        Boolean(newModalities?.inscription?.checked),
       ],
-      [!!oldModalities?.pmr?.checked, !!newModalities?.pmr?.checked],
-      [!!oldModalities?.animal?.checked, !!newModalities?.animal?.checked],
-      [!!oldModalities?.price?.checked, !!newModalities?.price?.checked],
+      [
+        Boolean(oldModalities?.appointment?.checked),
+        Boolean(newModalities?.appointment?.checked),
+      ],
+      [
+        Boolean(oldModalities?.pmr?.checked),
+        Boolean(newModalities?.pmr?.checked),
+      ],
+      [
+        Boolean(oldModalities?.animal?.checked),
+        Boolean(newModalities?.animal?.checked),
+      ],
+      [
+        Boolean(oldModalities?.price?.checked),
+        Boolean(newModalities?.price?.checked),
+      ],
     ];
     const anyAdded = modalityFlags.some(([old, cur]) => !old && cur);
     const anyRemoved = modalityFlags.some(([old, cur]) => old && !cur);
@@ -274,7 +323,7 @@ export class DisplayPlaceChangesComponent implements OnInit {
     badge: BadgeConfig | null
   ): Record<string, boolean> {
     return {
-      "change-indicator": !!badge,
+      "change-indicator": Boolean(badge),
       "change-indicator-added": badge === BADGE_ADDED,
       "change-indicator-modified": badge === BADGE_MODIFIED,
     };
@@ -290,20 +339,23 @@ export class DisplayPlaceChangesComponent implements OnInit {
     return BADGE_MODIFIED;
   }
 
-  private computeContactsChanges(): void {
-    const oldContacts = this.oldPlace.contacts ?? [];
+  private computeContactsChanges(oldPlace: Place): void {
+    const oldContacts = oldPlace.contacts ?? [];
     const newContacts = this.placeChanged.contacts ?? [];
-    const contactKey = (c: PlaceContact) => `${c.name}|${c.lastname}|${c.mail}`;
+    const contactKey = (contact: PlaceContact) =>
+      `${contact.name}|${contact.lastname}|${contact.mail}`;
     ({ added: this.contactsAdded, removed: this.contactsRemoved } =
       computeArrayDiff(oldContacts, newContacts, contactKey));
   }
 
-  // Returns true if both arrays contain the same elements regardless of order
   private sameUnordered(
-    a: unknown[] | undefined,
-    b: unknown[] | undefined
+    firstArray: string[] | undefined,
+    secondArray: string[] | undefined
   ): boolean {
-    return [...(a ?? [])].sort().join() === [...(b ?? [])].sort().join();
+    return (
+      [...(firstArray ?? [])].sort((x, y) => x.localeCompare(y)).join() ===
+      [...(secondArray ?? [])].sort((x, y) => x.localeCompare(y)).join()
+    );
   }
 
   private stripHtml(html: string): string {
@@ -328,10 +380,6 @@ export class DisplayPlaceChangesComponent implements OnInit {
     return parts.join("");
   }
 
-  /**
-   * Builds the Longest Common Subsequence (LCS) dynamic programming matrix.
-   * lcsMatrix[i][j] = length of LCS between oldTokens[0..i-1] and newTokens[0..j-1].
-   */
   private computeLcsMatrix(
     oldTokens: string[],
     newTokens: string[]
@@ -343,12 +391,16 @@ export class DisplayPlaceChangesComponent implements OnInit {
       new Array(newLen + 1).fill(0)
     );
 
-    for (let i = 1; i <= oldLen; i++) {
-      for (let j = 1; j <= newLen; j++) {
-        if (oldTokens[i - 1] === newTokens[j - 1]) {
-          lcsMatrix[i][j] = lcsMatrix[i - 1][j - 1] + 1; // tokens match: extend LCS
+    for (let rowIndex = 1; rowIndex <= oldLen; rowIndex++) {
+      for (let colIndex = 1; colIndex <= newLen; colIndex++) {
+        if (oldTokens[rowIndex - 1] === newTokens[colIndex - 1]) {
+          lcsMatrix[rowIndex][colIndex] =
+            lcsMatrix[rowIndex - 1][colIndex - 1] + 1;
         } else {
-          lcsMatrix[i][j] = Math.max(lcsMatrix[i - 1][j], lcsMatrix[i][j - 1]); // skip best side
+          lcsMatrix[rowIndex][colIndex] = Math.max(
+            lcsMatrix[rowIndex - 1][colIndex],
+            lcsMatrix[rowIndex][colIndex - 1]
+          );
         }
       }
     }
@@ -356,42 +408,42 @@ export class DisplayPlaceChangesComponent implements OnInit {
     return lcsMatrix;
   }
 
-  /**
-   * Traces back through the LCS matrix to reconstruct the diff as HTML parts.
-   * - Matched tokens are kept as-is.
-   * - Tokens only in newTokens are wrapped in <span class="diff-added">.
-   * - Tokens only in oldTokens are wrapped in <del class="diff-deleted">.
-   */
   private tracebackDiffParts(
     oldTokens: string[],
     newTokens: string[],
     lcsMatrix: number[][]
   ): string[] {
     const parts: string[] = [];
-    let i = oldTokens.length;
-    let j = newTokens.length;
+    let oldIdx = oldTokens.length;
+    let newIdx = newTokens.length;
 
-    while (i > 0 || j > 0) {
-      if (i > 0 && j > 0 && oldTokens[i - 1] === newTokens[j - 1]) {
-        // Tokens match: part of the LCS, kept unchanged
-        parts.unshift(this.escapeHtml(newTokens[j - 1]));
-        i--;
-        j--;
-      } else if (
-        j > 0 &&
-        (i === 0 || lcsMatrix[i][j - 1] >= lcsMatrix[i - 1][j])
+    while (oldIdx > 0 || newIdx > 0) {
+      if (
+        oldIdx > 0 &&
+        newIdx > 0 &&
+        oldTokens[oldIdx - 1] === newTokens[newIdx - 1]
       ) {
-        // Token only in new text: added
+        parts.unshift(this.escapeHtml(newTokens[newIdx - 1]));
+        oldIdx--;
+        newIdx--;
+      } else if (
+        newIdx > 0 &&
+        (oldIdx === 0 ||
+          lcsMatrix[oldIdx][newIdx - 1] >= lcsMatrix[oldIdx - 1][newIdx])
+      ) {
         parts.unshift(
-          `<span class="diff-added">${this.escapeHtml(newTokens[j - 1])}</span>`
+          `<span class="diff-added">${this.escapeHtml(
+            newTokens[newIdx - 1]
+          )}</span>`
         );
-        j--;
+        newIdx--;
       } else {
-        // Token only in old text: deleted
         parts.unshift(
-          `<del class="diff-deleted">${this.escapeHtml(oldTokens[i - 1])}</del>`
+          `<del class="diff-deleted">${this.escapeHtml(
+            oldTokens[oldIdx - 1]
+          )}</del>`
         );
-        i--;
+        oldIdx--;
       }
     }
 
@@ -400,8 +452,8 @@ export class DisplayPlaceChangesComponent implements OnInit {
 
   private escapeHtml(text: string): string {
     return text
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;");
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;");
   }
 }

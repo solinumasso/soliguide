@@ -61,7 +61,10 @@ export class DisplayPublicAdminComponent implements OnInit {
     }
   }
 
-  private sameUnordered(a: unknown[], b: unknown[]): boolean {
-    return [...a].sort().join() === [...b].sort().join();
+  private sameUnordered(firstArray: string[], secondArray: string[]): boolean {
+    return (
+      [...firstArray].sort((x, y) => x.localeCompare(y)).join() ===
+      [...secondArray].sort((x, y) => x.localeCompare(y)).join()
+    );
   }
 }

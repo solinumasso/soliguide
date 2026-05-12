@@ -28,75 +28,134 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <div class="col-md-12 col-12">
     <h4 class="soli-sub-title mt-3">{{ "CONTACT" | translate }}</h4>
   </div>
-  } @if (place.entity?.phones?.length) {
-  <div class="col-md-3 col-12 extra-info">{{ "PHONE" | translate }}</div>
-  <div class="col-md-9 col-12">
-    @for (phone of place.entity.phones; track $index) {
+  } @if (place.entity?.phones?.length || phonesState === 'removed') {
+  <div class="col-md-3 col-12 extra-info">
+    {{ "PHONE" | translate }}
+    @if (phonesState !== 'unchanged') {
+    <span class="badge change-tag ms-1" [ngClass]="badgeClass(phonesState)">{{
+      badgeKey(phonesState) | translate
+    }}</span>
+    }
+  </div>
+  <div class="col-md-9 col-12" [ngClass]="fieldClass(phonesState)">
+    @if (phonesState === 'removed') { @for (phone of oldEntity?.phones; track
+    $index) {
+    <del>
+      {{ phone | formatInternationalPhoneNumber }}
+      @if (phone.label) {
+      <span> ({{ phone.label }})</span>
+      }
+    </del>
+    } } @else { @for (phone of place.entity.phones; track $index) {
     <div>
       {{ phone | formatInternationalPhoneNumber }}
       @if (phone.label) {
       <span> ({{ phone.label }})</span>
       }
     </div>
-    }
+    } }
   </div>
-  } @if (place.entity?.mail) {
+  } @if (place.entity?.mail || mailState === 'removed') {
   <div class="col-md-3 col-12 extra-info">
     {{ "EMAIL" | translate }}
+    @if (mailState !== 'unchanged') {
+    <span class="badge change-tag ms-1" [ngClass]="badgeClass(mailState)">{{
+      badgeKey(mailState) | translate
+    }}</span>
+    }
   </div>
-  <div class="col-md-9 col-12">
-    <span>
-      <a href="mailto:{{ place.entity.mail }}" target="_blank">
-        {{ place.entity.mail | decodePunycodeEmail }}
-      </a>
-    </span>
+  <div class="col-md-9 col-12" [ngClass]="fieldClass(mailState)">
+    @if (mailState === 'removed') {
+    <del>{{ oldEntity?.mail | decodePunycodeEmail }}</del>
+    } @else {
+    <a href="mailto:{{ place.entity.mail }}" target="_blank">
+      {{ place.entity.mail | decodePunycodeEmail }}
+    </a>
+    }
   </div>
-  } @if (place.entity?.website) {
+  } @if (place.entity?.website || websiteState === 'removed') {
   <div class="col-md-3 col-12 extra-info">
     {{ "WEBSITE" | translate }}
+    @if (websiteState !== 'unchanged') {
+    <span class="badge change-tag ms-1" [ngClass]="badgeClass(websiteState)">{{
+      badgeKey(websiteState) | translate
+    }}</span>
+    }
   </div>
-  <div class="col-md-9 col-12">
+  <div class="col-md-9 col-12" [ngClass]="fieldClass(websiteState)">
+    @if (websiteState === 'removed') {
+    <del>{{ oldEntity?.website }}</del>
+    } @else {
     <a
       [attr.href]="place.entity.website"
       target="_blank"
       rel="external noreferrer"
-      aria-label="Voir le site web"
     >
       {{ place.entity.website }}
     </a>
+    }
   </div>
-  } @if (place.entity?.fax) {
+  } @if (place.entity?.fax || faxState === 'removed') {
   <div class="col-md-3 col-12 extra-info">
     {{ "FAX" | translate }}
+    @if (faxState !== 'unchanged') {
+    <span class="badge change-tag ms-1" [ngClass]="badgeClass(faxState)">{{
+      badgeKey(faxState) | translate
+    }}</span>
+    }
   </div>
-  <div class="col-md-9 col-12">
+  <div class="col-md-9 col-12" [ngClass]="fieldClass(faxState)">
+    @if (faxState === 'removed') {
+    <del>{{ oldEntity?.fax }}</del>
+    } @else {
     <span>{{ place.entity.fax }}</span>
+    }
   </div>
-  } @if (place.entity?.facebook) {
-  <div class="col-md-3 col-12 extra-info">{{ "FACEBOOK" | translate }}</div>
-  <div class="col-md-9 col-12">
+  } @if (place.entity?.facebook || facebookState === 'removed') {
+  <div class="col-md-3 col-12 extra-info">
+    {{ "FACEBOOK" | translate }}
+    @if (facebookState !== 'unchanged') {
+    <span class="badge change-tag ms-1" [ngClass]="badgeClass(facebookState)">{{
+      badgeKey(facebookState) | translate
+    }}</span>
+    }
+  </div>
+  <div class="col-md-9 col-12" [ngClass]="fieldClass(facebookState)">
+    @if (facebookState === 'removed') {
+    <del>{{ oldEntity?.facebook }}</del>
+    } @else {
     <a
       [attr.href]="place.entity.facebook"
       target="_blank"
       rel="external noreferrer"
-      aria-label="Voir la page Facebook"
     >
       {{ place.entity.facebook }}
     </a>
+    }
   </div>
-  } @if (place.entity?.instagram) {
+  } @if (place.entity?.instagram || instagramState === 'removed') {
   <div class="col-md-3 col-12 extra-info">
     {{ "INSTAGRAM" | translate }}
+    @if (instagramState !== 'unchanged') {
+    <span
+      class="badge change-tag ms-1"
+      [ngClass]="badgeClass(instagramState)"
+      >{{ badgeKey(instagramState) | translate }}</span
+    >
+    }
   </div>
-  <div class="col-md-9 col-12">
+  <div class="col-md-9 col-12" [ngClass]="fieldClass(instagramState)">
+    @if (instagramState === 'removed') {
+    <del>{{ oldEntity?.instagram }}</del>
+    } @else {
     <a
       [attr.href]="place.entity.instagram"
       target="_blank"
       rel="external noreferrer"
-      aria-label="Voir la page Instagram"
     >
       {{ place.entity.instagram }}
     </a>
+    }
   </div>
   }
 </div>

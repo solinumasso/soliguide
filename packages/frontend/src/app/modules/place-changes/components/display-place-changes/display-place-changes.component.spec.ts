@@ -11,6 +11,7 @@ import { ONLINE_PLACE_MOCK } from "../../../../../../mocks/ONLINE_PLACE.mock";
 import { PlaceChangesSection } from "@soliguide/common";
 import { TranslateModule } from "@ngx-translate/core";
 import { Place } from "../../../../models";
+import { PlaceChangesTypeEdition } from "../../../../models/place-changes";
 
 describe("DisplayPlaceChangesComponent", () => {
   let component: DisplayPlaceChangesComponent;
@@ -35,11 +36,6 @@ describe("DisplayPlaceChangesComponent", () => {
     fixture = TestBed.createComponent(DisplayPlaceChangesComponent);
     component = fixture.componentInstance;
 
-    component.oldPlace = { ...ONLINE_PLACE_MOCK, services_all: [] };
-    component.placeChanged = { ...ONLINE_PLACE_MOCK, services_all: [] };
-    component.section = PlaceChangesSection.services;
-    component.changeSection = "new";
-
     const oldPlace = {
       services_all: [
         { serviceObjectId: 1, name: "Service 1" },
@@ -53,8 +49,13 @@ describe("DisplayPlaceChangesComponent", () => {
       ],
     } as unknown as Place;
 
-    component.placeChanged = newPlace;
     component.oldPlace = oldPlace;
+    component.placeChanged = newPlace;
+    component.section = PlaceChangesSection.services;
+    component.changeSection = "new";
+    component.photosChanged = false;
+    component.changesDate = ONLINE_PLACE_MOCK.updatedAt;
+    component.typeOfEdition = PlaceChangesTypeEdition.EDIT;
 
     fixture.detectChanges();
   });

@@ -2,6 +2,12 @@ fileignoreconfig:
 - filename: .yarn/releases/yarn-4.14.1.cjs
 - filename: packages/common/src/search-suggestions/config.ts
   checksum: db47bb50156072db5e1d62458a948d3eb1f9acff5cad7b339fb0cbdd4d85117c
+- filename: packages/frontend/src/app/modules/admin-place-shared/components/display-general-info-admin/display-general-info-admin.component.ts
+  checksum: 7a88f8df0c1e1d97697bf8ff8de815b2dc8ce2983c70bd487892c45758bd5b65
+- filename: packages/frontend/src/app/modules/admin-place-shared/components/display-service-admin/display-service-admin.component.ts
+  checksum: 0a51b69f57fb3806c6415ad8d51929d21b9eddda534244cdbab914174b57e527
+- filename: packages/frontend/src/app/modules/place-changes/components/display-place-changes/display-place-changes.component.ts
+  checksum: 360a52b9b28535dd75558c6d0ab23a29b6a0346b732ffa1e4be84f4123e5dca7
 - filename: packages/web-app/src/lib/services/categoryService.ts
   checksum: 7002e4f6fe7b74eb7516a14b09ec8bbd1ad429a33b017cda5329ef6c6b835d17
 - filename: packages/web-app/static/images/organizations-logos/fr/fondation-pour-le-logement.svg

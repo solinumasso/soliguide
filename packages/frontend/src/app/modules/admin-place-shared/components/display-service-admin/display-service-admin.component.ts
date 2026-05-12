@@ -56,60 +56,81 @@ export class DisplayServiceAdminComponent implements OnInit {
   public specificFieldsChangeMap = new Map<string, FieldChangeStatus>();
 
   public ngOnInit(): void {
-    // These fields have to be displayed only in manage
-    this.CATEGORIES_SPECIFIC_FIELDS_PLACE_DISPLAYED_IN_MANAGE.forEach(
-      (field) => {
-        if (
-          !this.CATEGORIES_SPECIFIC_FIELDS_PLACE_DISPLAYED.body.includes(field)
-        ) {
-          this.CATEGORIES_SPECIFIC_FIELDS_PLACE_DISPLAYED.body.push(field);
-        }
-      }
-    );
-
+    this.mergeManageSpecificFields();
     this.isCategoryExist =
       !!this.service.category &&
       Object.values(Categories).includes(this.service.category);
 
     if (this.oldService) {
-      this.categoryChanged = this.oldService.category !== this.service.category;
+      this.computeServiceChanges(this.oldService);
+    }
+  }
 
-      const oldDesc = this.stripHtml(this.oldService.description ?? "");
-      const newDesc = this.stripHtml(this.service.description ?? "");
-      this.descriptionChanged = oldDesc !== newDesc;
-
-      const oldFields = (this.oldService.categorySpecificFields ??
-        {}) as Record<string, unknown>;
-      const newFields = (this.service.categorySpecificFields ?? {}) as Record<
-        string,
-        unknown
-      >;
-      const allKeys = new Set([
-        ...Object.keys(oldFields),
-        ...Object.keys(newFields),
-      ]);
-      for (const key of allKeys) {
-        const oldVal = oldFields[key];
-        const newVal = newFields[key];
-        const hasOld =
-          oldVal !== null &&
-          oldVal !== undefined &&
-          (Array.isArray(oldVal) ? oldVal.length > 0 : true);
-        const hasNew =
-          newVal !== null &&
-          newVal !== undefined &&
-          (Array.isArray(newVal) ? newVal.length > 0 : true);
-        if (JSON.stringify(oldVal ?? null) === JSON.stringify(newVal ?? null))
-          continue;
-        if (!hasOld && hasNew) {
-          this.specificFieldsChangeMap.set(key, FieldChangeStatus.ADDED);
-        } else if (hasOld && !hasNew) {
-          this.specificFieldsChangeMap.set(key, FieldChangeStatus.DELETED);
-        } else {
-          this.specificFieldsChangeMap.set(key, FieldChangeStatus.MODIFIED);
-        }
+  private mergeManageSpecificFields(): void {
+    for (const field of this
+      .CATEGORIES_SPECIFIC_FIELDS_PLACE_DISPLAYED_IN_MANAGE) {
+      if (
+        !this.CATEGORIES_SPECIFIC_FIELDS_PLACE_DISPLAYED.body.includes(field)
+      ) {
+        this.CATEGORIES_SPECIFIC_FIELDS_PLACE_DISPLAYED.body.push(field);
       }
     }
+  }
+
+  private computeServiceChanges(oldService: Service): void {
+    this.categoryChanged = oldService.category !== this.service.category;
+
+    const oldDesc = this.stripHtml(oldService.description ?? "");
+    const newDesc = this.stripHtml(this.service.description ?? "");
+    this.descriptionChanged = oldDesc !== newDesc;
+
+    const oldFields = (oldService.categorySpecificFields ?? {}) as Record<
+      string,
+      unknown
+    >;
+    const newFields = (this.service.categorySpecificFields ?? {}) as Record<
+      string,
+      unknown
+    >;
+    this.computeSpecificFieldsChangeMap(oldFields, newFields);
+  }
+
+  private computeSpecificFieldsChangeMap(
+    oldFields: Record<string, unknown>,
+    newFields: Record<string, unknown>
+  ): void {
+    const allKeys = new Set([
+      ...Object.keys(oldFields),
+      ...Object.keys(newFields),
+    ]);
+    for (const key of allKeys) {
+      const status = this.getFieldChangeStatus(oldFields[key], newFields[key]);
+      if (status !== null) {
+        this.specificFieldsChangeMap.set(key, status);
+      }
+    }
+  }
+
+  private getFieldChangeStatus(
+    oldVal: unknown,
+    newVal: unknown
+  ): FieldChangeStatus | null {
+    if (JSON.stringify(oldVal ?? null) === JSON.stringify(newVal ?? null)) {
+      return null;
+    }
+    const hasOld = this.hasValue(oldVal);
+    const hasNew = this.hasValue(newVal);
+    if (!hasOld && hasNew) return FieldChangeStatus.ADDED;
+    if (hasOld && !hasNew) return FieldChangeStatus.DELETED;
+    return FieldChangeStatus.MODIFIED;
+  }
+
+  private hasValue(val: unknown): boolean {
+    return (
+      val !== null &&
+      val !== undefined &&
+      (!Array.isArray(val) || val.length > 0)
+    );
   }
 
   private stripHtml(html: string): string {

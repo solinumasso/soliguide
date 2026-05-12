@@ -1,14 +1,14 @@
 import { Component, Input, OnInit } from "@angular/core";
 
-import { ModalitiesElement } from "@soliguide/common";
 import type { Modalities } from "@soliguide/common";
+import { ModalitiesElement } from "@soliguide/common";
 
+import type { ModalitiesChanges } from "./display-modalities.models";
 import {
   FIELDS_CHECKED_ONLY,
   FIELDS_WITH_PRECISIONS,
   NO_CHANGE,
 } from "./display-modalities.models";
-import type { ModalitiesChanges } from "./display-modalities.models";
 
 @Component({
   selector: "app-display-modalities",
@@ -27,8 +27,9 @@ export class DisplayModalitiesComponent implements OnInit {
 
     const oldModalities = this.oldModalities;
     const newModalities = this.modalities;
+    const changes = { ...NO_CHANGE };
 
-    this.changes.unconditional = {
+    changes.unconditional = {
       added:
         !oldModalities[ModalitiesElement.UNCONDITIONAL] &&
         !!newModalities[ModalitiesElement.UNCONDITIONAL],
@@ -38,7 +39,7 @@ export class DisplayModalitiesComponent implements OnInit {
     };
 
     for (const key of FIELDS_WITH_PRECISIONS) {
-      this.changes[key] = {
+      changes[key] = {
         added: this.checkedAdded(oldModalities[key], newModalities[key]),
         removed: this.checkedRemoved(oldModalities[key], newModalities[key]),
         precisionsChanged: this.precisionsChanged(
@@ -49,33 +50,34 @@ export class DisplayModalitiesComponent implements OnInit {
     }
 
     for (const key of FIELDS_CHECKED_ONLY) {
-      this.changes[key] = {
+      changes[key] = {
         added: this.checkedAdded(oldModalities[key], newModalities[key]),
         removed: this.checkedRemoved(oldModalities[key], newModalities[key]),
       };
     }
 
-    this.changes.other = oldModalities.other !== newModalities.other;
+    changes.other = oldModalities.other !== newModalities.other;
+    this.changes = changes;
   }
 
   private checkedAdded(
-    old?: { checked?: boolean },
-    next?: { checked?: boolean }
+    old: { checked?: boolean },
+    next: { checked?: boolean }
   ): boolean {
-    return !old?.checked && !!next?.checked;
+    return !old?.checked && Boolean(next?.checked);
   }
 
   private checkedRemoved(
-    old?: { checked?: boolean },
-    next?: { checked?: boolean }
+    old: { checked?: boolean },
+    next: { checked?: boolean }
   ): boolean {
-    return !!old?.checked && !next?.checked;
+    return Boolean(old?.checked && !next?.checked);
   }
 
   private precisionsChanged(
-    old?: { checked?: boolean; precisions?: string | null },
-    next?: { checked?: boolean; precisions?: string | null }
+    old: { checked?: boolean; precisions?: string | null },
+    next: { checked?: boolean; precisions?: string | null }
   ): boolean {
-    return !!next?.checked && old?.precisions !== next?.precisions;
+    return Boolean(next?.checked && old?.precisions !== next?.precisions);
   }
 }
