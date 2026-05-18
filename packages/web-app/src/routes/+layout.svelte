@@ -25,7 +25,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { browser } from '$app/environment';
   import { setContext } from 'svelte';
   import { derived, get } from 'svelte/store';
-  import ZendeskIntegration from './ZendeskIntegration.svelte';
   import { posthogService } from '$lib/services/posthogService';
   import {
     ThemeContext,
@@ -34,8 +33,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   } from '@soliguide/design-system';
   import '../assets/styles/main.scss';
   import { I18N_CTX_KEY, getI18nStore } from '$lib/client/i18n';
-  import { ROUTES_CTX_KEY, getRoutes, isLanguageSelected, getZDCookieConsent } from '$lib/client';
-  import { cookieConsent, COOKIE_CTX_KEY } from '$lib/client/cookie';
+  import { ROUTES_CTX_KEY, getRoutes, isLanguageSelected } from '$lib/client';
   import { themeStore } from '$lib/theme';
   import ToastContainer from '$lib/components/ToastContainer.svelte';
 
@@ -62,11 +60,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     changeDesignSystemLocale($i18nStore.language);
   }
 
-  cookieConsent.set(getZDCookieConsent());
-
   setContext(I18N_CTX_KEY, i18nStore);
   setContext(ROUTES_CTX_KEY, routesStore);
-  setContext(COOKIE_CTX_KEY, cookieConsent);
 
   if (browser) {
     afterNavigate(() => posthogService.capture('$pageview'));
@@ -79,12 +74,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </svelte:head>
 
 <ThemeContext>
-  <ZendeskIntegration>
-    <main>
-      <slot />
-    </main>
-    <ToastContainer />
-  </ZendeskIntegration>
+  <main>
+    <slot />
+  </main>
+  <ToastContainer />
 </ThemeContext>
 
 <style lang="scss">

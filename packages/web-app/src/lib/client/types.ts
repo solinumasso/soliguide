@@ -9,11 +9,9 @@ export type Routes =
   | 'ROUTE_SEARCH'
   | 'ROUTE_PLACES'
   | 'ROUTE_MORE_OPTIONS'
-  | 'ROUTE_TALK'
   | 'ROUTE_FAVORITES';
 
 export type Routing = Record<Routes, string>;
 export type RoutingStore = Readable<Record<Routes, string>>;
-export type CookieConsentStore = Writable<boolean>;
 export type Fetcher<T> = (url: string, options?: RequestInit) => Promise<T>;
 export type Fetch<T> = (input: RequestInfo | URL, init?: RequestInit) => Promise<T>;

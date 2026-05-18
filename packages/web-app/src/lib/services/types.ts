@@ -87,13 +87,6 @@ export enum CategoriesErrors {
   ERROR_SERVER = 'errorServer'
 }
 
-declare global {
-  interface Window {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    zE?: any;
-  }
-}
-
 interface PosthogProperties {
   categorySelected?: CategorySearch;
   location?: string;
@@ -120,10 +113,6 @@ interface PosthogProperties {
   isDisabled?: boolean;
   place?: DataForLogs;
   action?: string;
-}
-
-export interface ZendeskState {
-  hasNewMessage: boolean;
 }
 
 export type PosthogCaptureFunction = (param: string, properties?: PosthogProperties) => void;

@@ -12,5 +12,4 @@ export const environment: Environment = {
   proAccountCreationFormLink:
     "https://airtable.com/shrVIdI1OcUSpYXAP?prefill_Comment+vous+nous+avez+connu+?=Soliguide.fr",
   donateLink: "https://www.helloasso.com/associations/solinum/formulaires/1",
-  chatWebsiteId: "aeca48ae-8b13-4714-8aa4-10c0da179332",
 } as const;

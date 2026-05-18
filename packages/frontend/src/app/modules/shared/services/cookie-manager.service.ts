@@ -13,16 +13,12 @@ export class CookieManagerService {
   private readonly subscription: Subscription;
 
   public analyticsConsentSubject: BehaviorSubject<boolean>;
-  public chatConsentSubject: BehaviorSubject<boolean>;
 
   public hasUserMadeCookieChoice: BehaviorSubject<boolean>;
 
   constructor(private readonly translateService: TranslateService) {
     this.analyticsConsentSubject = new BehaviorSubject<boolean>(
       globalConstants.getItem("silktideCookieChoice_analytics") === true
-    );
-    this.chatConsentSubject = new BehaviorSubject<boolean>(
-      globalConstants.getItem("silktideCookieChoice_chat") === true
     );
     this.hasUserMadeCookieChoice = new BehaviorSubject<boolean>(
       globalConstants.getItem("silktideCookieBanner_InitialChoice") === 1
@@ -104,17 +100,6 @@ export class CookieManagerService {
           cookiePolicyUrl: getPathFromTheme("cookie-policy"),
         }
       );
-
-      if (THEME_CONFIGURATION.chatWebsiteId) {
-        config.cookieTypes[2].name = this.translateService.instant(
-          "COOKIE_TYPES_CHAT_NAME"
-        );
-        config.cookieTypes[2].description = this.translateService.instant(
-          "COOKIE_TYPES_CHAT_DESCRIPTION"
-        );
-      } else {
-        delete config.cookieTypes[2];
-      }
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (window as any).silktideCookieBannerManager?.translateCookieBanner(

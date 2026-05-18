@@ -12,14 +12,10 @@ export interface PageLinks {
   termsAndConditionsLink: string;
 }
 
-export interface PageState extends PageLinks {
-  cookieModalOpen: boolean;
-}
+export type PageState = PageLinks;
 
 export interface PageController {
   subscribe: Writable<PageState>['subscribe'];
   init(links: PageLinks): void;
-  openCookieModal(): void;
-  closeCookieModal(): void;
   captureEvent: PosthogCaptureFunction;
 }

@@ -14,7 +14,6 @@ export class PosthogService implements OnDestroy {
   private readonly subscription: Subscription;
 
   private analyticsCookieConsent: boolean;
-  private chatCookieConsent: boolean;
   private hasUserMadeCookieChoice: boolean;
 
   public constructor(
@@ -37,19 +36,6 @@ export class PosthogService implements OnDestroy {
               analytics_cookies_consent: consent ? "granted" : "denied",
             });
             this.analyticsCookieConsent = consent;
-          }
-        }
-      )
-    );
-
-    this.subscription.add(
-      this.cookieManagerService.chatConsentSubject.subscribe(
-        (consent: boolean) => {
-          if (this.chatCookieConsent !== consent) {
-            this.commonPosthogService.setPersonProperties({
-              chat_cookies_consent: consent ? "granted" : "denied",
-            });
-            this.chatCookieConsent = consent;
           }
         }
       )

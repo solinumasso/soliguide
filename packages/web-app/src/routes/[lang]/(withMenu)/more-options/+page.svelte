@@ -22,13 +22,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { getContext } from 'svelte';
   import ScreenSearchDesktop from 'svelte-google-materialdesign-icons/Screen_search_desktop.svelte';
   import Transcribe from 'svelte-google-materialdesign-icons/Transcribe.svelte';
-  import Cookie from 'svelte-google-materialdesign-icons/Cookie.svelte';
   import Https from 'svelte-google-materialdesign-icons/Https.svelte';
   import Gavel from 'svelte-google-materialdesign-icons/Gavel.svelte';
   import Security from 'svelte-google-materialdesign-icons/Security.svelte';
   import Mouse from 'svelte-google-materialdesign-icons/Mouse.svelte';
   import MenuBook from 'svelte-google-materialdesign-icons/Menu_book.svelte';
-  import { CookieModal } from '$lib/components';
   import ColoredCard from './ColoredCard.svelte';
   import { Text, BasicCard, ListItem } from '@soliguide/design-system';
   import { getPageController } from './pageController';
@@ -36,13 +34,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { ROUTES_CTX_KEY } from '$lib/client/index';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import type { ThemeDefinition } from '$lib/theme/types';
-  import { goto } from '$app/navigation';
   import { themeStore } from '$lib/theme';
   import { get } from 'svelte/store';
+  import { goto } from '$app/navigation';
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
-  const theme: ThemeDefinition = get(themeStore.getTheme());
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
+  const theme: ThemeDefinition = get(themeStore.getTheme());
 
   const links = {
     fichesPratiquesLink: theme.links.fichesPratiques,
@@ -57,11 +55,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   const pageState = getPageController();
   pageState.init(links);
-
-  const openCookieDialog = () => {
-    console.log('Open cookie dialog');
-    pageState.openCookieModal();
-  };
 
   const navigateToExternal = (url: string) => {
     window.open(url, '_blank');
@@ -106,20 +99,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       >
         <Transcribe variation="filled" slot="icon" size="16" />
       </ListItem>
-      {#if theme.chatWebsiteId}
-        <ListItem
-          type="actionFull"
-          shape="bordered"
-          size="small"
-          title={$i18n.t('MANAGE_COOKIES')}
-          on:click={() => {
-            pageState.captureEvent('click-manage-cookies');
-            openCookieDialog();
-          }}
-        >
-          <Cookie variation="filled" slot="icon" size="16" />
-        </ListItem>
-      {/if}
       <ListItem
         type="externalLink"
         shape="bordered"
@@ -196,14 +175,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     </div>
   </BasicCard>
 </section>
-
-{#if $pageState.cookieModalOpen}
-  <CookieModal
-    cookiePolicyLink={$pageState.cookiePolicyLink}
-    zendeskChatbotLink={$routes.ROUTE_TALK}
-    on:close={pageState.closeCookieModal}
-  />
-{/if}
 
 <style lang="scss">
   section {

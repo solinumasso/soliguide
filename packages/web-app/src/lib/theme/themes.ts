@@ -39,8 +39,7 @@ const defaultTheme: ThemeDefinition = {
     dataProtectionAgreement: 'https://soliguide.fr/fr/accord-protection-donnees',
     legalNotice: 'https://soliguide.fr/fr/mentions-legales',
     termsAndConditions: 'https://soliguide.fr/fr/cgu'
-  },
-  chatWebsiteId: env.PUBLIC_CHAT_WEBSITE_ID
+  }
 };
 
 const themeDefinitions: Partial<ThemeDefinition>[] = [
@@ -49,15 +48,13 @@ const themeDefinitions: Partial<ThemeDefinition>[] = [
     name: Themes.SOLIGUIA_ES,
     brandName: 'Soliguia',
     country: CountryCodes.ES,
-    defaultLanguage: SupportedLanguagesCode.CA,
-    chatWebsiteId: null
+    defaultLanguage: SupportedLanguagesCode.CA
   },
   {
     name: Themes.SOLIGUIA_AD,
     brandName: 'Soliguia',
     country: CountryCodes.AD,
-    defaultLanguage: SupportedLanguagesCode.CA,
-    chatWebsiteId: null
+    defaultLanguage: SupportedLanguagesCode.CA
   }
 ];
 
