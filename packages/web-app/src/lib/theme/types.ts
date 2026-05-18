@@ -25,5 +25,4 @@ export interface ThemeDefinition {
     legalNotice: string;
     termsAndConditions: string;
   };
-  chatWebsiteId: string | undefined | null;
 }

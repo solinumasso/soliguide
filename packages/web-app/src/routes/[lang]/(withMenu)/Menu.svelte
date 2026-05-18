@@ -27,8 +27,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     IconHomeOn,
     IconSearchOff,
     IconSearchOn,
-    IconTalkOff,
-    IconTalkOn,
     IconBurgerOff,
     IconBurgerOn,
     IconFavoriteOff,
@@ -38,15 +36,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
-  import type { ThemeDefinition } from '$lib/theme/types';
-  import { themeStore } from '$lib/theme/index';
   import { getHomePageController } from './pageController';
-  import { zendeskService } from '$lib/services';
-  import { get } from 'svelte/store';
 
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
-  const theme: ThemeDefinition = get(themeStore.getTheme());
 
   const pageStore = getHomePageController();
 
@@ -58,22 +51,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     $page.url.pathname === $routes.ROUTE_SEARCH
       ? $routes.ROUTE_PLACES
       : $page.url.pathname;
-
-  // Remove menu item if Chat is not available
-  const talkMenu = theme.chatWebsiteId
-    ? [
-        {
-          icon: IconTalkOff,
-          iconActive: IconTalkOn,
-          label: $i18n.t('MENU_TALK'),
-          ariaLabel: $i18n.t('MENU_TALK_ARIA'),
-          ariaLabelActive: `${$i18n.t('MENU_TALK_ARIA')} ${$i18n.t('MENU_PAGE_ACTIVE')}`,
-          route: $routes.ROUTE_TALK,
-          hasBadge: true,
-          id: 'chat'
-        }
-      ]
-    : [];
 
   const menuItems = [
     {
@@ -103,7 +80,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       route: $routes.ROUTE_FAVORITES,
       id: 'favorites'
     },
-    ...talkMenu,
     {
       icon: IconBurgerOff,
       iconActive: IconBurgerOn,
@@ -122,12 +98,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </script>
 
 <div class="sticky">
-  <Menu
-    {menuItems}
-    {activeItem}
-    showBadge={$zendeskService.hasNewMessage}
-    on:menuClick={handleMenuClick}
-  />
+  <Menu {menuItems} {activeItem} on:menuClick={handleMenuClick} />
 </div>
 
 <style lang="scss">

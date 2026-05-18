@@ -4,6 +4,8 @@ fileignoreconfig:
   checksum: db47bb50156072db5e1d62458a948d3eb1f9acff5cad7b339fb0cbdd4d85117c
 - filename: packages/web-app/src/lib/services/categoryService.ts
   checksum: 7002e4f6fe7b74eb7516a14b09ec8bbd1ad429a33b017cda5329ef6c6b835d17
+- filename: packages/web-app/src/routes/+layout.svelte
+  checksum: 0cc9edeaaf55a0a344842ece83e6eaa5ce53f231072827672465245bc32561bb
 - filename: packages/web-app/static/images/organizations-logos/fr/fondation-pour-le-logement.svg
   checksum: a9f3b5a4f303722e2f959921a7be60fd915476ddfdd8a8f3cae41d58a57037f0
 - filename: packages/web-app/static/images/organizations-logos/fr/france-services.svg

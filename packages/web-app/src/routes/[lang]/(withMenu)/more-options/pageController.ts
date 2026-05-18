@@ -18,8 +18,7 @@ const initialLinks: PageLinks = {
  * Avoid null values
  */
 const initialState: PageState = {
-  ...initialLinks,
-  cookieModalOpen: false
+  ...initialLinks
 };
 
 export const getPageController = (): PageController => {
@@ -27,14 +26,6 @@ export const getPageController = (): PageController => {
 
   const init = (links = initialLinks) => {
     pageStore.set({ ...initialState, ...links });
-  };
-
-  const openCookieModal = () => {
-    pageStore.update((oldValue): PageState => ({ ...oldValue, cookieModalOpen: true }));
-  };
-
-  const closeCookieModal = () => {
-    pageStore.update((oldValue): PageState => ({ ...oldValue, cookieModalOpen: false }));
   };
 
   /**
@@ -47,8 +38,6 @@ export const getPageController = (): PageController => {
   return {
     subscribe: pageStore.subscribe,
     init,
-    openCookieModal,
-    closeCookieModal,
     captureEvent
   };
 };
