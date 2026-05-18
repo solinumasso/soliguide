@@ -106,7 +106,12 @@ export class CampaignManagePlacesComponent
     );
     this.me = this.authService.currentUserValue;
     this.titleService.setTitle(
-      CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].description
+      this.translateService.instant("CAMPAIGN_DESCRIPTION", {
+        season: this.translateService.instant(
+          CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].name
+        ),
+        year: CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].year,
+      })
     );
     if (!this.me.admin) {
       this.orgaId = this.me.currentOrga.organization_id;
@@ -127,7 +132,10 @@ export class CampaignManagePlacesComponent
             this.places = places;
             this.titleService.setTitle(
               this.translateService.instant("CAMPAIGN_GENERAL_VIEW", {
-                description: CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].description,
+                season: this.translateService.instant(
+                  CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].name
+                ),
+                year: CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].year,
               })
             );
           })

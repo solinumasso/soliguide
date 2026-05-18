@@ -99,9 +99,15 @@ export class ManagePlacesComponent implements OnInit, OnDestroy {
 
   // Campaign
   public readonly CAMPAIGN_DEFAULT_NAME = CAMPAIGN_DEFAULT_NAME;
-  public readonly CAMPAIGN_DESCRIPTION =
-    CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].description;
   public readonly CAMPAIGN_NAME = CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].name;
+  public readonly CAMPAIGN_YEAR = CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].year;
+
+  public get campaignDescription(): string {
+    return this.translateService.instant("CAMPAIGN_DESCRIPTION", {
+      season: this.translateService.instant(this.CAMPAIGN_NAME),
+      year: this.CAMPAIGN_YEAR,
+    });
+  }
   public readonly CAMPAIGN_SOURCE_LABELS = CAMPAIGN_SOURCE_LABELS;
 
   public readonly ORGA_CAMPAIGN_STATUS = ORGA_CAMPAIGN_STATUS;

@@ -13,6 +13,8 @@ import { Subscription } from "rxjs";
 
 import { AdminPlaceService } from "../../../form-place/services/admin-place.service";
 
+import { TranslateService } from "@ngx-translate/core";
+
 import { CurrentLanguageService } from "../../../general/services/current-language.service";
 
 import { User } from "../../../users/classes";
@@ -42,9 +44,8 @@ export class CampaignFormPlaceComponent
   public routePrefix: string;
 
   public readonly CAMPAIGN_ADJ = CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].adjective;
-  public readonly CAMPAIGN_DESCRIPTION =
-    CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].description;
   public readonly CAMPAIGN_NAME = CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].name;
+  public readonly CAMPAIGN_YEAR = CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].year;
   public readonly CampaignSource = CampaignSource;
   public readonly PlaceType = PlaceType;
   public readonly THEME_CONFIGURATION = THEME_CONFIGURATION;
@@ -55,6 +56,7 @@ export class CampaignFormPlaceComponent
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly titleService: Title,
+    private readonly translateService: TranslateService,
     private readonly currentLanguageService: CurrentLanguageService,
     posthogService: PosthogService
   ) {
@@ -90,7 +92,10 @@ export class CampaignFormPlaceComponent
           globalConstants.setItem("lastCampaignPosition", "place-" + id);
 
           this.titleService.setTitle(
-            `${this.CAMPAIGN_DESCRIPTION} : ${this.place.name}`
+            `${this.translateService.instant("CAMPAIGN_DESCRIPTION", {
+              season: this.translateService.instant(this.CAMPAIGN_NAME),
+              year: this.CAMPAIGN_YEAR,
+            })} : ${this.place.name}`
           );
 
           if (this.me.admin) {
