@@ -61,7 +61,6 @@ export interface ThemeConfiguration {
   becomeTranslatorFormLink?: string;
   donateLink?: string;
   proAccountCreationFormLink?: string;
-  chatWebsiteId?: string;
   territoriesStats?: {
     territoriesPresent: number;
   };

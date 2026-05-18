@@ -52,18 +52,15 @@ describe("CookieManagerService", () => {
     expect(service).toBeTruthy();
 
     expect(service.analyticsConsentSubject.value).toBe(false);
-    expect(service.chatConsentSubject.value).toBe(false);
   });
 
   describe("Init consent when value is stored in the local storage", () => {
     it("should set consent to true if it is present in local storage", () => {
       localStorage.setItem("silktideCookieChoice_analytics", "true");
-      localStorage.setItem("silktideCookieChoice_chat", "true");
 
       service = TestBed.inject(CookieManagerService);
 
       expect(service.analyticsConsentSubject.value).toBe(true);
-      expect(service.chatConsentSubject.value).toBe(true);
     });
   });
 });

@@ -4,9 +4,7 @@ import { TranslateService } from "@ngx-translate/core";
 
 import type { PosthogProperties } from "@soliguide/common-angular";
 
-import { ChatService } from "../../../shared/services";
 import { PosthogService } from "../../../analytics/services/posthog.service";
-import { AuthService } from "../../../users/services/auth.service";
 import { THEME_CONFIGURATION } from "../../../../models";
 
 @Component({
@@ -15,14 +13,11 @@ import { THEME_CONFIGURATION } from "../../../../models";
   styleUrls: ["./aide.component.css"],
 })
 export class AideComponent implements OnInit {
-  public readonly isChatEnabled = !!THEME_CONFIGURATION.chatWebsiteId;
   public readonly THEME_CONFIGURATION = THEME_CONFIGURATION;
 
   constructor(
-    private readonly chatService: ChatService,
     private readonly posthogService: PosthogService,
     private readonly titleService: Title,
-    private readonly authService: AuthService,
     private readonly translateService: TranslateService
   ) {}
 
@@ -40,11 +35,6 @@ export class AideComponent implements OnInit {
   ): void => {
     this.posthogService.capture(`help-${eventName}`, properties);
   };
-
-  public openCookiesConsentModalOrChat(): void {
-    this.captureEvent("click-open-chat");
-    this.chatService.openChat(this.authService.currentUserValue);
-  }
 
   public clickEmailToContact = (): void => {
     this.captureEvent("click-email-to-contact");

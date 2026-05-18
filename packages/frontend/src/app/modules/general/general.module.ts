@@ -19,7 +19,6 @@ import { FooterComponent } from "./components/footer/footer.component";
 import { GeneralService } from "./services/general.services";
 
 import { SharedModule } from "../shared/shared.module";
-import { ChatService } from "../shared/services";
 
 import { HomeTerritoriesStatsComponent } from "./components/home-territiries-stats/home-territories-stats.component";
 import { SearchBarModule } from "../search-bar/search-bar.module";
@@ -66,6 +65,6 @@ import { SearchCategoryAutocompleteComponent } from "../shared/components/search
     SharedModule,
     TranslateModule,
   ],
-  providers: [GeneralService, ChatService],
+  providers: [GeneralService],
 })
 export class GeneralModule {} // skipcq: JS-0327

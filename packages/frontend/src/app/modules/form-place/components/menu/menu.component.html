@@ -323,26 +323,3 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     {{ "BACK_TO_PAGE" | translate }}
   </a>
 </div>
-
-<ng-container *ngIf="isChatEnabled && currentUserSubject$ | async as me">
-  <div *ngIf="me?.status !== 'ADMIN_SOLIGUIDE'" id="contact-menu" class="mt-4">
-    <div class="row">
-      <div class="col-4 m-0 ps-0">
-        <div class="form-menu-contact svg-form"></div>
-      </div>
-      <div class="col-8 mx-0 my-3 ps-0">
-        <div class="text-primary">
-          {{ "DIFFICULTY_CREATING_PAGE" | translate }}
-        </div>
-        <div class="my-2">
-          {{ "TEAM_HERE_TO_HELP" | translate }}
-        </div>
-        <div>
-          <button (click)="openChat()" class="btn btn-primary" type="button">
-            {{ "CONTACT_US" | translate }} !
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</ng-container>

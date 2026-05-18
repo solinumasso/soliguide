@@ -30,15 +30,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <h2 class="text-primary">{{ "SEARCH_NO_RESULT_TITLE" | translate }}</h2>
     <h3>{{ "SEARCH_NO_RESULT_DESCRIPTION" | translate }}</h3>
     <br />
-    <p>
-      <span class="me-2">💬</span>{{ "CONTACT_US_WITH_CHAT_1" | translate }}
-      <span
-        class="link-secondary"
-        (click)="openChat(); captureEvent('with-the-chat')"
-        >{{ "CONTACT_US_WITH_CHAT_2" | translate }}</span
-      >,
-      {{ "CONTACT_US_WITH_CHAT_3" | translate }}
-    </p>
     <p *ngIf="THEME_CONFIGURATION.contactFormEnabled">
       <span class="me-2">❓</span
       >{{

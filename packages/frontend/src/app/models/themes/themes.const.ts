@@ -104,7 +104,6 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
     becomeTranslatorFormLink: environment.becomeTranslatorFormLink,
     donateLink: environment.donateLink,
     proAccountCreationFormLink: environment.proAccountCreationFormLink,
-    chatWebsiteId: environment.chatWebsiteId,
     territoriesStats: {
       territoriesPresent: Number.parseInt(environment.territoriesPresent),
     },

@@ -53,10 +53,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             localStorage.getItem("silktideCookieChoice_analytics") === "true"
               ? "granted"
               : "denied",
-          functionality_storage:
-            localStorage.getItem("silktideCookieChoice_chat") === "true"
-              ? "granted"
-              : "denied",
         });
       }
     </script>
@@ -112,9 +108,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             : undefined,
           sentryDsn: '{{ env "SOLIGUIDE_SENTRY_DSN" }}'.length
             ? '{{ env "SOLIGUIDE_SENTRY_DSN" }}'
-            : undefined,
-          chatWebsiteId: '{{ env "SOLIGUIDE_CHAT_WEBSITE_ID" }}'.length
-            ? '{{ env "SOLIGUIDE_CHAT_WEBSITE_ID" }}'
             : undefined,
           territoriesPresent: '{{ env "SOLIGUIDE_TERRITORIES_PRESENT" }}',
           territorialAnalysis: '{{ env "SOLIGUIDE_TERRITORIAL_ANALYSIS" }}'

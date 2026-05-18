@@ -10,7 +10,7 @@ import { AuthService } from "./modules/users/services/auth.service";
 import { PosthogService } from "./modules/analytics/services/posthog.service";
 
 import { IS_BOT, IS_WEBVIEW_APP } from "./shared/constants";
-import { ChatService, CookieManagerService } from "./modules/shared/services";
+import { CookieManagerService } from "./modules/shared/services";
 import { VersionService } from "./shared/services";
 
 @Component({
@@ -20,9 +20,7 @@ import { VersionService } from "./shared/services";
 })
 export class AppComponent implements OnInit, OnDestroy {
   private readonly subscription: Subscription = new Subscription();
-  public isChatEnabled: boolean;
   public cookieBannerLoaded = false;
-  private chatButtonClicked = false;
 
   public readonly IS_WEBVIEW_APP = IS_WEBVIEW_APP;
   public readonly IS_BOT = IS_BOT;
@@ -31,8 +29,6 @@ export class AppComponent implements OnInit, OnDestroy {
   public todayYear: number;
   public routePrefix: string;
 
-  public hasUserGivenConsent: boolean;
-
   constructor(
     private readonly authService: AuthService,
     private readonly router: Router,
@@ -40,19 +36,14 @@ export class AppComponent implements OnInit, OnDestroy {
     private readonly currentLanguageService: CurrentLanguageService,
     private readonly posthogService: PosthogService,
     private readonly cookieManagerService: CookieManagerService,
-    private readonly chatService: ChatService,
     private readonly versionService: VersionService
   ) {
-    this.hasUserGivenConsent = false;
-
     // REFRESH TOKEN
     this.authService.isAuth().subscribe();
 
     const today = new Date();
     this.todayYear = today.getFullYear();
     this.routePrefix = this.currentLanguageService.routePrefix;
-
-    this.isChatEnabled = this.chatService.isChatEnabled;
   }
 
   public ngOnInit(): void {
@@ -112,14 +103,6 @@ export class AppComponent implements OnInit, OnDestroy {
         })
     );
 
-    this.subscription.add(
-      this.cookieManagerService.chatConsentSubject.subscribe(
-        (consent: boolean) => {
-          this.hasUserGivenConsent = consent;
-        }
-      )
-    );
-
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     if ((window as any).silktideCookieBannerManager?.updateCookieBannerConfig) {
       this.cookieBannerLoaded = true;
@@ -137,16 +120,12 @@ export class AppComponent implements OnInit, OnDestroy {
       "ConsentChanged",
       (
         event: CustomEvent<{
-          type: "analytics" | "chat";
+          type: "analytics";
           value: "granted" | "denied";
         }>
       ) => {
         if (event.detail.type === "analytics") {
           this.cookieManagerService.analyticsConsentSubject.next(
-            event.detail.value === "granted"
-          );
-        } else if (event.detail.type === "chat") {
-          this.cookieManagerService.chatConsentSubject.next(
             event.detail.value === "granted"
           );
         }
@@ -158,19 +137,10 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     );
 
-    document.addEventListener("PreferencesClosed", () => {
-      if (this.chatButtonClicked) {
-        this.chatService.openChatAfterPreferences(this.me);
-      }
-    });
     document.addEventListener("AcceptAll", () => {
       this.posthogService.capture("accept-all-cookies");
     });
     document.addEventListener("AcceptAllPreferences", () => {
-      if (this.chatButtonClicked) {
-        this.chatService.openChatAfterPreferences(this.me);
-      }
-
       this.posthogService.capture("accept-all-cookies-preferences");
     });
     document.addEventListener("RejectAll", () => {
@@ -185,9 +155,6 @@ export class AppComponent implements OnInit, OnDestroy {
           .analyticsConsentSubject.value
           ? "granted"
           : "denied",
-        chat_cookies_consent: this.cookieManagerService.chatConsentSubject.value
-          ? "granted"
-          : "denied",
       });
     });
   }
@@ -195,12 +162,6 @@ export class AppComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
     this.languageSetupService.tearDown();
-  }
-
-  public openChatCookiesConsentModal(): void {
-    this.posthogService.capture("chat-button");
-    this.chatButtonClicked = true;
-    this.cookieManagerService.openCookiesConsentModal();
   }
 
   public openFooterCookiesConsentModal(): void {

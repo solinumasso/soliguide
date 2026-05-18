@@ -88,43 +88,6 @@ window.silktideConfig = {
         );
       },
     },
-    {
-      id: "chat",
-      name: "Chat",
-      description: "<p>These cookies provide the use of the chat.</p>",
-      required: false,
-      onAccept: function () {
-        gtag("consent", "update", {
-          functionality_storage: "granted",
-        });
-        dataLayer.push({
-          event: "consent_accepted_chat",
-        });
-
-        document.dispatchEvent(
-          new CustomEvent("ConsentChanged", {
-            detail: {
-              type: "chat",
-              value: "granted",
-            },
-          })
-        );
-      },
-      onReject: function () {
-        gtag("consent", "update", {
-          functionality_storage: "denied",
-        });
-
-        document.dispatchEvent(
-          new CustomEvent("ConsentChanged", {
-            detail: {
-              type: "chat",
-              value: "denied",
-            },
-          })
-        );
-      },
-    },
   ],
   text: {
     banner: {

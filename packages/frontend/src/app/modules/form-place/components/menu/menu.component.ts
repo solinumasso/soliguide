@@ -1,9 +1,9 @@
-import { Component, OnInit, Input, OnDestroy } from "@angular/core";
+import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 
 import { AdminPlaceMenuSteps, PlaceType } from "@soliguide/common";
 
-import { ToastrService } from "ngx-toastr";
 import { TranslateService } from "@ngx-translate/core";
+import { ToastrService } from "ngx-toastr";
 
 import { Observable, Subscription } from "rxjs";
 
@@ -14,9 +14,7 @@ import { CurrentLanguageService } from "../../../general/services/current-langua
 import { User } from "../../../users/classes";
 import { AuthService } from "../../../users/services/auth.service";
 
-import { Place, THEME_CONFIGURATION } from "../../../../models/";
-
-import { ChatService } from "../../../shared/services/chat.service";
+import { Place } from "../../../../models/";
 
 @Component({
   selector: "app-form-place-menu",
@@ -28,7 +26,6 @@ export class FormMenuPlaceComponent implements OnInit, OnDestroy {
   @Input() public step!: AdminPlaceMenuSteps;
 
   private readonly subscription = new Subscription();
-  public readonly isChatEnabled = !!THEME_CONFIGURATION.chatWebsiteId;
   public routePrefix: string;
   public placeInOrga: boolean;
   public readonly PlaceType = PlaceType;
@@ -39,7 +36,6 @@ export class FormMenuPlaceComponent implements OnInit, OnDestroy {
     private readonly toastr: ToastrService,
     private readonly adminPlaceService: AdminPlaceService,
     private readonly authService: AuthService,
-    private readonly chatService: ChatService,
     private readonly currentLanguageService: CurrentLanguageService,
     private readonly translateService: TranslateService
   ) {
@@ -75,9 +71,5 @@ export class FormMenuPlaceComponent implements OnInit, OnDestroy {
     this.toastr.warning(
       this.translateService.instant("MUST_COMPLETE_THIS_STEP_BEFORE_NEXT")
     );
-  }
-
-  public openChat() {
-    this.chatService.openChat(this.authService.currentUserValue);
   }
 }
