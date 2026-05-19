@@ -24,12 +24,8 @@ import { DisplayPublicsInlineComponent } from "./components/display-publics-inli
 import { DisplayServicesComponent } from "./components/display-services/display-services.component";
 import { DisplaySpecificFieldsComponent } from "./components/display-specific-fields/display-specific-fields.component";
 import { DisplayTempBannerComponent } from "./standalone-components/display-temp-banner/display-temp-banner.component";
-import { PlaceUpdateCampaignBannerComponent } from "./components/place-update-campaign-banner/place-update-campaign-banner.component";
 
 import { SharePlaceComponent } from "./components/share-place/share-place.component";
-import { CampaignService } from "../campaign/services/campaign.service";
-
-import { CampaignSharedModule } from "../campaign-shared/campaign-shared.module";
 
 import { SharedModule } from "../shared/shared.module";
 
@@ -59,12 +55,10 @@ import { RouterModule } from "@angular/router";
     DisplaySpecificFieldsComponent,
     ExternalSourcePlaceCampaignBannerComponent,
     PlaceTransportsComponent,
-    PlaceUpdateCampaignBannerComponent,
     SharePlaceComponent,
     SingleContactComponent,
   ],
   imports: [
-    CampaignSharedModule,
     ClipboardModule,
     CommonModule,
     DisplayHolidaysComponent,
@@ -96,11 +90,10 @@ import { RouterModule } from "@angular/router";
     DisplaySpecificFieldsComponent,
     ExternalSourcePlaceCampaignBannerComponent,
     PlaceTransportsComponent,
-    PlaceUpdateCampaignBannerComponent,
     SharePlaceComponent,
     SingleContactComponent,
   ],
-  providers: [CampaignService, HolidaysService],
+  providers: [HolidaysService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class PlaceModule {} // skipcq: JS-0327

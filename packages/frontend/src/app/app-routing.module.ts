@@ -1,15 +1,8 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule, ExtraOptions } from "@angular/router";
 
-import { AdminSoliguideGuard } from "./guards/admin-soliguide.guard";
-import { AuthGuard } from "./guards/auth.guard";
-import { CampaignGuard } from "./guards/campaign.guard";
 import { LanguageGuard } from "./guards/language.guard";
-import { ProGuard } from "./guards/pro.guard";
-import { TranslatorSoliguideGuard } from "./guards/translator-soliguide.guard";
 
-import { AideComponent } from "./modules/general/components/aide/aide.component";
-import { AideTradComponent } from "./modules/general/components/aide-trad/aide-trad.component";
 import { ContactComponent } from "./modules/general/components/contact/contact.component";
 import { DevenirBenevoleComponent } from "./modules/general/components/devenir-benevole/devenir-benevole.component";
 import { HomeComponent } from "./modules/general/components/home/home.component";
@@ -35,56 +28,12 @@ export const routes: Routes = [
     redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/devenir-benevole`,
   },
   {
-    path: "aide",
-    redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/aide`,
-  },
-  {
-    path: "aide-trad",
-    redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/aide-trad`,
-  },
-  {
-    path: "historique",
-    redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/historique`,
-  },
-  {
     path: "search",
     redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/search`,
   },
   {
-    path: "admin-place",
-    redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/admin-place`,
-  },
-  {
-    path: "manage-place",
-    redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/manage-place`,
-  },
-  {
     path: "fiche",
     redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/fiche`,
-  },
-  {
-    path: "manage-emails",
-    redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/manage-emails`,
-  },
-  {
-    path: "admin-users",
-    redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/admin-users`,
-  },
-  {
-    path: "organisations",
-    redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/organisations`,
-  },
-  {
-    path: "campaign",
-    redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/campaign`,
-  },
-  {
-    path: "translations",
-    redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/translations`,
-  },
-  {
-    path: "soligare",
-    redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/soligare`,
   },
   {
     path: "404",
@@ -110,36 +59,10 @@ export const routes: Routes = [
     canActivate: [LanguageGuard],
   },
   {
-    path: ":lang/aide",
-    canActivate: [LanguageGuard, AuthGuard],
-    component: AideComponent,
-  },
-  {
-    path: ":lang/aide-trad",
-    canActivate: [LanguageGuard, AuthGuard],
-    component: AideTradComponent,
-  },
-  {
-    path: ":lang/historique",
-    canActivate: [LanguageGuard, AuthGuard, ProGuard],
-    loadChildren: () =>
-      import("./modules/place-changes/place-changes.module").then(
-        (mod) => mod.FicheChangesModule
-      ),
-  },
-  {
     path: ":lang/search",
     canActivate: [LanguageGuard],
     loadChildren: () =>
       import("./modules/search/search.module").then((mod) => mod.SearchModule),
-  },
-  {
-    path: ":lang/admin-place",
-    canActivate: [LanguageGuard, AuthGuard, ProGuard],
-    loadChildren: () =>
-      import("./modules/form-place/form-place.module").then(
-        (mod) => mod.FormPlaceModule
-      ),
   },
   {
     path: ":lang/fiche",
@@ -147,54 +70,6 @@ export const routes: Routes = [
     loadChildren: () =>
       import("./modules/place-page/place-page.module").then(
         (mod) => mod.PlacePageModule
-      ),
-  },
-  {
-    path: ":lang/manage-place",
-    canActivate: [LanguageGuard, AuthGuard, ProGuard],
-    loadChildren: () =>
-      import("./modules/admin-place/admin-place.module").then(
-        (mod) => mod.AdminPlaceModule
-      ),
-  },
-  {
-    path: ":lang/admin-users",
-    canActivate: [LanguageGuard, AuthGuard, ProGuard],
-    loadChildren: () =>
-      import("./modules/admin-users/admin-users.module").then(
-        (mod) => mod.AdminUsersModule
-      ),
-  },
-  {
-    path: ":lang/organisations",
-    canActivate: [LanguageGuard, AuthGuard, ProGuard],
-    loadChildren: () =>
-      import("./modules/admin-organisation/admin-organisation.module").then(
-        (mod) => mod.AdminOrganisationModule
-      ),
-  },
-  {
-    path: ":lang/campaign",
-    canActivate: [LanguageGuard, AuthGuard, ProGuard, CampaignGuard],
-    loadChildren: () =>
-      import("./modules/campaign/campaign.module").then(
-        (mod) => mod.CampaignModule
-      ),
-  },
-  {
-    path: ":lang/translations",
-    canActivate: [LanguageGuard, AuthGuard, TranslatorSoliguideGuard],
-    loadChildren: () =>
-      import("./modules/translations/translations.module").then(
-        (mod) => mod.TranslationsModule
-      ),
-  },
-  {
-    path: ":lang/soligare",
-    canActivate: [AdminSoliguideGuard],
-    loadChildren: () =>
-      import("./modules/soligare/soligare.module").then(
-        (mod) => mod.SoligareModule
       ),
   },
 

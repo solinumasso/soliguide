@@ -21,9 +21,6 @@ import { PlaceService } from "../../../place/services/place.service";
 import { CurrentLanguageService } from "../../../general/services/current-language.service";
 import { SeoService } from "../../../shared/services/seo.service";
 
-import type { User } from "../../../users/classes";
-import { AuthService } from "../../../users/services/auth.service";
-
 import {
   type MarkerOptions,
   Place,
@@ -51,7 +48,6 @@ export class PlaceComponent
   private readonly subscription = new Subscription();
   public routePrefix: string;
   public place!: Place;
-  public me!: User | null;
 
   public marker: MarkerOptions[];
 
@@ -88,7 +84,6 @@ export class PlaceComponent
   public territories: AnyDepartmentCode[] = [];
 
   constructor(
-    private readonly authService: AuthService,
     private readonly placeService: PlaceService,
     private readonly route: ActivatedRoute,
     private readonly router: Router,
@@ -107,7 +102,6 @@ export class PlaceComponent
 
     this.displayInfo = false;
     this.canEdit = false;
-    this.me = null;
     this.isTempClosed = false;
     this.displayTempHours = false;
 
@@ -121,8 +115,6 @@ export class PlaceComponent
   }
 
   public ngOnInit(): void {
-    this.me = this.authService.currentUserValue;
-
     this.subscription.add(
       this.currentLanguageService.subscribe(
         () => (this.routePrefix = this.currentLanguageService.routePrefix)
@@ -185,11 +177,10 @@ export class PlaceComponent
           // Display campaign panel
           this.displayInfo = displayCampaignInfo(place);
 
-          // Display or not the address
+          // Display address only when place is not orientation-only
           this.showAddress =
             !this.place.modalities?.orientation ||
-            !this.place.modalities.orientation?.checked ||
-            this.me !== null;
+            !this.place.modalities.orientation?.checked;
 
           // Is the structure temporarily closed
           this.isTempClosed =
@@ -204,16 +195,6 @@ export class PlaceComponent
           });
 
           this.lastSearchUrl = this.getLastSearchUrl();
-
-          if (this.me && (this.me.pro || this.me.admin)) {
-            this.subscription.add(
-              this.placeService
-                .canEditPlace(id)
-                .subscribe((canEdit: boolean) => {
-                  this.canEdit = canEdit;
-                })
-            );
-          }
 
           this.displayTempHours = this.place.tempInfos.hours.actif;
         },
@@ -284,7 +265,7 @@ export class PlaceComponent
   };
 
   private readonly updateMarkers = (): void => {
-    this.marker = generateMarkerOptions([this.place], this.me);
+    this.marker = generateMarkerOptions([this.place], null);
   };
 
   public toogleDisplayTempHours = (value: boolean): void => {

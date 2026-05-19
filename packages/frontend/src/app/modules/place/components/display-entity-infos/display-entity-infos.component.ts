@@ -7,9 +7,6 @@ import {
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { User } from "../../../users/classes";
-import { AuthService } from "../../../users/services/auth.service";
-
 import { Place } from "../../../../models/place/classes";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { PlaceType } from "@soliguide/common";
@@ -26,8 +23,6 @@ export class DisplayEntityInfosComponent
   implements OnInit
 {
   @Input() public place!: Place;
-  // Utilisateur
-  public me!: User | null;
 
   // Affichage
   public showEmail: boolean;
@@ -42,10 +37,7 @@ export class DisplayEntityInfosComponent
 
   public readonly PlaceType = PlaceType;
 
-  public constructor(
-    private readonly authService: AuthService,
-    posthogService: PosthogService
-  ) {
+  public constructor(posthogService: PosthogService) {
     super(posthogService, "display-entity-info");
     this.showEmail = false;
     this.showPhones = false;
@@ -53,12 +45,9 @@ export class DisplayEntityInfosComponent
   }
 
   public ngOnInit(): void {
-    this.me = this.authService.currentUserValue;
-
     this.showAddress =
       !this.place.modalities?.orientation ||
-      !this.place.modalities.orientation?.checked ||
-      this.me !== null;
+      !this.place.modalities.orientation?.checked;
 
     this.updateDefaultPosthogProperties({ addressVisible: this.showAddress });
   }

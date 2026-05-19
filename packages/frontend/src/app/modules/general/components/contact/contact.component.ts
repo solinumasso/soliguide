@@ -17,9 +17,8 @@ import {
   DepartmentInfo,
 } from "@soliguide/common";
 import { GeneralService } from "../../services/general.services";
-import { AuthService } from "../../../users/services/auth.service";
 import { SeoService } from "../../../shared/services";
-import { generateCompleteName, EmailValidator } from "../../../../shared";
+import { EmailValidator } from "../../../../shared";
 import { CurrentLanguageService } from "../../services/current-language.service";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { TranslateService } from "@ngx-translate/core";
@@ -50,7 +49,6 @@ export class ContactComponent implements OnInit, OnDestroy {
     DEPARTMENTS_MAP[THEME_CONFIGURATION.country];
 
   constructor(
-    private readonly authService: AuthService,
     private readonly formBuilder: UntypedFormBuilder,
     private readonly generalService: GeneralService,
     private readonly router: Router,
@@ -98,22 +96,6 @@ export class ContactComponent implements OnInit, OnDestroy {
       subject: ["", [Validators.required]],
       message: ["", [Validators.required]],
     });
-
-    if (this.authService.currentUserValue) {
-      if (this.authService.currentUserValue.organizations.length) {
-        this.f.name.setValue(
-          this.authService.currentUserValue.currentOrga.name
-        );
-      } else {
-        this.f.name.setValue(
-          generateCompleteName(
-            this.authService.currentUserValue.name,
-            this.authService.currentUserValue.lastname
-          )
-        );
-      }
-      this.f.email.setValue(this.authService.currentUserValue.mail);
-    }
   };
 
   public sendEmail = (): void => {

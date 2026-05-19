@@ -11,8 +11,6 @@ import { Subscription } from "rxjs";
 
 import { CurrentLanguageService } from "../../../general/services/current-language.service";
 
-import { User } from "../../../users/classes";
-
 import { Place } from "../../../../models/place";
 import { PosthogComponent } from "../../../analytics/components/posthog.component";
 import { PosthogService } from "../../../analytics/services/posthog.service";
@@ -30,7 +28,6 @@ export class DisplayPlaceInfosComponent
   @Input() public canEdit!: boolean;
   @Input() public maj!: CampaignInfos;
   @Input() public dateForTest!: Date;
-  @Input() public me!: User | null;
 
   private readonly subscription = new Subscription();
 
@@ -40,7 +37,7 @@ export class DisplayPlaceInfosComponent
   public readonly PlaceStatus = PlaceStatus;
   public readonly TempInfoType = TempInfoType;
 
-  public haveRightOnThisPlace: boolean;
+  public readonly haveRightOnThisPlace = false;
 
   constructor(
     private readonly currentLanguageService: CurrentLanguageService,
@@ -49,8 +46,6 @@ export class DisplayPlaceInfosComponent
     super(posthogService, "display-place-info");
 
     this.routePrefix = this.currentLanguageService.routePrefix;
-
-    this.haveRightOnThisPlace = false;
   }
 
   public ngOnInit(): void {
@@ -59,8 +54,6 @@ export class DisplayPlaceInfosComponent
         () => (this.routePrefix = this.currentLanguageService.routePrefix)
       )
     );
-
-    this.haveRightOnThisPlace = this.me?.places.includes(this.place.lieu_id);
   }
 
   public ngOnDestroy(): void {

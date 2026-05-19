@@ -7,8 +7,6 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateModule } from "@ngx-translate/core";
 import { CountUpModule } from "ngx-countup";
 
-import { AideComponent } from "./components/aide/aide.component";
-import { AideTradComponent } from "./components/aide-trad/aide-trad.component";
 import { ContactComponent } from "./components/contact/contact.component";
 import { DevenirBenevoleComponent } from "./components/devenir-benevole/devenir-benevole.component";
 import { HomeComponent } from "./components/home/home.component";
@@ -30,8 +28,6 @@ import { SearchCategoryAutocompleteComponent } from "../shared/components/search
 
 @NgModule({
   declarations: [
-    AideComponent,
-    AideTradComponent,
     ContactComponent,
     DevenirBenevoleComponent,
     HomeComponent,

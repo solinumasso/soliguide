@@ -31,7 +31,6 @@ import { ServerErrorInterceptor } from "./interceptors/server-error.interceptor"
 import { GeneralModule } from "./modules/general/general.module";
 import { StaticPagesModule } from "./modules/static-pages/static-pages.module";
 import { SharedModule } from "./modules/shared/shared.module";
-import { UsersModule } from "./modules/users/users.module";
 import { AnalyticsModule } from "./modules/analytics/analytics.module";
 
 import { CustomLoaderTranslate, registerLocales } from "./shared";
@@ -90,7 +89,6 @@ export function initializeTranslate(translate: TranslateService) {
         deps: [HttpClient],
       },
     }),
-    UsersModule, // TODO: migrate to lazy loading router
     AppRoutingModule,
   ],
   providers: [

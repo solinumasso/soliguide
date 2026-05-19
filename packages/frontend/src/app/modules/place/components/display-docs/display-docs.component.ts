@@ -1,12 +1,13 @@
-import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { Component, Input, OnDestroy } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
-import { ToastrService } from "ngx-toastr";
-import { UploadService } from "../../../form-place/services/upload.service";
+import { saveAs } from "file-saver";
 import { Subscription } from "rxjs";
-import { TranslateService } from "@ngx-translate/core";
+
 import { CommonPlaceDocument } from "@soliguide/common";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { PosthogComponent } from "../../../analytics/components/posthog.component";
+import { environment } from "../../../../../environments/environment";
 
 @Component({
   selector: "app-display-docs",
@@ -15,26 +16,18 @@ import { PosthogComponent } from "../../../analytics/components/posthog.componen
 })
 export class DisplayDocsComponent
   extends PosthogComponent
-  implements OnDestroy, OnInit
+  implements OnDestroy
 {
   private readonly subscription = new Subscription();
 
-  // Required
   @Input() public docs: CommonPlaceDocument[];
-
-  // Optionnal
-  @Input() public placeId: number;
-  @Input() public serviceIndex: number;
-
   @Input() public displayDate: boolean;
   @Input() public canDownload: boolean;
 
-  public canDelete: boolean;
+  public readonly canDelete = false;
 
   constructor(
-    private readonly toastr: ToastrService,
-    private readonly uploadService: UploadService,
-    private readonly translateService: TranslateService,
+    private readonly http: HttpClient,
     posthogService: PosthogService
   ) {
     super(posthogService, "display-docs-");
@@ -42,45 +35,22 @@ export class DisplayDocsComponent
     this.canDownload = false;
   }
 
-  ngOnInit(): void {
-    this.canDelete = typeof this.placeId !== "undefined";
-  }
-
-  public deleteDoc = (index: number, id: string): void => {
-    this.captureEvent({
-      name: "click-delete-doc-button",
-      properties: { doc: this.docs[index] },
-    });
-
-    this.subscription.add(
-      this.uploadService
-        .delete(id, this.placeId, "documents", this.serviceIndex)
-        .subscribe({
-          next: () => {
-            this.toastr.success(
-              this.translateService.instant("DELETION_COMPLETED_SUCCESSFULLY")
-            );
-            this.docs.splice(index, 1);
-          },
-          error: () => {
-            this.toastr.error(
-              this.translateService.instant("DELETION_COULD_NOT_BE_COMPLETED")
-            );
-          },
-        })
-    );
-  };
-
   public download = (doc: CommonPlaceDocument): void => {
     this.captureEvent({
       name: "click-download-doc-button",
       properties: { doc },
     });
-    try {
-      this.uploadService.getDocument(doc);
-    } catch {
-      this.toastr.error(this.translateService.instant("ERROR_OCCURRED"));
-    }
+    this.subscription.add(
+      this.http
+        .get(`${environment.apiUrl}/medias/documents/${doc.path}`, {
+          responseType: "blob",
+        })
+        .subscribe({
+          next: (file: Blob) => {
+            saveAs(new Blob([file], { type: doc.mimetype }), doc.filename);
+          },
+        })
+    );
   };
 
   public ngOnDestroy(): void {

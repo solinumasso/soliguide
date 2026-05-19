@@ -65,16 +65,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       [place]="place"
       [canEdit]="canEdit"
       [dateForTest]="dateForTest"
-      [me]="me"
       (parentCaptureEvent)="captureEvent($any($event))"
     ></app-display-place-infos>
-
-    <app-place-update-campaign-banner
-      *ngIf="!placePreview"
-      [canEdit]="canEdit"
-      [place]="place"
-      (parentCaptureEvent)="captureEvent($any($event))"
-    ></app-place-update-campaign-banner>
 
     <app-external-source-place-campaign-banner
       *ngIf="!placePreview"
@@ -246,7 +238,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             place.placeType === PlaceType.PLACE &&
             place.position?.region &&
             place.position?.location?.coordinates?.length === 2 &&
-            (!place.modalities.orientation?.checked || me !== null)
+            !place.modalities.orientation?.checked
           "
           id="transports"
           class="col-12 col-md-6 col-lg-4"
@@ -329,14 +321,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         </div>
       </div>
     </div>
-
-    <app-display-contacts
-      *ngIf="me && (me.admin || me.pro)"
-      [place]="place"
-      [me]="me"
-      [template]="'public'"
-      (parentCaptureEvent)="captureEvent($any($event))"
-    ></app-display-contacts>
 
     <app-display-services
       [services]="place.services_all"

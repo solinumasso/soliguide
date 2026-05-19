@@ -7,7 +7,6 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgxJsonLdModule } from "@ngx-lite/json-ld";
 import { TranslateModule } from "@ngx-translate/core";
 import { ShareButtons } from "ngx-sharebuttons/buttons";
-import { CampaignSharedModule } from "../campaign-shared/campaign-shared.module";
 import { DisplayHorairesComponent } from "../place/standalone-components/display-horaires/horaires.component";
 import { SearchMapComponent } from "../place/standalone-components/search-map/search-map.component";
 import { SharedModule } from "../shared";
@@ -31,7 +30,6 @@ import { DisplayHolidaysComponent } from "../place/standalone-components/display
     PlaceModule,
     HttpClientModule,
     TranslateModule,
-    CampaignSharedModule,
     DisplayHorairesComponent,
     DisplayTempBannerComponent,
     DisplayHolidaysComponent,

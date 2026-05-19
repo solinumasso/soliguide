@@ -21,8 +21,6 @@ import { PosthogService } from "../../../analytics/services/posthog.service";
 import { Search } from "../../../search/interfaces";
 import { SeoService, LocationService } from "../../../shared/services";
 import { smoothCollapse, IS_WEBVIEW_APP } from "../../../../shared";
-import type { User } from "../../../users/classes";
-import { AuthService } from "../../../users/services/auth.service";
 import { THEME_CONFIGURATION } from "../../../../models";
 
 @Component({
@@ -34,7 +32,6 @@ import { THEME_CONFIGURATION } from "../../../../models";
 export class HomeComponent implements OnInit, OnDestroy {
   private readonly subscription = new Subscription();
   public search = new Search();
-  public me!: User | null;
 
   public hideCategories = false;
   public readonly IS_WEBVIEW_APP = IS_WEBVIEW_APP;
@@ -63,7 +60,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     private readonly seoService: SeoService,
     private readonly posthogService: PosthogService,
     private readonly currentLanguageService: CurrentLanguageService,
-    private readonly authService: AuthService,
     private readonly locationService: LocationService
   ) {
     this.CATEGORIES_NODES_WITH_ONE_DEPTH_CHILDREN =
@@ -98,12 +94,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         },
       })
     );
-    this.subscription.add(
-      this.authService.currentUserSubject.subscribe((user: User) => {
-        this.me = user;
-      })
-    );
-
     const location = this.locationService.localPositionValue;
 
     this.search = new Search({ location });

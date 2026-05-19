@@ -13,7 +13,6 @@ import { TranslateModule } from "@ngx-translate/core";
 import { FA_ICONS } from "../../shared/constants/FA_ICONS.const";
 import { DisplayTerritoriesComponent } from "./components/display-territories/display-territories.component";
 import { SelectCategoryComponent } from "./components/select-category/select-category.component";
-import { SelectTerritoriesComponent } from "./components/select-territories/select-territories.component";
 import { CleanStrDirective } from "./directives/clean-str.directive";
 import { DateFrDirective } from "./directives/date-fr.directive";
 import { DigitOnlyDirective } from "./directives/digit-only.directive";
@@ -50,7 +49,6 @@ import { NgxTranslateI18nextAdapter } from "./services/ngx-translate-i18next-ada
     LimitToPipe,
     ReadableParcoursPipe,
     SafeHtmlPipe,
-    SelectTerritoriesComponent,
     SelectCategoryComponent,
     UcFirstPipe,
     UserFullNamePipe,
@@ -72,7 +70,6 @@ import { NgxTranslateI18nextAdapter } from "./services/ngx-translate-i18next-ada
     LimitToPipe,
     ReadableParcoursPipe,
     SafeHtmlPipe,
-    SelectTerritoriesComponent,
     SelectCategoryComponent,
     UcFirstPipe,
     UserFullNamePipe,
