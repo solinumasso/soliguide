@@ -7,6 +7,7 @@
   "license": "AGPL-3.0-only",
   "scripts": {
     "build": "yarn prebuild && tsc -p tsconfig.build.json && yarn postbuild",
+    "brevo:campaign-user-update": "tsx src/analytics/scripts/brevo-campaign-user-update.ts",
     "categories:analyze": "tsx src/search-suggestions/scripts/sync-categories.ts analyze",
     "categories:sync": "tsx src/search-suggestions/scripts/sync-categories.ts sync",
     "categories:cleanup": "tsx src/search-suggestions/scripts/sync-categories.ts cleanup",

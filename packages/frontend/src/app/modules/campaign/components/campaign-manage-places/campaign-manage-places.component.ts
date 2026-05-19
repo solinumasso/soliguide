@@ -106,11 +106,10 @@ export class CampaignManagePlacesComponent
     );
     this.me = this.authService.currentUserValue;
     this.titleService.setTitle(
-      this.translateService.instant("CAMPAIGN_DESCRIPTION", {
-        season: this.translateService.instant(
+      this.translateService.instant("CAMPAIGN_GENERAL_VIEW", {
+        description: `${this.translateService.instant(
           CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].name
-        ),
-        year: CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].year,
+        )} ${CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].year}`,
       })
     );
     if (!this.me.admin) {
@@ -132,10 +131,9 @@ export class CampaignManagePlacesComponent
             this.places = places;
             this.titleService.setTitle(
               this.translateService.instant("CAMPAIGN_GENERAL_VIEW", {
-                season: this.translateService.instant(
+                description: `${this.translateService.instant(
                   CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].name
-                ),
-                year: CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].year,
+                )} ${CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].year}`,
               })
             );
           })
