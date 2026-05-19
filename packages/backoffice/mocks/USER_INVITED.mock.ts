@@ -1,0 +1,27 @@
+import { CommonUser, UserStatus } from "@soliguide/common";
+
+export const USER_INVITED_MOCK: CommonUser = {
+  createdAt: new Date("2020-11-19T08:59:48.182Z"),
+  _id: "61162ee315b29bc0c080e458",
+  blocked: false,
+  categoriesLimitations: [],
+  devToken: null,
+  invitations: [],
+  languages: [],
+  lastname: "Nom invité",
+  mail: "user-invited@mail.com",
+  name: "Prénom invité",
+  organizations: [],
+  password: "$2a$04$f4/AtNKjcbHYSwjefwmBVOp.KVkhFjsk1qqX31kzy7SZ3GbQwmkhW",
+  phone: null,
+  selectedOrgaIndex: 0,
+  status: UserStatus.PRO,
+  territories: ["75"],
+  title: null,
+  updatedAt: null,
+  verifiedAt: null,
+  translator: false,
+  user_id: 1433,
+  verified: false,
+  lastLogin: new Date("2020-11-19T08:59:48.182Z"),
+};

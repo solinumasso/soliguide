@@ -1,0 +1,143 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<hr />
+<div class="row">
+  <div class="col-12 col-md-4 my-2 me-3">
+    <div class="required">
+      <label class="form-label" for="date_debut">
+        {{ "START_DATE" | translate }}
+      </label>
+      <div class="input-group">
+        <input
+          class="form-control"
+          placeholder="{{ 'DATE_PLACEHOLDER' | translate }}"
+          name="date_debut"
+          id="date_debut"
+          [(ngModel)]="dateDebut"
+          (ngModelChange)="setDateDebut($event)"
+          type="date"
+          required
+          #start_date="ngModel"
+          [ngClass]="{
+            'is-invalid':
+              ((start_date.value && start_date.touched) ||
+                submitted ||
+                (start_date.value && submitted)) &&
+              parentFormGroup?.controls?.dateDebut?.errors,
+            'is-valid':
+              (start_date.dirty || submitted) &&
+              start_date.valid &&
+              !parentFormGroup?.controls?.dateDebut?.errors
+          }"
+        />
+        <p
+          *ngIf="
+            (start_date.dirty || submitted) &&
+            parentFormGroup?.controls?.dateDebut.errors?.required
+          "
+          class="invalid-feedback"
+        >
+          {{ "START_DATE_IS_REQUIRED" | translate }}
+        </p>
+        <p
+          *ngIf="parentFormGroup?.controls?.dateDebut.errors?.dateOverlapping"
+          class="invalid-feedback"
+        >
+          {{ "TEMPORARY_INFORMATION_ALREADY_EXISTS_FOR_THIS_DATE" | translate }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-4 my-2 me-3">
+    <div
+      [ngClass]="{
+        'form-group': true,
+        required: endDateRequired
+      }"
+    >
+      <label class="form-label" for="date_fin">{{
+        "END_DATE_INCLUDED" | translate
+      }}</label>
+      <div class="input-group">
+        <input
+          class="form-control"
+          placeholder="{{ 'DATE_PLACEHOLDER' | translate }}"
+          name="date_fin"
+          id="date_fin"
+          type="date"
+          [(ngModel)]="dateFin"
+          (ngModelChange)="setDateFin($event)"
+          #end_date="ngModel"
+          [ngClass]="{
+            'is-invalid':
+              parentFormGroup?.errors?.endDateAfterBeginDate ||
+              (end_date.value &&
+                parentFormGroup.controls.dateFin.errors?.dateOverlapping) ||
+              end_date.invalid ||
+              (endDateRequired &&
+                (end_date.dirty ||
+                  end_date.touched ||
+                  (end_date.untouched && submitted)) &&
+                !end_date.value),
+            'is-valid':
+              (end_date.dirty || end_date.touched) &&
+              end_date.valid &&
+              end_date.value &&
+              parentFormGroup?.errors?.endDateAfterBeginDate &&
+              !parentFormGroup.controls.dateFin.errors
+          }"
+        />
+
+        <div
+          *ngIf="
+            endDateRequired &&
+            (end_date.dirty ||
+              end_date.touched ||
+              (end_date.untouched && submitted)) &&
+            !end_date.value
+          "
+          class="invalid-feedback"
+        >
+          {{ "END_DATE_IS_REQUIRED" | translate }}
+        </div>
+        <div
+          *ngIf="parentFormGroup?.errors?.endDateAfterBeginDate"
+          class="invalid-feedback"
+        >
+          {{ "END_DATE_MUST_BE_AFTER_START_DATE" | translate }}
+        </div>
+        <div
+          *ngIf="
+            end_date.value &&
+            parentFormGroup.controls.dateFin.errors?.dateOverlapping
+          "
+          class="invalid-feedback"
+        >
+          {{ "TEMPORARY_INFORMATION_ALREADY_EXISTS_FOR_THIS_DATE" | translate }}
+        </div>
+        <div *ngIf="end_date.invalid" class="invalid-feedback">
+          {{ "ENTER_VALID_END_DATE_NOT_PASSED" | translate }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

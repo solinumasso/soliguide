@@ -1,0 +1,71 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div *ngIf="photos.length <= 0 && !history" class="col-12 alert-info alert">
+  {{ "NO_PHOTO_STRUCTURE" | translate }}
+</div>
+
+<div class="row" *ngIf="photos.length > 0">
+  <div
+    class="col-lg-2 col-md-4 col-6 px-2"
+    *ngFor="let photo of photos; let i = index"
+  >
+    <div class="photo-wrapper my-2">
+      <img
+        class="photo place-photo"
+        alt="Photo"
+        (click)="openPhoto(carousel, i)"
+        [src]="photo.photoUrl"
+      />
+    </div>
+  </div>
+</div>
+
+<ng-template #carousel let-modal>
+  <div class="modal-header">
+    <span id="modal-title" class="text-primary">{{ name }}</span>
+    <button
+      type="button"
+      class="btn-close"
+      [attr.aria-label]="'CLOSE' | translate"
+      (click)="closePhoto()"
+    ></button>
+  </div>
+  <div class="modal-body px-2">
+    <ngb-carousel
+      *ngIf="photos"
+      [activeId]="'photo-' + photoIndex"
+      (slide)="captureCarouselEvent($event)"
+    >
+      <ng-template
+        ngbSlide
+        *ngFor="let photo of photos; let i = index"
+        [id]="'photo-' + i"
+      >
+        <div
+          class="photo-view"
+          [ngStyle]="{
+            background: 'center / contain no-repeat url(' + photo.photoUrl + ')'
+          }"
+        ></div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</ng-template>

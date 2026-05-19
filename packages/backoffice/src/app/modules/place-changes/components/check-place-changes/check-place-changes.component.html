@@ -1,0 +1,63 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div
+  class="custom-dropdown"
+  position="bottom"
+  container="body"
+  ngbDropdown
+  autoClose="true"
+>
+  <button ngbDropdownToggle type="button">
+    <span class="text-truncate">
+      <span
+        class="saturation"
+        [ngClass]="{
+          'bg-success': placeChanges.status === PlaceChangesStatus.VALID,
+          'bg-danger': placeChanges.status === PlaceChangesStatus.SPECIFY,
+          'bg-warning': placeChanges.status === PlaceChangesStatus.NOT_EVALUATED
+        }"
+      >
+      </span>
+      {{ "PLACE_CHANGES_STATUS_" + placeChanges.status | translate }}
+    </span>
+  </button>
+
+  <div ngbDropdownMenu>
+    <ng-container *ngFor="let status of PlaceChangesStatusValues">
+      <button
+        (click)="updateStatus(placeChanges, status)"
+        ngbDropdownItem
+        type="button"
+      >
+        <label [for]="changeIndex + '_' + status" class="visually-hidden"
+          >{{ "CHANGE_STATUS_UPDATE" | translate }}
+        </label>
+        <input
+          [checked]="placeChanges.status === status"
+          type="radio"
+          [name]="changeIndex + '_' + status"
+          [id]="changeIndex + '_' + status"
+        />
+        <span>{{ "PLACE_CHANGES_STATUS_" + status | translate }}</span>
+      </button>
+    </ng-container>
+  </div>
+</div>

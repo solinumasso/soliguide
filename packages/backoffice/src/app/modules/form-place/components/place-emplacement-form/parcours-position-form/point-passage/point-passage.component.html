@@ -1,0 +1,142 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div
+  class="col-12 p-2 service-form-header"
+  [ngClass]="{ visible: point.show }"
+  *ngIf="passageTimeslot"
+  (click)="toggleShow()"
+>
+  <div class="row service-form-header-inner">
+    <div class="col-11 service-form-header-inner-container">
+      <div class="service-title-container">
+        <span *ngIf="point.position.address">
+          <span class="point-form-index">{{ pointIndex + 1 }} - </span>
+          {{ point.position.address }} - {{ timeslotDisplayed }}
+        </span>
+        <span class="text-danger" *ngIf="!point.position.address">
+          {{ "INDICATE_AT_LEAST_1_WAYPOINT" | translate }}
+        </span>
+      </div>
+    </div>
+    <div class="text-end col-1">
+      <fa-icon *ngIf="!point.show" [icon]="['fas', 'chevron-down']"></fa-icon>
+      <fa-icon *ngIf="point.show" [icon]="['fas', 'chevron-up']"></fa-icon>
+    </div>
+  </div>
+</div>
+
+<div class="col-12 service-form" *ngIf="point.show">
+  <form [formGroup]="pointPassageForm" autocomplete="off">
+    <div class="row">
+      <div class="col-md-8 col-12">
+        <app-address-input
+          [(position)]="point.position"
+          [title]="'WAYPOINT_LOCATION' | translate"
+          [titleError]="'LOCATION_IS_MENDATORY' | translate"
+          [helpAddress]="true"
+          [addressPlaceholder]="'PLACEHOLDER_ITINERARY_LOCATION' | translate"
+          [additionalInformationPlaceholder]="
+            'PLACEHOLDER_ITINERARY_LOCATION_COMPLEMENTS' | translate
+          "
+          [showMap]="true"
+          [mapIndex]="pointIndex"
+          [submitted]="submitted"
+          (adresseInvalid)="emitInvalidAddress($event)"
+        >
+        </app-address-input>
+      </div>
+      <div formArrayName="timeslot" class="col-12 my-2 step-hours">
+        <span class="label">{{ "HOURS_ESTIMATION" | translate }}</span>
+
+        <div class="d-flex align-items-center" [formGroupName]="0">
+          <div class="me-4">
+            <label for="{{ pointIndex }}-hours-start" class="form-label">{{
+              "START_HOUR" | translate
+            }}</label>
+            <input
+              id="{{ pointIndex }}-hours-start"
+              type="time"
+              class="form-control form-control-sm"
+              placeholder="HH:MM"
+              autocomplete="off"
+              formControlName="start"
+              (ngModelChange)="setPassageHours($event, 'start')"
+              required
+            />
+          </div>
+          <div class="mx-2">
+            <label for="{{ pointIndex }}-hours-end" class="form-label">{{
+              "END_HOUR" | translate
+            }}</label>
+            <input
+              id="{{ pointIndex }}-hours-end"
+              type="time"
+              class="form-control form-control-sm"
+              placeholder="HH:MM"
+              autocomplete="off"
+              formControlName="end"
+              (ngModelChange)="setPassageHours($event, 'end')"
+              required
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="my-2 col-12">
+        <label class="form-label" for="description">{{
+          "WAYPOINT_DESCRIPTION" | translate
+        }}</label>
+        <textarea
+          type="text"
+          class="form-control"
+          id="description"
+          formControlName="description"
+          (ngModelChange)="setDescription($event)"
+          [placeholder]="'ENTER_TEXT_HERE' | translate"
+          autocomplete="off"
+          [ngClass]="{
+            'is-invalid': f.description.dirty && f.description.errors
+          }"
+        ></textarea>
+      </div>
+
+      <div class="my-2 col-12">
+        <label class="form-label mb-0" for="photos">{{
+          "WAYPOINT_PHOTOS" | translate
+        }}</label>
+        <app-upload-photos
+          id="photos"
+          [photos]="point.photos"
+          [placeId]="placeId"
+          [parcoursId]="pointIndex"
+          #photos
+        ></app-upload-photos>
+      </div>
+    </div>
+  </form>
+  <button
+    class="btn btn-outline-danger fw-bold my-2"
+    type="button"
+    (click)="deletePoint()"
+  >
+    {{ "DELETE_WAYPOINT" | translate }}
+  </button>
+</div>

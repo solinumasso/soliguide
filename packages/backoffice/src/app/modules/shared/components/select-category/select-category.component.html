@@ -1,0 +1,88 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div
+  class="form-group"
+  [ngClass]="{
+    required: isRequired,
+    'is-invalid':
+      isRequired && categories.length === 0 && (haveBeenTouched || submitted)
+  }"
+>
+  <label for="selectCategory" class="form-label">{{ label }}</label>
+  <div
+    class="input-group custom-dropdown"
+    placement="bottom"
+    ngbDropdown
+    autoClose="outside"
+  >
+    <button type="button" id="selectCategory" ngbDropdownToggle>
+      <span class="text-truncate">
+        {{ displayValue }}
+      </span>
+    </button>
+
+    <div ngbDropdownMenu>
+      <div>
+        <ng-container
+          *ngFor="let categoryNode of CATEGORIES_NODES_WITH_ONE_DEPTH_CHILDREN"
+        >
+          <button
+            *ngIf="!categoriesToHide.includes(categoryNode.id)"
+            type="button"
+            (click)="selectCategory(categoryNode.id)"
+            ngbDropdownItem
+          >
+            <input
+              [attr.aria-label]="
+                categoryNode.id | categoryTranslateKey | translate
+              "
+              [checked]="categories.includes(categoryNode.id)"
+              type="checkbox"
+            />
+            <span>{{
+              categoryNode.id | categoryTranslateKey | translate
+            }}</span>
+          </button>
+          <ng-container *ngFor="let categoryChild of categoryNode.children">
+            <button
+              *ngIf="!categoriesToHide.includes(categoryChild.id)"
+              type="button"
+              (click)="selectCategory(categoryChild.id)"
+              ngbDropdownItem
+              class="ps-3"
+            >
+              <input
+                [attr.aria-label]="
+                  categoryChild.id | categoryTranslateKey | translate
+                "
+                [checked]="categories.includes(categoryChild.id)"
+                type="checkbox"
+              />
+              <span class="fw-normal">{{
+                categoryChild.id | categoryTranslateKey | translate
+              }}</span>
+            </button>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

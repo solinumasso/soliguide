@@ -1,0 +1,66 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<span class="form-label">{{ label }}</span>
+<div
+  class="custom-dropdown"
+  placement="bottom-start"
+  ngbDropdown
+  autoClose="outside"
+>
+  <button type="button" ngbDropdownToggle>
+    <span class="text-truncate">
+      {{ getStringToDisplay() }}
+    </span>
+  </button>
+  <div ngbDropdownMenu [attr.aria-label]="label">
+    <button type="button" (click)="toggleCheckboxButton('ALL')" ngbDropdownItem>
+      <input
+        class="form-check-input"
+        (click)="toggleCheckboxButton('ALL')"
+        [attr.aria-label]="allOptionsLabel"
+        [checked]="allOptions === options?.length"
+        type="checkbox"
+        id="option-{{ allOptionsLabel }}"
+      />
+      <label class="form-check-label" for="option-{{ allOptionsLabel }}">{{
+        allOptionsLabel
+      }}</label>
+    </button>
+
+    <ng-container *ngFor="let option of optionLabels | keyvalue">
+      <button
+        type="button"
+        (click)="toggleCheckboxButton(option.key)"
+        ngbDropdownItem
+      >
+        <input
+          [attr.aria-label]="option.value"
+          [checked]="options?.includes(option.key)"
+          type="checkbox"
+          class="form-check-input"
+          id="option-{{ option.key }}"
+        />
+        <span class="form-check-label">{{ option.value | translate }}</span>
+      </button>
+    </ng-container>
+  </div>
+</div>

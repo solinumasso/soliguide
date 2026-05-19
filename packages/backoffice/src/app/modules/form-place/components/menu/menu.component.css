@@ -1,0 +1,91 @@
+/*
+ * Soliguide: Useful information for those who need it
+ *
+ * SPDX-FileCopyrightText: © 2024 Solinum
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+#form-menu {
+  background: var(--bs-primary);
+  border-radius: 8px;
+  padding: 17px 20px;
+  color: white;
+}
+
+.item-title span:hover :not(.item-number) {
+  text-decoration: underline;
+}
+.item-title span :not(.item-number) {
+  cursor: pointer;
+}
+.selected-item a {
+  font-weight: bold;
+}
+
+.selected-item .item-title {
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.1px;
+  color: #ffffff;
+}
+
+.selected-item .item-number {
+  color: var(--bs-primary);
+  background-color: white;
+}
+
+.item-number {
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.1px;
+  color: #ffffff;
+  background-color: transparent;
+  border: 1px solid white;
+  width: 32px;
+  margin-right: 10px;
+  padding: 4px 0;
+  border-radius: 100%;
+  text-align: center;
+}
+
+.item-title,
+.item-number {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.item ul {
+  border-left: 1px solid white;
+  list-style-type: none;
+  padding: 10px 20px;
+  margin-left: 16px;
+  margin-bottom: 0;
+  min-height: 5px;
+}
+
+a {
+  color: white;
+  cursor: pointer;
+}
+
+#contact-menu {
+  border: 1px solid rgba(72, 101, 217, 0.2);
+  border-radius: 8px;
+  background-color: rgba(72, 101, 217, 0.05);
+}

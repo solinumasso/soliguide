@@ -1,0 +1,234 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<footer
+  class="d-print-none bg-primary text-white"
+  role="contentinfo"
+  id="footer"
+>
+  <div class="container small-container py-5" id="list_footer">
+    <div
+      *ngIf="
+        THEME_CONFIGURATION.contactFormEnabled ||
+        !!THEME_CONFIGURATION.socialMedia.instagram ||
+        !!THEME_CONFIGURATION.socialMedia.linkedin ||
+        !!THEME_CONFIGURATION.socialMedia.facebook ||
+        !!THEME_CONFIGURATION.socialMedia.youtube ||
+        !!THEME_CONFIGURATION.socialMedia.tiktok
+      "
+      class="row justify-content-center pb-5"
+    >
+      <div class="col-6 justify-content-center d-flex">
+        <a
+          *ngIf="THEME_CONFIGURATION.contactFormEnabled"
+          class="px-3"
+          [routerLink]="[routePrefix, 'contact']"
+          [title]="'CONTACT_US' | translate"
+          (click)="captureEvent('contacts')"
+          ><fa-icon [icon]="['fas', 'envelope']" size="xl"
+        /></a>
+        <a
+          *ngIf="!!THEME_CONFIGURATION.socialMedia.instagram"
+          class="px-3"
+          target="_blank"
+          rel="noopener"
+          [title]="'FOLLOW_US_ON_INSTAGRAM' | translate"
+          [href]="THEME_CONFIGURATION.socialMedia.instagram"
+          (click)="captureEvent('link-instagram')"
+        >
+          <fa-icon [icon]="['fab', 'instagram']" size="xl" />
+        </a>
+        <a
+          *ngIf="!!THEME_CONFIGURATION.socialMedia.linkedin"
+          class="px-3"
+          target="_blank"
+          rel="noopener"
+          [title]="'FOLLOW_US_ON_LINKEDIN' | translate"
+          [href]="THEME_CONFIGURATION.socialMedia.linkedin"
+          (click)="captureEvent('link-linkedin')"
+        >
+          <fa-icon [icon]="['fab', 'linkedin-in']" size="xl" />
+        </a>
+        <a
+          *ngIf="!!THEME_CONFIGURATION.socialMedia.facebook"
+          class="px-3"
+          target="_blank"
+          rel="noopener"
+          [title]="'FOLLOW_US_ON_FACEBOOK' | translate"
+          [href]="THEME_CONFIGURATION.socialMedia.facebook"
+          (click)="captureEvent('link-facebook')"
+        >
+          <fa-icon [icon]="['fab', 'facebook-f']" size="xl" />
+        </a>
+        <a
+          *ngIf="!!THEME_CONFIGURATION.socialMedia.youtube"
+          class="px-3"
+          target="_blank"
+          rel="noopener"
+          [title]="'FOLLOW_US_ON_YOUTUBE' | translate"
+          [href]="THEME_CONFIGURATION.socialMedia.youtube"
+          (click)="captureEvent('link-youtube')"
+        >
+          <fa-icon [icon]="['fab', 'youtube']" size="xl" />
+        </a>
+        <a
+          *ngIf="!!THEME_CONFIGURATION.socialMedia.tiktok"
+          class="px-3"
+          target="_blank"
+          rel="noopener"
+          [title]="'FOLLOW_US_ON_TIKTOK' | translate"
+          [href]="THEME_CONFIGURATION.socialMedia.tiktok"
+          (click)="captureEvent('link-tiktok')"
+        >
+          <fa-icon [icon]="['fab', 'tiktok']" size="xl" />
+        </a>
+      </div>
+    </div>
+    <div class="row justify-content-center pb-5">
+      <div class="justify-content-center d-flex">
+        <app-partners-banner></app-partners-banner>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <ul class="col-6 col-md-4">
+        <li class="title_list_footer">{{ "ABOUT" | translate }}</li>
+
+        <li *ngIf="!!THEME_CONFIGURATION.aboutSolinumLink">
+          <a
+            [title]="'ABOUT_SOLINUM' | translate"
+            [href]="THEME_CONFIGURATION.aboutSolinumLink"
+            (click)="captureEvent('about-us')"
+          >
+            {{ "WHO_WE_ARE" | translate }}
+          </a>
+        </li>
+
+        <li>
+          <a
+            [title]="'LEGAL_NOTICE' | translate"
+            [routerLink]="[routePrefix, legalNoticesLink]"
+            (click)="captureEvent('legal-notice')"
+          >
+            {{ "LEGAL_NOTICE" | translate }}
+          </a>
+        </li>
+        <li>
+          <a
+            [title]="'PRIVACY_POLICY' | translate"
+            [routerLink]="[routePrefix, privacyPolicyLink]"
+            (click)="captureEvent('privacy-policy')"
+          >
+            {{ "PRIVACY_POLICY" | translate }}
+          </a>
+        </li>
+        <li>
+          <a
+            *ngIf="!!THEME_CONFIGURATION.chatWebsiteId"
+            [title]="'MANAGE_COOKIES' | translate"
+            (click)="openCookiesConsentModal()"
+            href="javascript:void(0);"
+          >
+            {{ "MANAGE_COOKIES" | translate }}
+          </a>
+        </li>
+        <li>
+          <a
+            [title]="'COOKIES_POLICY' | translate"
+            [routerLink]="[routePrefix, policyPrivacyLink]"
+            (click)="captureEvent('cookies')"
+          >
+            {{ "COOKIES_POLICY" | translate }}
+          </a>
+        </li>
+        <li>
+          <a
+            [title]="'DATA_PROTECTION_AGREEMENT' | translate"
+            [routerLink]="[routePrefix, dataProcessingAgreementLink]"
+            (click)="captureEvent('data-protection-agreement')"
+          >
+            {{ "DATA_PROTECTION_AGREEMENT" | translate }}
+          </a>
+        </li>
+        <li>
+          <a
+            [title]="'GCU' | translate"
+            [routerLink]="[routePrefix, gcuLink]"
+            (click)="captureEvent('gcu')"
+          >
+            {{ "GCU" | translate }}
+          </a>
+        </li>
+      </ul>
+
+      <ul
+        class="col-6 col-md-4"
+        *ngIf="
+          THEME_CONFIGURATION.becomeVolunteerEnabled ||
+          !!becomeTranslatorFormLink ||
+          !!donateLink
+        "
+      >
+        <li class="title_list_footer">
+          {{ "HELP_US" | translate }}
+        </li>
+        <li *ngIf="THEME_CONFIGURATION.becomeVolunteerEnabled">
+          <a
+            [routerLink]="[routePrefix, 'devenir-benevole']"
+            (click)="captureEvent('become-volunteer')"
+          >
+            {{ "BECOME_A_VOLUNTEER" | translate }}
+          </a>
+        </li>
+        <li *ngIf="!!becomeTranslatorFormLink && !IS_WEBVIEW_APP">
+          <a
+            target="_blank"
+            rel="noopener"
+            [href]="becomeTranslatorFormLink"
+            (click)="captureEvent('become-translator')"
+          >
+            {{ "BECOME_TRANSLATOR" | translate }}
+          </a>
+        </li>
+        <li *ngIf="!!donateLink">
+          <a
+            class="btn btn-secondary"
+            target="_blank"
+            rel="noopener"
+            [href]="donateLink"
+            (click)="captureEvent('make-a-donation')"
+          >
+            {{ "MAKE_A_DONATION" | translate }}
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="row justify-content-center mt-3">
+      <a
+        class="col-12 text-center"
+        title="Solinum"
+        [href]="THEME_CONFIGURATION.solinumHomeLink"
+        (click)="captureEvent('link-solinum')"
+        target="_blank"
+      >
+        &copy; 2017 - {{ todayYear }} Solinum</a
+      >
+    </div>
+  </div>
+</footer>

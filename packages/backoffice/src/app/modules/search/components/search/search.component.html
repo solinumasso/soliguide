@@ -1,0 +1,223 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="p-0 m-0" *ngIf="search">
+  <div
+    id="home_search"
+    [class]="
+      'd-print-none home_search_background_' + THEME_CONFIGURATION.country
+    "
+  >
+    <app-search-bar
+      (updateCategory)="updateCategory()"
+      (updateLocation)="updateLocation($event)"
+      (launchSearch)="launchSearchFromSearchBar()"
+      [search]="search"
+    ></app-search-bar>
+
+    <app-search-nav [search]="search"></app-search-nav>
+  </div>
+
+  <div id="page_list">
+    <div class="row pt-3">
+      <div class="text-md-start col-md-9 col-12">
+        <h1>{{ title | ucFirst }}</h1>
+      </div>
+      <div class="text-md-end col-md-3 col-12">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="toggleFilter()"
+        >
+          <fa-icon class="me-2" [icon]="['fas', 'filter']"></fa-icon>
+          <span *ngIf="!showFilters">{{ "HIDE_FILTERS" | translate }}</span>
+          <span *ngIf="showFilters">{{ "SHOW_FILTERS" | translate }}</span>
+        </button>
+      </div>
+    </div>
+
+    <app-search-filters
+      *ngIf="!showFilters"
+      #appFilters
+      [showFilters]="showFilters"
+      [search]="search"
+      [parcoursSearch]="parcoursSearch"
+      [searchSubject]="searchSubject"
+      [parcoursSearchSubject]="parcoursSearchSubject"
+      [filters]="filters"
+      (updateFilters)="updateFilters()"
+      class="d-print-none mb-3"
+    ></app-search-filters>
+
+    <div @fadeInOut class="search_section" *ngIf="loading || parcoursLoading">
+      <div class="text-center">
+        <img src="assets/images/loaders/loading.svg" alt="Loading" />
+        <br />
+        <b>{{ "SEARCH_IN_PROGRESS" | translate }}</b>
+      </div>
+    </div>
+
+    <div @fadeInOut *ngIf="!loading && !parcoursLoading">
+      <app-results-info-banner
+        [category]="search.category"
+        [areas]="search.location.areas"
+      ></app-results-info-banner>
+
+      <app-display-holidays [search]="search"></app-display-holidays>
+    </div>
+
+    <ng-container *ngIf="!loading">
+      <div class="row align-items-center justify-content-between py-2">
+        <div class="nb-results text-start col-md-2 col-6">
+          {{ nbResults }}
+          {{ (nbResults > 1 ? "PLACES" : PlaceType.PLACE) | translate }}
+        </div>
+        @if( !showFilters ){
+        <app-temp-open-filter
+          class="col-md-2 col-6 text-end"
+          [filters]="filters"
+          (filtersChange)="toggleOpen()"
+        ></app-temp-open-filter
+        >}
+      </div>
+
+      <div
+        @fadeInOut
+        class="search_section"
+        *ngIf="!parcoursLoading && !places.length && !parcours.length"
+      >
+        <app-no-result></app-no-result>
+      </div>
+
+      <ng-container *ngIf="nbResults > 0">
+        <div class="row mt-3">
+          <div class="col-xs-0 col-md-4">
+            <div class="row">
+              <div class="col-md-12 mb-3">
+                <label for="distanceRange" class="form-label">
+                  {{ "SEARCH_RADIUS" | translate }}
+                </label>
+                <div class="row align-items-center">
+                  <div class="col-md-10 px-3">
+                    <input
+                      id="distanceRange"
+                      name="distanceRange"
+                      type="range"
+                      class="form-range"
+                      min="5"
+                      max="100"
+                      step="5"
+                      [(ngModel)]="currentDistanceValue"
+                      (mouseup)="setDistanceRange()"
+                      (keyup)="setDistanceRange()"
+                      (pointerup)="setDistanceRange()"
+                    />
+                  </div>
+                  <div class="col-md-2 pb-2 justify-content-center d-flex">
+                    <div
+                      class="d-flex align-items-center justify-content-center slide-value"
+                    >
+                      <p class="mb-0 px-1">
+                        {{ currentDistanceValue }}
+                        {{ "DISTANCE_IN_KILOMETERS" | translate }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="search_map" class="d-none d-sm-block sticky-top">
+              <app-search-map
+                *ngIf="!loading"
+                [center]="search.location.coordinates"
+                [markers]="markers"
+                [scrollOnClick]="true"
+                [withPopup]="true"
+              ></app-search-map>
+            </div>
+          </div>
+
+          <div id="liste_structures" class="col-xs-12 col-md-8">
+            <app-search-place-result
+              [place]="place"
+              [search]="search"
+              [placeIndex]="placeIndex"
+              *ngFor="let place of places; let placeIndex = index"
+            ></app-search-place-result>
+
+            <ng-container *ngIf="!loading && places.length > 0">
+              <ngb-pagination
+                *ngIf="search.options.limit < nbResults"
+                class="ms-auto pagination"
+                [collectionSize]="nbResults"
+                [(page)]="search.options.page"
+                (pageChange)="setPageToUrl(true)"
+                [maxSize]="5"
+                [boundaryLinks]="true"
+                [pageSize]="search.options.limit"
+                [rotate]="true"
+              ></ngb-pagination>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="!parcoursLoading && nbParcoursResults > 0">
+      <div class="text-start col-md-7 py-2">
+        <span class="nb-results">
+          {{ nbParcoursResults }}
+          {{
+            (nbResults > 1 ? "ITINERARIES" : PlaceType.ITINERARY) | translate
+          }}
+        </span>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-xs-0 col-md-4"></div>
+
+        <div id="liste_parcours" class="col-xs-12 col-md-8">
+          <app-search-place-result
+            [place]="itinerary"
+            [search]="parcoursSearch"
+            [placeIndex]="itineraryIndex"
+            *ngFor="let itinerary of parcours; let itineraryIndex = index"
+          ></app-search-place-result>
+
+          <ng-container *ngIf="!parcoursLoading && parcours.length > 0">
+            <ngb-pagination
+              *ngIf="parcoursSearch.options.limit < nbParcoursResults"
+              class="ms-auto pagination"
+              [collectionSize]="nbParcoursResults"
+              [(page)]="parcoursSearch.options.page"
+              (pageChange)="setPageToUrl(false)"
+              [maxSize]="5"
+              [boundaryLinks]="true"
+              [pageSize]="parcoursSearch.options.limit"
+              [rotate]="true"
+            ></ngb-pagination>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+
+    <app-partners-logos></app-partners-logos>
+  </div>
+</div>

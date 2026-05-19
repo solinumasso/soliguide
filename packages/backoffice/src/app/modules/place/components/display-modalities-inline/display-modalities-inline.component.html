@@ -1,0 +1,126 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div *ngIf="modalities">
+  <div *ngIf="modalities.inconditionnel">
+    {{ "FREE_ACCESS" | translate }}
+  </div>
+
+  <div class="my-2" *ngIf="modalities?.orientation?.checked">
+    <b
+      ><fa-icon
+        [icon]="['fas', 'door-open']"
+        aria-hidden="true"
+        class="me-2"
+      ></fa-icon>
+      {{ "ACCESS_CONDITION_ON_ORIENTATION" | translate | ucFirst }}
+    </b>
+    <span *ngIf="modalities.orientation.precisions">
+      :
+      {{ modalities.orientation.precisions }}</span
+    >
+
+    <div class="my-1" *ngIf="modalities.docs.length > 0">
+      <b>{{ "ORIENTATION_SHEETS_TO_DOWNLOAD" | translate }}</b>
+      <app-display-docs
+        [docs]="modalities.docs"
+        [canDownload]="true"
+        [displayDate]="false"
+        (parentCaptureEvent)="captureEvent($event)"
+      ></app-display-docs>
+    </div>
+  </div>
+  <div class="my-2" *ngIf="modalities.inscription?.checked">
+    <b
+      ><fa-icon
+        [icon]="['fas', 'door-open']"
+        aria-hidden="true"
+        class="me-2"
+      ></fa-icon>
+      {{ "ACCESS_CONDITION_ON_REGISTRATION" | translate }}
+    </b>
+    <span *ngIf="modalities.inscription.precisions">
+      :
+      {{ modalities.inscription.precisions }}</span
+    >
+  </div>
+
+  <div class="my-2" *ngIf="modalities.appointment?.checked">
+    <b
+      ><fa-icon
+        [icon]="['fas', 'door-open']"
+        aria-hidden="true"
+        class="me-2"
+      ></fa-icon>
+      {{ "ACCESS_CONDITION_ON_APPOINTMENT" | translate }}</b
+    >
+    <span *ngIf="modalities.appointment.precisions">
+      :
+      {{ modalities.appointment.precisions }}</span
+    >
+  </div>
+
+  <div class="my-2" *ngIf="modalities.price?.checked">
+    <b
+      ><fa-icon
+        [icon]="['fas', 'euro-sign']"
+        aria-hidden="true"
+        class="me-2"
+      ></fa-icon>
+      {{ "ACCESS_CONDITION_FINANCIAL_PARTICIPATION_REQUIRED" | translate }}
+    </b>
+    <span *ngIf="modalities.price.precisions"
+      >: {{ modalities.price.precisions }}<br
+    /></span>
+  </div>
+
+  <div class="my-2" *ngIf="modalities.pmr?.checked">
+    <fa-icon
+      [icon]="['fas', 'wheelchair']"
+      aria-hidden="true"
+      class="me-2"
+    ></fa-icon
+    ><b> {{ "ACCESS_CONDITION_PEOPLE_WITH_REDUCED_MOBILITY" | translate }} </b
+    ><br />
+  </div>
+
+  <div class="my-2" *ngIf="modalities.other">
+    <b>
+      <fa-icon
+        [icon]="['fas', 'info-circle']"
+        aria-hidden="true"
+        class="me-2"
+      ></fa-icon>
+      {{ "ACCESS_CONDITION_OTHER_PRECISIONS" | translate }}
+    </b>
+    <span [innerHTML]="modalities.other"></span>
+  </div>
+
+  <div class="my-2" *ngIf="modalities.animal?.checked">
+    <b>
+      <fa-icon
+        [icon]="['fas', 'paw']"
+        aria-hidden="true"
+        class="me-2"
+      ></fa-icon>
+      {{ "ACCESS_CONDITION_ACCEPTED_ANIMALS" | translate }} </b
+    ><br />
+  </div>
+</div>

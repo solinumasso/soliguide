@@ -1,0 +1,86 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="container p-3 pt-0 my-4" *ngIf="placeChanges">
+  <div class="row">
+    <div class="col-md-3">
+      <a
+        class="btn btn-outline-primary"
+        [routerLink]="[routePrefix, 'manage-place', placeChanges.lieu_id]"
+      >
+        <fa-icon
+          [icon]="['fas', 'arrow-left']"
+          aria-hidden="true"
+          class="me-1"
+        ></fa-icon>
+        {{ "BACK_TO_PLACE" | translate }}
+      </a>
+    </div>
+
+    <div class="col-md-6">
+      <h1 class="text-primary text-center">
+        {{ "EDITION" | translate }} :
+        {{
+          "PLACE_CHANGES_SECTION_" + placeChanges.section
+            | uppercase
+            | translate
+        }}
+      </h1>
+
+      <p class="text-center my-2 text-primary">
+        <b
+          >{{ placeChanges.createdAt | dateProxy : "longDate" }}
+          {{ "BY" | translate | lowercase }}
+          {{
+            placeChanges.userName === "ACCOUNT_DELETED"
+              ? ("ACCOUNT_DELETED" | translate)
+              : placeChanges.userName
+          }}
+        </b>
+        <span
+          *ngIf="placeChanges.userData.status === UserStatus.ADMIN_SOLIGUIDE"
+          class="ms-2 badge bg-secondary"
+        >
+          {{ THEME_CONFIGURATION.brandName }}
+        </span>
+      </p>
+
+      <div
+        class="alert alert-warning my-3 text-center"
+        *ngIf="placeChanges.isCampaign"
+      >
+        {{ "UPDATE_MADE_VIA_AN_UPDATE_CAMPAIGN" | translate }}
+        <b> {{ CAMPAIGN_LIST[placeChanges.campaignName].description }} </b>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <app-check-place-changes
+        *ngIf="me?.admin && placeChanges.userData.status === UserStatus.PRO"
+        [placeChanges]="placeChanges"
+        [changeIndex]="1"
+      ></app-check-place-changes>
+    </div>
+  </div>
+  <app-display-place-changes-sections
+    [placeChanges]="placeChanges"
+    [photosChanged]="photosChanged"
+  ></app-display-place-changes-sections>
+</div>

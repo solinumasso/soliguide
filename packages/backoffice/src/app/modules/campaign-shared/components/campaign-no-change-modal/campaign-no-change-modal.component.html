@@ -1,0 +1,79 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="modal-header bg-danger">
+  <span id="modal-title" appTextDirection>
+    {{ "ARE_YOU_SURE_TO_HAVE_NO_CHANGES" | translate }}
+  </span>
+  <button
+    type="button"
+    class="btn-close"
+    [attr.aria-label]="'CLOSE' | translate"
+    (click)="close('cross')"
+  ></button>
+</div>
+<div class="modal-body">
+  <p>
+    {{ "ENSURE_NO_CHANGES_FOR_CAMPAIGN" | translate }}
+  </p>
+  <ul>
+    <li>{{ "YOUR_OPENING_HOURS" | translate }}</li>
+    <li>{{ "YOUR_ACCESS_CONDITIONS" | translate }}</li>
+    <li>
+      {{ "CLOSING_CAMPAIGN_ADJECTIVE" | translate }}
+    </li>
+    <li>{{ "YOUR_SERVICES_CLOSURES" | translate }}</li>
+  </ul>
+  <ng-container *ngIf="me.status === UserStatus.PRO; else notProText">
+    <p>{{ "CONFIRM_NO_CHANGES_FOR_PRO" | translate }}</p>
+  </ng-container>
+  <ng-template #notProText>
+    <p>{{ "CONFIRM_NO_CHANGES_FOR_ADMIN" | translate }}</p>
+    <app-campaign-source-update
+      [place]="place"
+      [placeIndex]="place.lieu_id"
+      (parentCaptureEvent)="captureEvent($event)"
+    ></app-campaign-source-update>
+  </ng-template>
+</div>
+<div class="modal-footer">
+  <button
+    type="submit"
+    class="btn btn-lg btn-primary"
+    (click)="setNoChangeForPlace()"
+    [disabled]="loading"
+  >
+    <span *ngIf="!loading">Valider</span>
+    <span *ngIf="loading"
+      ><fa-icon
+        [icon]="['fas', 'circle-notch']"
+        aria-hidden="true"
+        animation="spin"
+      ></fa-icon>
+      {{ "PLEASE_WAIT" | translate }}</span
+    ></button
+  ><button
+    type="button"
+    class="btn btn-lg btn-outline-primary"
+    (click)="close('button')"
+  >
+    {{ "CANCEL" | translate }}
+  </button>
+</div>

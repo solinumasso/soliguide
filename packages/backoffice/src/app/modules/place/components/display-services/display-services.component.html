@@ -1,0 +1,139 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="page-content my-3" *ngIf="services">
+  <h2 class="text-center text-uppercase separator-secondary">
+    {{ "SERVICES_OFFERED" | translate }}
+  </h2>
+  <div class="row">
+    <div
+      class="col-12 col-md-6"
+      *ngFor="let service of services; let i = index"
+    >
+      <div class="service_section py-4 px-3 my-2">
+        <h3 class="service-title text-secondary">
+          <span
+            [class]="'category-icon category-icon-' + service.category"
+          ></span>
+          <span>{{ service.category | categoryTranslateKey | translate }}</span>
+          <ng-container *ngIf="service.categorySpecificFields">
+            <ng-container
+              *ngFor="
+                let specificField of CATEGORIES_SPECIFIC_FIELDS_PLACE_DISPLAYED.title
+              "
+              ><span
+                *ngIf="service.categorySpecificFields[specificField]?.length"
+              >
+                :
+                {{
+                  service.categorySpecificFields[specificField]
+                    | uppercase
+                    | translate
+                    | lowercase
+                }}</span
+              >
+            </ng-container>
+          </ng-container>
+          <ng-container
+            *ngIf="service.saturated.status !== ServiceSaturation.LOW"
+          >
+            <span
+              [ngClass]="{
+                'bg-warning':
+                  service.saturated.status === ServiceSaturation.MODERATE,
+                'bg-danger': service.saturated.status === ServiceSaturation.HIGH
+              }"
+              class="badge"
+            >
+              {{ "SATURATION_" + service.saturated.status | translate }}
+              <ng-container
+                *ngIf="
+                  service.saturated.precision &&
+                  service.saturated.precision !== ''
+                "
+              >
+                : {{ service.saturated.precision }}</ng-container
+              >
+            </span>
+          </ng-container>
+        </h3>
+
+        <app-display-temp-banner
+          [tempInfoType]="TempInfoType.CLOSURE"
+          [tempInfos]="service.close"
+          (parentCaptureEvent)="captureEvent($event)"
+        ></app-display-temp-banner>
+
+        <div
+          *ngIf="service.description"
+          class="py-1 services-description"
+          [innerHTML]="service.description"
+        ></div>
+
+        <ng-container *ngIf="service.categorySpecificFields">
+          <ng-container
+            *ngFor="
+              let specificField of CATEGORIES_SPECIFIC_FIELDS_PLACE_DISPLAYED.body
+            "
+          >
+            <ng-container
+              *ngIf="service.categorySpecificFields[specificField]?.length"
+            >
+              <div class="specific-field">
+                <app-display-specific-fields
+                  [specificField]="specificField"
+                  [service]="service"
+                ></app-display-specific-fields>
+              </div>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+
+        <app-display-publics-inline
+          class="my-1"
+          *ngIf="service.differentPublics"
+          [publics]="service.publics"
+        ></app-display-publics-inline>
+
+        <app-display-modalities-inline
+          class="my-1"
+          *ngIf="service.differentModalities"
+          [modalities]="service.modalities"
+          (parentCaptureEvent)="captureEvent($event)"
+        ></app-display-modalities-inline>
+
+        <div class="my-2">
+          <div class="row" *ngIf="service.differentHours">
+            <div class="col-12 col-md-3">
+              <fa-icon [icon]="['far', 'clock']" class="me-2"></fa-icon
+              ><b> {{ "HOURS" | translate }} </b>
+            </div>
+            <div class="col-12 col-md-9 mt-n2">
+              <app-display-horaires
+                [hours]="service.hours"
+                [displayClosedDays]="false"
+              ></app-display-horaires>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,317 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="container my-4" *ngIf="me">
+  <div class="row">
+    <div class="col-10 offset-1">
+      <h1 class="title">{{ "ALL_YOUR_STRUCTURES" | translate }}</h1>
+      <div class="limite"></div>
+      @if (me.admin && !orgaId) {
+      <div class="alert-maj p-4 my-3">
+        <div class="col-12">
+          {{
+            "MEMBER_OF_THE_SOLIGUIDE_TEAM_CAN_UPDATE"
+              | translate
+                : {
+                    brandName: THEME_CONFIGURATION.brandName
+                  }
+          }}
+          <br />
+          <ul>
+            <li>
+              <a
+                class="fw-bold"
+                [routerLink]="[routePrefix, 'organisations', 'manage']"
+              >
+                {{ "ORGANIZATION_VIEW" | translate }} </a
+              >: {{ "UPDATE_ALL_PLACES_FROM_AN_ORGANIZATION" | translate }}
+            </li>
+            <li>
+              <a
+                class="fw-bold"
+                [routerLink]="[routePrefix, 'manage-place', 'search']"
+              >
+                {{ "VIEW_PLACES" | translate }} :</a
+              >
+              {{ "UPDATE_ALL_PLACES_ONE_BY_ONE" | translate }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      } @if (orgaId) {
+      <div class="alert-maj banner p-4 my-3">
+        <div
+          [innerHtml]="'SEASONAL_CAMPAIGN_UPDATE_MANAGE_BANNER' | translate"
+          class="col-md-12 px-0 text-center"
+        ></div>
+      </div>
+      } @if (places.length) {
+      <div class="form-container py-3">
+        <div
+          *ngFor="let place of places; let i = index"
+          [id]="'place-' + place.lieu_id"
+        >
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="col-md-7 fs-5">
+              <a [routerLink]="[routePrefix, 'fiche', place.seo_url]">{{
+                place.name
+              }}</a>
+
+              <a
+                class="btn btn-outline-primary btn-sm ms-4"
+                [title]="'MODIFY_INFORMATION_ABOUT_THE_STRUCTURE' | translate"
+                [routerLink]="[routePrefix, 'manage-place', place.lieu_id]"
+                routerLinkActive="router-link-active"
+                target="_blank"
+                (click)="
+                  captureEvent('click-edit-place-pencil', {
+                    placeId: place.lieu_id
+                  })
+                "
+              >
+                <fa-icon [icon]="['fas', 'pencil-alt']" aria-hidden="true">
+                </fa-icon>
+              </a>
+
+              <div
+                class="fw-bold"
+                *ngIf="place.campaigns.runningCampaign.remindMeDate && me.admin"
+              >
+                <span class="me-2">⏰ </span
+                >{{ "STRUCTURE_RECALL_ON" | translate }} :
+                {{ place.campaigns.runningCampaign.remindMeDate | dateProxy }}
+              </div>
+              <div
+                *ngIf="
+                  !place.campaigns.runningCampaign.general.endDate &&
+                  place.campaigns.runningCampaign.general.startDate
+                "
+              >
+                {{ "STARTED_ON" | translate }}
+                {{
+                  place.campaigns.runningCampaign.general.startDate | dateProxy
+                }}
+              </div>
+              <div *ngIf="place.campaigns.runningCampaign.general.endDate">
+                {{ "COMPLETED_ON" | translate }}
+                {{
+                  place.campaigns.runningCampaign.general.endDate | dateProxy
+                }}
+              </div>
+            </div>
+
+            <div class="my-3 col-md-5">
+              <div
+                class="justify-content-right align-items-right text-end"
+                *ngIf="place.campaigns.runningCampaign.general.updated"
+              >
+                <div
+                  class="my-1 text-end fw-bold text-success"
+                  *ngIf="place.campaigns.runningCampaign.general.changes"
+                >
+                  <span>{{ "PLACE_UPDATE_SUCCESS" | translate }} </span>
+                  <fa-icon
+                    class="ms-2"
+                    [icon]="['fas', 'check-circle']"
+                  ></fa-icon>
+                </div>
+                <div
+                  class="my-1 text-end fw-bold text-success"
+                  *ngIf="!place.campaigns.runningCampaign.general.changes"
+                >
+                  <span>{{ "NO_CHANGE" | translate }}</span>
+                  <fa-icon
+                    class="ms-2"
+                    [icon]="['fas', 'check-circle']"
+                  ></fa-icon>
+                </div>
+                <div class="my-2 text-end">
+                  <a
+                    [routerLink]="[
+                      routePrefix,
+                      'campaign',
+                      'fiche',
+                      place.lieu_id
+                    ]"
+                    [queryParams]="{ orgaid: orgaId }"
+                    class="btn btn-outline-primary"
+                    (click)="
+                      captureEvent('click-fix-campaign-update-button', {
+                        placeId: place.lieu_id
+                      })
+                    "
+                  >
+                    {{ "CORRECT_MY_UPDATE" | translate }}
+                  </a>
+                </div>
+              </div>
+
+              <div
+                *ngIf="
+                  !place.campaigns.runningCampaign.general.updated &&
+                  !place.disabled
+                "
+                class="text-end"
+              >
+                <div
+                  class="my-1 text-end fw-bold text-warning"
+                  *ngIf="place.campaigns.runningCampaign.remindMeDate"
+                >
+                  <span>{{ "AWAITING_FUTHER_DETAILS" | translate }}</span>
+                  <fa-icon
+                    class="ms-2"
+                    [icon]="['fas', 'pause-circle']"
+                    [fixedWidth]="true"
+                  ></fa-icon>
+                </div>
+                <a
+                  [routerLink]="[
+                    routePrefix,
+                    'campaign',
+                    'fiche',
+                    place.lieu_id
+                  ]"
+                  [queryParams]="{ orgaid: orgaId }"
+                  class="btn btn-secondary btn-block my-2"
+                  (click)="
+                    captureEvent('click-update-place-button', {
+                      placeId: place.lieu_id
+                    })
+                  "
+                >
+                  {{ "ENTER_SEASONAL_CHANGES" | translate }} </a
+                ><br />
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary btn-block my-2"
+                  (click)="openModal(place, noChangeModal, 'no-change')"
+                >
+                  {{ "NO_CHANGE_THIS_SEASON" | translate }}
+                </button>
+                <br />
+                <button
+                  type="button"
+                  class="btn btn-primary btn-block my-2"
+                  (click)="openModal(place, remindMeModal, 'remind-me')"
+                >
+                  <span
+                    *ngIf="
+                      !place.campaigns.runningCampaign.remindMeDate &&
+                      !place.disabled
+                    "
+                  >
+                    {{ "NO_VISIBILITY_ON_THIS_PERIOD" | translate }}</span
+                  >
+                  <span
+                    *ngIf="
+                      place.campaigns.runningCampaign.remindMeDate &&
+                      !place.disabled
+                    "
+                  >
+                    {{ "CHANGE_REMINDER_DATE" | translate }}</span
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+          <hr *ngIf="i + 1 < places.length" class="my-3" />
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+
+  <ng-template #remindMeModal let-modal>
+    <div class="modal-header">
+      <span id="modal-title">{{
+        "WHEN_CAN_WE_CONTACT_AGAIN" | translate
+      }}</span>
+      <button
+        type="button"
+        class="btn-close"
+        [attr.aria-label]="'CLOSE' | translate"
+        (click)="cancelModal('remind-me', 'cross')"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group w-50 required">
+        <label for="remindMe">{{ "REMINDER_DATE" | translate }}</label>
+        <div class="input-group">
+          <input
+            class="form-control"
+            placeholder="jj/mm/aaaa"
+            name="remindMeDate"
+            id="remindMe"
+            type="date"
+            [(ngModel)]="remindMeDate"
+            [min]="MIN_DATE_TODAY | dateProxy : 'yyyy-MM-dd'"
+            #dp1="ngModel"
+            [ngClass]="{
+              'is-invalid':
+                (dp1.touched || dp1.dirty) && (dp1.invalid || !dp1.value),
+              'is-valid': dp1.value && dp1.valid
+            }"
+            required
+          />
+          <p
+            *ngIf="!dp1.value && (dp1.touched || dp1.dirty)"
+            class="invalid-feedback"
+          >
+            {{ "RECALL_DATE_IS_MANDATORY" | translate }}
+          </p>
+          <p *ngIf="dp1.value && dp1.invalid" class="invalid-feedback">
+            {{ "ENTER_DATE_SPECIFIED_AND_NOT_PASSED" | translate }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-lg btn-primary"
+        (click)="setRemindMeLater()"
+        [disabled]="!dp1.value || dp1.invalid || loading"
+      >
+        <span *ngIf="!loading"> Valider </span>
+        <span *ngIf="loading"
+          ><fa-icon
+            aria-hidden="true"
+            [icon]="['fas', 'circle-notch']"
+            animation="spin"
+          >
+          </fa-icon>
+          {{ "PLEASE_WAIT" | translate }}</span
+        ></button
+      ><button
+        type="button"
+        class="btn btn-lg btn-outline-primary"
+        (click)="cancelModal('remind-me', 'button')"
+      >
+        {{ "CANCEL" | translate }}
+      </button>
+    </div>
+  </ng-template>
+
+  <ng-template #noChangeModal let-modal>
+    <app-campaign-no-change-modal
+      [place]="selectedPlace"
+    ></app-campaign-no-change-modal>
+  </ng-template>
+</div>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<svg width="10" height="25" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#prefix__clip0)" fill="#575757"><path d="M8.926 5.334c-.394.416-.886.412-1.298.01-.833-.812-1.642-1.653-2.463-2.48-.176-.178-.36-.348-.591-.566L2.016 4.916a4.672 4.672 0 01-.502.485c-.434.326-.874.297-1.249-.102-.375-.398-.358-.838-.005-1.2C1.5 2.8 2.756 1.517 4.026.254c.392-.387.876-.306 1.249.066a237.288 237.288 0 013.629 3.69c.397.414.412.913.022 1.324zM8.736 21.192a518.165 518.165 0 01-3.322 3.391c-.57.565-1.029.553-1.61-.034a508.63 508.63 0 01-3.388-3.442c-.483-.496-.533-1.022-.16-1.424.374-.403.961-.368 1.453.131.944.961 1.88 1.928 2.89 2.968.991-1.023 1.895-1.964 2.808-2.895.544-.552 1.03-.616 1.45-.219.455.422.426.957-.121 1.524zM4.605 9.694c.549 0 1.085.166 1.542.476.457.31.812.752 1.023 1.269.21.516.265 1.085.158 1.633a2.844 2.844 0 01-.76 1.448 2.761 2.761 0 01-1.422.773 2.73 2.73 0 01-1.604-.16 2.788 2.788 0 01-1.246-1.042 2.864 2.864 0 01.347-3.567 2.758 2.758 0 011.962-.83zm0-1.858c-.911 0-1.801.276-2.558.791A4.671 4.671 0 00.35 10.732c-.348.856-.439 1.8-.261 2.708.178.91.616 1.745 1.26 2.4a4.58 4.58 0 002.358 1.283c.893.181 1.819.088 2.66-.267a4.623 4.623 0 002.067-1.727 4.75 4.75 0 00.425-4.399 4.694 4.694 0 00-.999-1.52 4.6 4.6 0 00-1.494-1.017 4.533 4.533 0 00-1.762-.357z"/></g><defs><clipPath id="prefix__clip0"><path fill="#fff" d="M0 0h9.211v25H0z"/></clipPath></defs></svg>

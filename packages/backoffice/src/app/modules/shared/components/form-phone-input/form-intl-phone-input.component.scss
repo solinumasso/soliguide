@@ -1,0 +1,20 @@
+.iti__country-list,
+.country-dropdown {
+  width: 440px !important;
+}
+
+.iti__selected-flag {
+  border: none !important;
+  border-right: 1px solid #d6d6d6 !important;
+}
+
+.separate-dial-code {
+  width: 100% !important;
+
+  .dropdown-menu {
+    max-width: 460px !important;
+  }
+  #country-search-box {
+    padding: 0.1rem 0.4rem;
+  }
+}

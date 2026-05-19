@@ -1,0 +1,14 @@
+.source__container {
+  width: fit-content;
+  word-break: break-all;
+}
+
+.source__link {
+  color: inherit;
+  font-weight: bold;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

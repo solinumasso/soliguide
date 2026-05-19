@@ -1,0 +1,375 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="filters-area text-start p-3 my-2" *ngIf="!showFilters">
+  <div class="row align-items-start">
+    <div class="col-md-3 col-12 my-2">
+      <span class="form-label mb-1">{{ "GENDER" | translate }}</span>
+      <div
+        class="custom-dropdown"
+        autoClose="outside"
+        placement="bottom"
+        ngbDropdown
+      >
+        <button ngbDropdownToggle type="button">
+          <span class="text-truncate" *ngIf="filters && filters.gender">{{
+            PUBLICS_LABELS.gender[filters.gender] | translate | ucFirst
+          }}</span>
+          <span class="text-truncate" *ngIf="!filters || !filters.gender">{{
+            PUBLICS_LABELS.gender.all | translate | ucFirst
+          }}</span>
+        </button>
+
+        <div ngbDropdownMenu>
+          <div>
+            <ng-container>
+              <button
+                type="button"
+                (click)="filterString('gender', 'publics')"
+                ngbDropdownItem
+                placement="top"
+              >
+                <input
+                  [checked]="!filters || !filters.gender"
+                  type="radio"
+                  name="filterGender"
+                />
+                <span class="text-truncate itemDropdown">{{
+                  PUBLICS_LABELS.gender.all | translate | ucFirst
+                }}</span>
+              </button>
+            </ng-container>
+            <ng-container *ngFor="let gender of ALL_PUBLICS.gender">
+              <button
+                type="button"
+                *ngIf="gender.value !== 'all'"
+                (click)="filterString('gender', 'publics', gender.value)"
+                ngbDropdownItem
+                placement="top"
+              >
+                <input
+                  [checked]="filters && filters.gender === gender.value"
+                  type="radio"
+                  name="filterGender"
+                />
+                <span class="text-truncate itemDropdown">{{
+                  gender.name | translate | ucFirst
+                }}</span>
+              </button>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-12 my-2">
+      <label for="filterAge" class="form-label">{{ "AGE" | translate }}</label>
+      <input
+        class="form-control"
+        type="number"
+        name="filterAge"
+        autocomplete="off"
+        max="99"
+        id="filterAge"
+        maxlength="2"
+        min="0"
+        [value]="filters.age"
+        (keyup.enter)="filterString('age', 'publics', age.value)"
+        (change)="filterString('age', 'publics', age.value)"
+        #age
+      />
+    </div>
+
+    <div class="col-md-3 col-12 my-2">
+      <span class="form-label mb-1">
+        {{ "ADMINISTRATIVE_SITUATION" | translate }}
+      </span>
+      <div
+        class="custom-dropdown"
+        autoClose="outside"
+        placement="bottom"
+        ngbDropdown
+      >
+        <button type="button" ngbDropdownToggle>
+          <span
+            class="text-truncate"
+            *ngIf="filters && filters.administrative"
+            >{{
+              PUBLICS_LABELS.administrative[filters.administrative]
+                | translate
+                | ucFirst
+            }}</span
+          >
+          <span
+            class="text-truncate"
+            *ngIf="!filters || !filters.administrative"
+            >{{ PUBLICS_LABELS.administrative.all | translate | ucFirst }}</span
+          >
+        </button>
+
+        <div ngbDropdownMenu>
+          <div>
+            <ng-container>
+              <button
+                type="button"
+                (click)="filterString('administrative', 'publics')"
+                ngbDropdownItem
+                placement="top"
+              >
+                <input
+                  [checked]="!filters || !filters.administrative"
+                  type="radio"
+                  name="filterAdministrative"
+                />
+                <span class="text-truncate itemDropdown">{{
+                  PUBLICS_LABELS.administrative.all | translate | ucFirst
+                }}</span>
+              </button>
+            </ng-container>
+            <ng-container
+              *ngFor="let administrative of ALL_PUBLICS.administrative"
+            >
+              <button
+                type="button"
+                *ngIf="administrative.value !== 'all'"
+                (click)="
+                  filterString(
+                    'administrative',
+                    'publics',
+                    administrative.value
+                  )
+                "
+                ngbDropdownItem
+                placement="top"
+              >
+                <input
+                  [checked]="
+                    filters && filters.administrative === administrative.value
+                  "
+                  type="radio"
+                  name="filterAdministrative"
+                />
+                <span class="text-truncate itemDropdown">{{
+                  administrative.name | translate | ucFirst
+                }}</span>
+              </button>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-12 my-2">
+      <span class="form-label mb-1"> {{ "FAMILY_SITUATION" | translate }}</span>
+      <div
+        class="custom-dropdown"
+        autoClose="outside"
+        placement="bottom"
+        ngbDropdown
+      >
+        <button type="button" ngbDropdownToggle>
+          <span class="text-truncate" *ngIf="filters && filters.familialle">{{
+            PUBLICS_LABELS.familialle[filters.familialle] | translate | ucFirst
+          }}</span>
+          <span class="text-truncate" *ngIf="!filters || !filters.familialle">{{
+            PUBLICS_LABELS.familialle.all | translate | ucFirst
+          }}</span>
+        </button>
+
+        <div ngbDropdownMenu>
+          <div>
+            <ng-container>
+              <button
+                type="button"
+                (click)="filterString('familialle', 'publics')"
+                ngbDropdownItem
+                placement="top"
+              >
+                <input
+                  [checked]="!filters || !filters.familialle"
+                  type="radio"
+                  name="filterFamilialle"
+                />
+                <span class="text-truncate itemDropdown">{{
+                  PUBLICS_LABELS.familialle.all | translate | ucFirst
+                }}</span>
+              </button>
+            </ng-container>
+            <ng-container *ngFor="let familialle of ALL_PUBLICS.familialle">
+              <button
+                type="button"
+                *ngIf="familialle.value !== 'all'"
+                (click)="
+                  filterString('familialle', 'publics', familialle.value)
+                "
+                ngbDropdownItem
+                placement="top"
+              >
+                <input
+                  [checked]="filters && filters.familialle === familialle.value"
+                  type="radio"
+                  name="filterFamilialle"
+                />
+                <span class="text-truncate itemDropdown">{{
+                  familialle.name | translate | ucFirst
+                }}</span>
+              </button>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 col-12 my-2">
+      <span class="form-label mb-1"> {{ "OTHER_SITUATION" | translate }}</span>
+      <div
+        class="custom-dropdown"
+        autoClose="outside"
+        placement="bottom"
+        ngbDropdown
+      >
+        <button ngbDropdownToggle type="button">
+          <span class="text-truncate" *ngIf="filters && filters.other">{{
+            PUBLICS_LABELS.other[filters.other] | translate | ucFirst
+          }}</span>
+          <span class="text-truncate" *ngIf="!filters || !filters.other">{{
+            "NONE" | translate
+          }}</span>
+        </button>
+
+        <div ngbDropdownMenu>
+          <div>
+            <ng-container>
+              <button
+                type="button"
+                (click)="filterString('other', 'publics')"
+                ngbDropdownItem
+                placement="top"
+              >
+                <input
+                  [checked]="!filters || !filters.other"
+                  type="radio"
+                  name="filterOther"
+                />
+                <span class="text-truncate itemDropdown">{{
+                  "NONE" | translate
+                }}</span>
+              </button>
+            </ng-container>
+            <ng-container *ngFor="let other of ALL_PUBLICS.other">
+              <button
+                type="button"
+                *ngIf="other.value !== 'all'"
+                (click)="filterString('other', 'publics', other.value)"
+                ngbDropdownItem
+                placement="top"
+              >
+                <input
+                  [checked]="filters && filters.other === other.value"
+                  type="radio"
+                  name="filterOther"
+                />
+                <span class="text-truncate itemDropdown">{{
+                  other.name | translate | ucFirst
+                }}</span>
+              </button>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-12 my-3" id="language-filter">
+      <label for="language-input" class="form-label">{{
+        "LISTE_LANGUES" | translate | ucFirst
+      }}</label>
+
+      <input
+        *ngIf="languagesArray"
+        id="language-input"
+        type="text"
+        class="form-control fw-bold"
+        (blur)="onInputBlur()"
+        [placeholder]="'FILTRER_PAR_LANGUE' | translate | ucFirst"
+        [ngbTypeahead]="searchLanguage"
+        [resultTemplate]="chosenLanguage"
+        (selectItem)="filterString('languages', '', $event.item.shortLang)"
+        [inputFormatter]="inputFormatter"
+        #languageSearch="ngbTypeahead"
+        [value]="
+          filters?.languages
+            ? ('LANGUE_' + (filters.languages | uppercase) | translate)
+            : languagesFilterValue
+        "
+      />
+    </div>
+
+    <div class="col-md-3 col-12">
+      <div class="form-switch mt-md-5 mt-1">
+        <input
+          name="pmr"
+          (click)="filterBoolean('pmr', 'modalities')"
+          type="checkbox"
+          class="form-check-input"
+          [checked]="filters.pmr"
+          id="filter-pmr"
+        />
+        <label class="form-check-label" for="filter-pmr">
+          <span>{{
+            "ACCESS_CONDITION_PEOPLE_WITH_REDUCED_MOBILITY" | translate
+          }}</span></label
+        >
+      </div>
+    </div>
+
+    <div class="col-md-3 col-12">
+      <div class="form-check form-switch mt-md-5 mt-1">
+        <input
+          name="animal"
+          (click)="filterBoolean('animal', 'modalities')"
+          type="checkbox"
+          class="form-check-input"
+          [checked]="filters.animal"
+          id="filter-animal"
+        />
+        <label class="form-check-label" for="filter-animal">
+          <span>{{
+            "ACCESS_CONDITION_ACCEPTED_ANIMALS" | translate
+          }}</span></label
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #chosenLanguage let-r="result" let-t="term">
+  <ngb-highlight
+    *ngIf="r.nativeName"
+    result="{{ r.name }} / {{ r.nativeName }}&emsp;"
+    [term]="t"
+  ></ngb-highlight>
+  <ngb-highlight
+    *ngIf="!r.nativeName"
+    result="{{ r.name }}&emsp;"
+    [term]="t"
+  ></ngb-highlight>
+</ng-template>

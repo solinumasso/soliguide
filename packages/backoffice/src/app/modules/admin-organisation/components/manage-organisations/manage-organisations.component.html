@@ -1,0 +1,641 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="admin_search_bar" *ngIf="me">
+  <div class="container">
+    <div class="row align-items-end justify-content-center">
+      <div class="col-md-3 col-sm-4 col-lg-2">
+        <app-select-territories
+          [label]="'DEPARTMENT' | translate"
+          [territories]="search.territories"
+          (selectedTerritories)="setTerritories($event)"
+        ></app-select-territories>
+      </div>
+
+      <div class="col-md-3 col-sm-4 col-lg-2">
+        <label class="form-label" for="orga_name">{{
+          "ORGANIZATION_NAME" | translate
+        }}</label>
+        <div class="position-relative">
+          <input
+            type="text"
+            id="orga_name"
+            class="form-control"
+            (keyup.enter)="launchSearch(true)"
+            [(ngModel)]="search.name"
+          />
+          <button
+            type="button"
+            [attr.aria-label]="'DELETE_ORGANIZATION_NAME' | translate"
+            (click)="resetSearchArgument('name')"
+            class="input-cross"
+            *ngIf="search.name"
+          >
+            <fa-icon aria-hidden="true" [icon]="['fas', 'times']"> </fa-icon>
+          </button>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-4 col-lg-2">
+        <label class="form-label" for="orga_id">{{
+          "ORGANIZATION_ID" | translate
+        }}</label>
+        <div class="input-group">
+          <span class="input-group-text bg-primary" id="basic-addon1">
+            <fa-icon
+              aria-hidden="true"
+              [icon]="['fas', 'hashtag']"
+              class="text-white"
+            >
+            </fa-icon>
+          </span>
+          <input
+            id="orga_id"
+            type="number"
+            class="form-control"
+            min="0"
+            (keyup.enter)="launchSearch(true)"
+            [(ngModel)]="search.organization_id"
+          />
+          <button
+            type="button"
+            [attr.aria-label]="'DELETE_ORGANIZATION_ID' | translate"
+            *ngIf="search.organization_id !== null"
+            (click)="resetSearchArgument('organization_id')"
+            class="input-cross"
+          >
+            <fa-icon aria-hidden="true" [icon]="['fas', 'times']"> </fa-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-4 col-lg-2">
+        <label class="form-label" for="lieu_id">{{
+          "PLACE_NUMBER" | translate
+        }}</label>
+        <div class="input-group">
+          <span class="input-group-text bg-primary" id="basic-addon1">
+            <fa-icon
+              aria-hidden="true"
+              [icon]="['fas', 'hashtag']"
+              class="text-white"
+            >
+            </fa-icon>
+          </span>
+
+          <input
+            [placeholder]="'PLACE_NUMBER' | translate"
+            type="number"
+            id="lieu_id"
+            class="form-control"
+            min="0"
+            (keyup.enter)="launchSearch(true)"
+            [(ngModel)]="search.lieu_id"
+          />
+          <button
+            type="button"
+            *ngIf="search.lieu_id !== null"
+            (click)="resetSearchArgument('lieu_id')"
+            class="input-cross"
+          >
+            <fa-icon aria-hidden="true" [icon]="['fas', 'times']"> </fa-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-4 col-lg-2">
+        <app-manage-multiple-select
+          [allOptionsLabel]="'ALL_TYPES_OF_ACCOUNT' | translate"
+          [anyOptionLabel]="'NO_ACCOUNT_TYPE' | translate"
+          [label]="'PRO_ACCOUNT_VALIDATED' | translate"
+          [options]="search.userTypes"
+          [optionLabels]="USER_TYPES_TO_READABLE"
+          (selectedOptions)="setUserTypes($event)"
+        ></app-manage-multiple-select>
+      </div>
+      <div class="w-100"></div>
+
+      <div class="col-md-3 col-sm-4 col-lg-2">
+        <label class="form-label" for="priority">{{
+          "PRIORITY_ORGANIZATION" | translate
+        }}</label>
+        <select
+          [(ngModel)]="search.priority"
+          (ngModelChange)="launchSearch(true)"
+          name="priority"
+          id="priority"
+          class="form-select"
+          [disabled]="loading"
+        >
+          <option [ngValue]="null">{{ "WHATEVER" | translate }}</option>
+          <option [ngValue]="true">{{ "YES" | translate }}</option>
+          <option [ngValue]="false">{{ "NO" | translate }}</option>
+        </select>
+      </div>
+
+      <div class="col-md-3 col-sm-4 col-lg-2">
+        <app-manage-multiple-select
+          [allOptionsLabel]="'ALL_TYPES_OF_RELATIONSHIP' | translate"
+          [anyOptionLabel]="'NO_RESTRICTION' | translate"
+          [label]="'RELATIONSHIPS' | translate"
+          [options]="search.relations"
+          [optionLabels]="RELATIONS_SEARCH_TO_READABLE"
+          (selectedOptions)="setRelations($event)"
+        ></app-manage-multiple-select>
+      </div>
+
+      <div class="col-md-3 col-sm-4 col-lg-2" *ngIf="campaignIsActiveForMe">
+        <label class="form-label" for="suivi"
+          >{{ "FOLLOW_UP" | translate }} {{ CAMPAIGN_NAME | lowercase }} &nbsp;
+        </label>
+        <select
+          id="suivi"
+          [(ngModel)]="search.campaignStatus"
+          (ngModelChange)="launchSearch(true)"
+          class="form-select"
+        >
+          <option value="null">{{ "ALL_ORGANIZATIONS" | translate }}</option>
+          <option
+            *ngFor="let campaignStatus of ORGA_CAMPAIGN_STATUS | keyvalue"
+            [value]="campaignStatus.key"
+          >
+            {{ campaignStatus.value }}
+          </option>
+        </select>
+      </div>
+
+      <div
+        class="justify-content-center align-self-center text-center my-1 my-md-0 col-md-1 col-12"
+      >
+        <label for="launch-search" class="visually-hidden">{{
+          "SEARCH_LAUNCH_BUTTON" | translate
+        }}</label>
+        <button
+          id="launch-search"
+          type="submit"
+          class="mt-4 search-btn btn btn-secondary"
+          (click)="launchSearch(true)"
+          [attr.aria-label]="'SEARCH_LAUNCH_BUTTON' | translate"
+        >
+          <fa-icon
+            aria-hidden="true"
+            class="search-manage-button"
+            [icon]="['fas', 'search']"
+          ></fa-icon>
+          <span class="d-sm-none">{{ "SEARCH" | translate }}</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="admin-search-loading">
+      <div *ngIf="!loading">
+        {{ nbResults }} {{ "ORGANIZATIONS_FOUND" | translate }}
+      </div>
+      <div *ngIf="loading">
+        <fa-icon
+          aria-hidden="true"
+          [icon]="['fas', 'circle-notch']"
+          animation="spin"
+        >
+        </fa-icon>
+        {{ "SEARCH_IN_PROGRESS" | translate }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="table-responsive" *ngIf="nbResults > 0 && !loading" @fadeInOut>
+  <table class="manage-table table">
+    <caption class="visually-hidden">
+      {{
+        "ALL_ORGANIZATIONS" | translate
+      }}
+    </caption>
+    <thead>
+      <tr>
+        <th
+          scope="col"
+          (click)="sortBy('organization_id')"
+          class="sticky-col first-col text-center clickable"
+        >
+          <app-manage-sort-icon
+            [columnName]="'ID'"
+            [options]="search.options"
+            [searchField]="'organization_id'"
+          ></app-manage-sort-icon>
+        </th>
+        <th
+          scope="col"
+          (click)="sortBy('name')"
+          class="sticky-col second-col clickable"
+        >
+          <app-manage-sort-icon
+            [columnName]="'LASTNAME' | translate"
+            [options]="search.options"
+            [searchField]="'name'"
+          ></app-manage-sort-icon>
+        </th>
+        <th scope="col">
+          {{ "ACTIONS" | translate }}
+        </th>
+        <th scope="col" (click)="sortBy('places')">
+          <app-manage-sort-icon
+            [columnName]="'NUMBER_OF_PLACES' | translate"
+            [options]="search.options"
+            [searchField]="'places'"
+          ></app-manage-sort-icon>
+        </th>
+        <th scope="col">{{ "STRUCTURES" | translate }}</th>
+        <th scope="col" (click)="sortBy('users')" class="clickable">
+          <app-manage-sort-icon
+            [columnName]="'ALL_ACCOUNTS' | translate"
+            [options]="search.options"
+            [searchField]="'users'"
+          ></app-manage-sort-icon>
+        </th>
+        <th scope="col" (click)="sortBy('invitations')" class="clickable">
+          <app-manage-sort-icon
+            [columnName]="'INVITATIONS' | translate"
+            [options]="search.options"
+            [searchField]="'invitations'"
+          ></app-manage-sort-icon>
+        </th>
+        <ng-container *ngIf="campaignIsActiveForMe">
+          <th scope="col" class="clickable" (click)="sortBy('campaignStatus')">
+            <app-manage-sort-icon
+              [columnName]="'CAMPAIGN_MONITORING' | translate"
+              [options]="search.options"
+              searchField="campaignStatus"
+            ></app-manage-sort-icon>
+          </th>
+          <th scope="col" class="clickable" (click)="sortBy('autonomyRate')">
+            <app-manage-sort-icon
+              [columnName]="'AUTONOMY' | translate"
+              [options]="search.options"
+              [searchField]="'autonomyRate'"
+            ></app-manage-sort-icon>
+          </th>
+        </ng-container>
+
+        <th scope="col" class="clickable" (click)="sortBy('priority')">
+          <app-manage-sort-icon
+            [columnName]="'PRIORITY_ORGANIZATION' | translate"
+            [options]="search.options"
+            [searchField]="'priority'"
+          ></app-manage-sort-icon>
+        </th>
+        <th scope="col" class="clickable" (click)="sortBy('territories')">
+          <app-manage-sort-icon
+            [columnName]="'DEPT' | translate"
+            [options]="search.options"
+            [searchField]="'territories'"
+          ></app-manage-sort-icon>
+        </th>
+        <th scope="col" class="clickable" (click)="sortBy('createdAt')">
+          <app-manage-sort-icon
+            [columnName]="'CREATION_DATE' | translate"
+            [options]="search.options"
+            [searchField]="'createdAt'"
+          ></app-manage-sort-icon>
+        </th>
+        <th scope="col">{{ "LAST_CONNECTION" | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let orga of organisations;
+          trackBy: itemTrackBy;
+          let indexOrgas = index
+        "
+      >
+        <td class="sticky-col first-col text-center">
+          {{ orga.organization_id }}
+        </td>
+        <td class="sticky-col second-col">
+          <a
+            [routerLink]="[routePrefix, 'organisations', orga.organization_id]"
+            routerLinkActive="router-link-active"
+            target="_blank"
+          >
+            {{ orga.name | limitTo : "55" }}
+          </a>
+        </td>
+        <td>
+          <a
+            class="btn btn-warning btn-sm m-1"
+            [title]="'ORGANIZATION_CAMPAIGN_UPDATE' | translate"
+            [routerLink]="[
+              routePrefix,
+              'campaign',
+              'orga',
+              orga.organization_id
+            ]"
+            routerLinkActive="router-link-active"
+            target="_blank"
+            *ngIf="campaignIsActiveForMe && orga.isCampaignActive"
+          >
+            <span class="visually-hidden">
+              {{ "ORGANIZATION_CAMPAIGN_UPDATE" | translate }}
+            </span>
+            <fa-icon
+              aria-hidden="true"
+              [icon]="['fas', 'pen-to-square']"
+            ></fa-icon>
+          </a>
+          <a
+            class="btn btn-primary btn-sm m-1"
+            [title]="'ADD_PLACE_TO_ORGANIZATION' | translate"
+            [routerLink]="[
+              routePrefix,
+              'organisations',
+              'ajouter-lieu',
+              orga.organization_id
+            ]"
+            routerLinkActive="router-link-active"
+            target="_blank"
+          >
+            <span class="visually-hidden"
+              >{{ "ADD_PLACE_TO_ORGANIZATION" | translate }} </span
+            >
+            <fa-icon aria-hidden="true" [icon]="['fas', 'file-medical']">
+            </fa-icon>
+          </a>
+          <a
+            class="btn btn-primary btn-sm m-1"
+            [title]="'EDIT_ORGANIZATION_INFORMATION' | translate"
+            [routerLink]="[
+              routePrefix,
+              'organisations',
+              'edit',
+              orga.organization_id
+            ]"
+            routerLinkActive="router-link-active"
+            target="_blank"
+          >
+            <span class="visually-hidden"
+              >{{ "EDIT_ORGANIZATION_INFORMATION" | translate }} </span
+            >
+            <fa-icon aria-hidden="true" [icon]="['fas', 'pencil-alt']">
+            </fa-icon>
+          </a>
+          <a
+            class="btn btn-sm btn-primary m-1"
+            [routerLink]="[
+              routePrefix,
+              'organisations',
+              'inviter-membre',
+              orga.organization_id
+            ]"
+            [ngbTooltip]="'INVITE_A_USER' | translate"
+            routerLinkActive="router-link-active"
+            target="_blank"
+          >
+            <span class="visually-hidden"
+              >{{ "INVITE_A_USER" | translate }} </span
+            >
+            <fa-icon aria-hidden="true" [icon]="['fas', 'user-plus']">
+            </fa-icon>
+          </a>
+          <button
+            type="button"
+            class="btn btn-danger btn-sm m-1 text-white"
+            [ngbTooltip]="'DELETE_ORGANIZATION' | translate"
+            [attr.aria-label]="'DELETE_ORGANIZATION' | translate"
+            (click)="open(content, orga)"
+          >
+            <fa-icon aria-hidden="true" [icon]="['fas', 'trash']"> </fa-icon>
+          </button>
+        </td>
+        <td>{{ orga.places.length }}</td>
+        <td>
+          <ul>
+            <li
+              *ngFor="let place of orga.places; let indexOrgas = index"
+              class="py-1"
+            >
+              <fa-icon
+                class="text-success me-1"
+                *ngIf="place.status === PlaceStatus.ONLINE"
+                [icon]="['fas', 'check-circle']"
+                aria-hidden="true"
+                [ngbTooltip]="'ONLINE_NOT_PERMANENTLY_CLOSED' | translate"
+              >
+              </fa-icon>
+              <ng-container *ngIf="place.status === PlaceStatus.DRAFT">
+                <fa-icon
+                  class="text-warning"
+                  aria-hidden="true"
+                  [icon]="['fas', 'pencil-alt']"
+                  [ngbTooltip]="'DRAFT' | translate"
+                >
+                </fa-icon>
+                <span class="visually-hidden">{{ "DRAFT" | translate }}</span>
+              </ng-container>
+              <ng-container *ngIf="place.status === PlaceStatus.OFFLINE">
+                <fa-icon
+                  class="text-danger"
+                  aria-hidden="true"
+                  [icon]="['fas', 'exclamation-triangle']"
+                  [ngbTooltip]="'OFFLINE' | translate"
+                >
+                </fa-icon>
+                <span class="visually-hidden">{{ "OFFLINE" | translate }}</span>
+              </ng-container>
+              <ng-container
+                *ngIf="place.status === PlaceStatus.PERMANENTLY_CLOSED"
+              >
+                <fa-icon
+                  class="text-danger"
+                  aria-hidden="true"
+                  [icon]="['fas', 'times-circle']"
+                  [ngbTooltip]="'PERMANENTLY_CLOSED' | translate"
+                >
+                </fa-icon>
+                <span class="visually-hidden">{{
+                  "PERMANENTLY_CLOSED" | translate
+                }}</span>
+              </ng-container>
+              <a
+                [routerLink]="[routePrefix, 'manage-place', place.lieu_id]"
+                routerLinkActive="router-link-active"
+                [ngbTooltip]="place.name"
+                target="_blank"
+              >
+                {{ place.name | limitTo : "55" }}
+              </a>
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul *ngIf="orga.users.length">
+            <ng-container *ngFor="let user of orga.users" class="py-1">
+              <li *ngIf="user.verified" class="table-invitations py-1">
+                <a
+                  [ngbTooltip]="user.mail"
+                  [routerLink]="[routePrefix, 'admin-users', user._id]"
+                  routerLinkActive="router-link-active"
+                  target="_blank"
+                >
+                  <fa-icon
+                    class="text-danger me-1"
+                    *ngIf="!user.verified"
+                    aria-hidden="true"
+                    [icon]="['fas', 'times-circle']"
+                  >
+                  </fa-icon>
+                  <fa-icon
+                    class="text-success me-1"
+                    *ngIf="user.verified"
+                    aria-hidden="true"
+                    [icon]="['fas', 'check-circle']"
+                  >
+                  </fa-icon>
+                  {{ user.name | limitTo : "20" }}
+                  {{ user.lastname | limitTo : "20" }}
+                </a>
+              </li>
+            </ng-container>
+          </ul>
+        </td>
+        <td>
+          <app-display-invitation-table
+            *ngIf="orga.invitations.length"
+            (updateTable)="updateUserAfterInvitation($event)"
+            tableName="orgas"
+            [indexTable]="indexOrgas"
+            [invitations]="orga.invitations"
+          ></app-display-invitation-table>
+        </td>
+
+        <ng-container *ngIf="campaignIsActiveForMe">
+          <td>
+            <ng-container *ngIf="orga.campaigns?.runningCampaign.toUpdate">
+              <span
+                class="status"
+                [ngClass]="{
+                  'status-pending':
+                    orga.campaigns.runningCampaign.status ===
+                    OrgaCampaignStatus.STARTED,
+                  'status-success':
+                    orga.campaigns.runningCampaign.status ===
+                    OrgaCampaignStatus.FINISHED,
+                  'status-danger':
+                    orga.campaigns.runningCampaign.status ===
+                    OrgaCampaignStatus.TO_DO
+                }"
+                >{{
+                  ORGA_CAMPAIGN_STATUS[orga.campaigns.runningCampaign.status]
+                }}</span
+              >
+            </ng-container>
+          </td>
+
+          <td class="text-center">
+            <ng-container *ngIf="orga.campaigns?.runningCampaign.toUpdate">
+              <span
+                class="status"
+                [ngClass]="{
+                  'status-danger':
+                    orga.campaigns.runningCampaign.autonomyRate < 30,
+                  'status-pending':
+                    orga.campaigns.runningCampaign.autonomyRate >= 30 &&
+                    orga.campaigns.runningCampaign.autonomyRate <= 60,
+                  'status-success':
+                    orga.campaigns.runningCampaign.autonomyRate > 60
+                }"
+              >
+                {{ orga.campaigns.runningCampaign.autonomyRate }} %
+              </span>
+            </ng-container>
+          </td>
+        </ng-container>
+
+        <td>
+          <span *ngIf="orga.priority" class="me-2 status status-danger">{{
+            "YES" | translate
+          }}</span>
+          <span *ngIf="!orga.priority" class="status status-light">{{
+            "NO" | translate
+          }}</span>
+        </td>
+        <td>
+          <app-display-territories
+            [organizationOrUser]="orga"
+          ></app-display-territories>
+        </td>
+        <td class="text-center" appTextDirection>
+          {{ orga.createdAt | dateProxy }}
+        </td>
+        <td>
+          <span appLastLoginBadge [lastLogin]="orga?.lastLogin"></span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-manage-pagination
+  *ngIf="nbResults > search.options.limit && nbResults > 0 && !loading"
+  @fadeInOut
+  [nbResults]="nbResults"
+  [(options)]="search.options"
+  (launchSearch)="launchSearch()"
+>
+</app-manage-pagination>
+
+<ng-template #content let-modal>
+  <div class="modal-header bg-danger">
+    <span id="modal-title" appTextDirection>
+      {{ "DELETE_ORGANIZATION" | translate }} : {{ orgaToDelete.name }} ?
+    </span>
+    <button
+      type="button"
+      class="btn-close"
+      [attr.aria-label]="'CLOSE' | translate"
+      (click)="modal.dismiss()"
+    ></button>
+  </div>
+  <div class="modal-body" appTextDirection>
+    <b>
+      <fa-icon [icon]="['fas', 'exclamation-triangle']"></fa-icon>
+      {{ "WARNING_ACTION_IRREVERSIBLE" | translate }}
+    </b>
+    <br />
+    {{ "DATA_DELETED_AND_IRRETRIEVABLE" | translate }}
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      [attr.aria-label]="'CANCEL' | translate"
+      (click)="modal.close('Cancel action')"
+    >
+      {{ "CANCEL" | translate }}
+    </button>
+    <button
+      type="button"
+      class="btn btn-danger"
+      [attr.aria-label]="'DELETE' | translate"
+      (click)="deleteOrganisation()"
+    >
+      {{ "DELETE" | translate }}
+    </button>
+  </div>
+</ng-template>

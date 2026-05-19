@@ -1,0 +1,64 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<ng-container *ngIf="holidays.length > 0 && search">
+  <div class="alert alert-warning" *ngFor="let holiday of holidays">
+    <h3>
+      {{ "ATTENTION_FERIE" | translate }}
+      <b>{{ holiday.name }}</b>
+    </h3>
+    <p class="p-0 m-0">
+      <b>{{ "ATTENTION_HORAIRES" | translate }}</b>
+    </p>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="holidays.length > 0 && place">
+  <div
+    *ngFor="let holiday of holidays"
+    class="alert"
+    [ngClass]="{
+      'alert-warning':
+        place.newhours.closedHolidays === PlaceClosedHolidays.UNKNOWN,
+      'alert-danger':
+        place.newhours.closedHolidays === PlaceClosedHolidays.CLOSED,
+      'alert-success':
+        place.newhours.closedHolidays === PlaceClosedHolidays.OPEN
+    }"
+  >
+    <span
+      class="fw-bold"
+      *ngIf="place.newhours.closedHolidays !== PlaceClosedHolidays.OPEN"
+      >{{ "ATTENTION_FERIE" | translate }} {{ holiday.name }} -
+    </span>
+
+    <span
+      *ngIf="place.newhours.closedHolidays === PlaceClosedHolidays.CLOSED"
+      >{{ "ATTENTION_STRUCTURE_HOLIDAYS_CLOSED" | translate }}</span
+    >
+    <span *ngIf="place.newhours.closedHolidays === PlaceClosedHolidays.OPEN">{{
+      "ATTENTION_STRUCTURE_HOLIDAYS_OPEN" | translate
+    }}</span>
+    <span
+      *ngIf="place.newhours.closedHolidays === PlaceClosedHolidays.UNKNOWN"
+      >{{ "ATTENTION_HORAIRES" | translate }}</span
+    >
+  </div>
+</ng-container>

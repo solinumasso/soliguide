@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<svg width="44" height="52" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(#prefix__filter0_d)"><path d="M21.985 6A16 16 0 006.001 22a25.632 25.632 0 0015.984 24 25.632 25.632 0 0015.976-24A16 16 0 0021.985 6zm0 22a6 6 0 110-12 6 6 0 010 12z" fill="#E65A46"/><path d="M21.985 6A16 16 0 006.001 22a25.632 25.632 0 0015.984 24 25.632 25.632 0 0015.976-24A16 16 0 0021.985 6zm0 22a6 6 0 110-12 6 6 0 010 12z" stroke="#fff"/></g><defs><filter id="prefix__filter0_d" x=".5" y=".5" width="42.962" height="50.963" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/><feOffset/><feGaussianBlur stdDeviation="2.5"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/><feBlend in2="BackgroundImageFix" result="effect1_dropShadow"/><feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape"/></filter></defs></svg>

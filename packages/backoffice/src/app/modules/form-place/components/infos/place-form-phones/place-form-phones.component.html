@@ -1,0 +1,158 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<ng-container *ngIf="phonesForm" [formGroup]="parentForm">
+  <div
+    formArrayName="phones"
+    *ngFor="let phone of phonesForm.controls; let i = index"
+  >
+    <fieldset [formGroupName]="i" class="row">
+      <legend class="visually-hidden">
+        {{ "PHONE" | translate }} {{ i === 0 ? "" : i + 1 }}
+      </legend>
+      <div class="col-md-6 col-12">
+        <label class="form-label" for="phone-label-{{ i }}">{{
+          "PHONE_NUMBER_LABEL_NO" | translate : { index: i + 1 }
+        }}</label>
+        <input
+          type="text"
+          (change)="patchPhoneFormValidators(i)"
+          class="form-control"
+          id="phone-label-{{ i }}"
+          formControlName="label"
+          [ngClass]="{
+            'is-invalid':
+              (phonesForm.controls[i].get('label')?.dirty || submitted) &&
+              (phonesForm.controls[i].get('label')?.errors ||
+                phonesForm.controls[i].get('label')?.invalid),
+            'is-valid':
+              phonesForm.controls[i].get('label')?.dirty &&
+              phonesForm.controls[i].get('label')?.value &&
+              !phonesForm.controls[i].get('label')?.errors
+          }"
+          [placeholder]="phoneLabelPlaceholder"
+          autocomplete="off"
+        />
+        <p
+          *ngIf="
+            (phonesForm.controls[i].get('label')?.dirty || submitted) &&
+            (phonesForm.controls[i].get('label')?.errors ||
+              phonesForm.controls[i].get('label')?.invalid)
+          "
+          class="invalid-feedback"
+        >
+          {{ "PHONE_NUMBER_LABEL_MUST_BE_3_CHARACTERS_LONG" | translate }}
+        </p>
+      </div>
+      <div class="col-md-5 col-12">
+        <label class="form-label" for="phoneNumber-{{ i }}"
+          >{{ "PHONE" | translate }} {{ i === 0 ? "" : i + 1 }}
+        </label>
+        <app-form-intl-phone-input
+          *ngIf="!phonesForm.controls[i]?.get('isSpecialPhoneNumber')?.value"
+          [phone]="phonesForm.controls[i]?.value"
+          [required]="phonesForm.controls[i].get('label')?.value?.length > 2"
+          [parentPhoneControl]="phonesForm.controls[i]?.get('phoneNumber')"
+          [parentPhoneCountryCode]="phonesForm.controls[i]?.get('countryCode')"
+        ></app-form-intl-phone-input>
+        <input
+          *ngIf="phonesForm.controls[i]?.get('isSpecialPhoneNumber')?.value"
+          type="tel"
+          class="form-control"
+          id="phoneNumber-{{ i }}"
+          appDigitOnly
+          formControlName="phoneNumber"
+          [ngClass]="{
+            'is-invalid':
+              ((phonesForm.controls[i].get('phoneNumber')?.dirty ||
+                submitted) &&
+                (phonesForm.controls[i].get('phoneNumber')?.errors ||
+                  phonesForm.controls[i].get('phoneNumber')?.invalid)) ||
+              (phonesForm.controls[i].get('label')?.value &&
+                !phonesForm.controls[i].get('phoneNumber')?.value),
+            'is-valid':
+              phonesForm.controls[i].get('phoneNumber')?.dirty &&
+              phonesForm.controls[i].get('phoneNumber')?.value &&
+              !phonesForm.controls[i].get('phoneNumber')?.errors
+          }"
+          placeholder="3070"
+          autocomplete="off"
+        />
+
+        <div class="form-check my-1">
+          <input
+            id="special-phone-number-{{ i }}"
+            type="checkbox"
+            class="form-check-input"
+            formControlName="isSpecialPhoneNumber"
+            name="isSpecialPhoneNumber"
+            (change)="patchPhoneFormValidators(i)"
+          />
+          <label for="special-phone-number-{{ i }}" class="form-check-label"
+            >{{ "PHONE_NUMBER_PLACEHOLDER" | translate }}
+          </label>
+        </div>
+
+        <div
+          *ngIf="
+            (phonesForm.controls[i].get('phoneNumber')?.dirty || submitted) &&
+            (phonesForm.controls[i].get('phoneNumber')?.errors ||
+              phonesForm.controls[i].get('phoneNumber')?.invalid)
+          "
+          class="invalid-feedback"
+        >
+          {{ "PHONE_NUMBER_IS_INCORRECT" | translate }}
+        </div>
+        <div
+          *ngIf="
+            phonesForm.controls[i].get('label')?.value &&
+            !phonesForm.controls[i].get('phoneNumber')?.value
+          "
+          class="invalid-feedback"
+        >
+          {{ "PHONE_NUMBER_IS_REQUIRED" | translate }}
+        </div>
+      </div>
+      <div class="col-md-1 col-12">
+        <button
+          type="button"
+          [id]="'delete-phone-' + i"
+          class="btn btn-outline-danger btn-block"
+          (click)="removePhone(i)"
+          [attr.aria-label]="'DELETE_PHONE_NUMBER' | translate"
+        >
+          <span class="d-inline d-sm-none">
+            {{ "DELETE_PHONE_NUMBER" | translate }}
+          </span>
+          <fa-icon [icon]="['fas', 'times']" aria-hidden="true"></fa-icon>
+        </button>
+      </div>
+    </fieldset>
+  </div>
+</ng-container>
+<button
+  type="button"
+  class="btn btn-outline-primary btn-sm"
+  (click)="addNewPhone()"
+>
+  <fa-icon [icon]="['fas', 'plus']" aria-hidden="true"></fa-icon>
+  {{ "ADD_NEW_PHONE_NUMBER" | translate }}
+</button>

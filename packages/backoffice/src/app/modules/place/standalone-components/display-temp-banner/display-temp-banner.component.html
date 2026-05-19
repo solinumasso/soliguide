@@ -1,0 +1,99 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div *ngIf="shouldDisplay" class="alert alert-{{ alertColor }}">
+  <div class="my-1 fw-bold">
+    <fa-icon
+      [icon]="[
+        'fas',
+        tempInfoType === TempInfoType.MESSAGE
+          ? 'info-circle'
+          : 'exclamation-triangle'
+      ]"
+    ></fa-icon>
+
+    <span *ngIf="tempInfoType === TempInfoType.MESSAGE">
+      {{ "INFO_TEMPORAIRE" | translate }}
+    </span>
+    <span *ngIf="tempInfoType === TempInfoType.CLOSURE && !tempInfos.isService">
+      {{ "FERMETURE_TEMPORAIRE" | translate }}
+    </span>
+    <span *ngIf="tempInfoType === TempInfoType.CLOSURE && tempInfos.isService">
+      {{
+        (tempInfos.status === TempInfoStatus.CURRENT
+          ? "SERVICE_FERME_TEMP"
+          : tempInfos.status === TempInfoStatus.OBSOLETE
+          ? "OLD_SERVICE_TEMP_CLOSE"
+          : "SERVICE_FERMERA_TEMP"
+        ) | translate
+      }}
+    </span>
+    <span *ngIf="tempInfoType === TempInfoType.HOURS">
+      {{ "TEMPORARY_HOURS" | translate }}
+    </span>
+    {{ dateString }}
+  </div>
+
+  <div *ngIf="tempInfos?.name || tempInfos?.description" class="my-1">
+    <div *ngIf="tempInfos?.name" class="fw-bold">
+      {{ tempInfos?.name }}
+    </div>
+    <div
+      *ngIf="tempInfos?.description"
+      class="m-0"
+      [innerHTML]="tempInfos?.description"
+    ></div>
+  </div>
+
+  <ng-container *ngIf="tempInfoType === TempInfoType.HOURS">
+    <button
+      type="submit"
+      class="btn btn-outline-primary btn-block mt-2"
+      *ngIf="displayTempHours"
+      (click)="toogleDisplayTempHours(false)"
+    >
+      {{ "BTN_HORAIRES_HABITUELS" | translate }}
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-primary btn-block mt-2"
+      *ngIf="!displayTempHours"
+      (click)="toogleDisplayTempHours(true)"
+    >
+      {{ "BTN_HORAIRES_TEMPORAIRES" | translate }}
+    </button>
+  </ng-container>
+
+  <ng-container
+    *ngIf="
+      tempInfoType === TempInfoType.CLOSURE &&
+      displayHoursWhenTempClosed &&
+      !admin
+    "
+  >
+    <button
+      type="submit"
+      class="btn btn-outline-primary btn-block mt-2"
+      (click)="displayRegularHours()"
+    >
+      {{ "BTN_HORAIRES_HABITUELS" | translate }}
+    </button>
+  </ng-container>
+</div>

@@ -1,0 +1,614 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<nav class="navbar navbar-expand-lg navbar-light px-4 py-2">
+  <div class="container-fluid">
+    <div class="navbar-brand mr-4">
+      <a [routerLink]="[routePrefix]" (click)="clickOnHomeLogo()">
+        <span class="visually-hidden"
+          >{{ "NAV_BACK_HOMEPAGE" | translate }}
+        </span>
+        <img
+          [src]="'/assets/images/themes/' + THEME_CONFIGURATION.logos.inline"
+          aria-hidden="true"
+          [alt]="THEME_CONFIGURATION.brandName + ' logo'"
+        />
+      </a>
+    </div>
+    <button
+      class="navbar-toggler d-lg-none"
+      type="button"
+      (click)="isNavbarCollapsed = !isNavbarCollapsed"
+      [attr.aria-expanded]="!isNavbarCollapsed"
+      aria-label="Navigation menu"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse">
+      <ul *ngIf="me" class="navbar-nav">
+        <ng-container *ngIf="isAdmin || me?.status === UserStatus.PRO">
+          <li
+            *ngIf="me.organizations.length > 1 && me.status === UserStatus.PRO"
+          >
+            <div ngbDropdown display="dynamic" class="custom-dropdown">
+              <button
+                id="currentOrganizationsDropdown"
+                type="button"
+                ngbDropdownToggle
+                (click)="captureEvent('click-current-organization')"
+              >
+                {{ "MY_ORGANIZATIONS" | translate }}
+              </button>
+              <div
+                ngbDropdownMenu
+                aria-labelledby="currentOrganizationsDropdown"
+              >
+                <button
+                  type="button"
+                  *ngFor="let organization of me.organizations; let i = index"
+                  ngbDropdownItem
+                  (click)="changeCurrentOrganization(i)"
+                  class="nav-link"
+                  [ngClass]="
+                    i === me.selectedOrgaIndex ? 'router-link-active' : ''
+                  "
+                >
+                  {{ organization.name }}
+                </button>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [routerLinkActiveOptions]="{ exact: true }"
+              *ngIf="
+                me.organizations.length === 1 && me.status === UserStatus.PRO
+              "
+              [routerLink]="[
+                routePrefix,
+                'organisations',
+                me.currentOrga?.organization_id
+              ]"
+              routerLinkActive="router-link-active"
+              (click)="captureEvent('click-my-account-menu-my-organization')"
+            >
+              {{ "MY_ORGANIZATION" | translate }}
+            </a>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="isAdmin">
+          <li class="nav-item">
+            <div ngbDropdown display="dynamic" class="custom-dropdown">
+              <button
+                routerLinkActive="router-link-active"
+                id="organizationsDropdown"
+                [routerLinkActiveOptions]="{ exact: true }"
+                type="button"
+                ngbDropdownToggle
+                (click)="captureEvent('click-manage-organizations')"
+              >
+                {{ "ORGANIZATIONS" | translate }}
+              </button>
+              <div ngbDropdownMenu aria-labelledby="organizationsDropdown">
+                <a
+                  [routerLink]="[routePrefix, 'organisations', 'manage']"
+                  routerLinkActive="router-link-active"
+                  (click)="
+                    captureEvent('click-my-account-menu-manage-organizations')
+                  "
+                  ngbDropdownItem
+                >
+                  {{ "MANAGE_ORGANIZATIONS" | translate }}
+                </a>
+                <a
+                  [routerLink]="[routePrefix, 'organisations', 'new']"
+                  routerLinkActive="router-link-active"
+                  (click)="
+                    captureEvent('click-my-account-menu-new-organization')
+                  "
+                  ngbDropdownItem
+                >
+                  {{ "NEW_ORGANIZATION" | translate }}
+                </a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="custom-dropdown" ngbDropdown display="dynamic">
+              <button
+                type="button"
+                id="structuresDropdown"
+                (click)="captureEvent('click-manage-place px-3')"
+                ngbDropdownToggle
+              >
+                {{ "STRUCTURES" | translate }}
+              </button>
+              <div ngbDropdownMenu aria-labelledby="structuresDropdown">
+                <a
+                  [routerLink]="[routePrefix, 'manage-place', 'search']"
+                  routerLinkActive="router-link-active"
+                  (click)="
+                    captureEvent('click-my-account-menu-manage-referenced-item')
+                  "
+                  ngbDropdownItem
+                >
+                  {{ "MANAGE_STRUCTURES" | translate }}
+                </a>
+                <a
+                  *ngIf="
+                    isAdmin ||
+                    (me.status === UserStatus.PRO && me.role === UserRole.OWNER)
+                  "
+                  [routerLink]="[routePrefix, 'admin-place', 'infos']"
+                  routerLinkActive="router-link-active"
+                  (click)="
+                    captureEvent('click-my-account-menu-new-referenced-item')
+                  "
+                  ngbDropdownItem
+                >
+                  {{ "NEW_STRUCTURE" | translate }}
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <div ngbDropdown display="dynamic" class="custom-dropdown">
+              <button
+                type="button"
+                id="adminUsersDropdown"
+                ngbDropdownToggle
+                (click)="captureEvent('click-users-dropdown')"
+              >
+                {{ "USERS" | translate }}
+              </button>
+              <div ngbDropdownMenu>
+                <a
+                  routerLinkActive="router-link-active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  class="nav-link"
+                  [routerLink]="[routePrefix, 'admin-users', 'manage']"
+                  (click)="captureEvent('click-manage-users')"
+                  ngbDropdownItem
+                >
+                  {{ "MANAGE_USERS" | translate }}
+                </a>
+                <a
+                  [routerLink]="[
+                    routePrefix,
+                    'admin-users',
+                    'manage-api-users'
+                  ]"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  routerLinkActive="router-link-active"
+                  (click)="captureEvent('click-manage-partners')"
+                  ngbDropdownItem
+                >
+                  {{ "MANAGE_PARTNERS" | translate }}
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <div class="col-auto">
+            <li class="nav-item" *ngIf="isAdmin">
+              <a
+                routerLinkActive="router-link-active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="nav-link"
+                [routerLink]="[routePrefix, 'historique', 'manage']"
+                (click)="captureEvent('click-manage-history')"
+              >
+                {{ "UPDATES" | translate }}
+              </a>
+            </li>
+          </div>
+          <div class="col-auto">
+            <li class="nav-item" *ngIf="showSoligareMenu">
+              <a
+                routerLinkActive="router-link-active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="nav-link"
+                [routerLink]="[routePrefix, 'soligare']"
+                (click)="captureEvent('click-soligare')"
+              >
+                Soligare
+              </a>
+            </li>
+          </div>
+        </ng-container>
+        <li *ngIf="showTranslationMenuDropdown" class="nav-item">
+          <div ngbDropdown display="dynamic" class="custom-dropdown">
+            <button
+              type="button"
+              id="adminTranslateDropdown"
+              ngbDropdownToggle
+              (click)="captureEvent('click-translations-dashboard')"
+            >
+              {{ "TRANSLATIONS" | translate }}
+            </button>
+            <div ngbDropdownMenu aria-labelledby="adminTranslateDropdown">
+              <a
+                [routerLink]="[routePrefix, 'translations']"
+                [routerLinkActiveOptions]="{ exact: true }"
+                routerLinkActive="router-link-active"
+                (click)="
+                  captureEvent('click-my-account-menu-manage-translations')
+                "
+                ngbDropdownItem
+              >
+                {{ "MANAGE_TRANSLATIONS" | translate }}
+              </a>
+              <a
+                *ngIf="isAdmin"
+                [routerLink]="[routePrefix, 'translations', 'places']"
+                [routerLinkActiveOptions]="{ exact: true }"
+                routerLinkActive="router-link-active"
+                (click)="
+                  captureEvent('click-my-account-menu-followup-translations')
+                "
+                ngbDropdownItem
+              >
+                {{ "TRANSLATION_FOLLOW_UP" | translate }}
+              </a>
+            </div>
+          </div>
+        </li>
+        <li
+          class="nav-item"
+          *ngIf="
+            displaySolidataNavButtons &&
+            (isAdmin || me?.status === UserStatus.PRO)
+          "
+        >
+          <div ngbDropdown display="dynamic" class="custom-dropdown">
+            <button
+              type="button"
+              id="navbarDropdownDashboard"
+              class="fw-normal clickable dropdown"
+              ngbDropdownToggle
+              (click)="captureEvent('click-solidata-dashboard')"
+            >
+              Solidata
+            </button>
+            <div ngbDropdownMenu aria-labelledby="navbarDropdownDashboard">
+              <a
+                routerLinkActive="router-link-active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                [routerLink]="[
+                  routePrefix,
+                  'solidata',
+                  'public',
+                  'consultation-tracking'
+                ]"
+                (click)="captureEvent('click-solidata-search-tracking', {})"
+                ngbDropdownItem
+                *ngIf="displaySolidataSearchTracking"
+              >
+                {{ "DASHBOARD_DES_RECHERCHES" | translate }}
+              </a>
+              <a
+                routerLinkActive="router-link-active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                [routerLink]="[routePrefix, 'solidata', 'seasonal-analysis']"
+                (click)="captureEvent('click-solidata-seasonal-analysis', {})"
+                ngbDropdownItem
+                *ngIf="displaySolidataSeasonalAnalysis"
+              >
+                {{ "SEASONAL_ANALYZES" | translate }}
+              </a>
+              <a
+                routerLinkActive="router-link-active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                [routerLink]="[routePrefix, 'solidata', 'territorial-analysis']"
+                (click)="
+                  captureEvent('click-solidata-territorial-analysis', {})
+                "
+                ngbDropdownItem
+                *ngIf="displaySolidataTerritorialAnalysis"
+              >
+                {{ "TERRITORIAL_ANALYZES" | translate }}
+              </a>
+              <a
+                routerLinkActive="router-link-active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                [routerLink]="[routePrefix, 'solidata', 'access_alimentation']"
+                (click)="captureEvent('click-solidata-food-access', {})"
+                ngbDropdownItem
+                *ngIf="displaySolidataFoodAccess"
+              >
+                {{ "SOLIDATA_FOOD_ACCESS" | translate }}
+              </a>
+              <a
+                routerLinkActive="router-link-active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                [routerLink]="[routePrefix, 'solidata', 'acces_eau']"
+                (click)="captureEvent('click-solidata-water-access', {})"
+                ngbDropdownItem
+                *ngIf="displaySolidataWaterAccess"
+              >
+                {{ "SOLIDATA_WATER_ACCESS" | translate }}
+              </a>
+            </div>
+          </div>
+        </li>
+        <li
+          class="nav-item"
+          *ngIf="THEME_CONFIGURATION.contactFormEnabled && !isAdmin"
+        >
+          <a
+            routerLinkActive="router-link-active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="nav-link"
+            [routerLink]="[routePrefix, 'contact']"
+            (click)="captureEvent('click-contact')"
+          >
+            {{ "CONTACT" | translate }}
+          </a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav" *ngIf="!me">
+        <li class="nav-item" *ngIf="!!praticalFilesLink">
+          <a
+            routerLinkActive="router-link-active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="nav-link"
+            href="{{ praticalFilesLink }}/{{
+              LANGUAGE_FOR_PRACTICAL_FILES[currentLang]
+            }}"
+            target="_blank"
+            (click)="clickOnPracticalFiles()"
+          >
+            {{ "FICHES_PRATIQUES" | translate }}
+          </a>
+        </li>
+
+        <li *ngIf="displaySolidataNavButtons">
+          <div ngbDropdown display="dynamic" class="custom-dropdown">
+            <button
+              type="button"
+              id="navbarDropdownDashboard"
+              class="fw-normal clickable dropdown"
+              ngbDropdownToggle
+              (click)="captureEvent('click-solidata-dashboard')"
+            >
+              Solidata
+            </button>
+            <div ngbDropdownMenu aria-labelledby="navbarDropdownDashboard">
+              <a
+                routerLinkActive="router-link-active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                [routerLink]="[
+                  routePrefix,
+                  'solidata',
+                  'public',
+                  'consultation-tracking'
+                ]"
+                (click)="captureEvent('click-solidata-search-tracking', {})"
+                ngbDropdownItem
+                *ngIf="displaySolidataSearchTracking"
+              >
+                {{ "DASHBOARD_DES_RECHERCHES" | translate }}
+              </a>
+              <a
+                routerLinkActive="router-link-active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                [routerLink]="[
+                  routePrefix,
+                  'solidata',
+                  'public',
+                  'demo_acces_alimentation'
+                ]"
+                (click)="captureEvent('click-solidata-demo-food-access')"
+                ngbDropdownItem
+                *ngIf="displaySolidataDemoFoodAccess"
+              >
+                {{ "SOLIDATA_DEMO_FOOD_ACCESS" | translate }}
+              </a>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item" *ngIf="THEME_CONFIGURATION.contactFormEnabled">
+          <a
+            routerLinkActive="router-link-active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="nav-link"
+            [routerLink]="[routePrefix, 'contact']"
+            (click)="captureEvent('click-contact')"
+          >
+            {{ "CONTACT" | translate }}
+          </a>
+        </li>
+      </ul>
+
+      <div class="d-flex align-items-center ms-auto">
+        <div class="translate-flags">
+          <div class="custom-dropdown p-1" ngbDropdown display="dynamic">
+            <button
+              type="button"
+              class="button-language"
+              ngbDropdownToggle
+              id="navbarDropdownLang"
+              (click)="captureEvent('click-language-dropdown')"
+            >
+              <img
+                *ngIf="THEME_CONFIGURATION.country !== CountryCodes.AD"
+                src="/assets/images/languages/{{ currentLang }}.png"
+                alt="Langue {{ currentLang }}"
+                class="rounded-circle"
+              />
+              <img
+                *ngIf="THEME_CONFIGURATION.country === CountryCodes.AD"
+                src="/assets/images/languages/{{
+                  currentLang === SupportedLanguagesCode.CA ? 'ad' : currentLang
+                }}.png"
+                alt="Langue {{ currentLang }}"
+                class="rounded-circle"
+              />
+              {{ "LANGUE_" + currentLang | uppercase | translate }}
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownLanguage">
+              <span class="visually-hidden" id="dropdownLanguage">{{
+                "MENU_SELECT_LANGUAGE" | translate
+              }}</span>
+              <button
+                type="button"
+                *ngIf="SUPPORTED_LANGUAGES.source !== currentLang"
+                (click)="useLanguage(SUPPORTED_LANGUAGES.source)"
+                ngbDropdownItem
+              >
+                <img
+                  *ngIf="THEME_CONFIGURATION.country === CountryCodes.AD"
+                  src="/assets/images/languages/ad.png"
+                  alt="Langue {{ SUPPORTED_LANGUAGES.source }}"
+                  class="rounded-circle"
+                />
+                <img
+                  *ngIf="THEME_CONFIGURATION.country !== CountryCodes.AD"
+                  src="/assets/images/languages/{{
+                    SUPPORTED_LANGUAGES.source
+                  }}.png"
+                  alt="Langue {{ SUPPORTED_LANGUAGES.source }}"
+                  class="rounded-circle"
+                />
+                {{
+                  ALL_SUPPORTED_LANGUAGES_NAME[SUPPORTED_LANGUAGES.source]
+                    .nativeName
+                }}
+                ({{
+                  ALL_SUPPORTED_LANGUAGES_NAME[SUPPORTED_LANGUAGES.source].name
+                    | translate
+                }})
+              </button>
+              <ng-container
+                *ngFor="let lang of SUPPORTED_LANGUAGES.otherLanguages"
+              >
+                <button
+                  type="button"
+                  *ngIf="lang !== currentLang"
+                  (click)="useLanguage(lang)"
+                  ngbDropdownItem
+                >
+                  <img
+                    src="/assets/images/languages/{{ lang }}.png"
+                    alt="Langue {{ lang }}"
+                    class="rounded-circle"
+                  />
+                  {{ ALL_SUPPORTED_LANGUAGES_NAME[lang].nativeName }} ({{
+                    ALL_SUPPORTED_LANGUAGES_NAME[lang].name | translate
+                  }})
+                </button>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!me">
+          <button
+            [routerLink]="[routePrefix, 'connexion']"
+            class="bg-secondary text-white btn btn-secondary"
+            type="button"
+            *ngIf="!IS_WEBVIEW_APP && !IS_BOT"
+            (click)="captureEvent('click-login')"
+          >
+            {{ "SE_CONNECTER" | translate }}
+          </button>
+        </div>
+      </div>
+      <div *ngIf="me">
+        <div ngbDropdown placement="auto" class="d-inline-block">
+          <button
+            ngbDropdownToggle
+            class="bg-secondary text-white btn btn-secondary"
+            type="button"
+            (click)="captureEvent('click-my-account-dropdown')"
+          >
+            {{ "MY_ACCOUNT" | translate }}
+          </button>
+          <div ngbDropdownMenu aria-label="Menu de navigation du site">
+            <ng-container *ngIf="isAdmin && campaignIsActive">
+              <a
+                [routerLink]="[routePrefix, 'manage-emails', 'templates']"
+                (click)="
+                  captureEvent(
+                    'click-my-account-menu-update-campaign-email-templates'
+                  )
+                "
+                ngbDropdownItem
+              >
+                {{ "EDIT_EMAILS" | translate }}
+              </a>
+              <a
+                [routerLink]="[routePrefix, 'manage-emails', 'search']"
+                (click)="
+                  captureEvent(
+                    'click-my-account-menu-manage-update-campaign-email'
+                  )
+                "
+                ngbDropdownItem
+              >
+                {{ "TRACK_SENT_EMAILS" | translate }}
+              </a>
+            </ng-container>
+
+            <a
+              href="{{ praticalFilesLink }}/{{
+                LANGUAGE_FOR_PRACTICAL_FILES[currentLang]
+              }}"
+              target="_blank"
+              (click)="clickOnPracticalFiles()"
+              ngbDropdownItem
+              *ngIf="!!praticalFilesLink"
+            >
+              {{ "FICHES_PRATIQUES" | translate }}
+            </a>
+            <a
+              [routerLink]="[routePrefix, 'aide']"
+              (click)="captureEvent('click-my-account-menu-help')"
+              ngbDropdownItem
+              *ngIf="THEME_CONFIGURATION.helpEnabled"
+            >
+              {{ "HELP_AND_TUTORIALS" | translate }}
+            </a>
+
+            <a
+              title="Mon compte"
+              [routerLink]="[routePrefix, 'user', 'my-account']"
+              (click)="captureEvent('click-my-account-menu-my-account')"
+              ngbDropdownItem
+            >
+              {{ "MY_ACCOUNT" | translate }}
+            </a>
+            <button
+              type="button"
+              (click)="logout(); captureEvent('click-my-account-menu-logout')"
+              ngbDropdownItem
+            >
+              {{ "LOGOUT" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

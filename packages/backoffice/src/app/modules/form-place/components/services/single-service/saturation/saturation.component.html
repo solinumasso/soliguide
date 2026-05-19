@@ -1,0 +1,83 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="my-1 form-group">
+  <fieldset>
+    <legend class="form-label">{{ "ATTENDANCE" | translate }}</legend>
+    <div
+      class="custom-dropdown"
+      placement="bottom"
+      ngbDropdown
+      autoClose="true"
+    >
+      <button
+        id="saturation_{{ serviceIndex }}"
+        ngbDropdownToggle
+        type="button"
+      >
+        <span class="text-truncate">
+          <span
+            class="saturation"
+            [ngClass]="{
+              'bg-success': service.saturated.status === ServiceSaturation.LOW,
+              'bg-warning':
+                service.saturated.status === ServiceSaturation.MODERATE,
+              'bg-danger': service.saturated.status === ServiceSaturation.HIGH
+            }"
+          >
+          </span>
+          {{ "SATURATION_" + service.saturated.status | translate }}
+        </span>
+      </button>
+
+      <div ngbDropdownMenu>
+        <button
+          *ngFor="let saturation of ServiceSaturationValues"
+          type="button"
+          (click)="service.saturated.status = saturation"
+          ngbDropdownItem
+        >
+          <input
+            [checked]="service.saturated.status === saturation"
+            type="radio"
+            name="saturated"
+            [id]="saturation + '_' + serviceIndex"
+          />
+          <label [for]="saturation + '_' + serviceIndex">
+            {{ "SATURATION_" + saturation | translate }}
+          </label>
+        </button>
+      </div>
+    </div>
+  </fieldset>
+</div>
+<div class="my-1 form-group">
+  <label class="form-label" for="saturated_precision_{{ serviceIndex }}">{{
+    "ATTENDANCE_PRECISIONS" | translate
+  }}</label>
+  <textarea
+    [(ngModel)]="service.saturated.precision"
+    name="saturated_precision_{{ serviceIndex }}"
+    id="saturated_precision_{{ serviceIndex }}"
+    class="custom-textarea form-control"
+    rows="3"
+  >
+  </textarea>
+</div>

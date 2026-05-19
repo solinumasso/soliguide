@@ -1,0 +1,70 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="form-container">
+  <div class="col-12 mb-4">
+    <h2>{{ "SERVICES_OFFERED" | translate }}</h2>
+    <p class="input-description me-4 d-flex">
+      <fa-icon aria-hidden="true" [icon]="['fas', 'info-circle']"></fa-icon>
+      <span>
+        {{ "CHANGE_SERVICE_ORDER_HELP" | translate }}
+      </span>
+    </p>
+  </div>
+  <form autocomplete="off" #f="ngForm" class="col-12">
+    <div cdkDropList id="service-form-list" (cdkDropListDropped)="drop($event)">
+      <div
+        class="service-tab"
+        [ngClass]="{ last: serviceIndex === services.length - 1 }"
+        *ngFor="let service of services; index as serviceIndex"
+        cdkDrag
+        [cdkDragDisabled]="service.show"
+      >
+        <app-form-single-service-fiche
+          [placeId]="placeId"
+          [service]="service"
+          [serviceIndex]="serviceIndex"
+          [canBeDeleted]="services.length > 1"
+          [closeOption]="closeOption"
+          [differentHoursOption]="differentHoursOption"
+          [differentModalitiesOption]="differentModalitiesOption"
+          [differentPublicsOption]="differentPublicsOption"
+          [saturationOption]="saturationOption"
+          [submitted]="submitted"
+          (deletedServiceIndex)="deleteService($event)"
+          (showServiceIndex)="showService($event)"
+          (descriptionHasError)="handleDescriptionError($event)"
+          [typeError]="typeError"
+          [servicesWithoutCategory]="servicesWithoutCategory"
+        ></app-form-single-service-fiche>
+      </div>
+    </div>
+    <br />
+  </form>
+  <div class="col-12">
+    <button
+      (click)="newService()"
+      type="button"
+      class="btn btn-outline-primary"
+    >
+      {{ "ADD_SERVICE" | translate }}
+    </button>
+  </div>
+</div>

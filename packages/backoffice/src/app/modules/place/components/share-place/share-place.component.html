@@ -1,0 +1,80 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="d-flex align-items-center justify-content-center">
+  <button
+    type="button"
+    class="btn btn-outline-primary mx-1 place-share"
+    (click)="open()"
+  >
+    <fa-icon [icon]="['fas', 'share']" aria-hidden="true"></fa-icon>
+    {{ "PARTAGER" | translate }}
+  </button>
+
+  <button
+    type="button"
+    class="d-none d-lg-block d-xl-block btn btn-outline-secondary place-print"
+    (click)="printFiche()"
+  >
+    <fa-icon [icon]="['fas', 'print']"></fa-icon>
+    {{ "IMPRIMER" | translate }}
+  </button>
+</div>
+<ng-template #shareModal let-modal>
+  <div class="modal-header">
+    <span id="modal-title">
+      <fa-icon [icon]="['fas', 'share']" aria-hidden="true"></fa-icon>
+      {{ "PARTAGER" | translate }}</span
+    >
+    <button
+      type="button"
+      class="btn-close"
+      [attr.aria-label]="'CLOSE' | translate"
+      (click)="close()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <label for="description" class="form-label">{{
+      "EDIT_SHARE_TEXT" | translate
+    }}</label>
+    <textarea
+      id="description"
+      [(ngModel)]="linkDescription"
+      class="form-control mt-2 mb-2"
+      rows="3"
+      appCleanStr="share"
+    ></textarea>
+
+    <button
+      type="button"
+      shareButton="copy"
+      class="btn btn-primary"
+      (click)="copyLink()"
+    >
+      <fa-icon [icon]="['fas', 'copy']" aria-hidden="true"></fa-icon>
+      {{ "COPIER_PRESSE_PAPIER" | translate }}
+    </button>
+
+    <share-buttons
+      [include]="['whatsapp', 'telegram', 'sms', 'facebook', 'email']"
+      [showText]="true"
+    ></share-buttons>
+  </div>
+</ng-template>

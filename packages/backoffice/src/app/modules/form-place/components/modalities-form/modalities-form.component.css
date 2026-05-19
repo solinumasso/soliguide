@@ -1,0 +1,78 @@
+/*
+ * Soliguide: Useful information for those who need it
+ *
+ * SPDX-FileCopyrightText: © 2024 Solinum
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+.condition-selector {
+  border: 1px solid rgba(72, 101, 217, 0.2);
+  border-radius: 8px;
+  text-align: center;
+  background-color: rgba(72, 101, 217, 0.05);
+  height: 100%;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.condition-selector:hover {
+  background-color: #fcfbfe;
+  border-color: rgba(72, 101, 217, 1);
+}
+
+.condition-selector-selected {
+  border: 2px solid rgba(72, 101, 217, 1);
+  border-radius: 8px;
+  text-align: center;
+  background-color: #ffffff;
+  height: 100%;
+  cursor: pointer;
+}
+
+.condition-selector .title,
+.condition-selector-selected .title {
+  font-size: 1.1rem;
+}
+
+.condition-selector .btn.disabled,
+.condition-selector .btn:disabled {
+  background-color: #efefef;
+  color: #3e3a71;
+}
+
+.condition-selector .btn,
+.condition-selector .btn.disabled,
+.condition-selector .btn:disabled {
+  min-width: 120px;
+}
+
+.condition-selector-selected .btn {
+  background-color: #efefef;
+  color: #3e3a71;
+  min-width: 120px;
+}
+
+:host ::ng-deep .ck-editor__editable_inline {
+  min-height: 120px !important;
+  border-radius: 0 0 4px 4px !important;
+}
+
+.form-check-input:active {
+  background-color: orangered;
+}

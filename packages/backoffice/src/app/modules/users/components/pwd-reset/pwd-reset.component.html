@@ -1,0 +1,55 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="container">
+  <div class="step_form">
+    <div class="row">
+      <div class="col-12 col-md-10 offset-md-1 text-center">
+        <h1 class="separator-secondary">
+          {{ "RESETTING_PASSWORD" | translate }}
+        </h1>
+      </div>
+      <form
+        *ngIf="resetPwdForm"
+        [formGroup]="resetPwdForm"
+        (ngSubmit)="resetpwd()"
+      >
+        <app-user-password-form
+          [parentFormGroup]="resetPwdForm"
+          [submitted]="submitted"
+        ></app-user-password-form>
+        <div class="my-4 text-center">
+          <button type="submit" class="btn btn-primary" [disabled]="loading">
+            <span *ngIf="!loading">{{ "CHANGE_PASSWORD" | translate }}</span>
+            <span *ngIf="loading">
+              <fa-icon
+                aria-hidden="true"
+                [icon]="['fas', 'circle-notch']"
+                animation="spin"
+              >
+              </fa-icon>
+              {{ "MODIFICATION_IN_PROGRESS" | translate }}
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

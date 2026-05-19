@@ -1,0 +1,209 @@
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { NavigationEnd, Router } from "@angular/router";
+
+import { Subscription, filter } from "rxjs";
+
+import { CurrentLanguageService } from "./modules/general/services/current-language.service";
+import { LanguageSetupService } from "./modules/general/services/language-setup.service";
+import { User } from "./modules/users/classes";
+import { AuthService } from "./modules/users/services/auth.service";
+import { PosthogService } from "./modules/analytics/services/posthog.service";
+
+import { IS_BOT, IS_WEBVIEW_APP } from "./shared/constants";
+import { ChatService, CookieManagerService } from "./modules/shared/services";
+import { VersionService } from "./shared/services";
+
+@Component({
+  selector: "app-root",
+  styleUrls: ["./app.component.css"],
+  templateUrl: "./app.component.html",
+})
+export class AppComponent implements OnInit, OnDestroy {
+  private readonly subscription: Subscription = new Subscription();
+  public isChatEnabled: boolean;
+  public cookieBannerLoaded = false;
+  private chatButtonClicked = false;
+
+  public readonly IS_WEBVIEW_APP = IS_WEBVIEW_APP;
+  public readonly IS_BOT = IS_BOT;
+  public me!: User | null;
+  public currentUrl = "";
+  public todayYear: number;
+  public routePrefix: string;
+
+  public hasUserGivenConsent: boolean;
+
+  constructor(
+    private readonly authService: AuthService,
+    private readonly router: Router,
+    private readonly languageSetupService: LanguageSetupService,
+    private readonly currentLanguageService: CurrentLanguageService,
+    private readonly posthogService: PosthogService,
+    private readonly cookieManagerService: CookieManagerService,
+    private readonly chatService: ChatService,
+    private readonly versionService: VersionService
+  ) {
+    this.hasUserGivenConsent = false;
+
+    // REFRESH TOKEN
+    this.authService.isAuth().subscribe();
+
+    const today = new Date();
+    this.todayYear = today.getFullYear();
+    this.routePrefix = this.currentLanguageService.routePrefix;
+
+    this.isChatEnabled = this.chatService.isChatEnabled;
+  }
+
+  public ngOnInit(): void {
+    this.currentUrl = this.router.url;
+    this.languageSetupService.setupTranslations();
+
+    // Load version from version.json file
+    this.versionService.loadVersion().subscribe({
+      next: () => {
+        console.log("Version loaded:", this.versionService.getVersion());
+      },
+      error: (error) => {
+        console.error("Failed to load version:", error);
+      },
+    });
+
+    this.subscription.add(
+      this.authService.currentUserSubject.subscribe((user: User) => {
+        this.me = user;
+      })
+    );
+
+    this.subscription.add(
+      this.currentLanguageService.subscribe(() => {
+        this.routePrefix = this.currentLanguageService.routePrefix;
+      })
+    );
+
+    this.subscription.add(
+      this.router.events
+        .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+        .subscribe((event: NavigationEnd) => {
+          const splitUrl = event?.url.split("#");
+          this.currentUrl = splitUrl[0];
+
+          if (typeof splitUrl[1] !== "undefined") {
+            const fragment = splitUrl[1];
+            const element = document.getElementById(fragment);
+            if (element) {
+              element.tabIndex = -1;
+              element.focus();
+            }
+          } else {
+            this.currentUrl = event.url;
+            const mainHeader = document.getElementById("top-site");
+            if (mainHeader) {
+              mainHeader.tabIndex = -1;
+              mainHeader.focus();
+            }
+          }
+
+          window.scroll({
+            behavior: "smooth",
+            left: 0,
+            top: 0,
+          });
+        })
+    );
+
+    this.subscription.add(
+      this.cookieManagerService.chatConsentSubject.subscribe(
+        (consent: boolean) => {
+          this.hasUserGivenConsent = consent;
+        }
+      )
+    );
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if ((window as any).silktideCookieBannerManager?.updateCookieBannerConfig) {
+      this.cookieBannerLoaded = true;
+      this.cookieManagerService.translateCookieBanner();
+    }
+
+    document.addEventListener("SilktideConsentManagerLoaded", () => {
+      if (!this.cookieBannerLoaded) {
+        this.cookieBannerLoaded = true;
+        this.cookieManagerService.translateCookieBanner();
+      }
+    });
+
+    document.addEventListener(
+      "ConsentChanged",
+      (
+        event: CustomEvent<{
+          type: "analytics" | "chat";
+          value: "granted" | "denied";
+        }>
+      ) => {
+        if (event.detail.type === "analytics") {
+          this.cookieManagerService.analyticsConsentSubject.next(
+            event.detail.value === "granted"
+          );
+        } else if (event.detail.type === "chat") {
+          this.cookieManagerService.chatConsentSubject.next(
+            event.detail.value === "granted"
+          );
+        }
+
+        this.cookieManagerService.hasUserMadeCookieChoice.next(
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (window as any).silktideCookieBannerManager?.hasUserMadeCookieChoice()
+        );
+      }
+    );
+
+    document.addEventListener("PreferencesClosed", () => {
+      if (this.chatButtonClicked) {
+        this.chatService.openChatAfterPreferences(this.me);
+      }
+    });
+    document.addEventListener("AcceptAll", () => {
+      this.posthogService.capture("accept-all-cookies");
+    });
+    document.addEventListener("AcceptAllPreferences", () => {
+      if (this.chatButtonClicked) {
+        this.chatService.openChatAfterPreferences(this.me);
+      }
+
+      this.posthogService.capture("accept-all-cookies-preferences");
+    });
+    document.addEventListener("RejectAll", () => {
+      this.posthogService.capture("reject-all-cookies");
+    });
+    document.addEventListener("RejectAllPreferences", () => {
+      this.posthogService.capture("reject-all-cookies-preferences");
+    });
+    document.addEventListener("PreferencesClosedWithButton", () => {
+      this.posthogService.capture("preferences-close-cookies-banner", {
+        analytics_cookies_consent: this.cookieManagerService
+          .analyticsConsentSubject.value
+          ? "granted"
+          : "denied",
+        chat_cookies_consent: this.cookieManagerService.chatConsentSubject.value
+          ? "granted"
+          : "denied",
+      });
+    });
+  }
+
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+    this.languageSetupService.tearDown();
+  }
+
+  public openChatCookiesConsentModal(): void {
+    this.posthogService.capture("chat-button");
+    this.chatButtonClicked = true;
+    this.cookieManagerService.openCookiesConsentModal();
+  }
+
+  public openFooterCookiesConsentModal(): void {
+    this.cookieManagerService.openCookiesConsentModal();
+  }
+}

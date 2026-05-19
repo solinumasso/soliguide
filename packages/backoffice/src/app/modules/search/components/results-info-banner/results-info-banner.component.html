@@ -1,0 +1,76 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<ng-container *ngIf="isThemeSoliguideFr">
+  <div class="alert alert-info" *ngIf="departmentCode === '63'">
+    <h2>{{ "INFORMATION" | translate }}</h2>
+    <p>
+      {{ "PUY_DE_DOME_BANNER_DESCRIPTION" | translate }}
+    </p>
+  </div>
+
+  <div
+    class="alert alert-warning"
+    *ngIf="category === Categories.EMERGENCY_ACCOMMODATION"
+  >
+    <h2>{{ "INFORMATION" | translate }}</h2>
+    <p
+      [innerHTML]="
+        'PLACE_115'
+          | translate : { howToGetAccommodationLink: howToGetAccommodationLink }
+      "
+    ></p>
+  </div>
+
+  <div
+    class="alert alert-info"
+    *ngIf="category === Categories.ADMINISTRATIVE_ASSISTANCE"
+  >
+    <h2>{{ "INFORMATION" | translate }}</h2>
+    <p>
+      {{ "CALCUL_AIDE" | translate }}
+      <a
+        href="https://www.mesdroitssociaux.gouv.fr/dd1pnds-ria/index.html"
+        target="_blank"
+        rel="noopener"
+        title="Calculez mes aides"
+        (click)="captureEvent('click-mesdroitssociaux-link')"
+      >
+        https://www.mesdroitssociaux.gouv.fr/dd1pnds-ria/index.html
+      </a>
+    </p>
+  </div>
+
+  <div class="alert alert-info" *ngIf="isRelevantForLearningAndEmployment">
+    <h2>{{ "INFORMATION" | translate }}</h2>
+    <p>
+      <a
+        href="https://www.toustespossibles.fr/numero-vers-lemploi/"
+        target="_blank"
+        rel="noopener"
+        title="Numéro vers l'emploi"
+        (click)="captureEvent('click-toutespossibles-link')"
+      >
+        {{ "TOUSTESPOSSIBLES_BANNER_NUMERO" | translate }}
+      </a>
+      {{ "TOUSTESPOSSIBLES_BANNER_DESCRIPTION" | translate }}
+    </p>
+  </div>
+</ng-container>

@@ -1,0 +1,32 @@
+#social-links {
+  padding: 0;
+  margin: 0;
+}
+
+#social-links li {
+  a {
+    display: flex;
+    align-items: center;
+  }
+
+  .ng-fa-icon {
+    width: 22px;
+    margin-right: 14px;
+    font-size: 1.35rem;
+    color: var(--bs-secondary);
+  }
+
+  span {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+  }
+  padding: 0.5rem 0;
+  align-items: center;
+  list-style-type: none;
+}
+
+.additional_info {
+  margin-left: 0.3rem;
+  color: black;
+}

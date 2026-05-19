@@ -1,0 +1,310 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="container my-4" *ngIf="place">
+  <div class="d-flex justify-content-between my-4 py-1">
+    <h1 class="form-title">
+      {{ "CONTACTS_FOR" | translate : { placeName: place.name } }}
+    </h1>
+
+    <div class="col-3 text-end">
+      <a
+        class="btn btn-outline-primary"
+        [routerLink]="[routePrefix, 'fiche', place.seo_url]"
+        >{{ "SEE_THE_PLACE" | translate }}
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3 d-none d-md-block">
+      <app-form-place-menu
+        [place]="place"
+        step="contacts"
+      ></app-form-place-menu>
+    </div>
+    <div class="col-md-9 col-12">
+      <div class="form-container">
+        <div class="mb-4">
+          <h2>{{ "BUSINESS_CONTACTS" | translate }}</h2>
+          <p class="input-description me-4 d-flex">
+            {{
+              "CONTACTS_ONLY_VISIBLE_BY_PROFESSIONAL_ACCOUNTS"
+                | translate : { brandName: THEME_CONFIGURATION.brandName }
+            }}
+          </p>
+        </div>
+
+        <div
+          class="d-flex align-items-baseline cgu"
+          [ngClass]="{
+            'is-invalid': !cguChecked
+          }"
+        >
+          <input
+            class="cgu-checkbox"
+            id="cgu-checkbox"
+            type="checkbox"
+            [(ngModel)]="cguChecked"
+          />
+          <label class="cgu-description" for="cgu-checkbox">
+            {{ "SHARING_CONTACTS_DETAILS" | translate }}
+          </label>
+        </div>
+
+        <div class="cgu-invalid my-2" *ngIf="!cguChecked">
+          {{ "TAKE_OF_THIS_NOTE_CONDITION" | translate }}
+        </div>
+        <div
+          *ngIf="loading || !contactsBeforeUpdate"
+          class="d-flex justify-content-center align-items-center my-4 gap-2"
+        >
+          <fa-icon
+            aria-hidden="true"
+            [icon]="['fas', 'circle-notch']"
+            animation="spin"
+          ></fa-icon>
+          <span>{{ "CONTACTS_LOADING" | translate }}</span>
+        </div>
+
+        <br />
+        <ng-container *ngFor="let contact of placeContacts; let i = index">
+          <div
+            class="row contacts align-items-center my-3 py-2"
+            *ngIf="contact?._id !== contactToEdit?._id"
+          >
+            <div class="col-sm-2 col-md-1 align-top">
+              <div
+                class="form-switch form-switch-danger"
+                *ngIf="contact.canEdit"
+              >
+                <input
+                  [disabled]="!cguChecked"
+                  type="checkbox"
+                  name="edit_contact_{{ i }}"
+                  class="form-check-input"
+                  [(ngModel)]="contact.displayContactPro"
+                  (ngModelChange)="patchDisplayContactPro(contact, $event)"
+                  id="edit_contact_{{ i }}"
+                />
+                <label class="form-check-label" for="edit_contact_{{ i }}">
+                </label>
+              </div>
+            </div>
+            <div class="col-sm-10 col-md-5">
+              <span class="contact-name"> {{ contact | userFullName }} </span>
+              <span *ngIf="contact.title" class="contact-title">
+                {{ contact.title }}
+              </span>
+            </div>
+            <div class="col-sm-11 col-md-5 contact-infos">
+              <div *ngIf="contact.phone">
+                <fa-icon aria-hidden="true" [icon]="['fas', 'phone']"></fa-icon>
+                <span class="fw-bold">
+                  <a
+                    href="tel:{{
+                      contact.phone | formatInternationalPhoneNumber
+                    }}"
+                    >{{ contact.phone | formatInternationalPhoneNumber }}</a
+                  >
+                </span>
+              </div>
+              <div>
+                <fa-icon
+                  aria-hidden="true"
+                  [icon]="['fas', 'envelope']"
+                ></fa-icon>
+                <span>
+                  <a href="mailto:{{ contact.mail }}">{{
+                    contact.mail | decodePunycodeEmail
+                  }}</a>
+                </span>
+              </div>
+            </div>
+            <div class="col-sm-2 col-md-1 edit-user">
+              <button
+                (click)="openEditContact(contact)"
+                class="btn btn-sm btn-outline-secondary"
+                *ngIf="contact.canEditUserInfos && contactToEdit === null"
+                type="button"
+                [disabled]="!cguChecked"
+                [attr.aria-label]="'EDIT_CONTACT' | translate"
+              >
+                <fa-icon
+                  aria-hidden="true"
+                  [icon]="['fas', 'pencil-alt']"
+                ></fa-icon>
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="rounder bg-light p-3"
+            *ngIf="contact._id === contactToEdit?._id"
+          >
+            <form
+              [formGroup]="editContactForm"
+              (ngSubmit)="patchPlaceContact()"
+            >
+              <div class="row my-3">
+                <div class="col-md-6 required">
+                  <label for="name" class="form-label">
+                    {{ "NAME" | translate }}
+                  </label>
+                  <input
+                    id="name"
+                    type="text"
+                    class="form-control"
+                    formControlName="name"
+                    autocomplete="name"
+                    [placeholder]="'NAME' | translate"
+                    [ngClass]="{
+                      'is-invalid':
+                        (f.name.dirty || submitted) && f.name.errors,
+                      'is-valid': f.name.dirty && f.name.value && !f.name.errors
+                    }"
+                  />
+                  <div
+                    *ngIf="(f.name.dirty || submitted) && f.name.errors"
+                    class="invalid-feedback"
+                  >
+                    {{ "NAME_REQUIRED" | translate }}
+                  </div>
+                </div>
+                <div class="col-md-6 required">
+                  <label for="lastname" class="form-label">
+                    {{ "LASTNAME" | translate }}
+                  </label>
+                  <input
+                    id="lastname"
+                    type="text"
+                    class="form-control"
+                    formControlName="lastname"
+                    autocomplete="family-name"
+                    [placeholder]="'LASTNAME' | translate"
+                    [ngClass]="{
+                      'is-invalid':
+                        (f.lastname.dirty || submitted) && f.lastname.errors,
+                      'is-valid':
+                        f.lastname.dirty &&
+                        f.lastname.value &&
+                        !f.lastname.errors
+                    }"
+                  />
+                  <div
+                    *ngIf="(f.lastname.dirty || submitted) && f.lastname.errors"
+                    class="invalid-feedback"
+                  >
+                    {{ "LASTNAME_REQUIRED" | translate }}
+                  </div>
+                </div>
+              </div>
+              <div class="row my-3">
+                <div class="col-md-6 my-2 col-12">
+                  <app-form-phone-input
+                    [phone]="contact.phone"
+                    [parentForm]="editContactForm"
+                    [submitted]="submitted"
+                  ></app-form-phone-input>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="title">{{
+                    "TITLE" | translate
+                  }}</label>
+                  <input
+                    type="text"
+                    id="title"
+                    formControlName="title"
+                    autocomplete="off"
+                    [placeholder]="'TITLE_PLACEHOLDER' | translate"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="col-md-6 my-2">
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary me-2"
+                    (click)="contactToEdit = null"
+                  >
+                    {{ "CANCEL" | translate }}
+                  </button>
+                  <button
+                    class="btn btn-primary"
+                    type="submit"
+                    [disabled]="loading"
+                  >
+                    <span *ngIf="!loading">{{
+                      "SAVE_AND_CONTINUE" | translate
+                    }}</span>
+                    <span *ngIf="loading"
+                      ><fa-icon
+                        aria-hidden="true"
+                        [icon]="['fas', 'circle-notch']"
+                        animation="spin"
+                      >
+                      </fa-icon>
+                      {{ "PLEASE_WAIT" | translate }}</span
+                    >
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </ng-container>
+
+        <div
+          class="col-md-6 col-12 text-primary p-0 mb-3"
+          *ngIf="me.admin || (me.pro && me.role === UserRole.OWNER)"
+        >
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            (click)="addNewContact()"
+          >
+            <fa-icon [icon]="['fas', 'plus']"></fa-icon>
+            {{ "ADD_PRO_CONTACT" | translate }}
+          </button>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-lg btn-primary"
+        [disabled]="loading || !contactsBeforeUpdate"
+        (click)="patchContacts()"
+      >
+        <span *ngIf="!loading">{{ "SAVE_AND_CONTINUE" | translate }} </span>
+        <span *ngIf="loading"
+          ><fa-icon
+            [icon]="['fas', 'circle-notch']"
+            aria-hidden="true"
+            animation="spin"
+          >
+          </fa-icon>
+          {{ "PLEASE_WAIT" | translate }}</span
+        >
+      </button>
+    </div>
+  </div>
+</div>
+
+<ng-template #addContactModal let-modal>
+  <app-add-contact-modal [place]="place"></app-add-contact-modal>
+</ng-template>

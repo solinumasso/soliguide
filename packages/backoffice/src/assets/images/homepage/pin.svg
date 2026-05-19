@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<svg fill="none" height="85" width="70" xmlns="http://www.w3.org/2000/svg"><path d="M59.749 10.312C52.916 3.437 43.958 0 34.999 0S17.087 3.437 10.252 10.312c-13.668 13.75-13.668 36.043 0 49.792L35 85l24.749-24.896C66.584 53.23 70 44.22 70 35.208s-3.416-18.02-10.251-24.896zM34.999 48.16c-7.11 0-12.874-5.799-12.874-12.952S27.889 22.258 35 22.258c7.11 0 12.875 5.797 12.875 12.95S42.111 48.16 35 48.16z" fill="#e65a46"/></svg>

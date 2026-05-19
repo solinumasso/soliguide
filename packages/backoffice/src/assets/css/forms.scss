@@ -1,0 +1,463 @@
+.form-control,
+.form-select {
+  display: block;
+  width: 100%;
+  padding: 0.35rem 0.7rem;
+  font-size: 1rem;
+  font-weight: 500;
+  min-height: 42px;
+  color: #2d3135;
+  background-color: #fff;
+  background-clip: padding-box;
+}
+
+.input-group .btn {
+  min-height: 44px;
+}
+
+.input-group .btn .ng-fa-icon {
+  padding-top: 5px;
+  display: block;
+}
+
+.required .form-label:after {
+  content: "*";
+  margin-left: 5px;
+  color: var(--bs-danger);
+}
+
+label,
+.form-label {
+  font-style: normal;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+  color: #03191e;
+  display: inline-block;
+}
+
+.label {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: rgba(28, 28, 28);
+  font-style: normal;
+  font-weight: bold;
+}
+
+.invalid-feedback-custom {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #da3849;
+}
+
+.indications .ng-fa-icon {
+  margin-right: 5px;
+}
+
+.btn-icon {
+  margin-right: 6px;
+}
+
+.input-description {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 150%;
+  margin: 6px 0;
+  color: #3e3a71;
+}
+
+.input-description .ng-fa-icon {
+  margin-right: 6px;
+}
+
+.form-check-input {
+  cursor: pointer;
+}
+
+.form-switch {
+  padding-left: 3rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.form-switch .form-check-label {
+  padding-left: 0.8rem;
+  cursor: pointer;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #03191e;
+  margin: 0;
+  vertical-align: top;
+}
+
+.form-switch .form-check-input {
+  height: 1.6rem;
+  width: 2.8rem;
+  margin-left: -3em;
+  margin-top: 0;
+}
+
+.form-container {
+  background-color: white;
+  word-wrap: break-word;
+  padding: 2rem 1rem !important;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.form-step-description {
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 150%;
+}
+
+.input-check .ng-fa-icon {
+  margin: 0 5px;
+  padding: 2px 0;
+  width: 28px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 100%;
+}
+
+.input-check {
+  position: absolute;
+  right: 20px;
+  top: 38px;
+  font-size: 1rem;
+  border-radius: 100%;
+  color: white;
+}
+
+.input-check .input-valid {
+  background-color: var(--bs-success);
+}
+
+.input-check .input-invalid {
+  background-color: var(--bs-danger);
+}
+
+.red-cross:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.red-cross {
+  background-color: #ea524a;
+  border-radius: 4px;
+  padding: 0 6px;
+  color: white;
+  cursor: pointer;
+  transition: ease 0.2s;
+  border: none;
+  outline: none;
+}
+
+.red-cross:focus {
+  color: #fff;
+  background-color: #b9303e;
+  border-color: #ae2d3a;
+  box-shadow: 0 0 0 0.25rem #e0566480;
+}
+
+.input-cross {
+  width: 26px;
+  right: 2px;
+  top: 1px;
+  height: 40px;
+  text-align: center;
+  position: absolute;
+  font-size: 1.45rem;
+  z-index: 2000;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  color: var(--bs-primary);
+  background-color: white;
+}
+
+.input-cross:focus {
+  color: #322e5a;
+  border-color: #322e5a;
+  box-shadow: 0 0 0 0.25rem #5b588680;
+}
+
+.dropdown-toggle {
+  background-color: #ffffff;
+  border: 1px solid #d6d6d6;
+  box-sizing: border-box;
+  border-radius: 0.25rem;
+  width: 100%;
+  padding: 0.35rem 0.7rem;
+  text-align: left;
+  font-style: normal;
+  font-weight: 600;
+  height: 42px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: ease 0.15s;
+}
+
+.dropdown-toggle:hover {
+  border-color: var(--bs-primary);
+}
+.dropdown-toggle.disabled,
+.dropdown-toggle:disabled,
+.dropdown-toggle[disabled] {
+  color: #777777;
+  background-color: #eeeeee;
+}
+
+.dropdown-toggle.disabled:hover,
+.dropdown-toggle:disabled:hover,
+.dropdown-toggle[disabled]:hover {
+  border-color: #d6d6d6;
+}
+
+.dropdown-toggle > span {
+  min-width: 93%;
+}
+
+.dropdown-item label,
+.dropdown-item .form-check-label {
+  color: black !important;
+  margin-bottom: 0 !important;
+}
+
+.dropdown-toggle .ng-fa-icon {
+  width: 20px;
+  text-align: right;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+form h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.search-input {
+  display: block;
+  position: relative;
+  text-align: left;
+  padding: 0;
+  margin: 0 auto;
+  border: 1px solid white;
+  border-radius: 4px;
+  background: white;
+  box-shadow: 0 2px 0 0 rgba(35, 29, 142, 0.3);
+
+  input {
+    width: 100%;
+    font-size: 1.15rem;
+    padding-left: 12px;
+    padding-bottom: 12px;
+    padding-top: 4px;
+    color: #6b6b6b;
+    border: 0;
+    height: 44px;
+    background-color: transparent;
+  }
+
+  .search-label {
+    display: block;
+    margin: 0 !important;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding-left: 13px;
+    padding-top: 12px;
+    letter-spacing: 0.8px;
+    opacity: 1;
+    color: #3b3b3b !important;
+  }
+
+  input::placeholder {
+    font-size: 1rem;
+    opacity: 0.8;
+  }
+
+  .search-input-button {
+    cursor: pointer;
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    display: block;
+    border: none;
+    background: white;
+    padding: 10px 6px;
+    font-size: 1.9rem !important;
+  }
+
+  .dropdown-menu {
+    padding: 0.2rem !important;
+    margin: 0 !important;
+    font-size: 1.05rem;
+  }
+
+  .dropdown-menu.show {
+    display: block !important;
+    width: 98% !important;
+  }
+}
+
+.label-cbx {
+  user-select: none;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.label-cbx input:checked + .checkbox {
+  border-color: var(--bs-primary);
+}
+
+.label-cbx input:checked + .checkbox svg path {
+  fill: var(--bs-primary);
+}
+
+.label-cbx input:checked + .checkbox svg polyline {
+  stroke-dashoffset: 0;
+}
+
+.label-cbx:hover .checkbox svg path {
+  stroke-dashoffset: 0;
+}
+
+.label-cbx .checkbox {
+  position: relative;
+  top: 2px;
+  float: left;
+  margin-right: 8px;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #c8ccd4;
+  border-radius: 3px;
+}
+.label-cbx .checkbox svg {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+}
+
+.label-cbx .checkbox svg path {
+  fill: none;
+  stroke: var(--bs-primary);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 71px;
+  stroke-dashoffset: 71px;
+  transition: all 0.6s ease;
+}
+.label-cbx .checkbox svg polyline {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 18px;
+  stroke-dashoffset: 18px;
+  transition: all 0.3s ease;
+}
+.label-cbx > span {
+  pointer-events: none;
+  vertical-align: middle;
+}
+
+.invisible {
+  position: absolute;
+  z-index: -1;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.modal-dialog {
+  max-width: 720px;
+}
+
+.dropdown-item {
+  padding: 0.5rem 0.75rem;
+  border-top: 1px solid #e9ecef;
+}
+
+.custom-dropdown .dropdown-item:last-child {
+  border-radius: 0 0 8px 8px !important;
+}
+.custom-dropdown .dropdown-item:first-child {
+  border-radius: 8px 8px 0 0 !important;
+}
+
+.custom-dropdown {
+  min-width: 100%;
+  width: 100%;
+  padding: 0;
+}
+
+table .custom-dropdown {
+  min-width: 180px;
+}
+
+.dropdown-menu {
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.1);
+  border: none;
+  padding: 0;
+  max-width: 320px;
+  min-width: 100%;
+  background-color: white;
+}
+
+.dropdown-item.active {
+  color: var(--bs-primary);
+  background-color: #d6d6d6;
+}
+
+.custom-dropdown .dropdown-item img {
+  margin-right: 5px;
+}
+
+.custom-dropdown .dropdown-item * {
+  display: inline-block;
+  margin-right: 10px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 150%;
+  vertical-align: middle;
+}
+
+.custom-dropdown .dropdown-item.disabled,
+.custom-dropdown .dropdown-item:disabled,
+.custom-dropdown .dropdown-item[disabled] {
+  color: #777777;
+  pointer-events: none;
+  background-color: #eeeeee;
+}
+
+@media (max-width: 500px) {
+  .search-input {
+    width: 98%;
+    margin: 0.4rem auto;
+  }
+
+  .search-input .ng-fa-icon {
+    top: 5px;
+    right: 10px;
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  select,
+  textarea,
+  input {
+    font-size: 16px !important;
+  }
+}

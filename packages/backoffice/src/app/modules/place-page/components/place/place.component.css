@@ -1,0 +1,83 @@
+/*
+ * Soliguide: Useful information for those who need it
+ *
+ * SPDX-FileCopyrightText: © 2024 Solinum
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+h2:not(.title-section) {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.place-content-overlay {
+  margin-top: -230px !important;
+}
+
+#favoris span {
+  margin: 10px 15px;
+}
+
+#favoris a {
+  text-decoration: none;
+  color: white;
+}
+
+#fiche_menu li a {
+  text-decoration: none;
+  color: white;
+}
+
+#fiche_menu li {
+  display: inline-block;
+  padding: 12px 20px;
+}
+
+#fiche_menu ul {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+#fiche_menu {
+  padding: 5px 0 0 0;
+  text-align: left;
+}
+
+#informations_fiche {
+  min-height: 800px;
+}
+
+.place_name {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.place_name .badge {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.place_description {
+  font-size: 1.1rem;
+  text-align: left;
+  letter-spacing: 0.3px;
+  color: #646464;
+}
+
+.btn-group > .btn {
+  margin-top: -1px;
+}

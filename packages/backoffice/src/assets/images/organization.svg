@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<svg width="32" height="34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M29.58 31.919H2.37V14.912a.68.68 0 10-1.36 0v17.007a1.36 1.36 0 001.36 1.36h27.21a1.36 1.36 0 001.361-1.36V14.912a.68.68 0 00-1.36 0v17.007z" fill="#EA524A"/><path d="M10.797 15.249a1.36 1.36 0 00.449-.865 4.763 4.763 0 017.911-3.028 4.761 4.761 0 011.556 3.026 1.361 1.361 0 001.36 1.21h8.551a1.36 1.36 0 001.265-1.867L26.99 1.481a1.361 1.361 0 00-1.282-.855H6.232a1.36 1.36 0 00-1.264.854L.07 13.726a1.36 1.36 0 001.266 1.866h8.552c.335.001.659-.12.91-.343zm-.876-1.23l-.027.213h-8.56L6.231 1.986h19.496l4.897 12.245h-8.56a6.12 6.12 0 00-10.171-3.888A6.123 6.123 0 009.92 14.02z" fill="#EA524A"/><path d="M18.696 15.592a2.722 2.722 0 00-5.442 0v4.082a1.36 1.36 0 001.36 1.36h2.722a1.36 1.36 0 001.36-1.36v-4.082zm-1.36 0v4.082h-2.721v-4.082a1.36 1.36 0 012.72 0zM14.615 32.599v-4.762a1.36 1.36 0 012.72 0v4.762a.68.68 0 001.361 0v-4.762a2.722 2.722 0 00-5.442 0v4.762a.68.68 0 101.36 0zM21.418 24.436a.68.68 0 01.68-.68h5.442a.68.68 0 01.68.68v4.081a.68.68 0 01-.68.68h-5.442a.68.68 0 01-.68-.68v-4.081zm1.36 3.401h4.082v-2.721h-4.082v2.721zM21.418 17.633a.68.68 0 01.68-.68h5.442a.68.68 0 01.68.68v4.081a.68.68 0 01-.68.68h-5.442a.68.68 0 01-.68-.68v-4.081zm1.36 3.401h4.082v-2.72h-4.082v2.72zM3.73 24.436a.68.68 0 01.68-.68h5.443a.68.68 0 01.68.68v4.081a.68.68 0 01-.68.68H4.41a.68.68 0 01-.68-.68v-4.081zm1.361 3.401h4.082v-2.721H5.09v2.721zM3.73 17.633a.68.68 0 01.68-.68h5.443a.68.68 0 01.68.68v4.081a.68.68 0 01-.68.68H4.41a.68.68 0 01-.68-.68v-4.081zm1.361 3.401h4.082v-2.72H5.09v2.72z" fill="#EA524A"/></svg>

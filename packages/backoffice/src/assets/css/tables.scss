@@ -1,0 +1,258 @@
+.admin_search_bar {
+  width: 100%;
+  padding: 1rem 0.5rem;
+  background: var(--bs-primary);
+}
+
+.admin_search_bar .container {
+  width: 98% !important;
+  max-width: 98% !important;
+}
+
+.admin_search_bar .col-md-3,
+.admin_search_bar .col-md-4 {
+  padding-right: 6px !important;
+  padding-left: 6px !important;
+}
+
+#admin_filters .col {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+label {
+  font-size: 0.98rem;
+  font-weight: 500;
+}
+
+.admin-search-loading {
+  width: 100%;
+  color: white;
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 0.5rem;
+  margin: 0;
+}
+
+.tooltip {
+  z-index: 200000 !important;
+}
+
+.manage-table {
+  white-space: nowrap;
+
+  thead th {
+    position: sticky;
+    top: -2px;
+    z-index: 1;
+    background: #f5f5f5;
+    padding: 0.6rem 0.4rem !important;
+  }
+  th,
+  td {
+    background: white;
+    max-width: 420px !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: break-all;
+    padding: 0.6rem !important;
+    border-right: 1px solid #ccc;
+    transition: all 0.1s ease-in;
+    vertical-align: middle !important;
+    font-size: 0.94rem;
+  }
+  tbody > tr:nth-of-type(n + 2) > td {
+    box-shadow: inset 0 1px 0 0 #ccc;
+  }
+  .sticky-col {
+    position: -webkit-sticky;
+    position: sticky;
+  }
+
+  .first-col {
+    min-width: 60px !important;
+    max-width: 60px !important;
+    width: 60px !important;
+    left: 0 !important;
+    word-wrap: break-word;
+  }
+
+  .first-col:after {
+    content: " ";
+    background: #cccccc;
+    width: 2px;
+    height: 100%;
+    display: block;
+    position: absolute;
+    right: -2px;
+    top: 0;
+  }
+
+  .second-col {
+    max-width: 350px !important;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    left: 60px;
+  }
+
+  td.second-col:after {
+    content: " ";
+    background: #92929236;
+    width: 6px;
+    height: 100%;
+    display: block;
+    position: absolute;
+    right: -2px;
+    top: 0;
+  }
+
+  tbody tr:hover td {
+    background-color: #e6e6e6;
+  }
+
+  th:first-child,
+  td:first-child {
+    text-align: center;
+    font-weight: bold;
+  }
+
+  th:nth-child(-n + 2) {
+    z-index: 100;
+  }
+}
+table ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.table-invitations {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.status-box {
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 220px;
+  max-width: 440px;
+}
+.status.bg-primary {
+  color: white;
+}
+
+.status {
+  border-radius: 4px;
+  padding: 2px 8px;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.status-danger {
+  color: white;
+  background-color: var(--bs-danger);
+}
+
+.status-success {
+  color: white;
+  background-color: var(--bs-success);
+}
+
+.status-pending {
+  color: black;
+  background-color: var(--bs-warning);
+}
+
+.status-secondary {
+  color: white;
+  background-color: var(--bs-secondary);
+}
+
+.status-info {
+  background-color: #e5f5fc;
+  color: #003044;
+}
+
+.status-light {
+  background-color: #f2f5f9;
+  color: #282828;
+}
+
+.status-primary {
+  background-color: var(--bs-primary);
+  color: white;
+}
+
+.status-pro {
+  background-color: #282828;
+  color: white;
+}
+
+.text-green {
+  color: #00a851;
+}
+.text-red {
+  color: #da3849;
+}
+.text-orange {
+  color: #fec02f;
+}
+
+.search-manage-button {
+  font-size: 1.4rem;
+}
+
+.admin_search_bar label,
+.admin_search_bar .form-label {
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  color: white;
+}
+
+.tooltip-inner {
+  background-color: white !important;
+  padding: 0.4rem 1rem !important;
+  color: black !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  max-width: 300px !important;
+  min-width: 100px !important;
+  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.4) !important;
+}
+
+.actions {
+  text-align: center;
+}
+
+.actions .btn {
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+table .form-control {
+  min-width: 200px;
+}
+
+.pagination {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+@media (max-width: 500px) {
+  .manage-table thead th,
+  .manage-table tbody td,
+  .second-col,
+  .sticky-col,
+  .first-col {
+    margin: 0 !important;
+    width: auto !important;
+    min-width: 0px !important;
+    position: static !important;
+  }
+}

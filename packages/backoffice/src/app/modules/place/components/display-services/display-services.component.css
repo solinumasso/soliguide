@@ -1,0 +1,76 @@
+/*
+ * Soliguide: Useful information for those who need it
+ *
+ * SPDX-FileCopyrightText: © 2024 Solinum
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+.service_section {
+  width: 100%;
+  border-radius: 6px;
+  background: #f8f8f8;
+  align-items: stretch;
+  font-size: 1.05rem;
+}
+
+.service-condition {
+  background: rgba(72, 101, 217, 0.02);
+  border: 1px solid rgba(72, 101, 217, 0.1);
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  display: block;
+}
+
+.service-condition-title div:first-child {
+  width: 95%;
+}
+
+.service-condition-title div {
+  display: inline-block;
+  vertical-align: middle;
+}
+.service-condition-title {
+  font-weight: 600;
+}
+
+.service-title .category-icon {
+  font-size: 1.5rem;
+}
+
+.service-title {
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: var(--bs-secondary);
+}
+
+.service-title span {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.service-title .badge {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-align: justify;
+  white-space: pre-wrap;
+}
+
+.specific-field {
+  margin-bottom: 10px; /* Adjust the spacing between specific fields */
+}

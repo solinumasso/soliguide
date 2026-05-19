@@ -1,0 +1,64 @@
+/*
+ * Soliguide: Useful information for those who need it
+ *
+ * SPDX-FileCopyrightText: © 2024 Solinum
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+.nav_categories {
+  width: 100%;
+  padding: 0;
+  margin: 0 auto;
+  margin-top: 20px;
+  background-color: #fbfbfb;
+}
+
+.nav_categories li a {
+  padding: 12px 10px;
+  margin: 0 !important;
+  font-weight: 700;
+  list-style-type: none;
+  cursor: pointer;
+  transition: all 0.1s ease-in;
+  border: 0 solid #fafafa;
+  outline: none;
+  letter-spacing: 0;
+  font-size: 0.98rem;
+  background-color: transparent;
+  border-width: 0 0 3px 0 !important;
+  display: inline-block;
+}
+
+.nav_categories li {
+  display: inline-block;
+}
+
+.smaller-with-languages .nav_categories li {
+  font-size: 0.9rem;
+}
+
+.nav_categories li.active {
+  background-color: white !important;
+  border: 0 solid #e65a46 !important;
+  border-width: 0 0 3px 0 !important;
+  box-shadow: 1px 1px 10px rgba(166, 166, 166, 0.25);
+}
+
+.nav_categories li a:hover,
+.nav_categories li a:focus {
+  text-decoration: none;
+  box-shadow: 1px 1px 10px rgba(166, 181, 144, 0.25);
+}

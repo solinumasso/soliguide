@@ -1,0 +1,108 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<form *ngIf="position" [formGroup]="positionForm" autocomplete="off">
+  <div class="my-2">
+    <div style="height: 300px; width: 100%" *ngIf="showMap">
+      <app-search-map
+        [markers]="marker"
+        [moveOnClick]="true"
+        [mapIndex]="mapIndex"
+        (newCoordinates)="handleNewCoordinates($event)"
+      ></app-search-map>
+    </div>
+  </div>
+  <div class="required my-4">
+    <app-location-autocomplete
+      (clearAddress)="clearAddress()"
+      (updateLocation)="updateLocation($event)"
+      [addressesOnly]="true"
+      [currentAddress]="position.address"
+    ></app-location-autocomplete>
+    <div *ngIf="helpAddress" class="input-description">
+      {{ "ENTER_INFO_MAP" | translate }}
+    </div>
+    <div
+      *ngIf="
+        (f.address.dirty || submitted) &&
+        (f.address.errors || f.address.invalid)
+      "
+      class="invalid-feedback"
+    >
+      <div *ngIf="f.address.errors.required">
+        {{ titleError }}
+      </div>
+      <div
+        *ngIf="f.address.errors.noGoogleMaps"
+        [innerHtml]="'USING_SUGGESTION_TOOL' | translate"
+      ></div>
+      <div
+        *ngIf="f.address.errors.departementSearch"
+        [innerHtml]="
+          'SOLIGUIDE_NOT_ALLOW_YOU_TO_LOCATE_A_PLACE_ON_A_DEPARTEMENT_SCALE'
+            | translate : { brandName: THEME_CONFIGURATION.brandName }
+        "
+      ></div>
+    </div>
+    <div
+      *ngIf="f.address.value && submitted && f.postalCode.errors"
+      class="invalid-feedback"
+    >
+      <p *ngIf="f.postalCode.errors.required">
+        {{ "ADDRESS_ENTERED_APPEARS_INVALID" | translate }}
+      </p>
+      <p *ngIf="f.postalCode.errors.invalidCityCode">
+        {{ "ADDRESS_IS_OUTSIDE_THE_TERRITORIES_YOU_MANAGE" | translate }}
+      </p>
+    </div>
+  </div>
+
+  <div class="my-2">
+    <label class="form-label" for="additionalInformation">{{
+      "ADDITIONAL_ADDRESS" | translate
+    }}</label>
+    <input
+      type="text"
+      class="form-control"
+      id="additionalInformation"
+      formControlName="additionalInformation"
+      (ngModelChange)="setAdditionalInformation($event)"
+      [placeholder]="additionalInformationPlaceholder"
+      autocomplete="off"
+      [ngClass]="{
+        'is-invalid':
+          f.additionalInformation.dirty && f.additionalInformation.errors
+      }"
+    />
+    <div
+      *ngIf="f.additionalInformation.value && submitted"
+      class="invalid-feedback"
+    ></div>
+    <div *ngIf="helpComplementAddresse" class="input-description">
+      <fa-icon
+        [icon]="['fas', 'info-circle']"
+        aria-hidden="true"
+        class="btn-icon"
+      ></fa-icon>
+      {{ "EXAMPLE_ADDITIONAL_ADDRESS" | translate }}
+    </div>
+  </div>
+</form>

@@ -1,0 +1,348 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div *ngIf="currentUserSubject$ | async as me" id="form-menu">
+  <div [ngClass]="{ 'selected-item': step === 'infos' }" class="item">
+    <div class="item-title">
+      <span class="item-number">1</span>
+      <span>
+        <a
+          [routerLink]="[
+            routePrefix +
+              '/admin-place/infos/' +
+              (place.lieu_id !== null && place.lieu_id >= 0
+                ? place.lieu_id
+                : '')
+          ]"
+          routerLinkActive="router-link-active"
+          >{{ "GENERAL_INFORMATION" | translate }}</a
+        ></span
+      >
+    </div>
+    <ul *ngIf="step !== 'infos'"></ul>
+    <ul *ngIf="step === 'infos'">
+      <li>{{ "STRUCTURE_NAME" | translate }}</li>
+      <li>{{ "DESCRIPTION" | translate }}</li>
+      <li>{{ "CONTACT" | translate }}</li>
+    </ul>
+  </div>
+
+  <div [ngClass]="{ 'selected-item': step === 'emplacement' }" class="item">
+    <div class="item-title">
+      <span class="item-number">2</span>
+      <span *ngIf="place.lieu_id !== null && place.stepsDone.infos">
+        <a
+          [routerLink]="[
+            routePrefix,
+            'admin-place',
+            'emplacement',
+            place.lieu_id
+          ]"
+          routerLinkActive="router-link-active"
+          >{{ "LOCATION" | translate }}</a
+        >
+      </span>
+      <span
+        (click)="infoStepNeeded()"
+        *ngIf="place.lieu_id === null || !place.stepsDone.infos"
+        >{{ "LOCATION" | translate }}</span
+      >
+    </div>
+    <ul *ngIf="step !== 'emplacement'"></ul>
+    <ul *ngIf="step === 'emplacement'">
+      <li>{{ "CHOICE" | translate }}</li>
+      <ng-container *ngIf="place.placeType === PlaceType.PLACE">
+        <li>{{ "COMPLETE_ADDRESS" | translate }}</li>
+        <li>{{ "ADDITIONAL_ADDRESS" | translate }}</li>
+      </ng-container>
+      <ng-container *ngIf="place.placeType === PlaceType.ITINERARY">
+        <li>{{ "WAYPOINTS" | translate }}</li>
+      </ng-container>
+    </ul>
+  </div>
+
+  <div
+    *ngIf="placeInOrga"
+    [ngClass]="{ 'selected-item': step === 'contacts' }"
+    class="item"
+  >
+    <div class="item-title">
+      <span class="item-number">3</span>
+      <span *ngIf="place.lieu_id !== null && place.stepsDone.emplacement">
+        <a
+          [routerLink]="[routePrefix, 'admin-place', 'contacts', place.lieu_id]"
+          routerLinkActive="router-link-active"
+          >{{ "BUSINESS_CONTACTS" | translate }}</a
+        >
+      </span>
+      <span
+        (click)="infoStepNeeded()"
+        *ngIf="place.lieu_id === null || !place.stepsDone.emplacement"
+        >{{ "BUSINESS_CONTACTS" | translate }}</span
+      >
+    </div>
+    <ul></ul>
+  </div>
+
+  <div
+    *ngIf="place.placeType === PlaceType.PLACE"
+    [ngClass]="{ 'selected-item': step === 'horaires' }"
+    class="item"
+  >
+    <div class="item-title">
+      <span
+        *ngIf="place.placeType === PlaceType.PLACE && placeInOrga"
+        class="item-number"
+        >4</span
+      >
+      <span
+        *ngIf="place.placeType === PlaceType.PLACE && !placeInOrga"
+        class="item-number"
+        >3</span
+      >
+      <span
+        *ngIf="
+          place.lieu_id !== null && place.stepsDone.emplacement;
+          else elseHoraires
+        "
+      >
+        <a
+          [routerLink]="[routePrefix, 'admin-place', 'horaires', place.lieu_id]"
+          routerLinkActive="router-link-active"
+          >{{ "OPENING_HOURS" | translate }}</a
+        >
+      </span>
+      <ng-template #elseHoraires>
+        <span (click)="infoStepNeeded()">{{
+          "OPENING_HOURS" | translate
+        }}</span>
+      </ng-template>
+    </div>
+    <ul></ul>
+  </div>
+
+  <div [ngClass]="{ 'selected-item': step === 'publics' }" class="item">
+    <div class="item-title">
+      <span
+        *ngIf="place.placeType === PlaceType.PLACE && placeInOrga"
+        class="item-number"
+        >5</span
+      >
+      <span
+        *ngIf="place.placeType === PlaceType.PLACE && !placeInOrga"
+        class="item-number"
+        >4</span
+      >
+      <span
+        *ngIf="place.placeType === PlaceType.ITINERARY && placeInOrga"
+        class="item-number"
+        >3</span
+      >
+      <span
+        *ngIf="place.placeType === PlaceType.ITINERARY && !placeInOrga"
+        class="item-number"
+        >2</span
+      >
+
+      <span
+        *ngIf="
+          place.lieu_id !== null &&
+            ((place.placeType === PlaceType.PLACE &&
+              place.stepsDone.horaires) ||
+              (place.placeType === PlaceType.ITINERARY &&
+                ((placeInOrga && place.stepsDone.contacts) ||
+                  (!placeInOrga && place.stepsDone.emplacement))));
+          else elsePublics
+        "
+      >
+        <a
+          [routerLink]="[routePrefix, 'admin-place', 'public', place.lieu_id]"
+          routerLinkActive="router-link-active"
+          >{{ "WELCOMED_PUBLIC" | translate }}</a
+        >
+      </span>
+      <ng-template #elsePublics>
+        <span (click)="infoStepNeeded()">{{
+          "WELCOMED_PUBLIC" | translate
+        }}</span>
+      </ng-template>
+    </div>
+    <ul *ngIf="step !== 'publics'"></ul>
+    <ul *ngIf="step === 'publics'">
+      <li>{{ "PUBLIC_TYPE" | translate }}</li>
+      <li>{{ "SPOKEN_LANGUAGES" | translate }}</li>
+    </ul>
+  </div>
+
+  <div [ngClass]="{ 'selected-item': step === 'modalities' }" class="item">
+    <div class="item-title">
+      <span
+        *ngIf="place.placeType === PlaceType.PLACE && placeInOrga"
+        class="item-number"
+        >6</span
+      >
+      <span
+        *ngIf="place.placeType === PlaceType.PLACE && !placeInOrga"
+        class="item-number"
+        >5</span
+      >
+      <span
+        *ngIf="place.placeType === PlaceType.ITINERARY && placeInOrga"
+        class="item-number"
+        >4</span
+      >
+      <span
+        *ngIf="place.placeType === PlaceType.ITINERARY && !placeInOrga"
+        class="item-number"
+        >3</span
+      >
+      <span *ngIf="place.lieu_id !== null && place.stepsDone.publics">
+        <a
+          [routerLink]="[
+            routePrefix,
+            'admin-place',
+            'condition',
+            place.lieu_id
+          ]"
+          routerLinkActive="router-link-active"
+          >{{ "ACCESS_CONDITIONS" | translate }}</a
+        >
+      </span>
+      <span
+        (click)="infoStepNeeded()"
+        *ngIf="place.lieu_id === null || !place.stepsDone.publics"
+        >{{ "ACCESS_CONDITIONS" | translate }}
+      </span>
+    </div>
+    <ul></ul>
+  </div>
+
+  <div [ngClass]="{ 'selected-item': step === 'services' }" class="item">
+    <div class="item-title">
+      <span
+        *ngIf="place.placeType === PlaceType.PLACE && placeInOrga"
+        class="item-number"
+        >7</span
+      >
+      <span
+        *ngIf="place.placeType === PlaceType.PLACE && !placeInOrga"
+        class="item-number"
+        >6</span
+      >
+      <span
+        *ngIf="place.placeType === PlaceType.ITINERARY && placeInOrga"
+        class="item-number"
+        >5</span
+      >
+      <span
+        *ngIf="place.placeType === PlaceType.ITINERARY && !placeInOrga"
+        class="item-number"
+        >4</span
+      >
+      <span *ngIf="place.lieu_id !== null && place.stepsDone.conditions">
+        <a
+          [routerLink]="[routePrefix, 'admin-place', 'services', place.lieu_id]"
+          routerLinkActive="router-link-active"
+          >{{ "SERVICES_OFFERED" | translate }}</a
+        >
+      </span>
+      <span
+        (click)="infoStepNeeded()"
+        *ngIf="place.lieu_id === null || !place.stepsDone.conditions"
+        >{{ "SERVICES_OFFERED" | translate }}</span
+      >
+    </div>
+    <ul></ul>
+  </div>
+
+  <div
+    *ngIf="place.placeType === PlaceType.PLACE"
+    [ngClass]="{ 'selected-item': step === 'photos' }"
+    class="item"
+  >
+    <div class="item-title">
+      <span *ngIf="placeInOrga" class="item-number">8</span>
+      <span *ngIf="!placeInOrga" class="item-number">7</span>
+      <span
+        *ngIf="
+          place.lieu_id !== null && place.stepsDone.services;
+          else elsePhotos
+        "
+      >
+        <a
+          [routerLink]="[routePrefix, 'admin-place', 'photos', place.lieu_id]"
+          routerLinkActive="router-link-active"
+          >{{ "PICTURES" | translate }}</a
+        >
+      </span>
+      <ng-template #elsePhotos>
+        <span (click)="infoStepNeeded()">{{ "PICTURES" | translate }}</span>
+      </ng-template>
+    </div>
+  </div>
+</div>
+<br />
+
+<div
+  *ngIf="
+    place.stepsDone.infos &&
+    place.stepsDone.emplacement &&
+    ((placeInOrga && place.stepsDone.contacts) ||
+      (!placeInOrga && !place.stepsDone.contacts)) &&
+    ((place.placeType === PlaceType.PLACE && place.stepsDone.photos) ||
+      (place.placeType === PlaceType.ITINERARY && !place.stepsDone.photos)) &&
+    place.stepsDone.publics &&
+    place.stepsDone.conditions &&
+    place.stepsDone.services &&
+    place.stepsDone.photos &&
+    place.lieu_id !== null
+  "
+>
+  <a
+    [routerLink]="[routePrefix, 'manage-place', place.lieu_id]"
+    routerLinkActive="router-link-active"
+    class="btn btn-primary"
+  >
+    {{ "BACK_TO_PAGE" | translate }}
+  </a>
+</div>
+
+<ng-container *ngIf="isChatEnabled && currentUserSubject$ | async as me">
+  <div *ngIf="me?.status !== 'ADMIN_SOLIGUIDE'" id="contact-menu" class="mt-4">
+    <div class="row">
+      <div class="col-4 m-0 ps-0">
+        <div class="form-menu-contact svg-form"></div>
+      </div>
+      <div class="col-8 mx-0 my-3 ps-0">
+        <div class="text-primary">
+          {{ "DIFFICULTY_CREATING_PAGE" | translate }}
+        </div>
+        <div class="my-2">
+          {{ "TEAM_HERE_TO_HELP" | translate }}
+        </div>
+        <div>
+          <button (click)="openChat()" class="btn btn-primary" type="button">
+            {{ "CONTACT_US" | translate }} !
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

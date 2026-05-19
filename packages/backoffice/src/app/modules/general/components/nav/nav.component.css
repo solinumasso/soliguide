@@ -1,0 +1,97 @@
+/*
+ * Soliguide: Useful information for those who need it
+ *
+ * SPDX-FileCopyrightText: © 2024 Solinum
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+.navbar {
+  font-size: 1.15rem;
+  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  z-index: 1049; /* Moins que le overlay des modals */
+}
+
+.navbar-brand img {
+  max-height: 45px;
+  max-width: 180px;
+  margin: 0;
+  width: auto;
+}
+
+.nav-item > a {
+  border-radius: 0.25rem;
+  width: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0.6rem 0.7rem;
+  min-height: 42px;
+}
+
+.custom-dropdown .dropdown-item * {
+  vertical-align: text-bottom !important;
+  margin-right: 0;
+  font-style: normal;
+}
+
+.dropdown-menu {
+  max-width: 500px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: var(--bs-primary);
+}
+
+.custom-dropdown:has(.router-link-active) .dropdown-toggle,
+.router-link-active {
+  color: var(--bs-secondary) !important;
+  font-weight: 600 !important;
+}
+
+.dropdown-toggle {
+  border: none;
+  font-weight: normal;
+  color: var(--bs-primary);
+  margin: 0 0.2rem;
+}
+
+.button-language {
+  height: 40px;
+  padding: 8px;
+  gap: var(--spacing-sm, 8px);
+  border-radius: var(--radius-sm, 5px);
+}
+
+.dropdown-item {
+  padding: 0.75rem 1.2rem !important;
+  border: none;
+  font-size: 1.05rem;
+}
+
+@media (max-width: 992px) {
+  .navbar-brand img {
+    max-width: 140px;
+  }
+
+  .v-divider {
+    height: 5px;
+  }
+
+  .navbar-brand {
+    margin-right: 0;
+  }
+}

@@ -1,0 +1,414 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div
+  @fadeInOut
+  #structure
+  id="structure-{{ place.lieu_id }}"
+  class="place_result card mb-5"
+  [ngClass]="{
+    draft: place.status === PlaceStatus.DRAFT,
+    offline: place.status === PlaceStatus.OFFLINE
+  }"
+>
+  <a
+    [routerLink]="[routePrefix, 'fiche', place.seo_url]"
+    [attr.target]="isInSoligare ? '_blank' : null"
+    (click)="captureEvent('click-place-title', {place, placeIndex })"
+  >
+    <div
+      [class.open-card-header]="
+        place.status !== PlaceStatus.PERMANENTLY_CLOSED &&
+        place.status !== PlaceStatus.DRAFT
+      "
+      class="card-header p-4 bg-gradient search-card-header"
+    >
+      <div class="d-flex">
+        <div class="p-2 flex flex-column">
+          <span
+            class="item_number py-2 px-3 me-1"
+            [ngClass]="{
+              'permanently-closed':
+                place.status === PlaceStatus.PERMANENTLY_CLOSED
+            }"
+          >
+            {{ placeIndex + 1 }}
+          </span>
+        </div>
+
+        <div class="d-flex flex-column justify-content-center">
+          <div class="d-flex align-items-center">
+            <div class="d-flex flex-column">
+              <div class="place_result_name">
+                <div
+                  class="place_result_title pb-1"
+                  id="top-link-{{ place.lieu_id }}"
+                  [ngClass]="{
+                    'permanently-closed':
+                      place.status === PlaceStatus.PERMANENTLY_CLOSED,
+                    'draft-title': place.status === PlaceStatus.DRAFT
+                  }"
+                >
+                  {{ place.name }}
+                </div>
+              </div>
+
+              <div
+                class="d-flex align-items-center place_result_address"
+                [ngClass]="{
+                  'permanently-closed':
+                    place.status === PlaceStatus.PERMANENTLY_CLOSED,
+                  'draft-title': place.status === PlaceStatus.DRAFT
+                }"
+              >
+                <ng-container
+                  *ngIf="
+                    place.modalities.orientation.checked === true;
+                    else address
+                  "
+                >
+                  {{
+                    place.placeType === PlaceType.PLACE
+                      ? place.position.codePostalPlusVille
+                      : place.parcours[0].position.codePostalPlusVille
+                  }}
+                </ng-container>
+                <ng-template #address>
+                  <ng-container
+                    *ngIf="place.placeType === PlaceType.PLACE"
+                    class="bs-2"
+                  >
+                    {{ place.position.address }}
+                    <span *ngIf="place.position.additionalInformation">
+                      - {{ place.position.additionalInformation }}</span
+                    >
+                  </ng-container>
+                  <ng-container *ngIf="place.placeType === PlaceType.ITINERARY">
+                    {{ place.parcours[0].position.address }}
+                    <span
+                      *ngIf="place.parcours[0].position.additionalInformation"
+                      >-
+                      {{
+                        place.parcours[0].position.additionalInformation
+                      }}</span
+                    >
+                  </ng-container>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-3" *ngIf="!isInSoligare">
+        <div
+          *ngIf="place.openingTagStatus === PlaceOpeningStatus.OPEN"
+          class="alert alert-custom alert-open ms-3"
+        >
+          <div class="d-flex align-items-center">
+            <div class="status-dot green me-2"></div>
+            {{ "SEARCH_FILTER_OPEN_TODAY" | translate }}
+          </div>
+        </div>
+
+        <div
+          class="alert alert-custom alert-danger ms-3"
+          *ngIf="place.openingTagStatus === PlaceOpeningStatus.CLOSED"
+        >
+          <div>
+            {{ "SEARCH_FILTER_CLOSED_TODAY" | translate }}
+          </div>
+        </div>
+
+        <div
+          class="alert alert-custom alert-danger ms-3"
+          *ngIf="
+            place.openingTagStatus === PlaceOpeningStatus.TEMPORARILY_CLOSED
+          "
+        >
+          <div>
+            {{ "TEMPORARILY_CLOSED" | translate }}
+          </div>
+        </div>
+
+        <div
+          class="alert alert-custom alert-warning ms-3"
+          *ngIf="
+            place.openingTagStatus === PlaceOpeningStatus.UNKNOWN &&
+            place.status !== PlaceStatus.DRAFT
+          "
+        >
+          <div>
+            {{ "TIME_UNKNOWN" | translate }}
+          </div>
+        </div>
+
+        <div
+          class="alert alert-custom alert-open ms-3"
+          *ngIf="place.openingTagStatus === PlaceOpeningStatus.PARTIALLY_OPEN"
+        >
+          <div>{{ "PARTIALLY_OPEN" | translate }}</div>
+        </div>
+
+        <div>
+          <ng-container>
+            <span
+              *ngIf="place.status === PlaceStatus.DRAFT"
+              class="alert alert-custom alert-warning ms-3 mt-2"
+            >
+              {{ "DRAFT" | translate }}
+            </span>
+            <span
+              *ngIf="place.status === PlaceStatus.OFFLINE"
+              class="alert alert-custom alert-danger ms-3 mt-2"
+            >
+              {{ "OFFLINE" | translate }}
+            </span>
+            <span
+              *ngIf="place.visibility === PlaceVisibility.PRO"
+              class="alert-custom bg-info ms-3 mt-2"
+            >
+              {{ "PLACE_VISIBILITY_PRO" | translate }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div
+          *ngIf="
+            search.location.geoType === GeoTypes.POSITION &&
+            place.status !== PlaceStatus.PERMANENTLY_CLOSED &&
+            place.status !== PlaceStatus.DRAFT &&
+            place.distance > 0
+          "
+          class="place_result_distance me-2 ms-auto"
+        >
+          <fa-icon
+            [icon]="['fas', 'map-marker-alt']"
+            aria-hidden="true"
+            class="distance_icon"
+          ></fa-icon>
+          {{ place.distance | kmToMeters }}
+        </div>
+      </div>
+    </div>
+  </a>
+  <div class="place_result_temp_infos">
+    <div
+      class="row"
+      [ngClass]="{
+        'px-4 pt-4':
+          place.tempInfos.closure.actif ||
+          place.tempInfos.message.actif === true ||
+          (place.modalities.orientation &&
+            place.modalities.orientation.checked === true) ||
+          place.status === PlaceStatus.PERMANENTLY_CLOSED
+      }"
+    >
+      <div class="col-md-12">
+        <app-display-holidays [place]="place"></app-display-holidays>
+
+        <!-- TEMPORARY CLOSURE -->
+
+        <app-display-temp-banner
+          *ngIf="place.tempInfos.closure.actif"
+          [tempInfoType]="TempInfoType.CLOSURE"
+          [tempInfos]="place.tempInfos.closure"
+        ></app-display-temp-banner>
+
+        <app-display-temp-banner
+          *ngIf="place.tempInfos.message.actif"
+          [tempInfoType]="TempInfoType.MESSAGE"
+          [tempInfos]="place.tempInfos.message"
+        ></app-display-temp-banner>
+
+        <div
+          class="alert alert-warning"
+          *ngIf="
+            place.modalities.orientation &&
+            place.modalities.orientation?.checked === true &&
+            !isInSoligare
+          "
+        >
+          <b class="alert-link">{{ "ORIENTATION_SEARCH" | translate }}</b>
+          {{ "ORIENTATION_SEARCH_MESSAGE" | translate }}
+        </div>
+
+        <div
+          *ngIf="place.status === PlaceStatus.PERMANENTLY_CLOSED"
+          class="alert alert-danger"
+          role="alert"
+        >
+          <fa-icon
+            [icon]="['fas', 'exclamation-triangle']"
+            aria-hidden="true"
+          ></fa-icon>
+          {{ "PERMANENTLY_CLOSED" | translate }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row p-4">
+    <div
+      [ngClass]="{
+        'col-md-12': place.status === PlaceStatus.PERMANENTLY_CLOSED,
+        'col-md-6': place.status !== PlaceStatus.PERMANENTLY_CLOSED
+      }"
+    >
+      <div class="description-title fw-bold">
+        {{ "DESCRIPTION" | translate }}
+      </div>
+      <div class="place_result_description py-3">
+        {{ place.descriptionExtract | htmlToText | limitTo : "310" }}
+        <a
+          [routerLink]="[routePrefix, 'fiche', place.seo_url]"
+          title="{{ 'SEE_THE_PAGE' | translate }} {{ place.name }}"
+          (click)="captureEvent('click-more-info-button', { place, placeIndex })"
+          [target]="isInSoligare ? '_blank' : null"
+        >
+          {{ "SEE_THE_DETAILS" | translate }}
+        </a>
+      </div>
+    </div>
+    <div
+      class="col-md-6"
+      *ngIf="place.status !== PlaceStatus.PERMANENTLY_CLOSED"
+    >
+      <div class="service-title fw-bold mb-3">
+        {{ "SERVICES" | translate }}
+      </div>
+      <div class="place_result_services row">
+        <div class="col-md-6 mb-1" *ngFor="let service of place.services_all">
+          <div class="d-flex align-items-center">
+            <div class="pt-2 pb-3">
+              <div
+                [class]="
+                  'category-icon category-icon-' +
+                  service.category +
+                  '_outlined'
+                "
+              ></div>
+            </div>
+            <div class="ms-2">
+              {{ service.category | categoryTranslateKey | translate }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex flex-wrap align-items-center mt-4 gap-2">
+      <ng-container *ngIf="place.sources">
+        <app-display-sources [sources]="place.sources"></app-display-sources>
+      </ng-container>
+      <div class="d-flex ms-auto">
+        <ng-container *ngIf="isInSoligare">
+          <button
+            *ngIf="isInSoligare"
+            type="button"
+            class="btn btn-secondary"
+            (click)="pairPlaces(place)"
+          >
+            {{ "YES_PAIR" | translate }}
+          </button>
+        </ng-container>
+
+        <ng-container
+          *ngIf="
+            place.status !== PlaceStatus.PERMANENTLY_CLOSED && !isInSoligare
+          "
+        >
+          <ng-container
+            *ngIf="
+              place.entity.phones && place.entity.phones.length > 1;
+              else singlePhoneNumber
+            "
+            class="phone-buttons"
+          >
+            <div ngbDropdown>
+              <button
+                type="button"
+                class="btn-outline-primary fw-normal"
+                id="phoneDropdown"
+                ngbDropdownToggle
+                (click)="captureEvent('click-phone-number', { place, placeIndex })"
+              >
+                <fa-icon
+                  [icon]="['fas', 'phone']"
+                  aria-hidden="true"
+                  class="me-2 phone-dropdown"
+                ></fa-icon>
+                {{ "SHOW_PHONE_NUMBERS" | translate }}
+              </button>
+
+              <div ngbDropdownMenu aria-labelledby="phoneDropdown">
+                <a
+                  *ngFor="
+                    let phone of place.entity.phones;
+                    let phoneIndex = index
+                  "
+                  href="tel:{{ phone | formatInternationalPhoneNumber }}"
+                  class="dropdown-item search-display-phone-number"
+                >
+                  <span
+                    ><span *ngIf="phone.label"> {{ phone.label }}: </span
+                    >{{ phone | formatInternationalPhoneNumber }}</span
+                  >
+                </a>
+              </div>
+            </div>
+          </ng-container>
+          <ng-template #singlePhoneNumber>
+            <a
+              *ngFor="let phone of place.entity.phones; let phoneIndex = index"
+              href="tel:{{ phone.phoneNumber }}"
+              class="btn btn-outline-primary search-display-phone-number"
+              (click)="togglePhoneNumber(phoneIndex)"
+            >
+              <fa-icon
+                [icon]="['fas', 'phone']"
+                aria-hidden="true"
+                class="me-2"
+              ></fa-icon>
+              <span
+                (click)="captureEvent('click-phone-number', { place, placeIndex })"
+                ><ng-container *ngIf="isPhoneNumberVisible[phoneIndex]">
+                  {{ phone.label ? " (" + phone.label + ")" : "" }}
+                  {{ phone | formatInternationalPhoneNumber }}
+                </ng-container>
+                <ng-container *ngIf="!isPhoneNumberVisible[phoneIndex]">
+                  {{ "SHOW_PHONE_NUMBER" | translate }}
+                </ng-container>
+              </span>
+            </a>
+          </ng-template>
+        </ng-container>
+        <a
+          *ngIf="!isInSoligare"
+          [routerLink]="[routePrefix, 'fiche', place.seo_url]"
+          title="{{ 'SEE_THE_PAGE' | translate }} {{ place.name }}"
+          class="btn btn-secondary ms-2 search-more-info"
+          (click)="captureEvent('click-more-info-button', { place, placeIndex })"
+        >
+          {{ "SEE_THE_DETAILS" | translate }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

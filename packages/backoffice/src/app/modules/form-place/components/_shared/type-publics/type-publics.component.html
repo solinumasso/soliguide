@@ -1,0 +1,508 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div *ngIf="publics">
+  <div class="row d-block d-md-flex my-2">
+    <div class="col mb-2 mb-md-0">
+      <div
+        tabindex="0"
+        (click)="setDefaultPublics()"
+        (keyup.enter)="setDefaultPublics()"
+        [ngClass]="{
+          'public-selector': publics.accueil !== WelcomedPublics.UNCONDITIONAL,
+          'public-selector-selected':
+            publics.accueil === WelcomedPublics.UNCONDITIONAL
+        }"
+        class="p-3"
+      >
+        <div class="svg-form inconditionnel"></div>
+        <div class="fw-bold my-1 title text-primary">
+          {{ "PUBLICS_WELCOME_UNCONDITIONAL" | translate }}
+        </div>
+        <div class="my-1">
+          {{ "OPEN_TO_ALL_WITHOUT_CONDITIONS" | translate }}
+        </div>
+        <div class="mt-3">
+          <button
+            type="button"
+            aria-checked="true"
+            *ngIf="publics.accueil === WelcomedPublics.UNCONDITIONAL"
+            class="btn"
+            disabled
+          >
+            <span class="visually-hidden">{{ "SELECTED" | translate }}</span>
+            <fa-icon [icon]="['fas', 'check']" aria-hidden="true"></fa-icon>
+          </button>
+          <button
+            type="button"
+            aria-checked="false"
+            *ngIf="publics.accueil !== WelcomedPublics.UNCONDITIONAL"
+            class="btn btn-primary"
+          >
+            {{ "CHOOSE" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-2 mb-md-0">
+      <div
+        tabindex="0"
+        (click)="setPreferential(WelcomedPublics.PREFERENTIAL)"
+        (keyup.enter)="setPreferential(WelcomedPublics.PREFERENTIAL)"
+        [ngClass]="{
+          'public-selector': publics.accueil !== WelcomedPublics.PREFERENTIAL,
+          'public-selector-selected':
+            publics.accueil === WelcomedPublics.PREFERENTIAL,
+          'is-invalid':
+            publics.accueil === WelcomedPublics.PREFERENTIAL &&
+            typeError.includes('NO_PUBLICS_VARIATION')
+        }"
+        class="p-3"
+      >
+        <div class="svg-form preferentiel"></div>
+        <div class="fw-bold my-1 title text-primary">
+          {{ "UNCONDITIONAL_RECEPTION_ADAPTED_TO_CERTAIN_GROUPS" | translate }}
+        </div>
+        <div class="my-1">
+          {{ "TARGETING_ONE_TYPE_AUDIENCE_BUT_OPEN_TO_EVERYONE" | translate }}
+        </div>
+        <div class="mt-3">
+          <button
+            type="button"
+            aria-checked="true"
+            *ngIf="publics.accueil === WelcomedPublics.PREFERENTIAL"
+            class="btn"
+            disabled
+          >
+            <span class="visually-hidden">{{ "SELECTED" | translate }}</span>
+            <fa-icon [icon]="['fas', 'check']" aria-hidden="true"></fa-icon>
+          </button>
+          <button
+            type="button"
+            aria-checked="false"
+            *ngIf="publics.accueil !== WelcomedPublics.PREFERENTIAL"
+            class="btn btn-primary"
+          >
+            {{ "CHOOSE" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-2 mb-md-0">
+      <div
+        tabindex="0"
+        (click)="setPreferential(WelcomedPublics.EXCLUSIVE)"
+        (keyup.enter)="setPreferential(WelcomedPublics.EXCLUSIVE)"
+        [ngClass]="{
+          'public-selector': publics.accueil !== WelcomedPublics.EXCLUSIVE,
+          'public-selector-selected':
+            publics.accueil === WelcomedPublics.EXCLUSIVE
+        }"
+        class="p-3"
+      >
+        <div class="svg-form exclusif"></div>
+        <div class="fw-bold my-1 title text-primary">
+          {{ "PUBLICS_WELCOME_EXCLUSIVE" | translate }}
+        </div>
+        <div class="my-1">{{ "SPECIFIC_WELCOMED_PUBLIC" | translate }}</div>
+
+        <div class="mt-3">
+          <button
+            type="button"
+            aria-checked="true"
+            *ngIf="publics.accueil === WelcomedPublics.EXCLUSIVE"
+            class="btn"
+            disabled
+          >
+            <span class="visually-hidden">{{ "SELECTED" | translate }}</span>
+            <fa-icon [icon]="['fas', 'check']" aria-hidden="true"></fa-icon>
+          </button>
+          <button
+            type="button"
+            aria-checked="false"
+            *ngIf="publics.accueil !== WelcomedPublics.EXCLUSIVE"
+            class="btn btn-primary"
+          >
+            {{ "CHOOSE" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="invalid-feedback d-block col-12">
+      <div *ngIf="typeError.includes('NO_PUBLICS_VARIATION')" class="mt-3">
+        {{ "NOT_ENTERED_ANY_SPECIAL_FEATURES" | translate }}
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="row my-2"
+    *ngIf="publics.accueil !== WelcomedPublics.UNCONDITIONAL"
+  >
+    <div class="my-3 col-md-6 col-12">
+      <div class="label">{{ "GENDER" | translate }}</div>
+      <div
+        class="custom-dropdown"
+        placement="bottom"
+        autoClose="outside"
+        ngbDropdown
+      >
+        <button ngbDropdownToggle type="button">
+          <span class="text-truncate">
+            {{ getStringToDisplay(PublicsElement.GENDER) | ucFirst }}</span
+          >
+        </button>
+
+        <div ngbDropdownMenu>
+          <button
+            ngbDropdownItem
+            type="button"
+            (click)="selectAll(PublicsElement.GENDER)"
+          >
+            <input
+              type="checkbox"
+              [checked]="
+                publics.gender.length === ALL_PUBLICS.gender.length - 1
+              "
+            />
+
+            <span>{{ ALL_PUBLICS.gender[0].name | translate | ucFirst }}</span>
+          </button>
+
+          <div>
+            <ng-container *ngFor="let gender of ALL_PUBLICS.gender">
+              <button
+                type="button"
+                *ngIf="gender.value !== 'all'"
+                (click)="
+                  toggleCheckboxButton(PublicsElement.GENDER, gender.value)
+                "
+                ngbDropdownItem
+              >
+                <input
+                  [checked]="publics.gender.includes(gender.value)"
+                  type="checkbox"
+                />
+                <span>{{ gender.name | translate | ucFirst }}</span>
+              </button>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="invalid-feedback d-block col-12 mt-3">
+        <div *ngIf="typeError.includes('NO_PUBLICS_SELECTED_GENDER')">
+          {{ "NOT_SPECIFIED_THE_GENDER" | translate }}
+        </div>
+      </div>
+    </div>
+    <div class="my-3 col-md-6 col-12">
+      <div class="label">{{ "ADMINISTRATIVE_SITUATION" | translate }}</div>
+      <div
+        class="custom-dropdown"
+        placement="bottom"
+        autoClose="outside"
+        ngbDropdown
+      >
+        <button ngbDropdownToggle type="button">
+          <span class="text-truncate">
+            {{
+              getStringToDisplay(PublicsElement.ADMINISTRATIVE) | ucFirst
+            }}</span
+          >
+        </button>
+
+        <div ngbDropdownMenu>
+          <button
+            type="button"
+            ngbDropdownItem
+            (click)="selectAll(PublicsElement.ADMINISTRATIVE)"
+          >
+            <input
+              type="checkbox"
+              [checked]="
+                publics.administrative.length ===
+                ALL_PUBLICS.administrative.length - 1
+              "
+            />
+            <span>{{
+              ALL_PUBLICS.administrative[0].name | translate | ucFirst
+            }}</span>
+          </button>
+
+          <div>
+            <ng-container
+              *ngFor="let administrative of ALL_PUBLICS.administrative"
+            >
+              <button
+                type="button"
+                *ngIf="administrative.value !== 'all'"
+                (click)="
+                  toggleCheckboxButton(
+                    PublicsElement.ADMINISTRATIVE,
+                    administrative.value
+                  )
+                "
+                ngbDropdownItem
+              >
+                <input
+                  [checked]="
+                    publics.administrative.includes(administrative.value)
+                  "
+                  type="checkbox"
+                />
+                <span>{{ administrative.name | translate | ucFirst }}</span>
+              </button>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="invalid-feedback d-block col-12 mt-3">
+        <div *ngIf="typeError.includes('NO_PUBLICS_SELECTED_ADMINISTRATIVE')">
+          {{
+            "NOT_PROVIDED_ANY_INFORMATION_ONE_THE_ADMINISTRATIVE" | translate
+          }}
+        </div>
+      </div>
+    </div>
+
+    <div class="my-2 col-md-6 col-12">
+      <div class="label">{{ "FAMILY_SITUATION" | translate }}</div>
+      <div
+        class="custom-dropdown"
+        placement="bottom"
+        autoClose="outside"
+        ngbDropdown
+      >
+        <button ngbDropdownToggle type="button">
+          <span class="text-truncate">
+            {{ getStringToDisplay(PublicsElement.FAMILY) | ucFirst }}</span
+          >
+        </button>
+
+        <div ngbDropdownMenu>
+          <button
+            ngbDropdownItem
+            type="button"
+            (click)="selectAll(PublicsElement.FAMILY)"
+          >
+            <input
+              type="checkbox"
+              [checked]="
+                publics.familialle.length === ALL_PUBLICS.familialle.length - 1
+              "
+            />
+            <span>{{
+              ALL_PUBLICS.familialle[0].name | translate | ucFirst
+            }}</span>
+          </button>
+
+          <div>
+            <ng-container *ngFor="let family of ALL_PUBLICS.familialle">
+              <button
+                type="button"
+                *ngIf="family.value !== 'all'"
+                (click)="
+                  toggleCheckboxButton(PublicsElement.FAMILY, family.value)
+                "
+                ngbDropdownItem
+              >
+                <input
+                  [checked]="publics.familialle.includes(family.value)"
+                  type="checkbox"
+                />
+                <span>{{ family.name | translate | ucFirst }}</span>
+              </button>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="invalid-feedback d-block col-12 mt-3">
+        <div *ngIf="typeError.includes('NO_PUBLICS_SELECTED_FAMILY')">
+          {{
+            "NOT_PROVIDED_ANY_SPECIFIC_INFORMATION_ONE_THE_FAMILY_SITUATION_OF_AUDIENCE"
+              | translate
+          }}
+        </div>
+      </div>
+    </div>
+
+    <div class="my-2 col-md-6 col-12">
+      <div class="label">{{ "SPECIFIC_PUBLICS" | translate }}</div>
+      <div
+        class="custom-dropdown"
+        placement="bottom"
+        autoClose="outside"
+        ngbDropdown
+      >
+        <button ngbDropdownToggle type="button">
+          <span class="text-truncate">
+            {{ getStringToDisplay(PublicsElement.OTHER) | ucFirst }}</span
+          >
+        </button>
+
+        <div ngbDropdownMenu>
+          <button
+            ngbDropdownItem
+            type="button"
+            (click)="selectAll(PublicsElement.OTHER)"
+          >
+            <input
+              type="checkbox"
+              [checked]="publics.other.length === ALL_PUBLICS.other.length - 1"
+            />
+            <span>{{ ALL_PUBLICS.other[0].name | translate | ucFirst }}</span>
+          </button>
+          <div>
+            <ng-container *ngFor="let other of ALL_PUBLICS.other">
+              <button
+                type="button"
+                *ngIf="other.value !== 'all'"
+                (click)="
+                  toggleCheckboxButton(PublicsElement.OTHER, other.value)
+                "
+                ngbDropdownItem
+              >
+                <input
+                  [checked]="publics.other.includes(other.value)"
+                  type="checkbox"
+                />
+                <span>{{ other.name | translate | ucFirst }}</span>
+              </button>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="publics.accueil !== WelcomedPublics.UNCONDITIONAL">
+    <div class="my-2 col-12">
+      <div class="form-switch form-switch-danger age-custom">
+        <input
+          name="showAge"
+          [(ngModel)]="publics.showAge"
+          (ngModelChange)="resetAge(publics.showAge)"
+          type="checkbox"
+          class="form-check-input"
+          id="ageSwitch-{{ index }}"
+        />
+        <label
+          class="form-check-label age-label label"
+          for="ageSwitch-{{ index }}"
+        >
+          <span class="age-span">{{ "BY_AGE" | translate }}</span>
+        </label>
+      </div>
+    </div>
+    <div *ngIf="publics.showAge" class="mb-2 age-form col-12">
+      <div class="d-flex align-items-center justify-content-">
+        <label class="p-0" for="ageMin">{{ "MINIMUN" | translate }} :</label>
+
+        <input
+          id="ageMin"
+          name="ageMin"
+          [(ngModel)]="publics.age.min"
+          type="number"
+          class="form-control d-inline-flex"
+          min="0"
+          [max]="publics.age.max"
+          maxlength="2"
+          required
+          #ageMin="ngModel"
+          [ngClass]="{
+            'is-invalid':
+              (ageMin.touched || ageMin.dirty) &&
+              publics.age.min > publics.age.max
+          }"
+        />
+        <span>{{ "YEARS" | translate }}</span>
+        <div class="px-5"></div>
+        <label class="p-0" for="ageMax">{{ "MAXIMUM" | translate }} :</label>
+
+        <input
+          id="ageMax"
+          name="ageMax"
+          [(ngModel)]="publics.age.max"
+          type="number"
+          [min]="publics.age.min"
+          max="99"
+          maxlength="2"
+          required
+          class="form-control d-inline-flex"
+          #ageMax="ngModel"
+          [ngClass]="{
+            'is-invalid':
+              (ageMax.touched || ageMax.dirty) &&
+              publics.age.min > publics.age.max
+          }"
+        />
+        {{ "YEARS" | translate }}
+      </div>
+    </div>
+
+    <p
+      *ngIf="
+        publics.showAge &&
+        publics.age.min > publics.age.max &&
+        publics.age.max !== null
+      "
+      class="invalid-feedback d-block col-12"
+    >
+      {{ "MINIMUN_AGE_CANNOT_EXCEED_THE_MAXIMUM_AGE" | translate }}
+    </p>
+
+    <p
+      *ngIf="
+        publics.showAge &&
+        (publics.age.max === null || publics.age.min === null)
+      "
+      class="invalid-feedback d-block col-12"
+    >
+      {{ "MINIMUN_AND_MAXIMUN_MUST_CONTAIN_NUMBER" | translate }}
+    </p>
+  </div>
+
+  <div class="row">
+    <div class="mt-4 col-12">
+      <label for="description" class="label">
+        {{ "ADDITIONAL_INFORMATION_ONE_THE_PUBLIC" | translate }}
+      </label>
+
+      <p id="description-info">
+        {{ "IMPORTANT_INFORMATION_IS_ NOT_AVAIBLE_IN_THE_CHOICES" | translate }}
+      </p>
+      <textarea
+        id="description"
+        name="description"
+        [(ngModel)]="publics.description"
+        class="custom-textarea form-control mt-2"
+        rows="4"
+        aria-describedby="description-info"
+        appForbiddenWordsInPublics
+        #description="ngModel"
+      >
+      </textarea>
+
+      <p *ngIf="description.invalid" class="alert alert-info">
+        {{ "YOU_CAN_SPECIFY_YOUR_STRUCTURE_ACCESS_ARRANGEMENTS" | translate }}
+      </p>
+    </div>
+  </div>
+</div>

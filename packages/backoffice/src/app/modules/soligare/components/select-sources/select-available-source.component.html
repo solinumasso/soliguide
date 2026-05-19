@@ -1,0 +1,109 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div
+  [ngClass]="{
+    required: isRequired,
+    'is-invalid':
+      isRequired &&
+      availableSource.length === 0 &&
+      (haveBeenTouched || submitted)
+  }"
+>
+  <span class="form-label">{{ label }}</span>
+  <div
+    class="input-group custom-dropdown"
+    [ngClass]="{
+      'is-invalid':
+        isRequired &&
+        availableSource.length === 0 &&
+        (haveBeenTouched || submitted),
+      'is-valid': isRequired && availableSource.length > 0
+    }"
+    placement="bottom-start"
+    ngbDropdown
+    [autoClose]="'outside'"
+  >
+    <button type="button" ngbDropdownToggle [disabled]="disabled">
+      <span class="text-truncate">{{ stringToDisplay }}</span>
+    </button>
+    <div ngbDropdownMenu>
+      <div class="p-2">
+        <label for="filter" class="visually-hidden">{{
+          "SOURCE" | translate
+        }}</label>
+        <input
+          type="text"
+          name="filter"
+          id="filter"
+          class="form-control"
+          [placeholder]="'SOURCE' | translate"
+          [(ngModel)]="filter"
+          (ngModelChange)="filterSources()"
+        />
+        <button
+          type="button"
+          *ngIf="filter"
+          (click)="filter = null; filterSources()"
+          class="input-cross"
+        >
+          <fa-icon aria-hidden="true" [icon]="['fas', 'times']"></fa-icon>
+        </button>
+      </div>
+      <button *ngIf="!filter" ngbDropdownItem type="button">
+        <input
+          id="all-sources"
+          type="checkbox"
+          (click)="selectAll()"
+          [checked]="localAvailableSource.length === availableSource.length"
+        />
+        <label for="all-sources">{{ "ALL_SOURCES" | translate }}</label>
+      </button>
+
+      <div>
+        <ng-container *ngFor="let source of sources">
+          <button
+            aria-pressed="true"
+            (click)="toggleCheckboxButton(source)"
+            ngbDropdownItem
+            type="button"
+          >
+            <input
+              id="source-{{ source }}"
+              [checked]="localAvailableSource.includes(source)"
+              type="checkbox"
+            />
+            <span>{{ source }}</span>
+          </button>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div
+    *ngIf="
+      isRequired &&
+      availableSource.length === 0 &&
+      (haveBeenTouched || submitted)
+    "
+    class="invalid-feedback"
+  >
+    {{ "SELECT_ONE_SOURCE" | translate }}
+  </div>
+</div>

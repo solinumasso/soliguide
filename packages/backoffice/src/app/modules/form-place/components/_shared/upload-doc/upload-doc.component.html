@@ -1,0 +1,129 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<form [formGroup]="uploadForm">
+  <div class="row">
+    <div class="col-12 col-md-5 required">
+      <label for="file-label" class="fw-bold">{{
+        "DOCUMENT_NAME" | translate
+      }}</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="name"
+        id="file-name"
+        [ngClass]="{
+          'is-invalid': (u.name.dirty || submitted) && u.name.errors
+        }"
+        [attr.aria-invalid]="
+          (u.name.dirty || submitted) && u.name.errors ? true : false
+        "
+        [attr.aria-describedby]="
+          (u.name.dirty || submitted) && u.name.errors
+            ? 'name-information'
+            : null
+        "
+        required
+      />
+      <p *ngIf="u.name.errors" id="name-information" class="invalid-feedback">
+        {{ "DOCUMENT_NAME_MANDATORY" | translate }}
+      </p>
+    </div>
+    <div class="col-12 col-md-5 required">
+      <label for="file" class="fw-bold">{{ "DOCUMENT" | translate }}</label>
+      <div class="required form-file">
+        <input
+          type="file"
+          class="form-control"
+          id="file"
+          formControlName="file"
+          accept=".jpg, .jpeg, .png, .pdf, .doc, .docx, .odt"
+          [attr.aria-invalid]="
+            (submitted && u.fileSource?.errors) ||
+            uploadError.fileType ||
+            uploadError.fileSize
+              ? true
+              : false
+          "
+          [attr.aria-describedby]="
+            (submitted && u.fileSource?.errors) ||
+            uploadError.fileType ||
+            uploadError.fileSize
+              ? 'attachment-errors'
+              : 'attachment-help'
+          "
+          [ngClass]="{
+            'is-invalid':
+              (submitted && u.fileSource?.errors) ||
+              uploadError.fileType ||
+              uploadError.fileSize
+          }"
+          (change)="onFileChange($event)"
+        />
+        <small class="text-muted" id="attachment-help">{{
+          "DOCUMENTS_AUTHORIZED_FORMATS" | translate
+        }}</small>
+        <div class="invalid-feedback" id="attachment-errors">
+          <ul>
+            <li *ngIf="submitted && u.fileSource?.errors?.required">
+              {{ "MUST_CHOOSE_FILE" | translate }}
+            </li>
+            <li *ngIf="uploadError.fileType">
+              {{ "INVALID_FILE_FORMAT" | translate }}
+            </li>
+            <li *ngIf="uploadError.fileSize">
+              {{ "DOCUMENT_SIZE_IS_TOO_LARGE" | translate }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-2">
+      <label for="add-file" class="form-label d-block">{{
+        "ACTION" | translate
+      }}</label>
+      <button
+        class="btn btn-primary w-100"
+        type="button"
+        id="add-file"
+        (click)="submitFile()"
+      >
+        {{ "ADD" | translate }}
+      </button>
+    </div>
+
+    <div class="col-md-12 my-2" *ngIf="uploadResponse">
+      <p *ngIf="uploadResponse.status === 'error'">
+        {{ uploadResponse.message }}
+      </p>
+
+      <ngb-progressbar
+        *ngIf="uploadResponse.status === 'progress'"
+        type="success"
+        [striped]="true"
+        [animated]="true"
+        [value]="uploadResponse.message"
+      >
+        {{ uploadResponse.message }} %
+      </ngb-progressbar>
+    </div>
+  </div>
+</form>

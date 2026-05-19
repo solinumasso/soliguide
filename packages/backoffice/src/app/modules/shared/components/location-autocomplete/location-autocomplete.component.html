@@ -1,0 +1,94 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="d-flex align-items-center position-relative">
+  <input
+    type="text"
+    class="form-control"
+    [ngbTypeahead]="searchLocation"
+    [inputFormatter]="formatter"
+    [resultFormatter]="formatter"
+    [resultTemplate]="resultTemplate"
+    [placeholder]="placeholder"
+    [editable]="false"
+    [focusFirst]="true"
+    [(ngModel)]="model"
+    (selectItem)="onSelectItem($event)"
+  />
+  <ng-template #resultTemplate let-r="result" let-t="term">
+    <div
+      class="d-flex align-items-center"
+      *ngIf="r.geoType !== GeoTypes.POSITION; else positionTemplate"
+    >
+      <fa-icon class="ms-1 me-3" [icon]="faMapPin" aria-hidden="true"></fa-icon>
+      <span class="text-truncate"
+        ><strong>{{ getGeoTypeLabel(r.geoType) }}</strong> - {{ r.label }}</span
+      >
+    </div>
+    <ng-template #positionTemplate>
+      <div class="d-flex align-items-center">
+        <fa-icon
+          class="ms-1 me-3"
+          [icon]="faMapPin"
+          aria-hidden="true"
+        ></fa-icon>
+        <span class="text-truncate">{{ r.label }}</span>
+      </div>
+    </ng-template>
+  </ng-template>
+
+  <div
+    class="btns position-absolute end-0 d-flex align-items-center"
+    style="z-index: 10"
+  >
+    <button
+      type="button"
+      *ngIf="model?.trim() !== ''"
+      class="btn btn-light me-1"
+      [attr.aria-label]="'CLEAR_LOCATION' | translate"
+      (click)="clearLocation()"
+    >
+      <fa-icon [icon]="faXmark" aria-hidden="true"></fa-icon>
+    </button>
+
+    <button
+      type="button"
+      *ngIf="!addressesOnly"
+      class="btn btn-light me-1"
+      [disabled]="locationLoading"
+      [attr.aria-label]="'GEOLOCATE_MYSELF' | translate"
+      (click)="getCurrentPosition()"
+    >
+      <fa-icon
+        *ngIf="!locationLoading"
+        [icon]="faLocationDot"
+        aria-hidden="true"
+      >
+      </fa-icon>
+      <fa-icon
+        *ngIf="locationLoading"
+        [icon]="faCircleNotch"
+        animation="spin"
+        aria-hidden="true"
+      >
+      </fa-icon>
+    </button>
+  </div>
+</div>

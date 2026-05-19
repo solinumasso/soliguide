@@ -1,0 +1,64 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<button
+  type="button"
+  *ngIf="buttonVersion === 'light'"
+  class="btn btn-primary btn-sm"
+  (click)="openModal()"
+>
+  <fa-icon aria-hidden="true" [icon]="['fas', 'copy']"></fa-icon>
+</button>
+<button
+  type="button"
+  *ngIf="buttonVersion === 'complete'"
+  class="btn btn-outline-primary mb-2 complete-button"
+  (click)="openModal()"
+>
+  {{ "DUPLICATE_THE_PLACE" | translate }}
+</button>
+
+<ng-template #duplicatePlaceModal let-modal class="modal">
+  <div class="modal-header">
+    <h4 class="modal-title">{{ "DUPLICATE_CONFIRMATION" | translate }}</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="cancelDuplication()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!-- Your modal content goes here -->
+    <p>{{ "DUPLICATE_THE_PLACE" | translate }}: {{ place.name }}?</p>
+    <p>{{ "DUPLICATED_STRUCTURE" | translate }}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="duplicatePlace()">
+      {{ "SAVE_AND_CONTINUE" | translate }}
+    </button>
+    <button type="button" class="btn btn-danger" (click)="cancelDuplication()">
+      {{ "CANCEL" | translate }}
+    </button>
+  </div>
+</ng-template>

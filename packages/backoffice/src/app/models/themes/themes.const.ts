@@ -1,0 +1,180 @@
+import {
+  Themes,
+  CountryCodes,
+  SupportedLanguagesCode,
+  initializeCategoriesByTheme,
+} from "@soliguide/common";
+import type { ThemeConfiguration } from "./theme-configuration.interface";
+import { environment } from "../../../environments/environment";
+// Importing from "../../shared" leads to a cyclic dependency hell
+import { themeService } from "../../shared/services";
+
+const DEFAULT_THEME_VALUE: Pick<
+  ThemeConfiguration,
+  "solinumHomeLink" | "socialMedia"
+> = {
+  solinumHomeLink: "https://www.solinum.org/",
+  socialMedia: {},
+};
+
+// TODO: create themes on Common
+const THEMES: Record<Themes, ThemeConfiguration> = {
+  [Themes.SOLIGUIDE_FR]: {
+    ...DEFAULT_THEME_VALUE,
+    brandName: "Soliguide",
+    logos: {
+      inline: "soliguide-inline.svg",
+      original: "soliguide.svg",
+      symbol: "soliguide-symbol.svg",
+    },
+    country: CountryCodes.FR,
+    defaultCoordinates: [2.289949112, 48.85846184], // Paris
+    defaultLanguage: SupportedLanguagesCode.FR,
+    suggestedLanguages: [SupportedLanguagesCode.FR],
+    mobileApp: {
+      androidLink:
+        "https://play.google.com/store/apps/details?id=com.soliguide.soliguide&hl=fr",
+      appleLink:
+        "https://apps.apple.com/fr/app/soliguide/id1495949521#?platform=iphone",
+    },
+    helpEnabled: true,
+    aboutSolinumLink: "https://www.solinum.org/activites/",
+    socialMedia: {
+      instagram: "https://www.instagram.com/soliguide/",
+      linkedin: "https://linkedin.com/company/assosolinum",
+      facebook: "https://www.facebook.com/soliguide/",
+      youtube: "https://youtube.com/channel/UCB4WtxF7wt0Kwk8onHCATKg",
+      tiktok: "https://www.tiktok.com/@soliguide",
+    },
+    becomeVolunteerEnabled: true,
+    contactFormEnabled: true,
+    locationAutocompletePlaceholder:
+      "Gare de l'est, 12 rue des bois, Paris, etc.",
+    solidata: {
+      territorialAnalysis: {
+        label: "Analyse territoriale",
+        dashboardUrl:
+          "https://superset.solinum.org/superset/dashboard/territorial-analysis/?standalone=2",
+        seoUrl: "territorial-analysis",
+      },
+      seasonalAnalysis: {
+        label: "Analyse saisonnière",
+        dashboardUrl:
+          "https://superset.solinum.org/superset/dashboard/services-closures/?standalone=2",
+        seoUrl: "seasonal-analysis",
+      },
+      searchTracking: {
+        label: "Suivi des recherches",
+        dashboardUrl:
+          "https://superset.solinum.org/superset/dashboard/nsm/?standalone=2",
+        seoUrl: "consultation-tracking",
+      },
+      foodAccess: {
+        label: "Analyse de l’accès à l’alimentation",
+        dashboardUrl:
+          "https://superset.solinum.org/superset/dashboard/acces_alimentation/?standalone=2",
+        seoUrl: "access_alimentation",
+      },
+      olympicGames: {
+        label: "Anticipation des fermetures pour l'été et les JO 2024 en IDF",
+        dashboardUrl:
+          "https://superset.solinum.org/superset/dashboard/solidata_jo_2024/?standalone=2",
+        seoUrl: "olympic-games",
+      },
+      anticipateClosures: {
+        label: "Anticipez des fermetures de services sur votre territoire",
+        dashboardUrl:
+          "https://superset.solinum.org/superset/dashboard/calendrier_des_fermetures/?standalone=2",
+        seoUrl: "calendrier_des_fermetures",
+      },
+      waterAccess: {
+        label: "Accès à l'eau et à l'hygiène en métropoles de France",
+        dashboardUrl:
+          "https://superset.solinum.org/superset/dashboard/acces_eau/?standalone=2",
+        seoUrl: "acces_eau",
+      },
+      demoFoodAccess: {
+        label: "Démo – Analyse de l'accès à l'alimentation",
+        dashboardUrl:
+          "https://superset.solinum.org/superset/dashboard/demo_acces_alimentation/?standalone=2",
+        seoUrl: "demo_acces_alimentation",
+      },
+    },
+    praticalFilesLink: environment.praticalFilesLink,
+    becomeTranslatorFormLink: environment.becomeTranslatorFormLink,
+    donateLink: environment.donateLink,
+    proAccountCreationFormLink: environment.proAccountCreationFormLink,
+    chatWebsiteId: environment.chatWebsiteId,
+    territoriesStats: {
+      territoriesPresent: Number.parseInt(environment.territoriesPresent),
+    },
+    showTranslationMenuDropdown: true,
+    showSoligareMenu: true,
+    websiteUrl: "soliguide.fr",
+  },
+  [Themes.SOLIGUIA_ES]: {
+    ...DEFAULT_THEME_VALUE,
+    brandName: "Soliguia",
+    logos: {
+      inline: "soliguia-inline.svg",
+      original: "soliguia.svg",
+      symbol: "soliguide-symbol.svg",
+      sponsor: "poctefa.webp",
+    },
+    country: CountryCodes.ES,
+    defaultCoordinates: [2.1752361863470204, 41.38760428878576], // Barcelona
+    defaultLanguage: SupportedLanguagesCode.CA,
+    suggestedLanguages: [SupportedLanguagesCode.CA, SupportedLanguagesCode.ES],
+    helpEnabled: false,
+    aboutSolinumLink: "https://landing.soliguia.cat/",
+    becomeVolunteerEnabled: false,
+    contactFormEnabled: true,
+    locationAutocompletePlaceholder: "Barcelona Sants, Lleida, etc.",
+    showTranslationMenuDropdown: false,
+    showSoligareMenu: false,
+    websiteUrl: "soliguia.cat",
+    socialMedia: {
+      instagram: "https://www.instagram.com/soliguia/",
+      linkedin: "https://www.linkedin.com/showcase/soliguia/",
+      facebook: "https://www.facebook.com/people/Soliguia/61586492182496/",
+    },
+  },
+  [Themes.SOLIGUIA_AD]: {
+    ...DEFAULT_THEME_VALUE,
+    brandName: "Soliguia",
+    logos: {
+      inline: "soliguia-inline.svg",
+      original: "soliguia.svg",
+      symbol: "soliguide-symbol.svg",
+      sponsor: "poctefa.webp",
+    },
+    country: CountryCodes.AD,
+    defaultCoordinates: [1.582188, 42.535812], // Andorra
+    defaultLanguage: SupportedLanguagesCode.CA,
+    suggestedLanguages: [
+      SupportedLanguagesCode.CA,
+      SupportedLanguagesCode.ES,
+      SupportedLanguagesCode.FR,
+    ],
+    helpEnabled: false,
+    aboutSolinumLink: "https://landing.soliguia.cat/",
+    becomeVolunteerEnabled: false,
+    contactFormEnabled: true,
+    locationAutocompletePlaceholder:
+      "Andorre-la-Vieja, Escaldes-Engordany, etc.",
+    showTranslationMenuDropdown: false,
+    showSoligareMenu: false,
+    websiteUrl: "soliguia.ad",
+    socialMedia: {
+      instagram: "https://www.instagram.com/soliguia/",
+      linkedin: "https://www.linkedin.com/showcase/soliguia/",
+      facebook: "https://www.facebook.com/people/Soliguia/61586492182496/",
+    },
+  },
+} as const;
+
+const theme = themeService.getTheme();
+
+initializeCategoriesByTheme(theme);
+
+export const THEME_CONFIGURATION = THEMES[theme];

@@ -1,0 +1,133 @@
+/*
+ * Soliguide: Useful information for those who need it
+ *
+ * SPDX-FileCopyrightText: © 2024 Solinum
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+@font-face {
+  font-family: "Lato";
+  font-display: swap;
+  src: url("../fonts/Lato/Lato-Light.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Lato";
+  font-display: swap;
+  src: url("../fonts/Lato/Lato-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Lato";
+  font-display: swap;
+  src: url("../fonts/Lato/Lato-Bold.ttf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Lato";
+  font-display: swap;
+  src: url("../fonts/Lato/Lato-Italic.ttf");
+  font-style: italic;
+}
+
+html {
+  font-size: 90%;
+}
+
+h2 {
+  font-weight: 400;
+  font-size: 1.15rem;
+  margin: 0.7rem 0;
+}
+
+h1.title,
+h3.title {
+  text-align: left;
+  color: var(--bs-primary);
+  font-size: 1.6rem;
+  padding: 0.3rem 0.1rem;
+}
+
+h1.title {
+  font-weight: 900;
+}
+
+h3.title {
+  font-weight: 500;
+}
+
+h5.title {
+  font-weight: 600;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+h1,
+.h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #232323;
+}
+
+h2,
+.h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+h3,
+.h3 {
+  font-size: 1.4rem;
+}
+
+h4,
+.h4 {
+  font-size: 1.3rem;
+}
+
+h5,
+.h5 {
+  font-size: 1.2rem;
+}
+
+h6,
+.h6 {
+  font-size: 1rem;
+}
+
+@media (max-width: 500px) {
+  html {
+    font-size: 85%;
+  }
+}

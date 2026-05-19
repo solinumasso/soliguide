@@ -1,0 +1,67 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div
+  class="my-2 align-items-center justify-content-left d-flex"
+  *ngIf="docs && docs.length > 0"
+>
+  <div
+    class="orientation-sheet align-items-center justify-content-between d-flex me-2"
+    *ngFor="let doc of docs; let i = index"
+  >
+    <div class="me-3">
+      <div class="fw-bold">
+        {{ doc.name }}.{{
+          doc.filename.substring(doc.filename.lastIndexOf(".") + 1)
+        }}
+      </div>
+      <div *ngIf="displayDate">
+        <small class="text-muted">
+          {{
+            "DOCUMENT_CREATION_DATE"
+              | translate
+                : {
+                    DOCUMENT_CREATION_DATE_VALUE: (doc.createdAt | dateProxy)
+                  }
+          }}
+        </small>
+      </div>
+    </div>
+
+    <button
+      *ngIf="canDownload"
+      class="btn btn-primary btn-sm place-orientation-file"
+      type="button"
+      (click)="download(doc)"
+      [attr.aria-label]="'Télécharger le document ' + doc.name"
+    >
+      <fa-icon [icon]="['fas', 'download']" aria-hidden="true"></fa-icon>
+    </button>
+    <button
+      *ngIf="canDelete"
+      class="btn btn-danger btn-sm ms-2"
+      type="button"
+      (click)="deleteDoc(i, doc._id)"
+      [attr.aria-label]="'Supprimer le document ' + doc.name"
+    >
+      <fa-icon [icon]="['fas', 'times']" aria-hidden="true"></fa-icon>
+    </button>
+  </div>
+</div>

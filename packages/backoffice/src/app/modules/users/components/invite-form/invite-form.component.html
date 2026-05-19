@@ -1,0 +1,258 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div *ngIf="inviteForm" [formGroup]="inviteForm">
+  <div class="label">{{ "PERSONAL_DETAILS" | translate }}</div>
+
+  <br />
+
+  <div class="row">
+    <div class="col-md-12 my-2">
+      <label class="form-label" for="organisation">{{
+        "YOUR_ORGANIZATION" | translate
+      }}</label>
+      <input
+        id="organisation"
+        type="text"
+        formControlName="organizationName"
+        [attr.disabled]="true"
+        class="form-control"
+      />
+    </div>
+  </div>
+
+  <div [formGroup]="inviteForm">
+    <div class="row mt-3">
+      <div class="col-md-6 my-2 required">
+        <label for="name" class="form-label">
+          {{ "NAME" | translate }}
+        </label>
+        <input
+          id="name"
+          type="text"
+          class="form-control"
+          formControlName="name"
+          autocomplete="name"
+          required
+          [placeholder]="'NAME' | translate"
+          [ngClass]="{
+            'is-invalid': (f.name.dirty || submitted) && f.name.errors,
+            'is-valid': f.name.dirty && f.name.value && !f.name.errors
+          }"
+        />
+        <div
+          *ngIf="(f.name.dirty || submitted) && f.name.errors"
+          class="invalid-feedback"
+        >
+          {{ "NAME_REQUIRED" | translate }}
+        </div>
+      </div>
+      <div class="col-md-6 my-2 required">
+        <label for="lastname" class="form-label">
+          {{ "LASTNAME" | translate }}
+        </label>
+        <input
+          id="lastname"
+          type="text"
+          class="form-control"
+          formControlName="lastname"
+          autocomplete="family-name"
+          required
+          [placeholder]="'LASTNAME' | translate"
+          [ngClass]="{
+            'is-invalid': (f.lastname.dirty || submitted) && f.lastname.errors,
+            'is-valid':
+              f.lastname.dirty && f.lastname.value && !f.lastname.errors
+          }"
+        />
+        <div
+          *ngIf="(f.lastname.dirty || submitted) && f.lastname.errors"
+          class="invalid-feedback"
+        >
+          {{ "LASTNAME_REQUIRED" | translate }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col my-2 my-2 required">
+        <label for="email" class="form-label">{{
+          "EMAIL_ADDRESS" | translate
+        }}</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="mail"
+          class="form-control"
+          required
+          autocomplete="email"
+          [placeholder]="'EMAIL_ADDRESS' | translate"
+          [ngClass]="{
+            'is-invalid': (submitted || f.mail.dirty) && f.mail.errors,
+            'is-valid': f.mail.dirty && f.mail.value && !f.mail.errors
+          }"
+        />
+
+        <div
+          *ngIf="(submitted || f.mail.dirty) && f.mail.errors"
+          class="invalid-feedback"
+        >
+          <p *ngIf="f.mail.errors.invalidEmail">
+            {{ "INCORRECT_EMAIL_ADDRESS" | translate }}
+          </p>
+          <p *ngIf="f.mail.errors.required">
+            {{ "EMAIL_REQUIRED" | translate }}
+          </p>
+          <p *ngIf="f.mail.errors.emailInOrga">
+            {{ "EMAIL_IN_ORGA" | translate }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-2">
+      <div class="col-md-6 my-2 col-12">
+        <app-form-phone-input
+          [phone]="inviteForm?.controls?.phone.value"
+          [parentForm]="inviteForm"
+          [submitted]="submitted"
+        ></app-form-phone-input>
+      </div>
+      <div class="col-md-6 my-2">
+        <label class="form-label" for="title">{{ "TITLE" | translate }}</label>
+        <input
+          type="text"
+          id="title"
+          formControlName="title"
+          autocomplete=""
+          [placeholder]="'TITLE_PLACEHOLDER' | translate"
+          class="form-control"
+        />
+      </div>
+    </div>
+
+    <div class="row my-2 align-items-center">
+      <div class="col-md-6">
+        <div class="my-2 required">
+          <label for="role" class="form-label">{{
+            "USER_ROLE" | translate
+          }}</label>
+          <select
+            class="form-select"
+            formControlName="role"
+            id="role"
+            required
+            aria-described-by="roles-description"
+            (change)="checkRoleValue($event)"
+          >
+            <option [value]="UserRole.OWNER" selected>
+              {{ UserRole.OWNER | translate }}
+            </option>
+            <option [value]="UserRole.READER">
+              {{ UserRole.READER | translate }}
+            </option>
+            <option [value]="UserRole.EDITOR">
+              {{ UserRole.EDITOR | translate }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6 p-2 mt-4 text-primary" id="roles-description">
+        <ng-container *ngIf="role === UserRole.EDITOR">
+          <p
+            [innerHtml]="
+              'EDITOR_CHANGE_PLACES'
+                | translate : { brandName: THEME_CONFIGURATION.brandName }
+            "
+          ></p>
+
+          <p *ngIf="organisation.places.length > 0">
+            {{ "SPECIFY_STRUCTURE" | translate }}
+          </p>
+        </ng-container>
+
+        <p
+          *ngIf="role === UserRole.OWNER"
+          [innerHtml]="
+            'OWNER_CHANGE_PLACES'
+              | translate : { brandName: THEME_CONFIGURATION.brandName }
+          "
+        ></p>
+        <p
+          *ngIf="role === UserRole.READER"
+          [innerHtml]="'READER_PLACES' | translate"
+        ></p>
+      </div>
+
+      <div class="col-md-12">
+        <div
+          class="form-switch"
+          *ngIf="organisation.places.length > 0 && role === UserRole.EDITOR"
+        >
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="allPlaces"
+            [checked]="allPlaces"
+            (change)="checkCheckBoxvalue($event)"
+          />
+          <label class="form-check-label" for="allPlaces">
+            <span
+              >{{
+                allPlaces
+                  ? ("ACCESS_ALL_PLACES" | translate)
+                  : ("ACCESS_RESTRICTED_PLACES" | translate)
+              }}
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="!allPlaces && role === UserRole.EDITOR">
+  <div class="mt-4 row">
+    <div class="col-md-8 col-12">
+      <h3 class="title">
+        {{ "SPECIFY_FOR" | translate }}
+        <span class="fw-bold">{{ "STRUCTURES" | translate | lowercase }}</span>
+      </h3>
+      <div class="limite"></div>
+    </div>
+  </div>
+  <div *ngIf="organisation.places.length > 0" class="row mt-2">
+    <div
+      class="col-md-6"
+      *ngFor="let place of organisation.places; let i = index"
+    >
+      <div class="shadow-sm p-3 mb-3 mh-0 bg-white rounded">
+        <input
+          id="place-{{ i }}"
+          type="checkbox"
+          class="form-check-input ms-1"
+          (change)="addToPlace(place._id)"
+        />
+        <label class="form-check-label ms-4" for="place-{{ i }}">
+          {{ place.name }}
+        </label>
+      </div>
+    </div>
+  </div>
+</ng-container>

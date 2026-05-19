@@ -1,0 +1,93 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div *ngIf="hours">
+  <div *ngIf="hours.h24">
+    <b>{{ "OPEN_24" | translate }}</b>
+  </div>
+
+  <ng-container *ngIf="!hours.h24">
+    <ng-container *ngFor="let day of weekDays">
+      <div
+        class="d-flex align-items-center horaires ps-3 py-2"
+        [ngClass]="{
+          todayClass: day === dayToday
+        }"
+        *ngIf="displayClosedDays || (!displayClosedDays && hours[day].open)"
+      >
+        <div class="px-1 horaires_day">
+          {{ "DAY_" + day | uppercase | translate }}
+        </div>
+
+        <div
+          class="px-1 horaires_slots"
+          *ngIf="hours[day].open && !isTempClosed"
+        >
+          <ng-container *ngIf="isPlace; else elseTimeslot">
+            <span *ngFor="let slot of hours[day].timeslot">
+              {{ slot.start }} {{ "A_HORAIRE" | translate }} {{ slot.end }}
+            </span>
+          </ng-container>
+          <ng-template #elseTimeslot>
+            <span *ngFor="let slot of hours[day].timeslot">
+              {{ slot.start }}
+            </span>
+          </ng-template>
+        </div>
+        <div
+          class="px-1"
+          *ngIf="
+            isPlace &&
+            !hours[day].open &&
+            hours.isOpeningHoursSet &&
+            !isTempClosed
+          "
+        >
+          <span>{{
+            (isPartiallyOpen ? "PARTIALLY_OPEN" : "CLOSED") | translate
+          }}</span>
+
+          <fa-icon
+            class="ps-2"
+            [ngbTooltip]="'PARTIALLY_OPEN_INFO' | translate"
+            [icon]="['fas', 'circle-info']"
+            *ngIf="isPartiallyOpen"
+          >
+          </fa-icon>
+        </div>
+        <div
+          class="px-1"
+          *ngIf="isPlace && hours.isOpeningHoursSet && isTempClosed"
+        >
+          <span>{{ "TEMPORARILY_CLOSED" | translate }}</span>
+        </div>
+        <div
+          class="px-1"
+          *ngIf="!hours[day].open && isPlace && !hours.isOpeningHoursSet"
+        >
+          <span>{{ "TIME_UNKNOWN" | translate }}</span>
+        </div>
+        <div class="px-1" *ngIf="!hours[day].open && !isPlace">
+          <span>{{ "PAS_PASSAGE" | translate }}</span>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

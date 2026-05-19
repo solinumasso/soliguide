@@ -1,0 +1,74 @@
+/*
+ * Soliguide: Useful information for those who need it
+ *
+ * SPDX-FileCopyrightText: © 2024 Solinum
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+.public-selector {
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: rgba(72, 101, 217, 0.05);
+  text-align: center;
+  background-color: rgba(72, 101, 217, 0.05);
+  height: 100%;
+  cursor: pointer;
+  -webkit-transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  transition: all 0.8s;
+  border: 3px solid white;
+}
+
+.public-selector:hover {
+  background-color: white;
+  border-color: #e65a46;
+}
+
+.public-selector:hover .btn {
+  background-color: #e65a46;
+  color: white;
+  border-color: #e65a46;
+}
+
+.public-selector:hover .title,
+.public-selector-selected .title {
+  color: #e65a46 !important;
+}
+
+.public-selector-selected {
+  border-style: solid;
+
+  border-radius: 8px;
+  border-color: #e65a46;
+  text-align: center;
+  background-color: #ffffff;
+  height: 100%;
+  cursor: pointer;
+}
+
+.public-selector-selected .btn {
+  background: #e65a46;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.1);
+  width: 40%;
+  color: white;
+}
+
+.public-selector .title,
+.public-selector-selected .title {
+  font-size: 1.1rem;
+}

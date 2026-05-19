@@ -1,0 +1,105 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="row" *ngIf="modalities">
+  <div class="col-md-5 col-12 align-self-center border-end text-center">
+    <div *ngIf="modalities.inconditionnel">
+      <div class="svg-form inconditionnel"></div>
+      <h4 class="subtitle-primary mt-1 text-capitalize">
+        {{ "UNCONDITIONAL" | translate }}
+      </h4>
+      <p class="condition-precision">
+        {{ modalities.orientation.precisions }}
+      </p>
+    </div>
+
+    <div *ngIf="modalities.orientation.checked">
+      <div class="svg-form orientation"></div>
+      <h4 class="subtitle-primary mt-1">
+        {{ "ACCESS_CONDITION_ON_ORIENTATION" | translate | ucFirst }}
+      </h4>
+      <p class="condition-precision">
+        {{ modalities.orientation.precisions }}
+      </p>
+    </div>
+
+    <div *ngIf="modalities.inscription.checked">
+      <div class="svg-form inscription"></div>
+
+      <h4 class="subtitle-primary mt-1">
+        {{ "ACCESS_CONDITION_ON_REGISTRATION" | translate | ucFirst }}
+      </h4>
+      <p class="condition-precision">
+        {{ modalities.inscription.precisions }}
+      </p>
+    </div>
+
+    <div *ngIf="modalities.appointment.checked">
+      <div class="svg-form appointment"></div>
+      <h4 class="subtitle-primary mt-1">
+        {{ "ACCESS_CONDITION_ON_APPOINTMENT" | translate | ucFirst }}
+      </h4>
+      <p class="condition-precision">
+        {{ modalities.appointment.precisions }}
+      </p>
+    </div>
+  </div>
+
+  <div class="col-md-7 col-12">
+    <p class="my-2" *ngIf="modalities.pmr.checked">
+      <b>{{
+        "ACCESS_CONDITION_PEOPLE_WITH_REDUCED_MOBILITY" | translate | ucFirst
+      }}</b>
+    </p>
+
+    <p class="my-2" *ngIf="modalities.animal.checked">
+      <b>
+        {{ "ACCESS_CONDITION_ACCEPTED_ANIMALS" | translate | ucFirst }}
+      </b>
+    </p>
+
+    <p class="my-2 mb-0" *ngIf="modalities.price.checked">
+      <b>{{
+        "ACCESS_CONDITION_FINANCIAL_PARTICIPATION_REQUIRED"
+          | translate
+          | ucFirst
+      }}</b>
+
+      <span *ngIf="modalities.price.precisions">
+        {{ modalities.price.precisions }}
+      </span>
+    </p>
+
+    <p class="my-2 mb-0" *ngIf="modalities.other">
+      <b>{{ "ACCESS_CONDITION_OTHER_PRECISIONS" | translate | ucFirst }}</b>
+      <span [innerHTML]="modalities.other"></span>
+    </p>
+  </div>
+
+  <div *ngIf="modalities.orientation.checked" class="col-12 my-4">
+    <div class="label">{{ "GUIDANCE_SHEETS" | translate }}</div>
+
+    <app-display-docs
+      [docs]="modalities.docs"
+      [displayDate]="true"
+      [canDownload]="!isHistory"
+    ></app-display-docs>
+  </div>
+</div>

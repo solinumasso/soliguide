@@ -1,0 +1,108 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div
+  class="page-content-header"
+  [ngStyle]="{ 'background-color': '#3e3a71' }"
+></div>
+<div class="container" *ngIf="sourcePlace">
+  <div class="page-content-overlay">
+    <div class="page-content">
+      <div class="row mb-2">
+        <div class="col-xs-12 col-md-7">
+          <h1 class="place_name">
+            {{ sourcePlace.name }}
+          </h1>
+
+          <div class="place_description">
+            <app-display-publics-inline
+              [publics]="sourcePlace.publics"
+            ></app-display-publics-inline>
+
+            <app-display-modalities-inline
+              [modalities]="sourcePlace.modalities"
+            ></app-display-modalities-inline>
+
+            <app-display-languages
+              [languages]="sourcePlace.languages"
+            ></app-display-languages>
+
+            <div class="py-2" [innerHTML]="sourcePlace.description"></div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-5">
+          <div
+            *ngIf="sourcePlace.placeType === placeType"
+            class="map-container"
+          >
+            <app-search-map
+              [markers]="marker"
+              [scrollOnClick]="false"
+              [withPopup]="true"
+            ></app-search-map>
+          </div>
+        </div>
+      </div>
+
+      <div class="row my-4 col-12">
+        <div
+          class="col-12 col-md-6 col-lg-4"
+          *ngIf="
+            (sourcePlace.placeType === placeType &&
+              sourcePlace.position?.address) ||
+            sourcePlace.entity?.phones?.length ||
+            sourcePlace.entity?.mail ||
+            sourcePlace.entity?.facebook ||
+            sourcePlace.entity?.fax ||
+            sourcePlace.entity?.instagram ||
+            sourcePlace.entity?.website
+          "
+        >
+          <h2>{{ "INFOSPRATIQUES" | translate }}</h2>
+          <app-display-entity-infos
+            [place]="sourcePlace"
+          ></app-display-entity-infos>
+        </div>
+
+        <div
+          *ngIf="sourcePlace.placeType === placeType"
+          class="col-12 col-md-12 col-lg-4"
+        >
+          <h2>{{ "HOURS" | translate }}</h2>
+
+          <app-display-horaires
+            [hours]="sourcePlace.newhours"
+            [displayClosedDays]="true"
+            [daysMustBeOrdered]="true"
+            [isTempClosed]="false"
+            [isPartiallyOpen]="false"
+          >
+          </app-display-horaires>
+        </div>
+      </div>
+    </div>
+
+    <app-display-services
+      [services]="sourcePlace.services_all"
+      *ngIf="sourcePlace.services_all.length"
+    ></app-display-services>
+  </div>
+</div>

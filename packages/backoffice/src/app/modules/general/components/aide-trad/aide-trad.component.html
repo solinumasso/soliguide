@@ -1,0 +1,78 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="page-content-header"></div>
+<div class="container">
+  <div class="page-content page-content-overlay">
+    <div class="col-12 py-2">
+      <h1 class="text-center separator-secondary">
+        Chers bénévoles, bienvenue sur la plateforme de traduction
+        {{ THEME_CONFIGURATION.brandName }} !
+      </h1>
+
+      <h2 class="aide-title mb-y">
+        La solidarité à une adresse : <b>soliguide.fr</b>
+      </h2>
+      <div class="limite"></div>
+      <p class="mt-4">
+        {{ THEME_CONFIGURATION.brandName }} est une plateforme numérique qui
+        recense les adresses et services utiles aux personnes en difficulté.
+        <br />
+        <br />
+        La mission de {{ THEME_CONFIGURATION.brandName }} est d’<b
+          >orienter toutes les personnes en situation difficile</b
+        >. Pour cela, nous mettons à disposition <b>gratuitement</b> un outil
+        <b>ergonomique</b>, <b>simple</b> et <b>rapide d’utilisation</b>,
+        donnant accès à des informations de <b>qualité</b> pour mieux orienter.
+        <br />
+        <br />
+        <b
+          >La traduction du site est un enjeu majeur pour l’accessibilité aux
+          informations !</b
+        >
+        <br />
+        <br />
+        En tant que bénévole, votre mission consiste à relire et vérifier les
+        informations du traducteur en ligne, et les corriger si besoin.
+        <br />
+        <br />
+        Pour avoir accès aux tutoriels et ressources, c’est par
+        <b
+          ><a
+            href="https://www.notion.so/Ressources-B-n-vole-f63d477e6f7340a98aab8b06e7abb4bd"
+            target="_blank"
+            rel="noopener noreferrer"
+            >ici</a
+          ></b
+        >.
+      </p>
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-5 col-lg-2">
+          <a
+            [routerLink]="[routePrefix, 'translations']"
+            class="btn btn-large btn-block btn-primary"
+          >
+            Commencer à traduire
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

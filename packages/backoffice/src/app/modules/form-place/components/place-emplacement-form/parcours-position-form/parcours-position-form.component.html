@@ -1,0 +1,103 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<app-jour-passage [openingDays]="openingDays"></app-jour-passage>
+
+<h2 class="my-3">{{ "WAYPOINTS" | translate }}</h2>
+
+<form class="mt-4" autocomplete="off">
+  <div cdkDropList id="point-form-list" (cdkDropListDropped)="drop($event)">
+    <div
+      class="point-tab"
+      [ngClass]="{ last: pointIndex === place.parcours.length - 1 }"
+      *ngFor="let point of place.parcours; let pointIndex = index"
+      cdkDrag
+      [cdkDragDisabled]="point.show"
+    >
+      <app-form-point-passage
+        [point]="point"
+        [pointIndex]="pointIndex"
+        [passageTimeslot]="timeslots[pointIndex]"
+        [submitted]="submitted"
+        [placeId]="place.lieu_id"
+        (deletedPointIndex)="deletePoint($event)"
+        (showPointIndex)="showPoint($event)"
+        (hasError)="handleError($event)"
+        (passageTimeslotChange)="handlePassageTimeslot($event, pointIndex)"
+      >
+      </app-form-point-passage>
+    </div>
+  </div>
+  <br />
+</form>
+<div class="mb-4">
+  <button type="button" (click)="newPoint()" class="btn btn-primary">
+    {{ "ADD_ITINERARY" | translate }}
+  </button>
+</div>
+<div>
+  <button
+    type="submit"
+    class="btn btn-lg btn-primary"
+    [disabled]="loading"
+    (click)="submitParcours()"
+  >
+    <span *ngIf="!loading">{{ "SAVE_AND_CONTINUE" | translate }}</span>
+    <span *ngIf="loading"
+      ><fa-icon
+        aria-hidden="true"
+        [icon]="['fas', 'circle-notch']"
+        animation="spin"
+      ></fa-icon
+      >{{ "PLEASE_WAIT" | translate }}</span
+    >
+  </button>
+</div>
+
+<ng-template #invalidParcoursModal let-modal>
+  <div class="modal-header bg-danger">
+    <span id="modal-title">{{ "ITINERARY_NOT_VALID" | translate }}</span>
+    <button
+      type="button"
+      class="btn-close"
+      [attr.aria-label]="'CLOSE' | translate"
+      (click)="modal.dismiss()"
+    ></button>
+  </div>
+  <p class="modal-body">
+    {{ "ITINERARY_TO_PLACE_CONVERSION_OFFER" | translate }}
+  </p>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Cancel action')"
+    >
+      {{ "CONTINUE_TO_EDIT" | translate }}
+    </button>
+    <button
+      type="button"
+      class="btn btn-danger"
+      (click)="changeToLieu.emit(); modal.close('Continue')"
+    >
+      {{ "CONVERT_TO_PLACE" | translate }}
+    </button>
+  </div>
+</ng-template>

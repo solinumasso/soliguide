@@ -1,0 +1,175 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<ul id="social-links" *ngIf="place" appTextDirection>
+  <ng-container *ngIf="place.placeType === PlaceType.PLACE">
+    <li *ngIf="place.position.address && showAddress">
+      <a
+        href="https://www.google.fr/maps/dir//{{ place.position.address }}"
+        target="_blank"
+        rel="noopener"
+        (click)="
+          captureEvent({
+            name: 'click-address-link-to-google-maps',
+            properties: { address: place.position.address }
+          })
+        "
+        class="place-address"
+      >
+        <fa-icon [icon]="faMapMarker"></fa-icon>
+        <span>{{ place.position.address }}</span>
+      </a>
+      <span
+        *ngIf="place.position.additionalInformation"
+        class="additional_info"
+      >
+        ({{ place.position.additionalInformation }})
+      </span>
+    </li>
+    <li *ngIf="!showAddress">
+      <fa-icon [icon]="faMapMarker" aria-hidden="true"></fa-icon>
+      <span>{{ place.position.codePostalPlusVille }}</span>
+    </li>
+  </ng-container>
+
+  <li *ngIf="place.entity?.phones?.length && !showPhones">
+    <a
+      (click)="
+        showPhones = true; captureEvent({ name: 'click-show-phone-numbers' })
+      "
+      class="place-phone"
+    >
+      <fa-icon [icon]="faPhone" aria-hidden="true"></fa-icon>
+      <span>{{
+        (place.entity.phones.length > 1
+          ? "SHOW_PHONE_NUMBERS"
+          : "SHOW_PHONE_NUMBER"
+        ) | translate
+      }}</span>
+    </a>
+  </li>
+  <ng-container *ngIf="showPhones">
+    <li *ngFor="let phone of place.entity.phones; index as i">
+      <a
+        href="tel:{{ phone | formatInternationalPhoneNumber }}"
+        (click)="
+          captureEvent({
+            name: 'click-phone-number',
+            properties: { index: i, phone }
+          })
+        "
+        class="place-phone"
+      >
+        <fa-icon [icon]="faPhone" aria-hidden="true"></fa-icon>
+        <span>{{ phone | formatInternationalPhoneNumber }}</span>
+      </a>
+      <span *ngIf="phone.label" class="additional_info">
+        ({{ phone.label }})</span
+      >
+    </li>
+  </ng-container>
+
+  <li *ngIf="place.entity?.mail">
+    <a
+      (click)="
+        showEmail = !showEmail; captureEvent({ name: 'click-show-email' })
+      "
+      *ngIf="!showEmail"
+      class="place-email"
+    >
+      <fa-icon [icon]="faEnvelope" aria-hidden="true"></fa-icon>
+      <span>{{ "SEND_EMAIL" | translate }}</span>
+    </a>
+    <a
+      href="mailto:{{ place.entity.mail }}"
+      (click)="
+        captureEvent({
+          name: 'click-email-link',
+          properties: { email: place.entity.mail }
+        })
+      "
+      *ngIf="showEmail"
+    >
+      <fa-icon [icon]="faEnvelope" aria-hidden="true"></fa-icon>
+      <span>{{ place.entity.mail | decodePunycodeEmail }}</span>
+    </a>
+  </li>
+
+  <li *ngIf="place.entity?.website">
+    <a
+      [href]="place.entity.website"
+      target="_blank"
+      rel="noopener"
+      (click)="
+        captureEvent({
+          name: 'click-website-link',
+          properties: { website: place.entity.website }
+        })
+      "
+      class="place-website"
+    >
+      <fa-icon [icon]="faLink" aria-hidden="true"></fa-icon>
+      <span>{{ "VOIRSITE" | translate }}</span>
+    </a>
+  </li>
+
+  <li *ngIf="place.entity?.fax">
+    <a>
+      <fa-icon [icon]="faFax"></fa-icon>
+      <span>{{ place.entity.fax }}</span>
+    </a>
+  </li>
+
+  <li *ngIf="place.entity?.facebook">
+    <a
+      [href]="place.entity.facebook"
+      target="_blank"
+      rel="noopener"
+      (click)="
+        captureEvent({
+          name: 'click-facebook-link',
+          properties: { facebook: place.entity.facebook }
+        })
+      "
+      class="place-facebook"
+    >
+      <fa-icon [icon]="['fab', 'facebook']"></fa-icon>
+      <span>{{ "SEE_FACEBOOK" | translate }}</span>
+    </a>
+  </li>
+
+  <li *ngIf="place.entity?.instagram">
+    <a
+      [href]="place.entity.instagram"
+      target="_blank"
+      rel="noopener"
+      (click)="
+        captureEvent({
+          name: 'click-instagram-link',
+          properties: { instagram: place.entity.instagram }
+        })
+      "
+      class="place-instagram"
+    >
+      <fa-icon [icon]="['fab', 'instagram']"></fa-icon>
+      <span>{{ "INSTAGRAM" | translate }}</span>
+    </a>
+  </li>
+</ul>

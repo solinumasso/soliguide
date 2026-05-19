@@ -1,0 +1,55 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div>
+  <span class="form-label">{{ "EXCLUDE_PLACES" | translate }}</span>
+  <div
+    class="input-group custom-dropdown"
+    placement="bottom"
+    autoClose="outside"
+    ngbDropdown
+  >
+    <button type="button" ngbDropdownToggle>
+      <span class="text-truncate">
+        {{ getStringToDisplay() }}
+      </span>
+    </button>
+    <div
+      ngbDropdownMenu
+      aria-label="Exclure les fiches des catégories suivantes"
+    >
+      <ng-container
+        *ngFor="let catToExclude of DEFAULT_SERVICES_TO_EXCLUDE_WITH_ADDICTION"
+      >
+        <button
+          type="button"
+          (click)="toggleCheckboxButton(catToExclude)"
+          ngbDropdownItem
+        >
+          <input
+            [checked]="categoriesToExclude.includes(catToExclude)"
+            type="checkbox"
+          />
+          <span>{{ catToExclude | categoryTranslateKey | translate }}</span>
+        </button>
+      </ng-container>
+    </div>
+  </div>
+</div>

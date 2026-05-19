@@ -1,0 +1,814 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+@if (place) {
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-8 col-12">
+      <h1 class="d-inline-block me-1">{{ place.name }}</h1>
+      <span
+        class="badge align-top"
+        [ngClass]="{
+          'bg-danger':
+            place.status === PlaceStatus.PERMANENTLY_CLOSED ||
+            place.status === PlaceStatus.OFFLINE,
+          'bg-success': place.status === PlaceStatus.ONLINE,
+          'bg-warning': place.status === PlaceStatus.DRAFT
+        }"
+      >
+        {{ place.status | translate }}
+      </span>
+      @if (place.status === PlaceStatus.ONLINE && place.visibility ===
+      PlaceVisibility.PRO) {
+      <span class="badge bg-info align-top ms-2">
+        {{ "PRO" | translate }}
+      </span>
+      }
+
+      <p class="my-1">
+        <b>{{
+          (place.organizations.length <= 1 ? "ORGANIZATION" : "ORGANIZATIONS")
+            | translate
+        }}</b>
+        :
+        <ng-container *ngFor="let orga of place.organizations; let last = last">
+          <a
+            target="_blank"
+            [routerLink]="[routePrefix, 'organisations', orga.organization_id]"
+            [title]="
+              'SEE_SOLIGUIDE_ORGANIZATION'
+                | translate : { brandName: THEME_CONFIGURATION.brandName }
+            "
+            routerLinkActive="router-link-active"
+            >{{ orga.name }}</a
+          >
+          @if (!last) {, }
+        </ng-container>
+        @if (!place.organizations.length) {
+        {{ "NONE_F" | translate }}
+        }
+      </p>
+      <p class="my-1" appTextDirection>
+        {{ "CREATION_DATE" | translate }}
+        {{ place.createdAt | dateProxy : "fullDate" }}
+        @if (place.createdBy) {
+        {{ "BY" | translate | lowercase }} {{ place.createdBy }}
+        }
+      </p>
+    </div>
+
+    @if (me) {
+    <div class="col-md-4 col-12 text-end d-inline-block">
+      <div class="d-inline-block mt-2 ms-2">
+        <a
+          target="_blank"
+          class="btn btn-large btn-primary"
+          [routerLink]="[routePrefix, 'fiche', place.seo_url]"
+          routerLinkActive="router-link-active"
+        >
+          {{
+            "SEE_IN_SOLIGUIDE"
+              | translate : { brandName: THEME_CONFIGURATION.brandName }
+          }}
+        </a>
+      </div>
+    </div>
+    }
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-2 d-none d-md-block">
+      @if( me ) {
+      <nav class="sidebar-sticky">
+        <ul>
+          <li>
+            <a [routerLink]="currentUrl" fragment="info">
+              {{ "GENERAL_INFORMATION" | translate }}</a
+            >
+          </li>
+
+          <li>
+            <a [routerLink]="currentUrl" fragment="location">{{
+              "SITE" | translate
+            }}</a>
+          </li>
+
+          @if (placeInOrga) {
+          <li>
+            <a [routerLink]="currentUrl" fragment="contacts">
+              {{ "CONTACTS" | translate }}</a
+            >
+          </li>
+          } @if (place.placeType === PlaceType.PLACE) {
+          <li>
+            <a [routerLink]="currentUrl" fragment="opening-hours">
+              {{ "OPENING_HOURS" | translate }}</a
+            >
+          </li>
+          }
+
+          <li>
+            <a [routerLink]="currentUrl" fragment="hosted-public">{{
+              "HOSTED_PUBLIC" | translate
+            }}</a>
+          </li>
+
+          <li>
+            <a [routerLink]="currentUrl" fragment="modalities">
+              {{ "HOW_TO_ACCESS" | translate }}</a
+            >
+          </li>
+
+          <li>
+            <a [routerLink]="currentUrl" fragment="services">
+              {{ "SERVICES_OFFERED" | translate }}</a
+            >
+          </li>
+
+          @if (place.placeType === PlaceType.PLACE) {
+          <li>
+            <a [routerLink]="currentUrl" fragment="photo">
+              {{ "PICTURES" | translate }}</a
+            >
+          </li>
+          } @if (me.admin) {
+          <li>
+            <app-duplicate-place [place]="place" />
+          </li>
+          } @if (me.admin) {
+          <li>
+            <button
+              type="button"
+              [disabled]="syncLoading"
+              class="btn btn-outline-primary mb-2"
+              (click)="syncPlace()"
+            >
+              @if (syncLoading ) {
+              <span class="px-1">{{ "SYNC_IN_PROGRESS" | translate }}</span>
+              <fa-icon
+                aria-hidden="true"
+                [icon]="['fas', 'sync']"
+                animation="spin"
+                class="px-1"
+              ></fa-icon>
+              } @else {
+              <span class="px-1">{{ "SYNC_PLACES" | translate }}</span>
+              <fa-icon
+                aria-hidden="true"
+                [icon]="['fas', 'sync']"
+                class="px-1"
+              ></fa-icon>
+              }
+            </button>
+          </li>
+          } @if (me.admin) {
+          <li>
+            <button
+              type="button"
+              class="btn btn-outline-danger"
+              (click)="openDeleteModal()"
+            >
+              {{ "DELETE_PLACE" | translate }}
+            </button>
+          </li>
+          }
+        </ul>
+      </nav>
+      }
+    </div>
+
+    <div class="col-12 col-md-7">
+      <div class="row">
+        <div class="col-12">
+          @if (place.status === PlaceStatus.OFFLINE) {
+          <div class="alert alert-danger">
+            <b class="alert-link">
+              <fa-icon [icon]="['fas', 'exclamation-triangle']"></fa-icon>
+              {{ "STRUCTURE_HORS_LIGNE" | translate }}
+            </b>
+            <br />
+            {{ "STRUCTURE_HORS_LIGNE_MESSAGE_CAN_EDIT" | translate }}
+          </div>
+          }
+
+          <app-display-temp-banner
+            [tempInfoType]="TempInfoType.MESSAGE"
+            [tempInfos]="place.tempInfos.message"
+            [admin]="true"
+          ></app-display-temp-banner>
+
+          <app-display-temp-banner
+            [tempInfoType]="TempInfoType.CLOSURE"
+            [tempInfos]="place.tempInfos.closure"
+            [admin]="true"
+          ></app-display-temp-banner>
+        </div>
+      </div>
+
+      <div class="form-container" id="info">
+        <div class="row">
+          <div class="col-8">
+            <h2>{{ "GENERAL_INFORMATION" | translate }}</h2>
+          </div>
+          <div class="col-4 text-end">
+            <a
+              [routerLink]="[
+                routePrefix,
+                'admin-place',
+                'infos',
+                place.lieu_id
+              ]"
+              routerLinkActive="router-link-active"
+              class="btn btn-large btn-outline-primary"
+            >
+              {{ "EDIT" | translate }}
+              <fa-icon
+                [icon]="['fas', 'pencil']"
+                aria-hidden="true"
+                class="ms-2"
+              ></fa-icon>
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-4 mb-2">
+          <app-display-general-info-admin
+            [place]="place"
+          ></app-display-general-info-admin>
+        </div>
+      </div>
+
+      <div class="form-container" id="location">
+        <div class="row">
+          <div class="col-8">
+            <h2>{{ "SITE" | translate }}</h2>
+          </div>
+          <div class="col-4 text-end">
+            <a
+              [routerLink]="[
+                routePrefix,
+                'admin-place',
+                'emplacement',
+                place.lieu_id
+              ]"
+              routerLinkActive="router-link-active"
+              class="btn btn-large btn-outline-primary"
+            >
+              {{ "EDIT" | translate }}
+              <fa-icon
+                [icon]="['fas', 'pencil']"
+                aria-hidden="true"
+                class="ms-2"
+              ></fa-icon>
+            </a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            @if (place.placeType === PlaceType.PLACE) {
+            <app-display-position-admin
+              [place]="place"
+            ></app-display-position-admin>
+            }
+            <div class="map-container">
+              <app-search-map
+                [markers]="markers"
+                [scrollOnClick]="false"
+                [withPopup]="true"
+              ></app-search-map>
+            </div>
+
+            @if (place.placeType === PlaceType.ITINERARY) {
+            <app-display-parcours-mobile
+              [place]="place"
+            ></app-display-parcours-mobile>
+            }
+          </div>
+        </div>
+      </div>
+
+      @if (placeInOrga) {
+      <div class="form-container" id="contacts">
+        <div class="row">
+          <div class="col-8">
+            <h2>{{ "CONTACTS" | translate }}</h2>
+          </div>
+          <div class="col-4 text-end">
+            <a
+              [routerLink]="[
+                routePrefix,
+                'admin-place',
+                'contacts',
+                place.lieu_id
+              ]"
+              routerLinkActive="router-link-active"
+              class="btn btn-large btn-outline-primary"
+            >
+              {{ "EDIT" | translate }}
+              <fa-icon
+                [icon]="['fas', 'pencil']"
+                aria-hidden="true"
+                class="ms-2"
+              ></fa-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 me-0">
+            <app-display-contacts
+              [place]="place"
+              [me]="me"
+              [template]="'admin'"
+            ></app-display-contacts>
+          </div>
+        </div>
+      </div>
+      } @if (place.placeType === PlaceType.PLACE) {
+      <div class="form-container" id="opening-hours">
+        <div class="row">
+          <div class="col-8">
+            <h2>{{ "OPENING_HOURS" | translate }}</h2>
+          </div>
+          <div class="col-4 text-end">
+            <a
+              [routerLink]="[
+                routePrefix,
+                'admin-place',
+                'horaires',
+                place.lieu_id
+              ]"
+              routerLinkActive="router-link-active"
+              class="btn btn-large btn-outline-primary"
+            >
+              {{ "EDIT" | translate }}
+              <fa-icon
+                [icon]="['fas', 'pencil']"
+                aria-hidden="true"
+                class="ms-2"
+              ></fa-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8 col-12 border-end">
+            <app-display-horaires
+              [hours]="place.newhours"
+              [displayClosedDays]="true"
+            >
+            </app-display-horaires>
+          </div>
+        </div>
+
+        @if (place.newhours.closedHolidays === PlaceClosedHolidays.CLOSED) {
+        <div class="col-12 mt-4 alert alert-info">
+          {{ "CLOSE_ON_PUBLIC_HOLIDAYS" | translate }}
+        </div>
+        } @else if (place.newhours.closedHolidays === PlaceClosedHolidays.OPEN)
+        {
+        <div class="col-12 mt-4 alert alert-info">
+          {{ "OPEN_ON_PUBLIC_HOLIDAYS" | translate }}
+        </div>
+        }
+      </div>
+      }
+
+      <div class="form-container" id="hosted-public">
+        <div class="row">
+          <div class="col-8">
+            <h2>{{ "HOSTED_PUBLIC" | translate }}</h2>
+          </div>
+          <div class="col-4 text-end">
+            <a
+              [routerLink]="[
+                routePrefix,
+                'admin-place',
+                'public',
+                place.lieu_id
+              ]"
+              routerLinkActive="router-link-active"
+              class="btn btn-large btn-outline-primary"
+            >
+              {{ "EDIT" | translate }}
+              <fa-icon
+                [icon]="['fas', 'pencil']"
+                aria-hidden="true"
+                class="ms-2"
+              ></fa-icon>
+            </a>
+          </div>
+        </div>
+
+        @if (place.publics) {
+        <app-display-publics-admin
+          [publics]="place.publics"
+          [languages]="place.languages"
+        ></app-display-publics-admin>
+        } @else {
+        <div class="alert alert-warning">
+          {{ "NOT_DEFINED_THE_TARGET_AUDIENCE" | translate }}
+        </div>
+        }
+      </div>
+
+      <div class="form-container" id="modalities">
+        <div class="row">
+          <div class="col-8">
+            <h2>{{ "HOW_TO_ACCESS" | translate }}</h2>
+          </div>
+          <div class="col-4 text-end">
+            <a
+              [routerLink]="[
+                routePrefix,
+                'admin-place',
+                'condition',
+                place.lieu_id
+              ]"
+              routerLinkActive="router-link-active"
+              class="btn btn-large btn-outline-primary"
+            >
+              {{ "EDIT" | translate }}
+              <fa-icon
+                [icon]="['fas', 'pencil']"
+                aria-hidden="true"
+                class="ms-2"
+              ></fa-icon>
+            </a>
+          </div>
+        </div>
+
+        @if (place.modalities) {
+        <app-display-modalities
+          [modalities]="place.modalities"
+        ></app-display-modalities>
+        } @else {
+        <div class="alert alert-warning">
+          {{ "NOT_DEFINED_YOUR_RECEPTION_ARRANGEMENTS" | translate }}
+        </div>
+        }
+      </div>
+
+      <div class="form-container" id="services">
+        <div class="row">
+          <div class="col-8">
+            <h2>{{ "SERVICES_OFFERED" | translate }}</h2>
+          </div>
+          <div class="col-4 text-end">
+            <a
+              class="btn btn-large btn-outline-primary"
+              [routerLink]="[
+                routePrefix,
+                'admin-place',
+                'services',
+                place.lieu_id
+              ]"
+              routerLinkActive="router-link-active"
+            >
+              {{ "EDIT" | translate }}
+              <fa-icon
+                [icon]="['fas', 'pencil']"
+                aria-hidden="true"
+                class="ms-2"
+              ></fa-icon>
+            </a>
+          </div>
+        </div>
+
+        <div class="row">
+          @if (place.services_all.length >= 1) {
+          <app-display-service-admin
+            *ngFor="let service of place.services_all; let i = index"
+            [index]="i"
+            [service]="service"
+          ></app-display-service-admin>
+          } @else {
+          <div class="col-md-12">
+            <p
+              class="alert alert-danger"
+              [innerHTML]="'NO_SERVICE_AVAILABLE' | translate"
+            ></p>
+          </div>
+          }
+        </div>
+
+        @if (place.services_all.length < 1) {
+        <div class="row">
+          <div class="col-12">
+            <div class="alert alert-warning">
+              {{ "NOT_DEFINED_THE_SERVICES" | translate }}
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+      @if (place.placeType === PlaceType.PLACE) {
+      <div class="form-container" id="photo">
+        <div class="row">
+          <div class="col-8">
+            <h2>{{ "PICTURES" | translate }}</h2>
+          </div>
+          <div class="col-4 text-end">
+            <a
+              [routerLink]="[
+                routePrefix,
+                'admin-place',
+                'photos',
+                place.lieu_id
+              ]"
+              routerLinkActive="router-link-active"
+              class="btn btn-large btn-outline-primary"
+            >
+              {{ "EDIT" | translate }}
+              <fa-icon
+                [icon]="['fas', 'pencil']"
+                aria-hidden="true"
+                class="ms-2"
+              ></fa-icon>
+            </a>
+          </div>
+        </div>
+        @if(place.photos) {
+        <div class="row">
+          <div class="col-12 me-0">
+            <app-display-photos
+              [photos]="place.photos"
+              [name]="place.name"
+            ></app-display-photos>
+          </div>
+        </div>
+        }
+      </div>
+      }
+    </div>
+
+    <div class="col-md-3 col-12">
+      @if (campaignIsActive && place.campaigns?.runningCampaign?.toUpdate &&
+      campaignIsActiveForPlace) {
+      <app-helper-notification
+        [title]="'UPDATE_CAMPAIGN' | translate"
+        [message]="'UPDATE_PERIOD_INFORMATION' | translate"
+        [link]="[routePrefix, 'campaign', 'fiche', place.lieu_id]"
+        [buttonMessage]="'TO_UPDATE' | translate"
+        (clickFunction)="captureEvent('click-go-to-campaign-form-button')"
+      >
+      </app-helper-notification>
+      }
+      <div class="helper-container">
+        <h3>{{ "PLACE_STATUS" | translate }}</h3>
+
+        <div
+          class="custom-dropdown"
+          autoClose="outside"
+          placement="bottom"
+          ngbDropdown
+        >
+          <button
+            type="button"
+            ngbDropdownToggle
+            id="sort"
+            [disabled]="
+              place.status === PlaceStatus.OFFLINE || isDraftAndFormUncomplete
+            "
+          >
+            <span>
+              <b
+                class="saturation"
+                [ngClass]="{
+                  'bg-warning': place.status === PlaceStatus.DRAFT,
+                  'bg-success': place.status === PlaceStatus.ONLINE,
+                  'bg-danger': place.status === PlaceStatus.PERMANENTLY_CLOSED,
+                  'bg-dark': place.status === PlaceStatus.OFFLINE
+                }"
+              >
+              </b>
+              {{ place.status | translate }}
+            </span>
+          </button>
+
+          <div ngbDropdownMenu aria-labelledby="sort" class="m-0 p-0">
+            <button
+              type="button"
+              ngbDropdownItem
+              (click)="statusDropDown(PlaceStatus.DRAFT)"
+              [ngbTooltip]="
+                'TOOLTIP_DRAFT_MODE_VISIBLE_TO_COLLABORATORS' | translate
+              "
+              tooltipClass="tooltip-visible"
+            >
+              <span class="saturation bg-warning"></span>
+              {{ "DRAFT" | translate }}
+            </button>
+
+            <button
+              type="button"
+              ngbDropdownItem
+              (click)="statusDropDown(PlaceStatus.ONLINE)"
+              [ngbTooltip]="
+                'TOOLTIP_ONLINE_MODE_VISIBLE_TO_SOLIGUIDE_USERS'
+                  | translate : { brandName: THEME_CONFIGURATION.brandName }
+              "
+              tooltipClass="tooltip-visible"
+            >
+              <span class="saturation bg-success"></span>
+              {{ "ONLINE" | translate }}
+            </button>
+
+            <button
+              ngbDropdownItem
+              type="button"
+              (click)="statusDropDown(PlaceStatus.PERMANENTLY_CLOSED)"
+              [ngbTooltip]="
+                'TOOLTIP_CLOSE_MODE_ACCESS_TO_COLLABORATORS' | translate
+              "
+              tooltipClass="tooltip-visible"
+            >
+              <span class="saturation bg-danger"></span>
+              {{ "PERMANENTLY_CLOSED" | translate }}
+            </button>
+
+            <div
+              [ngbTooltip]="'GONE_OFFLINE' | translate"
+              tooltipClass="tooltip-visible"
+            >
+              <button type="button" ngbDropdownItem [disabled]="true">
+                <span class="saturation bg-dark"></span>
+                {{ "OFFLINE" | translate }}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        @if (isDraftAndFormUncomplete) {
+        <p class="my-2">
+          {{ "HOW_TO_PUBLISH_PLACE" | translate }}
+        </p>
+
+        <ul class="my-2">
+          @if (!place.stepsDone.emplacement) {
+          <li>
+            {{ "SITE" | translate }}
+          </li>
+          } @if (!place.stepsDone.horaires && place.placeType ===
+          PlaceType.PLACE) {
+          <li>
+            {{ "OPENING_HOURS" | translate }}
+          </li>
+          } @if (!place.stepsDone.publics) {
+          <li>
+            {{ "HOSTED_PUBLIC" | translate }}
+          </li>
+          } @if (!place.stepsDone.conditions) {
+          <li>
+            {{ "HOW_TO_ACCESS" | translate }}
+          </li>
+          } @if(!place.stepsDone.services) {
+          <li>
+            {{ "SERVICES_OFFERED" | translate }}
+          </li>
+          }
+        </ul>
+        }
+      </div>
+
+      @if (place.status === PlaceStatus.ONLINE || place.status ===
+      PlaceStatus.OFFLINE) {
+      <div class="helper-container">
+        <h3>{{ "PLACE_VISIBILITY" | translate }}</h3>
+
+        <div
+          class="custom-dropdown"
+          autoClose="outside"
+          placement="bottom"
+          ngbDropdown
+        >
+          <button type="button" ngbDropdownToggle>
+            @if (place.visibility === PlaceVisibility.ALL) {
+            {{ "PLACE_VISIBILITY_ALL" | translate }}
+            } @else if (place.visibility === PlaceVisibility.PRO) {
+            {{ "PLACE_VISIBILITY_PRO" | translate }}
+            }
+          </button>
+          <div ngbDropdownMenu>
+            <button
+              type="button"
+              ngbDropdownItem
+              (click)="changeVisibility(PlaceVisibility.ALL)"
+              [ngbTooltip]="
+                'VISIBLE_TO_ALL_SOLIGUIDE_USERS'
+                  | translate : { brandName: THEME_CONFIGURATION.brandName }
+              "
+              tooltipClass="tooltip-visible"
+            >
+              {{ "PLACE_VISIBILITY_ALL" | translate }}
+            </button>
+            <button
+              type="button"
+              ngbDropdownItem
+              (click)="changeVisibility(PlaceVisibility.PRO)"
+              [ngbTooltip]="
+                'RESERVED_FOR_PROFESSIONALS'
+                  | translate : { brandName: THEME_CONFIGURATION.brandName }
+              "
+              tooltipClass="tooltip-visible"
+            >
+              {{ "PLACE_VISIBILITY_PRO" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+      }
+
+      <div class="mb-2"></div>
+
+      @if (place.status === PlaceStatus.ONLINE || place.status ===
+      PlaceStatus.OFFLINE) {
+      <app-helper-notification
+        [title]="'PLACE_UP_TO_DATE' | translate"
+        [message]="'TOOLTIP_VALID_UP_TO_DATE' | translate"
+        (clickFunction)="setNoChange()"
+        [buttonMessage]="'NO_CHANGE' | translate"
+      >
+      </app-helper-notification>
+      } @if (place.status === PlaceStatus.ONLINE || place.status ===
+      PlaceStatus.OFFLINE) {
+      <app-helper-notification
+        [title]="'TEMPORARY_CLOSURE' | translate"
+        [message]="'PLAN_CLOSURE' | translate"
+        [link]="[
+          routePrefix,
+          'admin-place',
+          'temp-infos',
+          'closure',
+          place.lieu_id
+        ]"
+        [buttonMessage]="'TO_UPDATE' | translate"
+      >
+      </app-helper-notification>
+      } @if (place.placeType === PlaceType.PLACE && (place.status ===
+      PlaceStatus.ONLINE || place.status === PlaceStatus.OFFLINE)) {
+      <app-helper-notification
+        [title]="'TEMPORARY_SCHEDULE' | translate"
+        [message]="'PLAN_TEMPORARY_SCHEDULE' | translate"
+        [link]="[
+          routePrefix,
+          'admin-place',
+          'temp-infos',
+          'hours',
+          place.lieu_id
+        ]"
+        [buttonMessage]="'TO_UPDATE' | translate"
+      >
+      </app-helper-notification
+      >} @if (place.status === PlaceStatus.ONLINE || place.status ===
+      PlaceStatus.OFFLINE) {
+      <app-helper-notification
+        [title]="'TEMPORARY_MESSAGE' | translate"
+        [message]="'PLAN_TEMPORARY_MESSAGE' | translate"
+        [link]="[
+          routePrefix,
+          'admin-place',
+          'temp-infos',
+          'message',
+          place.lieu_id
+        ]"
+        [buttonMessage]="'TO_UPDATE' | translate"
+      >
+      </app-helper-notification
+      >}
+
+      <app-display-changes-admin-place
+        [place]="place"
+      ></app-display-changes-admin-place>
+    </div>
+  </div>
+</div>
+}
+
+<ng-template #deletePlaceModal let-modal>
+  <app-delete-place [place]="place"></app-delete-place>
+</ng-template>
+
+<ng-template #removePlaceModal let-modal>
+  <app-remove-place
+    [place]="place"
+    [orga]="me?.currentOrga"
+    [fromPlace]="true"
+  ></app-remove-place>
+</ng-template>

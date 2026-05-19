@@ -1,0 +1,45 @@
+/*
+ * Soliguide: Useful information for those who need it
+ *
+ * SPDX-FileCopyrightText: © 2024 Solinum
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+.notfound {
+  width: 700px;
+  max-width: 96%;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.notfound h1 {
+  font-size: 12rem;
+  font-weight: 200;
+  margin: 0px;
+  background: linear-gradient(119deg, var(--bs-primary), var(--bs-secondary));
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-transform: uppercase;
+}
+
+.notfound h2 {
+  font-size: 3rem;
+  font-weight: 100;
+  text-transform: uppercase;
+  margin-top: 0;
+  letter-spacing: 1px;
+}

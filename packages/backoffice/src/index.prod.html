@@ -1,0 +1,162 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <script>
+      // To remove when we add the cookie banner to soliguia
+      theme = '{{ placeholder "soliguide_theme" }}';
+
+      if (theme === "soliguide_fr") {
+        // Initialize the dataLayer
+        window.dataLayer = window.dataLayer || [];
+
+        // Create the gtag function that pushes to the dataLayer
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+
+        // Set consent defaults
+        gtag("consent", "default", {
+          security_storage: "granted",
+          analytics_storage:
+            localStorage.getItem("silktideCookieChoice_analytics") === "true"
+              ? "granted"
+              : "denied",
+          ad_storage:
+            localStorage.getItem("silktideCookieChoice_analytics") === "true"
+              ? "granted"
+              : "denied",
+          ad_personalization:
+            localStorage.getItem("silktideCookieChoice_analytics") === "true"
+              ? "granted"
+              : "denied",
+          ad_user_data:
+            localStorage.getItem("silktideCookieChoice_analytics") === "true"
+              ? "granted"
+              : "denied",
+          functionality_storage:
+            localStorage.getItem("silktideCookieChoice_chat") === "true"
+              ? "granted"
+              : "denied",
+        });
+      }
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>
+      // To remove when we add the cookie banner to soliguia
+      theme = '{{ placeholder "soliguide_theme" }}';
+
+      if (theme === "soliguide_fr") {
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+          var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != "dataLayer" ? "&l=" + l : "";
+          j.async = true;
+          j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+          f.parentNode.insertBefore(j, f);
+        })(window, document, "script", "dataLayer", "GTM-W88VRN3M");
+      }
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="utf-8" />
+    <title>{{ placeholder "soliguide_title" }}</title>
+    <base href="/" />
+    {{ import "/head.prod.html.tpl" }} {{ template "head" }}
+  </head>
+  <body id="top-site">
+    <!-- Google Tag Manager (noscript) -->
+    <!-- REMOVE COMMENT WHEN WE ADD THE COOKIE BANNER TO SOLIGUIA -->
+    <!-- <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-W88VRN3M"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe>
+    </noscript> -->
+    <!-- End Google Tag Manager (noscript) -->
+
+    <script>
+      window.CURRENT_DATA = {
+        THEME: '{{ placeholder "soliguide_theme" }}',
+        env: {
+          apiUrl: '{{ env "SOLIGUIDE_API_URL" }}',
+          locationApiUrl: '{{ env "SOLIGUIDE_LOCATION_API_URL" }}',
+          environment: '{{ env "SOLIGUIDE_ENV_ID" }}',
+          posthogUrl: '{{ env "SOLIGUIDE_POSTHOG_URL" }}',
+          posthogApiKey: '{{ env "SOLIGUIDE_POSTHOG_API_KEY" }}'.length
+            ? '{{ env "SOLIGUIDE_POSTHOG_API_KEY" }}'
+            : undefined,
+          sentryDsn: '{{ env "SOLIGUIDE_SENTRY_DSN" }}'.length
+            ? '{{ env "SOLIGUIDE_SENTRY_DSN" }}'
+            : undefined,
+          chatWebsiteId: '{{ env "SOLIGUIDE_CHAT_WEBSITE_ID" }}'.length
+            ? '{{ env "SOLIGUIDE_CHAT_WEBSITE_ID" }}'
+            : undefined,
+          territoriesPresent: '{{ env "SOLIGUIDE_TERRITORIES_PRESENT" }}',
+          territorialAnalysis: '{{ env "SOLIGUIDE_TERRITORIAL_ANALYSIS" }}'
+            .length
+            ? '{{ env "SOLIGUIDE_TERRITORIAL_ANALYSIS" }}'
+            : undefined,
+          seasonalAnalysis: '{{ env "SOLIGUIDE_SEASONAL_ANALYSIS" }}'.length
+            ? '{{ env "SOLIGUIDE_SEASONAL_ANALYSIS" }}'
+            : undefined,
+          searchTracking: '{{ env "SOLIGUIDE_SEARCH_TRACKING" }}'.length
+            ? '{{ env "SOLIGUIDE_SEARCH_TRACKING" }}'
+            : undefined,
+          olympicGames: '{{ env "SOLIGUIDE_OLYMPIC_GAMES" }}'.length
+            ? '{{ env "SOLIGUIDE_OLYMPIC_GAMES" }}'
+            : undefined,
+          anticipateClosures: '{{ env "SOLIGUIDE_ANTICIPATE_CLOSURES" }}'.length
+            ? '{{ env "SOLIGUIDE_ANTICIPATE_CLOSURES" }}'
+            : undefined,
+          foodAccess: '{{ env "SOLIGUIDE_FOOD_ACCESS" }}'.length
+            ? '{{ env "SOLIGUIDE_FOOD_ACCESS" }}'
+            : undefined,
+          demoFoodAccess: '{{ env "SOLIGUIDE_DEMO_FOOD_ACCESS" }}'.length
+            ? '{{ env "SOLIGUIDE_DEMO_FOOD_ACCESS" }}'
+            : undefined,
+          praticalFilesLink: '{{ env "SOLIGUIDE_PRACTICAL_FILES_LINK" }}'.length
+            ? '{{ env "SOLIGUIDE_PRACTICAL_FILES_LINK" }}'
+            : undefined,
+          becomeTranslatorFormLink:
+            '{{ env "SOLIGUIDE_BECOME_TRANSLATOR_FORM_LINK" }}'.length
+              ? '{{ env "SOLIGUIDE_BECOME_TRANSLATOR_FORM_LINK" }}'
+              : undefined,
+          proAccountCreationFormLink:
+            '{{ env "SOLIGUIDE_PRO_ACCOUNT_CREATION_FORM_LINK" }}'.length
+              ? '{{ env "SOLIGUIDE_PRO_ACCOUNT_CREATION_FORM_LINK" }}'
+              : undefined,
+          donateLink: '{{ env "SOLIGUIDE_DONATE_LINK" }}'.length
+            ? '{{ env "SOLIGUIDE_DONATE_LINK" }}'
+            : undefined,
+        },
+      };
+    </script>
+
+    <app-root></app-root>
+  </body>
+</html>

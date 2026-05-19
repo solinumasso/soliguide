@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg"><path d="M138.354 111.223l3.604-4.814a.826.826 0 00.143-.305l1.37-5.856a.689.689 0 011.262-.287l5.177 9.28a.792.792 0 01-.528 1.133l-10.438 2a.689.689 0 01-.59-1.15zM11.646 38.777L8.042 43.59a.826.826 0 00-.143.305l-1.37 5.856a.689.689 0 01-1.262.287L.09 40.76a.792.792 0 01.528-1.133l10.438-2a.689.689 0 01.59 1.15zM38.777 138.354l4.814 3.604a.826.826 0 00.305.143l5.856 1.37a.689.689 0 01.287 1.262l-9.28 5.177a.792.792 0 01-1.133-.528l-2-10.438a.689.689 0 011.15-.59zM111.223 11.646l-4.814-3.604a.826.826 0 00-.305-.143l-5.856-1.37a.689.689 0 01-.287-1.262L109.24.09a.792.792 0 011.133.528l2 10.438a.689.689 0 01-1.15.59z" fill="#e65a46"/><g fill="#3c3c6e"><path d="M80.675 14.33a2.49 2.49 0 00-4.974-.26l-.471 8.996q2.484.008 4.973.257zM69.323 135.761a2.49 2.49 0 004.974.261l.476-9.088q-2.485-.008-4.974-.257zM89.906 124.736l5.885 16.171a2.987 2.987 0 105.615-2.043l-5.885-16.17a52.146 52.146 0 01-5.615 2.042zM60.063 25.274l-5.856-16.09a2.987 2.987 0 10-5.615 2.044l5.856 16.09a52.14 52.14 0 015.615-2.044zM35.266 28.787a2.49 2.49 0 10-3.642 3.397l6.158 6.603q1.747-1.799 3.637-3.402zM118.374 117.908l-6.2-6.65q-1.75 1.797-3.643 3.398l6.2 6.65a2.49 2.49 0 103.643-3.398zM14.284 69.37a2.49 2.49 0 10-.261 4.974l9.043.474q.007-2.485.253-4.974zM135.714 80.722a2.49 2.49 0 00.261-4.974l-9.04-.474q-.01 2.485-.262 4.974zM124.744 60.12l16.116-5.866a2.987 2.987 0 00-2.043-5.615l-16.112 5.864a52.184 52.184 0 012.039 5.617zM25.282 89.962L9.138 95.838a2.987 2.987 0 102.043 5.615l16.148-5.877a52.18 52.18 0 01-2.047-5.614zM121.258 35.313a2.49 2.49 0 00-3.397-3.642l-6.602 6.157q1.797 1.749 3.398 3.641zM28.74 114.779a2.49 2.49 0 103.397 3.642l6.65-6.202q-1.798-1.747-3.402-3.637zM97.834 26.37S56.412 48.98 49.8 63.063a27.888 27.888 0 1050.484 23.705c6.612-14.083-2.45-60.398-2.45-60.398zM70.072 85.98a11.154 11.154 0 1114.838-5.356 11.154 11.154 0 01-14.838 5.356z"/></g></svg>

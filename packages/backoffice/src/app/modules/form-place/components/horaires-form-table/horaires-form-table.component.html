@@ -1,0 +1,101 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<table class="table hours-form" *ngIf="hours">
+  <ng-container *ngFor="let day of WEEK_DAYS">
+    <tr>
+      <th scope="row">
+        <div>
+          {{ "DAY_" + day | uppercase | translate | ucFirst }}
+        </div>
+      </th>
+      <td>
+        <button
+          type="button"
+          *ngIf="hours[day].timeslot.length < 3"
+          [attr.aria-label]="
+            'Ajouter une plage horaire le' +
+            ('DAY_' + day | uppercase | translate)
+          "
+          (click)="newSlot(day)"
+          class="hours-new"
+        >
+          <fa-icon [icon]="['fas', 'plus']" aria-hidden="true"></fa-icon>
+        </button>
+      </td>
+      <td>
+        <div *ngIf="!hours[day].open">{{ "CLOSED" | translate }}</div>
+        <div *ngIf="hours[day].open">
+          <div
+            *ngFor="let slot of hours[day].timeslot; let i = index"
+            class="input-hours"
+          >
+            <label
+              for="start_{{ day }}_{{ i }}_{{ index }}"
+              class="visually-hidden"
+              >Heure d'ouverture numéro {{ i + 1 }} de
+              {{ "DAY_" + day | uppercase | translate }}</label
+            >
+            <input
+              type="time"
+              [ngClass]="{
+                'is-invalid': slot.start === ''
+              }"
+              id="start_{{ day }}_{{ i }}_{{ index }}"
+              name="start_{{ day }}_{{ i }}_{{ index }}"
+              [(ngModel)]="slot.start"
+              (ngModelChange)="updateHours()"
+              required
+            />
+            à
+            <label
+              for="end_{{ day }}_{{ i }}_{{ index }}"
+              class="visually-hidden"
+              >Heure de fermeture numéro {{ i + 1 }} de
+              {{ "DAY_" + day | uppercase | translate }}</label
+            >
+            <input
+              type="time"
+              id="end_{{ day }}_{{ i }}_{{ index }}"
+              name="end_{{ day }}_{{ i }}_{{ index }}"
+              [(ngModel)]="slot.end"
+              (ngModelChange)="updateHours()"
+              required
+            />
+            <button
+              type="button"
+              class="red-cross"
+              (click)="deleteSlot(day, i)"
+              [attr.aria-label]="
+                'Supprimer la plage horaire numéro ' +
+                (i + 1) +
+                ' de ' +
+                ('DAY_' + day | uppercase | translate)
+              "
+            >
+              <fa-icon [icon]="['fas', 'times']" aria-hidden="true"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </td>
+      <td><div class="spacer"></div></td>
+    </tr>
+  </ng-container>
+</table>

@@ -1,0 +1,58 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div
+  class="justify-content-between align-items-center d-flex p-3"
+  *ngIf="nbResults > 0"
+>
+  <div class="d-flex justify-content-start align-items-center me-auto">
+    <select
+      class="form-select"
+      name="limit"
+      [(ngModel)]="options.limit"
+      (ngModelChange)="updateOptions()"
+      id="limit"
+    >
+      <option [ngValue]="5">5</option>
+      <option [ngValue]="10">10</option>
+      <option [ngValue]="50">50</option>
+      <option [ngValue]="100">100</option>
+      <option [ngValue]="200">200</option>
+      <option [ngValue]="300">300</option>
+    </select>
+    <div>
+      <label for="limit" class="ms-3 fw-bold">{{
+        "RESULTS_PER_PAGE" | translate
+      }}</label>
+    </div>
+  </div>
+
+  <ngb-pagination
+    *ngIf="options.limit < nbResults"
+    class="ms-auto"
+    [collectionSize]="nbResults"
+    [(page)]="options.page"
+    (pageChange)="updateOptions()"
+    [maxSize]="5"
+    [boundaryLinks]="true"
+    [pageSize]="options.limit"
+    [rotate]="true"
+  ></ngb-pagination>
+</div>

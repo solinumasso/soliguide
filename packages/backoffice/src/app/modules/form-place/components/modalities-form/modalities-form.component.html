@@ -1,0 +1,348 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div
+  [ngClass]="{
+    'form-container': serviceIndex === null,
+    'col-12 mb-3': serviceIndex !== null
+  }"
+>
+  <div class="row">
+    <div class="col-12">
+      <div class="label" [ngClass]="{ 'mb-0': serviceIndex === null }">
+        {{ "ACCESS_CONDITIONS" | translate }}
+      </div>
+      <div class="input-description" *ngIf="serviceIndex === null">
+        {{ "CHOOSE_SPECIFIC_CONDITIONS" | translate }}
+      </div>
+    </div>
+  </div>
+  <div class="my-3 row">
+    <div class="col-md-3 col-12 m-0 py-2">
+      <div
+        tabindex="0"
+        (click)="changeModalities('inconditionnel')"
+        (keyup.enter)="changeModalities('inconditionnel')"
+        [ngClass]="{
+          'condition-selector': !modalities.inconditionnel,
+          'condition-selector-selected': modalities.inconditionnel
+        }"
+        class="p-3"
+      >
+        <div class="svg-form condition-all"></div>
+        <div class="fw-bold my-1 title text-primary">
+          {{ "ACCESS_FOR_ALL" | translate }}
+        </div>
+        <div class="mt-4">
+          <button
+            type="button"
+            aria-checked="true"
+            *ngIf="modalities.inconditionnel"
+            class="btn text-center btn-light btn-sm"
+          >
+            <span class="visually-hidden">{{ "SELECTED" | translate }}</span>
+            <fa-icon [icon]="['fas', 'check']" aria-hidden="true"></fa-icon>
+          </button>
+          <button
+            type="button"
+            aria-checked="false"
+            *ngIf="!modalities.inconditionnel"
+            class="btn text-center btn-primary btn-sm"
+          >
+            {{ "CHOOSE" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-12 m-0 py-2">
+      <div
+        (click)="changeModalities('orientation')"
+        (keyup.enter)="changeModalities('orientation')"
+        tabindex="0"
+        [ngClass]="{
+          'condition-selector': !modalities.orientation.checked,
+          'condition-selector-selected': modalities.orientation.checked
+        }"
+        class="p-3"
+        [ngbTooltip]="tipContent"
+      >
+        <div class="svg-form orientation"></div>
+        <div class="fw-bold my-1 title text-primary">
+          {{ "ACCESS_CONDITION_ON_ORIENTATION" | translate }}
+        </div>
+        <div class="mt-4">
+          <button
+            type="button"
+            aria-checked="true"
+            *ngIf="modalities.orientation.checked"
+            class="btn text-center btn-light btn-sm"
+          >
+            <span class="visually-hidden">{{ "SELECTED" | translate }}</span>
+            <fa-icon [icon]="['fas', 'check']" aria-hidden="true"></fa-icon>
+          </button>
+          <button
+            type="button"
+            aria-checked="false"
+            *ngIf="!modalities.orientation.checked"
+            class="btn text-center btn-primary btn-sm"
+          >
+            {{ "CHOOSE" | translate }}
+          </button>
+        </div>
+      </div>
+      <ng-template #tipContent>
+        {{
+          "SOLIGUIDE_ONLY_ORIENTATION"
+            | translate : { brandName: THEME_CONFIGURATION.brandName }
+        }}
+      </ng-template>
+    </div>
+    <div class="col-md-3 col-12 m-0 py-2">
+      <div
+        tabindex="0"
+        (click)="changeModalities('appointment')"
+        (keyup.enter)="changeModalities('appointment')"
+        [ngClass]="{
+          'condition-selector': !modalities.appointment.checked,
+          'condition-selector-selected': modalities.appointment.checked
+        }"
+        class="p-3"
+      >
+        <div class="svg-form appointment"></div>
+        <div class="fw-bold my-1 title text-primary">
+          {{ "ACCESS_CONDITION_ON_APPOINTMENT" | translate }}
+        </div>
+        <div class="mt-4">
+          <button
+            type="button"
+            aria-checked="true"
+            *ngIf="modalities.appointment.checked"
+            class="btn text-center btn-light btn-sm"
+          >
+            <span class="visually-hidden">{{ "SELECTED" | translate }}</span>
+            <fa-icon [icon]="['fas', 'check']" aria-hidden="true"></fa-icon>
+          </button>
+          <button
+            type="button"
+            aria-checked="false"
+            *ngIf="!modalities.appointment.checked"
+            class="btn text-center btn-primary btn-sm"
+          >
+            {{ "CHOOSE" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-12 m-0 py-2">
+      <div
+        tabindex="0"
+        (click)="changeModalities('inscription')"
+        (keyup.enter)="changeModalities('inscription')"
+        [ngClass]="{
+          'condition-selector': !modalities.inscription.checked,
+          'condition-selector-selected': modalities.inscription.checked
+        }"
+        class="p-3"
+      >
+        <div class="svg-form inscription"></div>
+        <div class="fw-bold my-1 title text-primary">
+          {{ "ACCESS_CONDITION_ON_REGISTRATION" | translate }}
+        </div>
+        <div class="mt-4">
+          <button
+            type="button"
+            aria-checked="true"
+            *ngIf="modalities.inscription.checked"
+            class="btn text-center btn-light btn-sm"
+          >
+            <span class="visually-hidden">{{ "SELECTED" | translate }}</span>
+            <fa-icon [icon]="['fas', 'check']" aria-hidden="true"></fa-icon>
+          </button>
+          <button
+            type="button"
+            aria-checked="false"
+            *ngIf="!modalities.inscription.checked"
+            class="btn text-center btn-primary btn-sm"
+          >
+            {{ "CHOOSE" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 my-3" *ngIf="modalities.inscription.checked">
+      <label
+        class="form-label"
+        for="{{ inputPrefix }}_inscription_precisions"
+        >{{ "SIGN_UP_PRECISIONS" | translate }}</label
+      >
+      <input
+        type="text"
+        class="form-control"
+        name="{{ inputPrefix }}_inscription_precisions"
+        id="{{ inputPrefix }}_inscription_precisions"
+        [(ngModel)]="modalities.inscription.precisions"
+        [placeholder]="'PLACEHOLDER_PRECISIONS' | translate"
+      />
+    </div>
+    <div class="col-12 my-3" *ngIf="modalities.appointment.checked">
+      <label
+        class="form-label"
+        for="{{ inputPrefix }}_appointment_precisions"
+        >{{ "APPOINTMENT_PRECISIONS" | translate }}</label
+      >
+      <input
+        type="text"
+        class="form-control"
+        name="{{ inputPrefix }}_appointment_precisions"
+        id="{{ inputPrefix }}_appointment_precisions"
+        [(ngModel)]="modalities.appointment.precisions"
+        placeholder="Précisions..."
+      />
+    </div>
+
+    <div class="col-12 mt-3 mb-2" *ngIf="modalities.orientation.checked">
+      <div class="mt-1">
+        <label for="{{ inputPrefix }}_precisions_acces" class="form-label">{{
+          "ORIENTATION_PRECISIONS" | translate
+        }}</label>
+        <input
+          type="text"
+          class="form-control"
+          name="{{ inputPrefix }}orientation_precisions"
+          id="{{ inputPrefix }}_precisions_acces"
+          [(ngModel)]="modalities.orientation.precisions"
+          [placeholder]="'PLACEHOLDER_PRECISIONS' | translate"
+        />
+      </div>
+      <div class="my-4">
+        <div class="label">{{ "GUIDANCE_SHEETS" | translate }}</div>
+        <div class="input-description">
+          {{ "GUIDANCE_SHEETS_INFO" | translate }}
+        </div>
+        <div class="alert alert-warning" *ngIf="modalities.docs.length === 0">
+          {{ "NO_GUIDANCE_SHEET" | translate }}
+        </div>
+        <app-display-docs
+          [docs]="modalities.docs"
+          [serviceIndex]="serviceIndex"
+          [placeId]="placeId"
+          [canDownload]="true"
+          [displayDate]="true"
+        ></app-display-docs>
+        <div
+          class="mt-3 align-items-center justify-content-left d-flex"
+          *ngIf="modalities.docs.length > 3"
+        >
+          {{ "CANNOT_UPLOAD_DOCS" | translate }}
+        </div>
+        <div *ngIf="modalities.docs.length < 4" class="my-4">
+          <div class="label">{{ "ADD_GUIDANCE_SHEET" | translate }}</div>
+          <app-upload-doc
+            [placeId]="placeId"
+            [modalities]="modalities"
+            [serviceId]="serviceIndex"
+          ></app-upload-doc>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h2 class="my-2">{{ "ADDITIONAL_INFORMATION" | translate }}</h2>
+      <div class="d-flex flex-column align-items-start">
+        <label
+          class="form-check-label medium-label"
+          for="{{ inputPrefix }}_pmr_switch"
+        >
+          <div class="form-label">
+            {{ "ACCESS_CONDITION_PEOPLE_WITH_REDUCED_MOBILITY" | translate }}
+          </div>
+          <app-modalities-toggle
+            [checked]="modalities.pmr?.checked"
+            (checkedChange)="setPmrChecked($event)"
+          ></app-modalities-toggle>
+        </label>
+      </div>
+
+      <div class="d-flex flex-column align-items-start">
+        <label
+          class="form-check-label medium-label"
+          for="{{ inputPrefix }}_animal_switch"
+        >
+          <div class="form-label">
+            {{ "ACCESS_CONDITION_ACCEPTED_ANIMALS" | translate }}
+          </div>
+          <app-modalities-toggle
+            [checked]="modalities.animal?.checked"
+            (checkedChange)="setAnimalChecked($event)"
+          ></app-modalities-toggle>
+        </label>
+      </div>
+      <div class="d-flex flex-column align-items-start">
+        <label
+          class="form-check-label medium-label"
+          for="{{ inputPrefix }}_price_switch"
+        >
+          <div class="form-label">
+            {{
+              "ACCESS_CONDITION_FINANCIAL_PARTICIPATION_REQUIRED" | translate
+            }}
+          </div>
+          <app-modalities-toggle
+            [checked]="modalities.price?.checked"
+            (checkedChange)="setPriceChecked($event)"
+          ></app-modalities-toggle>
+        </label>
+      </div>
+
+      <div class="my-3" *ngIf="modalities.price.checked">
+        <label for="{{ inputPrefix }}_price_precisions" class="form-label">{{
+          "FINANCIAL_PARTICIPATION_PRECISIONS" | translate
+        }}</label>
+        <textarea
+          id="{{ inputPrefix }}_price_precisions"
+          class="form-control"
+          name="{{ inputPrefix }}_price_precisions"
+          [(ngModel)]="modalities.price.precisions"
+          [placeholder]="'PLACEHOLDER_PRECISIONS' | translate"
+        >
+        </textarea>
+      </div>
+
+      <div class="my-3">
+        <label class="form-label" for="{{ inputPrefix }}_other">{{
+          "OTHER_PRECISIONS" | translate
+        }}</label>
+        <ckeditor
+          id="{{ inputPrefix }}_other"
+          ngDefaultControl
+          [editor]="editor"
+          [config]="editorConfig"
+          name="{{ inputPrefix }}_other"
+          [(ngModel)]="modalities.other"
+        ></ckeditor>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,88 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<form [formGroup]="uploadForm" (ngSubmit)="submitFile()">
+  <div *ngIf="helpPhotos" class="input-description">
+    {{ "STRUCTURE_FRONT_PHOTOS" | translate }}
+  </div>
+  <p *ngIf="!helpPhotos" id="attachment-help" class="input-description">
+    {{ "PHOTO_AUTHORIZED_FORMATS" | translate }}
+  </p>
+  <div>
+    <ng-container *ngIf="photos.length > 0">
+      <div
+        class="admin_photo"
+        *ngFor="let photo of photos; let i = index"
+        [ngStyle]="{ 'background-image': 'url(' + photo.photoUrl + ')' }"
+      >
+        <button
+          type="button"
+          class="red-cross"
+          (click)="deletePhoto(i, photo._id)"
+        >
+          <fa-icon aria-hidden="true" [icon]="['fas', 'times']"></fa-icon>
+        </button>
+      </div>
+    </ng-container>
+    <div class="admin_photo" *ngIf="photos.length < 4">
+      <label
+        class="big-plus"
+        for="photo"
+        data-browse="Parcourir"
+        lang="fr"
+      ></label>
+      <input
+        type="file"
+        name="photo"
+        id="photo"
+        file="photo"
+        aria-describedby="attachment-help"
+        (change)="onFileChange($event)"
+      />
+      <input type="hidden" name="fileHidden" formControlName="imageInput" />
+    </div>
+  </div>
+  <div class="text-danger" *ngIf="!uploadError.fileType">
+    {{ "INVALID_FILE_FORMAT" | translate }}
+  </div>
+  <div class="text-danger" *ngIf="!uploadError.fileSize">
+    {{ "PHOTO_SIZE_IS_TOO_LARGE" | translate }}
+  </div>
+  <div *ngIf="uploadResponse">
+    <div *ngIf="uploadResponse.status === 'error'">
+      {{ uploadResponse.message }}
+    </div>
+    <div *ngIf="uploadResponse.status === 'progress'">
+      <ngb-progressbar
+        type="success"
+        [striped]="true"
+        [animated]="true"
+        [value]="uploadResponse.message"
+      >
+        {{ uploadResponse.message }} %
+      </ngb-progressbar>
+    </div>
+  </div>
+  <div *ngIf="photos.length >= 4">
+    <div class="alert-warning alert">
+      {{ "REACHED_MAX_PHOTOS_AUTHORIZED" | translate }}
+    </div>
+  </div>
+</form>

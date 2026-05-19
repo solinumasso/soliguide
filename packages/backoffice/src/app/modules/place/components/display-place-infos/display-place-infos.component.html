@@ -1,0 +1,93 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div *ngIf="place">
+  <app-display-holidays [place]="place"></app-display-holidays>
+
+  <div class="alert alert-info" *ngIf="place.status === PlaceStatus.DRAFT">
+    <b class="alert-link">{{ "DRAFT" | translate }}</b>
+    <br />
+    {{ "PLACE_IS_INCOMPLETE" | translate }}
+    <a
+      [routerLink]="[this.routePrefix, 'manage-place', place.lieu_id]"
+      *ngIf="canEdit"
+      routerLinkActive="router-link-active"
+      (click)="
+        captureEvent({
+          name: 'click-continue-editing',
+          properties: { canEdit }
+        })
+      "
+    >
+      {{ "CONTINUE_EDITING" | translate }}
+    </a>
+  </div>
+
+  <div
+    class="alert alert-danger"
+    *ngIf="place.status === PlaceStatus.PERMANENTLY_CLOSED"
+  >
+    <b class="alert-link">
+      <fa-icon [icon]="['fas', 'times']" aria-hidden="true"></fa-icon>
+      {{ "PERMANENTLY_CLOSED" | translate }}
+    </b>
+  </div>
+
+  <div class="alert alert-danger" *ngIf="place.status === PlaceStatus.OFFLINE">
+    <b class="alert-link">
+      <fa-icon [icon]="['fas', 'exclamation-triangle']"></fa-icon>
+      {{ "STRUCTURE_HORS_LIGNE" | translate }}
+    </b>
+    <br />
+    <span
+      *ngIf="me?.admin || (me?.role !== 'READER' && haveRightOnThisPlace)"
+      >{{ "STRUCTURE_HORS_LIGNE_MESSAGE_CAN_EDIT" | translate }}</span
+    >
+    <span *ngIf="me?.role === 'READER' && haveRightOnThisPlace">{{
+      "STRUCTURE_HORS_LIGNE_MESSAGE_READER" | translate
+    }}</span>
+    <span *ngIf="me && !me.admin && !haveRightOnThisPlace">{{
+      "STRUCTURE_HORS_LIGNE_MESSAGE_LOGGED" | translate
+    }}</span>
+    <span *ngIf="!me">{{
+      "STRUCTURE_HORS_LIGNE_MESSAGE_NOT_LOGGED" | translate
+    }}</span>
+  </div>
+
+  <app-display-temp-banner
+    [tempInfoType]="TempInfoType.MESSAGE"
+    [tempInfos]="place.tempInfos.message"
+    [admin]="true"
+  ></app-display-temp-banner>
+
+  <div
+    class="alert alert-warning"
+    *ngIf="
+      place.modalities.orientation &&
+      place.modalities.orientation?.checked === true
+    "
+  >
+    <b class="alert-link">
+      {{ "ORIENTATION_SEARCH" | translate }}
+    </b>
+    <br />
+    {{ "ORIENTATION_SEARCH_MESSAGE" | translate }}
+  </div>
+</div>

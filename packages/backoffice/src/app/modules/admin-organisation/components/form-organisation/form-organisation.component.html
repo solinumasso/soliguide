@@ -1,0 +1,299 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="container my-4" *ngIf="organisation && me">
+  <div class="row">
+    <div class="col-10 offset-1 my-2">
+      <h1 *ngIf="organisation.name" class="title">
+        {{ "UPDATED" | translate }} : {{ organisation.name }}
+      </h1>
+      <h1 *ngIf="!organisation.name" class="title">
+        {{ "CREATE_AN_ORGANIZATION" | translate }}
+      </h1>
+      <div class="limite"></div>
+    </div>
+
+    <div class="col-10 offset-1 my-2" *ngIf="orgaForm">
+      <form [formGroup]="orgaForm">
+        <div class="form-container">
+          <div class="row my-2">
+            <div class="col-12 required">
+              <label class="form-label" for="name">{{
+                "YOUR_ORGANIZATION_NAME" | translate
+              }}</label>
+              <input
+                type="text"
+                id="name"
+                formControlName="name"
+                [placeholder]="'YOUR_ORGANIZATION_NAME' | translate"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid': (f.name.dirty || submitted) && f.name.errors,
+                  'is-valid': f.name.dirty && f.name.value && !f.name.errors
+                }"
+              />
+
+              <div
+                *ngIf="(submitted || f.name.dirty) && f.name.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f.name.errors.required">
+                  {{ "ORGANIZATION_NAME_REQUIRED" | translate }}
+                </div>
+                <div *ngIf="!f.name.errors.required">
+                  {{ "ERROR_ORGANIZATION_NAME_MAX_MIN_LENGTH" | translate }}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 my-3">
+              <label for="description" class="form-label">{{
+                "DESCRIPTION" | translate
+              }}</label>
+              <p class="input-description">
+                {{ "PRESENTATION_SENTENCES_OF_ORGANIZATION" | translate }}
+              </p>
+              <ckeditor
+                id="description"
+                [editor]="editor"
+                [config]="editorConfig"
+                [data]="organisation.description"
+                [ngClass]="{
+                  'is-invalid':
+                    (f.description.dirty || submitted) && f.description.errors,
+                  'is-valid':
+                    (f.description.dirty || f.description.value) &&
+                    !f.description.errors
+                }"
+                (change)="onDescriptionChange($event)"
+              ></ckeditor>
+              <div *ngIf="f.description.errors" class="invalid-feedback">
+                {{ "DESCRIPTION_LENGTH_CONSTRAINT" | translate }}
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <br />
+              <span class="label">{{ "CONTACT" | translate }}</span>
+              <div class="input-description">
+                {{
+                  "ORGANIZATION_INFORMATION_VISIBILITY"
+                    | translate : { brandName: THEME_CONFIGURATION.brandName }
+                }}
+              </div>
+              <br />
+            </div>
+
+            <div class="col-md-6 my-2 col-12">
+              <label for="email" class="form-label">{{
+                "EMAIL_ADDRESS" | translate
+              }}</label>
+              <input
+                id="email"
+                type="email"
+                formControlName="mail"
+                class="form-control"
+                autocomplete="email"
+                [placeholder]="'EMAIL_ADDRESS' | translate"
+                [ngClass]="{
+                  'is-invalid': (submitted || f.mail.dirty) && f.mail.errors,
+                  'is-valid': f.mail.dirty && f.mail.value && !f.mail.errors
+                }"
+              />
+              <div
+                *ngIf="(submitted || f.mail.dirty) && f.mail.errors"
+                class="invalid-feedback"
+              >
+                {{ "INCORRECT_EMAIL_ADDRESS" | translate }}
+              </div>
+            </div>
+
+            <div class="col-md-6 my-2 col-12">
+              <label class="form-label" for="website">
+                {{ "WEBSITE" | translate }}
+              </label>
+              <input
+                id="website"
+                type="text"
+                class="form-control"
+                formControlName="website"
+                [ngClass]="{
+                  'is-invalid':
+                    (f.website.dirty || submitted) && f.website.errors,
+                  'is-valid':
+                    f.website.dirty && f.website.value && !f.website.errors
+                }"
+                [placeholder]="'EXAMPLE_WEBSITE_ADDRESS' | translate"
+                autocomplete="off"
+              />
+              <p *ngIf="f.website.errors" class="invalid-feedback">
+                {{ "INCORRECT_WEBSITE_ADDRESS" | translate }}
+              </p>
+            </div>
+            <div class="col-md-6 my-2 col-12">
+              <app-form-phone-input
+                [phone]="organisation.phone"
+                [parentForm]="orgaForm"
+                [submitted]="submitted"
+              ></app-form-phone-input>
+            </div>
+            <div class="col-md-6 my-2 col-12">
+              <label class="form-label" for="facebook">
+                {{ "FACEBOOK_PAGE" | translate }}
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                id="facebook"
+                formControlName="facebook"
+                [ngClass]="{
+                  'is-invalid':
+                    (f.facebook.dirty || submitted) && f.facebook.errors,
+                  'is-valid':
+                    f.facebook.dirty && f.facebook.value && !f.facebook.errors
+                }"
+                [placeholder]="'EXAMPLE_FACEBOOK_ADDRESS' | translate"
+                autocomplete="off"
+              />
+              <p *ngIf="f.facebook.errors" class="invalid-feedback">
+                {{ "INCORRECT_FACEBOOK_ADDRESS" | translate }}
+              </p>
+            </div>
+            <div class="col-md-6 col-12">
+              <label class="form-label" for="fax">
+                {{ "FAX" | translate }}
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                id="fax"
+                appDigitOnly
+                formControlName="fax"
+                [ngClass]="{
+                  'is-invalid': (f.fax.dirty || submitted) && f.fax.errors,
+                  'is-valid': f.fax.dirty && f.fax.value && !f.fax.errors
+                }"
+                placeholder="0123020333"
+                autocomplete="off"
+              />
+              <p *ngIf="f.fax.errors" class="invalid-feedback">
+                {{ "INCORRECT_FAX_NUMBER" | translate }}
+              </p>
+            </div>
+          </div>
+
+          <div *ngIf="me.admin" class="row">
+            <div class="col-6 my-2">
+              <app-select-territories
+                [isRequired]="true"
+                [label]="'RELATED_TO_WHICH_TERRITORY' | translate"
+                [submitted]="submitted"
+                [territoriesFormControl]="f.territories"
+              ></app-select-territories>
+            </div>
+            <div class="col-6 my-2 required">
+              <label for="relationships" class="form-label">{{
+                "RELATIONSHIPS" | translate
+              }}</label>
+              <div
+                class="input-group custom-dropdown"
+                placement="bottom"
+                ngbDropdown
+                autoClose="outside"
+              >
+                <button
+                  id="relationships"
+                  class="form-control"
+                  type="button"
+                  ngbDropdownToggle
+                  [ngClass]="{
+                    'is-invalid':
+                      (f.relations.dirty || submitted) && f.relations.errors
+                  }"
+                >
+                  <span class="text-truncate">
+                    <span
+                      *ngFor="
+                        let relation of f.relations.value;
+                        let lastRelation = last
+                      "
+                    >
+                      {{ relation | translate }}
+                      <span *ngIf="!lastRelation">- </span>
+                    </span>
+                  </span>
+                </button>
+
+                <div ngbDropdownMenu>
+                  <div>
+                    <ng-container *ngFor="let relation of RELATIONS">
+                      <button
+                        type="button"
+                        (click)="toggleCheckboxButton('relations', relation)"
+                        ngbDropdownItem
+                      >
+                        <input
+                          [checked]="f.relations.value.includes(relation)"
+                          type="checkbox"
+                        />
+                        <span>{{ relation | translate }}</span>
+                      </button>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+              <div
+                *ngIf="(f.relations.dirty || submitted) && f.relations.errors"
+                class="invalid-feedback-custom"
+              >
+                {{ "INDICATE_AT_LEAST_ONE_RELATIONSHIP" | translate }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row my-3">
+          <div class="col-12">
+            <button
+              type="submit"
+              class="btn btn-lg btn-primary"
+              [disabled]="loading"
+              (click)="submitInfos()"
+            >
+              <span *ngIf="!loading">
+                {{ "SAVE_AND_CONTINUE" | translate }}
+              </span>
+              <span *ngIf="loading"
+                ><fa-icon
+                  aria-hidden="true"
+                  [icon]="['fas', 'circle-notch']"
+                  animation="spin"
+                >
+                </fa-icon>
+                {{ "PLEASE_WAIT" | translate }}</span
+              >
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

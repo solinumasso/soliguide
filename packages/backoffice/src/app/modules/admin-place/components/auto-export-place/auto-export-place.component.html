@@ -1,0 +1,214 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<form
+  (ngSubmit)="export()"
+  #autoexportform="ngForm"
+  autocomplete="off"
+  *ngIf="search"
+>
+  <div class="modal-header bg-primary">
+    <span id="modal-title">
+      {{
+        "EXPORT_SOLIGUIDE_PLACES"
+          | translate : { brandName: THEME_CONFIGURATION.brandName }
+      }}
+    </span>
+    <button
+      type="button"
+      class="btn-close"
+      [attr.aria-label]="'CLOSE' | translate"
+      (click)="cancelExport()"
+    ></button>
+  </div>
+
+  <div class="modal-body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <p>
+            {{ "CONFIDENTIALITY_AGREEMENT_LINK_1" | translate }}
+            <a
+              class="fw-bold"
+              href="https://docs.google.com/document/d/1CIfKvXNJXlc7sfh2RIv2s9iLHRGy-XKk/edit?usp=sharing&ouid=104793405999608493634&rtpof=true&sd=true"
+              target="_blank"
+              >{{ "CONFIDENTIALITY_AGREEMENT_LINK_2" | translate }}</a
+            >
+            {{ "CONFIDENTIALITY_AGREEMENT_LINK_3" | translate }}
+          </p>
+        </div>
+
+        <div class="col-12 my-2">
+          <div class="label">
+            {{ "FORMAT_EXPORT_DATA" | translate }}
+          </div>
+          <div class="form-check">
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="csv"
+                [(ngModel)]="fileRequestParameters.fileType"
+                id="csv"
+                value="CSV"
+              />
+              <label class="form-check-label" for="csv">{{
+                "CSV" | translate
+              }}</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="word"
+                [(ngModel)]="fileRequestParameters.fileType"
+                id="word"
+                value="WORD"
+              />
+              <label class="form-check-label" for="word">{{
+                "DOCUMENT_WORD" | translate
+              }}</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="pdf"
+                [(ngModel)]="fileRequestParameters.fileType"
+                id="pdf"
+                value="PDF"
+              />
+              <label class="form-check-label" for="pdf">{{
+                "PDF" | translate
+              }}</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="xlsx"
+                [(ngModel)]="fileRequestParameters.fileType"
+                id="xlsx"
+                value="XLSX"
+              />
+              <label class="form-check-label" for="xlsx">{{
+                "EXCEL" | translate
+              }}</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 my-2">
+          <div class="label">{{ "SORT_THE_LOCATION" | translate }}</div>
+          <div class="form-check">
+            <select
+              id="sorting-filter"
+              class="form-select"
+              name="sorting-filter"
+              [(ngModel)]="fileRequestParameters.sortingFilter"
+            >
+              <option value="CITY">{{ "SORT_BY_CITY" | translate }}</option>
+              <option value="SERVICE">
+                {{ "SORT_BY_SERVICE" | translate }}
+              </option>
+              <option value="POSTAL_CODE">
+                {{ "SORT_BY_POSTAL_CODE" | translate }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-12 my-2">
+          <div class="label">
+            {{ "INFORMATION_DISPLAY_ON_EXPORT" | translate }}
+          </div>
+
+          <ng-container *ngFor="let option of OPTIONS_EXPORT">
+            <app-auto-export-option
+              [option]="option"
+              [optionLabel]="EXPORT_COLUMNS[option]"
+              [params]="fileRequestParameters"
+            ></app-auto-export-option>
+          </ng-container>
+        </div>
+        <div class="col-12">
+          <div class="label">
+            {{ "WHICH_LANGUAGE_ON_DISPLAY" | translate }}
+          </div>
+
+          <ng-container *ngFor="let lang of SUPPORTED_LANGUAGES">
+            <label
+              class="btn me-2 translate-flags"
+              [ngClass]="
+                lang === fileRequestParameters.language
+                  ? 'btn-primary'
+                  : 'btn-outline-primary'
+              "
+              for="export-lang-{{ lang }}"
+            >
+              <input
+                type="radio"
+                [value]="lang"
+                class="align-middle"
+                name="export-lang-{{ lang }}"
+                [(ngModel)]="fileRequestParameters.language"
+                id="export-lang-{{ lang }}"
+              />
+              <img
+                src="/assets/images/languages/{{ lang }}.png"
+                alt="Langue {{ lang }}"
+                class="align-middle rounded-circle mx-2"
+              />
+              {{ ALL_SUPPORTED_LANGUAGES_NAME[lang].nativeName }} ({{
+                ALL_SUPPORTED_LANGUAGES_NAME[lang].name | translate
+              }})
+            </label>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button
+      class="btn btn-primary"
+      type="submit"
+      [disabled]="!autoexportform.valid || exporting"
+    >
+      <span *ngIf="exporting">
+        <fa-icon
+          aria-hidden="true"
+          [icon]="['fas', 'circle-notch']"
+          animation="spin"
+        >
+        </fa-icon>
+        {{ "EXPORT_IN_PROGRESS" | translate }}
+      </span>
+      <span *ngIf="!exporting">
+        {{ "EXPORT" | translate }}
+        <fa-icon aria-hidden="true" [icon]="['fas', 'download']"></fa-icon>
+      </span>
+    </button>
+    <button type="button" class="btn btn-danger" (click)="cancelExport()">
+      {{ "CANCEL" | translate }}
+    </button>
+  </div>
+</form>

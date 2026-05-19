@@ -1,0 +1,46 @@
+$primary: #3e3a71;
+$bs-primary: #3e3a71;
+$secondary: #e65a46;
+$bs-secondary: #e65a46;
+
+$blue: #3e3a71;
+$indigo: #6610f2;
+$purple: #6f42c1;
+$pink: #e83e8c;
+$red: #da3849;
+$orange: #fd7e14;
+$yellow: #ffc107;
+$green: #007036;
+$teal: #20c997;
+$cyan: #17a2b8;
+$white: #fff;
+$grey: #949aa0;
+$grey-dark: #343a40;
+
+$success: #007036;
+$info: #17a2b8;
+$warning: #ffc107;
+$danger: #da3849;
+$light: #f8f9fa;
+$dark: #343a40;
+
+$font-family-sans-serif: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI",
+  Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-family-monospace: "Lato", SFMono-Regular, Menlo, Monaco, Consolas,
+  "Liberation Mono", "Courier New", monospace;
+
+// BUTTONS
+$btn-border-radius: 0.5rem !default;
+$btn-border-radius-sm: 0.5rem !default;
+$btn-border-radius-lg: 0.5rem !default;
+
+$input-btn-padding-y: 0.4rem !default;
+$input-btn-padding-x: 0.8rem !default;
+
+$zindex-dropdown: 20000;
+
+$min-contrast-ratio: 3.5 !default;
+
+@import "bootstrap/scss/bootstrap";
+@import "ngx-toastr/toastr";

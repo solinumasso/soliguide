@@ -1,0 +1,74 @@
+/*
+ * Soliguide: Useful information for those who need it
+ *
+ * SPDX-FileCopyrightText: © 2024 Solinum
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+.service-title {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 16px;
+  margin-top: 16px;
+}
+
+.service-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.service-condition {
+  margin-top: 5px;
+}
+
+.margincondition {
+  margin-left: 15px;
+}
+
+.service-condition-icon {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.service-extra-info {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.service-container {
+  background: rgba(72, 101, 217, 0.02);
+  border: 1px solid rgba(72, 101, 217, 0.1);
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 1rem 1.4rem;
+  margin: 1rem auto;
+}
+
+.service-differences li {
+  display: inline-block;
+  list-style-type: circle;
+  margin: 0;
+  padding: 0;
+}
+
+.service-differences li:nth-child(n + 2) {
+  margin-left: 1rem;
+}
+
+.service-differences {
+  margin: 0;
+  padding: 0;
+}

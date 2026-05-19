@@ -1,0 +1,99 @@
+/*
+ * Soliguide: Useful information for those who need it
+ *
+ * SPDX-FileCopyrightText: © 2024 Solinum
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+.sort-point {
+  flex-basis: 3%;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 32px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url("../../../../../../../assets/images/symbols/grab-drag-element.svg");
+}
+
+.sort-point-column {
+  flex-basis: 3%;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 32px;
+}
+
+.point-form-header {
+  position: relative;
+  height: 70px;
+  background-color: white;
+  border: 1px solid #c9c9c9;
+  border-radius: 5px;
+}
+
+.point-form-header.visible {
+  border-radius: 5px 5px 0 0;
+  background-color: rgba(99, 93, 172, 0.05);
+}
+
+.point-form-header-inner {
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.point-form-index {
+  color: #b43f2d;
+}
+
+.point-form {
+  padding: 15px 15px 20px;
+  border: 1px solid #c9c9c9;
+  border-radius: 0 0 5px 5px;
+  border-top-width: 0;
+}
+
+.point-delete {
+  flex-basis: 12%;
+  padding-right: 0;
+}
+
+.step-hours input[type="time"] {
+  width: 120px;
+}
+
+.step-hours input:checked + label {
+  color: #e65a46;
+}
+
+@media only screen and (min-width: 768px) {
+  .point-form {
+    padding: 30px 30px 40px;
+    flex-basis: 79%;
+    max-width: 79%;
+  }
+
+  .point-form-header {
+    height: auto;
+    flex-basis: 79%;
+    max-width: 79%;
+  }
+
+  .step-hours input[type="time"] {
+    padding-left: 16px;
+  }
+}

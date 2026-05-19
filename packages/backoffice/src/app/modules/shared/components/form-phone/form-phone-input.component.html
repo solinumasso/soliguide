@@ -1,0 +1,117 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<fieldset class="row" [formGroup]="phoneFormGroup" *ngIf="phoneFormGroup">
+  <legend class="visually-hidden">
+    {{ "PHONE" | translate }} {{ index === 0 ? "" : index + 1 }}
+  </legend>
+  <div class="col-md-6 col-12" *ngIf="needLabel">
+    <label class="form-label" for="phone-label-{{ index }}">{{
+      "PHONE_NUMBER_LABEL_NO" | translate : { index: index + 1 }
+    }}</label>
+    <input
+      type="text"
+      (change)="patchPhoneFormValidators()"
+      class="form-control"
+      id="phone-label-{{ index }}"
+      formControlName="label"
+      [ngClass]="{
+        'is-invalid':
+          (f.label?.dirty || submitted) &&
+          (f.label?.errors || f.label?.invalid),
+        'is-valid': f.label?.dirty && f.label?.value && !f.label?.errors
+      }"
+      [placeholder]="phoneLabelPlaceholder"
+      autocomplete="off"
+    />
+    <p
+      *ngIf="
+        (f.label?.dirty || submitted) && (f.label?.errors || f.label?.invalid)
+      "
+      class="invalid-feedback"
+    >
+      {{ "PHONE_NUMBER_LABEL_MUST_BE_3_CHARACTERS_LONG" | translate }}
+    </p>
+  </div>
+  <div [ngClass]="needLabel ? 'col-md-5 col-12' : 'col-12'">
+    <label class="form-label" for="phoneNumber-{{ index }}"
+      >{{ "PHONE" | translate }} {{ index === 0 ? "" : index + 1 }}
+    </label>
+    <app-form-intl-phone-input
+      *ngIf="!phoneFormGroup.controls?.isSpecialPhoneNumber?.value"
+      [phone]="phone"
+      [required]="false"
+      [parentPhoneControl]="phoneFormGroup.controls?.phoneNumber"
+      [parentPhoneCountryCode]="phoneFormGroup.controls?.countryCode"
+    ></app-form-intl-phone-input>
+    <input
+      *ngIf="phoneFormGroup.controls?.isSpecialPhoneNumber?.value"
+      type="tel"
+      class="form-control"
+      id="phoneNumber-{{ index }}"
+      appDigitOnly
+      formControlName="phoneNumber"
+      [ngClass]="{
+        'is-invalid':
+          ((phoneFormGroup.controls?.phoneNumber?.dirty || submitted) &&
+            (phoneFormGroup.controls?.phoneNumber?.errors ||
+              phoneFormGroup.controls?.phoneNumber?.invalid)) ||
+          (phoneFormGroup.controls?.label?.value &&
+            !phoneFormGroup.controls?.phoneNumber?.value),
+        'is-valid':
+          phoneFormGroup.controls?.phoneNumber?.dirty &&
+          phoneFormGroup.controls?.phoneNumber?.value &&
+          !phoneFormGroup.controls?.phoneNumber?.errors
+      }"
+      placeholder="3070"
+      autocomplete="off"
+    />
+    <div class="form-check my-1">
+      <input
+        id="special-phone-number-{{ index }}"
+        type="checkbox"
+        class="form-check-input"
+        formControlName="isSpecialPhoneNumber"
+        name="isSpecialPhoneNumber"
+        (change)="patchPhoneFormValidators()"
+      />
+      <label for="special-phone-number-{{ index }}" class="form-check-label"
+        >{{ "PHONE_NUMBER_PLACEHOLDER" | translate }}
+      </label>
+    </div>
+    <div
+      *ngIf="
+        (phoneFormGroup.controls?.phoneNumber?.dirty || submitted) &&
+        (phoneFormGroup.controls?.phoneNumber?.errors ||
+          phoneFormGroup.controls?.phoneNumber?.invalid)
+      "
+      class="invalid-feedback"
+    >
+      {{ "PHONE_NUMBER_IS_INCORRECT" | translate }}
+    </div>
+    <div
+      *ngIf="f.label?.value && !phoneFormGroup.controls?.phoneNumber?.value"
+      class="invalid-feedback"
+    >
+      {{ "PHONE_NUMBER_IS_REQUIRED" | translate }}
+    </div>
+  </div>
+</fieldset>

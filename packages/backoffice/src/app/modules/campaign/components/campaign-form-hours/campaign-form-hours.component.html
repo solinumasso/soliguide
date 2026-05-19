@@ -1,0 +1,245 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="container my-4" *ngIf="tempHours">
+  <div class="row">
+    <div class="col-12 my-4">
+      <h1 class="form-title">{{ "GENERAL_OPENING_HOURS" | translate }}</h1>
+      <div class="limite"></div>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <form autocomplete="off">
+      <div class="row">
+        <div class="col-12 my-4">
+          <div class="row">
+            <fieldset>
+              <div class="col-12">
+                <legend class="label required">
+                  {{ "FORM_HOURS_QUESTION" | translate }}
+                </legend>
+                <div class="text-primary">
+                  <div>
+                    {{
+                      "TEMP_HOURS_WILL_APPEAR_IN_TEMPORARY_BANNER" | translate
+                    }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6 my-2">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="noChanges"
+                    [(ngModel)]="noChanges"
+                    (ngModelChange)="submitted = false"
+                    id="yes"
+                    [value]="false"
+                  />
+                  <label
+                    class="form-check-label clickable"
+                    [ngClass]="{
+                      'text-danger': noChanges === null && submitted
+                    }"
+                    for="yes"
+                    >{{ "YES" | translate }}</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="noChanges"
+                    [(ngModel)]="noChanges"
+                    (ngModelChange)="submitted = false"
+                    id="no"
+                    [value]="true"
+                  />
+                  <label
+                    class="form-check-label clickable"
+                    [ngClass]="{
+                      'text-danger': noChanges === null && submitted
+                    }"
+                    for="no"
+                    >{{ "NO" | translate }}</label
+                  >
+                </div>
+                <p
+                  class="invalid-feedback-custom"
+                  *ngIf="noChanges === null && submitted"
+                >
+                  {{ "PLEASE_SELECT_YES_OR_NOT" | translate }}
+                </p>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-8 my-2">
+          <div *ngIf="tempInfoToEdit && tempInfosForm">
+            <form [formGroup]="tempInfosForm">
+              <div class="row" *ngIf="noChanges === false">
+                <div class="form-group col-12">
+                  <label class="form-label" for="description"
+                    >{{ contextData.descriptionLabel | translate
+                    }}<span class="ms-1">{{
+                      "FACULTATIVE" | translate
+                    }}</span></label
+                  >
+                  <ckeditor
+                    formControlName="description"
+                    ngDefaultControl
+                    id="description"
+                    name="description"
+                    [editor]="editor"
+                    [config]="editorConfig"
+                    [ngClass]="{
+                      'is-invalid':
+                        f.description.errors &&
+                        (submitted || f.description.value),
+                      'is-valid':
+                        (f.description.dirty || f.description.value) &&
+                        !f.description.errors
+                    }"
+                  ></ckeditor>
+                  <p
+                    *ngIf="
+                      (submitted && f.description.errors) ||
+                      (f.description.value && f.description.errors)
+                    "
+                    class="invalid-feedback"
+                  >
+                    {{ "DESCRIPTION_CONTAIN_BETWEEN_5_AND_400" | translate }}
+                  </p>
+                </div>
+                <div
+                  class="col-md-12 my-3"
+                  *ngIf="tempInfoType === TempInfoType.HOURS"
+                >
+                  <label class="label" for="">{{
+                    "EXPORTS_HEADER_TEMP_HOURS" | translate
+                  }}</label>
+                  <br />
+                  <app-form-table-horaires
+                    *ngIf="tempInfoToEdit.hours"
+                    [(hours)]="tempInfoToEdit.hours"
+                    [index]="1"
+                  ></app-form-table-horaires>
+                </div>
+
+                <div class="col-md-11 col-12">
+                  <app-form-start-and-end-date-fiche
+                    #formStartEnd
+                    [parentFormGroup]="tempInfosForm"
+                    [submitted]="submitted"
+                  ></app-form-start-and-end-date-fiche>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-4">
+          <span class="label">{{ "CURRENT_WORKING_HOURS" | translate }}</span>
+          <app-display-horaires
+            [hours]="actualHours"
+            [displayClosedDays]="true"
+          ></app-display-horaires>
+        </div>
+        <div class="col-12 my-2 text-end">
+          <button
+            type="submit"
+            class="btn btn-lg btn-primary"
+            [disabled]="loading"
+            (click)="saveTempInfosForCampaign('tempHours')"
+          >
+            <span *ngIf="!loading"> {{ "SAVE_AND_CONTINUE" | translate }}</span>
+            <span *ngIf="loading"
+              ><fa-icon
+                aria-hidden="true"
+                [icon]="['fas', 'circle-notch']"
+                animation="spin"
+              >
+              </fa-icon>
+              {{ "PLEASE_WAIT" | translate }}
+            </span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="col-12 my-3">
+  <h2>
+    {{ contextData.alreadyPlannedTitle | translate }}
+  </h2>
+  <div class="alert alert-info" *ngIf="tempInfos?.length === 0">
+    {{ "NO_TEMPORARY_SCHEDULE" | translate }}
+  </div>
+  <div
+    class="form-container"
+    *ngFor="let hours of tempInfos; let index = index"
+    [ngClass]="{
+      'error-list-container':
+        tempInfosForm.errors?.indexDateOverlapping === index
+    }"
+  >
+    <div class="row">
+      <app-display-temp-info-admin
+        class="col-8"
+        [tempInfo]="hours"
+      ></app-display-temp-info-admin>
+      <div class="col-4 text-end">
+        <button
+          type="button"
+          [disabled]="loading"
+          (click)="initTempInfosForm(hours); noChanges = false"
+          class="ms-1 btn btn-outline-primary"
+        >
+          <span *ngIf="!loading">{{ "EDIT" | translate }}</span>
+          <span *ngIf="loading"
+            ><fa-icon icon="circle-notch" aria-hidden="true" animation="spin">
+            </fa-icon>
+            {{ "PLEASE_WAIT" | translate }}</span
+          >
+        </button>
+        <button
+          type="button"
+          [disabled]="loading"
+          (click)="deleteTempInfo(hours)"
+          class="ms-1 btn btn-danger"
+        >
+          <span *ngIf="!loading">
+            {{ "DELETE" | translate }}
+          </span>
+          <span *ngIf="loading"
+            ><fa-icon icon="circle-notch" aria-hidden="true" animation="spin">
+            </fa-icon>
+            {{ "PLEASE_WAIT" | translate }}</span
+          >
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

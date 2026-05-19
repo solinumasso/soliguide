@@ -1,0 +1,76 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="modal-header bg-danger">
+  <span id="modal-title">
+    {{ "REMOVE_PLACE" | translate }}
+    <ng-container *ngIf="fromPlace && orga?.name">
+      {{
+        "OF_THE_ORGANIZATION" | translate : { orgaName: orga.name }
+      }}</ng-container
+    >
+    <ng-container *ngIf="!fromPlace">{{
+      "ORGANIZATION_PLACE_NAME" | translate : { placeName: place.name }
+    }}</ng-container>
+  </span>
+
+  <button
+    type="button"
+    class="btn-close"
+    [attr.aria-label]="'CLOSE' | translate"
+    (click)="cancelRemoval()"
+  ></button>
+</div>
+<div class="modal-body">
+  <p class="fw-bold">
+    <fa-icon
+      aria-hidden="true"
+      [icon]="['fas', 'exclamation-triangle']"
+    ></fa-icon>
+    {{ "WARNING_DELETE_PLACE_FROM_ORGANIZATION" | translate }}
+  </p>
+  <p>{{ "PLACE_NOT_AVAILABLE_IN_ORGA" | translate }}</p>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-outline-primary"
+    (click)="cancelRemoval()"
+  >
+    {{ "CANCEL" | translate }}
+  </button>
+  <button
+    type="submit"
+    [disabled]="loading"
+    (click)="removePlace()"
+    class="btn btn-danger"
+  >
+    <span *ngIf="!loading">{{ "DELETE" | translate }}</span>
+    <span *ngIf="loading"
+      ><fa-icon
+        aria-hidden="true"
+        [icon]="['fas', 'circle-notch']"
+        animation="spin"
+      >
+      </fa-icon>
+      {{ "PLEASE_WAIT" | translate }}</span
+    >
+  </button>
+</div>

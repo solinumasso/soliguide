@@ -1,0 +1,77 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="bg-white py-4" *ngIf="THEME_CONFIGURATION.territoriesStats">
+  <div class="container small-container">
+    <div class="row py-3 align-items-center justify-content-md-center">
+      <div class="col-12 col-md-4 col-lg-4">
+        <div class="row align-items-center">
+          <div class="col-md-12 col-4 text-center">
+            <img
+              src="/assets/images/homepage/pin.svg"
+              aria-hidden="true"
+              alt=""
+              class="img-fluid p-2"
+              loading="lazy"
+            />
+          </div>
+          <div class="col-md-12 col-8 text-md-center text-sm-start">
+            <p class="my-2">
+              <span
+                class="fs-2 fw-bolder"
+                [options]="countUpOptions"
+                [countUp]="statsTotal"
+              >
+              </span>
+              <span class="fs-5 d-block">{{
+                "HOME_LIEUX_REFERENCES" | translate
+              }}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4 col-lg-4">
+        <div class="row align-items-center">
+          <div class="col-md-12 col-4 text-center">
+            <img
+              class="img-fluid py-1"
+              src="/assets/images/homepage/services.svg"
+              aria-hidden="true"
+              alt=""
+              loading="lazy"
+            />
+          </div>
+          <div class="col-md-12 col-8 text-md-center text-sm-start">
+            <p class="my-2">
+              <span
+                class="fs-2 fw-bolder"
+                [options]="countUpOptions"
+                [countUp]="statsServices"
+              ></span>
+              <span class="fs-5 d-block">{{
+                "HOME_SERVICES_COUNT" | translate
+              }}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

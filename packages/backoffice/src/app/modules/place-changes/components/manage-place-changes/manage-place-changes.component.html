@@ -1,0 +1,414 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="admin_search_bar">
+  <div class="container">
+    <div
+      id="admin_filters"
+      class="row align-items-end justify-content-center my-3"
+    >
+      <div class="col-md-3 col-sm-4 col-lg-2">
+        <app-select-territories
+          [label]="'DEPARTMENT' | translate"
+          [territories]="search.territories"
+          (selectedTerritories)="setTerritories($event)"
+        ></app-select-territories>
+      </div>
+      <div class="col-md-3 col-sm-4 col-lg-2">
+        <label class="form-label" for="lieu_id">{{
+          "PLACE_ID" | translate
+        }}</label>
+        <div class="input-group">
+          <span class="input-group-text bg-primary" id="basic-addon1">
+            <fa-icon
+              aria-hidden="true"
+              [icon]="['fas', 'hashtag']"
+              class="text-white"
+            >
+            </fa-icon>
+          </span>
+
+          <input
+            id="lieu_id"
+            [placeholder]="'PLACE_ID' | translate"
+            type="number"
+            class="form-control"
+            min="0"
+            (keyup.enter)="launchSearch(true)"
+            [(ngModel)]="search.lieu_id"
+            [disabled]="loading"
+          />
+
+          <button
+            type="button"
+            *ngIf="search.lieu_id !== null"
+            (click)="resetSearchArgument('lieu_id')"
+            class="input-cross"
+          >
+            <fa-icon aria-hidden="true" [icon]="['fas', 'times']"> </fa-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-3 col-lg-2">
+        <label for="orga_id">{{ "ORGANIZATION_ID" | translate }}</label>
+        <div class="input-group">
+          <span class="input-group-text bg-primary" id="basic-addon1">
+            <fa-icon
+              aria-hidden="true"
+              [icon]="['fas', 'hashtag']"
+              class="text-white"
+            >
+            </fa-icon>
+          </span>
+
+          <input
+            id="orga_id"
+            [placeholder]="'ORGANIZATION_ID' | translate"
+            type="number"
+            class="form-control"
+            min="0"
+            (keyup.enter)="launchSearch()"
+            [(ngModel)]="search.userData.orgaId"
+          />
+          <button
+            type="button"
+            *ngIf="search.userData.orgaId !== null"
+            (click)="resetSearchArgument('userData.orgaId')"
+            class="input-cross"
+          >
+            <fa-icon aria-hidden="true" [icon]="['fas', 'times']"> </fa-icon>
+          </button>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-4 col-lg-2">
+        <label for="orga_name">{{ "ORGANIZATION_NAME" | translate }}</label>
+        <div class="position-relative">
+          <input
+            type="text"
+            id="orga_name"
+            class="form-control"
+            (keyup.enter)="launchSearch()"
+            [(ngModel)]="search.userData.orgaName"
+          />
+          <button
+            type="button"
+            *ngIf="search.userData.orgaName !== null"
+            (click)="resetSearchArgument('userData.orgaName')"
+            class="input-cross"
+          >
+            <fa-icon aria-hidden="true" [icon]="['fas', 'times']"> </fa-icon>
+          </button>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-4 col-lg-2">
+        <label for="status">{{ "UPDATE_STATUS" | translate }}</label>
+        <select
+          [(ngModel)]="search.status"
+          (ngModelChange)="launchSearch()"
+          name="status"
+          id="status"
+          class="form-select"
+          [disabled]="loading"
+        >
+          <option [ngValue]="null">{{ "ALL_STATUS" | translate }}</option>
+          <option
+            [ngValue]="status"
+            *ngFor="let status of PLACE_CHANGES_STATUSES"
+          >
+            {{ "PLACE_CHANGES_STATUS_" + status | translate }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-md-3 col-sm-4 col-lg-2">
+        <label for="section">{{ "UPDATED_SECTION" | translate }}</label>
+        <select
+          [(ngModel)]="search.section"
+          (ngModelChange)="launchSearch()"
+          name="section"
+          id="section"
+          class="form-select"
+          [disabled]="loading"
+        >
+          <option [ngValue]="null">{{ "ALL_SECTIONS" | translate }}</option>
+          <option
+            *ngFor="let section of PLACE_CHANGES_SECTIONS"
+            [ngValue]="section"
+          >
+            {{ "PLACE_CHANGES_SECTION_" + section | uppercase | translate }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-md-3 col-sm-4 col-lg-2">
+        <label for="source">{{ "SOURCE_OF_UPDATE" | translate }}</label>
+        <select
+          [(ngModel)]="search.userData.status"
+          (ngModelChange)="launchSearch()"
+          name="source"
+          id="source"
+          class="form-select"
+          [disabled]="loading"
+        >
+          <option [ngValue]="null">{{ "ALL_SOURCES" | translate }}</option>
+          <option [value]="UserStatus.PRO">
+            {{ "STRUCTURE" | translate }}
+          </option>
+          <option [value]="UserStatus.ADMIN_SOLIGUIDE">
+            {{ "SOLINUM_TEAM" | translate }}
+          </option>
+          <option [value]="UserStatus.SOLI_BOT">Solibot</option>
+          <option [value]="UserStatus.ADMIN_TERRITORY">
+            {{ "ADMIN_TERRITORY" | translate }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-md-1">
+        <div>
+          <label class="visually-hidden" for="launch">{{
+            "SEARCH_LAUNCH_BUTTON" | translate
+          }}</label>
+          <button
+            type="submit"
+            id="launch"
+            [attr.aria-label]="'SEARCH_LAUNCH_BUTTON' | translate"
+            class="mt-4 search-btn btn btn-secondary"
+            (click)="launchSearch()"
+          >
+            <fa-icon
+              class="search-manage-button"
+              [icon]="['fas', 'search']"
+            ></fa-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-search-loading">
+      <div *ngIf="!loading">
+        {{ "UPDATE_FOUNDS" | translate : { nbResults } }}
+      </div>
+      <div *ngIf="loading">
+        <fa-icon
+          aria-hidden="true"
+          [icon]="['fas', 'circle-notch']"
+          animation="spin"
+        >
+        </fa-icon>
+        {{ "SEARCH_IN_PROGRESS" | translate }}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="view" *ngIf="placesChanges">
+  <div class="table-responsive">
+    <table class="manage-table table">
+      <caption></caption>
+      <thead>
+        <tr>
+          <th
+            scope="col"
+            (click)="sortBy('lieu_id')"
+            class="sticky-col first-col clickable text-center"
+          >
+            <app-manage-sort-icon
+              [columnName]="'ID' | translate"
+              [options]="search.options"
+              [searchField]="'lieu_id'"
+            ></app-manage-sort-icon>
+          </th>
+
+          <th scope="col" class="sticky-col second-col text-start">
+            {{ "PLACE_NAME" | translate }}
+          </th>
+
+          <th scope="col" class="clickable" (click)="sortBy('userData.email')">
+            <app-manage-sort-icon
+              [columnName]="'EMAIL' | translate"
+              [options]="search.options"
+              [searchField]="'userData.email'"
+            ></app-manage-sort-icon>
+          </th>
+
+          <th scope="col" class="clickable" (click)="sortBy('section')">
+            <app-manage-sort-icon
+              [columnName]="'MODIFIED_SECTION' | translate"
+              [options]="search.options"
+              [searchField]="'section'"
+            ></app-manage-sort-icon>
+          </th>
+
+          <th
+            scope="col"
+            class="clickable"
+            (click)="sortBy('userData.orgaName')"
+          >
+            <app-manage-sort-icon
+              [columnName]="'ORGANIZATION' | translate"
+              [options]="search.options"
+              [searchField]="'userData.orgaName'"
+            ></app-manage-sort-icon>
+          </th>
+
+          <th scope="col" class="clickable" (click)="sortBy('createdAt')">
+            <app-manage-sort-icon
+              [columnName]="'DATE_OF_UPDATE' | translate"
+              [options]="search.options"
+              [searchField]="'createdAt'"
+            ></app-manage-sort-icon>
+          </th>
+
+          <th scope="col" class="clickable" (click)="sortBy('userData.status')">
+            <app-manage-sort-icon
+              [columnName]="'TYPE_OF_SOURCE' | translate"
+              [options]="search.options"
+              [searchField]="'userData.status'"
+            ></app-manage-sort-icon>
+          </th>
+
+          <th scope="col" class="clickable" (click)="sortBy('status')">
+            <app-manage-sort-icon
+              [columnName]="'STATUS' | translate"
+              [options]="search.options"
+              [searchField]="'status'"
+            ></app-manage-sort-icon>
+          </th>
+
+          <th scope="col">{{ "ACTIONS" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let change of placesChanges; let changeIndex = index">
+          <td class="sticky-col first-col">
+            <a
+              target="_blank"
+              [routerLink]="[routePrefix, 'manage-place', change.lieu_id]"
+              routerLinkActive="router-link-active"
+            >
+              {{ change.lieu_id }}
+            </a>
+          </td>
+
+          <td class="sticky-col second-col">
+            <a
+              target="_blank"
+              [routerLink]="[routePrefix, 'manage-place', change.lieu_id]"
+              routerLinkActive="router-link-active"
+            >
+              {{ change.place?.name || "" }}
+            </a>
+          </td>
+
+          <td>
+            {{ change.userData.email || ("DELETED_ACCOUNT" | translate) }}
+          </td>
+
+          <td>
+            {{
+              "PLACE_CHANGES_SECTION_" + change.section | uppercase | translate
+            }}
+          </td>
+
+          <td>
+            <a
+              *ngIf="change.userData.orgaId || change.userData.orgaName"
+              [routerLink]="[
+                routePrefix,
+                'organisations',
+                change.userData.orgaId
+              ]"
+              routerLinkActive="router-link-active"
+              target="_blank"
+            >
+              {{
+                change.userData.orgaId + " - " + change.userData.orgaName
+                  | limitTo : "55"
+              }}
+            </a>
+          </td>
+
+          <td>
+            {{ change.updatedAt | dateProxy }}
+          </td>
+
+          <td>
+            <span
+              class="status status-success m-1"
+              *ngIf="change.userData.status === UserStatus.PRO"
+              >{{ "STRUCTURE" | translate }}</span
+            >
+            <span
+              class="status bg-primary m-1"
+              *ngIf="change.userData.status === UserStatus.ADMIN_SOLIGUIDE"
+              >{{ "SOLINUM_TEAM" | translate }}</span
+            ><span
+              class="status status-secondary m-1"
+              *ngIf="change.userData.status === UserStatus.ADMIN_TERRITORY"
+              >{{ "ADMIN_TERRITORY" | translate }}</span
+            >
+            <span
+              class="status status-primary m-1"
+              *ngIf="change.userData.status === UserStatus.SOLI_BOT"
+              >Solibot</span
+            >
+          </td>
+
+          <td>
+            <app-check-place-changes
+              [placeChanges]="change"
+              [changeIndex]="changeIndex"
+            ></app-check-place-changes>
+          </td>
+
+          <td>
+            <a
+              class="btn btn-sm btn-primary"
+              [routerLink]="[routePrefix, 'historique', 'version', change._id]"
+              routerLinkActive="router-link-active"
+              target="_blank"
+            >
+              <span class="visually-hidden">
+                {{
+                  "CONSULT_UPDATE_LOCATION"
+                    | translate
+                      : {
+                          locationId: change.lieu_id,
+                          date: change.createdAt | dateProxy
+                        }
+                }}
+              </span>
+              <fa-icon aria-hidden="true" [icon]="['fas', 'eye']"></fa-icon
+            ></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<app-manage-pagination
+  *ngIf="nbResults > search.options.limit || nbResults > 0 || !loading"
+  [nbResults]="nbResults"
+  [(options)]="search.options"
+  (launchSearch)="launchSearch()"
+>
+</app-manage-pagination>

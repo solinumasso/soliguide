@@ -1,0 +1,56 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="custom-dropdown" placement="bottom" ngbDropdown autoClose="true">
+  <button ngbDropdownToggle [disabled]="disabled" type="button">
+    <span class="text-truncate">
+      {{
+        (!disabled
+          ? place.campaigns.runningCampaign.source
+            ? CAMPAIGN_SOURCE_LABELS[place.campaigns.runningCampaign.source]
+            : "ENTER_CAMPAIGN_SOURCE"
+          : "CAMPAIGN_SOURCE_UNNEEDED"
+        ) | translate
+      }}
+    </span>
+  </button>
+
+  <div ngbDropdownMenu [attr.aria-label]="'CAMPAIGN_SOURCE_MENU' | translate">
+    <ng-container
+      *ngFor="let source of CAMPAIGN_SOURCE_LABELS | keyvalue : orderValues"
+    >
+      <button
+        (click)="updateCampaignSource(place, source.key)"
+        ngbDropdownItem
+        type="button"
+      >
+        <input
+          [checked]="place.campaigns.runningCampaign.source === source.key"
+          type="radio"
+          [name]="placeIndex + '_' + source.key"
+          [id]="placeIndex + '_' + source.key"
+        />
+        <label [for]="placeIndex + '_' + source.key">{{
+          CAMPAIGN_SOURCE_LABELS[source.key] | translate
+        }}</label>
+      </button>
+    </ng-container>
+  </div>
+</div>

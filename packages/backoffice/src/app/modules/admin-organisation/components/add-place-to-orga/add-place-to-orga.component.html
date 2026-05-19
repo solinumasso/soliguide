@@ -1,0 +1,198 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="container my-4" *ngIf="organisation">
+  <div class="row">
+    <div class="col-md-10 col-12 offset-md-1 my-2">
+      <h1 class="title">
+        {{ "ADD_PLACE_TO_ORGANIZATION_TWO_DOTS" | translate }}
+        {{ organisation.name }}
+      </h1>
+      <div class="limite"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 col-12 offset-md-1 my-2">
+      <div class="form-container">
+        <div class="row">
+          <div class="col-4">
+            <label class="form-label" for="lieu_id">
+              {{ "FIND_PLACE_BY_ID" | translate }}
+            </label>
+            <div class="input-group mb-3">
+              <input
+                type="number"
+                class="form-control"
+                id="lieu_id"
+                [placeholder]="'EXAMPLE_PLACE_NUMBER' | translate"
+                min="0"
+                autocomplete="off"
+                (keydown.enter)="searchPlacebyId(lieu_id.value)"
+                #lieu_id
+              />
+
+              <button
+                [attr.aria-label]="'SEARCH_LAUNCH_BUTTON' | translate"
+                class="btn btn-primary"
+                type="button"
+                (click)="searchPlacebyId(lieu_id.value)"
+              >
+                <fa-icon
+                  [icon]="['fas', 'search']"
+                  aria-hidden="true"
+                ></fa-icon>
+              </button>
+            </div>
+          </div>
+
+          <div class="col-5">
+            <label class="form-label" for="name">
+              {{ "FIND_PLACE_BY_NAME" | translate }}
+            </label>
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                [placeholder]="'EXAMPLE_PLACE_NAME' | translate"
+                autocomplete="off"
+                (keydown.enter)="searchPlacebyName(name.value)"
+                #name
+              />
+
+              <button
+                class="btn btn-primary"
+                [attr.aria-label]="'SEARCH_LAUNCH_BUTTON' | translate"
+                type="button"
+                (click)="searchPlacebyName(name.value)"
+              >
+                <fa-icon
+                  [icon]="['fas', 'search']"
+                  aria-hidden="true"
+                ></fa-icon>
+              </button>
+            </div>
+          </div>
+
+          <div class="col-3">
+            <label class="form-label" for="placeType">
+              {{ "PLACE_TYPE_TO_ADD" | translate }}
+            </label>
+            <select
+              [(ngModel)]="search.placeType"
+              (ngModelChange)="placeTypeSearch(search.placeType)"
+              name="placeType"
+              id="placeType"
+              class="form-select"
+            >
+              <option [ngValue]="PlaceType.PLACE">
+                {{ PlaceType.PLACE | translate | ucFirst }}
+              </option>
+              <option [ngValue]="PlaceType.ITINERARY">
+                {{ PlaceType.ITINERARY | translate | ucFirst }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="foundPlaces.length > 0">
+        <div class="col-md-6 col-12 mv-4" *ngFor="let place of foundPlaces">
+          <div class="conseil">
+            <div class="d-flex align-items-center">
+              <div class="fiche-img">
+                <img
+                  aria-hidden="true"
+                  src="/assets/images/place.svg"
+                  [alt]="'PLACE_LOGO' | translate"
+                />
+              </div>
+
+              <div>
+                <h4 class="d-inline-block conseil-title">
+                  {{ place.name }}
+
+                  <span
+                    *ngIf="place.status === PlaceStatus.DRAFT"
+                    class="badge bg-warning align-top"
+                  >
+                    {{ PlaceStatus.DRAFT | translate }}
+                  </span>
+                </h4>
+                <p class="fiche-location">
+                  {{
+                    place.placeType === PlaceType.PLACE
+                      ? place.position.address
+                      : place.parcours[0].position.address
+                  }}
+                </p>
+              </div>
+            </div>
+
+            <div class="d-grid gap-2 mt-3">
+              <button
+                type="button"
+                *ngIf="orgaPlaces.indexOf(place._id) === -1"
+                class="btn btn-primary"
+                [disabled]="loading"
+                (click)="addPlaceToOrga(place)"
+              >
+                {{ "ADD_PLACE" | translate }}
+              </button>
+              <button
+                type="button"
+                *ngIf="orgaPlaces.indexOf(place._id) !== -1"
+                class="btn btn-success"
+                [disabled]="loading"
+              >
+                {{ "MANAGED_PLACE" | translate }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="conseil my-5" *ngIf="noPlaces">
+        <div class="row text-start">
+          <div class="col-md-2">
+            <div class="circle-team text-center">
+              <img
+                class="big-icon"
+                src="/assets/images/place.svg"
+                aria-hidden="true"
+                [alt]="'ADD_A_PLACE' | translate"
+              />
+            </div>
+          </div>
+          <div class="col-md-9">
+            <h4 class="conseil-title">
+              {{
+                "PLACE_NOT_FOUND_ID_NAME"
+                  | translate : { brandName: THEME_CONFIGURATION.brandName }
+              }}
+            </h4>
+            <p>{{ "PLACE_CHOOSE_ANOTHER_NAME_ID" | translate }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

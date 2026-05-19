@@ -1,0 +1,176 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="container">
+  <div class="step_form">
+    <div class="row">
+      <div class="col-12 col-md-10 offset-md-1 text-center">
+        <h1 class="separator-secondary">
+          {{
+            "TITRE_CONNEXION"
+              | translate : { brandName: THEME_CONFIGURATION.brandName }
+          }}
+        </h1>
+
+        <p class="mt-1">
+          {{ "CONNECTION_DESCRIPTION" | translate }}
+        </p>
+        <p class="mt-1" hidden>
+          {{ "CONNECTION_DESCRIPTION_2" | translate }}
+        </p>
+      </div>
+
+      <form
+        [formGroup]="loginForm"
+        class="col-md-8 offset-md-2 col-12"
+        (ngSubmit)="login()"
+      >
+        <div class="my-2 required">
+          <label for="email" class="form-label">{{
+            "EMAIL_ADDRESS" | translate
+          }}</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="mail"
+            class="form-control"
+            autocomplete="email"
+            (change)="onPwdChange()"
+            [placeholder]="'EMAIL_ADDRESS' | translate"
+            [ngClass]="{
+              'is-invalid': (submitted || f.mail.dirty) && f.mail.errors,
+              'is-valid': f.mail.dirty && f.mail.value && !f.mail.errors
+            }"
+          />
+          <div
+            *ngIf="(submitted || f.mail.dirty) && f.mail.errors"
+            class="invalid-feedback"
+          >
+            <p *ngIf="f.mail.errors.invalidEmail">
+              {{ "INCORRECT_EMAIL_ADDRESS" | translate }}
+            </p>
+            <p *ngIf="f.mail.errors.required">
+              {{ "EMAIL_REQUIRED" | translate }}
+            </p>
+          </div>
+
+          <div class="my-2 required">
+            <label for="password" class="form-label">{{
+              "PASSWORD" | translate
+            }}</label>
+            <div class="has-validation input-group">
+              <input
+                id="password"
+                formControlName="password"
+                [type]="!hidePassword ? 'text' : 'password'"
+                class="form-control"
+                [placeholder]="'PASSWORD' | translate"
+                autocomplete="current-password"
+                (change)="onPwdChange()"
+                required
+                [ngClass]="{
+                  'is-invalid':
+                    (submitted || f.password.dirty) && f.password.errors,
+                  'is-valid':
+                    f.password.dirty && f.password.value && !f.password.errors
+                }"
+              />
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                (click)="hidePassword = !hidePassword"
+                [attr.aria-label]="
+                  (hidePassword ? 'SHOW_PASSWORD' : 'HIDE_PASSWORD') | translate
+                "
+                [attr.aria-checked]="!hidePassword"
+                role="switch"
+              >
+                <fa-icon
+                  *ngIf="!hidePassword"
+                  [icon]="['fas', 'eye-slash']"
+                  aria-hidden="true"
+                ></fa-icon>
+                <fa-icon
+                  *ngIf="hidePassword"
+                  aria-hidden="true"
+                  [icon]="['fas', 'eye']"
+                ></fa-icon>
+              </button>
+
+              <div
+                *ngIf="(submitted || f.password.dirty) && f.password.errors"
+                class="invalid-feedback"
+              >
+                <p *ngIf="f.password.errors.required">
+                  {{ "PASSWORD_REQUIRED" | translate }}
+                </p>
+                <p *ngIf="f.password.errors.invalidPwd">
+                  {{ "INVALID_PASSWORD" | translate }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <button
+            type="submit"
+            [disabled]="loading"
+            aria-label="Connexion"
+            class="btn btn-primary"
+          >
+            <span *ngIf="!loading" class="text-uppercase px-5 w-30">
+              {{ "CONNEXION" | translate }}
+            </span>
+            <span *ngIf="loading"
+              ><fa-icon
+                aria-hidden="true"
+                [icon]="['fas', 'circle-notch']"
+                animation="spin"
+              >
+              </fa-icon>
+              {{ "CONNECTION_IN_PROGRESS" | translate }}</span
+            >
+          </button>
+        </div>
+      </form>
+
+      <div class="col-12 text-center my-3">
+        <p>
+          <a
+            [routerLink]="[routePrefix, 'forgot-password']"
+            rel="noopener noreferrer"
+            >{{ "FORGOT_PASSWORD" | translate }}</a
+          >
+        </p>
+        <p *ngIf="!IS_WEBVIEW_APP && !!proAccountCreationFormLink">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            [routerLink]="[routePrefix, 'create-pro-account']"
+            (click)="createProAccount()"
+            [queryParams]="dashboardTracking"
+          >
+            {{ "CREER_COMPTE_PRO" | translate }}
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

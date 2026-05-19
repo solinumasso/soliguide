@@ -1,0 +1,308 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="container my-4" *ngIf="place">
+  <div class="d-flex justify-content-between my-4 py-1">
+    <h1 class="form-title" *ngIf="place.lieu_id === null">
+      {{ "CREATION_OF_STRUCTURE" | translate }}
+    </h1>
+    <ng-container *ngIf="place.lieu_id !== null">
+      <h1 class="form-title">
+        {{ "GENERAL_INFORMATION_OF" | translate }} {{ place.name }}
+      </h1>
+      <div class="col-3 text-end">
+        <a
+          class="btn btn-outline-primary"
+          [routerLink]="[routePrefix, 'fiche', place.seo_url]"
+          >{{ "SEE_THE_PLACE" | translate }}
+        </a>
+      </div>
+    </ng-container>
+  </div>
+  <div class="row">
+    <div class="col-3 d-none d-md-block">
+      <app-form-place-menu [place]="place" [step]="step"></app-form-place-menu>
+    </div>
+    <div class="col-md-9 col-12">
+      <form [formGroup]="infosForm" (ngSubmit)="submitInfos()">
+        <div class="form-container">
+          <div class="row">
+            <div class="mb-3 col-12 required">
+              <label class="form-label" for="name">{{
+                "STRUCTURE_NAME" | translate
+              }}</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                formControlName="name"
+                autocomplete="off"
+                [ngClass]="{
+                  'is-invalid': (f.name.dirty || submitted) && f.name.errors,
+                  'is-valid': f.name.dirty && f.name.value && !f.name.errors
+                }"
+                required
+              />
+              <div
+                class="input-description"
+                *ngIf="(f.name.dirty || f.name.value) && !f.name.errors"
+              >
+                <fa-icon
+                  [icon]="['fas', 'info-circle']"
+                  aria-hidden="true"
+                  class="btn-icon"
+                ></fa-icon>
+                {{ "STRUCTURE_NAME" | translate }} : “{{ f.name.value }}”
+              </div>
+
+              <p
+                *ngIf="
+                  (f.name.dirty || submitted) &&
+                  (f.name.errors || f.name.invalid)
+                "
+                class="invalid-feedback"
+              >
+                {{ "STRUCTURE_NAME_MANDATORY" | translate }}
+              </p>
+            </div>
+
+            <div class="col-12 required">
+              <label class="form-label mb-0" for="description">{{
+                "DESCRIPTION" | translate
+              }}</label>
+              <div class="input-description">
+                {{ "STRUCTURE_PRESENTATION" | translate }}
+              </div>
+
+              <ckeditor
+                id="description"
+                [editor]="editor"
+                [config]="editorConfig"
+                [data]="place.description"
+                [ngClass]="{
+                  'is-invalid':
+                    (f.description.dirty || submitted) && f.description.errors,
+                  'is-valid':
+                    (f.description.dirty || f.description.value) &&
+                    !f.description.errors
+                }"
+                (change)="onDescriptionChange($event)"
+              ></ckeditor>
+
+              <div
+                *ngIf="
+                  (f.description.dirty || submitted) &&
+                  (f.description.errors || f.description.invalid)
+                "
+                class="invalid-feedback"
+              >
+                {{ "DESCRIPTION_LENGTH_CONSTRAINT" | translate }}
+              </div>
+            </div>
+          </div>
+          <div formGroupName="entity">
+            <div class="row my-3">
+              <div class="col-12">
+                <span class="label">{{
+                  "CONTACT_INFORMATION" | translate
+                }}</span>
+                <div class="input-description mb-2">
+                  {{
+                    "VISIBLE_AND_ACCESSIBLE_INFORMATION"
+                      | translate : { brandName: THEME_CONFIGURATION.brandName }
+                  }}
+                </div>
+              </div>
+
+              <div class="col-md-6 col-12">
+                <label class="form-label" for="mail">{{
+                  "EMAIL_ADDRESS" | translate
+                }}</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  formControlName="mail"
+                  [ngClass]="{
+                    'is-invalid':
+                      (f.entity.get('mail').dirty || submitted) &&
+                      f.entity.get('mail').errors,
+                    'is-valid':
+                      f.entity.get('mail').dirty &&
+                      f.entity.get('mail').value &&
+                      !f.entity.get('mail').errors
+                  }"
+                  [placeholder]="'EXAMPLE_EMAIL_ADDRESS' | translate"
+                  autocomplete="off"
+                />
+                <p *ngIf="f.entity.get('mail').errors" class="invalid-feedback">
+                  {{ "STRUCTURE_EMAIL_INCORRECT" | translate }}
+                </p>
+              </div>
+
+              <div class="col-md-6 col-12">
+                <label class="form-label" for="website">{{
+                  "WEBSITE" | translate
+                }}</label>
+                <input
+                  type="url"
+                  class="form-control"
+                  id="website"
+                  formControlName="website"
+                  [ngClass]="{
+                    'is-invalid':
+                      (f.entity.get('website').dirty || submitted) &&
+                      f.entity.get('website').errors,
+                    'is-valid':
+                      f.entity.get('website').dirty &&
+                      f.entity.get('website').value &&
+                      !f.entity.get('website').errors
+                  }"
+                  [placeholder]="'EXAMPLE_WEBSITE_ADDRESS' | translate"
+                  autocomplete="off"
+                />
+                <p
+                  *ngIf="f.entity.get('website').errors"
+                  class="invalid-feedback"
+                >
+                  {{ "INCORRECT_WEBSITE_ADDRESS" | translate }}
+                </p>
+              </div>
+            </div>
+
+            <app-place-form-phones
+              [parentForm]="entity"
+              [phonesData]="place.entity.phones"
+              [phonesForm]="phonesForm"
+              [submitted]="submitted"
+              [phoneLabelPlaceholder]="'ACCUEIL' | translate"
+              class="col-12 p-0"
+            ></app-place-form-phones>
+            <div class="row my-3">
+              <div class="col-md-6 col-12">
+                <label class="form-label" for="facebook">{{
+                  "FACEBOOK_PAGE" | translate
+                }}</label>
+                <input
+                  class="form-control"
+                  id="facebook"
+                  formControlName="facebook"
+                  [ngClass]="{
+                    'is-invalid':
+                      (f.entity.get('facebook').dirty || submitted) &&
+                      f.entity.get('facebook').errors,
+                    'is-valid':
+                      f.entity.get('facebook').dirty &&
+                      f.entity.get('facebook').value &&
+                      !f.entity.get('facebook').errors
+                  }"
+                  [placeholder]="'EXAMPLE_FACEBOOK_ADDRESS' | translate"
+                  autocomplete="off"
+                  type="url"
+                />
+                <p
+                  *ngIf="f.entity.get('facebook').errors"
+                  class="invalid-feedback"
+                >
+                  {{ "INCORRECT_FACEBOOK_ADDRESS" | translate }}
+                </p>
+              </div>
+
+              <div class="col-md-6 col-12">
+                <label class="form-label" for="fax">Fax</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fax"
+                  appDigitOnly
+                  formControlName="fax"
+                  [ngClass]="{
+                    'is-invalid':
+                      (f.entity.get('fax').dirty || submitted) &&
+                      f.entity.get('fax').errors,
+                    'is-valid':
+                      f.entity.get('fax').dirty &&
+                      f.entity.get('fax').value &&
+                      !f.entity.get('fax').errors
+                  }"
+                  placeholder="0123020333"
+                  autocomplete="off"
+                />
+                <p *ngIf="f.entity.get('fax').errors" class="invalid-feedback">
+                  {{ "INCORRECT_FAX_NUMBER" | translate }}
+                </p>
+              </div>
+              <div class="row my-3">
+                <div class="col-md-6 col-12">
+                  <label class="form-label" for="instagram">{{
+                    "INSTAGRAM_ACCOUNT" | translate
+                  }}</label>
+                  <input
+                    class="form-control"
+                    id="instagram"
+                    formControlName="instagram"
+                    [ngClass]="{
+                      'is-invalid':
+                        (f.entity.get('instagram').dirty || submitted) &&
+                        f.entity.get('instagram').errors,
+                      'is-valid':
+                        f.entity.get('instagram').dirty &&
+                        f.entity.get('instagram').value &&
+                        !f.entity.get('instagram').errors
+                    }"
+                    [placeholder]="'EXAMPLE_INSTAGRAM' | translate"
+                    autocomplete="off"
+                    type="url"
+                  />
+                  <p
+                    *ngIf="f.entity.get('instagram').errors"
+                    class="invalid-feedback"
+                  >
+                    {{ "INCORRECT_INSTAGRAM" | translate }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button
+            class="btn btn-lg btn-primary"
+            type="submit"
+            [disabled]="loading"
+          >
+            <span *ngIf="!loading">
+              {{ "SAVE_AND_CONTINUE" | translate }}
+            </span>
+            <span *ngIf="loading"
+              ><fa-icon
+                aria-hidden="true"
+                [icon]="['fas', 'circle-notch']"
+                animation="spin"
+              >
+              </fa-icon>
+              {{ "PLEASE_WAIT" | translate }}</span
+            >
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

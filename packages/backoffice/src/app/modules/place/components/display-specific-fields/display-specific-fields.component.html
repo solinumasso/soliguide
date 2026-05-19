@@ -1,0 +1,236 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<ng-container *ngIf="service.categorySpecificFields?.[specificField]?.length">
+  <ng-container *ngIf="toDisplay">
+    <span *ngIf="FA_ICONS_FOR_CATEGORIES_SPECIFIC_FIELDS[specificField]">
+      <fa-icon
+        [icon]="FA_ICONS_FOR_CATEGORIES_SPECIFIC_FIELDS[specificField]"
+        class="me-2"
+      ></fa-icon>
+    </span>
+
+    <b
+      *ngIf="
+        service.categorySpecificFields[specificField] !==
+          DegreeOfChoiceType.FREE_CHOICE &&
+        service.categorySpecificFields[specificField] !==
+          DietaryRegimesType.TRY_TO_ADAPT &&
+        service.categorySpecificFields[specificField] !==
+          DegreeOfChoiceType.ACCOMPAGNIED_CHOICE
+      "
+    >
+      {{
+        "DISPLAY_" + CATEGORIES_SPECIFIC_FIELDS_FORM_LABEL[specificField]
+          | translate
+      }}
+    </b>
+    <b
+      *ngIf="
+        service.categorySpecificFields[specificField] ===
+        DegreeOfChoiceType.FREE_CHOICE
+      "
+    >
+      {{ "DISPLAY_FREE_CHOICE" | translate }}
+    </b>
+    <ng-container
+      *ngIf="
+        service.categorySpecificFields[specificField] ===
+        DietaryRegimesType.TRY_TO_ADAPT
+      "
+    >
+      <b>{{ "DISPLAY_TRY_TO_ADAPT" | translate }} </b>
+      {{ "DIETARY_OBLIGATIONS" | translate }}
+    </ng-container>
+    <ng-container
+      *ngIf="
+        service.categorySpecificFields[specificField] ===
+        DegreeOfChoiceType.ACCOMPAGNIED_CHOICE
+      "
+    >
+      <b>{{ "DISPLAY_DEGREE_OF_CHOICE_TYPE" | translate }} </b>
+      {{ "DISPLAY_ACCOMPAGNIED" | translate }}
+    </ng-container>
+
+    <ng-container
+      *ngIf="
+        !service.categorySpecificFields[specificField].includes(
+          BabyParcelAgeType.UNDER_SIX_MONTHS
+        ) &&
+        !service.categorySpecificFields[specificField].includes(
+          BabyParcelAgeType.OVER_18_MONTHS
+        ) &&
+        !service.categorySpecificFields[specificField].includes(
+          BabyParcelAgeType.BETWEEN_6_AND_12_MONTHS
+        ) &&
+        !service.categorySpecificFields[specificField].includes(
+          BabyParcelAgeType.BETWEEN_12_AND_18_MONTHS
+        ) &&
+        service.categorySpecificFields[specificField] !==
+          DegreeOfChoiceType.NO_CHOICE &&
+        service.categorySpecificFields[specificField] !==
+          DegreeOfChoiceType.FREE_CHOICE &&
+        service.categorySpecificFields[specificField] !==
+          DietaryRegimesType.TRY_TO_ADAPT &&
+        service.categorySpecificFields[specificField] !==
+          DegreeOfChoiceType.ACCOMPAGNIED_CHOICE
+      "
+    >
+      <ng-container
+        *ngIf="
+          service.categorySpecificFields[specificField] ===
+          DegreeOfChoiceType.ACCOMPAGNIED_CHOICE
+        "
+      >
+        {{ "DISPLAY_ACCOMPAGNIED" | translate }}
+      </ng-container>
+
+      <ng-container
+        *ngIf="
+          CATEGORIES_SPECIFIC_FIELDS_FIELD_TYPE.enumType.includes(specificField)
+        "
+      >
+        {{
+          service.categorySpecificFields[specificField] | uppercase | translate
+        }}
+      </ng-container>
+      <ng-container
+        *ngIf="
+          CATEGORIES_SPECIFIC_FIELDS_FIELD_TYPE.textarea.includes(specificField)
+        "
+      >
+        {{ service.categorySpecificFields[specificField] }}
+      </ng-container>
+      <ng-container
+        *ngIf="
+          CATEGORIES_SPECIFIC_FIELDS_FIELD_TYPE.text.includes(specificField)
+        "
+      >
+        <i> {{ service.categorySpecificFields[specificField] }}</i>
+      </ng-container>
+
+      <ng-container
+        *ngIf="
+          CATEGORIES_SPECIFIC_FIELDS_FIELD_TYPE.checklist.includes(
+            specificField
+          )
+        "
+      >
+        <span
+          *ngFor="
+            let item of service.categorySpecificFields[specificField];
+            let last = last
+          "
+        >
+          {{ item | uppercase | translate
+          }}<ng-container *ngIf="specificField === 'foodProductType'">
+            <ng-container *ngIf="item === FoodProductType.OTHER">
+              <ng-container
+                *ngIf="
+                  service.categorySpecificFields.otherProductTypePrecisions
+                "
+              >
+                <i>
+                  ({{
+                    service.categorySpecificFields.otherProductTypePrecisions
+                  }})</i
+                >
+              </ng-container>
+            </ng-container> </ng-container
+          ><ng-container *ngIf="!last">,</ng-container>
+        </span>
+      </ng-container>
+    </ng-container>
+
+    <ng-container
+      *ngIf="
+        service.categorySpecificFields[specificField] === VoucherType.OTHER
+      "
+    >
+      <ng-container
+        *ngIf="service.categorySpecificFields.voucherTypePrecisions"
+      >
+        <i>({{ service.categorySpecificFields.voucherTypePrecisions }})</i>
+      </ng-container>
+    </ng-container>
+
+    <ng-container
+      *ngIf="
+        service.categorySpecificFields[specificField] ===
+        'availableEquipmentType'
+      "
+    >
+      <ng-container
+        *ngFor="
+          let availableEquipmentType of service.categorySpecificFields[
+            specificField
+          ]
+        "
+      >
+        <ng-container
+          *ngIf="availableEquipmentType === AvailableEquipmentType.OTHER"
+        >
+          <ng-container
+            *ngIf="service.categorySpecificFields.availableEquipmentPrecisions"
+          >
+            <i>
+              ({{
+                service.categorySpecificFields.availableEquipmentPrecisions
+              }})</i
+            >
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="specificField === 'babyParcelAgeType'">
+      <ng-container
+        *ngFor="
+          let ageType of service.categorySpecificFields[specificField];
+          let lastAgeType = last
+        "
+      >
+        <ng-container *ngIf="ageType === BabyParcelAgeType.UNDER_SIX_MONTHS">
+          {{ "UNDER_SIX_MONTHS" | translate
+          }}<ng-container *ngIf="!lastAgeType">,</ng-container>
+        </ng-container>
+
+        <ng-container
+          *ngIf="ageType === BabyParcelAgeType.BETWEEN_6_AND_12_MONTHS"
+        >
+          {{ "DISPLAY_BETWEEN_6_AND_12_MONTHS" | translate
+          }}<ng-container *ngIf="!lastAgeType">,</ng-container>
+        </ng-container>
+
+        <ng-container
+          *ngIf="ageType === BabyParcelAgeType.BETWEEN_12_AND_18_MONTHS"
+        >
+          {{ "DISPLAY_BETWEEN_12_AND_18_MONTHS" | translate
+          }}<ng-container *ngIf="!lastAgeType">,</ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="ageType === BabyParcelAgeType.OVER_18_MONTHS">
+          {{ "OVER_18_MONTHS" | translate
+          }}<ng-container *ngIf="!lastAgeType">,</ng-container>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</ng-container>

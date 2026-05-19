@@ -1,0 +1,159 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="row" *ngIf="organisation">
+  <p>
+    {{ organisation.places.length }}
+    {{
+      (organisation.places.length > 1 ? "STUCTURES" : "STRUCTURE") | translate
+    }}
+  </p>
+  <div class="col-md-4 col-12 mv-4" *ngFor="let place of organisation.places">
+    <div class="conseil">
+      <div class="d-flex align-items-center place">
+        <div class="fiche-img">
+          <img
+            src="/assets/images/place.svg"
+            aria-hidden="true"
+            [attr.alt]="'PLACE_LOGO' | translate"
+          />
+        </div>
+
+        <div>
+          <div>
+            <a
+              class="conseil-title me-2"
+              [routerLink]="[routePrefix, 'fiche', place.lieu_id]"
+              routerLinkActive="router-link-active"
+              [ngClass]="{
+                'text-danger':
+                  (place.placeType === PlaceType.PLACE &&
+                    !place.position?.address) ||
+                  (place.placeType === PlaceType.ITINERARY &&
+                    !place.parcours[0].position?.address)
+              }"
+              (click)="
+                captureEvent('click-front-place-link-on-name', {
+                  placeName: place.name,
+                  placeId: place._id,
+                  lieu_id: place.lieu_id
+                })
+              "
+              >{{ place.name }}</a
+            >
+            <span
+              *ngIf="place.status !== PlaceStatus.ONLINE"
+              class="badge align-top text-dark"
+              [ngClass]="{
+                'bg-danger':
+                  place.status === PlaceStatus.PERMANENTLY_CLOSED ||
+                  place.status === PlaceStatus.OFFLINE,
+                'bg-warning': place.status === PlaceStatus.DRAFT
+              }"
+            >
+              {{ place.status | translate }}
+            </span>
+            <span
+              *ngIf="place.visibility === PlaceVisibility.PRO"
+              class="ms-2 badge bg-info align-top"
+            >
+              {{ "PLACE_VISIBILITY_PRO" | translate }}
+            </span>
+          </div>
+          <div>
+            <p class="fiche-location">
+              {{
+                place.placeType === PlaceType.PLACE
+                  ? place.position?.address
+                    ? place.position.address
+                    : ("NO_ADDRESS_FOR_PLACE" | translate)
+                  : place.parcours[0].position?.address
+                  ? place.parcours[0].position.address
+                  : ("NO_ADDRESS_FOR_ITINERARY" | translate)
+              }}
+            </p>
+            <a
+              class="ms-0 btn btn-outline-primary"
+              [title]="'UPDATE_THE_PLACE' | translate"
+              [routerLink]="[routePrefix, 'manage-place', place.lieu_id]"
+              routerLinkActive="router-link-active"
+              *ngIf="canEditPlace(place.lieu_id)"
+              (click)="
+                captureEvent('click-update-place', {
+                  placeId: place._id,
+                  lieu_id: place.lieu_id
+                })
+              "
+            >
+              {{ "EDIT_STRUCTURE" | translate }}
+              <fa-icon
+                [icon]="['fas', 'pencil']"
+                aria-hidden="true"
+                class="ms-2"
+              ></fa-icon>
+            </a>
+          </div>
+        </div>
+        <button
+          class="red-cross"
+          type="button"
+          *ngIf="me.admin"
+          (click)="openRemoveModal(place)"
+          [attr.aria-label]="'DELETE' | translate"
+        >
+          <fa-icon aria-hidden="true" [icon]="['fas', 'times']"></fa-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12" *ngIf="organisation.places?.length < 1">
+    <div class="conseil mt-2 p-4">
+      <div class="d-flex align-items-center">
+        <div class="fiche-img">
+          <img
+            aria-hidden="true"
+            src="/assets/images/organization.svg"
+            alt=""
+          />
+        </div>
+        <div>
+          <h4 class="conseil-title mt-2">
+            {{ "NO_ESTABLISHMENTS_ADDED" | translate }}
+          </h4>
+          <p>
+            {{
+              "ADD_YOUR_DIFFERENT_ESTABLISHMENTS"
+                | translate : { brandName: THEME_CONFIGURATION.brandName }
+            }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #removePlaceModal let-modal>
+  <app-remove-place
+    [place]="placeToRemove"
+    [orga]="organisation"
+    [fromPlace]="false"
+  ></app-remove-place>
+</ng-template>

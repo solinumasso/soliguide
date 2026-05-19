@@ -1,0 +1,189 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="container my-4" *ngIf="place">
+  <div class="d-flex justify-content-between my-4 py-1">
+    <h1 class="form-title">
+      {{ "PLACE_NAME_LOCATION" | translate : { placeName: place.name } }}
+    </h1>
+
+    <div class="col-3 text-end">
+      <a
+        class="btn btn-outline-primary"
+        [routerLink]="[routePrefix, 'fiche', place.seo_url]"
+        >{{ "SEE_THE_PLACE" | translate }}
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3 d-none d-md-block">
+      <app-form-place-menu
+        [place]="place"
+        step="emplacement"
+      ></app-form-place-menu>
+    </div>
+    <div class="col-md-9 col-12">
+      <div class="form-container">
+        <div class="row mb-2">
+          <div class="col-md-3 mb-2 mb-md-0">
+            <div
+              tabindex="0"
+              (keyup.enter)="setPlaceType(PlaceType.PLACE)"
+              (click)="setPlaceType(PlaceType.PLACE)"
+              [ngClass]="{
+                'public-selector': place.placeType !== PlaceType.PLACE,
+                'public-selector-selected': place.placeType === PlaceType.PLACE
+              }"
+              class="p-3"
+            >
+              <div class="py-2 text-center">
+                <img
+                  src="/assets/images/form-place/place.svg"
+                  [alt]="'LIEU' | translate"
+                  aria-hidden="true"
+                />
+              </div>
+              <div class="fw-bold my-1 title text-primary">
+                {{ "FIXED_ADDRESS" | translate }}
+              </div>
+              <div class="my-3">
+                {{ "RECORD_ABOUT_FIXED_ADDRESS" | translate }}
+              </div>
+              <div class="mt-3">
+                <button
+                  *ngIf="place.placeType === PlaceType.PLACE"
+                  class="btn"
+                  type="button"
+                  [attr.aria-label]="
+                    'CHOSEN_LOCATION_FIXED_ADDRESS' | translate
+                  "
+                >
+                  <fa-icon
+                    [icon]="['fas', 'check']"
+                    aria-hidden="true"
+                  ></fa-icon>
+                </button>
+                <button
+                  *ngIf="place.placeType !== PlaceType.PLACE"
+                  class="btn btn-primary"
+                  type="button"
+                  [attr.aria-label]="
+                    'CHOOSE_LOCATION_FIXED_ADDRESS' | translate
+                  "
+                >
+                  {{ "CHOOSE" | translate }}
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 mb-2 mb-md-0">
+            <div
+              tabindex="0"
+              (click)="setPlaceType(PlaceType.ITINERARY)"
+              (keyup.enter)="setPlaceType(PlaceType.ITINERARY)"
+              [ngClass]="{
+                'public-selector': place.placeType !== PlaceType.ITINERARY,
+                'public-selector-selected':
+                  place.placeType === PlaceType.ITINERARY
+              }"
+              class="p-3"
+            >
+              <div class="py-2 text-center">
+                <img
+                  src="/assets/images/form-place/itinerary.svg"
+                  aria-hidden="true"
+                  alt=""
+                />
+              </div>
+              <div class="fw-bold my-1 title text-primary">
+                {{ "ITINERARY" | translate }}
+              </div>
+              <div class="my-3">
+                {{
+                  "RECORD_HAS_MULTIPLE_WAYPOINTS_AND_NOT_ONE_ADDRESS"
+                    | translate
+                }}
+              </div>
+              <div class="mt-3">
+                <button
+                  *ngIf="place.placeType === PlaceType.ITINERARY"
+                  class="btn"
+                  type="button"
+                  [attr.aria-label]="'CHOSEN_LOCATION_ITINERARY' | translate"
+                >
+                  <fa-icon
+                    [icon]="['fas', 'check']"
+                    aria-hidden="true"
+                  ></fa-icon>
+                </button>
+                <button
+                  type="button"
+                  [attr.aria-label]="'CHOOSE_LOCATION_ITINERARY' | translate"
+                  *ngIf="place.placeType !== PlaceType.ITINERARY"
+                  class="btn btn-primary"
+                >
+                  {{ "CHOOSE" | translate }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="place.placeType === PlaceType.PLACE">
+          <app-lieu-position-form [place]="place"></app-lieu-position-form>
+        </div>
+        <div *ngIf="place.placeType === PlaceType.ITINERARY">
+          <app-parcours-position-form
+            [place]="place"
+            (changeToLieu)="handleParcoursToLieu()"
+          ></app-parcours-position-form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #changePlaceTypeModal let-modal>
+  <div class="modal-header bg-danger">
+    <span id="modal-title">{{ "UPDATE_LOCATION_TYPE" | translate }}</span>
+    <button
+      type="button"
+      class="btn-close"
+      [attr.aria-label]="'CLOSE' | translate"
+      (click)="modal.dismiss()"
+    ></button>
+  </div>
+  <div
+    class="modal-body"
+    [innerHTML]="'WARNING_UPDATE_ITINERARY_TO_FIXED_ADDRESS' | translate"
+  ></div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Cancel action')"
+    >
+      {{ "CANCEL" | translate }}
+    </button>
+    <button type="button" class="btn btn-danger" (click)="eraseParcours()">
+      {{ "SAVE_AND_CONTINUE" | translate }}
+    </button>
+  </div>
+</ng-template>

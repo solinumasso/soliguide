@@ -1,0 +1,45 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div *ngFor="let station of stations" [class]="place.position.slugs.region">
+  <div class="d-block mb-1">
+    <p class="transport_direction m-0">
+      {{ station.place.name }}
+      <span *ngIf="station.place.distance">
+        à {{ station.place.distance | kmToMeters }}
+      </span>
+    </p>
+    <div
+      *ngFor="let mode of station.transports | keyvalue"
+      class="transport me-2 mb-2"
+      [ngClass]="mode.key"
+    >
+      <fa-icon [icon]="transportTypes[mode.key]" class="me-2"></fa-icon>
+      <span
+        *ngFor="let transport of mode.value"
+        [style.backgroundColor]="transport.color"
+        [style.color]="transport.textColor"
+        class="transport-stop-point"
+      >
+        <span class="transport-name">{{ transport.name }}</span>
+      </span>
+    </div>
+  </div>
+</div>

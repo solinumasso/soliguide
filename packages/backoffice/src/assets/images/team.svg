@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<svg width="90" height="90" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="90" height="90" rx="45" fill="#F5EBE1"/><path fill-rule="evenodd" clip-rule="evenodd" d="M60.69 30.75a6.327 6.327 0 118.949 8.95 6.327 6.327 0 01-8.948-8.95zm4.475.448a4.026 4.026 0 100 8.053 4.026 4.026 0 000-8.053z" fill="#E65A46"/><path fill-rule="evenodd" clip-rule="evenodd" d="M59.471 43.908a8.053 8.053 0 0113.747 5.694v5.752a1.15 1.15 0 01-1.15 1.15h-2.422l-1.037 9.33a1.15 1.15 0 01-1.143 1.024h-4.602a1.15 1.15 0 01-1.143-1.024l-1.037-9.33h-2.421a1.15 1.15 0 01-1.15-1.15v-5.752c0-2.136.848-4.184 2.358-5.694zm5.694-.058a5.752 5.752 0 00-5.752 5.752v4.602h2.301c.586 0 1.079.44 1.143 1.023l1.037 9.33h2.542l1.037-9.33a1.15 1.15 0 011.143-1.023h2.301v-4.602a5.752 5.752 0 00-5.752-5.752zM23.63 29.38a6.326 6.326 0 114.843 11.689 6.326 6.326 0 01-4.842-11.69zm2.422 1.818a4.027 4.027 0 100 8.054 4.027 4.027 0 000-8.054z" fill="#E65A46"/><path fill-rule="evenodd" clip-rule="evenodd" d="M20.358 43.908a8.052 8.052 0 0113.747 5.694v5.752a1.15 1.15 0 01-1.15 1.15h-2.422l-1.037 9.33a1.15 1.15 0 01-1.143 1.024H23.75a1.15 1.15 0 01-1.143-1.024l-1.037-9.33H19.15a1.15 1.15 0 01-1.15-1.15v-5.752c0-2.136.848-4.184 2.358-5.694zm5.694-.058a5.752 5.752 0 00-5.752 5.752v4.602h2.3c.587 0 1.08.44 1.144 1.023l1.037 9.33h2.542l1.037-9.33a1.15 1.15 0 011.143-1.023h2.3v-4.602a5.752 5.752 0 00-5.751-5.752zM40.321 25.334A7.477 7.477 0 1150.896 35.91 7.477 7.477 0 0140.32 25.334zm5.287.11a5.177 5.177 0 100 10.354 5.177 5.177 0 000-10.353z" fill="#E65A46"/><path fill-rule="evenodd" clip-rule="evenodd" d="M39.101 40.565a9.203 9.203 0 0115.71 6.507v6.902a1.15 1.15 0 01-1.15 1.15h-2.583l-.872 10.45a1.15 1.15 0 01-1.146 1.055h-6.903a1.15 1.15 0 01-1.146-1.055l-.871-10.45h-2.584a1.15 1.15 0 01-1.15-1.15v-6.902c0-2.44.97-4.782 2.695-6.507zm6.508-.395a6.902 6.902 0 00-6.903 6.902v5.752h2.492a1.15 1.15 0 011.146 1.055l.872 10.449H48l.872-10.45a1.15 1.15 0 011.146-1.054h2.492v-5.752a6.902 6.902 0 00-6.902-6.902z" fill="#E65A46"/></svg>

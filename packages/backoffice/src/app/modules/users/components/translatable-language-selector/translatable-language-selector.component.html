@@ -1,0 +1,71 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="col-md-6 my-2 required">
+  <span class="form-label">{{
+    "LISTE_LANGUES" | translate | lowercase | ucFirst
+  }}</span>
+
+  <div
+    class="custom-dropdown"
+    [ngClass]="{
+      'is-invalid-languages is-invalid':
+        (f.languages.touched || submitted) && f.languages.errors,
+      'is-valid-languages is-invalid':
+        f.languages.touched && f.languages.value && !f.languages.errors
+    }"
+    placement="auto"
+    ngbDropdown
+    autoClose="outside"
+  >
+    <button type="button" id="listLanguages" ngbDropdownToggle>
+      <span class="text-truncate"> {{ labelToDisplay | ucFirst }}</span>
+    </button>
+    <div ngbDropdownMenu>
+      <ng-container
+        *ngFor="
+          let language of AVAILABLE_LANGUAGES_FOR_TRANSLATION;
+          let i = index
+        "
+      >
+        <button
+          type="button"
+          (click)="toggleCheckboxButton(language)"
+          ngbDropdownItem
+        >
+          <input
+            id="lang-{{ language }}"
+            [checked]="f.languages.value.includes(language)"
+            type="checkbox"
+          />
+          <label for="lang-{{ language }}">{{
+            "LANGUE_" + language | uppercase | translate
+          }}</label>
+        </button>
+      </ng-container>
+    </div>
+  </div>
+  <div
+    *ngIf="(f.languages.touched || submitted) && f.languages.errors"
+    class="invalid-feedback-custom"
+  >
+    {{ "CHOOSE_LANGUAGE" | translate }}
+  </div>
+</div>
