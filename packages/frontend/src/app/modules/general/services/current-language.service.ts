@@ -3,7 +3,7 @@ import { BehaviorSubject, Subscription } from "rxjs";
 
 import { SupportedLanguagesCode, isSupportedLanguage } from "@soliguide/common";
 
-import { LanguageDirection } from "../../translations/enums";
+import { LanguageDirection } from "../../shared/enums";
 import { THEME_CONFIGURATION } from "../../../models";
 
 @Injectable({

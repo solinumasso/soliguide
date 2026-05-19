@@ -1,6 +1,7 @@
 import {
   CAMPAIGN_DEFAULT_NAME,
   ApiPlace,
+  ApiOrganization,
   CommonPlaceParcours,
   Modalities,
   PlaceContact,
@@ -28,10 +29,6 @@ import { PlaceParcours } from "./place-parcours.class";
 import { PlacePosition } from "./place-position.class";
 import { Service } from "./service.class";
 
-import { Organisation } from "../../../modules/admin-organisation/interfaces";
-import { getUpdatedAtColor } from "../../../modules/admin-place/services/getUpdatedAtColor.service";
-import { UpdatedAtColor } from "../../../modules/admin-place/types/UpdatedAtColor.type";
-
 import { THEME_CONFIGURATION } from "../../themes";
 import { PlaceSource } from "./place-sources.class";
 
@@ -52,7 +49,7 @@ export class Place implements Partial<ApiPlace> {
   public visibility: PlaceVisibility;
 
   public photos: Photo[] = [];
-  public organizations: Organisation[] = [];
+  public organizations: Partial<ApiOrganization>[] = [];
   public placeType: PlaceType = PlaceType.PLACE;
   public services_all: Service[] = [];
   public position: PlacePosition;
@@ -70,7 +67,6 @@ export class Place implements Partial<ApiPlace> {
   public createdAt: Date;
   public updatedAt: Date;
   public updatedByUserAt: Date;
-  public updatedAtColor: UpdatedAtColor;
   public createdBy: string | null;
 
   public stepsDone: PlaceStepsDone;
@@ -129,8 +125,6 @@ export class Place implements Partial<ApiPlace> {
     this.updatedByUserAt = place?.updatedByUserAt
       ? new Date(place.updatedByUserAt)
       : null;
-
-    this.updatedAtColor = getUpdatedAtColor(this.updatedByUserAt);
 
     this.entity = place?.entity ?? {
       name: null,

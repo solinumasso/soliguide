@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from "@angular/core";
 import {
   AnyDepartmentCode,
+  ApiOrganization,
   CommonUser,
   DEPARTMENTS_MAP,
   getTerritoriesFromAreas,
 } from "@soliguide/common";
 import { THEME_CONFIGURATION } from "../../../../models";
-import { Organisation } from "../../../admin-organisation/interfaces";
 
 @Component({
   selector: "app-display-territories",
@@ -14,7 +14,7 @@ import { Organisation } from "../../../admin-organisation/interfaces";
   styleUrls: ["./display-territories.component.css"],
 })
 export class DisplayTerritoriesComponent implements OnInit {
-  @Input() public organizationOrUser: CommonUser | Organisation;
+  @Input() public organizationOrUser: CommonUser | Partial<ApiOrganization>;
 
   public departments: AnyDepartmentCode[] = [];
 

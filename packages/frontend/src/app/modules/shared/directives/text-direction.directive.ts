@@ -1,6 +1,6 @@
 import { Directive, ElementRef, OnDestroy } from "@angular/core";
 import { CurrentLanguageService } from "../../general/services/current-language.service";
-import { LanguageDirection } from "../../translations/enums";
+import { LanguageDirection } from "../enums";
 import { Subscription } from "rxjs";
 
 @Directive({
