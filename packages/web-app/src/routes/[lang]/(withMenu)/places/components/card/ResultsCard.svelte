@@ -104,7 +104,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         if (isPlaceUnavailable) {
           return;
         }
-        captureEvent('card-header-click', { placeId: place.id });
+        captureEvent('card-header-click', { placeId: place.id, place: { ...place.dataForLogs } });
       }}
     >
       <div class="card-header-container">
@@ -147,7 +147,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 if (status === 'added' || status === 'removed') {
                   captureEvent('manage-favorite', {
                     action: status === 'added' ? 'add' : 'remove',
-                    placeId: place.id
+                    placeId: place.id,
+                    place: { ...place.dataForLogs }
                   });
                 }
                 notifyFavoriteChange(status, i18n);
