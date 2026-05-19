@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.135.0](https://github.com/solinumasso/soliguide/compare/v4.134.0...v4.135.0) (2026-05-19)
+
+
+### Bug Fixes
+
+* **api:** add error handling ([dce8709](https://github.com/solinumasso/soliguide/commit/dce87092d93cc5e3782d9e9a2bb1fccc566ed033))
+
+
+### Features
+
+* change isocial logo ([f303d95](https://github.com/solinumasso/soliguide/commit/f303d95f19d26cda737b7b4e0355c2e900fa2093))
+* **frontend:** refacto display changes components and improve readability ([0af7e37](https://github.com/solinumasso/soliguide/commit/0af7e3732c1378b6f86845e0b94159b957725695))
+* **frontend:** update place changes comparison ([1df6602](https://github.com/solinumasso/soliguide/commit/1df6602ede5dfbd788c0e669ecefbfa7c81a95f6))
+* send more data to posthog for manage-favorite event ([8a79911](https://github.com/solinumasso/soliguide/commit/8a79911c1fd8fc611e5425880070359a55202648))
+
+
+
+
+
 # [4.134.0](https://github.com/solinumasso/soliguide/compare/v4.133.0...v4.134.0) (2026-05-11)
 
 
