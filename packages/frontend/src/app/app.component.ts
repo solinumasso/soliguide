@@ -5,8 +5,6 @@ import { Subscription, filter } from "rxjs";
 
 import { CurrentLanguageService } from "./modules/general/services/current-language.service";
 import { LanguageSetupService } from "./modules/general/services/language-setup.service";
-import { User } from "./modules/users/classes";
-import { AuthService } from "./modules/users/services/auth.service";
 import { PosthogService } from "./modules/analytics/services/posthog.service";
 
 import { IS_BOT, IS_WEBVIEW_APP } from "./shared/constants";
@@ -26,7 +24,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public readonly IS_WEBVIEW_APP = IS_WEBVIEW_APP;
   public readonly IS_BOT = IS_BOT;
-  public me!: User | null;
   public currentUrl = "";
   public todayYear: number;
   public routePrefix: string;
@@ -34,7 +31,6 @@ export class AppComponent implements OnInit, OnDestroy {
   public hasUserGivenConsent: boolean;
 
   constructor(
-    private readonly authService: AuthService,
     private readonly router: Router,
     private readonly languageSetupService: LanguageSetupService,
     private readonly currentLanguageService: CurrentLanguageService,
@@ -44,9 +40,6 @@ export class AppComponent implements OnInit, OnDestroy {
     private readonly versionService: VersionService
   ) {
     this.hasUserGivenConsent = false;
-
-    // REFRESH TOKEN
-    this.authService.isAuth().subscribe();
 
     const today = new Date();
     this.todayYear = today.getFullYear();
@@ -68,12 +61,6 @@ export class AppComponent implements OnInit, OnDestroy {
         console.error("Failed to load version:", error);
       },
     });
-
-    this.subscription.add(
-      this.authService.currentUserSubject.subscribe((user: User) => {
-        this.me = user;
-      })
-    );
 
     this.subscription.add(
       this.currentLanguageService.subscribe(() => {
@@ -160,7 +147,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     document.addEventListener("PreferencesClosed", () => {
       if (this.chatButtonClicked) {
-        this.chatService.openChatAfterPreferences(this.me);
+        this.chatService.openChatAfterPreferences();
       }
     });
     document.addEventListener("AcceptAll", () => {
@@ -168,7 +155,7 @@ export class AppComponent implements OnInit, OnDestroy {
     });
     document.addEventListener("AcceptAllPreferences", () => {
       if (this.chatButtonClicked) {
-        this.chatService.openChatAfterPreferences(this.me);
+        this.chatService.openChatAfterPreferences();
       }
 
       this.posthogService.capture("accept-all-cookies-preferences");

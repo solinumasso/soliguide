@@ -1,10 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Subscription } from "rxjs";
 
-import { User } from "../../users/classes/user.class";
 import { CookieManagerService } from "./cookie-manager.service";
 import { globalConstants } from "../../../shared/functions";
-import { AuthService } from "../../users/services/auth.service";
 import { THEME_CONFIGURATION } from "../../../models";
 
 @Injectable({
@@ -16,17 +14,14 @@ export class ChatService {
   public chatButtonClicked = false;
   public readonly isChatEnabled = Boolean(THEME_CONFIGURATION.chatWebsiteId);
 
-  constructor(
-    private readonly cookieManagerService: CookieManagerService,
-    private readonly authService: AuthService
-  ) {
+  constructor(private readonly cookieManagerService: CookieManagerService) {
     this.subscription = new Subscription();
 
     this.subscription.add(
       this.cookieManagerService.chatConsentSubject.subscribe(
         (consent: boolean) => {
           if (consent) {
-            this.setupChat(this.authService.currentUserValue);
+            this.setupChat();
           } else {
             for (const item of globalConstants.listItems()) {
               if (item.startsWith("ZD")) {
@@ -67,7 +62,7 @@ export class ChatService {
     this.chatHasBeenSetup = false;
   }
 
-  public setupChat = async (user?: User): Promise<void> => {
+  public setupChat = async (): Promise<void> => {
     if (!this.hasUserGivenConsent()) {
       return;
     }
@@ -92,26 +87,11 @@ export class ChatService {
 
     zE("messenger:set", "cookies", true);
     zE("messenger", "show");
-
-    // Only for pros
-    if (user?.pro) {
-      zE("messenger:set", "conversationTags", ["PROS"]);
-      zE("messenger:set", "conversationFields", [
-        { id: "ORGA_NOM", value: user.currentOrga?.name ?? "NULL" },
-        {
-          id: "ORGA_TERRITOIRE",
-          value: user.currentOrga?.territories[0] ?? "NULL",
-        },
-        { id: "TYPE_COMPTE", value: "PRO" },
-        { id: "USER_PRENOM", value: user.name },
-        { id: "USER_NOM", value: user.lastname },
-      ]);
-    }
   };
 
-  public async openChat(user?: User): Promise<void> {
+  public async openChat(): Promise<void> {
     if (!this.chatHasBeenSetup) {
-      this.setupChat(user);
+      this.setupChat();
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -132,9 +112,9 @@ export class ChatService {
     zE("messenger", "open");
   }
 
-  public async openChatAfterPreferences(user?: User): Promise<void> {
+  public async openChatAfterPreferences(): Promise<void> {
     if (this.cookieManagerService.chatConsentSubject.value) {
-      this.openChat(user);
+      this.openChat();
     }
   }
 }

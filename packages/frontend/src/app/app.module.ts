@@ -25,7 +25,6 @@ import { ToastrModule } from "ngx-toastr";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 
-import { JwtInterceptor } from "./interceptors/jwt.interceptor";
 import { ServerErrorInterceptor } from "./interceptors/server-error.interceptor";
 
 import { GeneralModule } from "./modules/general/general.module";
@@ -98,7 +97,6 @@ export function initializeTranslate(translate: TranslateService) {
       deps: [TranslateService],
       multi: true,
     },
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     {
       multi: true,
       provide: HTTP_INTERCEPTORS,

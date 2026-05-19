@@ -1,5 +1,4 @@
 import {
-  HttpErrorResponse,
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
@@ -11,8 +10,6 @@ import { ToastrService } from "ngx-toastr";
 
 import { catchError, Observable, throwError } from "rxjs";
 
-import { AuthService } from "../modules/users/services/auth.service";
-
 import { TranslateService } from "@ngx-translate/core";
 
 @Injectable({
@@ -21,7 +18,6 @@ import { TranslateService } from "@ngx-translate/core";
 export class ServerErrorInterceptor implements HttpInterceptor {
   constructor(
     private readonly toastr: ToastrService,
-    public readonly authService: AuthService,
     private readonly translateService: TranslateService
   ) {}
 
@@ -44,21 +40,6 @@ export class ServerErrorInterceptor implements HttpInterceptor {
           return throwError(() => returnedError.error);
         }
 
-        if (returnedError instanceof HttpErrorResponse) {
-          switch (returnedError.status) {
-            case 401:
-              this.toastr.warning(
-                this.translateService.instant("EXPIRED_SESSION")
-              );
-              this.authService.logoutAndRedirect();
-              break;
-            case 403:
-              this.authService.notAuthorized();
-              break;
-            default:
-              break;
-          }
-        }
         return throwError(() => returnedError);
       })
     );

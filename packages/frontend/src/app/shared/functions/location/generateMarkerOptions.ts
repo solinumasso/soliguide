@@ -1,6 +1,5 @@
 import { CommonPlacePosition, PlaceType } from "@soliguide/common";
 import { Place, PlaceParcours, MarkerOptions } from "../../../models";
-import { User } from "../../../modules/users/classes";
 
 const getMarker = (
   item: Place,
@@ -24,10 +23,7 @@ const getMarker = (
   };
 };
 
-export const generateMarkerOptions = (
-  places: Place[],
-  me: User | null
-): MarkerOptions[] => {
+export const generateMarkerOptions = (places: Place[]): MarkerOptions[] => {
   const markers: MarkerOptions[] = [];
 
   let markerCounter = 1;
@@ -39,7 +35,7 @@ export const generateMarkerOptions = (
         markerCounter++;
       });
     } else {
-      if (me?.admin || me?.pro || !item.modalities.orientation.checked) {
+      if (!item.modalities.orientation.checked) {
         markers.push(getMarker(item, item.position, markerCounter));
       }
       markerCounter++;

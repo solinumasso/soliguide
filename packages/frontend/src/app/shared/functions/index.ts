@@ -7,5 +7,4 @@ export * from "./generateCompleteArray";
 export * from "./generateCompleteName";
 export * from "./getMobileAppLink";
 export * from "./global-constants.class";
-export * from "./initSearchTerrority";
 export * from "./registerLocales";

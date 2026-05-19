@@ -9,4 +9,3 @@ export * from "./limit-to.pipe";
 export * from "./readable-parcours.pipe";
 export * from "./safe-html.pipe";
 export * from "./uc-first.pipe";
-export * from "./user-fullname.pipe";

@@ -27,7 +27,6 @@ import {
   ReadableParcoursPipe,
   SafeHtmlPipe,
   UcFirstPipe,
-  UserFullNamePipe,
   DateProxyPipe,
 } from "./pipes";
 import { PrintService, LocationService } from "./services";
@@ -51,7 +50,6 @@ import { NgxTranslateI18nextAdapter } from "./services/ngx-translate-i18next-ada
     SafeHtmlPipe,
     SelectCategoryComponent,
     UcFirstPipe,
-    UserFullNamePipe,
     DisplayTerritoriesComponent,
     DateProxyPipe,
     TextDirectionDirective,
@@ -72,7 +70,6 @@ import { NgxTranslateI18nextAdapter } from "./services/ngx-translate-i18next-ada
     SafeHtmlPipe,
     SelectCategoryComponent,
     UcFirstPipe,
-    UserFullNamePipe,
     DisplayTerritoriesComponent,
     DateProxyPipe,
     TextDirectionDirective,

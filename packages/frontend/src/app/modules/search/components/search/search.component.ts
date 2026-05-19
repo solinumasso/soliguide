@@ -36,9 +36,6 @@ import { Search, SearchFilterParams } from "../../interfaces";
 import { SearchService } from "../../services/search.service";
 import { CurrentLanguageService } from "../../../general/services/current-language.service";
 import { SeoService, LocationService } from "../../../shared/services";
-import type { User } from "../../../users/classes";
-import { AuthService } from "../../../users/services/auth.service";
-
 import {
   type Place,
   type MarkerOptions,
@@ -100,7 +97,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   public description: string;
 
   public center: number[];
-  public me!: User | null;
   public showFilters: boolean;
 
   public readonly THEME_CONFIGURATION = THEME_CONFIGURATION;
@@ -109,7 +105,6 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
-    private readonly authService: AuthService,
     private readonly router: Router,
     private readonly searchService: SearchService,
     private readonly seoService: SeoService,
@@ -135,7 +130,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.filters = {};
 
     this.center = [];
-    this.me = null;
 
     this.search = new Search();
     this.parcoursSearch = new Search({ placeType: PlaceType.ITINERARY });
@@ -151,7 +145,6 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.showFilters = !this.isMobileView;
-    this.me = this.authService.currentUserValue;
     this.initializeDefaultTitles();
 
     // Initialize searchBarService if needed
@@ -246,7 +239,7 @@ export class SearchComponent implements OnInit, OnDestroy {
             this.loading = false;
             if (result.response.nbResults !== 0) {
               this.places = result.response.results;
-              this.markers = generateMarkerOptions(this.places, this.me);
+              this.markers = generateMarkerOptions(this.places);
             }
           } else {
             this.nbParcoursResults = result.response.nbResults;

@@ -11,8 +11,6 @@ import { NgxJsonLdModule } from "@ngx-lite/json-ld";
 
 import { TranslateModule } from "@ngx-translate/core";
 
-import { SingleContactComponent } from "./components/display-contacts/single-contact/single-contact.component";
-import { DisplayContactsComponent } from "./components/display-contacts/display-contacts.component";
 import { DisplayDocsComponent } from "./components/display-docs/display-docs.component";
 import { DisplayEntityInfosComponent } from "./components/display-entity-infos/display-entity-infos.component";
 import { DisplayLanguagesComponent } from "./components/display-languages/display-languages.component";
@@ -42,7 +40,6 @@ import { RouterModule } from "@angular/router";
 
 @NgModule({
   declarations: [
-    DisplayContactsComponent,
     DisplayDocsComponent,
     DisplayEntityInfosComponent,
     DisplayLanguagesComponent,
@@ -56,7 +53,6 @@ import { RouterModule } from "@angular/router";
     ExternalSourcePlaceCampaignBannerComponent,
     PlaceTransportsComponent,
     SharePlaceComponent,
-    SingleContactComponent,
   ],
   imports: [
     ClipboardModule,
@@ -77,7 +73,6 @@ import { RouterModule } from "@angular/router";
     TranslateModule,
   ],
   exports: [
-    DisplayContactsComponent,
     DisplayDocsComponent,
     DisplayEntityInfosComponent,
     DisplayLanguagesComponent,
@@ -91,7 +86,6 @@ import { RouterModule } from "@angular/router";
     ExternalSourcePlaceCampaignBannerComponent,
     PlaceTransportsComponent,
     SharePlaceComponent,
-    SingleContactComponent,
   ],
   providers: [HolidaysService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
