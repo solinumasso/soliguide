@@ -18,76 +18,63 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
-<div *ngIf="hours">
-  <div *ngIf="hours.h24">
+@if (hours) {
+<div>
+  @if (hours.h24) {
+  <div>
     <b>{{ "OPEN_24" | translate }}</b>
   </div>
+  } @if (!hours.h24) { @for (day of weekDays; track day) { @if
+  (displayClosedDays || hours[day].open) {
+  <div
+    class="d-flex align-items-center horaires ps-3 py-2"
+    [ngClass]="{
+      todayClass: day === dayToday,
+      'day-changed': changedDays.has(day)
+    }"
+  >
+    <div class="px-1 horaires_day">
+      {{ "DAY_" + day | uppercase | translate }}
+    </div>
 
-  <ng-container *ngIf="!hours.h24">
-    <ng-container *ngFor="let day of weekDays">
-      <div
-        class="d-flex align-items-center horaires ps-3 py-2"
-        [ngClass]="{
-          todayClass: day === dayToday
-        }"
-        *ngIf="displayClosedDays || (!displayClosedDays && hours[day].open)"
+    @if (hours[day].open && !isTempClosed) {
+    <div class="px-1 horaires_slots">
+      @if (isPlace) { @for (slot of hours[day].timeslot; track $index) {
+      <span>{{ slot.start }} {{ "A_HORAIRE" | translate }} {{ slot.end }}</span>
+      } } @else { @for (slot of hours[day].timeslot; track $index) {
+      <span>{{ slot.start }}</span>
+      } }
+    </div>
+    } @if (isPlace && !hours[day].open && hours.isOpeningHoursSet &&
+    !isTempClosed) {
+    <div class="px-1">
+      <span>{{
+        (isPartiallyOpen ? "PARTIALLY_OPEN" : "CLOSED") | translate
+      }}</span>
+
+      @if (isPartiallyOpen) {
+      <fa-icon
+        class="ps-2"
+        [ngbTooltip]="'PARTIALLY_OPEN_INFO' | translate"
+        [icon]="['fas', 'circle-info']"
       >
-        <div class="px-1 horaires_day">
-          {{ "DAY_" + day | uppercase | translate }}
-        </div>
-
-        <div
-          class="px-1 horaires_slots"
-          *ngIf="hours[day].open && !isTempClosed"
-        >
-          <ng-container *ngIf="isPlace; else elseTimeslot">
-            <span *ngFor="let slot of hours[day].timeslot">
-              {{ slot.start }} {{ "A_HORAIRE" | translate }} {{ slot.end }}
-            </span>
-          </ng-container>
-          <ng-template #elseTimeslot>
-            <span *ngFor="let slot of hours[day].timeslot">
-              {{ slot.start }}
-            </span>
-          </ng-template>
-        </div>
-        <div
-          class="px-1"
-          *ngIf="
-            isPlace &&
-            !hours[day].open &&
-            hours.isOpeningHoursSet &&
-            !isTempClosed
-          "
-        >
-          <span>{{
-            (isPartiallyOpen ? "PARTIALLY_OPEN" : "CLOSED") | translate
-          }}</span>
-
-          <fa-icon
-            class="ps-2"
-            [ngbTooltip]="'PARTIALLY_OPEN_INFO' | translate"
-            [icon]="['fas', 'circle-info']"
-            *ngIf="isPartiallyOpen"
-          >
-          </fa-icon>
-        </div>
-        <div
-          class="px-1"
-          *ngIf="isPlace && hours.isOpeningHoursSet && isTempClosed"
-        >
-          <span>{{ "TEMPORARILY_CLOSED" | translate }}</span>
-        </div>
-        <div
-          class="px-1"
-          *ngIf="!hours[day].open && isPlace && !hours.isOpeningHoursSet"
-        >
-          <span>{{ "TIME_UNKNOWN" | translate }}</span>
-        </div>
-        <div class="px-1" *ngIf="!hours[day].open && !isPlace">
-          <span>{{ "PAS_PASSAGE" | translate }}</span>
-        </div>
-      </div>
-    </ng-container>
-  </ng-container>
+      </fa-icon>
+      }
+    </div>
+    } @if (isPlace && hours.isOpeningHoursSet && isTempClosed) {
+    <div class="px-1">
+      <span>{{ "TEMPORARILY_CLOSED" | translate }}</span>
+    </div>
+    } @if (!hours[day].open && isPlace && !hours.isOpeningHoursSet) {
+    <div class="px-1">
+      <span>{{ "TIME_UNKNOWN" | translate }}</span>
+    </div>
+    } @if (!hours[day].open && !isPlace) {
+    <div class="px-1">
+      <span>{{ "PAS_PASSAGE" | translate }}</span>
+    </div>
+    }
+  </div>
+  } } }
 </div>
+}

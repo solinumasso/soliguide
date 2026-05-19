@@ -64,26 +64,32 @@ export async function syncPlacesToAirtableJob(): Promise<void> {
     lastId = places[places?.length - 1]._id ?? null;
 
     for (const place of places) {
-      const { theme, frontendUrl } = getThemeAndUrlFromPlace(place);
+      try {
+        const { theme, frontendUrl } = getThemeAndUrlFromPlace(place);
 
-      const payload = new AmqpSynchroAirtablePlaceEvent(
-        place,
-        frontendUrl,
-        theme
-      );
+        const payload = new AmqpSynchroAirtablePlaceEvent(
+          place,
+          frontendUrl,
+          theme
+        );
 
-      await amqpEventsSender.sendToQueue(
-        Exchange.SYNCHRO_AT,
-        `${RoutingKey.SYNCHRO_AT}.place`,
-        payload
-      );
+        await amqpEventsSender.sendToQueue(
+          Exchange.SYNCHRO_AT,
+          `${RoutingKey.SYNCHRO_AT}.place`,
+          payload
+        );
 
-      totalSent++;
-      throttleCpt++;
+        totalSent++;
+        throttleCpt++;
 
-      if (throttleCpt >= THROTTLE_BATCH_SIZE) {
-        await sleep(THROTTLE_DELAY_MS);
-        throttleCpt = 0;
+        if (throttleCpt >= THROTTLE_BATCH_SIZE) {
+          await sleep(THROTTLE_DELAY_MS);
+          throttleCpt = 0;
+        }
+      } catch (err) {
+        logger.error(
+          `SYNC AIRTABLE - failed to send place ${place.lieu_id} (_id: ${place._id}): ${err}`
+        );
       }
     }
 
