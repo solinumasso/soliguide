@@ -5,7 +5,7 @@ import { CronJob } from "cron";
 import { logger } from "../general/logger";
 import { setCurrentTempInfoJob } from "./jobs/places/set-current-temp-info.job";
 import { setIsOpenTodayJob } from "./jobs/places/set-isOpenToday.job";
-import { setOfflineJob } from "./jobs/places/set-offline.job";
+// import { setOfflineJob } from "./jobs/places/set-offline.job";
 import { syncPlacesToAirtableJob } from "./jobs/places/sync-places-to-airtable.job";
 import { translateFieldsJob } from "./jobs/translations/translate-fields.job";
 import { unsetObsoleteTempInfoJob } from "./jobs/places/unset-obsolete-temp-info.job";
@@ -89,7 +89,7 @@ export function initializeCronJobs() {
     setIsOpenTodayJob
   );
 
-  createMonitoredCron("set-offline", Schedule.EVERY_DAY_AT_3AM, setOfflineJob);
+  // createMonitoredCron("set-offline", Schedule.EVERY_DAY_AT_3AM, setOfflineJob);
 
   createMonitoredCron(
     "sync-places-to-airtable",
