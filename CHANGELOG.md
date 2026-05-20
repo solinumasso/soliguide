@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.136.0](https://github.com/solinumasso/soliguide/compare/v4.135.0...v4.136.0) (2026-05-20)
+
+
+### Features
+
+* **api:** deactivate set places offline cron ([b3d3ca7](https://github.com/solinumasso/soliguide/commit/b3d3ca7bba4fbebd80d6080b51cafdc16d8903dd))
+
+
+
+
+
 # [4.135.0](https://github.com/solinumasso/soliguide/compare/v4.134.0...v4.135.0) (2026-05-19)
 
 
