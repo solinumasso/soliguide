@@ -29,7 +29,6 @@ import { JwtInterceptor } from "./interceptors/jwt.interceptor";
 import { ServerErrorInterceptor } from "./interceptors/server-error.interceptor";
 
 import { GeneralModule } from "./modules/general/general.module";
-import { StaticPagesModule } from "./modules/static-pages/static-pages.module";
 import { SharedModule } from "./modules/shared/shared.module";
 import { UsersModule } from "./modules/users/users.module";
 import { AnalyticsModule } from "./modules/analytics/analytics.module";
@@ -72,9 +71,9 @@ export function initializeTranslate(translate: TranslateService) {
     HttpClientModule,
     NgbModule,
     ReactiveFormsModule,
-    StaticPagesModule,
     SharedModule,
     AnalyticsModule,
+
     ToastrModule.forRoot({
       enableHtml: true,
       positionClass: "toast-top-right",

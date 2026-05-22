@@ -37,14 +37,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     >
       <div class="col-6 justify-content-center d-flex">
         <a
-          *ngIf="THEME_CONFIGURATION.contactFormEnabled"
-          class="px-3"
-          [routerLink]="[routePrefix, 'contact']"
-          [title]="'CONTACT_US' | translate"
-          (click)="captureEvent('contacts')"
-          ><fa-icon [icon]="['fas', 'envelope']" size="xl"
-        /></a>
-        <a
           *ngIf="!!THEME_CONFIGURATION.socialMedia.instagram"
           class="px-3"
           target="_blank"
@@ -99,11 +91,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         >
           <fa-icon [icon]="['fab', 'tiktok']" size="xl" />
         </a>
-      </div>
-    </div>
-    <div class="row justify-content-center pb-5">
-      <div class="justify-content-center d-flex">
-        <app-partners-banner></app-partners-banner>
       </div>
     </div>
     <div class="row justify-content-center">
@@ -187,14 +174,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       >
         <li class="title_list_footer">
           {{ "HELP_US" | translate }}
-        </li>
-        <li *ngIf="THEME_CONFIGURATION.becomeVolunteerEnabled">
-          <a
-            [routerLink]="[routePrefix, 'devenir-benevole']"
-            (click)="captureEvent('become-volunteer')"
-          >
-            {{ "BECOME_A_VOLUNTEER" | translate }}
-          </a>
         </li>
         <li *ngIf="!!becomeTranslatorFormLink && !IS_WEBVIEW_APP">
           <a

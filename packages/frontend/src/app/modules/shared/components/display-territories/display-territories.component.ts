@@ -14,7 +14,7 @@ import { THEME_CONFIGURATION } from "../../../../models";
   styleUrls: ["./display-territories.component.css"],
 })
 export class DisplayTerritoriesComponent implements OnInit {
-  @Input() public organizationOrUser: CommonUser | Partial<ApiOrganization>;
+  @Input() public organizationOrUser: CommonUser | ApiOrganization;
 
   public departments: AnyDepartmentCode[] = [];
 

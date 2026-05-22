@@ -58,52 +58,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           </a>
         </li>
 
-        <li *ngIf="displaySolidataNavButtons">
-          <div ngbDropdown display="dynamic" class="custom-dropdown">
-            <button
-              type="button"
-              id="navbarDropdownDashboard"
-              class="fw-normal clickable dropdown"
-              ngbDropdownToggle
-              (click)="captureEvent('click-solidata-dashboard')"
-            >
-              Solidata
-            </button>
-            <div ngbDropdownMenu aria-labelledby="navbarDropdownDashboard">
-              <a
-                routerLinkActive="router-link-active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                [routerLink]="[
-                  routePrefix,
-                  'solidata',
-                  'public',
-                  'consultation-tracking'
-                ]"
-                (click)="captureEvent('click-solidata-search-tracking', {})"
-                ngbDropdownItem
-                *ngIf="displaySolidataSearchTracking"
-              >
-                {{ "DASHBOARD_DES_RECHERCHES" | translate }}
-              </a>
-              <a
-                routerLinkActive="router-link-active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                [routerLink]="[
-                  routePrefix,
-                  'solidata',
-                  'public',
-                  'demo_acces_alimentation'
-                ]"
-                (click)="captureEvent('click-solidata-demo-food-access')"
-                ngbDropdownItem
-                *ngIf="displaySolidataDemoFoodAccess"
-              >
-                {{ "SOLIDATA_DEMO_FOOD_ACCESS" | translate }}
-              </a>
-            </div>
-          </div>
-        </li>
-
         <li class="nav-item" *ngIf="THEME_CONFIGURATION.contactFormEnabled">
           <a
             routerLinkActive="router-link-active"
@@ -197,6 +151,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               </ng-container>
             </div>
           </div>
+        </div>
+        <div *ngIf="!!backofficeUrl && !IS_WEBVIEW_APP && !IS_BOT">
+          <a
+            [href]="backofficeUrl"
+            class="bg-secondary text-white btn btn-secondary"
+            target="_blank"
+            rel="noopener noreferrer"
+            (click)="captureEvent('click-backoffice-link')"
+          >
+            {{ "BACKOFFICE_LINK" | translate }}
+          </a>
         </div>
       </div>
     </div>

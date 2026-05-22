@@ -10,8 +10,6 @@ import { NotFoundComponent } from "./modules/general/components/not-found/not-fo
 
 import { environment } from "../environments/environment";
 import { THEME_CONFIGURATION } from "./models";
-import { SolidataMaintenanceComponent } from "./modules/general/components/solidata-maintenance/solidata-maintenance.component";
-
 export const routes: Routes = [
   // Redirection to /:lang routes
   {
@@ -42,13 +40,7 @@ export const routes: Routes = [
 
   // Actual routes
   { path: ":lang", component: HomeComponent, canActivate: [LanguageGuard] },
-  {
-    path: ":lang/solidata",
-    component: SolidataMaintenanceComponent,
-    canActivate: [LanguageGuard],
-    children: [{ path: "**", component: SolidataMaintenanceComponent }],
-  },
-  {
+{
     path: ":lang/contact",
     component: ContactComponent,
     canActivate: [LanguageGuard],

@@ -54,14 +54,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     >
       <fa-icon [icon]="['fas', 'download']" aria-hidden="true"></fa-icon>
     </button>
-    <button
-      *ngIf="canDelete"
-      class="btn btn-danger btn-sm ms-2"
-      type="button"
-      (click)="deleteDoc(i, doc._id)"
-      [attr.aria-label]="'Supprimer le document ' + doc.name"
-    >
-      <fa-icon [icon]="['fas', 'times']" aria-hidden="true"></fa-icon>
-    </button>
   </div>
 </div>

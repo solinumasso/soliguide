@@ -33,7 +33,6 @@ export class SearchPlaceResultComponent implements OnInit, OnDestroy {
   @Input() public place: Place;
   @Input() public search: Search;
   @Input() public placeIndex: number;
-  @Input() public isInSoligare: boolean;
   @Input() public sourceName: string;
   @Input() public sourceId: string;
 

@@ -8,6 +8,7 @@ export interface Environment {
   posthogApiKey?: string;
   sentryDsn?: string;
   territoriesPresent: string;
+  backofficeUrl?: string;
   praticalFilesLink?: string;
   becomeTranslatorFormLink?: string;
   proAccountCreationFormLink?: string;

@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { TranslateService } from "@ngx-translate/core";
 import { Subscription } from "rxjs";
 
 import {
@@ -34,30 +33,9 @@ export class NavComponent implements OnInit, OnDestroy {
   public isNavbarCollapsed = true;
   public currentLang: SupportedLanguagesCode;
 
-  public readonly displaySolidataSearchTracking = Boolean(
-    THEME_CONFIGURATION.solidata?.searchTracking
-  );
-  public readonly displaySolidataSeasonalAnalysis = Boolean(
-    THEME_CONFIGURATION.solidata?.seasonalAnalysis
-  );
-  public readonly displaySolidataTerritorialAnalysis = Boolean(
-    THEME_CONFIGURATION.solidata?.territorialAnalysis
-  );
-  public readonly displaySolidataFoodAccess = Boolean(
-    THEME_CONFIGURATION.solidata?.foodAccess
-  );
-  public readonly displaySolidataDemoFoodAccess = Boolean(
-    THEME_CONFIGURATION.solidata?.demoFoodAccess
-  );
-  public readonly displaySolidataWaterAccess = Boolean(
-    THEME_CONFIGURATION.solidata?.waterAccess
-  );
-  public readonly displaySolidataNavButtons = Boolean(
-    THEME_CONFIGURATION.solidata
-  );
-
   public readonly IS_WEBVIEW_APP = IS_WEBVIEW_APP;
   public readonly IS_BOT = IS_BOT;
+  public readonly backofficeUrl = THEME_CONFIGURATION.backofficeUrl;
   public readonly praticalFilesLink = THEME_CONFIGURATION.praticalFilesLink;
   public readonly ALL_SUPPORTED_LANGUAGES_NAME = ALL_SUPPORTED_LANGUAGES_NAME;
   public readonly SUPPORTED_LANGUAGES =
@@ -71,8 +49,7 @@ export class NavComponent implements OnInit, OnDestroy {
   constructor(
     private readonly posthogService: PosthogService,
     private readonly languageSetupService: LanguageSetupService,
-    private readonly currentLanguageService: CurrentLanguageService,
-    private readonly translateService: TranslateService
+    private readonly currentLanguageService: CurrentLanguageService
   ) {
     this.currentLang = this.currentLanguageService.currentLanguage;
     this.routePrefix = this.currentLanguageService.routePrefix;

@@ -2,6 +2,7 @@ import type { Environment } from "../app/shared/types/Environment.type";
 
 export const environment: Environment = {
   apiUrl: "http://localhost:3001",
+  backofficeUrl: "http://localhost:4201",
   locationApiUrl: "http://localhost:3000",
   enableTracing: false,
   environment: "DEV",

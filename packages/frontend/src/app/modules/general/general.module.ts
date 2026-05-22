@@ -21,8 +21,6 @@ import { ChatService } from "../shared/services";
 
 import { HomeTerritoriesStatsComponent } from "./components/home-territiries-stats/home-territories-stats.component";
 import { SearchBarModule } from "../search-bar/search-bar.module";
-import { SolidataComponent } from "./components/solidata/solidata.component";
-import { SolidataMaintenanceComponent } from "./components/solidata-maintenance/solidata-maintenance.component";
 import { PartnersBannerComponent } from "./components/partners-banner/partners-banner.component";
 import { SearchCategoryAutocompleteComponent } from "../shared/components/search-category-autocomplete/search-category-autocomplete.component";
 
@@ -35,8 +33,6 @@ import { SearchCategoryAutocompleteComponent } from "../shared/components/search
     FooterComponent,
     NotFoundComponent,
     DownloadMobileAppComponent,
-    SolidataComponent,
-    SolidataMaintenanceComponent,
     HomeTerritoriesStatsComponent,
     PartnersBannerComponent,
   ],

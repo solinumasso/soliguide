@@ -10,13 +10,10 @@ import { TranslatorSoliguideGuard } from "./guards/translator-soliguide.guard";
 
 import { AideComponent } from "./modules/general/components/aide/aide.component";
 import { AideTradComponent } from "./modules/general/components/aide-trad/aide-trad.component";
-import { ContactComponent } from "./modules/general/components/contact/contact.component";
-import { HomeComponent } from "./modules/general/components/home/home.component";
 import { NotFoundComponent } from "./modules/general/components/not-found/not-found.component";
 
 import { environment } from "../environments/environment";
 import { THEME_CONFIGURATION } from "./models";
-import { SolidataMaintenanceComponent } from "./modules/general/components/solidata-maintenance/solidata-maintenance.component";
 
 export const routes: Routes = [
   // Redirection to /:lang routes
@@ -24,10 +21,6 @@ export const routes: Routes = [
     path: "",
     redirectTo: THEME_CONFIGURATION.defaultLanguage,
     pathMatch: "full",
-  },
-  {
-    path: "contact",
-    redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/contact`,
   },
   {
     path: "aide",
@@ -79,17 +72,10 @@ export const routes: Routes = [
   },
 
   // Actual routes
-  { path: ":lang", component: HomeComponent, canActivate: [LanguageGuard] },
   {
-    path: ":lang/solidata",
-    component: SolidataMaintenanceComponent,
-    canActivate: [LanguageGuard],
-    children: [{ path: "**", component: SolidataMaintenanceComponent }],
-  },
-  {
-    path: ":lang/contact",
-    component: ContactComponent,
-    canActivate: [LanguageGuard],
+    path: ":lang",
+    redirectTo: ":lang/manage-place",
+    pathMatch: "full",
   },
   {
     path: ":lang/aide",

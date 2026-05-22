@@ -265,7 +265,7 @@ export class PlaceComponent
   };
 
   private readonly updateMarkers = (): void => {
-    this.marker = generateMarkerOptions([this.place], null);
+    this.marker = generateMarkerOptions([this.place]);
   };
 
   public toogleDisplayTempHours = (value: boolean): void => {

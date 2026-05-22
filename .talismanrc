@@ -257,7 +257,7 @@ fileignoreconfig:
 - filename: packages/backoffice/src/app/shared/functions/generateCompleteArray.ts
   checksum: 6825f32e74b1436f44e8e2a3ec417456e4e9f361a47b8925abdcefe567ac2555
 - filename: packages/backoffice/src/app/shared/functions/getPathFromTheme.ts
-  checksum: 019b447014dcd4aa33ba8c21774ad56e14b8778670b9c635c169baa1f2a5f03f
+  checksum: 7154ff89bd69d36dc5336c85a5772e16c32894d1095870a62e8bcbd475ad6afa
 - filename: packages/backoffice/src/app/shared/functions/global-constants.class.ts
   checksum: 0cb44744d32b534cf75c7f304486a40efa469e5fb2c9a371ef88b4f9e5429510
 - filename: packages/backoffice/src/app/shared/functions/location/generateMarkerOptions.ts
@@ -288,6 +288,8 @@ fileignoreconfig:
   checksum: 817619a2084552ff89539db449552fb75058be1216f5c1e3b15af65b40f02ee1
 - filename: packages/common/src/search-suggestions/config.ts
   checksum: db47bb50156072db5e1d62458a948d3eb1f9acff5cad7b339fb0cbdd4d85117c
+- filename: packages/frontend/src/environments/environment.ts
+  checksum: 1e01633cccb82b70c02ebfbe7cdd0c6d16d2bcd9689fa70c699bb4a852cb3112
 - filename: packages/web-app/src/lib/services/categoryService.ts
   checksum: 7002e4f6fe7b74eb7516a14b09ec8bbd1ad429a33b017cda5329ef6c6b835d17
 - filename: packages/web-app/static/images/organizations-logos/fr/fondation-pour-le-logement.svg
