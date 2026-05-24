@@ -40,7 +40,7 @@ export const routes: Routes = [
 
   // Actual routes
   { path: ":lang", component: HomeComponent, canActivate: [LanguageGuard] },
-{
+  {
     path: ":lang/contact",
     component: ContactComponent,
     canActivate: [LanguageGuard],

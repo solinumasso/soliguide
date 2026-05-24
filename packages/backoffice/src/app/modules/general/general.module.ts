@@ -24,11 +24,7 @@ import { ChatService } from "../shared/services";
     FooterComponent,
     NotFoundComponent,
   ],
-  exports: [
-    NotFoundComponent,
-    NavComponent,
-    FooterComponent,
-  ],
+  exports: [NotFoundComponent, NavComponent, FooterComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,

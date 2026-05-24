@@ -201,28 +201,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           </a>
         </div>
       </div>
-
-      <div class="row align-items-center">
-        <div class="col-12">
-          <h1 class="form-title">{{ "PLACE_OVERVIEW" | translate }}</h1>
-          <div class="limite"></div>
-          <div class="form-container text-center">
-            <p
-              [innerHTML]="'CHECKING_YOUR_PERMANENT_INFORMATIONS' | translate"
-            ></p>
-          </div>
-        </div>
-
-        <div class="col-12">
-          <app-place
-            [placePreview]="place"
-            (parentCaptureEvent)="captureEvent($any($event))"
-          ></app-place>
-        </div>
-      </div>
-
-      <br />
-      <br />
     </div>
   </div>
   }

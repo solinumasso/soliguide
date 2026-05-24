@@ -156,7 +156,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "backoffice:build"
+            "buildTarget": "backoffice:build",
+            "port": 4201
           },
           "configurations": {
             "production": {

@@ -11,6 +11,7 @@ import { TranslatorSoliguideGuard } from "./guards/translator-soliguide.guard";
 import { AideComponent } from "./modules/general/components/aide/aide.component";
 import { AideTradComponent } from "./modules/general/components/aide-trad/aide-trad.component";
 import { NotFoundComponent } from "./modules/general/components/not-found/not-found.component";
+import { BackofficeLandingGuard } from "./guards/backoffice-landing.guard";
 
 import { environment } from "../environments/environment";
 import { THEME_CONFIGURATION } from "./models";
@@ -74,8 +75,9 @@ export const routes: Routes = [
   // Actual routes
   {
     path: ":lang",
-    redirectTo: ":lang/manage-place",
     pathMatch: "full",
+    canActivate: [LanguageGuard, BackofficeLandingGuard],
+    component: NotFoundComponent,
   },
   {
     path: ":lang/aide",

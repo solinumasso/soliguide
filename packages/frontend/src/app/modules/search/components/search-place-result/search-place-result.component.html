@@ -315,11 +315,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <app-display-sources [sources]="place.sources"></app-display-sources>
       </ng-container>
       <div class="d-flex ms-auto">
-<ng-container
-          *ngIf="
-            place.status !== PlaceStatus.PERMANENTLY_CLOSED
-          "
-        >
+        <ng-container *ngIf="place.status !== PlaceStatus.PERMANENTLY_CLOSED">
           <ng-container
             *ngIf="
               place.entity.phones && place.entity.phones.length > 1;
