@@ -1375,6 +1375,7 @@
   "NATIONAL_ORIGIN_PRODUCT_TYPE": "Produits d’origine française",
   "NATIONAL_OR_ORGANIC_INFO": "Cette donnée n'est pas affichée dans {{ brandName }}. Elle est récoltée uniquement à des fins d'analyses.",
   "NATIONAL_SCALE": "À l'échelle nationale",
+  "BACKOFFICE_HOME_ADMIN_TOOLS": "Autres outils",
   "BACKOFFICE_HOME_GO_TO_ORGANIZATION": "Accéder à l'organisation",
   "BACKOFFICE_HOME_TITLE": "Tableau de bord | {{ brandName }}",
   "BACKOFFICE_HOME_WELCOME": "Bonjour, {{ name }} ! 👋",

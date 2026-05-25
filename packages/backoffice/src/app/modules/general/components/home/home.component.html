@@ -31,91 +31,162 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 <div class="container mt-4 mb-5">
   <!-- ADMIN section -->
   <ng-container *ngIf="me?.admin">
-    <div class="row">
-      <div class="col-12 col-md-4 col-lg-3 mt-3">
-        <a [routerLink]="[routePrefix, 'manage-place', 'search']">
-          <div class="card h-100 home-card">
-            <div class="card-body">
-              <div class="home-card-icon">
-                <fa-icon [icon]="['fas', 'building']" size="lg"></fa-icon>
+
+    <!-- Structures -->
+    <div class="home-section mt-4">
+      <h2 class="home-section-title">{{ "STRUCTURES" | translate }}</h2>
+      <div class="row">
+        <div class="col-6 col-md-6 col-lg-4 mt-3">
+          <a [routerLink]="[routePrefix, 'manage-place', 'search']">
+            <div class="card h-100 home-card">
+              <div class="card-body">
+                <div class="home-card-icon">
+                  <fa-icon [icon]="['fas', 'building']" size="lg"></fa-icon>
+                </div>
+                <h5 class="card-title mt-3">
+                  {{ "MANAGE_STRUCTURES" | translate }}
+                </h5>
               </div>
-              <h5 class="card-title mt-3">
-                {{ "MANAGE_STRUCTURES" | translate }}
-              </h5>
             </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-12 col-md-4 col-lg-3 mt-3">
-        <a [routerLink]="[routePrefix, 'organisations', 'manage']">
-          <div class="card h-100 home-card">
-            <div class="card-body">
-              <div class="home-card-icon">
-                <fa-icon [icon]="['fas', 'users']" size="lg"></fa-icon>
+          </a>
+        </div>
+        <div class="col-6 col-md-6 col-lg-4 mt-3">
+          <a [routerLink]="[routePrefix, 'admin-place', 'infos']">
+            <div class="card h-100 home-card">
+              <div class="card-body">
+                <div class="home-card-icon">
+                  <fa-icon [icon]="['fas', 'plus']" size="lg"></fa-icon>
+                </div>
+                <h5 class="card-title mt-3">
+                  {{ "NEW_STRUCTURE" | translate }}
+                </h5>
               </div>
-              <h5 class="card-title mt-3">
-                {{ "MANAGE_ORGANIZATIONS" | translate }}
-              </h5>
             </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-12 col-md-4 col-lg-3 mt-3">
-        <a [routerLink]="[routePrefix, 'admin-users', 'manage']">
-          <div class="card h-100 home-card">
-            <div class="card-body">
-              <div class="home-card-icon">
-                <fa-icon [icon]="['fas', 'user-shield']" size="lg"></fa-icon>
-              </div>
-              <h5 class="card-title mt-3">
-                {{ "MANAGE_USERS" | translate }}
-              </h5>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-12 col-md-4 col-lg-3 mt-3">
-        <a [routerLink]="[routePrefix, 'historique', 'manage']">
-          <div class="card h-100 home-card">
-            <div class="card-body">
-              <div class="home-card-icon">
-                <fa-icon [icon]="['fas', 'edit']" size="lg"></fa-icon>
-              </div>
-              <h5 class="card-title mt-3">{{ "UPDATES" | translate }}</h5>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-12 col-md-4 col-lg-3 mt-3" *ngIf="showSoligareMenu">
-        <a [routerLink]="[routePrefix, 'soligare']">
-          <div class="card h-100 home-card">
-            <div class="card-body">
-              <div class="home-card-icon">
-                <fa-icon [icon]="['fas', 'link']" size="lg"></fa-icon>
-              </div>
-              <h5 class="card-title mt-3">Soligare</h5>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div
-        class="col-12 col-md-4 col-lg-3 mt-3"
-        *ngIf="showTranslationMenuDropdown"
-      >
-        <a [routerLink]="[routePrefix, 'translations']">
-          <div class="card h-100 home-card">
-            <div class="card-body">
-              <div class="home-card-icon">
-                <fa-icon [icon]="['fas', 'language']" size="lg"></fa-icon>
-              </div>
-              <h5 class="card-title mt-3">
-                {{ "TRANSLATIONS" | translate }}
-              </h5>
-            </div>
-          </div>
-        </a>
+          </a>
+        </div>
       </div>
     </div>
+
+    <!-- Organisations -->
+    <div class="home-section mt-4">
+      <h2 class="home-section-title">{{ "ORGANIZATIONS" | translate }}</h2>
+      <div class="row">
+        <div class="col-6 col-md-6 col-lg-4 mt-3">
+          <a [routerLink]="[routePrefix, 'organisations', 'manage']">
+            <div class="card h-100 home-card">
+              <div class="card-body">
+                <div class="home-card-icon">
+                  <fa-icon [icon]="['fas', 'users']" size="lg"></fa-icon>
+                </div>
+                <h5 class="card-title mt-3">
+                  {{ "MANAGE_ORGANIZATIONS" | translate }}
+                </h5>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-6 col-md-6 col-lg-4 mt-3">
+          <a [routerLink]="[routePrefix, 'organisations', 'new']">
+            <div class="card h-100 home-card">
+              <div class="card-body">
+                <div class="home-card-icon">
+                  <fa-icon [icon]="['fas', 'plus']" size="lg"></fa-icon>
+                </div>
+                <h5 class="card-title mt-3">
+                  {{ "NEW_ORGANIZATION" | translate }}
+                </h5>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Utilisateurs -->
+    <div class="home-section mt-4">
+      <h2 class="home-section-title">{{ "USERS" | translate }}</h2>
+      <div class="row">
+        <div class="col-6 col-md-6 col-lg-4 mt-3">
+          <a [routerLink]="[routePrefix, 'admin-users', 'manage']">
+            <div class="card h-100 home-card">
+              <div class="card-body">
+                <div class="home-card-icon">
+                  <fa-icon [icon]="['fas', 'user-shield']" size="lg"></fa-icon>
+                </div>
+                <h5 class="card-title mt-3">
+                  {{ "MANAGE_USERS" | translate }}
+                </h5>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-6 col-md-6 col-lg-4 mt-3">
+          <a [routerLink]="[routePrefix, 'admin-users', 'manage-api-users']">
+            <div class="card h-100 home-card">
+              <div class="card-body">
+                <div class="home-card-icon">
+                  <fa-icon [icon]="['fas', 'handshake']" size="lg"></fa-icon>
+                </div>
+                <h5 class="card-title mt-3">
+                  {{ "MANAGE_PARTNERS" | translate }}
+                </h5>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Autres outils -->
+    <div class="home-section mt-4">
+      <h2 class="home-section-title">
+        {{ "BACKOFFICE_HOME_ADMIN_TOOLS" | translate }}
+      </h2>
+      <div class="row">
+        <div class="col-6 col-md-6 col-lg-4 mt-3">
+          <a [routerLink]="[routePrefix, 'historique', 'manage']">
+            <div class="card h-100 home-card">
+              <div class="card-body">
+                <div class="home-card-icon">
+                  <fa-icon [icon]="['fas', 'edit']" size="lg"></fa-icon>
+                </div>
+                <h5 class="card-title mt-3">{{ "UPDATES" | translate }}</h5>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-6 col-md-6 col-lg-4 mt-3" *ngIf="showSoligareMenu">
+          <a [routerLink]="[routePrefix, 'soligare']">
+            <div class="card h-100 home-card">
+              <div class="card-body">
+                <div class="home-card-icon">
+                  <fa-icon [icon]="['fas', 'link']" size="lg"></fa-icon>
+                </div>
+                <h5 class="card-title mt-3">Soligare</h5>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div
+          class="col-6 col-md-6 col-lg-4 mt-3"
+          *ngIf="showTranslationMenuDropdown"
+        >
+          <a [routerLink]="[routePrefix, 'translations']">
+            <div class="card h-100 home-card">
+              <div class="card-body">
+                <div class="home-card-icon">
+                  <fa-icon [icon]="['fas', 'language']" size="lg"></fa-icon>
+                </div>
+                <h5 class="card-title mt-3">
+                  {{ "TRANSLATIONS" | translate }}
+                </h5>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
   </ng-container>
 
   <!-- PRO verified section -->
@@ -155,7 +226,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     <ng-container *ngIf="me?.organizations?.length > 1">
       <div class="row">
         <div
-          class="col-12 col-md-4 col-lg-3 mt-3"
+          class="col-6 col-md-6 col-lg-4 mt-3"
           *ngFor="let orga of me.organizations"
         >
           <div class="card h-100 home-card">
@@ -184,7 +255,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
     <!-- PRO action cards -->
     <div class="row">
-      <div class="col-12 col-md-4 col-lg-3 mt-3">
+      <div class="col-6 col-md-6 col-lg-4 mt-3">
         <a [routerLink]="[routePrefix, 'manage-place', 'search']">
           <div class="card h-100 home-card">
             <div class="card-body">
@@ -199,7 +270,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         </a>
       </div>
       <div
-        class="col-12 col-md-4 col-lg-3 mt-3"
+        class="col-6 col-md-6 col-lg-4 mt-3"
         *ngIf="me?.role === UserRole.OWNER"
       >
         <a [routerLink]="[routePrefix, 'admin-place', 'infos']">
@@ -216,7 +287,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         </a>
       </div>
       <div
-        class="col-12 col-md-4 col-lg-3 mt-3"
+        class="col-6 col-md-6 col-lg-4 mt-3"
         *ngIf="isCampaignAvailable && campaignIsActive"
       >
         <a [routerLink]="[routePrefix, 'campaign']">
@@ -230,7 +301,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
           </div>
         </a>
       </div>
-      <div class="col-12 col-md-4 col-lg-3 mt-3">
+      <div class="col-6 col-md-6 col-lg-4 mt-3">
         <a [routerLink]="[routePrefix, 'aide']">
           <div class="card h-100 home-card">
             <div class="card-body">
@@ -250,7 +321,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
   <!-- Translator (non-admin) section -->
   <ng-container *ngIf="me?.translator && !me?.admin">
     <div class="row">
-      <div class="col-12 col-md-4 col-lg-3 mt-3">
+      <div class="col-6 col-md-6 col-lg-4 mt-3">
         <a [routerLink]="[routePrefix, 'translations']">
           <div class="card h-100 home-card">
             <div class="card-body">
@@ -264,7 +335,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
           </div>
         </a>
       </div>
-      <div class="col-12 col-md-4 col-lg-3 mt-3">
+      <div class="col-6 col-md-6 col-lg-4 mt-3">
         <a [routerLink]="[routePrefix, 'aide-trad']">
           <div class="card h-100 home-card">
             <div class="card-body">
