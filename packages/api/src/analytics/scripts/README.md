@@ -43,10 +43,10 @@ const CAMPAIGN = CampaignName.MID_YEAR_2025;
 
 **Variables d'environnement requises**
 
-| Variable | Description |
-|---|---|
-| `MONGODB_URI` | URI de connexion MongoDB |
-| `BREVO_API_KEY` | Clé API Brevo |
+| Variable        | Description              |
+| --------------- | ------------------------ |
+| `MONGODB_URI`   | URI de connexion MongoDB |
+| `BREVO_API_KEY` | Clé API Brevo            |
 
 **Lancer le script**
 

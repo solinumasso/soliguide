@@ -2,6 +2,8 @@ fileignoreconfig:
 - filename: .github/workflows/_test-only.yml
   checksum: 1aa92b068e91f7d226676385ce10747ad13ee0716f1a30fbe13e0896a1a1eca2
 - filename: .yarn/releases/yarn-4.14.1.cjs
+- filename: packages/api/.env.example
+  checksum: 9abd32110bec5c8b3e56a57309b4e2bba7a9b34a19d8bf5d7098cbd0f3c49d66
 - filename: packages/api/src/analytics/scripts/brevo-campaign-user-update.ts
   checksum: 112b958249429a89d4e48fcac42cc99526c15f8dba17c3c5299c6c996d60355c
 - filename: packages/common/src/search-suggestions/config.ts

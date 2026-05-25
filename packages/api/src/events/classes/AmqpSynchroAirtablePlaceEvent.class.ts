@@ -1,5 +1,6 @@
 import {
   CAMPAIGN_DEFAULT_NAME,
+  CAMPAIGN_LIST,
   CampaignName,
   CampaignPlaceAutonomy,
   CampaignStatus,
@@ -78,6 +79,8 @@ export class AmqpSynchroAirtablePlaceEvent
   public publicSiteLink: string;
   public updateCampaignMidYear: boolean;
   public updateCampaignEndYear: boolean;
+  public dateDebutCampaigneMidYear: Date;
+  public dateDebutCampagneEndYear: Date;
   public allPlacesLink: string;
 
   constructor(
@@ -230,5 +233,9 @@ export class AmqpSynchroAirtablePlaceEvent
       place.campaigns?.[CampaignName.MID_YEAR_2025]?.general?.changes ?? false;
     this.updateCampaignEndYear =
       place.campaigns?.[CampaignName.END_YEAR_2025]?.general?.changes ?? false;
+    this.dateDebutCampaigneMidYear =
+      CAMPAIGN_LIST[CampaignName.MID_YEAR_2026].dateDebutCampagne;
+    this.dateDebutCampagneEndYear =
+      CAMPAIGN_LIST[CampaignName.END_YEAR_2025].dateDebutCampagne;
   }
 }

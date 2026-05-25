@@ -1,5 +1,3 @@
-#!/usr/bin/env tsx
-
 /**
  * Script: brevo-campaign-user-update.ts
  *
@@ -16,6 +14,7 @@ import mongoose from "mongoose";
 import axios from "axios";
 
 import {
+  CAMPAIGN_LIST,
   CampaignName,
   CampaignStatus,
   UserRole,
@@ -35,13 +34,19 @@ import { UserModel } from "../../user/models/user.model";
 const CAMPAIGN = CampaignName.MID_YEAR_2025;
 // Soit CHANGE_CAMPAIGN_MID_YEAR, soit CHANGE_CAMPAIGN_END_YEAR
 const BREVO_ATTRIBUTE = "CHANGE_CAMPAIGN_MID_YEAR";
+// Soit date_campaign_mid_year, soit date_campaign_end_year
+const BREVO_DATE_ATTRIBUTE = CAMPAIGN.includes("MID_YEAR")
+  ? "date_campaign_mid_year"
+  : "date_campaign_end_year";
+const CAMPAIGN_START_DATE = CAMPAIGN_LIST[CAMPAIGN].dateDebutCampagne
+  .toISOString()
+  .split("T")[0]; // Format YYYY-MM-DD attendu par Brevo
 const BREVO_BATCH_SIZE = 100; // limite API Brevo
 
 const BREVO_API_KEY = process.env.BREVO_API_KEY;
 
 if (!BREVO_API_KEY) {
-  console.error("BREVO_API_KEY is required");
-  process.exit(1);
+  throw new Error("BREVO_API_KEY is required");
 }
 
 const brevoClient = axios.create({
@@ -71,11 +76,20 @@ function chunk<T>(arr: T[], size: number): T[][] {
   return chunks;
 }
 
+/**
+ * Upserts a batch of contacts in Brevo, setting the campaign attribute and
+ * start date on each one. Existing contacts are updated; new ones are created.
+ *
+ * @param emails - List of contact email addresses to upsert.
+ */
 async function upsertBatch(emails: string[]): Promise<void> {
   await brevoClient.post("/contacts/batch", {
     contacts: emails.map((email) => ({
       email,
-      attributes: { [BREVO_ATTRIBUTE]: true },
+      attributes: {
+        [BREVO_ATTRIBUTE]: true,
+        [BREVO_DATE_ATTRIBUTE]: CAMPAIGN_START_DATE,
+      },
       updateEnabled: true,
     })),
   });
@@ -149,6 +163,7 @@ async function main(): Promise<void> {
 
   console.log(`\n\nTerminé. ${emails.length} contacts mis à jour dans Brevo.`);
   console.log(`Attribut : ${BREVO_ATTRIBUTE} = true (booléen)`);
+  console.log(`Attribut : ${BREVO_DATE_ATTRIBUTE} = ${CAMPAIGN_START_DATE}`);
 }
 
 main().catch((err) => {
@@ -157,6 +172,7 @@ main().catch((err) => {
         err.response?.data
       )}`
     : String(err);
-  console.error("\nErreur :", message);
-  mongoose.disconnect().finally(() => process.exit(1));
+  mongoose.disconnect().finally(() => {
+    throw new Error(message);
+  });
 });

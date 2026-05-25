@@ -10,6 +10,7 @@ export interface Config {
   SOLIGUIA_ES_URL: string;
   SOLIGUIDE_FR_URL: string;
   WIDGET_URL: string;
+  FRONTEND_URL: string;
   SOLIGUIDE_LOCATION_API_URL: string;
   SOLIGARE_URL: string;
   JWT_SECRET: string;

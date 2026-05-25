@@ -164,7 +164,7 @@ export const CAMPAIGN_LIST: { [key in CampaignName]: CampaignInfos } = {
     adjective: "estivale",
     closingFormula: "Bel été",
     dateDebutAffichage: new Date("2026-07-15T00:00:00.000Z"),
-    dateDebutCampagne: new Date("2026-06-01T00:00:00.000Z"),
+    dateDebutCampagne: new Date("2026-05-28T00:00:00.000Z"),
     dateFin: new Date("2026-08-31T23:59:59.000Z"),
     icon: "sun",
     name: "MID_YEAR",

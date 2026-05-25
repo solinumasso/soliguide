@@ -48,7 +48,7 @@ export const getCurrentUser = (
       if (
         err ||
         !decoded ||
-        !Object.prototype.hasOwnProperty.call(decoded, "_id") ||
+        !Object.hasOwn(decoded, "_id") ||
         !(decoded as { _id: unknown })._id ||
         typeof (decoded as { _id: unknown })._id !== "string"
       ) {
@@ -133,6 +133,58 @@ export const handleApiRight = (
     return res.status(403).send({ message: "FORBIDDEN_ACCESS" });
   }
   return next();
+};
+
+/**
+ * Express middleware that authenticates a request using a JWT passed as a
+ * `token` query-string parameter.
+ *
+ * The token is verified with `ignoreExpiration` so that magic-link style flows
+ * can still identify the user regardless of token age. If the token is missing,
+ * invalid, or belongs to an unverified account, the middleware responds with
+ * `401` and short-circuits the request. On success it populates `req.user` and
+ * calls `next()`.
+ */
+export const getCurrentUserFromQueryToken = (
+  req: ExpressRequest,
+  res: ExpressResponse,
+  next: NextFunction
+) => {
+  const token = req.query.token as string | undefined;
+
+  if (!token) {
+    return res.status(401).json({ message: "MISSING_TOKEN" });
+  }
+
+  return verify(
+    token,
+    CONFIG.JWT_SECRET,
+    { ignoreExpiration: true },
+    async (err, decoded) => {
+      if (
+        err ||
+        !decoded ||
+        !Object.hasOwn(decoded, "_id") ||
+        !(decoded as { _id: unknown })._id ||
+        typeof (decoded as { _id: unknown })._id !== "string"
+      ) {
+        return res.status(401).json({ message: "INVALID_TOKEN" });
+      }
+
+      const user = await getUserByIdWithUserRights(
+        (decoded as { _id: string })._id
+      );
+
+      if (!user?.verified) {
+        return res.status(401).json({ message: "USER_NOT_VERIFIED" });
+      }
+
+      user.type = UserTypeLogged.LOGGED;
+      req.user = UserFactory.createUser(user);
+
+      return next();
+    }
+  );
 };
 
 // Some /search URL must not be available to API users
