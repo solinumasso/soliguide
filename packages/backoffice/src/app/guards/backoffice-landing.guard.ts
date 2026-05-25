@@ -6,7 +6,7 @@ export class BackofficeLandingGuard {
   constructor(private readonly router: Router) {}
 
   public canActivate(route: ActivatedRouteSnapshot): boolean {
-    this.router.navigate([route.params["lang"], "manage-place"]);
+    this.router.navigate([route.params["lang"], "home"]);
     return false;
   }
 }

@@ -10,6 +10,7 @@ import { TranslatorSoliguideGuard } from "./guards/translator-soliguide.guard";
 
 import { AideComponent } from "./modules/general/components/aide/aide.component";
 import { AideTradComponent } from "./modules/general/components/aide-trad/aide-trad.component";
+import { HomeComponent } from "./modules/general/components/home/home.component";
 import { NotFoundComponent } from "./modules/general/components/not-found/not-found.component";
 import { BackofficeLandingGuard } from "./guards/backoffice-landing.guard";
 
@@ -71,6 +72,10 @@ export const routes: Routes = [
     path: "404",
     redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/404`,
   },
+  {
+    path: "home",
+    redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/home`,
+  },
 
   // Actual routes
   {
@@ -78,6 +83,11 @@ export const routes: Routes = [
     pathMatch: "full",
     canActivate: [LanguageGuard, BackofficeLandingGuard],
     component: NotFoundComponent,
+  },
+  {
+    path: ":lang/home",
+    canActivate: [LanguageGuard, AuthGuard],
+    component: HomeComponent,
   },
   {
     path: ":lang/aide",

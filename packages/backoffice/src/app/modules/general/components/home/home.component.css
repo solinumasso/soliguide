@@ -1,0 +1,55 @@
+.page-content-header {
+  height: 220px;
+}
+
+/* Clickable nav cards */
+.home-card {
+  border: 1px solid rgba(62, 58, 113, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(62, 58, 113, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+a:hover .home-card {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(62, 58, 113, 0.15);
+}
+
+a {
+  text-decoration: none;
+}
+
+.home-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background-color: rgba(62, 58, 113, 0.08);
+  color: var(--bs-primary);
+}
+
+.card-title {
+  color: #212529;
+  font-weight: 600;
+}
+
+/* Organisation profile card (single org) */
+.home-orga-card {
+  border: 1px solid rgba(62, 58, 113, 0.15);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(62, 58, 113, 0.06);
+}
+
+.home-orga-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  background-color: rgba(62, 58, 113, 0.08);
+  color: var(--bs-primary);
+  flex-shrink: 0;
+}
