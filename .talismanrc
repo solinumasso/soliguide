@@ -1,6 +1,6 @@
 fileignoreconfig:
 - filename: .github/workflows/_test-only.yml
-  checksum: 1aa92b068e91f7d226676385ce10747ad13ee0716f1a30fbe13e0896a1a1eca2
+  checksum: 1ef8fe720e9eeb1017dcef454149719fd442ee7b49b6be9b512ae5bb50a8f608
 - filename: .yarn/releases/yarn-4.14.1.cjs
 - filename: packages/api/.env.example
   checksum: 9abd32110bec5c8b3e56a57309b4e2bba7a9b34a19d8bf5d7098cbd0f3c49d66
@@ -12,12 +12,14 @@ fileignoreconfig:
   checksum: 7a88f8df0c1e1d97697bf8ff8de815b2dc8ce2983c70bd487892c45758bd5b65
 - filename: packages/frontend/src/app/modules/admin-place-shared/components/display-service-admin/display-service-admin.component.ts
   checksum: 0a51b69f57fb3806c6415ad8d51929d21b9eddda534244cdbab914174b57e527
+- filename: packages/frontend/src/app/modules/campaign-shared/components/campaign-source-update/campaign-source-update.component.html
+  checksum: 74d0f39f0df5068d1a4da6601e61046d1d4a3e83b494bdd70d0193b7f9370081
 - filename: packages/frontend/src/app/modules/place-changes/components/display-place-changes/display-place-changes.component.ts
   checksum: 360a52b9b28535dd75558c6d0ab23a29b6a0346b732ffa1e4be84f4123e5dca7
 - filename: packages/frontend/src/app/modules/place/standalone-components/google-map/google-map.component.ts
   checksum: c3c67e611385e32c11c8f06c4847d48b5cd6201e027391bdc867307c42fc1d17
-- filename: packages/frontend/src/app/modules/campaign-shared/components/campaign-source-update/campaign-source-update.component.html
-  checksum: 74d0f39f0df5068d1a4da6601e61046d1d4a3e83b494bdd70d0193b7f9370081
+- filename: packages/frontend/src/environments/environment.ts
+  checksum: 267e262e74dd6ad9609ab6ee42aaf75239b4699b29c58c7c3752a6c385ce7a46
 - filename: packages/web-app/src/lib/services/categoryService.ts
   checksum: 7002e4f6fe7b74eb7516a14b09ec8bbd1ad429a33b017cda5329ef6c6b835d17
 - filename: packages/web-app/static/images/organizations-logos/fr/fondation-pour-le-logement.svg

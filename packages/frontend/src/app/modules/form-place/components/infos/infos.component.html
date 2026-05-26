@@ -45,19 +45,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <div class="form-container">
           <div class="row mb-3">
             <div class="col-12">
-              <label class="form-label">{{
-                "STRUCTURE_TYPE" | translate
-              }}</label>
+              <p class="form-label">{{ "STRUCTURE_TYPE" | translate }}</p>
               <div>
                 <div class="input-description">
                   <div>{{ "FIXED_ADDRESS_EXPLAIN" | translate }}</div>
                   <div>{{ "ITINERARY_EXPLAIN" | translate }}</div>
                 </div>
-                <div
-                  class="d-flex gap-2"
-                  role="group"
-                  [attr.aria-label]="'STRUCTURE_TYPE' | translate"
-                >
+                <fieldset class="d-flex gap-2">
+                  <legend class="visually-hidden">
+                    {{ "STRUCTURE_TYPE" | translate }}
+                  </legend>
                   <button
                     type="button"
                     class="btn rounded-pill"
@@ -92,7 +89,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                       aria-hidden="true"
                     ></fa-icon>
                   </button>
-                </div>
+                </fieldset>
               </div>
             </div>
           </div>
