@@ -55,19 +55,6 @@ export class CampaignService {
       );
   };
 
-  public setRemindMeLater = (
-    lieu_id: number,
-    date: Date
-  ): Observable<Place> => {
-    return this.http
-      .post<ApiPlace>(`${this.endPoint}/remind-me/${lieu_id}`, { date })
-      .pipe(
-        map((place: ApiPlace) => {
-          return new Place(place, false);
-        })
-      );
-  };
-
   public getIfCampaignAccessible = (
     typeCheck: string,
     user_id: number

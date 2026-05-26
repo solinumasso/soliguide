@@ -11,7 +11,6 @@ export class PlaceUpdateCampaign {
   public autonomy: CampaignPlaceAutonomy;
   public currentStep: number;
   public general: PlaceUpdateCampaignGeneralInformation;
-  public remindMeDate: Date | null;
   public sections: PlaceUpdateCampaignSections;
   public source: CampaignSource | null;
   public status: CampaignStatus;
@@ -24,9 +23,6 @@ export class PlaceUpdateCampaign {
     this.general = new PlaceUpdateCampaignGeneralInformation(
       placeUpdateCampaign?.general
     );
-    this.remindMeDate = placeUpdateCampaign?.remindMeDate
-      ? new Date(placeUpdateCampaign.remindMeDate)
-      : null;
     this.sections = new PlaceUpdateCampaignSections(
       placeUpdateCampaign?.sections
     );

@@ -771,28 +771,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             *ngIf="campaignIsActiveForMe && place.campaigns?.runningCampaign"
           >
             <td>
-              <ng-template #rappelTooltip
-                >{{ "REMINDER" | translate }}
-                {{ place.campaigns?.runningCampaign?.remindMeDate | dateProxy }}
-              </ng-template>
-              <div
-                class="status status-info"
-                [ngbTooltip]="rappelTooltip"
-                *ngIf="
-                  place.campaigns?.runningCampaign?.remindMeDate &&
-                  !place.campaigns?.runningCampaign?.general?.updated &&
-                  !place.campaigns?.runningCampaign?.general?.startDate
-                "
-              >
-                {{ "RECALL" | translate }}
-              </div>
-
               <div
                 class="status status-pending"
                 *ngIf="
                   place.campaigns?.runningCampaign?.general?.startDate &&
-                  !place.campaigns?.runningCampaign?.general?.updated &&
-                  !place.campaigns?.runningCampaign?.remindMeDate
+                  !place.campaigns?.runningCampaign?.general?.updated
                 "
               >
                 {{ "IN_PROGRESS" | translate }}
@@ -802,8 +785,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 class="status status-danger"
                 *ngIf="
                   place.campaigns?.runningCampaign?.toUpdate &&
-                  !place.campaigns?.runningCampaign?.general?.startDate &&
-                  !place.campaigns?.runningCampaign?.remindMeDate
+                  !place.campaigns?.runningCampaign?.general?.startDate
                 "
               >
                 {{ "NOT_STARTED" | translate }}

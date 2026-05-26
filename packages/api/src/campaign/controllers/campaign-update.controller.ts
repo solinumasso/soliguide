@@ -168,34 +168,6 @@ export const updateCampaignSection = async (
   return updatedPlace;
 };
 
-export const setRemindMeLater = async (
-  place: ApiPlace,
-  date: Date,
-  user: UserForLogs
-): Promise<ModelWithId<ApiPlace>> => {
-  const update: { [key: string]: Date } = {};
-
-  update[`campaigns.${CAMPAIGN_DEFAULT_NAME}.remindMeDate`] = date;
-
-  const updatedPlace = await updatePlaceByPlaceId(
-    place.lieu_id,
-    update,
-    true,
-    place.status
-  );
-
-  await saveTempChanges(
-    PlaceChangesSection.remindMe,
-    place,
-    updatedPlace,
-    user,
-    false,
-    true
-  );
-
-  return updatedPlace;
-};
-
 export const organizationContentToUpdate = (
   organization: OrganizationPopulate
 ): {

@@ -113,7 +113,6 @@ describe("CampaignManagePlacesComponent", () => {
       PLACES[0].updatedByUserAt;
 
     PLACES[1].updatedByUserAt = new Date(2021, 5, 3);
-    PLACES[1].campaigns.runningCampaign.remindMeDate = new Date(2021, 5, 5);
 
     globalConstants.setItem("lastCampaignPosition", "100");
 
@@ -122,25 +121,5 @@ describe("CampaignManagePlacesComponent", () => {
     fixture.detectChanges();
 
     expect(spy).toHaveBeenCalled();
-  });
-
-  it("should set a remind me for place #3", () => {
-    PLACES.push(ONLINE_PLACE_MOCK);
-
-    PLACES[2]._id = "614bb2f678fc0312c43e5860";
-    PLACES[2].lieu_id += 20;
-    PLACES[2].seo_url = "place-en-ligne-de-test-14290";
-    PLACES[2].campaigns.runningCampaign.remindMeDate = new Date(1, 9, 2021);
-
-    component.selectedPlace = PLACES[2];
-    component.remindMeDate = "2021-10-01";
-
-    jest
-      .spyOn(campaignService, "setRemindMeLater")
-      .mockReturnValue(of(PLACES[2]));
-
-    component.setRemindMeLater();
-
-    expect(component.selectedPlace).toBeNull();
   });
 });

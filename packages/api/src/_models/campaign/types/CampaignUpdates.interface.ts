@@ -12,8 +12,6 @@ export interface CampaignUpdates {
     updated: boolean;
   };
 
-  remindMeDate?: Date | null;
-
   sections?: {
     tempClosure?: {
       changes: boolean;
