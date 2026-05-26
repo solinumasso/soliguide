@@ -170,7 +170,6 @@ export const getSectionData = (
           modalities: "modalities",
           newhours: "newhours",
           photos: "photos",
-          remindMe: `campaigns.${CAMPAIGN_DEFAULT_NAME}.remindMeDate`,
           services: "services_all",
           sources: "sources",
           status: "status",

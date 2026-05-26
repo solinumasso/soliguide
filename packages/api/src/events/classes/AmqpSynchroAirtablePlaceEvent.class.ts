@@ -69,7 +69,6 @@ export class AmqpSynchroAirtablePlaceEvent
   public phones: string;
   public isOpenToday: boolean;
   public autonomy?: CampaignPlaceAutonomy;
-  public remindMeDate?: Date;
   public campaignStatus?: CampaignStatus;
 
   // Brevo-specific fields
@@ -144,11 +143,6 @@ export class AmqpSynchroAirtablePlaceEvent
       if (place.campaigns[CAMPAIGN_DEFAULT_NAME].toUpdate) {
         if (place.campaigns[CAMPAIGN_DEFAULT_NAME].autonomy) {
           this.autonomy = place.campaigns[CAMPAIGN_DEFAULT_NAME].autonomy;
-        }
-
-        if (place.campaigns[CAMPAIGN_DEFAULT_NAME].remindMeDate) {
-          this.remindMeDate =
-            place.campaigns[CAMPAIGN_DEFAULT_NAME].remindMeDate;
         }
 
         if (place.campaigns[CAMPAIGN_DEFAULT_NAME].status) {

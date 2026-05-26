@@ -11,7 +11,6 @@ import { Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
-import { ToastrService } from "ngx-toastr";
 import { Subscription } from "rxjs";
 import { TranslateService } from "@ngx-translate/core";
 
@@ -32,10 +31,7 @@ import { AuthService } from "../../../users/services/auth.service";
 import { THEME_CONFIGURATION } from "../../../../models";
 import type { Place } from "../../../../models/place";
 
-import {
-  DEFAULT_MODAL_OPTIONS,
-  getMinDateToday,
-} from "../../../../shared/constants";
+import { DEFAULT_MODAL_OPTIONS } from "../../../../shared/constants";
 import { globalConstants } from "../../../../shared/functions";
 
 @Component({
@@ -53,11 +49,8 @@ export class CampaignManagePlacesComponent
   private readonly subscription = new Subscription();
   public places: Place[];
   public selectedPlace: Place;
-  public remindMeDate: string;
 
   public orgaId: number;
-
-  public readonly MIN_DATE_TODAY = getMinDateToday();
 
   public me!: User;
 
@@ -70,9 +63,6 @@ export class CampaignManagePlacesComponent
 
   public readonly PlaceStatus = PlaceStatus;
 
-  @ViewChild("remindMeModal", { static: true })
-  public remindMeModal!: TemplateRef<NgbModalRef>;
-
   @ViewChild("noChangeModal", { static: true })
   public noChangeModal!: TemplateRef<NgbModalRef>;
 
@@ -81,7 +71,6 @@ export class CampaignManagePlacesComponent
     private readonly campaignService: CampaignService,
     private readonly route: ActivatedRoute,
     private readonly viewportScroller: ViewportScroller,
-    private readonly toastr: ToastrService,
     private readonly modalService: NgbModal,
     private readonly authService: AuthService,
     private readonly currentLanguageService: CurrentLanguageService,
@@ -89,7 +78,6 @@ export class CampaignManagePlacesComponent
     private readonly translateService: TranslateService
   ) {
     this.places = [];
-    this.remindMeDate = null;
 
     this.orgaId = null;
     this.emailsTerritories = null;
@@ -140,8 +128,6 @@ export class CampaignManagePlacesComponent
       );
     }
 
-    this.remindMeDate = null;
-
     this.canScroll = true;
   }
 
@@ -172,40 +158,6 @@ export class CampaignManagePlacesComponent
     this.selectedPlace = place;
     this.canScroll = false;
     this.modalService.open(modal, DEFAULT_MODAL_OPTIONS);
-  }
-
-  public setRemindMeLater(): void {
-    const date = this.remindMeDate ? new Date(this.remindMeDate) : null;
-    this.loading = true;
-
-    this.captureEvent("click-set-remind-me-later-button", {
-      placeId: this.selectedPlace.lieu_id,
-      date,
-    });
-
-    this.subscription.add(
-      this.campaignService
-        .setRemindMeLater(this.selectedPlace.lieu_id, date)
-        .subscribe({
-          next: (place: Place) => {
-            this.toastr.success(
-              this.translateService.instant("REMINDER_SAVED_SUCCESSFULLY")
-            );
-            this.selectedPlace.campaigns.runningCampaign.remindMeDate =
-              place.campaigns.runningCampaign.remindMeDate;
-            this.modalService.dismissAll();
-            this.selectedPlace = null;
-            this.loading = false;
-          },
-          error: () => {
-            this.modalService.dismissAll();
-            this.toastr.error(
-              this.translateService.instant("REMINDER_SAVE_FAIL")
-            );
-            this.loading = false;
-          },
-        })
-    );
   }
 
   public cancelModal(modalType: string, buttonType: string): void {

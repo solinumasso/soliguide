@@ -237,7 +237,6 @@ export const generateSearchQuery = (
       if (searchData.campaignStatus === CampaignStatusForSearch.TO_DO) {
         nosqlQuery[`campaigns.${CAMPAIGN_DEFAULT_NAME}.general.startDate`] =
           null;
-        nosqlQuery[`campaigns.${CAMPAIGN_DEFAULT_NAME}.remindMeDate`] = null;
       } else if (
         searchData.campaignStatus === CampaignStatusForSearch.STARTED
       ) {
@@ -246,7 +245,6 @@ export const generateSearchQuery = (
         nosqlQuery[`campaigns.${CAMPAIGN_DEFAULT_NAME}.general.startDate`] = {
           $ne: null,
         };
-        nosqlQuery[`campaigns.${CAMPAIGN_DEFAULT_NAME}.remindMeDate`] = null;
       } else if (
         searchData.campaignStatus === CampaignStatusForSearch.CHANGED
       ) {
@@ -262,12 +260,6 @@ export const generateSearchQuery = (
         searchData.campaignStatus === CampaignStatusForSearch.FINISHED
       ) {
         nosqlQuery[`campaigns.${CAMPAIGN_DEFAULT_NAME}.general.updated`] = true;
-      } else if (searchData.campaignStatus === CampaignStatusForSearch.REMIND) {
-        nosqlQuery[`campaigns.${CAMPAIGN_DEFAULT_NAME}.general.updated`] =
-          false;
-        nosqlQuery[`campaigns.${CAMPAIGN_DEFAULT_NAME}.remindMeDate`] = {
-          $ne: null,
-        };
       }
     }
 

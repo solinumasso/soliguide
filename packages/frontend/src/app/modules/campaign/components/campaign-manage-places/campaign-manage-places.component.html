@@ -91,14 +91,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               </a>
 
               <div
-                class="fw-bold"
-                *ngIf="place.campaigns.runningCampaign.remindMeDate && me.admin"
-              >
-                <span class="me-2">⏰ </span
-                >{{ "STRUCTURE_RECALL_ON" | translate }} :
-                {{ place.campaigns.runningCampaign.remindMeDate | dateProxy }}
-              </div>
-              <div
                 *ngIf="
                   !place.campaigns.runningCampaign.general.endDate &&
                   place.campaigns.runningCampaign.general.startDate
@@ -170,17 +162,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 "
                 class="text-end"
               >
-                <div
-                  class="my-1 text-end fw-bold text-warning"
-                  *ngIf="place.campaigns.runningCampaign.remindMeDate"
-                >
-                  <span>{{ "AWAITING_FUTHER_DETAILS" | translate }}</span>
-                  <fa-icon
-                    class="ms-2"
-                    [icon]="['fas', 'pause-circle']"
-                    [fixedWidth]="true"
-                  ></fa-icon>
-                </div>
                 <a
                   [routerLink]="[
                     routePrefix,
@@ -205,29 +186,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 >
                   {{ "NO_CHANGE_THIS_SEASON" | translate }}
                 </button>
-                <br />
-                <button
-                  type="button"
-                  class="btn btn-primary btn-block my-2"
-                  (click)="openModal(place, remindMeModal, 'remind-me')"
-                >
-                  <span
-                    *ngIf="
-                      !place.campaigns.runningCampaign.remindMeDate &&
-                      !place.disabled
-                    "
-                  >
-                    {{ "NO_VISIBILITY_ON_THIS_PERIOD" | translate }}</span
-                  >
-                  <span
-                    *ngIf="
-                      place.campaigns.runningCampaign.remindMeDate &&
-                      !place.disabled
-                    "
-                  >
-                    {{ "CHANGE_REMINDER_DATE" | translate }}</span
-                  >
-                </button>
               </div>
             </div>
           </div>
@@ -237,77 +195,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       }
     </div>
   </div>
-
-  <ng-template #remindMeModal let-modal>
-    <div class="modal-header">
-      <span id="modal-title">{{
-        "WHEN_CAN_WE_CONTACT_AGAIN" | translate
-      }}</span>
-      <button
-        type="button"
-        class="btn-close"
-        [attr.aria-label]="'CLOSE' | translate"
-        (click)="cancelModal('remind-me', 'cross')"
-      ></button>
-    </div>
-    <div class="modal-body">
-      <div class="form-group w-50 required">
-        <label for="remindMe">{{ "REMINDER_DATE" | translate }}</label>
-        <div class="input-group">
-          <input
-            class="form-control"
-            [placeholder]="'DATE_PLACEHOLDER' | translate"
-            name="remindMeDate"
-            id="remindMe"
-            type="date"
-            [(ngModel)]="remindMeDate"
-            [min]="MIN_DATE_TODAY | dateProxy : 'yyyy-MM-dd'"
-            #dp1="ngModel"
-            [ngClass]="{
-              'is-invalid':
-                (dp1.touched || dp1.dirty) && (dp1.invalid || !dp1.value),
-              'is-valid': dp1.value && dp1.valid
-            }"
-            required
-          />
-          <p
-            *ngIf="!dp1.value && (dp1.touched || dp1.dirty)"
-            class="invalid-feedback"
-          >
-            {{ "RECALL_DATE_IS_MANDATORY" | translate }}
-          </p>
-          <p *ngIf="dp1.value && dp1.invalid" class="invalid-feedback">
-            {{ "ENTER_DATE_SPECIFIED_AND_NOT_PASSED" | translate }}
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button
-        type="button"
-        class="btn btn-lg btn-primary"
-        (click)="setRemindMeLater()"
-        [disabled]="!dp1.value || dp1.invalid || loading"
-      >
-        <span *ngIf="!loading">{{ "VALIDATE" | translate }}</span>
-        <span *ngIf="loading"
-          ><fa-icon
-            aria-hidden="true"
-            [icon]="['fas', 'circle-notch']"
-            animation="spin"
-          >
-          </fa-icon>
-          {{ "PLEASE_WAIT" | translate }}</span
-        ></button
-      ><button
-        type="button"
-        class="btn btn-lg btn-outline-primary"
-        (click)="cancelModal('remind-me', 'button')"
-      >
-        {{ "CANCEL" | translate }}
-      </button>
-    </div>
-  </ng-template>
 
   <ng-template #noChangeModal let-modal>
     <app-campaign-no-change-modal

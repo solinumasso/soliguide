@@ -29,7 +29,7 @@ import {
 } from "../../middleware";
 
 import { saveTempChanges } from "../../place-changes/controllers/place-changes.controller";
-import { campaignFormSection, remindMe } from "../dto/campaign.dto";
+import { campaignFormSection } from "../dto/campaign.dto";
 import { PlaceChanges } from "../../place-changes/interfaces/PlaceChanges.interface";
 import { sendPlaceChangesToMq } from "../../place-changes/middlewares/send-place-changes-to-mq.middleware";
 import {
@@ -37,7 +37,6 @@ import {
   getPlaces,
   isCampaignActive,
   setNoChangeForPlace,
-  setRemindMeLater,
   updateCampaignSection,
   updateOrganizationCampaign,
 } from "../controllers";
@@ -122,40 +121,6 @@ router.get(
     const places = getPlaces(req.user, req.organization, req.isAdmin ?? false);
     return res.status(200).json(places);
   }
-);
-
-// Specify an update reminder
-router.post(
-  "/remind-me/:lieu_id",
-  getPlaceFromUrl,
-  canEditPlace,
-  remindMe,
-  getFilteredData,
-  async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
-    const { date } = req.bodyValidated;
-
-    try {
-      const place = await setRemindMeLater(req.lieu, date, req.userForLogs);
-
-      saveTempChanges(
-        PlaceChangesSection.remindMe,
-        req.lieu,
-        place,
-        req.userForLogs,
-        true,
-        true
-      );
-
-      req.updatedPlace = place;
-      res.status(200).json(place);
-
-      return next();
-    } catch (e) {
-      req.log.error(e);
-      return res.status(500).json("REMINDE_ME_IMPOSSIBLE");
-    }
-  },
-  sendPlaceChangesToMq
 );
 
 router.get(

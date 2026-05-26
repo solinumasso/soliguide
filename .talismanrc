@@ -4,6 +4,8 @@ fileignoreconfig:
 - filename: .yarn/releases/yarn-4.14.1.cjs
 - filename: packages/api/.env.example
   checksum: 9abd32110bec5c8b3e56a57309b4e2bba7a9b34a19d8bf5d7098cbd0f3c49d66
+- filename: packages/api/.env.test
+  checksum: bae3ba8730c8495a8a407b610d456c859d2a032f1b8c44572924fc5889df8bfd
 - filename: packages/api/src/analytics/scripts/brevo-campaign-user-update.ts
   checksum: 112b958249429a89d4e48fcac42cc99526c15f8dba17c3c5299c6c996d60355c
 - filename: packages/common/src/search-suggestions/config.ts
