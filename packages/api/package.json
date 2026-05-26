@@ -7,6 +7,10 @@
   "license": "AGPL-3.0-only",
   "scripts": {
     "build": "yarn prebuild && tsc -p tsconfig.build.json && yarn postbuild",
+    "sync:brevo:user-place-associations": "tsx src/scripts/sync-user-place-associations.ts",
+    "sync:brevo:user-place-associations:test": "tsx src/scripts/sync-user-place-associations.ts --test",
+    "sync:users": "tsx src/scripts/sync-users.ts",
+    "sync:places": "tsx src/scripts/sync-places.ts",
     "categories:analyze": "tsx src/search-suggestions/scripts/sync-categories.ts analyze",
     "categories:sync": "tsx src/search-suggestions/scripts/sync-categories.ts sync",
     "categories:cleanup": "tsx src/search-suggestions/scripts/sync-categories.ts cleanup",
