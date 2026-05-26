@@ -38,6 +38,10 @@ export const ENV_SCHEMA: JSONSchemaType<Config> = {
       type: "string",
       default: "http://localhost:4201",
     },
+    FRONTEND_URL: {
+      type: "string",
+      default: "http://localhost:4200",
+    },
     SOLIGUIA_AD_URL: {
       type: "string",
       default: "http://localhost:4220",

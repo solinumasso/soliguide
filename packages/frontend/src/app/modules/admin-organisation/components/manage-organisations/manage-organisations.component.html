@@ -162,7 +162,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
       <div class="col-md-3 col-sm-4 col-lg-2" *ngIf="campaignIsActiveForMe">
         <label class="form-label" for="suivi"
-          >{{ "FOLLOW_UP" | translate }} {{ CAMPAIGN_NAME | lowercase }} &nbsp;
+          >{{ "FOLLOW_UP" | translate }}
+          {{ CAMPAIGN_NAME | translate | lowercase }} &nbsp;
         </label>
         <select
           id="suivi"
@@ -175,7 +176,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             *ngFor="let campaignStatus of ORGA_CAMPAIGN_STATUS | keyvalue"
             [value]="campaignStatus.key"
           >
-            {{ campaignStatus.value }}
+            {{ campaignStatus.value | translate }}
           </option>
         </select>
       </div>
@@ -542,6 +543,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 }"
                 >{{
                   ORGA_CAMPAIGN_STATUS[orga.campaigns.runningCampaign.status]
+                    | translate
                 }}</span
               >
             </ng-container>

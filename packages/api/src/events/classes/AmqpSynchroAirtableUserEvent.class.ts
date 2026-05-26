@@ -13,6 +13,7 @@ import type {
 } from "../../_models";
 import { AmqpEvent, SynchroAirtableEvent } from "../interfaces";
 import { AmqpUserEvent } from "./AmqpUserEvent.class";
+import { getToken } from "../../user/controllers/auth.controller";
 
 const { PhoneNumberFormat, PhoneNumberType } = libPhoneNumber;
 
@@ -38,17 +39,24 @@ export class AmqpSynchroAirtableUserEvent
 
   public invitationUrl: string | null;
 
+  public campaignToken: string;
+
+  public toUpdate: boolean;
+
   constructor(
     user: UserPopulateType | ModelWithId<User>,
     frontendUrl: string,
     theme: Themes | null,
-    deleted = false
+    deleted = false,
+    toUpdate = false
   ) {
     super(user, frontendUrl, theme);
 
     this.entityType = "USER";
 
     this.deleted = deleted;
+
+    this.toUpdate = toUpdate;
 
     if (this.phone?.phoneNumber) {
       this.parsedPhone =
@@ -87,5 +95,7 @@ export class AmqpSynchroAirtableUserEvent
     this.invitationUrl = pendingInvitation?.token
       ? `${frontendUrl}/register/${pendingInvitation.token}`
       : null;
+
+    this.campaignToken = getToken(user._id);
   }
 }

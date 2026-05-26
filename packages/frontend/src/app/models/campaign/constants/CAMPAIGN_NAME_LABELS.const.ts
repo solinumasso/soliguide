@@ -9,4 +9,5 @@ export const CAMPAIGN_NAME_LABELS: { [key in CampaignName]: string } = {
   END_YEAR_2024: "Mise à jour de fin d'année 2024",
   MID_YEAR_2025: "Mise à jour de mi-année 2025",
   END_YEAR_2025: "Mise à jour de fin d'année 2025",
+  MID_YEAR_2026: "Mise à jour de mi-année 2026",
 };

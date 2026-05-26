@@ -2,6 +2,7 @@ import {
   CAMPAIGN_DEFAULT_NAME,
   ApiPlace,
   CampaignPlaceAutonomy,
+  CampaignSource,
   CampaignStatus,
   PlaceChangesSection,
   PlaceStatus,
@@ -29,7 +30,8 @@ import { updatePlaceByPlaceId } from "../../place/services/admin-place.service";
 
 export const setNoChangeForPlace = async (
   lieu_id: number,
-  placeStatus: PlaceStatus
+  placeStatus: PlaceStatus,
+  source?: CampaignSource
 ) => {
   const update: any = {};
   const path = `campaigns.${CAMPAIGN_DEFAULT_NAME}`;
@@ -65,7 +67,11 @@ export const setNoChangeForPlace = async (
   };
 
   update[path + ".currentStep"] = 4;
-  update[path + ".status"] = CampaignStatus.FINISHED;
+  update[`${path}.status`] = CampaignStatus.FINISHED;
+
+  if (source) {
+    update[`${path}.source`] = source;
+  }
 
   const updatedPlace = await updatePlaceByPlaceId(
     lieu_id,

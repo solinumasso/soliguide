@@ -15,7 +15,6 @@ import {
   PlaceStatus,
   getDepartmentCodeFromPostalCode,
   type SoliguideCountries,
-  CountryCodes,
   getPosition,
 } from "@soliguide/common";
 
@@ -84,7 +83,7 @@ export class PlaceUpdateCampaignBannerComponent
     const country = position.country;
 
     this.campaignIsActive =
-      country && postalCode && THEME_CONFIGURATION.country === CountryCodes.FR
+      country && postalCode
         ? campaignIsActiveWithTheme([
             getDepartmentCodeFromPostalCode(
               country as SoliguideCountries,

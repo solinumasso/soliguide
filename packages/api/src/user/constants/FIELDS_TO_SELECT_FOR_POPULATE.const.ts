@@ -21,7 +21,7 @@ export const USERS_FIELDS_FOR_POPULATE: string =
   ARRAY_OF_USERS_FIELDS_TO_POPULATE.join(" ");
 
 export const PLACE_FIELDS_FOR_USERS =
-  "_id campaigns close createdAt entity lieu_id name parcours placeType position priority visibility seo_url services_all status verified updatedAt updatedByUserAt";
+  "_id campaigns close country createdAt entity lieu_id name parcours placeType position priority visibility seo_url services_all status verified updatedAt updatedByUserAt";
 
 // Defaults joins for users : organizations, invitations
 export const DEFAULT_USER_POPULATE = [

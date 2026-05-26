@@ -1,22 +1,31 @@
 import {
   ApiPlace,
   CampaignChangesSection,
-  CountryCodes,
+  CampaignSource,
   getDepartmentCodeFromPostalCode,
   PlaceChangesSection,
   PlaceStatus,
+  type SoliguideCountries,
 } from "@soliguide/common";
 
 import express, { NextFunction } from "express";
 
-import { ExpressRequest, ExpressResponse, ModelWithId } from "../../_models";
+import {
+  CONFIG,
+  ExpressRequest,
+  ExpressResponse,
+  ModelWithId,
+} from "../../_models";
 
 import {
+  getCurrentUserFromQueryToken,
   getFilteredData,
   getPlaceFromUrl,
+  handleAdminRight,
   canEditPlace,
   getOrgaFromUrl,
   canGetOrga,
+  setUserForLogs,
 } from "../../middleware";
 
 import { saveTempChanges } from "../../place-changes/controllers/place-changes.controller";
@@ -155,7 +164,7 @@ router.get(
   canEditPlace,
   (req: ExpressRequest, res: ExpressResponse) => {
     const territory = getDepartmentCodeFromPostalCode(
-      CountryCodes.FR,
+      req.lieu.country as SoliguideCountries,
       req.lieu.postalCode
     );
 
@@ -196,6 +205,64 @@ router.get(
 
     return res.status(403).json("ACCESS_DENIED");
   }
+);
+
+// Magic link "no changes" for Brevo campaign emails
+// GET /campaign/magic-link/no-change/:lieu_id?token=<jwt>
+router.get(
+  "/magic-link/no-change/:lieu_id",
+  getCurrentUserFromQueryToken,
+  setUserForLogs,
+  handleAdminRight,
+  getPlaceFromUrl,
+  canEditPlace,
+  async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
+    let place: ModelWithId<ApiPlace>;
+    let placeChanges!: PlaceChanges;
+
+    try {
+      place = await setNoChangeForPlace(
+        req.lieu.lieu_id,
+        req.lieu.status,
+        CampaignSource.EMAILS_AUTOMATIQUES
+      );
+
+      if (req.userForLogs && place) {
+        place = await computePlaceAutonomyStatus(place, req.userForLogs);
+
+        await updateOrganizationCampaign(place._id);
+
+        for (const sectionToUpdate of [
+          PlaceChangesSection.tempClosure,
+          PlaceChangesSection.tempHours,
+          PlaceChangesSection.services,
+          PlaceChangesSection.tempMessage,
+        ]) {
+          placeChanges = await saveTempChanges(
+            sectionToUpdate,
+            req.lieu,
+            place,
+            req.userForLogs,
+            true,
+            true
+          );
+        }
+
+        req.updatedPlace = place;
+        req.placeChanges = placeChanges;
+      }
+
+      res.redirect(302, `${CONFIG.FRONTEND_URL}/campagne`);
+      return next();
+    } catch (e) {
+      req.log.error(e, "MAGIC_LINK_NO_CHANGE_IMPOSSIBLE");
+      return res.redirect(
+        302,
+        `${CONFIG.FRONTEND_URL}/campagne?error=MAGIC_LINK_NO_CHANGE_IMPOSSIBLE`
+      );
+    }
+  },
+  sendPlaceChangesToMq
 );
 
 export default router;

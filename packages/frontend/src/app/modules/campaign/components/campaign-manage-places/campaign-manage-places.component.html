@@ -256,7 +256,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <div class="input-group">
           <input
             class="form-control"
-            placeholder="jj/mm/aaaa"
+            [placeholder]="'DATE_PLACEHOLDER' | translate"
             name="remindMeDate"
             id="remindMe"
             type="date"
@@ -289,7 +289,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         (click)="setRemindMeLater()"
         [disabled]="!dp1.value || dp1.invalid || loading"
       >
-        <span *ngIf="!loading"> Valider </span>
+        <span *ngIf="!loading">{{ "VALIDATE" | translate }}</span>
         <span *ngIf="loading"
           ><fa-icon
             aria-hidden="true"

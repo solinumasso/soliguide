@@ -9,10 +9,10 @@ export interface CampaignInfos {
   dateDebutAffichage: Date;
   dateDebutCampagne: Date;
   dateFin: Date;
-  description: string;
   icon?: CampaignIconName; // Emoji to display
   period?: string;
   name: string;
+  year: number;
   specificServiceMessage?: string;
   placesToUpdate: KeyStringValueAny | null;
   sections?: CampaignChangesSection[];
