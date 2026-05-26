@@ -1,0 +1,211 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="container my-4" *ngIf="contactForm">
+  <div class="row">
+    <div class="col-md-6 offset-md-3 my-2">
+      <h1 class="title">
+        {{
+          "CONTACT_SOLIGUIDE_TEAM_TITLE"
+            | translate : { brandName: THEME_CONFIGURATION.brandName }
+        }}
+      </h1>
+      <div>
+        {{
+          "CONTACT_MESSAGE"
+            | translate : { brandName: THEME_CONFIGURATION.brandName }
+        }}
+      </div>
+      <div class="limite"></div>
+    </div>
+
+    <div class="col-md-6 offset-md-3">
+      <form [formGroup]="contactForm" (ngSubmit)="sendEmail()">
+        <div class="form-container">
+          <div class="my-3">
+            <label for="name" class="form-label">
+              {{ "NAME" | translate }}
+            </label>
+            <input
+              id="name"
+              type="text"
+              class="form-control"
+              formControlName="name"
+              autocomplete="name"
+              [placeholder]="'NAME_OR_ORGA' | translate"
+              [ngClass]="{
+                'is-invalid': (f.name.dirty || submitted) && f.name.errors,
+                'is-valid': f.name.dirty && f.name.value && !f.name.errors
+              }"
+            />
+            <p
+              *ngIf="(f.name.dirty || submitted) && f.name.errors"
+              class="invalid-feedback"
+            >
+              {{ "NAME_OR_ORGA_REQUIRED" | translate }}
+            </p>
+          </div>
+          <div class="my-2 required">
+            <label for="email" class="form-label">{{
+              "EMAIL_ADDRESS" | translate
+            }}</label>
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              class="form-control"
+              required
+              autocomplete="email"
+              [placeholder]="'EMAIL_ADDRESS' | translate"
+              [ngClass]="{
+                'is-invalid': (submitted || f.email.dirty) && f.email.errors,
+                'is-valid': f.email.dirty && f.email.value && !f.email.errors
+              }"
+            />
+            <div
+              *ngIf="(submitted || f.email.dirty) && f.email.errors"
+              class="invalid-feedback"
+            >
+              <p *ngIf="f.email.errors.invalidEmail">
+                {{ "INCORRECT_EMAIL_ADDRESS" | translate }}
+              </p>
+              <p *ngIf="f.email.errors.required">
+                {{ "EMAIL_REQUIRED" | translate }}
+              </p>
+            </div>
+          </div>
+          <div class="my-2 required">
+            <label class="form-label" for="department">{{
+              "QUEL_DEPARTEMENT" | translate
+            }}</label>
+            <select
+              class="form-select"
+              id="department"
+              formControlName="department"
+              [ngClass]="{
+                'is-invalid':
+                  (f.department.dirty || submitted) && f.department.errors
+              }"
+              required
+            >
+              <option *ngIf="!f.department.value"></option>
+              <option *ngFor="let dep of departmentNumbers" [value]="dep">
+                {{ departmentsList[dep].departmentCode }} -
+                {{ departmentsList[dep].departmentName }}
+              </option>
+              <option value="99">{{ "AUTRE_DEPARTEMENT" | translate }}</option>
+            </select>
+            <div
+              *ngIf="
+                (f.department.dirty || submitted) &&
+                (f.department.errors || f.department.invalid)
+              "
+              class="invalid-feedback-custom"
+            >
+              {{ "CHOISISSEZ_DEPARTEMENT" | translate }}
+            </div>
+          </div>
+          <div class="my-2 required">
+            <label class="form-label" for="subject">{{
+              "EMAIL_SUBJECT" | translate
+            }}</label>
+            <input
+              type="text"
+              id="subject"
+              required
+              formControlName="subject"
+              autocomplete=""
+              [placeholder]="'PLACEHOLDER_OBJET' | translate"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  (f.subject.dirty || submitted) && f.subject.errors,
+                'is-valid':
+                  f.subject.dirty && f.subject.value && !f.subject.errors
+              }"
+            />
+            <div
+              *ngIf="
+                (f.subject.dirty || submitted) &&
+                (f.subject.errors || f.subject.invalid)
+              "
+              class="invalid-feedback"
+            >
+              {{ "SUBJECT_REQUIRED" | translate }}
+            </div>
+          </div>
+
+          <div class="my-2 form-group required">
+            <label class="form-label" for="message">{{
+              "MESSAGE" | translate
+            }}</label>
+            <textarea
+              class="form-control"
+              id="message"
+              name="message"
+              formControlName="message"
+              [placeholder]="
+                'PLACEHOLDER_MESSAGE'
+                  | translate : { brandName: THEME_CONFIGURATION.brandName }
+              "
+              rows="5"
+              required
+              [ngClass]="{
+                'is-invalid':
+                  (f.message.dirty || submitted) && f.message.errors,
+                'is-valid':
+                  f.message.dirty && f.message.value && !f.message.errors
+              }"
+            >
+            </textarea>
+
+            <div *ngIf="f.message.errors" class="invalid-feedback">
+              {{ "MESSAGE_REQUIRED" | translate }}
+            </div>
+          </div>
+
+          <div class="form-group mt-4 p-0"></div>
+        </div>
+        <button
+          [disabled]="loading"
+          type="submit"
+          class="btn btn-lg btn-primary"
+        >
+          <span *ngIf="!loading">
+            <fa-icon
+              [icon]="['fas', 'paper-plane']"
+              aria-hidden="true"
+            ></fa-icon>
+            {{ "ENVOYER_MESSAGE" | translate }}
+          </span>
+
+          <span *ngIf="loading">
+            <fa-icon
+              [icon]="['fas', 'circle-notch']"
+              animation="spin"
+              aria-hidden="true"
+            ></fa-icon>
+            {{ "ENVOI_EN_COURS" | translate }}
+          </span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

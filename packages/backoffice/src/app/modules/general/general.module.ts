@@ -8,6 +8,7 @@ import { TranslateModule } from "@ngx-translate/core";
 
 import { AideComponent } from "./components/aide/aide.component";
 import { AideTradComponent } from "./components/aide-trad/aide-trad.component";
+import { ContactComponent } from "./components/contact/contact.component";
 import { HomeComponent } from "./components/home/home.component";
 import { NavComponent } from "./components/nav/nav.component";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
@@ -21,6 +22,7 @@ import { ChatService } from "../shared/services";
   declarations: [
     AideComponent,
     AideTradComponent,
+    ContactComponent,
     HomeComponent,
     NavComponent,
     FooterComponent,

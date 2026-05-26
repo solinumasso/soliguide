@@ -128,6 +128,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             </div>
           </div>
         </div>
+        <div
+          *ngIf="loginForm.errors?.notAuthorizedForBackoffice"
+          class="alert alert-danger mt-3"
+          role="alert"
+        >
+          {{ "BACKOFFICE_LOGIN_NOT_AUTHORIZED" | translate }}
+        </div>
         <div class="text-center">
           <button
             type="submit"

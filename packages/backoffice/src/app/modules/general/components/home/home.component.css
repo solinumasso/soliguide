@@ -6,7 +6,6 @@
   font-size: 2rem;
 }
 
-/* Clickable nav cards */
 .home-card {
   border: 1px solid rgba(62, 58, 113, 0.1);
   border-radius: 10px;
@@ -24,34 +23,19 @@ a {
 }
 
 .home-card-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   width: 52px;
   height: 52px;
   border-radius: 12px;
   background-color: rgba(62, 58, 113, 0.08);
-  color: var(--bs-primary);
 }
 
-.card-title {
-  color: #212529;
-  font-weight: 600;
-}
-
-/* Admin dashboard sections */
 .home-section-title {
   font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: 0.08em;
   color: rgba(62, 58, 113, 0.55);
-  margin-bottom: 0;
-  padding-bottom: 0.625rem;
   border-bottom: 2px solid rgba(62, 58, 113, 0.1);
 }
 
-/* Organisation profile card (single org) */
 .home-orga-card {
   border: 1px solid rgba(62, 58, 113, 0.15);
   border-radius: 10px;
@@ -59,13 +43,8 @@ a {
 }
 
 .home-orga-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 72px;
   height: 72px;
   border-radius: 16px;
   background-color: rgba(62, 58, 113, 0.08);
-  color: var(--bs-primary);
-  flex-shrink: 0;
 }

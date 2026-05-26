@@ -10,6 +10,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { TranslateService } from "@ngx-translate/core";
 
+import { UserStatus } from "@soliguide/common";
+
 import { User } from "../../classes";
 import { AuthService } from "../../services/auth.service";
 
@@ -162,6 +164,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   };
 
   private redirectUserAfterLogin = (user: User): void => {
+    if (user.status === UserStatus.API_USER) {
+      this.authService.logout();
+      this.loginForm.setErrors({ notAuthorizedForBackoffice: true });
+      return;
+    }
+
     // Root URL e.g. /<lang>
 
     if (this.returnUrl) {
