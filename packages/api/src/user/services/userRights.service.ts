@@ -10,6 +10,8 @@ import type {
   OrganizationPopulate,
 } from "../../_models";
 import {
+  ApiPlace,
+  CAMPAIGN_DEFAULT_NAME,
   UserRightStatus,
   UserRightsForOrganizations,
   UserRole,
@@ -387,4 +389,32 @@ export const getUserRightsForOrganization = async (
       },
     },
   ]).exec();
+};
+
+/**
+ * @summary Returns true if the user has editing rights on at least one place
+ *          that has `toUpdate = true` in the current campaign.
+ */
+export const getUserToUpdateStatus = async (
+  userId: mongoose.Types.ObjectId
+): Promise<boolean> => {
+  const rights = await UserRightModel.find({
+    user: userId,
+    place_id: { $ne: null },
+    role: { $in: USER_ROLES_FOR_EDITION },
+    status: UserRightStatus.VERIFIED,
+  })
+    .populate({
+      path: "place",
+      select: `campaigns.${CAMPAIGN_DEFAULT_NAME}.toUpdate`,
+    })
+    .lean()
+    .exec();
+
+  return rights.some(
+    (right) =>
+      (right.place as unknown as ModelWithId<ApiPlace> | null)?.campaigns?.[
+        CAMPAIGN_DEFAULT_NAME
+      ]?.toUpdate === true
+  );
 };

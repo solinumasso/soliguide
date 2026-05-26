@@ -10,6 +10,7 @@ export interface Config {
   SOLIGUIA_ES_URL: string;
   SOLIGUIDE_FR_URL: string;
   WIDGET_URL: string;
+  FRONTEND_URL: string;
   SOLIGUIDE_LOCATION_API_URL: string;
   SOLIGARE_URL: string;
   JWT_SECRET: string;
@@ -22,6 +23,7 @@ export interface Config {
   GOOGLE_PROJECT_ID?: string;
   GEMINI_API_KEY?: string;
   GOOGLE_API_KEY?: string;
+  GOOGLE_MAPS_API_KEY: string;
 
   // Emails
   DEFAULT_SENDER_EMAIL: string;

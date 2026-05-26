@@ -30,9 +30,6 @@ export const PlaceUpdateCampaignSchema = new Schema<ApiPlaceUpdateCampaign>(
       updated: { default: false, type: Boolean },
     },
 
-    // Reminder
-    remindMeDate: { default: null, type: Date },
-
     // Change details
     sections: {
       tempClosure: {

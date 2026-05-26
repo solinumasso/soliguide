@@ -95,6 +95,10 @@ export const PositionSchema = new mongoose.Schema<CommonPlacePosition>({
     type: String,
     required: true,
   },
+  isManualAddress: {
+    default: false,
+    type: Boolean,
+  },
 
   slugs: {
     // @deprecated start

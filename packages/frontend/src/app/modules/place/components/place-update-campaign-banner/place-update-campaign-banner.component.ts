@@ -15,7 +15,6 @@ import {
   PlaceStatus,
   getDepartmentCodeFromPostalCode,
   type SoliguideCountries,
-  CountryCodes,
   getPosition,
 } from "@soliguide/common";
 
@@ -71,8 +70,6 @@ export class PlaceUpdateCampaignBannerComponent
   }
 
   public ngOnInit(): void {
-    const now = new Date();
-
     this.subscription.add(
       this.currentLanguageService.subscribe(
         () => (this.routePrefix = this.currentLanguageService.routePrefix)
@@ -84,7 +81,7 @@ export class PlaceUpdateCampaignBannerComponent
     const country = position.country;
 
     this.campaignIsActive =
-      country && postalCode && THEME_CONFIGURATION.country === CountryCodes.FR
+      country && postalCode
         ? campaignIsActiveWithTheme([
             getDepartmentCodeFromPostalCode(
               country as SoliguideCountries,
@@ -99,24 +96,12 @@ export class PlaceUpdateCampaignBannerComponent
       place: this.place,
     });
 
-    const remindMeDateSaved = this.place.campaigns.runningCampaign.remindMeDate
-      ? new Date(
-          `${this.place.campaigns.runningCampaign.remindMeDate}`
-        ).getTime()
-      : 0;
-
     // Needs an update if
-    // - my place is online
-    // - is not definitively closed
+    // - my place is online or offline
     // - hasn't gotten an update using the form
-    // - has no remindMe in the future
-    // - my update date is lower than the campaign activation date
     this.needUpdate =
       [PlaceStatus.ONLINE, PlaceStatus.OFFLINE].includes(this.place.status) &&
-      !(
-        this.place.campaigns.runningCampaign.general.updated ||
-        remindMeDateSaved >= now.getTime()
-      );
+      !this.place.campaigns.runningCampaign.general.updated;
   }
 
   public ngOnDestroy(): void {

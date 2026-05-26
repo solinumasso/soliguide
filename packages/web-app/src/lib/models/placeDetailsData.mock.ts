@@ -324,7 +324,6 @@ const samplePlace: ApiPlace = Object.freeze({
         startDate: '2022-06-29T12:52:48.657Z',
         updated: true
       },
-      remindMeDate: null,
       sections: {
         closed: { changes: false, date: '2022-06-29T12:52:48.658Z', updated: true },
         hours: { changes: false, date: '2022-06-29T12:52:48.658Z', updated: true },
@@ -345,7 +344,6 @@ const samplePlace: ApiPlace = Object.freeze({
         startDate: '2022-11-30T11:40:40.410Z',
         updated: true
       },
-      remindMeDate: null,
       sections: {
         tempClosure: { changes: false, date: '2022-11-30T11:40:40.410Z', updated: true },
         hours: { changes: false, date: '2022-11-30T11:40:40.410Z', updated: true },
@@ -364,7 +362,6 @@ const samplePlace: ApiPlace = Object.freeze({
         startDate: '2023-06-13T08:51:24.996Z',
         updated: true
       },
-      remindMeDate: null,
       sections: {
         tempClosure: { changes: false, date: '2023-06-13T08:51:24.996Z', updated: true },
         hours: { changes: false, date: '2023-06-13T08:51:24.996Z', updated: true },
@@ -384,7 +381,6 @@ const samplePlace: ApiPlace = Object.freeze({
         startDate: '2023-11-23T10:06:08.361Z',
         updated: true
       },
-      remindMeDate: null,
       sections: {
         tempClosure: { changes: false, date: '2023-11-23T10:06:08.361Z', updated: true },
         hours: { changes: false, date: '2023-11-23T10:06:08.361Z', updated: true },
@@ -404,7 +400,6 @@ const samplePlace: ApiPlace = Object.freeze({
         startDate: '2024-06-11T15:27:13.379Z',
         updated: true
       },
-      remindMeDate: null,
       sections: {
         tempClosure: { changes: false, date: '2024-06-11T15:27:13.379Z', updated: true },
         hours: { changes: false, date: '2024-06-11T15:27:13.379Z', updated: true },
@@ -424,7 +419,6 @@ const samplePlace: ApiPlace = Object.freeze({
         startDate: null,
         updated: false
       },
-      remindMeDate: null,
       sections: {
         hours: {
           changes: false,
@@ -460,7 +454,6 @@ const samplePlace: ApiPlace = Object.freeze({
         startDate: null,
         updated: false
       },
-      remindMeDate: null,
       sections: {
         hours: {
           changes: false,
@@ -515,6 +508,7 @@ const samplePlaceTransformed: PlaceDetails = {
   id: 154,
   address: '1 Rue Montmartre, 75001 Paris',
   campaignBanner: null,
+  coordinates: [2.345897, 48.86323609999999],
   description:
     "<p>Repas complets servis sur le parvis de l'église Saint-Eustache. Il est conseillé d'arriver en avance.</p><p><strong>Attention : il s'agit d'un dispositif hivernal qui commence le 1er décembre et qui finit le 31 mars.</strong></p>",
   email: 'lasoupe@saint-eustache.org',

@@ -49,8 +49,6 @@ export class OrganizationUpdateCampaignBannerComponent
   }
 
   public ngOnInit(): void {
-    const now = new Date();
-
     this.campaignIsActive = campaignIsActiveWithTheme(
       this.organisation.territories
     );
@@ -60,17 +58,10 @@ export class OrganizationUpdateCampaignBannerComponent
       (this.me.role !== UserRole.READER && this.me.places.length > 0);
 
     for (const place of this.organisation.places) {
-      const remindMeDateSaved = place.campaigns.runningCampaign.remindMeDate
-        ? new Date(`${place.campaigns.runningCampaign.remindMeDate}`).getTime()
-        : 0;
-
       if (
         [PlaceStatus.ONLINE, PlaceStatus.OFFLINE].includes(place.status) &&
         place.campaigns.runningCampaign.toUpdate &&
-        !(
-          place.campaigns.runningCampaign.general.updated ||
-          remindMeDateSaved >= now.getTime()
-        )
+        !place.campaigns.runningCampaign.general.updated
       ) {
         this.needUpdated = true;
         break;

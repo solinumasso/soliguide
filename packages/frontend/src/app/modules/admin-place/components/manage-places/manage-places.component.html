@@ -233,7 +233,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <div class="my-1 col-md-3 col-sm-4 col-lg-2">
           <label class="form-label" for="filter-campaign-status"
             >{{ "FOLLOW_UP" | translate }}
-            {{ CAMPAIGN_NAME | lowercase }}</label
+            {{ CAMPAIGN_NAME | translate | lowercase }}</label
           >
           <select
             [(ngModel)]="search.campaignStatus"
@@ -248,7 +248,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               *ngFor="let campaignStatus of PLACE_CAMPAIGN_STATUS | keyvalue"
               [value]="campaignStatus.key"
             >
-              {{ campaignStatus.value }}
+              {{ campaignStatus.value | translate }}
             </option>
           </select>
         </div>
@@ -445,8 +445,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     </span>
 
     <span *ngIf="search.campaignStatus" class="btn btn-light btn-sm mx-1">
-      <b>{{ "FOLLOW_UP" | translate }} {{ CAMPAIGN_NAME | lowercase }}</b>
-      {{ PLACE_CAMPAIGN_STATUS[search.campaignStatus] }} :
+      <b
+        >{{ "FOLLOW_UP" | translate }}
+        {{ CAMPAIGN_NAME | translate | lowercase }}</b
+      >
+      {{ PLACE_CAMPAIGN_STATUS[search.campaignStatus] | translate }} :
       <fa-icon
         (click)="search.campaignStatus = null; launchSearch(true)"
         [icon]="['fas', 'times']"
@@ -768,28 +771,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             *ngIf="campaignIsActiveForMe && place.campaigns?.runningCampaign"
           >
             <td>
-              <ng-template #rappelTooltip
-                >{{ "REMINDER" | translate }}
-                {{ place.campaigns?.runningCampaign?.remindMeDate | dateProxy }}
-              </ng-template>
-              <div
-                class="status status-info"
-                [ngbTooltip]="rappelTooltip"
-                *ngIf="
-                  place.campaigns?.runningCampaign?.remindMeDate &&
-                  !place.campaigns?.runningCampaign?.general?.updated &&
-                  !place.campaigns?.runningCampaign?.general?.startDate
-                "
-              >
-                {{ "RECALL" | translate }}
-              </div>
-
               <div
                 class="status status-pending"
                 *ngIf="
                   place.campaigns?.runningCampaign?.general?.startDate &&
-                  !place.campaigns?.runningCampaign?.general?.updated &&
-                  !place.campaigns?.runningCampaign?.remindMeDate
+                  !place.campaigns?.runningCampaign?.general?.updated
                 "
               >
                 {{ "IN_PROGRESS" | translate }}
@@ -799,8 +785,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 class="status status-danger"
                 *ngIf="
                   place.campaigns?.runningCampaign?.toUpdate &&
-                  !place.campaigns?.runningCampaign?.general?.startDate &&
-                  !place.campaigns?.runningCampaign?.remindMeDate
+                  !place.campaigns?.runningCampaign?.general?.startDate
                 "
               >
                 {{ "NOT_STARTED" | translate }}
@@ -923,8 +908,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               target="_blank"
               class="btn btn-warning btn-sm text-center"
               [routerLink]="[routePrefix, 'campaign', 'fiche', place.lieu_id]"
-              [attr.aria-label]="CAMPAIGN_DESCRIPTION"
-              [ngbTooltip]="CAMPAIGN_DESCRIPTION"
+              [attr.aria-label]="campaignDescription"
+              [ngbTooltip]="campaignDescription"
               routerLinkActive="router-link-active"
               *ngIf="
                 campaignIsActiveForMe &&

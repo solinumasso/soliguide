@@ -9,7 +9,6 @@ export enum PlaceChangesSection {
   place = "place",
   public = "public",
   photos = "photos",
-  remindMe = "remindMe",
   services = "services",
   status = "status",
   sources = "sources",

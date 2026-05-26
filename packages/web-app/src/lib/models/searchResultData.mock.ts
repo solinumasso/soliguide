@@ -184,7 +184,6 @@ const samplePlace: ApiPlace = Object.freeze({
         startDate: '2022-06-29T12:52:48.657Z',
         updated: true
       },
-      remindMeDate: null,
       sections: {
         closed: { changes: false, date: '2022-06-29T12:52:48.658Z', updated: true },
         hours: { changes: false, date: '2022-06-29T12:52:48.658Z', updated: true },
@@ -205,7 +204,6 @@ const samplePlace: ApiPlace = Object.freeze({
         startDate: '2022-11-30T11:40:40.410Z',
         updated: true
       },
-      remindMeDate: null,
       sections: {
         tempClosure: { changes: false, date: '2022-11-30T11:40:40.410Z', updated: true },
         hours: { changes: false, date: '2022-11-30T11:40:40.410Z', updated: true },
@@ -224,7 +222,6 @@ const samplePlace: ApiPlace = Object.freeze({
         startDate: '2023-06-13T08:51:24.996Z',
         updated: true
       },
-      remindMeDate: null,
       sections: {
         tempClosure: { changes: false, date: '2023-06-13T08:51:24.996Z', updated: true },
         hours: { changes: false, date: '2023-06-13T08:51:24.996Z', updated: true },
@@ -244,7 +241,6 @@ const samplePlace: ApiPlace = Object.freeze({
         startDate: '2023-11-23T10:06:08.361Z',
         updated: true
       },
-      remindMeDate: null,
       sections: {
         tempClosure: { changes: false, date: '2023-11-23T10:06:08.361Z', updated: true },
         hours: { changes: false, date: '2023-11-23T10:06:08.361Z', updated: true },
@@ -264,7 +260,6 @@ const samplePlace: ApiPlace = Object.freeze({
         startDate: '2024-06-11T15:27:13.379Z',
         updated: true
       },
-      remindMeDate: null,
       sections: {
         tempClosure: { changes: false, date: '2024-06-11T15:27:13.379Z', updated: true },
         hours: { changes: false, date: '2024-06-11T15:27:13.379Z', updated: true },
@@ -284,7 +279,6 @@ const samplePlace: ApiPlace = Object.freeze({
         startDate: null,
         updated: false
       },
-      remindMeDate: null,
       sections: {
         hours: {
           changes: false,
@@ -320,7 +314,6 @@ const samplePlace: ApiPlace = Object.freeze({
         startDate: null,
         updated: false
       },
-      remindMeDate: null,
       sections: {
         hours: {
           changes: false,
@@ -374,6 +367,7 @@ const samplePlace: ApiPlace = Object.freeze({
 const samplePlaceTransformed: SearchResultPlaceCard = Object.freeze({
   address: '1 Rue Montmartre, 75001 Paris',
   banners: { orientation: false, holidays: PlaceClosedHolidays.UNKNOWN, campaign: null },
+  coordinates: [2.345897, 48.86323609999999] as [number, number],
   dataForLogs: {
     id: '5a58c0c7c1797fe45e377324',
     lieuId: 154,
@@ -457,7 +451,6 @@ const sampleItinerary: ApiPlace = Object.freeze({
         startDate: null,
         updated: false
       },
-      remindMeDate: null,
       sections: {
         tempClosure: {
           changes: false,
@@ -493,7 +486,6 @@ const sampleItinerary: ApiPlace = Object.freeze({
         startDate: null,
         updated: false
       },
-      remindMeDate: null,
       sections: {
         tempClosure: {
           changes: false,
@@ -529,7 +521,6 @@ const sampleItinerary: ApiPlace = Object.freeze({
         startDate: '2023-06-13T15:43:37.816Z',
         updated: true
       },
-      remindMeDate: null,
       sections: {
         tempClosure: {
           changes: false,
@@ -565,7 +556,6 @@ const sampleItinerary: ApiPlace = Object.freeze({
         startDate: '2023-12-28T14:21:56.191Z',
         updated: true
       },
-      remindMeDate: null,
       sections: {
         tempClosure: {
           changes: false,
@@ -601,7 +591,6 @@ const sampleItinerary: ApiPlace = Object.freeze({
         startDate: '2024-06-17T10:00:45.063Z',
         updated: true
       },
-      remindMeDate: null,
       sections: {
         tempClosure: {
           changes: false,
@@ -637,7 +626,6 @@ const sampleItinerary: ApiPlace = Object.freeze({
         startDate: null,
         updated: false
       },
-      remindMeDate: null,
       sections: {
         hours: {
           changes: false,
@@ -673,7 +661,6 @@ const sampleItinerary: ApiPlace = Object.freeze({
         startDate: null,
         updated: false
       },
-      remindMeDate: null,
       sections: {
         hours: {
           changes: false,
@@ -1441,6 +1428,7 @@ const sampleItineraryTransformed: SearchResultPlaceCard[] = [
   {
     address: "Nationale, 75013 Paris 13e Arrondissement - Point d'arrivée de la maraude",
     banners: { orientation: false, holidays: PlaceClosedHolidays.UNKNOWN, campaign: null },
+    coordinates: [0, 0] as [number, number],
     dataForLogs: {
       id: '30965',
       lieuId: 30965,
@@ -1470,6 +1458,7 @@ const sampleItineraryTransformed: SearchResultPlaceCard[] = [
   {
     address: "Pl. Louis-Armand, 75012 Paris - Point d'arrivée de la maraude",
     banners: { orientation: false, holidays: PlaceClosedHolidays.UNKNOWN, campaign: null },
+    coordinates: [0, 0] as [number, number],
     dataForLogs: {
       id: '30965',
       lieuId: 30965,

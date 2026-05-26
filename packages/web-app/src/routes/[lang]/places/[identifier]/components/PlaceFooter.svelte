@@ -27,6 +27,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   export let phones: Phone[];
 
   export let address: string;
+  export let coordinates: [number, number] | undefined;
 
   export let onOrientation: boolean;
 
@@ -36,6 +37,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <div class="footer">
   <GoToButton
     {address}
+    {coordinates}
     {onOrientation}
     on:click={() => {
       placeController.captureEvent('footer-go-to-click');
