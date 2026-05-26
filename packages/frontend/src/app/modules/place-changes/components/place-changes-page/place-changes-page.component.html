@@ -67,7 +67,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         *ngIf="placeChanges.isCampaign"
       >
         {{ "UPDATE_MADE_VIA_AN_UPDATE_CAMPAIGN" | translate }}
-        <b> {{ CAMPAIGN_LIST[placeChanges.campaignName].description }} </b>
+        <b>{{
+          "CAMPAIGN_DESCRIPTION"
+            | translate
+              : {
+                  season:
+                    (CAMPAIGN_LIST[placeChanges.campaignName].name | translate),
+                  year: CAMPAIGN_LIST[placeChanges.campaignName].year
+                }
+        }}</b>
       </div>
     </div>
 

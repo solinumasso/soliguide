@@ -34,7 +34,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   <div ngbDropdownMenu [attr.aria-label]="'CAMPAIGN_SOURCE_MENU' | translate">
     <ng-container
-      *ngFor="let source of CAMPAIGN_SOURCE_LABELS | keyvalue : orderValues"
+      *ngFor="
+        let source of CAMPAIGN_SOURCE_MANUAL_LABELS | keyvalue : orderValues
+      "
     >
       <button
         (click)="updateCampaignSource(place, source.key)"

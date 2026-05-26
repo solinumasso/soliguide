@@ -9,7 +9,10 @@ import { ToastrService } from "ngx-toastr";
 
 import { AdminPlaceService } from "../../../form-place/services/admin-place.service";
 
-import { CAMPAIGN_SOURCE_LABELS } from "../../../../models/campaign";
+import {
+  CAMPAIGN_SOURCE_LABELS,
+  CAMPAIGN_SOURCE_MANUAL_LABELS,
+} from "../../../../models/campaign";
 import { Place } from "../../../../models/place";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { PosthogComponent } from "../../../analytics/components/posthog.component";
@@ -28,6 +31,7 @@ export class CampaignSourceUpdateComponent
   @Input() public disabled: boolean;
 
   public CAMPAIGN_SOURCE_LABELS = CAMPAIGN_SOURCE_LABELS;
+  public CAMPAIGN_SOURCE_MANUAL_LABELS = CAMPAIGN_SOURCE_MANUAL_LABELS;
 
   constructor(
     private readonly adminPlaceService: AdminPlaceService,

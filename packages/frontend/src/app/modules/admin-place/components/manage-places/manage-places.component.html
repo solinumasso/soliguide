@@ -233,7 +233,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <div class="my-1 col-md-3 col-sm-4 col-lg-2">
           <label class="form-label" for="filter-campaign-status"
             >{{ "FOLLOW_UP" | translate }}
-            {{ CAMPAIGN_NAME | lowercase }}</label
+            {{ CAMPAIGN_NAME | translate | lowercase }}</label
           >
           <select
             [(ngModel)]="search.campaignStatus"
@@ -248,7 +248,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               *ngFor="let campaignStatus of PLACE_CAMPAIGN_STATUS | keyvalue"
               [value]="campaignStatus.key"
             >
-              {{ campaignStatus.value }}
+              {{ campaignStatus.value | translate }}
             </option>
           </select>
         </div>
@@ -445,8 +445,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     </span>
 
     <span *ngIf="search.campaignStatus" class="btn btn-light btn-sm mx-1">
-      <b>{{ "FOLLOW_UP" | translate }} {{ CAMPAIGN_NAME | lowercase }}</b>
-      {{ PLACE_CAMPAIGN_STATUS[search.campaignStatus] }} :
+      <b
+        >{{ "FOLLOW_UP" | translate }}
+        {{ CAMPAIGN_NAME | translate | lowercase }}</b
+      >
+      {{ PLACE_CAMPAIGN_STATUS[search.campaignStatus] | translate }} :
       <fa-icon
         (click)="search.campaignStatus = null; launchSearch(true)"
         [icon]="['fas', 'times']"
@@ -923,8 +926,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               target="_blank"
               class="btn btn-warning btn-sm text-center"
               [routerLink]="[routePrefix, 'campaign', 'fiche', place.lieu_id]"
-              [attr.aria-label]="CAMPAIGN_DESCRIPTION"
-              [ngbTooltip]="CAMPAIGN_DESCRIPTION"
+              [attr.aria-label]="campaignDescription"
+              [ngbTooltip]="campaignDescription"
               routerLinkActive="router-link-active"
               *ngIf="
                 campaignIsActiveForMe &&
