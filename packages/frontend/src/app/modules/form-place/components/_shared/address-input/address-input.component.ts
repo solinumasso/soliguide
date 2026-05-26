@@ -375,7 +375,7 @@ export class AddressInputComponent implements OnInit, OnDestroy {
     }
   }
 
-  private updatePositionFromCoordinates = (newCoord: {
+  private readonly updatePositionFromCoordinates = (newCoord: {
     lat: number;
     lng: number;
   }): void => {
@@ -436,35 +436,12 @@ export class AddressInputComponent implements OnInit, OnDestroy {
 
     this.position.address = item.label;
     this.position.location = location;
-    if (item.city) this.position.city = item.city;
-    if (item.cityCode) this.position.cityCode = item.cityCode;
-    if (item.postalCode) this.position.postalCode = item.postalCode;
-    if (item.department) this.position.department = item.department;
-    if (item.departmentCode) this.position.departmentCode = item.departmentCode;
-    if (item.region) this.position.region = item.region;
-    if (item.regionCode) this.position.regionCode = item.regionCode;
-    if (item.country) this.position.country = item.country;
-    if (item.timeZone) this.position.timeZone = item.timeZone;
-
     this.positionForm.controls.address.setValue(item.label);
     this.positionForm.controls.location.setValue(location);
-    if (item.city) this.positionForm.controls.city.setValue(item.city);
-    if (item.cityCode)
-      this.positionForm.controls.cityCode.setValue(item.cityCode);
-    if (item.postalCode)
-      this.positionForm.controls.postalCode.setValue(item.postalCode);
     this.positionForm.controls.latitude.setValue(item.coordinates[1]);
     this.positionForm.controls.longitude.setValue(item.coordinates[0]);
-    if (item.department)
-      this.positionForm.controls.department.setValue(item.department);
-    if (item.departmentCode)
-      this.positionForm.controls.departmentCode.setValue(item.departmentCode);
-    if (item.region) this.positionForm.controls.region.setValue(item.region);
-    if (item.regionCode)
-      this.positionForm.controls.regionCode.setValue(item.regionCode);
-    if (item.country) this.positionForm.controls.country.setValue(item.country);
-    if (item.timeZone)
-      this.positionForm.controls.timeZone.setValue(item.timeZone);
+
+    this.syncOptionalFieldsFromItem(item);
 
     this.marker = [
       { ...this.marker[0], lat: item.coordinates[1], lng: item.coordinates[0] },
@@ -474,6 +451,45 @@ export class AddressInputComponent implements OnInit, OnDestroy {
 
     this.positionChange.emit(this.position);
     this.addressInvalid.emit(this.positionForm.invalid);
+  }
+
+  private syncOptionalFieldsFromItem(item: LocationAutoCompleteAddress): void {
+    if (item.city) {
+      this.position.city = item.city;
+      this.positionForm.controls.city.setValue(item.city);
+    }
+    if (item.cityCode) {
+      this.position.cityCode = item.cityCode;
+      this.positionForm.controls.cityCode.setValue(item.cityCode);
+    }
+    if (item.postalCode) {
+      this.position.postalCode = item.postalCode;
+      this.positionForm.controls.postalCode.setValue(item.postalCode);
+    }
+    if (item.department) {
+      this.position.department = item.department;
+      this.positionForm.controls.department.setValue(item.department);
+    }
+    if (item.departmentCode) {
+      this.position.departmentCode = item.departmentCode;
+      this.positionForm.controls.departmentCode.setValue(item.departmentCode);
+    }
+    if (item.region) {
+      this.position.region = item.region;
+      this.positionForm.controls.region.setValue(item.region);
+    }
+    if (item.regionCode) {
+      this.position.regionCode = item.regionCode;
+      this.positionForm.controls.regionCode.setValue(item.regionCode);
+    }
+    if (item.country) {
+      this.position.country = item.country;
+      this.positionForm.controls.country.setValue(item.country);
+    }
+    if (item.timeZone) {
+      this.position.timeZone = item.timeZone;
+      this.positionForm.controls.timeZone.setValue(item.timeZone);
+    }
   }
 
   /**
@@ -692,7 +708,12 @@ export class AddressInputComponent implements OnInit, OnDestroy {
     const lat = this.positionForm.controls.latitude.value;
     const lng = this.positionForm.controls.longitude.value;
 
-    if (lat === null || lng === null || isNaN(lat) || isNaN(lng)) {
+    if (
+      lat === null ||
+      lng === null ||
+      Number.isNaN(lat) ||
+      Number.isNaN(lng)
+    ) {
       return;
     }
 

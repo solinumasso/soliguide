@@ -89,7 +89,7 @@ export class GoogleMapComponent
 
   public ngOnInit(): void {
     this.mapId =
-      this.mapIndex != null ? `google-map_${this.mapIndex}` : "google-map";
+      this.mapIndex == null ? "google-map" : `google-map_${this.mapIndex}`;
   }
 
   public ngAfterViewInit(): void {
@@ -114,7 +114,7 @@ export class GoogleMapComponent
     }
   }
 
-  /** Switches the map base layer. If the map is already initialised, the change is applied immediately. */
+  /** Switches the map base layer */
   public setMode(mode: MapMode): void {
     this.currentMode = mode;
     if (this.googleMap) {
@@ -153,7 +153,7 @@ export class GoogleMapComponent
   }
 
   private loadGoogleMapsScript(apiKey: string): Promise<void> {
-    if (window.google?.maps) {
+    if (globalThis.google?.maps) {
       return Promise.resolve();
     }
 

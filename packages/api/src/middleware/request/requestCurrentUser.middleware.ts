@@ -48,7 +48,7 @@ export const getCurrentUser = (
       if (
         err ||
         !decoded ||
-        !Object.hasOwn(decoded, "_id") ||
+        !Object.hasOwn(decoded as object, "_id") ||
         !(decoded as { _id: unknown })._id ||
         typeof (decoded as { _id: unknown })._id !== "string"
       ) {
@@ -164,7 +164,7 @@ export const getCurrentUserFromQueryToken = (
       if (
         err ||
         !decoded ||
-        !Object.hasOwn(decoded, "_id") ||
+        !Object.hasOwn(decoded as object, "_id") ||
         !(decoded as { _id: unknown })._id ||
         typeof (decoded as { _id: unknown })._id !== "string"
       ) {

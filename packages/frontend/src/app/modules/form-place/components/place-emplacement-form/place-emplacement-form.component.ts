@@ -124,9 +124,7 @@ export class PlaceEmplacementFormComponent implements OnInit, OnDestroy {
       this.place.parcours.length > 0
     ) {
       // User switched PARCOURS→LIEU in step 1: promote first waypoint to position
-      this.place.position = JSON.parse(
-        JSON.stringify(this.place.parcours[0].position)
-      );
+      this.place.position = structuredClone(this.place.parcours[0].position);
       this.place.parcours = [];
     }
     // LIEU→PARCOURS is handled by parcours-position-form initialising
@@ -148,9 +146,7 @@ export class PlaceEmplacementFormComponent implements OnInit, OnDestroy {
     }
 
     if (this.place.parcours.length) {
-      this.place.position = JSON.parse(
-        JSON.stringify(this.place.parcours[0].position)
-      );
+      this.place.position = structuredClone(this.place.parcours[0].position);
     }
 
     this.place.parcours = [];

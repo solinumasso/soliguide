@@ -24,9 +24,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   *ngIf="isLoading"
   class="d-flex justify-content-center align-items-center map-container"
 >
-  <div class="spinner-border text-primary" role="status">
+  <output class="spinner-border text-primary">
     <span class="visually-hidden">Chargement de Google Maps...</span>
-  </div>
+  </output>
 </div>
 
 <!-- No API key — only shown once loading is done -->
@@ -43,7 +43,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <ng-container *ngIf="hasApiKey">
   <!-- Map type controls — only when map is ready -->
   <div *ngIf="!isLoading && !loadError" class="map-controls mb-2 d-flex gap-2">
-    <div class="btn-group btn-group-sm" role="group">
+    <fieldset class="btn-group btn-group-sm">
+      <legend class="visually-hidden">Type de carte</legend>
       <button
         type="button"
         class="btn btn-outline-secondary"
@@ -68,7 +69,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       >
         Hybride
       </button>
-    </div>
+    </fieldset>
   </div>
 
   <!--
