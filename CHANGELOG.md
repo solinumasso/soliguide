@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.137.0](https://github.com/solinumasso/soliguide/compare/v4.136.0...v4.137.0) (2026-05-26)
+
+
+### Bug Fixes
+
+* **api:** fix issues for tests ([1616dfb](https://github.com/solinumasso/soliguide/commit/1616dfb3d829d76f06e45b07217b0add997df0a6))
+
+
+### Features
+
+* **api:** Maj ete 2026 ([#1294](https://github.com/solinumasso/soliguide/issues/1294)) ([7eddbde](https://github.com/solinumasso/soliguide/commit/7eddbde639e3eb22c24dda0036b06e0204fcf6ea))
+* **api:** remove rappel for campaign ([e585b95](https://github.com/solinumasso/soliguide/commit/e585b954b9dc2cef8bc97aea8108f5cfc4c31c44))
+* **api:** use gps coordinates ([7b05f94](https://github.com/solinumasso/soliguide/commit/7b05f94f6c9a76638ae859313c2fb64930eee304))
+
+
+
+
+
 # [4.136.0](https://github.com/solinumasso/soliguide/compare/v4.135.0...v4.136.0) (2026-05-20)
 
 
