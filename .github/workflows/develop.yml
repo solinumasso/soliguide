@@ -35,6 +35,7 @@ jobs:
     uses: ./.github/workflows/_deploy-to-test-qovery.yml
     with:
       deploy_api: ${{ contains(needs.build.outputs.to_deploy, 'api') }}
+      deploy_backoffice: ${{ contains(needs.build.outputs.to_deploy, 'backoffice') }}
       deploy_frontend: ${{ contains(needs.build.outputs.to_deploy, 'frontend') }}
       deploy_location-api: ${{ contains(needs.build.outputs.to_deploy, 'location-api') }}
       deploy_soligare: ${{ contains(needs.build.outputs.to_deploy, 'soligare') }}

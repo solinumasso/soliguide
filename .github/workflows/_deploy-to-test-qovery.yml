@@ -6,6 +6,9 @@ on:
       deploy_api:
         type: boolean
         default: true
+      deploy_backoffice:
+        type: boolean
+        default: true
       deploy_frontend:
         type: boolean
         default: true
@@ -410,6 +413,69 @@ jobs:
           target: ${{ steps.web-app_domain.outputs.validation_domain }}.
           type: CNAME
 
+      - name: Update Backoffice
+        if: inputs.deploy_backoffice && (steps.check_presence.outcome == 'success' || steps.env_ready.outcome == 'success')
+        env:
+          QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
+        run: |
+          qovery container update \
+            --organization "$QOVERY_ORGANIZATION_NAME" \
+            --project "$QOVERY_PROJECT_NAME" \
+            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+            --container "Backoffice" \
+            --tag "$SOLIGUIDE_TAG"
+
+      - name: Create Backoffice custom domain in Qovery
+        if: inputs.deploy_backoffice && (steps.check_presence.outcome == 'success' || steps.env_ready.outcome == 'success')
+        id: backoffice_domain
+        env:
+          QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
+        run: |
+          create_domain_if_not_exists() {
+            local domain=$1
+            if ! qovery container domain list \
+              --organization "$QOVERY_ORGANIZATION_NAME" \
+              --project "$QOVERY_PROJECT_NAME" \
+              --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+              --container "Backoffice" \
+              --json | jq -e --arg domain "$domain" '.[] | select(.domain == $domain)' > /dev/null; then
+              echo "Creating domain: $domain"
+              qovery container domain create \
+                --organization "$QOVERY_ORGANIZATION_NAME" \
+                --project "$QOVERY_PROJECT_NAME" \
+                --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+                --container "Backoffice" \
+                --domain "$domain"
+            else
+              echo "Domain already exists: $domain"
+            fi
+          }
+
+          create_domain_if_not_exists "backoffice.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
+
+          VALIDATION_DOMAIN=$(qovery container domain list \
+            --organization "$QOVERY_ORGANIZATION_NAME" \
+            --project "$QOVERY_PROJECT_NAME" \
+            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+            --container "Backoffice" \
+            --json \
+            | jq -r '.[] | select(.type == "CUSTOM_DOMAIN") | .validation_domain')
+
+          echo "Validation domain: $VALIDATION_DOMAIN"
+
+          echo "validation_domain=$VALIDATION_DOMAIN" >> "$GITHUB_OUTPUT"
+
+      - name: Create DNS record for Backoffice
+        if: steps.backoffice_domain.outcome == 'success'
+        uses: solinumasso/gcore-dns-action@v1
+        with:
+          api-key: ${{ secrets.GCORE_API_KEY }}
+          present: true
+          zone: soliguide.dev
+          subdomain: backoffice.${{ env.QOVERY_BASE_DOMAIN_NAME }}
+          target: ${{ steps.backoffice_domain.outputs.validation_domain }}.
+          type: CNAME
+
       - name: Update Frontend
         if: inputs.deploy_frontend && (steps.check_presence.outcome == 'success' || steps.env_ready.outcome == 'success')
         env:
@@ -650,6 +716,7 @@ jobs:
           script: |
             const baseDomain = '${{ env.QOVERY_BASE_DOMAIN_NAME }}.soliguide.dev';
             const deployApi = '${{ inputs.deploy_api }}' === 'true';
+            const deployBackoffice = '${{ inputs.deploy_backoffice }}' === 'true';
             const deployFrontend = '${{ inputs.deploy_frontend }}' === 'true';
             const deployWebApp = '${{ inputs.deploy_web-app }}' === 'true';
             const deployWidget = '${{ inputs.deploy_widget }}' === 'true';
@@ -658,6 +725,7 @@ jobs:
 
             // Construire la liste des URLs
             let urls = [];
+            if (deployBackoffice) urls.push(`🖥️ Backoffice: https://backoffice.${baseDomain}`);
             if (deployFrontend) {
               urls.push(`🇫🇷 Frontend FR: https://fr.${baseDomain}`);
               urls.push(`🇪🇸 Frontend ES: https://es.${baseDomain}`);

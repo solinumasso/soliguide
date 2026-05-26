@@ -1,6 +1,8 @@
 fileignoreconfig:
 - filename: .github/workflows/_deploy-to-environment.yml
   checksum: df5f0a76ee42b1d1711c20021f3a7b93cdcef22f0608a830c2a13a7641073829
+- filename: .github/workflows/_deploy-to-test-qovery.yml
+  checksum: 851e918556eeb11273c9ea63ddbcee9502a28d236d64b1ba2884658d306979b4
 - filename: .github/workflows/_tag-container-images-for-environment.yml
   checksum: f46c1a86f06cb8a31abf981b4d577102fc5a2068575138d3262ac6ccf60397d8
 - filename: .github/workflows/_test-only.yml
