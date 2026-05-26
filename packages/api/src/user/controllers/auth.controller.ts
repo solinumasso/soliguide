@@ -15,6 +15,12 @@ export const getToken = (userId: string | mongoose.Types.ObjectId): string => {
   });
 };
 
+export const getCampaignToken = (
+  userId: string | mongoose.Types.ObjectId
+): string => {
+  return jwt.sign({ _id: userId }, CONFIG.JWT_SECRET, { noTimestamp: true });
+};
+
 export const login = async (loginInfos: {
   mail: string;
   password: string;
