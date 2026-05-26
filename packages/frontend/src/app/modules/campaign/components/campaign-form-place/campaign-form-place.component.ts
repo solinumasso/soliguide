@@ -41,6 +41,7 @@ export class CampaignFormPlaceComponent
   public me!: User | null;
 
   public orgaId: number | null;
+  public noChange: boolean;
   public routePrefix: string;
 
   public readonly CAMPAIGN_ADJ = CAMPAIGN_LIST[CAMPAIGN_DEFAULT_NAME].adjective;
@@ -62,6 +63,7 @@ export class CampaignFormPlaceComponent
   ) {
     super(posthogService, "campaign-form-");
     this.orgaId = null;
+    this.noChange = false;
     this.place = null;
     this.routePrefix = this.currentLanguageService.routePrefix;
   }
@@ -79,6 +81,7 @@ export class CampaignFormPlaceComponent
     );
 
     this.me = this.authService.currentUserValue;
+    this.noChange = this.route.snapshot.queryParams["nochange"] === "true";
 
     const id: number = parseInt(this.route.snapshot.params.lieu_id, 10);
 

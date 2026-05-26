@@ -135,7 +135,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     [orgaId]="orgaId"
     [isAdmin]="me.admin"
   ></app-campaign-form-infos>
-  } @else if (place.campaigns.runningCampaign.currentStep > 3) {
+  } @else if (place.campaigns.runningCampaign.currentStep > 3 || noChange) {
   <div class="row">
     <div class="col-md-12 my-4">
       <div class="form-container row justify-content-center">
@@ -147,10 +147,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           />
 
           <h4 class="fw-bold">
+            @if (noChange) {
+            {{ "MAGIC_LINK_NO_CHANGE_TITLE" | translate }}
+            } @else {
             {{ "COMPLETED_UPDATE_CAMPAIGN" | translate }}
+            }
           </h4>
         </div>
-        @if (me.admin) {
+        @if (me.admin && !noChange) {
         <div class="col-3 my-3">
           <app-campaign-source-update
             [place]="place"
@@ -177,7 +181,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         </div>
         }
         <div class="col-12 mb-4 text-center">
+          @if (noChange) {
+          {{ "MAGIC_LINK_NO_CHANGE_MESSAGE" | translate }}
+          } @else {
           {{ "CAN_CHANGE_UPDATE_INFORMATION" | translate }}
+          }
         </div>
 
         <div class="col-12 text-center">
