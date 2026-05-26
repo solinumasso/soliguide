@@ -12,6 +12,9 @@ on:
       deploy_api:
         description: "Whether to deploy API"
         value: ${{ jobs.affected_packages.outputs.api_dependencies }}
+      deploy_backoffice:
+        description: "Whether to deploy Backoffice"
+        value: ${{ jobs.affected_packages.outputs.backoffice_dependencies }}
       deploy_frontend:
         description: "Whether to deploy Frontend"
         value: ${{ jobs.affected_packages.outputs.frontend_dependencies }}
@@ -115,6 +118,21 @@ jobs:
       - affected_packages
       - build-base
       - build-common
+
+  build-backoffice:
+    name: Build backoffice container image
+    if: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_build, 'backoffice') }}
+    uses: ./.github/workflows/_build-container-image.yml
+    with:
+      image_name: ${{ github.repository }}/backoffice
+      dockerfile: ./packages/backoffice/Dockerfile
+      build_production: true
+      build_args: |
+        COMMON_ANGULAR_IMAGE=${{ fromJSON(needs.build-common-angular.outputs.tags1)[0] }}
+      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_deploy, 'backoffice') }}
+    needs:
+      - affected_packages
+      - build-common-angular
 
   build-frontend:
     name: Build frontend container image

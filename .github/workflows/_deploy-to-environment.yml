@@ -14,6 +14,9 @@ on:
       deploy_api:
         type: boolean
         default: true
+      deploy_backoffice:
+        type: boolean
+        default: true
       deploy_frontend:
         type: boolean
         default: true
@@ -58,6 +61,7 @@ jobs:
       tag: ${{ needs.compute_tag.outputs.tag }}
       registry: ${{ inputs.registry }}
       deploy_api: ${{ inputs.deploy_api }}
+      deploy_backoffice: ${{ inputs.deploy_backoffice }}
       deploy_frontend: ${{ inputs.deploy_frontend }}
       deploy_location-api: ${{ inputs.deploy_location-api }}
       deploy_soligare: ${{ inputs.deploy_soligare }}
@@ -113,6 +117,12 @@ jobs:
         run: |
           git remote add clever-api git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.API_APP_ID }}.git
           echo clever-api >>./remotes-to-deploy-to.txt
+
+      - name: Add backoffice to the list of app to deploy
+        if: ${{ inputs.deploy_backoffice }}
+        run: |
+          git remote add clever-backoffice git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.BACKOFFICE_APP_ID }}.git
+          echo clever-backoffice >>./remotes-to-deploy-to.txt
 
       - name: Add api cron to the list of app to deploy
         if: ${{ inputs.deploy_api }}
@@ -191,6 +201,7 @@ jobs:
           script: |
             const env = '${{ inputs.environment }}';
             const deployApi = '${{ inputs.deploy_api }}' === 'true';
+            const deployBackoffice = '${{ inputs.deploy_backoffice }}' === 'true';
             const deployFrontend = '${{ inputs.deploy_frontend }}' === 'true';
             const deployWebApp = '${{ inputs.deploy_web-app }}' === 'true';
             const deployWidget = '${{ inputs.deploy_widget }}' === 'true';
@@ -204,6 +215,7 @@ jobs:
 
             // Construire la liste des URLs
             let urls = [];
+            if (deployBackoffice) urls.push(`🖥️ Backoffice: https://backoffice.${baseDomain}`);
             if (deployFrontend) {
               if (env === 'production') {
                 urls.push(`🇫🇷 Frontend FR: https://soliguide.fr`);

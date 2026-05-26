@@ -32,7 +32,7 @@ fi
 ALL_PACKAGES=$(yarn workspaces list | grep -Eo 'packages/.+' | sed -Ee 's/^packages\/(.+)$/\1/')
 
 # Packages that can be deployed. Typically not common or common-angular
-DEPLOYABLE_PACKAGES=("api" "design-system" "frontend" "location-api" "maintenance" "soligare" "web-app" "widget")
+DEPLOYABLE_PACKAGES=("api" "backoffice" "design-system" "frontend" "location-api" "maintenance" "soligare" "web-app" "widget")
 
 echo "Affected packages:"
 printf '%s\n' "${AFFECTED_PACKAGES[@]}"

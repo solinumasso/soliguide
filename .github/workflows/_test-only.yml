@@ -14,6 +14,9 @@ on:
       test_api:
         type: boolean
         default: true
+      test_backoffice:
+        type: boolean
+        default: true
       test_common:
         type: boolean
         default: true
@@ -143,6 +146,15 @@ jobs:
           path: ./packages/api/coverage/cobertura-coverage.xml
           if-no-files-found: error
           retention-days: 1
+
+  test-backoffice:
+    if: ${{ inputs.test_backoffice }}
+    uses: ./.github/workflows/_test-package.yml
+    with:
+      package: backoffice
+      container_image: ghcr.io/${{ github.event.repository.full_name }}/backoffice:${{ inputs.docker_tag }}-test
+      node_version: ${{ inputs.node_version }}
+    secrets: inherit
 
   test-common:
     if: ${{ inputs.test_common }}

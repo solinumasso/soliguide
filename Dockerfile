@@ -16,6 +16,7 @@ COPY \
 COPY .yarn/releases/ /app/.yarn/releases/
 
 COPY packages/api/package.json /app/packages/api/
+COPY packages/backoffice/package.json /app/packages/backoffice/
 COPY packages/common/package.json /app/packages/common/
 COPY packages/common-angular/package.json /app/packages/common-angular/
 COPY packages/design-system/package.json /app/packages/design-system/

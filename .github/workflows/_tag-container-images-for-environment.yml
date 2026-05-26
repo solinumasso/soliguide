@@ -15,6 +15,9 @@ on:
       deploy_api:
         type: boolean
         default: true
+      deploy_backoffice:
+        type: boolean
+        default: true
       deploy_frontend:
         type: boolean
         default: true
@@ -61,6 +64,19 @@ jobs:
           fi
         env:
           SOURCE_IMAGE: ${{ inputs.registry }}/${{ github.repository }}/api:${{ inputs.tag }}
+
+      - name: Tag backoffice image
+        if: ${{ inputs.deploy_backoffice }}
+        run: |
+          export TARGET_IMAGE=$(echo "$SOURCE_IMAGE" | sed -E 's/:.+$/:${{ inputs.environment }}/')
+          if [ "$SOURCE_IMAGE" != "$TARGET_IMAGE" ]; then
+            echo "Copying $SOURCE_IMAGE to $TARGET_IMAGE"
+            skopeo copy "docker://$SOURCE_IMAGE" "docker://$TARGET_IMAGE"
+          else
+            echo "Source and target images are the same ($SOURCE_IMAGE), skipping copy"
+          fi
+        env:
+          SOURCE_IMAGE: ${{ inputs.registry }}/${{ github.repository }}/backoffice:${{ inputs.tag }}
 
       - name: Tag frontend image
         if: ${{ inputs.deploy_frontend }}
