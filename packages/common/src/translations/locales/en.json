@@ -1299,6 +1299,8 @@
   "LOGOS_SOLIGUIA": "Soliguia is part of the Solidigital project, co-financed 65% by the European Union under the Interreg VI-A Spain-France-Andorra program (POCTEFA 2021-2027). The objective of POCTEFA is to strengthen the economic and social integration of the border area between Spain, France and Andorra.",
   "LOGOUT": "Logout",
   "LOST_ORGANIZATION": "Organization not found",
+  "MAGIC_LINK_NO_CHANGE_MESSAGE": "Thank you! We have noted that your structure has no changes to report for this period.",
+  "MAGIC_LINK_NO_CHANGE_TITLE": "No changes recorded",
   "MAIL_INVALID": "Your email address is incorrect",
   "MAIN_COLOR": "Main Color",
   "MAJORITY_OF_PRODUCTS_NATIONAL": "The majority of products are of French origin",
