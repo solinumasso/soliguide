@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.137.1](https://github.com/solinumasso/soliguide/compare/v4.137.0...v4.137.1) (2026-05-27)
+
+
+### Bug Fixes
+
+* **api:** remove double sync ([bff1bf3](https://github.com/solinumasso/soliguide/commit/bff1bf3fda331ace86d0b7daf775c5c5086c1ae1))
+
+
+
+
+
 # [4.137.0](https://github.com/solinumasso/soliguide/compare/v4.136.0...v4.137.0) (2026-05-26)
 
 
