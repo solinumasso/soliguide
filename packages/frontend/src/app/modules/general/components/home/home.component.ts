@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { TranslateService } from "@ngx-translate/core";
 import { ToastrService } from "ngx-toastr";
@@ -60,6 +60,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private readonly translateService: TranslateService,
     private readonly toastr: ToastrService,
     private readonly router: Router,
+    private readonly route: ActivatedRoute,
     private readonly seoService: SeoService,
     private readonly posthogService: PosthogService,
     private readonly currentLanguageService: CurrentLanguageService,
@@ -107,6 +108,21 @@ export class HomeComponent implements OnInit, OnDestroy {
     const location = this.locationService.localPositionValue;
 
     this.search = new Search({ location });
+
+    const error = this.route.snapshot.queryParamMap.get("error");
+    if (error === "NOT_AUTHORIZED") {
+      this.toastr.error(
+        this.translateService.instant("NOT_AUTHORIZED_TO_ACCESS")
+      );
+      this.router.navigate([], { queryParams: {}, replaceUrl: true });
+    } else if (error === "PLACE_NOT_FOUND") {
+      this.toastr.error(
+        this.translateService.instant("PLACE_NOT_FOUND_ID_NAME", {
+          brandName: THEME_CONFIGURATION.brandName,
+        })
+      );
+      this.router.navigate([], { queryParams: {}, replaceUrl: true });
+    }
   }
 
   public updateLocation = (item: LocationAutoCompleteAddress): void => {

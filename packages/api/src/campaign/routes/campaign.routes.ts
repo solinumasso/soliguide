@@ -1,21 +1,20 @@
 import {
   ApiPlace,
+  CAMPAIGN_DEFAULT_NAME,
   CampaignChangesSection,
+  CampaignPlaceAutonomy,
   CampaignSource,
   getDepartmentCodeFromPostalCode,
   PlaceChangesSection,
   PlaceStatus,
+  Themes,
   type SoliguideCountries,
 } from "@soliguide/common";
 
 import express, { NextFunction } from "express";
 
-import {
-  CONFIG,
-  ExpressRequest,
-  ExpressResponse,
-  ModelWithId,
-} from "../../_models";
+import { ExpressRequest, ExpressResponse, ModelWithId } from "../../_models";
+import { FRONT_URLS_MAPPINGS } from "../../_models/config/constants/domains/THEMES_MAPPING.const";
 
 import {
   getCurrentUserFromQueryToken,
@@ -28,6 +27,8 @@ import {
   setUserForLogs,
 } from "../../middleware";
 
+import { canEditPlace as canEditPlaceRights } from "../../user/controllers/user-rights.controller";
+import { getPlaceByParams } from "../../place/services/place.service";
 import { saveTempChanges } from "../../place-changes/controllers/place-changes.controller";
 import { campaignFormSection } from "../dto/campaign.dto";
 import { PlaceChanges } from "../../place-changes/interfaces/PlaceChanges.interface";
@@ -40,6 +41,7 @@ import {
   updateCampaignSection,
   updateOrganizationCampaign,
 } from "../controllers";
+import { updatePlaceByPlaceId } from "../../place/services/admin-place.service";
 
 const router = express.Router();
 
@@ -179,8 +181,32 @@ router.get(
   getCurrentUserFromQueryToken,
   setUserForLogs,
   handleAdminRight,
-  getPlaceFromUrl,
-  canEditPlace,
+  async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
+    const { lieu_id } = req.params;
+    const params = /^\d+$/.test(lieu_id)
+      ? { lieu_id: parseInt(lieu_id, 10) }
+      : { seo_url: lieu_id };
+    const lieu = await getPlaceByParams(params);
+    if (!lieu) {
+      return res.redirect(
+        302,
+        `${FRONT_URLS_MAPPINGS[Themes.SOLIGUIDE_FR]}?error=PLACE_NOT_FOUND`
+      );
+    }
+    req.lieu = lieu;
+    return next();
+  },
+  async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
+    const hasRights =
+      req.user.isLogged() && (await canEditPlaceRights(req.user, req.lieu));
+    if (!hasRights) {
+      return res.redirect(
+        302,
+        `${FRONT_URLS_MAPPINGS[Themes.SOLIGUIDE_FR]}?error=NOT_AUTHORIZED`
+      );
+    }
+    return next();
+  },
   async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
     let place: ModelWithId<ApiPlace>;
     let placeChanges!: PlaceChanges;
@@ -193,7 +219,16 @@ router.get(
       );
 
       if (req.userForLogs && place) {
-        place = await computePlaceAutonomyStatus(place, req.userForLogs);
+        // Magic link = fully autonomous action: always force AUTONOMOUS
+        place = await updatePlaceByPlaceId(
+          place.lieu_id,
+          {
+            [`campaigns.${CAMPAIGN_DEFAULT_NAME}.autonomy`]:
+              CampaignPlaceAutonomy.AUTONOMOUS,
+          },
+          true,
+          place.status
+        );
 
         await updateOrganizationCampaign(place._id);
 
@@ -217,13 +252,20 @@ router.get(
         req.placeChanges = placeChanges;
       }
 
-      res.redirect(302, `${CONFIG.FRONTEND_URL}/campagne`);
+      res.redirect(
+        302,
+        `${FRONT_URLS_MAPPINGS[Themes.SOLIGUIDE_FR]}/campaign/fiche/${
+          req.lieu.lieu_id
+        }?nochange=true`
+      );
       return next();
     } catch (e) {
       req.log.error(e, "MAGIC_LINK_NO_CHANGE_IMPOSSIBLE");
       return res.redirect(
         302,
-        `${CONFIG.FRONTEND_URL}/campagne?error=MAGIC_LINK_NO_CHANGE_IMPOSSIBLE`
+        `${FRONT_URLS_MAPPINGS[Themes.SOLIGUIDE_FR]}/campaign/fiche/${
+          req.lieu.lieu_id
+        }?nochange=true&error=MAGIC_LINK_NO_CHANGE_IMPOSSIBLE`
       );
     }
   },
