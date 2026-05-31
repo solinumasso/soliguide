@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.138.0](https://github.com/solinumasso/soliguide/compare/v4.137.1...v4.138.0) (2026-05-31)
+
+
+### Features
+
+* **api:** fix autonomy for no changes link and redirection ([a75817b](https://github.com/solinumasso/soliguide/commit/a75817b97c737e44c929bfdd35f8cab3801dfda8))
+
+
+
+
+
 ## [4.137.1](https://github.com/solinumasso/soliguide/compare/v4.137.0...v4.137.1) (2026-05-27)
 
 
