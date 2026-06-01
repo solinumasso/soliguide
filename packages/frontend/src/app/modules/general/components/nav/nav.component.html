@@ -351,6 +351,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             </div>
           </div>
         </li>
+        <li class="nav-item" *ngIf="isAdmin">
+          <a
+            class="nav-link"
+            href="https://metabase.soliguide.fr/public/dashboard/59153017-5763-4ebb-a4eb-ce7a5c13f852"
+            target="_blank"
+            rel="noopener noreferrer"
+            (click)="captureEvent('click-campaign-dashboard')"
+          >
+            {{ "CAMPAIGN_DASHBOARD" | translate }}
+          </a>
+        </li>
         <li
           class="nav-item"
           *ngIf="THEME_CONFIGURATION.contactFormEnabled && !isAdmin"
