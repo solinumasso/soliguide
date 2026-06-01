@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.139.0](https://github.com/solinumasso/soliguide/compare/v4.138.0...v4.139.0) (2026-06-01)
+
+
+### Bug Fixes
+
+* **api:** make magic link url public to work with email ([3c5ef21](https://github.com/solinumasso/soliguide/commit/3c5ef210ecdd5787f2f90b2cc35ff4fb698a8462))
+
+
+### Features
+
+* **frontend:** add link for maj dashboard ([6e41cbd](https://github.com/solinumasso/soliguide/commit/6e41cbd63a95b26a31b299878dae21b2a74e74af))
+
+
+
+
+
 # [4.138.0](https://github.com/solinumasso/soliguide/compare/v4.137.1...v4.138.0) (2026-05-31)
 
 
