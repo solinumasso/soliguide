@@ -9,6 +9,7 @@ export const isPublicRoute = (path?: string): boolean => {
   return (
     path.startsWith("/medias/") ||
     path.startsWith("/sitemap") ||
+    path.startsWith("/campaign/magic-link/") ||
     path === "/robots.txt" ||
     path === "/health"
   );

@@ -8,6 +8,8 @@ fileignoreconfig:
   checksum: bae3ba8730c8495a8a407b610d456c859d2a032f1b8c44572924fc5889df8bfd
 - filename: packages/api/src/analytics/scripts/brevo-campaign-user-update.ts
   checksum: 112b958249429a89d4e48fcac42cc99526c15f8dba17c3c5299c6c996d60355c
+- filename: packages/api/src/middleware/request/tests/requestInformations.middleware.spec.ts
+  checksum: 6a751b1f3b2b4502def7418f303a746b724694ad7bf92387fe02da43834882af
 - filename: packages/api/src/user/controllers/auth.controller.ts
   checksum: 5b812117e3ae5b7924fdca4b41f8907dc93ca4d476779f14ca1fb5b436aa4b94
 - filename: packages/common/src/search-suggestions/config.ts
