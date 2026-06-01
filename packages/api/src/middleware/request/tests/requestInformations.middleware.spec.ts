@@ -247,6 +247,22 @@ describe("handleRequest", () => {
     CONFIG.ENV = "test";
   });
 
+  it("Test public route /campaign/magic-link/ bypasses origin check", () => {
+    const req = {
+      path: "/campaign/magic-link/no-change/65028",
+      get: jest.fn().mockReturnValue(null),
+    } as unknown as ExpressRequest;
+
+    const res = {} as ExpressResponse;
+    const next = jest.fn();
+    handleRequest(req, res, next);
+
+    expect(next).toHaveBeenCalled();
+    expect(req.requestInformation).toBeDefined();
+
+    CONFIG.ENV = "test";
+  });
+
   it("Test non-public route with invalid origin returns 403", () => {
     // Save original ENV and set to production to force ORIGIN_UNDEFINED behavior
     const originalEnv = CONFIG.ENV;
