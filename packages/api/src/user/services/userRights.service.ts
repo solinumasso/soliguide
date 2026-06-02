@@ -12,6 +12,9 @@ import type {
 import {
   ApiPlace,
   CAMPAIGN_DEFAULT_NAME,
+  CampaignName,
+  LAST_END_YEAR_CAMPAIGN_NAME,
+  LAST_MID_YEAR_CAMPAIGN_NAME,
   UserRightStatus,
   UserRightsForOrganizations,
   UserRole,
@@ -417,4 +420,51 @@ export const getUserToUpdateStatus = async (
         CAMPAIGN_DEFAULT_NAME
       ]?.toUpdate === true
   );
+};
+
+const getChangesStatus = (
+  rights: Array<{ place: unknown }>,
+  campaignName: CampaignName | undefined
+): boolean | null => {
+  if (!campaignName) return null;
+
+  const placesInCampaign = rights
+    .map(
+      (right) =>
+        (right.place as ModelWithId<ApiPlace> | null)?.campaigns?.[campaignName]
+    )
+    .filter((campaign) => campaign?.toUpdate === true);
+
+  if (!placesInCampaign.length) return null;
+
+  return placesInCampaign.some(
+    (campaign) => campaign?.general?.changes === true
+  );
+};
+
+export const getUserLastCampaignsChangesStatus = async (
+  userId: mongoose.Types.ObjectId
+): Promise<{ midYear: boolean | null; endYear: boolean | null }> => {
+  const select = [LAST_MID_YEAR_CAMPAIGN_NAME, LAST_END_YEAR_CAMPAIGN_NAME]
+    .filter(Boolean)
+    .flatMap((name) => [
+      `campaigns.${name}.toUpdate`,
+      `campaigns.${name}.general.changes`,
+    ])
+    .join(" ");
+
+  const rights = await UserRightModel.find({
+    user: userId,
+    place_id: { $ne: null },
+    role: { $in: USER_ROLES_FOR_EDITION },
+    status: UserRightStatus.VERIFIED,
+  })
+    .populate({ path: "place", select })
+    .lean()
+    .exec();
+
+  return {
+    midYear: getChangesStatus(rights, LAST_MID_YEAR_CAMPAIGN_NAME),
+    endYear: getChangesStatus(rights, LAST_END_YEAR_CAMPAIGN_NAME),
+  };
 };
