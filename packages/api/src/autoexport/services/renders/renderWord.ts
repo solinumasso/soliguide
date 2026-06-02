@@ -16,6 +16,7 @@ import PizZip from "pizzip";
 import { promisify } from "util";
 
 import { ExportSearchParams } from "../../interfaces";
+import { sanitizeDocExportRow } from "../../utils/xml-sanitizer";
 import { renderExportRows } from "./renderExportRows";
 import { UpComingTempInfo } from "../../types";
 
@@ -226,7 +227,7 @@ export const generateWordSections = async (
       sections[currentValue] = doc;
     }
 
-    sections[currentValue].docRows.push(row);
+    sections[currentValue].docRows.push(sanitizeDocExportRow(row));
   }
 
   // Convert object as array for docxtemplater
