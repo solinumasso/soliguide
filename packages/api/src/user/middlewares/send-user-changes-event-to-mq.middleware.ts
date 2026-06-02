@@ -10,7 +10,12 @@ import {
   amqpEventsSender,
   AmqpSynchroAirtableUserEvent,
 } from "../../events";
-import { getUserRightsWithParams, getUserToUpdateStatus } from "../services";
+import {
+  getUserLastCampaignsChangesStatus,
+  getUserRightsForCampaignStatus,
+  getUserRightsWithParams,
+  getUserToUpdateStatus,
+} from "../services";
 
 export const sendUserChangesToMq = async (
   req: ExpressRequest & {
@@ -25,14 +30,20 @@ export const sendUserChangesToMq = async (
       });
     }
 
-    const toUpdate = await getUserToUpdateStatus(req.updatedUser._id);
+    const userRights = await getUserRightsForCampaignStatus(
+      req.updatedUser._id
+    );
+    const toUpdate = getUserToUpdateStatus(userRights);
+    const { midYear, endYear } = getUserLastCampaignsChangesStatus(userRights);
 
     const payload = new AmqpSynchroAirtableUserEvent(
       req.updatedUser,
       req.requestInformation.frontendUrl,
       req.requestInformation.theme,
       req.isUserDeleted,
-      toUpdate
+      toUpdate,
+      midYear,
+      endYear
     );
 
     await amqpEventsSender.sendToQueue<AmqpSynchroAirtableUserEvent>(

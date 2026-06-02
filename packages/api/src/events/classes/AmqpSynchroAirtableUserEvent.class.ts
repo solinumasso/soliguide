@@ -43,12 +43,18 @@ export class AmqpSynchroAirtableUserEvent
 
   public toUpdate: boolean;
 
+  public hasLastMidYearCampaignChanges: boolean | null;
+
+  public hasLastEndYearCampaignChanges: boolean | null;
+
   constructor(
     user: UserPopulateType | ModelWithId<User>,
     frontendUrl: string,
     theme: Themes | null,
     deleted = false,
-    toUpdate = false
+    toUpdate = false,
+    hasLastMidYearCampaignChanges: boolean | null = null,
+    hasLastEndYearCampaignChanges: boolean | null = null
   ) {
     super(user, frontendUrl, theme);
 
@@ -57,6 +63,10 @@ export class AmqpSynchroAirtableUserEvent
     this.deleted = deleted;
 
     this.toUpdate = toUpdate;
+
+    this.hasLastMidYearCampaignChanges = hasLastMidYearCampaignChanges;
+
+    this.hasLastEndYearCampaignChanges = hasLastEndYearCampaignChanges;
 
     if (this.phone?.phoneNumber) {
       this.parsedPhone =

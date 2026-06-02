@@ -12,6 +12,9 @@ import type {
 import {
   ApiPlace,
   CAMPAIGN_DEFAULT_NAME,
+  CampaignName,
+  LAST_END_YEAR_CAMPAIGN_NAME,
+  LAST_MID_YEAR_CAMPAIGN_NAME,
   UserRightStatus,
   UserRightsForOrganizations,
   UserRole,
@@ -391,30 +394,68 @@ export const getUserRightsForOrganization = async (
   ]).exec();
 };
 
-/**
- * @summary Returns true if the user has editing rights on at least one place
- *          that has `toUpdate = true` in the current campaign.
- */
-export const getUserToUpdateStatus = async (
+const getChangesStatus = (
+  userRights: Array<{ place: unknown }>,
+  campaignName: CampaignName | undefined
+): boolean | null => {
+  if (!campaignName) return null; // campaign type not configured for this environment
+
+  const campaignsToUpdate = userRights
+    .map(
+      (right) =>
+        (right.place as ModelWithId<ApiPlace> | null)?.campaigns?.[campaignName]
+    )
+    .filter((campaign) => campaign?.toUpdate === true);
+
+  if (!campaignsToUpdate.length) return null; // user has no places flagged for this campaign
+
+  return campaignsToUpdate.some(
+    (campaign) => campaign?.general?.changes === true
+  );
+};
+
+export const getUserRightsForCampaignStatus = (
   userId: mongoose.Types.ObjectId
-): Promise<boolean> => {
-  const rights = await UserRightModel.find({
+) => {
+  const lastCampaignFields = [
+    LAST_MID_YEAR_CAMPAIGN_NAME,
+    LAST_END_YEAR_CAMPAIGN_NAME,
+  ]
+    .filter(Boolean)
+    .flatMap((name) => [
+      `campaigns.${name}.toUpdate`,
+      `campaigns.${name}.general.changes`,
+    ]);
+
+  const select = [
+    `campaigns.${CAMPAIGN_DEFAULT_NAME}.toUpdate`,
+    ...lastCampaignFields,
+  ].join(" ");
+
+  return UserRightModel.find({
     user: userId,
     place_id: { $ne: null },
     role: { $in: USER_ROLES_FOR_EDITION },
     status: UserRightStatus.VERIFIED,
   })
-    .populate({
-      path: "place",
-      select: `campaigns.${CAMPAIGN_DEFAULT_NAME}.toUpdate`,
-    })
+    .populate({ path: "place", select })
     .lean()
     .exec();
+};
 
-  return rights.some(
+export const getUserToUpdateStatus = (
+  userRights: Array<{ place: unknown }>
+): boolean =>
+  userRights.some(
     (right) =>
       (right.place as unknown as ModelWithId<ApiPlace> | null)?.campaigns?.[
         CAMPAIGN_DEFAULT_NAME
       ]?.toUpdate === true
   );
-};
+
+export const getUserLastCampaignsChangesStatus = (
+  userRights: Array<{ place: unknown }>
+): { midYear: boolean | null; endYear: boolean | null } => ({
+  midYear: getChangesStatus(userRights, LAST_MID_YEAR_CAMPAIGN_NAME),
+  endYear: getChangesStatus(userRights, LAST_END_YEAR_CAMPAIGN_NAME),
+});

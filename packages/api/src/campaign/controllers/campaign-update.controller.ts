@@ -4,7 +4,6 @@ import {
   CampaignPlaceAutonomy,
   CampaignSource,
   CampaignStatus,
-  PlaceChangesSection,
   PlaceStatus,
   PlaceType,
   CampaignChangesSection,
@@ -16,15 +15,12 @@ import {
   CampaignSteps,
   ModelWithId,
   OrganizationPopulate,
-  UserForLogs,
 } from "../../_models";
 
 import {
   searchOrgas,
   updateOrga,
 } from "../../organization/services/organization.service";
-
-import { saveTempChanges } from "../../place-changes/controllers/place-changes.controller";
 
 import { updatePlaceByPlaceId } from "../../place/services/admin-place.service";
 
