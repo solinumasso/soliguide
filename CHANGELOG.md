@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.140.0](https://github.com/solinumasso/soliguide/compare/v4.139.0...v4.140.0) (2026-06-02)
+
+
+### Bug Fixes
+
+* **frontend:** merge update button and campaign dashboard into one dropdown ([5a66105](https://github.com/solinumasso/soliguide/commit/5a66105dde24676238f5e13347872fc60fbddc2d))
+
+
+### Features
+
+* **api:** send previous campaign info to brevo ([f5ad57b](https://github.com/solinumasso/soliguide/commit/f5ad57b47efff68a8af2ee3581c7a4066df610f4))
+* delete unused imports in api ([f6fbc7d](https://github.com/solinumasso/soliguide/commit/f6fbc7df2ba676bc5847fa7dfc8352c455d56529))
+* desactivate chat into frontend and webapp ([2073e71](https://github.com/solinumasso/soliguide/commit/2073e713bb9115cbe26b444f2e8b4567375c59df))
+* improve readability and add test for userRights service ([7df7ae5](https://github.com/solinumasso/soliguide/commit/7df7ae54c98fe34599ff274fc53390f198f5c8db))
+
+
+
+
+
 # [4.139.0](https://github.com/solinumasso/soliguide/compare/v4.138.0...v4.139.0) (2026-06-01)
 
 
