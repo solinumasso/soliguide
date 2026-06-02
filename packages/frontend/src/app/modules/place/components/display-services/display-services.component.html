@@ -32,7 +32,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           <span
             [class]="'category-icon category-icon-' + service.category"
           ></span>
-          <span>{{ service.category | categoryTranslateKey | translate }}</span>
+          <span>
+            <ng-container
+              *ngIf="getParentCategory(service.category) as parentCategory"
+            >
+              {{ parentCategory | categoryTranslateKey | translate }}:
+            </ng-container>
+            {{ service.category | categoryTranslateKey | translate }}
+          </span>
           <ng-container *ngIf="service.categorySpecificFields">
             <ng-container
               *ngFor="
