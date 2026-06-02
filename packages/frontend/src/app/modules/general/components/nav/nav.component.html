@@ -211,15 +211,37 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
           <div class="col-auto">
             <li class="nav-item" *ngIf="isAdmin">
-              <a
-                routerLinkActive="router-link-active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                class="nav-link"
-                [routerLink]="[routePrefix, 'historique', 'manage']"
-                (click)="captureEvent('click-manage-history')"
-              >
-                {{ "UPDATES" | translate }}
-              </a>
+              <div ngbDropdown display="dynamic" class="custom-dropdown">
+                <button
+                  type="button"
+                  id="navbarDropdownUpdates"
+                  class="fw-normal clickable dropdown"
+                  ngbDropdownToggle
+                  (click)="captureEvent('click-updates-dropdown')"
+                >
+                  {{ "UPDATES" | translate }}
+                </button>
+                <div ngbDropdownMenu aria-labelledby="navbarDropdownUpdates">
+                  <a
+                    routerLinkActive="router-link-active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    [routerLink]="[routePrefix, 'historique', 'manage']"
+                    ngbDropdownItem
+                    (click)="captureEvent('click-manage-history')"
+                  >
+                    {{ "UPDATES" | translate }}
+                  </a>
+                  <a
+                    href="https://metabase.soliguide.fr/public/dashboard/59153017-5763-4ebb-a4eb-ce7a5c13f852"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    ngbDropdownItem
+                    (click)="captureEvent('click-campaign-dashboard')"
+                  >
+                    {{ "CAMPAIGN_DASHBOARD" | translate }}
+                  </a>
+                </div>
+              </div>
             </li>
           </div>
           <div class="col-auto">
@@ -350,17 +372,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               </a>
             </div>
           </div>
-        </li>
-        <li class="nav-item" *ngIf="isAdmin">
-          <a
-            class="nav-link"
-            href="https://metabase.soliguide.fr/public/dashboard/59153017-5763-4ebb-a4eb-ce7a5c13f852"
-            target="_blank"
-            rel="noopener noreferrer"
-            (click)="captureEvent('click-campaign-dashboard')"
-          >
-            {{ "CAMPAIGN_DASHBOARD" | translate }}
-          </a>
         </li>
         <li
           class="nav-item"
