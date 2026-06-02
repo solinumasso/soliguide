@@ -12,6 +12,7 @@ import {
 } from "../../events";
 import {
   getUserLastCampaignsChangesStatus,
+  getUserRightsForCampaignStatus,
   getUserRightsWithParams,
   getUserToUpdateStatus,
 } from "../services";
@@ -29,10 +30,11 @@ export const sendUserChangesToMq = async (
       });
     }
 
-    const [toUpdate, { midYear, endYear }] = await Promise.all([
-      getUserToUpdateStatus(req.updatedUser._id),
-      getUserLastCampaignsChangesStatus(req.updatedUser._id),
-    ]);
+    const userRights = await getUserRightsForCampaignStatus(
+      req.updatedUser._id
+    );
+    const toUpdate = getUserToUpdateStatus(userRights);
+    const { midYear, endYear } = getUserLastCampaignsChangesStatus(userRights);
 
     const payload = new AmqpSynchroAirtableUserEvent(
       req.updatedUser,
