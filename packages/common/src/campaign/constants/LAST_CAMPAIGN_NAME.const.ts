@@ -6,10 +6,9 @@ const getLastCompletedCampaignByType = (
   typeName: string
 ): CampaignName | undefined => {
   const now = new Date();
-  const campaignEntries = Object.entries(CAMPAIGN_LIST) as [
-    CampaignName,
-    CampaignInfos
-  ][];
+  const campaignEntries = Object.entries(CAMPAIGN_LIST) as Array<
+    [CampaignName, CampaignInfos]
+  >;
 
   const completedCampaignsOfType = campaignEntries.filter(
     ([, campaign]) => campaign.name === typeName && campaign.dateFin < now
