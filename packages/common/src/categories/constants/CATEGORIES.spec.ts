@@ -73,6 +73,7 @@ describe("Categories", () => {
           Categories.SPANISH_COURSE,
           Categories.LEGAL_PROTECTION,
           Categories.NEUROLOGY,
+          Categories.REGULARIZATION,
           Categories.VASCULAR_SURGERY,
         ].includes(nodeId[1])
       ) {
