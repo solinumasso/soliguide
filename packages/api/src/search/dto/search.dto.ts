@@ -52,4 +52,12 @@ export const searchDto = [
       // we keep updatedAt field for api users
       "updatedAt",
     ]),
+
+  body("trackingData.organization")
+    .if(body("trackingData.organization").exists(CHECK_STRING_NULL))
+    .isString(),
+
+  body("trackingData.typeOfPlace")
+    .if(body("trackingData.typeOfPlace").exists(CHECK_STRING_NULL))
+    .isString(),
 ];
