@@ -29,7 +29,10 @@ export class SearchBarComponent {
 
   public localLaunchSearch() {
     this.launchSearch.emit();
-    this.captureEvent("search-input", { search: this.search });
+    this.captureEvent("search-input", {
+      search: this.search,
+      ...this.search.trackingData,
+    });
   }
 
   public captureEvent(eventName: string, properties?: PosthogProperties): void {

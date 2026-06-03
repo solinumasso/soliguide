@@ -31,4 +31,6 @@ export interface LogSearchPlaces {
   updatedAt?: SearchFilterUpdatedAt;
   suggestionType: AutoCompleteType | "EMPTY";
   slug?: string | null;
+  organization?: string | null;
+  typeOfPlace?: string | null;
 }
