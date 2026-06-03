@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.140.1](https://github.com/solinumasso/soliguide/compare/v4.140.0...v4.140.1) (2026-06-03)
+
+
+### Bug Fixes
+
+* change type declaration and fix Categories.const test ([7d665e6](https://github.com/solinumasso/soliguide/commit/7d665e6f0bd3de1b5f6246d645160c5c096b4aee))
+
+
+
+
+
 # [4.140.0](https://github.com/solinumasso/soliguide/compare/v4.139.0...v4.140.0) (2026-06-02)
 
 
