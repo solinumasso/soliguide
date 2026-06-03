@@ -1,13 +1,12 @@
 import { ExpressRequest } from "../../_models/express";
 import { TRACKED_EVENTS } from "../../analytics/constants";
 import { PosthogClient } from "../../analytics/services";
-
 import { LogSearchPlaces } from "../../logging/interfaces";
 
 export const getSearchPropertiesFromRequest = (
   req: ExpressRequest
 ): LogSearchPlaces => {
-  const { category, expression } = req.bodyValidated;
+  const { category, expression, trackingData } = req.bodyValidated;
 
   const searchType =
     category && expression
@@ -21,6 +20,8 @@ export const getSearchPropertiesFromRequest = (
     user: { ...req.userForLogs! },
     search_type: searchType,
     nbResults: req.nbResults ?? 0,
+    organization: trackingData?.organization ?? null,
+    typeOfPlace: trackingData?.typeOfPlace ?? null,
   };
 };
 
