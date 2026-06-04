@@ -5,6 +5,7 @@ import {
   TempInfoType,
   Categories,
   getCategoriesSpecificFields,
+  getCategoriesService,
 } from "@soliguide/common";
 
 import {
@@ -43,5 +44,9 @@ export class DisplayServicesComponent extends PosthogComponent {
 
   constructor(posthogService: PosthogService) {
     super(posthogService, "display-services");
+  }
+
+  public getParentCategory(category: Categories): Categories | null {
+    return getCategoriesService().getParentCategoryIfNeedPrefix(category);
   }
 }
