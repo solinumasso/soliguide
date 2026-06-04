@@ -12,12 +12,23 @@ import {
 } from "@soliguide/common";
 import { THEME_CONFIGURATION } from "../../../models";
 
+export interface SearchTrackingData {
+  organization: string | null;
+  typeOfPlace: string | null;
+}
+
+const DEFAULT_TRACKING_DATA: SearchTrackingData = {
+  organization: null,
+  typeOfPlace: null,
+};
+
 export class Search {
   public category?: Categories | null;
 
   // Category display
   public label: string | null;
   public word: string | null;
+  public trackingData: SearchTrackingData;
 
   public location: GeoPosition;
 
@@ -43,6 +54,7 @@ export class Search {
 
     this.label = data?.label ?? null;
     this.word = data?.word ?? null;
+    this.trackingData = { ...DEFAULT_TRACKING_DATA };
 
     this.location = new GeoPosition({});
 
@@ -71,11 +83,13 @@ export class Search {
     this.category = null;
     this.word = null;
     this.label = null;
+    this.trackingData = { ...DEFAULT_TRACKING_DATA };
   }
 
   public setCategory(categoryId: Categories, label?: string): void {
     this.category = categoryId;
     this.word = null;
+    this.trackingData = { ...DEFAULT_TRACKING_DATA };
     if (label) {
       this.label = label;
     }
@@ -84,19 +98,29 @@ export class Search {
   public setWord(word: string, label?: string): void {
     this.word = word;
     this.category = null;
+    this.trackingData = { ...DEFAULT_TRACKING_DATA };
     if (label) {
       this.label = label;
     }
   }
 
   public applySearchSuggestion(suggestion: SearchSuggestion): void {
-    console.warn("applySearchSuggestion");
     this.resetSearchTerms();
 
     if (suggestion.type === AutoCompleteType.CATEGORY) {
       this.category = suggestion.categoryId;
     } else {
       this.word = suggestion.slug;
+      this.trackingData = {
+        organization:
+          suggestion.type === AutoCompleteType.ORGANIZATION
+            ? suggestion.slug
+            : null,
+        typeOfPlace:
+          suggestion.type === AutoCompleteType.ESTABLISHMENT_TYPE
+            ? suggestion.slug
+            : null,
+      };
     }
     this.label = suggestion.label;
   }
