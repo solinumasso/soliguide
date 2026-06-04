@@ -1,12 +1,11 @@
-// XML 1.0 forbids control characters except TAB (0x09), LF (0x0A) and CR (0x0D)
-const INVALID_XML_CHARS_REGEX = /[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g;
+import { stripXmlControlChars } from "./xml-control-chars";
 
 export const htmlTagSanitizerAndLengthCheck = (
   description: string,
   min: number,
   max: number
 ): string => {
-  const cleanedDescription = description.replace(INVALID_XML_CHARS_REGEX, "");
+  const cleanedDescription = stripXmlControlChars(description);
   const htmlTagRegExp = new RegExp(/(<([^>]+)>)|(&nbsp;)/gi);
   const sanitizedDescription = cleanedDescription
     .replace(htmlTagRegExp, "")
