@@ -32,15 +32,13 @@ export const getAllServicesNames = (
   }
 
   const translatedServices = categories.map((category: Categories) => {
-    const serviceName = capitalize(
-      translateServiceName(category, language).toLowerCase()
-    );
+    const serviceName = capitalize(translateServiceName(category, language));
     if (categoriesService) {
       const parentCategory =
         categoriesService.getParentCategoryIfNeedPrefix(category);
       if (parentCategory) {
         const parentName = capitalize(
-          translateServiceName(parentCategory, language).toLowerCase()
+          translateServiceName(parentCategory, language)
         );
         return `${parentName}: ${serviceName}`;
       }
