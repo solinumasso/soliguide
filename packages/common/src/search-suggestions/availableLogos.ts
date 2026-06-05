@@ -26,4 +26,5 @@ export const AVAILABLES_LOGOS = [
   "secours-catholique",
   "secours-islamique",
   "secours-populaire",
+  "ssvp",
 ];
