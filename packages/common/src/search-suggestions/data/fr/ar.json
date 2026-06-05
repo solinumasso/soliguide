@@ -2778,6 +2778,24 @@
   },
   {
     "categoryId": null,
+    "label": "SSVP - Société Saint-Vincent de Paul",
+    "slug": "ssvp",
+    "synonyms": [
+      "ssvp",
+      "société saint-vincent de paul",
+      "saint vincent de paul",
+      "saint-vincent-de-paul",
+      "conférence saint-vincent de paul",
+      "vincentiens"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "ar",
+    "country": "fr",
+    "seoTitle": "العثور على جمعية القديس فنسنت دي بول SSVP بالقرب منك مع سوليغيد",
+    "seoDescription": "سوليغيد يساعدكم في العثور على جمعية القديس فنسنت دي بول للمساعدات الغذائية، المرافقة الاجتماعية والزيارات المنزلية بالقرب منكم"
+  },
+  {
+    "categoryId": null,
     "label": "CCAS: centre communal d'action sociale",
     "slug": "ccas",
     "synonyms": [

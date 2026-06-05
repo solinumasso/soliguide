@@ -2777,6 +2777,24 @@
   },
   {
     "categoryId": null,
+    "label": "SSVP - Société Saint-Vincent de Paul",
+    "slug": "ssvp",
+    "synonyms": [
+      "ssvp",
+      "société saint-vincent de paul",
+      "saint vincent de paul",
+      "saint-vincent-de-paul",
+      "conférence saint-vincent de paul",
+      "vincentiens"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "ps",
+    "country": "fr",
+    "seoTitle": "د سولیګایډ سره د سینټ ونسنټ ډي پاول ټولنه SSVP ستاسو سیمه کې ومومئ",
+    "seoDescription": "سولیګایډ تاسو سره د سینټ ونسنټ ډي پاول ټولنې موندلو کې مرسته کوي د خوړو مرستې، ټولنیزې مرستې او د کور لیدنو لپاره په فرانسه کې"
+  },
+  {
+    "categoryId": null,
     "label": "CCAS: centre communal d'action sociale",
     "slug": "ccas",
     "synonyms": [

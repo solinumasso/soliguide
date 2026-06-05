@@ -2777,6 +2777,24 @@
   },
   {
     "categoryId": null,
+    "label": "SSVP - Société Saint-Vincent de Paul",
+    "slug": "ssvp",
+    "synonyms": [
+      "ssvp",
+      "société saint-vincent de paul",
+      "saint vincent de paul",
+      "saint-vincent-de-paul",
+      "conférence saint-vincent de paul",
+      "vincentiens"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "fa",
+    "country": "fr",
+    "seoTitle": "انجمن سن ونسان دو پل SSVP را با سولیگاید در نزدیکی خود پیدا کنید",
+    "seoDescription": "سولیگاید به شما کمک می‌کند انجمن سن ونسان دو پل را برای کمک‌های غذایی، حمایت اجتماعی و دیدارهای خانگی در فرانسه پیدا کنید"
+  },
+  {
+    "categoryId": null,
     "label": "CCAS: centre communal d'action sociale",
     "slug": "ccas",
     "synonyms": [

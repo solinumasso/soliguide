@@ -2777,6 +2777,24 @@
   },
   {
     "categoryId": null,
+    "label": "SSVP - Société Saint-Vincent de Paul",
+    "slug": "ssvp",
+    "synonyms": [
+      "ssvp",
+      "société saint-vincent de paul",
+      "saint vincent de paul",
+      "saint-vincent-de-paul",
+      "conférence saint-vincent de paul",
+      "vincentiens"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "uk",
+    "country": "fr",
+    "seoTitle": "Знайдіть товариство Святого Вінсента де Поля SSVP поруч з вами через Soliguide",
+    "seoDescription": "Soliguide допоможе знайти товариство Святого Вінсента де Поля: продуктова допомога, соціальний супровід та домашні візити у Франції"
+  },
+  {
+    "categoryId": null,
     "label": "CCAS: centre communal d'action sociale",
     "slug": "ccas",
     "synonyms": [

@@ -2775,6 +2775,24 @@
   },
   {
     "categoryId": null,
+    "label": "SSVP - Société Saint-Vincent de Paul",
+    "slug": "ssvp",
+    "synonyms": [
+      "ssvp",
+      "société saint-vincent de paul",
+      "saint vincent de paul",
+      "saint-vincent-de-paul",
+      "conférence saint-vincent de paul",
+      "vincentiens"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "ro",
+    "country": "fr",
+    "seoTitle": "Găsiți o conferință SSVP Societatea Sfântul Vincențiu de Paul cu Soliguide",
+    "seoDescription": "Soliguide vă ajută să localizați Societatea Sfântul Vincențiu de Paul pentru ajutor alimentar, sprijin social și vizite la domiciliu în Franța"
+  },
+  {
+    "categoryId": null,
     "label": "CCAS: centre communal d'action sociale",
     "slug": "ccas",
     "synonyms": [

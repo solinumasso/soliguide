@@ -2781,6 +2781,24 @@
   },
   {
     "categoryId": null,
+    "label": "SSVP - Société Saint-Vincent de Paul",
+    "slug": "ssvp",
+    "synonyms": [
+      "ssvp",
+      "société saint-vincent de paul",
+      "saint vincent de paul",
+      "saint-vincent-de-paul",
+      "conférence saint-vincent de paul",
+      "vincentiens"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "fr",
+    "country": "fr",
+    "seoTitle": "Trouvez une conférence SSVP Société Saint-Vincent de Paul près de chez vous avec Soliguide",
+    "seoDescription": "Soliguide vous aide à localiser la Société Saint-Vincent de Paul pour une aide alimentaire, un accompagnement social ou des visites à domicile"
+  },
+  {
+    "categoryId": null,
     "label": "CCAS: centre communal d'action sociale",
     "slug": "ccas",
     "synonyms": [

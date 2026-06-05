@@ -2777,6 +2777,24 @@
   },
   {
     "categoryId": null,
+    "label": "SSVP - Société Saint-Vincent de Paul",
+    "slug": "ssvp",
+    "synonyms": [
+      "ssvp",
+      "société saint-vincent de paul",
+      "saint vincent de paul",
+      "saint-vincent-de-paul",
+      "conférence saint-vincent de paul",
+      "vincentiens"
+    ],
+    "type": "ORGANIZATION",
+    "lang": "es",
+    "country": "fr",
+    "seoTitle": "Encuentre una conferencia SSVP Sociedad de San Vicente de Paúl cerca de usted con Soliguide",
+    "seoDescription": "Soliguide le ayuda a localizar la Sociedad de San Vicente de Paúl para ayuda alimentaria, acompañamiento social y visitas a domicilio en Francia"
+  },
+  {
+    "categoryId": null,
     "label": "CCAS: centre communal d'action sociale",
     "slug": "ccas",
     "synonyms": [
