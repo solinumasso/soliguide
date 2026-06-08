@@ -6,7 +6,8 @@ import { LogSearchPlaces } from "../../logging/interfaces";
 export const getSearchPropertiesFromRequest = (
   req: ExpressRequest
 ): LogSearchPlaces => {
-  const { category, expression, trackingData } = req.bodyValidated;
+  const { category, expression, trackingData, ...bodyWithoutTrackingData } =
+    req.bodyValidated;
 
   const searchType =
     category && expression
@@ -15,13 +16,20 @@ export const getSearchPropertiesFromRequest = (
       ? "category"
       : "expression";
 
+  const organization = trackingData?.organization ?? null;
+  const typeOfPlace = trackingData?.typeOfPlace ?? null;
+  const isStructuredSearch = organization !== null || typeOfPlace !== null;
+
   return {
-    ...req.bodyValidated,
+    ...bodyWithoutTrackingData,
+    category,
+    expression,
     user: { ...req.userForLogs! },
     search_type: searchType,
     nbResults: req.nbResults ?? 0,
-    organization: trackingData?.organization ?? null,
-    typeOfPlace: trackingData?.typeOfPlace ?? null,
+    word: isStructuredSearch ? null : bodyWithoutTrackingData.word ?? null,
+    organization,
+    typeOfPlace,
   };
 };
 

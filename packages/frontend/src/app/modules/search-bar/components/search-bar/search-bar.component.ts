@@ -29,9 +29,15 @@ export class SearchBarComponent {
 
   public localLaunchSearch() {
     this.launchSearch.emit();
+    const { trackingData, ...searchWithoutTrackingData } = this.search;
+    const isStructuredSearch =
+      trackingData.typeOfPlace !== null || trackingData.organization !== null;
     this.captureEvent("search-input", {
-      search: this.search,
-      ...this.search.trackingData,
+      search: {
+        ...searchWithoutTrackingData,
+        word: isStructuredSearch ? null : this.search.word,
+        ...trackingData,
+      },
     });
   }
 
