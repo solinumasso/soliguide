@@ -11,12 +11,6 @@ import {
   SupportedLanguagesCode,
 } from "@soliguide/common";
 import { THEME_CONFIGURATION } from "../../../models";
-import { DEFAULT_TRACKING_DATA } from "../constants";
-
-export interface SearchTrackingData {
-  organization: string | null;
-  typeOfPlace: string | null;
-}
 
 export class Search {
   public category?: Categories | null;
@@ -24,7 +18,8 @@ export class Search {
   // Category display
   public label: string | null;
   public word: string | null;
-  public trackingData: SearchTrackingData;
+  public suggestionType?: AutoCompleteType | null;
+  public suggestionValue?: string | null;
 
   public location: GeoPosition;
 
@@ -50,7 +45,8 @@ export class Search {
 
     this.label = data?.label ?? null;
     this.word = data?.word ?? null;
-    this.trackingData = { ...DEFAULT_TRACKING_DATA };
+    this.suggestionType = null;
+    this.suggestionValue = null;
 
     this.location = new GeoPosition({});
 
@@ -79,13 +75,15 @@ export class Search {
     this.category = null;
     this.word = null;
     this.label = null;
-    this.trackingData = { ...DEFAULT_TRACKING_DATA };
+    this.suggestionType = null;
+    this.suggestionValue = null;
   }
 
   public setCategory(categoryId: Categories, label?: string): void {
     this.category = categoryId;
     this.word = null;
-    this.trackingData = { ...DEFAULT_TRACKING_DATA };
+    this.suggestionType = null;
+    this.suggestionValue = null;
     if (label) {
       this.label = label;
     }
@@ -94,7 +92,8 @@ export class Search {
   public setWord(word: string, label?: string): void {
     this.word = word;
     this.category = null;
-    this.trackingData = { ...DEFAULT_TRACKING_DATA };
+    this.suggestionType = null;
+    this.suggestionValue = null;
     if (label) {
       this.label = label;
     }
@@ -102,21 +101,14 @@ export class Search {
 
   public applySearchSuggestion(suggestion: SearchSuggestion): void {
     this.resetSearchTerms();
+    this.suggestionType = suggestion.type;
 
     if (suggestion.type === AutoCompleteType.CATEGORY) {
       this.category = suggestion.categoryId;
+      this.suggestionValue = null;
     } else {
       this.word = suggestion.slug;
-      this.trackingData = {
-        organization:
-          suggestion.type === AutoCompleteType.ORGANIZATION
-            ? suggestion.slug
-            : null,
-        typeOfPlace:
-          suggestion.type === AutoCompleteType.ESTABLISHMENT_TYPE
-            ? suggestion.slug
-            : null,
-      };
+      this.suggestionValue = suggestion.slug;
     }
     this.label = suggestion.label;
   }

@@ -23,8 +23,6 @@ import {
 import { THEME_CONFIGURATION } from "../../../models";
 import type { User } from "../../users/classes";
 import { ManageSearch } from "../../manage-common/classes";
-import { DEFAULT_TRACKING_DATA } from "../../search/constants";
-import { SearchTrackingData } from "../../search/interfaces";
 
 export class AdminSearchPlaces
   extends ManageSearch
@@ -36,7 +34,6 @@ export class AdminSearchPlaces
 
   public label: string | null;
   public word: string | null;
-  public trackingData: SearchTrackingData;
 
   public location: GeoPosition;
   public locations: GeoPosition[];
@@ -65,7 +62,6 @@ export class AdminSearchPlaces
 
     this.label = null;
     this.word = null;
-    this.trackingData = { ...DEFAULT_TRACKING_DATA };
 
     const defaultLocation = COUNTRIES_LOCATION.find(
       (position: LocationAutoCompleteAddress) =>
@@ -144,13 +140,11 @@ export class AdminSearchPlaces
     this.category = null;
     this.word = null;
     this.label = null;
-    this.trackingData = { ...DEFAULT_TRACKING_DATA };
   }
 
   public setCategory(categoryId: Categories, label?: string): void {
     this.category = categoryId;
     this.word = null;
-    this.trackingData = { ...DEFAULT_TRACKING_DATA };
     if (label) {
       this.label = label;
     }
@@ -159,7 +153,6 @@ export class AdminSearchPlaces
   public setWord(word: string, label?: string): void {
     this.word = word;
     this.category = null;
-    this.trackingData = { ...DEFAULT_TRACKING_DATA };
     if (label) {
       this.label = label;
     }
