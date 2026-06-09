@@ -1,4 +1,5 @@
 import {
+  AutoCompleteType,
   PLACE_LANGUAGES_LIST_MAP_KEY,
   WIDGETS_AVAILABLE,
 } from "@soliguide/common";
@@ -53,11 +54,11 @@ export const searchDto = [
       "updatedAt",
     ]),
 
-  body("trackingData.organization")
-    .if(body("trackingData.organization").exists(CHECK_STRING_NULL))
-    .isString(),
+  body("suggestionType")
+    .if(body("suggestionType").exists(CHECK_STRING_NULL))
+    .isIn(Object.values(AutoCompleteType)),
 
-  body("trackingData.typeOfPlace")
-    .if(body("trackingData.typeOfPlace").exists(CHECK_STRING_NULL))
+  body("suggestionValue")
+    .if(body("suggestionValue").exists(CHECK_STRING_NULL))
     .isString(),
 ];

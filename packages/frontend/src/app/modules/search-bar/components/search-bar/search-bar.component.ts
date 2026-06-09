@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 import type { LocationAutoCompleteAddress } from "@soliguide/common";
+import { AutoCompleteType } from "@soliguide/common";
 import type { PosthogProperties } from "@soliguide/common-angular";
 import { Search } from "../../../search/interfaces";
 import { PosthogService } from "../../../analytics/services/posthog.service";
@@ -29,14 +30,13 @@ export class SearchBarComponent {
 
   public localLaunchSearch() {
     this.launchSearch.emit();
-    const { trackingData, ...searchWithoutTrackingData } = this.search;
     const isStructuredSearch =
-      trackingData.typeOfPlace !== null || trackingData.organization !== null;
+      this.search.suggestionType === AutoCompleteType.ORGANIZATION ||
+      this.search.suggestionType === AutoCompleteType.ESTABLISHMENT_TYPE;
     this.captureEvent("search-input", {
       search: {
-        ...searchWithoutTrackingData,
+        ...this.search,
         word: isStructuredSearch ? null : this.search.word,
-        ...trackingData,
       },
     });
   }
