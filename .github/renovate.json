@@ -86,13 +86,6 @@
       "updateTypes": ["minor"]
     },
     {
-      "matchPaths": ["packages/soligare/**"],
-      "semanticCommitScope": "soligare",
-      "groupName": "soligare dependencies",
-      "schedule": ["every sunday"],
-      "updateTypes": ["minor"]
-    },
-    {
       "matchPaths": ["packages/web-app/**"],
       "semanticCommitScope": "web-app",
       "groupName": "web-app dependencies",

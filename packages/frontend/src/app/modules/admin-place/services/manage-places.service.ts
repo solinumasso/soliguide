@@ -83,10 +83,4 @@ export class ManagePlacesService {
       `${environment.apiUrl}/admin/places/${lieu_id}`
     );
   }
-
-  public deletePair(lieu_id: number): Observable<ApiMessage> {
-    return this.http.delete<ApiMessage>(
-      `${environment.apiUrl}/v2/soligare/pairing/pair/${lieu_id}`
-    );
-  }
 }

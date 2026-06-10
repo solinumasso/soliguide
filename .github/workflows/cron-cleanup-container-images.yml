@@ -25,7 +25,6 @@ jobs:
           - soliguide/frontend
           - soliguide/location-api
           - soliguide/maintenance
-          - soliguide/soligare
           - soliguide/web-app
           - soliguide/widget
     steps:
@@ -53,7 +52,6 @@ jobs:
           - soliguide/frontend
           - soliguide/location-api
           - soliguide/maintenance
-          - soliguide/soligare
           - soliguide/web-app
           - soliguide/widget
         tags:

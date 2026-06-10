@@ -32,9 +32,6 @@ on:
       test_maintenance:
         type: boolean
         default: true
-      test_soligare:
-        type: boolean
-        default: true
       test_web-app:
         type: boolean
         default: true
@@ -267,111 +264,6 @@ jobs:
         run: caddy validate
         env:
           ANGULAR_FRONTEND_PROXY_URL: http://localhost:8080
-
-  test-soligare:
-    name: Test soligare
-    if: ${{ inputs.test_soligare }}
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: read
-    env:
-      SOLIGARE_IMAGE: ghcr.io/${{ github.event.repository.full_name }}/soligare:${{ inputs.docker_tag }}-test
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Log in to the Container registry
-        uses: docker/login-action@v3
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Start postgres
-        run: docker compose up -d postgres
-
-      - name: Pull test image
-        run: docker pull "$SOLIGARE_IMAGE"
-
-      - name: Prettier cache
-        uses: actions/cache@v4
-        with:
-          path: packages/soligare/node_modules/.cache/prettier
-          key: ${{ runner.os }}-${{ inputs.node_version }}-prettiercache-soligare-${{ github.ref }}
-          restore-keys: |
-            ${{ runner.os }}-${{ inputs.node_version }}-prettiercache-soligare-${{ github.base_ref }}
-            ${{ runner.os }}-${{ inputs.node_version }}-prettiercache-soligare-
-
-      - name: Format check
-        run: |
-          docker run \
-            -v ./packages/soligare/node_modules/.cache/prettier:/app/packages/soligare/node_modules/.cache/prettier \
-            "$SOLIGARE_IMAGE" \
-            yarn workspace @soliguide/soligare format
-
-      - name: Eslint cache
-        uses: actions/cache@v4
-        with:
-          path: packages/soligare/.eslintcache
-          key: ${{ runner.os }}-${{ inputs.node_version }}-eslintcache-soligare-${{ github.ref }}
-          restore-keys: |
-            ${{ runner.os }}-${{ inputs.node_version }}-eslintcache-soligare-${{ github.base_ref }}
-            ${{ runner.os }}-${{ inputs.node_version }}-eslintcache-soligare-
-
-      - name: Lint
-        run: |
-          docker run \
-            -v ./packages/soligare/.eslintcache:/app/packages/soligare/.eslintcache \
-            "$SOLIGARE_IMAGE" \
-            yarn workspace @soliguide/soligare lint
-
-      - name: Wait for Postgres to be ready
-        timeout-minutes: 5
-        run: |
-          while [ "$(docker inspect --format='{{json .State.Health.Status}}' soligare-postgres)" != '"healthy"' ]; do
-            echo "PostgreSQL is not yet ready to accept connections"&>2
-            sleep 3s
-          done
-
-      - name: Restore PostgreSQL test database
-        run: ./scripts/restore-soligare-db.sh --db=test
-        env:
-          POSTGRES_EXTERNAL_USERNAME: postgres
-          POSTGRES_EXTERNAL_PASSWORD: postgres
-          POSTGRES_EXTERNAL_HOST: 127.0.0.1
-          POSTGRES_EXTERNAL_PORT: 5432
-          POSTGRES_EXTERNAL_DATABASE: postgres
-
-      - name: Test
-        run: |
-          docker run \
-            -v ./packages/soligare/coverage/:/app/packages/soligare/coverage/ \
-            -e POSTGRES_EXTERNAL_USERNAME \
-            -e POSTGRES_EXTERNAL_PASSWORD \
-            -e POSTGRES_EXTERNAL_HOST \
-            -e POSTGRES_EXTERNAL_PORT \
-            -e POSTGRES_EXTERNAL_DATABASE \
-            --network soliguide_default \
-            "$SOLIGARE_IMAGE" \
-            yarn workspace @soliguide/soligare test --coverage
-        env:
-          POSTGRES_EXTERNAL_USERNAME: postgres
-          POSTGRES_EXTERNAL_PASSWORD: postgres
-          POSTGRES_EXTERNAL_HOST: postgres
-          POSTGRES_EXTERNAL_PORT: 5432
-          POSTGRES_EXTERNAL_DATABASE: postgres
-
-      - name: Upload coverage
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-soligare
-          path: ./packages/soligare/coverage/cobertura-coverage.xml
-          if-no-files-found: error
-          retention-days: 1
 
   test-web-app:
     name: Test web app

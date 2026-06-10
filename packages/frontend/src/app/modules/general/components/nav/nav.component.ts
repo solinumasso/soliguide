@@ -49,7 +49,6 @@ export class NavComponent implements OnInit, OnDestroy {
   public me: User | null = null;
   public currentLang: SupportedLanguagesCode;
   public showTranslationMenuDropdown = false;
-  public showSoligareMenu = false;
 
   public readonly displaySolidataSearchTracking = Boolean(
     THEME_CONFIGURATION.solidata?.searchTracking
@@ -117,9 +116,6 @@ export class NavComponent implements OnInit, OnDestroy {
         this.showTranslationMenuDropdown =
           (THEME_CONFIGURATION.showTranslationMenuDropdown && this.isAdmin) ||
           this.me?.translator;
-        this.showSoligareMenu = THEME_CONFIGURATION.showSoligareMenu
-          ? this.isAdmin
-          : false;
         if (
           this.isAdmin ||
           this.me?.role === UserRole.OWNER ||

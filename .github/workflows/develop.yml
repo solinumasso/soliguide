@@ -37,7 +37,6 @@ jobs:
       deploy_api: ${{ contains(needs.build.outputs.to_deploy, 'api') }}
       deploy_frontend: ${{ contains(needs.build.outputs.to_deploy, 'frontend') }}
       deploy_location-api: ${{ contains(needs.build.outputs.to_deploy, 'location-api') }}
-      deploy_soligare: ${{ contains(needs.build.outputs.to_deploy, 'soligare') }}
       deploy_web-app: ${{ contains(needs.build.outputs.to_deploy, 'web-app') }}
       deploy_widget: ${{ contains(needs.build.outputs.to_deploy, 'widget') }}
       create: true
@@ -59,7 +58,6 @@ jobs:
       test_frontend: ${{ contains(needs.build.outputs.to_deploy, 'frontend') }}
       test_location-api: ${{ contains(needs.build.outputs.to_deploy, 'location-api') }}
       test_maintenance: ${{ contains(needs.build.outputs.to_deploy, 'maintenance') }}
-      test_soligare: ${{ contains(needs.build.outputs.to_deploy, 'soligare') }}
       test_web-app: ${{ contains(needs.build.outputs.to_deploy, 'web-app') }}
       test_widget: ${{ contains(needs.build.outputs.to_deploy, 'widget') }}
     needs:

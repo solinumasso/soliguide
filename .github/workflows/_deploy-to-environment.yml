@@ -20,9 +20,6 @@ on:
       deploy_location-api:
         type: boolean
         default: true
-      deploy_soligare:
-        type: boolean
-        default: true
       deploy_web-app:
         type: boolean
         default: true
@@ -60,7 +57,6 @@ jobs:
       deploy_api: ${{ inputs.deploy_api }}
       deploy_frontend: ${{ inputs.deploy_frontend }}
       deploy_location-api: ${{ inputs.deploy_location-api }}
-      deploy_soligare: ${{ inputs.deploy_soligare }}
       deploy_web-app: ${{ inputs.deploy_web-app }}
       deploy_widget: ${{ inputs.deploy_widget }}
 
@@ -150,12 +146,6 @@ jobs:
           git remote add clever-maintenance-widget git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.MAINTENANCE_WIDGET_APP_ID }}.git
           echo clever-maintenance-widget >>./remotes-to-deploy-to.txt
 
-      - name: Add soligare to the list of app to deploy
-        if: ${{ inputs.deploy_soligare }}
-        run: |
-          git remote add clever-soligare git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.SOLIGARE_APP_ID }}.git
-          echo clever-soligare >>./remotes-to-deploy-to.txt
-
       - name: Add web-app to the list of app to deploy
         if: ${{ inputs.deploy_web-app }}
         run: |
@@ -195,7 +185,6 @@ jobs:
             const deployWebApp = '${{ inputs.deploy_web-app }}' === 'true';
             const deployWidget = '${{ inputs.deploy_widget }}' === 'true';
             const deployLocationApi = '${{ inputs.deploy_location-api }}' === 'true';
-            const deploySoligare = '${{ inputs.deploy_soligare }}' === 'true';
 
             // Déterminer le domaine selon l'environnement
             const baseDomain = env === 'staging' ? 'staging.soliguide.dev' :
@@ -220,7 +209,6 @@ jobs:
             if (deployWidget) urls.push(`🔌 Widget: https://widget.${baseDomain}`);
             if (deployApi) urls.push(`🔧 API: https://api.${baseDomain}`);
             if (deployLocationApi) urls.push(`📍 Location API: https://location-api.${baseDomain}`);
-            if (deploySoligare) urls.push(`🔍 Soligare: https://soligare.${baseDomain}`);
 
             // Créer le deployment
             const { data: deployment } = await github.rest.repos.createDeployment({

@@ -67,7 +67,6 @@ jobs:
           - www.es
           - www.ad
           - location-api
-          - soligare
           - app
           - widget
     steps:

@@ -12,7 +12,6 @@ export interface Config {
   WIDGET_URL: string;
   FRONTEND_URL: string;
   SOLIGUIDE_LOCATION_API_URL: string;
-  SOLIGARE_URL: string;
   JWT_SECRET: string;
   CRON_ENABLED: boolean;
 

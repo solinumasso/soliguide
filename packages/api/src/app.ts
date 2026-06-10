@@ -73,8 +73,6 @@ import index from "./general/routes/general.routes";
 // Categories V2
 import categories from "./categories/routes/categories.routes";
 
-// Soligare
-import soligare from "./soligare/routes/soligare.routes";
 // Ops
 import ops from "./ops/routes/ops.routes";
 
@@ -192,8 +190,6 @@ _app.use("/stats", stats);
 _app.use("/campaign", campaign);
 
 _app.use("/v2/categories", categories);
-
-_app.use("/v2/soligare", soligare);
 
 _app.use("/ops", ops);
 

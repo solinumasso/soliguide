@@ -10,17 +10,11 @@ import { ManagePlacesService } from "../../services/manage-places.service";
 import { AuthService } from "../../../users/services/auth.service";
 import { MockAuthService } from "../../../../../../mocks/MockAuthService";
 import { Place } from "../../../../models/place/classes/place.class";
-import {
-  ONLINE_PLACE_MOCK,
-  PAIRED_ONLINE_PLACE_MOCK,
-} from "../../../../../../mocks";
+import { ONLINE_PLACE_MOCK } from "../../../../../../mocks";
 import { FixNavigationTriggeredOutsideAngularZoneNgModule } from "../../../../shared/modules/FixNavigationTriggeredOutsideAngularZoneNgModule.module";
 
 class MockManagePlacesService {
   deletePlace() {
-    return of(null);
-  }
-  deletePair() {
     return of(null);
   }
 }
@@ -66,24 +60,9 @@ describe("DeletePlaceComponent", () => {
     fixture.detectChanges();
 
     const deletePlaceSpy = jest.spyOn(managePlacesService, "deletePlace");
-    const deletePairSpy = jest.spyOn(managePlacesService, "deletePair");
 
     component.deletePlace();
 
-    expect(deletePairSpy).toHaveBeenCalledWith(component.place.lieu_id);
-    expect(deletePlaceSpy).toHaveBeenCalledWith(component.place.lieu_id);
-  });
-
-  it("should delete with ONLINE_PAIRED_PLACE", () => {
-    component.place = new Place(PAIRED_ONLINE_PLACE_MOCK);
-    fixture.detectChanges();
-
-    const deletePlaceSpy = jest.spyOn(managePlacesService, "deletePlace");
-    const deletePairSpy = jest.spyOn(managePlacesService, "deletePair");
-
-    component.deletePlace();
-
-    expect(deletePairSpy).toHaveBeenCalledWith(component.place.lieu_id);
     expect(deletePlaceSpy).toHaveBeenCalledWith(component.place.lieu_id);
   });
 });
