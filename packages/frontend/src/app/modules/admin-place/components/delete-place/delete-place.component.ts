@@ -68,22 +68,20 @@ export class DeletePlaceComponent implements OnInit, OnDestroy {
 
   public deletePlace(): void {
     this.subscription.add(
-      this.managePlacesService
-        .deletePlace(this.place.lieu_id)
-        .subscribe({
-          next: () => {
-            this.modalService.dismissAll();
-            this.toastr.success(
-              this.translateService.instant("DELETION_COMPLETED_SUCCESSFULLY")
-            );
-            this.router.navigate([this.redirection]);
-          },
-          error: () => {
-            this.toastr.error(
-              this.translateService.instant("DELETION_COULD_NOT_BE_COMPLETED")
-            );
-          },
-        })
+      this.managePlacesService.deletePlace(this.place.lieu_id).subscribe({
+        next: () => {
+          this.modalService.dismissAll();
+          this.toastr.success(
+            this.translateService.instant("DELETION_COMPLETED_SUCCESSFULLY")
+          );
+          this.router.navigate([this.redirection]);
+        },
+        error: () => {
+          this.toastr.error(
+            this.translateService.instant("DELETION_COULD_NOT_BE_COMPLETED")
+          );
+        },
+      })
     );
   }
 }
