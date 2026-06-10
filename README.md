@@ -74,7 +74,6 @@ This repository is a monorepo managed by [Lerna](https://lerna.js.org/) and [Nx]
    alias design-system='yarn workspace @soliguide/design-system'
    alias frontend='yarn workspace @soliguide/frontend'
    alias location-api='yarn workspace @soliguide/location-api'
-   alias soligare='yarn workspace @soliguide/soligare'
    alias web-app='yarn workspace @soliguide/web-app'
    alias widget='yarn workspace @soliguide/widget'
    ```

@@ -81,13 +81,6 @@ jobs:
           delete-tags: ${{ env.TAGS }}*
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Delete soligare images
-        uses: dataaxiom/ghcr-cleanup-action@v1
-        with:
-          package: soliguide/soligare
-          delete-tags: ${{ env.TAGS }}*
-          token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Delete web-app images
         uses: dataaxiom/ghcr-cleanup-action@v1
         with:

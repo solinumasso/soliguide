@@ -21,9 +21,6 @@ on:
       deploy_location-api:
         type: boolean
         default: true
-      deploy_soligare:
-        type: boolean
-        default: true
       deploy_web-app:
         type: boolean
         default: true
@@ -113,19 +110,6 @@ jobs:
           fi
         env:
           SOURCE_IMAGE: ${{ inputs.registry }}/${{ github.repository }}/maintenance:${{ inputs.tag }}-widget
-
-      - name: Tag soligare image
-        if: ${{ inputs.deploy_soligare }}
-        run: |
-          export TARGET_IMAGE=$(echo "$SOURCE_IMAGE" | sed -E 's/:.+$/:${{ inputs.environment }}/')
-          if [ "$SOURCE_IMAGE" != "$TARGET_IMAGE" ]; then
-            echo "Copying $SOURCE_IMAGE to $TARGET_IMAGE"
-            skopeo copy "docker://$SOURCE_IMAGE" "docker://$TARGET_IMAGE"
-          else
-            echo "Source and target images are the same ($SOURCE_IMAGE), skipping copy"
-          fi
-        env:
-          SOURCE_IMAGE: ${{ inputs.registry }}/${{ github.repository }}/soligare:${{ inputs.tag }}
 
       - name: Tag web-app image
         if: ${{ inputs.deploy_web-app }}

@@ -111,7 +111,6 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
       territoriesPresent: Number.parseInt(environment.territoriesPresent),
     },
     showTranslationMenuDropdown: true,
-    showSoligareMenu: true,
     websiteUrl: "soliguide.fr",
   },
   [Themes.SOLIGUIA_ES]: {
@@ -133,7 +132,6 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
     contactFormEnabled: true,
     locationAutocompletePlaceholder: "Barcelona Sants, Lleida, etc.",
     showTranslationMenuDropdown: false,
-    showSoligareMenu: false,
     websiteUrl: "soliguia.cat",
     socialMedia: {
       instagram: "https://www.instagram.com/soliguia/",
@@ -165,7 +163,6 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
     locationAutocompletePlaceholder:
       "Andorre-la-Vieja, Escaldes-Engordany, etc.",
     showTranslationMenuDropdown: false,
-    showSoligareMenu: false,
     websiteUrl: "soliguia.ad",
     socialMedia: {
       instagram: "https://www.instagram.com/soliguia/",

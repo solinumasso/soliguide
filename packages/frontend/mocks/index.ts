@@ -6,7 +6,6 @@ export * from "./MockAuthService";
 export * from "./MockCookieManagerService";
 export * from "./ORGANIZATION.mock";
 export * from "./ONLINE_PLACE.mock";
-export * from "./PAIRED_ONLINE_PLACE.mock";
 export * from "./SERVICE.mock";
 export * from "./PLACE_CONTACT_FOR_ADMIN_MOCK.mock";
 export * from "./USER_INVITED.mock";

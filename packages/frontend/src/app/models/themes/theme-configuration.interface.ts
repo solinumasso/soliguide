@@ -66,6 +66,5 @@ export interface ThemeConfiguration {
     territoriesPresent: number;
   };
   showTranslationMenuDropdown?: boolean;
-  showSoligareMenu?: boolean;
   websiteUrl?: string;
 }

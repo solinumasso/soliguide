@@ -244,19 +244,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               </div>
             </li>
           </div>
-          <div class="col-auto">
-            <li class="nav-item" *ngIf="showSoligareMenu">
-              <a
-                routerLinkActive="router-link-active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                class="nav-link"
-                [routerLink]="[routePrefix, 'soligare']"
-                (click)="captureEvent('click-soligare')"
-              >
-                Soligare
-              </a>
-            </li>
-          </div>
         </ng-container>
         <li *ngIf="showTranslationMenuDropdown" class="nav-item">
           <div ngbDropdown display="dynamic" class="custom-dropdown">

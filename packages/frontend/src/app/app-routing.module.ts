@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule, ExtraOptions } from "@angular/router";
 
-import { AdminSoliguideGuard } from "./guards/admin-soliguide.guard";
 import { AuthGuard } from "./guards/auth.guard";
 import { CampaignGuard } from "./guards/campaign.guard";
 import { LanguageGuard } from "./guards/language.guard";
@@ -81,10 +80,6 @@ export const routes: Routes = [
   {
     path: "translations",
     redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/translations`,
-  },
-  {
-    path: "soligare",
-    redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/soligare`,
   },
   {
     path: "404",
@@ -189,15 +184,6 @@ export const routes: Routes = [
         (mod) => mod.TranslationsModule
       ),
   },
-  {
-    path: ":lang/soligare",
-    canActivate: [AdminSoliguideGuard],
-    loadChildren: () =>
-      import("./modules/soligare/soligare.module").then(
-        (mod) => mod.SoligareModule
-      ),
-  },
-
   // Error routes
   {
     path: ":lang/404",

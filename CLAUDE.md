@@ -124,7 +124,6 @@ yarn workspace @soliguide/api migrate-status
 packages/
 ├── api/              - Express REST API (MongoDB, Typesense)
 ├── location-api/     - NestJS location microservice (Redis)
-├── soligare/         - NestJS duplicate detection service (PostgreSQL)
 ├── frontend/         - Angular 17 admin interface
 ├── widget/           - Angular 17 embeddable widget
 ├── web-app/          - SvelteKit public interface (SSR)
@@ -142,7 +141,7 @@ common (base types & utilities)
     ├── common-angular → frontend, widget
     ├── design-system → web-app
     ├── taxonomy → generates assets for api, frontend, web-app
-    └── api, location-api, soligare
+    └── api, location-api
 ```
 
 **Critical**: Always build `@soliguide/common` before building packages that depend on it. Use `yarn build --scope @soliguide/common-angular` which automatically builds common first via Nx dependency graph.
@@ -151,7 +150,6 @@ common (base types & utilities)
 
 - **API**: Express, MongoDB (Mongoose), Typesense, RabbitMQ, Airtable sync, S3
 - **Location API**: NestJS, Fastify, Redis
-- **Soligare**: NestJS, PostgreSQL
 - **Frontend/Widget**: Angular 17, Bootstrap 5, Leaflet, Algolia, ngx-translate
 - **Web-app**: SvelteKit, i18next, Playwright E2E, Vitest
 - **Design System**: Svelte 4, SASS
@@ -161,7 +159,6 @@ common (base types & utilities)
 - **MongoDB 7.0** (main): Places, Users, Organizations, with replica set
 - **Migrations**: TypeScript migrations in `packages/api/migrations/` using migrate-mongo
 - **Test DB**: `soliguide_test` with dump in `data/soliguide_db_test.gzip`
-- **PostgreSQL**: Soligare duplicate detection only
 - **Typesense 27.1**: Search engine for places
 
 ### Multi-Language Support
@@ -245,7 +242,7 @@ Nx handles this automatically when using `yarn build`.
 
 `@soliguide/common` builds twice:
 
-- **CommonJS** (`dist/cjs/`) for Node.js backend (api, location-api, soligare)
+- **CommonJS** (`dist/cjs/`) for Node.js backend (api, location-api)
 - **ESM** (`dist/esm/`) for frontend (frontend, widget, web-app)
 
 Both are defined in `package.json` exports field.
