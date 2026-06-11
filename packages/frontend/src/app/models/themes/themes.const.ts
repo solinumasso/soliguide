@@ -38,6 +38,10 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
         "https://apps.apple.com/fr/app/soliguide/id1495949521#?platform=iphone",
     },
     helpEnabled: true,
+    helpShowPdfTutorials: true,
+    helpWebinarUrl:
+      "https://zoom.us/webinar/register/WN_ajVGSRTTRbqHPwvSr73izw#/registration",
+    helpContactEmail: "contact@solinum.org",
     aboutSolinumLink: "https://www.solinum.org/activites/",
     socialMedia: {
       instagram: "https://www.instagram.com/soliguide/",
@@ -126,7 +130,11 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
     defaultCoordinates: [2.1752361863470204, 41.38760428878576], // Barcelona
     defaultLanguage: SupportedLanguagesCode.CA,
     suggestedLanguages: [SupportedLanguagesCode.CA, SupportedLanguagesCode.ES],
-    helpEnabled: false,
+    helpEnabled: true,
+    helpShowPdfTutorials: false,
+    helpWebinarUrl:
+      "https://us06web.zoom.us/webinar/register/WN_9FSiRDDZRT6VFLsHO-rhHw#/registration",
+    helpContactEmail: "info@soliguia.cat",
     aboutSolinumLink: "https://landing.soliguia.cat/",
     becomeVolunteerEnabled: false,
     contactFormEnabled: true,
@@ -156,7 +164,11 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
       SupportedLanguagesCode.ES,
       SupportedLanguagesCode.FR,
     ],
-    helpEnabled: false,
+    helpEnabled: true,
+    helpShowPdfTutorials: false,
+    helpWebinarUrl:
+      "https://us06web.zoom.us/webinar/register/WN_9FSiRDDZRT6VFLsHO-rhHw#/registration",
+    helpContactEmail: "info@soliguia.cat",
     aboutSolinumLink: "https://landing.soliguia.cat/",
     becomeVolunteerEnabled: false,
     contactFormEnabled: true,

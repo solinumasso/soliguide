@@ -42,6 +42,9 @@ export interface ThemeConfiguration {
     appleLink: string;
   };
   helpEnabled: boolean;
+  helpShowPdfTutorials?: boolean;
+  helpWebinarUrl?: string;
+  helpContactEmail?: string;
   solinumHomeLink: string;
   aboutSolinumLink?: string;
   socialMedia: {

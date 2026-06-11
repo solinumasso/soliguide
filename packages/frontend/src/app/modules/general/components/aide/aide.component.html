@@ -34,7 +34,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         "
       ></h2>
       <div class="limite"></div>
-      <div class="row">
+      <div class="row" *ngIf="THEME_CONFIGURATION.helpShowPdfTutorials">
         <div class="col-12 col-md-3 mt-4">
           <a
             href="https://solinum.org/tutos-soliguide/creer-et-gerer-son-compte-professionnel-soliguide"
@@ -121,7 +121,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         {{ "MONTHLY_DEMONSTRATION" | translate }}
       </p>
       <a
-        href="https://zoom.us/webinar/register/WN_ajVGSRTTRbqHPwvSr73izw#/registration"
+        [href]="THEME_CONFIGURATION.helpWebinarUrl"
         target="_blank"
         (click)="clickRegisterWebinar()"
         class="btn btn-primary mb-4 mt-2"
@@ -135,8 +135,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       <p class="mt-4">
         <br />
         {{ "BY_EMAIL" | translate }}
-        <a href="mailto:contact@solinum.org" (click)="clickEmailToContact()"
-          >contact&#64;solinum.org</a
+        <a
+          [href]="'mailto:' + THEME_CONFIGURATION.helpContactEmail"
+          (click)="clickEmailToContact()"
+          >{{ THEME_CONFIGURATION.helpContactEmail }}</a
         >
 
         <ng-container *ngIf="isChatEnabled">
