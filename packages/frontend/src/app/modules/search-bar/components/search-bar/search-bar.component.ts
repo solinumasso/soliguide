@@ -31,8 +31,8 @@ export class SearchBarComponent {
   public localLaunchSearch() {
     this.launchSearch.emit();
     const isStructuredSearch =
-      this.search.suggestionType === AutoCompleteType.ORGANIZATION ||
-      this.search.suggestionType === AutoCompleteType.ESTABLISHMENT_TYPE;
+      this.search.searchType === AutoCompleteType.ORGANIZATION ||
+      this.search.searchType === AutoCompleteType.ESTABLISHMENT_TYPE;
     this.captureEvent("search-input", {
       search: {
         ...this.search,
