@@ -54,11 +54,7 @@ export const searchDto = [
       "updatedAt",
     ]),
 
-  body("suggestionType")
-    .if(body("suggestionType").exists(CHECK_STRING_NULL))
+  body("searchType")
+    .if(body("searchType").exists(CHECK_STRING_NULL))
     .isIn(Object.values(AutoCompleteType)),
-
-  body("suggestionValue")
-    .if(body("suggestionValue").exists(CHECK_STRING_NULL))
-    .isString(),
 ];

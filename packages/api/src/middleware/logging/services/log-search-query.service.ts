@@ -27,9 +27,9 @@ export const logSearchQuery = async (
     options,
     adminSearch: !!req.adminSearch,
     userData: req.userForLogs,
-    suggestionType: req?.bodyValidated?.category
-      ? AutoCompleteType.CATEGORY
-      : "EMPTY",
+    searchType:
+      req?.bodyValidated?.searchType ??
+      (req?.bodyValidated?.category ? AutoCompleteType.CATEGORY : "EMPTY"),
     slug: req.bodyValidated?.category,
   };
 
@@ -41,11 +41,15 @@ export const logSearchQuery = async (
       req.bodyValidated?.country ?? CountryCodes.FR
     );
 
-    if (foundSuggestion) {
-      searchData.suggestionType = foundSuggestion.type;
+    if (!req.bodyValidated?.searchType) {
+      if (foundSuggestion) {
+        searchData.searchType = foundSuggestion.type;
+        searchData.slug = foundSuggestion.slug;
+      } else {
+        searchData.searchType = AutoCompleteType.EXPRESSION;
+      }
+    } else if (foundSuggestion) {
       searchData.slug = foundSuggestion.slug;
-    } else {
-      searchData.suggestionType = AutoCompleteType.EXPRESSION;
     }
   }
 

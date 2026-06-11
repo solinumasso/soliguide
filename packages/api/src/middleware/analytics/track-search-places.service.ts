@@ -8,30 +8,19 @@ import { LogSearchPlaces } from "../../logging/interfaces";
 export const getSearchPropertiesFromRequest = (
   req: ExpressRequest
 ): LogSearchPlaces => {
-  const { category, expression, suggestionType, suggestionValue, ...bodyRest } =
-    req.bodyValidated;
-
-  const searchType =
-    category && expression
-      ? "expression_and_category"
-      : category
-      ? "category"
-      : "expression";
+  const { category, searchType, ...bodyRest } = req.bodyValidated;
 
   const isStructuredSearch =
-    suggestionType === AutoCompleteType.ORGANIZATION ||
-    suggestionType === AutoCompleteType.ESTABLISHMENT_TYPE;
+    searchType === AutoCompleteType.ORGANIZATION ||
+    searchType === AutoCompleteType.ESTABLISHMENT_TYPE;
 
   return {
     ...bodyRest,
     category,
-    expression,
     user: { ...req.userForLogs! },
-    search_type: searchType,
     nbResults: req.nbResults ?? 0,
     word: isStructuredSearch ? null : bodyRest.word ?? null,
-    suggestionType: suggestionType ?? null,
-    suggestionValue: suggestionValue ?? null,
+    searchType: searchType ?? null,
   };
 };
 
