@@ -40,6 +40,7 @@ import organization from "./organization/routes/organization.routes";
 
 // Places
 import adminPlace from "./place/routes/admin-place.routes";
+import airtableSync from "./place/routes/airtable-sync.routes";
 import integration from "./place/routes/integration.routes";
 import documents from "./place/routes/document.routes";
 import photos from "./place/routes/photo.routes";
@@ -147,6 +148,8 @@ Allow: /medias/
 Allow: /sitemap
 Disallow: /`);
 });
+
+_app.use("/airtable", airtableSync);
 
 // First middlewares
 _app.use([

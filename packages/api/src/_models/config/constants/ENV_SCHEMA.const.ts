@@ -146,5 +146,9 @@ export const ENV_SCHEMA: JSONSchemaType<Config> = {
       type: "string",
       default: "dipeeo@solinum.org",
     },
+    N8N_AIRTABLE_TOKEN: {
+      type: "string",
+      nullable: true,
+    },
   },
 };

@@ -3,7 +3,7 @@ fileignoreconfig:
   checksum: 1ef8fe720e9eeb1017dcef454149719fd442ee7b49b6be9b512ae5bb50a8f608
 - filename: .yarn/releases/yarn-4.14.1.cjs
 - filename: packages/api/.env.example
-  checksum: 9abd32110bec5c8b3e56a57309b4e2bba7a9b34a19d8bf5d7098cbd0f3c49d66
+  checksum: 2b479edb52e633003fe32de26d474674384f110b4689f316765b296fa88c68b4
 - filename: packages/api/.env.test
   checksum: bae3ba8730c8495a8a407b610d456c859d2a032f1b8c44572924fc5889df8bfd
 - filename: packages/api/src/analytics/scripts/brevo-campaign-user-update.ts

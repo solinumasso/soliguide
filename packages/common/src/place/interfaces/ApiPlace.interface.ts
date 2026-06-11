@@ -57,6 +57,8 @@ export interface ApiPlace {
 
   campaigns?: any;
 
+  atSyncDate?: Date | string | null;
+
   priority?: boolean;
 
   slugs?: PlaceSlugs;
