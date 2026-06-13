@@ -5,6 +5,8 @@
   "author": "Solinum",
   "type": "commonjs",
   "license": "AGPL-3.0-only",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "scripts": {
     "build": "yarn prebuild && tsc -p tsconfig.build.json && yarn postbuild",
     "brevo:campaign-user-update": "tsx src/analytics/scripts/brevo-campaign-user-update.ts",

@@ -80,7 +80,7 @@ export class SearchAuthResolver {
 
     return {
       user: {
-        userId: user._id,
+        userId: user._id.toString(),
         status: this.normalizeStatus(user.status),
         categoriesLimitations: user.categoriesLimitations,
         areas: user.areas,

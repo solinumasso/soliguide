@@ -21,7 +21,7 @@ config();
   }
 
   if (mongodbUri) {
-    await PlaceModel.db.base.connect(mongodbUri, {
+    await PlaceModel.base.connect(mongodbUri, {
       maxIdleTimeMS: 50_000,
       serverSelectionTimeoutMS: 5_000,
     });
