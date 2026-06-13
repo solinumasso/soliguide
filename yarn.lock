@@ -3516,22 +3516,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@darraghor/eslint-plugin-nestjs-typed@npm:^5.2.1":
-  version: 5.2.1
-  resolution: "@darraghor/eslint-plugin-nestjs-typed@npm:5.2.1"
-  dependencies:
-    "@typescript-eslint/scope-manager": "npm:^8.21.0"
-    "@typescript-eslint/utils": "npm:^8.21.0"
-    eslint-module-utils: "npm:2.12.0"
-    reflect-metadata: "npm:0.2.2"
-  peerDependencies:
-    "@typescript-eslint/parser": ^7.0.0 || ^8.0.0
-    class-validator: "*"
-    eslint: ^8.56.0
-  checksum: 10/ce15a137d20424717a9de94abc696236e4724da85b123d8bbbde816c1bf053e120cb6b22b779f29e5109943020adb73b11237af516b6ce11296a3bed5acde7b2
-  languageName: node
-  linkType: hard
-
 "@discoveryjs/json-ext@npm:0.5.7":
   version: 0.5.7
   resolution: "@discoveryjs/json-ext@npm:0.5.7"
@@ -10319,60 +10303,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@soliguide/soligare@workspace:packages/soligare":
-  version: 0.0.0-use.local
-  resolution: "@soliguide/soligare@workspace:packages/soligare"
-  dependencies:
-    "@darraghor/eslint-plugin-nestjs-typed": "npm:^5.2.1"
-    "@fastify/static": "npm:^8.3.0"
-    "@fastify/swagger": "npm:^9.7.0"
-    "@nestjs/axios": "npm:^4.0.1"
-    "@nestjs/cli": "npm:^11.0.16"
-    "@nestjs/common": "npm:^11.1.16"
-    "@nestjs/config": "npm:^4.0.3"
-    "@nestjs/core": "npm:^11.1.16"
-    "@nestjs/platform-fastify": "npm:^11.1.16"
-    "@nestjs/schematics": "npm:^11.0.9"
-    "@nestjs/swagger": "npm:^11.2.6"
-    "@nestjs/terminus": "npm:^11.1.1"
-    "@nestjs/testing": "npm:^11.1.16"
-    "@sentry/nestjs": "npm:^10.42.0"
-    "@sentry/node": "npm:^10.42.0"
-    "@sentry/wizard": "npm:^6.12.0"
-    "@soliguide/common": "workspace:*"
-    "@types/jest": "npm:^29.5.14"
-    "@types/node": "npm:^20.19.33"
-    "@types/supertest": "npm:^6.0.3"
-    "@typescript-eslint/eslint-plugin": "npm:^6.21.0"
-    "@typescript-eslint/parser": "npm:^6.21.0"
-    "@typescript-eslint/type-utils": "npm:^6.21.0"
-    axios: "npm:^1.13.6"
-    class-transformer: "npm:^0.5.1"
-    class-validator: "npm:^0.14.3"
-    eslint: "npm:^8.57.1"
-    eslint-config-prettier: "npm:^9.1.0"
-    jest: "npm:^29.7.0"
-    joi: "npm:^17.13.3"
-    license-check-and-add: "npm:^4.0.5"
-    nestjs-pino: "npm:^4.4.0"
-    pino: "npm:^9.14.0"
-    pino-http: "npm:^10.5.0"
-    postgres: "npm:^3.4.8"
-    prettier: "npm:^3.3.2"
-    reflect-metadata: "npm:^0.2.2"
-    rimraf: "npm:^6.1.3"
-    rxjs: "npm:^7.8.2"
-    source-map-support: "npm:^0.5.21"
-    supertest: "npm:^7.1.0"
-    ts-jest: "npm:^29.3.2"
-    ts-loader: "npm:^9.5.2"
-    ts-node: "npm:^10.9.2"
-    tsconfig-paths: "npm:^4.2.0"
-    typescript: "npm:^5.4.5"
-    webpack: "npm:^5.105.4"
-  languageName: unknown
-  linkType: soft
-
 "@soliguide/taxonomy@workspace:packages/taxonomy":
   version: 0.0.0-use.local
   resolution: "@soliguide/taxonomy@workspace:packages/taxonomy"
@@ -11817,7 +11747,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/scope-manager@npm:8.55.0, @typescript-eslint/scope-manager@npm:^8.21.0":
+"@typescript-eslint/scope-manager@npm:8.55.0":
   version: 8.55.0
   resolution: "@typescript-eslint/scope-manager@npm:8.55.0"
   dependencies:
@@ -11845,7 +11775,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/type-utils@npm:6.21.0, @typescript-eslint/type-utils@npm:^6.21.0":
+"@typescript-eslint/type-utils@npm:6.21.0":
   version: 6.21.0
   resolution: "@typescript-eslint/type-utils@npm:6.21.0"
   dependencies:
@@ -12062,7 +11992,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:8.55.0, @typescript-eslint/utils@npm:^6.0.0 || ^7.0.0 || ^8.0.0, @typescript-eslint/utils@npm:^8.21.0":
+"@typescript-eslint/utils@npm:8.55.0, @typescript-eslint/utils@npm:^6.0.0 || ^7.0.0 || ^8.0.0":
   version: 8.55.0
   resolution: "@typescript-eslint/utils@npm:8.55.0"
   dependencies:
@@ -17202,7 +17132,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-module-utils@npm:2.12.0, eslint-module-utils@npm:^2.12.0":
+"eslint-module-utils@npm:^2.12.0":
   version: 2.12.0
   resolution: "eslint-module-utils@npm:2.12.0"
   dependencies:
@@ -26715,13 +26645,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postgres@npm:^3.4.8":
-  version: 3.4.8
-  resolution: "postgres@npm:3.4.8"
-  checksum: 10/65bf20b4ada953926c05a83f3fb454f10f5db0f05bd1fd2d41ddba4ce16d2038b46a973fd04e0331fb43cb5b6028fda272db438e497bc7c947756790f8fadc52
-  languageName: node
-  linkType: hard
-
 "posthog-js@npm:1.341.0, posthog-js@npm:^1.341.0":
   version: 1.341.0
   resolution: "posthog-js@npm:1.341.0"
@@ -26785,7 +26708,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.1.1, prettier@npm:^3.3.2":
+"prettier@npm:^3.1.1":
   version: 3.3.3
   resolution: "prettier@npm:3.3.3"
   bin:
@@ -27482,7 +27405,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"reflect-metadata@npm:0.2.2, reflect-metadata@npm:^0.2.0, reflect-metadata@npm:^0.2.2":
+"reflect-metadata@npm:^0.2.0, reflect-metadata@npm:^0.2.2":
   version: 0.2.2
   resolution: "reflect-metadata@npm:0.2.2"
   checksum: 10/1c93f9ac790fea1c852fde80c91b2760420069f4862f28e6fae0c00c6937a56508716b0ed2419ab02869dd488d123c4ab92d062ae84e8739ea7417fae10c4745
@@ -29665,7 +29588,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"supertest@npm:^7.1.0, supertest@npm:^7.1.3":
+"supertest@npm:^7.1.3":
   version: 7.1.3
   resolution: "supertest@npm:7.1.3"
   dependencies:
