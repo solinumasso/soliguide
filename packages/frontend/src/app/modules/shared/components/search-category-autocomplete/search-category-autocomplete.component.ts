@@ -262,6 +262,7 @@ export class SearchCategoryAutocompleteComponent
   ) {
     this.search.category = category;
     this.search.word = null;
+    this.search.searchType = AutoCompleteType.CATEGORY;
     this.search.label = this.translateService.instant(category.toUpperCase());
     this.updateCategory.emit();
     this.captureEvent(`click-autocomplete-search-category-${category}`, {
@@ -277,6 +278,7 @@ export class SearchCategoryAutocompleteComponent
     this.search.category = null;
     this.search.word = item?.slug ?? slugString(item?.label);
     this.search.label = item?.label;
+    this.search.searchType = item.type;
     this.updateCategory.emit();
     this.captureEvent(`click-autocomplete-search-word`, {
       keyUsed,

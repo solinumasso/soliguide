@@ -29,6 +29,6 @@ export interface LogSearchPlaces {
   userData: UserForLogs;
   word: string | null;
   updatedAt?: SearchFilterUpdatedAt;
-  suggestionType: AutoCompleteType | "EMPTY";
+  searchType: AutoCompleteType | "EMPTY" | null;
   slug?: string | null;
 }

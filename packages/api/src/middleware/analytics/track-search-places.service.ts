@@ -1,26 +1,26 @@
+import { AutoCompleteType } from "@soliguide/common";
+
 import { ExpressRequest } from "../../_models/express";
 import { TRACKED_EVENTS } from "../../analytics/constants";
 import { PosthogClient } from "../../analytics/services";
-
 import { LogSearchPlaces } from "../../logging/interfaces";
 
 export const getSearchPropertiesFromRequest = (
   req: ExpressRequest
 ): LogSearchPlaces => {
-  const { category, expression } = req.bodyValidated;
+  const { category, searchType, ...bodyRest } = req.bodyValidated;
 
-  const searchType =
-    category && expression
-      ? "expression_and_category"
-      : category
-      ? "category"
-      : "expression";
+  const isStructuredSearch =
+    searchType === AutoCompleteType.ORGANIZATION ||
+    searchType === AutoCompleteType.ESTABLISHMENT_TYPE;
 
   return {
-    ...req.bodyValidated,
+    ...bodyRest,
+    category,
     user: { ...req.userForLogs! },
-    search_type: searchType,
     nbResults: req.nbResults ?? 0,
+    word: isStructuredSearch ? null : bodyRest.word ?? null,
+    searchType: searchType ?? null,
   };
 };
 
