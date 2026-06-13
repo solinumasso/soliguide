@@ -29,10 +29,7 @@
                       }
                     }
                   },
-                  "required": [
-                    "nbResults",
-                    "places"
-                  ],
+                  "required": ["nbResults", "places"],
                   "additionalProperties": false,
                   "id": "v20260101SearchResponse"
                 }
@@ -41,9 +38,7 @@
           }
         },
         "summary": "Search places",
-        "tags": [
-          "search"
-        ],
+        "tags": ["search"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -122,9 +117,7 @@
                   },
                   "languages": {
                     "description": "Filter places by languages spoken at the place.",
-                    "example": [
-                      "fr"
-                    ],
+                    "example": ["fr"],
                     "nullable": true,
                     "type": "array",
                     "items": {
@@ -155,9 +148,7 @@
                     ]
                   }
                 },
-                "required": [
-                  "location"
-                ],
+                "required": ["location"],
                 "additionalProperties": {},
                 "description": "Exhaustive request body schema for POST /new-search/:lang? (non-admin route).",
                 "id": "v20260101SearchRequest"
@@ -180,11 +171,7 @@
     "schemas": {
       "Common_SoliguideCountries": {
         "type": "string",
-        "enum": [
-          "fr",
-          "es",
-          "ad"
-        ],
+        "enum": ["fr", "es", "ad"],
         "description": "Country code restricted to Soliguide countries. Format ISO 3166-1 alpha-2.",
         "id": "Common_SoliguideCountries"
       },
@@ -195,9 +182,7 @@
             "properties": {
               "geoType": {
                 "type": "string",
-                "enum": [
-                  "position"
-                ]
+                "enum": ["position"]
               },
               "geoValue": {
                 "description": "Geographic identifier for non-position searches (country, region, department, city, etc.).",
@@ -212,10 +197,7 @@
                   "type": "number"
                 },
                 "description": "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON.",
-                "example": [
-                  2.3522,
-                  48.8566
-                ]
+                "example": [2.3522, 48.8566]
               },
               "distance": {
                 "description": "Search radius in kilometers for position-based search.",
@@ -258,10 +240,7 @@
                 ]
               }
             },
-            "required": [
-              "geoType",
-              "coordinates"
-            ],
+            "required": ["geoType", "coordinates"],
             "additionalProperties": {}
           },
           {
@@ -269,9 +248,7 @@
             "properties": {
               "geoType": {
                 "type": "string",
-                "enum": [
-                  "inconnu"
-                ]
+                "enum": ["inconnu"]
               },
               "geoValue": {
                 "description": "Geographic identifier for non-position searches (country, region, department, city, etc.).",
@@ -329,9 +306,7 @@
                 ]
               }
             },
-            "required": [
-              "geoType"
-            ],
+            "required": ["geoType"],
             "additionalProperties": {}
           },
           {
@@ -339,9 +314,7 @@
             "properties": {
               "geoType": {
                 "type": "string",
-                "enum": [
-                  "codePostal"
-                ]
+                "enum": ["codePostal"]
               },
               "geoValue": {
                 "type": "string",
@@ -400,10 +373,7 @@
                 ]
               }
             },
-            "required": [
-              "geoType",
-              "geoValue"
-            ],
+            "required": ["geoType", "geoValue"],
             "additionalProperties": {}
           },
           {
@@ -411,9 +381,7 @@
             "properties": {
               "geoType": {
                 "type": "string",
-                "enum": [
-                  "ville"
-                ]
+                "enum": ["ville"]
               },
               "geoValue": {
                 "type": "string",
@@ -472,10 +440,7 @@
                 ]
               }
             },
-            "required": [
-              "geoType",
-              "geoValue"
-            ],
+            "required": ["geoType", "geoValue"],
             "additionalProperties": {}
           },
           {
@@ -483,17 +448,11 @@
             "properties": {
               "geoType": {
                 "type": "string",
-                "enum": [
-                  "pays"
-                ]
+                "enum": ["pays"]
               },
               "geoValue": {
                 "type": "string",
-                "enum": [
-                  "fr",
-                  "es",
-                  "ad"
-                ],
+                "enum": ["fr", "es", "ad"],
                 "description": "Country code searched when `geoType` is `country`. Restricted to Soliguide countries. Format ISO 3166-1 alpha-2.",
                 "example": "fr"
               },
@@ -548,10 +507,7 @@
                 ]
               }
             },
-            "required": [
-              "geoType",
-              "geoValue"
-            ],
+            "required": ["geoType", "geoValue"],
             "additionalProperties": {}
           },
           {
@@ -559,9 +515,7 @@
             "properties": {
               "geoType": {
                 "type": "string",
-                "enum": [
-                  "departement"
-                ]
+                "enum": ["departement"]
               },
               "geoValue": {
                 "type": "string",
@@ -620,10 +574,7 @@
                 ]
               }
             },
-            "required": [
-              "geoType",
-              "geoValue"
-            ],
+            "required": ["geoType", "geoValue"],
             "additionalProperties": {}
           },
           {
@@ -631,9 +582,7 @@
             "properties": {
               "geoType": {
                 "type": "string",
-                "enum": [
-                  "region"
-                ]
+                "enum": ["region"]
               },
               "geoValue": {
                 "type": "string",
@@ -692,10 +641,7 @@
                 ]
               }
             },
-            "required": [
-              "geoType",
-              "geoValue"
-            ],
+            "required": ["geoType", "geoValue"],
             "additionalProperties": {}
           },
           {
@@ -703,9 +649,7 @@
             "properties": {
               "geoType": {
                 "type": "string",
-                "enum": [
-                  "citiesGroup"
-                ]
+                "enum": ["citiesGroup"]
               },
               "geoValue": {
                 "type": "string",
@@ -764,10 +708,7 @@
                 ]
               }
             },
-            "required": [
-              "geoType",
-              "geoValue"
-            ],
+            "required": ["geoType", "geoValue"],
             "additionalProperties": {}
           }
         ],
@@ -914,10 +855,7 @@
       },
       "Common_PlaceType": {
         "type": "string",
-        "enum": [
-          "LIEU",
-          "PARCOURS_MOBILE"
-        ],
+        "enum": ["LIEU", "PARCOURS_MOBILE"],
         "id": "Common_PlaceType"
       },
       "SearchRequest_Modalities": {
@@ -1040,42 +978,22 @@
       },
       "Common_WelcomedPublics": {
         "type": "number",
-        "enum": [
-          0,
-          1,
-          2
-        ],
+        "enum": [0, 1, 2],
         "id": "Common_WelcomedPublics"
       },
       "Common_PublicsGender": {
         "type": "string",
-        "enum": [
-          "all",
-          "men",
-          "women"
-        ],
+        "enum": ["all", "men", "women"],
         "id": "Common_PublicsGender"
       },
       "Common_PublicsAdministrative": {
         "type": "string",
-        "enum": [
-          "all",
-          "regular",
-          "asylum",
-          "refugee",
-          "undocumented"
-        ],
+        "enum": ["all", "regular", "asylum", "refugee", "undocumented"],
         "id": "Common_PublicsAdministrative"
       },
       "Common_PublicsFamily": {
         "type": "string",
-        "enum": [
-          "all",
-          "isolated",
-          "family",
-          "couple",
-          "pregnant"
-        ],
+        "enum": ["all", "isolated", "family", "couple", "pregnant"],
         "id": "Common_PublicsFamily"
       },
       "Common_PublicsOther": {
@@ -1275,11 +1193,7 @@
       },
       "Common_UpdatedAtInterval": {
         "type": "string",
-        "enum": [
-          "SPECIFIC_DAY",
-          "BEFORE_DAY",
-          "AFTER_DAY"
-        ],
+        "enum": ["SPECIFIC_DAY", "BEFORE_DAY", "AFTER_DAY"],
         "id": "Common_UpdatedAtInterval"
       },
       "SearchRequest_Options": {
@@ -1537,10 +1451,7 @@
           },
           "languages": {
             "description": "Languages spoken at the place.",
-            "example": [
-              "fr",
-              "en"
-            ],
+            "example": ["fr", "en"],
             "nullable": true,
             "type": "array",
             "items": {
@@ -1611,22 +1522,14 @@
       },
       "Common_PlaceStatus": {
         "type": "string",
-        "enum": [
-          "DRAFT",
-          "ONLINE",
-          "PERMANENTLY_CLOSED",
-          "OFFLINE"
-        ],
+        "enum": ["DRAFT", "ONLINE", "PERMANENTLY_CLOSED", "OFFLINE"],
         "description": "Indicate if this place is currently published.",
         "id": "Common_PlaceStatus",
         "example": "ONLINE"
       },
       "Common_PlaceVisibility": {
         "type": "string",
-        "enum": [
-          "ALL",
-          "PRO"
-        ],
+        "enum": ["ALL", "PRO"],
         "description": "Indicates who has access to information about this place.",
         "id": "Common_PlaceVisibility",
         "example": "ALL"
@@ -1696,12 +1599,7 @@
             ]
           }
         },
-        "required": [
-          "filename",
-          "mimetype",
-          "path",
-          "lieu_id"
-        ],
+        "required": ["filename", "mimetype", "path", "lieu_id"],
         "additionalProperties": {},
         "id": "SearchResponse_Photo"
       },
@@ -1878,12 +1776,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "category",
-          "isOpenToday",
-          "serviceObjectId",
-          "createdAt"
-        ],
+        "required": ["category", "isOpenToday", "serviceObjectId", "createdAt"],
         "additionalProperties": {},
         "id": "SearchResponse_Service"
       },
@@ -1975,11 +1868,7 @@
       },
       "Common_PlaceClosedHolidays": {
         "type": "string",
-        "enum": [
-          "CLOSED",
-          "OPEN",
-          "UNKNOWN"
-        ],
+        "enum": ["CLOSED", "OPEN", "UNKNOWN"],
         "id": "Common_PlaceClosedHolidays"
       },
       "SearchResponse_DayOpeningHours": {
@@ -2096,10 +1985,7 @@
             "additionalProperties": false
           },
           "docs": {
-            "example": [
-              "pieceIdentite",
-              "justificatifDomicile"
-            ],
+            "example": ["pieceIdentite", "justificatifDomicile"],
             "nullable": true,
             "type": "array",
             "items": {
@@ -2145,31 +2031,21 @@
             "anyOf": [
               {
                 "type": "number",
-                "enum": [
-                  0
-                ]
+                "enum": [0]
               },
               {
                 "type": "number",
-                "enum": [
-                  1
-                ]
+                "enum": [1]
               },
               {
                 "type": "number",
-                "enum": [
-                  2
-                ]
+                "enum": [2]
               }
             ]
           },
           "administrative": {
             "description": "Administrative statuses accepted by the place. If every possible value is selected, it means there is no restriction.",
-            "example": [
-              "regular",
-              "asylum",
-              "refugee"
-            ],
+            "example": ["regular", "asylum", "refugee"],
             "nullable": true,
             "type": "array",
             "items": {
@@ -2204,10 +2080,7 @@
           },
           "familialle": {
             "description": "Family situations accepted by the place. If every possible value is selected, it means there is no restriction.",
-            "example": [
-              "isolated",
-              "family"
-            ],
+            "example": ["isolated", "family"],
             "nullable": true,
             "type": "array",
             "items": {
@@ -2216,10 +2089,7 @@
           },
           "gender": {
             "description": "Gender-related restrictions or adaptations. If every possible value is selected, it means there is no restriction.",
-            "example": [
-              "men",
-              "women"
-            ],
+            "example": ["men", "women"],
             "nullable": true,
             "type": "array",
             "items": {
@@ -2246,11 +2116,7 @@
       },
       "Common_ServiceSaturation": {
         "type": "string",
-        "enum": [
-          "LOW",
-          "MODERATE",
-          "HIGH"
-        ],
+        "enum": ["LOW", "MODERATE", "HIGH"],
         "id": "Common_ServiceSaturation"
       },
       "SearchResponse_CategorySpecificFields": {
@@ -2266,10 +2132,7 @@
             "type": "string"
           },
           "availableEquipmentType": {
-            "example": [
-              "oven",
-              "microwaves"
-            ],
+            "example": ["oven", "microwaves"],
             "nullable": true,
             "type": "array",
             "items": {
@@ -2277,9 +2140,7 @@
             }
           },
           "babyParcelAgeType": {
-            "example": [
-              "under_six_months"
-            ],
+            "example": ["under_six_months"],
             "nullable": true,
             "type": "array",
             "items": {
@@ -2302,10 +2163,7 @@
             "type": "string"
           },
           "dietaryAdaptationsType": {
-            "example": [
-              "vegetarian",
-              "halal"
-            ],
+            "example": ["vegetarian", "halal"],
             "nullable": true,
             "type": "array",
             "items": {
@@ -2323,10 +2181,7 @@
             "type": "string"
           },
           "foodProductType": {
-            "example": [
-              "fresh_produce",
-              "non_perishable"
-            ],
+            "example": ["fresh_produce", "non_perishable"],
             "nullable": true,
             "type": "array",
             "items": {
@@ -2356,10 +2211,7 @@
             "type": "string"
           },
           "serviceStyleType": {
-            "example": [
-              "indoor_seating",
-              "take_away"
-            ],
+            "example": ["indoor_seating", "take_away"],
             "nullable": true,
             "type": "array",
             "items": {
@@ -2402,16 +2254,11 @@
                 "example": "Point",
                 "nullable": true,
                 "type": "string",
-                "enum": [
-                  "Point"
-                ]
+                "enum": ["Point"]
               },
               "coordinates": {
                 "description": "Geographic coordinates of the place as `[longitude, latitude]`. Format GeoJSON..",
-                "example": [
-                  2.3522,
-                  48.8566
-                ],
+                "example": [2.3522, 48.8566],
                 "nullable": true,
                 "type": "array",
                 "items": {
@@ -2909,9 +2756,7 @@
                   "type": "string"
                 }
               },
-              "required": [
-                "id"
-              ],
+              "required": ["id"],
               "additionalProperties": {}
             }
           },
@@ -2934,10 +2779,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "isOrigin",
-          "name"
-        ],
+        "required": ["isOrigin", "name"],
         "additionalProperties": {},
         "id": "SearchResponse_Source"
       },
