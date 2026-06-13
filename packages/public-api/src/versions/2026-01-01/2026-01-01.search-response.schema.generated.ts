@@ -195,13 +195,13 @@ const positionSchema = z
       .meta({ example: "11" }),
     slugs: z
       .looseObject({
-        city: z
+        city: z.string().nullable().optional().meta({ example: "paris-75013" }),
+        country: z.string().nullable().optional().meta({ example: "france" }),
+        departement: z
           .string()
           .nullable()
           .optional()
-          .meta({ example: "paris-75013" }),
-        country: z.string().nullable().optional().meta({ example: "france" }),
-        departement: z.string().nullable().optional().meta({ example: "paris" }),
+          .meta({ example: "paris" }),
         department: z.string().nullable().optional().meta({ example: "paris" }),
         pays: z.string().nullable().optional().meta({ example: "france" }),
         region: z
@@ -858,9 +858,7 @@ const phoneSchema = z
       .boolean()
       .nullable()
       .optional()
-      .describe(
-        "Indicates whether the phone number is a special short number."
-      )
+      .describe("Indicates whether the phone number is a special short number.")
       .meta({ example: false }),
   })
   .meta({ id: "SearchResponse_Phone" });
@@ -919,13 +917,9 @@ const slugsSchema = z
           .nullable()
           .optional()
           .meta({ example: "distribution-repas-chauds-soir" }),
-        name: z
-          .string()
-          .nullable()
-          .optional()
-          .meta({
-            example: "camions-des-restos-du-coeur-salpetriere-paris-169",
-          }),
+        name: z.string().nullable().optional().meta({
+          example: "camions-des-restos-du-coeur-salpetriere-paris-169",
+        }),
       })
       .nullable()
       .optional(),

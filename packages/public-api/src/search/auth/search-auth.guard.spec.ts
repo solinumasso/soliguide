@@ -64,7 +64,9 @@ describe("SearchAuthGuard", () => {
       ForbiddenException
     );
 
-    await expect(guard.canActivate(buildContext(request))).rejects.toMatchObject({
+    await expect(
+      guard.canActivate(buildContext(request))
+    ).rejects.toMatchObject({
       response: { message: "FORBIDDEN_ACCESS" },
     });
   });
@@ -82,7 +84,9 @@ describe("SearchAuthGuard", () => {
       authorization: "JWT token",
     });
 
-    await expect(guard.canActivate(buildContext(request))).rejects.toMatchObject({
+    await expect(
+      guard.canActivate(buildContext(request))
+    ).rejects.toMatchObject({
       response: { message: "FORBIDDEN_API_USER" },
     });
   });

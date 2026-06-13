@@ -1,8 +1,6 @@
 # Lanzamiento de la API pública de Soliguide
 
-> **Fecha de puesta a disposición**: _por confirmar_
-> **Fin del soporte de la API actual (`https://api.soliguide.fr`)**: _por confirmar_
-> **Contacto**: api@solinum.org
+> **Fecha de puesta a disposición**: _por confirmar_ > **Fin del soporte de la API actual (`https://api.soliguide.fr`)**: _por confirmar_ > **Contacto**: api@solinum.org
 
 ## A quién va dirigido este documento
 
@@ -21,12 +19,12 @@ Una nueva API pública reemplaza progresivamente los endpoints `/new-search` y `
 
 ## Endpoint y autenticación
 
-| Aspecto       | Antes                                  | Después                                |
-| ------------- | -------------------------------------- | -------------------------------------- |
-| Base URL      | `https://api.soliguide.fr`             | _por confirmar_                        |
-| Búsqueda      | `POST /new-search`                     | `POST /search`                         |
-| Auth          | `Authorization: JWT <token>`           | **Sin cambios**: `JWT <token>`         |
-| Documentación | Notion (enlace compartido)             | `/api/docs` (Scalar), `/openapi/<version>.json` |
+| Aspecto       | Antes                        | Después                                         |
+| ------------- | ---------------------------- | ----------------------------------------------- |
+| Base URL      | `https://api.soliguide.fr`   | _por confirmar_                                 |
+| Búsqueda      | `POST /new-search`           | `POST /search`                                  |
+| Auth          | `Authorization: JWT <token>` | **Sin cambios**: `JWT <token>`                  |
+| Documentación | Notion (enlace compartido)   | `/api/docs` (Scalar), `/openapi/<version>.json` |
 
 El token JWT sigue siendo el proporcionado por Solinum al firmar el convenio de colaboración.
 
@@ -36,35 +34,35 @@ Para referencia, aquí están los esquemas tal como los conocen hoy en `https://
 
 ### Cuerpo de petición `POST /new-search`
 
-| Campo                         | Tipo                  | Obligatorio            | Descripción (legacy)                                   | Nuevo                                            |
-| ----------------------------- | --------------------- | ---------------------- | ------------------------------------------------------ | ------------------------------------------------ |
-| `location`                    | object                | ✓                      | Restricción geográfica principal                       | Sin cambios (+ `locations[]` para multi-zona)    |
-| `location.geoType`            | string                | ✓                      | `pays \| region \| departement \| ville \| codePostal \| position` | Igual + `citiesGroup`, `inconnu`       |
-| `location.geoValue`           | string                | según `geoType`        | Slug o código de la zona                               | Igual; restringido a `fr \| es \| ad` si `geoType=pays` |
-| `location.coordinates`        | `[number, number]`    | si `geoType=position`  | `[lng, lat]`                                           | Sin cambios                                      |
-| `location.distance`           | number                | —                      | Radio en km (por defecto 10)                           | Sin cambios                                      |
-| `category`                    | string                | —                      | Slug de una categoría (hijos incluidos recursivamente) | Sin cambios                                      |
-| `categories`                  | `string[] \| number[]`| —                      | Slugs o IDs numéricos (legacy)                         | **Solo slugs** (IDs numéricos rechazados)        |
-| `options.page`                | number                | —                      | Por defecto `1`                                        | Sin cambios                                      |
-| `options.limit`               | number                | —                      | Por defecto **`20`**                                   | Por defecto **`10`**                             |
-| `options.fields`              | string                | —                      | Lista separada por espacios (`"lieu_id name"`)         | Sin cambios                                      |
-| `openToday`                   | boolean               | —                      | Al menos un servicio abierto hoy                       | Sin cambios                                      |
-| `updatedAt.value`             | string                | —                      | Formato **`YYYY/MM/DD HH:mm`**                         | Formato **ISO 8601**                             |
-| `updatedAt.intervalType`      | enum                  | —                      | `SPECIFIC_DAY \| BEFORE_DAY \| AFTER_DAY`              | Sin cambios                                      |
-| `publics.age`                 | number                | —                      | Edad objetivo (entero)                                 | Objeto `{ min, max }` (0–99)                     |
-| `publics.gender`              | string[]              | —                      | `men`, `women`                                         | Sin cambios                                      |
-| `publics.administrative`      | string[]              | —                      | `regular`, `asylum`, `refugee`, `undocumented`         | Sin cambios                                      |
-| `publics.familialle`          | string[]              | —                      | `isolated`, `family`, `couple`, `pregnant`             | Sin cambios (typo `familialle` conservado)       |
-| `publics.other`               | string[]              | —                      | `violence`, `addiction`, `handicap`, `lgbt+`, `hiv`, `prostitution`, `prison` | Sin cambios            |
-| `publics.accueil`             | `0 \| 1 \| 2`         | —                      | Incondicional / preferencial / exclusivo               | Enum `unconditional \| preferential \| exclusive` |
-| `modalities.appointment`      | boolean               | —                      | Con cita previa                                        | Sin cambios                                      |
-| `modalities.inscription`      | boolean               | —                      | Inscripción previa requerida                           | Sin cambios                                      |
-| `modalities.orientation`      | boolean               | —                      | Orientación requerida                                  | Sin cambios                                      |
-| `modalities.inconditionnel`   | boolean               | —                      | Acceso incondicional (anula las demás modalidades)     | Sin cambios                                      |
-| _(nuevo)_                     |                       |                        |                                                        | `modalities.animal`, `modalities.pmr`, `modalities.price`, `modalities.sign` |
-| _(nuevo)_                     |                       |                        |                                                        | `options.sortBy`, `options.sortValue`            |
-| _(nuevo)_                     |                       |                        |                                                        | `placeType` (`PLACE` \| `ITINERARY`)             |
-| `word`                        | string                | —                      | Búsqueda por texto sobre el nombre de la estructura    | Sin cambios                                      |
+| Campo                       | Tipo                   | Obligatorio           | Descripción (legacy)                                                          | Nuevo                                                                        |
+| --------------------------- | ---------------------- | --------------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `location`                  | object                 | ✓                     | Restricción geográfica principal                                              | Sin cambios (+ `locations[]` para multi-zona)                                |
+| `location.geoType`          | string                 | ✓                     | `pays \| region \| departement \| ville \| codePostal \| position`            | Igual + `citiesGroup`, `inconnu`                                             |
+| `location.geoValue`         | string                 | según `geoType`       | Slug o código de la zona                                                      | Igual; restringido a `fr \| es \| ad` si `geoType=pays`                      |
+| `location.coordinates`      | `[number, number]`     | si `geoType=position` | `[lng, lat]`                                                                  | Sin cambios                                                                  |
+| `location.distance`         | number                 | —                     | Radio en km (por defecto 10)                                                  | Sin cambios                                                                  |
+| `category`                  | string                 | —                     | Slug de una categoría (hijos incluidos recursivamente)                        | Sin cambios                                                                  |
+| `categories`                | `string[] \| number[]` | —                     | Slugs o IDs numéricos (legacy)                                                | **Solo slugs** (IDs numéricos rechazados)                                    |
+| `options.page`              | number                 | —                     | Por defecto `1`                                                               | Sin cambios                                                                  |
+| `options.limit`             | number                 | —                     | Por defecto **`20`**                                                          | Por defecto **`10`**                                                         |
+| `options.fields`            | string                 | —                     | Lista separada por espacios (`"lieu_id name"`)                                | Sin cambios                                                                  |
+| `openToday`                 | boolean                | —                     | Al menos un servicio abierto hoy                                              | Sin cambios                                                                  |
+| `updatedAt.value`           | string                 | —                     | Formato **`YYYY/MM/DD HH:mm`**                                                | Formato **ISO 8601**                                                         |
+| `updatedAt.intervalType`    | enum                   | —                     | `SPECIFIC_DAY \| BEFORE_DAY \| AFTER_DAY`                                     | Sin cambios                                                                  |
+| `publics.age`               | number                 | —                     | Edad objetivo (entero)                                                        | Objeto `{ min, max }` (0–99)                                                 |
+| `publics.gender`            | string[]               | —                     | `men`, `women`                                                                | Sin cambios                                                                  |
+| `publics.administrative`    | string[]               | —                     | `regular`, `asylum`, `refugee`, `undocumented`                                | Sin cambios                                                                  |
+| `publics.familialle`        | string[]               | —                     | `isolated`, `family`, `couple`, `pregnant`                                    | Sin cambios (typo `familialle` conservado)                                   |
+| `publics.other`             | string[]               | —                     | `violence`, `addiction`, `handicap`, `lgbt+`, `hiv`, `prostitution`, `prison` | Sin cambios                                                                  |
+| `publics.accueil`           | `0 \| 1 \| 2`          | —                     | Incondicional / preferencial / exclusivo                                      | Enum `unconditional \| preferential \| exclusive`                            |
+| `modalities.appointment`    | boolean                | —                     | Con cita previa                                                               | Sin cambios                                                                  |
+| `modalities.inscription`    | boolean                | —                     | Inscripción previa requerida                                                  | Sin cambios                                                                  |
+| `modalities.orientation`    | boolean                | —                     | Orientación requerida                                                         | Sin cambios                                                                  |
+| `modalities.inconditionnel` | boolean                | —                     | Acceso incondicional (anula las demás modalidades)                            | Sin cambios                                                                  |
+| _(nuevo)_                   |                        |                       |                                                                               | `modalities.animal`, `modalities.pmr`, `modalities.price`, `modalities.sign` |
+| _(nuevo)_                   |                        |                       |                                                                               | `options.sortBy`, `options.sortValue`                                        |
+| _(nuevo)_                   |                        |                       |                                                                               | `placeType` (`PLACE` \| `ITINERARY`)                                         |
+| `word`                      | string                 | —                     | Búsqueda por texto sobre el nombre de la estructura                           | Sin cambios                                                                  |
 
 ### Respuesta `POST /new-search` — nivel superior
 
@@ -76,74 +74,74 @@ Esta estructura es **sin cambios** en la nueva API.
 
 ### Objeto `Place` (respuesta de `GET /place/:lieu_id` y elementos de `places[]`)
 
-| Campo              | Tipo                                                    | Descripción (legacy)                                          | Nuevo                                                                   |
-| ------------------ | ------------------------------------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `lieu_id`          | number                                                  | Identificador único del lugar                                 | Sin cambios                                                             |
-| `name`             | string                                                  | Nombre del lugar                                              | Sin cambios                                                             |
-| `status`           | enum                                                    | `DRAFT \| ONLINE \| OFFLINE \| CLOSED` (OFFLINE = sin actualizar >6 meses) | Sin cambios                                                |
-| `position`         | object                                                  | Bloque de dirección + coordenadas                             | Ver abajo                                                               |
-| `services_all`     | `Service[]`                                             | Servicios ofrecidos por el lugar                              | Sin cambios (ver detalle Service abajo)                                 |
-| `sources`          | `Source[]`                                              | Fuentes de origen de la referencia                            | Sin cambios                                                             |
-| `closedHolidays`   | enum                                                    | `UNKNOWN \| OPEN \| CLOSED`                                   | Sin cambios                                                             |
-| `sourceLanguage`   | string                                                  | Idioma de origen del dato (ISO 639-3)                         | Sin cambios                                                             |
-| `country`          | string                                                  | Código país ISO 3166-1 alpha-2                                | Restringido a `fr \| es \| ad`                                          |
-| `languages`        | string[]                                                | Idiomas hablados (ISO 639-3)                                  | Sin cambios                                                             |
-| `createdAt`        | date                                                    | Fecha de creación                                             | Sin cambios                                                             |
-| `updatedAt`        | date                                                    | Fecha de última actualización                                 | Sin cambios                                                             |
+| Campo            | Tipo        | Descripción (legacy)                                                       | Nuevo                                   |
+| ---------------- | ----------- | -------------------------------------------------------------------------- | --------------------------------------- |
+| `lieu_id`        | number      | Identificador único del lugar                                              | Sin cambios                             |
+| `name`           | string      | Nombre del lugar                                                           | Sin cambios                             |
+| `status`         | enum        | `DRAFT \| ONLINE \| OFFLINE \| CLOSED` (OFFLINE = sin actualizar >6 meses) | Sin cambios                             |
+| `position`       | object      | Bloque de dirección + coordenadas                                          | Ver abajo                               |
+| `services_all`   | `Service[]` | Servicios ofrecidos por el lugar                                           | Sin cambios (ver detalle Service abajo) |
+| `sources`        | `Source[]`  | Fuentes de origen de la referencia                                         | Sin cambios                             |
+| `closedHolidays` | enum        | `UNKNOWN \| OPEN \| CLOSED`                                                | Sin cambios                             |
+| `sourceLanguage` | string      | Idioma de origen del dato (ISO 639-3)                                      | Sin cambios                             |
+| `country`        | string      | Código país ISO 3166-1 alpha-2                                             | Restringido a `fr \| es \| ad`          |
+| `languages`      | string[]    | Idiomas hablados (ISO 639-3)                                               | Sin cambios                             |
+| `createdAt`      | date        | Fecha de creación                                                          | Sin cambios                             |
+| `updatedAt`      | date        | Fecha de última actualización                                              | Sin cambios                             |
 
 ### Sub-objeto `position`
 
-| Campo legacy (FR)         | Estado         | Campo nuevo (EN)                       | Notas                                                       |
-| ------------------------- | -------------- | -------------------------------------- | ----------------------------------------------------------- |
-| `adresse`                 | `@deprecated`  | `address`                              | Alias conservado en `2026-01-01`, eliminación anunciada     |
-| `codePostal`              | `@deprecated`  | `postalCode`                           | Alias conservado en `2026-01-01`, eliminación anunciada     |
-| `complementAdresse`       | `@deprecated`  | `additionalInformation`                | Alias conservado en `2026-01-01`, eliminación anunciada     |
-| `departement`             | `@deprecated`  | `department`                           | Alias conservado en `2026-01-01`, eliminación anunciada     |
-| `departementCode`         | `@deprecated`  | `departmentCode`                       | Ej.: `974`, `2A`, `91`, `06`                                |
-| `pays`                    | `@deprecated`  | `country`                              | Ahora restringido a `fr \| es \| ad`                        |
-| `ville`                   | `@deprecated`  | `city`                                 | Alias conservado en `2026-01-01`, eliminación anunciada     |
-| —                         |                | `cityCode`                             | Código administrativo de la ciudad                          |
-| —                         |                | `region`                               |                                                             |
-| —                         |                | `regionCode`                           |                                                             |
-| —                         |                | `timeZone`                             | Formato IANA (`Europe/Paris`, etc.)                         |
-| `location` (`{coordinates, type}`) | conservado | `location` (`{coordinates, type}`)    | GeoJSON Point sin cambios                                    |
+| Campo legacy (FR)                  | Estado        | Campo nuevo (EN)                   | Notas                                                   |
+| ---------------------------------- | ------------- | ---------------------------------- | ------------------------------------------------------- |
+| `adresse`                          | `@deprecated` | `address`                          | Alias conservado en `2026-01-01`, eliminación anunciada |
+| `codePostal`                       | `@deprecated` | `postalCode`                       | Alias conservado en `2026-01-01`, eliminación anunciada |
+| `complementAdresse`                | `@deprecated` | `additionalInformation`            | Alias conservado en `2026-01-01`, eliminación anunciada |
+| `departement`                      | `@deprecated` | `department`                       | Alias conservado en `2026-01-01`, eliminación anunciada |
+| `departementCode`                  | `@deprecated` | `departmentCode`                   | Ej.: `974`, `2A`, `91`, `06`                            |
+| `pays`                             | `@deprecated` | `country`                          | Ahora restringido a `fr \| es \| ad`                    |
+| `ville`                            | `@deprecated` | `city`                             | Alias conservado en `2026-01-01`, eliminación anunciada |
+| —                                  |               | `cityCode`                         | Código administrativo de la ciudad                      |
+| —                                  |               | `region`                           |                                                         |
+| —                                  |               | `regionCode`                       |                                                         |
+| —                                  |               | `timeZone`                         | Formato IANA (`Europe/Paris`, etc.)                     |
+| `location` (`{coordinates, type}`) | conservado    | `location` (`{coordinates, type}`) | GeoJSON Point sin cambios                               |
 
 ### Objeto `Service`
 
-| Campo legacy                    | Estado          | Campo equivalente (nuevo)                             |
-| ------------------------------- | --------------- | ----------------------------------------------------- |
-| `categorie: Number`             | `@deprecated`   | `category: string` (slug)                             |
-| `categorie` (IDs numéricos en filtro de entrada) | `@deprecated` | Solo slugs                                |
-| `services_all[].name`           | `@deprecated`   | Migrado a `categorySpecificFields` (ver abajo)        |
-| `services_all[].jobsList`       | `@deprecated`   | `categorySpecificFields.jobsList`                     |
-| `category`                      | `@new`          | Slug de categoría — única fuente de verdad            |
-| `categorySpecificFields`        | `@new`          | Campos polimórficos según la categoría                |
-| `close`                         | conservado      | Cierre temporal (`actif`, fechas inicio/fin)          |
-| `status` (saturación)           | conservado      | Nivel de saturación                                   |
+| Campo legacy                                     | Estado        | Campo equivalente (nuevo)                      |
+| ------------------------------------------------ | ------------- | ---------------------------------------------- |
+| `categorie: Number`                              | `@deprecated` | `category: string` (slug)                      |
+| `categorie` (IDs numéricos en filtro de entrada) | `@deprecated` | Solo slugs                                     |
+| `services_all[].name`                            | `@deprecated` | Migrado a `categorySpecificFields` (ver abajo) |
+| `services_all[].jobsList`                        | `@deprecated` | `categorySpecificFields.jobsList`              |
+| `category`                                       | `@new`        | Slug de categoría — única fuente de verdad     |
+| `categorySpecificFields`                         | `@new`        | Campos polimórficos según la categoría         |
+| `close`                                          | conservado    | Cierre temporal (`actif`, fechas inicio/fin)   |
+| `status` (saturación)                            | conservado    | Nivel de saturación                            |
 
 ### `categorySpecificFields` (campos polimórficos por categoría)
 
 Campo opcional en cada `Service`, depende de la categoría. Resumen:
 
-| Campo                              | Tipo      | Categorías objetivo                                                                                          |
-| ---------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------ |
-| `activityName`                     | string    | `sport_activities`, `other_activities`                                                                       |
-| `availableEquipmentType`           | enum[]    | `shared_kitchen` (`oven`, `microwaves`, `dishwasher`, `cutlery`, `kettle`, `pans`, `frying_pan`, `strainer`, `other`) |
-| `availableEquipmentPrecisions`     | string    | `shared_kitchen` cuando `other`                                                                              |
-| `babyParcelAgeType`                | enum[]    | `baby_parcel` (`under_six_months`, `between_6_and_12_months`, `between_12_and_18_months`, `over_18_months`)  |
-| `canteensMealType`                 | enum      | `seated_catering` (`petitdej`, `collation`, `boisson`, `dejeuner`, `diner`)                                  |
-| `courseType`                       | enum      | `french_course` (`alphabetisation`, `asl`, `fle`)                                                            |
-| `degreeOfChoiceType`               | enum      | Servicios food (`free_choice`, `accompagnied_choice`, `no_choice`)                                           |
-| `dietaryAdaptationsType`           | enum[]    | Food (`vegetarian`, `halal`, `gluten_free`, `salt_free`, `kosher`, `lactose_free`)                           |
-| `dietaryRegimesType`               | enum      | Food (`we_adapt`, `try_to_adapt`)                                                                            |
-| `domiciliationType`                | enum      | `domiciliation` (`domi1` derecho común, `domi2` refugiados, `domi4` apartado postal)                         |
-| `foodProductType`                  | enum[]    | `food_packages`, `social_grocery_stores`                                                                     |
-| `hygieneProductType`               | enum      | `hygiene_products` (`sanitary_materials`, `other_care_products`)                                             |
-| `jobsList`                         | string    | `integration_through_economic_activity`                                                                      |
-| `mobilityAssistanceName`           | string    | `mobility_assistance`                                                                                        |
-| `serviceStyleType`                 | enum[]    | `food_distribution` (`indoor_seating`, `outdoor_seating`, `take_away`, `delivery`)                           |
-| `voucherType`                      | enum      | `food_voucher` (`food_voucher`, `food_stamp`, `food_cheque`, `other`)                                        |
-| `wellnessActivityName`             | string    | `wellness`                                                                                                   |
+| Campo                          | Tipo   | Categorías objetivo                                                                                                   |
+| ------------------------------ | ------ | --------------------------------------------------------------------------------------------------------------------- |
+| `activityName`                 | string | `sport_activities`, `other_activities`                                                                                |
+| `availableEquipmentType`       | enum[] | `shared_kitchen` (`oven`, `microwaves`, `dishwasher`, `cutlery`, `kettle`, `pans`, `frying_pan`, `strainer`, `other`) |
+| `availableEquipmentPrecisions` | string | `shared_kitchen` cuando `other`                                                                                       |
+| `babyParcelAgeType`            | enum[] | `baby_parcel` (`under_six_months`, `between_6_and_12_months`, `between_12_and_18_months`, `over_18_months`)           |
+| `canteensMealType`             | enum   | `seated_catering` (`petitdej`, `collation`, `boisson`, `dejeuner`, `diner`)                                           |
+| `courseType`                   | enum   | `french_course` (`alphabetisation`, `asl`, `fle`)                                                                     |
+| `degreeOfChoiceType`           | enum   | Servicios food (`free_choice`, `accompagnied_choice`, `no_choice`)                                                    |
+| `dietaryAdaptationsType`       | enum[] | Food (`vegetarian`, `halal`, `gluten_free`, `salt_free`, `kosher`, `lactose_free`)                                    |
+| `dietaryRegimesType`           | enum   | Food (`we_adapt`, `try_to_adapt`)                                                                                     |
+| `domiciliationType`            | enum   | `domiciliation` (`domi1` derecho común, `domi2` refugiados, `domi4` apartado postal)                                  |
+| `foodProductType`              | enum[] | `food_packages`, `social_grocery_stores`                                                                              |
+| `hygieneProductType`           | enum   | `hygiene_products` (`sanitary_materials`, `other_care_products`)                                                      |
+| `jobsList`                     | string | `integration_through_economic_activity`                                                                               |
+| `mobilityAssistanceName`       | string | `mobility_assistance`                                                                                                 |
+| `serviceStyleType`             | enum[] | `food_distribution` (`indoor_seating`, `outdoor_seating`, `take_away`, `delivery`)                                    |
+| `voucherType`                  | enum   | `food_voucher` (`food_voucher`, `food_stamp`, `food_cheque`, `other`)                                                 |
+| `wellnessActivityName`         | string | `wellness`                                                                                                            |
 
 Los campos de tipo `string` se **traducen en el servidor** al idioma de la petición; los enums se devuelven como claves brutas (traducción esperada en el cliente).
 
@@ -151,20 +149,20 @@ Los campos de tipo `string` se **traducen en el servidor** al idioma de la petic
 
 12 categorías raíz (slugs en inglés), correspondiendo a los antiguos IDs numéricos:
 
-| Slug                          | Etiqueta EN               | IDs legacy |
-| ----------------------------- | ------------------------- | ---------- |
-| `health`                      | Health                    | 100 + 101–110 |
-| `training_and_jobs`           | Training and Employment   | 200 + 201–205 |
-| `hygiene_and_wellness`        | Hygiene and Well-being    | 300 + 301–306 |
-| `counseling`                  | Counseling                | 400 + 401–408 |
-| `technology`                  | Technology                | 500 + 501–505 |
-| `food`                        | Food                      | 600 + 601–605 + 6 `@new` |
-| `welcome`                     | Welcome                   | 700 + 701–705 |
-| `activities`                  | Activities                | 800 + 801–804 |
-| `equipment`                   | Equipment                 | 900 + 901–904 |
-| `health_specialists`          | Specialists               | 1100 + 1101–1122 |
-| `mobility`                    | Transportation & Mobility | 1200 + 1201–1204 |
-| `accomodation_and_housing`    | Housing & Accommodation   | 1300 + 1301–1305 |
+| Slug                       | Etiqueta EN               | IDs legacy               |
+| -------------------------- | ------------------------- | ------------------------ |
+| `health`                   | Health                    | 100 + 101–110            |
+| `training_and_jobs`        | Training and Employment   | 200 + 201–205            |
+| `hygiene_and_wellness`     | Hygiene and Well-being    | 300 + 301–306            |
+| `counseling`               | Counseling                | 400 + 401–408            |
+| `technology`               | Technology                | 500 + 501–505            |
+| `food`                     | Food                      | 600 + 601–605 + 6 `@new` |
+| `welcome`                  | Welcome                   | 700 + 701–705            |
+| `activities`               | Activities                | 800 + 801–804            |
+| `equipment`                | Equipment                 | 900 + 901–904            |
+| `health_specialists`       | Specialists               | 1100 + 1101–1122         |
+| `mobility`                 | Transportation & Mobility | 1200 + 1201–1204         |
+| `accomodation_and_housing` | Housing & Accommodation   | 1300 + 1301–1305         |
 
 > Erratas históricas conservadas por compatibilidad: `accomodation` (en lugar de `accommodation`), `animal_assitance`, `familialle`.
 
@@ -253,11 +251,11 @@ La API actual (`https://api.soliguide.fr`) sigue disponible durante la fase de t
 
 ## Calendario
 
-| Hito                                       | Fecha               |
-| ------------------------------------------ | ------------------- |
-| Disponibilidad de la API pública           | _por confirmar_     |
-| Anuncio oficial a los socios               | _por confirmar_     |
-| Fin del soporte de la API actual           | _por confirmar_     |
+| Hito                             | Fecha           |
+| -------------------------------- | --------------- |
+| Disponibilidad de la API pública | _por confirmar_ |
+| Anuncio oficial a los socios     | _por confirmar_ |
+| Fin del soporte de la API actual | _por confirmar_ |
 
 ## Soporte
 

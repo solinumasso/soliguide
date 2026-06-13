@@ -1,8 +1,6 @@
 # Soliguide Public API launch
 
-> **Launch date**: _to be confirmed_
-> **End-of-life of the current API (`https://api.soliguide.fr`)**: _to be confirmed_
-> **Contact**: api@solinum.org
+> **Launch date**: _to be confirmed_ > **End-of-life of the current API (`https://api.soliguide.fr`)**: _to be confirmed_ > **Contact**: api@solinum.org
 
 ## Who this document is for
 
@@ -21,12 +19,12 @@ A new public API will gradually replace the `/new-search` and `/place/:lieu_id` 
 
 ## Endpoint and authentication
 
-| Aspect        | Before                                  | After                                  |
-| ------------- | --------------------------------------- | -------------------------------------- |
-| Base URL      | `https://api.soliguide.fr`              | _to be confirmed_                      |
-| Search        | `POST /new-search`                      | `POST /search`                         |
-| Auth          | `Authorization: JWT <token>`            | **Unchanged**: `JWT <token>`           |
-| Documentation | Notion (shared link)                    | `/api/docs` (Scalar), `/openapi/<version>.json` |
+| Aspect        | Before                       | After                                           |
+| ------------- | ---------------------------- | ----------------------------------------------- |
+| Base URL      | `https://api.soliguide.fr`   | _to be confirmed_                               |
+| Search        | `POST /new-search`           | `POST /search`                                  |
+| Auth          | `Authorization: JWT <token>` | **Unchanged**: `JWT <token>`                    |
+| Documentation | Notion (shared link)         | `/api/docs` (Scalar), `/openapi/<version>.json` |
 
 The JWT token remains the one provided by Solinum upon signing the partnership agreement.
 
@@ -36,35 +34,35 @@ For reference, here are the schemas as you know them today on `https://api.solig
 
 ### `POST /new-search` request body
 
-| Field                         | Type                  | Required               | Description (legacy)                                   | New                                              |
-| ----------------------------- | --------------------- | ---------------------- | ------------------------------------------------------ | ------------------------------------------------ |
-| `location`                    | object                | ✓                      | Primary geographic constraint                          | Unchanged (+ `locations[]` for multi-zone)       |
-| `location.geoType`            | string                | ✓                      | `pays \| region \| departement \| ville \| codePostal \| position` | Same + `citiesGroup`, `inconnu`        |
-| `location.geoValue`           | string                | depending on `geoType` | Slug or zone code                                      | Same; restricted to `fr \| es \| ad` if `geoType=pays` |
-| `location.coordinates`        | `[number, number]`    | if `geoType=position`  | `[lng, lat]`                                           | Unchanged                                        |
-| `location.distance`           | number                | —                      | Radius in km (default 10)                              | Unchanged                                        |
-| `category`                    | string                | —                      | Slug of a category (children included recursively)     | Unchanged                                        |
-| `categories`                  | `string[] \| number[]`| —                      | Slugs or numeric IDs (legacy)                          | **Slugs only** (numeric IDs rejected)            |
-| `options.page`                | number                | —                      | Default `1`                                            | Unchanged                                        |
-| `options.limit`               | number                | —                      | Default **`20`**                                       | Default **`10`**                                 |
-| `options.fields`              | string                | —                      | Space-separated list (`"lieu_id name"`)                | Unchanged                                        |
-| `openToday`                   | boolean               | —                      | At least one service open today                        | Unchanged                                        |
-| `updatedAt.value`             | string                | —                      | Format **`YYYY/MM/DD HH:mm`**                          | Format **ISO 8601**                              |
-| `updatedAt.intervalType`      | enum                  | —                      | `SPECIFIC_DAY \| BEFORE_DAY \| AFTER_DAY`              | Unchanged                                        |
-| `publics.age`                 | number                | —                      | Target age (integer)                                   | Object `{ min, max }` (0–99)                     |
-| `publics.gender`              | string[]              | —                      | `men`, `women`                                         | Unchanged                                        |
-| `publics.administrative`      | string[]              | —                      | `regular`, `asylum`, `refugee`, `undocumented`         | Unchanged                                        |
-| `publics.familialle`          | string[]              | —                      | `isolated`, `family`, `couple`, `pregnant`             | Unchanged (typo `familialle` preserved)          |
-| `publics.other`               | string[]              | —                      | `violence`, `addiction`, `handicap`, `lgbt+`, `hiv`, `prostitution`, `prison` | Unchanged             |
-| `publics.accueil`             | `0 \| 1 \| 2`         | —                      | Unconditional / preferential / exclusive               | Enum `unconditional \| preferential \| exclusive` |
-| `modalities.appointment`      | boolean               | —                      | By appointment                                         | Unchanged                                        |
-| `modalities.inscription`      | boolean               | —                      | Prior registration required                            | Unchanged                                        |
-| `modalities.orientation`      | boolean               | —                      | Orientation required                                   | Unchanged                                        |
-| `modalities.inconditionnel`   | boolean               | —                      | Unconditional access (overrides other modalities)      | Unchanged                                        |
-| _(new)_                       |                       |                        |                                                        | `modalities.animal`, `modalities.pmr`, `modalities.price`, `modalities.sign` |
-| _(new)_                       |                       |                        |                                                        | `options.sortBy`, `options.sortValue`            |
-| _(new)_                       |                       |                        |                                                        | `placeType` (`PLACE` \| `ITINERARY`)             |
-| `word`                        | string                | —                      | Text search by place name                              | Unchanged                                        |
+| Field                       | Type                   | Required               | Description (legacy)                                                          | New                                                                          |
+| --------------------------- | ---------------------- | ---------------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `location`                  | object                 | ✓                      | Primary geographic constraint                                                 | Unchanged (+ `locations[]` for multi-zone)                                   |
+| `location.geoType`          | string                 | ✓                      | `pays \| region \| departement \| ville \| codePostal \| position`            | Same + `citiesGroup`, `inconnu`                                              |
+| `location.geoValue`         | string                 | depending on `geoType` | Slug or zone code                                                             | Same; restricted to `fr \| es \| ad` if `geoType=pays`                       |
+| `location.coordinates`      | `[number, number]`     | if `geoType=position`  | `[lng, lat]`                                                                  | Unchanged                                                                    |
+| `location.distance`         | number                 | —                      | Radius in km (default 10)                                                     | Unchanged                                                                    |
+| `category`                  | string                 | —                      | Slug of a category (children included recursively)                            | Unchanged                                                                    |
+| `categories`                | `string[] \| number[]` | —                      | Slugs or numeric IDs (legacy)                                                 | **Slugs only** (numeric IDs rejected)                                        |
+| `options.page`              | number                 | —                      | Default `1`                                                                   | Unchanged                                                                    |
+| `options.limit`             | number                 | —                      | Default **`20`**                                                              | Default **`10`**                                                             |
+| `options.fields`            | string                 | —                      | Space-separated list (`"lieu_id name"`)                                       | Unchanged                                                                    |
+| `openToday`                 | boolean                | —                      | At least one service open today                                               | Unchanged                                                                    |
+| `updatedAt.value`           | string                 | —                      | Format **`YYYY/MM/DD HH:mm`**                                                 | Format **ISO 8601**                                                          |
+| `updatedAt.intervalType`    | enum                   | —                      | `SPECIFIC_DAY \| BEFORE_DAY \| AFTER_DAY`                                     | Unchanged                                                                    |
+| `publics.age`               | number                 | —                      | Target age (integer)                                                          | Object `{ min, max }` (0–99)                                                 |
+| `publics.gender`            | string[]               | —                      | `men`, `women`                                                                | Unchanged                                                                    |
+| `publics.administrative`    | string[]               | —                      | `regular`, `asylum`, `refugee`, `undocumented`                                | Unchanged                                                                    |
+| `publics.familialle`        | string[]               | —                      | `isolated`, `family`, `couple`, `pregnant`                                    | Unchanged (typo `familialle` preserved)                                      |
+| `publics.other`             | string[]               | —                      | `violence`, `addiction`, `handicap`, `lgbt+`, `hiv`, `prostitution`, `prison` | Unchanged                                                                    |
+| `publics.accueil`           | `0 \| 1 \| 2`          | —                      | Unconditional / preferential / exclusive                                      | Enum `unconditional \| preferential \| exclusive`                            |
+| `modalities.appointment`    | boolean                | —                      | By appointment                                                                | Unchanged                                                                    |
+| `modalities.inscription`    | boolean                | —                      | Prior registration required                                                   | Unchanged                                                                    |
+| `modalities.orientation`    | boolean                | —                      | Orientation required                                                          | Unchanged                                                                    |
+| `modalities.inconditionnel` | boolean                | —                      | Unconditional access (overrides other modalities)                             | Unchanged                                                                    |
+| _(new)_                     |                        |                        |                                                                               | `modalities.animal`, `modalities.pmr`, `modalities.price`, `modalities.sign` |
+| _(new)_                     |                        |                        |                                                                               | `options.sortBy`, `options.sortValue`                                        |
+| _(new)_                     |                        |                        |                                                                               | `placeType` (`PLACE` \| `ITINERARY`)                                         |
+| `word`                      | string                 | —                      | Text search by place name                                                     | Unchanged                                                                    |
 
 ### `POST /new-search` response — top level
 
@@ -76,74 +74,74 @@ This structure is **unchanged** in the new API.
 
 ### `Place` object (response from `GET /place/:lieu_id` and items of `places[]`)
 
-| Field              | Type                                                    | Description (legacy)                                          | New                                                                     |
-| ------------------ | ------------------------------------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `lieu_id`          | number                                                  | Unique identifier of the place                                | Unchanged                                                               |
-| `name`             | string                                                  | Place name                                                    | Unchanged                                                               |
-| `status`           | enum                                                    | `DRAFT \| ONLINE \| OFFLINE \| CLOSED` (OFFLINE = not updated for >6 months) | Unchanged                                                |
-| `position`         | object                                                  | Address + coordinates block                                   | See below                                                               |
-| `services_all`     | `Service[]`                                             | Services offered by the place                                 | Unchanged (see Service detail below)                                    |
-| `sources`          | `Source[]`                                              | Source(s) of the referencing data                             | Unchanged                                                               |
-| `closedHolidays`   | enum                                                    | `UNKNOWN \| OPEN \| CLOSED`                                   | Unchanged                                                               |
-| `sourceLanguage`   | string                                                  | Original data language (ISO 639-3)                            | Unchanged                                                               |
-| `country`          | string                                                  | Country code ISO 3166-1 alpha-2                               | Restricted to `fr \| es \| ad`                                          |
-| `languages`        | string[]                                                | Languages spoken (ISO 639-3)                                  | Unchanged                                                               |
-| `createdAt`        | date                                                    | Creation date                                                 | Unchanged                                                               |
-| `updatedAt`        | date                                                    | Last update date                                              | Unchanged                                                               |
+| Field            | Type        | Description (legacy)                                                         | New                                  |
+| ---------------- | ----------- | ---------------------------------------------------------------------------- | ------------------------------------ |
+| `lieu_id`        | number      | Unique identifier of the place                                               | Unchanged                            |
+| `name`           | string      | Place name                                                                   | Unchanged                            |
+| `status`         | enum        | `DRAFT \| ONLINE \| OFFLINE \| CLOSED` (OFFLINE = not updated for >6 months) | Unchanged                            |
+| `position`       | object      | Address + coordinates block                                                  | See below                            |
+| `services_all`   | `Service[]` | Services offered by the place                                                | Unchanged (see Service detail below) |
+| `sources`        | `Source[]`  | Source(s) of the referencing data                                            | Unchanged                            |
+| `closedHolidays` | enum        | `UNKNOWN \| OPEN \| CLOSED`                                                  | Unchanged                            |
+| `sourceLanguage` | string      | Original data language (ISO 639-3)                                           | Unchanged                            |
+| `country`        | string      | Country code ISO 3166-1 alpha-2                                              | Restricted to `fr \| es \| ad`       |
+| `languages`      | string[]    | Languages spoken (ISO 639-3)                                                 | Unchanged                            |
+| `createdAt`      | date        | Creation date                                                                | Unchanged                            |
+| `updatedAt`      | date        | Last update date                                                             | Unchanged                            |
 
 ### `position` sub-object
 
-| Legacy field (FR)         | Status         | New field (EN)                          | Notes                                                       |
-| ------------------------- | -------------- | --------------------------------------- | ----------------------------------------------------------- |
-| `adresse`                 | `@deprecated`  | `address`                               | Kept as alias in `2026-01-01`, removal announced            |
-| `codePostal`              | `@deprecated`  | `postalCode`                            | Kept as alias in `2026-01-01`, removal announced            |
-| `complementAdresse`       | `@deprecated`  | `additionalInformation`                 | Kept as alias in `2026-01-01`, removal announced            |
-| `departement`             | `@deprecated`  | `department`                            | Kept as alias in `2026-01-01`, removal announced            |
-| `departementCode`         | `@deprecated`  | `departmentCode`                        | E.g.: `974`, `2A`, `91`, `06`                               |
-| `pays`                    | `@deprecated`  | `country`                               | Now restricted to `fr \| es \| ad`                          |
-| `ville`                   | `@deprecated`  | `city`                                  | Kept as alias in `2026-01-01`, removal announced            |
-| —                         |                | `cityCode`                              | Administrative code of the city                             |
-| —                         |                | `region`                                |                                                             |
-| —                         |                | `regionCode`                            |                                                             |
-| —                         |                | `timeZone`                              | IANA format (`Europe/Paris`, etc.)                          |
-| `location` (`{coordinates, type}`) | preserved | `location` (`{coordinates, type}`)    | GeoJSON Point unchanged                                      |
+| Legacy field (FR)                  | Status        | New field (EN)                     | Notes                                            |
+| ---------------------------------- | ------------- | ---------------------------------- | ------------------------------------------------ |
+| `adresse`                          | `@deprecated` | `address`                          | Kept as alias in `2026-01-01`, removal announced |
+| `codePostal`                       | `@deprecated` | `postalCode`                       | Kept as alias in `2026-01-01`, removal announced |
+| `complementAdresse`                | `@deprecated` | `additionalInformation`            | Kept as alias in `2026-01-01`, removal announced |
+| `departement`                      | `@deprecated` | `department`                       | Kept as alias in `2026-01-01`, removal announced |
+| `departementCode`                  | `@deprecated` | `departmentCode`                   | E.g.: `974`, `2A`, `91`, `06`                    |
+| `pays`                             | `@deprecated` | `country`                          | Now restricted to `fr \| es \| ad`               |
+| `ville`                            | `@deprecated` | `city`                             | Kept as alias in `2026-01-01`, removal announced |
+| —                                  |               | `cityCode`                         | Administrative code of the city                  |
+| —                                  |               | `region`                           |                                                  |
+| —                                  |               | `regionCode`                       |                                                  |
+| —                                  |               | `timeZone`                         | IANA format (`Europe/Paris`, etc.)               |
+| `location` (`{coordinates, type}`) | preserved     | `location` (`{coordinates, type}`) | GeoJSON Point unchanged                          |
 
 ### `Service` object
 
-| Legacy field                    | Status          | Equivalent field (new)                                |
-| ------------------------------- | --------------- | ----------------------------------------------------- |
-| `categorie: Number`             | `@deprecated`   | `category: string` (slug)                             |
-| `categorie` (numeric IDs in filter input) | `@deprecated` | Slugs only                                |
-| `services_all[].name`           | `@deprecated`   | Moved into `categorySpecificFields` (see below)       |
-| `services_all[].jobsList`       | `@deprecated`   | `categorySpecificFields.jobsList`                     |
-| `category`                      | `@new`          | Category slug — single source of truth                |
-| `categorySpecificFields`        | `@new`          | Polymorphic fields depending on the category          |
-| `close`                         | preserved       | Temporary closure (`actif`, start/end dates)          |
-| `status` (saturation)           | preserved       | Saturation level                                      |
+| Legacy field                              | Status        | Equivalent field (new)                          |
+| ----------------------------------------- | ------------- | ----------------------------------------------- |
+| `categorie: Number`                       | `@deprecated` | `category: string` (slug)                       |
+| `categorie` (numeric IDs in filter input) | `@deprecated` | Slugs only                                      |
+| `services_all[].name`                     | `@deprecated` | Moved into `categorySpecificFields` (see below) |
+| `services_all[].jobsList`                 | `@deprecated` | `categorySpecificFields.jobsList`               |
+| `category`                                | `@new`        | Category slug — single source of truth          |
+| `categorySpecificFields`                  | `@new`        | Polymorphic fields depending on the category    |
+| `close`                                   | preserved     | Temporary closure (`actif`, start/end dates)    |
+| `status` (saturation)                     | preserved     | Saturation level                                |
 
 ### `categorySpecificFields` (polymorphic fields per category)
 
 Optional field on each `Service`, depends on the category. Summary:
 
-| Field                              | Type      | Target categories                                                                                            |
-| ---------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------ |
-| `activityName`                     | string    | `sport_activities`, `other_activities`                                                                       |
-| `availableEquipmentType`           | enum[]    | `shared_kitchen` (`oven`, `microwaves`, `dishwasher`, `cutlery`, `kettle`, `pans`, `frying_pan`, `strainer`, `other`) |
-| `availableEquipmentPrecisions`     | string    | `shared_kitchen` when `other`                                                                                |
-| `babyParcelAgeType`                | enum[]    | `baby_parcel` (`under_six_months`, `between_6_and_12_months`, `between_12_and_18_months`, `over_18_months`)  |
-| `canteensMealType`                 | enum      | `seated_catering` (`petitdej`, `collation`, `boisson`, `dejeuner`, `diner`)                                  |
-| `courseType`                       | enum      | `french_course` (`alphabetisation`, `asl`, `fle`)                                                            |
-| `degreeOfChoiceType`               | enum      | Food services (`free_choice`, `accompagnied_choice`, `no_choice`)                                            |
-| `dietaryAdaptationsType`           | enum[]    | Food (`vegetarian`, `halal`, `gluten_free`, `salt_free`, `kosher`, `lactose_free`)                           |
-| `dietaryRegimesType`               | enum      | Food (`we_adapt`, `try_to_adapt`)                                                                            |
-| `domiciliationType`                | enum      | `domiciliation` (`domi1` common law, `domi2` refugees, `domi4` postal box)                                   |
-| `foodProductType`                  | enum[]    | `food_packages`, `social_grocery_stores`                                                                     |
-| `hygieneProductType`               | enum      | `hygiene_products` (`sanitary_materials`, `other_care_products`)                                             |
-| `jobsList`                         | string    | `integration_through_economic_activity`                                                                      |
-| `mobilityAssistanceName`           | string    | `mobility_assistance`                                                                                        |
-| `serviceStyleType`                 | enum[]    | `food_distribution` (`indoor_seating`, `outdoor_seating`, `take_away`, `delivery`)                           |
-| `voucherType`                      | enum      | `food_voucher` (`food_voucher`, `food_stamp`, `food_cheque`, `other`)                                        |
-| `wellnessActivityName`             | string    | `wellness`                                                                                                   |
+| Field                          | Type   | Target categories                                                                                                     |
+| ------------------------------ | ------ | --------------------------------------------------------------------------------------------------------------------- |
+| `activityName`                 | string | `sport_activities`, `other_activities`                                                                                |
+| `availableEquipmentType`       | enum[] | `shared_kitchen` (`oven`, `microwaves`, `dishwasher`, `cutlery`, `kettle`, `pans`, `frying_pan`, `strainer`, `other`) |
+| `availableEquipmentPrecisions` | string | `shared_kitchen` when `other`                                                                                         |
+| `babyParcelAgeType`            | enum[] | `baby_parcel` (`under_six_months`, `between_6_and_12_months`, `between_12_and_18_months`, `over_18_months`)           |
+| `canteensMealType`             | enum   | `seated_catering` (`petitdej`, `collation`, `boisson`, `dejeuner`, `diner`)                                           |
+| `courseType`                   | enum   | `french_course` (`alphabetisation`, `asl`, `fle`)                                                                     |
+| `degreeOfChoiceType`           | enum   | Food services (`free_choice`, `accompagnied_choice`, `no_choice`)                                                     |
+| `dietaryAdaptationsType`       | enum[] | Food (`vegetarian`, `halal`, `gluten_free`, `salt_free`, `kosher`, `lactose_free`)                                    |
+| `dietaryRegimesType`           | enum   | Food (`we_adapt`, `try_to_adapt`)                                                                                     |
+| `domiciliationType`            | enum   | `domiciliation` (`domi1` common law, `domi2` refugees, `domi4` postal box)                                            |
+| `foodProductType`              | enum[] | `food_packages`, `social_grocery_stores`                                                                              |
+| `hygieneProductType`           | enum   | `hygiene_products` (`sanitary_materials`, `other_care_products`)                                                      |
+| `jobsList`                     | string | `integration_through_economic_activity`                                                                               |
+| `mobilityAssistanceName`       | string | `mobility_assistance`                                                                                                 |
+| `serviceStyleType`             | enum[] | `food_distribution` (`indoor_seating`, `outdoor_seating`, `take_away`, `delivery`)                                    |
+| `voucherType`                  | enum   | `food_voucher` (`food_voucher`, `food_stamp`, `food_cheque`, `other`)                                                 |
+| `wellnessActivityName`         | string | `wellness`                                                                                                            |
 
 `string`-typed fields are **translated server-side** in the request language; enums are returned as raw keys (client-side translation expected).
 
@@ -151,20 +149,20 @@ Optional field on each `Service`, depends on the category. Summary:
 
 12 root categories (English slugs), mapping to the legacy numeric IDs:
 
-| Slug                          | EN label                  | Legacy IDs |
-| ----------------------------- | ------------------------- | ---------- |
-| `health`                      | Health                    | 100 + 101–110 |
-| `training_and_jobs`           | Training and Employment   | 200 + 201–205 |
-| `hygiene_and_wellness`        | Hygiene and Well-being    | 300 + 301–306 |
-| `counseling`                  | Counseling                | 400 + 401–408 |
-| `technology`                  | Technology                | 500 + 501–505 |
-| `food`                        | Food                      | 600 + 601–605 + 6 `@new` |
-| `welcome`                     | Welcome                   | 700 + 701–705 |
-| `activities`                  | Activities                | 800 + 801–804 |
-| `equipment`                   | Equipment                 | 900 + 901–904 |
-| `health_specialists`          | Specialists               | 1100 + 1101–1122 |
-| `mobility`                    | Transportation & Mobility | 1200 + 1201–1204 |
-| `accomodation_and_housing`    | Housing & Accommodation   | 1300 + 1301–1305 |
+| Slug                       | EN label                  | Legacy IDs               |
+| -------------------------- | ------------------------- | ------------------------ |
+| `health`                   | Health                    | 100 + 101–110            |
+| `training_and_jobs`        | Training and Employment   | 200 + 201–205            |
+| `hygiene_and_wellness`     | Hygiene and Well-being    | 300 + 301–306            |
+| `counseling`               | Counseling                | 400 + 401–408            |
+| `technology`               | Technology                | 500 + 501–505            |
+| `food`                     | Food                      | 600 + 601–605 + 6 `@new` |
+| `welcome`                  | Welcome                   | 700 + 701–705            |
+| `activities`               | Activities                | 800 + 801–804            |
+| `equipment`                | Equipment                 | 900 + 901–904            |
+| `health_specialists`       | Specialists               | 1100 + 1101–1122         |
+| `mobility`                 | Transportation & Mobility | 1200 + 1201–1204         |
+| `accomodation_and_housing` | Housing & Accommodation   | 1300 + 1301–1305         |
 
 > Historical typos preserved for compatibility: `accomodation` (instead of `accommodation`), `animal_assitance`, `familialle`.
 
@@ -253,11 +251,11 @@ The current API (`https://api.soliguide.fr`) remains available during the transi
 
 ## Timeline
 
-| Milestone                              | Date                |
-| -------------------------------------- | ------------------- |
-| Public API availability                | _to be confirmed_   |
-| Official announcement to partners      | _to be confirmed_   |
-| End of support for the current API     | _to be confirmed_   |
+| Milestone                          | Date              |
+| ---------------------------------- | ----------------- |
+| Public API availability            | _to be confirmed_ |
+| Official announcement to partners  | _to be confirmed_ |
+| End of support for the current API | _to be confirmed_ |
 
 ## Support
 
