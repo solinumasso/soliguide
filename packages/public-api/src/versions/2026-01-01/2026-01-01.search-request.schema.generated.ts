@@ -17,6 +17,11 @@ import {
 } from "@soliguide/common";
 import { z } from "zod";
 
+const placeLanguagesEnumSchema = z
+  .enum(PLACE_LANGUAGES_LIST_MAP_KEY)
+  .describe("Language code spoken at the place.")
+  .meta({ id: "Common_PlaceLanguages" });
+
 const locationSharedFields = {
   distance: z.coerce
     .number()
@@ -114,11 +119,11 @@ const locationSchema = z
     z.looseObject({
       geoType: z.literal(GeoTypes.COUNTRY),
       geoValue: z
-        .string()
-        .min(1)
+        .enum([CountryCodes.FR, CountryCodes.ES, CountryCodes.AD])
         .describe(
-          "Geographic identifier for non-position searches (country, region, department, city, etc.)."
-        ),
+          "Country code searched when `geoType` is `country`. Restricted to Soliguide countries. Format ISO 3166-1 alpha-2."
+        )
+        .meta({ example: CountryCodes.FR }),
       coordinates: z
         .array(z.coerce.number())
         .length(2)
@@ -282,12 +287,11 @@ export const v20260101SearchRequestSchema = z
     modalities: modalitiesSchema.nullable().optional(),
     publics: publicsSchema.nullable().optional(),
     languages: z
-      .string()
-      .refine((value) => PLACE_LANGUAGES_LIST_MAP_KEY.includes(value), {
-        message: "languages must be one of PLACE_LANGUAGES_LIST_MAP_KEY",
-      })
+      .array(placeLanguagesEnumSchema)
       .nullable()
-      .optional(),
+      .optional()
+      .describe("Filter places by languages spoken at the place.")
+      .meta({ example: ["fr"] }),
     widgetId: z
       .string()
       .refine(

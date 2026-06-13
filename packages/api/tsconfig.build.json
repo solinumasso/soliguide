@@ -11,6 +11,7 @@
   ],
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "declaration": true,
     "inlineSources": true,
     "sourceMap": true,
     "sourceRoot": "/"
