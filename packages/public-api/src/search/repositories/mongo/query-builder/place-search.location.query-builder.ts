@@ -338,7 +338,10 @@ export class LocationQueryBuilder implements SearchQueryBuilder {
   }
 
   private normalizeDepartmentSlug(value: string): string {
-    return this.slugifyLocation(value).replace(/^(?:departement|department)-/, "");
+    return this.slugifyLocation(value).replace(
+      /^(?:departement|department)-/,
+      ""
+    );
   }
 }
 
