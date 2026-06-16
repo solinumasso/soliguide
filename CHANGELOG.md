@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.141.0](https://github.com/solinumasso/soliguide/compare/v4.140.1...v4.141.0) (2026-06-16)
+
+
+### Bug Fixes
+
+* **api:** add SSVP logo ([0aad864](https://github.com/solinumasso/soliguide/commit/0aad864c097d7e3ededbf506d72ac47d283119b8))
+* **api:** update yarn ([312498c](https://github.com/solinumasso/soliguide/commit/312498c5c72803bf5538f057bb1ee35f1580c711))
+* **frontend:** show correct update creation date ([cb85674](https://github.com/solinumasso/soliguide/commit/cb85674b9278ae7e6354d4642d5078942b4f52d4))
+* sanitize wrong caracters for xml support into export ([b9a47ac](https://github.com/solinumasso/soliguide/commit/b9a47acc7fe434b7f63d6c5c937e56370277ab49))
+
+
+### Features
+
+* add unit test to isDeepNestedCategory function ([d9b9f0d](https://github.com/solinumasso/soliguide/commit/d9b9f0de08fea884f4f5b33ada0f0d00c52e3173))
+* adjust legal notice for Soliguia ([f206723](https://github.com/solinumasso/soliguide/commit/f206723c5c5bc6664982f49d95794c2af03828d9))
+* **api:** delete soligare ([8086c87](https://github.com/solinumasso/soliguide/commit/8086c874e741a0ae177d98d24258e099cd50b879))
+* **api:** delete soligare ([0a3aa1d](https://github.com/solinumasso/soliguide/commit/0a3aa1d4926c780653492393e1ad08ee7970809d))
+* factorization of xml sanitization and fix lint error ([458c0b7](https://github.com/solinumasso/soliguide/commit/458c0b7c796b09798124e5379081666edc9b99a8))
+* improve readability of posthog properties and make word property null on specific search ([de8ab02](https://github.com/solinumasso/soliguide/commit/de8ab02f5be227df048897935871a332a86a2968))
+* improve tracking for search suggestion autocomplete ([e4ab084](https://github.com/solinumasso/soliguide/commit/e4ab084a7c2bc1367b56e3a7c08288230d5bc34b))
+* prefix 3rd level services in export and in place view ([70f220d](https://github.com/solinumasso/soliguide/commit/70f220d40d74be9b78a9ac068722c2384133179d))
+* use searchType instead of suggestionType and put good type when click on category home page ([f651533](https://github.com/solinumasso/soliguide/commit/f6515331e3a5154acef15bdcfdc6388d23522ef0))
+* use suggestionType instead of building trackingData object for posthog tracking ([0809061](https://github.com/solinumasso/soliguide/commit/080906125901779cb2239d494698c13e4bac672f))
+
+
+
+
+
 ## [4.140.1](https://github.com/solinumasso/soliguide/compare/v4.140.0...v4.140.1) (2026-06-03)
 
 
