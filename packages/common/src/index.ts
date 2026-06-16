@@ -19,7 +19,6 @@ export * from "./publics";
 export * from "./search-places";
 export * from "./search-suggestions";
 export * from "./services";
-export * from "./soligare";
 export * from "./sources";
 export * from "./structure";
 export * from "./temp-infos";

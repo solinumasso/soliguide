@@ -18,9 +18,6 @@ on:
       deploy_location-api:
         description: "Whether to deploy Location API"
         value: ${{ jobs.affected_packages.outputs.location-api_dependencies }}
-      deploy_soligare:
-        description: "Whether to deploy Soligare"
-        value: ${{ jobs.affected_packages.outputs.soligare_dependencies }}
       deploy_web-app:
         description: "Whether to deploy Web app"
         value: ${{ jobs.affected_packages.outputs.web-app_dependencies }}
@@ -161,23 +158,6 @@ jobs:
       target2: widget
     needs:
       - affected_packages
-
-  build-soligare:
-    name: Build Soligare container image
-    if: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_build, 'soligare') }}
-    uses: ./.github/workflows/_build-container-image.yml
-    with:
-      image_name: ${{ github.repository }}/soligare
-      dockerfile: ./packages/soligare/Dockerfile
-      build_production: true
-      build_args: |
-        BASE_IMAGE=${{ fromJSON(needs.build-base.outputs.tags1)[0] }}
-        COMMON_IMAGE=${{ fromJSON(needs.build-common.outputs.tags1)[0] }}
-      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_deploy, 'soligare') }}
-    needs:
-      - affected_packages
-      - build-base
-      - build-common
 
   build-web-app:
     name: Build web app container image

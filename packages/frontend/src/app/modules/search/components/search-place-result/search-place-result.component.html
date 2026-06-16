@@ -30,7 +30,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 >
   <a
     [routerLink]="[routePrefix, 'fiche', place.seo_url]"
-    [attr.target]="isInSoligare ? '_blank' : null"
     (click)="captureEvent('click-place-title', {place, placeIndex })"
   >
     <div
@@ -117,7 +116,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         </div>
       </div>
 
-      <div class="pt-3" *ngIf="!isInSoligare">
+      <div class="pt-3">
         <div
           *ngIf="place.openingTagStatus === PlaceOpeningStatus.OPEN"
           class="alert alert-custom alert-open ms-3"
@@ -242,8 +241,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           class="alert alert-warning"
           *ngIf="
             place.modalities.orientation &&
-            place.modalities.orientation?.checked === true &&
-            !isInSoligare
+            place.modalities.orientation?.checked === true
           "
         >
           <b class="alert-link">{{ "ORIENTATION_SEARCH" | translate }}</b>
@@ -280,7 +278,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           [routerLink]="[routePrefix, 'fiche', place.seo_url]"
           title="{{ 'SEE_THE_PAGE' | translate }} {{ place.name }}"
           (click)="captureEvent('click-more-info-button', { place, placeIndex })"
-          [target]="isInSoligare ? '_blank' : null"
         >
           {{ "SEE_THE_DETAILS" | translate }}
         </a>
@@ -318,22 +315,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <app-display-sources [sources]="place.sources"></app-display-sources>
       </ng-container>
       <div class="d-flex ms-auto">
-        <ng-container *ngIf="isInSoligare">
-          <button
-            *ngIf="isInSoligare"
-            type="button"
-            class="btn btn-secondary"
-            (click)="pairPlaces(place)"
-          >
-            {{ "YES_PAIR" | translate }}
-          </button>
-        </ng-container>
-
-        <ng-container
-          *ngIf="
-            place.status !== PlaceStatus.PERMANENTLY_CLOSED && !isInSoligare
-          "
-        >
+        <ng-container *ngIf="place.status !== PlaceStatus.PERMANENTLY_CLOSED">
           <ng-container
             *ngIf="
               place.entity.phones && place.entity.phones.length > 1;
@@ -400,7 +382,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           </ng-template>
         </ng-container>
         <a
-          *ngIf="!isInSoligare"
           [routerLink]="[routePrefix, 'fiche', place.seo_url]"
           title="{{ 'SEE_THE_PAGE' | translate }} {{ place.name }}"
           class="btn btn-secondary ms-2 search-more-info"

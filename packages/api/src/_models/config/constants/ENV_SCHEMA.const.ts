@@ -58,10 +58,6 @@ export const ENV_SCHEMA: JSONSchemaType<Config> = {
       type: "string",
       default: "http://localhost:3000",
     },
-    SOLIGARE_URL: {
-      type: "string",
-      default: "http://localhost:3003",
-    },
     JWT_SECRET: {
       type: "string",
     },

@@ -38,7 +38,6 @@ jobs:
       test_frontend: true
       test_location-api: true
       test_maintenance: true
-      test_soligare: true
       test_web-app: true
       test_widget: true
     needs:

@@ -43,25 +43,7 @@ services:
     volumes:
       - rabbitmq-data:/var/lib/rabbitmq
 
-  postgres:
-    container_name: soligare-postgres
-    image: postgres:16
-    environment:
-      POSTGRES_PASSWORD: postgres
-    ports:
-      - 5432:5432
-    volumes:
-      - ./data/soligare:/data/soligare
-      - postgres-data:/var/lib/postgresql/data
-    healthcheck:
-      test: pg_isready -U postgres
-      interval: 5s
-      timeout: 20s
-      retries: 3
-      start_period: 20s
-
 volumes:
   mongo-data:
   rabbitmq-data:
-  postgres-data:
   redis-data:

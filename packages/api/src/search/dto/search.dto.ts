@@ -1,4 +1,5 @@
 import {
+  AutoCompleteType,
   PLACE_LANGUAGES_LIST_MAP_KEY,
   WIDGETS_AVAILABLE,
 } from "@soliguide/common";
@@ -52,4 +53,8 @@ export const searchDto = [
       // we keep updatedAt field for api users
       "updatedAt",
     ]),
+
+  body("searchType")
+    .if(body("searchType").exists(CHECK_STRING_NULL))
+    .isIn(Object.values(AutoCompleteType)),
 ];

@@ -47,7 +47,7 @@ export const convertPlaceToExportRow = (
     name: parseString(place.name),
     phoneNumbers: parsePhones(language, place.entity.phones),
     publics: translatePublics(translator, language, place.publics, false, true),
-    services: getAllServicesNames(place, language, true),
+    services: getAllServicesNames(place, language, true, categoriesService),
     category: "",
     tempClosure: "",
     tempHours: "",
@@ -81,7 +81,12 @@ export const convertPlaceToExportRow = (
   if (isService && typeof serviceIndex !== "undefined") {
     const service = place.services_all[serviceIndex];
 
-    docExportRow.sectionName = parseSectionName(exportSettings, place, service);
+    docExportRow.sectionName = parseSectionName(
+      exportSettings,
+      place,
+      service,
+      categoriesService
+    );
     docExportRow.category = service.category
       ? categoriesService.getParentsCategories(service.category)?.[0] ?? ""
       : "";

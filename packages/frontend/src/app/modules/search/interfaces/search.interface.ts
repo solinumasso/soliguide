@@ -18,6 +18,7 @@ export class Search {
   // Category display
   public label: string | null;
   public word: string | null;
+  public searchType?: AutoCompleteType | null;
 
   public location: GeoPosition;
 
@@ -43,6 +44,7 @@ export class Search {
 
     this.label = data?.label ?? null;
     this.word = data?.word ?? null;
+    this.searchType = null;
 
     this.location = new GeoPosition({});
 
@@ -71,11 +73,13 @@ export class Search {
     this.category = null;
     this.word = null;
     this.label = null;
+    this.searchType = null;
   }
 
   public setCategory(categoryId: Categories, label?: string): void {
     this.category = categoryId;
     this.word = null;
+    this.searchType = AutoCompleteType.CATEGORY;
     if (label) {
       this.label = label;
     }
@@ -84,14 +88,15 @@ export class Search {
   public setWord(word: string, label?: string): void {
     this.word = word;
     this.category = null;
+    this.searchType = null;
     if (label) {
       this.label = label;
     }
   }
 
   public applySearchSuggestion(suggestion: SearchSuggestion): void {
-    console.warn("applySearchSuggestion");
     this.resetSearchTerms();
+    this.searchType = suggestion.type;
 
     if (suggestion.type === AutoCompleteType.CATEGORY) {
       this.category = suggestion.categoryId;

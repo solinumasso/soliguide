@@ -509,6 +509,39 @@ export class CategoriesService {
     return this.rootParentsIndex.get(category) ?? [];
   }
 
+  /**
+   * Returns true if the category is at depth ≥ 2 in the DAG, i.e. its direct
+   * parent is not a root category. Applies to any multi-level subtree.
+   *
+   * Example: isDeepNestedCategory(PSYCHIATRY) → true  (MENTAL_HEALTH is not a root)
+   *          isDeepNestedCategory(MENTAL_HEALTH) → false (HEALTH is a root)
+   *          isDeepNestedCategory(HEALTH) → false (root category)
+   */
+  public isDeepNestedCategory(category: Categories): boolean {
+    const parents = this.getParentsCategories(category);
+    if (parents.length === 0) {
+      return false;
+    }
+    return !this.getOrderRootCategoriesIds().includes(parents[0]);
+  }
+
+  /**
+   * Returns the direct parent of a category when it requires a label prefix,
+   * otherwise returns null. Delegates depth detection to isDeepNestedCategory.
+   *
+   * Example: getParentCategoryIfNeedPrefix(PSYCHIATRY) → MENTAL_HEALTH
+   *          getParentCategoryIfNeedPrefix(MENTAL_HEALTH) → null
+   *          getParentCategoryIfNeedPrefix(SOCIAL_ACCOMPANIMENT) → null
+   */
+  public getParentCategoryIfNeedPrefix(
+    category: Categories
+  ): Categories | null {
+    if (!this.isDeepNestedCategory(category)) {
+      return null;
+    }
+    return this.getParentsCategories(category)[0];
+  }
+
   /** Returns the flat node for a given category, or throws if not found. */
   public getFlatCategoryTreeNode(category: Categories): FlatCategoriesTreeNode {
     const flatCategoryTreeNode = this.getCategories().find(

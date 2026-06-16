@@ -32,7 +32,7 @@ fi
 ALL_PACKAGES=$(yarn workspaces list | grep -Eo 'packages/.+' | sed -Ee 's/^packages\/(.+)$/\1/')
 
 # Packages that can be deployed. Typically not common or common-angular
-DEPLOYABLE_PACKAGES=("api" "design-system" "frontend" "location-api" "maintenance" "soligare" "web-app" "widget")
+DEPLOYABLE_PACKAGES=("api" "design-system" "frontend" "location-api" "maintenance" "web-app" "widget")
 
 echo "Affected packages:"
 printf '%s\n' "${AFFECTED_PACKAGES[@]}"
@@ -107,9 +107,6 @@ function addPackageToDeploy() {
     addPackageToDeploy api
     addPackageToDeploy location-api
     addPackageToDeploy maintenance
-    addPackageToDeploy soligare
-  elif [[ "$package" == "soligare" ]]; then
-    addPackageToDeploy api
   elif [[ "$package" == "web-app" ]]; then
     addPackageToDeploy api
     addPackageToDeploy location-api
@@ -125,15 +122,12 @@ for package in "${PACKAGES_TO_TEST[@]}"; do
   # Add packages that may be affected at runtime, therefore useful to deploy
   if [[ "$package" == "api" ]]; then
     addPackageToDeploy frontend
-    addPackageToDeploy soligare
     addPackageToDeploy web-app
     addPackageToDeploy widget
   elif [[ "$package" == "location-api" ]]; then
     addPackageToDeploy frontend
     addPackageToDeploy web-app
     addPackageToDeploy widget
-  elif [[ "$package" == "soligare" ]]; then
-    addPackageToDeploy frontend
   elif [[ "$package" == "maintenance" ]]; then
     addPackageToDeploy frontend
     addPackageToDeploy widget

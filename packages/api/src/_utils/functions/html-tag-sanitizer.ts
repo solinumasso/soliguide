@@ -1,10 +1,15 @@
+import { stripXmlControlChars } from "./xml-control-chars";
+
 export const htmlTagSanitizerAndLengthCheck = (
   description: string,
   min: number,
   max: number
 ): string => {
+  const cleanedDescription = stripXmlControlChars(description);
   const htmlTagRegExp = new RegExp(/(<([^>]+)>)|(&nbsp;)/gi);
-  const sanitizedDescription = description.replace(htmlTagRegExp, "").trim();
+  const sanitizedDescription = cleanedDescription
+    .replace(htmlTagRegExp, "")
+    .trim();
 
   if (sanitizedDescription.length > max) {
     throw new Error(`Description must not exceed ${max} characters`);
@@ -12,5 +17,5 @@ export const htmlTagSanitizerAndLengthCheck = (
     throw new Error(`Description must be at least ${min} characters`);
   }
 
-  return description;
+  return cleanedDescription;
 };
