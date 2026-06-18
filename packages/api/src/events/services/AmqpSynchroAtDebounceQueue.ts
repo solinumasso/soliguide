@@ -15,7 +15,7 @@ interface QueuedSynchroAtEvent {
 }
 
 /**
- * Debounces SYNCHRO_AT events per lieu_id before sending them to RabbitMQ.
+ * Debounces Airtable synchro events per lieu_id before sending them to RabbitMQ.
  *
  * The campaign form submits several sections in quick succession, producing
  * a burst of events (STARTED, STARTED, STARTED, FINISHED) for the same place.
@@ -55,8 +55,8 @@ export class AmqpSynchroAtDebounceQueue {
   private send({ payload, log }: QueuedSynchroAtEvent): void {
     this.sender
       .sendToQueue(
-        Exchange.SYNCHRO_AT,
-        `${RoutingKey.SYNCHRO_AT}.place`,
+        Exchange.PLACES,
+        `${RoutingKey.PLACES}.synchro_at`,
         payload,
         log
       )

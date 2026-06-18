@@ -44,8 +44,8 @@ describe("AmqpSynchroAtDebounceQueue", () => {
 
     expect(sendToQueue).toHaveBeenCalledTimes(1);
     expect(sendToQueue).toHaveBeenCalledWith(
-      Exchange.SYNCHRO_AT,
-      `${RoutingKey.SYNCHRO_AT}.place`,
+      Exchange.PLACES,
+      `${RoutingKey.PLACES}.synchro_at`,
       payload,
       log
     );
@@ -67,8 +67,8 @@ describe("AmqpSynchroAtDebounceQueue", () => {
 
     expect(sendToQueue).toHaveBeenCalledTimes(1);
     expect(sendToQueue).toHaveBeenCalledWith(
-      Exchange.SYNCHRO_AT,
-      `${RoutingKey.SYNCHRO_AT}.place`,
+      Exchange.PLACES,
+      `${RoutingKey.PLACES}.synchro_at`,
       finishedPayload,
       log
     );
@@ -91,8 +91,8 @@ describe("AmqpSynchroAtDebounceQueue", () => {
     jest.advanceTimersByTime(1);
     expect(sendToQueue).toHaveBeenCalledTimes(1);
     expect(sendToQueue).toHaveBeenCalledWith(
-      Exchange.SYNCHRO_AT,
-      `${RoutingKey.SYNCHRO_AT}.place`,
+      Exchange.PLACES,
+      `${RoutingKey.PLACES}.synchro_at`,
       finishedPayload,
       log
     );
@@ -110,14 +110,14 @@ describe("AmqpSynchroAtDebounceQueue", () => {
 
     expect(sendToQueue).toHaveBeenCalledTimes(2);
     expect(sendToQueue).toHaveBeenCalledWith(
-      Exchange.SYNCHRO_AT,
-      `${RoutingKey.SYNCHRO_AT}.place`,
+      Exchange.PLACES,
+      `${RoutingKey.PLACES}.synchro_at`,
       payload1,
       log
     );
     expect(sendToQueue).toHaveBeenCalledWith(
-      Exchange.SYNCHRO_AT,
-      `${RoutingKey.SYNCHRO_AT}.place`,
+      Exchange.PLACES,
+      `${RoutingKey.PLACES}.synchro_at`,
       payload2,
       log
     );
