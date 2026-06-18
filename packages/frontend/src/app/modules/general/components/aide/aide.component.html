@@ -25,6 +25,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       <h1 class="text-center separator-secondary">
         {{ "NEED_HELP" | translate }}
       </h1>
+      <ng-container *ngIf="THEME_CONFIGURATION.helpShowPdfTutorials">
       <h2
         class="aide-title my-4"
         [innerHTML]="
@@ -34,7 +35,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         "
       ></h2>
       <div class="limite"></div>
-      <div class="row" *ngIf="THEME_CONFIGURATION.helpShowPdfTutorials">
+      <div class="row">
         <div class="col-12 col-md-3 mt-4">
           <a
             href="https://solinum.org/tutos-soliguide/creer-et-gerer-son-compte-professionnel-soliguide"
@@ -112,6 +113,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           </a>
         </div>
       </div>
+      </ng-container>
       <h3
         class="aide-title mb-4 mt-4"
         [innerHTML]="'WEBINAR_PARTICIPATION' | translate | safeHtml"
