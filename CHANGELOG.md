@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.142.0](https://github.com/solinumasso/soliguide/compare/v4.141.0...v4.142.0) (2026-06-18)
+
+
+### Bug Fixes
+
+* update coordinates of e2e tests in location api ([ab2f55b](https://github.com/solinumasso/soliguide/commit/ab2f55b007ff3351d484e2289653c1bfe133ad04))
+
+
+### Features
+
+* use a queue for the campaign updates before sending events to RabbitMq to send only last event ([1401930](https://github.com/solinumasso/soliguide/commit/140193031879895e1859bad5b1046574b6df9528))
+* use new exchanges and separate realtime to cron places updates queues ([fe0033c](https://github.com/solinumasso/soliguide/commit/fe0033c35ffe1765c2695876a1f6a1cfab313386))
+
+
+
+
+
 # [4.141.0](https://github.com/solinumasso/soliguide/compare/v4.140.1...v4.141.0) (2026-06-16)
 
 
