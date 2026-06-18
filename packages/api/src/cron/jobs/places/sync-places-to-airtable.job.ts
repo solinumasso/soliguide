@@ -74,8 +74,8 @@ export async function syncPlacesToAirtableJob(): Promise<void> {
         );
 
         await amqpEventsSender.sendToQueue(
-          Exchange.SYNCHRO_AT,
-          `${RoutingKey.SYNCHRO_AT}.place`,
+          Exchange.PLACES,
+          `${RoutingKey.PLACES}.synchro_at_all`,
           payload
         );
 

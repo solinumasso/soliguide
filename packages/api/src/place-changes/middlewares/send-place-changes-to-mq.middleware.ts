@@ -3,10 +3,11 @@ import type { ApiPlace } from "@soliguide/common";
 import type { ExpressRequest, ModelWithId } from "../../_models";
 import {
   AmqpPlaceChangesEvent,
+  AmqpSynchroAirtablePlaceEvent,
   RoutingKey,
   amqpEventsSender,
   Exchange,
-  AmqpSynchroAirtablePlaceEvent,
+  synchroAtDebounceQueue,
 } from "../../events";
 import type { PlaceChanges } from "../interfaces/PlaceChanges.interface";
 
@@ -40,11 +41,9 @@ export const sendPlaceChangesToMq = async (
       req.isPlaceDeleted
     );
 
-    await amqpEventsSender.sendToQueue<AmqpSynchroAirtablePlaceEvent>(
-      Exchange.SYNCHRO_AT,
-      `${RoutingKey.SYNCHRO_AT}.place`,
-      payload,
-      req.log
-    );
+    // Debounced: if several events arrive for the same lieu_id within 1 minute,
+    // only the last one is sent — prevents STARTED from overwriting FINISHED
+    // when the campaign form sections are submitted in quick succession.
+    synchroAtDebounceQueue.enqueue(req.updatedPlace.lieu_id, payload, req.log);
   }
 };
