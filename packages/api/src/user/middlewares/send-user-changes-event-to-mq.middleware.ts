@@ -47,8 +47,8 @@ export const sendUserChangesToMq = async (
     );
 
     await amqpEventsSender.sendToQueue<AmqpSynchroAirtableUserEvent>(
-      Exchange.SYNCHRO_AT,
-      `${RoutingKey.SYNCHRO_AT}.user`,
+      Exchange.USERS,
+      `${RoutingKey.USERS}.synchro_at`,
       payload,
       req.log
     );
