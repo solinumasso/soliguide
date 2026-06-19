@@ -3,6 +3,17 @@ import * as Sentry from "@sentry/node";
 
 import { CronJob } from "cron";
 import { logger } from "../general/logger";
+import {
+  completeCronLog,
+  failCronLog,
+  startCronLog,
+} from "./services/cron-log.service";
+import { CronLogName } from "./enums";
+import type {
+  CronJobExecution,
+  CronJobResult,
+  CronLogContext,
+} from "./interfaces";
 import { setCurrentTempInfoJob } from "./jobs/places/set-current-temp-info.job";
 import { setIsOpenTodayJob } from "./jobs/places/set-isOpenToday.job";
 //import { setOfflineJob } from "./jobs/places/set-offline.job";
@@ -30,9 +41,10 @@ export const Schedule = {
 } as const;
 
 function createMonitoredCron(
+  name: CronLogName,
   slug: string,
   schedule: string,
-  jobFn: () => Promise<void>,
+  jobFn: (execution: CronJobExecution) => Promise<CronJobResult | void>,
   maxRuntime?: number
 ) {
   const monitorConfig = {
@@ -51,10 +63,54 @@ function createMonitoredCron(
       await Sentry.withMonitor(
         slug,
         async () => {
+          // Persist the execution start (best-effort: a logging failure must
+          // never prevent the job from running).
+          const startedAt = new Date();
+          let context: CronLogContext = {};
+          const execution: CronJobExecution = {
+            mergeContext: (contextToMerge) => {
+              context = { ...context, ...contextToMerge };
+            },
+            setContext: (newContext) => {
+              context = newContext;
+            },
+          };
+          const cronLogId = await startCronLog(name).catch((logErr) => {
+            logger.error(`[CRON] ${slug} - failed to start log`, logErr);
+            return null;
+          });
+
           try {
-            await jobFn();
+            const result = await jobFn(execution);
+            if (result?.context) {
+              context = result.context;
+            }
+
+            if (cronLogId) {
+              await completeCronLog(cronLogId, startedAt, context).catch(
+                (logErr) => {
+                  logger.error(
+                    `[CRON] ${slug} - failed to complete log`,
+                    logErr
+                  );
+                }
+              );
+            }
           } catch (err) {
-            logger.error({ err }, `[CRON] ${slug} failed`);
+            logger.error(`[CRON] ${slug} failed`, err);
+
+            if (cronLogId) {
+              // Record the failure but always re-throw so Sentry sees it too.
+              await failCronLog(cronLogId, startedAt, err, context).catch(
+                (logErr) => {
+                  logger.error(
+                    `[CRON] ${slug} - failed to log failure`,
+                    logErr
+                  );
+                }
+              );
+            }
+
             throw err;
           }
         },
@@ -72,32 +128,38 @@ export function initializeCronJobs() {
   logger.info("Initializing cron jobs with Sentry monitoring");
 
   createMonitoredCron(
+    CronLogName.SET_CURRENT_TEMP_INFO,
     "set-current-temp-info",
     Schedule.EVERY_DAY_AT_1AM,
     setCurrentTempInfoJob
   );
 
   createMonitoredCron(
+    CronLogName.UNSET_OBSOLETE_TEMP_INFO,
     "unset-obsolete-temp-info",
     Schedule.EVERY_DAY_AT_2AM,
     unsetObsoleteTempInfoJob
   );
 
   createMonitoredCron(
+    CronLogName.SET_IS_OPEN_TODAY,
     "set-is-open-today",
     Schedule.EVERY_DAY_AT_4AM,
     setIsOpenTodayJob
   );
 
-  /* createMonitoredCron("set-offline", Schedule.EVERY_DAY_AT_3AM, setOfflineJob); */
+  /* createMonitoredCron(CronLogName.SET_OFFLINE, "set-offline", Schedule.EVERY_DAY_AT_3AM, setOfflineJob); */
 
   /* createMonitoredCron(
+    CronLogName.SYNC_PLACES_TO_AIRTABLE,
     "sync-places-to-airtable",
     Schedule.EVERY_DAY_AT_5AM,
     syncPlacesToAirtableJob
-  ); */
+    120 // minutes - le job est throttlé et peut être long sur un gros volume de places
+  );*/
 
   createMonitoredCron(
+    CronLogName.TRANSLATE_FIELDS,
     "translate-fields",
     Schedule.EVERY_10_MINUTES,
     translateFieldsJob
