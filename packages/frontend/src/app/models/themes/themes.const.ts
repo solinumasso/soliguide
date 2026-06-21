@@ -108,9 +108,7 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
     becomeTranslatorFormLink: environment.becomeTranslatorFormLink,
     donateLink: environment.donateLink,
     proAccountCreationFormLink: environment.proAccountCreationFormLink,
-    // Chat temporarily hidden until September 2026 — restore by uncommenting the line below
-    // chatWebsiteId: environment.chatWebsiteId,
-    chatWebsiteId: undefined,
+    chatWebsiteId: environment.chatWebsiteId,
     territoriesStats: {
       territoriesPresent: Number.parseInt(environment.territoriesPresent),
     },
