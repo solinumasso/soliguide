@@ -1,8 +1,8 @@
-import { ApiPlace, CountryCodes, getPosition, Themes } from "@soliguide/common";
+import { ApiPlace } from "@soliguide/common";
 
 import { logger } from "../../../general/logger";
-import { FRONT_URLS_MAPPINGS } from "../../../_models/config/constants/domains/THEMES_MAPPING.const";
 import { PlaceModel } from "../../../place/models/place.model";
+import { getThemeAndUrlFromPlace } from "../../../place/utils";
 import {
   AmqpSynchroAirtablePlaceEvent,
   amqpEventsSender,
@@ -11,27 +11,9 @@ import {
 } from "../../../events";
 import { ModelWithId } from "../../../_models";
 
-const COUNTRY_TO_THEME: Record<string, Themes> = {
-  [CountryCodes.FR]: Themes.SOLIGUIDE_FR,
-  [CountryCodes.ES]: Themes.SOLIGUIA_ES,
-  [CountryCodes.AD]: Themes.SOLIGUIA_AD,
-};
-
 const BATCH_SIZE = 5000;
 const THROTTLE_BATCH_SIZE = 50;
 const THROTTLE_DELAY_MS = 1000;
-
-function getThemeAndUrlFromPlace(place: ApiPlace): {
-  theme: Themes;
-  frontendUrl: string;
-} {
-  const position = getPosition(place);
-  const country = position?.country;
-  const theme = (country && COUNTRY_TO_THEME[country]) || Themes.SOLIGUIDE_FR;
-  const frontendUrl = `${FRONT_URLS_MAPPINGS[theme]}/`;
-
-  return { theme, frontendUrl };
-}
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));

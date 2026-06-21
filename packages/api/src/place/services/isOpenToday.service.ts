@@ -2,8 +2,48 @@ import mongoose from "mongoose";
 import { ApiPlace, PlaceStatus } from "@soliguide/common";
 import { PlaceModel } from "../models";
 import { logger } from "../../general/logger";
-import { isPlaceOpenToday, isServiceOpenToday } from "../utils";
+import {
+  getThemeAndUrlFromPlace,
+  isPlaceOpenToday,
+  isServiceOpenToday,
+} from "../utils";
 import { ModelWithId } from "../../_models";
+import {
+  AmqpSynchroAirtablePlaceEvent,
+  amqpEventsSender,
+  Exchange,
+  RoutingKey,
+} from "../../events";
+
+/**
+ * @summary Emits an Airtable synchro event for a single place whose place-level
+ * isOpenToday changed. Uses the same exchange and routing key as the other
+ * synchro events (`Exchange.PLACES` / `places.synchro_at`), so the message
+ * reaches the n8n queue that writes back to Airtable.
+ */
+async function syncPlaceToAirtable(
+  place: ModelWithId<ApiPlace>
+): Promise<void> {
+  try {
+    const { theme, frontendUrl } = getThemeAndUrlFromPlace(place);
+
+    const payload = new AmqpSynchroAirtablePlaceEvent(
+      place,
+      frontendUrl,
+      theme
+    );
+
+    await amqpEventsSender.sendToQueue(
+      Exchange.PLACES,
+      `${RoutingKey.PLACES}.synchro_at`,
+      payload
+    );
+  } catch (err) {
+    logger.error(
+      `SET IS_OPEN_TODAY - failed to send synchro event for place ${place.lieu_id}: ${err}`
+    );
+  }
+}
 
 export const setIsOpenToday = async () => {
   /**
@@ -26,6 +66,7 @@ export const setIsOpenToday = async () => {
   let cpt = 0;
   let placeCpt = 0;
   let serviceCpt = 0;
+  let syncCpt = 0;
   let lastId: mongoose.Types.ObjectId | null = null;
 
   while (loopCpt < nPotentiallyOpenedPlaces) {
@@ -52,13 +93,22 @@ export const setIsOpenToday = async () => {
     lastId = places[places.length - 1]._id;
 
     for (const place of places) {
+      const newIsOpenToday = await isPlaceOpenToday(place);
+
+      // Airtable holds `place.isOpenToday ?? false`: only sync on a real change
+      if (newIsOpenToday !== (place.isOpenToday ?? false)) {
+        place.isOpenToday = newIsOpenToday;
+        await syncPlaceToAirtable(place);
+        syncCpt++;
+      }
+
       operations.push({
         updateOne: {
           filter: { lieu_id: place.lieu_id },
           timestamps: false,
           update: {
             $set: {
-              isOpenToday: await isPlaceOpenToday(place),
+              isOpenToday: newIsOpenToday,
             },
           },
         },
@@ -103,6 +153,7 @@ export const setIsOpenToday = async () => {
 
     if (operations.length) {
       await PlaceModel.bulkWrite(operations);
+      operations = [];
 
       logger.info(`${placeCpt} PLACES ON WHICH OPENING STATUS HAS BEEN SET`);
       logger.info(
@@ -112,4 +163,8 @@ export const setIsOpenToday = async () => {
 
     loopCpt += batchSize;
   }
+
+  logger.info(
+    `${syncCpt} PLACES SYNCED TO AIRTABLE AFTER IS_OPEN_TODAY CHANGE`
+  );
 };
