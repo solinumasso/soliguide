@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.144.0](https://github.com/solinumasso/soliguide/compare/v4.143.0...v4.144.0) (2026-06-23)
+
+
+### Features
+
+* add retry to google translate cron ([44f211a](https://github.com/solinumasso/soliguide/commit/44f211ac41d36707995dc04582ab6ec4bdc27998))
+* desactivate chat ([acb5709](https://github.com/solinumasso/soliguide/commit/acb5709e175707156e7b7dee785515a9dead1d94))
+
+
+
+
+
 # [4.143.0](https://github.com/solinumasso/soliguide/compare/v4.142.0...v4.143.0) (2026-06-23)
 
 
