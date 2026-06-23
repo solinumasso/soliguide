@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.143.0](https://github.com/solinumasso/soliguide/compare/v4.142.0...v4.143.0) (2026-06-23)
+
+
+### Features
+
+* desactivate sync-places-to-airtable cronjob ([d8a23dc](https://github.com/solinumasso/soliguide/commit/d8a23dc323c72b3aabd92799032b62cced7332b3))
+* sync place to AT when setting isOpenToday with cron ([27ab196](https://github.com/solinumasso/soliguide/commit/27ab1969efefc0af9dbb3a9160798a96f182eb95))
+* sync place to AT when setting isOpenToday with cron ([9db323d](https://github.com/solinumasso/soliguide/commit/9db323d9ef090a989ca92b18bc33046f556cea2a))
+
+
+
+
+
 # [4.142.0](https://github.com/solinumasso/soliguide/compare/v4.141.0...v4.142.0) (2026-06-18)
 
 
