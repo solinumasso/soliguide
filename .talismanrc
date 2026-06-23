@@ -1,4 +1,16 @@
 fileignoreconfig:
+- filename: .agents/skills/change-taxonomy/step-1-dsl-yaml.md
+  checksum: 84b4e2dc6eee8b3486ebaec950d8fda204176a3d9d8672cb870b14f811bded90
+- filename: .agents/skills/change-taxonomy/step-2-enum.md
+  checksum: beab8364928a87d9d965b5f74b40864f8a5183a75ebf74104090ca01d5cae9b8
+- filename: .agents/skills/change-taxonomy/step-6-weblate.md
+  checksum: 0a4b0de401334c753e300860685ea63825554e2258623da80ab9eed3f9ae147f
+- filename: .agents/skills/change-taxonomy/step-9-data-migration.md
+  checksum: 4704c5f9630d50855ac17b6ba2f1d5d1a542fdd820a027f596a5fd2871e1f6b5
+- filename: .agents/skills/update-search-suggestion-labels/SKILL.md
+  checksum: 59980e63054b5beb0851a6536875ab585184809753d3e28b3ab2958982d1fa19
+- filename: .agents/skills/update-search-suggestion-labels/step-1-identify.md
+  checksum: bd2cccb93df725dd82315e199258696ca236a6cceec44fb4b7082f5da972850d
 - filename: .github/workflows/_test-only.yml
   checksum: 1ef8fe720e9eeb1017dcef454149719fd442ee7b49b6be9b512ae5bb50a8f608
 - filename: .yarn/releases/yarn-4.14.1.cjs

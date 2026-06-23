@@ -27,6 +27,81 @@ const GoogleTranslate = new v2.Translate({
   key: CONFIG.GOOGLE_API_KEY,
 });
 
+const TRANSLATION_BATCH_LIMIT = 100;
+const GOOGLE_TRANSLATE_MAX_ATTEMPTS = 3;
+const GOOGLE_TRANSLATE_RETRY_DELAY_MS = 1000;
+
+const RETRYABLE_GOOGLE_TRANSLATE_ERROR_CODES = new Set([
+  "ECONNRESET",
+  "ETIMEDOUT",
+  "EAI_AGAIN",
+  "ENOTFOUND",
+  "ERR_STREAM_PREMATURE_CLOSE",
+]);
+
+type GoogleTranslateClient = Pick<v2.Translate, "translate">;
+
+const wait = async (durationMs: number): Promise<void> => {
+  await new Promise((resolve) => setTimeout(resolve, durationMs));
+};
+
+export const isRetryableGoogleTranslateError = (error: unknown): boolean => {
+  if (!error || typeof error !== "object") {
+    return false;
+  }
+
+  const googleError = error as {
+    code?: number | string;
+    errno?: string;
+    status?: number;
+    statusCode?: number;
+  };
+
+  const errorCode =
+    typeof googleError.code === "string" ? googleError.code : googleError.errno;
+  const statusCode =
+    googleError.statusCode ??
+    googleError.status ??
+    (typeof googleError.code === "number" ? googleError.code : undefined);
+
+  return Boolean(
+    (errorCode && RETRYABLE_GOOGLE_TRANSLATE_ERROR_CODES.has(errorCode)) ||
+      (statusCode && (statusCode === 429 || statusCode >= 500))
+  );
+};
+
+export const translateTextWithRetry = async (
+  translateClient: GoogleTranslateClient,
+  content: string,
+  lang: SupportedLanguagesCode,
+  retryDelayMs = GOOGLE_TRANSLATE_RETRY_DELAY_MS
+): Promise<string> => {
+  for (let attempt = 1; attempt <= GOOGLE_TRANSLATE_MAX_ATTEMPTS; attempt++) {
+    try {
+      const [translation] = await translateClient.translate(content, lang);
+
+      return Array.isArray(translation) ? translation[0] ?? "" : translation;
+    } catch (error) {
+      const shouldRetry =
+        attempt < GOOGLE_TRANSLATE_MAX_ATTEMPTS &&
+        isRetryableGoogleTranslateError(error);
+
+      if (!shouldRetry) {
+        throw error;
+      }
+
+      logger.warn(
+        { err: error, attempt, lang },
+        "[GOOGLE TRANSLATE] Retry after transient translation error"
+      );
+
+      await wait(retryDelayMs);
+    }
+  }
+
+  throw new Error("[GOOGLE TRANSLATE] Translation failed after retries");
+};
+
 const translatedJobByCountry = async (country: SoliguideCountries) => {
   const matchQuery: Array<FilterQuery<TranslatedField>> = [];
 
@@ -46,7 +121,7 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
     { $match: { $or: matchQuery } },
     { $group: { _id: "$content", doc: { $first: "$$ROOT" } } },
     { $replaceRoot: { newRoot: "$doc" } },
-    { $limit: 100 },
+    { $limit: TRANSLATION_BATCH_LIMIT },
   ]);
 
   const rebuiltPlaceIds = new Set<number>();
@@ -69,10 +144,10 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
         hasError = true;
         continue;
       }
-      const sourceContent =
+      const existingAutoContent =
         element.languages[lang as SupportedLanguagesCode]!.auto.content;
 
-      if (isEmpty(sourceContent)) {
+      if (isEmpty(existingAutoContent)) {
         // Search for existing human translation
         const humanTranslation = await findTranslatedField({
           [`languages.${lang as SupportedLanguagesCode}.human.status`]:
@@ -104,16 +179,32 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
           // check if content exist with human translate
           logger.info(`[GOOGLE TRANSLATE] Translation in ${lang}`);
 
-          const translation = await GoogleTranslate.translate(
-            element.content,
-            lang
-          );
+          try {
+            const translatedContent = await translateTextWithRetry(
+              GoogleTranslate,
+              element.content,
+              lang
+            );
 
-          newData = {
-            [`languages.${lang}.auto.content`]: translation[0],
-            [`languages.${lang}.auto.needHumanReview`]: true,
-            [`languages.${lang}.auto.updatedAt`]: new Date(),
-          };
+            newData = {
+              [`languages.${lang}.auto.content`]: translatedContent,
+              [`languages.${lang}.auto.needHumanReview`]: true,
+              [`languages.${lang}.auto.updatedAt`]: new Date(),
+            };
+          } catch (error) {
+            hasError = true;
+
+            logger.error(
+              {
+                err: error,
+                elementName: element.elementName,
+                lang,
+                lieu_id: element.lieu_id,
+              },
+              "[GOOGLE TRANSLATE] Failed to translate field"
+            );
+            continue;
+          }
         }
 
         // Update ALL documents sharing this content
