@@ -212,6 +212,7 @@ const PlaceSchema = new mongoose.Schema(
       default: TEMP_INFO,
       type: TempInfoSchema,
     },
+    atSyncDate: { default: null, type: Date, select: false },
     updatedByUserAt: { default: new Date(), type: Date, index: true },
     visibility: {
       default: PlaceVisibility.ALL,

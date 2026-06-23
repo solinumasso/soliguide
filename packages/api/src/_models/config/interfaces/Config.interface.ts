@@ -52,4 +52,7 @@ export interface Config {
 
   // Dipeeo
   RGPD_EMAIL: string;
+
+  // Airtable N8N sync
+  N8N_AIRTABLE_TOKEN?: string;
 }
