@@ -14,6 +14,8 @@ fileignoreconfig:
   checksum: cca8166a23153847fc0a3fbec92161c4596ef425f5b6a68aaadaa05ba880991c
 - filename: packages/api/src/middleware/request/tests/requestInformations.middleware.spec.ts
   checksum: 6a751b1f3b2b4502def7418f303a746b724694ad7bf92387fe02da43834882af
+- filename: packages/api/src/place/services/isOpenToday.service.spec.ts
+  checksum: ac3a7fd1c52228a976116bdfca6ab248570421a21d706775bb64b1d54099a5d1
 - filename: packages/api/src/user/controllers/auth.controller.ts
   checksum: 5b812117e3ae5b7924fdca4b41f8907dc93ca4d476779f14ca1fb5b436aa4b94
 - filename: packages/common/src/search-suggestions/config.ts

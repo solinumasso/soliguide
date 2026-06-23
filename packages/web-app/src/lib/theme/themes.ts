@@ -40,8 +40,7 @@ const defaultTheme: ThemeDefinition = {
     legalNotice: 'https://soliguide.fr/fr/mentions-legales',
     termsAndConditions: 'https://soliguide.fr/fr/cgu'
   },
-  // Chat temporarily hidden until September 2026 — restore by replacing null with env.PUBLIC_CHAT_WEBSITE_ID
-  chatWebsiteId: null
+  chatWebsiteId: env.PUBLIC_CHAT_WEBSITE_ID
 };
 
 const themeDefinitions: Partial<ThemeDefinition>[] = [
