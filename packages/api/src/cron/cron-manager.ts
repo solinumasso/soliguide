@@ -54,7 +54,7 @@ function createMonitoredCron(
           try {
             await jobFn();
           } catch (err) {
-            logger.error(`[CRON] ${slug} failed`, err);
+            logger.error({ err }, `[CRON] ${slug} failed`);
             throw err;
           }
         },
