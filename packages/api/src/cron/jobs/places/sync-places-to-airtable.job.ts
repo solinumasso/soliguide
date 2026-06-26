@@ -10,6 +10,11 @@ import {
   RoutingKey,
 } from "../../../events";
 import { ModelWithId } from "../../../_models";
+import type {
+  CronJobExecution,
+  CronJobResult,
+  CronLogContext,
+} from "../../interfaces";
 
 const BATCH_SIZE = 5000;
 const THROTTLE_BATCH_SIZE = 50;
@@ -19,12 +24,20 @@ function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export async function syncPlacesToAirtableJob(): Promise<void> {
+export async function syncPlacesToAirtableJob(
+  execution?: CronJobExecution
+): Promise<CronJobResult> {
   logger.info("JOB - SYNC ALL PLACES TO AIRTABLE\tSTART");
 
   let lastId: string | null = null;
   let totalSent = 0;
+  let totalFailed = 0;
   let throttleCpt = 0;
+  const context: CronLogContext = {
+    placesFailed: 0,
+    placesProcessed: 0,
+    placesSent: 0,
+  };
 
   // eslint-disable-next-line no-constant-condition
   while (true) {
@@ -63,6 +76,9 @@ export async function syncPlacesToAirtableJob(): Promise<void> {
 
         totalSent++;
         throttleCpt++;
+        context.placesProcessed = totalSent + totalFailed;
+        context.placesSent = totalSent;
+        execution?.setContext(context);
 
         if (throttleCpt >= THROTTLE_BATCH_SIZE) {
           await sleep(THROTTLE_DELAY_MS);
@@ -72,6 +88,10 @@ export async function syncPlacesToAirtableJob(): Promise<void> {
         logger.error(
           `SYNC AIRTABLE - failed to send place ${place.lieu_id} (_id: ${place._id}): ${err}`
         );
+        totalFailed++;
+        context.placesFailed = totalFailed;
+        context.placesProcessed = totalSent + totalFailed;
+        execution?.setContext(context);
       }
     }
 
@@ -81,4 +101,6 @@ export async function syncPlacesToAirtableJob(): Promise<void> {
   logger.info(
     `JOB - SYNC ALL PLACES TO AIRTABLE\tEND - ${totalSent} places sent`
   );
+
+  return { context };
 }

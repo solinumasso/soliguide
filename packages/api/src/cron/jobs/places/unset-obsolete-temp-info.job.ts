@@ -7,11 +7,24 @@ import { logger } from "../../../general/logger";
 import { PlaceModel } from "../../../place/models/place.model";
 import { TempInfoModel } from "../../../temp-info/models/temp-info.model";
 import { TranslatedFieldModel } from "../../../translations/models/translatedField.model";
+import type {
+  CronJobExecution,
+  CronJobResult,
+  CronLogContext,
+} from "../../interfaces";
 
 const BATCH_SIZE = 500;
 
-export async function unsetObsoleteTempInfoJob(): Promise<void> {
+export async function unsetObsoleteTempInfoJob(
+  execution?: CronJobExecution
+): Promise<CronJobResult> {
   logger.info("JOB - UNSET OBSOLETE TEMPORARY INFORMATION FOR PLACES - START");
+
+  const context: CronLogContext = {
+    placesUpdated: 0,
+    tempInfosProcessed: 0,
+    translationsDeleted: 0,
+  };
 
   //
   // 1. Search for currently obsolete info on places in the temporary info table
@@ -31,6 +44,7 @@ export async function unsetObsoleteTempInfoJob(): Promise<void> {
   let tempInfoBulkQuery: any[] = [];
   let translationBulkQuery: any[] = [];
   let totalProcessed = 0;
+  let translationsDeleted = 0;
 
   for await (const tempInfos of cursor) {
     const basicCleaning: Partial<BasePlaceTempInfo> = {
@@ -98,6 +112,11 @@ export async function unsetObsoleteTempInfoJob(): Promise<void> {
         await TranslatedFieldModel.bulkWrite(translationBulkQuery);
       }
       totalProcessed += tempInfoBulkQuery.length;
+      translationsDeleted += translationBulkQuery.length;
+      context.placesUpdated = totalProcessed;
+      context.tempInfosProcessed = totalProcessed;
+      context.translationsDeleted = translationsDeleted;
+      execution?.setContext(context);
       placeBulkQuery = [];
       tempInfoBulkQuery = [];
       translationBulkQuery = [];
@@ -112,9 +131,16 @@ export async function unsetObsoleteTempInfoJob(): Promise<void> {
       await TranslatedFieldModel.bulkWrite(translationBulkQuery);
     }
     totalProcessed += tempInfoBulkQuery.length;
+    translationsDeleted += translationBulkQuery.length;
+    context.placesUpdated = totalProcessed;
+    context.tempInfosProcessed = totalProcessed;
+    context.translationsDeleted = translationsDeleted;
+    execution?.setContext(context);
   }
 
   logger.info(`${totalProcessed} Obsolete temporary info cleaned up`);
 
   logger.info("JOB - UNSET OBSOLETE TEMPORARY INFORMATION FOR PLACES - END");
+
+  return { context };
 }
