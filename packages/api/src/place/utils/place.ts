@@ -3,8 +3,10 @@ import {
   CommonNewPlaceService,
   CommonOpeningHours,
   CommonPlaceParcours,
+  CommonPlacePosition,
   DegreeOfChoiceType,
   DietaryRegimesType,
+  PlaceType,
   WEEK_DAYS,
 } from "@soliguide/common";
 
@@ -97,6 +99,22 @@ export const getHoursFromParcours = (
   }
 
   return hours;
+};
+
+export const getRootPositionForPlace = (
+  place: Partial<Pick<ApiPlace, "parcours" | "placeType">> & {
+    position?: CommonPlacePosition | null;
+  }
+): CommonPlacePosition | undefined => {
+  if (place.placeType !== PlaceType.ITINERARY) {
+    return place.position ?? undefined;
+  }
+
+  const firstParcoursPosition = place.parcours?.[0]?.position;
+
+  return firstParcoursPosition
+    ? new CommonPlacePosition(firstParcoursPosition)
+    : place.position ?? undefined;
 };
 
 export const cleanPlaceCategorySpecificFields = (place: ApiPlace): ApiPlace => {
