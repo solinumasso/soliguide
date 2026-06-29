@@ -26,6 +26,7 @@ import {
   updateServices,
 } from "../services/admin-place.service";
 import {
+  getRootPositionForPlace,
   isPlaceOpenToday,
   getHoursFromParcours,
   removeFieldFromPlaceForDuplication,
@@ -111,6 +112,8 @@ const changeCampaignUpdateStatus = async (
 export const insertPlace = async (
   newPlace: Partial<ApiPlace>
 ): Promise<ModelWithId<ApiPlace>> => {
+  newPlace.position = getRootPositionForPlace(newPlace);
+
   // Increment lieu_id (unique)
   newPlace.lieu_id = await getNextPlaceId();
 
@@ -807,6 +810,11 @@ export const patchParcours = async (
     newhours,
     parcours,
     placeType: PlaceType.ITINERARY,
+    position: getRootPositionForPlace({
+      parcours,
+      placeType: PlaceType.ITINERARY,
+      position: oldPlace.position,
+    }),
     stepsDone: { ...req.lieu.stepsDone, emplacement: true },
   };
 
