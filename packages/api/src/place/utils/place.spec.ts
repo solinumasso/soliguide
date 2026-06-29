@@ -1,10 +1,8 @@
 import {
-  getRootPositionForPlace,
   getHoursFromParcours,
   removeFieldFromPlaceForDuplication,
 } from "./place";
 
-import { CommonPlacePosition, PlaceType } from "@soliguide/common";
 import { ONLINE_PLACE } from "../../../mocks/places/ONLINE_PLACE.mock";
 import { ONLINE_ITINERARY } from "../../../mocks/places/ONLINE_ITINERARY.mock";
 import { PARCOURS } from "../../../mocks/PARCOURS.mock";
@@ -26,33 +24,5 @@ describe("Tests the function that builds the Newhours field from the journey poi
     expect({ ...getHoursFromParcours(PARCOURS) }).toStrictEqual(
       ONLINE_ITINERARY.newhours
     );
-  });
-});
-
-describe("Tests root position selection by place type", () => {
-  it("returns the place position for fixed places", () => {
-    const position = new CommonPlacePosition({
-      address: "1 rue de la Paix",
-      city: "Paris",
-      postalCode: "75002",
-    });
-
-    expect(
-      getRootPositionForPlace({
-        parcours: PARCOURS,
-        placeType: PlaceType.PLACE,
-        position,
-      })
-    ).toStrictEqual(position);
-  });
-
-  it("returns the first itinerary point position for mobile itineraries", () => {
-    expect(
-      getRootPositionForPlace({
-        parcours: PARCOURS,
-        placeType: PlaceType.ITINERARY,
-        position: null,
-      })
-    ).toStrictEqual(new CommonPlacePosition(PARCOURS[0].position));
   });
 });
