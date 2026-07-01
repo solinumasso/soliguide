@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.145.1](https://github.com/solinumasso/soliguide/compare/v4.145.0...v4.145.1) (2026-07-01)
+
+
+### Bug Fixes
+
+* itinerary without parcours cant be displayed on orga view ([1e04fa3](https://github.com/solinumasso/soliguide/commit/1e04fa35369ad66789bb1c496280e9f48d5e3cd3))
+* wrong icons mapping in webapp ([a5da3d8](https://github.com/solinumasso/soliguide/commit/a5da3d8fc05fb9c65add85a06de31bf8d70a2b3b))
+
+
+
+
+
 # [4.145.0](https://github.com/solinumasso/soliguide/compare/v4.144.0...v4.145.0) (2026-07-01)
 
 
