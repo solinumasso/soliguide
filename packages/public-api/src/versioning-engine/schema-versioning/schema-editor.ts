@@ -1,4 +1,5 @@
 import {
+  CallExpression,
   Expression,
   Node,
   ObjectLiteralExpression,
@@ -43,6 +44,11 @@ const WRAPPER_METHOD_NAMES = new Set([
 export interface ApplySchemaChangesOptions {
   sourceFilePath: string;
   changes: AnyParsedChangeDefinition[];
+}
+
+interface SchemaMethodCall {
+  callExpression: CallExpression;
+  methodName: string;
 }
 
 export class SchemaAstEditor {
@@ -266,17 +272,14 @@ export class SchemaAstEditor {
       parentPathSegments,
       context
     );
-    const targetProperty = this.getObjectProperty(parentObject, fieldName);
 
-    if (!targetProperty) {
-      throw new Error(
-        `Invalid payloadPath ${pathSegments.join(
-          "."
-        )} for ${context}: field ${fieldName} not found`
-      );
-    }
-
-    return targetProperty;
+    return this.requireObjectProperty(
+      parentObject,
+      fieldName,
+      `Invalid payloadPath ${pathSegments.join(
+        "."
+      )} for ${context}: field ${fieldName} not found`
+    );
   }
 
   private resolveObjectAtPath(
@@ -298,26 +301,20 @@ export class SchemaAstEditor {
         currentExpression,
         `${context} (${segment})`
       );
+      const property = this.requireObjectProperty(
+        currentObjectShape,
+        segment,
+        `Invalid payloadPath ${pathSegments.join(
+          "."
+        )} for ${context}: segment ${segment} not found`
+      );
 
-      const property = this.getObjectProperty(currentObjectShape, segment);
-      if (!property) {
-        throw new Error(
-          `Invalid payloadPath ${pathSegments.join(
-            "."
-          )} for ${context}: segment ${segment} not found`
-        );
-      }
-
-      const initializer = property.getInitializer();
-      if (!initializer) {
-        throw new Error(
+      currentExpression = this.readPropertyInitializer(
+        property,
           `Property ${segment} in ${pathSegments.join(
             "."
           )} for ${context} has no initializer`
-        );
-      }
-
-      currentExpression = initializer;
+      );
     }
 
     return this.resolveObjectShapeFromSchemaExpression(
@@ -328,92 +325,148 @@ export class SchemaAstEditor {
 
   private resolveObjectShapeFromSchemaExpression(
     schemaExpression: Expression,
-    context: string
+    context: string,
+    visitedExpressionKeys = new Set<string>()
   ): ObjectLiteralExpression {
-    let currentExpression: Expression = schemaExpression;
+    const normalizedExpression =
+      this.normalizeSchemaExpression(schemaExpression);
+    const expressionKey = this.getExpressionKey(normalizedExpression);
+    if (visitedExpressionKeys.has(expressionKey)) {
+      throw new Error(`Circular schema traversal while traversing ${context}`);
+    }
 
-    while (true) {
-      const normalizedExpression =
-        this.normalizeSchemaExpression(currentExpression);
+    visitedExpressionKeys.add(expressionKey);
 
-      if (!Node.isCallExpression(normalizedExpression)) {
-        throw new Error(
-          `Unsupported AST shape while traversing ${context}: expected call expression, got ${normalizedExpression.getKindName()} (${normalizedExpression.getText()})`
-        );
-      }
+    const schemaCall = this.readSchemaMethodCall(
+      normalizedExpression,
+      context
+    );
 
-      const calleeExpression = normalizedExpression.getExpression();
-      if (!Node.isPropertyAccessExpression(calleeExpression)) {
-        throw new Error(
-          `Unsupported AST shape while traversing ${context}: expected property access call, got ${calleeExpression.getText()}`
-        );
-      }
-
-      const methodName = calleeExpression.getName();
-
-      if (ARRAY_METHOD_NAMES.has(methodName)) {
-        const itemExpression = normalizedExpression.getArguments()[0];
-        if (!itemExpression || !Node.isExpression(itemExpression)) {
-          throw new Error(
-            `Invalid array schema while traversing ${context}: missing item expression`
-          );
-        }
-
-        currentExpression = itemExpression;
-        continue;
-      }
-
-      if (OBJECT_METHOD_NAMES.has(methodName)) {
-        const shapeArgument = normalizedExpression.getArguments()[0];
-        if (!shapeArgument || !Node.isObjectLiteralExpression(shapeArgument)) {
-          throw new Error(
-            `Unsupported object schema shape for ${context}: expected object literal argument in ${normalizedExpression.getText()}`
-          );
-        }
-
-        return shapeArgument;
-      }
-
-      if (UNSUPPORTED_TYPED_TRAVERSAL_METHOD_NAMES.has(methodName)) {
-        throw new Error(
-          `Unsupported AST shape for typed change at ${context}: ${methodName} internals require PatchChange`
-        );
-      }
-
-      if (methodName === "extend") {
-        throw new Error(
-          `Unsupported AST shape for typed change at ${context}: extend(...) requires PatchChange`
-        );
-      }
-
-      throw new Error(
-        `Unsupported AST shape for typed change at ${context}: ${normalizedExpression.getText()}`
+    if (ARRAY_METHOD_NAMES.has(schemaCall.methodName)) {
+      return this.resolveObjectShapeFromSchemaExpression(
+        this.readArrayItemExpression(schemaCall.callExpression, context),
+        context,
+        visitedExpressionKeys
       );
     }
+
+    if (OBJECT_METHOD_NAMES.has(schemaCall.methodName)) {
+      return this.readObjectShapeArgument(schemaCall.callExpression, context);
+    }
+
+    throw this.createUnsupportedSchemaTraversalError(
+      schemaCall.methodName,
+      normalizedExpression,
+      context
+    );
+  }
+
+  private readSchemaMethodCall(
+    expression: Expression,
+    context: string
+  ): SchemaMethodCall {
+    if (!Node.isCallExpression(expression)) {
+      throw new Error(
+        `Unsupported AST shape while traversing ${context}: expected call expression, got ${expression.getKindName()} (${expression.getText()})`
+      );
+    }
+
+    const calleeExpression = expression.getExpression();
+    if (!Node.isPropertyAccessExpression(calleeExpression)) {
+      throw new Error(
+        `Unsupported AST shape while traversing ${context}: expected property access call, got ${calleeExpression.getText()}`
+      );
+    }
+
+    return {
+      callExpression: expression,
+      methodName: calleeExpression.getName(),
+    };
+  }
+
+  private readArrayItemExpression(
+    callExpression: CallExpression,
+    context: string
+  ): Expression {
+    const itemExpression = callExpression.getArguments()[0];
+    if (!itemExpression || !Node.isExpression(itemExpression)) {
+      throw new Error(
+        `Invalid array schema while traversing ${context}: missing item expression`
+      );
+    }
+
+    return itemExpression;
+  }
+
+  private readObjectShapeArgument(
+    callExpression: CallExpression,
+    context: string
+  ): ObjectLiteralExpression {
+    const shapeArgument = callExpression.getArguments()[0];
+    if (!shapeArgument || !Node.isObjectLiteralExpression(shapeArgument)) {
+      throw new Error(
+        `Unsupported object schema shape for ${context}: expected object literal argument in ${callExpression.getText()}`
+      );
+    }
+
+    return shapeArgument;
+  }
+
+  private createUnsupportedSchemaTraversalError(
+    methodName: string,
+    expression: Expression,
+    context: string
+  ): Error {
+    if (UNSUPPORTED_TYPED_TRAVERSAL_METHOD_NAMES.has(methodName)) {
+      return new Error(
+        `Unsupported AST shape for typed change at ${context}: ${methodName} internals require PatchChange`
+      );
+    }
+
+    if (methodName === "extend") {
+      return new Error(
+        `Unsupported AST shape for typed change at ${context}: extend(...) requires PatchChange`
+      );
+    }
+
+    return new Error(
+      `Unsupported AST shape for typed change at ${context}: ${expression.getText()}`
+    );
+  }
+
+  private getExpressionKey(expression: Expression): string {
+    return `${expression.getSourceFile().getFilePath()}:${expression.getStart()}`;
   }
 
   private normalizeSchemaExpression(expression: Expression): Expression {
     let currentExpression = expression;
+    let shouldNormalize = true;
     const visitedVariableDeclarations = new Set<string>();
 
-    while (true) {
+    while (shouldNormalize) {
+      shouldNormalize = false;
+
       if (Node.isParenthesizedExpression(currentExpression)) {
         currentExpression = currentExpression.getExpression();
+        shouldNormalize = true;
         continue;
       }
 
       if (Node.isAsExpression(currentExpression)) {
         currentExpression = currentExpression.getExpression();
+        shouldNormalize = true;
         continue;
       }
 
       if (Node.isSatisfiesExpression(currentExpression)) {
         currentExpression = currentExpression.getExpression();
+        shouldNormalize = true;
         continue;
       }
 
       if (Node.isNonNullExpression(currentExpression)) {
         currentExpression = currentExpression.getExpression();
+        shouldNormalize = true;
         continue;
       }
 
@@ -444,6 +497,7 @@ export class SchemaAstEditor {
         }
 
         currentExpression = initializer;
+        shouldNormalize = true;
         continue;
       }
 
@@ -453,13 +507,14 @@ export class SchemaAstEditor {
           const methodName = calleeExpression.getName();
           if (WRAPPER_METHOD_NAMES.has(methodName)) {
             currentExpression = calleeExpression.getExpression();
+            shouldNormalize = true;
             continue;
           }
         }
       }
-
-      return currentExpression;
     }
+
+    return currentExpression;
   }
 
   private getObjectProperty(
