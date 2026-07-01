@@ -3,7 +3,7 @@ import { type Document } from "mongodb";
 import { type PipelineStage } from "mongoose";
 
 import { PlaceType } from "@soliguide/common";
-import { FIELDS_FOR_SEARCH } from "@soliguide/api/src";
+import { FIELDS_FOR_SEARCH } from "@soliguide/api";
 
 import { SearchQuery } from "../../../search-query/search-query";
 
