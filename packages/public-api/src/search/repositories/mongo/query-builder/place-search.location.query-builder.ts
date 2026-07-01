@@ -20,63 +20,103 @@ export class LocationQueryBuilder implements SearchQueryBuilder {
     }
 
     const placeType = context.query.placeType ?? PlaceType.PLACE;
-
-    const geoNearCandidateLocations: PositionSearchLocation[] = [];
-    for (const location of queryLocations) {
-      if (location.geoType === GeoTypes.POSITION && location.coordinates) {
-        geoNearCandidateLocations.push(location as PositionSearchLocation);
-      }
-    }
-
-    // Important: $geoNear can only appear once. If exactly one POSITION location
-    // is provided, we keep geoNear and still combine all location filters.
-    const positionLocation =
-      geoNearCandidateLocations.length === 1
-        ? geoNearCandidateLocations[0]
-        : null;
-
-    const locationConditions: Document[] = [];
-    for (const location of queryLocations) {
-      if (positionLocation && location === positionLocation) {
-        continue;
-      }
-
-      if (location.geoType === GeoTypes.POSITION && location.coordinates) {
-        locationConditions.push(
-          this.buildPositionCountryCondition(location, placeType)
-        );
-        continue;
-      }
-
-      const locationCondition = this.buildLocationCondition(
-        location,
-        placeType
-      );
-      if (locationCondition) {
-        locationConditions.push(locationCondition);
-      }
-    }
-
-    if (!locationConditions.length) {
-      if (!positionLocation) {
-        return context;
-      }
-
-      return this.withGeoNear(context, placeType, positionLocation);
-    }
-
-    const locationCondition =
-      locationConditions.length === 1
-        ? locationConditions[0]
-        : { $or: locationConditions };
-
-    const nextContext = appendAndConditions(context, locationCondition);
+    const positionLocation = this.getGeoNearPositionLocation(queryLocations);
+    const locationConditions = this.buildLocationConditions(
+      queryLocations,
+      placeType,
+      positionLocation
+    );
+    const nextContext = this.withLocationConditions(
+      context,
+      locationConditions
+    );
 
     if (!positionLocation) {
       return nextContext;
     }
 
     return this.withGeoNear(nextContext, placeType, positionLocation);
+  }
+
+  private getGeoNearPositionLocation(
+    locations: SearchLocation[]
+  ): PositionSearchLocation | null {
+    const positionLocations = locations.filter((location) =>
+      this.isPositionLocation(location)
+    );
+
+    // Important: $geoNear can only appear once. If exactly one POSITION location
+    // is provided, we keep geoNear and still combine all location filters.
+    return positionLocations.length === 1 ? positionLocations[0] : null;
+  }
+
+  private buildLocationConditions(
+    locations: SearchLocation[],
+    placeType: PlaceType,
+    geoNearLocation: PositionSearchLocation | null
+  ): Document[] {
+    const locationConditions: Document[] = [];
+
+    for (const location of locations) {
+      const locationCondition = this.buildConditionForLocation(
+        location,
+        placeType,
+        geoNearLocation
+      );
+
+      if (locationCondition) {
+        locationConditions.push(locationCondition);
+      }
+    }
+
+    return locationConditions;
+  }
+
+  private buildConditionForLocation(
+    location: SearchLocation,
+    placeType: PlaceType,
+    geoNearLocation: PositionSearchLocation | null
+  ): Document | null {
+    if (location === geoNearLocation) {
+      return null;
+    }
+
+    if (this.isPositionLocation(location)) {
+      return this.buildPositionCountryCondition(location, placeType);
+    }
+
+    return this.buildLocationCondition(location, placeType);
+  }
+
+  private withLocationConditions(
+    context: SearchContext,
+    locationConditions: Document[]
+  ): SearchContext {
+    const locationCondition = this.buildLocationOrCondition(locationConditions);
+
+    return locationCondition
+      ? appendAndConditions(context, locationCondition)
+      : context;
+  }
+
+  private buildLocationOrCondition(
+    locationConditions: Document[]
+  ): Document | null {
+    if (!locationConditions.length) {
+      return null;
+    }
+
+    return locationConditions.length === 1
+      ? locationConditions[0]
+      : { $or: locationConditions };
+  }
+
+  private isPositionLocation(
+    location: SearchLocation
+  ): location is PositionSearchLocation {
+    return (
+      location.geoType === GeoTypes.POSITION && Boolean(location.coordinates)
+    );
   }
 
   private withGeoNear(
