@@ -81,6 +81,7 @@ export async function createCompatibilityEnvironment(): Promise<CompatibilityEnv
         S3_ACCESS_KEY: "minioadmin",
         S3_SECRET_KEY: "minioadmin",
         DEV_ANON: "false",
+        GOOGLE_MAPS_API_KEY: "compatibility-test-google-maps-key",
         CRON_ENABLED: "false",
         AMQP_URL: "",
       },
@@ -349,7 +350,9 @@ async function startAppProcess(params: {
   return {
     process: childProcess,
     processGroupId:
-      process.platform !== "win32" ? childProcess.pid ?? undefined : undefined,
+      process.platform !== "win32"
+        ? (childProcess.pid ?? undefined)
+        : undefined,
     logs: () => ({
       stdout: stdoutChunks.join(""),
       stderr: stderrChunks.join(""),

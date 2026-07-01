@@ -32,9 +32,7 @@ describe("VisibilityQueryBuilder", () => {
 
     const result = builder.build(context);
 
-    expect(result.andConditions).toEqual([
-      { visibility: PlaceVisibility.ALL },
-    ]);
+    expect(result.andConditions).toEqual([{ visibility: PlaceVisibility.ALL }]);
     expect(context.andConditions).toEqual([]);
   });
 

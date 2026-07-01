@@ -107,11 +107,11 @@ describe("OpenApiGenerator", () => {
     expect(readRequestJsonSchema(generatedSearchPostOperation)).toMatchObject({
       type: "object",
     });
-    expect(readResponseJsonSchema(generatedSearchPostOperation, "200")).toMatchObject(
-      {
-        type: "object",
-      }
-    );
+    expect(
+      readResponseJsonSchema(generatedSearchPostOperation, "200")
+    ).toMatchObject({
+      type: "object",
+    });
   });
 
   it("omits implicit safe integer bounds for unconstrained int fields", async () => {
@@ -248,7 +248,8 @@ describe("OpenApiGenerator", () => {
     expect(
       Object.keys(componentSchemas).some(
         (componentName) =>
-          componentName.includes("__schema") || componentName.includes("schema0")
+          componentName.includes("__schema") ||
+          componentName.includes("schema0")
       )
     ).toBe(false);
   });

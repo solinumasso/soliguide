@@ -1,4 +1,5 @@
 fileignoreconfig:
+
 - filename: .agents/skills/change-taxonomy/step-1-dsl-yaml.md
   checksum: 84b4e2dc6eee8b3486ebaec950d8fda204176a3d9d8672cb870b14f811bded90
 - filename: .agents/skills/change-taxonomy/step-2-enum.md
@@ -79,6 +80,20 @@ fileignoreconfig:
   checksum: 267e262e74dd6ad9609ab6ee42aaf75239b4699b29c58c7c3752a6c385ce7a46
 - filename: packages/web-app/.env.example
   checksum: af47ab3ebb9968b210ba35897b1e5ac139854c06b8f60648e3e87b02a6e0233f
+- filename: packages/public-api/.env.example
+  checksum: 32151e3020a608b6569bcb9fd1e91ba6a7f4ff4c38c8e6582b3efaeb5c65214f
+- filename: packages/public-api/docs/kickoff/kickoff.ca.md
+  checksum: 4049eac2b5885947cb8c53bec95f3dd645cd9219ed165cb1ca0771788b6286ae
+- filename: packages/public-api/docs/kickoff/kickoff.en.md
+  checksum: 110139536f593bd9945798ba9f537ee9fa01a02e62187583de7b7713b280786d
+- filename: packages/public-api/docs/kickoff/kickoff.es.md
+  checksum: 8dea18f9a7dff52120e5a1aefc8c3579f10112999ec42f26aa7dc119a44a93be
+- filename: packages/public-api/docs/kickoff/kickoff.fr.md
+  checksum: 9706f7a6c9fc10937ba86d3c94f6f725724e21c081d8380062c2c7f9cdc5b891
+- filename: packages/public-api/src/versions/2026-01-01/2026-01-01.openapi.generated.json
+  checksum: 8ebd3a274ac7fb02ab64f9209b85fe15dcaa73ee75a55810a377059387a32dd5
+- filename: packages/public-api/src/versions/2026-01-01/2026-01-01.search-response.schema.generated.ts
+  checksum: 901cba26db629816ebdd8c0dcd9dd4c9b0491d8a9b543c8c491bc57c98ff0758
 - filename: packages/web-app/src/lib/services/categoryService.ts
   checksum: 7002e4f6fe7b74eb7516a14b09ec8bbd1ad429a33b017cda5329ef6c6b835d17
 - filename: packages/web-app/src/routes/[lang]/(withMenu)/+page.svelte
@@ -103,4 +118,3 @@ fileignoreconfig:
   checksum: 255742469cf3c03ad2e1a9d1409c1877c292735e2bf5583393523750cbc88c0f
   version: "1.0"
   checksum: 39a777e2cc93ef06f37d3d3331e8078fbfcf1f58793174b9e37f5bac2363a0a4
-version: "1.0"
