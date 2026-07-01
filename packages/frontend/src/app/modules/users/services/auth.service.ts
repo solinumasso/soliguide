@@ -40,26 +40,20 @@ export class AuthService {
 
   public login(mail: string, password: string): Observable<User> {
     return this.http
-      .post<{ token: string; user: UserForAuth }>(`${AUTH_END_POINT}/signin`, {
+      .post<{ user: UserForAuth }>(`${AUTH_END_POINT}/signin`, {
         mail,
         password,
       })
       .pipe(
-        map((response: { token: string; user: UserForAuth }) => {
+        map((response: { user: UserForAuth }) => {
           const user = new User(response.user);
-          this.updateCurrentUser(user, response.token);
+          this.updateCurrentUser(user);
           return user;
         })
       );
   }
 
   public isAuth(): Observable<boolean> {
-    // No token
-    if (!globalConstants.getItem("USER")) {
-      this.currentUserSubject.next(null);
-      return of(false);
-    }
-
     return this.http.get<UserForAuth>(`${AUTH_END_POINT}/me`).pipe(
       map((response: UserForAuth | null) => {
         if (!response) {
@@ -81,7 +75,7 @@ export class AuthService {
         return true;
       }),
       catchError(() => {
-        globalConstants.clearStorage();
+        globalConstants.removeItem("USER");
         this.currentUserSubject.next(null);
         return of(false);
       })
@@ -90,7 +84,8 @@ export class AuthService {
 
   public logout(): void {
     this.currentUserSubject.next(null);
-    globalConstants.clearStorage();
+    globalConstants.removeItem("USER");
+    this.http.post<void>(`${AUTH_END_POINT}/logout`, {}).subscribe();
   }
 
   public logoutAndRedirect(state?: ActivatedRouteSnapshot): void {
@@ -156,12 +151,7 @@ export class AuthService {
       );
   }
 
-  public updateCurrentUser(user: User, token?: string): void {
-    user.token = token
-      ? token
-      : this.currentUserValue?.token
-      ? this.currentUserValue.token
-      : user.token;
+  public updateCurrentUser(user: User): void {
     globalConstants.setItem("USER", user);
     this.currentUserSubject.next(user);
   }
