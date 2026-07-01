@@ -11,7 +11,13 @@ import swaggerJSDoc from "swagger-jsdoc";
 import { anonymizeDb } from "./config/database/anonymizeDb";
 
 import { httpLogger, logger } from "./general/logger";
-import { CONFIG, ExpressRequest, ExpressResponse } from "./_models";
+import {
+  CONFIG,
+  ExpressRequest,
+  ExpressResponse,
+  SOLIGUIDE_HOSTNAME_REGEXP,
+  SOLIGUIDE_URLS,
+} from "./_models";
 
 logger.info(CONFIG);
 
@@ -83,11 +89,38 @@ import { initializeCronJobs } from "./cron/cron-manager";
 import { setIsOpenToday } from "./place/services/isOpenToday.service";
 
 const _app = express();
+const allowedCorsOrigins = new Set(
+  [...SOLIGUIDE_URLS, CONFIG.FRONTEND_URL, CONFIG.WIDGET_URL].map((url) =>
+    url.replace(/\/$/, "")
+  )
+);
+
+const isAllowedCorsOrigin = (origin: string): boolean => {
+  const cleanOrigin = origin.replace(/\/$/, "");
+
+  if (allowedCorsOrigins.has(cleanOrigin)) {
+    return true;
+  }
+
+  try {
+    const { hostname } = new URL(cleanOrigin);
+    return SOLIGUIDE_HOSTNAME_REGEXP.test(hostname);
+  } catch (_error) {
+    return false;
+  }
+};
 
 _app.use(httpLogger);
 _app.use(
   cors({
     credentials: true,
+    origin: (origin, callback) => {
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      return callback(null, isAllowedCorsOrigin(origin));
+    },
     allowedHeaders: [
       "Authorization",
       "Accept",
