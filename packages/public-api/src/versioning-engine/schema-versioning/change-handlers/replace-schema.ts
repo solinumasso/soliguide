@@ -4,7 +4,6 @@ export const replaceSchemaChangeHandler: ChangeHandler<"replaceSchema"> = {
   apply(context, change) {
     context
       .resolveChangeFieldProperty(
-        context.mainSchemaDeclaration,
         change.payload.payloadPath,
         `replaceSchema ${change.changeName}`
       )

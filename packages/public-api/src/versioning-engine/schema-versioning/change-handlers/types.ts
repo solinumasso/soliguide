@@ -3,7 +3,6 @@ import {
   ObjectLiteralExpression,
   PropertyAssignment,
   SourceFile,
-  VariableDeclaration,
 } from "ts-morph";
 
 import { ChangeType } from "../../dsl/changes/version-change";
@@ -58,7 +57,6 @@ export interface ChangeApplyContext {
     propertyName: string,
     errorMessage: string
   ): void;
-  mainSchemaDeclaration: VariableDeclaration;
   readPropertyInitializer(
     property: PropertyAssignment,
     errorMessage: string
@@ -69,12 +67,10 @@ export interface ChangeApplyContext {
     errorMessage: string
   ): PropertyAssignment;
   resolveChangeFieldProperty(
-    mainSchemaDeclaration: VariableDeclaration,
     payloadPath: string,
     context: string
   ): PropertyAssignment;
   resolveChangeObject(
-    mainSchemaDeclaration: VariableDeclaration,
     payloadPath: string,
     context: string
   ): ObjectLiteralExpression;
