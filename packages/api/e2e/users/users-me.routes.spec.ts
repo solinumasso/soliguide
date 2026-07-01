@@ -8,6 +8,7 @@ import { TestAccounts, ExpectedStatus } from "../endPointTester.type";
 import { User } from "../../src/_models";
 
 import { UserModel } from "../../src/user/models/user.model";
+import { CONFIG } from "../../src/_models";
 
 const ALLOWED_USERS = [
   TestAccounts.USER_ADMIN_SOLIGUIDE,
@@ -249,4 +250,64 @@ test("❌ Nonexisting token", async () => {
     .then((response) => {
       expect(response.body.message).toStrictEqual("NOT_LOGGED");
     });
+});
+
+test("✅ Signin sets an httpOnly session cookie", async () => {
+  const response = await supertest()
+    .post("/users/signin")
+    .set("Origin", "https://soliguide.fr")
+    .send({
+      mail: ACCOUNTS_FOR_TEST[TestAccounts.USER_PRO_OWNER],
+      password: "soliguide",
+    })
+    .expect(200);
+
+  const cookies = response.headers["set-cookie"];
+
+  expect(cookies).toBeDefined();
+  expect(cookies.join(";")).toContain(`${CONFIG.AUTH_COOKIE_NAME}=`);
+  expect(cookies.join(";")).toContain("HttpOnly");
+  expect(cookies.join(";")).toContain("SameSite=Lax");
+});
+
+test("✅ Cookie session authenticates without Authorization header", async () => {
+  const signinResponse = await supertest()
+    .post("/users/signin")
+    .set("Origin", "https://soliguide.fr")
+    .send({
+      mail: ACCOUNTS_FOR_TEST[TestAccounts.USER_PRO_OWNER],
+      password: "soliguide",
+    })
+    .expect(200);
+
+  const response = await supertest()
+    .get(baseUrl)
+    .set("Origin", "https://soliguide.fr")
+    .set("Cookie", signinResponse.headers["set-cookie"])
+    .expect(200);
+
+  expect(response.body.mail).toStrictEqual(
+    ACCOUNTS_FOR_TEST[TestAccounts.USER_PRO_OWNER]
+  );
+});
+
+test("✅ Logout clears the session cookie", async () => {
+  const signinResponse = await supertest()
+    .post("/users/signin")
+    .set("Origin", "https://soliguide.fr")
+    .send({
+      mail: ACCOUNTS_FOR_TEST[TestAccounts.USER_PRO_OWNER],
+      password: "soliguide",
+    })
+    .expect(200);
+
+  const response = await supertest()
+    .post("/users/logout")
+    .set("Origin", "https://soliguide.fr")
+    .set("Cookie", signinResponse.headers["set-cookie"])
+    .expect(204);
+
+  expect(response.headers["set-cookie"].join(";")).toContain(
+    `${CONFIG.AUTH_COOKIE_NAME}=;`
+  );
 });
