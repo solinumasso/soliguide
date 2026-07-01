@@ -4,7 +4,7 @@ import {
   NestFastifyApplication,
 } from "@nestjs/platform-fastify";
 import helmet from "helmet";
-import { PlaceModel } from "@soliguide/api";
+import { PlaceModel } from "@soliguide/api/src";
 import { AppModule } from "./app.module";
 
 import { config } from "dotenv";
@@ -21,7 +21,7 @@ config();
   }
 
   if (mongodbUri) {
-    await PlaceModel.db.base.connect(mongodbUri, {
+    await PlaceModel.base.connect(mongodbUri, {
       maxIdleTimeMS: 50_000,
       serverSelectionTimeoutMS: 5_000,
     });

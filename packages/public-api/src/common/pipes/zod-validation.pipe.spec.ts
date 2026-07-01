@@ -23,8 +23,9 @@ describe("ZodValidationPipe", () => {
     });
     const pipe = new ZodValidationPipe(schema, "INVALID_PAYLOAD");
 
-    expect(() => pipe.transform({ age: "16", name: "" }, { type: "body" }))
-      .toThrowError(BadRequestException);
+    expect(() =>
+      pipe.transform({ age: "16", name: "" }, { type: "body" })
+    ).toThrowError(BadRequestException);
 
     try {
       pipe.transform({ age: "16", name: "" }, { type: "body" });

@@ -8,7 +8,9 @@
     "test:e2e": "vitest run --config ./vitest.config.ts"
   },
   "dependencies": {
+    "@soliguide/api": "workspace:*",
     "@soliguide/common": "workspace:*",
+    "@soliguide/public-api": "workspace:*",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.17.0",
     "supertest": "^7.1.3",

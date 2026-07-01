@@ -23,6 +23,10 @@ export async function setupOpenApi(app: NestFastifyApplication) {
     });
   }
 
+  fastify.get("/", async (_, reply) => {
+    reply.redirect("/api/docs", 302);
+  });
+
   app.use(
     "/api/docs",
     apiReference({

@@ -16,6 +16,7 @@
                     "nbResults": {
                       "nullable": true,
                       "description": "Total number of places matching the request.",
+                      "example": 42,
                       "type": "integer",
                       "minimum": 0
                     },
@@ -28,10 +29,7 @@
                       }
                     }
                   },
-                  "required": [
-                    "nbResults",
-                    "places"
-                  ],
+                  "required": ["nbResults", "places"],
                   "additionalProperties": false,
                   "id": "v20260101SearchResponse"
                 }
@@ -40,9 +38,7 @@
           }
         },
         "summary": "Search places",
-        "tags": [
-          "search"
-        ],
+        "tags": ["search"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -120,10 +116,13 @@
                     ]
                   },
                   "languages": {
-                    "description": "Language spoken at the place. Format ISO 639-3.",
-                    "example": "fr",
+                    "description": "Filter places by languages spoken at the place.",
+                    "example": ["fr"],
                     "nullable": true,
-                    "type": "string"
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Common_PlaceLanguages"
+                    }
                   },
                   "widgetId": {
                     "description": "Widget identifier used to apply widget-specific search rules.",
@@ -149,9 +148,7 @@
                     ]
                   }
                 },
-                "required": [
-                  "location"
-                ],
+                "required": ["location"],
                 "additionalProperties": {},
                 "description": "Exhaustive request body schema for POST /new-search/:lang? (non-admin route).",
                 "id": "v20260101SearchRequest"
@@ -172,26 +169,11 @@
   "servers": [],
   "components": {
     "schemas": {
-      "Common_CountryCodes": {
+      "Common_SoliguideCountries": {
         "type": "string",
-        "enum": [
-          "fr",
-          "re",
-          "gf",
-          "pf",
-          "tf",
-          "gp",
-          "mq",
-          "yt",
-          "bl",
-          "mf",
-          "pm",
-          "wf",
-          "es",
-          "ad"
-        ],
-        "description": "Country code. Format ISO 3166-1 alpha-2.",
-        "id": "Common_CountryCodes"
+        "enum": ["fr", "es", "ad"],
+        "description": "Country code restricted to Soliguide countries. Format ISO 3166-1 alpha-2.",
+        "id": "Common_SoliguideCountries"
       },
       "SearchRequest_Location": {
         "oneOf": [
@@ -200,9 +182,7 @@
             "properties": {
               "geoType": {
                 "type": "string",
-                "enum": [
-                  "position"
-                ]
+                "enum": ["position"]
               },
               "geoValue": {
                 "description": "Geographic identifier for non-position searches (country, region, department, city, etc.).",
@@ -217,10 +197,7 @@
                   "type": "number"
                 },
                 "description": "Geographic coordinates used when `geoType` is `position`, as `[longitude, latitude]`. Format GeoJSON.",
-                "example": [
-                  2.3522,
-                  48.8566
-                ]
+                "example": [2.3522, 48.8566]
               },
               "distance": {
                 "description": "Search radius in kilometers for position-based search.",
@@ -258,15 +235,12 @@
                 "nullable": true,
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/Common_CountryCodes"
+                    "$ref": "#/components/schemas/Common_SoliguideCountries"
                   }
                 ]
               }
             },
-            "required": [
-              "geoType",
-              "coordinates"
-            ],
+            "required": ["geoType", "coordinates"],
             "additionalProperties": {}
           },
           {
@@ -274,9 +248,7 @@
             "properties": {
               "geoType": {
                 "type": "string",
-                "enum": [
-                  "inconnu"
-                ]
+                "enum": ["inconnu"]
               },
               "geoValue": {
                 "description": "Geographic identifier for non-position searches (country, region, department, city, etc.).",
@@ -329,14 +301,12 @@
                 "nullable": true,
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/Common_CountryCodes"
+                    "$ref": "#/components/schemas/Common_SoliguideCountries"
                   }
                 ]
               }
             },
-            "required": [
-              "geoType"
-            ],
+            "required": ["geoType"],
             "additionalProperties": {}
           },
           {
@@ -344,9 +314,7 @@
             "properties": {
               "geoType": {
                 "type": "string",
-                "enum": [
-                  "codePostal"
-                ]
+                "enum": ["codePostal"]
               },
               "geoValue": {
                 "type": "string",
@@ -400,15 +368,12 @@
                 "nullable": true,
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/Common_CountryCodes"
+                    "$ref": "#/components/schemas/Common_SoliguideCountries"
                   }
                 ]
               }
             },
-            "required": [
-              "geoType",
-              "geoValue"
-            ],
+            "required": ["geoType", "geoValue"],
             "additionalProperties": {}
           },
           {
@@ -416,9 +381,7 @@
             "properties": {
               "geoType": {
                 "type": "string",
-                "enum": [
-                  "ville"
-                ]
+                "enum": ["ville"]
               },
               "geoValue": {
                 "type": "string",
@@ -472,15 +435,12 @@
                 "nullable": true,
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/Common_CountryCodes"
+                    "$ref": "#/components/schemas/Common_SoliguideCountries"
                   }
                 ]
               }
             },
-            "required": [
-              "geoType",
-              "geoValue"
-            ],
+            "required": ["geoType", "geoValue"],
             "additionalProperties": {}
           },
           {
@@ -488,14 +448,12 @@
             "properties": {
               "geoType": {
                 "type": "string",
-                "enum": [
-                  "pays"
-                ]
+                "enum": ["pays"]
               },
               "geoValue": {
                 "type": "string",
-                "minLength": 1,
-                "description": "Country code searched when `geoType` is `country`. Format ISO 3166-1 alpha-2.",
+                "enum": ["fr", "es", "ad"],
+                "description": "Country code searched when `geoType` is `country`. Restricted to Soliguide countries. Format ISO 3166-1 alpha-2.",
                 "example": "fr"
               },
               "coordinates": {
@@ -544,15 +502,12 @@
                 "nullable": true,
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/Common_CountryCodes"
+                    "$ref": "#/components/schemas/Common_SoliguideCountries"
                   }
                 ]
               }
             },
-            "required": [
-              "geoType",
-              "geoValue"
-            ],
+            "required": ["geoType", "geoValue"],
             "additionalProperties": {}
           },
           {
@@ -560,9 +515,7 @@
             "properties": {
               "geoType": {
                 "type": "string",
-                "enum": [
-                  "departement"
-                ]
+                "enum": ["departement"]
               },
               "geoValue": {
                 "type": "string",
@@ -616,15 +569,12 @@
                 "nullable": true,
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/Common_CountryCodes"
+                    "$ref": "#/components/schemas/Common_SoliguideCountries"
                   }
                 ]
               }
             },
-            "required": [
-              "geoType",
-              "geoValue"
-            ],
+            "required": ["geoType", "geoValue"],
             "additionalProperties": {}
           },
           {
@@ -632,9 +582,7 @@
             "properties": {
               "geoType": {
                 "type": "string",
-                "enum": [
-                  "region"
-                ]
+                "enum": ["region"]
               },
               "geoValue": {
                 "type": "string",
@@ -688,15 +636,12 @@
                 "nullable": true,
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/Common_CountryCodes"
+                    "$ref": "#/components/schemas/Common_SoliguideCountries"
                   }
                 ]
               }
             },
-            "required": [
-              "geoType",
-              "geoValue"
-            ],
+            "required": ["geoType", "geoValue"],
             "additionalProperties": {}
           },
           {
@@ -704,9 +649,7 @@
             "properties": {
               "geoType": {
                 "type": "string",
-                "enum": [
-                  "citiesGroup"
-                ]
+                "enum": ["citiesGroup"]
               },
               "geoValue": {
                 "type": "string",
@@ -760,15 +703,12 @@
                 "nullable": true,
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/Common_CountryCodes"
+                    "$ref": "#/components/schemas/Common_SoliguideCountries"
                   }
                 ]
               }
             },
-            "required": [
-              "geoType",
-              "geoValue"
-            ],
+            "required": ["geoType", "geoValue"],
             "additionalProperties": {}
           }
         ],
@@ -779,39 +719,64 @@
         "type": "string",
         "enum": [
           "health",
-          "addiction",
-          "std_testing",
-          "psychological_support",
-          "child_care",
+          "health_access",
+          "health_coverage",
+          "find_healthcare",
+          "physical_health",
           "general_practitioner",
+          "health_assessment",
+          "child_care",
           "dental_care",
-          "pregnancy_care",
-          "vaccination",
+          "optical_care",
+          "hearing_care",
           "infirmary",
-          "vet_care",
+          "vaccination",
+          "std_testing",
+          "chronic_diseases",
+          "nutrition",
+          "medical_accommodation",
+          "mental_health",
+          "psychological_support",
+          "psychiatry",
+          "support_groups",
+          "mental_health_education",
+          "therapeutic_activities",
+          "addictions",
+          "addiction_care",
+          "addiction_prevention_and_material",
+          "sexual_health",
+          "emergency_contraception",
+          "abortion",
+          "contraception",
+          "gynecology",
+          "sti_prevention_testing",
+          "hiv_prevention",
+          "sexual_health_vaccination",
+          "sexual_health_education",
+          "sexual_violence_support",
+          "affective_life",
+          "parenthood",
+          "pregnancy_care",
           "health_specialists",
           "allergology",
           "cardiology",
           "dermatology",
-          "echography",
           "endocrinology",
           "gastroenterology",
-          "gynecology",
           "kinesitherapy",
-          "mammography",
-          "ophthalmology",
           "otorhinolaryngology",
-          "nutrition",
+          "speech_therapy",
+          "osteopathy",
           "pedicure",
           "phlebology",
           "pneumology",
           "radiology",
           "rheumatology",
-          "urology",
-          "speech_therapy",
           "stomatology",
-          "osteopathy",
-          "acupuncture",
+          "urology",
+          "vet_care",
+          "neurology",
+          "vascular_surgery",
           "mobility",
           "transportation_mobility",
           "personal_vehicle_access",
@@ -883,16 +848,14 @@
           "citizen_housing",
           "access_to_housing",
           "hairdresser",
-          "legal_protection"
+          "legal_protection",
+          "regularization"
         ],
         "id": "Common_Categories"
       },
       "Common_PlaceType": {
         "type": "string",
-        "enum": [
-          "LIEU",
-          "PARCOURS_MOBILE"
-        ],
+        "enum": ["LIEU", "PARCOURS_MOBILE"],
         "id": "Common_PlaceType"
       },
       "SearchRequest_Modalities": {
@@ -1015,42 +978,22 @@
       },
       "Common_WelcomedPublics": {
         "type": "number",
-        "enum": [
-          0,
-          1,
-          2
-        ],
+        "enum": [0, 1, 2],
         "id": "Common_WelcomedPublics"
       },
       "Common_PublicsGender": {
         "type": "string",
-        "enum": [
-          "all",
-          "men",
-          "women"
-        ],
+        "enum": ["all", "men", "women"],
         "id": "Common_PublicsGender"
       },
       "Common_PublicsAdministrative": {
         "type": "string",
-        "enum": [
-          "all",
-          "regular",
-          "asylum",
-          "refugee",
-          "undocumented"
-        ],
+        "enum": ["all", "regular", "asylum", "refugee", "undocumented"],
         "id": "Common_PublicsAdministrative"
       },
       "Common_PublicsFamily": {
         "type": "string",
-        "enum": [
-          "all",
-          "isolated",
-          "family",
-          "couple",
-          "pregnant"
-        ],
+        "enum": ["all", "isolated", "family", "couple", "pregnant"],
         "id": "Common_PublicsFamily"
       },
       "Common_PublicsOther": {
@@ -1069,6 +1012,162 @@
         ],
         "id": "Common_PublicsOther"
       },
+      "Common_PlaceLanguages": {
+        "type": "string",
+        "enum": [
+          "aa",
+          "ab",
+          "af",
+          "ak",
+          "am",
+          "an",
+          "ar",
+          "ay",
+          "az",
+          "ba",
+          "be",
+          "bg",
+          "bh",
+          "bi",
+          "bm",
+          "bn",
+          "bo",
+          "brc",
+          "brk",
+          "bs",
+          "ca",
+          "ce",
+          "co",
+          "cs",
+          "cv",
+          "da",
+          "dar",
+          "de",
+          "dv",
+          "ee",
+          "el",
+          "en",
+          "eo",
+          "es",
+          "et",
+          "eus",
+          "fa",
+          "ff",
+          "fi",
+          "fo",
+          "fr",
+          "ga",
+          "gl",
+          "gn",
+          "gsw",
+          "gu",
+          "he",
+          "hi",
+          "ho",
+          "hr",
+          "ht",
+          "hu",
+          "hy",
+          "id",
+          "ig",
+          "ii",
+          "is",
+          "it",
+          "ja",
+          "ka",
+          "kg",
+          "ki",
+          "kj",
+          "kk",
+          "km",
+          "ko",
+          "ks",
+          "ku",
+          "kw",
+          "ky",
+          "lb",
+          "lg",
+          "li",
+          "ln",
+          "lo",
+          "lsf",
+          "lt",
+          "lu",
+          "lv",
+          "mg",
+          "mh",
+          "mk",
+          "ml",
+          "mn",
+          "mr",
+          "ms",
+          "mt",
+          "my",
+          "na",
+          "nd",
+          "ne",
+          "ng",
+          "nl",
+          "nr",
+          "nv",
+          "ny",
+          "oc",
+          "om",
+          "os",
+          "pa",
+          "pac",
+          "pe",
+          "pl",
+          "ps",
+          "pt",
+          "qu",
+          "rcf",
+          "rm",
+          "rn",
+          "ro",
+          "rom",
+          "ru",
+          "rw",
+          "sa",
+          "sd",
+          "sg",
+          "si",
+          "sk",
+          "sl",
+          "sm",
+          "sn",
+          "so",
+          "son",
+          "sq",
+          "sr",
+          "ss",
+          "st",
+          "sv",
+          "sw",
+          "swb",
+          "ta",
+          "te",
+          "tg",
+          "th",
+          "tk",
+          "tl",
+          "tr",
+          "ts",
+          "tt",
+          "tw",
+          "ty",
+          "ug",
+          "uk",
+          "ur",
+          "uz",
+          "vi",
+          "wo",
+          "yi",
+          "zh"
+        ],
+        "description": "Language code spoken at the place.",
+        "id": "Common_PlaceLanguages"
+      },
       "SearchRequest_UpdatedAt": {
         "type": "object",
         "properties": {
@@ -1084,7 +1183,8 @@
           "value": {
             "description": "Date used by the update filter. Format ISO 8601.",
             "example": "2026-01-01T00:00:00.000Z",
-            "nullable": true
+            "nullable": true,
+            "type": "string"
           }
         },
         "additionalProperties": {},
@@ -1093,11 +1193,7 @@
       },
       "Common_UpdatedAtInterval": {
         "type": "string",
-        "enum": [
-          "SPECIFIC_DAY",
-          "BEFORE_DAY",
-          "AFTER_DAY"
-        ],
+        "enum": ["SPECIFIC_DAY", "BEFORE_DAY", "AFTER_DAY"],
         "id": "Common_UpdatedAtInterval"
       },
       "SearchRequest_Options": {
@@ -1157,7 +1253,6 @@
           },
           "_id": {
             "description": "Internal identifier of the place",
-            "deprecated": true,
             "example": "5a58c0c7c1797fe45e377333",
             "nullable": true,
             "type": "string"
@@ -1170,6 +1265,7 @@
           },
           "auto": {
             "description": "Indicates whether the place comes from an automated data source.",
+            "example": false,
             "nullable": true,
             "type": "boolean"
           },
@@ -1181,7 +1277,7 @@
           },
           "description": {
             "description": "Localized HTML content describing the place.",
-            "example": "<p>Les équipes des Restos du Coeur se rendent sur des points fixes pour partager des moments de rencontre et de convivialité autour d’un repas à consommer sur place. En fonction des besoins, ils peuvent proposer des réponses : dons de textiles, vêtements, eau, des livres, des ateliers de français, des jeux pour les enfants, des propositions de sorties et des aides pour l’accès aux droits.&nbsp;</p>",
+            "example": "<p>Les équipes des Restos du Coeur se rendent sur des points fixes pour partager des moments de rencontre et de convivialité autour d'un repas à consommer sur place.</p>",
             "nullable": true,
             "type": "string"
           },
@@ -1216,10 +1312,12 @@
             "type": "object",
             "properties": {
               "closeType": {
+                "example": 1,
                 "nullable": true,
                 "type": "integer"
               },
               "actif": {
+                "example": false,
                 "nullable": true,
                 "type": "boolean"
               },
@@ -1240,6 +1338,7 @@
                 ]
               },
               "precision": {
+                "example": "Fermeture annuelle en août.",
                 "nullable": true,
                 "type": "string"
               }
@@ -1264,137 +1363,6 @@
           },
           "services_all": {
             "description": "List of services available at the place.",
-            "example": [
-              {
-                "categorie": 601,
-                "category": "food_distribution",
-                "close": {
-                  "actif": false,
-                  "dateDebut": null,
-                  "dateFin": null
-                },
-                "description": "<p>Distribution de repas chauds</p>",
-                "differentHours": false,
-                "differentModalities": false,
-                "differentPublics": false,
-                "hours": {
-                  "closedHolidays": "UNKNOWN",
-                  "description": null,
-                  "friday": {
-                    "open": false,
-                    "timeslot": []
-                  },
-                  "monday": {
-                    "open": true,
-                    "timeslot": [
-                      {
-                        "end": 2130,
-                        "start": 2000
-                      }
-                    ]
-                  },
-                  "saturday": {
-                    "open": false,
-                    "timeslot": []
-                  },
-                  "sunday": {
-                    "open": false,
-                    "timeslot": []
-                  },
-                  "thursday": {
-                    "open": true,
-                    "timeslot": [
-                      {
-                        "end": 2130,
-                        "start": 2000
-                      }
-                    ]
-                  },
-                  "tuesday": {
-                    "open": false,
-                    "timeslot": []
-                  },
-                  "wednesday": {
-                    "open": false,
-                    "timeslot": []
-                  }
-                },
-                "isOpenToday": false,
-                "modalities": {
-                  "inconditionnel": true,
-                  "appointment": {
-                    "checked": false,
-                    "precisions": null
-                  },
-                  "inscription": {
-                    "checked": false,
-                    "precisions": null
-                  },
-                  "orientation": {
-                    "checked": false,
-                    "precisions": null
-                  },
-                  "price": {
-                    "checked": false,
-                    "precisions": null
-                  },
-                  "animal": {
-                    "checked": false
-                  },
-                  "pmr": {
-                    "checked": false
-                  },
-                  "other": null
-                },
-                "publics": {
-                  "accueil": 0,
-                  "administrative": [
-                    "regular",
-                    "asylum",
-                    "refugee",
-                    "undocumented"
-                  ],
-                  "age": {
-                    "max": 99,
-                    "min": 0
-                  },
-                  "description": null,
-                  "familialle": [
-                    "isolated",
-                    "family",
-                    "couple",
-                    "pregnant"
-                  ],
-                  "gender": [
-                    "men",
-                    "women"
-                  ],
-                  "other": [
-                    "violence",
-                    "addiction",
-                    "handicap",
-                    "lgbt",
-                    "hiv",
-                    "prostitution",
-                    "prison",
-                    "student",
-                    "mentalHealth"
-                  ]
-                },
-                "saturated": {
-                  "precision": null,
-                  "status": "LOW"
-                },
-                "serviceObjectId": "6181a6dc8ac6b179ffb9ff51",
-                "createdAt": "2021-11-02T21:00:12.000Z",
-                "categorySpecificFields": {
-                  "dietaryAdaptationsType": [],
-                  "serviceStyleType": []
-                },
-                "jobsList": "",
-                "name": "Distribution alimentaire"
-              }
-            ],
             "nullable": true,
             "type": "array",
             "items": {
@@ -1403,42 +1371,6 @@
           },
           "position": {
             "description": "Address and geographic information of the place.",
-            "example": {
-              "adresse": "2 Quai Saint-Bernard, 75005 Paris",
-              "codePostal": "75005",
-              "complementAdresse": "Jardin Tino Rossi",
-              "departement": "Paris",
-              "departementCode": "75",
-              "location": {
-                "coordinates": [
-                  2.3608583,
-                  48.8470637
-                ],
-                "type": "Point"
-              },
-              "pays": "fr",
-              "region": "Île-de-France",
-              "slugs": {
-                "ville": "paris",
-                "departement": "paris",
-                "pays": "fr",
-                "department": "paris",
-                "country": "fr",
-                "region": "ile-de-france",
-                "city": "paris"
-              },
-              "ville": "Paris",
-              "address": "2 Quai Saint-Bernard, 75005 Paris",
-              "additionalInformation": "Jardin Tino Rossi",
-              "city": "Paris",
-              "postalCode": "75005",
-              "cityCode": "75005",
-              "department": "Paris",
-              "departmentCode": "75",
-              "country": "fr",
-              "regionCode": "11",
-              "timeZone": "Europe/Paris"
-            },
             "nullable": true,
             "allOf": [
               {
@@ -1456,15 +1388,6 @@
           },
           "entity": {
             "description": "Organization contact information.",
-            "example": {
-              "facebook": "https://www.facebook.com/LesRestos75/",
-              "fax": null,
-              "instagram": "https://www.instagram.com/lesrestos75/",
-              "mail": null,
-              "name": null,
-              "website": "https://ad75.restosducoeur.org/",
-              "phones": []
-            },
             "nullable": true,
             "allOf": [
               {
@@ -1490,32 +1413,6 @@
           },
           "modalities": {
             "description": "Access conditions of the place.",
-            "example": {
-              "animal": {
-                "checked": false
-              },
-              "appointment": {
-                "checked": false,
-                "precisions": null
-              },
-              "inconditionnel": true,
-              "inscription": {
-                "checked": false,
-                "precisions": null
-              },
-              "orientation": {
-                "checked": false,
-                "precisions": null
-              },
-              "other": null,
-              "pmr": {
-                "checked": false
-              },
-              "price": {
-                "checked": false,
-                "precisions": null
-              }
-            },
             "nullable": true,
             "allOf": [
               {
@@ -1525,41 +1422,6 @@
           },
           "publics": {
             "description": "Audience welcomed at the place.",
-            "example": {
-              "accueil": 0,
-              "administrative": [
-                "regular",
-                "asylum",
-                "refugee",
-                "undocumented"
-              ],
-              "age": {
-                "min": 0,
-                "max": 99
-              },
-              "description": null,
-              "familialle": [
-                "isolated",
-                "family",
-                "couple",
-                "pregnant"
-              ],
-              "gender": [
-                "men",
-                "women"
-              ],
-              "other": [
-                "violence",
-                "addiction",
-                "handicap",
-                "lgbt",
-                "hiv",
-                "prostitution",
-                "prison",
-                "student",
-                "mentalHealth"
-              ]
-            },
             "nullable": true,
             "allOf": [
               {
@@ -1568,26 +1430,32 @@
             ]
           },
           "sourceLanguage": {
-            "description": "Language used by the original source data. Format ISO 639-3.",
+            "description": "Language used by the original source data.",
             "example": "fr",
             "nullable": true,
-            "type": "string"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Common_SupportedLanguagesCode"
+              }
+            ]
           },
           "country": {
-            "description": "Country code of the place. Format ISO 3166-1 alpha-2.",
+            "description": "Country code of the place.",
             "example": "fr",
             "nullable": true,
-            "type": "string"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Common_SoliguideCountries"
+              }
+            ]
           },
           "languages": {
-            "description": "Languages spoken at the place. Format ISO 639-3.",
-            "example": [
-              "fr"
-            ],
+            "description": "Languages spoken at the place.",
+            "example": ["fr", "en"],
             "nullable": true,
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/Common_PlaceLanguages"
             }
           },
           "createdAt": {
@@ -1619,28 +1487,6 @@
           },
           "tempInfos": {
             "description": "Temporary closure, opening hours and message information.",
-            "example": {
-              "closure": {
-                "actif": false,
-                "dateDebut": null,
-                "dateFin": null,
-                "description": ""
-              },
-              "hours": {
-                "actif": false,
-                "dateDebut": null,
-                "dateFin": null,
-                "description": "",
-                "hours": null
-              },
-              "message": {
-                "actif": false,
-                "dateDebut": null,
-                "dateFin": null,
-                "description": "",
-                "name": ""
-              }
-            },
             "nullable": true,
             "allOf": [
               {
@@ -1666,7 +1512,7 @@
           },
           "distance": {
             "description": "Distance between the search center and the place, in meters.",
-            "example": 135.8752364969176,
+            "example": 135.87,
             "nullable": true,
             "type": "number"
           }
@@ -1676,22 +1522,14 @@
       },
       "Common_PlaceStatus": {
         "type": "string",
-        "enum": [
-          "DRAFT",
-          "ONLINE",
-          "PERMANENTLY_CLOSED",
-          "OFFLINE"
-        ],
+        "enum": ["DRAFT", "ONLINE", "PERMANENTLY_CLOSED", "OFFLINE"],
         "description": "Indicate if this place is currently published.",
         "id": "Common_PlaceStatus",
         "example": "ONLINE"
       },
       "Common_PlaceVisibility": {
         "type": "string",
-        "enum": [
-          "ALL",
-          "PRO"
-        ],
+        "enum": ["ALL", "PRO"],
         "description": "Indicates who has access to information about this place.",
         "id": "Common_PlaceVisibility",
         "example": "ALL"
@@ -1699,25 +1537,30 @@
       "SearchResponse_Date": {
         "type": "string",
         "description": "Date-time value. Format ISO 8601.",
-        "id": "SearchResponse_Date"
+        "id": "SearchResponse_Date",
+        "example": "2026-01-01T00:00:00.000Z"
       },
       "SearchResponse_Photo": {
         "type": "object",
         "properties": {
           "_id": {
+            "example": "5a58c0c7c1797fe45e377335",
             "nullable": true,
             "type": "string"
           },
           "encoding": {
+            "example": "7bit",
             "nullable": true,
             "type": "string"
           },
           "filename": {
             "nullable": true,
+            "example": "photo-1.jpg",
             "type": "string"
           },
           "mimetype": {
             "nullable": true,
+            "example": "image/jpeg",
             "type": "string"
           },
           "parcours_id": {
@@ -1726,13 +1569,16 @@
           },
           "path": {
             "nullable": true,
+            "example": "https://cdn.soliguide.fr/photos/169/photo-1.jpg",
             "type": "string"
           },
           "lieu_id": {
             "nullable": true,
+            "example": 169,
             "type": "integer"
           },
           "size": {
+            "example": 145823,
             "nullable": true,
             "type": "number"
           },
@@ -1753,12 +1599,7 @@
             ]
           }
         },
-        "required": [
-          "filename",
-          "mimetype",
-          "path",
-          "lieu_id"
-        ],
+        "required": ["filename", "mimetype", "path", "lieu_id"],
         "additionalProperties": {},
         "id": "SearchResponse_Photo"
       },
@@ -1768,12 +1609,14 @@
           "categorie": {
             "description": "Deprecated numeric category identifier of the service.",
             "deprecated": true,
+            "example": 600,
             "nullable": true,
             "type": "integer"
           },
           "category": {
             "nullable": true,
             "description": "Category of the service.",
+            "example": "food",
             "allOf": [
               {
                 "$ref": "#/components/schemas/Common_Categories"
@@ -1786,6 +1629,7 @@
             "type": "object",
             "properties": {
               "actif": {
+                "example": false,
                 "nullable": true,
                 "type": "boolean"
               },
@@ -1806,10 +1650,12 @@
                 ]
               },
               "precision": {
+                "example": "Suspendu jusqu'à la rentrée.",
                 "nullable": true,
                 "type": "string"
               },
               "closeType": {
+                "example": 1,
                 "nullable": true,
                 "type": "number"
               }
@@ -1818,21 +1664,25 @@
           },
           "description": {
             "description": "Localized HTML content describing the service.",
+            "example": "<p>Distribution de repas chauds tous les soirs.</p>",
             "nullable": true,
             "type": "string"
           },
           "differentHours": {
             "description": "Indicates whether the service has opening hours different from the place.",
+            "example": false,
             "nullable": true,
             "type": "boolean"
           },
           "differentModalities": {
             "description": "Indicates whether the service has access conditions different from the place.",
+            "example": false,
             "nullable": true,
             "type": "boolean"
           },
           "differentPublics": {
             "description": "Indicates whether the service welcomes a public different from the place.",
+            "example": false,
             "nullable": true,
             "type": "boolean"
           },
@@ -1848,6 +1698,7 @@
           "isOpenToday": {
             "nullable": true,
             "description": "Whether the service is open today. Recalculated daily.",
+            "example": true,
             "type": "boolean"
           },
           "modalities": {
@@ -1891,6 +1742,7 @@
           "serviceObjectId": {
             "nullable": true,
             "description": "Internal identifier of the service.",
+            "example": "5a58c0c7c1797fe45e377334",
             "type": "string"
           },
           "createdAt": {
@@ -1924,12 +1776,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "category",
-          "isOpenToday",
-          "serviceObjectId",
-          "createdAt"
-        ],
+        "required": ["category", "isOpenToday", "serviceObjectId", "createdAt"],
         "additionalProperties": {},
         "id": "SearchResponse_Service"
       },
@@ -1938,6 +1785,7 @@
         "properties": {
           "closedHolidays": {
             "description": "Opening behavior on public holidays: `UNKNOWN` when not specified, `OPEN` when open, `CLOSED` when closed.",
+            "example": "UNKNOWN",
             "nullable": true,
             "allOf": [
               {
@@ -1947,6 +1795,7 @@
           },
           "description": {
             "description": "Free-text details about opening hours.",
+            "example": "Ouvert du lundi au vendredi.",
             "nullable": true,
             "type": "string"
           },
@@ -2019,11 +1868,7 @@
       },
       "Common_PlaceClosedHolidays": {
         "type": "string",
-        "enum": [
-          "CLOSED",
-          "OPEN",
-          "UNKNOWN"
-        ],
+        "enum": ["CLOSED", "OPEN", "UNKNOWN"],
         "id": "Common_PlaceClosedHolidays"
       },
       "SearchResponse_DayOpeningHours": {
@@ -2031,6 +1876,7 @@
         "properties": {
           "open": {
             "description": "Indicates whether the place or service is open on that day.",
+            "example": true,
             "nullable": true,
             "type": "boolean"
           },
@@ -2051,11 +1897,13 @@
         "properties": {
           "start": {
             "description": "Start time of the opening slot, encoded as `HHmm` without separator, using 3 or 4 digits.",
+            "example": 900,
             "nullable": true,
             "type": "number"
           },
           "end": {
             "description": "End time of the opening slot, encoded as `HHmm` without separator, using 3 or 4 digits.",
+            "example": 1230,
             "nullable": true,
             "type": "number"
           }
@@ -2068,6 +1916,7 @@
         "properties": {
           "inconditionnel": {
             "description": "Indicates unconditional access. When `true`, it is the only access condition to consider.",
+            "example": true,
             "nullable": true,
             "type": "boolean"
           },
@@ -2114,6 +1963,7 @@
             "properties": {
               "checked": {
                 "description": "Indicates whether animals are accepted.",
+                "example": false,
                 "nullable": true,
                 "type": "boolean"
               }
@@ -2127,6 +1977,7 @@
             "properties": {
               "checked": {
                 "description": "Indicates whether the place is accessible to people with reduced mobility.",
+                "example": true,
                 "nullable": true,
                 "type": "boolean"
               }
@@ -2134,6 +1985,7 @@
             "additionalProperties": false
           },
           "docs": {
+            "example": ["pieceIdentite", "justificatifDomicile"],
             "nullable": true,
             "type": "array",
             "items": {
@@ -2142,6 +1994,7 @@
           },
           "other": {
             "description": "Additional details about access conditions.",
+            "example": "Prévoir une pièce d'identité.",
             "nullable": true,
             "type": "string"
           }
@@ -2154,11 +2007,13 @@
         "properties": {
           "checked": {
             "description": "Indicates whether the access condition applies.",
+            "example": true,
             "nullable": true,
             "type": "boolean"
           },
           "precisions": {
             "description": "Additional details about the access condition.",
+            "example": "Sur orientation d'un travailleur social.",
             "nullable": true,
             "type": "string"
           }
@@ -2171,30 +2026,26 @@
         "properties": {
           "accueil": {
             "description": "Type of welcome for the public: `0` unconditional, `1` unconditional adapted to a specific public, `2` exclusive.",
+            "example": 0,
             "nullable": true,
             "anyOf": [
               {
                 "type": "number",
-                "enum": [
-                  0
-                ]
+                "enum": [0]
               },
               {
                 "type": "number",
-                "enum": [
-                  1
-                ]
+                "enum": [1]
               },
               {
                 "type": "number",
-                "enum": [
-                  2
-                ]
+                "enum": [2]
               }
             ]
           },
           "administrative": {
             "description": "Administrative statuses accepted by the place. If every possible value is selected, it means there is no restriction.",
+            "example": ["regular", "asylum", "refugee"],
             "nullable": true,
             "type": "array",
             "items": {
@@ -2208,11 +2059,13 @@
             "properties": {
               "min": {
                 "description": "Minimum accepted age.",
+                "example": 0,
                 "nullable": true,
                 "type": "number"
               },
               "max": {
                 "description": "Maximum accepted age. ",
+                "example": 99,
                 "nullable": true,
                 "type": "number"
               }
@@ -2221,11 +2074,13 @@
           },
           "description": {
             "description": "Free-text details about specific public restrictions or adaptations.",
+            "example": "Public en situation de grande précarité.",
             "nullable": true,
             "type": "string"
           },
           "familialle": {
             "description": "Family situations accepted by the place. If every possible value is selected, it means there is no restriction.",
+            "example": ["isolated", "family"],
             "nullable": true,
             "type": "array",
             "items": {
@@ -2234,6 +2089,7 @@
           },
           "gender": {
             "description": "Gender-related restrictions or adaptations. If every possible value is selected, it means there is no restriction.",
+            "example": ["men", "women"],
             "nullable": true,
             "type": "array",
             "items": {
@@ -2242,6 +2098,7 @@
           },
           "other": {
             "description": "Other audience restrictions or adaptations. If every possible value is selected, it means there is no restriction.",
+            "example": [],
             "nullable": true,
             "type": "array",
             "items": {
@@ -2259,17 +2116,14 @@
       },
       "Common_ServiceSaturation": {
         "type": "string",
-        "enum": [
-          "LOW",
-          "MODERATE",
-          "HIGH"
-        ],
+        "enum": ["LOW", "MODERATE", "HIGH"],
         "id": "Common_ServiceSaturation"
       },
       "SearchResponse_CategorySpecificFields": {
         "type": "object",
         "properties": {
           "activityName": {
+            "example": "Atelier théâtre",
             "nullable": true,
             "type": "string"
           },
@@ -2278,6 +2132,7 @@
             "type": "string"
           },
           "availableEquipmentType": {
+            "example": ["oven", "microwaves"],
             "nullable": true,
             "type": "array",
             "items": {
@@ -2285,6 +2140,7 @@
             }
           },
           "babyParcelAgeType": {
+            "example": ["under_six_months"],
             "nullable": true,
             "type": "array",
             "items": {
@@ -2292,18 +2148,22 @@
             }
           },
           "canteensMealType": {
+            "example": "dejeuner",
             "nullable": true,
             "type": "string"
           },
           "courseType": {
+            "example": "fle",
             "nullable": true,
             "type": "string"
           },
           "degreeOfChoiceType": {
+            "example": "free_choice",
             "nullable": true,
             "type": "string"
           },
           "dietaryAdaptationsType": {
+            "example": ["vegetarian", "halal"],
             "nullable": true,
             "type": "array",
             "items": {
@@ -2311,14 +2171,17 @@
             }
           },
           "dietaryRegimesType": {
+            "example": "we_adapt",
             "nullable": true,
             "type": "string"
           },
           "domiciliationType": {
+            "example": "domi1",
             "nullable": true,
             "type": "string"
           },
           "foodProductType": {
+            "example": ["fresh_produce", "non_perishable"],
             "nullable": true,
             "type": "array",
             "items": {
@@ -2330,10 +2193,12 @@
             "type": "string"
           },
           "hygieneProductType": {
+            "example": "sanitary_materials",
             "nullable": true,
             "type": "string"
           },
           "jobsList": {
+            "example": "Manutention, Restauration",
             "nullable": true,
             "type": "string"
           },
@@ -2346,6 +2211,7 @@
             "type": "string"
           },
           "serviceStyleType": {
+            "example": ["indoor_seating", "take_away"],
             "nullable": true,
             "type": "array",
             "items": {
@@ -2357,6 +2223,7 @@
             "type": "string"
           },
           "voucherType": {
+            "example": "food_voucher",
             "nullable": true,
             "type": "string"
           },
@@ -2365,6 +2232,7 @@
             "type": "string"
           },
           "wellnessActivityName": {
+            "example": "Massage du dos",
             "nullable": true,
             "type": "string"
           }
@@ -2383,14 +2251,14 @@
             "properties": {
               "type": {
                 "description": "Geographic object type. Always `Point`.",
+                "example": "Point",
                 "nullable": true,
                 "type": "string",
-                "enum": [
-                  "Point"
-                ]
+                "enum": ["Point"]
               },
               "coordinates": {
                 "description": "Geographic coordinates of the place as `[longitude, latitude]`. Format GeoJSON..",
+                "example": [2.3522, 48.8566],
                 "nullable": true,
                 "type": "array",
                 "items": {
@@ -2402,76 +2270,91 @@
           },
           "address": {
             "description": "Street address of the place.",
+            "example": "12 rue du Faubourg Saint-Antoine",
             "nullable": true,
             "type": "string"
           },
           "addresse": {
             "description": "Street address of the place.",
+            "example": "12 rue du Faubourg Saint-Antoine",
             "nullable": true,
             "type": "string"
           },
           "additionalInformation": {
             "description": "Additional address information such as building, floor or access details.",
+            "example": "Bâtiment B, 2e étage",
             "nullable": true,
             "type": "string"
           },
           "complementAdresse": {
             "description": "Additional address information such as building, floor or access details.",
+            "example": "Bâtiment B, 2e étage",
             "nullable": true,
             "type": "string"
           },
           "city": {
             "description": "City name of the place.",
+            "example": "Paris",
             "nullable": true,
             "type": "string"
           },
           "ville": {
             "description": "Same as `city`.",
+            "example": "Paris",
             "nullable": true,
             "type": "string"
           },
           "cityCode": {
             "description": "Administrative code of the city.",
+            "example": "75056",
             "nullable": true,
             "type": "string"
           },
           "postalCode": {
             "description": "Postal code of the place.",
+            "example": "75013",
             "nullable": true,
             "type": "string"
           },
           "codePostal": {
             "description": "Same as `postalCode`.",
+            "example": "75013",
             "nullable": true,
             "type": "string"
           },
           "department": {
             "description": "Department name of the place.",
+            "example": "Paris",
             "nullable": true,
             "type": "string"
           },
           "departement": {
             "description": "Same as `department`.",
+            "example": "Paris",
             "nullable": true,
             "type": "string"
           },
           "departmentCode": {
             "description": "Department code of the place. Examples: `974`, `2A`, `91`, `06`.",
+            "example": "75",
             "nullable": true,
             "type": "string"
           },
           "departementCode": {
             "description": "Same as `departmentCode`.",
+            "example": "75",
             "nullable": true,
             "type": "string"
           },
           "region": {
             "description": "Region name of the place.",
+            "example": "Île-de-France",
             "nullable": true,
             "type": "string"
           },
           "regionCode": {
             "description": "Administrative code of the region.",
+            "example": "11",
             "nullable": true,
             "type": "string"
           },
@@ -2481,30 +2364,37 @@
             "type": "object",
             "properties": {
               "city": {
+                "example": "paris-75013",
                 "nullable": true,
                 "type": "string"
               },
               "country": {
+                "example": "france",
                 "nullable": true,
                 "type": "string"
               },
               "departement": {
+                "example": "paris",
                 "nullable": true,
                 "type": "string"
               },
               "department": {
+                "example": "paris",
                 "nullable": true,
                 "type": "string"
               },
               "pays": {
+                "example": "france",
                 "nullable": true,
                 "type": "string"
               },
               "region": {
+                "example": "ile-de-france",
                 "nullable": true,
                 "type": "string"
               },
               "ville": {
+                "example": "paris-75013",
                 "nullable": true,
                 "type": "string"
               }
@@ -2512,17 +2402,28 @@
             "additionalProperties": {}
           },
           "country": {
-            "description": "Country code of the place. Format ISO 3166-1 alpha-2. Lower case",
+            "description": "Country code of the place.",
+            "example": "fr",
             "nullable": true,
-            "type": "string"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Common_SoliguideCountries"
+              }
+            ]
           },
           "pays": {
             "description": "Same as `country`.",
+            "example": "fr",
             "nullable": true,
-            "type": "string"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Common_SoliguideCountries"
+              }
+            ]
           },
           "timeZone": {
             "description": "Time zone of the place. Format IANA time zone identifier.",
+            "example": "Europe/Paris",
             "nullable": true,
             "type": "string"
           }
@@ -2534,6 +2435,7 @@
         "type": "object",
         "properties": {
           "description": {
+            "example": "Étape de l'itinérance hebdomadaire.",
             "nullable": true,
             "type": "string"
           },
@@ -2561,6 +2463,7 @@
             }
           },
           "show": {
+            "example": true,
             "nullable": true,
             "type": "boolean"
           }
@@ -2573,6 +2476,7 @@
         "properties": {
           "facebook": {
             "description": "Facebook page URL of the organization.",
+            "example": "https://www.facebook.com/restosducoeur",
             "nullable": true,
             "type": "string"
           },
@@ -2583,16 +2487,19 @@
           },
           "instagram": {
             "description": "Instagram page URL of the organization.",
+            "example": "https://www.instagram.com/restosducoeur",
             "nullable": true,
             "type": "string"
           },
           "mail": {
             "description": "Email address of the organization.",
+            "example": "contact@restosducoeur.org",
             "nullable": true,
             "type": "string"
           },
           "name": {
             "description": "Name of the organization.",
+            "example": "Les Restos du Coeur",
             "nullable": true,
             "type": "string"
           },
@@ -2606,6 +2513,7 @@
           },
           "website": {
             "description": "Website URL of the organization.",
+            "example": "https://www.restosducoeur.org",
             "nullable": true,
             "type": "string"
           }
@@ -2618,21 +2526,25 @@
         "properties": {
           "label": {
             "description": "Label describing the phone contact.",
+            "example": "Standard",
             "nullable": true,
             "type": "string"
           },
           "phoneNumber": {
             "description": "Phone number of the contact.",
+            "example": "+33 1 53 32 23 23",
             "nullable": true,
             "type": "string"
           },
           "countryCode": {
             "description": "Country code used to interpret the phone number. Format ISO 3166-1 alpha-2.",
+            "example": "fr",
             "nullable": true,
             "type": "string"
           },
           "isSpecialPhoneNumber": {
             "description": "Indicates whether the phone number is a special short number.",
+            "example": false,
             "nullable": true,
             "type": "boolean"
           }
@@ -2644,6 +2556,7 @@
         "type": "object",
         "properties": {
           "geoType": {
+            "example": "departement",
             "nullable": true,
             "allOf": [
               {
@@ -2652,10 +2565,12 @@
             ]
           },
           "geoValue": {
+            "example": "75",
             "nullable": true,
             "type": "string"
           },
           "label": {
+            "example": "Paris",
             "nullable": true,
             "type": "string"
           }
@@ -2677,6 +2592,25 @@
         ],
         "id": "Common_GeoTypes"
       },
+      "Common_SupportedLanguagesCode": {
+        "type": "string",
+        "enum": [
+          "ar",
+          "ca",
+          "en",
+          "es",
+          "fa",
+          "ka",
+          "ps",
+          "pt",
+          "ro",
+          "ru",
+          "uk",
+          "fr"
+        ],
+        "description": "Language in which a Soliguide record can be authored or served. Format ISO 639-1 (two-letter code).",
+        "id": "Common_SupportedLanguagesCode"
+      },
       "SearchResponse_TempInfo": {
         "type": "object",
         "properties": {
@@ -2696,21 +2630,25 @@
             "properties": {
               "actif": {
                 "description": "Indicates whether the temporary information is currently active.",
+                "example": true,
                 "nullable": true,
                 "type": "boolean"
               },
               "dateDebut": {
                 "description": "Start date of the temporary information. Format ISO 8601.",
+                "example": "2026-07-15T00:00:00.000Z",
                 "nullable": true,
                 "type": "string"
               },
               "dateFin": {
                 "description": "End date of the temporary information. Format ISO 8601.",
+                "example": "2026-08-31T00:00:00.000Z",
                 "nullable": true,
                 "type": "string"
               },
               "description": {
                 "description": "Message describing the temporary information.",
+                "example": "Fermeture exceptionnelle pendant les congés d'été.",
                 "nullable": true,
                 "type": "string"
               },
@@ -2731,21 +2669,25 @@
             "properties": {
               "actif": {
                 "description": "Indicates whether the temporary information is currently active.",
+                "example": true,
                 "nullable": true,
                 "type": "boolean"
               },
               "dateDebut": {
                 "description": "Start date of the temporary information. Format ISO 8601.",
+                "example": "2026-07-15T00:00:00.000Z",
                 "nullable": true,
                 "type": "string"
               },
               "dateFin": {
                 "description": "End date of the temporary information. Format ISO 8601.",
+                "example": "2026-08-31T00:00:00.000Z",
                 "nullable": true,
                 "type": "string"
               },
               "description": {
                 "description": "Message describing the temporary information.",
+                "example": "Fermeture exceptionnelle pendant les congés d'été.",
                 "nullable": true,
                 "type": "string"
               },
@@ -2765,21 +2707,25 @@
         "properties": {
           "actif": {
             "description": "Indicates whether the temporary information is currently active.",
+            "example": true,
             "nullable": true,
             "type": "boolean"
           },
           "dateDebut": {
             "description": "Start date of the temporary information. Format ISO 8601.",
+            "example": "2026-07-15T00:00:00.000Z",
             "nullable": true,
             "type": "string"
           },
           "dateFin": {
             "description": "End date of the temporary information. Format ISO 8601.",
+            "example": "2026-08-31T00:00:00.000Z",
             "nullable": true,
             "type": "string"
           },
           "description": {
             "description": "Message describing the temporary information.",
+            "example": "Fermeture exceptionnelle pendant les congés d'été.",
             "nullable": true,
             "type": "string"
           }
@@ -2800,40 +2746,40 @@
                 "id": {
                   "nullable": true,
                   "description": "Formatted external identifier of the source. Format UUID.",
+                  "example": "9c3f1a2b-4d5e-6789-abcd-ef0123456789",
                   "type": "string"
                 },
                 "url": {
                   "description": "Source URL when available.",
+                  "example": "https://data.gouv.fr/datasets/restos-du-coeur",
                   "nullable": true,
                   "type": "string"
                 }
               },
-              "required": [
-                "id"
-              ],
+              "required": ["id"],
               "additionalProperties": {}
             }
           },
           "isOrigin": {
             "nullable": true,
             "description": "Indicates if the place has been created by the source.",
+            "example": true,
             "type": "boolean"
           },
           "license": {
             "description": "URL of the license associated to the data.",
+            "example": "https://opendatacommons.org/licenses/odbl/1-0/",
             "nullable": true,
             "type": "string"
           },
           "name": {
             "nullable": true,
             "description": "Name of the source",
+            "example": "Soliguide",
             "type": "string"
           }
         },
-        "required": [
-          "isOrigin",
-          "name"
-        ],
+        "required": ["isOrigin", "name"],
         "additionalProperties": {},
         "id": "SearchResponse_Source"
       },
@@ -2845,10 +2791,12 @@
             "type": "object",
             "properties": {
               "description": {
+                "example": "distribution-repas-chauds-soir",
                 "nullable": true,
                 "type": "string"
               },
               "name": {
+                "example": "camions-des-restos-du-coeur-salpetriere-paris-169",
                 "nullable": true,
                 "type": "string"
               }
