@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.145.0](https://github.com/solinumasso/soliguide/compare/v4.144.0...v4.145.0) (2026-07-01)
+
+
+### Bug Fixes
+
+* add migration to fix missing service object ids ([98a0a10](https://github.com/solinumasso/soliguide/commit/98a0a10478392ade846c133017713ff7580c12f3))
+
+
+### Features
+
+* add position to root place from first parcours ([8ee347a](https://github.com/solinumasso/soliguide/commit/8ee347a327d7fc61b6804092abca6faf3e4165a8))
+* migration to set position for itinerary places ([3d10869](https://github.com/solinumasso/soliguide/commit/3d10869197cbe525589777e79f728bf1640c687f))
+* remove tutorials section title for Soliguia ([a87e83a](https://github.com/solinumasso/soliguide/commit/a87e83a63a7a838028b30b8759e966941e229059))
+
+
+
+
+
 # [4.144.0](https://github.com/solinumasso/soliguide/compare/v4.143.0...v4.144.0) (2026-06-23)
 
 
