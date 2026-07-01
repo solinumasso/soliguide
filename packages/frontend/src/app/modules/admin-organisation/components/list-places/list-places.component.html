@@ -47,7 +47,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                   (place.placeType === PlaceType.PLACE &&
                     !place.position?.address) ||
                   (place.placeType === PlaceType.ITINERARY &&
-                    !place.parcours[0].position?.address)
+                    !place.parcours[0]?.position?.address)
               }"
               (click)="
                 captureEvent('click-front-place-link-on-name', {
@@ -84,8 +84,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                   ? place.position?.address
                     ? place.position.address
                     : ("NO_ADDRESS_FOR_PLACE" | translate)
-                  : place.parcours[0].position?.address
-                  ? place.parcours[0].position.address
+                  : place.parcours[0]?.position?.address
+                  ? place.parcours[0]?.position?.address
                   : ("NO_ADDRESS_FOR_ITINERARY" | translate)
               }}
             </p>
