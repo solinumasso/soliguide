@@ -1,5 +1,6 @@
 // @index('./*.ts', f => `export * from '${f.path}'`)
 export * from "./aggregateUserRightsForAuth";
+export * from "./authCookie";
 export * from "./createUserRights";
 export * from "./mergeAreas";
 export * from "./random-password-generator";

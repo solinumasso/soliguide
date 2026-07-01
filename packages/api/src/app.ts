@@ -11,7 +11,13 @@ import swaggerJSDoc from "swagger-jsdoc";
 import { anonymizeDb } from "./config/database/anonymizeDb";
 
 import { httpLogger, logger } from "./general/logger";
-import { CONFIG, ExpressRequest, ExpressResponse } from "./_models";
+import {
+  CONFIG,
+  ExpressRequest,
+  ExpressResponse,
+  SOLIGUIDE_HOSTNAME_REGEXP,
+  SOLIGUIDE_URLS,
+} from "./_models";
 
 logger.info(CONFIG);
 
@@ -83,28 +89,91 @@ import { initializeCronJobs } from "./cron/cron-manager";
 import { setIsOpenToday } from "./place/services/isOpenToday.service";
 
 const _app = express();
+const allowedCorsOrigins = new Set(
+  [...SOLIGUIDE_URLS, CONFIG.FRONTEND_URL, CONFIG.WIDGET_URL].map((url) =>
+    url.replace(/\/$/, "")
+  )
+);
+
+const allowedCorsHeaders = [
+  "Authorization",
+  "Accept",
+  "Origin",
+  "DNT",
+  "X-Document-Referrer",
+  "Keep-Alive",
+  "User-Agent",
+  "X-Requested-With",
+  "If-Modified-Since",
+  "Cache-Control",
+  "Content-Type",
+  "Content-Range",
+  "Range",
+  "X-Ph-User-Distinct-Id",
+  "X-Ph-User-Session-Id",
+];
+
+const isAllowedCorsOrigin = (origin: string): boolean => {
+  const cleanOrigin = origin.replace(/\/$/, "");
+
+  if (allowedCorsOrigins.has(cleanOrigin)) {
+    return true;
+  }
+
+  try {
+    const { hostname } = new URL(cleanOrigin);
+    return SOLIGUIDE_HOSTNAME_REGEXP.test(hostname);
+  } catch (_error) {
+    return false;
+  }
+};
+
+const hasAuthorizationHeader = (req: Request): boolean => {
+  const requestedHeaders = req
+    .get("access-control-request-headers")
+    ?.split(",")
+    .map((header) => header.trim().toLowerCase());
+
+  return (
+    Boolean(req.get("authorization")) ||
+    Boolean(requestedHeaders?.includes("authorization"))
+  );
+};
 
 _app.use(httpLogger);
 _app.use(
-  cors({
-    credentials: true,
-    allowedHeaders: [
-      "Authorization",
-      "Accept",
-      "Origin",
-      "DNT",
-      "X-Document-Referrer",
-      "Keep-Alive",
-      "User-Agent",
-      "X-Requested-With",
-      "If-Modified-Since",
-      "Cache-Control",
-      "Content-Type",
-      "Content-Range",
-      "Range",
-      "X-Ph-User-Distinct-Id",
-      "X-Ph-User-Session-Id",
-    ],
+  cors((req: Request, callback) => {
+    const origin = req.get("origin");
+
+    if (!origin) {
+      return callback(null, {
+        allowedHeaders: allowedCorsHeaders,
+        credentials: true,
+        origin: true,
+      });
+    }
+
+    if (isAllowedCorsOrigin(origin)) {
+      return callback(null, {
+        allowedHeaders: allowedCorsHeaders,
+        credentials: true,
+        origin,
+      });
+    }
+
+    if (hasAuthorizationHeader(req)) {
+      return callback(null, {
+        allowedHeaders: allowedCorsHeaders,
+        credentials: false,
+        origin,
+      });
+    }
+
+    return callback(null, {
+      allowedHeaders: allowedCorsHeaders,
+      credentials: false,
+      origin: false,
+    });
   })
 );
 

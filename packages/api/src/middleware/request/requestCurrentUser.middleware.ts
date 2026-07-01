@@ -15,13 +15,18 @@ import {
   UserFactory,
 } from "../../_models";
 import { getUserByIdWithUserRights } from "../../user/services";
+import { getAuthTokenFromRequest } from "../../user/utils";
+
+const canIgnoreInvalidSessionToken = (req: ExpressRequest): boolean => {
+  return ["/users/signin", "/users/logout"].includes(req.path);
+};
 
 export const getCurrentUser = (
   req: ExpressRequest,
   res: ExpressResponse,
   next: NextFunction
 ) => {
-  const token: string = req.headers.authorization?.slice(4) as string;
+  const token = getAuthTokenFromRequest(req);
 
   const language = SupportedLanguagesCode.FR;
 
@@ -40,37 +45,36 @@ export const getCurrentUser = (
     return next();
   }
 
-  return verify(
-    token,
-    CONFIG.JWT_SECRET,
-    { ignoreExpiration: true },
-    async (err, decoded) => {
-      if (
-        err ||
-        !decoded ||
-        !Object.hasOwn(decoded as object, "_id") ||
-        !(decoded as { _id: unknown })._id ||
-        typeof (decoded as { _id: unknown })._id !== "string"
-      ) {
-        return res.status(401).json({ message: "INVALID_TOKEN" });
+  return verify(token, CONFIG.JWT_SECRET, async (err, decoded) => {
+    if (
+      err ||
+      !decoded ||
+      !Object.hasOwn(decoded as object, "_id") ||
+      !(decoded as { _id: unknown })._id ||
+      typeof (decoded as { _id: unknown })._id !== "string"
+    ) {
+      if (canIgnoreInvalidSessionToken(req)) {
+        return next();
       }
 
-      const user = await getUserByIdWithUserRights(
-        (decoded as { _id: string })._id
-      );
-
-      if (!user?.verified) {
-        return res.status(401).json({ message: "USER_NOT_VERIFIED" });
-      }
-
-      // Logged user
-      user.type = UserTypeLogged.LOGGED;
-
-      req.user = UserFactory.createUser(user);
-
-      next();
+      return res.status(401).json({ message: "INVALID_TOKEN" });
     }
-  );
+
+    const user = await getUserByIdWithUserRights(
+      (decoded as { _id: string })._id
+    );
+
+    if (!user?.verified) {
+      return res.status(401).json({ message: "USER_NOT_VERIFIED" });
+    }
+
+    // Logged user
+    user.type = UserTypeLogged.LOGGED;
+
+    req.user = UserFactory.createUser(user);
+
+    next();
+  });
 };
 
 export const handleAdminRight = (
