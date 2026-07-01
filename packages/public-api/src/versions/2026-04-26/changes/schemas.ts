@@ -2,7 +2,11 @@ import { PlaceType } from "@soliguide/common";
 import { z } from "zod";
 import { schema } from "../../../versioning-engine/dsl";
 
-const v20260426SearchPlaceResponseSchema = z.object({});
+const v20260426SearchPlaceResponseSchema = z.object({
+  waypoints: z.unknown(),
+  openingHours: z.unknown(),
+  position: z.unknown(),
+});
 
 export const tempInfoSchema = schema(
   z
@@ -169,14 +173,12 @@ export const searchPlacesByTypeSchema = schema(
     z
       .discriminatedUnion("placeType", [
         v20260426SearchPlaceResponseSchema
-          // @ts-expect-error generated placeholder schema is extended later.
           .omit({ waypoints: true })
           .extend({
             placeType: z.literal(PlaceType.PLACE),
           })
           .meta({ title: "FixedPosition" }),
         v20260426SearchPlaceResponseSchema
-          // @ts-expect-error generated placeholder schema is extended later.
           .omit({ openingHours: true, position: true })
           .extend({
             placeType: z.literal(PlaceType.ITINERARY),
