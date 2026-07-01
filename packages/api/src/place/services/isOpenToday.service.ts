@@ -45,7 +45,13 @@ async function syncPlaceToAirtable(
   }
 }
 
-export const setIsOpenToday = async () => {
+export interface SetIsOpenTodayResult {
+  placesProcessed: number;
+  placesSyncedToAirtable: number;
+  servicesProcessed: number;
+}
+
+export const setIsOpenToday = async (): Promise<SetIsOpenTodayResult> => {
   /**
    * Reset the places opening status
    */
@@ -167,4 +173,10 @@ export const setIsOpenToday = async () => {
   logger.info(
     `${syncCpt} PLACES SYNCED TO AIRTABLE AFTER IS_OPEN_TODAY CHANGE`
   );
+
+  return {
+    placesProcessed: placeCpt,
+    placesSyncedToAirtable: syncCpt,
+    servicesProcessed: serviceCpt,
+  };
 };
