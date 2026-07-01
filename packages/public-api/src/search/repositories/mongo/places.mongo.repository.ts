@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 
-import { PlaceModel } from "@soliguide/api";
+import { PlaceModel } from "@soliguide/api/src";
 
 import {
   PlacesRepository,
