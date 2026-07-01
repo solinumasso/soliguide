@@ -3,7 +3,6 @@ import { ChangeHandler } from "./types";
 export const addChangeHandler: ChangeHandler<"add"> = {
   apply(context, change) {
     const targetObject = context.resolveChangeObject(
-      context.mainSchemaDeclaration,
       change.payload.payloadPath,
       `add ${change.changeName}`
     );

@@ -4,7 +4,6 @@ export const removeChangeHandler: ChangeHandler<"remove"> = {
   apply(context, change) {
     context
       .resolveChangeFieldProperty(
-        context.mainSchemaDeclaration,
         change.payload.payloadPath,
         `remove ${change.changeName}`
       )
