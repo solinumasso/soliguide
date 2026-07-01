@@ -25,93 +25,95 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       <h1 class="text-center separator-secondary">
         {{ "NEED_HELP" | translate }}
       </h1>
-      <h2
-        class="aide-title my-4"
-        [innerHTML]="
-          'AVAILABLE_TUTORIALS'
-            | translate : { brandName: THEME_CONFIGURATION.brandName }
-            | safeHtml
-        "
-      ></h2>
-      <div class="limite"></div>
-      <div class="row" *ngIf="THEME_CONFIGURATION.helpShowPdfTutorials">
-        <div class="col-12 col-md-3 mt-4">
-          <a
-            href="https://solinum.org/tutos-soliguide/creer-et-gerer-son-compte-professionnel-soliguide"
-            target="_blank"
-            rel="noopener noreferrer"
-            (click)="clickOnTutorial('[PDF] Comptes professionnels')"
-          >
-            <div class="card">
-              <div class="card-body bg-light">
-                <h4 class="card-title">
-                  <span dir="auto">
-                    [{{ "PDF" | translate }}]
-                    {{ "BUSINESS_ACCOUNT" | translate }}
-                  </span>
-                </h4>
+      <ng-container *ngIf="THEME_CONFIGURATION.helpShowPdfTutorials">
+        <h2
+          class="aide-title my-4"
+          [innerHTML]="
+            'AVAILABLE_TUTORIALS'
+              | translate : { brandName: THEME_CONFIGURATION.brandName }
+              | safeHtml
+          "
+        ></h2>
+        <div class="limite"></div>
+        <div class="row">
+          <div class="col-12 col-md-3 mt-4">
+            <a
+              href="https://solinum.org/tutos-soliguide/creer-et-gerer-son-compte-professionnel-soliguide"
+              target="_blank"
+              rel="noopener noreferrer"
+              (click)="clickOnTutorial('[PDF] Comptes professionnels')"
+            >
+              <div class="card">
+                <div class="card-body bg-light">
+                  <h4 class="card-title">
+                    <span dir="auto">
+                      [{{ "PDF" | translate }}]
+                      {{ "BUSINESS_ACCOUNT" | translate }}
+                    </span>
+                  </h4>
+                </div>
               </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-12 col-md-3 mt-4">
-          <a
-            href="https://solinum.org/tutos-soliguide/parcours-mobiles"
-            target="_blank"
-            rel="noopener noreferrer"
-            (click)="clickOnTutorial('[PDF] Créer un parcours mobile')"
-          >
-            <div class="card">
-              <div class="card-body bg-light">
-                <h5 class="card-title">
-                  <span dir="auto">
-                    [{{ "PDF" | translate }}]
-                    {{ "CREATE_MOBILE_ROUTE" | translate }}
-                  </span>
-                </h5>
+            </a>
+          </div>
+          <div class="col-12 col-md-3 mt-4">
+            <a
+              href="https://solinum.org/tutos-soliguide/parcours-mobiles"
+              target="_blank"
+              rel="noopener noreferrer"
+              (click)="clickOnTutorial('[PDF] Créer un parcours mobile')"
+            >
+              <div class="card">
+                <div class="card-body bg-light">
+                  <h5 class="card-title">
+                    <span dir="auto">
+                      [{{ "PDF" | translate }}]
+                      {{ "CREATE_MOBILE_ROUTE" | translate }}
+                    </span>
+                  </h5>
+                </div>
               </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-12 col-md-3 mt-4">
-          <a
-            href="https://solinum.org/tutos-soliguide/annuaire-professionnel"
-            target="_blank"
-            rel="noopener noreferrer"
-            (click)="clickOnTutorial('[PDF] L\'annuaire professionnel')"
-          >
-            <div class="card">
-              <div class="card-body bg-light">
-                <h5 class="card-title">
-                  <span dir="auto">
-                    [{{ "PDF" | translate }}]
-                    {{ "PROFESSIONAL_DIRECTORY" | translate }}
-                  </span>
-                </h5>
+            </a>
+          </div>
+          <div class="col-12 col-md-3 mt-4">
+            <a
+              href="https://solinum.org/tutos-soliguide/annuaire-professionnel"
+              target="_blank"
+              rel="noopener noreferrer"
+              (click)="clickOnTutorial('[PDF] L\'annuaire professionnel')"
+            >
+              <div class="card">
+                <div class="card-body bg-light">
+                  <h5 class="card-title">
+                    <span dir="auto">
+                      [{{ "PDF" | translate }}]
+                      {{ "PROFESSIONAL_DIRECTORY" | translate }}
+                    </span>
+                  </h5>
+                </div>
               </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-12 col-md-3 mt-4">
-          <a
-            href="https://solinum.org/tutos-soliguide/mettre-a-jour-ses-informations-sur-soliguide"
-            target="_blank"
-            rel="noopener noreferrer"
-            (click)="clickOnTutorial('[PDF] Mise à jour saisonnière')"
-          >
-            <div class="card">
-              <div class="card-body bg-light">
-                <h5 class="card-title">
-                  <span dir="auto">
-                    [{{ "PDF" | translate }}]
-                    {{ "SEASONAL_UPDATE" | translate }}
-                  </span>
-                </h5>
+            </a>
+          </div>
+          <div class="col-12 col-md-3 mt-4">
+            <a
+              href="https://solinum.org/tutos-soliguide/mettre-a-jour-ses-informations-sur-soliguide"
+              target="_blank"
+              rel="noopener noreferrer"
+              (click)="clickOnTutorial('[PDF] Mise à jour saisonnière')"
+            >
+              <div class="card">
+                <div class="card-body bg-light">
+                  <h5 class="card-title">
+                    <span dir="auto">
+                      [{{ "PDF" | translate }}]
+                      {{ "SEASONAL_UPDATE" | translate }}
+                    </span>
+                  </h5>
+                </div>
               </div>
-            </div>
-          </a>
+            </a>
+          </div>
         </div>
-      </div>
+      </ng-container>
       <h3
         class="aide-title mb-4 mt-4"
         [innerHTML]="'WEBINAR_PARTICIPATION' | translate | safeHtml"

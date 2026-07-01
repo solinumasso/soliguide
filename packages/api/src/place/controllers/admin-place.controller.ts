@@ -111,6 +111,14 @@ const changeCampaignUpdateStatus = async (
 export const insertPlace = async (
   newPlace: Partial<ApiPlace>
 ): Promise<ModelWithId<ApiPlace>> => {
+  if (newPlace.placeType === PlaceType.ITINERARY) {
+    newPlace.position = getPosition({
+      parcours: newPlace.parcours ?? [],
+      placeType: PlaceType.ITINERARY,
+      position: newPlace.position as CommonPlacePosition,
+    });
+  }
+
   // Increment lieu_id (unique)
   newPlace.lieu_id = await getNextPlaceId();
 
@@ -803,10 +811,15 @@ export const patchParcours = async (
 
   const newhours = getHoursFromParcours(parcours);
 
-  const dataToUpdate: Partial<ApiPlace> = {
+  const dataToUpdate = {
     newhours,
     parcours,
     placeType: PlaceType.ITINERARY,
+    position: getPosition({
+      parcours,
+      placeType: PlaceType.ITINERARY,
+      position: oldPlace.position,
+    }),
     stepsDone: { ...req.lieu.stepsDone, emplacement: true },
   };
 
