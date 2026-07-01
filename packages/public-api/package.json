@@ -20,6 +20,7 @@
     "lint": "eslint --cache ./src",
     "openapi:generate": "ts-node --transpile-only src/versioning-engine/open-api/open-api.generator.cli.ts",
     "schema-version:generate": "ts-node --transpile-only src/versioning-engine/schema-versioning/schema-version.generator.cli.ts",
+    "version-artifacts:generate": "yarn schema-version:generate \"$@\" && yarn openapi:generate \"$@\"",
     "test": "vitest run --testTimeout=15000",
     "test:watch": "vitest --testTimeout=15000",
     "test:cov": "vitest run --coverage --testTimeout=15000",
