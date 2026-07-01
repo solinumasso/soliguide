@@ -4,7 +4,7 @@ import {
   NestFastifyApplication,
 } from "@nestjs/platform-fastify";
 import helmet from "helmet";
-import { PlaceModel } from "@soliguide/api/src";
+import { PlaceModel } from "@soliguide/api";
 import { AppModule } from "./app.module";
 
 import { config } from "dotenv";

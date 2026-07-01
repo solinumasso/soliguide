@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { verify } from "jsonwebtoken";
-import { UserModel } from "@soliguide/api/src";
+import { UserModel } from "@soliguide/api";
 import {
   Categories,
   OperationalAreas,
