@@ -2,7 +2,7 @@ import { VersionContextProvider } from "../../../versioning-engine/dsl";
 
 export type V20260426JsonRecord = Record<string, unknown>;
 
-export type V20260426LegacyPlace = {
+export type V20260426To20260101PlaceRestoreSnapshot = {
   _id?: string | number;
   lieu_id?: string | number;
   auto?: boolean | null;
@@ -27,12 +27,12 @@ export type V20260426LegacyPlace = {
   } | null;
   services_all?: Array<{
     categorie?: string | number | null;
-    jobsList?: unknown[] | null;
+    jobsList?: string | null;
   }> | null;
 };
 
 export type V20260426Context = {
-  legacyPlacesById: Record<string, V20260426LegacyPlace>;
+  legacyPlacesById: Record<string, V20260426To20260101PlaceRestoreSnapshot>;
 };
 
 export interface V20260426ContextProvider
