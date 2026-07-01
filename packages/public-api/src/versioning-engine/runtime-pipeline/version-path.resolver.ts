@@ -25,7 +25,10 @@ export class VersionPathResolver {
     ]);
 
     this.supportedVersions = new Set(versions);
-    this.canonicalVersion = versions.sort().at(-1) ?? "";
+    this.canonicalVersion =
+      versions
+        .sort((versionA, versionB) => versionA.localeCompare(versionB))
+        .at(-1) ?? "";
   }
 
   public getCanonicalVersion(): string {
