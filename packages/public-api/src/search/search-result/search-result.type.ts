@@ -1,0 +1,277 @@
+import {
+  Categories,
+  GeoTypes,
+  PlaceClosedHolidays,
+  PlaceStatus,
+  PlaceType,
+  PlaceVisibility,
+  PublicsAdministrative,
+  PublicsFamily,
+  PublicsGender,
+  PublicsOther,
+  ServiceSaturation,
+} from "@soliguide/common";
+
+export interface SearchPosition {
+  location?: {
+    type?: "Point";
+    coordinates?: number[];
+  };
+  address?: string;
+  additionalInformation?: string;
+  city?: string;
+  cityCode?: string;
+  postalCode?: string;
+  department?: string;
+  departmentCode?: string;
+  region?: string;
+  regionCode?: string;
+  country?: string;
+  timeZone?: string;
+  adresse?: string;
+  codePostal?: string;
+  complementAdresse?: string;
+  departement?: string;
+  pays?: string;
+  ville?: string;
+  [key: string]: unknown;
+}
+
+export interface SearchPhoto {
+  _id?: string;
+  encoding?: string;
+  filename: string;
+  mimetype: string;
+  parcours_id?: number;
+  path: string;
+  lieu_id: number;
+  size?: number;
+  createdAt?: string;
+  updatedAt?: string;
+  [key: string]: unknown;
+}
+
+export interface SearchTimeslot {
+  end?: number | null;
+  start?: number | null;
+  [key: string]: unknown;
+}
+
+export interface SearchDayOpeningHours {
+  open?: boolean;
+  timeslot?: SearchTimeslot[];
+  [key: string]: unknown;
+}
+
+export interface SearchOpeningHours {
+  closedHolidays?: PlaceClosedHolidays;
+  description?: string | null;
+  monday?: SearchDayOpeningHours;
+  tuesday?: SearchDayOpeningHours;
+  wednesday?: SearchDayOpeningHours;
+  thursday?: SearchDayOpeningHours;
+  friday?: SearchDayOpeningHours;
+  saturday?: SearchDayOpeningHours;
+  sunday?: SearchDayOpeningHours;
+  [key: string]: unknown;
+}
+
+export interface SearchModalitiesCheck {
+  checked?: boolean;
+  precisions?: string | null;
+  [key: string]: unknown;
+}
+
+export interface SearchModalities {
+  unconditional?: boolean;
+  appointment?: SearchModalitiesCheck;
+  registration?: SearchModalitiesCheck;
+  referral?: SearchModalitiesCheck;
+  price?: SearchModalitiesCheck;
+  animals?: { checked?: boolean };
+  accessibility?: { wheelchair?: boolean };
+  docs?: string[];
+  other?: string | null;
+  _text?: string | null;
+  [key: string]: unknown;
+}
+
+export interface SearchSpecialSupportContext {
+  type: string;
+  key: string;
+  label: string;
+  details: string;
+}
+
+export interface SearchPublics {
+  welcomeType?: 0 | 1 | 2;
+  administrative?: PublicsAdministrative[];
+  age?: { max?: number; min?: number };
+  description?: string | null;
+  family?: PublicsFamily[];
+  gender?: PublicsGender[];
+  other?: PublicsOther[];
+  specialSupportContext?: SearchSpecialSupportContext;
+  _text?: string | null;
+  [key: string]: unknown;
+}
+
+export interface SearchCategorySpecificFields {
+  activityName?: string;
+  availableEquipmentPrecisions?: string;
+  availableEquipmentType?: string[];
+  babyParcelAgeType?: string[];
+  canteensMealType?: string;
+  courseType?: string;
+  degreeOfChoiceType?: string;
+  dietaryAdaptationsType?: string[];
+  dietaryRegimesType?: string;
+  domiciliationType?: string;
+  foodProductType?: string[];
+  otherProductTypePrecisions?: string;
+  hygieneProductType?: string;
+  jobsList?: string;
+  nationalOriginProductType?: string;
+  organicOriginProductType?: string;
+  serviceStyleType?: string[];
+  usageModality?: string;
+  voucherType?: string;
+  voucherTypePrecisions?: string;
+  wellnessActivityName?: string;
+  [key: string]: unknown;
+}
+
+export interface SearchService {
+  category: Categories;
+  tempClosure?: {
+    active?: boolean;
+    startDate?: string | null;
+    endDate?: string | null;
+    closeType?: number | null;
+    precision?: string | null;
+  };
+  description?: string | null;
+  differentHours?: boolean;
+  differentModalities?: boolean;
+  differentPublics?: boolean;
+  hours?: SearchOpeningHours;
+  isOpenToday: boolean;
+  modalities?: SearchModalities;
+  publics?: SearchPublics;
+  saturated?: {
+    precision?: string | null;
+    status?: ServiceSaturation;
+  };
+  serviceObjectId: string;
+  createdAt: string;
+  categorySpecificFields?: SearchCategorySpecificFields;
+  name?: string | null;
+  [key: string]: unknown;
+}
+
+export interface SearchGeoZone {
+  geoType?: GeoTypes | null;
+  geoValue?: string;
+  label?: string;
+  [key: string]: unknown;
+}
+
+export interface SearchTempInfoBase {
+  active?: boolean;
+  startDate?: string | null;
+  endDate?: string | null;
+  description?: string;
+  [key: string]: unknown;
+}
+
+export interface SearchTempInfo {
+  closure?: SearchTempInfoBase;
+  hours?: SearchTempInfoBase & { hours?: SearchOpeningHours | null };
+  message?: SearchTempInfoBase & { name?: string };
+  [key: string]: unknown;
+}
+
+export interface SearchSourceId {
+  id: string;
+  url?: string;
+  [key: string]: unknown;
+}
+
+export interface SearchSource {
+  ids?: SearchSourceId[];
+  isOrigin: boolean;
+  license?: string;
+  name: string;
+  [key: string]: unknown;
+}
+
+export interface SearchParcours {
+  description?: string | null;
+  hours?: SearchOpeningHours;
+  position?: SearchPosition | null;
+  photos?: SearchPhoto[];
+  show?: boolean;
+  [key: string]: unknown;
+}
+
+export interface SearchPhone {
+  label?: string | null;
+  phoneNumber?: string | null;
+  countryCode?: string;
+  isSpecialPhoneNumber?: boolean;
+  [key: string]: unknown;
+}
+
+export interface SearchEntity {
+  facebook?: string;
+  fax?: string;
+  instagram?: string;
+  mail?: string;
+  name?: string | null;
+  phones?: SearchPhone[];
+  website?: string | null;
+  [key: string]: unknown;
+}
+
+export interface SearchSlugs {
+  infos?: {
+    description?: string | null;
+    name?: string | null;
+  };
+  [key: string]: unknown;
+}
+
+export interface SearchPlace {
+  lieu_id?: number;
+  _id?: string;
+  seoUrl?: string;
+  name?: string;
+  description?: string | null;
+  status?: PlaceStatus;
+  visibility?: PlaceVisibility;
+  isOpenToday?: boolean;
+  photos?: SearchPhoto[];
+  placeType?: PlaceType;
+  services?: SearchService[];
+  position?: SearchPosition;
+  waypoints?: SearchParcours[];
+  organizationInfo?: SearchEntity;
+  openingHours?: SearchOpeningHours;
+  modalities?: SearchModalities;
+  publics?: SearchPublics;
+  country?: string;
+  languages?: string[];
+  createdAt?: string;
+  updatedAt?: string;
+  updatedByUserAt?: string;
+  tempInfo?: SearchTempInfo;
+  sources?: SearchSource[];
+  slugs?: SearchSlugs;
+  distance?: number;
+  [key: string]: unknown;
+}
+
+export interface SearchResult {
+  nbResults: number;
+  places: SearchPlace[];
+}
