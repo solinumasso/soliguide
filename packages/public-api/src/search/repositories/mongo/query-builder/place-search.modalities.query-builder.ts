@@ -15,7 +15,8 @@ export class ModalitiesQueryBuilder implements SearchQueryBuilder {
     const modalitiesFields: Record<string, unknown> = {};
 
     if (typeof modalities.isUnconditional === "boolean") {
-      modalitiesFields["modalities.inconditionnel"] = modalities.isUnconditional;
+      modalitiesFields["modalities.inconditionnel"] =
+        modalities.isUnconditional;
     }
 
     for (const [queryKey, mongoField] of Object.entries(MODALITIES_FIELD_MAP)) {

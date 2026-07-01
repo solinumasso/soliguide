@@ -44,6 +44,20 @@ fileignoreconfig:
   checksum: c3c67e611385e32c11c8f06c4847d48b5cd6201e027391bdc867307c42fc1d17
 - filename: packages/frontend/src/environments/environment.ts
   checksum: 267e262e74dd6ad9609ab6ee42aaf75239b4699b29c58c7c3752a6c385ce7a46
+- filename: packages/public-api/.env.example
+  checksum: 32151e3020a608b6569bcb9fd1e91ba6a7f4ff4c38c8e6582b3efaeb5c65214f
+- filename: packages/public-api/docs/kickoff/kickoff.ca.md
+  checksum: 4049eac2b5885947cb8c53bec95f3dd645cd9219ed165cb1ca0771788b6286ae
+- filename: packages/public-api/docs/kickoff/kickoff.en.md
+  checksum: 110139536f593bd9945798ba9f537ee9fa01a02e62187583de7b7713b280786d
+- filename: packages/public-api/docs/kickoff/kickoff.es.md
+  checksum: 8dea18f9a7dff52120e5a1aefc8c3579f10112999ec42f26aa7dc119a44a93be
+- filename: packages/public-api/docs/kickoff/kickoff.fr.md
+  checksum: 9706f7a6c9fc10937ba86d3c94f6f725724e21c081d8380062c2c7f9cdc5b891
+- filename: packages/public-api/src/versions/2026-01-01/2026-01-01.openapi.generated.json
+  checksum: 8ebd3a274ac7fb02ab64f9209b85fe15dcaa73ee75a55810a377059387a32dd5
+- filename: packages/public-api/src/versions/2026-01-01/2026-01-01.search-response.schema.generated.ts
+  checksum: 901cba26db629816ebdd8c0dcd9dd4c9b0491d8a9b543c8c491bc57c98ff0758
 - filename: packages/web-app/src/lib/services/categoryService.ts
   checksum: 7002e4f6fe7b74eb7516a14b09ec8bbd1ad429a33b017cda5329ef6c6b835d17
 - filename: packages/web-app/static/images/organizations-logos/fr/fondation-pour-le-logement.svg
@@ -55,5 +69,5 @@ fileignoreconfig:
 - filename: packages/web-app/static/images/organizations-logos/fr/secours-islamique.svg
   checksum: 09d951bec75ab70c67a967d95b63b5da29fb8d21f7fe9d5566ac8d9b004983b3
 - filename: yarn.lock
-  checksum: 367db76d059c9e13c481743d0f450f041d3a38215c52d961879492e22691c920
+  checksum: 568bb1639817b1f81ab0037a48fe186767de459f27097e11a7b97a257d7a2c4a
 version: "1.0"

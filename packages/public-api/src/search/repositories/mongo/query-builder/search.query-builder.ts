@@ -1,8 +1,9 @@
 import { Injectable } from "@nestjs/common";
 import { type Document } from "mongodb";
+import { type PipelineStage } from "mongoose";
 
 import { PlaceType } from "@soliguide/common";
-import { FIELDS_FOR_SEARCH } from "@soliguide/api";
+import { FIELDS_FOR_SEARCH } from "@soliguide/api/src";
 
 import { SearchQuery } from "../../../search-query/search-query";
 
@@ -67,7 +68,7 @@ export class PlacesSearchQueryBuilder {
     const matchStage = this.buildMatchStage(context.andConditions);
     const hasGeoNearStage = Boolean(context.geoNearStage);
 
-    const basePipeline: Document[] = [];
+    const basePipeline: PipelineStage[] = [];
 
     if (context.geoNearStage) {
       basePipeline.push({
@@ -75,7 +76,7 @@ export class PlacesSearchQueryBuilder {
           ...context.geoNearStage,
           ...(Object.keys(matchStage).length ? { query: matchStage } : {}),
         },
-      });
+      } as PipelineStage.GeoNear);
     } else if (Object.keys(matchStage).length) {
       basePipeline.push({
         $match: matchStage,
@@ -98,7 +99,7 @@ export class PlacesSearchQueryBuilder {
 
   private buildProjectStage(
     context: SearchContext
-  ): Record<string, unknown> | null {
+  ): Record<string, boolean> | null {
     const selectedFields =
       context.query.options?.fields ?? this.getDefaultFieldsForContext(context);
 
@@ -115,7 +116,7 @@ export class PlacesSearchQueryBuilder {
       return null;
     }
 
-    return tokens.reduce<Record<string, unknown>>((acc, token) => {
+    return tokens.reduce<Record<string, boolean>>((acc, token) => {
       if (token.startsWith("-")) {
         acc[token.slice(1)] = false;
       } else {
@@ -151,7 +152,7 @@ export class PlacesSearchQueryBuilder {
   private buildSortStage(
     context: SearchContext,
     hasGeoNearStage: boolean
-  ): Record<string, unknown> {
+  ): Record<string, 1 | -1> {
     const sortBy = context.query.options?.sortBy;
     const sortValue = context.query.options?.sortValue;
 
@@ -181,8 +182,8 @@ export class PlacesSearchQueryBuilder {
 }
 
 type MongoSearchPipelines = {
-  resultsPipeline: Document[];
-  countPipeline: Document[];
+  resultsPipeline: PipelineStage[];
+  countPipeline: PipelineStage[];
 };
 
 export interface SearchQueryBuilder {
