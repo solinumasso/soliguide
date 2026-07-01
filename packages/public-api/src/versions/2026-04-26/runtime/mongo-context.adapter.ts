@@ -20,9 +20,7 @@ export class V20260426MongoContextProvider implements V20260426ContextProvider {
       return { legacyPlacesById: {} };
     }
 
-    const numericIds = ids
-      .map((id) => Number(id))
-      .filter((id) => Number.isFinite(id));
+    const numericIds = ids.map(Number).filter((id) => Number.isFinite(id));
 
     const places = await PlaceModel.find({
       $or: [{ lieu_id: { $in: numericIds } }, { _id: { $in: ids } }],
