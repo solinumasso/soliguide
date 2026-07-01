@@ -12,7 +12,7 @@
     "generate:md": "tsx scripts/caddy/generate-md.ts",
     "copy-png-to-api": "mkdir -p ../api/resources/auto-export/pictos && cp -r icons/png/* ../api/resources/auto-export/pictos/",
     "copy-fonts-to-frontend": "mkdir -p ../frontend/src/assets/fonts/icons/ && cp fonts/categories-icons.woff fonts/categories-icons.woff2 fonts/categories-icons.scss ../frontend/src/assets/fonts/icons/",
-    "copy-fonts-to-webapp": "mkdir -p ../web-app/src/assets/fonts/icons/ && cp fonts/categories-icons.woff fonts/categories-icons.woff2 ../web-app/src/assets/fonts/icons/",
+    "copy-fonts-to-webapp": "mkdir -p ../web-app/src/assets/fonts/icons/ ../web-app/src/assets/styles/ && cp fonts/categories-icons.woff fonts/categories-icons.woff2 ../web-app/src/assets/fonts/icons/ && cp fonts/categories-icons.scss ../web-app/src/assets/styles/categories-icons.scss && perl -0pi -e \"s#url\\('categories-icons\\.#url('../fonts/icons/categories-icons.#g\" ../web-app/src/assets/styles/categories-icons.scss",
     "copy-all": "yarn copy-png-to-api && yarn copy-fonts-to-frontend && yarn copy-fonts-to-webapp",
     "icons-full-process": "yarn generate-icons && yarn copy-all && echo '✅ Icons générés et copiés avec succès!'"
   },
