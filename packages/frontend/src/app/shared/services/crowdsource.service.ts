@@ -51,23 +51,15 @@ export class CrowdsourceService {
       .pipe(tap(() => this.markSubmitted(payload.placeId, payload.section)));
   }
 
-  public hasSubmitted(
-    placeId: number,
-    section: PlaceChangesSection
-  ): boolean {
+  public hasSubmitted(placeId: number, section: PlaceChangesSection): boolean {
     return this.read().some(
       (entry) => entry.placeId === placeId && entry.section === section
     );
   }
 
-  public markSubmitted(
-    placeId: number,
-    section: PlaceChangesSection
-  ): void {
+  public markSubmitted(placeId: number, section: PlaceChangesSection): void {
     const entries = this.read();
-    if (
-      entries.some((e) => e.placeId === placeId && e.section === section)
-    ) {
+    if (entries.some((e) => e.placeId === placeId && e.section === section)) {
       return;
     }
     entries.push({ placeId, section });
