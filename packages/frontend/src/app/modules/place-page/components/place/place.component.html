@@ -90,7 +90,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       </b>
     </div>
 
-    <div class="page-content">
+    <div class="page-content page-content--thermal-comfort-wrapper">
+      <app-thermal-comfort-status
+        [thermalComfort]="place.modalities.thermalComfort"
+        variant="ribbon"
+      ></app-thermal-comfort-status>
       <div class="row mb-2">
         <div class="col-xs-12 col-md-7">
           <h1 class="place_name">

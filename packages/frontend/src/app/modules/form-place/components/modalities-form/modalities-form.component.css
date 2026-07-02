@@ -76,3 +76,39 @@
 .form-check-input:active {
   background-color: orangered;
 }
+
+.thermal-comfort-card {
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  background: linear-gradient(
+    135deg,
+    rgba(13, 110, 253, 0.08),
+    rgba(102, 197, 255, 0.12)
+  );
+  border: 2px solid rgba(13, 110, 253, 0.2);
+}
+
+.thermal-comfort-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+  color: #0a4fbf;
+}
+
+.thermal-comfort-card__emoji {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.thermal-comfort-card__title {
+  font-size: 1rem;
+}
+
+.thermal-comfort-card__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}

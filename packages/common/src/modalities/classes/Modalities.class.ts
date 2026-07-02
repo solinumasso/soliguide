@@ -1,5 +1,6 @@
 import { CheckAndPrecisions, Checked } from "../interfaces";
 import { CommonPlaceDocument } from "./CommonPlaceDocument.class";
+import { ThermalComfort } from "./ThermalComfort.class";
 
 export class Modalities {
   public inconditionnel: boolean;
@@ -14,6 +15,8 @@ export class Modalities {
 
   public animal: Checked;
   public pmr: Checked;
+
+  public thermalComfort: ThermalComfort;
 
   public docs: CommonPlaceDocument[];
 
@@ -41,6 +44,8 @@ export class Modalities {
 
     this.animal = modalities?.animal ?? {};
     this.pmr = modalities?.pmr ?? {};
+
+    this.thermalComfort = new ThermalComfort(modalities?.thermalComfort);
 
     this.docs = modalities?.docs?.length
       ? modalities.docs.map(

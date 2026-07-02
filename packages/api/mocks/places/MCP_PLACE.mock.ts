@@ -70,6 +70,7 @@ export const MCP_PLACE: ApiPlace = {
       checked: false,
       precisions: null,
     },
+    thermalComfort: { heated: null, airConditioned: null },
   },
   name: "PMI Aqueduc",
   newhours: {
@@ -273,6 +274,7 @@ export const MCP_PLACE: ApiPlace = {
           checked: false,
           precisions: null,
         },
+        thermalComfort: { heated: null, airConditioned: null },
       },
       publics: {
         accueil: WelcomedPublics.PREFERENTIAL,
@@ -373,6 +375,7 @@ export const MCP_PLACE: ApiPlace = {
           checked: false,
           precisions: "different",
         },
+        thermalComfort: { heated: null, airConditioned: null },
       },
       publics: {
         accueil: WelcomedPublics.PREFERENTIAL,
@@ -512,6 +515,7 @@ export const MCP_PLACE: ApiPlace = {
           checked: false,
           precisions: null,
         },
+        thermalComfort: { heated: null, airConditioned: null },
       },
       publics: {
         accueil: WelcomedPublics.PREFERENTIAL,
@@ -652,6 +656,7 @@ export const MCP_PLACE: ApiPlace = {
           checked: false,
           precisions: null,
         },
+        thermalComfort: { heated: null, airConditioned: null },
       },
       publics: {
         accueil: WelcomedPublics.PREFERENTIAL,

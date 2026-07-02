@@ -37,6 +37,7 @@ import { SearchBarModule } from "../search-bar/search-bar.module";
 import { DisplayHorairesComponent } from "../place/standalone-components/display-horaires/horaires.component";
 import { DisplayTempBannerComponent } from "../place/standalone-components/display-temp-banner/display-temp-banner.component";
 import { SearchCategoryAutocompleteComponent } from "../shared/components/search-category-autocomplete/search-category-autocomplete.component";
+import { ThermalComfortStatusComponent } from "../shared/components/thermal-comfort-status/thermal-comfort-status.component";
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { SearchCategoryAutocompleteComponent } from "../shared/components/search
     SearchBarModule,
     DisplayTempBannerComponent,
     SearchCategoryAutocompleteComponent,
+    ThermalComfortStatusComponent,
   ],
   providers: [ManagePlacesService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

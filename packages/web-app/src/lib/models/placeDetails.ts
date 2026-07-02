@@ -167,12 +167,30 @@ const buildModalities = (modalities: Modalities): PlaceDetailsInfo[] => {
       ]
     : [];
 
+  const airConditionedInfo: PlaceDetailsInfo[] = [];
+  if (modalities.thermalComfort?.airConditioned === true) {
+    airConditionedInfo.push({
+      type: PlaceDetailsInfoType.AIR_CONDITIONED,
+      tags: [],
+      description: [],
+      needTranslation: true
+    });
+  } else if (modalities.thermalComfort?.airConditioned === false) {
+    airConditionedInfo.push({
+      type: PlaceDetailsInfoType.NOT_AIR_CONDITIONED,
+      tags: [],
+      description: [],
+      needTranslation: true
+    });
+  }
+
   return [
     ...modalitiesType,
     ...modalitiesMoreInfo,
     ...buildSpecificModalitiesTypeWithPrecisions(modalities.price, PlaceDetailsInfoType.PRICE),
     ...buildSpecificModalitiesType(modalities.pmr, PlaceDetailsInfoType.PMR),
-    ...buildSpecificModalitiesType(modalities.animal, PlaceDetailsInfoType.ANIMALS)
+    ...buildSpecificModalitiesType(modalities.animal, PlaceDetailsInfoType.ANIMALS),
+    ...airConditionedInfo
   ];
 };
 

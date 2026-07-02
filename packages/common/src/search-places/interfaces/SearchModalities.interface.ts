@@ -7,4 +7,8 @@ export interface SearchModalities {
   pmr?: boolean;
   price?: boolean;
   sign?: boolean;
+  thermalComfort?: {
+    airConditioned?: boolean;
+    heated?: boolean;
+  };
 }

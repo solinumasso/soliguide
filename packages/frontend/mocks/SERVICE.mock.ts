@@ -72,6 +72,7 @@ export const SERVICE_MOCK: Service = {
     pmr: { checked: true },
     price: { checked: false, precisions: null },
     docs: [],
+    thermalComfort: { heated: null, airConditioned: null },
   },
   name: "",
   publics: {

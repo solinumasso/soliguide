@@ -76,6 +76,7 @@ export const STEP_SERVICES_OK: Partial<ApiPlace> = {
         other: null,
         pmr: { checked: false },
         price: { checked: false, precisions: null },
+        thermalComfort: { heated: null, airConditioned: null },
       },
       publics: {
         accueil: WelcomedPublics.PREFERENTIAL,
@@ -154,6 +155,7 @@ export const STEP_SERVICES_OK: Partial<ApiPlace> = {
         other: null,
         pmr: { checked: false },
         price: { checked: false, precisions: null },
+        thermalComfort: { heated: null, airConditioned: null },
       },
       publics: {
         accueil: WelcomedPublics.PREFERENTIAL,
@@ -215,6 +217,7 @@ export const STEP_SERVICES_OK: Partial<ApiPlace> = {
         other: null,
         pmr: { checked: false },
         price: { checked: false, precisions: null },
+        thermalComfort: { heated: null, airConditioned: null },
       },
       publics: {
         accueil: WelcomedPublics.PREFERENTIAL,
@@ -294,6 +297,7 @@ export const STEP_SERVICES_OK: Partial<ApiPlace> = {
         other: null,
         pmr: { checked: false },
         price: { checked: false, precisions: null },
+        thermalComfort: { heated: null, airConditioned: null },
       },
       publics: {
         accueil: WelcomedPublics.PREFERENTIAL,

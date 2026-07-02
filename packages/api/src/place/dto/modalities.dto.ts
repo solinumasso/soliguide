@@ -37,6 +37,16 @@ export const modalitiesDto = (path = "") => [
     .optional()
     .isBoolean(),
 
+  body(path + "modalities.thermalComfort")
+    .optional({ nullable: true })
+    .isObject(),
+  body(path + "modalities.thermalComfort.heated")
+    .optional({ nullable: true })
+    .isBoolean(),
+  body(path + "modalities.thermalComfort.airConditioned")
+    .optional({ nullable: true })
+    .isBoolean(),
+
   body(path + "modalities").custom((value: Modalities) => {
     if (
       !value.inconditionnel &&
