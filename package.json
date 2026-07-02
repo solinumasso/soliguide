@@ -9,6 +9,9 @@
     "format:fix": "lerna run format:fix",
     "test": "lerna run test",
     "start": "lerna run start",
+    "dev": "concurrently -k --names \"api,loc,front\" --prefix-colors \"cyan,magenta,green\" \"yarn workspace @soliguide/api watch\" \"yarn workspace @soliguide/location-api watch\" \"yarn workspace @soliguide/frontend start\"",
+    "dev:es": "concurrently -k --names \"api,loc,front-es\" --prefix-colors \"cyan,magenta,green\" \"yarn workspace @soliguide/api watch\" \"yarn workspace @soliguide/location-api watch\" \"yarn workspace @soliguide/frontend start:es\"",
+    "dev:ad": "concurrently -k --names \"api,loc,front-ad\" --prefix-colors \"cyan,magenta,green\" \"yarn workspace @soliguide/api watch\" \"yarn workspace @soliguide/location-api watch\" \"yarn workspace @soliguide/frontend start:ad\"",
     "prepare": "husky"
   },
   "devDependencies": {
@@ -21,6 +24,7 @@
     "@semantic-release/github": "^12.0.6",
     "@semantic-release/npm": "^12.0.2",
     "@types/node": "^20.19.33",
+    "concurrently": "^10.0.3",
     "husky": "^9.1.7",
     "lerna": "^8.2.3",
     "lint-staged": "^15.5.1",

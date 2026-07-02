@@ -25,7 +25,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Use the workspace scripts (they set the correct port per locale, which must match the URLs the API expects — see the Local Port Map in the root `README.md`):
+
+- FR → `yarn start` (http://localhost:4200)
+- ES → `yarn start:es` (http://localhost:4210)
+- AD → `yarn start:ad` (http://localhost:4220)
+
+The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 

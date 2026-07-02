@@ -56,4 +56,8 @@ export class ModalitiesFormComponent implements OnInit {
   public setAirConditioned(value: boolean | null): void {
     this.modalities.thermalComfort.airConditioned = value;
   }
+
+  public setHeated(value: boolean | null): void {
+    this.modalities.thermalComfort.heated = value;
+  }
 }

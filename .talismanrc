@@ -48,6 +48,8 @@ fileignoreconfig:
   checksum: c3c67e611385e32c11c8f06c4847d48b5cd6201e027391bdc867307c42fc1d17
 - filename: packages/frontend/src/app/modules/search/components/search/search.component.ts
   checksum: 844cb37af2ebbb7ab5c75175d56eaf2b53b68817f18e18160be7b9819e5be082
+- filename: packages/frontend/src/app/shared/services/crowdsource.service.ts
+  checksum: f70797b6b1f3e3a3b978b3afc0ebe5274ee80cbc34faf059b8d3a6e54d5c6a12
 - filename: packages/frontend/src/environments/environment.ts
   checksum: 267e262e74dd6ad9609ab6ee42aaf75239b4699b29c58c7c3752a6c385ce7a46
 - filename: packages/web-app/src/lib/services/categoryService.ts
@@ -61,5 +63,5 @@ fileignoreconfig:
 - filename: packages/web-app/static/images/organizations-logos/fr/secours-islamique.svg
   checksum: 09d951bec75ab70c67a967d95b63b5da29fb8d21f7fe9d5566ac8d9b004983b3
 - filename: yarn.lock
-  checksum: 367db76d059c9e13c481743d0f450f041d3a38215c52d961879492e22691c920
+  checksum: 39a777e2cc93ef06f37d3d3331e8078fbfcf1f58793174b9e37f5bac2363a0a4
 version: "1.0"

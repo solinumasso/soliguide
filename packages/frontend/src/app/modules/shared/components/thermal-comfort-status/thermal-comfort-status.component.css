@@ -7,24 +7,31 @@
 }
 
 .thermal-comfort-status {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  padding: 22px 26px;
+  border: 1px solid transparent;
+  font-family: inherit;
+}
+
+.thermal-comfort-status__background-icon {
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 130px;
+  height: 130px;
+  opacity: 0.16;
+  pointer-events: none;
+}
+
+.thermal-comfort-status__inner {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  border-radius: 14px;
-  padding: 18px 22px;
-}
-
-.thermal-comfort-status__header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.thermal-comfort-status__dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 999px;
-  flex-shrink: 0;
+  gap: 2px;
 }
 
 .thermal-comfort-status__season {
@@ -34,61 +41,52 @@
   text-transform: uppercase;
 }
 
-.thermal-comfort-status__body {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.thermal-comfort-status__icon {
-  flex: 0 0 auto;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
-  background-color: #ffffff;
-  font-size: 24px;
-  line-height: 1;
-}
-
-.thermal-comfort-status__text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
-  flex: 1 1 auto;
-}
-
 .thermal-comfort-status__title {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 900;
+  margin-top: 4px;
+  line-height: 1.2;
 }
 
 .thermal-comfort-status__description {
   font-size: 14px;
   line-height: 1.4;
+  margin-top: 2px;
 }
 
 .thermal-comfort-status__cta {
-  flex-shrink: 0;
-  align-self: center;
-  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  margin-top: 12px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 999px;
+  background-color: #ffffff;
+  color: #374151;
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+}
+
+.thermal-comfort-status__cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
 }
 
 .thermal-comfort-status--summer {
   background-color: #eaf3fb;
+  border-color: rgba(31, 111, 176, 0.35);
 }
-.thermal-comfort-status--summer .thermal-comfort-status__dot {
-  background-color: #2f8fd6;
+.thermal-comfort-status--summer .thermal-comfort-status__background-icon {
+  color: #2f8fd6;
 }
 .thermal-comfort-status--summer .thermal-comfort-status__season {
   color: #2f8fd6;
-}
-.thermal-comfort-status--summer .thermal-comfort-status__icon {
-  color: #1f6fb0;
-  box-shadow: 0 2px 6px rgba(31, 111, 176, 0.15);
 }
 .thermal-comfort-status--summer .thermal-comfort-status__title {
   color: #1c5c95;
@@ -96,19 +94,19 @@
 .thermal-comfort-status--summer .thermal-comfort-status__description {
   color: #5b7893;
 }
+.thermal-comfort-status--summer .thermal-comfort-status__cta {
+  color: #1c5c95;
+}
 
 .thermal-comfort-status--winter {
-  background-color: #fceee8;
+  background-color: #fbe7de;
+  border-color: rgba(194, 71, 43, 0.35);
 }
-.thermal-comfort-status--winter .thermal-comfort-status__dot {
-  background-color: #e2673f;
+.thermal-comfort-status--winter .thermal-comfort-status__background-icon {
+  color: #e2673f;
 }
 .thermal-comfort-status--winter .thermal-comfort-status__season {
   color: #c2472b;
-}
-.thermal-comfort-status--winter .thermal-comfort-status__icon {
-  color: #c2472b;
-  box-shadow: 0 2px 6px rgba(194, 71, 43, 0.15);
 }
 .thermal-comfort-status--winter .thermal-comfort-status__title {
   color: #b0421f;
@@ -116,38 +114,57 @@
 .thermal-comfort-status--winter .thermal-comfort-status__description {
   color: #9a6450;
 }
+.thermal-comfort-status--winter .thermal-comfort-status__cta {
+  color: #b0421f;
+}
 
 .thermal-comfort-status--missing {
   background-color: #f3f4f6;
+  border-color: rgba(107, 114, 128, 0.35);
 }
-.thermal-comfort-status--missing .thermal-comfort-status__icon {
+.thermal-comfort-status--missing .thermal-comfort-status__background-icon {
   color: #6b7280;
-  box-shadow: 0 2px 6px rgba(107, 114, 128, 0.15);
 }
 .thermal-comfort-status--missing .thermal-comfort-status__title {
   color: #374151;
-  font-size: 16px;
+  font-size: 18px;
+}
+.thermal-comfort-status--missing .thermal-comfort-status__cta {
+  color: #374151;
+}
+
+.thermal-comfort-status--rain {
+  background-color: #e8eef4;
+  border-color: rgba(71, 105, 140, 0.35);
+}
+.thermal-comfort-status--rain .thermal-comfort-status__background-icon {
+  color: #47698c;
+}
+.thermal-comfort-status--rain .thermal-comfort-status__season {
+  color: #47698c;
+}
+.thermal-comfort-status--rain .thermal-comfort-status__title {
+  color: #2c4a68;
+}
+.thermal-comfort-status--rain .thermal-comfort-status__description {
+  color: #5a7186;
+}
+.thermal-comfort-status--rain .thermal-comfort-status__cta {
+  color: #2c4a68;
 }
 
 .thermal-comfort-status--card {
-  padding: 10px 14px;
-  border-radius: 10px;
-  gap: 0;
+  padding: 14px 18px;
+  border-radius: 12px;
 }
-.thermal-comfort-status--card .thermal-comfort-status__header {
-  display: none;
-}
-.thermal-comfort-status--card .thermal-comfort-status__body {
-  gap: 12px;
-}
-.thermal-comfort-status--card .thermal-comfort-status__icon {
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  font-size: 16px;
+.thermal-comfort-status--card .thermal-comfort-status__background-icon {
+  width: 90px;
+  height: 90px;
+  right: -10px;
 }
 .thermal-comfort-status--card .thermal-comfort-status__title {
-  font-size: 15px;
+  font-size: 16px;
+  margin-top: 2px;
 }
 .thermal-comfort-status--card .thermal-comfort-status__description {
   font-size: 13px;
@@ -160,6 +177,7 @@
   transform: rotate(45deg);
   padding: 7px 60px;
   border-radius: 0;
+  border: none;
   color: #ffffff;
   font-size: 12px;
   font-weight: 900;
