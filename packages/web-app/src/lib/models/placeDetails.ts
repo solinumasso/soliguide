@@ -167,22 +167,30 @@ const buildModalities = (modalities: Modalities): PlaceDetailsInfo[] => {
       ]
     : [];
 
-  const airConditionedInfo: PlaceDetailsInfo[] = [];
-  if (modalities.thermalComfort?.airConditioned === true) {
-    airConditionedInfo.push({
-      type: PlaceDetailsInfoType.AIR_CONDITIONED,
-      tags: [],
-      description: [],
-      needTranslation: true
-    });
-  } else if (modalities.thermalComfort?.airConditioned === false) {
-    airConditionedInfo.push({
-      type: PlaceDetailsInfoType.NOT_AIR_CONDITIONED,
-      tags: [],
-      description: [],
-      needTranslation: true
-    });
-  }
+  const buildAirConditionedInfo = (): PlaceDetailsInfo[] => {
+    if (modalities.thermalComfort?.airConditioned === true) {
+      return [
+        {
+          type: PlaceDetailsInfoType.AIR_CONDITIONED,
+          tags: [],
+          description: [],
+          needTranslation: true
+        }
+      ];
+    }
+    if (modalities.thermalComfort?.airConditioned === false) {
+      return [
+        {
+          type: PlaceDetailsInfoType.NOT_AIR_CONDITIONED,
+          tags: [],
+          description: [],
+          needTranslation: true
+        }
+      ];
+    }
+    return [];
+  };
+  const airConditionedInfo = buildAirConditionedInfo();
 
   return [
     ...modalitiesType,
