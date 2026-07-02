@@ -23,7 +23,8 @@ export const parseModalities = (
     const condModalities = modalities[key as keyof SearchModalities];
 
     if (key === "thermalComfort") {
-      const thermalComfort = condModalities as SearchModalities["thermalComfort"];
+      const thermalComfort =
+        condModalities as SearchModalities["thermalComfort"];
       if (typeof thermalComfort?.airConditioned === "boolean") {
         applyFilter(
           "modalities.thermalComfort.airConditioned",
