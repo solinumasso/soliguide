@@ -1,0 +1,70 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+-->
+<div class="filter-pill-dropdown" ngbDropdown autoClose="true" placement="bottom-start">
+  <button
+    type="button"
+    class="filter-pill"
+    [class.filter-pill--active]="!!value"
+    ngbDropdownToggle
+    [attr.aria-pressed]="!!value ? 'true' : 'false'"
+  >
+    <span
+      *ngIf="icon"
+      class="filter-pill__leading-icon"
+      aria-hidden="true"
+    >
+      <fa-icon [icon]="['fas', $any(icon)]"></fa-icon>
+    </span>
+    <span class="filter-pill__label text-truncate">
+      <ng-container *ngIf="selectedOption; else labelOnly">
+        {{ label | translate | ucFirst }} :
+        {{ selectedOption.label | translate | ucFirst }}
+      </ng-container>
+      <ng-template #labelOnly>
+        {{ label | translate | ucFirst }}
+      </ng-template>
+    </span>
+    <span class="filter-pill__icon" aria-hidden="true">
+      <fa-icon [icon]="['fas', 'chevron-down']"></fa-icon>
+    </span>
+  </button>
+
+  <div ngbDropdownMenu class="filter-pill-dropdown__menu">
+    <button
+      type="button"
+      class="filter-pill-dropdown__item"
+      ngbDropdownItem
+      (click)="select(null)"
+    >
+      <input
+        type="radio"
+        [checked]="!value"
+        [name]="name"
+      />
+      <span class="text-truncate">
+        {{ allLabel | translate | ucFirst }}
+      </span>
+    </button>
+    <button
+      *ngFor="let option of options"
+      type="button"
+      class="filter-pill-dropdown__item"
+      ngbDropdownItem
+      (click)="select(option.value)"
+    >
+      <input
+        type="radio"
+        [checked]="value === option.value"
+        [name]="name"
+      />
+      <span class="text-truncate">
+        {{ option.label | translate | ucFirst }}
+      </span>
+    </button>
+  </div>
+</div>
