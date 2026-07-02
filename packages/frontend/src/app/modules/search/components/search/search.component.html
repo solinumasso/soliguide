@@ -37,43 +37,126 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   <div id="page_list">
     <div class="row pt-3">
-      <div class="text-md-start col-md-9 col-12">
+      <div class="text-md-start col-12">
         <h1>{{ title | ucFirst }}</h1>
-      </div>
-      <div class="text-md-end col-md-3 col-12">
-        <button
-          class="btn btn-outline-secondary"
-          type="button"
-          (click)="toggleFilter()"
-        >
-          <fa-icon class="me-2" [icon]="['fas', 'filter']"></fa-icon>
-          <span *ngIf="!showFilters">{{ "HIDE_FILTERS" | translate }}</span>
-          <span *ngIf="showFilters">{{ "SHOW_FILTERS" | translate }}</span>
-        </button>
       </div>
     </div>
 
-    <button
-      type="button"
-      class="thermal-comfort-tile"
-      [class.thermal-comfort-tile--active]="filters.airConditioned"
-      (click)="toggleAirConditioned()"
-      [attr.aria-pressed]="filters.airConditioned ? 'true' : 'false'"
-    >
-      <span class="thermal-comfort-tile__emoji" aria-hidden="true">{{
-        thermalComfortEmojis.airConditioned
-      }}</span>
-      <span class="thermal-comfort-tile__label">
-        {{ "ACCESS_CONDITION_AIR_CONDITIONED" | translate }}
-      </span>
-      <span class="thermal-comfort-tile__state">
-        <fa-icon
-          *ngIf="filters.airConditioned"
-          [icon]="['fas', 'check']"
-          aria-hidden="true"
-        ></fa-icon>
-      </span>
-    </button>
+    <div class="filter-pills">
+      <button
+        type="button"
+        class="filter-pill filter-pill--climate"
+        [class.filter-pill--active]="filters.airConditioned"
+        (click)="toggleAirConditioned()"
+        [attr.aria-pressed]="filters.airConditioned ? 'true' : 'false'"
+      >
+        <span class="filter-pill__icon" aria-hidden="true">
+          <fa-icon [icon]="['fas', 'snowflake']"></fa-icon>
+        </span>
+        <span class="filter-pill__label">
+          {{ "ACCESS_CONDITION_AIR_CONDITIONED" | translate }}
+        </span>
+        <span class="filter-pill__state">
+          <fa-icon
+            *ngIf="filters.airConditioned"
+            [icon]="['fas', 'check']"
+            aria-hidden="true"
+          ></fa-icon>
+        </span>
+      </button>
+
+      <app-filter-pill-dropdown
+        label="GENDER"
+        icon="user"
+        [allLabel]="publicsLabels.gender.all"
+        [options]="genderOptions"
+        [value]="filters?.gender ?? null"
+        name="filterGender"
+        (valueChange)="onGenderChange($event)"
+      ></app-filter-pill-dropdown>
+
+      <button
+        type="button"
+        class="filter-pill"
+        [class.filter-pill--active]="filters.openToday"
+        (click)="toggleOpen()"
+        [attr.aria-pressed]="filters.openToday ? 'true' : 'false'"
+      >
+        <span class="filter-pill__icon" aria-hidden="true">
+          <fa-icon [icon]="['far', 'clock']"></fa-icon>
+        </span>
+        <span class="filter-pill__label">
+          {{ "SEARCH_FILTER_OPEN_TODAY" | translate }}
+        </span>
+        <span class="filter-pill__state">
+          <fa-icon
+            *ngIf="filters.openToday"
+            [icon]="['fas', 'check']"
+            aria-hidden="true"
+          ></fa-icon>
+        </span>
+      </button>
+
+      <button
+        type="button"
+        class="filter-pill"
+        [class.filter-pill--active]="filters.pmr"
+        (click)="togglePmr()"
+        [attr.aria-pressed]="filters.pmr ? 'true' : 'false'"
+      >
+        <span class="filter-pill__icon" aria-hidden="true">
+          <fa-icon [icon]="['fas', 'wheelchair']"></fa-icon>
+        </span>
+        <span class="filter-pill__label">
+          {{ "ACCESS_CONDITION_PEOPLE_WITH_REDUCED_MOBILITY" | translate }}
+        </span>
+        <span class="filter-pill__state">
+          <fa-icon
+            *ngIf="filters.pmr"
+            [icon]="['fas', 'check']"
+            aria-hidden="true"
+          ></fa-icon>
+        </span>
+      </button>
+
+      <button
+        type="button"
+        class="filter-pill"
+        [class.filter-pill--active]="filters.animal"
+        (click)="toggleAnimal()"
+        [attr.aria-pressed]="filters.animal ? 'true' : 'false'"
+      >
+        <span class="filter-pill__icon" aria-hidden="true">
+          <fa-icon [icon]="['fas', 'paw']"></fa-icon>
+        </span>
+        <span class="filter-pill__label">
+          {{ "ACCESS_CONDITION_ACCEPTED_ANIMALS" | translate }}
+        </span>
+        <span class="filter-pill__state">
+          <fa-icon
+            *ngIf="filters.animal"
+            [icon]="['fas', 'check']"
+            aria-hidden="true"
+          ></fa-icon>
+        </span>
+      </button>
+
+      <button
+        class="filter-pill"
+        [class.filter-pill--active]="!showFilters"
+        type="button"
+        (click)="toggleFilter()"
+        [attr.aria-pressed]="!showFilters ? 'true' : 'false'"
+      >
+        <span class="filter-pill__icon" aria-hidden="true">
+          <fa-icon [icon]="['fas', 'filter']"></fa-icon>
+        </span>
+        <span class="filter-pill__label">
+          <span *ngIf="!showFilters">{{ "HIDE_FILTERS" | translate }}</span>
+          <span *ngIf="showFilters">{{ "SHOW_FILTERS" | translate }}</span>
+        </span>
+      </button>
+    </div>
 
     <app-search-filters
       *ngIf="!showFilters"
@@ -111,13 +194,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           {{ nbResults }}
           {{ (nbResults > 1 ? "PLACES" : PlaceType.PLACE) | translate }}
         </div>
-        @if( !showFilters ){
-        <app-temp-open-filter
-          class="col-md-2 col-6 text-end"
-          [filters]="filters"
-          (filtersChange)="toggleOpen()"
-        ></app-temp-open-filter
-        >}
       </div>
 
       <div

@@ -14,7 +14,6 @@ import { SearchComponent } from "./components/search/search.component";
 import { SearchFiltersComponent } from "./components/search-filters/search-filters.component";
 import { SearchNavComponent } from "./components/search-nav/search-nav.component";
 import { SearchPlaceResultComponent } from "./components/search-place-result/search-place-result.component";
-import { TempOpenFilterComponent } from "./components/temp-open-filter/temp-open-filter.component";
 
 import { SearchService } from "./services/search.service";
 
@@ -30,6 +29,7 @@ import { SearchMapComponent } from "../place/standalone-components/search-map/se
 import { DisplayTempBannerComponent } from "../place/standalone-components/display-temp-banner/display-temp-banner.component";
 import { DisplayHolidaysComponent } from "../place/standalone-components/display-holidays/display-holidays.component";
 import { ThermalComfortStatusComponent } from "../shared/components/thermal-comfort-status/thermal-comfort-status.component";
+import { FilterPillDropdownComponent } from "./components/filter-pill-dropdown/filter-pill-dropdown.component";
 
 @NgModule({
   declarations: [
@@ -39,7 +39,6 @@ import { ThermalComfortStatusComponent } from "../shared/components/thermal-comf
     SearchFiltersComponent,
     SearchNavComponent,
     SearchPlaceResultComponent,
-    TempOpenFilterComponent,
     PartnersLogosComponent,
   ],
   exports: [SearchPlaceResultComponent],
@@ -60,6 +59,7 @@ import { ThermalComfortStatusComponent } from "../shared/components/thermal-comf
     DisplayTempBannerComponent,
     DisplayHolidaysComponent,
     ThermalComfortStatusComponent,
+    FilterPillDropdownComponent,
   ],
   providers: [SearchService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

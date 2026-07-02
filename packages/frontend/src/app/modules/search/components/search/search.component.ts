@@ -21,6 +21,8 @@ import {
 import {
   SEARCH_MODALITIES_FILTERS,
   SEARCH_PUBLICS_FILTERS,
+  ALL_PUBLICS,
+  PUBLICS_LABELS,
   GeoPosition,
   PlaceType,
   getDefaultSearchRadiusByGeoType,
@@ -29,6 +31,7 @@ import {
   Categories,
   SearchResults,
 } from "@soliguide/common";
+import type { FilterPillOption } from "../filter-pill-dropdown/filter-pill-dropdown.component";
 import type { PosthogProperties } from "@soliguide/common-angular";
 
 import { SearchFiltersComponent } from "../search-filters/search-filters.component";
@@ -106,6 +109,10 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   public readonly THEME_CONFIGURATION = THEME_CONFIGURATION;
   public readonly thermalComfortEmojis = THERMAL_COMFORT_EMOJIS;
+  public readonly publicsLabels = PUBLICS_LABELS;
+  public readonly genderOptions: FilterPillOption[] = ALL_PUBLICS.gender
+    .filter((option) => option.value !== "all")
+    .map((option) => ({ value: option.value, label: option.name }));
   @ViewChild("appFilters") public appFilters!: SearchFiltersComponent;
   private readonly destroy$ = new Subject<void>();
 
@@ -532,42 +539,64 @@ export class SearchComponent implements OnInit, OnDestroy {
   };
 
   public toggleOpen = (): void => {
-    // Toggle openToday in URL
-    const currentQueryParams = this.activatedRoute.snapshot.queryParams;
-    const newOpenToday = currentQueryParams.openToday ? null : true;
+    this.toggleQuickFilter("openToday");
+  };
 
+  public toggleAirConditioned = (): void => {
+    this.toggleQuickFilter("airConditioned");
+  };
+
+  public onGenderChange = (value: string | null): void => {
+    this.setQueryParamFilter("gender", value);
+  };
+
+  private setQueryParamFilter(key: string, value: string | null): void {
+    this.posthogService.capture(
+      value
+        ? `search-click-add-filter-${key}`
+        : `search-click-remove-filter-${key}`,
+      { search: this.search, newValue: value }
+    );
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
       queryParams: {
-        openToday: newOpenToday,
+        [key]: value ?? null,
         placePage: null,
         parcoursPage: null,
       },
       queryParamsHandling: "merge",
     });
+  }
+
+  public togglePmr = (): void => {
+    this.toggleQuickFilter("pmr");
   };
 
-  public toggleAirConditioned = (): void => {
+  public toggleAnimal = (): void => {
+    this.toggleQuickFilter("animal");
+  };
+
+  private toggleQuickFilter(filterKey: string): void {
     const currentQueryParams = this.activatedRoute.snapshot.queryParams;
-    const newAirConditioned = currentQueryParams.airConditioned ? null : true;
+    const newValue = currentQueryParams[filterKey] ? null : true;
 
     this.posthogService.capture(
-      newAirConditioned
-        ? "search-click-add-filter-airConditioned"
-        : "search-click-remove-filter-airConditioned",
+      newValue
+        ? `search-click-add-filter-${filterKey}`
+        : `search-click-remove-filter-${filterKey}`,
       { search: this.search }
     );
 
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
       queryParams: {
-        airConditioned: newAirConditioned,
+        [filterKey]: newValue,
         placePage: null,
         parcoursPage: null,
       },
       queryParamsHandling: "merge",
     });
-  };
+  }
 
   public updateLocation = (item: LocationAutoCompleteAddress): void => {
     const geoPosition = new GeoPosition(item);
