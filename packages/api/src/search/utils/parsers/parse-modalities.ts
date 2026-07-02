@@ -23,23 +23,16 @@ export const parseModalities = (
     const condModalities = modalities[key as keyof SearchModalities];
 
     if (key === "thermalComfort") {
+      // Thermal comfort is a place-level attribute (of the building itself),
+      // not a per-service one. Filter on the place root regardless of `inService`.
       const thermalComfort =
         condModalities as SearchModalities["thermalComfort"];
       if (typeof thermalComfort?.airConditioned === "boolean") {
-        applyFilter(
-          "modalities.thermalComfort.airConditioned",
-          thermalComfort.airConditioned,
-          nosqlQuery,
-          inService
-        );
+        nosqlQuery["modalities.thermalComfort.airConditioned"] =
+          thermalComfort.airConditioned;
       }
       if (typeof thermalComfort?.heated === "boolean") {
-        applyFilter(
-          "modalities.thermalComfort.heated",
-          thermalComfort.heated,
-          nosqlQuery,
-          inService
-        );
+        nosqlQuery["modalities.thermalComfort.heated"] = thermalComfort.heated;
       }
     } else if (key === "inconditionnel") {
       applyFilter(
