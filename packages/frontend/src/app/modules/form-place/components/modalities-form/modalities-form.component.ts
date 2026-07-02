@@ -3,6 +3,7 @@ import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import type { Modalities } from "@soliguide/common";
 import { CK_EDITOR_CONF, ModalitiesTypes } from "../../../../shared";
 import { THEME_CONFIGURATION } from "../../../../models";
+import { THERMAL_COMFORT_EMOJIS } from "../../../../models/place/constants";
 
 @Component({
   selector: "app-modalities-form",
@@ -15,6 +16,7 @@ export class ModalitiesFormComponent implements OnInit {
   @Input() public serviceIndex: number;
 
   public readonly THEME_CONFIGURATION = THEME_CONFIGURATION;
+  public readonly thermalComfortEmojis = THERMAL_COMFORT_EMOJIS;
   public inputPrefix: string;
   public editor = ClassicEditor;
   public editorConfig = CK_EDITOR_CONF;
@@ -49,5 +51,9 @@ export class ModalitiesFormComponent implements OnInit {
 
   public setPriceChecked(value: boolean): void {
     this.modalities.price = { checked: value, precisions: null };
+  }
+
+  public setAirConditioned(value: boolean | null): void {
+    this.modalities.thermalComfort.airConditioned = value;
   }
 }

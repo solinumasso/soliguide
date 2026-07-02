@@ -43,6 +43,7 @@ import { FormatInternationalPhoneNumberPipe } from "../shared";
 import { DisplayHorairesComponent } from "./standalone-components/display-horaires/horaires.component";
 import { ExternalSourcePlaceCampaignBannerComponent } from "./components/external-source-place-campaign-banner/external-source-place-campaign-banner.component";
 import { RouterModule } from "@angular/router";
+import { ThermalComfortStatusComponent } from "../shared/components/thermal-comfort-status/thermal-comfort-status.component";
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { RouterModule } from "@angular/router";
     SearchMapComponent,
     ShareButtons,
     SharedModule,
+    ThermalComfortStatusComponent,
     TranslateModule,
   ],
   exports: [

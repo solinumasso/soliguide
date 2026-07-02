@@ -56,6 +56,7 @@ export const ONLINE_ITINERARY: ApiPlace = {
       checked: false,
       precisions: null,
     },
+    thermalComfort: { heated: null, airConditioned: null },
   },
   name: "Un parcours mobile de test",
   newhours: {

@@ -44,6 +44,7 @@ import {
   type MarkerOptions,
   THEME_CONFIGURATION,
 } from "../../../../models";
+import { THERMAL_COMFORT_EMOJIS } from "../../../../models/place/constants";
 
 import {
   generateMarkerOptions,
@@ -104,6 +105,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   public showFilters: boolean;
 
   public readonly THEME_CONFIGURATION = THEME_CONFIGURATION;
+  public readonly thermalComfortEmojis = THERMAL_COMFORT_EMOJIS;
   @ViewChild("appFilters") public appFilters!: SearchFiltersComponent;
   private readonly destroy$ = new Subject<void>();
 
@@ -410,6 +412,13 @@ export class SearchComponent implements OnInit, OnDestroy {
       }
     }
 
+    // Air-conditioned filter (nested under modalities.thermalComfort)
+    if (queryParams.airConditioned) {
+      this.filters.airConditioned = true;
+      search.modalities.thermalComfort = { airConditioned: true };
+      parcoursSearch.modalities.thermalComfort = { airConditioned: true };
+    }
+
     // Languages
     if (queryParams.languages) {
       this.filters.languages = queryParams.languages;
@@ -425,6 +434,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         key !== "parcoursPage" &&
         key !== "openToday" &&
         key !== "languages" &&
+        key !== "airConditioned" &&
         !SEARCH_PUBLICS_FILTERS.includes(key) &&
         !SEARCH_MODALITIES_FILTERS.includes(key)
       ) {
@@ -530,6 +540,28 @@ export class SearchComponent implements OnInit, OnDestroy {
       relativeTo: this.activatedRoute,
       queryParams: {
         openToday: newOpenToday,
+        placePage: null,
+        parcoursPage: null,
+      },
+      queryParamsHandling: "merge",
+    });
+  };
+
+  public toggleAirConditioned = (): void => {
+    const currentQueryParams = this.activatedRoute.snapshot.queryParams;
+    const newAirConditioned = currentQueryParams.airConditioned ? null : true;
+
+    this.posthogService.capture(
+      newAirConditioned
+        ? "search-click-add-filter-airConditioned"
+        : "search-click-remove-filter-airConditioned",
+      { search: this.search }
+    );
+
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: {
+        airConditioned: newAirConditioned,
         placePage: null,
         parcoursPage: null,
       },

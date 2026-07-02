@@ -330,6 +330,55 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         </textarea>
       </div>
 
+      <div class="thermal-comfort-card">
+        <div class="thermal-comfort-card__header">
+          <span class="thermal-comfort-card__emoji" aria-hidden="true">{{
+            thermalComfortEmojis.airConditioned
+          }}</span>
+          <span class="thermal-comfort-card__title">
+            {{ "ACCESS_CONDITION_AIR_CONDITIONED" | translate }}
+          </span>
+        </div>
+        <div class="thermal-comfort-card__options">
+          <button
+            type="button"
+            class="py-2 px-4 btn"
+            [ngClass]="
+              modalities.thermalComfort.airConditioned === true
+                ? 'btn-primary'
+                : 'btn-outline-primary'
+            "
+            (click)="setAirConditioned(true)"
+          >
+            {{ "YES" | translate }}
+          </button>
+          <button
+            type="button"
+            class="py-2 px-4 btn"
+            [ngClass]="
+              modalities.thermalComfort.airConditioned === false
+                ? 'btn-primary'
+                : 'btn-outline-primary'
+            "
+            (click)="setAirConditioned(false)"
+          >
+            {{ "NO" | translate }}
+          </button>
+          <button
+            type="button"
+            class="py-2 px-4 btn"
+            [ngClass]="
+              modalities.thermalComfort.airConditioned === null
+                ? 'btn-primary'
+                : 'btn-outline-primary'
+            "
+            (click)="setAirConditioned(null)"
+          >
+            {{ "NOT_INFORMED" | translate }}
+          </button>
+        </div>
+      </div>
+
       <div class="my-3">
         <label class="form-label" for="{{ inputPrefix }}_other">{{
           "OTHER_PRECISIONS" | translate

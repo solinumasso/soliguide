@@ -53,6 +53,28 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       </div>
     </div>
 
+    <button
+      type="button"
+      class="thermal-comfort-tile"
+      [class.thermal-comfort-tile--active]="filters.airConditioned"
+      (click)="toggleAirConditioned()"
+      [attr.aria-pressed]="filters.airConditioned ? 'true' : 'false'"
+    >
+      <span class="thermal-comfort-tile__emoji" aria-hidden="true">{{
+        thermalComfortEmojis.airConditioned
+      }}</span>
+      <span class="thermal-comfort-tile__label">
+        {{ "ACCESS_CONDITION_AIR_CONDITIONED" | translate }}
+      </span>
+      <span class="thermal-comfort-tile__state">
+        <fa-icon
+          *ngIf="filters.airConditioned"
+          [icon]="['fas', 'check']"
+          aria-hidden="true"
+        ></fa-icon>
+      </span>
+    </button>
+
     <app-search-filters
       *ngIf="!showFilters"
       #appFilters

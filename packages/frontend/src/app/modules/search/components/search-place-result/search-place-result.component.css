@@ -24,6 +24,10 @@
   text-decoration: none;
 }
 
+.place_result__thermal-comfort {
+  display: block;
+}
+
 .item_number {
   display: inline-block;
   vertical-align: top;

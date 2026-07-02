@@ -5,5 +5,6 @@ export enum ModalitiesElement {
   ON_REGISTRATION = "inscription",
   PRICE = "price",
   PRM = "pmr",
+  THERMAL_COMFORT = "thermalComfort",
   UNCONDITIONAL = "inconditionnel",
 }

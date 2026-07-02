@@ -26,5 +26,9 @@ export const STEP_INFOS_OK = {
       checked: true,
       precisions: "Une participation financière de 40 euros est nécessaire",
     },
+    thermalComfort: {
+      heated: null,
+      airConditioned: null,
+    },
   },
 };

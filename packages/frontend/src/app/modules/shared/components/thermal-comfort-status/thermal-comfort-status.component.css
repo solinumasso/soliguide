@@ -1,0 +1,189 @@
+:host {
+  display: block;
+}
+
+:host(.thermal-comfort-status-host--ribbon) {
+  display: contents;
+}
+
+.thermal-comfort-status {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: 14px;
+  padding: 18px 22px;
+}
+
+.thermal-comfort-status__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.thermal-comfort-status__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.thermal-comfort-status__season {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.thermal-comfort-status__body {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.thermal-comfort-status__icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background-color: #ffffff;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.thermal-comfort-status__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.thermal-comfort-status__title {
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.thermal-comfort-status__description {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.thermal-comfort-status__cta {
+  flex-shrink: 0;
+  align-self: center;
+  margin-left: auto;
+}
+
+.thermal-comfort-status--summer {
+  background-color: #eaf3fb;
+}
+.thermal-comfort-status--summer .thermal-comfort-status__dot {
+  background-color: #2f8fd6;
+}
+.thermal-comfort-status--summer .thermal-comfort-status__season {
+  color: #2f8fd6;
+}
+.thermal-comfort-status--summer .thermal-comfort-status__icon {
+  color: #1f6fb0;
+  box-shadow: 0 2px 6px rgba(31, 111, 176, 0.15);
+}
+.thermal-comfort-status--summer .thermal-comfort-status__title {
+  color: #1c5c95;
+}
+.thermal-comfort-status--summer .thermal-comfort-status__description {
+  color: #5b7893;
+}
+
+.thermal-comfort-status--winter {
+  background-color: #fceee8;
+}
+.thermal-comfort-status--winter .thermal-comfort-status__dot {
+  background-color: #e2673f;
+}
+.thermal-comfort-status--winter .thermal-comfort-status__season {
+  color: #c2472b;
+}
+.thermal-comfort-status--winter .thermal-comfort-status__icon {
+  color: #c2472b;
+  box-shadow: 0 2px 6px rgba(194, 71, 43, 0.15);
+}
+.thermal-comfort-status--winter .thermal-comfort-status__title {
+  color: #b0421f;
+}
+.thermal-comfort-status--winter .thermal-comfort-status__description {
+  color: #9a6450;
+}
+
+.thermal-comfort-status--missing {
+  background-color: #f3f4f6;
+}
+.thermal-comfort-status--missing .thermal-comfort-status__icon {
+  color: #6b7280;
+  box-shadow: 0 2px 6px rgba(107, 114, 128, 0.15);
+}
+.thermal-comfort-status--missing .thermal-comfort-status__title {
+  color: #374151;
+  font-size: 16px;
+}
+
+.thermal-comfort-status--card {
+  padding: 10px 14px;
+  border-radius: 10px;
+  gap: 0;
+}
+.thermal-comfort-status--card .thermal-comfort-status__header {
+  display: none;
+}
+.thermal-comfort-status--card .thermal-comfort-status__body {
+  gap: 12px;
+}
+.thermal-comfort-status--card .thermal-comfort-status__icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+.thermal-comfort-status--card .thermal-comfort-status__title {
+  font-size: 15px;
+}
+.thermal-comfort-status--card .thermal-comfort-status__description {
+  font-size: 13px;
+}
+
+.thermal-comfort-status.thermal-comfort-status--ribbon {
+  position: absolute;
+  top: 26px;
+  right: -52px;
+  transform: rotate(45deg);
+  padding: 7px 60px;
+  border-radius: 0;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.thermal-comfort-status--ribbon.thermal-comfort-status--summer {
+  background-color: #2f8fd6;
+}
+
+.thermal-comfort-status--ribbon.thermal-comfort-status--winter {
+  background-color: #e2673f;
+}
+
+.thermal-comfort-status__ribbon-icon {
+  font-size: 14px;
+  line-height: 1;
+}

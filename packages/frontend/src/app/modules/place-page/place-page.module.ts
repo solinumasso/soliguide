@@ -16,6 +16,7 @@ import { PlaceComponent } from "./components/place/place.component";
 import { PlaceModule } from "../place/place.module";
 import { DisplayTempBannerComponent } from "../place/standalone-components/display-temp-banner/display-temp-banner.component";
 import { DisplayHolidaysComponent } from "../place/standalone-components/display-holidays/display-holidays.component";
+import { ThermalComfortStatusComponent } from "../shared/components/thermal-comfort-status/thermal-comfort-status.component";
 
 @NgModule({
   declarations: [PlaceComponent],
@@ -35,6 +36,7 @@ import { DisplayHolidaysComponent } from "../place/standalone-components/display
     DisplayHorairesComponent,
     DisplayTempBannerComponent,
     DisplayHolidaysComponent,
+    ThermalComfortStatusComponent,
   ],
   exports: [PlaceComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

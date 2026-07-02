@@ -70,6 +70,14 @@ export const translateModalities = (
       "\n";
   }
 
+  if (modalities.thermalComfort?.airConditioned === true) {
+    stringModalities +=
+      i18next.t("ACCESS_CONDITION_AIR_CONDITIONED", { lng }) + "\n";
+  } else if (modalities.thermalComfort?.airConditioned === false) {
+    stringModalities +=
+      i18next.t("ACCESS_CONDITION_NOT_AIR_CONDITIONED", { lng }) + "\n";
+  }
+
   if (modalities.other) {
     let other = decode(modalities.other, { level: "html5" });
 

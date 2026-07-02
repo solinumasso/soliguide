@@ -26,6 +26,11 @@ export const ModalitiesSchema = new mongoose.Schema<ApiModalities>(
     animal: { checked: { type: Boolean } },
     pmr: { checked: { type: Boolean } },
 
+    thermalComfort: {
+      heated: { default: null, type: Boolean },
+      airConditioned: { default: null, type: Boolean },
+    },
+
     docs: [{ default: [], ref: "Docs", type: mongoose.Schema.Types.ObjectId }],
 
     other: { default: null, type: String },

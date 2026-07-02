@@ -309,6 +309,12 @@ export class DisplayPlaceChangesComponent implements OnInit {
         Boolean(oldModalities?.price?.checked),
         Boolean(newModalities?.price?.checked),
       ],
+      [
+        oldModalities?.thermalComfort?.airConditioned !== null &&
+          oldModalities?.thermalComfort?.airConditioned !== undefined,
+        newModalities?.thermalComfort?.airConditioned !== null &&
+          newModalities?.thermalComfort?.airConditioned !== undefined,
+      ],
     ];
     const anyAdded = modalityFlags.some(([old, cur]) => !old && cur);
     const anyRemoved = modalityFlags.some(([old, cur]) => old && !cur);

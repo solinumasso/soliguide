@@ -1,0 +1,111 @@
+<ng-container *ngIf="variant === 'ribbon'; else fullDisplay">
+  <div
+    *ngIf="isSummer"
+    class="thermal-comfort-status thermal-comfort-status--ribbon thermal-comfort-status--summer"
+  >
+    <fa-icon
+      class="thermal-comfort-status__ribbon-icon"
+      [icon]="['fas', 'snowflake']"
+    ></fa-icon>
+    <span>{{ "AIR_CONDITIONED_RIBBON" | translate }}</span>
+  </div>
+  <div
+    *ngIf="isWinter"
+    class="thermal-comfort-status thermal-comfort-status--ribbon thermal-comfort-status--winter"
+  >
+    <fa-icon
+      class="thermal-comfort-status__ribbon-icon"
+      [icon]="['fas', 'fire']"
+    ></fa-icon>
+    <span>{{ "HEATED_RIBBON" | translate }}</span>
+  </div>
+</ng-container>
+
+<ng-template #fullDisplay>
+  <ng-container *ngIf="isSummer">
+    <div
+      class="thermal-comfort-status thermal-comfort-status--summer"
+      [ngClass]="'thermal-comfort-status--' + variant"
+    >
+      <div class="thermal-comfort-status__header">
+        <span class="thermal-comfort-status__dot" aria-hidden="true"></span>
+        <span class="thermal-comfort-status__season">{{
+          "SEASONAL_INFO_SUMMER" | translate
+        }}</span>
+      </div>
+      <div class="thermal-comfort-status__body">
+        <span class="thermal-comfort-status__icon" aria-hidden="true">
+          <fa-icon [icon]="['fas', 'snowflake']"></fa-icon>
+        </span>
+        <div class="thermal-comfort-status__text">
+          <div class="thermal-comfort-status__title">
+            {{ "AIR_CONDITIONED_TITLE" | translate }}
+          </div>
+          <div class="thermal-comfort-status__description">
+            {{ "AIR_CONDITIONED_DESCRIPTION" | translate }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="isWinter">
+    <div
+      class="thermal-comfort-status thermal-comfort-status--winter"
+      [ngClass]="'thermal-comfort-status--' + variant"
+    >
+      <div class="thermal-comfort-status__header">
+        <span class="thermal-comfort-status__dot" aria-hidden="true"></span>
+        <span class="thermal-comfort-status__season">{{
+          "SEASONAL_INFO_WINTER" | translate
+        }}</span>
+      </div>
+      <div class="thermal-comfort-status__body">
+        <span class="thermal-comfort-status__icon" aria-hidden="true">
+          <fa-icon [icon]="['fas', 'fire']"></fa-icon>
+        </span>
+        <div class="thermal-comfort-status__text">
+          <div class="thermal-comfort-status__title">
+            {{ "HEATED_TITLE" | translate }}
+          </div>
+          <div class="thermal-comfort-status__description">
+            {{ "HEATED_DESCRIPTION" | translate }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="isMissing && showMissingCta">
+    <div
+      class="thermal-comfort-status thermal-comfort-status--missing"
+      [ngClass]="'thermal-comfort-status--' + variant"
+    >
+      <div class="thermal-comfort-status__body">
+        <span class="thermal-comfort-status__icon" aria-hidden="true">
+          <fa-icon [icon]="['fas', 'temperature-half']"></fa-icon>
+        </span>
+        <div class="thermal-comfort-status__text">
+          <div class="thermal-comfort-status__title">
+            {{ "ACCESS_CONDITION_THERMAL_COMFORT_MISSING" | translate }}
+          </div>
+        </div>
+        <a
+          *ngIf="editRouterLink"
+          class="btn btn-sm btn-primary thermal-comfort-status__cta"
+          [routerLink]="editRouterLink"
+        >
+          {{ "ACCESS_CONDITION_THERMAL_COMFORT_UPDATE_CTA" | translate }}
+        </a>
+        <button
+          *ngIf="!editRouterLink"
+          type="button"
+          class="btn btn-sm btn-primary thermal-comfort-status__cta"
+          (click)="onCtaClick()"
+        >
+          {{ "ACCESS_CONDITION_THERMAL_COMFORT_UPDATE_CTA" | translate }}
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</ng-template>

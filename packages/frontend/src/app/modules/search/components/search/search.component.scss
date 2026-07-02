@@ -69,3 +69,59 @@ $countries: "es", "fr", "ad";
 .pagination {
   justify-content: center;
 }
+
+.thermal-comfort-tile {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1rem;
+  margin-bottom: 0.75rem;
+  border-radius: 10px;
+  border: 2px solid rgba(13, 110, 253, 0.25);
+  background-color: rgba(13, 110, 253, 0.08);
+  color: #0a4fbf;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    background-color: rgba(13, 110, 253, 0.14);
+    border-color: rgba(13, 110, 253, 0.4);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.35);
+  }
+
+  &--active {
+    background-color: #0a4fbf;
+    border-color: #0a4fbf;
+    color: #ffffff;
+  }
+
+  &--active:hover {
+    background-color: #093f96;
+    border-color: #093f96;
+  }
+}
+
+.thermal-comfort-tile__emoji {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.thermal-comfort-tile__label {
+  white-space: nowrap;
+}
+
+.thermal-comfort-tile__state {
+  display: inline-flex;
+  min-width: 1rem;
+  justify-content: center;
+}

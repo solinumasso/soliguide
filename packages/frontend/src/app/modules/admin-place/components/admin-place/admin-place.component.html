@@ -455,6 +455,18 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         </div>
 
         @if (place.modalities) {
+        <app-thermal-comfort-status
+          class="d-block my-3"
+          [thermalComfort]="place.modalities.thermalComfort"
+          variant="banner"
+          [showMissingCta]="true"
+          [editRouterLink]="[
+            routePrefix,
+            'admin-place',
+            'condition',
+            place.lieu_id
+          ]"
+        ></app-thermal-comfort-status>
         <app-display-modalities
           [modalities]="place.modalities"
           [isHistory]="false"
