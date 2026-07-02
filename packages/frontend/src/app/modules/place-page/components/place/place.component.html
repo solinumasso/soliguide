@@ -342,6 +342,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       (parentCaptureEvent)="captureEvent($any($event))"
     ></app-display-contacts>
 
+    <!-- TODO: réactiver le crowdsourcing une fois l'endpoint API branché.
+    <app-crowdsource-info-card
+      *ngIf="place.modalities?.thermalComfort?.airConditioned == null"
+      class="d-block my-4"
+      [placeId]="place.lieu_id"
+      [section]="Section.modalities"
+      [me]="me"
+    ></app-crowdsource-info-card>
+    -->
+
     <app-display-services
       [services]="place.services_all"
       [dateForTest]="dateForTest"

@@ -1,0 +1,97 @@
+<div class="crowdsource-card" *ngIf="config && !sent; else thanks">
+  <svg
+    *ngIf="iconPath"
+    class="crowdsource-card__background-icon"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path [attr.d]="iconPath"></path>
+  </svg>
+
+  <div class="crowdsource-card__header">
+    <span class="crowdsource-card__eyebrow">{{ config.eyebrow }}</span>
+    <div class="crowdsource-card__title">{{ config.title }}</div>
+    <div class="crowdsource-card__question">{{ config.question }}</div>
+  </div>
+
+  <div class="crowdsource-card__options">
+    <button
+      type="button"
+      *ngFor="let option of config.options"
+      class="crowdsource-card__option"
+      [class.crowdsource-card__option--selected]="isSelected(option.value)"
+      (click)="selectOption(option.value)"
+    >
+      {{ option.label }}
+    </button>
+  </div>
+
+  <label class="crowdsource-card__field">
+    <span class="crowdsource-card__label">Commentaire (facultatif)</span>
+    <textarea
+      class="crowdsource-card__textarea"
+      rows="2"
+      [(ngModel)]="comment"
+      placeholder="Précisez le contexte si besoin"
+    ></textarea>
+  </label>
+
+  <label class="crowdsource-card__field" *ngIf="!me">
+    <span class="crowdsource-card__label">Votre pseudo</span>
+    <input
+      class="crowdsource-card__input"
+      type="text"
+      [(ngModel)]="pseudo"
+      placeholder="Nom à compléter"
+    />
+  </label>
+
+  <div class="crowdsource-card__footer">
+    <button
+      type="button"
+      class="crowdsource-card__submit"
+      [disabled]="!canSubmit"
+      (click)="submit()"
+    >
+      {{ sending ? "Envoi..." : "Envoyer" }}
+    </button>
+  </div>
+</div>
+
+<ng-template #thanks>
+  <div class="crowdsource-card crowdsource-card--sent">
+    <div class="crowdsource-card__celebrate" aria-hidden="true">
+      <div class="crowdsource-card__check">
+        <svg viewBox="0 0 52 52">
+          <circle
+            class="crowdsource-card__check-circle"
+            cx="26"
+            cy="26"
+            r="24"
+            fill="none"
+          />
+          <path
+            class="crowdsource-card__check-mark"
+            fill="none"
+            d="M14 27 l8 8 l16 -18"
+          />
+        </svg>
+      </div>
+      <span class="crowdsource-card__spark crowdsource-card__spark--1">✦</span>
+      <span class="crowdsource-card__spark crowdsource-card__spark--2">✦</span>
+      <span class="crowdsource-card__spark crowdsource-card__spark--3">✦</span>
+      <span class="crowdsource-card__spark crowdsource-card__spark--4">✦</span>
+      <span class="crowdsource-card__spark crowdsource-card__spark--5">✦</span>
+    </div>
+    <div class="crowdsource-card__thanks-title">Merci pour votre aide !</div>
+    <div class="crowdsource-card__thanks-subtitle">
+      Votre contribution est bien enregistrée.
+    </div>
+  </div>
+</ng-template>

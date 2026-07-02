@@ -122,7 +122,7 @@ yarn workspace @soliguide/api migrate-status
 
 ```
 packages/
-├── api/              - Express REST API (MongoDB, Typesense)
+├── api/              - Express REST API (MongoDB)
 ├── location-api/     - NestJS location microservice (Redis)
 ├── frontend/         - Angular 17 admin interface
 ├── widget/           - Angular 17 embeddable widget
@@ -148,7 +148,7 @@ common (base types & utilities)
 
 ### Key Technologies
 
-- **API**: Express, MongoDB (Mongoose), Typesense, RabbitMQ, Airtable sync, S3
+- **API**: Express, MongoDB (Mongoose), RabbitMQ, Airtable sync, S3
 - **Location API**: NestJS, Fastify, Redis
 - **Frontend/Widget**: Angular 17, Bootstrap 5, Leaflet, Algolia, ngx-translate
 - **Web-app**: SvelteKit, i18next, Playwright E2E, Vitest
@@ -159,7 +159,6 @@ common (base types & utilities)
 - **MongoDB 7.0** (main): Places, Users, Organizations, with replica set
 - **Migrations**: TypeScript migrations in `packages/api/migrations/` using migrate-mongo
 - **Test DB**: `soliguide_test` with dump in `data/soliguide_db_test.gzip`
-- **Typesense 27.1**: Search engine for places
 
 ### Multi-Language Support
 
@@ -175,7 +174,6 @@ common (base types & utilities)
 
 - **Airtable**: Two-way sync for place data (collaborative editing)
 - **S3/MinIO**: Document and image storage
-- **Typesense**: Full-text search for places
 - **Google Cloud Translate**: Translation services
 - **Mailgun**: Email delivery
 - **Sentry**: Error tracking across all apps

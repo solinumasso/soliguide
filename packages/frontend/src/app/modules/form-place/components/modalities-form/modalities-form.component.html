@@ -34,6 +34,127 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       </div>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="thermal-comfort-card thermal-comfort-card--summer">
+        <svg
+          class="thermal-comfort-card__background-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2"></path>
+          <path d="M12 20v2"></path>
+          <path d="m4.93 4.93 1.41 1.41"></path>
+          <path d="m17.66 17.66 1.41 1.41"></path>
+          <path d="M2 12h2"></path>
+          <path d="M20 12h2"></path>
+          <path d="m6.34 17.66-1.41 1.41"></path>
+          <path d="m19.07 4.93-1.41 1.41"></path>
+        </svg>
+        <div class="thermal-comfort-card__header">
+          <span class="thermal-comfort-card__title">
+            {{ "ACCESS_CONDITION_AIR_CONDITIONED" | translate }}
+          </span>
+        </div>
+        <div class="thermal-comfort-card__options">
+          <button
+            type="button"
+            class="thermal-comfort-card__option"
+            [class.thermal-comfort-card__option--selected]="
+              modalities.thermalComfort.airConditioned === true
+            "
+            (click)="setAirConditioned(true)"
+          >
+            {{ "YES" | translate }}
+          </button>
+          <button
+            type="button"
+            class="thermal-comfort-card__option"
+            [class.thermal-comfort-card__option--selected]="
+              modalities.thermalComfort.airConditioned === false
+            "
+            (click)="setAirConditioned(false)"
+          >
+            {{ "NO" | translate }}
+          </button>
+          <button
+            type="button"
+            class="thermal-comfort-card__option"
+            [class.thermal-comfort-card__option--selected]="
+              modalities.thermalComfort.airConditioned === null
+            "
+            (click)="setAirConditioned(null)"
+          >
+            {{ "NOT_INFORMED" | translate }}
+          </button>
+        </div>
+      </div>
+
+      <div class="thermal-comfort-card thermal-comfort-card--winter">
+        <svg
+          class="thermal-comfort-card__background-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path
+            d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"
+          ></path>
+        </svg>
+        <div class="thermal-comfort-card__header">
+          <span class="thermal-comfort-card__title">
+            {{ "ACCESS_CONDITION_HEATED" | translate }}
+          </span>
+        </div>
+        <div class="thermal-comfort-card__options">
+          <button
+            type="button"
+            class="thermal-comfort-card__option"
+            [class.thermal-comfort-card__option--selected]="
+              modalities.thermalComfort.heated === true
+            "
+            (click)="setHeated(true)"
+          >
+            {{ "YES" | translate }}
+          </button>
+          <button
+            type="button"
+            class="thermal-comfort-card__option"
+            [class.thermal-comfort-card__option--selected]="
+              modalities.thermalComfort.heated === false
+            "
+            (click)="setHeated(false)"
+          >
+            {{ "NO" | translate }}
+          </button>
+          <button
+            type="button"
+            class="thermal-comfort-card__option"
+            [class.thermal-comfort-card__option--selected]="
+              modalities.thermalComfort.heated === null
+            "
+            (click)="setHeated(null)"
+          >
+            {{ "NOT_INFORMED" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="my-3 row">
     <div class="col-md-3 col-12 m-0 py-2">
       <div
@@ -328,55 +449,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           [placeholder]="'PLACEHOLDER_PRECISIONS' | translate"
         >
         </textarea>
-      </div>
-
-      <div class="thermal-comfort-card">
-        <div class="thermal-comfort-card__header">
-          <span class="thermal-comfort-card__emoji" aria-hidden="true">{{
-            thermalComfortEmojis.airConditioned
-          }}</span>
-          <span class="thermal-comfort-card__title">
-            {{ "ACCESS_CONDITION_AIR_CONDITIONED" | translate }}
-          </span>
-        </div>
-        <div class="thermal-comfort-card__options">
-          <button
-            type="button"
-            class="py-2 px-4 btn"
-            [ngClass]="
-              modalities.thermalComfort.airConditioned === true
-                ? 'btn-primary'
-                : 'btn-outline-primary'
-            "
-            (click)="setAirConditioned(true)"
-          >
-            {{ "YES" | translate }}
-          </button>
-          <button
-            type="button"
-            class="py-2 px-4 btn"
-            [ngClass]="
-              modalities.thermalComfort.airConditioned === false
-                ? 'btn-primary'
-                : 'btn-outline-primary'
-            "
-            (click)="setAirConditioned(false)"
-          >
-            {{ "NO" | translate }}
-          </button>
-          <button
-            type="button"
-            class="py-2 px-4 btn"
-            [ngClass]="
-              modalities.thermalComfort.airConditioned === null
-                ? 'btn-primary'
-                : 'btn-outline-primary'
-            "
-            (click)="setAirConditioned(null)"
-          >
-            {{ "NOT_INFORMED" | translate }}
-          </button>
-        </div>
       </div>
 
       <div class="my-3">

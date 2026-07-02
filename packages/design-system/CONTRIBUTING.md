@@ -34,7 +34,7 @@ Clone the repository and install dependencies with `yarn install`
 Use the dev server to work on the components:
 
 ```bash
-# Launch the dev server at http://localhost:5173
+# Launch the dev server at http://localhost:5174
 yarn dev
 ```
 

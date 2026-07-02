@@ -32,28 +32,66 @@ Soliguide is a social impact platform that references all services, initiatives 
 ### Development Setup
 
 ```bash
-# Install dependencies
+# 1. Install dependencies
 yarn install --refresh-lockfile
 
-# Start MongoDB (required for API)
+# 2. Start infra (MongoDB, RabbitMQ, MinIO)
 docker compose up -d
 
-# Import test database
+# 3. Import test database
 ./packages/api/db.sh restore -t
 
-# Build shared dependencies (required before starting apps)
+# 4. Build shared dependencies (required before starting apps)
 yarn build --scope @soliguide/common-angular
-
-# Start API in watch mode
-yarn workspace @soliguide/api watch
-
-# Start frontend (French version, opens browser)
-yarn workspace @soliguide/frontend start
-
-# Start frontend for other locales
-yarn workspace @soliguide/frontend start:es  # Spanish
-yarn workspace @soliguide/frontend start:ad  # Andorran
 ```
+
+Quickest path — one command boots api + location-api + frontend in parallel (logs are prefixed and colorised, Ctrl+C stops everything):
+
+```bash
+yarn dev        # api + location-api + frontend FR
+yarn dev:es     # api + location-api + frontend ES
+yarn dev:ad     # api + location-api + frontend AD
+```
+
+Or start each service in its own terminal (only the ones you need):
+
+```bash
+# Backends
+yarn workspace @soliguide/api watch                 # → http://localhost:3001
+yarn workspace @soliguide/location-api watch        # → http://localhost:3000
+
+# Angular admin frontend (choose one locale at a time)
+yarn workspace @soliguide/frontend start            # FR → http://localhost:4200
+yarn workspace @soliguide/frontend start:es         # ES → http://localhost:4210
+yarn workspace @soliguide/frontend start:ad         # AD → http://localhost:4220
+
+# Angular embeddable widget
+yarn workspace @soliguide/widget start              # → http://localhost:4201
+
+# SvelteKit public web-app
+yarn workspace @soliguide/web-app dev               # → http://localhost:5173
+
+# Svelte design-system playground
+yarn workspace @soliguide/design-system dev         # → http://localhost:5174
+```
+
+### Local Port Map
+
+All local ports are harmonised so every front-end can run at the same time without conflict. The API's `ENV_SCHEMA` defaults expect these exact ports.
+
+| Service               | Port | Command                                              |
+| --------------------- | ---- | ---------------------------------------------------- |
+| API (Express)         | 3001 | `yarn workspace @soliguide/api watch`                |
+| Location API (NestJS) | 3000 | `yarn workspace @soliguide/location-api watch`       |
+| Frontend FR           | 4200 | `yarn workspace @soliguide/frontend start`           |
+| Widget                | 4201 | `yarn workspace @soliguide/widget start`             |
+| Frontend ES           | 4210 | `yarn workspace @soliguide/frontend start:es`        |
+| Frontend AD           | 4220 | `yarn workspace @soliguide/frontend start:ad`        |
+| Web-app (SvelteKit)   | 5173 | `yarn workspace @soliguide/web-app dev`              |
+| Design-system         | 5174 | `yarn workspace @soliguide/design-system dev`        |
+| MongoDB               | 27017| `docker compose up -d`                               |
+| RabbitMQ (AMQP / UI)  | 5672 / 15672 | `docker compose up -d`                       |
+| MinIO (S3 / console)  | 9000 / 9090  | `docker compose up -d`                       |
 
 ### Testing
 
@@ -122,7 +160,7 @@ yarn workspace @soliguide/api migrate-status
 
 ```
 packages/
-├── api/              - Express REST API (MongoDB, Typesense)
+├── api/              - Express REST API (MongoDB)
 ├── location-api/     - NestJS location microservice (Redis)
 ├── frontend/         - Angular 17 admin interface
 ├── widget/           - Angular 17 embeddable widget
@@ -148,7 +186,7 @@ common (base types & utilities)
 
 ### Key Technologies
 
-- **API**: Express, MongoDB (Mongoose), Typesense, RabbitMQ, Airtable sync, S3
+- **API**: Express, MongoDB (Mongoose), RabbitMQ, Airtable sync, S3
 - **Location API**: NestJS, Fastify, Redis
 - **Frontend/Widget**: Angular 17, Bootstrap 5, Leaflet, Algolia, ngx-translate
 - **Web-app**: SvelteKit, i18next, Playwright E2E, Vitest
@@ -159,7 +197,6 @@ common (base types & utilities)
 - **MongoDB 7.0** (main): Places, Users, Organizations, with replica set
 - **Migrations**: TypeScript migrations in `packages/api/migrations/` using migrate-mongo
 - **Test DB**: `soliguide_test` with dump in `data/soliguide_db_test.gzip`
-- **Typesense 27.1**: Search engine for places
 
 ### Multi-Language Support
 
@@ -175,7 +212,6 @@ common (base types & utilities)
 
 - **Airtable**: Two-way sync for place data (collaborative editing)
 - **S3/MinIO**: Document and image storage
-- **Typesense**: Full-text search for places
 - **Google Cloud Translate**: Translation services
 - **Mailgun**: Email delivery
 - **Sentry**: Error tracking across all apps
@@ -352,7 +388,7 @@ Required: Node.js 22+ (specified in package.json engines)
   - `src/app/models/`: TypeScript interfaces
   - `src/environments/`: Environment configs per locale
 - **Configurations**: Multiple environments in angular.json for FR/ES/AD
-- **Dev server**: Port 4200 (FR), different ports for ES/AD
+- **Dev server**: Port 4200 (FR), 4210 (ES), 4220 (AD) — see the Local Port Map above
 
 ### Location API (@soliguide/location-api)
 

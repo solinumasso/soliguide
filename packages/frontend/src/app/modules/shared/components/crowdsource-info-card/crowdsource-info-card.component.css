@@ -1,0 +1,312 @@
+:host {
+  display: block;
+}
+
+.crowdsource-card {
+  position: relative;
+  overflow: hidden;
+  background-color: #f3f4f6;
+  border: 1px solid rgba(107, 114, 128, 0.35);
+  border-radius: 16px;
+  padding: 22px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  color: #374151;
+}
+
+.crowdsource-card__background-icon {
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 130px;
+  height: 130px;
+  opacity: 0.16;
+  color: #6b7280;
+  pointer-events: none;
+}
+
+.crowdsource-card > *:not(.crowdsource-card__background-icon) {
+  position: relative;
+  z-index: 1;
+}
+
+.crowdsource-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.crowdsource-card__eyebrow {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.crowdsource-card__title {
+  font-size: 22px;
+  font-weight: 900;
+  color: #1f2937;
+  line-height: 1.2;
+}
+
+.crowdsource-card__question {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.4;
+}
+
+.crowdsource-card__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.crowdsource-card__option {
+  min-width: 120px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  color: #374151;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.crowdsource-card__option:hover {
+  border-color: #6b7280;
+}
+
+.crowdsource-card__option--selected,
+.crowdsource-card__option--selected:hover {
+  background-color: #374151;
+  border-color: transparent;
+  color: #ffffff;
+}
+
+.crowdsource-card__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.crowdsource-card__label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #4b5563;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.crowdsource-card__textarea,
+.crowdsource-card__input {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 8px 12px;
+  background-color: #ffffff;
+  font-size: 14px;
+  color: #1f2937;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.crowdsource-card__textarea:focus,
+.crowdsource-card__input:focus {
+  outline: none;
+  border-color: #6b7280;
+  box-shadow: 0 0 0 3px rgba(107, 114, 128, 0.2);
+}
+
+.crowdsource-card__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.crowdsource-card__hint {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.crowdsource-card__submit {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 20px;
+  background-color: #1f2937;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.crowdsource-card__submit:hover:not([disabled]) {
+  background-color: #111827;
+}
+
+.crowdsource-card__submit[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Sent state — celebration */
+
+.crowdsource-card--sent {
+  align-items: center;
+  text-align: center;
+  padding: 28px 26px;
+  gap: 8px;
+  background-color: #ecfdf5;
+  border-color: rgba(16, 185, 129, 0.35);
+  color: #065f46;
+  animation: crowdsource-card-in 0.35s ease-out both;
+}
+
+.crowdsource-card__celebrate {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.crowdsource-card__check {
+  width: 64px;
+  height: 64px;
+}
+
+.crowdsource-card__check svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.crowdsource-card__check-circle {
+  stroke: #10b981;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 151;
+  stroke-dashoffset: 151;
+  transform-origin: 50% 50%;
+  animation: crowdsource-circle 0.55s ease-out forwards;
+}
+
+.crowdsource-card__check-mark {
+  stroke: #10b981;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: crowdsource-mark 0.35s 0.5s ease-out forwards;
+}
+
+.crowdsource-card__spark {
+  position: absolute;
+  font-size: 14px;
+  color: #34d399;
+  opacity: 0;
+  animation: crowdsource-spark 0.9s 0.5s ease-out forwards;
+}
+
+.crowdsource-card__spark--1 {
+  top: 4px;
+  left: 8px;
+  --dx: -18px;
+  --dy: -14px;
+}
+.crowdsource-card__spark--2 {
+  top: 6px;
+  right: 10px;
+  --dx: 20px;
+  --dy: -12px;
+}
+.crowdsource-card__spark--3 {
+  bottom: 8px;
+  left: 4px;
+  --dx: -20px;
+  --dy: 14px;
+}
+.crowdsource-card__spark--4 {
+  bottom: 6px;
+  right: 6px;
+  --dx: 18px;
+  --dy: 16px;
+}
+.crowdsource-card__spark--5 {
+  top: 2px;
+  left: 50%;
+  --dx: 0;
+  --dy: -22px;
+}
+
+.crowdsource-card__thanks-title {
+  font-size: 20px;
+  font-weight: 900;
+  color: #065f46;
+  animation: crowdsource-fade-up 0.4s 0.8s ease-out both;
+}
+
+.crowdsource-card__thanks-subtitle {
+  font-size: 14px;
+  color: #047857;
+  animation: crowdsource-fade-up 0.4s 0.95s ease-out both;
+}
+
+@keyframes crowdsource-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes crowdsource-circle {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes crowdsource-mark {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes crowdsource-spark {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.4);
+  }
+  40% {
+    opacity: 1;
+    transform: translate(calc(var(--dx) * 0.6), calc(var(--dy) * 0.6)) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) scale(0.6);
+  }
+}
+
+@keyframes crowdsource-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
