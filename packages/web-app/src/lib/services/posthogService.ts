@@ -1,6 +1,6 @@
 import { type PostHog, posthog } from 'posthog-js';
 import { env } from '$env/dynamic/public';
-import type { PosthogCaptureFunction, RequestOptionsFrontend } from './types';
+import type { PosthogCaptureFunction, PosthogProperties, RequestOptionsFrontend } from './types';
 
 const getPosthogService = () => {
   // skipcq: JS-0119
@@ -83,6 +83,18 @@ const getPosthogService = () => {
     }
   };
 
+  const setPersonProperties = (properties: PosthogProperties): void => {
+    if (!instance) {
+      init();
+    }
+
+    if (instance) {
+      instance.setPersonProperties(properties);
+    } else {
+      console.error('NO_PH_INSTANCE');
+    }
+  };
+
   /**
    * Get headers from a request event
    */
@@ -93,6 +105,7 @@ const getPosthogService = () => {
 
   return {
     capture,
+    setPersonProperties,
     getHeaders
   };
 };

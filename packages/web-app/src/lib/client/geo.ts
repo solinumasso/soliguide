@@ -1,6 +1,26 @@
 import { captureException } from '@sentry/sveltekit';
 
-export const isGeolocSupported = (): boolean => 'geolocation' in navigator;
+export const isGeolocSupported = (): boolean =>
+  typeof navigator !== 'undefined' && 'geolocation' in navigator;
+
+export const getGeolocationPermissionState = async (): Promise<
+  PermissionState | 'unsupported' | 'unknown'
+> => {
+  if (!isGeolocSupported()) {
+    return 'unsupported';
+  }
+
+  if (!navigator.permissions) {
+    return 'unknown';
+  }
+
+  try {
+    const permissionStatus = await navigator.permissions.query({ name: 'geolocation' });
+    return permissionStatus.state;
+  } catch {
+    return 'unknown';
+  }
+};
 
 export const getGeolocation = (): Promise<GeolocationPosition> =>
   new Promise((resolve, reject) => {
