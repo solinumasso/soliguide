@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.146.0](https://github.com/solinumasso/soliguide/compare/v4.145.1...v4.146.0) (2026-07-03)
+
+
+### Bug Fixes
+
+* **api:** delete plan md fix search modalities ([ccfca76](https://github.com/solinumasso/soliguide/commit/ccfca7600efd57aa38855a351e3be5117cea50de))
+* **frontend:** add filters in mobile ([5909b5a](https://github.com/solinumasso/soliguide/commit/5909b5a4880b6f01299c42bf671a3c156c4b9f9c))
+* **frontend:** add labels & button to filters ([391e143](https://github.com/solinumasso/soliguide/commit/391e1439ecc49e1cd57fc5d6f6c54338a24bfaff))
+* **frontend:** add labels & button to filters ([0804011](https://github.com/solinumasso/soliguide/commit/0804011a93a8e1cab4dd2b1a1f898b0b0dd220e2))
+* **frontend:** add panel ([415395b](https://github.com/solinumasso/soliguide/commit/415395bd4951675e73871990ad676b767d035e3c))
+* **frontend:** add panel ([775ee6d](https://github.com/solinumasso/soliguide/commit/775ee6d38618d2da329922c9490972060cc6c9bf))
+* **frontend:** update linter ([970637a](https://github.com/solinumasso/soliguide/commit/970637a4ebd94530a312b20b9683ce58e2722b44))
+
+
+### Features
+
+* **frontend:** add climate adaptation ([b226d9e](https://github.com/solinumasso/soliguide/commit/b226d9ec5f2f2b9ae2d8cce0264a76cb2beb24ce))
+* **frontend:** add climate adaptation ([4e86694](https://github.com/solinumasso/soliguide/commit/4e86694aab5c37a953f053d305b2b7fca785567f))
+
+
+
+
+
 ## [4.145.1](https://github.com/solinumasso/soliguide/compare/v4.145.0...v4.145.1) (2026-07-01)
 
 
