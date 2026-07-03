@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import getSearchService from './placesService';
 import { fakeFetch } from '$lib/client';
 import {
@@ -67,6 +67,32 @@ describe('Search Service', () => {
       feedWith(serviceResult);
       const result = await service.searchPlaces(validParams);
       expect(result).toEqual(serviceResult);
+    });
+
+    it('Sends filters when search params contain filters', async () => {
+      const fetcher = vi.fn().mockResolvedValue(serviceResult);
+      service = getSearchService(fetcher);
+
+      await service.searchPlaces({
+        ...validParams,
+        openToday: true,
+        modalities: {
+          pmr: true,
+          animal: true,
+          thermalComfort: { airConditioned: true }
+        }
+      });
+
+      expect(JSON.parse(fetcher.mock.calls[0][1]?.body as string)).toEqual(
+        expect.objectContaining({
+          openToday: true,
+          modalities: {
+            pmr: true,
+            animal: true,
+            thermalComfort: { airConditioned: true }
+          }
+        })
+      );
     });
 
     it('I get an error with invalid params', () => {

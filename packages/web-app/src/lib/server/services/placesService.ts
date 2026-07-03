@@ -16,7 +16,17 @@ export default (fetcher = fetch) => {
    * Executes a search
    */
   const search = async (
-    { lang, location, category, coordinates, type, distance, options = { page: 1 } }: SearchParams,
+    {
+      lang,
+      location,
+      category,
+      coordinates,
+      type,
+      distance,
+      openToday,
+      modalities,
+      options = { page: 1 }
+    }: SearchParams,
     commonHeaders: RequestOptions
   ): Promise<SearchResult> => {
     const url = `${apiUrl}/new-search/${lang}`;
@@ -33,26 +43,32 @@ export default (fetcher = fetch) => {
         geoType: type,
         coordinates,
         distance
-      }
+      },
+      openToday,
+      modalities
+    };
+
+    const placesRequestBody = {
+      ...body,
+      placeType: PlaceType.PLACE,
+      options: { ...options, limit: 100, sortBy: 'distance' }
+    };
+
+    const parcoursRequestBody = {
+      ...body,
+      placeType: PlaceType.ITINERARY,
+      options: { ...options, limit: 10, sortBy: 'distance' }
     };
 
     const placesResult: ApiSearchResults = await fetcher(url, {
       method: 'POST',
-      body: JSON.stringify({
-        ...body,
-        placeType: PlaceType.PLACE,
-        options: { ...options, limit: 100, sortBy: 'distance' }
-      }),
+      body: JSON.stringify(placesRequestBody),
       headers
     });
 
     const parcoursResult: ApiSearchResults = await fetcher(url, {
       method: 'POST',
-      body: JSON.stringify({
-        ...body,
-        placeType: PlaceType.ITINERARY,
-        options: { ...options, limit: 10, sortBy: 'distance' }
-      }),
+      body: JSON.stringify(parcoursRequestBody),
       headers
     });
 
