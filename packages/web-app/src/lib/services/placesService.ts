@@ -9,7 +9,7 @@ import { ALL_CATEGORIES } from '$lib/constants';
 
 export default (fetcher = fetch) => {
   const searchPlaces = (
-    { lang, location, category, latitude, longitude, type }: SearchParams,
+    { lang, location, category, latitude, longitude, type, openToday, modalities }: SearchParams,
     options: SearchOptions = { page: 1 }
   ): Promise<SearchResult> => {
     if (!isValidStringEnumValue(SupportedLanguagesCode, lang)) {
@@ -34,6 +34,8 @@ export default (fetcher = fetch) => {
         category,
         type,
         coordinates: [latitude, longitude],
+        openToday,
+        modalities,
         options
       }),
       headers: posthogService.getHeaders() as unknown as Record<string, string>

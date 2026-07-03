@@ -3,6 +3,7 @@ import { writable, get } from 'svelte/store';
 import type { GetSearchResultPageController, PageParams, PageState } from './types';
 import type { PlacesService, PosthogCaptureFunction } from '$lib/services/types';
 import { getErrorValue } from '$lib/ts';
+import { buildSearchResultApiFilters, type SearchResultFilter } from './filters';
 
 const initialState: PageState = {
   isLoading: false,
@@ -20,7 +21,8 @@ const initialState: PageState = {
   },
   searchError: null,
   hasMorePages: false,
-  urlParams: null
+  urlParams: null,
+  selectedFilters: []
 };
 
 export const getSearchResultPageController = (
@@ -89,24 +91,75 @@ export const getSearchResultPageController = (
    */
   const init = async (urlParams: PageParams): Promise<void> => {
     const { location, category, lang, latitude, longitude, type, label } = urlParams;
+    const selectedFilters: SearchResultFilter[] = [
+      ...(urlParams.openToday === 'true' ? (['openToday'] as const) : []),
+      ...(urlParams.airConditioned === 'true' ? (['airConditioned'] as const) : []),
+      ...(urlParams.pmr === 'true' ? (['pmr'] as const) : []),
+      ...(urlParams.animal === 'true' ? (['animal'] as const) : [])
+    ];
 
     if (location && category && lang && latitude && longitude && type && label) {
       myPageStore.set({
         ...initialState,
         initializing: true,
         search: {
-          ...urlParams,
+          location,
+          category,
+          lang,
           latitude: Number(latitude),
           longitude: Number(longitude),
+          type,
+          ...buildSearchResultApiFilters(selectedFilters),
           options: { page: 0 }
         },
         adressLabel: label,
-        urlParams
+        urlParams,
+        selectedFilters
       });
 
       // Get data - put in store
       await getNextResults(true);
     }
+  };
+
+  const updateSearchFilters = async (selectedFilters: SearchResultFilter[]): Promise<void> => {
+    myPageStore.update((oldValue): PageState => {
+      const apiFilters = buildSearchResultApiFilters(selectedFilters);
+
+      const urlParams: PageParams | null = oldValue.urlParams
+        ? {
+            lang: oldValue.urlParams.lang,
+            location: oldValue.urlParams.location,
+            latitude: oldValue.urlParams.latitude,
+            longitude: oldValue.urlParams.longitude,
+            type: oldValue.urlParams.type,
+            label: oldValue.urlParams.label,
+            category: oldValue.urlParams.category,
+            ...(selectedFilters.includes('openToday') ? { openToday: 'true' } : {}),
+            ...(selectedFilters.includes('airConditioned') ? { airConditioned: 'true' } : {}),
+            ...(selectedFilters.includes('pmr') ? { pmr: 'true' } : {}),
+            ...(selectedFilters.includes('animal') ? { animal: 'true' } : {})
+          }
+        : null;
+
+      return {
+        ...oldValue,
+        searchResult: { nbResults: 0, places: [] },
+        hasMorePages: false,
+        searchError: null,
+        selectedFilters,
+        urlParams,
+        search: {
+          ...oldValue.search,
+          ...apiFilters,
+          openToday: apiFilters.openToday,
+          modalities: apiFilters.modalities,
+          options: { page: 0 }
+        }
+      };
+    });
+
+    await getNextResults(true);
   };
 
   /**
@@ -120,6 +173,7 @@ export const getSearchResultPageController = (
     subscribe: myPageStore.subscribe,
     init,
     getNextResults,
+    updateSearchFilters,
     captureEvent
   };
 };

@@ -10,6 +10,7 @@ import { fakeFetch } from '$lib/client/index';
 import getSearchService from '$lib/services/placesService';
 import { posthogService } from '$lib/services/posthogService';
 import type { GetSearchResultPageController } from './types';
+import type { PlaceDetails } from '$lib/models/types';
 
 describe('ListPageController', () => {
   // skipcq: JS-0119
@@ -56,6 +57,93 @@ describe('ListPageController', () => {
     expect(get(pageState).searchError).toBeNull();
     await pageState.getNextResults();
     expect(get(pageState).searchError).toEqual('There is an error');
+  });
+
+  it('At initialization, selected filters are added to the search params', async () => {
+    const searchPlaces = vi.fn().mockResolvedValue(searchResultMock);
+    pageState = getSearchResultPageController({
+      searchPlaces,
+      placeDetails: vi.fn<() => Promise<PlaceDetails>>()
+    });
+
+    await pageState.init({
+      ...searchParamsMock,
+      openToday: 'true',
+      airConditioned: 'true',
+      pmr: 'true',
+      animal: 'true'
+    });
+
+    expect(get(pageState).selectedFilters).toEqual([
+      'openToday',
+      'airConditioned',
+      'pmr',
+      'animal'
+    ]);
+    expect(searchPlaces).toHaveBeenCalledWith(
+      expect.objectContaining({
+        openToday: true,
+        modalities: {
+          pmr: true,
+          animal: true,
+          thermalComfort: { airConditioned: true }
+        }
+      }),
+      { page: 1 }
+    );
+  });
+
+  it('When filters are updated, it restarts search on the first page with new filters', async () => {
+    const searchPlaces = vi.fn().mockResolvedValue(searchResultMock);
+    pageState = getSearchResultPageController({
+      searchPlaces,
+      placeDetails: vi.fn<() => Promise<PlaceDetails>>()
+    });
+
+    await pageState.init(searchParamsMock);
+    searchPlaces.mockClear();
+
+    await pageState.updateSearchFilters(['pmr']);
+
+    expect(get(pageState).selectedFilters).toEqual(['pmr']);
+    expect(get(pageState).urlParams?.pmr).toBe('true');
+    expect(get(pageState).urlParams?.openToday).toBeUndefined();
+    expect(get(pageState).urlParams?.animal).toBeUndefined();
+    expect(get(pageState).urlParams?.airConditioned).toBeUndefined();
+    expect(get(pageState).search.options.page).toBe(1);
+    expect(searchPlaces).toHaveBeenCalledWith(
+      expect.objectContaining({
+        openToday: undefined,
+        modalities: { pmr: true }
+      }),
+      { page: 1 }
+    );
+  });
+
+  it('When filters are cleared, it restarts search without filters', async () => {
+    const searchPlaces = vi.fn().mockResolvedValue(searchResultMock);
+    pageState = getSearchResultPageController({
+      searchPlaces,
+      placeDetails: vi.fn<() => Promise<PlaceDetails>>()
+    });
+
+    await pageState.init({ ...searchParamsMock, openToday: 'true', pmr: 'true' });
+    searchPlaces.mockClear();
+
+    await pageState.updateSearchFilters([]);
+
+    expect(get(pageState).selectedFilters).toEqual([]);
+    expect(get(pageState).urlParams?.openToday).toBeUndefined();
+    expect(get(pageState).urlParams?.pmr).toBeUndefined();
+    expect(get(pageState).urlParams?.animal).toBeUndefined();
+    expect(get(pageState).urlParams?.airConditioned).toBeUndefined();
+    expect(searchPlaces).toHaveBeenCalledWith(
+      expect.objectContaining({
+        openToday: undefined,
+        modalities: undefined
+      }),
+      { page: 1 }
+    );
   });
 
   describe('When the service does not always succeed', () => {
