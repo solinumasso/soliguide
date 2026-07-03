@@ -66,6 +66,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       </button>
 
       <app-filter-pill-dropdown
+        class="filter-pill--desktop-only"
         label="GENDER"
         icon="user"
         [allLabel]="publicsLabels.gender.all"
@@ -77,7 +78,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
       <button
         type="button"
-        class="filter-pill"
+        class="filter-pill filter-pill--desktop-only"
         [class.filter-pill--active]="filters.openToday"
         (click)="toggleOpen()"
         [attr.aria-pressed]="filters.openToday ? 'true' : 'false'"
@@ -99,7 +100,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
       <button
         type="button"
-        class="filter-pill"
+        class="filter-pill filter-pill--desktop-only"
         [class.filter-pill--active]="filters.pmr"
         (click)="togglePmr()"
         [attr.aria-pressed]="filters.pmr ? 'true' : 'false'"
@@ -121,7 +122,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
       <button
         type="button"
-        class="filter-pill"
+        class="filter-pill filter-pill--desktop-only"
         [class.filter-pill--active]="filters.animal"
         (click)="toggleAnimal()"
         [attr.aria-pressed]="filters.animal ? 'true' : 'false'"
@@ -142,7 +143,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       </button>
 
       <button
-        class="filter-pill"
+        class="filter-pill filter-pill--toggle"
         [class.filter-pill--active]="!showFilters"
         type="button"
         (click)="toggleFilter()"
@@ -158,18 +159,97 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       </button>
     </div>
 
-    <app-search-filters
-      *ngIf="!showFilters"
-      #appFilters
-      [showFilters]="showFilters"
-      [search]="search"
-      [parcoursSearch]="parcoursSearch"
-      [searchSubject]="searchSubject"
-      [parcoursSearchSubject]="parcoursSearchSubject"
-      [filters]="filters"
-      (updateFilters)="updateFilters()"
-      class="d-print-none mb-3"
-    ></app-search-filters>
+    <ng-container *ngIf="!showFilters">
+      <div class="filter-pills filter-pills--mobile-extras d-md-none">
+        <app-filter-pill-dropdown
+          label="GENDER"
+          icon="user"
+          [allLabel]="publicsLabels.gender.all"
+          [options]="genderOptions"
+          [value]="filters?.gender ?? null"
+          name="filterGenderMobile"
+          (valueChange)="onGenderChange($event)"
+        ></app-filter-pill-dropdown>
+
+        <button
+          type="button"
+          class="filter-pill"
+          [class.filter-pill--active]="filters.openToday"
+          (click)="toggleOpen()"
+          [attr.aria-pressed]="filters.openToday ? 'true' : 'false'"
+        >
+          <span class="filter-pill__icon" aria-hidden="true">
+            <fa-icon [icon]="['far', 'clock']"></fa-icon>
+          </span>
+          <span class="filter-pill__label">
+            {{ "SEARCH_FILTER_OPEN_TODAY" | translate }}
+          </span>
+          <span class="filter-pill__state">
+            <fa-icon
+              *ngIf="filters.openToday"
+              [icon]="['fas', 'check']"
+              aria-hidden="true"
+            ></fa-icon>
+          </span>
+        </button>
+
+        <button
+          type="button"
+          class="filter-pill"
+          [class.filter-pill--active]="filters.pmr"
+          (click)="togglePmr()"
+          [attr.aria-pressed]="filters.pmr ? 'true' : 'false'"
+        >
+          <span class="filter-pill__icon" aria-hidden="true">
+            <fa-icon [icon]="['fas', 'wheelchair']"></fa-icon>
+          </span>
+          <span class="filter-pill__label">
+            {{ "ACCESS_CONDITION_PEOPLE_WITH_REDUCED_MOBILITY" | translate }}
+          </span>
+          <span class="filter-pill__state">
+            <fa-icon
+              *ngIf="filters.pmr"
+              [icon]="['fas', 'check']"
+              aria-hidden="true"
+            ></fa-icon>
+          </span>
+        </button>
+
+        <button
+          type="button"
+          class="filter-pill"
+          [class.filter-pill--active]="filters.animal"
+          (click)="toggleAnimal()"
+          [attr.aria-pressed]="filters.animal ? 'true' : 'false'"
+        >
+          <span class="filter-pill__icon" aria-hidden="true">
+            <fa-icon [icon]="['fas', 'paw']"></fa-icon>
+          </span>
+          <span class="filter-pill__label">
+            {{ "ACCESS_CONDITION_ACCEPTED_ANIMALS" | translate }}
+          </span>
+          <span class="filter-pill__state">
+            <fa-icon
+              *ngIf="filters.animal"
+              [icon]="['fas', 'check']"
+              aria-hidden="true"
+            ></fa-icon>
+          </span>
+        </button>
+      </div>
+
+      <app-search-filters
+        #appFilters
+        [showFilters]="showFilters"
+        [search]="search"
+        [parcoursSearch]="parcoursSearch"
+        [searchSubject]="searchSubject"
+        [parcoursSearchSubject]="parcoursSearchSubject"
+        [filters]="filters"
+        (updateFilters)="updateFilters()"
+        class="d-print-none mb-3"
+      ></app-search-filters>
+    </ng-container>
 
     <div @fadeInOut class="search_section" *ngIf="loading || parcoursLoading">
       <div class="text-center">
@@ -206,7 +286,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
       <ng-container *ngIf="nbResults > 0">
         <div class="row mt-3">
-          <div class="col-xs-0 col-md-4">
+          <div class="d-none d-md-block col-md-4">
             <div class="row">
               <div class="col-md-12 mb-3">
                 <label for="distanceRange" class="form-label">
@@ -289,7 +369,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       </div>
 
       <div class="row mt-3">
-        <div class="col-xs-0 col-md-4"></div>
+        <div class="d-none d-md-block col-md-4"></div>
 
         <div id="liste_parcours" class="col-xs-12 col-md-8">
           <app-search-place-result

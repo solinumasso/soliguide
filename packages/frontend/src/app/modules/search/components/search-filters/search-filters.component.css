@@ -14,6 +14,13 @@
   text-align: left;
 }
 
+@media (max-width: 767.98px) {
+  .filters-chain {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
 .filters-chain__field {
   display: inline-flex;
   align-items: center;
