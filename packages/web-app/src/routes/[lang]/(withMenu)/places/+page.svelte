@@ -28,12 +28,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { ROUTES_CTX_KEY } from '$lib/client';
   import { Text, PageLoader } from '@soliguide/design-system';
   import Card from './components/card/ResultsCard.svelte';
+  import ResultsFilters from './components/ResultsFilters.svelte';
   import ResultsTopBar from './components/ResultsTopBar.svelte';
   import { get } from 'svelte/store';
   import { themeStore } from '$lib/theme';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import type { ThemeDefinition } from '$lib/theme/types';
   import { getCategorySearchTranslationKey } from '$lib/utils/categoryTranslation';
+  import { SEARCH_RESULT_FILTERS, type SearchResultFilter } from './filters';
 
   const { url } = $page;
 
@@ -61,6 +63,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     }
   }
 
+  const openToday = url.searchParams.get('openToday');
+  const pmr = url.searchParams.get('pmr');
+  const animal = url.searchParams.get('animal');
+  const airConditioned = url.searchParams.get('airConditioned');
+
   pageStore.init({
     location: url.searchParams.get('location') ?? '',
     category: url.searchParams.get('category') ?? '',
@@ -68,13 +75,43 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     latitude: url.searchParams.get('latitude') ?? '',
     longitude: url.searchParams.get('longitude') ?? '',
     type: url.searchParams.get('type') ?? '',
-    label: url.searchParams.get('label') ?? ''
+    label: url.searchParams.get('label') ?? '',
+    ...(openToday === null ? {} : { openToday }),
+    ...(pmr === null ? {} : { pmr }),
+    ...(animal === null ? {} : { animal }),
+    ...(airConditioned === null ? {} : { airConditioned })
   });
 
   const handleIntersection = () => {
     if ($pageStore.hasMorePages) {
       pageStore.getNextResults();
     }
+  };
+
+  const toggleFilter = (filter: SearchResultFilter): void => {
+    const filterIsSelected = $pageStore.selectedFilters.includes(filter);
+
+    const selectedFilters = filterIsSelected
+      ? $pageStore.selectedFilters.filter((selectedFilter) => selectedFilter !== filter)
+      : [...$pageStore.selectedFilters, filter];
+
+    const currentUrl = $page.url;
+    const filterNames = SEARCH_RESULT_FILTERS.map(({ name }) => name);
+    const currentSearchParams = Array.from(currentUrl.searchParams.entries()).filter(
+      ([name]) => !filterNames.includes(name as SearchResultFilter)
+    );
+    const selectedSearchParams = selectedFilters.map((selectedFilter) => [selectedFilter, 'true']);
+    const searchParams = new URLSearchParams([...currentSearchParams, ...selectedSearchParams]);
+
+    const newUrl = `${currentUrl.pathname}?${searchParams.toString()}`;
+    goto(newUrl, { keepFocus: true, noScroll: true });
+
+    pageStore.updateSearchFilters(selectedFilters);
+
+    pageStore.captureEvent('filter-toggle', {
+      clickedItem: filter,
+      action: filterIsSelected ? 'unselect' : 'select'
+    });
   };
 
   /**
@@ -127,6 +164,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             >{$i18n.t('PLACES_FOUND', { nbResults: $pageStore.searchResult.nbResults })}</Text
           >
         </div>
+        <ResultsFilters
+          selectedFilters={$pageStore.selectedFilters}
+          on:toggle={(event) => toggleFilter(event.detail)}
+        />
         <div class="list">
           {#each $pageStore.searchResult.places as place, index}
             <div>
@@ -155,7 +196,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   .list {
     display: flex;
     flex-direction: column;
-    padding-top: var(--spacingXL);
+    padding-top: var(--spacingLG);
     gap: var(--spacingXL);
   }
 

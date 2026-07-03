@@ -4,6 +4,7 @@ import type { SearchResult, PlaceDetails, DataForLogs } from '$lib/models/types'
 import {
   Categories,
   GeoTypes,
+  type SearchModalities,
   type SoliguideCountries,
   type SupportedLanguagesCode,
   type FlatCategoriesTreeNode,
@@ -48,6 +49,8 @@ export interface SearchParams {
   longitude: number;
   type: string;
   options: SearchOptions;
+  openToday?: boolean;
+  modalities?: SearchModalities;
 }
 
 export interface PlaceDetailsParams {

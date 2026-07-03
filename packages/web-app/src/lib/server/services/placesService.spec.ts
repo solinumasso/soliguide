@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { Categories, GeoTypes, SupportedLanguagesCode } from '@soliguide/common';
 import { fakeFetch } from '$lib/client';
 import getSearchService from './placesService';
@@ -37,6 +37,52 @@ describe('Search Service', () => {
         searchReqOptions
       );
       expect(result).toEqual({ nbResults: 0, places: [] });
+    });
+
+    it('Sends filters to the API search route', async () => {
+      const fetcher = vi.fn().mockResolvedValue({ nbResults: 0, places: [] });
+      service = getSearchService(fetcher);
+
+      await service.search(
+        {
+          lang: SupportedLanguagesCode.FR,
+          location: 'toto',
+          category: Categories.FOOD,
+          coordinates: [1.234, 8.7654],
+          type: GeoTypes.CITY,
+          distance: 50,
+          openToday: true,
+          modalities: {
+            pmr: true,
+            animal: true,
+            thermalComfort: { airConditioned: true }
+          },
+          options: { page: 1 }
+        },
+        searchReqOptions
+      );
+
+      expect(fetcher).toHaveBeenCalledTimes(2);
+      expect(JSON.parse(fetcher.mock.calls[0][1]?.body as string)).toEqual(
+        expect.objectContaining({
+          openToday: true,
+          modalities: {
+            pmr: true,
+            animal: true,
+            thermalComfort: { airConditioned: true }
+          }
+        })
+      );
+      expect(JSON.parse(fetcher.mock.calls[1][1]?.body as string)).toEqual(
+        expect.objectContaining({
+          openToday: true,
+          modalities: {
+            pmr: true,
+            animal: true,
+            thermalComfort: { airConditioned: true }
+          }
+        })
+      );
     });
   });
 });

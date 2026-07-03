@@ -8,7 +8,8 @@ import { ALL_CATEGORIES } from '$lib/constants';
  * Get headers from a request event
  */
 export const POST = async (requestEvent: RequestEvent): Promise<Response> => {
-  const { location, category, coordinates, type, options } = await requestEvent.request.json();
+  const { location, category, coordinates, type, openToday, modalities, options } =
+    await requestEvent.request.json();
   const { lang } = requestEvent.params;
 
   const headers = getHeaders(requestEvent);
@@ -25,6 +26,8 @@ export const POST = async (requestEvent: RequestEvent): Promise<Response> => {
       coordinates,
       type,
       distance: getDistanceFromGeoType(type),
+      openToday,
+      modalities,
       options
     },
     headers
