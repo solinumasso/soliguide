@@ -1,30 +1,24 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  OnInit,
-  ViewChild,
-} from "@angular/core";
+import { Component, EventEmitter, Input, Output, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { TranslateService } from "@ngx-translate/core";
 import { ToastrService } from "ngx-toastr";
-import { NgbTypeahead } from "@ng-bootstrap/ng-bootstrap";
-import { type Observable, merge, type Subject } from "rxjs";
-import { debounceTime, distinctUntilChanged, map } from "rxjs/operators";
+import { type Subject } from "rxjs";
 
-import {
-  ALL_PUBLICS,
-  PLACE_LANGUAGES_LIST,
-  PUBLICS_LABELS,
-} from "@soliguide/common";
+import { ALL_PUBLICS, PUBLICS_LABELS } from "@soliguide/common";
 import type { PosthogProperties } from "@soliguide/common-angular";
 
 import type { Search, SearchFilterParams } from "../../interfaces";
-import type { LanguagesArray } from "../../../../models";
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { InputLanguagesService } from "../../../shared/services/input-languages/input-languages.service";
+import type { FilterPillOption } from "../filter-pill-dropdown/filter-pill-dropdown.component";
+
+const toFilterPillOptions = (
+  items: ReadonlyArray<{ value: string; name: string }>
+): FilterPillOption[] =>
+  items
+    .filter((item) => item.value !== "all")
+    .map((item) => ({ value: item.value, label: item.name }));
 
 @Component({
   selector: "app-search-filters",
@@ -41,9 +35,15 @@ export class SearchFiltersComponent implements OnInit {
 
   public readonly ALL_PUBLICS = ALL_PUBLICS;
   public readonly PUBLICS_LABELS = PUBLICS_LABELS;
-  public readonly LANGUAGES_LIST = PLACE_LANGUAGES_LIST;
-  public languagesArray: LanguagesArray[];
-  public languagesFilterValue: string;
+
+  public readonly administrativeOptions = toFilterPillOptions(
+    ALL_PUBLICS.administrative
+  );
+  public readonly familialleOptions = toFilterPillOptions(
+    ALL_PUBLICS.familialle
+  );
+  public readonly otherOptions = toFilterPillOptions(ALL_PUBLICS.other);
+  public languageOptions: FilterPillOption[] = [];
 
   @Output() public readonly updateFilters = new EventEmitter<void>();
 
@@ -56,59 +56,31 @@ export class SearchFiltersComponent implements OnInit {
     private readonly inputLanguagesService: InputLanguagesService
   ) {
     this.showFilters = false;
-    this.languagesArray = [];
-    this.languagesFilterValue = "";
   }
 
-  // Search language part
-  @ViewChild("languageSearch", { static: true })
-  public languageSearch: NgbTypeahead;
-
   public ngOnInit(): void {
-    // Generate Typeahead data
-    this.languagesArray = this.inputLanguagesService.getLanguagesArray();
+    this.languageOptions = this.buildLanguageOptions();
 
     this.translateService.onLangChange.subscribe({
       next: () => {
-        this.languagesArray = this.inputLanguagesService.getLanguagesArray();
+        this.languageOptions = this.buildLanguageOptions();
       },
     });
   }
 
-  // Search language functions
-  public inputFormatter = (currentLanguageFilter: LanguagesArray): string => {
-    return currentLanguageFilter.name;
-  };
+  private buildLanguageOptions(): FilterPillOption[] {
+    return this.inputLanguagesService
+      .getLanguagesArray()
+      .map((lang) => ({ value: lang.shortLang, label: lang.name }));
+  }
 
-  public searchLanguage = (
-    text$: Observable<string>
-  ): Observable<LanguagesArray[]> => {
-    const debouncedText$ = text$.pipe(
-      debounceTime(200),
-      distinctUntilChanged()
-    );
+  public onLanguageChange(value: string | null): void {
+    this.filterString("languages", "", value ?? "");
+  }
 
-    return merge(debouncedText$).pipe(
-      map((term: string) => {
-        this.languagesFilterValue = term;
-
-        if (this.filters.languages) {
-          this.filterString("languages", "", "");
-        }
-
-        return this.inputLanguagesService.searchLanguage(term);
-      })
-    );
-  };
-
-  public onInputBlur = () => {
-    if (
-      !this.filters.languages &&
-      document.activeElement !== document.getElementById("language-input")
-    ) {
-      this.languagesFilterValue = "";
-    }
-  };
+  public onPublicChange(type: string, value: string | null): void {
+    this.filterString(type, "publics", value ?? "");
+  }
 
   public filterString = (type: string, searchPrefix = "", value = ""): void => {
     let _value = value;
@@ -126,16 +98,6 @@ export class SearchFiltersComponent implements OnInit {
       this.activeFilter(type, searchPrefix, _value);
     } else {
       this.removeFilter(type, searchPrefix);
-    }
-
-    this.launchSearch();
-  };
-
-  public filterBoolean = (type: string, searchPrefix = ""): void => {
-    if (this.filters[type]) {
-      this.removeFilter(type, searchPrefix);
-    } else {
-      this.activeFilter(type, searchPrefix, true);
     }
 
     this.launchSearch();

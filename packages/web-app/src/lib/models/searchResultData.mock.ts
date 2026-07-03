@@ -81,7 +81,8 @@ const samplePlace: ApiPlace = Object.freeze({
         animal: { checked: true },
         pmr: { checked: false },
         other: null,
-        docs: []
+        docs: [],
+        thermalComfort: { heated: null, airConditioned: null }
       },
       name: 'Distribution alimentaire',
       publics: {
@@ -110,7 +111,8 @@ const samplePlace: ApiPlace = Object.freeze({
     price: { checked: false, precisions: null },
     inconditionnel: true,
     other: null,
-    docs: []
+    docs: [],
+    thermalComfort: { heated: null, airConditioned: null }
   },
   publics: {
     age: { min: 0, max: 99 },
@@ -732,7 +734,8 @@ const sampleItinerary: ApiPlace = Object.freeze({
       checked: false
     },
     other: null,
-    docs: []
+    docs: [],
+    thermalComfort: { heated: null, airConditioned: null }
   },
   name: 'Maraude Balades des Lucioles 13e Paris',
   newhours: {
@@ -1042,7 +1045,8 @@ const sampleItinerary: ApiPlace = Object.freeze({
           checked: false
         },
         other: null,
-        docs: []
+        docs: [],
+        thermalComfort: { heated: null, airConditioned: null }
       },
       publics: {
         accueil: 0,
@@ -1153,7 +1157,8 @@ const sampleItinerary: ApiPlace = Object.freeze({
           checked: false
         },
         other: null,
-        docs: []
+        docs: [],
+        thermalComfort: { heated: null, airConditioned: null }
       },
       publics: {
         accueil: 0,
@@ -1260,7 +1265,8 @@ const sampleItinerary: ApiPlace = Object.freeze({
           checked: false
         },
         other: null,
-        docs: []
+        docs: [],
+        thermalComfort: { heated: null, airConditioned: null }
       },
       publics: {
         accueil: 0,

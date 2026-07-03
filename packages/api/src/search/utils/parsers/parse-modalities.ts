@@ -1,5 +1,19 @@
 import { SearchModalities } from "@soliguide/common";
 
+const applyFilter = (
+  path: string,
+  value: unknown,
+  nosqlQuery: any,
+  inService: boolean
+): void => {
+  if (inService) {
+    nosqlQuery["services_all"]["$elemMatch"][path] = value;
+  } else {
+    nosqlQuery["$or"][0]["services_all"]["$elemMatch"][path] = value;
+    nosqlQuery["$or"][1]["$and"].push({ [path]: value });
+  }
+};
+
 export const parseModalities = (
   modalities: SearchModalities,
   nosqlQuery: any,
@@ -8,30 +22,32 @@ export const parseModalities = (
   for (const key of Object.keys(modalities)) {
     const condModalities = modalities[key as keyof SearchModalities];
 
-    if (key !== "inconditionnel") {
-      if (inService) {
-        nosqlQuery["services_all"]["$elemMatch"][`modalities.${key}.checked`] =
-          condModalities;
-      } else {
-        nosqlQuery["$or"][0]["services_all"]["$elemMatch"][
-          `modalities.${key}.checked`
-        ] = condModalities;
-        nosqlQuery["$or"][1]["$and"].push({
-          [`modalities.${key}.checked`]: condModalities,
-        });
+    if (key === "thermalComfort") {
+      // Thermal comfort is a place-level attribute (of the building itself),
+      // not a per-service one. Filter on the place root regardless of `inService`.
+      const thermalComfort =
+        condModalities as SearchModalities["thermalComfort"];
+      if (typeof thermalComfort?.airConditioned === "boolean") {
+        nosqlQuery["modalities.thermalComfort.airConditioned"] =
+          thermalComfort.airConditioned;
       }
+      if (typeof thermalComfort?.heated === "boolean") {
+        nosqlQuery["modalities.thermalComfort.heated"] = thermalComfort.heated;
+      }
+    } else if (key === "inconditionnel") {
+      applyFilter(
+        "modalities.inconditionnel",
+        condModalities,
+        nosqlQuery,
+        inService
+      );
     } else {
-      if (inService) {
-        nosqlQuery["services_all"]["$elemMatch"]["modalities.inconditionnel"] =
-          condModalities;
-      } else {
-        nosqlQuery["$or"][0]["services_all"]["$elemMatch"][
-          "modalities.inconditionnel"
-        ] = condModalities;
-        nosqlQuery["$or"][1]["$and"].push({
-          ["modalities.inconditionnel"]: condModalities,
-        });
-      }
+      applyFilter(
+        `modalities.${key}.checked`,
+        condModalities,
+        nosqlQuery,
+        inService
+      );
     }
   }
 };

@@ -75,6 +75,7 @@ const samplePlace: ApiPlace = Object.freeze({
         price: { checked: false, precisions: null },
         animal: { checked: false },
         pmr: { checked: false },
+        thermalComfort: { heated: null, airConditioned: null },
         other: null,
         docs: []
       },
@@ -152,6 +153,7 @@ const samplePlace: ApiPlace = Object.freeze({
         price: { checked: false, precisions: null },
         animal: { checked: false },
         pmr: { checked: false },
+        thermalComfort: { heated: null, airConditioned: null },
         docs: [],
         other: null
       },
@@ -229,6 +231,7 @@ const samplePlace: ApiPlace = Object.freeze({
         price: { checked: false, precisions: null },
         animal: { checked: false },
         pmr: { checked: false },
+        thermalComfort: { heated: null, airConditioned: null },
         docs: [],
         other: null
       },
@@ -257,6 +260,7 @@ const samplePlace: ApiPlace = Object.freeze({
     orientation: { checked: false, precisions: null },
     pmr: { checked: false },
     price: { checked: false, precisions: null },
+    thermalComfort: { heated: null, airConditioned: null },
     inconditionnel: true,
     other: null,
     docs: []

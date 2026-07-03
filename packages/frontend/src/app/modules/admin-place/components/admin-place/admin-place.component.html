@@ -222,6 +222,21 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         </div>
       </div>
 
+      @if (place.modalities) {
+      <app-thermal-comfort-status
+        class="d-block mb-4"
+        [thermalComfort]="place.modalities.thermalComfort"
+        variant="banner"
+        [showMissingCta]="true"
+        [editRouterLink]="[
+          routePrefix,
+          'admin-place',
+          'condition',
+          place.lieu_id
+        ]"
+      ></app-thermal-comfort-status>
+      }
+
       <div class="form-container" id="info">
         <div class="row">
           <div class="col-8">

@@ -89,6 +89,7 @@ export const SERVICE_SOCIAL_SUPPORT = {
       checked: false,
       precisions: null,
     },
+    thermalComfort: { heated: null, airConditioned: null },
   },
   publics: {
     accueil: WelcomedPublics.UNCONDITIONAL,
@@ -182,6 +183,7 @@ export const SERVICE_FOOD_DISTRIBUTION: CommonNewPlaceService = {
       checked: false,
       precisions: null,
     },
+    thermalComfort: { heated: null, airConditioned: null },
   },
   publics: {
     accueil: WelcomedPublics.UNCONDITIONAL,

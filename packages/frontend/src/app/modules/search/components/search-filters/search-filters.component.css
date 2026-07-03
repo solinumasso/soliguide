@@ -4,40 +4,52 @@
  * SPDX-FileCopyrightText: © 2024 Solinum
  *
  * SPDX-License-Identifier: AGPL-3.0-only
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-.itemDropdown {
-  max-width: 90%;
-  vertical-align: middle;
+.filters-chain {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.5rem 0 1rem;
+  text-align: left;
 }
 
-.filters-area {
-  background-color: white;
-  border-radius: 6px;
+@media (max-width: 767.98px) {
+  .filters-chain {
+    justify-content: center;
+    text-align: center;
+  }
 }
 
-.custom-dropdown {
-  margin-top: 0.5rem;
+.filters-chain__field {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
 }
 
-.dropdown-menu {
-  max-height: 280px;
-  overflow-y: auto;
-  min-width: 100% !important;
-  background-attachment: local, local, scroll, scroll;
+.filters-chain__field-label {
+  font-size: 0.85rem;
+  color: #555;
+  white-space: nowrap;
 }
+
+.filters-chain__input {
+  width: auto;
+  min-width: 90px;
+  height: 40px;
+  border-radius: 1000px;
+  border: 2px solid #d4d4d4;
+  padding: 0.25rem 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.filters-chain__input:focus {
+  border-color: #a8a8a8;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.15);
+}
+
 #language-filter {
   position: relative;
 }

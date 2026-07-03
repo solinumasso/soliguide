@@ -202,7 +202,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       </span>
       } }
     </p>
-    } @if (modalities.other) {
+    }
+    <app-thermal-comfort-status
+      class="my-2"
+      [thermalComfort]="modalities.thermalComfort"
+      variant="card"
+    ></app-thermal-comfort-status>
+    @if (modalities.other) {
     <p class="my-2 mb-0">
       <b>{{ "ACCESS_CONDITION_OTHER_PRECISIONS" | translate | ucFirst }}</b>
       <span

@@ -28,6 +28,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     offline: place.status === PlaceStatus.OFFLINE
   }"
 >
+  <app-thermal-comfort-status
+    class="place_result__thermal-comfort"
+    [thermalComfort]="place.modalities?.thermalComfort"
+    variant="ribbon"
+  ></app-thermal-comfort-status>
   <a
     [routerLink]="[routePrefix, 'fiche', place.seo_url]"
     (click)="captureEvent('click-place-title', {place, placeIndex })"

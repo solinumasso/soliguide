@@ -7,6 +7,7 @@ import {
   CAMPAIGN_LIST,
   PlaceClosedHolidays,
   PlaceStatus,
+  PlaceChangesSection,
   slugLocation,
   PlaceType,
   PlaceVisibility,
@@ -78,6 +79,7 @@ export class PlaceComponent
 
   public readonly PlaceClosedHolidays = PlaceClosedHolidays;
   public readonly PlaceType = PlaceType;
+  public readonly Section = PlaceChangesSection;
   public readonly PlaceVisibility = PlaceVisibility;
   public readonly TempInfoType = TempInfoType;
   public readonly PlaceOpeningStatus = PlaceOpeningStatus;

@@ -12,6 +12,9 @@ export default defineConfig({
       renderLegacyChunks: false
     })
   ],
+  server: {
+    port: 5174
+  },
   test: {
     include: ['src/**/*.spec.ts']
   }

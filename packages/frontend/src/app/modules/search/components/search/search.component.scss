@@ -69,3 +69,110 @@ $countries: "es", "fr", "ad";
 .pagination {
   justify-content: center;
 }
+
+.filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0.5rem 0 1rem;
+
+  @media (max-width: 767.98px) {
+    justify-content: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+
+.filter-pill--desktop-only {
+  @media (max-width: 767.98px) {
+    display: none !important;
+  }
+}
+
+.filter-pill {
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 1.1rem;
+  border-radius: 1000px;
+  border: 2px solid #d4d4d4;
+  background-color: #ffffff;
+  color: #333;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out,
+    color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+  &--toggle .filter-pill__label {
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+  }
+
+  &:hover {
+    border-color: #a8a8a8;
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.15);
+  }
+
+  &--active {
+    background-color: #333;
+    border-color: #333;
+    color: #ffffff;
+  }
+
+  &--active:hover {
+    background-color: #1f1f1f;
+    border-color: #1f1f1f;
+  }
+
+  &--climate {
+    border-color: rgba(13, 110, 253, 0.25);
+    background-color: rgba(13, 110, 253, 0.08);
+    color: #0a4fbf;
+  }
+
+  &--climate:hover {
+    background-color: rgba(13, 110, 253, 0.14);
+    border-color: rgba(13, 110, 253, 0.4);
+  }
+
+  &--climate:focus-visible {
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.35);
+  }
+
+  &--climate.filter-pill--active {
+    background-color: #0a4fbf;
+    border-color: #0a4fbf;
+    color: #ffffff;
+  }
+
+  &--climate.filter-pill--active:hover {
+    background-color: #093f96;
+    border-color: #093f96;
+  }
+}
+
+.filter-pill__icon {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.filter-pill__label {
+  white-space: nowrap;
+}
+
+.filter-pill__state {
+  display: inline-flex;
+  justify-content: center;
+}

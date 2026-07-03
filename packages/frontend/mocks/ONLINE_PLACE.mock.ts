@@ -56,6 +56,7 @@ export const ONLINE_PLACE_MOCK = new Place({
     docs: [],
     pmr: { checked: true },
     price: { checked: false, precisions: null },
+    thermalComfort: { heated: null, airConditioned: null },
   },
   newhours: {
     description: "",

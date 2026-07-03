@@ -637,6 +637,43 @@ describe('Place details Result', () => {
             modifiedPlaceResult.info[STANDARD_INFO_INDEX.modalitiesDisabled]
           );
         });
+
+        it('should add the AIR_CONDITIONED info when airConditioned is true', () => {
+          modifiedPlace.modalities.thermalComfort = { heated: null, airConditioned: true };
+
+          const result = buildPlaceDetails(modifiedPlace, category, lang);
+          expect(
+            result.info.some((info) => info.type === PlaceDetailsInfoType.AIR_CONDITIONED)
+          ).toBe(true);
+          expect(
+            result.info.some((info) => info.type === PlaceDetailsInfoType.NOT_AIR_CONDITIONED)
+          ).toBe(false);
+        });
+
+        it('should add the NOT_AIR_CONDITIONED info when airConditioned is false', () => {
+          modifiedPlace.modalities.thermalComfort = { heated: null, airConditioned: false };
+
+          const result = buildPlaceDetails(modifiedPlace, category, lang);
+          expect(
+            result.info.some((info) => info.type === PlaceDetailsInfoType.NOT_AIR_CONDITIONED)
+          ).toBe(true);
+          expect(
+            result.info.some((info) => info.type === PlaceDetailsInfoType.AIR_CONDITIONED)
+          ).toBe(false);
+        });
+
+        it('should not add any air conditioning info when airConditioned is null', () => {
+          modifiedPlace.modalities.thermalComfort = { heated: null, airConditioned: null };
+
+          const result = buildPlaceDetails(modifiedPlace, category, lang);
+          expect(
+            result.info.some(
+              (info) =>
+                info.type === PlaceDetailsInfoType.AIR_CONDITIONED ||
+                info.type === PlaceDetailsInfoType.NOT_AIR_CONDITIONED
+            )
+          ).toBe(false);
+        });
       });
     });
 

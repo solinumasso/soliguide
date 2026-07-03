@@ -83,7 +83,8 @@ export class ModalitiesFormComponent implements OnInit {
         if (
           attribute !== ModalitiesElement.ANIMAL &&
           attribute !== ModalitiesElement.PRM &&
-          attribute !== ModalitiesElement.PRICE
+          attribute !== ModalitiesElement.PRICE &&
+          attribute !== ModalitiesElement.THERMAL_COMFORT
         ) {
           this.formValue.modalities[attribute as ModalitiesElement] = true;
         }
@@ -102,6 +103,7 @@ export class ModalitiesFormComponent implements OnInit {
         attribute !== ModalitiesElement.ANIMAL &&
         attribute !== ModalitiesElement.PRM &&
         attribute !== ModalitiesElement.PRICE &&
+        attribute !== ModalitiesElement.THERMAL_COMFORT &&
         (!this.formValue.modalities ||
           (this.formValue.modalities[
             attribute as ModalitiesElement

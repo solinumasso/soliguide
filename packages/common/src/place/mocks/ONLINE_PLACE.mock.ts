@@ -67,6 +67,10 @@ export const ONLINE_PLACE: ApiPlace = {
       checked: false,
       precisions: null,
     },
+    thermalComfort: {
+      airConditioned: null,
+      heated: null,
+    },
   },
   name: "Antenne Marcel Paul - Secours Populaire Français",
   newhours: {

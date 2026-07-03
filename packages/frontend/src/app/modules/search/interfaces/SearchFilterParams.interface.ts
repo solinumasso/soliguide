@@ -10,6 +10,7 @@ export interface SearchFilterParams {
   accueil?: WelcomedPublics;
   administrative?: PublicsAdministrative;
   age?: number;
+  airConditioned?: boolean;
   animal?: boolean;
   appointment?: boolean;
   familialle?: PublicsFamily;

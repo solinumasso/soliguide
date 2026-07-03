@@ -108,14 +108,57 @@ This repository is a monorepo managed by [Lerna](https://lerna.js.org/) and [Nx]
    yarn build --scope @soliguide/common-angular
    ```
 
-8. Start the frontend and backend
+8. Start the services you need
+
+   The fastest way is to boot api + location-api + frontend in parallel with a single command (logs are prefixed per service, Ctrl+C stops everything):
 
    ```bash
-   yarn workspace @soliguide/api watch
-   yarn workspace @soliguide/frontend start
+   yarn dev        # api + location-api + frontend FR
+   yarn dev:es     # api + location-api + frontend ES
+   yarn dev:ad     # api + location-api + frontend AD
+   ```
+
+   Or start each service in its own terminal (only the ones you need):
+
+   ```bash
+   # Backends
+   yarn workspace @soliguide/api watch                 # → http://localhost:3001
+   yarn workspace @soliguide/location-api watch        # → http://localhost:3000
+
+   # Angular admin frontend (choose one locale at a time)
+   yarn workspace @soliguide/frontend start            # FR → http://localhost:4200
+   yarn workspace @soliguide/frontend start:es         # ES → http://localhost:4210
+   yarn workspace @soliguide/frontend start:ad         # AD → http://localhost:4220
+
+   # Angular embeddable widget
+   yarn workspace @soliguide/widget start              # → http://localhost:4201
+
+   # SvelteKit public web-app
+   yarn workspace @soliguide/web-app dev               # → http://localhost:5173
+
+   # Svelte design-system playground
+   yarn workspace @soliguide/design-system dev         # → http://localhost:5174
    ```
 
 You're all set, Soliguide is running!
+
+### Local Port Map
+
+Local ports are harmonised so every front-end can run at the same time. The API's `ENV_SCHEMA` defaults already expect these exact ports.
+
+| Service               | Port         | Command                                              |
+| --------------------- | ------------ | ---------------------------------------------------- |
+| API (Express)         | 3001         | `yarn workspace @soliguide/api watch`                |
+| Location API (NestJS) | 3000         | `yarn workspace @soliguide/location-api watch`       |
+| Frontend FR           | 4200         | `yarn workspace @soliguide/frontend start`           |
+| Widget                | 4201         | `yarn workspace @soliguide/widget start`             |
+| Frontend ES           | 4210         | `yarn workspace @soliguide/frontend start:es`        |
+| Frontend AD           | 4220         | `yarn workspace @soliguide/frontend start:ad`        |
+| Web-app (SvelteKit)   | 5173         | `yarn workspace @soliguide/web-app dev`              |
+| Design-system         | 5174         | `yarn workspace @soliguide/design-system dev`        |
+| MongoDB               | 27017        | `docker compose up -d`                               |
+| RabbitMQ (AMQP / UI)  | 5672 / 15672 | `docker compose up -d`                               |
+| MinIO (S3 / console)  | 9000 / 9090  | `docker compose up -d`                               |
 
 ## Tests
 

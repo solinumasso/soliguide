@@ -7,9 +7,9 @@
   "scripts": {
     "ng": "ng",
     "prebuild": "cp -r ../common/dist/esm/translations/locales ./src/assets && mkdir -p ./src/assets/files && cp -r ../common/dist/esm/search-suggestions/data/* ./src/assets/files/",
-    "start": "yarn prebuild && ng serve --configuration=development_fr -o",
-    "start:ad": "yarn prebuild && ng serve --configuration=development_ad -o",
-    "start:es": "yarn prebuild && ng serve --configuration=development_es -o",
+    "start": "yarn prebuild && ng serve --configuration=development_fr --port 4200 -o",
+    "start:ad": "yarn prebuild && ng serve --configuration=development_ad --port 4220 -o",
+    "start:es": "yarn prebuild && ng serve --configuration=development_es --port 4210 -o",
     "build": "yarn prebuild && ng build --configuration production",
     "watch": "yarn prebuild && ng build --watch --configuration=development_fr",
     "watch:ad": "yarn prebuild && ng build --watch --configuration=development_ad",

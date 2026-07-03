@@ -9,6 +9,7 @@ import Pets from 'svelte-google-materialdesign-icons/Pets.svelte';
 import ChatBubble from 'svelte-google-materialdesign-icons/Chat_bubble_outline.svelte';
 import Euro from 'svelte-google-materialdesign-icons/Euro.svelte';
 import Star from 'svelte-google-materialdesign-icons/Star.svelte';
+import AcUnit from 'svelte-google-materialdesign-icons/Ac_unit.svelte';
 
 export const getTitleAndIcon = ($i18n: i18n, type: PlaceDetailsInfoType): TitleAndIcon => {
   switch (type) {
@@ -39,6 +40,10 @@ export const getTitleAndIcon = ($i18n: i18n, type: PlaceDetailsInfoType): TitleA
       };
     case PlaceDetailsInfoType.ANIMALS:
       return { icon: Pets, title: $i18n.t('ACCESS_CONDITION_ACCEPTED_ANIMALS') };
+    case PlaceDetailsInfoType.AIR_CONDITIONED:
+      return { icon: AcUnit, title: $i18n.t('ACCESS_CONDITION_AIR_CONDITIONED') };
+    case PlaceDetailsInfoType.NOT_AIR_CONDITIONED:
+      return { icon: AcUnit, title: $i18n.t('ACCESS_CONDITION_NOT_AIR_CONDITIONED') };
     case PlaceDetailsInfoType.LANGUAGES_SPOKEN:
       return { icon: ChatBubble, title: $i18n.t('LANGUES') };
     default:
