@@ -97,7 +97,7 @@ declare global {
   }
 }
 
-interface PosthogProperties {
+export interface PosthogProperties {
   categorySelected?: CategorySearch;
   location?: string;
   completeLocation?: {
@@ -123,6 +123,7 @@ interface PosthogProperties {
   isDisabled?: boolean;
   place?: DataForLogs;
   action?: string;
+  geolocationPermissionState?: string;
 }
 
 export interface ZendeskState {

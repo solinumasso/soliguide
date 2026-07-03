@@ -23,7 +23,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { page } from '$app/stores';
   import { afterNavigate } from '$app/navigation';
   import { browser } from '$app/environment';
-  import { setContext } from 'svelte';
+  import { onMount, setContext } from 'svelte';
   import { derived, get } from 'svelte/store';
   import ZendeskIntegration from './ZendeskIntegration.svelte';
   import { posthogService } from '$lib/services/posthogService';
@@ -34,7 +34,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   } from '@soliguide/design-system';
   import '../assets/styles/main.scss';
   import { I18N_CTX_KEY, getI18nStore } from '$lib/client/i18n';
-  import { ROUTES_CTX_KEY, getRoutes, isLanguageSelected, getZDCookieConsent } from '$lib/client';
+  import {
+    ROUTES_CTX_KEY,
+    getRoutes,
+    isLanguageSelected,
+    getZDCookieConsent,
+    getGeolocationPermissionState
+  } from '$lib/client';
   import { cookieConsent, COOKIE_CTX_KEY } from '$lib/client/cookie';
   import { themeStore } from '$lib/theme';
   import ToastContainer from '$lib/components/ToastContainer.svelte';
@@ -69,6 +75,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   setContext(COOKIE_CTX_KEY, cookieConsent);
 
   if (browser) {
+    onMount(() => {
+      getGeolocationPermissionState()
+        .then((geolocationPermissionState) => {
+          posthogService.setPersonProperties({
+            geolocationPermissionState
+          });
+        })
+        .catch(console.error);
+    });
+
     afterNavigate(() => posthogService.capture('$pageview'));
   }
 </script>
