@@ -140,4 +140,5 @@ export const CATEGORIES_DESCRIPTION: Record<Categories, string> = {
   [Categories.LEGAL_PROTECTION]: "",
   [Categories.REGULARIZATION]: "",
   [Categories.COOLING_SPACE]: "",
+  [Categories.CLIMATE_REFUGE]: "",
 };

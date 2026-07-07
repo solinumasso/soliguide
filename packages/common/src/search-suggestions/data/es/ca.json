@@ -3606,5 +3606,32 @@
     "country": "es",
     "seoTitle": "Regularització de la vostra situació amb Soliguide a Espanya",
     "seoDescription": "Soliguide us ajuda a regularitzar la vostra situació. Trobareu oficines d'immigració, assessoria legal gratuïta i documentació oficial."
+  },
+  {
+    "label": "Refugis climàtics",
+    "categoryId": "climate_refuge",
+    "slug": "climate_refuge",
+    "synonyms": [
+      "refugi",
+      "acollida",
+      "centre",
+      "espai fresc",
+      "protecció",
+      "calor",
+      "seguretat",
+      "dormitori",
+      "aigua",
+      "ventilació",
+      "descans",
+      "climatització",
+      "emergència",
+      "suport",
+      "localització"
+    ],
+    "type": "CATEGORY",
+    "lang": "ca",
+    "country": "es",
+    "seoTitle": "Refugi climàtic a Espanya. Trobar llocs segurs amb Soliguide",
+    "seoDescription": "Soliguide us ajuda a trobar refugis climàtics, centres d'acollida i espais frescos. Protegiu-vos de la calor extrema a Espanya."
   }
 ]

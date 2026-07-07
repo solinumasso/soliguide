@@ -3265,5 +3265,32 @@
     "country": "ad",
     "seoTitle": "Encontre cirurgia vascular gratuita com Soliguide em Andorra",
     "seoDescription": "Soliguide conecta você a cuidados vasculares. Consultas médicas, tratamentos e acompanhamento perto de você em Andorra."
+  },
+  {
+    "label": "Refúgio climático",
+    "categoryId": "climate_refuge",
+    "slug": "climate_refuge",
+    "synonyms": [
+      "abrigo",
+      "refúgio",
+      "espaço fresco",
+      "centro de repouso",
+      "proteção térmica",
+      "zona segura",
+      "descanso",
+      "emergência climática",
+      "calor extremo",
+      "proteção social",
+      "local de acolhimento",
+      "suporte urgente",
+      "bem-estar",
+      "segurança",
+      "assistência"
+    ],
+    "type": "CATEGORY",
+    "lang": "pt",
+    "country": "ad",
+    "seoTitle": "Encontre refúgio climático em Andorra com Soliguide",
+    "seoDescription": "Soliguide oferece locais de abrigo durante ondas de calor. Centros de repouso, espaços frescos e ajuda emergencial em Andorra."
   }
 ]
