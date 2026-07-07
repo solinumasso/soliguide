@@ -1237,3 +1237,11 @@ categories:
     history:
       - slug: cooling_space
         from: "2026-07-07"
+
+  CLIMATE_REFUGE:
+    slug: climate_refuge
+    countries: [ES, AD]
+    createdAt: "2026-07-07"
+    history:
+      - slug: climate_refuge
+        from: "2026-07-07"

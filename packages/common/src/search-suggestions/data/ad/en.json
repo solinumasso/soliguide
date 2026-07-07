@@ -3469,5 +3469,32 @@
     "country": "ad",
     "seoTitle": "Find vascular surgery care with Soliguide in Andorra",
     "seoDescription": "Soliguide helps you find vascular surgery services in Andorra. Access free consultations, treatment centers, and medical support near you."
+  },
+  {
+    "label": "Climate refuge",
+    "categoryId": "climate_refuge",
+    "slug": "climate_refuge",
+    "synonyms": [
+      "emergency shelter",
+      "warming center",
+      "cooling station",
+      "safe accommodation",
+      "temporary housing",
+      "weather protection",
+      "refuge space",
+      "overnight stay",
+      "heat relief",
+      "cold protection",
+      "emergency housing",
+      "community shelter",
+      "crisis accommodation",
+      "disaster relief",
+      "vulnerable support"
+    ],
+    "type": "CATEGORY",
+    "lang": "en",
+    "country": "ad",
+    "seoTitle": "Find climate refuge and emergency shelter with Soliguide in Andorra",
+    "seoDescription": "Soliguide helps you find safe places to stay during extreme weather. Access emergency shelters, warming centers, and cooling stations in Andorra."
   }
 ]

@@ -3606,5 +3606,32 @@
     "country": "es",
     "seoTitle": "Régularisation de situation en Espagne, trouvez de l'aide avec Soliguide",
     "seoDescription": "Soliguide vous aide à régulariser votre situation. Accédez à des services de domiciliation, consultations juridiques gratuites et accompagnement administratif en Espagne."
+  },
+  {
+    "label": "Refuge climatique",
+    "categoryId": "climate_refuge",
+    "slug": "climate_refuge",
+    "synonyms": [
+      "refuge",
+      "climatisation",
+      "refroidissement",
+      "hébergement",
+      "urgence",
+      "chaleur",
+      "protection",
+      "abri",
+      "centre",
+      "espace",
+      "accueil",
+      "logement",
+      "sécurité",
+      "urgence climatique",
+      "canicule"
+    ],
+    "type": "CATEGORY",
+    "lang": "fr",
+    "country": "es",
+    "seoTitle": "Trouver un refuge climatique en Espagne avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver des refuges climatiques en Espagne. Centres de refroidissement, hébergements d'urgence, espaces climatisés gratuits."
   }
 ]

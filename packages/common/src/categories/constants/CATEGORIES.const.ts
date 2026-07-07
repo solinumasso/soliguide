@@ -237,6 +237,7 @@ export const CATEGORIES_GRAPH_SOLIGUIDE_FR: CategoriesGraph = {
  * Theme-specific graph overlay for Soliguia Spain.
  */
 export const CATEGORIES_GRAPH_SOLIGUIA_ES: CategoriesGraph = {
+  [Categories.WELCOME]: [{ id: Categories.CLIMATE_REFUGE, rank: 600 }],
   [Categories.TRAINING_AND_JOBS]: [
     { id: Categories.SPANISH_COURSE, rank: 130 },
     { id: Categories.CATALAN_COURSE, rank: 170 },
@@ -253,6 +254,7 @@ export const CATEGORIES_GRAPH_SOLIGUIA_ES: CategoriesGraph = {
  * Theme-specific graph overlay for Soliguia Andorra.
  */
 export const CATEGORIES_GRAPH_SOLIGUIA_AD: CategoriesGraph = {
+  [Categories.WELCOME]: [{ id: Categories.CLIMATE_REFUGE, rank: 600 }],
   [Categories.TRAINING_AND_JOBS]: [
     { id: Categories.SPANISH_COURSE, rank: 130 },
     { id: Categories.CATALAN_COURSE, rank: 170 },

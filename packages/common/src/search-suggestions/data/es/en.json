@@ -3606,5 +3606,32 @@
     "country": "es",
     "seoTitle": "Get help with regularization in Spain with Soliguide",
     "seoDescription": "Soliguide connects you with hundreds of places for legal help, document support, and immigration assistance across Spain."
+  },
+  {
+    "label": "Climate refuge",
+    "categoryId": "climate_refuge",
+    "slug": "climate_refuge",
+    "synonyms": [
+      "cooling center",
+      "emergency shelter",
+      "heat refuge",
+      "warm space",
+      "safe place",
+      "extreme weather protection",
+      "temporary housing",
+      "rest area",
+      "community center",
+      "health facility",
+      "overnight shelter",
+      "vulnerable persons support",
+      "climate emergency aid",
+      "disaster response",
+      "neighborhood assistance"
+    ],
+    "type": "CATEGORY",
+    "lang": "en",
+    "country": "es",
+    "seoTitle": "Find climate refuge spaces with Soliguide in Spain",
+    "seoDescription": "Soliguide helps you find safe spaces during extreme heat or cold. Discover cooling centers, emergency shelters, and warm places near you in Spain."
   }
 ]

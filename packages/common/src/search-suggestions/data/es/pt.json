@@ -3292,5 +3292,32 @@
     "country": "es",
     "seoTitle": "Regularização de documentos com Soliguide encontre ajuda perto de você",
     "seoDescription": "Soliguide ajuda você a regularizar documentos. Encontre centros de atendimento, orientação legal e apoio para residência em Espanha."
+  },
+  {
+    "label": "Refúgio climático",
+    "categoryId": "climate_refuge",
+    "slug": "climate_refuge",
+    "synonyms": [
+      "abrigo",
+      "proteção",
+      "refúgio",
+      "segurança",
+      "aquecimento",
+      "resfriamento",
+      "emergência",
+      "desastre",
+      "moradia",
+      "alojamento",
+      "acomodação",
+      "resguardo",
+      "amparo",
+      "assistência",
+      "socorro"
+    ],
+    "type": "CATEGORY",
+    "lang": "pt",
+    "country": "es",
+    "seoTitle": "Encontre abrigo climático e proteção com Soliguide na Espanha",
+    "seoDescription": "Soliguide oferece centenas de locais de abrigo climático. Encontre proteção contra calor, frio e desastres naturais perto de você."
   }
 ]
