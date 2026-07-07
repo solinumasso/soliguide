@@ -76,6 +76,13 @@ export class SearchPlaceResultComponent implements OnInit, OnDestroy {
     });
   }
 
+  public get hasAirConditioningRibbon(): boolean {
+    return (
+      typeof this.place?.modalities?.thermalComfort?.airConditioned ===
+      "boolean"
+    );
+  }
+
   public togglePhoneNumber(phoneIndex: number): void {
     this.isPhoneNumberVisible[phoneIndex] =
       !this.isPhoneNumberVisible[phoneIndex];

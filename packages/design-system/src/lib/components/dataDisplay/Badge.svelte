@@ -31,7 +31,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     success: 'badge-success',
     error: 'badge-error',
     warning: 'badge-warning',
-    reversed: 'badge-reversed'
+    reversed: 'badge-reversed',
+    info: 'badge-info'
   };
 
   $: badgeClass = `badge ${typeMapping[type]}`;
@@ -83,6 +84,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     &.badge-reversed {
       background: var(--color-textInverse);
       color: var(--color-textDark);
+    }
+
+    &.badge-info {
+      background: #2f8fd6;
+      color: var(--color-textInverse);
     }
   }
 

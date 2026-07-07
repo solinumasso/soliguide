@@ -28,6 +28,10 @@
   display: block;
 }
 
+.search-card-header--with-thermal-comfort-ribbon {
+  padding-right: 8rem !important;
+}
+
 .item_number {
   display: inline-block;
   vertical-align: top;

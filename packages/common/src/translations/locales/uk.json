@@ -11,6 +11,8 @@
   "ACCESS_CONDITIONS_TYPES": "Типи модальностей доступу",
   "ACCESS_CONDITION_ACCEPTED_ANIMALS": "прийнятих тварин",
   "ACCESS_CONDITION_AIR_CONDITIONED": "Місце з кондиціонером",
+  "AIR_CONDITIONED_RIBBON": "З кондиціонером",
+  "NOT_AIR_CONDITIONED_RIBBON": "Без кондиціонера",
   "ACCESS_CONDITION_FINANCIAL_PARTICIPATION_REQUIRED": "Потрібна фінансова участь",
   "ACCESS_CONDITION_NOT_AIR_CONDITIONED": "Місце без кондиціонера",
   "ACCESS_CONDITION_ON_APPOINTMENT": "За призначенням",

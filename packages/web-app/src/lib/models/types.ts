@@ -1,14 +1,15 @@
-import type {
-  ApiPlace,
-  BasePlaceTempInfo,
-  Categories,
-  CommonPlacePosition,
-  CountryCodes,
-  PlaceClosedHolidays,
-  PlaceStatus,
-  PlaceOpeningStatus,
-  PlaceType,
-  TempInfoStatus
+import {
+  type ApiPlace,
+  type BasePlaceTempInfo,
+  type Categories,
+  type CommonPlacePosition,
+  type CountryCodes,
+  type PlaceClosedHolidays,
+  type PlaceStatus,
+  type PlaceOpeningStatus,
+  type PlaceType,
+  TempInfoStatus,
+  type ThermalComfortData
 } from '@soliguide/common';
 import type { types as DSTypes } from '@soliguide/design-system';
 
@@ -81,6 +82,7 @@ export interface LightPlaceCard {
   sources: Source[];
   status: PlaceOpeningStatus;
   placeStatus: PlaceStatus;
+  thermalComfort: ThermalComfortData;
   todayInfo: TodayInfo;
   tempInfo: SearchResultTempInfo;
 }

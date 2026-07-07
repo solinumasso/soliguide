@@ -32,6 +32,18 @@ export class ThermalComfortStatusComponent {
     return this.variant === "ribbon";
   }
 
+  public get isAirConditionedRibbon(): boolean {
+    return (
+      this.variant === "ribbon" && this.thermalComfort?.airConditioned === true
+    );
+  }
+
+  public get isNotAirConditionedRibbon(): boolean {
+    return (
+      this.variant === "ribbon" && this.thermalComfort?.airConditioned === false
+    );
+  }
+
   public get isSummer(): boolean {
     return (
       this.thermalComfort?.airConditioned === true && this.isSummerSeason()

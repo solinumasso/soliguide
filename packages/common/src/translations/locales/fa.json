@@ -11,6 +11,8 @@
   "ACCESS_CONDITIONS_TYPES": "انواع روش های دسترسی",
   "ACCESS_CONDITION_ACCEPTED_ANIMALS": "حیوانات پذیرفته شده",
   "ACCESS_CONDITION_AIR_CONDITIONED": "مکان دارای تهویه مطبوع",
+  "AIR_CONDITIONED_RIBBON": "دارای تهویه مطبوع",
+  "NOT_AIR_CONDITIONED_RIBBON": "بدون تهویه مطبوع",
   "ACCESS_CONDITION_FINANCIAL_PARTICIPATION_REQUIRED": "مشارکت مالی لازم است",
   "ACCESS_CONDITION_NOT_AIR_CONDITIONED": "مکان بدون تهویه مطبوع",
   "ACCESS_CONDITION_ON_APPOINTMENT": "در قرار ملاقات",

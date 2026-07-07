@@ -11,6 +11,8 @@
   "ACCESS_CONDITIONS_TYPES": "წვდომის მოდალობის სახეები",
   "ACCESS_CONDITION_ACCEPTED_ANIMALS": "პაროლები უნდა იყოს იგივე",
   "ACCESS_CONDITION_AIR_CONDITIONED": "კონდიცირებული ადგილი",
+  "AIR_CONDITIONED_RIBBON": "კონდიცირებული",
+  "NOT_AIR_CONDITIONED_RIBBON": "არაკონდიცირებული",
   "ACCESS_CONDITION_FINANCIAL_PARTICIPATION_REQUIRED": "აუცილებელია ფინანსური მონაწილეობა",
   "ACCESS_CONDITION_NOT_AIR_CONDITIONED": "არაკონდიცირებული ადგილი",
   "ACCESS_CONDITION_ON_APPOINTMENT": "დანიშვნაზე",

@@ -11,6 +11,8 @@
   "ACCESS_CONDITIONS_TYPES": "Типы модальностей доступа",
   "ACCESS_CONDITION_ACCEPTED_ANIMALS": "принятые животные",
   "ACCESS_CONDITION_AIR_CONDITIONED": "Место с кондиционером",
+  "AIR_CONDITIONED_RIBBON": "С кондиционером",
+  "NOT_AIR_CONDITIONED_RIBBON": "Без кондиционера",
   "ACCESS_CONDITION_FINANCIAL_PARTICIPATION_REQUIRED": "Требуется финансовое участие",
   "ACCESS_CONDITION_NOT_AIR_CONDITIONED": "Место без кондиционера",
   "ACCESS_CONDITION_ON_APPOINTMENT": "Только по предварительной записи",

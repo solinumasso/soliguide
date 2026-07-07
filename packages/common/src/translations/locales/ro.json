@@ -11,6 +11,8 @@
   "ACCESS_CONDITIONS_TYPES": "Tipuri de modalități de acces",
   "ACCESS_CONDITION_ACCEPTED_ANIMALS": "Animalele sunt binevenite",
   "ACCESS_CONDITION_AIR_CONDITIONED": "Loc cu aer condiționat",
+  "AIR_CONDITIONED_RIBBON": "Cu aer condiționat",
+  "NOT_AIR_CONDITIONED_RIBBON": "Fără aer condiționat",
   "ACCESS_CONDITION_FINANCIAL_PARTICIPATION_REQUIRED": "Se va cere o contribuție financiară",
   "ACCESS_CONDITION_NOT_AIR_CONDITIONED": "Loc fără aer condiționat",
   "ACCESS_CONDITION_ON_APPOINTMENT": "Pe bază de programare",

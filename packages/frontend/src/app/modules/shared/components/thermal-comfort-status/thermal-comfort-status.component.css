@@ -197,6 +197,10 @@
   background-color: #2f8fd6;
 }
 
+.thermal-comfort-status--ribbon.thermal-comfort-status--not-air-conditioned {
+  background-color: #d64545;
+}
+
 .thermal-comfort-status--ribbon.thermal-comfort-status--winter {
   background-color: #e2673f;
 }

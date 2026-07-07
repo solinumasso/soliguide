@@ -42,6 +42,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         place.status !== PlaceStatus.PERMANENTLY_CLOSED &&
         place.status !== PlaceStatus.DRAFT
       "
+      [class.search-card-header--with-thermal-comfort-ribbon]="
+        hasAirConditioningRibbon
+      "
       class="card-header p-4 bg-gradient search-card-header"
     >
       <div class="d-flex">

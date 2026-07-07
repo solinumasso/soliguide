@@ -11,6 +11,8 @@
   "ACCESS_CONDITIONS_TYPES": "Tipus de condicions d'accés",
   "ACCESS_CONDITION_ACCEPTED_ANIMALS": "S'accepten animals",
   "ACCESS_CONDITION_AIR_CONDITIONED": "Lloc climatitzat",
+  "AIR_CONDITIONED_RIBBON": "Climatitzat",
+  "NOT_AIR_CONDITIONED_RIBBON": "No climatitzat",
   "ACCESS_CONDITION_FINANCIAL_PARTICIPATION_REQUIRED": "Es requereix participació econòmica",
   "ACCESS_CONDITION_NOT_AIR_CONDITIONED": "Lloc no climatitzat",
   "ACCESS_CONDITION_ON_APPOINTMENT": "Amb cita prèvia",

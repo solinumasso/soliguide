@@ -11,6 +11,8 @@
   "ACCESS_CONDITIONS_TYPES": "Types of access modalities",
   "ACCESS_CONDITION_ACCEPTED_ANIMALS": "Animals accepted",
   "ACCESS_CONDITION_AIR_CONDITIONED": "Air-conditioned place",
+  "AIR_CONDITIONED_RIBBON": "Air-conditioned",
+  "NOT_AIR_CONDITIONED_RIBBON": "Not air-conditioned",
   "ACCESS_CONDITION_FINANCIAL_PARTICIPATION_REQUIRED": "Financial participation required",
   "ACCESS_CONDITION_NOT_AIR_CONDITIONED": "Non-air-conditioned place",
   "ACCESS_CONDITION_ON_APPOINTMENT": "By appointment only",

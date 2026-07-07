@@ -15,6 +15,7 @@
   "AIR_CONDITIONED_TITLE": "Ce lieu est climatisé",
   "AIR_CONDITIONED_DESCRIPTION": "Vous pouvez venir vous y rafraîchir pendant les épisodes de forte chaleur.",
   "AIR_CONDITIONED_RIBBON": "Climatisé",
+  "NOT_AIR_CONDITIONED_RIBBON": "Non climatisé",
   "HEATED_TITLE": "Ce lieu est chauffé",
   "HEATED_DESCRIPTION": "Vous pouvez venir vous y réchauffer pendant la période hivernale.",
   "HEATED_RIBBON": "Chauffé",

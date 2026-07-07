@@ -11,6 +11,8 @@
   "ACCESS_CONDITIONS_TYPES": "Tipos de métodos de acesso",
   "ACCESS_CONDITION_ACCEPTED_ANIMALS": "Animais de estimação permitidos",
   "ACCESS_CONDITION_AIR_CONDITIONED": "Local com ar condicionado",
+  "AIR_CONDITIONED_RIBBON": "Com ar condicionado",
+  "NOT_AIR_CONDITIONED_RIBBON": "Sem ar condicionado",
   "ACCESS_CONDITION_FINANCIAL_PARTICIPATION_REQUIRED": "Contribuição financeira necessária",
   "ACCESS_CONDITION_NOT_AIR_CONDITIONED": "Local sem ar condicionado",
   "ACCESS_CONDITION_ON_APPOINTMENT": "Mediante agendamento",
