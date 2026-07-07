@@ -1,1 +1,1 @@
-export type BadgeType = 'focus' | 'success' | 'error' | 'warning' | 'reversed';
+export type BadgeType = 'focus' | 'success' | 'error' | 'warning' | 'reversed' | 'info';

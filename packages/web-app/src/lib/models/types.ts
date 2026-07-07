@@ -8,7 +8,8 @@ import type {
   PlaceStatus,
   PlaceOpeningStatus,
   PlaceType,
-  TempInfoStatus
+  TempInfoStatus,
+  ThermalComfortData
 } from '@soliguide/common';
 import type { types as DSTypes } from '@soliguide/design-system';
 
@@ -81,6 +82,7 @@ export interface LightPlaceCard {
   sources: Source[];
   status: PlaceOpeningStatus;
   placeStatus: PlaceStatus;
+  thermalComfort: ThermalComfortData;
   todayInfo: TodayInfo;
   tempInfo: SearchResultTempInfo;
 }
