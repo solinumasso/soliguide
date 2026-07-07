@@ -1,0 +1,126 @@
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2024 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<div class="container my-4" *ngIf="place">
+  <div class="row">
+    <div class="col-9 my-4">
+      <h1 class="form-title">
+        {{ "ACCESS_CONDITION_AIR_CONDITIONED" | translate }}
+      </h1>
+      <p class="text-muted mb-0">{{ place.name }}</p>
+    </div>
+    <div class="col-3 text-end my-3">
+      <a
+        class="btn btn-outline-primary"
+        [routerLink]="[routePrefix, 'fiche', place.seo_url]"
+        >{{ "SEE_THE_PLACE" | translate }}
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-8 col-lg-6">
+      <form
+        autocomplete="off"
+        (ngSubmit)="updateAirConditioning()"
+        class="form-group"
+      >
+        <div class="thermal-comfort-card thermal-comfort-card--summer">
+          <svg
+            class="thermal-comfort-card__background-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+          <div class="thermal-comfort-card__header">
+            <span class="thermal-comfort-card__title">
+              {{ "ACCESS_CONDITION_AIR_CONDITIONED" | translate }}
+            </span>
+          </div>
+          <div class="thermal-comfort-card__options">
+            <button
+              type="button"
+              class="thermal-comfort-card__option"
+              [class.thermal-comfort-card__option--selected]="
+                place.modalities.thermalComfort.airConditioned === true
+              "
+              (click)="setAirConditioned(true)"
+            >
+              {{ "YES" | translate }}
+            </button>
+            <button
+              type="button"
+              class="thermal-comfort-card__option"
+              [class.thermal-comfort-card__option--selected]="
+                place.modalities.thermalComfort.airConditioned === false
+              "
+              (click)="setAirConditioned(false)"
+            >
+              {{ "NO" | translate }}
+            </button>
+            <button
+              type="button"
+              class="thermal-comfort-card__option"
+              [class.thermal-comfort-card__option--selected]="
+                place.modalities.thermalComfort.airConditioned === null
+              "
+              (click)="setAirConditioned(null)"
+            >
+              {{ "NOT_INFORMED" | translate }}
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group mt-4 p-0">
+          <button
+            type="submit"
+            [disabled]="loading"
+            class="btn btn-lg btn-primary"
+          >
+            <span *ngIf="!loading">{{ "SAVE" | translate }}</span>
+            <span *ngIf="loading"
+              ><fa-icon
+                aria-hidden="true"
+                [icon]="['fas', 'circle-notch']"
+                animation="spin"
+              >
+              </fa-icon>
+              {{ "PLEASE_WAIT" | translate }}</span
+            >
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

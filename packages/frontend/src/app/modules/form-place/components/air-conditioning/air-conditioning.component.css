@@ -1,0 +1,93 @@
+/*
+ * Soliguide: Useful information for those who need it
+ *
+ * SPDX-FileCopyrightText: © 2024 Solinum
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+/* Card shared with `<app-modalities-form>` / `<app-thermal-comfort-status>`
+   (keep colors in sync with thermal-comfort-status.component.css). */
+
+.thermal-comfort-card {
+  position: relative;
+  overflow: hidden;
+  padding: 1rem 1.25rem;
+  border-radius: 14px;
+  background-color: #eaf3fb;
+  border: 1px solid rgba(31, 111, 176, 0.35);
+}
+
+.thermal-comfort-card__background-icon {
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 110px;
+  height: 110px;
+  opacity: 0.16;
+  pointer-events: none;
+  color: #1c5c95;
+}
+
+.thermal-comfort-card > *:not(.thermal-comfort-card__background-icon) {
+  position: relative;
+  z-index: 1;
+}
+
+.thermal-comfort-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+  color: #1c5c95;
+}
+
+.thermal-comfort-card__title {
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+}
+
+.thermal-comfort-card__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.thermal-comfort-card__option {
+  min-width: 120px;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  color: #374151;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.thermal-comfort-card__option:hover {
+  border-color: #6b7280;
+}
+
+.thermal-comfort-card__option--selected,
+.thermal-comfort-card__option--selected:hover {
+  color: #ffffff;
+  border-color: transparent;
+  background-color: #2f8fd6;
+}

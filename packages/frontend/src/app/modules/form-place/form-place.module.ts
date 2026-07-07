@@ -11,6 +11,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { TranslateModule } from "@ngx-translate/core";
 
+import { AirConditioningComponent } from "./components/air-conditioning/air-conditioning.component";
 import { CategorySelectComponent } from "./components/services/single-service/choose-category/category-select/category-select.component";
 import { ReturnToPlaceComponent } from "./components/_shared/return-to-place/return-to-place.component";
 import { FormStartAndEndDateFicheComponent } from "./components/_shared/start-and-date/start-and-end-date.component";
@@ -87,6 +88,7 @@ import { LocationAutocompleteComponent } from "../shared/components/location-aut
 
 @NgModule({
   declarations: [
+    AirConditioningComponent,
     CategorySelectComponent,
     AddContactModalComponent,
     EditContactsFormComponent,

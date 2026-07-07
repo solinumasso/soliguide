@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
+import { AirConditioningComponent } from "./components/air-conditioning/air-conditioning.component";
 import { FormHorairesComponent } from "./components/horaires/form-horaires.component";
 
 import { InfosComponent } from "./components/infos/infos.component";
@@ -63,6 +64,12 @@ export const formPlaceRoutes: Routes = [
     path: "condition/:lieu_id",
     canActivate: [CanEditGuard],
     component: ModalitiesComponent,
+    canDeactivate: [PendingChangesGuard],
+  },
+  {
+    path: "climatisation/:lieu_id",
+    canActivate: [CanEditGuard],
+    component: AirConditioningComponent,
     canDeactivate: [PendingChangesGuard],
   },
   {
