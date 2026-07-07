@@ -36,7 +36,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     neutral: 'reversed',
     success: 'success',
     warning: 'warning',
-    error: 'error'
+    error: 'error',
+    info: 'info'
   };
 
   $: tagClass = `tag ${sizeMapping[size]} ${variant} ${size}`;
@@ -78,6 +79,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     &.error {
       background-color: var(--color-surfaceError1);
       color: var(--color-textDark);
+    }
+    &.info {
+      background-color: #2f8fd6;
+      color: var(--color-textInverse);
     }
 
     /* Sizes */

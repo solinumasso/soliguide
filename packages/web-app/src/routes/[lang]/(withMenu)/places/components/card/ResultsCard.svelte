@@ -21,8 +21,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { getContext } from 'svelte';
+  import { get } from 'svelte/store';
   import { getMapLink, ROUTES_CTX_KEY } from '$lib/client';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
+  import { themeStore } from '$lib/theme';
   import {
     Button,
     Card,
@@ -31,11 +33,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     CardFooter,
     Text,
     ButtonLink,
+    Tag,
     InfoIcon,
     IconFavoriteOff,
     IconFavoriteOn,
     ToggleButton
   } from '@soliguide/design-system';
+  import AcUnit from 'svelte-google-materialdesign-icons/Ac_unit.svelte';
   import NearMe from 'svelte-google-materialdesign-icons/Near_me.svelte';
   import PinDrop from 'svelte-google-materialdesign-icons/Pin_drop.svelte';
   import { TodayInfo, PlaceStatus } from '$lib/components';
@@ -45,6 +49,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import {
     GeoTypes,
     kmOrMeters,
+    shouldDisplayThermalComfort,
     TempInfoStatus,
     PlaceStatus as PlaceStatusEnum
   } from '@soliguide/common';
@@ -52,6 +57,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { favorites, toggleFavorite } from '$lib/client/favorites';
   import { notifyFavoriteChange } from '$lib/toast/toast.store';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
+  import type { ThemeDefinition } from '$lib/theme/types';
   import type { SearchResultPlaceCard } from '$lib/models/types';
   import { favoriteMatches } from '$lib/models/favorite';
   import type { PosthogCaptureFunction } from '$lib/services/types';
@@ -60,6 +66,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
+  const theme: ThemeDefinition = get(themeStore.getTheme());
 
   export let place: SearchResultPlaceCard;
   export let id: string;
@@ -87,6 +94,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   $: isFavorite = $favorites.some((favorite) =>
     favoriteMatches(favorite, place.id, place.crossingPointIndex)
   );
+
+  $: shouldDisplayThermalComfortTag = shouldDisplayThermalComfort(theme.country);
 </script>
 
 <Card>
@@ -219,6 +228,21 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           /></ButtonLink
         >
       </div>
+      {#if shouldDisplayThermalComfortTag && place.thermalComfort?.airConditioned === true}
+        <div class="thermal-comfort-tag">
+          <Tag variant="info">
+            <AcUnit slot="icon" aria-hidden="true" />
+            {$i18n.t('ACCESS_CONDITION_AIR_CONDITIONED')}
+          </Tag>
+        </div>
+      {:else if shouldDisplayThermalComfortTag && place.thermalComfort?.airConditioned === false}
+        <div class="thermal-comfort-tag">
+          <Tag variant="error">
+            <AcUnit slot="icon" aria-hidden="true" />
+            {$i18n.t('ACCESS_CONDITION_NOT_AIR_CONDITIONED')}
+          </Tag>
+        </div>
+      {/if}
       <ResultsCardServices services={place.services} />
     </div>
   </CardBody>
@@ -334,6 +358,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   }
   .card-body-adress-distance-icon {
     color: var(--color-interactionHighlightPrimary);
+  }
+
+  .thermal-comfort-tag {
+    display: flex;
   }
 
   .card-footer {

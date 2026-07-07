@@ -76,6 +76,7 @@ const buildLightPlaceCard = (
     sources: buildSources(place.sources),
     status,
     placeStatus: place.status,
+    thermalComfort: place.modalities.thermalComfort,
     todayInfo: computeTodayInfo(place, status),
     tempInfo: computeTempInfo(place.tempInfos)
   };
