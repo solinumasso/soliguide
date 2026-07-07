@@ -39,11 +39,48 @@ import {
   isCampaignActive,
   setNoChangeForPlace,
   updateCampaignSection,
+  updateAirConditionedForPlace,
   updateOrganizationCampaign,
 } from "../controllers";
 import { updatePlaceByPlaceId } from "../../place/services/admin-place.service";
 
 const router = express.Router();
+
+const getMagicLinkPlaceFromUrl = async (
+  req: ExpressRequest,
+  res: ExpressResponse,
+  next: NextFunction
+) => {
+  const { lieu_id } = req.params;
+  const params = /^\d+$/.test(lieu_id)
+    ? { lieu_id: parseInt(lieu_id, 10) }
+    : { seo_url: lieu_id };
+  const lieu = await getPlaceByParams(params);
+  if (!lieu) {
+    return res.redirect(
+      302,
+      `${FRONT_URLS_MAPPINGS[Themes.SOLIGUIDE_FR]}?error=PLACE_NOT_FOUND`
+    );
+  }
+  req.lieu = lieu;
+  return next();
+};
+
+const canEditMagicLinkPlace = async (
+  req: ExpressRequest,
+  res: ExpressResponse,
+  next: NextFunction
+) => {
+  const hasRights =
+    req.user.isLogged() && (await canEditPlaceRights(req.user, req.lieu));
+  if (!hasRights) {
+    return res.redirect(
+      302,
+      `${FRONT_URLS_MAPPINGS[Themes.SOLIGUIDE_FR]}?error=NOT_AUTHORIZED`
+    );
+  }
+  return next();
+};
 
 // No-changes on the place
 router.get(
@@ -181,32 +218,8 @@ router.get(
   getCurrentUserFromQueryToken,
   setUserForLogs,
   handleAdminRight,
-  async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
-    const { lieu_id } = req.params;
-    const params = /^\d+$/.test(lieu_id)
-      ? { lieu_id: parseInt(lieu_id, 10) }
-      : { seo_url: lieu_id };
-    const lieu = await getPlaceByParams(params);
-    if (!lieu) {
-      return res.redirect(
-        302,
-        `${FRONT_URLS_MAPPINGS[Themes.SOLIGUIDE_FR]}?error=PLACE_NOT_FOUND`
-      );
-    }
-    req.lieu = lieu;
-    return next();
-  },
-  async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
-    const hasRights =
-      req.user.isLogged() && (await canEditPlaceRights(req.user, req.lieu));
-    if (!hasRights) {
-      return res.redirect(
-        302,
-        `${FRONT_URLS_MAPPINGS[Themes.SOLIGUIDE_FR]}?error=NOT_AUTHORIZED`
-      );
-    }
-    return next();
-  },
+  getMagicLinkPlaceFromUrl,
+  canEditMagicLinkPlace,
   async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
     let place: ModelWithId<ApiPlace>;
     let placeChanges!: PlaceChanges;
@@ -266,6 +279,63 @@ router.get(
         `${FRONT_URLS_MAPPINGS[Themes.SOLIGUIDE_FR]}/campaign/fiche/${
           req.lieu.lieu_id
         }?nochange=true&error=MAGIC_LINK_NO_CHANGE_IMPOSSIBLE`
+      );
+    }
+  },
+  sendPlaceChangesToMq
+);
+
+// Magic link "air conditioned" for Brevo campaign emails
+// GET /campaign/magic-link/air-conditioned/:lieu_id?token=<jwt>&airConditioned=true|false|null
+router.get(
+  "/magic-link/air-conditioned/:lieu_id",
+  getCurrentUserFromQueryToken,
+  setUserForLogs,
+  handleAdminRight,
+  getMagicLinkPlaceFromUrl,
+  canEditMagicLinkPlace,
+  async (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
+    const { airConditioned } = req.query;
+
+    if (
+      typeof airConditioned !== "string" ||
+      !["true", "false", "null"].includes(airConditioned)
+    ) {
+      return res.redirect(
+        302,
+        `${FRONT_URLS_MAPPINGS[Themes.SOLIGUIDE_FR]}/campaign/fiche/${
+          req.lieu.lieu_id
+        }?error=INVALID_AIR_CONDITIONED_ANSWER`
+      );
+    }
+
+    const airConditionedValue =
+      airConditioned === "null" ? null : airConditioned === "true";
+
+    try {
+      const { placeChanges, updatedPlace } = await updateAirConditionedForPlace(
+        req.lieu,
+        airConditionedValue,
+        req.userForLogs
+      );
+
+      req.updatedPlace = updatedPlace;
+      req.placeChanges = placeChanges;
+
+      res.redirect(
+        302,
+        `${FRONT_URLS_MAPPINGS[Themes.SOLIGUIDE_FR]}/campaign/fiche/${
+          req.lieu.lieu_id
+        }?airConditioned=${airConditioned}`
+      );
+      return next();
+    } catch (e) {
+      req.log.error(e, "MAGIC_LINK_AIR_CONDITIONED_IMPOSSIBLE");
+      return res.redirect(
+        302,
+        `${FRONT_URLS_MAPPINGS[Themes.SOLIGUIDE_FR]}/campaign/fiche/${
+          req.lieu.lieu_id
+        }?airConditioned=${airConditioned}&error=MAGIC_LINK_AIR_CONDITIONED_IMPOSSIBLE`
       );
     }
   },
