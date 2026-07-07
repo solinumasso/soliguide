@@ -3504,7 +3504,7 @@
     "seoDescription": "Soliguide допомагає знайти медичні послуги: безплатні огляди, консультації лікарів, вакцинацію у Франції"
   },
   {
-    "label": "optical_care",
+    "label": "Оптичний догляд",
     "categoryId": "optical_care",
     "slug": "optical_care",
     "synonyms": [
@@ -3558,7 +3558,7 @@
     "seoDescription": "Soliguide допомагає вам знайти послуги для слуху. Безплатні перевірки слуху, слухові апарати, консультації лікарів у вашому місті."
   },
   {
-    "label": "chronic_diseases",
+    "label": "Хронічні захворювання",
     "categoryId": "chronic_diseases",
     "slug": "chronic_diseases",
     "synonyms": [
@@ -3612,7 +3612,7 @@
     "seoDescription": "Soliguide допомагає знайти медичне житло, тимчасовий притулок або лікувальні послуги. Безплатна допомога для всіх."
   },
   {
-    "label": "psychiatry",
+    "label": "Психіатр",
     "categoryId": "psychiatry",
     "slug": "psychiatry",
     "synonyms": [
@@ -3639,7 +3639,7 @@
     "seoDescription": "Soliguide допомагає знайти психіатра, консультацію психолога або кризовий центр у Франції. Безкоштовна допомога для всіх."
   },
   {
-    "label": "support_groups",
+    "label": "Групи підтримки та обговорення",
     "categoryId": "support_groups",
     "slug": "support_groups",
     "synonyms": [
@@ -3666,7 +3666,7 @@
     "seoDescription": "Soliguide пропонує групи підтримки для спілкування. Знайдіть місця зустрічей, консультацій та взаємної допомоги поблизу."
   },
   {
-    "label": "mental_health_education",
+    "label": "Інформація та обізнаність",
     "categoryId": "mental_health_education",
     "slug": "mental_health_education",
     "synonyms": [
@@ -3693,7 +3693,7 @@
     "seoDescription": "Soliguide допомагає вам знайти місця для психологічної підтримки, консультацій та навчання про психічне здоров'я у Франції."
   },
   {
-    "label": "therapeutic_activities",
+    "label": "Терапевтична діяльність",
     "categoryId": "therapeutic_activities",
     "slug": "therapeutic_activities",
     "synonyms": [
@@ -3855,7 +3855,7 @@
     "seoDescription": "Soliguide допомагає знайти безплатну контрацепцію, консультації лікаря та медичні послуги у Франції поблизу вас."
   },
   {
-    "label": "sti_prevention_testing",
+    "label": "Скринінг та лікування ІПСШ та ВІЛ",
     "categoryId": "sti_prevention_testing",
     "slug": "sti_prevention_testing",
     "synonyms": [
@@ -3882,7 +3882,7 @@
     "seoDescription": "Soliguide пропонує сотні місць для тестування на ІПСШ, консультацій та профілактики. Безплатно, конфіденційно, без судження."
   },
   {
-    "label": "hiv_prevention",
+    "label": "Профілактика ВІЛ",
     "categoryId": "hiv_prevention",
     "slug": "hiv_prevention",
     "synonyms": [
@@ -4015,5 +4015,32 @@
     "country": "fr",
     "seoTitle": "Знайдіть емоційну підтримку з Soliguide у Франції",
     "seoDescription": "Soliguide допомагає знайти психологічну підтримку, консультації та групи взаємодопомоги. Безплатні послуги для вас."
+  },
+  {
+    "label": "Прохолодне місце",
+    "categoryId": "cooling_space",
+    "slug": "cooling_space",
+    "synonyms": [
+      "охолодження",
+      "прохолодне місце",
+      "літня допомога",
+      "безплатний центр",
+      "бібліотека",
+      "басейн",
+      "кондиціонування",
+      "відпочинок",
+      "тінь",
+      "вода",
+      "напиток",
+      "укриття",
+      "спека",
+      "захист",
+      "комфорт"
+    ],
+    "type": "CATEGORY",
+    "lang": "uk",
+    "country": "fr",
+    "seoTitle": "Знайдіть прохолодне місце з Soliguide коли вам потрібна допомога",
+    "seoDescription": "Soliguide допомагає знайти місця для охолодження влітку. Безплатні центри, бібліотеки, басейни у Франції."
   }
 ]

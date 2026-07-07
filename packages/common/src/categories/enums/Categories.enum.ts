@@ -131,4 +131,5 @@ export enum Categories {
   HAIRDRESSER = "hairdresser",
   LEGAL_PROTECTION = "legal_protection",
   REGULARIZATION = "regularization",
+  COOLING_SPACE = "cooling_space",
 }

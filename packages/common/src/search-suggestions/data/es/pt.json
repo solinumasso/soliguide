@@ -2646,7 +2646,7 @@
     "seoDescription": "Soliguide oferece centenas de locais para cuidados de saúde gratuitos, consultas médicas e medicamentos na Espanha. Encontre ajuda perto de você."
   },
   {
-    "label": "find_healthcare",
+    "label": "Encontrar ajuda para o tratamento",
     "categoryId": "find_healthcare",
     "slug": "find_healthcare",
     "synonyms": [
@@ -2700,7 +2700,7 @@
     "seoDescription": "Soliguide oferece centenas de locais para avaliação de saúde, consultas médicas gratuitas e acompanhamento de bem-estar na Espanha."
   },
   {
-    "label": "optical_care",
+    "label": "cuidados oftalmológicos",
     "categoryId": "optical_care",
     "slug": "optical_care",
     "synonyms": [
@@ -2754,7 +2754,7 @@
     "seoDescription": "Soliguide oferece centenas de lugares para cuidados auditivos. Encontre aparelhos auditivos, testes de audição e acompanhamento perto de você na Espanha."
   },
   {
-    "label": "chronic_diseases",
+    "label": "Doenças crônicas",
     "categoryId": "chronic_diseases",
     "slug": "chronic_diseases",
     "synonyms": [
@@ -2781,7 +2781,7 @@
     "seoDescription": "Soliguide conecta você a centros de saúde, medicamentos gratuitos e acompanhamento médico na Espanha. Acesso fácil e próximo."
   },
   {
-    "label": "medical_accommodation",
+    "label": "Acomodação terapêutica e com supervisão médica",
     "categoryId": "medical_accommodation",
     "slug": "medical_accommodation",
     "synonyms": [
@@ -2835,7 +2835,7 @@
     "seoDescription": "Soliguide conecta você a centros de saúde mental, psicólogos e psiquiatras na Espanha. Consultas, medicamentos e acompanhamento psicológico."
   },
   {
-    "label": "support_groups",
+    "label": "Grupos de apoio e discussão",
     "categoryId": "support_groups",
     "slug": "support_groups",
     "synonyms": [
@@ -2943,7 +2943,7 @@
     "seoDescription": "Soliguide oferece centenas de lugares para tratamento de dependência, desintoxicação e apoio psicológico gratuito na Espanha."
   },
   {
-    "label": "addiction_prevention_and_material",
+    "label": "Prevenção e equipamentos",
     "categoryId": "addiction_prevention_and_material",
     "slug": "addiction_prevention_and_material",
     "synonyms": [

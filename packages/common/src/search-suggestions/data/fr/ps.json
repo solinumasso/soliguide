@@ -3261,7 +3261,7 @@
     "seoDescription": "Soliguide تاسو سره د موټر مرمت، تیل بدلول، او ترمیم خدمتونو لپاره مقامات پیدا کړئ."
   },
   {
-    "label": "health_access",
+    "label": "روغتیا پاملرنې ته لاسرسی",
     "categoryId": "health_access",
     "slug": "health_access",
     "synonyms": [
@@ -3288,7 +3288,7 @@
     "seoDescription": "Soliguide تاسو ته د وړیا طبي خدمتونو، درملتون او روغتیایي مرکزونو سراغ کول کمزوري کسانو لپاره آسان کوي"
   },
   {
-    "label": "physical_health",
+    "label": "د بدن روغتیا",
     "categoryId": "physical_health",
     "slug": "physical_health",
     "synonyms": [
@@ -3315,7 +3315,7 @@
     "seoDescription": "Soliguide تاسو ته د صحت خدمتونو سوچ کړي. د ډاکتر ملاقات، درملنه، او روغتیا مرکزونه په فرانسه کې."
   },
   {
-    "label": "mental_health",
+    "label": "رواني روغتیا",
     "categoryId": "mental_health",
     "slug": "mental_health",
     "synonyms": [
@@ -3342,7 +3342,7 @@
     "seoDescription": "Soliguide تاسیسات فراہم کرتا ہے: نفسیاتی مشاورت، تناؤ سے نمٹنا، ڈپریشن میں معاونت"
   },
   {
-    "label": "addictions",
+    "label": "روږديتوب",
     "categoryId": "addictions",
     "slug": "addictions",
     "synonyms": [
@@ -3369,7 +3369,7 @@
     "seoDescription": "Soliguide تاسو ته د نشې توکو سره د مبارزې لپاره وړیا ځایونه وړاندې کوي. درملنه، مشاوره او روغتیایی خدمتونه."
   },
   {
-    "label": "sexual_health",
+    "label": "جنسي روغتیا",
     "categoryId": "sexual_health",
     "slug": "sexual_health",
     "synonyms": [
@@ -3396,7 +3396,7 @@
     "seoDescription": "Soliguide تاسو ته د جنسي صحت لپاره مرسته موندلو کې مرستې کوي. د روغتيا مرکزونو، د خصوصي مشورې او د ازادې معاينې ځايونه."
   },
   {
-    "label": "parenthood",
+    "label": "والدینتوب",
     "categoryId": "parenthood",
     "slug": "parenthood",
     "synonyms": [
@@ -3423,7 +3423,7 @@
     "seoDescription": "سولیګائیډ تاسو ته د ماشومانو پالنې، روغتیا او کورنۍ ملاتړ لپاره مفت خدمتونه پیدا کول کې مرسته کوي."
   },
   {
-    "label": "health_coverage",
+    "label": "د روغتیا بیمې ترلاسه کول",
     "categoryId": "health_coverage",
     "slug": "health_coverage",
     "synonyms": [
@@ -3450,7 +3450,7 @@
     "seoDescription": "Soliguide تاسو ته د صحت پوښتنو لپاره سوله ځایونه وړاندې کوي. د ډاکتر ملاقات، درملنه، او روغتیا بیمه."
   },
   {
-    "label": "find_healthcare",
+    "label": "د درملنې لپاره مرسته موندل",
     "categoryId": "find_healthcare",
     "slug": "find_healthcare",
     "synonyms": [
@@ -3504,7 +3504,7 @@
     "seoDescription": "Soliguide تاسو ته د صحت خدمتونو سوله پیدا کولو کې مرسته کوي. د وړیا معاینې، داروساز، او روغتیا کلینیکونو لیست."
   },
   {
-    "label": "optical_care",
+    "label": "د سترګو پاملرنه",
     "categoryId": "optical_care",
     "slug": "optical_care",
     "synonyms": [
@@ -3558,7 +3558,7 @@
     "seoDescription": "Soliguide تاسو ته د غوږ معاینې، شنیدو کمکونو او آډيولوجي خدمتونو لپاره مفت ځایونه وړاندې کوي"
   },
   {
-    "label": "chronic_diseases",
+    "label": "مزمنې ناروغۍ",
     "categoryId": "chronic_diseases",
     "slug": "chronic_diseases",
     "synonyms": [
@@ -3585,7 +3585,7 @@
     "seoDescription": "Soliguide تاسو ته د مزمن ناروغیو لپاره مرسته موندلو کې مرستہ کوي. د وړیا درملنې، درمل او روغتیایی خدمات."
   },
   {
-    "label": "medical_accommodation",
+    "label": "طبي او معالجوي استوګنځای",
     "categoryId": "medical_accommodation",
     "slug": "medical_accommodation",
     "synonyms": [
@@ -3639,7 +3639,7 @@
     "seoDescription": "Soliguide تاسو ته سوله ايز روغتيا خدمتونه، مشاوره او درملنه پيدا کولو کې مرسته کوي"
   },
   {
-    "label": "support_groups",
+    "label": "د ملاتړ او بحث ډلې",
     "categoryId": "support_groups",
     "slug": "support_groups",
     "synonyms": [
@@ -3666,7 +3666,7 @@
     "seoDescription": "Soliguide تاسو ته د مرستې ځایونه وړاندې کوي. د خوراکي توزیع، روغتیایي خدمات او کورني مرستې لپاره."
   },
   {
-    "label": "mental_health_education",
+    "label": "معلومات او پوهاوی",
     "categoryId": "mental_health_education",
     "slug": "mental_health_education",
     "synonyms": [
@@ -3693,7 +3693,7 @@
     "seoDescription": "Soliguide پر ذهني صحت کی تعليم اور مشاورت کی سہولیات تلاش کریں۔ ڈپریشن، اضطراب اور تناؤ میں مفت مدد حاصل کریں۔"
   },
   {
-    "label": "therapeutic_activities",
+    "label": "د درملنې فعالیتونه",
     "categoryId": "therapeutic_activities",
     "slug": "therapeutic_activities",
     "synonyms": [
@@ -3720,7 +3720,7 @@
     "seoDescription": "سولیګائیډ درملنې فعالیتونه وړاندې کوي. روغتیایی مشاوره، ذهني صحت، او بیا ځان ورسازي پروګرامونه."
   },
   {
-    "label": "addiction_care",
+    "label": "مشورې او پاملرنه",
     "categoryId": "addiction_care",
     "slug": "addiction_care",
     "synonyms": [
@@ -3747,7 +3747,7 @@
     "seoDescription": "Soliguide تاسو ته د مخدراتو ادامې درملنې لپاره مفت ځایونه وړاندې کوي. د روغتیا مرکزونو، کاونسلنګ او بیا ځان کولو پروګرامونو موندنه کړئ."
   },
   {
-    "label": "addiction_prevention_and_material",
+    "label": "مخنیوی او تجهیزات",
     "categoryId": "addiction_prevention_and_material",
     "slug": "addiction_prevention_and_material",
     "synonyms": [
@@ -3801,7 +3801,7 @@
     "seoDescription": "Soliguide تاسو ته د مانع حمل درمان، طبي مشورې او ځانګړې خدمات پیدا کولو کې مرسته کوي"
   },
   {
-    "label": "abortion",
+    "label": "سقط جنین (IVG)",
     "categoryId": "abortion",
     "slug": "abortion",
     "synonyms": [
@@ -3855,7 +3855,7 @@
     "seoDescription": "Soliguide تاسو ته د منع حمل د وسایلو، د صحت مشورې او د ماشومتوب پلان کولو لپاره مفت ځایونه وړاندې کوي"
   },
   {
-    "label": "sti_prevention_testing",
+    "label": "د جنسي لېږدېدونکو انتاناتو او HIV معاینه او درملنه",
     "categoryId": "sti_prevention_testing",
     "slug": "sti_prevention_testing",
     "synonyms": [
@@ -3882,7 +3882,7 @@
     "seoDescription": "Soliguide تاسو ته د STI ازمایشات، روغتیایی مرکزونه او وړیا معاینې موندلو کې مرسته کوي"
   },
   {
-    "label": "hiv_prevention",
+    "label": "د HIV مخنیوی",
     "categoryId": "hiv_prevention",
     "slug": "hiv_prevention",
     "synonyms": [
@@ -3936,7 +3936,7 @@
     "seoDescription": "Soliguide تاسو ته د واکسین، د صحت معاینې او د خاندان پلان کمک ځایونه وړاندې کوي. وړیا خدمات."
   },
   {
-    "label": "sexual_health_education",
+    "label": "معلومات او مخنیوی",
     "categoryId": "sexual_health_education",
     "slug": "sexual_health_education",
     "synonyms": [
@@ -3963,7 +3963,7 @@
     "seoDescription": "Soliguide تاسو ته د جنسي صحت، مانع حمل او STI معلومات لپاره مرستې ځایونه وړاندې کوي. د ښځو صحت، د نوجوانانو رهنمایی او د خصوصي مشورې سروسز."
   },
   {
-    "label": "sexual_violence_support",
+    "label": "د جنسیت پر بنسټ او جنسي تاوتریخوالی",
     "categoryId": "sexual_violence_support",
     "slug": "sexual_violence_support",
     "synonyms": [
@@ -3990,7 +3990,7 @@
     "seoDescription": "Soliguide تاسو ته د جنسي تشدد قربانیانو لپاره وړیا درملنې، روغتیایی مرکزونه او قانوني مشاوره وړاندې کوي."
   },
   {
-    "label": "affective_life",
+    "label": "احساساتي او جنسي ژوند",
     "categoryId": "affective_life",
     "slug": "affective_life",
     "synonyms": [
@@ -4015,5 +4015,32 @@
     "country": "fr",
     "seoTitle": "د عاطفي ژوند لپاره مرسته پیدا کړئ Soliguide سره",
     "seoDescription": "Soliguide تاسو ته د روغتیا، مشاوره او عاطفي ملاتړ لپاره سوله پیدا کولو کې مرسته کوي. د فرانسې کې مجانی خدمات."
+  },
+  {
+    "label": "د یخ ځای",
+    "categoryId": "cooling_space",
+    "slug": "cooling_space",
+    "synonyms": [
+      "سردي جای",
+      "استراحت",
+      "تودوخې ساتنه",
+      "د سردي هوا جای",
+      "پناه",
+      "آرام",
+      "د تودوخې خطر",
+      "د سردي د جای پیدا کول",
+      "د سردوخې سرپناه",
+      "د تودوخې له ضررې ساتنه",
+      "د شپې جای",
+      "د ورځې استراحت",
+      "د خطرناک تودوخې مرسته",
+      "د سردي د جای معلومات",
+      "د ساتنې سرویس"
+    ],
+    "type": "CATEGORY",
+    "lang": "ps",
+    "country": "fr",
+    "seoTitle": "د سردي د جای لپاره د Soliguide سره مرسته وموندئ",
+    "seoDescription": "Soliguide تاسو ته سردي جایونه، استراحت ځایونه او د تودوخې له خطرناکۍ د ساتنې لپاره مرسته وړاندې کوي"
   }
 ]

@@ -3066,7 +3066,7 @@
     "seoDescription": "Soliguide connects you with psychiatric care in Andorra. Find counseling, therapy, crisis support, and mental health services near you."
   },
   {
-    "label": "support_groups",
+    "label": "Support and discussion groups",
     "categoryId": "support_groups",
     "slug": "support_groups",
     "synonyms": [
@@ -3255,7 +3255,7 @@
     "seoDescription": "Soliguide helps you access contraception services in Andorra. Find family planning clinics, birth control options, and health consultations near you."
   },
   {
-    "label": "sti_prevention_testing",
+    "label": "Screening and treatment of STIs and HIV",
     "categoryId": "sti_prevention_testing",
     "slug": "sti_prevention_testing",
     "synonyms": [

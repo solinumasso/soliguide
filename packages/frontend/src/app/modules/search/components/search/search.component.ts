@@ -30,6 +30,7 @@ import {
   slugString,
   Categories,
   SearchResults,
+  shouldDisplayThermalComfort,
 } from "@soliguide/common";
 import type { FilterPillOption } from "../filter-pill-dropdown/filter-pill-dropdown.component";
 import type { PosthogProperties } from "@soliguide/common-angular";
@@ -109,6 +110,10 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   public readonly THEME_CONFIGURATION = THEME_CONFIGURATION;
   public readonly thermalComfortEmojis = THERMAL_COMFORT_EMOJIS;
+
+  public get showThermalComfortFilter(): boolean {
+    return shouldDisplayThermalComfort(THEME_CONFIGURATION.country);
+  }
   public readonly publicsLabels = PUBLICS_LABELS;
   public readonly genderOptions: FilterPillOption[] = ALL_PUBLICS.gender
     .filter((option) => option.value !== "all")

@@ -3149,7 +3149,7 @@
     "seoDescription": "Soliguide connects you with psychiatric services in Spain. Find counseling, therapy, crisis support, and mental health care near you."
   },
   {
-    "label": "support_groups",
+    "label": "Support and discussion groups",
     "categoryId": "support_groups",
     "slug": "support_groups",
     "synonyms": [
@@ -3365,7 +3365,7 @@
     "seoDescription": "Soliguide connects you to contraception clinics, family planning centers, and health services in Spain. Access birth control, counseling, and reproductive health support."
   },
   {
-    "label": "sti_prevention_testing",
+    "label": "Screening and treatment of STIs and HIV",
     "categoryId": "sti_prevention_testing",
     "slug": "sti_prevention_testing",
     "synonyms": [

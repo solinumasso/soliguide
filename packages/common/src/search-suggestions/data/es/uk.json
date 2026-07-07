@@ -3014,7 +3014,7 @@
     "seoDescription": "Soliguide допомагає знайти медичні послуги: безплатні огляди здоров'я, консультації лікаря, вакцинацію в Іспанії"
   },
   {
-    "label": "optical_care",
+    "label": "Оптичний догляд",
     "categoryId": "optical_care",
     "slug": "optical_care",
     "synonyms": [
@@ -3068,7 +3068,7 @@
     "seoDescription": "Soliguide допомагає знайти послуги для слуху в Іспанії. Безплатні перевірки слуху, слухові апарати, консультації лікарів."
   },
   {
-    "label": "chronic_diseases",
+    "label": "Хронічні захворювання",
     "categoryId": "chronic_diseases",
     "slug": "chronic_diseases",
     "synonyms": [
@@ -3122,7 +3122,7 @@
     "seoDescription": "Soliguide допомагає знайти медичне житло, лікарні та центри здоров'я в Іспанії. Безплатна допомога для людей без житла."
   },
   {
-    "label": "psychiatry",
+    "label": "Психіатр",
     "categoryId": "psychiatry",
     "slug": "psychiatry",
     "synonyms": [
@@ -3149,7 +3149,7 @@
     "seoDescription": "Soliguide допомагає знайти безплатні психіатричні послуги в Іспанії. Консультації, ліки, підтримка для вразливих осіб."
   },
   {
-    "label": "support_groups",
+    "label": "Групи підтримки та обговорення",
     "categoryId": "support_groups",
     "slug": "support_groups",
     "synonyms": [
@@ -3176,7 +3176,7 @@
     "seoDescription": "Soliguide допомагає знайти групи підтримки в Іспанії. Спілкування з людьми, консультації, взаємна допомога для вас."
   },
   {
-    "label": "mental_health_education",
+    "label": "Інформація та обізнаність",
     "categoryId": "mental_health_education",
     "slug": "mental_health_education",
     "synonyms": [
@@ -3203,7 +3203,7 @@
     "seoDescription": "Soliguide допомагає знайти консультації психолога, групи підтримки та кризові лінії в Іспанії для вас та вашої сім'ї"
   },
   {
-    "label": "therapeutic_activities",
+    "label": "Терапевтична діяльність",
     "categoryId": "therapeutic_activities",
     "slug": "therapeutic_activities",
     "synonyms": [
@@ -3365,7 +3365,7 @@
     "seoDescription": "Soliguide допомагає знайти послуги контрацепції в Іспанії. Безплатні консультації, таблетки, спіралі та презервативи для всіх."
   },
   {
-    "label": "sti_prevention_testing",
+    "label": "Скринінг та лікування ІПСШ та ВІЛ",
     "categoryId": "sti_prevention_testing",
     "slug": "sti_prevention_testing",
     "synonyms": [
@@ -3392,7 +3392,7 @@
     "seoDescription": "Soliguide пропонує сотні місць для тестування на ІПСШ, профілактики та консультацій у Іспанії. Безплатно і конфіденційно."
   },
   {
-    "label": "hiv_prevention",
+    "label": "Профілактика ВІЛ",
     "categoryId": "hiv_prevention",
     "slug": "hiv_prevention",
     "synonyms": [
