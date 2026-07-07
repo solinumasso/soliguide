@@ -80,7 +80,6 @@ import ops from "./ops/routes/ops.routes";
 import { serve, setup } from "swagger-ui-express";
 import { searchSuggestionsService } from "./search-suggestions";
 import { initializeCronJobs } from "./cron/cron-manager";
-import { setIsOpenToday } from "./place/services/isOpenToday.service";
 
 const _app = express();
 
@@ -232,7 +231,6 @@ _app.use((req: Request, res: Response) => {
     if (CONFIG.ENV !== "test" && CONFIG.CRON_ENABLED) {
       console.log("Initializing cron jobs...");
       initializeCronJobs();
-      await setIsOpenToday();
     }
 
     if (CONFIG.ENV !== "prod" && CONFIG.ENV !== "test" && CONFIG.DEV_ANON) {
