@@ -134,3 +134,4 @@
 | HAIRDRESSER | FR, ES, AD | N/A | `hairdresser` | none |
 | LEGAL_PROTECTION | AD | N/A | `legal_protection` | none |
 | REGULARIZATION | ES | 2026-05-05 | `regularization` | `regularization` from: 2026-05-05 |
+| COOLING_SPACE | FR | 2026-07-07 | `cooling_space` | `cooling_space` from: 2026-07-07 |

@@ -1229,3 +1229,11 @@ categories:
     history:
       - slug: regularization
         from: "2026-05-05"
+
+  COOLING_SPACE:
+    slug: cooling_space
+    countries: [FR]
+    createdAt: "2026-07-07"
+    history:
+      - slug: cooling_space
+        from: "2026-07-07"

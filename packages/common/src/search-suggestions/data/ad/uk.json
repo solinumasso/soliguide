@@ -2931,7 +2931,7 @@
     "seoDescription": "Soliguide допомагає знайти медичні послуги в Андоррі: консультації лікарів, перевірки здоров'я, амбулаторне лікування без витрат."
   },
   {
-    "label": "optical_care",
+    "label": "Оптичний догляд",
     "categoryId": "optical_care",
     "slug": "optical_care",
     "synonyms": [
@@ -2985,7 +2985,7 @@
     "seoDescription": "Soliguide допомагає знайти послуги з догляду за слухом. Аудіологи, слухові апарати, консультації в Андоррі для всіх."
   },
   {
-    "label": "chronic_diseases",
+    "label": "Хронічні захворювання",
     "categoryId": "chronic_diseases",
     "slug": "chronic_diseases",
     "synonyms": [
@@ -3039,7 +3039,7 @@
     "seoDescription": "Soliguide допомагає знайти медичне житло в Андоррі. Тимчасове житло, лікувальні центри, притулки для здоров'я."
   },
   {
-    "label": "psychiatry",
+    "label": "Психіатр",
     "categoryId": "psychiatry",
     "slug": "psychiatry",
     "synonyms": [
@@ -3066,7 +3066,7 @@
     "seoDescription": "Soliguide допомагає знайти психіатричні послуги в Андоррі. Консультації, лікування, підтримка психічного здоров'я для всіх."
   },
   {
-    "label": "support_groups",
+    "label": "Групи підтримки та обговорення",
     "categoryId": "support_groups",
     "slug": "support_groups",
     "synonyms": [
@@ -3093,7 +3093,7 @@
     "seoDescription": "Soliguide допомагає знайти групи підтримки в Андоррі. Спілкування, консультації, допомога при залежностях та психічному здоров'ї."
   },
   {
-    "label": "mental_health_education",
+    "label": "Інформація та обізнаність",
     "categoryId": "mental_health_education",
     "slug": "mental_health_education",
     "synonyms": [
@@ -3120,7 +3120,7 @@
     "seoDescription": "Soliguide допомагає вам знайти освітні програми з психічного здоров'я в Андоррі. Консультації психолога, групи підтримки, тренінги зі стресу."
   },
   {
-    "label": "therapeutic_activities",
+    "label": "Терапевтична діяльність",
     "categoryId": "therapeutic_activities",
     "slug": "therapeutic_activities",
     "synonyms": [
@@ -3255,7 +3255,7 @@
     "seoDescription": "Soliguide допомагає вам знайти послуги контрацепції, консультації лікаря та безплатні засоби в Андоррі для вашого здоров'я"
   },
   {
-    "label": "sti_prevention_testing",
+    "label": "Скринінг та лікування ІПСШ та ВІЛ",
     "categoryId": "sti_prevention_testing",
     "slug": "sti_prevention_testing",
     "synonyms": [
@@ -3282,7 +3282,7 @@
     "seoDescription": "Soliguide допомагає знайти безплатне тестування на ІПСШ, консультації лікаря та медичну допомогу в Андоррі для вас."
   },
   {
-    "label": "hiv_prevention",
+    "label": "Профілактика ВІЛ",
     "categoryId": "hiv_prevention",
     "slug": "hiv_prevention",
     "synonyms": [

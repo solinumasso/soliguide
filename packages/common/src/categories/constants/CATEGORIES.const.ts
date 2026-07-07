@@ -212,6 +212,7 @@ export const CATEGORIES_GRAPH: CategoriesGraph = {
  * Adds children to existing parents and introduces new leaf categories.
  */
 export const CATEGORIES_GRAPH_SOLIGUIDE_FR: CategoriesGraph = {
+  [Categories.WELCOME]: [{ id: Categories.COOLING_SPACE, rank: 250 }],
   [Categories.COUNSELING]: [
     { id: Categories.DOMICILIATION, rank: 200 },
     { id: Categories.PUBLIC_WRITER, rank: 400 },

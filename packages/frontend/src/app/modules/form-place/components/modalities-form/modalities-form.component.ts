@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from "@angular/core";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import type { Modalities } from "@soliguide/common";
+import {
+  shouldDisplayThermalComfort,
+  type Modalities,
+} from "@soliguide/common";
 import { CK_EDITOR_CONF, ModalitiesTypes } from "../../../../shared";
 import { THEME_CONFIGURATION } from "../../../../models";
 import { THERMAL_COMFORT_EMOJIS } from "../../../../models/place/constants";
@@ -20,6 +23,10 @@ export class ModalitiesFormComponent implements OnInit {
   public inputPrefix: string;
   public editor = ClassicEditor;
   public editorConfig = CK_EDITOR_CONF;
+
+  public get showThermalComfort(): boolean {
+    return shouldDisplayThermalComfort(THEME_CONFIGURATION.country);
+  }
 
   public ngOnInit(): void {
     if (typeof this.serviceIndex === "number") {

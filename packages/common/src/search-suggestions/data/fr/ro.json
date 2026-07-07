@@ -3259,7 +3259,7 @@
     "seoDescription": "Soliguide vă conectează cu servicii de reparații auto gratuite sau ieftine. Găsiți mecanici, piese de schimb și ajutor pentru transport în Franța."
   },
   {
-    "label": "health_access",
+    "label": "Accesul la asistență medicală",
     "categoryId": "health_access",
     "slug": "health_access",
     "synonyms": [
@@ -3286,7 +3286,7 @@
     "seoDescription": "Soliguide vă ajută să găsiți clinici gratuite, medici și spitale în Francia. Acces la consultații, medicamente și tratamente pentru toți."
   },
   {
-    "label": "physical_health",
+    "label": "Sănătatea corpului",
     "categoryId": "physical_health",
     "slug": "physical_health",
     "synonyms": [
@@ -3313,7 +3313,7 @@
     "seoDescription": "Soliguide vă oferă sute de locuri pentru consultații medicale, medicamente gratuite și centre de sănătate în apropierea dvs."
   },
   {
-    "label": "mental_health",
+    "label": "Sănătate mintală",
     "categoryId": "mental_health",
     "slug": "mental_health",
     "synonyms": [
@@ -3340,7 +3340,7 @@
     "seoDescription": "Soliguide vă conectează cu locuri de ajutor pentru anxietate, depresie și stres. Consiliere gratuită, grupuri de suport și medici în Francia."
   },
   {
-    "label": "addictions",
+    "label": "Dependențe",
     "categoryId": "addictions",
     "slug": "addictions",
     "synonyms": [
@@ -3367,7 +3367,7 @@
     "seoDescription": "Soliguide vă conectează cu centre de dezintoxicare, grupuri de suport și medici specialiști. Găsiți tratament gratuit pentru alcool, droguri și jocuri de noroc."
   },
   {
-    "label": "sexual_health",
+    "label": "Sănătate sexuală",
     "categoryId": "sexual_health",
     "slug": "sexual_health",
     "synonyms": [
@@ -3394,7 +3394,7 @@
     "seoDescription": "Soliguide vă conectează cu servicii gratuite de sănătate sexuală în Franța. Testări, contraceptie, consiliere și informații de încredere."
   },
   {
-    "label": "parenthood",
+    "label": "Părinți",
     "categoryId": "parenthood",
     "slug": "parenthood",
     "synonyms": [
@@ -3421,7 +3421,7 @@
     "seoDescription": "Soliguide vă conectează cu servicii pentru părinți: ajutor financiar, îngrijire copii, consiliere familială și sprijin psihologic gratuit."
   },
   {
-    "label": "health_coverage",
+    "label": "Obținerea asigurării de sănătate",
     "categoryId": "health_coverage",
     "slug": "health_coverage",
     "synonyms": [
@@ -3448,7 +3448,7 @@
     "seoDescription": "Soliguide vă ajută să găsiți locuri pentru consultații gratuite, medicamente și examene medicale în Francia."
   },
   {
-    "label": "find_healthcare",
+    "label": "Găsirea ajutorului pentru tratament",
     "categoryId": "find_healthcare",
     "slug": "find_healthcare",
     "synonyms": [
@@ -3502,7 +3502,7 @@
     "seoDescription": "Soliguide vă conectează cu locuri de evaluare medicală gratuită. Consultații, teste de sănătate, screening-uri și sprijin medical în Francia."
   },
   {
-    "label": "optical_care",
+    "label": "Îngrijire optică",
     "categoryId": "optical_care",
     "slug": "optical_care",
     "synonyms": [
@@ -3556,7 +3556,7 @@
     "seoDescription": "Soliguide vă conectează cu servicii de audioprosthetică gratuite. Audiograme, proteze auditive, consultații în clinici locale."
   },
   {
-    "label": "chronic_diseases",
+    "label": "Boli cronice",
     "categoryId": "chronic_diseases",
     "slug": "chronic_diseases",
     "synonyms": [
@@ -3583,7 +3583,7 @@
     "seoDescription": "Soliguide vă conectează cu servicii medicale gratuite. Consultații, medicamente, monitorizare tensiune și diabet în Francia."
   },
   {
-    "label": "medical_accommodation",
+    "label": "Cazare medicală și terapeutică",
     "categoryId": "medical_accommodation",
     "slug": "medical_accommodation",
     "synonyms": [
@@ -3637,7 +3637,7 @@
     "seoDescription": "Soliguide vă conectează cu specialiști în sănătate mintală. Consultații gratuite, spitale psihiatrice, centre de criză disponibile acum."
   },
   {
-    "label": "support_groups",
+    "label": "Grupuri de suport și discuții",
     "categoryId": "support_groups",
     "slug": "support_groups",
     "synonyms": [
@@ -3664,7 +3664,7 @@
     "seoDescription": "Soliguide vă conectează cu grupuri de sprijin în Franța. Găsiți locuri pentru a vorbi, a vă întâlni și a primi ajutor în comunitate."
   },
   {
-    "label": "mental_health_education",
+    "label": "Informare și conștientizare",
     "categoryId": "mental_health_education",
     "slug": "mental_health_education",
     "synonyms": [
@@ -3691,7 +3691,7 @@
     "seoDescription": "Soliguide vă conectează cu programe de educație psihică. Consiliere gratuită, ateliere de bine-ființă și sprijin emoțional în comunitatea dumneavoastră."
   },
   {
-    "label": "therapeutic_activities",
+    "label": "Activități terapeutice",
     "categoryId": "therapeutic_activities",
     "slug": "therapeutic_activities",
     "synonyms": [
@@ -3718,7 +3718,7 @@
     "seoDescription": "Soliguide vă conectează cu activități terapeutice: ateliere de artă, meditație, sport adaptat și grupuri de suport în Francia."
   },
   {
-    "label": "addiction_care",
+    "label": "Consultații și îngrijire",
     "categoryId": "addiction_care",
     "slug": "addiction_care",
     "synonyms": [
@@ -3745,7 +3745,7 @@
     "seoDescription": "Soliguide vă conectează cu centre de dezintoxicare, consilieri și programe de recuperare gratuite în Francia. Găsiți sprijin acum."
   },
   {
-    "label": "addiction_prevention_and_material",
+    "label": "Prevenirea și echipamentul",
     "categoryId": "addiction_prevention_and_material",
     "slug": "addiction_prevention_and_material",
     "synonyms": [
@@ -3799,7 +3799,7 @@
     "seoDescription": "Soliguide vă ajută să găsiți servicii de contraceptie de urgență. Clinici gratuite, farmacii partenere, linii telefonice de sprijin disponibile."
   },
   {
-    "label": "abortion",
+    "label": "Avort (GIV)",
     "categoryId": "abortion",
     "slug": "abortion",
     "synonyms": [
@@ -3853,7 +3853,7 @@
     "seoDescription": "Soliguide vă conectează cu clinici de planificare familială, distribuție de contraceptive gratuite și consiliere în Francia. Găsiți ajutor acum."
   },
   {
-    "label": "sti_prevention_testing",
+    "label": "Screeningul și tratamentul ITS și HIV",
     "categoryId": "sti_prevention_testing",
     "slug": "sti_prevention_testing",
     "synonyms": [
@@ -3880,7 +3880,7 @@
     "seoDescription": "Soliguide vă ajută să găsiți teste gratuite pentru infecții. Clinici mobile, centre de sănătate, consultații confidențiale în Francia."
   },
   {
-    "label": "hiv_prevention",
+    "label": "Prevenirea HIV",
     "categoryId": "hiv_prevention",
     "slug": "hiv_prevention",
     "synonyms": [
@@ -3934,7 +3934,7 @@
     "seoDescription": "Soliguide vă conectează cu sute de locuri pentru vaccinare HPV, testare IST și consiliere în sănătate sexuală în Francia."
   },
   {
-    "label": "sexual_health_education",
+    "label": "Informare și prevenire",
     "categoryId": "sexual_health_education",
     "slug": "sexual_health_education",
     "synonyms": [
@@ -3961,7 +3961,7 @@
     "seoDescription": "Soliguide vă conectează cu servicii de educație sexuală. Găsiți clinici de planificare familială, consiliere și informații despre contracepție în Francia."
   },
   {
-    "label": "sexual_violence_support",
+    "label": "Violența bazată pe gen și violența sexuală",
     "categoryId": "sexual_violence_support",
     "slug": "sexual_violence_support",
     "synonyms": [
@@ -3988,7 +3988,7 @@
     "seoDescription": "Soliguide vă conectează cu centre de consiliere, adăposturi sigure și linii telefonice de urgență pentru victime ale violenței sexuale în Francia."
   },
   {
-    "label": "affective_life",
+    "label": "Viața emoțională și sexuală",
     "categoryId": "affective_life",
     "slug": "affective_life",
     "synonyms": [
@@ -4013,5 +4013,32 @@
     "country": "fr",
     "seoTitle": "Găsiți sprijin emoțional și psihologic cu Soliguide în Francia",
     "seoDescription": "Soliguide vă conectează cu servicii de suport emoțional. Consiliere psihologică gratuită, grupuri de discuție, linii de asistență disponibile acum."
+  },
+  {
+    "label": "Spațiu răcoros",
+    "categoryId": "cooling_space",
+    "slug": "cooling_space",
+    "synonyms": [
+      "răcorire",
+      "odihnă",
+      "pauză",
+      "refugiu",
+      "spațiu sigur",
+      "loc de așteptare",
+      "centru de odihnă",
+      "adăpost",
+      "loc de repaos",
+      "spațiu protejat",
+      "loc de întâlnire",
+      "centru de primire",
+      "spațiu de relaxare",
+      "loc de confort",
+      "sală de odihnă"
+    ],
+    "type": "CATEGORY",
+    "lang": "ro",
+    "country": "fr",
+    "seoTitle": "Găsiți spații de răcorire și odihnă cu Soliguide în Francia",
+    "seoDescription": "Soliguide vă ajută să găsiți spații sigure pentru a vă odihni. Acces la centre de răcorire, săli de așteptare și locuri de refugiu în Francia."
   }
 ]

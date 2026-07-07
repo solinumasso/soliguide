@@ -3639,7 +3639,7 @@
     "seoDescription": "Soliguide connects you with hundreds of mental health services in France. Access counseling, crisis support, therapy, and psychiatric care near you."
   },
   {
-    "label": "support_groups",
+    "label": "Support and discussion groups",
     "categoryId": "support_groups",
     "slug": "support_groups",
     "synonyms": [
@@ -3855,7 +3855,7 @@
     "seoDescription": "Soliguide connects you with hundreds of places for contraception access. Find family planning clinics, birth control prescriptions, and reproductive health support near you."
   },
   {
-    "label": "sti_prevention_testing",
+    "label": "Screening and treatment of STIs and HIV",
     "categoryId": "sti_prevention_testing",
     "slug": "sti_prevention_testing",
     "synonyms": [
@@ -4015,5 +4015,32 @@
     "country": "fr",
     "seoTitle": "Find emotional support and counseling with Soliguide in France",
     "seoDescription": "Soliguide connects you with free emotional support services. Find counseling, listening spaces, and mental health help near you in France."
+  },
+  {
+    "label": "Cooling space",
+    "categoryId": "cooling_space",
+    "slug": "cooling_space",
+    "synonyms": [
+      "air-conditioned shelter",
+      "cool refuge",
+      "heat relief",
+      "public library",
+      "community center",
+      "cooling station",
+      "rest area",
+      "safe space",
+      "emergency shelter",
+      "temperature control",
+      "summer help",
+      "heat wave support",
+      "accessible building",
+      "public facility",
+      "refuge center"
+    ],
+    "type": "CATEGORY",
+    "lang": "en",
+    "country": "fr",
+    "seoTitle": "Find cooling spaces near you with Soliguide",
+    "seoDescription": "Soliguide helps you find free cooling spaces. Access air-conditioned shelters, public libraries, community centers, and cooling stations in France."
   }
 ]

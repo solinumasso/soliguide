@@ -3639,7 +3639,7 @@
     "seoDescription": "Soliguide le conecta con centros de salud mental, psicólogos y hospitales psiquiátricos. Consultas gratuitas, medicamentos y seguimiento cerca de usted."
   },
   {
-    "label": "support_groups",
+    "label": "Grupos de apoyo mutuo",
     "categoryId": "support_groups",
     "slug": "support_groups",
     "synonyms": [
@@ -4015,5 +4015,32 @@
     "country": "fr",
     "seoTitle": "Encuentre apoyo emocional y relaciones sanas con Soliguide",
     "seoDescription": "Soliguide le conecta con espacios de escucha, grupos de palabra y profesionales para fortalecer sus relaciones y bienestar emocional en Francia."
+  },
+  {
+    "label": "Espacio de frescor",
+    "categoryId": "cooling_space",
+    "slug": "cooling_space",
+    "synonyms": [
+      "espacio fresco",
+      "refugio climatizado",
+      "lugar seguro",
+      "descanso",
+      "pausa",
+      "biblioteca",
+      "centro comunitario",
+      "piscina pública",
+      "aire acondicionado",
+      "protección del calor",
+      "zona de reposo",
+      "acogida",
+      "descansar",
+      "enfriamiento",
+      "bienestar"
+    ],
+    "type": "CATEGORY",
+    "lang": "es",
+    "country": "fr",
+    "seoTitle": "Encuentre espacios frescos y seguros con Soliguide en Francia",
+    "seoDescription": "Soliguide le ayuda a encontrar espacios frescos cerca de usted. Bibliotecas, centros comunitarios, piscinas públicas y refugios climatizados gratuitos."
   }
 ]

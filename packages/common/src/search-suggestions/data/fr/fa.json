@@ -3747,7 +3747,7 @@
     "seoDescription": "Soliguide مکان‌های درمانی اعتیاد را نزدیک شما پیدا می‌کند. مشاوره، دتاکس و پشتیبانی روزانه در فرانسه."
   },
   {
-    "label": "addiction_prevention_and_material",
+    "label": "پیشگیری و تجهیزات",
     "categoryId": "addiction_prevention_and_material",
     "slug": "addiction_prevention_and_material",
     "synonyms": [
@@ -4015,5 +4015,32 @@
     "country": "fr",
     "seoTitle": "زندگی عاطفی و روابط انسانی را بهتر کنید با Soliguide",
     "seoDescription": "Soliguide برای شما خدمات مشاوره روانی، گروه های حمایتی و مراکز گفت و گو را پیدا کنید. رایگان و نزدیک شما."
+  },
+  {
+    "label": "فضای خنک",
+    "categoryId": "cooling_space",
+    "slug": "cooling_space",
+    "synonyms": [
+      "استراحت",
+      "خنک‌کننده",
+      "پناهگاه",
+      "فضای آرام",
+      "مکان امن",
+      "سرپناه",
+      "آب‌خوری",
+      "فضای عمومی",
+      "مرکز بهداشتی",
+      "کتابخانه",
+      "موزه",
+      "پارک",
+      "ایستگاه",
+      "مسجد",
+      "کلیسا"
+    ],
+    "type": "CATEGORY",
+    "lang": "fa",
+    "country": "fr",
+    "seoTitle": "فضای خنک‌کننده و پناهگاه در سولیگاید برای آرام‌گیری",
+    "seoDescription": "سولیگاید مکان‌های خنک و امن را برای استراحت پیدا کنید. مراکز بهداشتی، کتابخانه‌ها و فضاهای عمومی رایگان در فرانسه."
   }
 ]
