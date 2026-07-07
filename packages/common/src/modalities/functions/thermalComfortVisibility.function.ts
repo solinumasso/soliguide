@@ -17,9 +17,11 @@ export const isWinterSeason = (now: Date = new Date()): boolean => {
 
 /**
  * Whether thermal comfort information (heat/AC modalities) should be
- * displayed. Only shown for French structures and only during summer.
+ * displayed. Only shown for French and Spanish structures and only during summer.
  */
 export const shouldDisplayThermalComfort = (
   country: SoliguideCountries | null | undefined,
   now: Date = new Date()
-): boolean => country === CountryCodes.FR && isSummerSeason(now);
+): boolean =>
+  (country === CountryCodes.FR || country === CountryCodes.ES) &&
+  isSummerSeason(now);
