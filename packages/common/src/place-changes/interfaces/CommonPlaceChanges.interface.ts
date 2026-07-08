@@ -32,7 +32,7 @@ export interface CommonPlaceChanges {
    * - Pour les crisis campaigns historiques : une valeur de `CampaignName`
    *   (ex. `MID_YEAR_2026`).
    * - Pour le nouveau modèle : le `slug` d'une entrée `campaigns`
-   *   (ex. `canicule-france-2025`).
+   *   (ex. `canicule-france-2026`).
    * - `null` si le changement ne provient pas d'une campagne.
    */
   campaignName: CampaignName | string | null;

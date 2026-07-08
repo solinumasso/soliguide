@@ -505,7 +505,8 @@ const samplePlace: ApiPlace = Object.freeze({
     publics: true,
     services: true,
     emplacement: true
-  }
+  },
+  structureTypes: []
 });
 
 const samplePlaceTransformed: PlaceDetails = {

@@ -27,6 +27,7 @@ export enum StructureType {
   CAARUD = "CAARUD",
 
   // Santé sexuelle
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   CeGIDD = "CeGIDD",
   SANTE_SEXUELLE = "SANTE_SEXUELLE",
 

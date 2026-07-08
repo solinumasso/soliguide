@@ -4,7 +4,6 @@ import { Modalities } from "@soliguide/common";
 
 import { ExpressRequest, ExpressResponse } from "../../_models";
 import { patchModalities } from "../../place/controllers/admin-place.controller";
-import { sendPlaceChangesToMq } from "../../place-changes/middlewares/send-place-changes-to-mq.middleware";
 import { buildCampaignTempFormsPayload } from "../services/campaign-temp-forms.service";
 
 export const getCampaignTempFormsData = async (
@@ -86,7 +85,3 @@ export const patchCampaignTempFormsClimate = async (
     return next(err);
   }
 };
-
-// Exporte le middleware post-response pour publier les placeChanges sur RabbitMQ
-// (même pipeline que la route admin classique).
-export { sendPlaceChangesToMq };

@@ -39,7 +39,7 @@ export class CampaignsCatalogService {
   }
 
   /**
-   * Résout un `campaignName` = soit un slug DB (`canicule-france-2025`) soit
+   * Résout un `campaignName` = soit un slug DB (`canicule-france-2026`) soit
    * une valeur de l'enum legacy (`MID_YEAR_2026`).
    */
   public getLabel(name: string | null | undefined): string {
