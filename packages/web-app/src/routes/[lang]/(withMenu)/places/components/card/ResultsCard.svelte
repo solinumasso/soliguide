@@ -119,7 +119,20 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       <div class="card-header-container">
         <div class="card-header-infos-container">
           <div class="card-infos-left">
-            <PlaceStatus openingStatus={place.status} placeStatus={place.placeStatus} />
+            <div class="card-status-tags">
+              <PlaceStatus openingStatus={place.status} placeStatus={place.placeStatus} />
+              {#if shouldDisplayThermalComfortTag && place.thermalComfort?.airConditioned === true}
+                <Tag variant="info">
+                  <AcUnit slot="icon" aria-hidden="true" />
+                  {$i18n.t('ACCESS_CONDITION_AIR_CONDITIONED')}
+                </Tag>
+              {:else if shouldDisplayThermalComfortTag && place.thermalComfort?.airConditioned === false}
+                <Tag variant="error">
+                  <AcUnit slot="icon" aria-hidden="true" />
+                  {$i18n.t('ACCESS_CONDITION_NOT_AIR_CONDITIONED')}
+                </Tag>
+              {/if}
+            </div>
             <div>
               <TodayInfo todayInfo={place.todayInfo}>
                 {#if place.tempInfo.hours === TempInfoStatus.CURRENT && place.tempInfo.message !== TempInfoStatus.CURRENT}
@@ -228,21 +241,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           /></ButtonLink
         >
       </div>
-      {#if shouldDisplayThermalComfortTag && place.thermalComfort?.airConditioned === true}
-        <div class="thermal-comfort-tag">
-          <Tag variant="info">
-            <AcUnit slot="icon" aria-hidden="true" />
-            {$i18n.t('ACCESS_CONDITION_AIR_CONDITIONED')}
-          </Tag>
-        </div>
-      {:else if shouldDisplayThermalComfortTag && place.thermalComfort?.airConditioned === false}
-        <div class="thermal-comfort-tag">
-          <Tag variant="error">
-            <AcUnit slot="icon" aria-hidden="true" />
-            {$i18n.t('ACCESS_CONDITION_NOT_AIR_CONDITIONED')}
-          </Tag>
-        </div>
-      {/if}
       <ResultsCardServices services={place.services} />
     </div>
   </CardBody>
@@ -324,6 +322,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     gap: var(--spacingXS);
   }
 
+  .card-status-tags {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacingXS);
+  }
+
   .card-infos-right {
     display: flex;
     align-items: center;
@@ -358,10 +363,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   }
   .card-body-adress-distance-icon {
     color: var(--color-interactionHighlightPrimary);
-  }
-
-  .thermal-comfort-tag {
-    display: flex;
   }
 
   .card-footer {

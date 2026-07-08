@@ -159,15 +159,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <section id="result-page">
     <PageLoader loading={$pageStore.initializing}>
       <div class="result-page-content">
+        <ResultsFilters
+          selectedFilters={$pageStore.selectedFilters}
+          on:toggle={(event) => toggleFilter(event.detail)}
+        />
         <div class="title">
           <Text type="text2Medium"
             >{$i18n.t('PLACES_FOUND', { nbResults: $pageStore.searchResult.nbResults })}</Text
           >
         </div>
-        <ResultsFilters
-          selectedFilters={$pageStore.selectedFilters}
-          on:toggle={(event) => toggleFilter(event.detail)}
-        />
         <div class="list">
           {#each $pageStore.searchResult.places as place, index}
             <div>
@@ -202,5 +202,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   .title {
     text-align: center;
+    padding-top: var(--spacingLG);
   }
 </style>
