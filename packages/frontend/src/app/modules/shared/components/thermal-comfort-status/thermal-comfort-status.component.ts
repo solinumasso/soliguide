@@ -3,6 +3,7 @@ import {
   EventEmitter,
   HostBinding,
   Input,
+  OnInit,
   Output,
 } from "@angular/core";
 import { NgClass, NgIf } from "@angular/common";
@@ -27,7 +28,7 @@ import { THEME_CONFIGURATION } from "../../../../models";
   templateUrl: "./thermal-comfort-status.component.html",
   styleUrls: ["./thermal-comfort-status.component.css"],
 })
-export class ThermalComfortStatusComponent {
+export class ThermalComfortStatusComponent implements OnInit {
   @Input() public thermalComfort: ThermalComfortData | null = null;
   @Input() public variant: "card" | "banner" | "ribbon" = "card";
   @Input() public showMissingCta = false;
@@ -38,30 +39,37 @@ export class ThermalComfortStatusComponent {
   @Output() public readonly updateRequested = new EventEmitter<void>();
 
   @HostBinding("class.thermal-comfort-status-host--ribbon")
-  public get isRibbonHost(): boolean {
-    return this.variant === "ribbon";
-  }
+  public isRibbonHost = false;
 
-  public get shouldDisplay(): boolean {
-    return shouldDisplayThermalComfort(
+  public shouldDisplay = false;
+  public isAirConditionedRibbon = false;
+  public isNotAirConditionedRibbon = false;
+  public isWinterRibbon = false;
+  public isSummer = false;
+  public isWinter = false;
+  public isMissing = false;
+
+  public ngOnInit(): void {
+    this.isRibbonHost = this.variant === "ribbon";
+    this.shouldDisplay = shouldDisplayThermalComfort(
       this.country ?? THEME_CONFIGURATION.country
     );
-  }
-
-  public get isSummer(): boolean {
-    return this.thermalComfort?.airConditioned === true && isSummerSeason();
-  }
-
-  public get isWinter(): boolean {
-    return this.thermalComfort?.heated === true && isWinterSeason();
-  }
-
-  public get isMissing(): boolean {
-    return (
+    this.isSummer =
+      this.thermalComfort?.airConditioned === true && isSummerSeason();
+    this.isWinter = this.thermalComfort?.heated === true && isWinterSeason();
+    this.isAirConditionedRibbon =
+      this.variant === "ribbon" && this.thermalComfort?.airConditioned === true;
+    this.isNotAirConditionedRibbon =
+      this.variant === "ribbon" &&
+      this.thermalComfort?.airConditioned === false;
+    this.isWinterRibbon =
+      this.variant === "ribbon" &&
+      this.isWinter &&
+      this.thermalComfort?.airConditioned == null;
+    this.isMissing =
       !this.thermalComfort ||
       (this.thermalComfort.airConditioned == null &&
-        this.thermalComfort.heated == null)
-    );
+        this.thermalComfort.heated == null);
   }
 
   public onCtaClick(): void {
