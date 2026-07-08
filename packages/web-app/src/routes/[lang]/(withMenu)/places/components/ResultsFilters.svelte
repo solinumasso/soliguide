@@ -66,6 +66,6 @@
     display: flex;
     gap: var(--spacingXS);
     min-width: max-content;
-    padding: var(--spacing2XS) var(--spacingLG) var(--spacingXS);
+    padding: 0 var(--spacingLG);
   }
 </style>
