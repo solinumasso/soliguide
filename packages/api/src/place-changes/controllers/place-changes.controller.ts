@@ -97,7 +97,8 @@ export const savePatchChanges = async (
   updatedPlace: ApiPlace,
   userForLogs: UserForLogs,
   forceChanges: boolean,
-  isCampaign = false
+  isCampaign = false,
+  campaignName: string | null = null
 ): Promise<PlaceChanges | null> => {
   const lieu_id = updatedPlace.lieu_id;
   const placeObjectId = getMongoId(updatedPlace._id);
@@ -128,6 +129,7 @@ export const savePatchChanges = async (
       getTerritoryAndCountryFromPlace(updatedPlace);
 
     return await savePlaceChanges({
+      campaignName,
       isCampaign,
       lieu_id,
       new: newSectionData,

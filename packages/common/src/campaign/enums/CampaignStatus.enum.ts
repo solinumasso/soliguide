@@ -1,3 +1,8 @@
+/**
+ * @deprecated Use `CampaignLifecycleStatus` (statut d'une campagne)
+ * ou `CampaignPlaceParticipationStatus` (statut d'une participation).
+ * Ancien statut hardcodé sur `place.campaigns[NAME]` des crisis campaigns.
+ */
 export enum CampaignStatus {
   TO_DO = "TO_DO",
   STARTED = "STARTED",

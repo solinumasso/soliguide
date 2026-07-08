@@ -9,6 +9,7 @@ import {
   PlaceVisibility,
   Publics,
   SOLIGUIDE_COUNTRIES,
+  STRUCTURE_TYPES,
   SUPPORTED_LANGUAGES,
 } from "@soliguide/common";
 
@@ -200,6 +201,12 @@ const PlaceSchema = new mongoose.Schema(
       photos: { default: false, type: Boolean },
       publics: { default: false, type: Boolean },
       services: { default: false, type: Boolean },
+    },
+
+    structureTypes: {
+      default: [],
+      type: [String],
+      enum: STRUCTURE_TYPES,
     },
 
     sources: {

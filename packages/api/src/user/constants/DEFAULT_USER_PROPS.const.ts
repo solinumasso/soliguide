@@ -1,9 +1,11 @@
+import { randomUUID } from "node:crypto";
 import { UserStatus } from "@soliguide/common";
 import { ModelWithId, User } from "../../_models";
 
 export const DEFAULT_USER_PROPS: Pick<
   ModelWithId<User>,
   | "blocked"
+  | "campaignUserUuid"
   | "categoriesLimitations"
   | "devToken"
   | "invitations"
@@ -20,7 +22,7 @@ export const DEFAULT_USER_PROPS: Pick<
   | "verifiedAt"
 > = {
   blocked: false,
-
+  campaignUserUuid: randomUUID(),
   categoriesLimitations: [],
   devToken: null,
   invitations: [],

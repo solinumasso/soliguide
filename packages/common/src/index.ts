@@ -21,6 +21,7 @@ export * from "./search-suggestions";
 export * from "./services";
 export * from "./sources";
 export * from "./structure";
+export * from "./structure-type";
 export * from "./temp-infos";
 export * from "./themes";
 export * from "./translations";

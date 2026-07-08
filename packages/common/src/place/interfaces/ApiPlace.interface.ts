@@ -11,6 +11,7 @@ import type { SoliguideCountries } from "../../location";
 import { Modalities } from "../../modalities";
 import { Publics } from "../../publics";
 import { CommonOpeningHours } from "../../hours";
+import { StructureType } from "../../structure-type";
 import { SupportedLanguagesCode } from "../../translations";
 import { PlaceStepsDone } from "./PlaceStepsDone.interface";
 import { PlaceSlugs } from "./PlaceSlugs.interface";
@@ -51,10 +52,13 @@ export interface ApiPlace {
 
   stepsDone: PlaceStepsDone;
 
+  structureTypes: StructureType[];
+
   tempInfos: PlaceTempInfo;
 
   sources?: CommonPlaceSource[];
 
+  /** @deprecated Crisis campaigns hardcodées. Nouveau modèle: collection `campaign_place_participations`. */
   campaigns?: any;
 
   priority?: boolean;

@@ -39,7 +39,8 @@ export class PlaceChanges implements CommonPlaceChanges {
 
   public place: Pick<Place, "name"> | null;
   public isCampaign: boolean;
-  public campaignName: CampaignName;
+  // Identifiant campagne : `CampaignName` legacy OU slug d'une entrée `campaigns`.
+  public campaignName: CampaignName | string | null;
   public territory: AnyDepartmentCode | null;
 
   constructor(changes?: CommonPlaceChanges) {

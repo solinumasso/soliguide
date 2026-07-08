@@ -32,4 +32,12 @@ export interface CommonUser {
   organizations: any[];
   areas?: OperationalAreas;
   lastLogin: Date | null;
+
+  /**
+   * UUID stable et non-exposé publiquement, utilisé pour construire les
+   * liens d'accès aux campagnes (`GET /campaigns/:slug/access/:uuid`).
+   * `select: false` côté schéma Mongoose — jamais remonté sauf projection
+   * explicite côté API.
+   */
+  campaignUserUuid: string;
 }

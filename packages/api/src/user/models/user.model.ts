@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { randomUUID } from "node:crypto";
 
 import {
   ALL_DEPARTMENT_CODES,
@@ -20,6 +21,19 @@ const UserSchema = new mongoose.Schema<User>(
     blocked: {
       default: false,
       type: Boolean,
+    },
+
+    // UUID stable non-exposé, utilisé pour construire les liens d'accès
+    // aux campagnes. `select: false` : jamais remonté sauf projection
+    // explicite. Migration one-shot dérive un v5 depuis `_id` pour les
+    // users existants ; nouveaux users reçoivent un v4 aléatoire.
+    campaignUserUuid: {
+      default: () => randomUUID(),
+      index: true,
+      required: true,
+      select: false,
+      type: String,
+      unique: true,
     },
 
     // Restrictions for API users

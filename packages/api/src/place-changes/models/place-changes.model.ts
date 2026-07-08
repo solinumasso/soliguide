@@ -1,6 +1,5 @@
 import {
   ALL_DEPARTMENT_CODES,
-  CampaignName,
   CountryCodes,
   PlaceChangesSection,
   PlaceChangesStatus,
@@ -21,11 +20,17 @@ const PlaceChangesSchema = new Schema<PlaceChanges>(
       type: Boolean,
     },
 
+    // Peut être :
+    //  - une valeur `CampaignName` (crisis campaigns historiques),
+    //  - un `slug` de campagne (nouveau modèle, collection `campaigns`),
+    //  - `null` si le changement n'est pas lié à une campagne.
+    // Contrainte `enum` retirée : le champ accepte désormais les slugs
+    // arbitraires. Validation à la source (schéma `campaigns.slug` regex).
     campaignName: {
-      enum: [...Object.values(CampaignName), null],
       default: null,
-      type: String,
       index: true,
+      trim: true,
+      type: String,
     },
 
     isCampaign: {

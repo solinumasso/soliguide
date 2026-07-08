@@ -35,4 +35,5 @@ export const COMMON_USER_PRO: CommonUser = {
   user_id: 451,
   verified: true,
   territories: ["67"],
+  campaignUserUuid: "00000000-0000-0000-0000-000000000451",
 };
