@@ -35,6 +35,11 @@ export class AmqpUser {
   public verified: boolean;
   public resetPasswordToken?: string;
   public areas: OperationalAreas;
+  // UUID stable non-exposé publiquement, propagé vers Brevo/Airtable via le
+  // sync pour construire les liens des emails de campagne. Peut être vide si
+  // la source amont a oublié de projeter le champ (`select: false`) — la
+  // middleware `sendUserChangesToMq` backfill sur les documents sans uuid.
+  public campaignUserUuid?: string;
 
   constructor(user: UserPopulateType | ModelWithId<User>) {
     this.status = user.status;
@@ -43,6 +48,7 @@ export class AmqpUser {
     this.email = user.mail;
     this.user_id = user.user_id;
     this.phone = user.phone ?? undefined;
+    this.campaignUserUuid = user.campaignUserUuid ?? undefined;
     this.organizations = user.organizations?.map(
       (organization: ApiOrganization | mongoose.Types.ObjectId) => {
         if (organization instanceof mongoose.Types.ObjectId) {

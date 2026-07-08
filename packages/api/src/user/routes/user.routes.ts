@@ -438,7 +438,9 @@ router.patch(
       sendUserChangesToMq(req).catch((e) =>
         req.log.error(e, "Failed to send user changes to MQ")
       );
-      return res.status(200).json(req.user);
+      // sendUserForAuth évite d'exposer les champs internes du user
+      // (`campaignUserUuid`, `passwordToken`, `blocked`…) dans la réponse.
+      return res.status(200).json(sendUserForAuth(req.user));
     } catch (e) {
       req.log.error(e);
       return res.status(500).json({ message: "PATCH_ME_FAIL" });

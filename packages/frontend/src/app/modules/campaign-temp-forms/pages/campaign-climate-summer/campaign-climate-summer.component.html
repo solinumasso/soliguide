@@ -1,0 +1,170 @@
+<div class="container py-4 campaign-climate-summer">
+  <ng-container *ngIf="loading">
+    <div class="text-center py-5">
+      <div class="spinner-border" role="status" aria-hidden="true"></div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!loading && payload">
+    <header class="campaign-hero mb-4">
+      <div class="campaign-hero__content">
+        <p *ngIf="payload.user?.name" class="text-muted mb-1 small">
+          {{
+            "CAMPAIGN_TEMP_FORMS_HELLO_NAME"
+              | translate : { name: payload.user.name }
+          }}
+        </p>
+        <h1 class="campaign-hero__title mb-2">{{ payload.campaign.name }}</h1>
+        <p *ngIf="payload.campaign.description" class="mb-0 text-muted">
+          {{ payload.campaign.description }}
+        </p>
+      </div>
+      <div class="campaign-hero__icon" aria-hidden="true">
+        <fa-icon [icon]="['fas', 'sun']" size="4x"></fa-icon>
+      </div>
+    </header>
+
+    <section *ngIf="partitioned.toUpdate.length > 0" class="mb-5">
+      <h2 class="h4 mb-3">
+        {{ "CAMPAIGN_TEMP_FORMS_PLACES_TO_UPDATE" | translate }}
+        <span class="badge bg-warning text-dark ms-2">
+          {{ partitioned.toUpdate.length }}
+        </span>
+      </h2>
+      <div class="row g-3">
+        <div
+          *ngFor="let place of partitioned.toUpdate; trackBy: trackByLieuId"
+          class="col-12 col-md-6"
+        >
+          <ng-container
+            *ngTemplateOutlet="placeCard; context: { $implicit: place }"
+          ></ng-container>
+        </div>
+      </div>
+    </section>
+
+    <section *ngIf="partitioned.upToDate.length > 0" class="mb-5">
+      <h2 class="h4 mb-3">
+        {{ "CAMPAIGN_TEMP_FORMS_PLACES_UP_TO_DATE" | translate }}
+        <span class="badge bg-success ms-2">
+          {{ partitioned.upToDate.length }}
+        </span>
+      </h2>
+      <div class="row g-3">
+        <div
+          *ngFor="let place of partitioned.upToDate; trackBy: trackByLieuId"
+          class="col-12 col-md-6"
+        >
+          <ng-container
+            *ngTemplateOutlet="placeCard; context: { $implicit: place }"
+          ></ng-container>
+        </div>
+      </div>
+    </section>
+  </ng-container>
+</div>
+
+<ng-template #placeCard let-place>
+  <article class="card h-100">
+    <div class="card-body">
+      <div class="d-flex justify-content-between align-items-start mb-3">
+        <div>
+          <h3 class="h5 mb-1">
+            <a
+              *ngIf="place.seo_url || place.lieu_id; else plainTitle"
+              [routerLink]="[
+                '/',
+                lang,
+                'fiche',
+                place.seo_url || place.lieu_id
+              ]"
+              target="_blank"
+              rel="noopener"
+              (click)="
+                captureEvent('click-fiche-link', { lieu_id: place.lieu_id })
+              "
+            >
+              {{ place.name }}
+            </a>
+            <ng-template #plainTitle>{{ place.name }}</ng-template>
+          </h3>
+          <p class="text-muted small mb-0">
+            {{ place.position?.address }}
+          </p>
+        </div>
+      </div>
+
+      <div class="thermal-comfort-card thermal-comfort-card--summer">
+        <div class="thermal-comfort-card__header">
+          <span class="thermal-comfort-card__title">
+            {{ "ACCESS_CONDITION_AIR_CONDITIONED" | translate }}
+          </span>
+        </div>
+        <div class="thermal-comfort-card__options">
+          <button
+            type="button"
+            class="thermal-comfort-card__option"
+            [class.thermal-comfort-card__option--selected]="
+              place.modalities.thermalComfort.airConditioned === true
+            "
+            [disabled]="pendingByLieuId.has(place.lieu_id)"
+            (click)="setAirConditioned(place, true)"
+          >
+            {{ "YES" | translate }}
+          </button>
+          <button
+            type="button"
+            class="thermal-comfort-card__option"
+            [class.thermal-comfort-card__option--selected]="
+              place.modalities.thermalComfort.airConditioned === false
+            "
+            [disabled]="pendingByLieuId.has(place.lieu_id)"
+            (click)="setAirConditioned(place, false)"
+          >
+            {{ "NO" | translate }}
+          </button>
+          <button
+            type="button"
+            class="thermal-comfort-card__option"
+            [class.thermal-comfort-card__option--selected]="
+              place.modalities.thermalComfort.airConditioned === null
+            "
+            [disabled]="pendingByLieuId.has(place.lieu_id)"
+            (click)="setAirConditioned(place, null)"
+          >
+            {{ "NOT_INFORMED" | translate }}
+          </button>
+        </div>
+      </div>
+
+      <div class="thermal-comfort-card mt-3">
+        <div class="thermal-comfort-card__header">
+          <span class="thermal-comfort-card__title">
+            {{ "CAMPAIGN_TEMP_FORMS_HEATWAVE_CHANGE_TITLE" | translate }}
+          </span>
+        </div>
+        <p
+          *ngIf="place.tempInfos?.closure?.actif"
+          class="thermal-comfort-card__status mb-2"
+        >
+          {{
+            "CAMPAIGN_TEMP_FORMS_CLOSED_UNTIL"
+              | translate
+                : {
+                    date: (place.tempInfos.closure.dateFin | date : "shortDate")
+                  }
+          }}
+        </p>
+        <a
+          [routerLink]="['/', lang, 'manage-place', place.lieu_id]"
+          class="thermal-comfort-card__cta"
+          (click)="
+            captureEvent('click-manage-place', { lieu_id: place.lieu_id })
+          "
+        >
+          {{ "CAMPAIGN_TEMP_FORMS_REPORT_CHANGE_CTA" | translate }}
+        </a>
+      </div>
+    </div>
+  </article>
+</ng-template>

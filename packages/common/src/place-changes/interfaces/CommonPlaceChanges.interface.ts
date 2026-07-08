@@ -27,6 +27,14 @@ export interface CommonPlaceChanges {
   isCampaign: boolean;
   country?: SoliguideCountries;
   territory: AnyDepartmentCode | null;
-  campaignName: CampaignName | null;
+  /**
+   * Identifiant de la campagne qui a initié ce changement.
+   * - Pour les crisis campaigns historiques : une valeur de `CampaignName`
+   *   (ex. `MID_YEAR_2026`).
+   * - Pour le nouveau modèle : le `slug` d'une entrée `campaigns`
+   *   (ex. `canicule-france-2025`).
+   * - `null` si le changement ne provient pas d'une campagne.
+   */
+  campaignName: CampaignName | string | null;
   place?: any;
 }

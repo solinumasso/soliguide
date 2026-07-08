@@ -24,4 +24,5 @@ export const USER_INVITED_MOCK: CommonUser = {
   user_id: 1433,
   verified: false,
   lastLogin: new Date("2020-11-19T08:59:48.182Z"),
+  campaignUserUuid: "00000000-0000-0000-0000-000000001433",
 };

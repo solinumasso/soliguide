@@ -42,9 +42,9 @@ export const getNoChanges = (
 };
 
 export const cleanDocsForHistory = (
-  docs: CommonPlaceDocument[]
+  docs: CommonPlaceDocument[] | undefined | null
 ): CommonPlaceDocument[] => {
-  return docs.length
+  return docs?.length
     ? (docs.map((doc: CommonPlaceDocument) => {
         return {
           filename: doc.filename,

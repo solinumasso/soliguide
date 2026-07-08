@@ -177,6 +177,17 @@ export const routes: Routes = [
       ),
   },
   {
+    // Accès public borné par (`campaignSlug`, `campaignUserUuid`) — distribué
+    // par email Brevo. Volontairement PAS de `AuthGuard` : le user n'est pas
+    // connecté, la connaissance du couple slug + uuid autorise l'accès.
+    path: ":lang/campaign-temp-forms",
+    canActivate: [LanguageGuard],
+    loadChildren: () =>
+      import("./modules/campaign-temp-forms/campaign-temp-forms.module").then(
+        (mod) => mod.CampaignTempFormsModule
+      ),
+  },
+  {
     path: ":lang/translations",
     canActivate: [LanguageGuard, AuthGuard, TranslatorSoliguideGuard],
     loadChildren: () =>

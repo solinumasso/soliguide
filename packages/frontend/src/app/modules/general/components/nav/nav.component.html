@@ -240,6 +240,20 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                   >
                     {{ "CAMPAIGN_DASHBOARD" | translate }}
                   </a>
+                  <a
+                    *ngIf="me?.status === UserStatus.ADMIN_SOLIGUIDE"
+                    routerLinkActive="router-link-active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    [routerLink]="[
+                      routePrefix,
+                      'campaign',
+                      'exceptional-updates'
+                    ]"
+                    ngbDropdownItem
+                    (click)="captureEvent('click-exceptional-update-campaigns')"
+                  >
+                    {{ "EXCEPTIONAL_UPDATE_CAMPAIGNS_TITLE" | translate }}
+                  </a>
                 </div>
               </div>
             </li>

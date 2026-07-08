@@ -701,6 +701,7 @@ export const MCP_PLACE: ApiPlace = {
     services: true,
     emplacement: true,
   },
+  structureTypes: [],
   tempInfos: {
     closure: new BasePlaceTempInfo({
       actif: false,

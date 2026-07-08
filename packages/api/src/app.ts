@@ -63,6 +63,8 @@ import autoExportRoute from "./autoexport/routes/autoexport.routes";
 
 // Campaign
 import campaign from "./campaign/routes/campaign.routes";
+import campaignAdmin from "./campaign/routes/campaign-admin.routes";
+import campaignTempForms from "./campaign/routes/campaign-temp-forms.routes";
 
 // Stats
 import stats from "./stats/routes/stats.routes";
@@ -187,6 +189,8 @@ _app.use("/autoexport", autoExportRoute);
 _app.use("/stats", stats);
 
 _app.use("/campaign", campaign);
+_app.use("/admin/campaigns", campaignAdmin);
+_app.use("/campaign-temp-forms", campaignTempForms);
 
 _app.use("/v2/categories", categories);
 

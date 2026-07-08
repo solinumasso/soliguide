@@ -144,6 +144,7 @@ export const ONLINE_PLACE_MOCK = new Place({
     publics: true,
     services: true,
   },
+  structureTypes: [],
   tempInfos: {
     closure: new BasePlaceTempInfo({
       actif: false,

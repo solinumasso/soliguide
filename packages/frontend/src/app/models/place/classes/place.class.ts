@@ -74,6 +74,7 @@ export class Place implements Partial<ApiPlace> {
   public createdBy: string | null;
 
   public stepsDone: PlaceStepsDone;
+  public structureTypes: ApiPlace["structureTypes"] = [];
   public tempInfos: PlaceTempInfo;
   public campaigns: CampaignsForPlace;
   public disabled: boolean; // Frontend variable only: used for definitively closed and drafts
@@ -151,6 +152,8 @@ export class Place implements Partial<ApiPlace> {
       services: false,
       contacts: false,
     };
+
+    this.structureTypes = place?.structureTypes ?? [];
 
     this.photos = place?.photos
       ? place.photos.map((photo: Photo) => new Photo(photo))

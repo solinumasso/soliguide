@@ -176,6 +176,7 @@ export const ONLINE_PLACE: ApiPlace = {
     publics: true,
     services: true,
   },
+  structureTypes: [],
   tempInfos: new PlaceTempInfo({
     hours: {
       dateDebut: new Date("2021-07-14T00:00:00.000Z"),
