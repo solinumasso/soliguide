@@ -150,8 +150,8 @@ describe('ListPageController', () => {
       places: searchResultMock.places.slice(0, 2)
     };
 
-    let resolveStale: (value: SearchResult) => void = () => undefined;
-    let resolveFresh: (value: SearchResult) => void = () => undefined;
+    let resolveStale!: (value: SearchResult) => void;
+    let resolveFresh!: (value: SearchResult) => void;
     const stalePromise = new Promise<SearchResult>((resolve) => {
       resolveStale = resolve;
     });

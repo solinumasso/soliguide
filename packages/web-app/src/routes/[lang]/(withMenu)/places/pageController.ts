@@ -33,13 +33,14 @@ export const getSearchResultPageController = (
   // Identifies the most recent search request. Responses from older requests
   // (e.g. a filter that was replaced before its response came back) are ignored
   // so that a slower, stale request cannot overwrite the current selection.
-  let latestRequestId = 0;
+  const latestRequestId = writable(0);
 
   /**
    * Update seachResult by adding new fetched places
    */
   const getNextResults = async (isInitialisation = false): Promise<void> => {
-    const requestId = ++latestRequestId;
+    latestRequestId.update((requestIdValue) => requestIdValue + 1);
+    const requestId = get(latestRequestId);
 
     // Set loading to true and increment page
     myPageStore.update(
@@ -57,7 +58,7 @@ export const getSearchResultPageController = (
       const result = await searchService.searchPlaces(search, newOptions);
 
       // Discard the response if a newer request has been started meanwhile
-      if (requestId !== latestRequestId) {
+      if (requestId !== get(latestRequestId)) {
         return;
       }
 
@@ -78,7 +79,7 @@ export const getSearchResultPageController = (
       );
     } catch (error: unknown) {
       // Ignore errors coming from a request that is no longer the current one
-      if (requestId !== latestRequestId) {
+      if (requestId !== get(latestRequestId)) {
         return;
       }
 
@@ -98,7 +99,7 @@ export const getSearchResultPageController = (
     } finally {
       // Only the current request may clear the loading state, otherwise a stale
       // request finishing late would hide the spinner of the ongoing one
-      if (requestId === latestRequestId) {
+      if (requestId === get(latestRequestId)) {
         myPageStore.update(
           (oldValue): PageState => ({
             ...oldValue,
