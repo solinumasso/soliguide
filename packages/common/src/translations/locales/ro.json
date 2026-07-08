@@ -18,6 +18,7 @@
   "ACCESS_CONDITION_ON_REGISTRATION": "Pe bază de înscriere",
   "ACCESS_CONDITION_OTHER_PRECISIONS": "Alte detalii",
   "ACCESS_CONDITION_PEOPLE_WITH_REDUCED_MOBILITY": "Accesibil persoanelor cu mobilitate redusă",
+  "ACCESS_CONDITION_THERMAL_COMFORT_UPDATE_CTA": "Actualizați",
   "ACCESS_FOR_ALL": "Acces la toate",
   "ACCESS_MODALITIES_TO": "Metode de acces la {{ placeName }}",
   "ACCESS_ON_ORIENTATION": "Poate fi accesat prin servicii de orientare profesionala",
