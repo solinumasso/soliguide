@@ -48,6 +48,9 @@ export class ThermalComfortStatusComponent implements OnInit {
   public isSummer = false;
   public isWinter = false;
   public isMissing = false;
+  // True when a ribbon overlay is actually rendered. Consumers use this to
+  // reserve layout space so the ribbon does not cover neighbouring content.
+  public isRibbonVisible = false;
 
   public ngOnInit(): void {
     this.isRibbonHost = this.variant === "ribbon";
@@ -70,6 +73,12 @@ export class ThermalComfortStatusComponent implements OnInit {
       !this.thermalComfort ||
       (this.thermalComfort.airConditioned == null &&
         this.thermalComfort.heated == null);
+    this.isRibbonVisible =
+      this.shouldDisplay &&
+      this.variant === "ribbon" &&
+      (this.isAirConditionedRibbon ||
+        this.isNotAirConditionedRibbon ||
+        this.isWinterRibbon);
   }
 
   public onCtaClick(): void {

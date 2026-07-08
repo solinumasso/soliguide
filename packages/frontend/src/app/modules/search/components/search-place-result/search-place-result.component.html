@@ -29,6 +29,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   }"
 >
   <app-thermal-comfort-status
+    #thermalComfortRibbon
     class="place_result__thermal-comfort"
     [thermalComfort]="place.modalities?.thermalComfort"
     variant="ribbon"
@@ -41,6 +42,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       [class.open-card-header]="
         place.status !== PlaceStatus.PERMANENTLY_CLOSED &&
         place.status !== PlaceStatus.DRAFT
+      "
+      [class.search-card-header--with-ribbon]="
+        thermalComfortRibbon.isRibbonVisible
       "
       class="card-header p-4 bg-gradient search-card-header"
     >
@@ -75,7 +79,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               </div>
 
               <div
-                class="d-flex align-items-center place_result_address"
+                class="place_result_address"
                 [ngClass]="{
                   'permanently-closed':
                     place.status === PlaceStatus.PERMANENTLY_CLOSED,
