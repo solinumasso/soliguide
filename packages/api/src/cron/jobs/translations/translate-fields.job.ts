@@ -21,6 +21,11 @@ import isEmpty from "lodash.isempty";
 import { FilterQuery } from "mongoose";
 import { ApiTranslatedField } from "../../../translations/interfaces";
 import { TranslatedFieldModel } from "../../../translations/models";
+import type {
+  CronJobExecution,
+  CronJobResult,
+  CronLogContext,
+} from "../../interfaces";
 
 const GoogleTranslate = new v2.Translate({
   projectId: CONFIG.GOOGLE_PROJECT_ID,
@@ -40,6 +45,36 @@ const RETRYABLE_GOOGLE_TRANSLATE_ERROR_CODES = new Set([
 ]);
 
 type GoogleTranslateClient = Pick<v2.Translate, "translate">;
+
+const buildTranslationContext = (): CronLogContext => ({
+  countriesProcessed: 0,
+  docsFailed: 0,
+  docsToUpdate: 0,
+  docsUpdated: 0,
+  placesRebuilt: 0,
+  translationsCreatedWithGoogle: 0,
+  translationsReused: 0,
+});
+
+const addContextValues = (
+  totalContext: CronLogContext,
+  contextToAdd: CronLogContext
+): CronLogContext => {
+  const mergedContext = { ...totalContext };
+
+  for (const [key, value] of Object.entries(contextToAdd)) {
+    if (typeof value === "number") {
+      mergedContext[key] =
+        typeof mergedContext[key] === "number"
+          ? mergedContext[key] + value
+          : value;
+    } else {
+      mergedContext[key] = value;
+    }
+  }
+
+  return mergedContext;
+};
 
 const wait = async (durationMs: number): Promise<void> => {
   await new Promise((resolve) => setTimeout(resolve, durationMs));
@@ -102,7 +137,11 @@ export const translateTextWithRetry = async (
   throw new Error("[GOOGLE TRANSLATE] Translation failed after retries");
 };
 
-const translatedJobByCountry = async (country: SoliguideCountries) => {
+const translatedJobByCountry = async (
+  country: SoliguideCountries,
+  publishContext?: (context: CronLogContext) => void
+): Promise<CronLogContext> => {
+  const context = buildTranslationContext();
   const matchQuery: Array<FilterQuery<TranslatedField>> = [];
 
   const sourceLanguage = SUPPORTED_LANGUAGES_BY_COUNTRY[country].source;
@@ -123,6 +162,9 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
     { $replaceRoot: { newRoot: "$doc" } },
     { $limit: TRANSLATION_BATCH_LIMIT },
   ]);
+
+  context.docsToUpdate = elements.length;
+  publishContext?.(context);
 
   const rebuiltPlaceIds = new Set<number>();
 
@@ -160,6 +202,7 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
           logger.info(
             "We reuse the translations already verified by a translator"
           );
+          context.translationsReused = Number(context.translationsReused) + 1;
 
           const translatedContent =
             humanTranslation.languages[lang as SupportedLanguagesCode]!.human;
@@ -185,6 +228,8 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
               element.content,
               lang
             );
+            context.translationsCreatedWithGoogle =
+              Number(context.translationsCreatedWithGoogle) + 1;
 
             newData = {
               [`languages.${lang}.auto.content`]: translatedContent,
@@ -221,6 +266,7 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
     // all languages have been auto-translated. Only upgrade — never downgrade
     // documents already at NEED_HUMAN_TRANSLATE or TRANSLATION_COMPLETE.
     if (!hasError) {
+      context.docsUpdated = Number(context.docsUpdated) + 1;
       await updateManyTranslatedFields(
         {
           content: element.content,
@@ -228,6 +274,8 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
         },
         { status: TranslatedFieldStatus.NEED_HUMAN_TRANSLATE }
       );
+    } else {
+      context.docsFailed = Number(context.docsFailed) + 1;
     }
 
     // Collect all place IDs sharing this content, not just the representative
@@ -239,39 +287,67 @@ const translatedJobByCountry = async (country: SoliguideCountries) => {
     for (const field of affectedFields) {
       rebuiltPlaceIds.add(field.lieu_id);
     }
+
+    publishContext?.(context);
   }
 
   // Rebuild once per unique place rather than once per element
   for (const lieu_id of rebuiltPlaceIds) {
     await getPlaceAndRebuildTranslation(lieu_id);
   }
+  context.placesRebuilt = rebuiltPlaceIds.size;
+  context.countriesProcessed = 1;
+  publishContext?.(context);
 
   if (!elements.length) {
     logger.warn("[TRANSLATION] Nothing to translate");
   }
+
+  return context;
 };
 
 /**
  * @summary Update a translation
  */
-export async function translateFieldsJob(): Promise<void> {
+export async function translateFieldsJob(
+  execution?: CronJobExecution
+): Promise<CronJobResult> {
   if (!CONFIG.GOOGLE_API_KEY || !CONFIG.GOOGLE_PROJECT_ID) {
+    const context: CronLogContext = {
+      skipped: true,
+      skipReason: "GOOGLE_CREDENTIALS_NOT_PROVIDED",
+    };
+    execution?.setContext(context);
     logger.warn(
       "[TRANSLATION] Google credentials not provided, not translating."
     );
-    return;
+    return { context };
   }
 
   if (CONFIG.ENV !== "prod") {
+    const context: CronLogContext = {
+      skipped: true,
+      skipReason: "NON_PROD_ENVIRONMENT",
+    };
+    execution?.setContext(context);
     logger.warn(
       "[TRANSLATION] Skip translation in non-prod environment to avoid unnecessary costs and API calls."
     );
-    return;
+    return { context };
   }
 
-  await Promise.all(
-    Object.keys(SUPPORTED_LANGUAGES_BY_COUNTRY).map((countryCode) =>
-      translatedJobByCountry(countryCode as SoliguideCountries)
-    )
-  );
+  let context = buildTranslationContext();
+
+  for (const countryCode of Object.keys(SUPPORTED_LANGUAGES_BY_COUNTRY)) {
+    const countryContext = await translatedJobByCountry(
+      countryCode as SoliguideCountries,
+      (countryContext) => {
+        execution?.setContext(addContextValues(context, countryContext));
+      }
+    );
+    context = addContextValues(context, countryContext);
+    execution?.setContext(context);
+  }
+
+  return { context };
 }

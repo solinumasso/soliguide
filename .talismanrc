@@ -26,6 +26,8 @@ fileignoreconfig:
   checksum: 6011f188d04bcea2113ef03e22fc8342c4ff370644cd1cc46b13c1e00a9d8c4f
 - filename: packages/api/src/autoexport/utils/xml-sanitizer.ts
   checksum: cca8166a23153847fc0a3fbec92161c4596ef425f5b6a68aaadaa05ba880991c
+- filename: packages/api/src/cron/jobs/translations/translate-fields.job.ts
+  checksum: be5e5b99a2ad8e7035a413006012646a8bbf1c268f633868dcf6544f83e6e7c8
 - filename: packages/api/src/middleware/request/tests/requestInformations.middleware.spec.ts
   checksum: 6a751b1f3b2b4502def7418f303a746b724694ad7bf92387fe02da43834882af
 - filename: packages/api/src/place/services/isOpenToday.service.spec.ts

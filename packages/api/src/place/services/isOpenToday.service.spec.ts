@@ -98,9 +98,14 @@ describe("setIsOpenToday - diff-only Airtable synchro", () => {
       Promise.resolve(newValueByPlace[place.lieu_id])
     );
 
-    await setIsOpenToday();
+    const result = await setIsOpenToday();
 
     expect(mockedSendToQueue).toHaveBeenCalledTimes(1);
+    expect(result).toEqual({
+      placesProcessed: 3,
+      placesSyncedToAirtable: 1,
+      servicesProcessed: 0,
+    });
 
     const [exchange, routingKey, payload] = mockedSendToQueue.mock.calls[0];
     expect(exchange).toBe(Exchange.PLACES);
@@ -112,9 +117,10 @@ describe("setIsOpenToday - diff-only Airtable synchro", () => {
     givenPlaces([buildPlace(10, true)]); // true -> false : changed
     mockedIsPlaceOpenToday.mockResolvedValue(false);
 
-    await setIsOpenToday();
+    const result = await setIsOpenToday();
 
     expect(mockedSendToQueue).toHaveBeenCalledTimes(1);
+    expect(result.placesSyncedToAirtable).toBe(1);
     const [, , payload] = mockedSendToQueue.mock.calls[0];
     expect(payload).toEqual({ placeId: 10, isOpenToday: false });
   });
@@ -125,18 +131,24 @@ describe("setIsOpenToday - diff-only Airtable synchro", () => {
       Promise.resolve(place.lieu_id === 20)
     );
 
-    await setIsOpenToday();
+    const result = await setIsOpenToday();
 
     expect(mockedSendToQueue).not.toHaveBeenCalled();
+    expect(result).toEqual({
+      placesProcessed: 2,
+      placesSyncedToAirtable: 0,
+      servicesProcessed: 0,
+    });
   });
 
   it("still persists the computed status to MongoDB for every place", async () => {
     givenPlaces([buildPlace(30, false)]);
     mockedIsPlaceOpenToday.mockResolvedValue(false); // unchanged, no emit
 
-    await setIsOpenToday();
+    const result = await setIsOpenToday();
 
     expect(mockedPlaceModel.bulkWrite).toHaveBeenCalled();
     expect(mockedSendToQueue).not.toHaveBeenCalled();
+    expect(result.placesProcessed).toBe(1);
   });
 });

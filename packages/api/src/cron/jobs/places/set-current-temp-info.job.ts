@@ -6,11 +6,24 @@ import {
 import { PlaceModel } from "./../../../place/models/place.model";
 import { logger } from "../../../general/logger";
 import { TempInfoModel } from "../../../temp-info/models/temp-info.model";
+import type {
+  CronJobExecution,
+  CronJobResult,
+  CronLogContext,
+} from "../../interfaces";
 
 const BATCH_SIZE = 500;
 
-export async function setCurrentTempInfoJob(): Promise<void> {
+export async function setCurrentTempInfoJob(
+  execution?: CronJobExecution
+): Promise<CronJobResult> {
   logger.info("JOB - SET CURRENT TEMPORARY INFORMATION FOR PLACES - START");
+
+  const context: CronLogContext = {
+    placesUpdated: 0,
+    staleTempInfosMarkedObsolete: 0,
+    tempInfosProcessed: 0,
+  };
 
   //
   // 0. Clean up stale FUTURE records whose dateDebut is already in the past
@@ -23,6 +36,9 @@ export async function setCurrentTempInfoJob(): Promise<void> {
     },
     { $set: { status: TempInfoStatus.OBSOLETE } }
   );
+
+  context.staleTempInfosMarkedObsolete = staleResult.modifiedCount;
+  execution?.setContext(context);
 
   if (staleResult.modifiedCount) {
     logger.info(
@@ -135,6 +151,9 @@ export async function setCurrentTempInfoJob(): Promise<void> {
       await PlaceModel.bulkWrite(placeBulkQuery);
       await TempInfoModel.bulkWrite(tempInfoBulkQuery);
       totalProcessed += placeBulkQuery.length;
+      context.placesUpdated = totalProcessed;
+      context.tempInfosProcessed = totalProcessed;
+      execution?.setContext(context);
       placeBulkQuery = [];
       tempInfoBulkQuery = [];
     }
@@ -145,6 +164,9 @@ export async function setCurrentTempInfoJob(): Promise<void> {
     await PlaceModel.bulkWrite(placeBulkQuery);
     await TempInfoModel.bulkWrite(tempInfoBulkQuery);
     totalProcessed += placeBulkQuery.length;
+    context.placesUpdated = totalProcessed;
+    context.tempInfosProcessed = totalProcessed;
+    execution?.setContext(context);
   }
 
   logger.info(
@@ -152,4 +174,6 @@ export async function setCurrentTempInfoJob(): Promise<void> {
   );
 
   logger.info("JOB - SET CURRENT TEMPORARY INFORMATION FOR PLACES - END");
+
+  return { context };
 }
