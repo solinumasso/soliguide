@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.147.2](https://github.com/solinumasso/soliguide/compare/v4.147.1...v4.147.2) (2026-07-08)
+
+
+### Bug Fixes
+
+* **api:** add campaign crisis bulk update ([820e90f](https://github.com/solinumasso/soliguide/commit/820e90f9dc15b936805d07932404148356966602))
+* **api:** add campaign crisis bulk update ([bcd1395](https://github.com/solinumasso/soliguide/commit/bcd139589f2bf19992247aa77140232e30b4c293))
+* **api:** fix services & updates lint ([d15adc7](https://github.com/solinumasso/soliguide/commit/d15adc7e0e66b9d6b2885b74b88d38a9641ee9a4))
+
+
+
+
+
 ## [4.147.1](https://github.com/solinumasso/soliguide/compare/v4.147.0...v4.147.1) (2026-07-08)
 
 
