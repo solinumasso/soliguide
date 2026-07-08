@@ -197,6 +197,23 @@
   background-color: #2f8fd6;
 }
 
+.thermal-comfort-status--ribbon.thermal-comfort-status--not-air-conditioned {
+  right: -56px;
+  padding-right: 52px;
+  padding-left: 52px;
+  background-color: #d64545;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.thermal-comfort-status--ribbon.thermal-comfort-status--not-air-conditioned
+  .thermal-comfort-status__ribbon-icon,
+.thermal-comfort-status--ribbon.thermal-comfort-status--not-air-conditioned
+  span {
+  transform: translateX(8px);
+}
+
 .thermal-comfort-status--ribbon.thermal-comfort-status--winter {
   background-color: #e2673f;
 }

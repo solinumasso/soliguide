@@ -406,7 +406,7 @@
   },
   {
     "categoryId": "fountain",
-    "label": "Fontaine à eau",
+    "label": "Eau potable",
     "slug": "fontaine",
     "synonyms": [
       "eau",
@@ -3469,5 +3469,32 @@
     "country": "ad",
     "seoTitle": "Soins vasculaires gratuits en Andorre avec Soliguide",
     "seoDescription": "Soliguide vous aide à trouver des soins vasculaires accessibles en Andorre. Consultations gratuites, suivi médical, urgences vasculaires près de vous."
+  },
+  {
+    "label": "Refuge climatique",
+    "categoryId": "climate_refuge",
+    "slug": "climate_refuge",
+    "synonyms": [
+      "hébergement",
+      "refuge",
+      "abri",
+      "logement",
+      "accueil",
+      "chaleur",
+      "froid",
+      "urgence",
+      "sécurité",
+      "protection",
+      "gîte",
+      "nuit",
+      "chaud",
+      "frais",
+      "urgentiste"
+    ],
+    "type": "CATEGORY",
+    "lang": "fr",
+    "country": "ad",
+    "seoTitle": "Trouver un refuge climatique en Andorre avec Soliguide",
+    "seoDescription": "Soliguide vous aide à trouver des lieux sûrs face aux conditions météorologiques extrêmes en Andorre. Centres d'accueil, hébergements d'urgence, espaces climatisés."
   }
 ]

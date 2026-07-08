@@ -44,6 +44,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
     <div class="filter-pills">
       <button
+        *ngIf="showThermalComfortFilter"
         type="button"
         class="filter-pill filter-pill--climate"
         [class.filter-pill--active]="filters.airConditioned"

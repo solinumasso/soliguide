@@ -406,7 +406,7 @@
   },
   {
     "categoryId": "fountain",
-    "label": "Font d'aigua",
+    "label": "Aigua potable",
     "slug": "fontaine",
     "synonyms": [
       "beure",
@@ -3639,7 +3639,7 @@
     "seoDescription": "Soliguide us connecta amb centres de salut mental, psicòlegs i recursos per a crisis emocionals a França."
   },
   {
-    "label": "support_groups",
+    "label": "Grups de suport i intercanvi",
     "categoryId": "support_groups",
     "slug": "support_groups",
     "synonyms": [
@@ -4015,5 +4015,32 @@
     "country": "fr",
     "seoTitle": "Trobeu suport emocional i consell amb Soliguide a França",
     "seoDescription": "Soliguide us ofereix llocs per parlar, rebre consell psicològic gratuït o trobar grups de suport. Escolteu professionals propers a vosaltres."
+  },
+  {
+    "label": "Espai fresc",
+    "categoryId": "cooling_space",
+    "slug": "cooling_space",
+    "synonyms": [
+      "espai fresc",
+      "sala de descans",
+      "refuge climàtic",
+      "centre d'acollida",
+      "fonteta d'aigua",
+      "zona ombra",
+      "pausa freda",
+      "descans segur",
+      "lloc tranquil",
+      "acollida climatitzada",
+      "protecció calor",
+      "espai ventilat",
+      "parada refrigerada",
+      "zona de benestar",
+      "lloc de respir"
+    ],
+    "type": "CATEGORY",
+    "lang": "ca",
+    "country": "fr",
+    "seoTitle": "Trobeu espais frescos i segurs amb Soliguide a França",
+    "seoDescription": "Soliguide us ajuda a trobar espais frescos gratuïts. Accés a sales de descans, fontetes d'aigua freda, centres d'acollida climatitzats a França."
   }
 ]

@@ -407,7 +407,7 @@
   },
   {
     "categoryId": "fountain",
-    "label": "Fontaine à eau",
+    "label": "Eau potable",
     "slug": "fontaine",
     "synonyms": [
       "eau",
@@ -4003,5 +4003,32 @@
     "country": "fr",
     "seoTitle": "Soutien émotionnel et bien-être avec Soliguide pour retrouver l'équilibre",
     "seoDescription": "Soliguide vous aide à trouver du soutien émotionnel, des espaces d'écoute, des groupes de parole et des professionnels pour votre bien-être."
+  },
+  {
+    "label": "Espace fraîcheur",
+    "categoryId": "cooling_space",
+    "slug": "cooling_space",
+    "synonyms": [
+      "climatisation",
+      "rafraîchir",
+      "eau fraîche",
+      "fontaine",
+      "repos",
+      "pause",
+      "ombre",
+      "ventilation",
+      "fraîcheur",
+      "refuge",
+      "accueil",
+      "détente",
+      "hydratation",
+      "abri",
+      "tranquillité"
+    ],
+    "type": "CATEGORY",
+    "lang": "fr",
+    "country": "fr",
+    "seoTitle": "Espaces de rafraîchissement et repos avec Soliguide pour vous accueillir",
+    "seoDescription": "Soliguide vous aide à trouver des espaces climatisés, fontaines d'eau fraîche et lieux de repos gratuits près de chez vous."
   }
 ]

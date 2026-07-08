@@ -3,6 +3,7 @@ import {
   EventEmitter,
   HostBinding,
   Input,
+  OnInit,
   Output,
 } from "@angular/core";
 import { NgClass, NgIf } from "@angular/common";
@@ -10,7 +11,15 @@ import { TranslateModule } from "@ngx-translate/core";
 import { RouterLink } from "@angular/router";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
-import type { ThermalComfortData } from "@soliguide/common";
+import {
+  isSummerSeason,
+  isWinterSeason,
+  shouldDisplayThermalComfort,
+  type SoliguideCountries,
+  type ThermalComfortData,
+} from "@soliguide/common";
+
+import { THEME_CONFIGURATION } from "../../../../models";
 
 @Component({
   selector: "app-thermal-comfort-status",
@@ -19,53 +28,60 @@ import type { ThermalComfortData } from "@soliguide/common";
   templateUrl: "./thermal-comfort-status.component.html",
   styleUrls: ["./thermal-comfort-status.component.css"],
 })
-export class ThermalComfortStatusComponent {
+export class ThermalComfortStatusComponent implements OnInit {
   @Input() public thermalComfort: ThermalComfortData | null = null;
   @Input() public variant: "card" | "banner" | "ribbon" = "card";
   @Input() public showMissingCta = false;
   @Input() public editRouterLink: unknown[] | string | null = null;
+  // Optional override — falls back to THEME_CONFIGURATION.country when omitted.
+  @Input() public country: SoliguideCountries | null | undefined = undefined;
 
   @Output() public readonly updateRequested = new EventEmitter<void>();
 
   @HostBinding("class.thermal-comfort-status-host--ribbon")
-  public get isRibbonHost(): boolean {
-    return this.variant === "ribbon";
-  }
+  public isRibbonHost = false;
 
-  public get isSummer(): boolean {
-    return (
-      this.thermalComfort?.airConditioned === true && this.isSummerSeason()
+  public shouldDisplay = false;
+  public isAirConditionedRibbon = false;
+  public isNotAirConditionedRibbon = false;
+  public isWinterRibbon = false;
+  public isSummer = false;
+  public isWinter = false;
+  public isMissing = false;
+  // True when a ribbon overlay is actually rendered. Consumers use this to
+  // reserve layout space so the ribbon does not cover neighbouring content.
+  public isRibbonVisible = false;
+
+  public ngOnInit(): void {
+    this.isRibbonHost = this.variant === "ribbon";
+    this.shouldDisplay = shouldDisplayThermalComfort(
+      this.country ?? THEME_CONFIGURATION.country
     );
-  }
-
-  public get isWinter(): boolean {
-    return this.thermalComfort?.heated === true && this.isWinterSeason();
-  }
-
-  public get isMissing(): boolean {
-    return (
+    this.isSummer =
+      this.thermalComfort?.airConditioned === true && isSummerSeason();
+    this.isWinter = this.thermalComfort?.heated === true && isWinterSeason();
+    this.isAirConditionedRibbon =
+      this.variant === "ribbon" && this.thermalComfort?.airConditioned === true;
+    this.isNotAirConditionedRibbon =
+      this.variant === "ribbon" &&
+      this.thermalComfort?.airConditioned === false;
+    this.isWinterRibbon =
+      this.variant === "ribbon" &&
+      this.isWinter &&
+      this.thermalComfort?.airConditioned == null;
+    this.isMissing =
       !this.thermalComfort ||
       (this.thermalComfort.airConditioned == null &&
-        this.thermalComfort.heated == null)
-    );
+        this.thermalComfort.heated == null);
+    this.isRibbonVisible =
+      this.shouldDisplay &&
+      this.variant === "ribbon" &&
+      (this.isAirConditionedRibbon ||
+        this.isNotAirConditionedRibbon ||
+        this.isWinterRibbon);
   }
 
   public onCtaClick(): void {
     this.updateRequested.emit();
-  }
-
-  // Summer season: June (6) → September (9).
-  private isSummerSeason(now: Date = new Date()): boolean {
-    const month = now.getMonth() + 1;
-    return month >= 6 && month <= 9;
-  }
-
-  // Winter season: November → early March (until March 10th).
-  private isWinterSeason(now: Date = new Date()): boolean {
-    const month = now.getMonth() + 1;
-    if (month === 11 || month === 12 || month === 1 || month === 2) {
-      return true;
-    }
-    return month === 3 && now.getDate() <= 10;
   }
 }

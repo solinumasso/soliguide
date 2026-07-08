@@ -406,7 +406,7 @@
   },
   {
     "categoryId": "fountain",
-    "label": "Fuente de agua",
+    "label": "Agua potable",
     "slug": "fontaine",
     "synonyms": [
       "agua",
@@ -3066,7 +3066,7 @@
     "seoDescription": "Soliguide le conecta con servicios de salud mental en Andorra. Consultas psiquiátricas, terapia y apoyo emocional para personas en situación vulnerable."
   },
   {
-    "label": "support_groups",
+    "label": "Grupos de apoyo mutuo",
     "categoryId": "support_groups",
     "slug": "support_groups",
     "synonyms": [
@@ -3469,5 +3469,32 @@
     "country": "ad",
     "seoTitle": "Encuentre cirugía vascular gratuita con Soliguide en Andorra",
     "seoDescription": "Soliguide le conecta con centros de cirugía vascular. Consultas médicas, tratamientos vasculares y seguimiento especializado en Andorra."
+  },
+  {
+    "label": "Refugio climático",
+    "categoryId": "climate_refuge",
+    "slug": "climate_refuge",
+    "synonyms": [
+      "refugio",
+      "calor extremo",
+      "espacios frescos",
+      "acogida",
+      "emergencia climática",
+      "protección térmica",
+      "centros de descanso",
+      "alerta roja",
+      "ola de calor",
+      "vivienda temporal",
+      "seguridad",
+      "vulnerabilidad",
+      "temperatura",
+      "bienestar",
+      "recursos"
+    ],
+    "type": "CATEGORY",
+    "lang": "es",
+    "country": "ad",
+    "seoTitle": "Encuentre refugio climático en Andorra con Soliguide",
+    "seoDescription": "Soliguide le conecta con lugares seguros durante olas de calor. Centros de acogida, espacios frescos y ayuda de emergencia en Andorra."
   }
 ]

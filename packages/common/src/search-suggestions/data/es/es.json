@@ -406,7 +406,7 @@
   },
   {
     "categoryId": "fountain",
-    "label": "Fuente de agua",
+    "label": "Agua potable",
     "slug": "fontaine",
     "synonyms": [
       "agua",
@@ -3149,7 +3149,7 @@
     "seoDescription": "Soliguide le conecta con centros de salud mental, psicólogos y psiquiatras. Consultas, medicinas, seguimiento personalizado."
   },
   {
-    "label": "support_groups",
+    "label": "Grupos de apoyo mutuo",
     "categoryId": "support_groups",
     "slug": "support_groups",
     "synonyms": [
@@ -3606,5 +3606,32 @@
     "country": "es",
     "seoTitle": "Regularización de documentos con Soliguide, encuentra ayuda cerca de ti",
     "seoDescription": "Soliguide te conecta con servicios de regularización. Obtén ayuda con tu NIE, empadronamiento o documentación legal en tu zona."
+  },
+  {
+    "label": "Refugio climático",
+    "categoryId": "climate_refuge",
+    "slug": "climate_refuge",
+    "synonyms": [
+      "refugio",
+      "acogida",
+      "espacio seguro",
+      "centro de calor",
+      "lugar fresco",
+      "albergue",
+      "protección",
+      "descanso",
+      "parada",
+      "zona climatizada",
+      "cobijo",
+      "hospedaje",
+      "resguardo",
+      "abrigo",
+      "estancia"
+    ],
+    "type": "CATEGORY",
+    "lang": "es",
+    "country": "es",
+    "seoTitle": "Refugios climáticos y espacios seguros con Soliguide",
+    "seoDescription": "Soliguide le ayuda a encontrar refugios climáticos, centros de acogida, espacios frescos y lugares seguros cerca de usted."
   }
 ]

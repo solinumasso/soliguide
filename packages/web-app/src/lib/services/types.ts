@@ -4,6 +4,7 @@ import type { SearchResult, PlaceDetails, DataForLogs } from '$lib/models/types'
 import {
   Categories,
   GeoTypes,
+  type SearchModalities,
   type SoliguideCountries,
   type SupportedLanguagesCode,
   type FlatCategoriesTreeNode,
@@ -48,6 +49,8 @@ export interface SearchParams {
   longitude: number;
   type: string;
   options: SearchOptions;
+  openToday?: boolean;
+  modalities?: SearchModalities;
 }
 
 export interface PlaceDetailsParams {
@@ -94,7 +97,7 @@ declare global {
   }
 }
 
-interface PosthogProperties {
+export interface PosthogProperties {
   categorySelected?: CategorySearch;
   location?: string;
   completeLocation?: {
@@ -120,6 +123,7 @@ interface PosthogProperties {
   isDisabled?: boolean;
   place?: DataForLogs;
   action?: string;
+  geolocationPermissionState?: string;
 }
 
 export interface ZendeskState {

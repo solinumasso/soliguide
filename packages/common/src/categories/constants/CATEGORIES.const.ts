@@ -212,6 +212,7 @@ export const CATEGORIES_GRAPH: CategoriesGraph = {
  * Adds children to existing parents and introduces new leaf categories.
  */
 export const CATEGORIES_GRAPH_SOLIGUIDE_FR: CategoriesGraph = {
+  [Categories.WELCOME]: [{ id: Categories.COOLING_SPACE, rank: 250 }],
   [Categories.COUNSELING]: [
     { id: Categories.DOMICILIATION, rank: 200 },
     { id: Categories.PUBLIC_WRITER, rank: 400 },
@@ -236,6 +237,7 @@ export const CATEGORIES_GRAPH_SOLIGUIDE_FR: CategoriesGraph = {
  * Theme-specific graph overlay for Soliguia Spain.
  */
 export const CATEGORIES_GRAPH_SOLIGUIA_ES: CategoriesGraph = {
+  [Categories.WELCOME]: [{ id: Categories.CLIMATE_REFUGE, rank: 600 }],
   [Categories.TRAINING_AND_JOBS]: [
     { id: Categories.SPANISH_COURSE, rank: 130 },
     { id: Categories.CATALAN_COURSE, rank: 170 },
@@ -252,6 +254,7 @@ export const CATEGORIES_GRAPH_SOLIGUIA_ES: CategoriesGraph = {
  * Theme-specific graph overlay for Soliguia Andorra.
  */
 export const CATEGORIES_GRAPH_SOLIGUIA_AD: CategoriesGraph = {
+  [Categories.WELCOME]: [{ id: Categories.CLIMATE_REFUGE, rank: 600 }],
   [Categories.TRAINING_AND_JOBS]: [
     { id: Categories.SPANISH_COURSE, rank: 130 },
     { id: Categories.CATALAN_COURSE, rank: 170 },

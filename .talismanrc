@@ -56,6 +56,10 @@ fileignoreconfig:
   checksum: 267e262e74dd6ad9609ab6ee42aaf75239b4699b29c58c7c3752a6c385ce7a46
 - filename: packages/web-app/src/lib/services/categoryService.ts
   checksum: 7002e4f6fe7b74eb7516a14b09ec8bbd1ad429a33b017cda5329ef6c6b835d17
+- filename: packages/web-app/src/routes/[lang]/(withMenu)/places/components/ResultsFilters.svelte
+  checksum: 94418ea02e16c04202bf9399dc8043f48d194c2cf5e89ba657830035a463b9a0
+- filename: packages/web-app/src/routes/[lang]/(withMenu)/places/filters.ts
+  checksum: 16825e1f41fb4b25b81a6b404fa20a25a48d4495606afa6cbe3c8971a5d8f457
 - filename: packages/web-app/static/images/organizations-logos/fr/fondation-pour-le-logement.svg
   checksum: a9f3b5a4f303722e2f959921a7be60fd915476ddfdd8a8f3cae41d58a57037f0
 - filename: packages/web-app/static/images/organizations-logos/fr/france-services.svg

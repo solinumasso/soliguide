@@ -269,6 +269,7 @@ describe("Testing of the search query generation", () => {
               $in: [
                 Categories.DAY_HOSTING,
                 Categories.REST_AREA,
+                Categories.COOLING_SPACE,
                 Categories.BABYSITTING,
                 Categories.FAMILY_AREA,
                 Categories.INFORMATION_POINT,

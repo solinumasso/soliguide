@@ -406,7 +406,7 @@
   },
   {
     "categoryId": "fountain",
-    "label": "Fonte de água",
+    "label": "Água potável",
     "slug": "fontaine",
     "synonyms": [
       "água potável",
@@ -2673,7 +2673,7 @@
     "seoDescription": "Soliguide oferece centenas de locais para cuidados de saúde, consultas médicas e medicamentos gratuitos em Andorra. Encontre ajuda perto de você."
   },
   {
-    "label": "find_healthcare",
+    "label": "Encontrar ajuda para o tratamento",
     "categoryId": "find_healthcare",
     "slug": "find_healthcare",
     "synonyms": [
@@ -2727,7 +2727,7 @@
     "seoDescription": "Soliguide oferece centenas de locais para avaliação de saúde, consultas médicas e acompanhamento em Andorra. Encontre ajuda perto de você."
   },
   {
-    "label": "optical_care",
+    "label": "cuidados oftalmológicos",
     "categoryId": "optical_care",
     "slug": "optical_care",
     "synonyms": [
@@ -2781,7 +2781,7 @@
     "seoDescription": "Soliguide oferece centenas de locais para cuidados auditivos. Encontre aparelhos, testes de audição e acompanhamento perto de você em ad."
   },
   {
-    "label": "chronic_diseases",
+    "label": "Doenças crônicas",
     "categoryId": "chronic_diseases",
     "slug": "chronic_diseases",
     "synonyms": [
@@ -2808,7 +2808,7 @@
     "seoDescription": "Soliguide oferece recursos para doenças crónicas em Andorra. Acesse centros de saúde, medicamentos gratuitos e acompanhamento médico perto de si."
   },
   {
-    "label": "medical_accommodation",
+    "label": "Acomodação terapêutica e com supervisão médica",
     "categoryId": "medical_accommodation",
     "slug": "medical_accommodation",
     "synonyms": [
@@ -2862,7 +2862,7 @@
     "seoDescription": "Soliguide oferece centenas de recursos para saúde mental em Andorra. Consultas psiquiátricas, terapia e acompanhamento especializado perto de você."
   },
   {
-    "label": "support_groups",
+    "label": "Grupos de apoio e discussão",
     "categoryId": "support_groups",
     "slug": "support_groups",
     "synonyms": [
@@ -2970,7 +2970,7 @@
     "seoDescription": "Soliguide oferece centenas de locais para tratamento de dependência, aconselhamento e apoio médico em Andorra. Serviços gratuitos perto de você."
   },
   {
-    "label": "addiction_prevention_and_material",
+    "label": "Prevenção e equipamentos",
     "categoryId": "addiction_prevention_and_material",
     "slug": "addiction_prevention_and_material",
     "synonyms": [
@@ -3265,5 +3265,32 @@
     "country": "ad",
     "seoTitle": "Encontre cirurgia vascular gratuita com Soliguide em Andorra",
     "seoDescription": "Soliguide conecta você a cuidados vasculares. Consultas médicas, tratamentos e acompanhamento perto de você em Andorra."
+  },
+  {
+    "label": "Refúgio climático",
+    "categoryId": "climate_refuge",
+    "slug": "climate_refuge",
+    "synonyms": [
+      "abrigo",
+      "refúgio",
+      "espaço fresco",
+      "centro de repouso",
+      "proteção térmica",
+      "zona segura",
+      "descanso",
+      "emergência climática",
+      "calor extremo",
+      "proteção social",
+      "local de acolhimento",
+      "suporte urgente",
+      "bem-estar",
+      "segurança",
+      "assistência"
+    ],
+    "type": "CATEGORY",
+    "lang": "pt",
+    "country": "ad",
+    "seoTitle": "Encontre refúgio climático em Andorra com Soliguide",
+    "seoDescription": "Soliguide oferece locais de abrigo durante ondas de calor. Centros de repouso, espaços frescos e ajuda emergencial em Andorra."
   }
 ]

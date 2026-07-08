@@ -406,7 +406,7 @@
   },
   {
     "categoryId": "fountain",
-    "label": "Public water fountains",
+    "label": "Drinking water",
     "slug": "fontaine",
     "synonyms": [
       "drinking",
@@ -3066,7 +3066,7 @@
     "seoDescription": "Soliguide connects you with psychiatric care in Andorra. Find counseling, therapy, crisis support, and mental health services near you."
   },
   {
-    "label": "support_groups",
+    "label": "Support and discussion groups",
     "categoryId": "support_groups",
     "slug": "support_groups",
     "synonyms": [
@@ -3255,7 +3255,7 @@
     "seoDescription": "Soliguide helps you access contraception services in Andorra. Find family planning clinics, birth control options, and health consultations near you."
   },
   {
-    "label": "sti_prevention_testing",
+    "label": "Screening and treatment of STIs and HIV",
     "categoryId": "sti_prevention_testing",
     "slug": "sti_prevention_testing",
     "synonyms": [
@@ -3469,5 +3469,32 @@
     "country": "ad",
     "seoTitle": "Find vascular surgery care with Soliguide in Andorra",
     "seoDescription": "Soliguide helps you find vascular surgery services in Andorra. Access free consultations, treatment centers, and medical support near you."
+  },
+  {
+    "label": "Climate refuge",
+    "categoryId": "climate_refuge",
+    "slug": "climate_refuge",
+    "synonyms": [
+      "emergency shelter",
+      "warming center",
+      "cooling station",
+      "safe accommodation",
+      "temporary housing",
+      "weather protection",
+      "refuge space",
+      "overnight stay",
+      "heat relief",
+      "cold protection",
+      "emergency housing",
+      "community shelter",
+      "crisis accommodation",
+      "disaster relief",
+      "vulnerable support"
+    ],
+    "type": "CATEGORY",
+    "lang": "en",
+    "country": "ad",
+    "seoTitle": "Find climate refuge and emergency shelter with Soliguide in Andorra",
+    "seoDescription": "Soliguide helps you find safe places to stay during extreme weather. Access emergency shelters, warming centers, and cooling stations in Andorra."
   }
 ]

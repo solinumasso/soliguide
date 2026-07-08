@@ -406,7 +406,7 @@
   },
   {
     "categoryId": "fountain",
-    "label": "ჩემი ორგანიზაცია",
+    "label": "სასმელი წყალი",
     "slug": "fontaine",
     "synonyms": [
       "ორგანიზაცია",
@@ -3260,7 +3260,7 @@
     "seoDescription": "Soliguide-ი გთავაზობთ მანქანის მოვლის უფასო სერვისებს. ზეთის ჩანაცვლება, ტირის შემოწმება, ტექნიკური დახმარება ფრანგულ ქალაქებში."
   },
   {
-    "label": "health_access",
+    "label": "ჯანდაცვაზე წვდომა",
     "categoryId": "health_access",
     "slug": "health_access",
     "synonyms": [
@@ -3287,7 +3287,7 @@
     "seoDescription": "Soliguide-ით იპოვეთ უფასო კლინიკებს, ექიმებს და სამედიცინო პალატებს. დაბეჭდილი რეცეპტები, ანალიზები, კონსულტაციები ფრანგულ ქალაქებში."
   },
   {
-    "label": "physical_health",
+    "label": "სხეულის ჯანმრთელობა",
     "categoryId": "physical_health",
     "slug": "physical_health",
     "synonyms": [
@@ -3314,7 +3314,7 @@
     "seoDescription": "Soliguide-ით იპოვნეთ უფასო სამედიცინო დახმარება, კლინიკები და ჯანმრთელობის სერვისები ფრანციაში."
   },
   {
-    "label": "mental_health",
+    "label": "ფსიქიკური ჯანმრთელობა",
     "categoryId": "mental_health",
     "slug": "mental_health",
     "synonyms": [
@@ -3341,7 +3341,7 @@
     "seoDescription": "Soliguide-ი გთავაზობთ ფსიქოლოგიურ დახმარებას, სტრესის მართვას და ემოციური მხარდაჭერას. იპოვეთ უფასო კლინიკები და კონსულტაციები."
   },
   {
-    "label": "addictions",
+    "label": "დამოკიდებულებები",
     "categoryId": "addictions",
     "slug": "addictions",
     "synonyms": [
@@ -3368,7 +3368,7 @@
     "seoDescription": "Soliguide-ი გთავაზობთ უფასო დახმარებას დამოკიდებულებისგან. ნარკოტიკული ნივხების კლინიკა, ალკოჰოლის მკურნალობა, ფსიქოლოგიური კონსულტაცია."
   },
   {
-    "label": "sexual_health",
+    "label": "სექსუალური ჯანმრთელობა",
     "categoryId": "sexual_health",
     "slug": "sexual_health",
     "synonyms": [
@@ -3395,7 +3395,7 @@
     "seoDescription": "Soliguide-ი გთავაზობთ უფასო კონსულტაციებს, კონტრაცეფციას და STI ტესტირებას ფრანგულ ქალაქებში."
   },
   {
-    "label": "parenthood",
+    "label": "მშობლობა",
     "categoryId": "parenthood",
     "slug": "parenthood",
     "synonyms": [
@@ -3557,7 +3557,7 @@
     "seoDescription": "Soliguide-ში იპოვეთ სმენის დაკარგვის დახმარება. უფასო აუდიოლოგიური გამოკვლევა, სმენის აპარატი, სპეციალისტის კონსულტაცია."
   },
   {
-    "label": "chronic_diseases",
+    "label": "ქრონიკული დაავადებები",
     "categoryId": "chronic_diseases",
     "slug": "chronic_diseases",
     "synonyms": [
@@ -3800,7 +3800,7 @@
     "seoDescription": "Soliguide-ი გთავაზობთ გადაუდებელი კონტრაცეფციის უფასო სერვისებს. ფრანგულ ქვეყნებში აბი, კლინიკა, ექიმი."
   },
   {
-    "label": "abortion",
+    "label": "აბორტი (IVG)",
     "categoryId": "abortion",
     "slug": "abortion",
     "synonyms": [
@@ -4014,5 +4014,32 @@
     "country": "fr",
     "seoTitle": "ემოციური მხარდაჭერი Soliguide-ით - უფასო დახმარება საქართველოში",
     "seoDescription": "Soliguide-ი გთავაზობთ ემოციური მხარდაჭერის ადგილებს. ფსიქოლოგიური კონსულტაცია, ჯგუფური საუბრები, კრიზისის ხაზი - ყველა უფასოდ."
+  },
+  {
+    "label": "გრილი სივრცე",
+    "categoryId": "cooling_space",
+    "slug": "cooling_space",
+    "synonyms": [
+      "დასვენების ადგილი",
+      "ღრმა ჩრდილი",
+      "ღია ოთახი",
+      "კონდიციონერი",
+      "წყლის წყარო",
+      "ბიბლიოთეკა",
+      "კაფე",
+      "მუზეუმი",
+      "სპორტული დარბაზი",
+      "საზოგადო აბაზანა",
+      "მეტროსადგური",
+      "რკინიგზის სადგური",
+      "ღია სკამი",
+      "თავშესაფარი",
+      "დღის ცენტრი"
+    ],
+    "type": "CATEGORY",
+    "lang": "ka",
+    "country": "fr",
+    "seoTitle": "გაციებული ადგილი Soliguide-ზე - უფასო დახმარება ცხელ დღეებში",
+    "seoDescription": "Soliguide-ი გთავაზობთ გაციებულ ადგილებს ფრანგეთში. იპოვეთ ბიბლიოთეკა, კაფე ან სპორტული დარბაზი დასვენებისთვის."
   }
 ]

@@ -422,6 +422,7 @@ const samplePlaceTransformed: SearchResultPlaceCard = Object.freeze({
   sources: [],
   status: PlaceOpeningStatus.PARTIALLY_OPEN,
   placeStatus: PlaceStatus.ONLINE,
+  thermalComfort: { heated: null, airConditioned: null },
   tempInfo: { hours: null, message: null, closure: TempInfoStatus.CURRENT },
   todayInfo: {
     openingHours: [
@@ -1458,6 +1459,7 @@ const sampleItineraryTransformed: SearchResultPlaceCard[] = [
     sources: [],
     status: PlaceOpeningStatus.OPEN,
     placeStatus: PlaceStatus.ONLINE,
+    thermalComfort: { heated: null, airConditioned: null },
     tempInfo: { hours: null, message: null, closure: null },
     todayInfo: { openingHours: [{ end: '2000', start: '1950' }] }
   },
@@ -1488,6 +1490,7 @@ const sampleItineraryTransformed: SearchResultPlaceCard[] = [
     sources: [],
     status: PlaceOpeningStatus.OPEN,
     placeStatus: PlaceStatus.ONLINE,
+    thermalComfort: { heated: null, airConditioned: null },
     tempInfo: { hours: null, message: null, closure: null },
     todayInfo: { openingHours: [{ end: '2215', start: '2200' }] }
   }

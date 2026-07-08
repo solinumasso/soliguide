@@ -70,6 +70,28 @@ describe('Search Result', () => {
       expect(resultItem.sources).toStrictEqual([]);
     });
 
+    it('Thermal comfort is correctly mapped', () => {
+      const modifiedPlace: ApiPlace = {
+        ...samplePlace,
+        modalities: {
+          ...samplePlace.modalities,
+          thermalComfort: { heated: null, airConditioned: false }
+        }
+      };
+
+      const result = buildSearchResult(
+        { nbResults: 1, places: [modifiedPlace] },
+        sampleLocationParams,
+        category
+      );
+      const [resultItem] = result.places;
+
+      expect(resultItem.thermalComfort).toStrictEqual({
+        heated: null,
+        airConditioned: false
+      });
+    });
+
     describe('Computation of the distance', () => {
       it('GeoType must be the same as user search', () => {
         const geoTypeToSearch = GeoTypes.CITY;
