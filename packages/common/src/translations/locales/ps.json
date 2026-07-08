@@ -18,6 +18,7 @@
   "ACCESS_CONDITION_ON_REGISTRATION": "په ثبت نام",
   "ACCESS_CONDITION_OTHER_PRECISIONS": "نور جزیات",
   "ACCESS_CONDITION_PEOPLE_WITH_REDUCED_MOBILITY": "هغه خلکو ته د لاسرسي وړ دي چې د حرکت کمښت لري",
+  "ACCESS_CONDITION_THERMAL_COMFORT_UPDATE_CTA": "د تازه کولو لپاره",
   "ACCESS_FOR_ALL": "ټولو ته لاسرسی",
   "ACCESS_MODALITIES_TO": "{{ placeName }} ته د لاسرسي طریقې",
   "ACCESS_ON_ORIENTATION": "د لارښوونو له لارې د لاسرسي وړ",
