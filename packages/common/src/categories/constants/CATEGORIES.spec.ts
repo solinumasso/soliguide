@@ -70,6 +70,7 @@ describe("Categories", () => {
       if (
         [
           Categories.CATALAN_COURSE,
+          Categories.CLIMATE_REFUGE,
           Categories.SPANISH_COURSE,
           Categories.LEGAL_PROTECTION,
           Categories.NEUROLOGY,
@@ -104,7 +105,7 @@ describe("Categories", () => {
   it("leaves", () => {
     const CATEGORIES_LEAF_NODES =
       getCategoriesService().getCategoriesLeafNodes();
-    expect(CATEGORIES_LEAF_NODES.length).toEqual(108);
+    expect(CATEGORIES_LEAF_NODES.length).toEqual(109);
   });
 
   it("roots", () => {
