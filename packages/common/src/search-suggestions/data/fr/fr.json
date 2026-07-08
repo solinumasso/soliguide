@@ -407,7 +407,7 @@
   },
   {
     "categoryId": "fountain",
-    "label": "Fontaine à eau",
+    "label": "Eau potable",
     "slug": "fontaine",
     "synonyms": [
       "eau",
