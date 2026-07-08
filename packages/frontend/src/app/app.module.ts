@@ -34,7 +34,11 @@ import { SharedModule } from "./modules/shared/shared.module";
 import { UsersModule } from "./modules/users/users.module";
 import { AnalyticsModule } from "./modules/analytics/analytics.module";
 
-import { CustomLoaderTranslate, registerLocales } from "./shared";
+import {
+  CampaignsCatalogService,
+  CustomLoaderTranslate,
+  registerLocales,
+} from "./shared";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { THEME_CONFIGURATION } from "./models";
@@ -98,6 +102,12 @@ export function initializeTranslate(translate: TranslateService) {
       provide: APP_INITIALIZER,
       useFactory: initializeTranslate,
       deps: [TranslateService],
+      multi: true,
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (catalog: CampaignsCatalogService) => () => catalog.load(),
+      deps: [CampaignsCatalogService],
       multi: true,
     },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -28,6 +28,8 @@ fileignoreconfig:
   checksum: cca8166a23153847fc0a3fbec92161c4596ef425f5b6a68aaadaa05ba880991c
 - filename: packages/api/src/campaign/controllers/campaign-admin.controller.ts
   checksum: 2cd7af0b97999b433a39e228ebd22b80c3d2036474d554802bf056034e8e1112
+- filename: packages/api/src/campaign/routes/campaign.routes.ts
+  checksum: 0a012cd93fcf9c943756350b99edfd054bc90642a8d4f16c3145bfcfc5818a8b
 - filename: packages/api/src/middleware/request/tests/requestInformations.middleware.spec.ts
   checksum: 6a751b1f3b2b4502def7418f303a746b724694ad7bf92387fe02da43834882af
 - filename: packages/api/src/place/services/isOpenToday.service.spec.ts

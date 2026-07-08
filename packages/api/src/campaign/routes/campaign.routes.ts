@@ -35,6 +35,7 @@ import { PlaceChanges } from "../../place-changes/interfaces/PlaceChanges.interf
 import { sendPlaceChangesToMq } from "../../place-changes/middlewares/send-place-changes-to-mq.middleware";
 import {
   computePlaceAutonomyStatus,
+  getAllCampaigns,
   getPlaces,
   isCampaignActive,
   setNoChangeForPlace,
@@ -44,6 +45,11 @@ import {
 import { updatePlaceByPlaceId } from "../../place/services/admin-place.service";
 
 const router = express.Router();
+
+// Catalogue de toutes les campagnes (nouveau modèle DB) — utilisé côté front
+// pour résoudre le libellé d'un `placeChanges.campaignName` = slug moderne.
+// Read-only, projection minimale, pas de secret : accès public.
+router.get("/all", getAllCampaigns);
 
 // No-changes on the place
 router.get(
