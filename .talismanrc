@@ -26,6 +26,10 @@ fileignoreconfig:
   checksum: 6011f188d04bcea2113ef03e22fc8342c4ff370644cd1cc46b13c1e00a9d8c4f
 - filename: packages/api/src/autoexport/utils/xml-sanitizer.ts
   checksum: cca8166a23153847fc0a3fbec92161c4596ef425f5b6a68aaadaa05ba880991c
+- filename: packages/api/src/campaign/controllers/campaign-admin.controller.ts
+  checksum: 2cd7af0b97999b433a39e228ebd22b80c3d2036474d554802bf056034e8e1112
+- filename: packages/api/src/campaign/routes/campaign.routes.ts
+  checksum: 0a012cd93fcf9c943756350b99edfd054bc90642a8d4f16c3145bfcfc5818a8b
 - filename: packages/api/src/middleware/request/tests/requestInformations.middleware.spec.ts
   checksum: 6a751b1f3b2b4502def7418f303a746b724694ad7bf92387fe02da43834882af
 - filename: packages/api/src/place/services/isOpenToday.service.spec.ts
@@ -34,6 +38,10 @@ fileignoreconfig:
   checksum: 625ce9d979eea08e8fd68306390db0d22172cb54ce98c98db60c3d1752330b2e
 - filename: packages/api/src/user/controllers/auth.controller.ts
   checksum: 5b812117e3ae5b7924fdca4b41f8907dc93ca4d476779f14ca1fb5b436aa4b94
+- filename: packages/api/src/user/routes/user.routes.ts
+  checksum: f72b13cfd9e9446abfb0ff2f0c0af776fddb6cbda0b8bdc9ad2a939712aaf43d
+- filename: packages/api/src/user/services/users.service.ts
+  checksum: 233f543af317e4cfe69ecc7dd28ab4d0b9a7bbdbdd99caa0be6a46ed17ac2414
 - filename: packages/common/src/search-suggestions/config.ts
   checksum: db47bb50156072db5e1d62458a948d3eb1f9acff5cad7b339fb0cbdd4d85117c
 - filename: packages/frontend/src/app/modules/admin-place-shared/components/display-general-info-admin/display-general-info-admin.component.ts
@@ -42,6 +50,8 @@ fileignoreconfig:
   checksum: 0a51b69f57fb3806c6415ad8d51929d21b9eddda534244cdbab914174b57e527
 - filename: packages/frontend/src/app/modules/campaign-shared/components/campaign-source-update/campaign-source-update.component.html
   checksum: 74d0f39f0df5068d1a4da6601e61046d1d4a3e83b494bdd70d0193b7f9370081
+- filename: packages/frontend/src/app/modules/campaign-temp-forms/services/campaign-temp-forms.service.ts
+  checksum: 19f9275aed8df32496260ee6d452af0b585dd1f78ff0b99eafb0d87fffc67822
 - filename: packages/frontend/src/app/modules/place-changes/components/display-place-changes/display-place-changes.component.ts
   checksum: 360a52b9b28535dd75558c6d0ab23a29b6a0346b732ffa1e4be84f4123e5dca7
 - filename: packages/frontend/src/app/modules/place/standalone-components/google-map/google-map.component.ts
@@ -69,5 +79,5 @@ fileignoreconfig:
 - filename: packages/web-app/static/images/organizations-logos/fr/secours-islamique.svg
   checksum: 09d951bec75ab70c67a967d95b63b5da29fb8d21f7fe9d5566ac8d9b004983b3
 - filename: yarn.lock
-  checksum: 39a777e2cc93ef06f37d3d3331e8078fbfcf1f58793174b9e37f5bac2363a0a4
+  checksum: a5e0af5dd533f7fcc625fceca087716f39ed52929a7dcd9312f432a7adc59048
 version: "1.0"

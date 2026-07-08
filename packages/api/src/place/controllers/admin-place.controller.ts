@@ -451,10 +451,19 @@ export const patchPublics = async (
 };
 
 /**
- * patchModalities - Update place access conditions
+ * patchModalities - Update place access conditions.
+ *
+ * @param campaignContext Optionnel : injecte `isCampaign` + `campaignName`
+ *  (slug de la campagne nouveau modèle, ou valeur `CampaignName` legacy)
+ *  dans l'entrée `placeChanges` créée. Utilisé par le flux
+ *  `campaign-temp-forms` pour tracer quelle campagne a initié la modif.
  */
 export const patchModalities = async (
-  req: ExpressRequest
+  req: ExpressRequest,
+  campaignContext: { isCampaign: boolean; campaignName: string | null } = {
+    isCampaign: false,
+    campaignName: null,
+  }
 ): Promise<{
   placeChanges: PlaceChanges | null;
   updatedPlace: ModelWithId<ApiPlace>;
@@ -479,7 +488,9 @@ export const patchModalities = async (
     oldPlace,
     updatedPlace,
     req.userForLogs as UserForLogs,
-    req.bodyValidated.forceChanges
+    req.bodyValidated.forceChanges,
+    campaignContext.isCampaign,
+    campaignContext.campaignName
   );
 
   return { placeChanges, updatedPlace };

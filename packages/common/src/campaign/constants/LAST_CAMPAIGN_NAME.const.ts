@@ -2,6 +2,7 @@ import { CampaignName } from "../enums/CampaignName.enum";
 import { CampaignInfos } from "../types/CampaignInfos.type";
 import { CAMPAIGN_LIST } from "./CAMPAIGN_LIST.const";
 
+/** @deprecated Crisis campaigns helpers only. */
 const getLastCompletedCampaignByType = (
   typeName: string
 ): CampaignName | undefined => {

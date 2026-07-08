@@ -1,3 +1,7 @@
+/**
+ * @deprecated Les campagnes ne sont plus identifiées par un nom hardcodé
+ * mais par un `slug` unique persisté dans la collection `campaigns`.
+ */
 export enum CampaignName {
   MAJ_ETE_2022 = "MAJ_ETE_2022",
   MAJ_ETE_2023 = "MAJ_ETE_2023",

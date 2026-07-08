@@ -1,6 +1,6 @@
 import type { Request } from "express";
 
-import type { ApiPlace } from "@soliguide/common";
+import type { ApiPlace, Campaign } from "@soliguide/common";
 
 import type { User, UserForLogs, UserPopulateType } from "../users";
 import type { ApiTranslatedField } from "../../translations/interfaces";
@@ -28,6 +28,9 @@ export interface ExpressRequest extends Request {
 
   // Place added to the request with getPlaceFromUrl
   lieu?: any; // TODO: type it
+
+  // Campaign added to the request with getActiveCampaignFromSlug
+  campaign?: Campaign;
 
   nbResults?: number;
 

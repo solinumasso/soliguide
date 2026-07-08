@@ -1,0 +1,134 @@
+/* Hero section : léger dégradé orange chaleur → transparent, icône soleil à
+   droite. Aucun overflow, pas de bord dur, s'intègre à la maquette Bootstrap. */
+.campaign-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.75rem 2rem;
+  border-radius: 16px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 178, 102, 0.28) 0%,
+    rgba(255, 178, 102, 0.12) 45%,
+    rgba(255, 178, 102, 0) 100%
+  );
+  overflow: hidden;
+}
+.campaign-hero__content {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.campaign-hero__title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #7a3f0b;
+  letter-spacing: 0.01em;
+}
+.campaign-hero__icon {
+  flex: 0 0 auto;
+  color: #f4a24a;
+  opacity: 0.85;
+  display: flex;
+  align-items: center;
+}
+
+/* Recopie ciblée du bloc `thermal-comfort-card` du module form-place
+   (modules/form-place/components/modalities-form/modalities-form.component.css)
+   pour ne dépendre d'aucun module derrière un AuthGuard. */
+
+.thermal-comfort-card {
+  position: relative;
+  overflow: hidden;
+  padding: 1rem 1.25rem;
+  border-radius: 14px;
+  background-color: #f3f4f6;
+  border: 1px solid rgba(107, 114, 128, 0.35);
+}
+
+.thermal-comfort-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+  color: #374151;
+}
+
+.thermal-comfort-card__title {
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+}
+
+.thermal-comfort-card__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.thermal-comfort-card__option {
+  min-width: 120px;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  color: #374151;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.thermal-comfort-card__option:hover:not(:disabled) {
+  border-color: #6b7280;
+}
+
+.thermal-comfort-card__option:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.thermal-comfort-card__option--selected,
+.thermal-comfort-card__option--selected:hover {
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.thermal-comfort-card--summer {
+  background-color: #eaf3fb;
+  border-color: rgba(31, 111, 176, 0.35);
+}
+.thermal-comfort-card--summer .thermal-comfort-card__header {
+  color: #1c5c95;
+}
+.thermal-comfort-card--summer .thermal-comfort-card__option--selected {
+  background-color: #2f8fd6;
+}
+
+.thermal-comfort-card__status {
+  color: #374151;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.thermal-comfort-card__status--muted {
+  color: #6b7280;
+  font-style: italic;
+}
+.thermal-comfort-card__cta {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  color: #374151;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+.thermal-comfort-card__cta:hover {
+  border-color: #6b7280;
+  color: #111827;
+  text-decoration: none;
+}

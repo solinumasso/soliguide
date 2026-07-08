@@ -134,6 +134,7 @@ export const ONLINE_ITINERARY: ApiPlace = {
     services: true,
     emplacement: true,
   },
+  structureTypes: [],
   tempInfos: new PlaceTempInfo(),
   updatedByUserAt: new Date("2022-04-05T11:36:40.000Z"),
   updatedAt: new Date("2022-04-05T11:36:40.000Z"),

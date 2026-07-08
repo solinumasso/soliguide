@@ -33,7 +33,11 @@ export const getUserByParams = (
     params._id = new mongoose.Types.ObjectId(params._id);
   }
 
+  // `+campaignUserUuid` : le champ est `select: false` sur le schéma ; on le
+  // remonte ici pour qu'il soit disponible aux flux de sync (AmqpUser →
+  // Brevo/Airtable) sans réinterroger la base.
   return UserModel.findOne<UserPopulateType>(params)
+    .select("+campaignUserUuid")
     .populate(DEFAULT_USER_POPULATE)
     .session(session ?? null)
     .lean<UserPopulateType>()
@@ -45,6 +49,30 @@ export const getUserByIdWithUserRights = async (
 ): Promise<UserPopulateType | null> => {
   const user = await getUserByParams({
     _id: userObjectId,
+  });
+  if (user) {
+    user.userRights = await getUserRightsWithParams({ user: user._id });
+  }
+  return user;
+};
+
+/**
+ * Récupère un user PRO par son `campaignUserUuid` (champ `select: false`,
+ * requêté en filtre uniquement — pas remonté dans la projection) avec ses
+ * `userRights` populés. Sert de mécanisme d'authentification pour les
+ * endpoints `campaign-temp-forms/*` : la connaissance du uuid + statut PRO =
+ * preuve d'identité.
+ *
+ * Volontairement borné à `UserStatus.PRO` : les autres statuts (SIMPLE_USER,
+ * API_USER, ADMIN_*, WIDGET_USER) ne doivent pas passer par ce flux, même si
+ * leur `campaignUserUuid` fuitait.
+ */
+export const getUserByCampaignUserUuidWithRights = async (
+  campaignUserUuid: string
+): Promise<UserPopulateType | null> => {
+  const user = await getUserByParams({
+    campaignUserUuid,
+    status: UserStatus.PRO,
   });
   if (user) {
     user.userRights = await getUserRightsWithParams({ user: user._id });

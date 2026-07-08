@@ -5,6 +5,11 @@ import { CountryCodes } from "../../location/enums/CountryCodes.enum";
 import { DEPARTMENT_CODES } from "../../location/constants/ALL_DEPARTMENT_CODES.const";
 import { PlaceType } from "../../place/enums/PlaceType.enum";
 
+/**
+ * @deprecated Les campagnes sont désormais persistées dans la collection
+ * `campaigns` (interface `Campaign`) et ne sont plus hardcodées ici.
+ * Ce mapping est conservé pour les crisis campaigns actives / historiques.
+ */
 export const CAMPAIGN_LIST: { [key in CampaignName]: CampaignInfos } = {
   MAJ_ETE_2022: {
     adjective: "estivale",

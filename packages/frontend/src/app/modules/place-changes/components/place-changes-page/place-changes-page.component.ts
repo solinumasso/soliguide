@@ -14,8 +14,10 @@ import { User } from "../../../users/classes/user.class";
 import { AuthService } from "../../../users/services/auth.service";
 
 import { PlaceChanges, THEME_CONFIGURATION } from "../../../../models";
-import { CAMPAIGN_LIST, UserStatus } from "@soliguide/common";
+import { UserStatus } from "@soliguide/common";
 import { TranslateService } from "@ngx-translate/core";
+
+import { CampaignsCatalogService } from "../../../../shared/services";
 
 @Component({
   selector: "app-place-changes-page",
@@ -30,7 +32,6 @@ export class PlaceChangesPageComponent implements OnInit, OnDestroy {
 
   public photosChanged: boolean;
   public routePrefix: string;
-  public readonly CAMPAIGN_LIST = CAMPAIGN_LIST;
   public readonly UserStatus = UserStatus;
   public readonly THEME_CONFIGURATION = THEME_CONFIGURATION;
 
@@ -41,7 +42,8 @@ export class PlaceChangesPageComponent implements OnInit, OnDestroy {
     private readonly toastr: ToastrService,
     private readonly titleService: Title,
     private readonly currentLanguageService: CurrentLanguageService,
-    private readonly translateService: TranslateService
+    private readonly translateService: TranslateService,
+    private readonly campaignsCatalog: CampaignsCatalogService
   ) {
     this.photosChanged = false;
     this.routePrefix = this.currentLanguageService.routePrefix;
@@ -90,5 +92,13 @@ export class PlaceChangesPageComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+
+  public getCampaignLabel(name: string | null | undefined): string {
+    return this.campaignsCatalog.getLabel(name);
+  }
+
+  public getCampaignYear(name: string | null | undefined): number | null {
+    return this.campaignsCatalog.getYear(name);
   }
 }
