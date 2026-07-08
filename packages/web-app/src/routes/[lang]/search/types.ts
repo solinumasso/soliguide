@@ -71,6 +71,8 @@ export interface PageState {
   loadingLocationSuggestions: boolean;
   loadingCategorySuggestions: boolean;
   loadingGeolocation: boolean;
+  /** True when the browser has blocked geolocation and we show the recovery modal */
+  showGeolocationBlockedModal: boolean;
 }
 
 /** exposes the state in readonly and functions to act on it */
@@ -79,7 +81,12 @@ export interface SearchPageController {
   selectLocationSuggestion(locationSuggestion: LocationSuggestion | null): void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getLocationSuggestions(event: any): void;
+  /**
+   * Entry point for the "my position" button. Triggers the device geolocation (native prompt when
+   * needed); on success it selects the location, on permission denial it opens the recovery modal.
+   */
   useCurrentLocation(geolocation: () => Promise<GeolocationPosition>): Promise<void>;
+  closeGeolocationBlockedModal(): void;
   clearLocation(): void;
   clearCategory(): void;
   goToPreviousStep(): void;

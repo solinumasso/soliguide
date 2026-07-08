@@ -4,21 +4,36 @@
   export let withIcon = true;
   export let label: string;
   export let variant: TileVariant;
+  /** When true, the tile becomes an interactive button and forwards its click event */
+  export let clickable = false;
 
   $: tileClass = `tile ${variant}`;
   $: iconClass = `tile-icon ${variant}`;
 </script>
 
-<div class={tileClass}>
-  {#if withIcon}
-    <span class={iconClass}>
-      <slot />
-    </span>
-  {/if}
-  <p class="tile-text text-secondary-text2-medium">
-    {label}
-  </p>
-</div>
+{#if clickable}
+  <button type="button" class={tileClass} on:click>
+    {#if withIcon}
+      <span class={iconClass}>
+        <slot />
+      </span>
+    {/if}
+    <p class="tile-text text-secondary-text2-medium">
+      {label}
+    </p>
+  </button>
+{:else}
+  <div class={tileClass}>
+    {#if withIcon}
+      <span class={iconClass}>
+        <slot />
+      </span>
+    {/if}
+    <p class="tile-text text-secondary-text2-medium">
+      {label}
+    </p>
+  </div>
+{/if}
 
 <style lang="scss">
   .tile {
@@ -31,7 +46,16 @@
     gap: var(--spacingXS);
     border-radius: var(--spacingXS);
     box-shadow: var(--shadowXS);
+  }
 
+  button.tile {
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .tile {
     &.primary {
       background-color: var(--color-surfacePrimary2);
     }

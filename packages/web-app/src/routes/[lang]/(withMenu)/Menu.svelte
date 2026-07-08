@@ -20,15 +20,13 @@
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import type { ThemeDefinition } from '$lib/theme/types';
   import { themeStore } from '$lib/theme/index';
-  import { getHomePageController } from './pageController';
+  import pageStore from './index';
   import { zendeskService } from '$lib/services';
   import { get } from 'svelte/store';
 
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
   const theme: ThemeDefinition = get(themeStore.getTheme());
-
-  const pageStore = getHomePageController();
 
   setContext('CAPTURE_FCTN_CTX_KEY', pageStore.captureEvent);
 

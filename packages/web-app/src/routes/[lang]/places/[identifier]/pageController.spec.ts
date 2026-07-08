@@ -26,6 +26,7 @@ const defaultState: PlaceDetails = {
   services: [],
   sources: [],
   status: PlaceOpeningStatus.OPEN,
+  thermalComfort: { heated: null, airConditioned: null },
   todayInfo: {},
   tempInfo: {} as PlaceDetailsTempInfo,
   website: ''

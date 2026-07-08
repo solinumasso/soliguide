@@ -207,6 +207,7 @@ export interface PlaceDetails {
   services: Service[];
   sources: Source[];
   status: PlaceOpeningStatus;
+  thermalComfort: ThermalComfortData;
   todayInfo: TodayInfo;
   tempInfo: PlaceDetailsTempInfo;
   website: string;

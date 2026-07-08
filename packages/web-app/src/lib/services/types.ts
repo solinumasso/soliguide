@@ -23,6 +23,33 @@ export interface LocationService {
   ): Promise<LocationSuggestion | null>;
 }
 
+/**
+ * Query params expected by the places (search results) route.
+ * All values are strings so they can be serialized into a URLSearchParams.
+ */
+export interface PlacesSearchParams {
+  lang: string;
+  location: string;
+  latitude: string;
+  longitude: string;
+  type: string;
+  label: string;
+  category: string;
+  /** Optional search filter, serialized as "true" when the air-conditioned filter is applied */
+  airConditioned?: string;
+}
+
+export interface SearchParamsService {
+  /** Build the params needed to launch a places search from a resolved location and a category */
+  buildPlacesSearchParams(
+    location: LocationSuggestion,
+    category: CategorySearch,
+    lang: string
+  ): PlacesSearchParams;
+  /** Serialize places search params into a query string usable after ROUTE_PLACES */
+  toPlacesSearchQueryString(params: PlacesSearchParams): string;
+}
+
 export interface CategoryService {
   getAllCategories(): FlatCategoriesTreeNode[];
   getRootCategories(): Categories[];
@@ -31,6 +58,11 @@ export interface CategoryService {
   hasChildren(categoryId: Categories): boolean;
   getCategorySuggestions(
     searchTerm: string,
+    country: string,
+    lang: string
+  ): Promise<FormattedSuggestion[]>;
+  getCategorySuggestionsById(
+    categoryId: string,
     country: string,
     lang: string
   ): Promise<FormattedSuggestion[]>;
@@ -121,6 +153,7 @@ export interface PosthogProperties {
   fromPlace?: number;
   clickedItem?: string;
   isDisabled?: boolean;
+  isAirConditioned?: boolean;
   place?: DataForLogs;
   action?: string;
   geolocationPermissionState?: string;
