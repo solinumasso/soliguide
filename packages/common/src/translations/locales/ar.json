@@ -20,6 +20,7 @@
   "ACCESS_CONDITION_OTHER_PRECISIONS": "تفاصيل أخرى",
   "ACCESS_CONDITION_PEOPLE_WITH_REDUCED_MOBILITY": "في متناول الأشخاص ذوي القدرة المحدودة على الحركة",
   "ACCESS_CONDITION_THERMAL_COMFORT_MISSING": "الراحة الحرارية غير المزودة بالموارد",
+  "ACCESS_CONDITION_THERMAL_COMFORT_UPDATE_CTA": "تحديث",
   "ACCESS_FOR_ALL": "الوصول إلى الجميع",
   "ACCESS_MODALITIES_TO": "طرق الوصول إلى {{ placeName }}",
   "ACCESS_ON_ORIENTATION": "يمكن الوصول إليها عن طريق التوجه",
