@@ -18,6 +18,7 @@
   "ACCESS_CONDITION_ON_REGISTRATION": "რეგისტრაციისას",
   "ACCESS_CONDITION_OTHER_PRECISIONS": "Სხვა დეტალები",
   "ACCESS_CONDITION_PEOPLE_WITH_REDUCED_MOBILITY": "ხელმისაწვდომია შეზღუდული მობილობის მქონე ადამიანებისთვის",
+  "ACCESS_CONDITION_THERMAL_COMFORT_UPDATE_CTA": "განახლებისთვის",
   "ACCESS_FOR_ALL": "წვდომა ყველასთან",
   "ACCESS_MODALITIES_TO": "{{ placeName }}-ზე წვდომის მეთოდები",
   "ACCESS_ON_ORIENTATION": "ხელმისაწვდომია ორიენტაციის მიხედვით",
