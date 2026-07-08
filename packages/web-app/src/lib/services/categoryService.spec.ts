@@ -81,4 +81,26 @@ describe('Category Service', () => {
       expect(result).toEqual([]);
     });
   });
+
+  describe('getCategorySuggestionsById', () => {
+    it('returns the suggestion(s) matching a known category id', async () => {
+      const result = await service.getCategorySuggestionsById(
+        Categories.HYGIENE_PRODUCTS,
+        'fr',
+        SupportedLanguagesCode.FR
+      );
+      expect(result.length).toBeGreaterThan(0);
+      expect(result.every((item) => item.categoryId === Categories.HYGIENE_PRODUCTS)).toBe(true);
+      expect(result[0]).toHaveProperty('type', AutoCompleteType.CATEGORY);
+    });
+
+    it('returns an empty array for an unknown category id', async () => {
+      const result = await service.getCategorySuggestionsById(
+        'not-a-real-category',
+        'fr',
+        SupportedLanguagesCode.FR
+      );
+      expect(result).toEqual([]);
+    });
+  });
 });

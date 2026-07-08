@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { InfoIcon, Text } from '@soliguide/design-system';
+  import { InfoIcon, Text, Tag } from '@soliguide/design-system';
   import { PhoneButton, PlaceStatus, TodayInfo } from '$lib/components';
+  import AcUnit from 'svelte-google-materialdesign-icons/Ac_unit.svelte';
   import GoToButton from './GoToButton.svelte';
   import { getPlaceDetailsPageController } from '../pageController';
 
@@ -10,11 +11,20 @@
     PlaceDetailsTempInfo,
     PlaceCampaignBannerMessage
   } from '$lib/models/types';
-  import { TempInfoStatus, type PlaceOpeningStatus, isObjectEmpty } from '@soliguide/common';
+  import {
+    TempInfoStatus,
+    type PlaceOpeningStatus,
+    type ThermalComfortData,
+    isObjectEmpty,
+    shouldDisplayThermalComfort
+  } from '@soliguide/common';
 
   import type { I18nStore } from '$lib/client/types';
+  import type { ThemeDefinition } from '$lib/theme/types';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
+  import { themeStore } from '$lib/theme';
   import { getContext } from 'svelte';
+  import { get } from 'svelte/store';
 
   export let todayInfo: TodayInfoType = {};
   export let name: string;
@@ -25,15 +35,32 @@
   export let onOrientation: boolean;
   export let tempInfo: PlaceDetailsTempInfo;
   export let campaignBanner: PlaceCampaignBannerMessage | null;
+  export let thermalComfort: ThermalComfortData;
 
   const placeController = getPlaceDetailsPageController();
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
+  const theme: ThemeDefinition = get(themeStore.getTheme());
+
+  $: shouldDisplayThermalComfortTag = shouldDisplayThermalComfort(theme.country);
 </script>
 
 <header class="card-header">
   <div class="details-container">
     <div class="tag-hours-container">
-      <PlaceStatus openingStatus={status} />
+      <div class="status-tags">
+        <PlaceStatus openingStatus={status} />
+        {#if shouldDisplayThermalComfortTag && thermalComfort?.airConditioned === true}
+          <Tag variant="info">
+            <AcUnit slot="icon" aria-hidden="true" />
+            {$i18n.t('AIR_CONDITIONED_RIBBON')}
+          </Tag>
+        {:else if shouldDisplayThermalComfortTag && thermalComfort?.airConditioned === false}
+          <Tag variant="error">
+            <AcUnit slot="icon" aria-hidden="true" />
+            {$i18n.t('NOT_AIR_CONDITIONED_RIBBON')}
+          </Tag>
+        {/if}
+      </div>
       {#if !isObjectEmpty(todayInfo)}
         <TodayInfo {todayInfo}>
           {#if tempInfo.hours?.status === TempInfoStatus.CURRENT && !tempInfo.message}
@@ -119,5 +146,12 @@
     align-items: flex-start;
     gap: var(--spacing3XS);
     align-self: stretch;
+  }
+
+  .status-tags {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacingXS);
   }
 </style>

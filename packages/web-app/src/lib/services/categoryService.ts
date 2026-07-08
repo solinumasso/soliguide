@@ -97,13 +97,31 @@ export const getCategoryService = (currentThemeName: Themes): CategoryService =>
       .map((result) => result.item);
   };
 
+  /**
+   * Get the category suggestion(s) matching a known category id (no fuzzy search).
+   * Used to restore the category suggestions when coming back to the category step with a
+   * category already selected (a raw category id does not match the fuzzy label search).
+   */
+  const getCategorySuggestionsById = async (
+    categoryId: string,
+    country: string,
+    lang: SupportedLanguagesCode
+  ): Promise<FormattedSuggestion[]> => {
+    const data = await loadSuggestionsData(country as SoliguideCountries, lang);
+
+    return data.filter(
+      (item) => item.type === AutoCompleteType.CATEGORY && item.categoryId === categoryId
+    );
+  };
+
   return {
     getAllCategories,
     getRootCategories,
     getChildrenCategories,
     isCategoryRoot,
     hasChildren,
-    getCategorySuggestions
+    getCategorySuggestions,
+    getCategorySuggestionsById
   };
 };
 

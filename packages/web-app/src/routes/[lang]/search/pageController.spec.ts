@@ -168,6 +168,12 @@ const createMockCategoryService = (): {
         throw responseError;
       }
       return Promise.resolve(responseData);
+    },
+    getCategorySuggestionsById: (): Promise<FormattedSuggestion[]> => {
+      if (responseError) {
+        throw responseError;
+      }
+      return Promise.resolve(responseData);
     }
   };
 
@@ -385,12 +391,12 @@ describe('Search page', () => {
       expect(get(pageState).currentPositionError).toBeNull();
     });
 
-    it('When the current position cannot be determined, there is no selection and we stay on page 1', async () => {
-      setError({ status: 404, statusText: 'Location not found' });
+    it('When geolocation is not authorized, no selection, we stay on page 1 and the modal opens', async () => {
       await pageState.useCurrentLocation(geolocFnError);
       expect(get(pageState).selectedLocationSuggestion).toBeNull();
       expect(get(pageState).currentStep).toEqual(Steps.STEP_LOCATION);
-      expect(get(pageState).currentPositionError).toEqual('UNAUTHORIZED_LOCATION');
+      expect(get(pageState).showGeolocationBlockedModal).toBeTruthy();
+      expect(get(pageState).currentPositionError).toBeNull();
     });
 
     it('When location suggestion have an error, it is cleared when we use geolocation option', async () => {
@@ -402,6 +408,40 @@ describe('Search page', () => {
 
       await pageState.useCurrentLocation(geolocFn);
       expect(get(pageState).locationSuggestionError).toBe(LocationErrors.NONE);
+    });
+  });
+
+  describe('geolocation authorization modal', () => {
+    it('opens the recovery modal when geolocation is not authorized', async () => {
+      await pageState.useCurrentLocation(geolocFnError);
+      expect(get(pageState).showGeolocationBlockedModal).toBeTruthy();
+      expect(get(pageState).selectedLocationSuggestion).toBeNull();
+      expect(get(pageState).currentPositionError).toBeNull();
+    });
+
+    it('does not show the modal when geolocation succeeds', async () => {
+      feedWith([sampleSuggestions[0]]);
+      await pageState.useCurrentLocation(geolocFn);
+      expect(get(pageState).showGeolocationBlockedModal).toBeFalsy();
+      expect(get(pageState).selectedLocationSuggestion).toEqual(sampleLocationSuggestion);
+    });
+
+    it('closeGeolocationBlockedModal hides the modal', async () => {
+      await pageState.useCurrentLocation(geolocFnError);
+      expect(get(pageState).showGeolocationBlockedModal).toBeTruthy();
+      pageState.closeGeolocationBlockedModal();
+      expect(get(pageState).showGeolocationBlockedModal).toBeFalsy();
+    });
+
+    it('retrying after the user authorized location succeeds and closes the modal', async () => {
+      await pageState.useCurrentLocation(geolocFnError);
+      expect(get(pageState).showGeolocationBlockedModal).toBeTruthy();
+
+      feedWith([sampleSuggestions[0]]);
+      await pageState.useCurrentLocation(geolocFn);
+      expect(get(pageState).showGeolocationBlockedModal).toBeFalsy();
+      expect(get(pageState).selectedLocationSuggestion).toEqual(sampleLocationSuggestion);
+      expect(get(pageState).currentStep).toEqual(Steps.STEP_CATEGORY);
     });
   });
 
@@ -672,14 +712,24 @@ describe('Search page', () => {
           expect(get(pageState).selectedCategory).toEqual(Categories.HEALTH);
         });
 
-        it('When none of the results matches the category param, no category is selected', async () => {
+        it('A valid category param is selected even if it is not among the suggestions', async () => {
           feedWith(locationApiResult);
           feedWithCategoriesData(sampleCategorySuggestions);
           await pageState.init(CountryCodes.FR, SupportedLanguagesCode.FR, pageParams);
+          expect(get(pageState).selectedCategory).toEqual(Categories.HEALTH);
+        });
+
+        it('An invalid category param results in no selection', async () => {
+          feedWith(locationApiResult);
+          feedWithCategoriesData(sampleCategorySuggestions);
+          await pageState.init(CountryCodes.FR, SupportedLanguagesCode.FR, {
+            ...pageParams,
+            category: 'not-a-real-category'
+          });
           expect(get(pageState).selectedCategory).toBeNull();
         });
 
-        it('When a specialist category is provided, we may have suggestions, but no selection', async () => {
+        it('When a specialist category is provided, it is selected (recovered)', async () => {
           feedWith(locationApiResult);
           feedWithCategoriesData(sampleCategorySuggestions);
           await pageState.init(CountryCodes.FR, SupportedLanguagesCode.FR, {
@@ -687,7 +737,7 @@ describe('Search page', () => {
             label: 'Poul Pout, 22610 Pleubian',
             category: Categories.DERMATOLOGY
           });
-          expect(get(pageState).selectedCategory).toBeNull();
+          expect(get(pageState).selectedCategory).toEqual(Categories.DERMATOLOGY);
         });
       });
 

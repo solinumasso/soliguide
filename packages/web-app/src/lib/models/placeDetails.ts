@@ -434,6 +434,7 @@ const buildPlaceDetails = (
     services: buildServices(placeResult.services_all, categorySearched, lang),
     sources: buildSources(placeResult.sources),
     status,
+    thermalComfort: placeResult.modalities.thermalComfort,
     todayInfo: computeTodayInfo({ ...placeResult, newhours: hoursToBuild }, status),
     tempInfo: buildPlaceDetailsTempInfo(placeResult.tempInfos as IPlaceTempInfo),
     website: placeResult.entity.website ?? ''

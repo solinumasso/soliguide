@@ -234,6 +234,7 @@ export const placeDetailsMock: PlaceDetails = {
   services: [],
   sources: [],
   status: PlaceOpeningStatus.OPEN,
+  thermalComfort: { heated: null, airConditioned: null },
   todayInfo: {
     openingHours: [
       {

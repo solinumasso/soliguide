@@ -24,7 +24,7 @@ import {
 } from '$lib/services/types';
 import type { LocationSuggestion } from '$lib/models/locationSuggestion';
 import { posthogService } from '$lib/services/posthogService';
-import { getErrorValue } from '$lib/ts';
+import { getErrorValue, isValidStringEnumValue } from '$lib/ts';
 import { ALL_CATEGORIES, type CategorySearch } from '$lib/constants';
 
 const SEARCH_LOCATION_MINIMUM_CHARS = 3;
@@ -47,7 +47,8 @@ const initialState: PageState = {
   loading: false,
   loadingLocationSuggestions: false,
   loadingCategorySuggestions: false,
-  loadingGeolocation: false
+  loadingGeolocation: false,
+  showGeolocationBlockedModal: false
 };
 
 /**
@@ -131,64 +132,118 @@ export const getSearchPageController = (
   };
 
   /**
-   * Determine position then find the corresponding location
+   * Reverse-geocode coordinates into a location and update the store accordingly.
+   * Returns true when a location could be selected.
+   */
+  const applyLocationFromCoordinates = async (
+    latitude: number,
+    longitude: number
+  ): Promise<boolean> => {
+    const result = await locationService.getLocationFromPosition(
+      get(myPageStore).country,
+      latitude,
+      longitude
+    );
+
+    // We update the suggestions based on the resolved location
+    searchLocationSuggestions(result?.suggestionLabel ?? '');
+
+    myPageStore.update(
+      (oldValue): PageState => ({
+        ...oldValue,
+        selectedLocationSuggestion: result,
+        locationLabel: result?.suggestionLabel ?? '',
+        currentStep: result ? Steps.STEP_CATEGORY : Steps.STEP_LOCATION,
+        // Previous category errors are removed if we go to the page
+        categorySuggestionError: result ? CategoriesErrors.NONE : oldValue.categorySuggestionError
+      })
+    );
+
+    return result !== null;
+  };
+
+  /**
+   * Set the loading state and clear previous location errors before a geolocation attempt.
+   */
+  const startGeolocationAttempt = (): void => {
+    myPageStore.update(
+      (oldValue): PageState => ({
+        ...oldValue,
+        currentPositionError: null,
+        locationSuggestionError: LocationErrors.NONE,
+        showGeolocationBlockedModal: false,
+        loadingGeolocation: true
+      })
+    );
+  };
+
+  const failGeolocationAttempt = (error: unknown): void => {
+    const errorValue = getErrorValue(error);
+    const msg = typeof errorValue === 'string' ? errorValue : (errorValue?.message ?? null);
+
+    // When the user has not authorized geolocation, show the recovery modal explaining how to
+    // enable it in the app settings, instead of a transient error message.
+    if (msg === 'UNAUTHORIZED_LOCATION') {
+      myPageStore.update(
+        (oldValue): PageState => ({
+          ...oldValue,
+          showGeolocationBlockedModal: true,
+          selectedLocationSuggestion: null
+        })
+      );
+      return;
+    }
+
+    myPageStore.update(
+      (oldValue): PageState => ({
+        ...oldValue,
+        currentPositionError: msg,
+        selectedLocationSuggestion: null
+      })
+    );
+  };
+
+  const stopGeolocationAttempt = (): void => {
+    myPageStore.update(
+      (oldValue): PageState => ({
+        ...oldValue,
+        loadingGeolocation: false
+      })
+    );
+  };
+
+  /**
+   * Determine position from the device geolocation then find the corresponding location
    */
   const useCurrentLocation = async (
     getGeolocation: () => Promise<GeolocationPosition>
   ): Promise<void> => {
     try {
-      myPageStore.update(
-        (oldValue): PageState => ({
-          ...oldValue,
-          currentPositionError: null,
-          locationSuggestionError: LocationErrors.NONE,
-          loadingGeolocation: true
-        })
-      );
+      startGeolocationAttempt();
 
       const {
         coords: { latitude, longitude }
       } = await getGeolocation();
 
-      const result = await locationService.getLocationFromPosition(
-        get(myPageStore).country,
-        latitude,
-        longitude
-      );
-
-      // We update the suggestions based on the geolocation
-      searchLocationSuggestions(result?.suggestionLabel ?? '');
-
-      myPageStore.update(
-        (oldValue): PageState => ({
-          ...oldValue,
-          selectedLocationSuggestion: result,
-          locationLabel: result?.suggestionLabel ?? '',
-          currentStep: result ? Steps.STEP_CATEGORY : Steps.STEP_LOCATION,
-          // Previous category errors are removed if we go to the page
-          categorySuggestionError: result ? CategoriesErrors.NONE : oldValue.categorySuggestionError
-        })
-      );
+      await applyLocationFromCoordinates(latitude, longitude);
       captureEvent('my-position', { position: { latitude, longitude } });
     } catch (error: unknown) {
-      const errorValue = getErrorValue(error);
-      const msg = typeof errorValue === 'string' ? errorValue : (errorValue?.message ?? null);
-
-      myPageStore.update(
-        (oldValue): PageState => ({
-          ...oldValue,
-          currentPositionError: msg,
-          selectedLocationSuggestion: null
-        })
-      );
+      failGeolocationAttempt(error);
     } finally {
-      myPageStore.update(
-        (oldValue): PageState => ({
-          ...oldValue,
-          loadingGeolocation: false
-        })
-      );
+      stopGeolocationAttempt();
     }
+  };
+
+  /**
+   * Close the geolocation recovery modal
+   */
+  const closeGeolocationBlockedModal = (): void => {
+    myPageStore.update(
+      (oldValue): PageState => ({
+        ...oldValue,
+        showGeolocationBlockedModal: false
+      })
+    );
   };
 
   /**
@@ -311,9 +366,12 @@ export const getSearchPageController = (
     error: CategoriesErrors;
   }> => {
     try {
-      const suggestions = await categoryService.getCategorySuggestions(category, country, lang);
-      const match = suggestions.find((suggestion) => suggestion.categoryId === category);
-      const selection = match?.categoryId ?? null;
+      // The category param is a known category id, so we resolve the suggestions and the selection
+      // by id directly. A fuzzy search (getCategorySuggestions) does not match a raw category id.
+      const suggestions = await categoryService.getCategorySuggestionsById(category, country, lang);
+      const selection = isValidStringEnumValue(Categories, category)
+        ? (category as Categories)
+        : null;
       return { suggestions, selection, error: CategoriesErrors.NONE };
     } catch {
       return { suggestions: [], selection: null, error: CategoriesErrors.ERROR_SERVER };
@@ -492,6 +550,7 @@ export const getSearchPageController = (
     selectCategorySuggestion,
     selectLocationSuggestion,
     subscribe: myPageStore.subscribe,
-    useCurrentLocation
+    useCurrentLocation,
+    closeGeolocationBlockedModal
   };
 };

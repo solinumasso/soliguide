@@ -9,6 +9,7 @@
   import { ROUTES_CTX_KEY, getGeolocation } from '$lib/client';
   import { themeStore } from '$lib/theme';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
+  import { GeolocationBlockedModal } from '$lib/components';
   import {
     CategorySelector,
     MyPositionTile,
@@ -193,6 +194,13 @@
       />
     {/if}
   </section>
+
+  <GeolocationBlockedModal
+    open={$pageStore.showGeolocationBlockedModal}
+    brandName={theme.brandName}
+    on:close={pageStore.closeGeolocationBlockedModal}
+    on:retry={() => pageStore.useCurrentLocation(getGeolocation)}
+  />
 </PageLoader>
 
 <style lang="scss">

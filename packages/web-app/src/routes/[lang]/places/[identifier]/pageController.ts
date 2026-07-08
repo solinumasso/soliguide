@@ -62,6 +62,7 @@ const initialValue: PageState = {
     services: [],
     sources: [],
     status: PlaceOpeningStatus.OPEN,
+    thermalComfort: { heated: null, airConditioned: null },
     todayInfo: {},
     website: '',
     tempInfo: {} as PlaceDetailsTempInfo
