@@ -1,7 +1,7 @@
 <ng-container *ngIf="shouldDisplay">
   <ng-container *ngIf="variant === 'ribbon'; else fullDisplay">
     <div
-      *ngIf="isSummer"
+      *ngIf="isAirConditionedRibbon"
       class="thermal-comfort-status thermal-comfort-status--ribbon thermal-comfort-status--summer"
     >
       <fa-icon
@@ -11,7 +11,17 @@
       <span>{{ "AIR_CONDITIONED_RIBBON" | translate }}</span>
     </div>
     <div
-      *ngIf="isWinter"
+      *ngIf="isNotAirConditionedRibbon"
+      class="thermal-comfort-status thermal-comfort-status--ribbon thermal-comfort-status--not-air-conditioned"
+    >
+      <fa-icon
+        class="thermal-comfort-status__ribbon-icon"
+        [icon]="['fas', 'snowflake']"
+      ></fa-icon>
+      <span>{{ "NOT_AIR_CONDITIONED_RIBBON" | translate }}</span>
+    </div>
+    <div
+      *ngIf="isWinterRibbon"
       class="thermal-comfort-status thermal-comfort-status--ribbon thermal-comfort-status--winter"
     >
       <fa-icon

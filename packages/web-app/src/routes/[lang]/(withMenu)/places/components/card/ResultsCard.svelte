@@ -124,12 +124,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               {#if shouldDisplayThermalComfortTag && place.thermalComfort?.airConditioned === true}
                 <Tag variant="info">
                   <AcUnit slot="icon" aria-hidden="true" />
-                  {$i18n.t('ACCESS_CONDITION_AIR_CONDITIONED')}
+                  {$i18n.t('AIR_CONDITIONED_RIBBON')}
                 </Tag>
               {:else if shouldDisplayThermalComfortTag && place.thermalComfort?.airConditioned === false}
                 <Tag variant="error">
                   <AcUnit slot="icon" aria-hidden="true" />
-                  {$i18n.t('ACCESS_CONDITION_NOT_AIR_CONDITIONED')}
+                  {$i18n.t('NOT_AIR_CONDITIONED_RIBBON')}
                 </Tag>
               {/if}
             </div>
