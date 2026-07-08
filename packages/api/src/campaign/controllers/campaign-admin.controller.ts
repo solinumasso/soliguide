@@ -32,3 +32,25 @@ export const getActiveCampaigns = async (
 
   return res.status(200).json(campaigns);
 };
+
+/**
+ * Retourne toutes les campagnes (tous statuts, tous pays) — projection légère.
+ *
+ * Sert de source de vérité côté front pour résoudre `placeChanges.campaignName`
+ * = slug de campagne (nouveau modèle). Sans ce catalogue, les pages qui
+ * cherchent le libellé dans `CAMPAIGN_LIST` (legacy hardcodé) plantent sur les
+ * slugs modernes.
+ */
+export const getAllCampaigns = async (
+  _req: ExpressRequest,
+  res: ExpressResponse
+) => {
+  const campaigns = await CampaignModel.find(
+    {},
+    { slug: 1, name: 1, country: 1, startDate: 1, endDate: 1, status: 1 }
+  )
+    .sort({ startDate: -1 })
+    .lean();
+
+  return res.status(200).json(campaigns);
+};
