@@ -30,10 +30,17 @@ export const getSearchResultPageController = (
 ): GetSearchResultPageController => {
   const myPageStore = writable(initialState);
 
+  // Identifies the most recent search request. Responses from older requests
+  // (e.g. a filter that was replaced before its response came back) are ignored
+  // so that a slower, stale request cannot overwrite the current selection.
+  let latestRequestId = 0;
+
   /**
    * Update seachResult by adding new fetched places
    */
   const getNextResults = async (isInitialisation = false): Promise<void> => {
+    const requestId = ++latestRequestId;
+
     // Set loading to true and increment page
     myPageStore.update(
       (oldValue): PageState => ({
@@ -49,6 +56,11 @@ export const getSearchResultPageController = (
       const newOptions = { ...search.options, page: search.options.page + 1 };
       const result = await searchService.searchPlaces(search, newOptions);
 
+      // Discard the response if a newer request has been started meanwhile
+      if (requestId !== latestRequestId) {
+        return;
+      }
+
       // If no more places to fetch, we notify the store
       myPageStore.update(
         (oldValue): PageState => ({
@@ -57,11 +69,19 @@ export const getSearchResultPageController = (
           search: { ...oldValue.search, options: newOptions },
           searchResult: {
             nbResults: isInitialisation ? result.nbResults : oldValue.searchResult.nbResults,
-            places: [...oldValue.searchResult.places, ...result.places]
+            // On a fresh search we replace the results, on pagination we append
+            places: isInitialisation
+              ? result.places
+              : [...oldValue.searchResult.places, ...result.places]
           }
         })
       );
     } catch (error: unknown) {
+      // Ignore errors coming from a request that is no longer the current one
+      if (requestId !== latestRequestId) {
+        return;
+      }
+
       console.log('Error while fetching places', error);
 
       const errorValue = getErrorValue(error);
@@ -76,13 +96,17 @@ export const getSearchResultPageController = (
         })
       );
     } finally {
-      myPageStore.update(
-        (oldValue): PageState => ({
-          ...oldValue,
-          isLoading: false,
-          initializing: false
-        })
-      );
+      // Only the current request may clear the loading state, otherwise a stale
+      // request finishing late would hide the spinner of the ongoing one
+      if (requestId === latestRequestId) {
+        myPageStore.update(
+          (oldValue): PageState => ({
+            ...oldValue,
+            isLoading: false,
+            initializing: false
+          })
+        );
+      }
     }
   };
 

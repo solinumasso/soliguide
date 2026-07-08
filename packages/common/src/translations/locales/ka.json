@@ -18,6 +18,7 @@
   "ACCESS_CONDITION_ON_ORIENTATION": "მხოლოდ ორიენტაციაზე",
   "ACCESS_CONDITION_ON_REGISTRATION": "რეგისტრაციისას",
   "ACCESS_CONDITION_OTHER_PRECISIONS": "Სხვა დეტალები",
+  "ACCESS_CONDITION_PMR": "PMR",
   "ACCESS_CONDITION_PEOPLE_WITH_REDUCED_MOBILITY": "ხელმისაწვდომია შეზღუდული მობილობის მქონე ადამიანებისთვის",
   "ACCESS_CONDITION_THERMAL_COMFORT_MISSING": "თერმული კომფორტი მითითებული არ არის",
   "ACCESS_CONDITION_THERMAL_COMFORT_UPDATE_CTA": "განახლება",

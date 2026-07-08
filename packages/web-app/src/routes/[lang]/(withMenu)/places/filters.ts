@@ -11,7 +11,7 @@ export const SEARCH_RESULT_FILTERS = [
   },
   {
     name: 'pmr',
-    translationKey: 'ACCESS_CONDITION_PEOPLE_WITH_REDUCED_MOBILITY'
+    translationKey: 'ACCESS_CONDITION_PMR'
   },
   {
     name: 'animal',

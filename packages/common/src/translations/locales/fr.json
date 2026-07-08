@@ -18,6 +18,7 @@
   "ACCESS_CONDITION_ON_ORIENTATION": "Sur orientation uniquement",
   "ACCESS_CONDITION_ON_REGISTRATION": "Sur inscription",
   "ACCESS_CONDITION_OTHER_PRECISIONS": "Autres précisions",
+  "ACCESS_CONDITION_PMR": "PMR",
   "ACCESS_CONDITION_PEOPLE_WITH_REDUCED_MOBILITY": "Accessible aux personnes à mobilité réduite",
   "ACCESS_CONDITION_THERMAL_COMFORT_MISSING": "Confort thermique non renseigné",
   "ACCESS_CONDITION_THERMAL_COMFORT_UPDATE_CTA": "Mettre à jour",

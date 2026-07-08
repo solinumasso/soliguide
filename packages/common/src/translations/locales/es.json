@@ -18,6 +18,7 @@
   "ACCESS_CONDITION_ON_ORIENTATION": "Solo con derivación",
   "ACCESS_CONDITION_ON_REGISTRATION": "Con registro previo",
   "ACCESS_CONDITION_OTHER_PRECISIONS": "Otros detalles",
+  "ACCESS_CONDITION_PMR": "PMR",
   "ACCESS_CONDITION_PEOPLE_WITH_REDUCED_MOBILITY": "Accesible a personas con movilidad reducida",
   "ACCESS_CONDITION_THERMAL_COMFORT_MISSING": "Confort térmico no informado",
   "ACCESS_CONDITION_THERMAL_COMFORT_UPDATE_CTA": "Actualizar",
