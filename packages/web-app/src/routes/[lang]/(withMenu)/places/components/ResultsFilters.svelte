@@ -52,7 +52,7 @@
 
 <style lang="scss">
   .results-filters {
-    margin: var(--spacingMD) calc(var(--spacingLG) * -1) 0;
+    margin: 0 calc(var(--spacingLG) * -1);
     overflow-x: auto;
     overscroll-behavior-x: contain;
     scrollbar-width: none;

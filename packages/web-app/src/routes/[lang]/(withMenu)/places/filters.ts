@@ -3,7 +3,7 @@ import type { SearchModalities } from '@soliguide/common';
 export const SEARCH_RESULT_FILTERS = [
   {
     name: 'openToday',
-    translationKey: 'SEARCH_RESULT_FILTER_OPEN'
+    translationKey: 'SEARCH_FILTER_OPEN_TODAY'
   },
   {
     name: 'airConditioned',
@@ -11,11 +11,11 @@ export const SEARCH_RESULT_FILTERS = [
   },
   {
     name: 'pmr',
-    translationKey: 'SEARCH_RESULT_FILTER_PMR'
+    translationKey: 'ACCESS_CONDITION_PEOPLE_WITH_REDUCED_MOBILITY'
   },
   {
     name: 'animal',
-    translationKey: 'SEARCH_RESULT_FILTER_ANIMALS'
+    translationKey: 'ACCESS_CONDITION_ACCEPTED_ANIMALS'
   }
 ] as const satisfies readonly {
   name: string;
