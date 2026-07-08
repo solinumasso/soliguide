@@ -20,6 +20,7 @@
   "ACCESS_CONDITION_OTHER_PRECISIONS": "جزئیات دیگر",
   "ACCESS_CONDITION_PEOPLE_WITH_REDUCED_MOBILITY": "برای افراد کم تحرک قابل دسترسی است",
   "ACCESS_CONDITION_THERMAL_COMFORT_MISSING": "عدم منابع حرارتی",
+  "ACCESS_CONDITION_THERMAL_COMFORT_UPDATE_CTA": "برای به روز رسانی",
   "ACCESS_FOR_ALL": "دسترسی به همه",
   "ACCESS_MODALITIES_TO": "روش‌های دسترسی به {{ placeName }}",
   "ACCESS_ON_ORIENTATION": "با جهت گیری قابل دسترسی است",
