@@ -20,12 +20,16 @@ fileignoreconfig:
   checksum: 9abd32110bec5c8b3e56a57309b4e2bba7a9b34a19d8bf5d7098cbd0f3c49d66
 - filename: packages/api/.env.test
   checksum: bae3ba8730c8495a8a407b610d456c859d2a032f1b8c44572924fc5889df8bfd
+- filename: packages/api/e2e/users/users-me.routes.spec.ts
+  checksum: f1c910282efa97fa366caed13783cf38f3cf94fcc8d4e4379036daec77bde7cd
 - filename: packages/api/src/analytics/scripts/brevo-campaign-user-update.ts
   checksum: 112b958249429a89d4e48fcac42cc99526c15f8dba17c3c5299c6c996d60355c
 - filename: packages/api/src/autoexport/services/renders/renderWord.ts
   checksum: 6011f188d04bcea2113ef03e22fc8342c4ff370644cd1cc46b13c1e00a9d8c4f
 - filename: packages/api/src/autoexport/utils/xml-sanitizer.ts
   checksum: cca8166a23153847fc0a3fbec92161c4596ef425f5b6a68aaadaa05ba880991c
+- filename: packages/api/src/middleware/request/requestCurrentUser.middleware.ts
+  checksum: d4cc9b614e240e1860cd00f570aef3bb529b15ab49abbb0e06681cb04e3d11b2
 - filename: packages/api/src/middleware/request/tests/requestInformations.middleware.spec.ts
   checksum: 6a751b1f3b2b4502def7418f303a746b724694ad7bf92387fe02da43834882af
 - filename: packages/api/src/place/services/isOpenToday.service.spec.ts
@@ -36,6 +40,8 @@ fileignoreconfig:
   checksum: 5b812117e3ae5b7924fdca4b41f8907dc93ca4d476779f14ca1fb5b436aa4b94
 - filename: packages/common/src/search-suggestions/config.ts
   checksum: db47bb50156072db5e1d62458a948d3eb1f9acff5cad7b339fb0cbdd4d85117c
+- filename: packages/frontend/src/app/interceptors/server-error.interceptor.spec.ts
+  checksum: de02b8aab6b8fccecabfb3472c32d7b8c95505245bebc84e67b8157951d13e9c
 - filename: packages/frontend/src/app/modules/admin-place-shared/components/display-general-info-admin/display-general-info-admin.component.ts
   checksum: 7a88f8df0c1e1d97697bf8ff8de815b2dc8ce2983c70bd487892c45758bd5b65
 - filename: packages/frontend/src/app/modules/admin-place-shared/components/display-service-admin/display-service-admin.component.ts
