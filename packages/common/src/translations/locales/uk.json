@@ -20,6 +20,7 @@
   "ACCESS_CONDITION_OTHER_PRECISIONS": "Інші деталі",
   "ACCESS_CONDITION_PEOPLE_WITH_REDUCED_MOBILITY": "Доступний для людей з обмеженими можливостями",
   "ACCESS_CONDITION_THERMAL_COMFORT_MISSING": "Нересурсний тепловий комфорт",
+  "ACCESS_CONDITION_THERMAL_COMFORT_UPDATE_CTA": "Оновити",
   "ACCESS_FOR_ALL": "Доступ для всіх",
   "ACCESS_MODALITIES_TO": "Методи доступу до {{ placeName }}",
   "ACCESS_ON_ORIENTATION": "Доступно за орієнтацією",
