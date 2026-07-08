@@ -28,6 +28,16 @@
   display: block;
 }
 
+/*
+ * When the diagonal thermal-comfort ribbon is displayed in the top-right
+ * corner, reserve space on the right of the title and address so long text
+ * wraps before reaching the ribbon instead of being hidden behind it.
+ */
+.search-card-header--with-ribbon .place_result_title,
+.search-card-header--with-ribbon .place_result_address {
+  padding-right: 6rem;
+}
+
 .item_number {
   display: inline-block;
   vertical-align: top;
