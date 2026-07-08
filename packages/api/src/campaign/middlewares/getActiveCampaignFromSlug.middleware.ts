@@ -1,9 +1,7 @@
 import { NextFunction } from "express";
 
-import { CampaignLifecycleStatus } from "@soliguide/common";
-
 import { ExpressRequest, ExpressResponse } from "../../_models";
-import { CampaignModel } from "../models/campaign.model";
+import { findActiveCampaignBySlug } from "../services/campaigns.service";
 
 /**
  * Résout et attache la campagne active à `req.campaign`.
@@ -28,10 +26,7 @@ export const getActiveCampaignFromSlug = async (
     return res.status(404).json({ message: "NOT_FOUND" });
   }
 
-  const campaign = await CampaignModel.findOne({
-    slug: campaignSlug,
-    status: CampaignLifecycleStatus.ACTIVE,
-  }).lean();
+  const campaign = await findActiveCampaignBySlug(campaignSlug);
 
   if (!campaign) {
     return res.status(404).json({ message: "NOT_FOUND" });

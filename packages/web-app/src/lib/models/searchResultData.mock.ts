@@ -363,7 +363,8 @@ const samplePlace: ApiPlace = Object.freeze({
     publics: true,
     services: true,
     emplacement: true
-  }
+  },
+  structureTypes: []
 });
 
 const samplePlaceTransformed: SearchResultPlaceCard = Object.freeze({
@@ -1311,6 +1312,7 @@ const sampleItinerary: ApiPlace = Object.freeze({
     services: true,
     emplacement: true
   },
+  structureTypes: [],
   position: {
     adresse: '58 Bd Saint-Marcel, 75005 Paris',
     codePostal: '75005',

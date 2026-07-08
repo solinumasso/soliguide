@@ -15,10 +15,10 @@ import {
 import {
   getCampaignTempFormsData,
   patchCampaignTempFormsClimate,
-  sendPlaceChangesToMq,
 } from "../controllers/campaign-temp-forms.controller";
 import { getActiveCampaignFromSlug } from "../middlewares/getActiveCampaignFromSlug.middleware";
 import { getUserFromCampaignUuid } from "../middlewares/getUserFromCampaignUuid.middleware";
+import { sendPlaceChangesToMq } from "../../place-changes/middlewares/send-place-changes-to-mq.middleware";
 
 // Routes publiques (aucune session, aucun cookie) : l'accès est borné par le
 // couple (`campaignSlug`, `campaignUserUuid`) distribué par email Brevo.

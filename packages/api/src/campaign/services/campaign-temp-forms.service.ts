@@ -2,38 +2,10 @@ import { type Campaign } from "@soliguide/common";
 
 import { UserPopulateType } from "../../_models";
 import { PlaceModel } from "../../place/models/place.model";
-
-export interface CampaignTempFormsPlaceSummary {
-  lieu_id: number;
-  seo_url: string;
-  name: string;
-  description: string | null;
-  status: unknown;
-  country: unknown;
-  position: unknown;
-  modalities: unknown;
-  newhours: unknown;
-  tempInfos: unknown;
-}
-
-export interface CampaignTempFormsUserSummary {
-  name: string;
-}
-
-export interface CampaignTempFormsPayload {
-  campaign: Pick<
-    Campaign,
-    | "slug"
-    | "name"
-    | "description"
-    | "country"
-    | "startDate"
-    | "endDate"
-    | "sectionsToUpdate"
-  >;
-  user: CampaignTempFormsUserSummary;
-  places: CampaignTempFormsPlaceSummary[];
-}
+import {
+  CampaignTempFormsPayload,
+  CampaignTempFormsPlaceSummary,
+} from "../interfaces";
 
 /**
  * Assemble le payload GET une fois que la campagne + le user + ses userRights

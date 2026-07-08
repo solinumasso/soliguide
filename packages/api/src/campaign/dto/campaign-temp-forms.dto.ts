@@ -1,13 +1,17 @@
 import { body, param } from "express-validator";
 
 // Campaign slug : `^[a-z0-9-]+$` (aligné avec la validation Mongoose).
-// `trim` + `escape` : défense en profondeur (le regex empêche déjà tout
-// caractère spécial, mais on sanitise quand même avant l'usage aval).
+// `trim` + `toLowerCase` + `escape` + `blacklist` : défense en profondeur.
+// Le regex empêche déjà tout caractère spécial, mais on sanitise avant
+// l'usage aval (log, requête Mongo, template email).
 export const campaignSlugParam = param("campaignSlug")
   .isString()
   .trim()
+  .toLowerCase()
+  .isLength({ min: 3, max: 64 })
   .matches(/^[a-z0-9-]+$/)
-  .isLength({ min: 3, max: 64 });
+  .blacklist("^a-z0-9-")
+  .escape();
 
 // UUID v1/v4/v5. `toLowerCase` : normalise la casse (les liens Brevo peuvent
 // arriver majuscules) pour matcher l'index MongoDB.
