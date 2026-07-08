@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.147.0](https://github.com/solinumasso/soliguide/compare/v4.146.0...v4.147.0) (2026-07-08)
+
+
+### Bug Fixes
+
+* **api:** fix cron ([20e71d7](https://github.com/solinumasso/soliguide/commit/20e71d777864f10c66cbc0d50213cf58abf0b27b))
+* **api:** fix unit test ([20ba8ea](https://github.com/solinumasso/soliguide/commit/20ba8eaf4f839aefaf906f1bca67cdcd50098a05))
+* **api:** update test dump ([b9d8174](https://github.com/solinumasso/soliguide/commit/b9d8174b0a7ee299f841a7cea9150c2be5db36b5))
+* lint issues in webapp ([dd01afb](https://github.com/solinumasso/soliguide/commit/dd01afb9577124ac725982c95ac212f9ff3d4f7a))
+* overlap of title/adresse by thermal rubbon ([2dd4932](https://github.com/solinumasso/soliguide/commit/2dd4932d8e3741b19fe831f92ebf683c27898322))
+
+
+### Features
+
+* add filters at results list in webapp ([ded3902](https://github.com/solinumasso/soliguide/commit/ded3902a7cf25c38d37eccb7e04ba1235b01b9de))
+* add no climatized rubber in frontend cards ([c3e21e0](https://github.com/solinumasso/soliguide/commit/c3e21e00b21a047718984bea5a9764d42b6b434d))
+* add tag for clim in web-app ([73f1745](https://github.com/solinumasso/soliguide/commit/73f174510984bb262f5fa8c3b3e3bf0580dfc6e7))
+* change fountain service naming and fix pmr for other than french ([8244bbd](https://github.com/solinumasso/soliguide/commit/8244bbda8db8475a1b0f836ffc154ab11d1009e3))
+* **common:** add feature for fresh space ([31a4e74](https://github.com/solinumasso/soliguide/commit/31a4e74c424e54fe004c8996351c0c1855a301d1))
+* create climate_refuge category ([a167766](https://github.com/solinumasso/soliguide/commit/a167766df3a938b327b5071de259d995729dbb59))
+* detect geoloc permission status in web-app ([a69383c](https://github.com/solinumasso/soliguide/commit/a69383cf44bc01cd2dc060f0c1ff6ce5870b984f))
+* fix filters traduction keys and remove on top card in webapp ([ca3bd49](https://github.com/solinumasso/soliguide/commit/ca3bd493ca6f820914ce42efe6a3442e249ae1ea))
+* manage race fetchs from filters to keep only the last result ([e72e204](https://github.com/solinumasso/soliguide/commit/e72e204b30ef4b5395c34368d78a0d7138af31bf))
+* remove AIR_CONDITIONED_DESCRIPTION from frontend ([b61316c](https://github.com/solinumasso/soliguide/commit/b61316c2b3250e1be28199f798f4a16b7be48a4e))
+
+
+
+
+
 # [4.146.0](https://github.com/solinumasso/soliguide/compare/v4.145.1...v4.146.0) (2026-07-03)
 
 
