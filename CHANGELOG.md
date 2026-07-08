@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.147.1](https://github.com/solinumasso/soliguide/compare/v4.147.0...v4.147.1) (2026-07-08)
+
+
+### Bug Fixes
+
+* test in Categories.spec missings new categories treatment ([b943cd9](https://github.com/solinumasso/soliguide/commit/b943cd926b67abfccb4b68555f803d4fd9941792))
+
+
+
+
+
 # [4.147.0](https://github.com/solinumasso/soliguide/compare/v4.146.0...v4.147.0) (2026-07-08)
 
 
