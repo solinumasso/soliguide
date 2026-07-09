@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 
 import { ApiPlace } from "@soliguide/common";
 import type { PosthogProperties } from "@soliguide/common-angular";
@@ -27,6 +27,9 @@ interface PartitionedPlaces {
 })
 export class CampaignClimateOrgaComponent implements OnInit {
   public loading = true;
+  // Cf. `CampaignClimateSummerComponent` : on affiche un message inline plutôt
+  // que de rediriger silencieusement sur la home.
+  public loadError = false;
   public payload:
     | (Omit<CampaignTempFormsPayload, "places"> & { places: Place[] })
     | null = null;
@@ -41,7 +44,6 @@ export class CampaignClimateOrgaComponent implements OnInit {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly router: Router,
     private readonly adminCampaignsService: AdminCampaignsService,
     private readonly posthogService: PosthogService
   ) {}
@@ -61,7 +63,7 @@ export class CampaignClimateOrgaComponent implements OnInit {
     this.orgaObjectId = this.route.snapshot.paramMap.get("orgaObjectId") ?? "";
 
     if (!this.campaignSlug || !this.orgaObjectId) {
-      this.redirectHome("invalid-link");
+      this.setError("invalid-link");
       return;
     }
 
@@ -86,14 +88,15 @@ export class CampaignClimateOrgaComponent implements OnInit {
           });
         },
         error: () => {
-          this.redirectHome("api-error");
+          this.setError("api-error");
         },
       });
   }
 
-  private redirectHome(reason: string): void {
-    this.captureEvent("redirect-home", { reason });
-    void this.router.navigate([this.lang]);
+  private setError(reason: string): void {
+    this.captureEvent("load-error", { reason });
+    this.loadError = true;
+    this.loading = false;
   }
 
   public setAirConditioned(place: Place, value: boolean | null): void {

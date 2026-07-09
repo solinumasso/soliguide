@@ -9,7 +9,6 @@ import {
   AnyDepartmentCode,
   CAMPAIGN_DEFAULT_NAME,
   CommonUser,
-  CountryCodes,
   PlaceStatus,
   RELATIONS,
   RELATIONS_SEARCH,
@@ -47,8 +46,6 @@ import {
   globalConstants,
 } from "../../../../shared/functions";
 import { DEFAULT_MODAL_OPTIONS } from "../../../../shared";
-import { AdminCampaignsService } from "../../../campaign/services/admin-campaigns.service";
-import { THEME_CONFIGURATION } from "../../../../models";
 
 @Component({
   animations: [fadeInOut],
@@ -86,14 +83,6 @@ export class ManageOrganisationsComponent implements OnInit, OnDestroy {
   public readonly OrgaCampaignStatus = OrgaCampaignStatus;
   public readonly PlaceStatus = PlaceStatus;
 
-  // Slug de la campagne canicule ACTIVE pour le pays courant : sert à
-  // construire le lien "mise à jour climatique par orga" dans le tableau.
-  // Fetché via `AdminCampaignsService` au `ngOnInit` (miroir de la logique
-  // `campaign-exceptional-updates`) : source de vérité = API, pas le catalog.
-  public heatwaveCampaignSlug: string | null = null;
-  public readonly isHeatwaveCampaignCountry =
-    THEME_CONFIGURATION.country === CountryCodes.FR;
-
   constructor(
     private readonly authService: AuthService,
     private readonly modalService: NgbModal,
@@ -101,8 +90,7 @@ export class ManageOrganisationsComponent implements OnInit, OnDestroy {
     private readonly titleService: Title,
     private readonly toastr: ToastrService,
     private readonly translateService: TranslateService,
-    private readonly currentLanguageService: CurrentLanguageService,
-    private readonly adminCampaignsService: AdminCampaignsService
+    private readonly currentLanguageService: CurrentLanguageService
   ) {
     this.me = null;
     this.nbResults = 0;
@@ -166,21 +154,6 @@ export class ManageOrganisationsComponent implements OnInit, OnDestroy {
       globalConstants.getItem("MANAGE_ORGAS"),
       this.me
     );
-
-    if (this.isHeatwaveCampaignCountry) {
-      this.subscription.add(
-        this.adminCampaignsService
-          .getActiveCampaigns(THEME_CONFIGURATION.country)
-          .subscribe({
-            next: (campaigns) => {
-              this.heatwaveCampaignSlug = campaigns[0]?.slug ?? null;
-            },
-            error: () => {
-              this.heatwaveCampaignSlug = null;
-            },
-          })
-      );
-    }
 
     this.launchSearch();
   }

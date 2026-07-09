@@ -12,7 +12,6 @@ import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import {
   AnyDepartmentCode,
   CommonUser,
-  CountryCodes,
   SearchResults,
   UserSearchContext,
   UserStatus,
@@ -40,7 +39,6 @@ import {
   SyncService,
 } from "../../../../shared";
 import { ApiError, ApiMessage, THEME_CONFIGURATION } from "../../../../models";
-import { AdminCampaignsService } from "../../../campaign/services/admin-campaigns.service";
 import { OriginService } from "../../../shared/services";
 
 @Component({
@@ -72,16 +70,6 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
 
   public routePrefix: string;
 
-  // Slug de la campagne canicule ACTIVE pour le pays courant : sert à
-  // construire le lien "mise à jour climatique" par user dans la liste.
-  // Fetché via `AdminCampaignsService` au `ngOnInit` (miroir de la logique
-  // `campaign-exceptional-updates`) : source de vérité = API, pas le catalog
-  // (qui peut être vide si l'`APP_INITIALIZER` a échoué, ou trop restrictif
-  // s'il applique un filtre de dates que l'API n'applique pas).
-  public heatwaveCampaignSlug: string | null = null;
-  public readonly isHeatwaveCampaignCountry =
-    THEME_CONFIGURATION.country === CountryCodes.FR;
-
   constructor(
     private readonly adminUsersService: AdminUsersService,
     private readonly authService: AuthService,
@@ -91,8 +79,7 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
     private readonly currentLanguageService: CurrentLanguageService,
     private readonly translateService: TranslateService,
     private readonly originService: OriginService,
-    private readonly syncService: SyncService,
-    private readonly adminCampaignsService: AdminCampaignsService
+    private readonly syncService: SyncService
   ) {
     this.loading = false;
     this.syncLoading = false;
@@ -127,21 +114,6 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
       },
       this.me
     );
-
-    if (this.isHeatwaveCampaignCountry) {
-      this.subscription.add(
-        this.adminCampaignsService
-          .getActiveCampaigns(THEME_CONFIGURATION.country)
-          .subscribe({
-            next: (campaigns) => {
-              this.heatwaveCampaignSlug = campaigns[0]?.slug ?? null;
-            },
-            error: () => {
-              this.heatwaveCampaignSlug = null;
-            },
-          })
-      );
-    }
 
     this.launchSearch();
   }

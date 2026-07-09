@@ -13,7 +13,6 @@ import { TranslateModule } from "@ngx-translate/core";
 import { CampaignRoutingModule } from "./campaign-routing.module";
 
 import { CampaignClimateOrgaComponent } from "./components/campaign-climate-orga/campaign-climate-orga.component";
-import { CampaignExceptionalUpdatesComponent } from "./components/campaign-exceptional-updates/campaign-exceptional-updates.component";
 import { CampaignFormClosedComponent } from "./components/campaign-form-closed/campaign-form-closed.component";
 import { CampaignFormHoursComponent } from "./components/campaign-form-hours/campaign-form-hours.component";
 import { CampaignFormInfosComponent } from "./components/campaign-form-infos/campaign-form-infos.component";
@@ -34,7 +33,6 @@ import { PlacePageModule } from "../place-page/place-page.module";
 @NgModule({
   declarations: [
     CampaignClimateOrgaComponent,
-    CampaignExceptionalUpdatesComponent,
     CampaignFormClosedComponent,
     CampaignFormHoursComponent,
     CampaignFormInfosComponent,

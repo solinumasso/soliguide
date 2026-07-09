@@ -1,0 +1,16 @@
+<a
+  *ngIf="isVisible && routerLink"
+  class="btn btn-outline-primary btn-sm m-1"
+  [title]="'CAMPAIGN_TEMP_FORMS_MENU_LABEL' | translate"
+  [ngbTooltip]="'CAMPAIGN_TEMP_FORMS_MENU_LABEL' | translate"
+  [routerLink]="routerLink"
+  routerLinkActive="router-link-active"
+  target="_blank"
+  rel="noopener"
+  (click)="onClick()"
+>
+  <span class="visually-hidden">
+    {{ "CAMPAIGN_TEMP_FORMS_MENU_LABEL" | translate }}
+  </span>
+  <fa-icon aria-hidden="true" [icon]="['fas', 'sun']"></fa-icon>
+</a>

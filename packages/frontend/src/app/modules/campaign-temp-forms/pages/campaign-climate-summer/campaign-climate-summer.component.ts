@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 
 import { ApiPlace } from "@soliguide/common";
 import type { PosthogProperties } from "@soliguide/common-angular";
@@ -23,6 +23,11 @@ interface PartitionedPlaces {
 })
 export class CampaignClimateSummerComponent implements OnInit {
   public loading = true;
+  // `loadError` : state UX pour le cas "lien invalide / expiré / user plus
+  // éligible". Aujourd'hui, on affiche un message explicite en lieu et place
+  // du redirect home (silencieux et frustrant après clic sur un lien reçu
+  // par mail Brevo).
+  public loadError = false;
   public payload:
     | (Omit<CampaignTempFormsPayload, "places"> & { places: Place[] })
     | null = null;
@@ -39,7 +44,6 @@ export class CampaignClimateSummerComponent implements OnInit {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly router: Router,
     private readonly service: CampaignTempFormsService,
     private readonly posthogService: PosthogService
   ) {}
@@ -62,7 +66,7 @@ export class CampaignClimateSummerComponent implements OnInit {
       this.route.snapshot.paramMap.get("campaignUserUuid") ?? "";
 
     if (!this.campaignSlug || !this.campaignUserUuid) {
-      this.redirectHome("invalid-link");
+      this.setError("invalid-link");
       return;
     }
 
@@ -88,14 +92,15 @@ export class CampaignClimateSummerComponent implements OnInit {
           });
         },
         error: () => {
-          this.redirectHome("api-error");
+          this.setError("api-error");
         },
       });
   }
 
-  private redirectHome(reason: string): void {
-    this.captureEvent("redirect-home", { reason });
-    void this.router.navigate([this.lang]);
+  private setError(reason: string): void {
+    this.captureEvent("load-error", { reason });
+    this.loadError = true;
+    this.loading = false;
   }
 
   public setAirConditioned(place: Place, value: boolean | null): void {
