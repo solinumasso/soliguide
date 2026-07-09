@@ -25,9 +25,11 @@ fileignoreconfig:
 - filename: PLAN_MODALITIES_CLIM_CHAUFFAGE.md
   checksum: 085c60ab95923b58a8c3d662cb8338b6c358ea91175f04eb932ecade05b1e51a
 - filename: packages/api/.env.example
-  checksum: 9abd32110bec5c8b3e56a57309b4e2bba7a9b34a19d8bf5d7098cbd0f3c49d66
+  checksum: c92309212b56504b2aac550c9c7c8a40dcd3ed746af10150b45de49042d57845
 - filename: packages/api/.env.test
   checksum: bae3ba8730c8495a8a407b610d456c859d2a032f1b8c44572924fc5889df8bfd
+- filename: packages/api/migrations/20260710000000-sync-campaign-user-uuid-to-brevo.ts
+  checksum: 4e3ee60e30b2bd907dd3748435989398a4a3bd0fbeaf8a205023e3a8ae25cec7
 - filename: packages/api/src/analytics/scripts/brevo-campaign-user-update.ts
   checksum: 112b958249429a89d4e48fcac42cc99526c15f8dba17c3c5299c6c996d60355c
 - filename: packages/api/src/autoexport/services/renders/renderWord.ts
@@ -87,5 +89,5 @@ fileignoreconfig:
 - filename: packages/web-app/static/images/organizations-logos/fr/secours-islamique.svg
   checksum: 09d951bec75ab70c67a967d95b63b5da29fb8d21f7fe9d5566ac8d9b004983b3
 - filename: yarn.lock
-  checksum: 255742469cf3c03ad2e1a9d1409c1877c292735e2bf5583393523750cbc88c0f
+  checksum: 6a0ecda6686717130768d8d812b3790fd12774b4094dc7eb0f1358c12f28ae20
 version: "1.0"

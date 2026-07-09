@@ -52,4 +52,7 @@ export interface Config {
 
   // Dipeeo
   RGPD_EMAIL: string;
+
+  // Brevo
+  BREVO_API_KEY?: string;
 }

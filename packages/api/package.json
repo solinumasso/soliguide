@@ -33,6 +33,7 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.74.0",
     "@aws-sdk/client-s3": "^3.787.0",
+    "@getbrevo/brevo": "^6.0.2",
     "@google-cloud/translate": "^8.3.0",
     "@sentry/node": "^10.42.0",
     "@sentry/profiling-node": "^10.42.0",
