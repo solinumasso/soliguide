@@ -20,6 +20,7 @@ export const sendUserForAuth = (user: UserPopulateType): UserForAuth => {
 
   return {
     _id: user._id.toString(),
+    campaignUserUuid: user.campaignUserUuid,
     categoriesLimitations: user.categoriesLimitations,
     devToken: user.devToken,
     languages: user.languages,

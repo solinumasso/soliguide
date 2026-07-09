@@ -63,6 +63,10 @@ export class User {
   public verified: boolean;
   public areas?: OperationalAreas;
 
+  // UUID stable non-exposé publiquement, remonté via `/users/me` pour construire
+  // les liens du parcours `campaign-temp-forms/*` depuis la barre de navigation.
+  public campaignUserUuid: string | null;
+
   constructor(user?: Partial<UserForAuth>, light = false) {
     this._id = user?._id ?? null;
     this.user_id = user?.user_id ?? null;
@@ -108,6 +112,7 @@ export class User {
       this.status === UserStatus.ADMIN_TERRITORY
         ? user?.areas
         : undefined;
+    this.campaignUserUuid = user?.campaignUserUuid ?? null;
 
     if (!light && user && this.pro && user.organizations?.length > 0) {
       this.organizations = user.organizations.map(

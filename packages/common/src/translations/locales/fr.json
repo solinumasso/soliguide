@@ -222,6 +222,7 @@
   "CAMPAIGN_TEMP_FORMS_NO_CLOSURE_DECLARED": "Aucune fermeture temporaire déclarée.",
   "CAMPAIGN_TEMP_FORMS_REPORT_CHANGE_CTA": "Signalez un changement d'horaires, une fermeture ou autre",
   "CAMPAIGN_TEMP_FORMS_INVALID_LINK": "Ce lien est invalide.",
+  "CAMPAIGN_TEMP_FORMS_MENU_LABEL": "Campagne canicule",
   "CAMPAIGN_TEMP_FORMS_NOT_FOUND": "Cette campagne n'est plus disponible ou ce lien n'est pas valide.",
   "CAMPAIGN_TEMP_FORMS_NO_PLACES_TO_UPDATE": "Aucun lieu à mettre à jour pour cette campagne.",
   "CAMPAIGN_TEMP_FORMS_PLACES_TO_UPDATE": "Structures à mettre à jour",
