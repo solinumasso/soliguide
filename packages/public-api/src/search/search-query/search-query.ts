@@ -22,38 +22,44 @@ export type PositionSearchLocation = {
   country?: CountryCodes;
 };
 
+export type SearchLocationGeoFields = {
+  coordinates?: [number, number] | null;
+  distance?: number;
+  country?: CountryCodes | null;
+};
+
 export type CountrySearchLocation = {
   geoType: GeoTypes.COUNTRY;
   country: CountryCodes;
 };
 
-export type CitySearchLocation = {
+export type CitySearchLocation = SearchLocationGeoFields & {
   geoType: GeoTypes.CITY;
   city: string;
   postalCode?: string;
 };
 
-export type BoroughSearchLocation = {
+export type BoroughSearchLocation = SearchLocationGeoFields & {
   geoType: GeoTypes.BOROUGH;
   postalCode: string;
 };
 
-export type DepartmentSearchLocation = {
+export type DepartmentSearchLocation = SearchLocationGeoFields & {
   geoType: GeoTypes.DEPARTMENT;
   department: string;
 };
 
-export type RegionSearchLocation = {
+export type RegionSearchLocation = SearchLocationGeoFields & {
   geoType: GeoTypes.REGION;
   region: string;
 };
 
-export type CitiesGroupSearchLocation = {
+export type CitiesGroupSearchLocation = SearchLocationGeoFields & {
   geoType: GeoTypes.CITIES_GROUP;
   searchText: string;
 };
 
-export type UnknownSearchLocation = {
+export type UnknownSearchLocation = SearchLocationGeoFields & {
   geoType: GeoTypes.UNKNOWN;
   searchText: string;
 };
@@ -119,6 +125,12 @@ export type NonAdminUserStatus =
   | UserStatus.WIDGET_USER
   | UserStatusNotLogged.NOT_LOGGED;
 
+export type SearchProximityLocation = SearchLocation & {
+  coordinates: [number, number];
+  distance?: number;
+  country?: CountryCodes | null;
+};
+
 export type SearchQuery = {
   locations?: SearchLocation[];
   categories?: Categories[];
@@ -135,6 +147,9 @@ export type SearchQuery = {
   visibility?: PlaceVisibility;
   serviceFiltersEnabled?: boolean;
   apiUserRestrictions?: Record<string, unknown>;
+  resultFields?: string | null;
+  closedPlacesLast?: boolean;
+  proximity?: SearchProximityLocation;
 };
 
 export type SearchUserAreas = OperationalAreas;

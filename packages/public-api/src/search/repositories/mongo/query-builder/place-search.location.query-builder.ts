@@ -1,11 +1,11 @@
 import { Injectable } from "@nestjs/common";
 import { type Document } from "mongodb";
 
-import { GeoTypes, PlaceType } from "@soliguide/common";
+import { CountryCodes, GeoTypes, PlaceType } from "@soliguide/common";
 
 import {
-  PositionSearchLocation,
   SearchLocation,
+  SearchProximityLocation,
 } from "../../../search-query/search-query";
 import { SearchContext, SearchQueryBuilder } from "./search.query-builder";
 import { appendAndConditions } from "./utils";
@@ -13,47 +13,41 @@ import { appendAndConditions } from "./utils";
 @Injectable()
 export class LocationQueryBuilder implements SearchQueryBuilder {
   build(context: SearchContext): SearchContext {
-    const queryLocations = context.query.locations;
+    const queryLocations = context.query.locations ?? [];
+    const placeType = context.query.placeType ?? PlaceType.PLACE;
+    const geoNearLocation = this.getGeoNearLocation(context.query.proximity);
 
-    if (!queryLocations?.length) {
+    if (!queryLocations.length && !geoNearLocation) {
       return context;
     }
 
-    const placeType = context.query.placeType ?? PlaceType.PLACE;
-    const positionLocation = this.getGeoNearPositionLocation(queryLocations);
     const locationConditions = this.buildLocationConditions(
       queryLocations,
       placeType,
-      positionLocation
+      geoNearLocation
     );
     const nextContext = this.withLocationConditions(
       context,
       locationConditions
     );
 
-    if (!positionLocation) {
+    if (!geoNearLocation) {
       return nextContext;
     }
 
-    return this.withGeoNear(nextContext, placeType, positionLocation);
+    return this.withGeoNear(nextContext, placeType, geoNearLocation);
   }
 
-  private getGeoNearPositionLocation(
-    locations: SearchLocation[]
-  ): PositionSearchLocation | null {
-    const positionLocations = locations.filter((location) =>
-      this.isPositionLocation(location)
-    );
-
-    // Important: $geoNear can only appear once. If exactly one POSITION location
-    // is provided, we keep geoNear and still combine all location filters.
-    return positionLocations.length === 1 ? positionLocations[0] : null;
+  private getGeoNearLocation(
+    proximity: SearchProximityLocation | undefined
+  ): GeoNearSearchLocation | null {
+    return proximity && this.hasCoordinates(proximity) ? proximity : null;
   }
 
   private buildLocationConditions(
     locations: SearchLocation[],
     placeType: PlaceType,
-    geoNearLocation: PositionSearchLocation | null
+    geoNearLocation: GeoNearSearchLocation | null
   ): Document[] {
     const locationConditions: Document[] = [];
 
@@ -75,7 +69,7 @@ export class LocationQueryBuilder implements SearchQueryBuilder {
   private buildConditionForLocation(
     location: SearchLocation,
     placeType: PlaceType,
-    geoNearLocation: PositionSearchLocation | null
+    geoNearLocation: GeoNearSearchLocation | null
   ): Document | null {
     if (location === geoNearLocation) {
       return null;
@@ -111,20 +105,26 @@ export class LocationQueryBuilder implements SearchQueryBuilder {
       : { $or: locationConditions };
   }
 
-  private isPositionLocation(
+  private isPositionLocation(location: SearchLocation): boolean {
+    return location.geoType === GeoTypes.POSITION;
+  }
+
+  private hasCoordinates(
     location: SearchLocation
-  ): location is PositionSearchLocation {
+  ): location is GeoNearSearchLocation {
     return (
-      location.geoType === GeoTypes.POSITION && Boolean(location.coordinates)
+      "coordinates" in location &&
+      Array.isArray(location.coordinates) &&
+      location.coordinates.length === 2
     );
   }
 
   private withGeoNear(
     context: SearchContext,
     placeType: PlaceType,
-    location: PositionSearchLocation
+    location: GeoNearSearchLocation
   ): SearchContext {
-    const country = location.country;
+    const country = location.country ?? CountryCodes.FR;
 
     const distanceKilometers =
       typeof location.distance === "number"
@@ -142,7 +142,7 @@ export class LocationQueryBuilder implements SearchQueryBuilder {
       geoNearStage: {
         near: {
           type: "Point",
-          coordinates: location.coordinates as [number, number],
+          coordinates: location.coordinates,
         },
         distanceField: "distance",
         key: LOCATION_GEO_KEY_BY_PLACE_TYPE[placeType],
@@ -167,11 +167,12 @@ export class LocationQueryBuilder implements SearchQueryBuilder {
   }
 
   private buildPositionCountryCondition(
-    location: PositionSearchLocation,
+    location: SearchLocation,
     placeType: PlaceType
   ): Document {
     return {
-      [LOCATION_COUNTRY_BY_PLACE_TYPE[placeType]]: location.country,
+      [LOCATION_COUNTRY_BY_PLACE_TYPE[placeType]]:
+        "country" in location ? location.country : CountryCodes.FR,
     };
   }
 
@@ -384,6 +385,12 @@ export class LocationQueryBuilder implements SearchQueryBuilder {
     );
   }
 }
+
+type GeoNearSearchLocation = SearchLocation & {
+  coordinates: [number, number];
+  distance?: number;
+  country?: CountryCodes | null;
+};
 
 export const DEFAULT_SEARCH_RADIUS_BY_GEO_TYPE: Record<string, number> = {
   [GeoTypes.BOROUGH]: 20,
