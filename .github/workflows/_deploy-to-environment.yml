@@ -75,14 +75,14 @@ jobs:
     steps:
       - name: Checkout repository (branch)
         if: ${{ !inputs.tag }}
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
           persist-credentials: true
 
       - name: Checkout repository (tag)
         if: ${{ inputs.tag }}
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: refs/tags/${{ inputs.tag }}
           fetch-depth: 0
@@ -176,7 +176,7 @@ jobs:
 
       - name: Create GitHub Deployment
         if: github.event_name == 'pull_request'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const env = '${{ inputs.environment }}';

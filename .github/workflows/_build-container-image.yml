@@ -82,20 +82,20 @@ jobs:
       PRODUCTION_IMAGE: ${{ needs.docker_meta.outputs.json && fromJSON(needs.docker_meta.outputs.json).tags[0] || '' }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
 
       - name: Log in to the Container registry
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ${{ inputs.registry }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build ${{ inputs.image_name }} target1
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: ${{ inputs.dockerfile }}
@@ -107,12 +107,14 @@ jobs:
           annotations: ${{ needs.docker_meta1.outputs.annotations }}
           cache-from: |
             type=registry,ref=${{ env.TARGET1_IMAGE }}-cache
+            type=registry,ref=${{ inputs.registry }}/${{ inputs.image_name }}:develop${{ inputs.tag_suffix1 }}-cache
+            type=registry,ref=${{ inputs.registry }}/${{ inputs.image_name }}:main${{ inputs.tag_suffix1 }}-cache
           cache-to: |
             type=registry,mode=max,ref=${{ env.TARGET1_IMAGE }}-cache
 
       - name: Build ${{ inputs.image_name }} target2
         if: ${{ inputs.build_target2 }}
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: ${{ inputs.dockerfile }}
@@ -124,12 +126,14 @@ jobs:
           annotations: ${{ needs.docker_meta2.outputs.annotations }}
           cache-from: |
             type=registry,ref=${{ env.TARGET2_IMAGE }}-cache
+            type=registry,ref=${{ inputs.registry }}/${{ inputs.image_name }}:develop${{ inputs.tag_suffix2 }}-cache
+            type=registry,ref=${{ inputs.registry }}/${{ inputs.image_name }}:main${{ inputs.tag_suffix2 }}-cache
           cache-to: |
             type=registry,mode=max,ref=${{ env.TARGET2_IMAGE }}-cache
 
       - name: Build ${{ inputs.image_name }} target production
         if: ${{ inputs.build_production }}
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: ${{ inputs.dockerfile }}
@@ -141,5 +145,7 @@ jobs:
           annotations: ${{ needs.docker_meta.outputs.annotations }}
           cache-from: |
             type=registry,ref=${{ env.PRODUCTION_IMAGE }}-cache
+            type=registry,ref=${{ inputs.registry }}/${{ inputs.image_name }}:develop-cache
+            type=registry,ref=${{ inputs.registry }}/${{ inputs.image_name }}:main-cache
           cache-to: |
             type=registry,mode=max,ref=${{ env.PRODUCTION_IMAGE }}-cache

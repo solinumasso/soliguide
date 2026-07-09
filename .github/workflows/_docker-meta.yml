@@ -34,7 +34,7 @@ jobs:
     steps:
       # For tags we simply use it, no sha needed
       - id: meta_tags
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
         with:
           images: ${{ inputs.image_name }}
@@ -44,7 +44,7 @@ jobs:
       # For branches and pull_request we use both standard tag + tag with sha appended
       - id: meta_classic
         name: Compute general tag
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         if: ${{ !startsWith(github.ref, 'refs/tags/') }}
         with:
           # disbale latest, we've no need for it
@@ -57,7 +57,7 @@ jobs:
             type=ref,event=pr
       - id: meta
         name: Assemble general tag + tag with sha
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         if: ${{ !startsWith(github.ref, 'refs/tags/') }}
         with:
           images: ${{ inputs.image_name }}
