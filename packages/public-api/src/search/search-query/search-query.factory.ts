@@ -8,29 +8,20 @@ import {
   PublicsOther,
   WelcomedPublics,
 } from "@soliguide/common";
-import type { SoliguideCountries } from "@soliguide/common";
+import { Categories, SoliguideCountries } from "@soliguide/common";
 
-import { V20260426SearchRequest } from "../../versions/2026-04-26/2026-04-26.search-request.schema.generated";
-
+import { CanonicalSearchRequest } from "../canonical-search-request";
 import { SearchLocation, SearchQuery } from "./search-query";
 
-type LegacyCompatibleSearchRequest = V20260426SearchRequest & {
-  category?: V20260426SearchRequest["categories"][number] | null;
-  location?: V20260426SearchRequest["locations"][number] | null;
-  updatedByUserAt?: V20260426SearchRequest["updatedAt"] | null;
-  word?: string | null;
-};
-
 export class SearchQueryFactory {
-  create(request: LegacyCompatibleSearchRequest): SearchQuery {
+  create(request: CanonicalSearchRequest): SearchQuery {
     const categories = this.mapCategories(request);
     const locations = this.mapLocations(request);
     const modalities = this.mapModalities(request.modalities);
     const audiences = this.mapAudiences(request.publics);
-    const updatedAt = request.updatedAt ?? request.updatedByUserAt;
     const query: SearchQuery = {
       placeType: request.placeType,
-      word: request.q ?? request.word ?? undefined,
+      word: request.q ?? undefined,
       openToday:
         typeof request.openToday === "boolean" ? request.openToday : undefined,
       languages: request.languages ?? undefined,
@@ -54,35 +45,33 @@ export class SearchQueryFactory {
       query.audiences = audiences;
     }
 
-    if (updatedAt) {
-      query.updatedAt = updatedAt;
+    if (request.updatedAt) {
+      query.updatedAt = request.updatedAt;
     }
 
     return query;
   }
 
   private mapCategories(
-    request: LegacyCompatibleSearchRequest
-  ): SearchQuery["categories"] {
+    request: CanonicalSearchRequest
+  ): Categories[] | undefined {
     if (request.categories?.length) {
       return [...request.categories];
     }
 
-    if (request.category) {
-      return [request.category];
-    }
+    const category = (
+      request as CanonicalSearchRequest & {
+        category?: Categories;
+      }
+    ).category;
 
-    return undefined;
+    return category ? [category] : undefined;
   }
 
   private mapLocations(
-    request: LegacyCompatibleSearchRequest
-  ): SearchQuery["locations"] {
-    const requestLocations = request.locations?.length
-      ? request.locations
-      : request.location
-      ? [request.location]
-      : [];
+    request: CanonicalSearchRequest
+  ): SearchLocation[] | undefined {
+    const requestLocations = request.locations ?? [];
 
     if (!requestLocations.length) {
       return undefined;
@@ -101,15 +90,17 @@ export class SearchQueryFactory {
   }
 
   private mapLocation(
-    location: NonNullable<LegacyCompatibleSearchRequest["location"]>
+    location: CanonicalSearchLocation
   ): SearchLocation | null {
+    const geoFields = this.mapGeoFields(location);
+
     if (location.geoType === GeoTypes.POSITION) {
       return {
         geoType: GeoTypes.POSITION,
         coordinates: location.coordinates as [number, number],
         distance:
           typeof location.distance === "number" ? location.distance : undefined,
-        country: location.country ?? CountryCodes.FR,
+        country: geoFields.country ?? CountryCodes.FR,
       };
     }
 
@@ -125,29 +116,67 @@ export class SearchQueryFactory {
           country: geoValue as CountryCodes,
         };
       case GeoTypes.CITY:
-        return this.mapCityLocation(geoValue);
+        return {
+          ...geoFields,
+          ...this.mapCityLocation(geoValue),
+        };
       case GeoTypes.BOROUGH:
         return {
+          ...geoFields,
           geoType: GeoTypes.BOROUGH,
           postalCode: this.extractPostalCode(geoValue),
         };
       case GeoTypes.DEPARTMENT:
-        return this.mapDepartmentLocation(geoValue, location.country);
+        return {
+          ...geoFields,
+          ...this.mapDepartmentLocation(geoValue, location.country),
+        };
       case GeoTypes.REGION:
-        return this.mapRegionLocation(geoValue, location.country);
+        return {
+          ...geoFields,
+          ...this.mapRegionLocation(geoValue, location.country),
+        };
       case GeoTypes.CITIES_GROUP:
         return {
+          ...geoFields,
           geoType: GeoTypes.CITIES_GROUP,
           searchText: geoValue,
         };
       case GeoTypes.UNKNOWN:
         return {
+          ...geoFields,
           geoType: GeoTypes.UNKNOWN,
           searchText: geoValue,
         };
       default:
         return null;
     }
+  }
+
+  private mapGeoFields(location: CanonicalSearchLocation): {
+    coordinates?: [number, number];
+    distance?: number;
+    country?: CountryCodes;
+  } {
+    const geoFields: {
+      coordinates?: [number, number];
+      distance?: number;
+      country?: CountryCodes;
+    } = {};
+
+    if (location.coordinates?.length === 2) {
+      geoFields.coordinates = location.coordinates as [number, number];
+    }
+
+    if (typeof location.distance === "number") {
+      geoFields.distance = location.distance;
+    }
+
+    if (location.country) {
+      geoFields.country = location.country as CountryCodes;
+    }
+
+    return geoFields;
   }
 
   private mapCityLocation(geoValue: string): SearchLocation {
@@ -164,7 +193,7 @@ export class SearchQueryFactory {
 
   private mapDepartmentLocation(
     geoValue: string,
-    country: string | undefined
+    country: string | null | undefined
   ): SearchLocation {
     const extracted = extractGeoTypeFromSearch(
       geoValue,
@@ -178,7 +207,7 @@ export class SearchQueryFactory {
 
   private mapRegionLocation(
     geoValue: string,
-    country: string | undefined
+    country: string | null | undefined
   ): SearchLocation {
     const extracted = extractGeoTypeFromSearch(
       geoValue,
@@ -207,34 +236,21 @@ export class SearchQueryFactory {
   }
 
   private mapModalities(
-    modalities: LegacyCompatibleSearchRequest["modalities"]
+    modalities: CanonicalSearchRequest["modalities"]
   ): SearchQuery["modalities"] {
     if (!modalities) {
       return undefined;
     }
 
     const mappedModalities: SearchQuery["modalities"] = {};
-    const legacyModalities = modalities as typeof modalities & {
-      animal?: boolean;
-      inconditionnel?: boolean;
-      inscription?: boolean;
-      orientation?: boolean;
-      pmr?: boolean;
-      price?: boolean;
-      sign?: boolean;
-    };
-    const unconditional =
-      modalities.unconditional ?? legacyModalities.inconditionnel;
-    const appointmentRequired =
-      modalities.appointmentRequired ?? legacyModalities.appointment;
-    const registrationRequired =
-      modalities.registrationRequired ?? legacyModalities.inscription;
-    const referalRequired =
-      modalities.referalRequired ?? legacyModalities.orientation;
-    const isAccessible = modalities.isAccessible ?? legacyModalities.pmr;
-    const hasFees = modalities.hasFees ?? legacyModalities.price;
-    const acceptsPets = modalities.acceptsPets ?? legacyModalities.animal;
-    const hasSignLanguage = modalities.hasSignLanguage ?? legacyModalities.sign;
+    const unconditional = modalities.unconditional;
+    const appointmentRequired = modalities.appointmentRequired;
+    const registrationRequired = modalities.registrationRequired;
+    const referalRequired = modalities.referalRequired;
+    const isAccessible = modalities.isAccessible;
+    const hasFees = modalities.hasFees;
+    const acceptsPets = modalities.acceptsPets;
+    const hasSignLanguage = modalities.hasSignLanguage;
 
     if (typeof unconditional === "boolean") {
       mappedModalities.isUnconditional = unconditional;
@@ -272,25 +288,18 @@ export class SearchQueryFactory {
   }
 
   private mapAudiences(
-    publics: LegacyCompatibleSearchRequest["publics"]
+    publics: CanonicalSearchRequest["publics"]
   ): SearchQuery["audiences"] {
     if (!publics) {
       return undefined;
     }
 
-    const legacyPublics = publics as typeof publics & {
-      accueil?: WelcomedPublics | null;
-      familialle?: PublicsFamily[];
-      other?: PublicsOther[];
-    };
-    const admissionPolicy = this.mapAdmissionPolicy(
-      publics.welcomeType ?? legacyPublics.accueil
-    );
+    const admissionPolicy = this.mapAdmissionPolicy(publics.welcomeType);
     const age = this.mapAge(publics.age);
     const genders = publics.gender ?? [];
     const administrativeStatuses = publics.administrative ?? [];
-    const familyStatuses = publics.family ?? legacyPublics.familialle ?? [];
-    const otherStatuses = publics.specific ?? legacyPublics.other ?? [];
+    const familyStatuses = publics.family ?? [];
+    const otherStatuses = publics.specific ?? [];
 
     if (
       !admissionPolicy &&
@@ -314,17 +323,17 @@ export class SearchQueryFactory {
   }
 
   private mapAdmissionPolicy(
-    accueil?: WelcomedPublics | null
+    welcomeType?: WelcomedPublics | null
   ): "open" | "restricted" | "targeted" | undefined {
-    if (accueil === WelcomedPublics.UNCONDITIONAL) {
+    if (welcomeType === WelcomedPublics.UNCONDITIONAL) {
       return "open";
     }
 
-    if (accueil === WelcomedPublics.PREFERENTIAL) {
+    if (welcomeType === WelcomedPublics.PREFERENTIAL) {
       return "restricted";
     }
 
-    if (accueil === WelcomedPublics.EXCLUSIVE) {
+    if (welcomeType === WelcomedPublics.EXCLUSIVE) {
       return "targeted";
     }
 
@@ -349,3 +358,7 @@ export class SearchQueryFactory {
     return undefined;
   }
 }
+
+type CanonicalSearchLocation = NonNullable<
+  CanonicalSearchRequest["locations"]
+>[number];
