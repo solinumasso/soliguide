@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.147.3](https://github.com/solinumasso/soliguide/compare/v4.147.2...v4.147.3) (2026-07-09)
+
+
+### Bug Fixes
+
+* **api:** add link ([a0cc2cd](https://github.com/solinumasso/soliguide/commit/a0cc2cdcbf9ec04f63c2381a959bbbb2d15463db))
+* **api:** add link ([f7088c2](https://github.com/solinumasso/soliguide/commit/f7088c27c299d94c834330128efceb9d48a37423))
+* **api:** add menu item ([9c217db](https://github.com/solinumasso/soliguide/commit/9c217dbaf98e3866dfd2b4b35da8d5b9eda79202))
+* **api:** add user link for climate ([106e4eb](https://github.com/solinumasso/soliguide/commit/106e4ebb7c3558404430f862da0ffcb6d7cb2565))
+* **api:** add user link for climate ([79e639a](https://github.com/solinumasso/soliguide/commit/79e639a31bbcf32f28f3c4f964f787da611058b8))
+* **api:** fix build & deploy ([bc769bb](https://github.com/solinumasso/soliguide/commit/bc769bb3f0bd1b7bdda2b8b9eb70bffa8cfafd6b))
+* **api:** fix deploy ([a91294f](https://github.com/solinumasso/soliguide/commit/a91294f921e51d82ebf22c8c8732959c30448a1e))
+* **api:** fix deploy of qovery ([cd30937](https://github.com/solinumasso/soliguide/commit/cd309377f1ce1afed6d2d5eae8ae5cb9f6b9e98c))
+* **api:** fix github ci ([0432f9f](https://github.com/solinumasso/soliguide/commit/0432f9fb8551781fcf6832ef21096c75c1cf8d18))
+* **api:** fix node version ([2a089c5](https://github.com/solinumasso/soliguide/commit/2a089c5bbbb0ddfc180a1b1ee2ac79ac590f5851))
+
+
+
+
+
 ## [4.147.2](https://github.com/solinumasso/soliguide/compare/v4.147.1...v4.147.2) (2026-07-08)
 
 
