@@ -11,40 +11,69 @@ import {
 } from "@soliguide/common";
 import { describe, expect, it } from "vitest";
 
-import { V20260101SearchRequest } from "../../versions/2026-01-01/2026-01-01.search-request.schema.generated";
+import type { CanonicalSearchRequest } from "../canonical-search-request";
 import { SearchQueryFactory } from "./search-query.factory";
+
+type CanonicalSearchLocation =
+  NonNullable<CanonicalSearchRequest["locations"]>[number];
 
 describe("SearchQueryFactory", () => {
   const factory = new SearchQueryFactory();
 
-  it("maps category alias to categories when categories is missing", () => {
+  it("maps categories", () => {
     const result = factory.create(
       buildRequest({
-        category: Categories.DOMICILIATION,
+        categories: [Categories.DOMICILIATION],
       })
     );
 
     expect(result.categories).toEqual([Categories.DOMICILIATION]);
   });
 
-  it("keeps categories when categories and category are both provided", () => {
+  it("maps q to internal word", () => {
     const result = factory.create(
       buildRequest({
-        category: Categories.DOMICILIATION,
-        categories: [Categories.FOOD_DISTRIBUTION],
+        q: "repas",
       })
     );
 
-    expect(result.categories).toEqual([Categories.FOOD_DISTRIBUTION]);
+    expect(result.word).toBe("repas");
   });
 
-  it("maps single location to locations when locations is missing", () => {
+  it("maps locations", () => {
     const result = factory.create(buildRequest());
 
     expect(result.locations).toEqual([
       {
         geoType: GeoTypes.POSITION,
         coordinates: [2.35, 48.85],
+        country: "FR",
+      },
+    ]);
+  });
+
+  it("keeps geo fields on non-position locations", () => {
+    const result = factory.create(
+      buildRequest({
+        locations: [
+          {
+            geoType: GeoTypes.CITY,
+            geoValue: "paris-75015",
+            coordinates: [2.35, 48.85],
+            distance: 15,
+            country: "FR",
+          },
+        ],
+      })
+    );
+
+    expect(result.locations).toEqual([
+      {
+        geoType: GeoTypes.CITY,
+        city: "paris",
+        postalCode: "75015",
+        coordinates: [2.35, 48.85],
+        distance: 15,
         country: "FR",
       },
     ]);
@@ -125,7 +154,7 @@ describe("SearchQueryFactory", () => {
   ])("maps location %j to internal query shape", ({ location, expected }) => {
     const result = factory.create(
       buildRequest({
-        location: location as V20260101SearchRequest["location"],
+        locations: [location as CanonicalSearchLocation],
       })
     );
 
@@ -136,14 +165,14 @@ describe("SearchQueryFactory", () => {
     const result = factory.create(
       buildRequest({
         modalities: {
-          animal: true,
-          appointment: true,
-          inconditionnel: false,
-          inscription: true,
-          orientation: false,
-          pmr: true,
-          price: false,
-          sign: true,
+          acceptsPets: true,
+          appointmentRequired: true,
+          unconditional: false,
+          registrationRequired: true,
+          referalRequired: false,
+          isAccessible: true,
+          hasFees: false,
+          hasSignLanguage: true,
         },
       })
     );
@@ -164,12 +193,12 @@ describe("SearchQueryFactory", () => {
     const result = factory.create(
       buildRequest({
         publics: {
-          accueil: WelcomedPublics.PREFERENTIAL,
+          welcomeType: WelcomedPublics.PREFERENTIAL,
           age: { min: 12, max: 35 },
           gender: [PublicsGender.women],
           administrative: [PublicsAdministrative.refugee],
-          familialle: [PublicsFamily.couple],
-          other: [PublicsOther.lgbt],
+          family: [PublicsFamily.couple],
+          specific: [PublicsOther.lgbt],
         },
       })
     );
@@ -184,67 +213,71 @@ describe("SearchQueryFactory", () => {
     });
   });
 
-  it("uses updatedByUserAt when updatedAt is not provided", () => {
-    const legacyUpdatedAt = {
+  it("maps updatedAt", () => {
+    const updatedAt = {
       intervalType: UpdatedAtInterval.AFTER_DAY,
       value: new Date("2026-01-01"),
     };
 
-    const result = factory.create({
-      ...buildRequest({
-        updatedAt: null,
-      }),
-      updatedByUserAt: legacyUpdatedAt,
-    } as V20260101SearchRequest & {
-      updatedByUserAt: V20260101SearchRequest["updatedAt"];
-    });
-
-    expect(result.updatedAt).toEqual(legacyUpdatedAt);
-  });
-
-  it("maps languages as scalar value", () => {
     const result = factory.create(
       buildRequest({
-        languages: "fr",
+        updatedAt,
       })
     );
 
-    expect(result.languages).toBe("fr");
+    expect(result.updatedAt).toEqual(updatedAt);
+  });
+
+  it("maps languages", () => {
+    const result = factory.create(
+      buildRequest({
+        languages: ["fr"],
+      })
+    );
+
+    expect(result.languages).toEqual(["fr"]);
   });
 
   it("returns a clean query without request-only keys", () => {
     const result = factory.create(
       buildRequest({
-        category: Categories.DOMICILIATION,
+        categories: [Categories.DOMICILIATION],
         publics: {
-          accueil: WelcomedPublics.UNCONDITIONAL,
+          welcomeType: WelcomedPublics.UNCONDITIONAL,
           age: { min: 18 },
           gender: [],
           administrative: [],
-          familialle: [],
-          other: [],
+          family: [],
+          specific: [],
         },
       })
     ) as Record<string, unknown>;
 
-    expect(result.category).toBeUndefined();
     expect(result.publics).toBeUndefined();
-    expect(result.location).toBeUndefined();
+    expect(result.locations).toEqual([
+      {
+        geoType: GeoTypes.POSITION,
+        coordinates: [2.35, 48.85],
+        country: "FR",
+      },
+    ]);
     expect(result.categories).toEqual([Categories.DOMICILIATION]);
     expect(result.audiences).toBeDefined();
   });
 });
 
 function buildRequest(
-  overrides: Partial<V20260101SearchRequest> = {}
-): V20260101SearchRequest {
+  overrides: Partial<CanonicalSearchRequest> = {}
+): CanonicalSearchRequest {
   return {
     placeType: PlaceType.PLACE,
-    location: {
-      geoType: GeoTypes.POSITION,
-      coordinates: [2.35, 48.85],
-      country: "FR",
-    },
+    locations: [
+      {
+        geoType: GeoTypes.POSITION,
+        coordinates: [2.35, 48.85],
+        country: "FR",
+      },
+    ],
     ...overrides,
-  } as V20260101SearchRequest;
+  } as CanonicalSearchRequest;
 }
