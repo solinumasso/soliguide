@@ -94,6 +94,31 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               {{ "MY_ORGANIZATION" | translate }}
             </a>
           </li>
+
+          <li
+            class="nav-item"
+            *ngIf="
+              isHeatwaveCampaignCountry &&
+              heatwaveCampaignSlug &&
+              me.campaignUserUuid
+            "
+          >
+            <a
+              class="nav-link"
+              [routerLinkActiveOptions]="{ exact: true }"
+              [routerLink]="[
+                routePrefix,
+                'campaign-temp-forms',
+                'campaign-climate-summer',
+                heatwaveCampaignSlug,
+                me.campaignUserUuid
+              ]"
+              routerLinkActive="router-link-active"
+              (click)="captureEvent('click-heatwave-campaign-menu')"
+            >
+              {{ "CAMPAIGN_TEMP_FORMS_MENU_LABEL" | translate }}
+            </a>
+          </li>
         </ng-container>
         <ng-container *ngIf="isAdmin">
           <li class="nav-item">

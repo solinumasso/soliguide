@@ -4,6 +4,7 @@ import { CommonUser } from "../interfaces";
 
 export type UserForAuth = Pick<
   CommonUser,
+  | "campaignUserUuid"
   | "categoriesLimitations"
   | "devToken"
   | "languages"
