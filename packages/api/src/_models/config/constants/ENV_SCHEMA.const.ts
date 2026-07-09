@@ -142,5 +142,9 @@ export const ENV_SCHEMA: JSONSchemaType<Config> = {
       type: "string",
       default: "dipeeo@solinum.org",
     },
+    BREVO_API_KEY: {
+      type: "string",
+      nullable: true,
+    },
   },
 };

@@ -4587,6 +4587,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@getbrevo/brevo@npm:^6.0.2":
+  version: 6.0.2
+  resolution: "@getbrevo/brevo@npm:6.0.2"
+  checksum: 10/ac7a3978ad2eeab5f149e3ecfd95af9b6b90ebaa9ba1a93197ce9edcf1cb50d59d86931072bac3c92e7450be15254d0af6811a854c54e815a27a8d40b2ec262a
+  languageName: node
+  linkType: hard
+
 "@google-cloud/common@npm:^5.0.0":
   version: 5.0.2
   resolution: "@google-cloud/common@npm:5.0.2"
@@ -9878,6 +9885,7 @@ __metadata:
   dependencies:
     "@anthropic-ai/sdk": "npm:^0.74.0"
     "@aws-sdk/client-s3": "npm:^3.787.0"
+    "@getbrevo/brevo": "npm:^6.0.2"
     "@google-cloud/translate": "npm:^8.3.0"
     "@sentry/node": "npm:^10.42.0"
     "@sentry/profiling-node": "npm:^10.42.0"
