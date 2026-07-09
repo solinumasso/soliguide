@@ -2,9 +2,6 @@ import { Injectable } from "@nestjs/common";
 import { type Document } from "mongodb";
 import { type PipelineStage } from "mongoose";
 
-import { PlaceType } from "@soliguide/common";
-import { FIELDS_FOR_SEARCH } from "@soliguide/api";
-
 import { SearchQuery } from "../../../search-query/search-query";
 
 import { ApiUserRestrictionsQueryBuilder } from "./place-search.api-user-restrictions.query-builder";
@@ -85,11 +82,15 @@ export class PlacesSearchQueryBuilder {
 
     const projectStage = this.buildProjectStage(context);
 
+    const addFieldsStage = this.buildAddFieldsStage(context);
+    const sortStage = this.buildSortStage(context, hasGeoNearStage);
+
     return {
       resultsPipeline: [
         ...basePipeline,
         ...(projectStage ? [{ $project: projectStage }] : []),
-        { $sort: this.buildSortStage(context, hasGeoNearStage) },
+        ...(addFieldsStage ? [{ $addFields: addFieldsStage }] : []),
+        ...(sortStage ? [{ $sort: sortStage }] : []),
         { $skip: skip },
         { $limit: pagination.limit },
       ],
@@ -101,7 +102,7 @@ export class PlacesSearchQueryBuilder {
     context: SearchContext
   ): Record<string, boolean> | null {
     const selectedFields =
-      context.query.options?.fields ?? this.getDefaultFieldsForContext(context);
+      context.query.resultFields ?? context.query.options?.fields;
 
     if (!selectedFields) {
       return null;
@@ -141,20 +142,29 @@ export class PlacesSearchQueryBuilder {
     };
   }
 
-  private getDefaultFieldsForContext(context: SearchContext): string {
-    const placeType = context.query.placeType ?? PlaceType.PLACE;
+  private buildAddFieldsStage(context: SearchContext): Document | null {
+    if (!context.query.closedPlacesLast) {
+      return null;
+    }
 
-    return placeType === PlaceType.ITINERARY
-      ? FIELDS_FOR_SEARCH.ITINERARY_PUBLIC_SEARCH
-      : FIELDS_FOR_SEARCH.PLACE_PUBLIC_SEARCH;
+    return {
+      statusSort: {
+        $cond: {
+          if: { $eq: ["$status", "PERMANENTLY_CLOSED"] },
+          then: 1,
+          else: 0,
+        },
+      },
+    };
   }
 
   private buildSortStage(
     context: SearchContext,
     hasGeoNearStage: boolean
-  ): Record<string, 1 | -1> {
+  ): Record<string, 1 | -1> | null {
     const sortBy = context.query.options?.sortBy;
     const sortValue = context.query.options?.sortValue;
+    const closedPlacesLast = context.query.closedPlacesLast === true;
 
     if (
       sortBy &&
@@ -162,21 +172,28 @@ export class PlacesSearchQueryBuilder {
       typeof sortValue === "number" &&
       (sortValue === 1 || sortValue === -1)
     ) {
-      return {
+      const requestedSort = {
         [sortBy]: sortValue,
+      };
+
+      if (!closedPlacesLast) {
+        return requestedSort;
+      }
+
+      return {
+        ...requestedSort,
+        statusSort: 1,
+        ...(hasGeoNearStage ? { distance: 1 } : {}),
       };
     }
 
-    if (hasGeoNearStage) {
-      return {
-        distance: 1,
-        updatedAt: -1,
-      };
+    if (!closedPlacesLast) {
+      return null;
     }
 
     return {
-      updatedAt: -1,
-      lieu_id: 1,
+      statusSort: 1,
+      ...(hasGeoNearStage ? { distance: 1 } : {}),
     };
   }
 }
