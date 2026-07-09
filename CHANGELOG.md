@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.147.4](https://github.com/solinumasso/soliguide/compare/v4.147.3...v4.147.4) (2026-07-09)
+
+
+### Bug Fixes
+
+* **api:** add migration to sync brevo ([4185bda](https://github.com/solinumasso/soliguide/commit/4185bda5f037e2a4cccae9263c70a1c2261245ce))
+* **api:** delete useless migrations ([6dcf0ee](https://github.com/solinumasso/soliguide/commit/6dcf0ee348d8b3b5567e125f68ecc3076039c1d6))
+
+
+
+
+
 ## [4.147.3](https://github.com/solinumasso/soliguide/compare/v4.147.2...v4.147.3) (2026-07-09)
 
 
