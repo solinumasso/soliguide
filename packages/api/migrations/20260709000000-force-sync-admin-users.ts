@@ -48,6 +48,16 @@ const ADMIN_STATUSES: UserStatus[] = [
 export const up = async (db: Db) => {
   logger.info(`[MIGRATION] - ${message}`);
 
+  // Restreint volontairement à la prod : on ne veut pas polluer Brevo/Airtable
+  // depuis les envs de préprod (staging/demo) qui partagent parfois les mêmes
+  // destinataires externes.
+  if (CONFIG.ENV !== "prod") {
+    logger.info(
+      `[MIGRATION] - skipped on env "${CONFIG.ENV}" (prod only), exiting`
+    );
+    return;
+  }
+
   // Découverte via raw `db` (pas de dépendance à l'état de connexion Mongoose
   // au moment où migrate-mongo entre dans `up`). Les writes/populate ensuite
   // passent par Mongoose — la lazy-connect se déclenchera au premier accès.
