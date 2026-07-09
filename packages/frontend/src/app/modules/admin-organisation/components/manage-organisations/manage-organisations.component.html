@@ -361,6 +361,28 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             ></fa-icon>
           </a>
           <a
+            *ngIf="isHeatwaveCampaignCountry && heatwaveCampaignSlug && orga._id"
+            class="btn btn-outline-primary btn-sm m-1"
+            [title]="'CAMPAIGN_TEMP_FORMS_MENU_LABEL' | translate"
+            [ngbTooltip]="'CAMPAIGN_TEMP_FORMS_MENU_LABEL' | translate"
+            [routerLink]="[
+              routePrefix,
+              'campaign',
+              'climate-summer',
+              heatwaveCampaignSlug,
+              'orga',
+              orga._id
+            ]"
+            routerLinkActive="router-link-active"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="visually-hidden">
+              {{ "CAMPAIGN_TEMP_FORMS_MENU_LABEL" | translate }}
+            </span>
+            <fa-icon aria-hidden="true" [icon]="['fas', 'sun']"></fa-icon>
+          </a>
+          <a
             class="btn btn-primary btn-sm m-1"
             [title]="'ADD_PLACE_TO_ORGANIZATION' | translate"
             [routerLink]="[

@@ -4,7 +4,10 @@ import { Modalities } from "@soliguide/common";
 
 import { ExpressRequest, ExpressResponse } from "../../_models";
 import { patchModalities } from "../../place/controllers/admin-place.controller";
-import { buildCampaignTempFormsPayload } from "../services/campaign-temp-forms.service";
+import {
+  buildCampaignTempFormsPayload,
+  buildCampaignTempFormsPayloadForOrga,
+} from "../services/campaign-temp-forms.service";
 
 export const getCampaignTempFormsData = async (
   req: ExpressRequest,
@@ -19,6 +22,28 @@ export const getCampaignTempFormsData = async (
     return res.status(200).json(payload);
   } catch (err) {
     req.log.error(err, "CAMPAIGN_TEMP_FORMS_GET_FAILED");
+    return next(err);
+  }
+};
+
+/**
+ * Variante admin scoped-orga du GET : `req.organization` déjà résolue par
+ * `getOrgaFromUrl`, `req.campaign` par `getActiveCampaignFromSlug`. L'auth
+ * `ADMIN_SOLIGUIDE` est appliquée en amont par `checkRights` sur la route.
+ */
+export const getCampaignTempFormsDataForOrga = async (
+  req: ExpressRequest,
+  res: ExpressResponse,
+  next: NextFunction
+) => {
+  try {
+    const payload = await buildCampaignTempFormsPayloadForOrga(
+      req.campaign!,
+      req.organization
+    );
+    return res.status(200).json(payload);
+  } catch (err) {
+    req.log.error(err, "CAMPAIGN_TEMP_FORMS_ORGA_GET_FAILED");
     return next(err);
   }
 };

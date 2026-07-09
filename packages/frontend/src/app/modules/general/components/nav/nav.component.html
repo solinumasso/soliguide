@@ -100,7 +100,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             *ngIf="
               isHeatwaveCampaignCountry &&
               heatwaveCampaignSlug &&
-              me.campaignUserUuid
+              me.campaignUserUuid &&
+              me.status === UserStatus.PRO
             "
           >
             <a

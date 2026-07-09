@@ -371,6 +371,28 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
               <fa-icon aria-hidden="true" [icon]="['fas', 'pencil-alt']">
               </fa-icon>
             </a>
+            <a
+              *ngIf="
+                isHeatwaveCampaignCountry &&
+                heatwaveCampaignSlug &&
+                user.status === UserStatus.PRO &&
+                user.campaignUserUuid
+              "
+              [routerLink]="[
+                routePrefix,
+                'campaign-temp-forms',
+                'campaign-climate-summer',
+                heatwaveCampaignSlug,
+                user.campaignUserUuid
+              ]"
+              [title]="'CAMPAIGN_TEMP_FORMS_MENU_LABEL' | translate"
+              [ngbTooltip]="'CAMPAIGN_TEMP_FORMS_MENU_LABEL' | translate"
+              target="_blank"
+              rel="noopener"
+              class="btn btn-sm btn-outline-primary mx-1"
+            >
+              <fa-icon aria-hidden="true" [icon]="['fas', 'sun']"></fa-icon>
+            </a>
             <button
               type="button"
               class="btn btn-danger btn-sm text-white mx-1"

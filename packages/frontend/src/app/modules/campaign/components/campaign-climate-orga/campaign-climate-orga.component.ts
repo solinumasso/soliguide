@@ -4,80 +4,78 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ApiPlace } from "@soliguide/common";
 import type { PosthogProperties } from "@soliguide/common-angular";
 
-import {
-  CampaignTempFormsPayload,
-  CampaignTempFormsService,
-} from "../../services/campaign-temp-forms.service";
+import type { CampaignTempFormsPayload } from "../../../campaign-temp-forms/services/campaign-temp-forms.service";
 import { Place } from "../../../../models/place";
 import { PosthogService } from "../../../analytics/services/posthog.service";
+import { AdminCampaignsService } from "../../services/admin-campaigns.service";
 
 interface PartitionedPlaces {
   upToDate: Place[];
   toUpdate: Place[];
 }
 
+/**
+ * Variante admin, scopée organisation, du parcours `campaign-climate-summer` :
+ * même UX, mais l'auth passe par la session admin (`checkRights` côté API)
+ * au lieu de l'uuid public. Consommée depuis `manage-orga` pour afficher la
+ * mise à jour climatique par orga.
+ */
 @Component({
-  selector: "app-campaign-climate-summer",
-  templateUrl: "./campaign-climate-summer.component.html",
-  styleUrls: ["./campaign-climate-summer.component.css"],
+  selector: "app-campaign-climate-orga",
+  templateUrl: "./campaign-climate-orga.component.html",
+  styleUrls: ["./campaign-climate-orga.component.css"],
 })
-export class CampaignClimateSummerComponent implements OnInit {
+export class CampaignClimateOrgaComponent implements OnInit {
   public loading = true;
   public payload:
     | (Omit<CampaignTempFormsPayload, "places"> & { places: Place[] })
     | null = null;
   public partitioned: PartitionedPlaces = { upToDate: [], toUpdate: [] };
 
-  // `pendingByLieuId` : trace des lieux en cours de sauvegarde pour désactiver
-  // les boutons pendant la requête et éviter les doubles clics.
   public pendingByLieuId = new Set<number>();
 
   public lang = "fr";
 
   private campaignSlug!: string;
-  private campaignUserUuid!: string;
+  private orgaObjectId!: string;
 
   constructor(
     private readonly route: ActivatedRoute,
     private readonly router: Router,
-    private readonly service: CampaignTempFormsService,
+    private readonly adminCampaignsService: AdminCampaignsService,
     private readonly posthogService: PosthogService
   ) {}
 
   public captureEvent(eventName: string, properties?: PosthogProperties): void {
-    this.posthogService.capture(`campaign-temp-forms-${eventName}`, {
+    this.posthogService.capture(`campaign-temp-forms-orga-${eventName}`, {
       campaignSlug: this.campaignSlug,
+      orgaObjectId: this.orgaObjectId,
       ...properties,
     });
   }
 
   public ngOnInit(): void {
-    // `:lang` est porté par la première route enfant du root (définition
-    // `:lang/...` dans `app-routing.module`). `route.root.firstChild` pointe
-    // dessus directement — pas besoin de remonter l'arbre.
     this.lang =
       this.route.root.firstChild?.snapshot.paramMap.get("lang") ?? "fr";
     this.campaignSlug = this.route.snapshot.paramMap.get("campaignSlug") ?? "";
-    this.campaignUserUuid =
-      this.route.snapshot.paramMap.get("campaignUserUuid") ?? "";
+    this.orgaObjectId = this.route.snapshot.paramMap.get("orgaObjectId") ?? "";
 
-    if (!this.campaignSlug || !this.campaignUserUuid) {
+    if (!this.campaignSlug || !this.orgaObjectId) {
       this.redirectHome("invalid-link");
       return;
     }
 
-    this.service
-      .getPayload(this.campaignSlug, this.campaignUserUuid)
+    this.adminCampaignsService
+      .getClimateFormsForOrga(this.campaignSlug, this.orgaObjectId)
       .subscribe({
         next: (payload) => {
           const rawPlaces = payload?.places ?? [];
           const places = rawPlaces.map(
             (place) => new Place(place as unknown as ApiPlace)
           );
-          // Payload vide (aucun lieu éditable pour ce user sur cette campagne)
-          // = état légitime, on rend la page avec un message dédié — pas de
-          // redirect home (frustrant pour l'utilisateur qui a cliqué un lien
-          // valide envoyé par email).
+          // Payload vide (aucun lieu dans cette orga) = état légitime : on rend
+          // la page avec un message dédié plutôt que de rediriger l'admin sur
+          // la home sans explication.
           this.payload = { ...payload, places };
           this.partitioned = this.partition(places);
           this.loading = false;
@@ -102,8 +100,6 @@ export class CampaignClimateSummerComponent implements OnInit {
     if (place.modalities.thermalComfort.airConditioned === value) return;
     if (this.pendingByLieuId.has(place.lieu_id)) return;
 
-    // Optimistic update : on flip la valeur localement pour un feedback
-    // instantané. En cas d'échec API on revert et on affiche une erreur.
     const previous = place.modalities.thermalComfort.airConditioned;
     place.modalities.thermalComfort.airConditioned = value;
     this.partitioned = this.partition(this.payload?.places ?? []);
@@ -114,10 +110,10 @@ export class CampaignClimateSummerComponent implements OnInit {
       value,
     });
 
-    this.service
-      .setAirConditioned(
+    this.adminCampaignsService
+      .setAirConditionedForOrga(
         this.campaignSlug,
-        this.campaignUserUuid,
+        this.orgaObjectId,
         place.lieu_id,
         value
       )
@@ -141,10 +137,6 @@ export class CampaignClimateSummerComponent implements OnInit {
     return place.lieu_id;
   }
 
-  /**
-   * Split client-side : un lieu est "à jour" dès qu'il a une valeur explicite
-   * (true OR false) sur `airConditioned`. `null` = pas encore renseigné.
-   */
   private partition(places: Place[]): PartitionedPlaces {
     const upToDate: Place[] = [];
     const toUpdate: Place[] = [];
