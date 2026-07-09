@@ -1,7 +1,14 @@
-import { CountryCodes, GeoTypes, PlaceType } from "@soliguide/common";
+import {
+  CountryCodes,
+  GeoTypes,
+  PlaceType,
+} from "@soliguide/common";
 import { describe, expect, it } from "vitest";
 
-import { SearchQuery } from "../../../search-query/search-query";
+import {
+  SearchProximityLocation,
+  SearchQuery,
+} from "../../../search-query/search-query";
 
 import {
   DEFAULT_SEARCH_RADIUS_BY_GEO_TYPE,
@@ -78,19 +85,21 @@ describe("LocationQueryBuilder", () => {
   });
 
   it("combines POSITION and non-position locations and keeps geoNear when only one POSITION is provided", () => {
+    const positionLocation = {
+      geoType: GeoTypes.POSITION,
+      coordinates: [2.3522, 48.8566] as [number, number],
+      country: CountryCodes.FR,
+    } satisfies SearchProximityLocation;
     const context = buildContext({
       placeType: PlaceType.PLACE,
       locations: [
-        {
-          geoType: GeoTypes.POSITION,
-          coordinates: [2.3522, 48.8566],
-          country: CountryCodes.FR,
-        },
+        positionLocation,
         {
           geoType: GeoTypes.CITY,
           city: "Paris",
         },
       ],
+      proximity: positionLocation,
     });
 
     const result = builder.build(context);
@@ -113,16 +122,16 @@ describe("LocationQueryBuilder", () => {
     "applies country filter and geoNear stage for %s when using POSITION geoType",
     (placeType) => {
       const prefix = getPrefixByPlaceType(placeType);
+      const positionLocation = {
+        geoType: GeoTypes.POSITION,
+        coordinates: [2.3522, 48.8566] as [number, number],
+        distance: 5,
+        country: CountryCodes.ES,
+      } satisfies SearchProximityLocation;
       const context = buildContext({
         placeType,
-        locations: [
-          {
-            geoType: GeoTypes.POSITION,
-            coordinates: [2.3522, 48.8566],
-            distance: 5,
-            country: CountryCodes.ES,
-          },
-        ],
+        locations: [positionLocation],
+        proximity: positionLocation,
       });
 
       const result = builder.build(context);
@@ -146,14 +155,14 @@ describe("LocationQueryBuilder", () => {
   );
 
   it("uses default distance when not provided and using POSITION geoType", () => {
+    const positionLocation = {
+      geoType: GeoTypes.POSITION,
+      coordinates: [2.3522, 48.8566] as [number, number],
+      country: CountryCodes.FR,
+    } satisfies SearchProximityLocation;
     const context = buildContext({
-      locations: [
-        {
-          geoType: GeoTypes.POSITION,
-          coordinates: [2.3522, 48.8566],
-          country: CountryCodes.FR,
-        },
-      ],
+      locations: [positionLocation],
+      proximity: positionLocation,
     });
 
     const result = builder.build(context);
@@ -164,15 +173,15 @@ describe("LocationQueryBuilder", () => {
   });
 
   it("enforces a minimum distance of 1km when using POSITION geoType", () => {
+    const positionLocation = {
+      geoType: GeoTypes.POSITION,
+      coordinates: [2.3522, 48.8566] as [number, number],
+      distance: 0,
+      country: CountryCodes.FR,
+    } satisfies SearchProximityLocation;
     const context = buildContext({
-      locations: [
-        {
-          geoType: GeoTypes.POSITION,
-          coordinates: [2.3522, 48.8566],
-          distance: 0,
-          country: CountryCodes.FR,
-        },
-      ],
+      locations: [positionLocation],
+      proximity: positionLocation,
     });
 
     const result = builder.build(context);
@@ -217,6 +226,67 @@ describe("LocationQueryBuilder", () => {
       expect(result.geoNearStage).toBeNull();
     }
   );
+
+  it("uses geoNear instead of city slug filtering when city proximity is resolved", () => {
+    const cityLocation = {
+      geoType: GeoTypes.CITY,
+      city: "Paris",
+      postalCode: "75015",
+      coordinates: [2.3522, 48.8566] as [number, number],
+      distance: 15,
+      country: CountryCodes.FR,
+    } satisfies SearchProximityLocation;
+    const context = buildContext({
+      placeType: PlaceType.PLACE,
+      locations: [cityLocation],
+      proximity: cityLocation,
+    });
+
+    const result = builder.build(context);
+
+    expect(result.andConditions).toEqual([
+      { "position.country": CountryCodes.FR },
+    ]);
+    expect(result.geoNearStage).toEqual({
+      near: {
+        type: "Point",
+        coordinates: [2.3522, 48.8566],
+      },
+      distanceField: "distance",
+      key: "position.location",
+      maxDistance: 15000,
+      spherical: true,
+    });
+  });
+
+  it("keeps city slug filtering when city proximity is not resolved", () => {
+    const context = buildContext({
+      placeType: PlaceType.PLACE,
+      locations: [
+        {
+          geoType: GeoTypes.CITY,
+          city: "Paris",
+          postalCode: "75015",
+          coordinates: [2.3522, 48.8566],
+          distance: 15,
+          country: CountryCodes.FR,
+        },
+      ],
+    });
+
+    const result = builder.build(context);
+
+    expect(result.geoNearStage).toBeNull();
+    expect(result.andConditions).toEqual([
+      {
+        "position.slugs.city": "paris",
+        "position.postalCode": {
+          $regex: "^75",
+          $options: "i",
+        },
+      },
+    ]);
+  });
 
   it.each(PLACE_TYPES)(
     "filters by city slug and postal prefix regex for %s when using CITY geoType",

@@ -8,6 +8,7 @@ import {
   UserStatusNotLogged,
   CountryCodes,
 } from "@soliguide/common";
+import { FIELDS_FOR_SEARCH } from "@soliguide/api";
 import { beforeEach, describe, expect, it, vi, type Mocked } from "vitest";
 
 import { SearchUserContext } from "./auth/search-auth.resolver";
@@ -15,6 +16,10 @@ import { V20260101SearchRequest } from "../versions/2026-01-01/2026-01-01.search
 import { NonAdminUserStatus } from "./search-query/search-query";
 import { SearchService } from "./search.service";
 import { PlacesRepository } from "./repositories/places.repository";
+
+type SearchRequestLocation = NonNullable<
+  V20260101SearchRequest["locations"]
+>[number];
 
 describe("SearchService", () => {
   const placesRepository: Mocked<PlacesRepository> = {
@@ -270,6 +275,84 @@ describe("SearchService", () => {
       }),
       { page: 1, limit: 100 }
     );
+  });
+
+  it("resolves API result shaping for API users", async () => {
+    await sut.search(
+      buildRequest(),
+      buildUserContext({ status: UserStatus.API_USER })
+    );
+
+    expect(placesRepository.search).toHaveBeenCalledWith(
+      expect.objectContaining({
+        resultFields: FIELDS_FOR_SEARCH.API,
+        closedPlacesLast: false,
+      }),
+      { page: 1, limit: 100 }
+    );
+  });
+
+  it("resolves itinerary public result fields for itinerary searches", async () => {
+    await sut.search(
+      buildRequest({
+        placeType: PlaceType.ITINERARY,
+      }),
+      buildUserContext({ status: UserStatus.SIMPLE_USER })
+    );
+
+    expect(placesRepository.search).toHaveBeenCalledWith(
+      expect.objectContaining({
+        resultFields: FIELDS_FOR_SEARCH.ITINERARY_PUBLIC_SEARCH,
+        closedPlacesLast: true,
+      }),
+      { page: 1, limit: 100 }
+    );
+  });
+
+  it("resolves public city coordinates as proximity outside widget searches", async () => {
+    const location = {
+      geoType: GeoTypes.CITY,
+      geoValue: "Paris",
+      coordinates: [2.35, 48.85],
+      country: CountryCodes.FR,
+    } satisfies SearchRequestLocation;
+
+    await sut.search(
+      buildRequest({
+        locations: [location],
+      }),
+      buildUserContext({ status: UserStatus.SIMPLE_USER })
+    );
+
+    expect(placesRepository.search).toHaveBeenCalledWith(
+      expect.objectContaining({
+        proximity: expect.objectContaining({
+          geoType: GeoTypes.CITY,
+          coordinates: [2.35, 48.85],
+        }),
+      }),
+      { page: 1, limit: 100 }
+    );
+  });
+
+  it("does not resolve public city coordinates as proximity for widget users", async () => {
+    const location = {
+      geoType: GeoTypes.CITY,
+      geoValue: "Paris",
+      coordinates: [2.35, 48.85],
+      country: CountryCodes.FR,
+    } satisfies SearchRequestLocation;
+
+    await sut.search(
+      buildRequest({
+        locations: [location],
+      }),
+      buildUserContext({ status: UserStatus.WIDGET_USER })
+    );
+
+    const [query, pagination] = placesRepository.search.mock.calls[0];
+    expect(query).not.toHaveProperty("proximity");
+    expect(pagination).toEqual({ page: 1, limit: 100 });
   });
 
   it("defaults pagination to page=1 and limit=100 when options are missing", async () => {
