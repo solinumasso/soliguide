@@ -9,6 +9,7 @@ import { AppModule } from "./app.module";
 
 import { config } from "dotenv";
 import { setupOpenApi } from "./openapi";
+import { buildPublicApiCorsOptions } from "./public-api-cors";
 
 config();
 
@@ -33,6 +34,8 @@ config();
     AppModule,
     new FastifyAdapter()
   );
+
+  app.enableCors(buildPublicApiCorsOptions());
 
   await setupOpenApi(app);
 
