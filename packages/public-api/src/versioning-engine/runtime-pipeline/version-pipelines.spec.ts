@@ -14,7 +14,7 @@ import {
 } from "./transformers";
 
 type PipelinePayload = {
-  category?: string;
+  category?: string | null;
   categories?: string[];
   legacyOnly?: boolean;
   location?: unknown;
@@ -96,6 +96,18 @@ describe("version pipelines", () => {
       categories: ["food"],
       locations: [{ geoType: "pays", geoValue: "FR" }],
     });
+  });
+
+  it("does not wrap null single values into arrays", () => {
+    expect(
+      fromSingleToArray(
+        {
+          category: null,
+        },
+        "category",
+        "categories"
+      )
+    ).toEqual({});
   });
 
   it("applies 2026-04-26 per-change transforms through pipelines", async () => {

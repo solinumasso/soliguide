@@ -355,7 +355,7 @@ function moveSingleValueToArrayField(
     const arrayValue = container[arrayFieldName];
 
     if (
-      singleValue !== undefined &&
+      singleValue != null &&
       (!Array.isArray(arrayValue) || arrayValue.length === 0)
     ) {
       container[arrayFieldName] = [singleValue];
