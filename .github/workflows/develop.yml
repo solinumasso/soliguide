@@ -27,12 +27,14 @@ jobs:
   deploy_qovery:
     name: Deploy to Qovery (develop)
     uses: ./.github/workflows/_deploy-to-test-qovery.yml
+    # On develop, always force-update every Qovery service so demo reflects
+    # HEAD of develop, avoiding stale mutable `develop` tags cached by Qovery.
     with:
-      deploy_api: ${{ contains(needs.build.outputs.to_deploy, 'api') }}
-      deploy_frontend: ${{ contains(needs.build.outputs.to_deploy, 'frontend') }}
-      deploy_location-api: ${{ contains(needs.build.outputs.to_deploy, 'location-api') }}
-      deploy_web-app: ${{ contains(needs.build.outputs.to_deploy, 'web-app') }}
-      deploy_widget: ${{ contains(needs.build.outputs.to_deploy, 'widget') }}
+      deploy_api: true
+      deploy_frontend: true
+      deploy_location-api: true
+      deploy_web-app: true
+      deploy_widget: true
       create: true
     needs:
       - build

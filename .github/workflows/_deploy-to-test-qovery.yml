@@ -54,11 +54,59 @@ jobs:
       contents: read
       pull-requests: write
       deployments: write
+      packages: write
     needs:
       - docker_meta
     steps:
       - name: Install Qovery CLI
         run: curl -s https://get.qovery.com | bash
+
+      # On develop, `_build.yml` only rebuilds affected packages, so the
+      # `develop-<sha>` tag may not exist for unaffected services. Copy the
+      # mutable `develop` tag (last built content) onto `develop-<current_sha>`
+      # so `qovery container update --tag develop-<sha>` always resolves, and
+      # Qovery can't fall back to a cached mutable tag.
+      - name: Ensure images are tagged with current SHA (develop only)
+        if: github.ref == 'refs/heads/develop'
+        env:
+          REGISTRY: ghcr.io
+          REPO: ${{ github.repository }}
+          SOURCE_TAG: develop
+          GHCR_USER: ${{ github.actor }}
+          GHCR_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y skopeo
+
+          echo "$GHCR_PASSWORD" | skopeo login "$REGISTRY" -u "$GHCR_USER" --password-stdin
+
+          copy_tag() {
+            local image=$1
+            local source_suffix=$2
+            local target_suffix=$3
+            local source="docker://${REGISTRY}/${REPO}/${image}:${SOURCE_TAG}${source_suffix}"
+            local target="docker://${REGISTRY}/${REPO}/${image}:${SOLIGUIDE_TAG}${target_suffix}"
+            echo "Copying $source -> $target"
+            skopeo copy "$source" "$target"
+          }
+
+          if [ "${{ inputs.deploy_api }}" = "true" ]; then
+            copy_tag api "" ""
+          fi
+          if [ "${{ inputs.deploy_frontend }}" = "true" ]; then
+            copy_tag frontend "" ""
+            copy_tag maintenance "-frontend" "-frontend"
+          fi
+          if [ "${{ inputs.deploy_location-api }}" = "true" ]; then
+            copy_tag location-api "" ""
+          fi
+          if [ "${{ inputs.deploy_web-app }}" = "true" ]; then
+            copy_tag web-app "" ""
+          fi
+          if [ "${{ inputs.deploy_widget }}" = "true" ]; then
+            copy_tag widget "" ""
+            copy_tag maintenance "-widget" "-widget"
+          fi
       # Étape debug volontairement gated derrière `runner.debug` : les logs de
       # workflow sont publics (repo open-source) et on ne veut pas y afficher
       # sans raison la config Qovery (org/project/blueprint) — même si les

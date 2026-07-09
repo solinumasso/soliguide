@@ -13,6 +13,8 @@ fileignoreconfig:
   checksum: bd2cccb93df725dd82315e199258696ca236a6cceec44fb4b7082f5da972850d
 - filename: .github/workflows/_deploy-to-environment.yml
   checksum: 5783c6b1143ac5259f54b61e11495c4c6d106e72e0a33d958326c6814e44fd9a
+- filename: .github/workflows/_deploy-to-test-qovery.yml
+  checksum: 4e604b32148c7c9f0b01c5b100fd6ff95a04a6b99bb3c1157e66a69dcf573635
 - filename: .github/workflows/_tag-container-images-for-environment.yml
   checksum: 7511b2e0ab891af3add5415d5df7b29aed714fedb5fa7a7b4eb009ef9982c93c
 - filename: .github/workflows/_test-only.yml
