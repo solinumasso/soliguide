@@ -63,7 +63,7 @@ jobs:
 
   build_container:
     name: Build container image ${{ inputs.image_name }}
-    if: ${{ !cancelled() }}
+    if: ${{ !cancelled() && needs.docker_meta1.result == 'success' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -73,11 +73,11 @@ jobs:
       - docker_meta1
       - docker_meta2
     outputs:
-      tags1: ${{ toJSON(fromJSON(needs.docker_meta1.outputs.json).tags) }}
+      tags1: ${{ needs.docker_meta1.outputs.json && toJSON(fromJSON(needs.docker_meta1.outputs.json).tags) || toJSON('[]') }}
       tags2: ${{ needs.docker_meta2.outputs.json && toJSON(fromJSON(needs.docker_meta2.outputs.json).tags) || toJSON('[]') }}
       tags_production: ${{ needs.docker_meta.outputs.json && toJSON(fromJSON(needs.docker_meta.outputs.json).tags) || toJSON('[]') }}
     env:
-      TARGET1_IMAGE: ${{ fromJSON(needs.docker_meta1.outputs.json).tags[0] }}
+      TARGET1_IMAGE: ${{ needs.docker_meta1.outputs.json && fromJSON(needs.docker_meta1.outputs.json).tags[0] || '' }}
       TARGET2_IMAGE: ${{ needs.docker_meta2.outputs.json && fromJSON(needs.docker_meta2.outputs.json).tags[0] || '' }}
       PRODUCTION_IMAGE: ${{ needs.docker_meta.outputs.json && fromJSON(needs.docker_meta.outputs.json).tags[0] || '' }}
     steps:
