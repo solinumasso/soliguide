@@ -3,11 +3,7 @@ import { Injectable } from "@angular/core";
 
 import { catchError, map, Observable, of, shareReplay } from "rxjs";
 
-import {
-  Campaign,
-  CountryCodes,
-  SoliguideCountries,
-} from "@soliguide/common";
+import { Campaign, CountryCodes, SoliguideCountries } from "@soliguide/common";
 
 import { environment } from "../../../../environments/environment";
 import type { CampaignTempFormsPayload } from "../../campaign-temp-forms/services/campaign-temp-forms.service";
