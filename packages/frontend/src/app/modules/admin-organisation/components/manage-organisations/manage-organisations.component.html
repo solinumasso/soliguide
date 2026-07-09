@@ -361,7 +361,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             ></fa-icon>
           </a>
           <a
-            *ngIf="isHeatwaveCampaignCountry && heatwaveCampaignSlug && orga._id"
+            *ngIf="
+              isHeatwaveCampaignCountry && heatwaveCampaignSlug && orga._id
+            "
             class="btn btn-outline-primary btn-sm m-1"
             [title]="'CAMPAIGN_TEMP_FORMS_MENU_LABEL' | translate"
             [ngbTooltip]="'CAMPAIGN_TEMP_FORMS_MENU_LABEL' | translate"
