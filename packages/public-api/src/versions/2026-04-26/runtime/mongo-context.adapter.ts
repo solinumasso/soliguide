@@ -9,6 +9,8 @@ import {
   V20260426To20260101PlaceRestoreSnapshot,
 } from "./context";
 
+const MONGO_OBJECT_ID_PATTERN = /^[0-9a-fA-F]{24}$/;
+
 @Injectable()
 export class V20260426MongoContextProvider implements V20260426ContextProvider {
   public async getContext(
@@ -21,12 +23,22 @@ export class V20260426MongoContextProvider implements V20260426ContextProvider {
     }
 
     const numericIds = ids.map(Number).filter((id) => Number.isFinite(id));
+    const objectIds = ids.filter((id) => MONGO_OBJECT_ID_PATTERN.test(id));
+    const clauses = [];
 
-    const places = await PlaceModel.find({
-      $or: [{ lieu_id: { $in: numericIds } }, { _id: { $in: ids } }],
-    })
-      .lean()
-      .exec();
+    if (numericIds.length) {
+      clauses.push({ lieu_id: { $in: numericIds } });
+    }
+
+    if (objectIds.length) {
+      clauses.push({ _id: { $in: objectIds } });
+    }
+
+    if (!clauses.length) {
+      return { legacyPlacesById: {} };
+    }
+
+    const places = await PlaceModel.find({ $or: clauses }).lean().exec();
 
     return this.indexLegacyPlaces(
       places as V20260426To20260101PlaceRestoreSnapshot[]
