@@ -48,6 +48,7 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: ${{ steps.node_version.outputs.node_version }}
+          package-manager-cache: false
 
       - name: Get affected packages
         id: affected_packages
