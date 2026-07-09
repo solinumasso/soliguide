@@ -28,6 +28,7 @@ import {
   IS_WEBVIEW_APP,
   LANGUAGE_FOR_PRACTICAL_FILES,
 } from "../../../../shared";
+import { CampaignsCatalogService } from "../../../../shared/services";
 
 import { PosthogService } from "../../../analytics/services/posthog.service";
 import { THEME_CONFIGURATION } from "../../../../models";
@@ -49,6 +50,13 @@ export class NavComponent implements OnInit, OnDestroy {
   public me: User | null = null;
   public currentLang: SupportedLanguagesCode;
   public showTranslationMenuDropdown = false;
+
+  // Slug de la campagne canicule active pour ce pays. Utilisé pour construire
+  // l'item de nav "campagne canicule" (France uniquement) qui pointe sur le
+  // parcours `campaign-temp-forms/campaign-climate-summer/:slug/:uuid`.
+  public heatwaveCampaignSlug: string | null = null;
+  public readonly isHeatwaveCampaignCountry =
+    THEME_CONFIGURATION.country === CountryCodes.FR;
 
   public readonly displaySolidataSearchTracking = Boolean(
     THEME_CONFIGURATION.solidata?.searchTracking
@@ -93,10 +101,16 @@ export class NavComponent implements OnInit, OnDestroy {
     private readonly languageSetupService: LanguageSetupService,
     private readonly currentLanguageService: CurrentLanguageService,
     private readonly translateService: TranslateService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly campaignsCatalog: CampaignsCatalogService
   ) {
     this.currentLang = this.currentLanguageService.currentLanguage;
     this.routePrefix = this.currentLanguageService.routePrefix;
+    if (this.isHeatwaveCampaignCountry) {
+      this.heatwaveCampaignSlug =
+        this.campaignsCatalog.getActiveCampaign(THEME_CONFIGURATION.country)
+          ?.slug ?? null;
+    }
   }
 
   public ngOnInit(): void {

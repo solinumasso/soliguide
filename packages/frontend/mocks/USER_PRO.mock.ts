@@ -9,6 +9,7 @@ import { Organisation } from "../src/app/modules/admin-organisation/interfaces/o
 
 export const USER_PRO_MOCK: UserForAuth = {
   _id: "5fd78bb917e8c5648075c785",
+  campaignUserUuid: "3e1c1a5f-6f9c-4c8a-9a1a-8f2e5b7c9d10",
   categoriesLimitations: [],
   devToken: null,
   languages: [],

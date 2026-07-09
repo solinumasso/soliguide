@@ -27,6 +27,12 @@ on:
         required: true
       GCORE_API_KEY:
         required: true
+      QOVERY_ORGANIZATION_NAME:
+        required: true
+      QOVERY_PROJECT_NAME:
+        required: true
+      QOVERY_BLUEPRINT_ENVIRONMENT_NAME:
+        required: true
 
 jobs:
   docker_meta:
@@ -37,9 +43,9 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ github.ref == 'refs/heads/develop' && 'develop' || 'pr' }}
     env:
-      QOVERY_ORGANIZATION_NAME: ${{ vars.QOVERY_ORGANIZATION_NAME }}
-      QOVERY_PROJECT_NAME: ${{ vars.QOVERY_PROJECT_NAME }}
-      QOVERY_BLUEPRINT_ENVIRONMENT_NAME: ${{ vars.QOVERY_BLUEPRINT_ENVIRONMENT_NAME }}
+      QOVERY_ORGANIZATION_NAME: ${{ secrets.QOVERY_ORGANIZATION_NAME }}
+      QOVERY_PROJECT_NAME: ${{ secrets.QOVERY_PROJECT_NAME }}
+      QOVERY_BLUEPRINT_ENVIRONMENT_NAME: ${{ secrets.QOVERY_BLUEPRINT_ENVIRONMENT_NAME }}
       QOVERY_NEW_ENVIRONMENT_NAME: ${{ github.ref == 'refs/heads/develop' && 'demo' || fromJSON(needs.docker_meta.outputs.json).tags[0] }}
       QOVERY_BASE_DOMAIN_NAME: ${{ github.ref == 'refs/heads/develop' && 'demo' || fromJSON(needs.docker_meta.outputs.json).tags[0] }}
       SOLIGUIDE_TAG: ${{ fromJSON(needs.docker_meta.outputs.json).tags[1] }}
@@ -48,16 +54,66 @@ jobs:
       contents: read
       pull-requests: write
       deployments: write
+      packages: write
     needs:
       - docker_meta
     steps:
       - name: Install Qovery CLI
         run: curl -s https://get.qovery.com | bash
-      - name: Print debug information
+
+      # On develop, `_build.yml` only rebuilds affected packages, so the
+      # `develop-<sha>` tag may not exist for unaffected services. Copy the
+      # mutable `develop` tag (last built content) onto `develop-<current_sha>`
+      # so `qovery container update --tag develop-<sha>` always resolves, and
+      # Qovery can't fall back to a cached mutable tag.
+      - name: Ensure images are tagged with current SHA (develop only)
+        if: github.ref == 'refs/heads/develop'
+        env:
+          REGISTRY: ghcr.io
+          REPO: ${{ github.repository }}
+          SOURCE_TAG: develop
+          GHCR_USER: ${{ github.actor }}
+          GHCR_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "Organization name: $QOVERY_ORGANIZATION_NAME"
-          echo "Project name: $QOVERY_PROJECT_NAME"
-          echo "Blueprint name: $QOVERY_BLUEPRINT_ENVIRONMENT_NAME"
+          sudo apt-get update
+          sudo apt-get install -y skopeo
+
+          echo "$GHCR_PASSWORD" | skopeo login "$REGISTRY" -u "$GHCR_USER" --password-stdin
+
+          copy_tag() {
+            local image=$1
+            local source_suffix=$2
+            local target_suffix=$3
+            local source="docker://${REGISTRY}/${REPO}/${image}:${SOURCE_TAG}${source_suffix}"
+            local target="docker://${REGISTRY}/${REPO}/${image}:${SOLIGUIDE_TAG}${target_suffix}"
+            echo "Copying $source -> $target"
+            skopeo copy "$source" "$target"
+          }
+
+          if [ "${{ inputs.deploy_api }}" = "true" ]; then
+            copy_tag api "" ""
+          fi
+          if [ "${{ inputs.deploy_frontend }}" = "true" ]; then
+            copy_tag frontend "" ""
+            copy_tag maintenance "-frontend" "-frontend"
+          fi
+          if [ "${{ inputs.deploy_location-api }}" = "true" ]; then
+            copy_tag location-api "" ""
+          fi
+          if [ "${{ inputs.deploy_web-app }}" = "true" ]; then
+            copy_tag web-app "" ""
+          fi
+          if [ "${{ inputs.deploy_widget }}" = "true" ]; then
+            copy_tag widget "" ""
+            copy_tag maintenance "-widget" "-widget"
+          fi
+      # Étape debug volontairement gated derrière `runner.debug` : les logs de
+      # workflow sont publics (repo open-source) et on ne veut pas y afficher
+      # sans raison la config Qovery (org/project/blueprint) — même si les
+      # secrets Qovery eux-mêmes sont auto-masqués.
+      - name: Print debug information
+        if: runner.debug == '1'
+        run: |
           echo "New environment name: $QOVERY_NEW_ENVIRONMENT_NAME"
           echo "Base domain name: $QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
           echo "Image tag (SOLIGUIDE_TAG): $SOLIGUIDE_TAG"
@@ -552,13 +608,18 @@ jobs:
 
       - name: Deploy the environment
         if: steps.check_presence.outcome == 'success' || steps.env_ready.outcome == 'success'
+        # --watch : la CLI reste attachée jusqu'à ce que Qovery atteigne un état
+        # terminal (DEPLOYED ou erreur) — sinon le job termine en success dès le
+        # "queued" et masque les échecs de build/deploy côté Qovery.
+        timeout-minutes: 45
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
         run: |
           qovery environment deploy \
             --organization "$QOVERY_ORGANIZATION_NAME" \
             --project "$QOVERY_PROJECT_NAME" \
-            --environment "$QOVERY_NEW_ENVIRONMENT_NAME"
+            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+            --watch
 
       - id: status
         if: steps.check_presence.outcome == 'success' || steps.env_ready.outcome == 'success'
@@ -578,7 +639,7 @@ jobs:
 
       - name: Create GitHub Deployment
         if: github.event_name == 'pull_request' && (steps.check_presence.outcome == 'success' || steps.env_ready.outcome == 'success')
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const baseDomain = '${{ env.QOVERY_BASE_DOMAIN_NAME }}.soliguide.dev';

@@ -47,39 +47,32 @@ env:
   REGISTRY: ghcr.io
 
 jobs:
-  # Test jobs pull images built previously
-  test-api:
-    name: Test API
+  # Lint API in parallel with unit tests — no MongoDB needed, fast fail (~1 min)
+  test-api-lint:
+    name: Test API — format & lint
     if: ${{ inputs.test_api }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: read
     env:
-      MONGODB_URI: mongodb://127.0.0.1:27017/soliguide_test?replicaSet=rs0
       API_IMAGE: ghcr.io/${{ github.event.repository.full_name }}/api:${{ inputs.docker_tag }}-test
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: actions/checkout@v5
 
       - name: Log in to the Container registry
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Start MinIO and MongoDB
-        run: docker compose up -d minio mongodb
-
       - name: Pull test image
         run: docker pull "$API_IMAGE"
 
       - name: Prettier cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: packages/api/node_modules/.cache/prettier
           key: ${{ runner.os }}-${{ inputs.node_version }}-prettiercache-api-${{ github.ref }}
@@ -95,7 +88,7 @@ jobs:
             yarn workspace @soliguide/api format
 
       - name: Eslint cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: packages/api/.eslintcache
           key: ${{ runner.os }}-${{ inputs.node_version }}-eslintcache-api-${{ github.ref }}
@@ -109,6 +102,34 @@ jobs:
             -v ./packages/api/.eslintcache:/app/packages/api/.eslintcache \
             "$API_IMAGE" \
             yarn workspace @soliguide/api lint
+
+  # Migrate + Jest with coverage. Runs mongodb + minio in parallel to lint above.
+  test-api-unit:
+    name: Test API — migrate & unit tests
+    if: ${{ inputs.test_api }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    env:
+      MONGODB_URI: mongodb://127.0.0.1:27017/soliguide_test?replicaSet=rs0
+      API_IMAGE: ghcr.io/${{ github.event.repository.full_name }}/api:${{ inputs.docker_tag }}-test
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v4
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Start MinIO and MongoDB
+        run: docker compose up -d minio mongodb
+
+      - name: Pull test image
+        run: docker pull "$API_IMAGE"
 
       - name: Wait for Mongo to be ready
         timeout-minutes: 5
@@ -134,10 +155,10 @@ jobs:
             -e GOOGLE_MAPS_API_KEY \
             --network host \
             "$API_IMAGE" \
-            sh -c 'yarn workspace @soliguide/api migrate-up && yarn workspace @soliguide/api test --coverage'
+            sh -c 'yarn workspace @soliguide/api migrate-up && yarn workspace @soliguide/api test --coverage --maxWorkers=100%'
 
       - name: Upload coverage
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: coverage-api
           path: ./packages/api/coverage/cobertura-coverage.xml
@@ -193,7 +214,7 @@ jobs:
         working-directory: /app
     steps:
       - name: Prettier cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: packages/location-api/node_modules/.cache/prettier
           key: ${{ runner.os }}-${{ inputs.node_version }}-prettiercache-location-api-${{ github.ref }}
@@ -205,7 +226,7 @@ jobs:
         run: yarn workspace @soliguide/location-api format
 
       - name: Eslint cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: packages/location-api/.eslintcache
           key: ${{ runner.os }}-${{ inputs.node_version }}-eslintcache-location-api-${{ github.ref }}
@@ -222,7 +243,7 @@ jobs:
           HERE_API_KEY: ${{ secrets.HERE_API_KEY }}
 
       - name: Upload coverage
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: coverage-location-api
           path: /app/packages/location-api/coverage/cobertura-coverage.xml
@@ -278,7 +299,7 @@ jobs:
         working-directory: /app
     steps:
       - name: Prettier cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: packages/web-app/node_modules/.cache/prettier
           key: ${{ runner.os }}-${{ inputs.node_version }}-prettiercache-web-app-${{ github.ref }}
@@ -290,7 +311,7 @@ jobs:
         run: yarn workspace @soliguide/web-app format
 
       - name: Eslint cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: packages/web-app/.eslintcache
           key: ${{ runner.os }}-${{ inputs.node_version }}-eslintcache-web-app-${{ github.ref }}
@@ -310,7 +331,7 @@ jobs:
       #     PLAYWRIGHT_BROWSERS_PATH: /root/.cache/ms-playwright
 
       - name: Upload coverage
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: coverage-web-app
           path: /app/packages/web-app/coverage/cobertura-coverage.xml

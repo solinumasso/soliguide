@@ -18,6 +18,7 @@ import { PlaceModule } from "../place/place.module";
 import { SharedModule } from "../shared/shared.module";
 import { UsersModule } from "../users/users.module";
 import { FormPhoneInputComponent } from "../shared/components/form-phone/form-phone-input.component";
+import { CampaignHeatwaveLinkComponent } from "../campaign/components/campaign-heatwave-link/campaign-heatwave-link.component";
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { FormPhoneInputComponent } from "../shared/components/form-phone/form-ph
     TranslateModule,
     UsersModule,
     FormPhoneInputComponent,
+    CampaignHeatwaveLinkComponent,
   ],
   providers: [AdminUsersService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -1,6 +1,6 @@
 import { type Campaign } from "@soliguide/common";
 
-import { UserPopulateType } from "../../_models";
+import { OrganizationPopulate, UserPopulateType } from "../../_models";
 import { PlaceModel } from "../../place/models/place.model";
 import {
   CampaignTempFormsPayload,
@@ -64,3 +64,37 @@ const pickCampaignPublicFields = (
   endDate: campaign.endDate,
   sectionsToUpdate: campaign.sectionsToUpdate,
 });
+
+/**
+ * Variante orga du payload : projection identique à `buildCampaignTempFormsPayload`
+ * mais scope = tous les lieux de l'organisation (peu importe `userRights`).
+ * Consommé par la route admin `GET /admin/campaigns/:slug/orga/:orgaObjectId/climate`.
+ */
+export const buildCampaignTempFormsPayloadForOrga = async (
+  campaign: Campaign,
+  organization: OrganizationPopulate
+): Promise<CampaignTempFormsPayload> => {
+  const placeIds = (organization.places ?? [])
+    .map((place) => place.lieu_id)
+    .filter((id): id is number => typeof id === "number");
+
+  if (placeIds.length === 0) {
+    return {
+      campaign: pickCampaignPublicFields(campaign),
+      user: { name: organization.name },
+      places: [],
+    };
+  }
+
+  const places = await PlaceModel.find({ lieu_id: { $in: placeIds } })
+    .select(
+      "lieu_id seo_url name description status country position modalities newhours tempInfos -_id"
+    )
+    .lean<CampaignTempFormsPlaceSummary[]>();
+
+  return {
+    campaign: pickCampaignPublicFields(campaign),
+    user: { name: organization.name },
+    places,
+  };
+};

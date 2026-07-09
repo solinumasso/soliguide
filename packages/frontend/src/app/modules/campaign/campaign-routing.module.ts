@@ -1,12 +1,11 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
-import { CampaignExceptionalUpdatesComponent } from "./components/campaign-exceptional-updates/campaign-exceptional-updates.component";
+import { CampaignClimateOrgaComponent } from "./components/campaign-climate-orga/campaign-climate-orga.component";
 import { CampaignFormPlaceComponent } from "./components/campaign-form-place/campaign-form-place.component";
 import { CampaignManagePlacesComponent } from "./components/campaign-manage-places/campaign-manage-places.component";
 
 import { AdminSoliguideGuard } from "../../guards/admin-soliguide.guard";
-import { SuperAdminGuard } from "../../guards/super-admin.guard";
 
 export const campaignRoutes: Routes = [
   {
@@ -14,9 +13,9 @@ export const campaignRoutes: Routes = [
     component: CampaignManagePlacesComponent,
   },
   {
-    path: "exceptional-updates",
-    canActivate: [SuperAdminGuard],
-    component: CampaignExceptionalUpdatesComponent,
+    path: "climate-summer/:campaignSlug/orga/:orgaObjectId",
+    canActivate: [AdminSoliguideGuard],
+    component: CampaignClimateOrgaComponent,
   },
   {
     path: "fiche/:lieu_id",

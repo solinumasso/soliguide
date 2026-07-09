@@ -1,4 +1,4 @@
-name: Develop - build, test and deploy
+name: Develop - build and deploy
 
 on:
   push:
@@ -10,17 +10,11 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  commitlint:
-    uses: ./.github/workflows/_commitlint.yml
-
   build:
     name: Build all packages (once)
     uses: ./.github/workflows/_build.yml
-    needs:
-      - commitlint
     secrets: inherit
 
-  # Dès que le build est OK, on déploie ET on teste en parallèle
   deploy_clever_cloud:
     name: Deploy to Clever Cloud (staging)
     uses: ./.github/workflows/_deploy-to-environment.yml
@@ -33,33 +27,15 @@ jobs:
   deploy_qovery:
     name: Deploy to Qovery (develop)
     uses: ./.github/workflows/_deploy-to-test-qovery.yml
+    # On develop, always force-update every Qovery service so demo reflects
+    # HEAD of develop, avoiding stale mutable `develop` tags cached by Qovery.
     with:
-      deploy_api: ${{ contains(needs.build.outputs.to_deploy, 'api') }}
-      deploy_frontend: ${{ contains(needs.build.outputs.to_deploy, 'frontend') }}
-      deploy_location-api: ${{ contains(needs.build.outputs.to_deploy, 'location-api') }}
-      deploy_web-app: ${{ contains(needs.build.outputs.to_deploy, 'web-app') }}
-      deploy_widget: ${{ contains(needs.build.outputs.to_deploy, 'widget') }}
+      deploy_api: true
+      deploy_frontend: true
+      deploy_location-api: true
+      deploy_web-app: true
+      deploy_widget: true
       create: true
-    needs:
-      - build
-    secrets: inherit
-
-  # Les tests utilisent les images déjà buildées (pas de rebuild)
-  test:
-    name: Test all packages (using built images)
-    uses: ./.github/workflows/_test-only.yml
-    with:
-      docker_tag: develop
-      node_version: ${{ needs.build.outputs.node_version }}
-      test_api: ${{ contains(needs.build.outputs.to_deploy, 'api') }}
-      test_common: ${{ contains(needs.build.outputs.to_deploy, 'common') }}
-      test_common-angular: ${{ contains(needs.build.outputs.to_deploy, 'common-angular') }}
-      test_design-system: ${{ contains(needs.build.outputs.to_deploy, 'design-system') }}
-      test_frontend: ${{ contains(needs.build.outputs.to_deploy, 'frontend') }}
-      test_location-api: ${{ contains(needs.build.outputs.to_deploy, 'location-api') }}
-      test_maintenance: ${{ contains(needs.build.outputs.to_deploy, 'maintenance') }}
-      test_web-app: ${{ contains(needs.build.outputs.to_deploy, 'web-app') }}
-      test_widget: ${{ contains(needs.build.outputs.to_deploy, 'widget') }}
     needs:
       - build
     secrets: inherit

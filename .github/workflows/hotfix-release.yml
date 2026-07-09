@@ -73,7 +73,7 @@ jobs:
       - deploy-prod
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: hotfix
           token: ${{ secrets.GH_TOKEN }}
@@ -92,7 +92,7 @@ jobs:
           git push origin main
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 22
 
