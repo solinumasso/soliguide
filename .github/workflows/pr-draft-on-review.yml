@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Mark PR as draft
-        uses: octokit/graphql-action@v2.x
+        uses: octokit/graphql-action@v3
         with:
           query: |
             mutation($pullRequestId: ID!) {

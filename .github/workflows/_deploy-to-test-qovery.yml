@@ -639,7 +639,7 @@ jobs:
 
       - name: Create GitHub Deployment
         if: github.event_name == 'pull_request' && (steps.check_presence.outcome == 'success' || steps.env_ready.outcome == 'success')
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             const baseDomain = '${{ env.QOVERY_BASE_DOMAIN_NAME }}.soliguide.dev';
