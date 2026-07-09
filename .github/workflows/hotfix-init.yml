@@ -13,7 +13,7 @@ jobs:
     name: Create hotfix branch from ${{ inputs.base_tag }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ inputs.base_tag }}
           token: ${{ secrets.GH_TOKEN }}

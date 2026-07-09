@@ -34,5 +34,4 @@ RUN <<EOF
 set -e
 corepack enable
 yarn install --immutable
-yarn cache clean
 EOF
