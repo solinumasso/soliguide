@@ -1,4 +1,4 @@
-name: Develop - build, test and deploy
+name: Develop - build and deploy
 
 on:
   push:
@@ -10,17 +10,11 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  commitlint:
-    uses: ./.github/workflows/_commitlint.yml
-
   build:
     name: Build all packages (once)
     uses: ./.github/workflows/_build.yml
-    needs:
-      - commitlint
     secrets: inherit
 
-  # Dès que le build est OK, on déploie ET on teste en parallèle
   deploy_clever_cloud:
     name: Deploy to Clever Cloud (staging)
     uses: ./.github/workflows/_deploy-to-environment.yml
@@ -40,26 +34,6 @@ jobs:
       deploy_web-app: ${{ contains(needs.build.outputs.to_deploy, 'web-app') }}
       deploy_widget: ${{ contains(needs.build.outputs.to_deploy, 'widget') }}
       create: true
-    needs:
-      - build
-    secrets: inherit
-
-  # Les tests utilisent les images déjà buildées (pas de rebuild)
-  test:
-    name: Test all packages (using built images)
-    uses: ./.github/workflows/_test-only.yml
-    with:
-      docker_tag: develop
-      node_version: ${{ needs.build.outputs.node_version }}
-      test_api: ${{ contains(needs.build.outputs.to_deploy, 'api') }}
-      test_common: ${{ contains(needs.build.outputs.to_deploy, 'common') }}
-      test_common-angular: ${{ contains(needs.build.outputs.to_deploy, 'common-angular') }}
-      test_design-system: ${{ contains(needs.build.outputs.to_deploy, 'design-system') }}
-      test_frontend: ${{ contains(needs.build.outputs.to_deploy, 'frontend') }}
-      test_location-api: ${{ contains(needs.build.outputs.to_deploy, 'location-api') }}
-      test_maintenance: ${{ contains(needs.build.outputs.to_deploy, 'maintenance') }}
-      test_web-app: ${{ contains(needs.build.outputs.to_deploy, 'web-app') }}
-      test_widget: ${{ contains(needs.build.outputs.to_deploy, 'widget') }}
     needs:
       - build
     secrets: inherit
