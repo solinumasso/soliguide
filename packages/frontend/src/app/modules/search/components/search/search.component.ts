@@ -31,6 +31,7 @@ import {
   Categories,
   SearchResults,
   shouldDisplayThermalComfort,
+  CountryCodes,
 } from "@soliguide/common";
 import type { FilterPillOption } from "../filter-pill-dropdown/filter-pill-dropdown.component";
 import type { PosthogProperties } from "@soliguide/common-angular";
@@ -112,7 +113,13 @@ export class SearchComponent implements OnInit, OnDestroy {
   public readonly thermalComfortEmojis = THERMAL_COMFORT_EMOJIS;
 
   public get showThermalComfortFilter(): boolean {
-    return shouldDisplayThermalComfort(THEME_CONFIGURATION.country);
+    // The air-conditioned search filter is restricted to France, while the
+    // rest of the thermal comfort feature (badge, form, place card) keeps its
+    // default country coverage handled by shouldDisplayThermalComfort.
+    return (
+      THEME_CONFIGURATION.country === CountryCodes.FR &&
+      shouldDisplayThermalComfort(THEME_CONFIGURATION.country)
+    );
   }
   public readonly publicsLabels = PUBLICS_LABELS;
   public readonly genderOptions: FilterPillOption[] = ALL_PUBLICS.gender
