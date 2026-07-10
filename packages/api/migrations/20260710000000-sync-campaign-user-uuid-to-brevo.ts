@@ -96,6 +96,6 @@ export const up = async (db: Db) => {
   );
 };
 
-export const down = async (_db: Db) => {
+export const down = async () => {
   logger.info(`[ROLLBACK] - ${message} - no-op (Brevo attribute left as-is)`);
 };
