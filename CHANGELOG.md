@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.148.0](https://github.com/solinumasso/soliguide/compare/v4.147.4...v4.148.0) (2026-07-13)
+
+
+### Bug Fixes
+
+* **common:** delete useless packages, migrate to lefthook ([0045199](https://github.com/solinumasso/soliguide/commit/00451993fbc65fd0d839eccdeef4f22ca4f7ddb5))
+
+
+### Features
+
+* adding modal to explain user how to accept localisation and make home page button usable ([9504afc](https://github.com/solinumasso/soliguide/commit/9504afcd0af574031907ec9c01312f16f33a1bfc))
+* hide thermal filter for spain and andorra ([7c5acde](https://github.com/solinumasso/soliguide/commit/7c5acdea417d1f4080545934ad95259d8ca71f48))
+* update yarn.lock ([de6f9c5](https://github.com/solinumasso/soliguide/commit/de6f9c5a445728a75fd049ed98af26dec0473794))
+
+
+
+
+
 ## [4.147.4](https://github.com/solinumasso/soliguide/compare/v4.147.3...v4.147.4) (2026-07-09)
 
 
