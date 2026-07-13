@@ -1,24 +1,3 @@
-<!--
-Soliguide: Useful information for those who need it
-
-SPDX-FileCopyrightText: © 2024 Solinum
-
-SPDX-License-Identifier: AGPL-3.0-only
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Affero General Public License as published
-by the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Affero General Public License for more details.
-
-You should have received a copy of the GNU Affero General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.
--->
-
 # CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
@@ -186,7 +165,7 @@ common (base types & utilities)
 
 ### Key Technologies
 
-- **API**: Express, MongoDB (Mongoose), RabbitMQ, Airtable sync, S3
+- **API**: Express, MongoDB (Mongoose), RabbitMQ, Brevo, S3
 - **Location API**: NestJS, Fastify, Redis
 - **Frontend/Widget**: Angular 17, Bootstrap 5, Leaflet, Algolia, ngx-translate
 - **Web-app**: SvelteKit, i18next, Playwright E2E, Vitest
@@ -210,10 +189,10 @@ common (base types & utilities)
 
 ### External Integrations
 
-- **Airtable**: Two-way sync for place data (collaborative editing)
+- **Airtable**: One-way sync of place data (outbound cron job `sync-places-to-airtable`)
 - **S3/MinIO**: Document and image storage
 - **Google Cloud Translate**: Translation services
-- **Mailgun**: Email delivery
+- **Brevo**: Transactional email + CRM/campaign sync (via `@getbrevo/brevo`)
 - **Sentry**: Error tracking across all apps
 - **PostHog**: Product analytics
 - **RabbitMQ**: Message queuing for async tasks
@@ -242,10 +221,13 @@ test(location-api): add tests for geocoding service
 
 ### Pre-commit Hooks
 
-- Husky + lint-staged runs on every commit
-- Prettier formatting
-- ESLint with auto-fix
-- Commitlint validates commit message format
+Managed by [Lefthook](https://lefthook.dev/) (config in `lefthook.yml`), auto-installed via the `prepare` script:
+
+- `yarn format:fix` — Prettier formatting across the monorepo (auto-stages fixes)
+- `yarn lint` — ESLint / package-specific lint across the monorepo
+- `tsc --noEmit` on `@soliguide/common` when its sources change
+- `node-talisman` secret scan
+- `commit-msg`: Commitlint validates the message against Conventional Commits
 
 ### Environments
 

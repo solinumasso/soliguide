@@ -12,7 +12,7 @@
     "dev": "concurrently -k --names \"api,loc,front\" --prefix-colors \"cyan,magenta,green\" \"yarn workspace @soliguide/api watch\" \"yarn workspace @soliguide/location-api watch\" \"yarn workspace @soliguide/frontend start\"",
     "dev:es": "concurrently -k --names \"api,loc,front-es\" --prefix-colors \"cyan,magenta,green\" \"yarn workspace @soliguide/api watch\" \"yarn workspace @soliguide/location-api watch\" \"yarn workspace @soliguide/frontend start:es\"",
     "dev:ad": "concurrently -k --names \"api,loc,front-ad\" --prefix-colors \"cyan,magenta,green\" \"yarn workspace @soliguide/api watch\" \"yarn workspace @soliguide/location-api watch\" \"yarn workspace @soliguide/frontend start:ad\"",
-    "prepare": "husky"
+    "prepare": "lefthook install"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
@@ -25,9 +25,8 @@
     "@semantic-release/npm": "^12.0.2",
     "@types/node": "^22.19.21",
     "concurrently": "^10.0.3",
-    "husky": "^9.1.7",
+    "lefthook": "^2.1.10",
     "lerna": "^8.2.3",
-    "lint-staged": "^15.5.1",
     "node-talisman": "^1.29.22",
     "nx": "^19.8.14",
     "semantic-release": "^24.2.9",

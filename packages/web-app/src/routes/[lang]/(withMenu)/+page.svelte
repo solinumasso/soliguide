@@ -1,51 +1,109 @@
-<!--
-Soliguide: Useful information for those who need it
-
-SPDX-FileCopyrightText: © 2024 Solinum
-
-SPDX-License-Identifier: AGPL-3.0-only
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Affero General Public License as published
-by the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Affero General Public License for more details.
-
-You should have received a copy of the GNU Affero General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.
--->
 <script lang="ts">
   import { getContext, setContext, type ComponentType } from 'svelte';
   import { goto } from '$app/navigation';
-  import { Text, Tile } from '@soliguide/design-system';
-  import { ROUTES_CTX_KEY } from '$lib/client';
+  import { Text, Tile, PageLoader } from '@soliguide/design-system';
+  import { ROUTES_CTX_KEY, getGeolocation } from '$lib/client';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import SearchButtonInput from './SearchButtonInput.svelte';
-  import FavoritesAnnouncementBanner from './components/FavoritesAnnouncementBanner.svelte';
-  import { getHomePageController } from './pageController';
+  import pageStore from './index';
+  import { searchParamsService } from '$lib/services';
+  import { showToast } from '$lib/toast/toast.store';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import type { ThemeDefinition } from '$lib/theme/types';
+  import type { QuickSearchFilters } from './types';
   import { get } from 'svelte/store';
   import { themeStore } from '$lib/theme';
-  import { Categories, getCategoryTranslationKey } from '@soliguide/common';
-  import { CategoryIcon } from '$lib/components';
+  import {
+    Categories,
+    getCategoryTranslationKey,
+    shouldDisplayThermalComfort,
+    SupportedLanguagesCode
+  } from '@soliguide/common';
+  import { CategoryIcon, HeatwaveEmergencyCard, GeolocationBlockedModal } from '$lib/components';
   import MoreHoriz from 'svelte-google-materialdesign-icons/More_horiz.svelte';
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
   const theme: ThemeDefinition = get(themeStore.getTheme());
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
 
-  const pageStore = getHomePageController();
-
   setContext('CAPTURE_FCTN_CTX_KEY', pageStore.captureEvent);
+
+  let isSearching = false;
+  let showGeolocationModal = false;
+  // Remember the last quick-search so the modal's "retry" can re-run it.
+  let lastQuickSearch: { category: Categories; filters: QuickSearchFilters } | null = null;
+
+  // The heatwave card groups seasonal 1-click searches; shown only for FR/ES during summer.
+  const shouldDisplayHeatwaveCard = shouldDisplayThermalComfort(theme.country);
 
   const goSearch = () => {
     pageStore.captureEvent('start-search');
     goto($routes.ROUTE_SEARCH);
+  };
+
+  /**
+   * Launch a search directly from a category tile.
+   * Uses the user's position; if geolocation is not authorized, shows the recovery modal.
+   */
+  const launchCategorySearch = async (category: Categories, filters: QuickSearchFilters = {}) => {
+    if (isSearching) {
+      return;
+    }
+    isSearching = true;
+    lastQuickSearch = { category, filters };
+
+    try {
+      const outcome = await pageStore.buildQuickSearch(
+        category,
+        theme.country,
+        $i18n.language as SupportedLanguagesCode,
+        getGeolocation,
+        filters
+      );
+
+      if (outcome.status === 'ready') {
+        goto(
+          `${$routes.ROUTE_PLACES}?${searchParamsService.toPlacesSearchQueryString(outcome.params)}`
+        );
+      } else if (outcome.status === 'permissionRequired') {
+        showGeolocationModal = true;
+      } else {
+        showToast({ description: $i18n.t('SEARCH_FAIL_TRY_LATER'), variant: 'error' });
+      }
+    } finally {
+      // Safe: concurrent runs are prevented by the `isSearching` guard at the top of the function
+      // eslint-disable-next-line require-atomic-updates
+      isSearching = false;
+    }
+  };
+
+  const retryQuickSearch = () => {
+    showGeolocationModal = false;
+    if (lastQuickSearch) {
+      launchCategorySearch(lastQuickSearch.category, lastQuickSearch.filters);
+    }
+  };
+
+  /**
+   * Handle a click on a regular quick-search category tile (outside the emergency card).
+   * Tracks the clicked category, then launches the search.
+   */
+  const handleQuickSearchClick = (category: Categories) => {
+    pageStore.captureEvent('quick-search-clicked', { category });
+    launchCategorySearch(category);
+  };
+
+  /**
+   * Handle a click on a quick-search button inside the emergency (heatwave) card.
+   * Tracks the clicked category, then launches the search with the card's filters.
+   */
+  const handleEmergencyQuickSearchClick = (
+    event: CustomEvent<{ category: Categories; airConditioned: boolean }>
+  ) => {
+    pageStore.captureEvent('emergency-quick-search-clicked', { category: event.detail.category });
+    launchCategorySearch(event.detail.category, {
+      airConditioned: event.detail.airConditioned
+    });
   };
 
   const categoriesToDisplay: {
@@ -110,45 +168,63 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   />
 </svelte:head>
 
-<section>
-  <FavoritesAnnouncementBanner />
-  <div class="header">
-    <span class="title">
-      <Text as="h1" type="title3PrimaryExtraBold">{$i18n.t('HOME_TITLE')}</Text>
-    </span>
-    <img src={`/images/${theme.media.homeIllustration}`} alt="Soliguide" />
-  </div>
-  <div class="hello">
-    <Text as="h2" type="title3PrimaryBold">{$i18n.t('HELLO')} 👋</Text>
-  </div>
-  <div class="search-block">
-    <Text type="title2PrimaryExtraBold">{$i18n.t('START_A_SEARCH')}</Text>
-    <SearchButtonInput on:click={goSearch} />
-  </div>
-  <div class="categories">
-    <span class="categories-text">
-      <Text type="title3PrimaryExtraBold" as="h3"
-        >{$i18n.t('MORE_THAN_50_SOCIAL_EMERGENCY_CATEGORIES')}</Text
-      >
-    </span>
-    <div class="categories-tiles">
-      {#each categoriesToDisplay as { label, variant, iconCategory, iconComponent }}
-        <Tile {label} {variant}>
-          {#if iconCategory}
-            <svelte:component
-              this={iconComponent}
-              categoryId={iconCategory}
-              variation="filled"
-              size={'16'}
-            />
-          {:else}
-            <svelte:component this={iconComponent} size={'16'} />
-          {/if}</Tile
-        >
-      {/each}
+<PageLoader loading={isSearching} fullPage>
+  <section>
+    <div class="header">
+      <span class="title">
+        <Text as="h1" type="title3PrimaryExtraBold">{$i18n.t('HOME_TITLE')}</Text>
+      </span>
+      <img src={`/images/${theme.media.homeIllustration}`} alt="Soliguide" />
     </div>
-  </div>
-</section>
+    <div class="hello">
+      <Text as="h2" type="title3PrimaryBold">{$i18n.t('HELLO')} 👋</Text>
+    </div>
+    <div class="search-block">
+      <Text type="title2PrimaryExtraBold">{$i18n.t('START_A_SEARCH')}</Text>
+      <SearchButtonInput on:click={goSearch} />
+    </div>
+    {#if shouldDisplayHeatwaveCard}
+      <div class="heatwave-block">
+        <HeatwaveEmergencyCard disabled={isSearching} on:search={handleEmergencyQuickSearchClick} />
+      </div>
+    {/if}
+    <div class="categories">
+      <span class="categories-text">
+        <Text type="title3PrimaryExtraBold" as="h3"
+          >{$i18n.t('MORE_THAN_50_SOCIAL_EMERGENCY_CATEGORIES')}</Text
+        >
+      </span>
+      <div class="categories-tiles">
+        {#each categoriesToDisplay as { label, variant, iconCategory, iconComponent }}
+          <Tile
+            {label}
+            {variant}
+            clickable
+            on:click={() => (iconCategory ? handleQuickSearchClick(iconCategory) : goSearch())}
+          >
+            {#if iconCategory}
+              <svelte:component
+                this={iconComponent}
+                categoryId={iconCategory}
+                variation="filled"
+                size={'16'}
+              />
+            {:else}
+              <svelte:component this={iconComponent} size={'16'} />
+            {/if}</Tile
+          >
+        {/each}
+      </div>
+    </div>
+  </section>
+
+  <GeolocationBlockedModal
+    open={showGeolocationModal}
+    brandName={theme.brandName}
+    on:close={() => (showGeolocationModal = false)}
+    on:retry={retryQuickSearch}
+  />
+</PageLoader>
 
 <style lang="scss">
   section {
@@ -179,6 +255,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     display: flex;
     flex-direction: column;
     gap: var(--spacingXS);
+    margin-bottom: var(--spacing3XL);
+  }
+
+  .heatwave-block {
     margin-bottom: var(--spacing3XL);
   }
 

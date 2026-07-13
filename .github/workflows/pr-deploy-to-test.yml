@@ -38,7 +38,7 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-      - uses: octokit/request-action@v2.x
+      - uses: octokit/request-action@v3
         with:
           route: DELETE /repos/{repo}/issues/{issue_number}/labels/{name}
           repo: ${{ github.repository }}

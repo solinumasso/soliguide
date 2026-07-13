@@ -1,0 +1,19 @@
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      run: yarn format:fix
+      stage_fixed: true
+    lint:
+      run: yarn lint
+    typecheck-common:
+      glob: "packages/common/**/*.ts"
+      run: yarn workspace @soliguide/common exec tsc --noEmit
+    talisman:
+      run: yarn node-talisman --githook pre-commit
+      interactive: true
+
+commit-msg:
+  commands:
+    commitlint:
+      run: yarn commitlint --edit {1}

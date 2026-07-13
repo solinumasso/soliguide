@@ -26,7 +26,7 @@ jobs:
         working-directory: /app
     steps:
       - name: Prettier cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: packages/${{ inputs.package }}/node_modules/.cache/prettier
           key: ${{ runner.os }}-${{ inputs.node_version }}-prettiercache-${{ inputs.package }}-${{ github.ref }}
@@ -38,7 +38,7 @@ jobs:
         run: yarn workspace @soliguide/${{ inputs.package }} format
 
       - name: Eslint cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: packages/${{ inputs.package }}/.eslintcache
           key: ${{ runner.os }}-${{ inputs.node_version }}-eslintcache-${{ inputs.package }}-${{ github.ref }}
@@ -53,7 +53,7 @@ jobs:
         run: yarn workspace @soliguide/${{ inputs.package }} test --coverage
 
       - name: Upload coverage
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: coverage-${{ inputs.package }}
           path: /app/packages/${{ inputs.package }}/coverage/cobertura-coverage.xml

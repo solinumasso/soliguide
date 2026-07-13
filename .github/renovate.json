@@ -115,10 +115,8 @@
         "^lerna$",
         "^nx$",
         "^@commitlint",
-        "^husky$",
-        "^lint-staged$",
-        "^semantic-release",
-        "^license-check-and-add$"
+        "^lefthook$",
+        "^semantic-release"
       ],
       "semanticCommitScope": "monorepo",
       "groupName": "Monorepo core tools",
