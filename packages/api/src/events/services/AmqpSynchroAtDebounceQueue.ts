@@ -8,6 +8,16 @@ import { amqpEventsSender, type AmqpEventsSender } from "./AmqpEventsSender";
 
 const DEBOUNCE_DELAY_MS = 60_000;
 
+/**
+ * Routing keys the debounced place event is published to. The same payload
+ * feeds both CRMs through n8n, which binds one queue per key on the
+ * `soliguide.places` topic exchange.
+ */
+const PLACE_SYNCHRO_ROUTING_KEYS = [
+  `${RoutingKey.PLACES}.synchro_at`,
+  `${RoutingKey.PLACES}.synchro_brevo`,
+] as const;
+
 interface QueuedSynchroAtEvent {
   lieu_id: number;
   payload: AmqpSynchroAirtablePlaceEvent;
@@ -15,7 +25,8 @@ interface QueuedSynchroAtEvent {
 }
 
 /**
- * Debounces Airtable synchro events per lieu_id before sending them to RabbitMQ.
+ * Debounces place synchro events (Airtable + Brevo) per lieu_id before sending
+ * them to RabbitMQ.
  *
  * The campaign form submits several sections in quick succession, producing
  * a burst of events (STARTED, STARTED, STARTED, FINISHED) for the same place.
@@ -53,14 +64,22 @@ export class AmqpSynchroAtDebounceQueue {
   }
 
   private send({ payload, log }: QueuedSynchroAtEvent): void {
-    this.sender
-      .sendToQueue(
-        Exchange.PLACES,
-        `${RoutingKey.PLACES}.synchro_at`,
-        payload,
-        log
+    // Publish to each destination independently: a failure on one CRM must not
+    // prevent the event from reaching the other.
+    void Promise.allSettled(
+      PLACE_SYNCHRO_ROUTING_KEYS.map((routingKey) =>
+        this.sender.sendToQueue(Exchange.PLACES, routingKey, payload, log)
       )
-      .catch((error) => log.error(error, "SYNCHRO_AT_SEND_FAILED"));
+    ).then((publishResults) =>
+      publishResults.forEach((result, index) => {
+        if (result.status === "rejected") {
+          log.error(
+            result.reason,
+            `SYNCHRO_SEND_FAILED - ${PLACE_SYNCHRO_ROUTING_KEYS[index]}`
+          );
+        }
+      })
+    );
   }
 }
 
