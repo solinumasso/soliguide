@@ -483,6 +483,41 @@ const samplePlace: ApiPlace = Object.freeze({
       source: null,
       status: 'TO_DO',
       toUpdate: false
+    },
+    MID_YEAR_2026: {
+      autonomy: 'UNKNOWN',
+      currentStep: 0,
+      general: {
+        changes: false,
+        endDate: null,
+        startDate: null,
+        updated: false
+      },
+      sections: {
+        hours: {
+          changes: false,
+          date: null,
+          updated: false
+        },
+        services: {
+          changes: false,
+          date: null,
+          updated: false
+        },
+        tempClosure: {
+          changes: false,
+          date: null,
+          updated: false
+        },
+        tempMessage: {
+          changes: false,
+          date: null,
+          updated: false
+        }
+      },
+      source: null,
+      status: 'TO_DO',
+      toUpdate: false
     }
   },
   visibility: PlaceVisibility.ALL,
