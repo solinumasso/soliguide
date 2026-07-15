@@ -18,13 +18,6 @@ const makeMocks = () => {
   return { sendToQueue, log, queue };
 };
 
-// Let the allSettled chain resolve through its microtasks.
-const flushMicrotasks = async () => {
-  await Promise.resolve();
-  await Promise.resolve();
-  await Promise.resolve();
-};
-
 describe("AmqpSynchroAtDebounceQueue", () => {
   beforeEach(() => {
     jest.useFakeTimers();
@@ -172,9 +165,10 @@ describe("AmqpSynchroAtDebounceQueue", () => {
 
     queue.enqueue(1, makePayload("FINISHED"), log);
 
-    jest.advanceTimersByTime(DEBOUNCE_MS);
-
-    await flushMicrotasks();
+    // The async variant fires the debounce timer AND drains the microtasks of
+    // the allSettled().then() chain, so the error handler has run by the time
+    // we assert.
+    await jest.advanceTimersByTimeAsync(DEBOUNCE_MS);
 
     expect(sendToQueue).toHaveBeenCalledTimes(2);
     expect(log.error).toHaveBeenCalledWith(
