@@ -47,9 +47,13 @@ export const createInvitation = async (
     session,
   });
 
+  // The session must be forwarded to populate: when this runs inside a
+  // transaction, the referenced user may have just been created in the same
+  // (not yet committed) transaction. Without the session, populate reads
+  // outside the transaction and resolves "user" to null.
   return await createdInvitation.populate([
-    "organization",
-    { path: "user", select: USERS_FIELDS_FOR_POPULATE },
+    { path: "organization", options: { session } },
+    { path: "user", select: USERS_FIELDS_FOR_POPULATE, options: { session } },
   ]);
 };
 
