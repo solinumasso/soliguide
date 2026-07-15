@@ -1,5 +1,7 @@
 import express, { type NextFunction } from "express";
 
+import { captureException } from "@sentry/node";
+
 import { UserStatus, validateUserStatusWithEmail } from "@soliguide/common";
 
 import { emailValidDto, inviteUserDto, signupAfterInvitationDto } from "../dto";
@@ -77,18 +79,38 @@ router.post(
         req.organization
       );
 
-      if (invitation) {
-        req.invitation = invitation;
-        req.updatedUser = req.invitation.user as UserPopulateType;
-        (req.updatedUser.invitations as InvitationPopulate[]) = [
-          ...((req.updatedUser.invitations as InvitationPopulate[]) ?? []),
-          invitation,
-        ];
-      } else {
+      if (!invitation) {
         throw new Error("INVITATION WASN'T CREATED");
       }
+
+      // Defensive guard: the invitation must carry a populated user. If it is
+      // missing (e.g. populate failing to resolve a reference), fail explicitly
+      // instead of crashing later with an opaque "Cannot read/set properties
+      // of null" while dereferencing req.updatedUser.
+      const invitedUser = invitation.user as UserPopulateType | null;
+      if (!invitedUser) {
+        throw new Error(
+          `Invitation ${invitation._id} was created without a populated user`
+        );
+      }
+
+      req.invitation = invitation;
+      req.updatedUser = invitedUser;
+      (req.updatedUser.invitations as InvitationPopulate[]) = [
+        ...((req.updatedUser.invitations as InvitationPopulate[]) ?? []),
+        invitation,
+      ];
+
       return next();
     } catch (e) {
+      // Capture the real error in Sentry: the client only receives the generic
+      // CREATE_INVITATION_FAIL message, so without this the root cause is lost.
+      captureException(e, {
+        extra: {
+          mail: userData?.mail,
+          organizationId: req.organization?._id,
+        },
+      });
       req.log.error(e, "CREATE_INVITATION_FAIL");
       return res.status(500).json({ message: "CREATE_INVITATION_FAIL" });
     }
