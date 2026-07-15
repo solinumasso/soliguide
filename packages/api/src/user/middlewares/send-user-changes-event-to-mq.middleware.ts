@@ -21,6 +21,16 @@ import {
 import { UserModel } from "../models/user.model";
 
 /**
+ * Routing keys used to synchronise user changes to the external CRMs through
+ * n8n. The same enriched payload is published to each: Airtable and Brevo bind
+ * one queue per key on the `soliguide.users` topic exchange.
+ */
+const USER_SYNCHRO_ROUTING_KEYS = [
+  `${RoutingKey.USERS}.synchro_at`,
+  `${RoutingKey.USERS}.synchro_brevo`,
+] as const;
+
+/**
  * Filet de sécurité pour le sync Brevo/Airtable : si un user atteint le sync
  * sans `campaignUserUuid` (source amont ayant oublié la projection, ou
  * document historique jamais atteint par la migration `20260708...`), on
@@ -74,12 +84,27 @@ export const sendUserChangesToMq = async (
       endYear
     );
 
-    await amqpEventsSender.sendToQueue<AmqpSynchroAirtableUserEvent>(
-      Exchange.USERS,
-      `${RoutingKey.USERS}.synchro_at`,
-      payload,
-      req.log
+    // Publish to each destination independently: a failure on one CRM must not
+    // prevent the event from reaching the other.
+    const publishResults = await Promise.allSettled(
+      USER_SYNCHRO_ROUTING_KEYS.map((routingKey) =>
+        amqpEventsSender.sendToQueue<AmqpSynchroAirtableUserEvent>(
+          Exchange.USERS,
+          routingKey,
+          payload,
+          req.log
+        )
+      )
     );
+
+    publishResults.forEach((result, index) => {
+      if (result.status === "rejected") {
+        req.log.error(
+          result.reason,
+          `Failed to publish user event to ${USER_SYNCHRO_ROUTING_KEYS[index]}`
+        );
+      }
+    });
   }
 };
 
