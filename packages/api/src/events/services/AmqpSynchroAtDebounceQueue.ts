@@ -1,3 +1,4 @@
+import { captureException } from "@sentry/node";
 import type { Logger } from "pino";
 import { Subject } from "rxjs";
 import { debounceTime, groupBy, last, mergeMap } from "rxjs/operators";
@@ -63,7 +64,7 @@ export class AmqpSynchroAtDebounceQueue {
     this.events$.next({ lieu_id, payload, log });
   }
 
-  private send({ payload, log }: QueuedSynchroAtEvent): void {
+  private send({ lieu_id, payload, log }: QueuedSynchroAtEvent): void {
     // Publish to each destination independently: a failure on one CRM must not
     // prevent the event from reaching the other.
     void Promise.allSettled(
@@ -73,10 +74,13 @@ export class AmqpSynchroAtDebounceQueue {
     ).then((publishResults) =>
       publishResults.forEach((result, index) => {
         if (result.status === "rejected") {
-          log.error(
-            result.reason,
-            `SYNCHRO_SEND_FAILED - ${PLACE_SYNCHRO_ROUTING_KEYS[index]}`
-          );
+          const routingKey = PLACE_SYNCHRO_ROUTING_KEYS[index];
+          log.error(result.reason, `SYNCHRO_SEND_FAILED - ${routingKey}`);
+          // Report to Sentry so a failed publish to RabbitMQ raises an alert.
+          captureException(result.reason, {
+            tags: { feature: "synchro_at", routingKey },
+            extra: { lieu_id, exchange: Exchange.PLACES },
+          });
         }
       })
     );
