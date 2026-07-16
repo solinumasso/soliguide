@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.149.0](https://github.com/solinumasso/soliguide/compare/v4.148.0...v4.149.0) (2026-07-16)
+
+
+### Bug Fixes
+
+* **api:** avoid unhandled rejection on invitation delete MQ publish ([a6b5a2f](https://github.com/solinumasso/soliguide/commit/a6b5a2fd21898c04e1b4e9757656a146921a6961))
+* remove campaignUuid by default in DefaultProps and track error on mq send event ([a29d62e](https://github.com/solinumasso/soliguide/commit/a29d62e7656c59b99c46ecc780fc7c3151129d03))
+* use googd version of toshimaru for pr assign workflow ([5fc4f0c](https://github.com/solinumasso/soliguide/commit/5fc4f0c25778b0ef780b3bb3b0bef0c0c3f7d56a))
+
+
+### Features
+
+* adding synchro to brevo for every users events ([abbb8aa](https://github.com/solinumasso/soliguide/commit/abbb8aaa18ce36c70eeb8892d88c1e706cb143c8))
+* catch errors when invitation without user to populate is generated ([a726456](https://github.com/solinumasso/soliguide/commit/a72645676aa162ca31268cd832b5ea3647a825e7))
+* reactivate synchro brevo for places ([31e23d7](https://github.com/solinumasso/soliguide/commit/31e23d78f98280ae63afce5407030015e23b8dc2))
+* update place details mock by adding new campaign ([46a439d](https://github.com/solinumasso/soliguide/commit/46a439d461b03cdd55cfd98c14ab36adfea2b7c7))
+
+
+
+
+
 # [4.148.0](https://github.com/solinumasso/soliguide/compare/v4.147.4...v4.148.0) (2026-07-13)
 
 
