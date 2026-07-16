@@ -1,11 +1,14 @@
-import { randomUUID } from "node:crypto";
 import { UserStatus } from "@soliguide/common";
 import { ModelWithId, User } from "../../_models";
 
+// `campaignUserUuid` is intentionally NOT set here: it must be unique per user.
+// The Mongoose schema owns it via `default: () => randomUUID()`, which runs once
+// per document. Baking a single value into this shared constant reused the same
+// UUID for every user created in the process lifetime, causing an E11000
+// duplicate key error on the second creation (unique index `campaignUserUuid_1`).
 export const DEFAULT_USER_PROPS: Pick<
   ModelWithId<User>,
   | "blocked"
-  | "campaignUserUuid"
   | "categoriesLimitations"
   | "devToken"
   | "invitations"
@@ -22,7 +25,6 @@ export const DEFAULT_USER_PROPS: Pick<
   | "verifiedAt"
 > = {
   blocked: false,
-  campaignUserUuid: randomUUID(),
   categoriesLimitations: [],
   devToken: null,
   invitations: [],

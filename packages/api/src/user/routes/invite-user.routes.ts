@@ -31,8 +31,8 @@ import { isUserInOrga } from "../controllers/user.controller";
 import {
   sendAcceptedInvitationToMq,
   sendDeteleInvitationToMq,
-  sendNewInvitationToMqAndNext,
-  sendReNewInvitationToMqAndNext,
+  sendNewInvitationToMq,
+  sendReNewInvitationToMq,
   sendWelcomeToMq,
 } from "../middlewares/send-inivitation-event-to-mq.middleware";
 import {
@@ -115,13 +115,25 @@ router.post(
       return res.status(500).json({ message: "CREATE_INVITATION_FAIL" });
     }
   },
-  sendNewInvitationToMqAndNext,
   (
     req: ExpressRequest & {
       invitation: InvitationPopulate;
     },
     res: ExpressResponse
   ) => {
+    // The invitation is already committed. Publish the notification events
+    // without blocking the HTTP response: a publish that hangs (unreachable
+    // broker) must never turn the request into a gateway 504. Any publish
+    // failure is surfaced to Sentry so the missed notification is not silent.
+    sendNewInvitationToMq(req).catch((e) => {
+      req.log.error(e, "Failed to send new invitation to MQ");
+      captureException(e, {
+        extra: {
+          invitationId: req.invitation?._id,
+          organizationId: req.organization?._id,
+        },
+      });
+    });
     sendUserChangesToMq(req).catch((e) =>
       req.log.error(e, "Failed to send user changes to MQ")
     );
@@ -295,12 +307,24 @@ router.get(
   canEditOrga,
   getInvitationFromUrl,
   canManageInvitation,
-  sendReNewInvitationToMqAndNext,
-  (_req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
-    res.status(200).json({ message: "RESEND_DONE" });
-    return next();
-  },
-  captureReSendInvitation
+  (
+    req: ExpressRequest & { invitation: InvitationPopulate },
+    res: ExpressResponse
+  ) => {
+    // Publish without blocking the response (see POST "/" above); a stuck
+    // broker must not turn a resend into a 504. Failures go to Sentry.
+    sendReNewInvitationToMq(req).catch((e) => {
+      req.log.error(e, "Failed to resend invitation to MQ");
+      captureException(e, {
+        extra: {
+          invitationId: req.invitation?._id,
+          organizationId: req.organization?._id,
+        },
+      });
+    });
+    captureReSendInvitation(req);
+    return res.status(200).json({ message: "RESEND_DONE" });
+  }
 );
 
 /**
