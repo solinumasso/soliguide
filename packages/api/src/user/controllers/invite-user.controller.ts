@@ -88,7 +88,10 @@ export const createUserWithInvitation = async (
       user = updatedUser;
     } else {
       const userToCreate: SignupUser &
-        Omit<User, "user_id" | "updatedAt" | "createdAt"> & {
+        Omit<
+          User,
+          "user_id" | "updatedAt" | "createdAt" | "campaignUserUuid"
+        > & {
           country: CountryCodes;
         } = {
         ...DEFAULT_USER_PROPS,

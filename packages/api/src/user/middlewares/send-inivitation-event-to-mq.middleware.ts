@@ -1,11 +1,9 @@
-import type { NextFunction } from "express";
 import type { Logger } from "pino";
 
 import type { Themes } from "@soliguide/common";
 
 import type {
   ExpressRequest,
-  ExpressResponse,
   InvitationPopulate,
   UserPopulateType,
 } from "../../_models";
@@ -59,19 +57,9 @@ export const sendAcceptedInvitationToMq = async (
   );
 };
 
-export const sendAcceptedInvitationToMqAndNext = async (
-  req: ExpressRequest & { invitation: InvitationPopulate },
-  _res: ExpressResponse,
-  next: NextFunction
-) => {
-  await sendAcceptedInvitationToMq(req);
-  next();
-};
-
-export const sendNewInvitationToMqAndNext = async (
-  req: ExpressRequest & { invitation: InvitationPopulate },
-  _res: ExpressResponse,
-  next: NextFunction
+/** Publishes a "new invitation" event for the invitation on the request. */
+export const sendNewInvitationToMq = async (
+  req: ExpressRequest & { invitation: InvitationPopulate }
 ) => {
   await sendInvitationEventToMq(
     req.invitation,
@@ -81,13 +69,11 @@ export const sendNewInvitationToMqAndNext = async (
     req.log,
     req.user
   );
-  next();
 };
 
-export const sendReNewInvitationToMqAndNext = async (
-  req: ExpressRequest & { invitation: InvitationPopulate },
-  _res: ExpressResponse,
-  next: NextFunction
+/** Publishes a "renew invitation" event for the invitation on the request. */
+export const sendReNewInvitationToMq = async (
+  req: ExpressRequest & { invitation: InvitationPopulate }
 ) => {
   await sendInvitationEventToMq(
     req.invitation,
@@ -96,7 +82,6 @@ export const sendReNewInvitationToMqAndNext = async (
     "renew",
     req.log
   );
-  next();
 };
 
 export const sendDeteleInvitationToMq = async (
