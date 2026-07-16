@@ -2,6 +2,8 @@ import { DEFAULT_USER_PROPS } from "../../src/user/constants";
 
 export const ABSTRACT_USER = {
   ...DEFAULT_USER_PROPS,
+  // Static value for tests: the real schema generates this per document.
+  campaignUserUuid: "00000000-0000-4000-8000-000000000000",
   password: "$3b$13$a5/ctOpbfabYZwHeAupJVKn.LVkhCHzk1qqX51ksy7SZ8GbQupkhU",
   territories: ["93"],
   verified: true,

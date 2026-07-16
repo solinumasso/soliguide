@@ -1,5 +1,7 @@
 import express, { type NextFunction } from "express";
 
+import { captureException } from "@sentry/node";
+
 import { UserStatus, validateUserStatusWithEmail } from "@soliguide/common";
 
 import { emailValidDto, inviteUserDto, signupAfterInvitationDto } from "../dto";
@@ -29,8 +31,8 @@ import { isUserInOrga } from "../controllers/user.controller";
 import {
   sendAcceptedInvitationToMq,
   sendDeteleInvitationToMq,
-  sendNewInvitationToMqAndNext,
-  sendReNewInvitationToMqAndNext,
+  sendNewInvitationToMq,
+  sendReNewInvitationToMq,
   sendWelcomeToMq,
 } from "../middlewares/send-inivitation-event-to-mq.middleware";
 import {
@@ -77,29 +79,61 @@ router.post(
         req.organization
       );
 
-      if (invitation) {
-        req.invitation = invitation;
-        req.updatedUser = req.invitation.user as UserPopulateType;
-        (req.updatedUser.invitations as InvitationPopulate[]) = [
-          ...((req.updatedUser.invitations as InvitationPopulate[]) ?? []),
-          invitation,
-        ];
-      } else {
+      if (!invitation) {
         throw new Error("INVITATION WASN'T CREATED");
       }
+
+      // Defensive guard: the invitation must carry a populated user. If it is
+      // missing (e.g. populate failing to resolve a reference), fail explicitly
+      // instead of crashing later with an opaque "Cannot read/set properties
+      // of null" while dereferencing req.updatedUser.
+      const invitedUser = invitation.user as UserPopulateType | null;
+      if (!invitedUser) {
+        throw new Error(
+          `Invitation ${invitation._id} was created without a populated user`
+        );
+      }
+
+      req.invitation = invitation;
+      req.updatedUser = invitedUser;
+      (req.updatedUser.invitations as InvitationPopulate[]) = [
+        ...((req.updatedUser.invitations as InvitationPopulate[]) ?? []),
+        invitation,
+      ];
+
       return next();
     } catch (e) {
+      // Capture the real error in Sentry: the client only receives the generic
+      // CREATE_INVITATION_FAIL message, so without this the root cause is lost.
+      captureException(e, {
+        extra: {
+          mail: userData?.mail,
+          organizationId: req.organization?._id,
+        },
+      });
       req.log.error(e, "CREATE_INVITATION_FAIL");
       return res.status(500).json({ message: "CREATE_INVITATION_FAIL" });
     }
   },
-  sendNewInvitationToMqAndNext,
   (
     req: ExpressRequest & {
       invitation: InvitationPopulate;
     },
     res: ExpressResponse
   ) => {
+    // The invitation is already committed. Publish the notification events
+    // without blocking the HTTP response: a publish that hangs (unreachable
+    // broker) must never turn the request into a gateway 504. Any publish
+    // failure is surfaced to Sentry so the missed notification is not silent.
+    sendNewInvitationToMq(req).catch((e) => {
+      req.log.error(e, "Failed to send new invitation to MQ");
+      captureException(e, {
+        extra: {
+          invitationId: req.invitation?._id,
+          organizationId: req.organization?._id,
+        },
+      });
+    });
     sendUserChangesToMq(req).catch((e) =>
       req.log.error(e, "Failed to send user changes to MQ")
     );
@@ -123,20 +157,25 @@ router.delete(
     req: ExpressRequest & {
       invitation: InvitationPopulate;
     },
-    res: ExpressResponse,
-    next: NextFunction
+    res: ExpressResponse
   ) => {
     try {
       await deleteInvitation(req.invitation);
-      res.status(200).json({ message: "OK" });
-
-      return next();
+      // Publish without blocking the response; a publish failure (unreachable
+      // broker → timeout) must not become an unhandled rejection, so it is
+      // caught and surfaced to Sentry instead.
+      sendDeteleInvitationToMq(req).catch((e) => {
+        req.log.error(e, "Failed to send delete invitation to MQ");
+        captureException(e, {
+          extra: { invitationId: req.invitation?._id },
+        });
+      });
+      return res.status(200).json({ message: "OK" });
     } catch (e) {
       req.log.error(e, "DELETE_INVITATION_FAIL");
       return res.status(400).json({ message: "DELETE_INVITATION_FAIL" });
     }
-  },
-  sendDeteleInvitationToMq
+  }
 );
 
 /**
@@ -273,12 +312,24 @@ router.get(
   canEditOrga,
   getInvitationFromUrl,
   canManageInvitation,
-  sendReNewInvitationToMqAndNext,
-  (_req: ExpressRequest, res: ExpressResponse, next: NextFunction) => {
-    res.status(200).json({ message: "RESEND_DONE" });
-    return next();
-  },
-  captureReSendInvitation
+  (
+    req: ExpressRequest & { invitation: InvitationPopulate },
+    res: ExpressResponse
+  ) => {
+    // Publish without blocking the response (see POST "/" above); a stuck
+    // broker must not turn a resend into a 504. Failures go to Sentry.
+    sendReNewInvitationToMq(req).catch((e) => {
+      req.log.error(e, "Failed to resend invitation to MQ");
+      captureException(e, {
+        extra: {
+          invitationId: req.invitation?._id,
+          organizationId: req.organization?._id,
+        },
+      });
+    });
+    captureReSendInvitation(req);
+    return res.status(200).json({ message: "RESEND_DONE" });
+  }
 );
 
 /**

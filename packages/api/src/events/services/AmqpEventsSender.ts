@@ -11,6 +11,12 @@ import { CONFIG } from "../../_models/config";
 import { Exchange } from "../enums";
 import { AmqpEvent } from "../interfaces";
 
+// A publish that never settles (broker unreachable → amqp-connection-manager
+// buffers the message indefinitely) would leave the caller awaiting forever and,
+// for an HTTP handler, turn into a gateway 504. Bound every publish so a stuck
+// broker fails fast and visibly instead of hanging.
+const PUBLISH_TIMEOUT_MS = 5000;
+
 export class AmqpEventsSender {
   private connectionManager?: AmqpConnectionManager;
   private channelWrapper?: ChannelWrapper;
@@ -63,9 +69,7 @@ export class AmqpEventsSender {
     if (this.channelWrapper) {
       let retries = 0;
 
-      while (
-        !(await this.channelWrapper.publish(exchange, routingKey, payload))
-      ) {
+      while (!(await this.publishWithTimeout(exchange, routingKey, payload))) {
         if (retries === 3) {
           log.error(
             `AMQP 3 tests, sending failed:\n Exchange\t${exchange}\nroutingKey\t${routingKey}`
@@ -78,6 +82,38 @@ export class AmqpEventsSender {
       log.info("AMQP event sent successfully");
     } else {
       log.warn("AmqpEventSender not configured");
+    }
+  }
+
+  /**
+   * Publishes to the broker but rejects with `AMQP_PUBLISH_TIMEOUT` if the
+   * publish does not settle within `PUBLISH_TIMEOUT_MS`, so a buffered publish
+   * on an unreachable broker can never hang the caller indefinitely.
+   */
+  private async publishWithTimeout<T extends AmqpEvent>(
+    exchange: Exchange,
+    routingKey: string,
+    payload: T
+  ): Promise<boolean> {
+    if (!this.channelWrapper) {
+      return false;
+    }
+
+    let timeoutHandle: ReturnType<typeof setTimeout> | undefined;
+    const timeout = new Promise<never>((_resolve, reject) => {
+      timeoutHandle = setTimeout(
+        () => reject(new Error("AMQP_PUBLISH_TIMEOUT")),
+        PUBLISH_TIMEOUT_MS
+      );
+    });
+
+    try {
+      return await Promise.race([
+        this.channelWrapper.publish(exchange, routingKey, payload),
+        timeout,
+      ]);
+    } finally {
+      clearTimeout(timeoutHandle);
     }
   }
 }

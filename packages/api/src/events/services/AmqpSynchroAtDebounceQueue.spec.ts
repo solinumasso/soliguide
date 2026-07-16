@@ -5,6 +5,9 @@ import type { Logger } from "pino";
 
 const DEBOUNCE_MS = 60_000;
 
+const SYNCHRO_AT_KEY = `${RoutingKey.PLACES}.synchro_at`;
+const SYNCHRO_BREVO_KEY = `${RoutingKey.PLACES}.synchro_brevo`;
+
 const makePayload = (campaignStatus: string) =>
   ({ campaignStatus } as unknown as AmqpSynchroAirtablePlaceEvent);
 
@@ -34,7 +37,7 @@ describe("AmqpSynchroAtDebounceQueue", () => {
     expect(sendToQueue).not.toHaveBeenCalled();
   });
 
-  it("sends the event after 1 minute of inactivity", () => {
+  it("publishes to both synchro_at and synchro_brevo after 1 minute of inactivity", () => {
     const { sendToQueue, log, queue } = makeMocks();
     const payload = makePayload("FINISHED");
 
@@ -42,10 +45,16 @@ describe("AmqpSynchroAtDebounceQueue", () => {
 
     jest.advanceTimersByTime(DEBOUNCE_MS);
 
-    expect(sendToQueue).toHaveBeenCalledTimes(1);
+    expect(sendToQueue).toHaveBeenCalledTimes(2);
     expect(sendToQueue).toHaveBeenCalledWith(
       Exchange.PLACES,
-      `${RoutingKey.PLACES}.synchro_at`,
+      SYNCHRO_AT_KEY,
+      payload,
+      log
+    );
+    expect(sendToQueue).toHaveBeenCalledWith(
+      Exchange.PLACES,
+      SYNCHRO_BREVO_KEY,
       payload,
       log
     );
@@ -65,10 +74,16 @@ describe("AmqpSynchroAtDebounceQueue", () => {
 
     jest.advanceTimersByTime(DEBOUNCE_MS);
 
-    expect(sendToQueue).toHaveBeenCalledTimes(1);
+    expect(sendToQueue).toHaveBeenCalledTimes(2);
     expect(sendToQueue).toHaveBeenCalledWith(
       Exchange.PLACES,
-      `${RoutingKey.PLACES}.synchro_at`,
+      SYNCHRO_AT_KEY,
+      finishedPayload,
+      log
+    );
+    expect(sendToQueue).toHaveBeenCalledWith(
+      Exchange.PLACES,
+      SYNCHRO_BREVO_KEY,
       finishedPayload,
       log
     );
@@ -89,10 +104,16 @@ describe("AmqpSynchroAtDebounceQueue", () => {
     expect(sendToQueue).not.toHaveBeenCalled();
 
     jest.advanceTimersByTime(1);
-    expect(sendToQueue).toHaveBeenCalledTimes(1);
+    expect(sendToQueue).toHaveBeenCalledTimes(2);
     expect(sendToQueue).toHaveBeenCalledWith(
       Exchange.PLACES,
-      `${RoutingKey.PLACES}.synchro_at`,
+      SYNCHRO_AT_KEY,
+      finishedPayload,
+      log
+    );
+    expect(sendToQueue).toHaveBeenCalledWith(
+      Exchange.PLACES,
+      SYNCHRO_BREVO_KEY,
       finishedPayload,
       log
     );
@@ -108,33 +129,52 @@ describe("AmqpSynchroAtDebounceQueue", () => {
 
     jest.advanceTimersByTime(DEBOUNCE_MS);
 
-    expect(sendToQueue).toHaveBeenCalledTimes(2);
+    // 2 lieu_ids × 2 routing keys
+    expect(sendToQueue).toHaveBeenCalledTimes(4);
     expect(sendToQueue).toHaveBeenCalledWith(
       Exchange.PLACES,
-      `${RoutingKey.PLACES}.synchro_at`,
+      SYNCHRO_AT_KEY,
       payload1,
       log
     );
     expect(sendToQueue).toHaveBeenCalledWith(
       Exchange.PLACES,
-      `${RoutingKey.PLACES}.synchro_at`,
+      SYNCHRO_BREVO_KEY,
+      payload1,
+      log
+    );
+    expect(sendToQueue).toHaveBeenCalledWith(
+      Exchange.PLACES,
+      SYNCHRO_AT_KEY,
+      payload2,
+      log
+    );
+    expect(sendToQueue).toHaveBeenCalledWith(
+      Exchange.PLACES,
+      SYNCHRO_BREVO_KEY,
       payload2,
       log
     );
   });
 
-  it("logs the error and does not throw when sendToQueue rejects", async () => {
+  it("logs the error for the failing key without preventing the other publish", async () => {
     const { sendToQueue, log, queue } = makeMocks();
     const error = new Error("AMQP connection lost");
+    // Only the first publish (synchro_at) fails; synchro_brevo still resolves.
     sendToQueue.mockRejectedValueOnce(error);
 
     queue.enqueue(1, makePayload("FINISHED"), log);
 
-    jest.advanceTimersByTime(DEBOUNCE_MS);
+    // The async variant fires the debounce timer AND drains the microtasks of
+    // the allSettled().then() chain, so the error handler has run by the time
+    // we assert.
+    await jest.advanceTimersByTimeAsync(DEBOUNCE_MS);
 
-    // Let the rejected promise settle through the .catch()
-    await Promise.resolve();
-
-    expect(log.error).toHaveBeenCalledWith(error, "SYNCHRO_AT_SEND_FAILED");
+    expect(sendToQueue).toHaveBeenCalledTimes(2);
+    expect(log.error).toHaveBeenCalledWith(
+      error,
+      `SYNCHRO_SEND_FAILED - ${SYNCHRO_AT_KEY}`
+    );
+    expect(log.error).toHaveBeenCalledTimes(1);
   });
 });
