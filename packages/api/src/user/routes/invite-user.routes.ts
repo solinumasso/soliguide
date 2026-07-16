@@ -157,20 +157,25 @@ router.delete(
     req: ExpressRequest & {
       invitation: InvitationPopulate;
     },
-    res: ExpressResponse,
-    next: NextFunction
+    res: ExpressResponse
   ) => {
     try {
       await deleteInvitation(req.invitation);
-      res.status(200).json({ message: "OK" });
-
-      return next();
+      // Publish without blocking the response; a publish failure (unreachable
+      // broker → timeout) must not become an unhandled rejection, so it is
+      // caught and surfaced to Sentry instead.
+      sendDeteleInvitationToMq(req).catch((e) => {
+        req.log.error(e, "Failed to send delete invitation to MQ");
+        captureException(e, {
+          extra: { invitationId: req.invitation?._id },
+        });
+      });
+      return res.status(200).json({ message: "OK" });
     } catch (e) {
       req.log.error(e, "DELETE_INVITATION_FAIL");
       return res.status(400).json({ message: "DELETE_INVITATION_FAIL" });
     }
-  },
-  sendDeteleInvitationToMq
+  }
 );
 
 /**
