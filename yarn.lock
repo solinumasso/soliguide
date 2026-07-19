@@ -260,6 +260,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@angular-devkit/architect@npm:0.2200.7":
+  version: 0.2200.7
+  resolution: "@angular-devkit/architect@npm:0.2200.7"
+  dependencies:
+    "@angular-devkit/core": "npm:22.0.7"
+    rxjs: "npm:7.8.2"
+  bin:
+    architect: bin/cli.js
+  checksum: 10/1ac5dfc1605c89820e03d963446cfa483b2292c09857505c24b50a1971243747795bcab13bf274634f6523c965fe461b68969a7a36801767aa14d8f11bd1940a
+  languageName: node
+  linkType: hard
+
 "@angular-devkit/build-angular@npm:^17.3.17":
   version: 17.3.17
   resolution: "@angular-devkit/build-angular@npm:17.3.17"
@@ -475,6 +487,25 @@ __metadata:
     chokidar:
       optional: true
   checksum: 10/d56ecde9ca344a96bbc0a132cf18df0a5f952e8d6e40211f107f7ba5f7b54832f874770ed0c8852b1bc3cd409a51a97cf8a8d21642440f50542aab9bf88d2d16
+  languageName: node
+  linkType: hard
+
+"@angular-devkit/core@npm:22.0.7":
+  version: 22.0.7
+  resolution: "@angular-devkit/core@npm:22.0.7"
+  dependencies:
+    ajv: "npm:8.20.0"
+    ajv-formats: "npm:3.0.1"
+    jsonc-parser: "npm:3.3.1"
+    picomatch: "npm:4.0.4"
+    rxjs: "npm:7.8.2"
+    source-map: "npm:0.7.6"
+  peerDependencies:
+    chokidar: ^5.0.0
+  peerDependenciesMeta:
+    chokidar:
+      optional: true
+  checksum: 10/8cdbaecd210c40e7b4196ed7fd59b5520af7710e4d21d9f97c8fc7d8ed72fe49eae913946fb4b3caf96d5f7b0f59f7dd86262a5655e64f91f874ebc4a96e3fb1
   languageName: node
   linkType: hard
 
@@ -7837,10 +7868,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@posthog/core@npm:^1.43.1":
+  version: 1.43.1
+  resolution: "@posthog/core@npm:1.43.1"
+  dependencies:
+    "@posthog/types": "npm:^1.396.0"
+  checksum: 10/709cf4e360093bc950f81408c06be0bcbc2e766b6b8fa8aa65e9a50b6dc26c16c5c212e19549251901a057a91b5745005ee1f1caec87f524dfe369f96f553569
+  languageName: node
+  linkType: hard
+
 "@posthog/types@npm:1.341.0":
   version: 1.341.0
   resolution: "@posthog/types@npm:1.341.0"
   checksum: 10/fdf01250ae36eeab26e041216fa5bbd9033d003b7497d515f0175e00872f03b3e4a8e9c2682de4c0afbab13a71b402fcf66ba4401ab845da1deaea4a5ced41de
+  languageName: node
+  linkType: hard
+
+"@posthog/types@npm:^1.396.0, @posthog/types@npm:^1.397.0":
+  version: 1.397.0
+  resolution: "@posthog/types@npm:1.397.0"
+  checksum: 10/48b125e695262856dab4277866988578db4681aa8f278625038fb5ec5c55a88b965c7f03464ab9966de159d8ebed3996ca6f80500863915a20f2d4a690a5bc5a
   languageName: node
   linkType: hard
 
@@ -9997,7 +10044,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soliguide/common-angular@workspace:packages/common-angular"
   dependencies:
-    "@angular-devkit/architect": "npm:0.1802.1"
+    "@angular-devkit/architect": "npm:0.2200.7"
     "@angular-devkit/build-angular": "npm:^17.3.17"
     "@angular-eslint/builder": "npm:^17.5.3"
     "@angular-eslint/eslint-plugin": "npm:^17.5.3"
@@ -10025,14 +10072,14 @@ __metadata:
     lint-staged: "npm:^15.5.1"
     ng-lint-staged: "npm:^12.0.4"
     ng-packagr: "npm:^17.3.0"
-    posthog-js: "npm:1.341.0"
+    posthog-js: "npm:1.404.1"
     prettier: "npm:^2.8.8"
     rxjs: "npm:^7.8.2"
     ts-jest: "npm:^29.3.2"
     ts-node: "npm:^10.9.2"
     tslib: "npm:^2.6.3"
-    typescript: "npm:~5.4.5"
-    zone.js: "npm:~0.14.10"
+    typescript: "npm:~5.9.0"
+    zone.js: "npm:~0.16.0"
   peerDependencies:
     "@angular/common": ^17.3.12
     "@angular/compiler": ^17.3.12
@@ -10041,9 +10088,9 @@ __metadata:
     "@angular/platform-browser-dynamic": ^17.3.12
     "@angular/router": ^17.3.12
     "@soliguide/common": "workspace:*"
-    posthog-js: 1.341.0
+    posthog-js: 1.404.1
     rxjs: ^7.8.1
-    zone.js: ~0.14.7
+    zone.js: ~0.16.0
   languageName: unknown
   linkType: soft
 
@@ -12804,6 +12851,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ajv@npm:8.20.0":
+  version: 8.20.0
+  resolution: "ajv@npm:8.20.0"
+  dependencies:
+    fast-deep-equal: "npm:^3.1.3"
+    fast-uri: "npm:^3.0.1"
+    json-schema-traverse: "npm:^1.0.0"
+    require-from-string: "npm:^2.0.2"
+  checksum: 10/5ce59c0537f4c2aca9a758b412659ec70acb4d5dde971c10ecf21d2e3d799f99acdb4a08e1f5fb2e067c8542930398aae793bb996bb07d3feb81dae22fe2ada9
+  languageName: node
+  linkType: hard
+
 "algoliasearch@npm:^5.49.1":
   version: 5.49.1
   resolution: "algoliasearch@npm:5.49.1"
@@ -15263,6 +15322,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"core-js@npm:^3.49.0":
+  version: 3.49.0
+  resolution: "core-js@npm:3.49.0"
+  checksum: 10/31d018f9830b0240ae40869e380595f2d06a8800709ad63299a42a438ba0c8d5805045fa02a20a78f42761d83103b0b71eca982955f5e890fb7cf6b2fe6a9ab1
+  languageName: node
+  linkType: hard
+
 "core-util-is@npm:1.0.2":
   version: 1.0.2
   resolution: "core-util-is@npm:1.0.2"
@@ -16119,6 +16185,18 @@ __metadata:
     "@types/trusted-types":
       optional: true
   checksum: 10/3ca02559677ce6d9583a500f21ffbb6b9e88f1af99f69fa0d0d9442cddbac98810588c869f8b435addb5115492d6e49870024bca322169b941bafedb99c7f281
+  languageName: node
+  linkType: hard
+
+"dompurify@npm:^3.3.2":
+  version: 3.4.12
+  resolution: "dompurify@npm:3.4.12"
+  dependencies:
+    "@types/trusted-types": "npm:^2.0.7"
+  dependenciesMeta:
+    "@types/trusted-types":
+      optional: true
+  checksum: 10/f826b68920887eb75115a162facb42380d1c3fac441548217b30068c9fadeed14f63fa1f7a1d2ab6f63613e5a0f897aa245c9224d4abf7939cd8ae58c04646af
   languageName: node
   linkType: hard
 
@@ -26175,6 +26253,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"picomatch@npm:4.0.4":
+  version: 4.0.4
+  resolution: "picomatch@npm:4.0.4"
+  checksum: 10/f6ef80a3590827ce20378ae110ac78209cc4f74d39236370f1780f957b7ee41c12acde0e4651b90f39983506fd2f5e449994716f516db2e9752924aff8de93ce
+  languageName: node
+  linkType: hard
+
 "picomatch@npm:^2.0.4, picomatch@npm:^2.2.1, picomatch@npm:^2.2.3, picomatch@npm:^2.3.1":
   version: 2.3.1
   resolution: "picomatch@npm:2.3.1"
@@ -26668,7 +26753,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"posthog-js@npm:1.341.0, posthog-js@npm:^1.341.0":
+"posthog-js@npm:1.404.1":
+  version: 1.404.1
+  resolution: "posthog-js@npm:1.404.1"
+  dependencies:
+    "@posthog/core": "npm:^1.43.1"
+    "@posthog/types": "npm:^1.397.0"
+    core-js: "npm:^3.49.0"
+    dompurify: "npm:^3.3.2"
+    fflate: "npm:^0.4.8"
+    preact: "npm:^10.29.3"
+    query-selector-shadow-dom: "npm:^1.0.1"
+    web-vitals: "npm:^5.3.0"
+  checksum: 10/8a987d672265917f181c6079ae7ad07258e1c7a9763d64c4190c0f4cb7fbbce64e20f45f4d804656d3425161bc3b7d19c4069b0a7639f9aefd2807561de49f6e
+  languageName: node
+  linkType: hard
+
+"posthog-js@npm:^1.341.0":
   version: 1.341.0
   resolution: "posthog-js@npm:1.341.0"
   dependencies:
@@ -26702,6 +26803,18 @@ __metadata:
   version: 10.28.3
   resolution: "preact@npm:10.28.3"
   checksum: 10/b89c328f7ea13976dc2849962141fb4268afbbb364fa2f0a235788c2dba2a32786db43531fec5b64960917a078e4b78bd88967f13120df350573a619c8286f86
+  languageName: node
+  linkType: hard
+
+"preact@npm:^10.29.3":
+  version: 10.29.7
+  resolution: "preact@npm:10.29.7"
+  peerDependencies:
+    preact-render-to-string: ">=5"
+  peerDependenciesMeta:
+    preact-render-to-string:
+      optional: true
+  checksum: 10/df5cfe53e429253f0bbda316ba851584f5e6d7b5f6c674ccbc4d428025cc3cf42380bbfea3d214a5829c22acb7218b004656eb019c96da7b83284f313de00290
   languageName: node
   linkType: hard
 
@@ -28970,6 +29083,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"source-map@npm:0.7.6":
+  version: 0.7.6
+  resolution: "source-map@npm:0.7.6"
+  checksum: 10/c8d2da7c57c14f3fd7568f764b39ad49bbf9dd7632b86df3542b31fed117d4af2fb74a4f886fc06baf7a510fee68e37998efc3080aacdac951c36211dc29a7a3
+  languageName: node
+  linkType: hard
+
 "sourcemap-codec@npm:^1.4.4":
   version: 1.4.8
   resolution: "sourcemap-codec@npm:1.4.8"
@@ -31036,7 +31156,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:5.9.3, typescript@npm:>=3 < 6, typescript@npm:^5.0.0, typescript@npm:^5.0.3, typescript@npm:^5.4.5":
+"typescript@npm:5.9.3, typescript@npm:>=3 < 6, typescript@npm:^5.0.0, typescript@npm:^5.0.3, typescript@npm:^5.4.5, typescript@npm:~5.9.0":
   version: 5.9.3
   resolution: "typescript@npm:5.9.3"
   bin:
@@ -31066,7 +31186,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A5.9.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A>=3 < 6#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.0.0#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.0.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.4.5#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A5.9.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A>=3 < 6#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.0.0#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.0.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.4.5#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A~5.9.0#optional!builtin<compat/typescript>":
   version: 5.9.3
   resolution: "typescript@patch:typescript@npm%3A5.9.3#optional!builtin<compat/typescript>::version=5.9.3&hash=5786d5"
   bin:
@@ -31809,6 +31929,13 @@ __metadata:
   version: 5.1.0
   resolution: "web-vitals@npm:5.1.0"
   checksum: 10/3b99e3e5e031257387f59f5e71f84d873b259bc09d560993fff1d0c84e0196a509712bc974666c47f51561f8bb8297ff1c1fdf18d4ebde2345a1cd06dba36021
+  languageName: node
+  linkType: hard
+
+"web-vitals@npm:^5.3.0":
+  version: 5.3.0
+  resolution: "web-vitals@npm:5.3.0"
+  checksum: 10/55ee66971bf18fa067ba2c29a441a3a5a91ad3e0c419c0867f5a993a2e97d57e5a8a3caf5cf3d9ae89756a65c513ed0a448e501eb7f36912f602febfb7ef268d
   languageName: node
   linkType: hard
 
@@ -32786,5 +32913,12 @@ __metadata:
   version: 0.14.10
   resolution: "zone.js@npm:0.14.10"
   checksum: 10/a7bed2f9a7ce67ba4e70b03b7e59dc955e4d2d738570950c4a0e16fafb5c23c47d0c6ece84f6e871a0f77d81c26a051da566d09738ebfdab297f54b862ae0b5d
+  languageName: node
+  linkType: hard
+
+"zone.js@npm:~0.16.0":
+  version: 0.16.2
+  resolution: "zone.js@npm:0.16.2"
+  checksum: 10/3b8bf9b5379f6590a7f814f477549bf67bc39c1b61445474893e178884014cc9b29b3624c19f30ed6ad954510da50b5b448506a196701610606bafa5a6d3ff98
   languageName: node
   linkType: hard
