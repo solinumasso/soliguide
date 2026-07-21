@@ -561,31 +561,6 @@
             {{ "MY_ACCOUNT" | translate }}
           </button>
           <div ngbDropdownMenu aria-label="Menu de navigation du site">
-            <ng-container *ngIf="isAdmin && campaignIsActive">
-              <a
-                [routerLink]="[routePrefix, 'manage-emails', 'templates']"
-                (click)="
-                  captureEvent(
-                    'click-my-account-menu-update-campaign-email-templates'
-                  )
-                "
-                ngbDropdownItem
-              >
-                {{ "EDIT_EMAILS" | translate }}
-              </a>
-              <a
-                [routerLink]="[routePrefix, 'manage-emails', 'search']"
-                (click)="
-                  captureEvent(
-                    'click-my-account-menu-manage-update-campaign-email'
-                  )
-                "
-                ngbDropdownItem
-              >
-                {{ "TRACK_SENT_EMAILS" | translate }}
-              </a>
-            </ng-container>
-
             <a
               href="{{ praticalFilesLink }}/{{
                 LANGUAGE_FOR_PRACTICAL_FILES[currentLang]
