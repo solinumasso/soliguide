@@ -21,7 +21,7 @@
  *   ... brevo:sync-all -- --dry-run  # compte sans publier (aucune écriture)
  */
 
-import { ApiPlace } from "@soliguide/common";
+import { ApiPlace, PlaceStatus } from "@soliguide/common";
 import mongoose from "mongoose";
 
 import { connectToDatabase } from "../../config/database/connection";
@@ -52,6 +52,39 @@ const THROTTLE_DELAY_MS = parseIntEnv(process.env.SYNC_THROTTLE_DELAY_MS, 1000);
 
 const PLACES_ROUTING_KEY = `${RoutingKey.PLACES}.synchro_brevo_all`;
 const USERS_ROUTING_KEY = `${RoutingKey.USERS}.synchro_brevo_all`;
+
+/**
+ * Périmètre des places à synchroniser vers Brevo.
+ *
+ * Le workflow n8n `Sync Brevo - All Places` ne traite que les places `ONLINE`
+ * ou `OFFLINE` (node `Is place to sync?`) ; les brouillons (`DRAFT`) et les
+ * fiches définitivement fermées (`PERMANENTLY_CLOSED`) sont ignorés. On aligne
+ * le backfill pour ne pas injecter dans la queue des messages que le workflow
+ * jetterait de toute façon.
+ */
+const PLACES_SYNC_FILTER: mongoose.FilterQuery<ApiPlace> = {
+  status: { $in: [PlaceStatus.ONLINE, PlaceStatus.OFFLINE] },
+};
+
+/**
+ * Périmètre des users à synchroniser vers Brevo.
+ *
+ * Le workflow n8n `Sync Brevo - Users` ne sait traiter que deux profils :
+ * les traducteurs (branche « sync simplifié ») et les users disposant d'une
+ * zone opérationnelle FR/ES/AD. Son node `Adapt data to brevo1` lève une
+ * erreur pour tout autre user (pas de liste Brevo associée au pays). On aligne
+ * donc le backfill sur ce contrat pour ne pas noyer n8n d'exécutions en échec.
+ *
+ * `areas` est indexé par code pays en minuscules (`fr`/`es`/`ad`).
+ */
+const USERS_SYNC_FILTER: mongoose.FilterQuery<User> = {
+  $or: [
+    { translator: true },
+    { "areas.fr": { $exists: true } },
+    { "areas.es": { $exists: true } },
+    { "areas.ad": { $exists: true } },
+  ],
+};
 
 type SyncTarget = "places" | "users" | "all";
 
@@ -98,7 +131,7 @@ async function syncAllPlaces(dryRun: boolean): Promise<void> {
   logger.info("BREVO SYNC - PLACES\tSTART");
 
   if (dryRun) {
-    const total = await PlaceModel.estimatedDocumentCount();
+    const total = await PlaceModel.countDocuments(PLACES_SYNC_FILTER);
     logger.info(`BREVO SYNC - PLACES\tDRY-RUN - ${total} place(s) would be sent`);
     return;
   }
@@ -108,7 +141,9 @@ async function syncAllPlaces(dryRun: boolean): Promise<void> {
 
   // eslint-disable-next-line no-constant-condition
   while (true) {
-    const paginatedFilter = lastId ? { _id: { $gt: lastId } } : {};
+    const paginatedFilter: mongoose.FilterQuery<ApiPlace> = lastId
+      ? { ...PLACES_SYNC_FILTER, _id: { $gt: lastId } }
+      : PLACES_SYNC_FILTER;
 
     const places: ModelWithId<ApiPlace>[] = await PlaceModel.find<
       ModelWithId<ApiPlace>
@@ -161,7 +196,7 @@ async function syncAllUsers(dryRun: boolean): Promise<void> {
   logger.info("BREVO SYNC - USERS\tSTART");
 
   if (dryRun) {
-    const total = await UserModel.estimatedDocumentCount();
+    const total = await UserModel.countDocuments(USERS_SYNC_FILTER);
     logger.info(`BREVO SYNC - USERS\tDRY-RUN - ${total} user(s) would be sent`);
     return;
   }
@@ -172,8 +207,8 @@ async function syncAllUsers(dryRun: boolean): Promise<void> {
   // eslint-disable-next-line no-constant-condition
   while (true) {
     const paginatedFilter: mongoose.FilterQuery<User> = lastId
-      ? { _id: { $gt: lastId } }
-      : {};
+      ? { ...USERS_SYNC_FILTER, _id: { $gt: lastId } }
+      : USERS_SYNC_FILTER;
 
     // `+campaignUserUuid` : champ `select: false` requis par le payload Brevo.
     // Sans lui, `buildUserSynchroEvent` régénérerait un uuid en mémoire et
