@@ -28,7 +28,9 @@ import { connectToDatabase } from "../../config/database/connection";
 import { CONFIG, ModelWithId, User, UserPopulateType } from "../../_models";
 import {
   AmqpSynchroAirtablePlaceEvent,
+  AmqpSynchroAirtableUserEvent,
   AmqpSynchroPlaceBatchEvent,
+  AmqpSynchroUserBatchEvent,
   amqpEventsSender,
   Exchange,
   RoutingKey,
@@ -56,6 +58,12 @@ const THROTTLE_DELAY_MS = parseIntEnv(process.env.SYNC_THROTTLE_DELAY_MS, 2000);
  * de l'endpoint objects. Borné pour respecter la taille de body max (1 Mo).
  */
 const PLACES_BATCH_SIZE = parseIntEnv(process.env.SYNC_PLACES_BATCH_SIZE, 100);
+/**
+ * Nombre de users regroupés par message. Même logique que pour les places :
+ * réduit le nombre d'appels côté n8n (upsert contacts en batch + regroupement
+ * des liaisons contact -> places sur l'endpoint objects, qui est le goulot).
+ */
+const USERS_BATCH_SIZE = parseIntEnv(process.env.SYNC_USERS_BATCH_SIZE, 100);
 
 const PLACES_ROUTING_KEY = `${RoutingKey.PLACES}.synchro_brevo_all`;
 const USERS_ROUTING_KEY = `${RoutingKey.USERS}.synchro_brevo_all`;
@@ -228,12 +236,36 @@ async function syncAllUsers(dryRun: boolean): Promise<void> {
 
   if (dryRun) {
     const total = await UserModel.countDocuments(USERS_SYNC_FILTER);
-    logger.info(`BREVO SYNC - USERS\tDRY-RUN - ${total} user(s) would be sent`);
+    const messages = Math.ceil(total / USERS_BATCH_SIZE);
+    logger.info(
+      `BREVO SYNC - USERS\tDRY-RUN - ${total} user(s) in ${messages} message(s) of up to ${USERS_BATCH_SIZE}`
+    );
     return;
   }
 
   let lastId: mongoose.Types.ObjectId | null = null;
   let totalSent = 0;
+  let messagesSent = 0;
+  // Users accumulés en attente de publication (un message = un lot).
+  let batch: AmqpSynchroAirtableUserEvent[] = [];
+
+  // Publie le lot courant comme un seul message puis le vide.
+  const flushBatch = async (): Promise<void> => {
+    if (batch.length === 0) {
+      return;
+    }
+
+    await amqpEventsSender.sendToQueue(
+      Exchange.USERS,
+      USERS_ROUTING_KEY,
+      new AmqpSynchroUserBatchEvent(batch)
+    );
+
+    messagesSent++;
+    totalSent += batch.length;
+    batch = [];
+    await throttle(messagesSent);
+  };
 
   // eslint-disable-next-line no-constant-condition
   while (true) {
@@ -268,27 +300,29 @@ async function syncAllUsers(dryRun: boolean): Promise<void> {
     for (const user of users) {
       try {
         const { theme, frontendUrl } = getThemeAndUrlFromUser(user);
-        const payload = await buildUserSynchroEvent(user, frontendUrl, theme);
+        batch.push(await buildUserSynchroEvent(user, frontendUrl, theme));
 
-        await amqpEventsSender.sendToQueue(
-          Exchange.USERS,
-          USERS_ROUTING_KEY,
-          payload
-        );
-
-        totalSent++;
-        await throttle(totalSent);
+        if (batch.length >= USERS_BATCH_SIZE) {
+          await flushBatch();
+        }
       } catch (err) {
         logger.error(
-          `BREVO SYNC - USERS\tfailed to send user ${user.user_id} (_id: ${user._id}): ${err}`
+          `BREVO SYNC - USERS\tfailed to prepare user ${user.user_id} (_id: ${user._id}): ${err}`
         );
       }
     }
 
-    logger.info(`BREVO SYNC - USERS\t${totalSent} user(s) sent so far`);
+    logger.info(
+      `BREVO SYNC - USERS\t${totalSent} user(s) sent in ${messagesSent} message(s) so far`
+    );
   }
 
-  logger.info(`BREVO SYNC - USERS\tEND - ${totalSent} user(s) sent`);
+  // Publie le dernier lot partiel.
+  await flushBatch();
+
+  logger.info(
+    `BREVO SYNC - USERS\tEND - ${totalSent} user(s) sent in ${messagesSent} message(s)`
+  );
 }
 
 // ---------------------------------------------------------------------------
