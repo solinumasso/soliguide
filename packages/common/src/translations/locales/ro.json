@@ -850,7 +850,7 @@
   "EXPORT_DATA": "Exportați date (Excel, Word, pdf, csv)",
   "EXPORT_IN_PROGRESS": "Export în curs (vă rugăm să așteptați)…",
   "EXPORT_SOLIGUIDE_PLACES": "Exportați fișierele {{ brandName }} în CSV, PDF, Word și Excel",
-  "EXTERNAL_SOURCE_CAMPAIGN_BANNER": "Actualizarea sezonieră nu a fost încă efectuată. Se recomandă să sunați înainte de a vă deplasa.",
+  "EXTERNAL_SOURCE_CAMPAIGN_BANNER": "Atenție, este posibil să aibă loc modificări ale orarului în această perioadă. Este recomandabil să sunați înainte de a vă deplasa.",
   "FACEBOOK": "Facebook",
   "FACEBOOK_PAGE": "pagina de Facebook",
   "FACULTATIVE": " (opțional)",
