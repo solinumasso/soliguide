@@ -5,6 +5,7 @@ export * from "./AmqpOrganization.class";
 export * from "./AmqpSynchroAirtablePlaceEvent.class";
 export * from "./AmqpSynchroAirtableUserEvent.class";
 export * from "./AmqpSynchroPlaceBatchEvent.class";
+export * from "./AmqpSynchroUserBatchEvent.class";
 export * from "./AmqpPlaceChangesEvent.class";
 export * from "./AmqpUser.class";
 export * from "./AmqpUserEvent.class";
