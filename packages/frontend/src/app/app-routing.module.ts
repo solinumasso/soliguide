@@ -63,10 +63,6 @@ export const routes: Routes = [
     redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/fiche`,
   },
   {
-    path: "manage-emails",
-    redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/manage-emails`,
-  },
-  {
     path: "admin-users",
     redirectTo: `${THEME_CONFIGURATION.defaultLanguage}/admin-users`,
   },
