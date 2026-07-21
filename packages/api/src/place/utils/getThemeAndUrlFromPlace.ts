@@ -1,17 +1,7 @@
-import {
-  type ApiPlace,
-  CountryCodes,
-  getPosition,
-  Themes,
-} from "@soliguide/common";
+import { type ApiPlace, getPosition, Themes } from "@soliguide/common";
 
+import { COUNTRY_TO_THEME } from "../../_models/config/constants/domains/COUNTRY_TO_THEME.const";
 import { FRONT_URLS_MAPPINGS } from "../../_models/config/constants/domains/THEMES_MAPPING.const";
-
-const COUNTRY_TO_THEME: Record<string, Themes> = {
-  [CountryCodes.FR]: Themes.SOLIGUIDE_FR,
-  [CountryCodes.ES]: Themes.SOLIGUIA_ES,
-  [CountryCodes.AD]: Themes.SOLIGUIA_AD,
-};
 
 /**
  * @summary Derives the frontend theme and URL from a place's country.

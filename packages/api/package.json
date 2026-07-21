@@ -8,6 +8,9 @@
   "scripts": {
     "build": "yarn prebuild && tsc -p tsconfig.build.json && yarn postbuild",
     "brevo:campaign-user-update": "tsx src/analytics/scripts/brevo-campaign-user-update.ts",
+    "brevo:sync-all": "tsx src/analytics/scripts/sync-all-to-brevo.ts",
+    "brevo:sync-all-places": "tsx src/analytics/scripts/sync-all-to-brevo.ts places",
+    "brevo:sync-all-users": "tsx src/analytics/scripts/sync-all-to-brevo.ts users",
     "categories:analyze": "tsx src/search-suggestions/scripts/sync-categories.ts analyze",
     "categories:sync": "tsx src/search-suggestions/scripts/sync-categories.ts sync",
     "categories:cleanup": "tsx src/search-suggestions/scripts/sync-categories.ts cleanup",
