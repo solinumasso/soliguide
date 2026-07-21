@@ -46,9 +46,9 @@ import { getThemeAndUrlFromUser } from "../../user/utils";
 /** Taille des pages Mongo (keyset pagination sur `_id`). */
 const BATCH_SIZE = parseIntEnv(process.env.SYNC_BATCH_SIZE, 5000);
 /** Nombre de publications avant une pause, pour lisser le débit vers RabbitMQ. */
-const THROTTLE_BATCH_SIZE = parseIntEnv(process.env.SYNC_THROTTLE_BATCH_SIZE, 50);
+const THROTTLE_BATCH_SIZE = parseIntEnv(process.env.SYNC_THROTTLE_BATCH_SIZE, 25);
 /** Durée de la pause entre deux rafales de publication. */
-const THROTTLE_DELAY_MS = parseIntEnv(process.env.SYNC_THROTTLE_DELAY_MS, 1000);
+const THROTTLE_DELAY_MS = parseIntEnv(process.env.SYNC_THROTTLE_DELAY_MS, 2000);
 
 const PLACES_ROUTING_KEY = `${RoutingKey.PLACES}.synchro_brevo_all`;
 const USERS_ROUTING_KEY = `${RoutingKey.USERS}.synchro_brevo_all`;
