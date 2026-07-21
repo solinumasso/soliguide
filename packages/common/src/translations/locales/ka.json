@@ -850,7 +850,7 @@
   "EXPORT_DATA": "მონაცემების ექსპორტი (Excel, word, pdf, csv)",
   "EXPORT_IN_PROGRESS": "ექსპორტი მიმდინარეობს (გთხოვთ დაელოდოთ)…",
   "EXPORT_SOLIGUIDE_PLACES": "{{ brandName }} ფაილების ექსპორტი CSV, PDF, Word და Excel-ში",
-  "EXTERNAL_SOURCE_CAMPAIGN_BANNER": "სეზონური განახლება ჯერ არ განხორციელებულა. სასურველია მგზავრობამდე დარეკოთ.",
+  "EXTERNAL_SOURCE_CAMPAIGN_BANNER": "გაითვალისწინეთ, ამ პერიოდში სამუშაო საათებში ცვლილებები შესაძლებელია. მოგზაურობამდე რეკომენდირებულია დარეკვა.",
   "FACEBOOK": "ფეისბუქი",
   "FACEBOOK_PAGE": "ფეისბუქის გვერდი",
   "FACULTATIVE": " (არასავალდებულო)",

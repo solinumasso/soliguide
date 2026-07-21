@@ -850,7 +850,7 @@
   "EXPORT_DATA": "Експорт даних (Excel, Word, pdf, csv)",
   "EXPORT_IN_PROGRESS": "Експорт виконується (будь ласка, зачекайте)…",
   "EXPORT_SOLIGUIDE_PLACES": "Експортуйте файли {{ brandName }} у CSV, PDF, Word і Excel",
-  "EXTERNAL_SOURCE_CAMPAIGN_BANNER": "Сезонне оновлення ще не впроваджено. Бажано зателефонувати перед поїздкою.",
+  "EXTERNAL_SOURCE_CAMPAIGN_BANNER": "Увага, у цей період можуть відбутися зміни графіка роботи. Бажано зателефонувати перед поїздкою.",
   "FACEBOOK": "Facebook",
   "FACEBOOK_PAGE": "сторінка Facebook",
   "FACULTATIVE": " (необов'язково)",

@@ -850,7 +850,7 @@
   "EXPORT_DATA": "Export data (Excel, word, pdf, csv)",
   "EXPORT_IN_PROGRESS": "Export in progress (please wait)…",
   "EXPORT_SOLIGUIDE_PLACES": "Export {{ brandName }} files to CSV, PDF, Word and Excel",
-  "EXTERNAL_SOURCE_CAMPAIGN_BANNER": "The seasonal update has not yet been implemented. It is advisable to call before traveling.",
+  "EXTERNAL_SOURCE_CAMPAIGN_BANNER": "Please note, opening hours may change during this period. It is advisable to call before traveling.",
   "FACEBOOK": "facebook",
   "FACEBOOK_PAGE": "Facebook page",
   "FACULTATIVE": " (optional)",

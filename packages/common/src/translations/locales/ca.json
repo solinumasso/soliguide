@@ -850,7 +850,7 @@
   "EXPORT_DATA": "Exporta dades (Excel, Word, pdf, csv)",
   "EXPORT_IN_PROGRESS": "Exportació en curs (si us plau, espereu)…",
   "EXPORT_SOLIGUIDE_PLACES": "Exporta fitxers {{ brandName }} a csv, pdf, Word i Excel",
-  "EXTERNAL_SOURCE_CAMPAIGN_BANNER": "Encara no s'han revisat els horaris i serveis disponibles durant el proper periode vacacional. Es recomana trucar abans de desplaçar-s'hi.",
+  "EXTERNAL_SOURCE_CAMPAIGN_BANNER": "Atenció, és possible que es produeixin canvis d'horari durant aquest període. Es recomana trucar abans de desplaçar-s'hi.",
   "FACEBOOK": "Facebook",
   "FACEBOOK_PAGE": "Pàgina de Facebook",
   "FACULTATIVE": " (opcional)",
