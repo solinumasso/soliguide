@@ -28,6 +28,7 @@ import { connectToDatabase } from "../../config/database/connection";
 import { CONFIG, ModelWithId, User, UserPopulateType } from "../../_models";
 import {
   AmqpSynchroAirtablePlaceEvent,
+  AmqpSynchroPlaceBatchEvent,
   amqpEventsSender,
   Exchange,
   RoutingKey,
@@ -49,6 +50,12 @@ const BATCH_SIZE = parseIntEnv(process.env.SYNC_BATCH_SIZE, 5000);
 const THROTTLE_BATCH_SIZE = parseIntEnv(process.env.SYNC_THROTTLE_BATCH_SIZE, 25);
 /** Durée de la pause entre deux rafales de publication. */
 const THROTTLE_DELAY_MS = parseIntEnv(process.env.SYNC_THROTTLE_DELAY_MS, 2000);
+/**
+ * Nombre de places regroupées par message (donc par appel `batch/upsert` côté
+ * n8n). Réduit le nombre de requêtes Brevo pour rester sous la limite horaire
+ * de l'endpoint objects. Borné pour respecter la taille de body max (1 Mo).
+ */
+const PLACES_BATCH_SIZE = parseIntEnv(process.env.SYNC_PLACES_BATCH_SIZE, 100);
 
 const PLACES_ROUTING_KEY = `${RoutingKey.PLACES}.synchro_brevo_all`;
 const USERS_ROUTING_KEY = `${RoutingKey.USERS}.synchro_brevo_all`;
@@ -132,12 +139,36 @@ async function syncAllPlaces(dryRun: boolean): Promise<void> {
 
   if (dryRun) {
     const total = await PlaceModel.countDocuments(PLACES_SYNC_FILTER);
-    logger.info(`BREVO SYNC - PLACES\tDRY-RUN - ${total} place(s) would be sent`);
+    const messages = Math.ceil(total / PLACES_BATCH_SIZE);
+    logger.info(
+      `BREVO SYNC - PLACES\tDRY-RUN - ${total} place(s) in ${messages} message(s) of up to ${PLACES_BATCH_SIZE}`
+    );
     return;
   }
 
   let lastId: mongoose.Types.ObjectId | null = null;
   let totalSent = 0;
+  let messagesSent = 0;
+  // Places accumulées en attente de publication (un message = un lot).
+  let batch: AmqpSynchroAirtablePlaceEvent[] = [];
+
+  // Publie le lot courant comme un seul message puis le vide.
+  const flushBatch = async (): Promise<void> => {
+    if (batch.length === 0) {
+      return;
+    }
+
+    await amqpEventsSender.sendToQueue(
+      Exchange.PLACES,
+      PLACES_ROUTING_KEY,
+      new AmqpSynchroPlaceBatchEvent(batch)
+    );
+
+    messagesSent++;
+    totalSent += batch.length;
+    batch = [];
+    await throttle(messagesSent);
+  };
 
   // eslint-disable-next-line no-constant-condition
   while (true) {
@@ -161,31 +192,31 @@ async function syncAllPlaces(dryRun: boolean): Promise<void> {
     for (const place of places) {
       try {
         const { theme, frontendUrl } = getThemeAndUrlFromPlace(place);
-        const payload = new AmqpSynchroAirtablePlaceEvent(
-          place,
-          frontendUrl,
-          theme
+        batch.push(
+          new AmqpSynchroAirtablePlaceEvent(place, frontendUrl, theme)
         );
 
-        await amqpEventsSender.sendToQueue(
-          Exchange.PLACES,
-          PLACES_ROUTING_KEY,
-          payload
-        );
-
-        totalSent++;
-        await throttle(totalSent);
+        if (batch.length >= PLACES_BATCH_SIZE) {
+          await flushBatch();
+        }
       } catch (err) {
         logger.error(
-          `BREVO SYNC - PLACES\tfailed to send place ${place.lieu_id} (_id: ${place._id}): ${err}`
+          `BREVO SYNC - PLACES\tfailed to prepare place ${place.lieu_id} (_id: ${place._id}): ${err}`
         );
       }
     }
 
-    logger.info(`BREVO SYNC - PLACES\t${totalSent} place(s) sent so far`);
+    logger.info(
+      `BREVO SYNC - PLACES\t${totalSent} place(s) sent in ${messagesSent} message(s) so far`
+    );
   }
 
-  logger.info(`BREVO SYNC - PLACES\tEND - ${totalSent} place(s) sent`);
+  // Publie le dernier lot partiel.
+  await flushBatch();
+
+  logger.info(
+    `BREVO SYNC - PLACES\tEND - ${totalSent} place(s) sent in ${messagesSent} message(s)`
+  );
 }
 
 // ---------------------------------------------------------------------------
