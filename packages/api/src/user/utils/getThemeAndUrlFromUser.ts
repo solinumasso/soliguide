@@ -1,10 +1,10 @@
 import {
   type CommonUser,
+  getThemeFromCountry,
   type SoliguideCountries,
   Themes,
 } from "@soliguide/common";
 
-import { COUNTRY_TO_THEME } from "../../_models/config/constants/domains/COUNTRY_TO_THEME.const";
 import { FRONT_URLS_MAPPINGS } from "../../_models/config/constants/domains/THEMES_MAPPING.const";
 
 /**
@@ -21,10 +21,10 @@ export function getThemeAndUrlFromUser(user: Pick<CommonUser, "areas">): {
   theme: Themes;
   frontendUrl: string;
 } {
-  const [firstAreaCountry] = Object.keys(user.areas ?? {}) as SoliguideCountries[];
-  const theme =
-    (firstAreaCountry && COUNTRY_TO_THEME[firstAreaCountry]) ||
-    Themes.SOLIGUIDE_FR;
+  const [firstAreaCountry] = Object.keys(
+    user.areas ?? {}
+  ) as SoliguideCountries[];
+  const theme = getThemeFromCountry(firstAreaCountry);
   const frontendUrl = `${FRONT_URLS_MAPPINGS[theme]}/`;
 
   return { theme, frontendUrl };

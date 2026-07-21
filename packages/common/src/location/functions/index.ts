@@ -8,4 +8,5 @@ export * from "./getCountryFromTheme";
 export * from "./getDepartmentCodeFromPostalCode";
 export * from "./getTerritoriesFromAreas";
 export * from "./getTerritoryAndCountryFromPlace";
+export * from "./getThemeFromCountry";
 export * from "./getTimeZoneFromPosition";
