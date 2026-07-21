@@ -830,7 +830,7 @@
   "EXPORT_DATA": "صادرات داده ها (Excel، word، pdf، csv)",
   "EXPORT_IN_PROGRESS": "صادرات در حال انجام است (لطفاً صبر کنید)…",
   "EXPORT_SOLIGUIDE_PLACES": "فایل های {{ brandName }} را به CSV، PDF، Word و Excel صادر کنید",
-  "EXTERNAL_SOURCE_CAMPAIGN_BANNER": "به‌روزرسانی فصلی هنوز اعمال نشده است. توصیه می‌شود قبل از سفر تماس بگیرید.",
+  "EXTERNAL_SOURCE_CAMPAIGN_BANNER": "توجه داشته باشید، ممکن است در این دوره تغییراتی در ساعات کاری رخ دهد. توصیه می‌شود قبل از سفر تماس بگیرید.",
   "FACEBOOK": "فیس بوک",
   "FACEBOOK_PAGE": "صفحه فیس بوک",
   "FACULTATIVE": " (اختیاری)",

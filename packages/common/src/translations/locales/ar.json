@@ -830,7 +830,7 @@
   "EXPORT_DATA": "تصدير البيانات (Excel ، Word ، pdf ، csv)",
   "EXPORT_IN_PROGRESS": "جاري التصدير (الرجاء الانتظار) …",
   "EXPORT_SOLIGUIDE_PLACES": "تصدير ملفات {{ brandName }} إلى CSV، PDF، Word وExcel",
-  "EXTERNAL_SOURCE_CAMPAIGN_BANNER": "لم يتم تطبيق التحديث الموسمي بعد. يُنصح بالاتصال قبل السفر.",
+  "EXTERNAL_SOURCE_CAMPAIGN_BANNER": "تنبيه، قد تحدث تغييرات في ساعات العمل خلال هذه الفترة. يُنصح بالاتصال قبل التوجه.",
   "FACEBOOK": "الفيسبوك",
   "FACEBOOK_PAGE": "صفحة فايسبوك",
   "FACULTATIVE": " (خياري)",

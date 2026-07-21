@@ -830,7 +830,7 @@
   "EXPORT_DATA": "Exportación de datos (Excel, Word, pdf, csv)",
   "EXPORT_IN_PROGRESS": "Exportación en curso (espere, por favor) …",
   "EXPORT_SOLIGUIDE_PLACES": "Exportar archivos {{ brandName }} en CSV, PDF, Word y Excel",
-  "EXTERNAL_SOURCE_CAMPAIGN_BANNER": "Aún no se ha realizado la actualización estacional. Se recomienda llamar antes de desplazarse.",
+  "EXTERNAL_SOURCE_CAMPAIGN_BANNER": "Atención, es posible que se produzcan cambios de horario durante este periodo. Se recomienda llamar antes de desplazarse.",
   "FACEBOOK": "Facebook",
   "FACEBOOK_PAGE": "Página de Facebook",
   "FACULTATIVE": " (opcional)",
