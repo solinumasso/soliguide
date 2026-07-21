@@ -850,7 +850,7 @@
   "EXPORT_DATA": "ډیټا صادر کړئ (ایکسیل، کلمه، pdf، csv)",
   "EXPORT_IN_PROGRESS": "صادرات په پرمختګ کې دي (مهرباني وکړئ انتظار وکړئ)…",
   "EXPORT_SOLIGUIDE_PLACES": "CSV، PDF، Word او Excel ته د {{ brandName }} فایلونه صادر کړئ",
-  "EXTERNAL_SOURCE_CAMPAIGN_BANNER": "د موسمي تازه معلومات لا نه دي پلي شوي. دا مشوره ورکول کیږي چې د سفر دمخه زنګ ووهئ.",
+  "EXTERNAL_SOURCE_CAMPAIGN_BANNER": "پام مو شه، په دې موده کې د کاري ساعتونو بدلون رامنځته کیدلی شي. مشوره ورکول کیږي چې د سفر دمخه زنګ ووهئ.",
   "FACEBOOK": "فیسبوک",
   "FACEBOOK_PAGE": "فیسبوک پاڼه",
   "FACULTATIVE": " (اختیاري)",
