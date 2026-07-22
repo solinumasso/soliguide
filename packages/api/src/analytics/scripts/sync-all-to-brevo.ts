@@ -36,6 +36,7 @@ import {
   RoutingKey,
 } from "../../events";
 import { logger } from "../../general/logger";
+import { OrganizationModel } from "../../organization/models/organization.model";
 import { PlaceModel } from "../../place/models";
 import { getThemeAndUrlFromPlace } from "../../place/utils";
 import { UserModel } from "../../user/models/user.model";
@@ -126,27 +127,95 @@ async function throttle(sentCount: number): Promise<void> {
   }
 }
 
-function parseArgs(argv: string[]): { target: SyncTarget; dryRun: boolean } {
+/**
+ * Extrait la valeur de `--limit` (formes `--limit=5` ou `--limit 5`). Sert à
+ * n'envoyer qu'un petit échantillon pour tester le workflow n8n avant un run
+ * complet. Retourne `null` si absent ou invalide.
+ */
+function parseLimit(argv: string[]): number | null {
+  const limitArg = argv.find((arg) => arg.startsWith("--limit"));
+  if (!limitArg) {
+    return null;
+  }
+
+  const inlineValue = limitArg.split("=")[1];
+  const rawValue =
+    inlineValue ?? argv[argv.indexOf(limitArg) + 1];
+  const parsed = Number.parseInt(rawValue ?? "", 10);
+
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
+}
+
+function parseArgs(argv: string[]): {
+  target: SyncTarget;
+  dryRun: boolean;
+  limit: number | null;
+} {
   const dryRun = argv.includes("--dry-run");
-  const positional = argv.find((arg) => !arg.startsWith("--"));
+  const positional = argv.find(
+    (arg) => !arg.startsWith("--") && arg !== String(parseLimit(argv))
+  );
 
   let target: SyncTarget = "all";
   if (positional === "places" || positional === "users") {
     target = positional;
   }
 
-  return { target, dryRun };
+  return { target, dryRun, limit: parseLimit(argv) };
+}
+
+/**
+ * Résout `place.organizations` pour un lot de places.
+ *
+ * `organizations` n'est pas un champ du document place : il est calculé via la
+ * relation inverse `Organization.places`, exactement comme `getPlaceByParams`
+ * le fait pour le flux temps réel. On le fait ici en une seule requête par lot
+ * (plutôt qu'une par place) pour la performance.
+ */
+async function attachOrganizations(
+  places: ModelWithId<ApiPlace>[]
+): Promise<void> {
+  const placeObjectIds = places.map((place) => place._id);
+
+  const organizations = await OrganizationModel.find(
+    { places: { $in: placeObjectIds } },
+    { name: 1, organization_id: 1, places: 1, _id: 0 }
+  )
+    .lean()
+    .exec();
+
+  const organizationsByPlaceId: Record<
+    string,
+    { name: string; organization_id: number }[]
+  > = {};
+  for (const organization of organizations) {
+    for (const placeRef of organization.places ?? []) {
+      const key = String(placeRef);
+      (organizationsByPlaceId[key] ??= []).push({
+        name: organization.name,
+        organization_id: organization.organization_id,
+      });
+    }
+  }
+
+  for (const place of places) {
+    place.organizations = organizationsByPlaceId[String(place._id)] ?? [];
+  }
 }
 
 // ---------------------------------------------------------------------------
 // Places
 // ---------------------------------------------------------------------------
 
-async function syncAllPlaces(dryRun: boolean): Promise<void> {
+async function syncAllPlaces(
+  dryRun: boolean,
+  limit: number | null
+): Promise<void> {
   logger.info("BREVO SYNC - PLACES\tSTART");
 
   if (dryRun) {
-    const total = await PlaceModel.countDocuments(PLACES_SYNC_FILTER);
+    const matching = await PlaceModel.countDocuments(PLACES_SYNC_FILTER);
+    const total = limit ? Math.min(matching, limit) : matching;
     const messages = Math.ceil(total / PLACES_BATCH_SIZE);
     logger.info(
       `BREVO SYNC - PLACES\tDRY-RUN - ${total} place(s) in ${messages} message(s) of up to ${PLACES_BATCH_SIZE}`
@@ -178,6 +247,10 @@ async function syncAllPlaces(dryRun: boolean): Promise<void> {
     await throttle(messagesSent);
   };
 
+  // `--limit` atteint quand le total préparé (envoyé + en attente) l'atteint.
+  const limitReached = (): boolean =>
+    limit != null && totalSent + batch.length >= limit;
+
   // eslint-disable-next-line no-constant-condition
   while (true) {
     const paginatedFilter: mongoose.FilterQuery<ApiPlace> = lastId
@@ -188,7 +261,8 @@ async function syncAllPlaces(dryRun: boolean): Promise<void> {
       ModelWithId<ApiPlace>
     >(paginatedFilter)
       .sort({ _id: 1 })
-      .limit(BATCH_SIZE)
+      .limit(limit ? Math.min(limit, BATCH_SIZE) : BATCH_SIZE)
+      .lean<ModelWithId<ApiPlace>[]>()
       .exec();
 
     if (places.length === 0) {
@@ -197,7 +271,13 @@ async function syncAllPlaces(dryRun: boolean): Promise<void> {
 
     lastId = places[places.length - 1]._id ?? null;
 
+    // Résout place.organizations (relation inverse) comme en temps réel.
+    await attachOrganizations(places);
+
     for (const place of places) {
+      if (limitReached()) {
+        break;
+      }
       try {
         const { theme, frontendUrl } = getThemeAndUrlFromPlace(place);
         batch.push(
@@ -217,6 +297,10 @@ async function syncAllPlaces(dryRun: boolean): Promise<void> {
     logger.info(
       `BREVO SYNC - PLACES\t${totalSent} place(s) sent in ${messagesSent} message(s) so far`
     );
+
+    if (limitReached()) {
+      break;
+    }
   }
 
   // Publie le dernier lot partiel.
@@ -231,11 +315,15 @@ async function syncAllPlaces(dryRun: boolean): Promise<void> {
 // Users
 // ---------------------------------------------------------------------------
 
-async function syncAllUsers(dryRun: boolean): Promise<void> {
+async function syncAllUsers(
+  dryRun: boolean,
+  limit: number | null
+): Promise<void> {
   logger.info("BREVO SYNC - USERS\tSTART");
 
   if (dryRun) {
-    const total = await UserModel.countDocuments(USERS_SYNC_FILTER);
+    const matching = await UserModel.countDocuments(USERS_SYNC_FILTER);
+    const total = limit ? Math.min(matching, limit) : matching;
     const messages = Math.ceil(total / USERS_BATCH_SIZE);
     logger.info(
       `BREVO SYNC - USERS\tDRY-RUN - ${total} user(s) in ${messages} message(s) of up to ${USERS_BATCH_SIZE}`
@@ -267,6 +355,10 @@ async function syncAllUsers(dryRun: boolean): Promise<void> {
     await throttle(messagesSent);
   };
 
+  // `--limit` atteint quand le total préparé (envoyé + en attente) l'atteint.
+  const limitReached = (): boolean =>
+    limit != null && totalSent + batch.length >= limit;
+
   // eslint-disable-next-line no-constant-condition
   while (true) {
     const paginatedFilter: mongoose.FilterQuery<User> = lastId
@@ -279,7 +371,7 @@ async function syncAllUsers(dryRun: boolean): Promise<void> {
     const users: UserPopulateType[] = await UserModel.find(paginatedFilter)
       .select("+campaignUserUuid")
       .sort({ _id: 1 })
-      .limit(BATCH_SIZE)
+      .limit(limit ? Math.min(limit, BATCH_SIZE) : BATCH_SIZE)
       .populate([
         "organizations",
         "invitations",
@@ -298,6 +390,9 @@ async function syncAllUsers(dryRun: boolean): Promise<void> {
     lastId = users[users.length - 1]._id ?? null;
 
     for (const user of users) {
+      if (limitReached()) {
+        break;
+      }
       try {
         const { theme, frontendUrl } = getThemeAndUrlFromUser(user);
         batch.push(await buildUserSynchroEvent(user, frontendUrl, theme));
@@ -315,6 +410,10 @@ async function syncAllUsers(dryRun: boolean): Promise<void> {
     logger.info(
       `BREVO SYNC - USERS\t${totalSent} user(s) sent in ${messagesSent} message(s) so far`
     );
+
+    if (limitReached()) {
+      break;
+    }
   }
 
   // Publie le dernier lot partiel.
@@ -330,7 +429,7 @@ async function syncAllUsers(dryRun: boolean): Promise<void> {
 // ---------------------------------------------------------------------------
 
 async function main(): Promise<void> {
-  const { target, dryRun } = parseArgs(process.argv.slice(2));
+  const { target, dryRun, limit } = parseArgs(process.argv.slice(2));
 
   // Garde-fou : `sendToQueue` est un no-op silencieux sans AMQP_URL (ou en
   // env test). On refuse de "réussir" sans rien envoyer.
@@ -341,7 +440,7 @@ async function main(): Promise<void> {
   }
 
   logger.info(
-    { target, dryRun, BATCH_SIZE, THROTTLE_BATCH_SIZE, THROTTLE_DELAY_MS },
+    { target, dryRun, limit, BATCH_SIZE, THROTTLE_BATCH_SIZE, THROTTLE_DELAY_MS },
     "BREVO SYNC - starting one-shot backfill"
   );
 
@@ -349,10 +448,10 @@ async function main(): Promise<void> {
 
   try {
     if (target === "all" || target === "places") {
-      await syncAllPlaces(dryRun);
+      await syncAllPlaces(dryRun, limit);
     }
     if (target === "all" || target === "users") {
-      await syncAllUsers(dryRun);
+      await syncAllUsers(dryRun, limit);
     }
   } finally {
     // Ferme proprement le channel AMQP (flush des publications bufferisées)
