@@ -47,6 +47,13 @@ export class AmqpSynchroAirtableUserEvent
 
   public hasLastEndYearCampaignChanges: boolean | null;
 
+  /**
+   * Nombre de places actives (ONLINE/OFFLINE) rattachées au user. Rempli
+   * uniquement par le backfill one-shot (pré-calcul Mongo), où il remplace le
+   * comptage Airtable du workflow temps réel. Laissé indéfini en temps réel.
+   */
+  public placesCount?: number;
+
   constructor(
     user: UserPopulateType | ModelWithId<User>,
     frontendUrl: string,

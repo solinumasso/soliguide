@@ -21,7 +21,7 @@
  *   ... brevo:sync-all -- --dry-run  # compte sans publier (aucune écriture)
  */
 
-import { ApiPlace, PlaceStatus } from "@soliguide/common";
+import { ApiPlace, PlaceStatus, UserRightStatus } from "@soliguide/common";
 import mongoose from "mongoose";
 
 import { connectToDatabase } from "../../config/database/connection";
@@ -311,6 +311,61 @@ async function syncAllPlaces(
   );
 }
 
+/**
+ * Renseigne `placesCount` pour un lot de user events.
+ *
+ * Remplace le comptage Airtable du workflow temps réel : pour chaque user, on
+ * compte ses places DISTINCTES rattachées via un droit VERIFIED et dont le
+ * statut est ONLINE/OFFLINE. Une seule requête Mongo par lot.
+ */
+async function attachPlacesCount(
+  events: AmqpSynchroAirtableUserEvent[]
+): Promise<void> {
+  // Récupère l'ensemble des lieu_id VERIFIED de tout le lot.
+  const candidatePlaceIds = new Set<number>();
+  for (const event of events) {
+    for (const right of event.rights ?? []) {
+      if (right.place_id != null && right.status === UserRightStatus.VERIFIED) {
+        candidatePlaceIds.add(right.place_id);
+      }
+    }
+  }
+
+  if (candidatePlaceIds.size === 0) {
+    for (const event of events) {
+      event.placesCount = 0;
+    }
+    return;
+  }
+
+  // Ne garde que les places actives (ONLINE/OFFLINE).
+  const activePlaces = await PlaceModel.find(
+    {
+      lieu_id: { $in: [...candidatePlaceIds] },
+      status: { $in: [PlaceStatus.ONLINE, PlaceStatus.OFFLINE] },
+    },
+    { lieu_id: 1, _id: 0 }
+  )
+    .lean()
+    .exec();
+  const activePlaceIds = new Set(activePlaces.map((place) => place.lieu_id));
+
+  // Compte les places actives distinctes par user.
+  for (const event of events) {
+    const userActivePlaceIds = new Set<number>();
+    for (const right of event.rights ?? []) {
+      if (
+        right.place_id != null &&
+        right.status === UserRightStatus.VERIFIED &&
+        activePlaceIds.has(right.place_id)
+      ) {
+        userActivePlaceIds.add(right.place_id);
+      }
+    }
+    event.placesCount = userActivePlaceIds.size;
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Users
 // ---------------------------------------------------------------------------
@@ -342,6 +397,9 @@ async function syncAllUsers(
     if (batch.length === 0) {
       return;
     }
+
+    // Pré-calcule places_count (remplace le comptage Airtable côté n8n).
+    await attachPlacesCount(batch);
 
     await amqpEventsSender.sendToQueue(
       Exchange.USERS,
