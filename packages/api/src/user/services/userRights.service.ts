@@ -459,3 +459,24 @@ export const getUserLastCampaignsChangesStatus = (
   midYear: getChangesStatus(userRights, LAST_MID_YEAR_CAMPAIGN_NAME),
   endYear: getChangesStatus(userRights, LAST_END_YEAR_CAMPAIGN_NAME),
 });
+
+/**
+ * @summary   Distinct place_id of a user's VERIFIED place-level rights.
+ *
+ * Basis for the Brevo place linking and PLACES_COUNT: only rights that are
+ * VERIFIED and actually attached to a place are kept, then deduplicated.
+ */
+export const getVerifiedPlaceIds = (
+  rights:
+    | ReadonlyArray<{ place_id?: number | null; status: UserRightStatus }>
+    | undefined
+): number[] => [
+  ...new Set(
+    (rights ?? [])
+      .filter(
+        (right) =>
+          right.place_id != null && right.status === UserRightStatus.VERIFIED
+      )
+      .map((right) => right.place_id as number)
+  ),
+];

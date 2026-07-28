@@ -221,7 +221,7 @@ router.get(
 
       req.updatedUser = updatedUser;
       // Re-attach the original invitation (pending: true in memory) so that
-      // AmqpSynchroAirtableUserEvent can build invitationUrl for CRM tracking.
+      // AmqpSynchroUserEvent can build invitationUrl for CRM tracking.
       // validateInvitation removes it from the DB before this point.
       (req.updatedUser.invitations as InvitationPopulate[]) = [
         req.invitation,
@@ -271,7 +271,7 @@ router.post(
       req.selectedUser = user;
       req.updatedUser = user;
       // Re-attach the original invitation (pending: true in memory) so that
-      // AmqpSynchroAirtableUserEvent can build invitationUrl for CRM tracking.
+      // AmqpSynchroUserEvent can build invitationUrl for CRM tracking.
       // acceptFirstInvitation removes it from the DB before this point.
       (req.updatedUser.invitations as InvitationPopulate[]) = [
         req.invitation,

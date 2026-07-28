@@ -2,11 +2,13 @@ import {
   CAMPAIGN_DEFAULT_NAME,
   LAST_END_YEAR_CAMPAIGN_NAME,
   LAST_MID_YEAR_CAMPAIGN_NAME,
+  UserRightStatus,
 } from "@soliguide/common";
 
 import {
   getUserLastCampaignsChangesStatus,
   getUserToUpdateStatus,
+  getVerifiedPlaceIds,
 } from "./userRights.service";
 
 const itIfCampaignDefined = (
@@ -296,5 +298,31 @@ describe("getUserLastCampaignsChangesStatus", () => {
         });
       }
     );
+  });
+});
+
+describe("getVerifiedPlaceIds", () => {
+  it("returns an empty array when rights is undefined", () => {
+    expect(getVerifiedPlaceIds(undefined)).toEqual([]);
+  });
+
+  it("keeps only VERIFIED rights that are attached to a place", () => {
+    const rights = [
+      { place_id: 1, status: UserRightStatus.VERIFIED },
+      { place_id: 2, status: UserRightStatus.PENDING },
+      { place_id: null, status: UserRightStatus.VERIFIED },
+    ];
+
+    expect(getVerifiedPlaceIds(rights)).toEqual([1]);
+  });
+
+  it("deduplicates repeated place ids", () => {
+    const rights = [
+      { place_id: 7, status: UserRightStatus.VERIFIED },
+      { place_id: 7, status: UserRightStatus.VERIFIED },
+      { place_id: 9, status: UserRightStatus.VERIFIED },
+    ];
+
+    expect(getVerifiedPlaceIds(rights)).toEqual([7, 9]);
   });
 });

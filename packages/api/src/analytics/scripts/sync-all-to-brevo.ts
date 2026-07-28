@@ -28,7 +28,7 @@ import { connectToDatabase } from "../../config/database/connection";
 import { CONFIG, ModelWithId, User, UserPopulateType } from "../../_models";
 import {
   AmqpSynchroAirtablePlaceEvent,
-  AmqpSynchroAirtableUserEvent,
+  AmqpSynchroBrevoUserEvent,
   AmqpSynchroPlaceBatchEvent,
   AmqpSynchroUserBatchEvent,
   amqpEventsSender,
@@ -50,7 +50,10 @@ import { getThemeAndUrlFromUser } from "../../user/utils";
 /** Taille des pages Mongo (keyset pagination sur `_id`). */
 const BATCH_SIZE = parseIntEnv(process.env.SYNC_BATCH_SIZE, 5000);
 /** Nombre de publications avant une pause, pour lisser le débit vers RabbitMQ. */
-const THROTTLE_BATCH_SIZE = parseIntEnv(process.env.SYNC_THROTTLE_BATCH_SIZE, 25);
+const THROTTLE_BATCH_SIZE = parseIntEnv(
+  process.env.SYNC_THROTTLE_BATCH_SIZE,
+  25
+);
 /** Durée de la pause entre deux rafales de publication. */
 const THROTTLE_DELAY_MS = parseIntEnv(process.env.SYNC_THROTTLE_DELAY_MS, 2000);
 /**
@@ -139,8 +142,7 @@ function parseLimit(argv: string[]): number | null {
   }
 
   const inlineValue = limitArg.split("=")[1];
-  const rawValue =
-    inlineValue ?? argv[argv.indexOf(limitArg) + 1];
+  const rawValue = inlineValue ?? argv[argv.indexOf(limitArg) + 1];
   const parsed = Number.parseInt(rawValue ?? "", 10);
 
   return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
@@ -319,7 +321,7 @@ async function syncAllPlaces(
  * statut est ONLINE/OFFLINE. Une seule requête Mongo par lot.
  */
 async function attachPlacesCount(
-  events: AmqpSynchroAirtableUserEvent[]
+  events: AmqpSynchroBrevoUserEvent[]
 ): Promise<void> {
   // Récupère l'ensemble des lieu_id VERIFIED de tout le lot.
   const candidatePlaceIds = new Set<number>();
@@ -390,7 +392,7 @@ async function syncAllUsers(
   let totalSent = 0;
   let messagesSent = 0;
   // Users accumulés en attente de publication (un message = un lot).
-  let batch: AmqpSynchroAirtableUserEvent[] = [];
+  let batch: AmqpSynchroBrevoUserEvent[] = [];
 
   // Publie le lot courant comme un seul message puis le vide.
   const flushBatch = async (): Promise<void> => {
@@ -498,7 +500,14 @@ async function main(): Promise<void> {
   }
 
   logger.info(
-    { target, dryRun, limit, BATCH_SIZE, THROTTLE_BATCH_SIZE, THROTTLE_DELAY_MS },
+    {
+      target,
+      dryRun,
+      limit,
+      BATCH_SIZE,
+      THROTTLE_BATCH_SIZE,
+      THROTTLE_DELAY_MS,
+    },
     "BREVO SYNC - starting one-shot backfill"
   );
 
