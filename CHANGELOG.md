@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.150.0](https://github.com/solinumasso/soliguide/compare/v4.149.0...v4.150.0) (2026-07-28)
+
+
+### Bug Fixes
+
+* **api:** load place organizations and add --limit to Brevo backfill ([1b6e7bc](https://github.com/solinumasso/soliguide/commit/1b6e7bcd02c5e16711f57bedb28878a071aa408d))
+
+
+### Features
+
+* **api:** add one-shot Brevo backfill script for all places and users ([7852cb6](https://github.com/solinumasso/soliguide/commit/7852cb692e9e00935d863c9a3d1516a405a4577c))
+* **api:** batch places into grouped messages for Brevo backfill ([451c2e1](https://github.com/solinumasso/soliguide/commit/451c2e1f646393782fd9fe625438119f719ee522))
+* **api:** batch users into grouped messages for Brevo backfill ([daeebdb](https://github.com/solinumasso/soliguide/commit/daeebdb2245cf794ecfaac63aa0dde06367dcadc))
+* **api:** precompute places_count for Brevo user backfill ([d85d1ff](https://github.com/solinumasso/soliguide/commit/d85d1ff24d53d20d83351e5d04a5a13c69e6452b))
+* **api:** reduce Brevo backfill publish throttle to 25/2s ([b23b273](https://github.com/solinumasso/soliguide/commit/b23b27319ca8bd37997af780681a153c30755b0e))
+* **api:** restrict Brevo backfill to n8n-syncable places and users ([ca0298b](https://github.com/solinumasso/soliguide/commit/ca0298bc97644efbcb685c90f8351c735ad6cac3))
+* **api:** split Brevo user sync event, emit placesCount in real-time ([e7c5dc8](https://github.com/solinumasso/soliguide/commit/e7c5dc8bd267a5645d0b3b8a0540157e378e53c1))
+
+
+
+
+
 # [4.149.0](https://github.com/solinumasso/soliguide/compare/v4.148.0...v4.149.0) (2026-07-16)
 
 
