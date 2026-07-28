@@ -17,7 +17,16 @@ import { getToken } from "../../user/controllers/auth.controller";
 
 const { PhoneNumberFormat, PhoneNumberType } = libPhoneNumber;
 
-export class AmqpSynchroAirtableUserEvent
+/**
+ * Shared user synchro event, enriched with the fields both CRMs need (phone
+ * split into mobile/landline, invitation URL, campaign token and campaign
+ * statuses...).
+ *
+ * Consumed as-is by the Airtable sync. The Brevo sync extends it through
+ * {@link AmqpSynchroBrevoUserEvent} to add its own attributes (PLACES_COUNT),
+ * so Brevo-only concerns never leak into the Airtable payload.
+ */
+export class AmqpSynchroUserEvent
   extends AmqpUserEvent
   implements AmqpEvent, SynchroAirtableEvent
 {
@@ -46,13 +55,6 @@ export class AmqpSynchroAirtableUserEvent
   public hasLastMidYearCampaignChanges: boolean | null;
 
   public hasLastEndYearCampaignChanges: boolean | null;
-
-  /**
-   * Nombre de places actives (ONLINE/OFFLINE) rattachées au user. Rempli
-   * uniquement par le backfill one-shot (pré-calcul Mongo), où il remplace le
-   * comptage Airtable du workflow temps réel. Laissé indéfini en temps réel.
-   */
-  public placesCount?: number;
 
   constructor(
     user: UserPopulateType | ModelWithId<User>,
@@ -97,7 +99,7 @@ export class AmqpSynchroAirtableUserEvent
           this.mobileNumber = e164;
         }
       } catch (_e) {
-        // invalid phone — skip
+        // invalid phone, skip
       }
     }
 

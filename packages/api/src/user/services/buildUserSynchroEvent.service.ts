@@ -3,7 +3,7 @@ import { randomUUID } from "node:crypto";
 import type { Themes } from "@soliguide/common";
 
 import type { UserPopulateType } from "../../_models";
-import { AmqpSynchroAirtableUserEvent } from "../../events";
+import { AmqpSynchroUserEvent } from "../../events";
 import { UserModel } from "../models/user.model";
 import {
   getUserLastCampaignsChangesStatus,
@@ -36,20 +36,22 @@ export const ensureCampaignUserUuid = async (
 };
 
 /**
- * Builds the enriched Airtable/Brevo synchro payload for a single user.
+ * Builds the enriched user synchro payload shared by both CRMs.
  *
- * Single source of truth shared between the real-time flow
- * (`sendUserChangesToMq` middleware) and the one-shot Brevo backfill script,
- * so the payload never diverges between the two. Ensures `userRights` are
- * loaded, backfills `campaignUserUuid` when missing, and resolves the campaign
- * change statuses before constructing the event.
+ * Single source of truth for the base event used by the real-time flow
+ * (`sendUserChangesToMq` middleware) and the one-shot backfill. Ensures
+ * `userRights` are loaded, backfills `campaignUserUuid` when missing, and
+ * resolves the campaign change statuses before constructing the event.
+ *
+ * Brevo-only enrichment (PLACES_COUNT) lives in `buildBrevoUserSynchroEvent`,
+ * so this base payload stays valid for the Airtable sync as well.
  */
 export const buildUserSynchroEvent = async (
   user: UserPopulateType,
   frontendUrl: string,
   theme: Themes | null,
   { isDeleted = false }: { isDeleted?: boolean } = {}
-): Promise<AmqpSynchroAirtableUserEvent> => {
+): Promise<AmqpSynchroUserEvent> => {
   if (!user.userRights?.length) {
     user.userRights = await getUserRightsWithParams({ user: user._id });
   }
@@ -60,7 +62,7 @@ export const buildUserSynchroEvent = async (
   const toUpdate = getUserToUpdateStatus(userRights);
   const { midYear, endYear } = getUserLastCampaignsChangesStatus(userRights);
 
-  return new AmqpSynchroAirtableUserEvent(
+  return new AmqpSynchroUserEvent(
     user,
     frontendUrl,
     theme,

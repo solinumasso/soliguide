@@ -1,5 +1,5 @@
 import { ModelWithId } from "../../_models";
-import { ApiPlace } from "@soliguide/common";
+import { ApiPlace, PlaceStatus } from "@soliguide/common";
 import mongoose, { ClientSession, FilterQuery } from "mongoose";
 import { PlaceModel } from "../models/place.model";
 
@@ -84,4 +84,32 @@ export const getPlacesByIds = async (ids: number[]): Promise<ApiPlace[]> => {
     .exec();
 
   return places;
+};
+
+/**
+ * @summary Filters a list of lieu_id down to those whose place is currently
+ *          active (ONLINE or OFFLINE).
+ *
+ * Shared source of truth behind the Brevo PLACES_COUNT attribute: both the
+ * real-time Brevo event builder and the one-shot backfill count a user's active
+ * places from this primitive.
+ */
+export const findActiveLieuIds = async (
+  candidateLieuIds: number[]
+): Promise<number[]> => {
+  if (candidateLieuIds.length === 0) {
+    return [];
+  }
+
+  const activePlaces = await PlaceModel.find(
+    {
+      lieu_id: { $in: candidateLieuIds },
+      status: { $in: [PlaceStatus.ONLINE, PlaceStatus.OFFLINE] },
+    },
+    { lieu_id: 1, _id: 0 }
+  )
+    .lean<{ lieu_id: number }[]>()
+    .exec();
+
+  return activePlaces.map((place) => place.lieu_id);
 };

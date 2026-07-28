@@ -4,9 +4,13 @@ import mongoose from "mongoose";
 import type { UserPopulateType } from "../../_models";
 import { UserModel } from "../models/user.model";
 import { buildUserSynchroEvent } from "./buildUserSynchroEvent.service";
+// jest.spyOn requires the module namespace object (a named import cannot be spied on)
+// skipcq: JS-C1003
 import * as userRightsService from "./userRights.service";
 
-const buildUser = (overrides: Partial<UserPopulateType> = {}): UserPopulateType =>
+const buildUser = (
+  overrides: Partial<UserPopulateType> = {}
+): UserPopulateType =>
   ({
     _id: new mongoose.Types.ObjectId(),
     user_id: 42,
@@ -22,7 +26,7 @@ const buildUser = (overrides: Partial<UserPopulateType> = {}): UserPopulateType 
     userRights: [],
     campaignUserUuid: "existing-uuid",
     ...overrides,
-  }) as unknown as UserPopulateType;
+  } as unknown as UserPopulateType);
 
 describe("buildUserSynchroEvent", () => {
   let getRightsSpy: jest.SpyInstance;

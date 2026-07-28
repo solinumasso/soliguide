@@ -1,7 +1,7 @@
 import type { Themes } from "@soliguide/common";
 
 import { AmqpEvent } from "../interfaces";
-import { AmqpSynchroAirtableUserEvent } from "./AmqpSynchroAirtableUserEvent.class";
+import { AmqpSynchroBrevoUserEvent } from "./AmqpSynchroBrevoUserEvent.class";
 
 /**
  * Message "lot" pour le backfill Brevo des users.
@@ -21,9 +21,9 @@ export class AmqpSynchroUserBatchEvent implements AmqpEvent {
 
   public theme: Themes | null;
 
-  public users: AmqpSynchroAirtableUserEvent[];
+  public users: AmqpSynchroBrevoUserEvent[];
 
-  constructor(users: AmqpSynchroAirtableUserEvent[]) {
+  constructor(users: AmqpSynchroBrevoUserEvent[]) {
     this.users = users;
     this.frontendUrl = users[0]?.frontendUrl ?? "";
     this.theme = users[0]?.theme ?? null;
