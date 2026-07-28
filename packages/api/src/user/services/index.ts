@@ -1,4 +1,6 @@
 // @index('./*.service.ts', f => `export * from '${f.path}'`)
+export * from "./buildBrevoUserSynchroEvent.service";
+export * from "./buildUserSynchroEvent.service";
 export * from "./generateSearchUserQuery.service";
 export * from "./invitations.service";
 export * from "./passwords.service";
