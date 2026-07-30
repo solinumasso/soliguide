@@ -58,15 +58,15 @@ export const ALL_LOGOS: LogoWithLink[] = [
     size: "small",
   },
   {
-    path: `${LOGOS_BASE_PATH}/diputacio-de-barcelona.png`,
-    alt: "Diputació de Barcelona",
-    link: "http://diba.cat/ca/",
-    size: "small",
-  },
-  {
     path: `${LOGOS_BASE_PATH}/generalitat-catalunya.jpg`,
     alt: "Departament de Drets Socials i Inclúsió",
     link: "https://dretssocials.gencat.cat/ca/inici/",
+    size: "small",
+  },
+  {
+    path: `${LOGOS_BASE_PATH}/diputacio-de-barcelona.png`,
+    alt: "Diputació de Barcelona",
+    link: "http://diba.cat/ca/",
     size: "small",
   },
 ];
