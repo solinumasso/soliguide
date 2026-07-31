@@ -21,8 +21,6 @@ import {
 import {
   SEARCH_MODALITIES_FILTERS,
   SEARCH_PUBLICS_FILTERS,
-  ALL_PUBLICS,
-  PUBLICS_LABELS,
   GeoPosition,
   PlaceType,
   getDefaultSearchRadiusByGeoType,
@@ -41,6 +39,7 @@ import { Search, SearchFilterParams } from "../../interfaces";
 import { SearchService } from "../../services/search.service";
 import { CurrentLanguageService } from "../../../general/services/current-language.service";
 import { SeoService, LocationService } from "../../../shared/services";
+import { InputLanguagesService } from "../../../shared/services/input-languages/input-languages.service";
 import type { User } from "../../../users/classes";
 import { AuthService } from "../../../users/services/auth.service";
 
@@ -67,8 +66,6 @@ import { PARCOURS_SEARCH_LIMIT, PLACE_SEARCH_LIMIT } from "../../constants";
   styleUrls: ["./search.component.scss"],
 })
 export class SearchComponent implements OnInit, OnDestroy {
-  public isMobileView: boolean = window.innerWidth < 768;
-
   // Results
   public places: Place[];
   public parcours: Place[];
@@ -121,10 +118,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       shouldDisplayThermalComfort(THEME_CONFIGURATION.country)
     );
   }
-  public readonly publicsLabels = PUBLICS_LABELS;
-  public readonly genderOptions: FilterPillOption[] = ALL_PUBLICS.gender
-    .filter((option) => option.value !== "all")
-    .map((option) => ({ value: option.value, label: option.name }));
+  public languageOptions: FilterPillOption[] = [];
   @ViewChild("appFilters") public appFilters!: SearchFiltersComponent;
   private readonly destroy$ = new Subject<void>();
 
@@ -139,7 +133,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     private readonly currentLanguageService: CurrentLanguageService,
     private readonly posthogService: PosthogService,
     private readonly locationService: LocationService,
-    private readonly searchBarService: SearchBarService
+    private readonly searchBarService: SearchBarService,
+    private readonly inputLanguagesService: InputLanguagesService
   ) {
     this.loading = true;
     this.parcoursLoading = true;
@@ -171,9 +166,19 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.showFilters = !this.isMobileView;
+    // Filters start collapsed on every device (see constructor); the user
+    // expands them via the toggle button.
     this.me = this.authService.currentUserValue;
     this.initializeDefaultTitles();
+
+    // Language filter options depend on the active UI language, so rebuild
+    // them whenever it changes.
+    this.languageOptions = this.buildLanguageOptions();
+    this.translateService.onLangChange
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        this.languageOptions = this.buildLanguageOptions();
+      });
 
     // Initialize searchBarService if needed
     if (!this.searchBarService.isReady()) {
@@ -558,9 +563,15 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.toggleQuickFilter("airConditioned");
   };
 
-  public onGenderChange = (value: string | null): void => {
-    this.setQueryParamFilter("gender", value);
+  public onLanguageChange = (value: string | null): void => {
+    this.setQueryParamFilter("languages", value);
   };
+
+  private buildLanguageOptions(): FilterPillOption[] {
+    return this.inputLanguagesService
+      .getLanguagesArray()
+      .map((lang) => ({ value: lang.shortLang, label: lang.name }));
+  }
 
   private setQueryParamFilter(key: string, value: string | null): void {
     this.posthogService.capture(

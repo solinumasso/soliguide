@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { TranslateService } from "@ngx-translate/core";
@@ -10,7 +10,6 @@ import type { PosthogProperties } from "@soliguide/common-angular";
 
 import type { Search, SearchFilterParams } from "../../interfaces";
 import { PosthogService } from "../../../analytics/services/posthog.service";
-import { InputLanguagesService } from "../../../shared/services/input-languages/input-languages.service";
 import type { FilterPillOption } from "../filter-pill-dropdown/filter-pill-dropdown.component";
 
 const toFilterPillOptions = (
@@ -25,7 +24,7 @@ const toFilterPillOptions = (
   templateUrl: "./search-filters.component.html",
   styleUrls: ["./search-filters.component.css"],
 })
-export class SearchFiltersComponent implements OnInit {
+export class SearchFiltersComponent {
   @Input({ required: true }) public search: Search;
   @Input({ required: true }) public parcoursSearch: Search;
   @Input({ required: true }) public searchSubject!: Subject<Search>;
@@ -43,7 +42,7 @@ export class SearchFiltersComponent implements OnInit {
     ALL_PUBLICS.familialle
   );
   public readonly otherOptions = toFilterPillOptions(ALL_PUBLICS.other);
-  public languageOptions: FilterPillOption[] = [];
+  public readonly genderOptions = toFilterPillOptions(ALL_PUBLICS.gender);
 
   @Output() public readonly updateFilters = new EventEmitter<void>();
 
@@ -52,30 +51,9 @@ export class SearchFiltersComponent implements OnInit {
     private readonly router: Router,
     private readonly toastr: ToastrService,
     private readonly translateService: TranslateService,
-    private readonly posthogService: PosthogService,
-    private readonly inputLanguagesService: InputLanguagesService
+    private readonly posthogService: PosthogService
   ) {
     this.showFilters = false;
-  }
-
-  public ngOnInit(): void {
-    this.languageOptions = this.buildLanguageOptions();
-
-    this.translateService.onLangChange.subscribe({
-      next: () => {
-        this.languageOptions = this.buildLanguageOptions();
-      },
-    });
-  }
-
-  private buildLanguageOptions(): FilterPillOption[] {
-    return this.inputLanguagesService
-      .getLanguagesArray()
-      .map((lang) => ({ value: lang.shortLang, label: lang.name }));
-  }
-
-  public onLanguageChange(value: string | null): void {
-    this.filterString("languages", "", value ?? "");
   }
 
   public onPublicChange(type: string, value: string | null): void {
