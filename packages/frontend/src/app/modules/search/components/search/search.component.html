@@ -48,13 +48,13 @@
 
       <app-filter-pill-dropdown
         class="filter-pill--desktop-only"
-        label="GENDER"
-        icon="user"
-        [allLabel]="publicsLabels.gender.all"
-        [options]="genderOptions"
-        [value]="filters?.gender ?? null"
-        name="filterGender"
-        (valueChange)="onGenderChange($event)"
+        label="LISTE_LANGUES"
+        icon="language"
+        allLabel="PUBLICS_ALL"
+        [options]="languageOptions"
+        [value]="filters?.languages ?? null"
+        name="filterLanguage"
+        (valueChange)="onLanguageChange($event)"
       ></app-filter-pill-dropdown>
 
       <button
@@ -143,13 +143,13 @@
     <ng-container *ngIf="!showFilters">
       <div class="filter-pills filter-pills--mobile-extras d-md-none">
         <app-filter-pill-dropdown
-          label="GENDER"
-          icon="user"
-          [allLabel]="publicsLabels.gender.all"
-          [options]="genderOptions"
-          [value]="filters?.gender ?? null"
-          name="filterGenderMobile"
-          (valueChange)="onGenderChange($event)"
+          label="LISTE_LANGUES"
+          icon="language"
+          allLabel="PUBLICS_ALL"
+          [options]="languageOptions"
+          [value]="filters?.languages ?? null"
+          name="filterLanguageMobile"
+          (valueChange)="onLanguageChange($event)"
         ></app-filter-pill-dropdown>
 
         <button
