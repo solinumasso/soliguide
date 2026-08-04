@@ -54,56 +54,56 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
     contactFormEnabled: true,
     locationAutocompletePlaceholder:
       "Gare de l'est, 12 rue des bois, Paris, etc.",
-    solidata: {
-      territorialAnalysis: {
-        label: "Analyse territoriale",
-        dashboardUrl:
-          "https://superset.solinum.org/superset/dashboard/territorial-analysis/?standalone=2",
-        seoUrl: "territorial-analysis",
-      },
-      seasonalAnalysis: {
-        label: "Analyse saisonnière",
-        dashboardUrl:
-          "https://superset.solinum.org/superset/dashboard/services-closures/?standalone=2",
-        seoUrl: "seasonal-analysis",
-      },
-      searchTracking: {
-        label: "Suivi des recherches",
-        dashboardUrl:
-          "https://superset.solinum.org/superset/dashboard/nsm/?standalone=2",
-        seoUrl: "consultation-tracking",
-      },
-      foodAccess: {
-        label: "Analyse de l’accès à l’alimentation",
-        dashboardUrl:
-          "https://superset.solinum.org/superset/dashboard/acces_alimentation/?standalone=2",
-        seoUrl: "access_alimentation",
-      },
-      olympicGames: {
-        label: "Anticipation des fermetures pour l'été et les JO 2024 en IDF",
-        dashboardUrl:
-          "https://superset.solinum.org/superset/dashboard/solidata_jo_2024/?standalone=2",
-        seoUrl: "olympic-games",
-      },
-      anticipateClosures: {
-        label: "Anticipez des fermetures de services sur votre territoire",
-        dashboardUrl:
-          "https://superset.solinum.org/superset/dashboard/calendrier_des_fermetures/?standalone=2",
-        seoUrl: "calendrier_des_fermetures",
-      },
-      waterAccess: {
-        label: "Accès à l'eau et à l'hygiène en métropoles de France",
-        dashboardUrl:
-          "https://superset.solinum.org/superset/dashboard/acces_eau/?standalone=2",
-        seoUrl: "acces_eau",
-      },
-      demoFoodAccess: {
-        label: "Démo – Analyse de l'accès à l'alimentation",
-        dashboardUrl:
-          "https://superset.solinum.org/superset/dashboard/demo_acces_alimentation/?standalone=2",
-        seoUrl: "demo_acces_alimentation",
-      },
-    },
+    // solidata: {
+    //   territorialAnalysis: {
+    //     label: "Analyse territoriale",
+    //     dashboardUrl:
+    //       "https://superset.solinum.org/superset/dashboard/territorial-analysis/?standalone=2",
+    //     seoUrl: "territorial-analysis",
+    //   },
+    //   seasonalAnalysis: {
+    //     label: "Analyse saisonnière",
+    //     dashboardUrl:
+    //       "https://superset.solinum.org/superset/dashboard/services-closures/?standalone=2",
+    //     seoUrl: "seasonal-analysis",
+    //   },
+    //   searchTracking: {
+    //     label: "Suivi des recherches",
+    //     dashboardUrl:
+    //       "https://superset.solinum.org/superset/dashboard/nsm/?standalone=2",
+    //     seoUrl: "consultation-tracking",
+    //   },
+    //   foodAccess: {
+    //     label: "Analyse de l’accès à l’alimentation",
+    //     dashboardUrl:
+    //       "https://superset.solinum.org/superset/dashboard/acces_alimentation/?standalone=2",
+    //     seoUrl: "access_alimentation",
+    //   },
+    //   olympicGames: {
+    //     label: "Anticipation des fermetures pour l'été et les JO 2024 en IDF",
+    //     dashboardUrl:
+    //       "https://superset.solinum.org/superset/dashboard/solidata_jo_2024/?standalone=2",
+    //     seoUrl: "olympic-games",
+    //   },
+    //   anticipateClosures: {
+    //     label: "Anticipez des fermetures de services sur votre territoire",
+    //     dashboardUrl:
+    //       "https://superset.solinum.org/superset/dashboard/calendrier_des_fermetures/?standalone=2",
+    //     seoUrl: "calendrier_des_fermetures",
+    //   },
+    //   waterAccess: {
+    //     label: "Accès à l'eau et à l'hygiène en métropoles de France",
+    //     dashboardUrl:
+    //       "https://superset.solinum.org/superset/dashboard/acces_eau/?standalone=2",
+    //     seoUrl: "acces_eau",
+    //   },
+    //   demoFoodAccess: {
+    //     label: "Démo – Analyse de l'accès à l'alimentation",
+    //     dashboardUrl:
+    //       "https://superset.solinum.org/superset/dashboard/demo_acces_alimentation/?standalone=2",
+    //     seoUrl: "demo_acces_alimentation",
+    //   },
+    // },
     praticalFilesLink: environment.praticalFilesLink,
     becomeTranslatorFormLink: environment.becomeTranslatorFormLink,
     donateLink: environment.donateLink,
