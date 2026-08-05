@@ -11,7 +11,13 @@ import swaggerJSDoc from "swagger-jsdoc";
 import { anonymizeDb } from "./config/database/anonymizeDb";
 
 import { httpLogger, logger } from "./general/logger";
-import { CONFIG, ExpressRequest, ExpressResponse } from "./_models";
+import {
+  CONFIG,
+  ExpressRequest,
+  ExpressResponse,
+  SOLIGUIDE_HOSTNAME_REGEXP,
+  SOLIGUIDE_URLS,
+} from "./_models";
 
 logger.info(CONFIG);
 
@@ -85,27 +91,138 @@ import { initializeCronJobs } from "./cron/cron-manager";
 
 const _app = express();
 
+/**
+ * CORS policy
+ *
+ * The session token now lives in an httpOnly cookie (see `user/utils/authCookie.ts`),
+ * so calls from our own front-ends are credentialed requests. The CORS spec forbids
+ * `Access-Control-Allow-Origin: *` on those, and the `credentials` flag itself has to
+ * differ per caller, which is why a static `cors()` config is not enough and the
+ * options delegate below recomputes everything per request.
+ *
+ * Caller                              | Allow-Origin                | Allow-Credentials
+ * ------------------------------------|-----------------------------|------------------
+ * No Origin header (server to server) | not sent                    | true
+ * Known Soliguide origin              | the origin + `Vary: Origin` | true
+ * Unknown origin, token auth          | the origin + `Vary: Origin` | not sent
+ * Unknown origin, no auth             | `*`                         | not sent
+ */
+
+// Trailing slashes are stripped on both sides of the comparison: env vars are often
+// written `https://soliguide.fr/` while a browser Origin header never has one.
+const allowedCorsOrigins = new Set(
+  [...SOLIGUIDE_URLS, CONFIG.FRONTEND_URL, CONFIG.WIDGET_URL].map((url) =>
+    url.replace(/\/$/, "")
+  )
+);
+
+const allowedCorsHeaders = [
+  "Authorization",
+  "Accept",
+  "Origin",
+  "DNT",
+  "X-Document-Referrer",
+  "Keep-Alive",
+  "User-Agent",
+  "X-Requested-With",
+  "If-Modified-Since",
+  "Cache-Control",
+  "Content-Type",
+  "Content-Range",
+  "Range",
+  "X-Ph-User-Distinct-Id",
+  "X-Ph-User-Session-Id",
+];
+
+/**
+ * Exact match first, then a hostname pattern fallback for the Soliguide domains that
+ * cannot be listed in env vars, typically the per-PR demo environments such as
+ * `fr.demo.soliguide.dev`. `new URL` is guarded because the Origin header is client
+ * controlled: it can be malformed, or the literal string "null" for a sandboxed
+ * iframe or a `file://` page, which would throw and turn a rejection into a 500.
+ */
+const isAllowedCorsOrigin = (origin: string): boolean => {
+  const cleanOrigin = origin.replace(/\/$/, "");
+
+  if (allowedCorsOrigins.has(cleanOrigin)) {
+    return true;
+  }
+
+  try {
+    const { hostname } = new URL(cleanOrigin);
+    return SOLIGUIDE_HOSTNAME_REGEXP.test(hostname);
+  } catch (_error) {
+    return false;
+  }
+};
+
+/**
+ * A preflight OPTIONS request never carries the actual Authorization header, it only
+ * announces it in `Access-Control-Request-Headers`. Both are checked, otherwise the
+ * preflight of a token based caller would fall through to the public branch and the
+ * real request would never be sent.
+ */
+const hasAuthorizationHeader = (req: Request): boolean => {
+  const requestedHeaders = req
+    .get("access-control-request-headers")
+    ?.split(",")
+    .map((header) => header.trim().toLowerCase());
+
+  return (
+    Boolean(req.get("authorization")) ||
+    Boolean(requestedHeaders?.includes("authorization"))
+  );
+};
+
 _app.use(httpLogger);
 _app.use(
-  cors({
-    credentials: true,
-    allowedHeaders: [
-      "Authorization",
-      "Accept",
-      "Origin",
-      "DNT",
-      "X-Document-Referrer",
-      "Keep-Alive",
-      "User-Agent",
-      "X-Requested-With",
-      "If-Modified-Since",
-      "Cache-Control",
-      "Content-Type",
-      "Content-Range",
-      "Range",
-      "X-Ph-User-Distinct-Id",
-      "X-Ph-User-Session-Id",
-    ],
+  cors((req: Request, callback) => {
+    const origin = req.get("origin");
+
+    // No Origin header: no browser is enforcing CORS. curl, server to server calls,
+    // healthchecks, native mobile webviews. `origin: true` echoes the request Origin,
+    // absent here, so no Allow-Origin header is emitted at all.
+    if (!origin) {
+      return callback(null, {
+        allowedHeaders: allowedCorsHeaders,
+        credentials: true,
+        origin: true,
+      });
+    }
+
+    // Our own apps: echo the exact origin, never `*`, and allow credentials. Those are
+    // the two conditions the browser requires before it stores the session cookie and
+    // sends it back. The lib adds `Vary: Origin` so caches and CDNs never serve one
+    // domain the response computed for another.
+    if (isAllowedCorsOrigin(origin)) {
+      return callback(null, {
+        allowedHeaders: allowedCorsHeaders,
+        credentials: true,
+        origin,
+      });
+    }
+
+    // API users (`UserStatus.API_USER`) and partner integrations authenticating with
+    // `Authorization: JWT ...`. A header is not a CORS credential, so the token keeps
+    // working, while `credentials: false` stops the browser from attaching our session
+    // cookie to these unknown origins.
+    if (hasAuthorizationHeader(req)) {
+      return callback(null, {
+        allowedHeaders: allowedCorsHeaders,
+        credentials: false,
+        origin,
+      });
+    }
+
+    // Public unauthenticated traffic, typically the widget embedded on partner sites.
+    // Careful: `origin: false` does NOT reject the request, the cors lib answers
+    // `Access-Control-Allow-Origin: *`. Reads stay as open as they were before the
+    // cookie migration, only the session cookie is withheld.
+    return callback(null, {
+      allowedHeaders: allowedCorsHeaders,
+      credentials: false,
+      origin: false,
+    });
   })
 );
 

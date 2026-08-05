@@ -1,4 +1,5 @@
 fileignoreconfig:
+
 - filename: .agents/skills/change-taxonomy/step-1-dsl-yaml.md
   checksum: 84b4e2dc6eee8b3486ebaec950d8fda204176a3d9d8672cb870b14f811bded90
 - filename: .agents/skills/change-taxonomy/step-2-enum.md
@@ -33,6 +34,8 @@ fileignoreconfig:
   checksum: bae3ba8730c8495a8a407b610d456c859d2a032f1b8c44572924fc5889df8bfd
 - filename: packages/api/migrations/20260710000000-sync-campaign-user-uuid-to-brevo.ts
   checksum: 4e3ee60e30b2bd907dd3748435989398a4a3bd0fbeaf8a205023e3a8ae25cec7
+- filename: packages/api/e2e/users/users-me.routes.spec.ts
+  checksum: f1c910282efa97fa366caed13783cf38f3cf94fcc8d4e4379036daec77bde7cd
 - filename: packages/api/src/analytics/scripts/brevo-campaign-user-update.ts
   checksum: 112b958249429a89d4e48fcac42cc99526c15f8dba17c3c5299c6c996d60355c
 - filename: packages/api/src/autoexport/services/renders/renderWord.ts
@@ -43,6 +46,8 @@ fileignoreconfig:
   checksum: 2cd7af0b97999b433a39e228ebd22b80c3d2036474d554802bf056034e8e1112
 - filename: packages/api/src/campaign/routes/campaign.routes.ts
   checksum: 0a012cd93fcf9c943756350b99edfd054bc90642a8d4f16c3145bfcfc5818a8b
+- filename: packages/api/src/middleware/request/requestCurrentUser.middleware.ts
+  checksum: d4cc9b614e240e1860cd00f570aef3bb529b15ab49abbb0e06681cb04e3d11b2
 - filename: packages/api/src/middleware/request/tests/requestInformations.middleware.spec.ts
   checksum: 6a751b1f3b2b4502def7418f303a746b724694ad7bf92387fe02da43834882af
 - filename: packages/api/src/place/services/isOpenToday.service.spec.ts
@@ -57,6 +62,8 @@ fileignoreconfig:
   checksum: 233f543af317e4cfe69ecc7dd28ab4d0b9a7bbdbdd99caa0be6a46ed17ac2414
 - filename: packages/common/src/search-suggestions/config.ts
   checksum: db47bb50156072db5e1d62458a948d3eb1f9acff5cad7b339fb0cbdd4d85117c
+- filename: packages/frontend/src/app/interceptors/server-error.interceptor.spec.ts
+  checksum: de02b8aab6b8fccecabfb3472c32d7b8c95505245bebc84e67b8157951d13e9c
 - filename: packages/frontend/src/app/modules/admin-place-shared/components/display-general-info-admin/display-general-info-admin.component.ts
   checksum: 7a88f8df0c1e1d97697bf8ff8de815b2dc8ce2983c70bd487892c45758bd5b65
 - filename: packages/frontend/src/app/modules/admin-place-shared/components/display-service-admin/display-service-admin.component.ts
@@ -103,4 +110,4 @@ fileignoreconfig:
   checksum: 255742469cf3c03ad2e1a9d1409c1877c292735e2bf5583393523750cbc88c0f
   version: "1.0"
   checksum: 39a777e2cc93ef06f37d3d3331e8078fbfcf1f58793174b9e37f5bac2363a0a4
-version: "1.0"
+  version: "1.0"
