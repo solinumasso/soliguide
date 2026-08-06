@@ -30,13 +30,13 @@
   ></app-filter-pill-dropdown>
 
   <app-filter-pill-dropdown
-    label="LISTE_LANGUES"
-    icon="language"
-    allLabel="PUBLICS_ALL"
-    [options]="languageOptions"
-    [value]="filters?.languages ?? null"
-    name="filterLanguage"
-    (valueChange)="onLanguageChange($event)"
+    label="GENDER"
+    icon="user"
+    [allLabel]="PUBLICS_LABELS.gender.all"
+    [options]="genderOptions"
+    [value]="filters?.gender ?? null"
+    name="filterGender"
+    (valueChange)="onPublicChange('gender', $event)"
   ></app-filter-pill-dropdown>
 
   <label class="filters-chain__field" for="filterAge">

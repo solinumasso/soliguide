@@ -63,6 +63,12 @@ export const ALL_LOGOS: LogoWithLink[] = [
     link: "https://dretssocials.gencat.cat/ca/inici/",
     size: "small",
   },
+  {
+    path: `${LOGOS_BASE_PATH}/diputacio-de-barcelona.png`,
+    alt: "Diputació de Barcelona",
+    link: "http://diba.cat/ca/",
+    size: "small",
+  },
 ];
 
 export const LOGOS_BY_COUNTRY: Partial<Record<CountryCodes, string[]>> = {
@@ -70,6 +76,7 @@ export const LOGOS_BY_COUNTRY: Partial<Record<CountryCodes, string[]>> = {
     "Alba",
     "Andorra Research & Innovation",
     "Departament de Drets Socials i Inclúsió",
+    "Diputació de Barcelona",
     "Diputació de Tarragona",
     "Fundació Resilis",
     "Interreg POCTEFA",
@@ -96,6 +103,7 @@ export const FUNDERS_BY_COUNTRY: Partial<Record<CountryCodes, string[]>> = {
   [CountryCodes.ES]: [
     "Interreg POCTEFA",
     "Diputació de Tarragona",
+    "Diputació de Barcelona",
     "Departament de Drets Socials i Inclúsió",
   ],
   [CountryCodes.AD]: [
