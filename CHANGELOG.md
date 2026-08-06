@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.151.0](https://github.com/solinumasso/soliguide/compare/v4.150.0...v4.151.0) (2026-08-06)
+
+
+### Bug Fixes
+
+* **frontend:** use cropped banner logo for Diputació de Barcelona ([e53c284](https://github.com/solinumasso/soliguide/commit/e53c2842ca027302f3e41b676c9fdc2106c03edb))
+
+
+### Features
+
+* **frontend:** add Diputació de Barcelona logo for Soliguia Catalunya ([6b544d0](https://github.com/solinumasso/soliguide/commit/6b544d0661c457cda9053b955d7e6634a35bd12f))
+* hide filters on mobile devices and show language filters instead of gender ([b6ec79e](https://github.com/solinumasso/soliguide/commit/b6ec79e08bd9f622e522bfb9558b805d6ee53190))
+* retirer les liens Solidata sans retirer le code ([b13a486](https://github.com/solinumasso/soliguide/commit/b13a48600ed695e6be1835044edf328b3d86137c))
+
+
+### Reverts
+
+* Revert "feat: update maintenance banner wording for external sources" ([6d7a222](https://github.com/solinumasso/soliguide/commit/6d7a222d485caee62b401a416fb03bcffcbb66f3))
+
+
+
+
+
 # [4.150.0](https://github.com/solinumasso/soliguide/compare/v4.149.0...v4.150.0) (2026-07-28)
 
 
