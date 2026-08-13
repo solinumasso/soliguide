@@ -1,3 +1,4 @@
+import { LegalPage } from "@soliguide/common";
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { StaticPagesComponentInterface } from "../../../models";
 import { CurrentLanguageService } from "../../../../general/services/current-language.service";
@@ -30,7 +31,7 @@ export class GcuSoliguiaCaComponent
       )
     );
     this.dataProcessingAgreementLink = getPathFromTheme(
-      "data-processing-agreement"
+      LegalPage.DATA_PROCESSING_AGREEMENT
     );
 
     this.linkTitle = this.translateService.instant("COOKIE_POLICY");

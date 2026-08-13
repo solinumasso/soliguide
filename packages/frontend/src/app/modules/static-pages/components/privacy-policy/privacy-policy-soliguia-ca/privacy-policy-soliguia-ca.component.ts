@@ -1,3 +1,4 @@
+import { LegalPage } from "@soliguide/common";
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { StaticPagesComponentInterface } from "../../../models";
 import { CurrentLanguageService } from "../../../../general/services/current-language.service";
@@ -29,7 +30,7 @@ export class PrivacyPolicySoliguiaCaComponent
         () => (this.routePrefix = this.currentLanguageService.routePrefix)
       )
     );
-    this.cookiePolicyLink = getPathFromTheme("cookie-policy");
+    this.cookiePolicyLink = getPathFromTheme(LegalPage.COOKIE_POLICY);
 
     this.linkTitle = this.translateService.instant("COOKIE_POLICY");
   }

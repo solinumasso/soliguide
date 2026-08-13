@@ -1,3 +1,4 @@
+import { LegalPage } from "@soliguide/common";
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 
 import type { PosthogProperties } from "@soliguide/common-angular";
@@ -39,13 +40,13 @@ export class FooterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.policyPrivacyLink = getPathFromTheme("cookie-policy");
+    this.policyPrivacyLink = getPathFromTheme(LegalPage.COOKIE_POLICY);
     this.dataProcessingAgreementLink = getPathFromTheme(
-      "data-processing-agreement"
+      LegalPage.DATA_PROCESSING_AGREEMENT
     );
-    this.gcuLink = getPathFromTheme("gcu");
-    this.legalNoticesLink = getPathFromTheme("legal-notices");
-    this.privacyPolicyLink = getPathFromTheme("privacy-policy");
+    this.gcuLink = getPathFromTheme(LegalPage.GCU);
+    this.legalNoticesLink = getPathFromTheme(LegalPage.LEGAL_NOTICES);
+    this.privacyPolicyLink = getPathFromTheme(LegalPage.PRIVACY_POLICY);
   }
 
   public openCookiesConsentModal(): void {

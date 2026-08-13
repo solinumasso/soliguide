@@ -1,7 +1,9 @@
 import {
   Themes,
+  BRAND_NAME_BY_THEME,
   CountryCodes,
   SupportedLanguagesCode,
+  WEBSITE_URL_BY_THEME,
   initializeCategoriesByTheme,
 } from "@soliguide/common";
 import type { ThemeConfiguration } from "./theme-configuration.interface";
@@ -21,7 +23,7 @@ const DEFAULT_THEME_VALUE: Pick<
 const THEMES: Record<Themes, ThemeConfiguration> = {
   [Themes.SOLIGUIDE_FR]: {
     ...DEFAULT_THEME_VALUE,
-    brandName: "Soliguide",
+    brandName: BRAND_NAME_BY_THEME[Themes.SOLIGUIDE_FR],
     logos: {
       inline: "soliguide-inline.svg",
       original: "soliguide.svg",
@@ -115,11 +117,11 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
       territoriesPresent: Number.parseInt(environment.territoriesPresent),
     },
     showTranslationMenuDropdown: true,
-    websiteUrl: "soliguide.fr",
+    websiteUrl: WEBSITE_URL_BY_THEME[Themes.SOLIGUIDE_FR],
   },
   [Themes.SOLIGUIA_ES]: {
     ...DEFAULT_THEME_VALUE,
-    brandName: "Soliguia",
+    brandName: BRAND_NAME_BY_THEME[Themes.SOLIGUIA_ES],
     logos: {
       inline: "soliguia-inline.svg",
       original: "soliguia.svg",
@@ -140,7 +142,7 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
     contactFormEnabled: true,
     locationAutocompletePlaceholder: "Barcelona Sants, Lleida, etc.",
     showTranslationMenuDropdown: false,
-    websiteUrl: "soliguia.cat",
+    websiteUrl: WEBSITE_URL_BY_THEME[Themes.SOLIGUIA_ES],
     socialMedia: {
       instagram: "https://www.instagram.com/soliguia/",
       linkedin: "https://www.linkedin.com/showcase/soliguia/",
@@ -149,7 +151,7 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
   },
   [Themes.SOLIGUIA_AD]: {
     ...DEFAULT_THEME_VALUE,
-    brandName: "Soliguia",
+    brandName: BRAND_NAME_BY_THEME[Themes.SOLIGUIA_AD],
     logos: {
       inline: "soliguia-inline.svg",
       original: "soliguia.svg",
@@ -175,7 +177,7 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
     locationAutocompletePlaceholder:
       "Andorre-la-Vieja, Escaldes-Engordany, etc.",
     showTranslationMenuDropdown: false,
-    websiteUrl: "soliguia.ad",
+    websiteUrl: WEBSITE_URL_BY_THEME[Themes.SOLIGUIA_AD],
     socialMedia: {
       instagram: "https://www.instagram.com/soliguia/",
       linkedin: "https://www.linkedin.com/showcase/soliguia/",
