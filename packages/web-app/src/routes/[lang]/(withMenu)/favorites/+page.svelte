@@ -1,21 +1,19 @@
 <script lang="ts">
+  import { getThemeContext } from '$lib/theme';
   import { onMount, getContext, setContext } from 'svelte';
-  import { get } from 'svelte/store';
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
   import { ROUTES_CTX_KEY } from '$lib/client';
   import { favorites, FAVORITES_LIMIT } from '$lib/client/favorites';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
-  import { themeStore } from '$lib/theme';
-  import type { ThemeDefinition } from '$lib/theme/types';
   import { PlaceStatus, SupportedLanguagesCode } from '@soliguide/common';
   import { Button, Text, PageLoader, InfoBlock } from '@soliguide/design-system';
   import ResultsCard from '../places/components/card/ResultsCard.svelte';
   import pageStore from './index';
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
-  const theme: ThemeDefinition = get(themeStore.getTheme());
+  const theme = getThemeContext();
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
 
   setContext('CAPTURE_FCTN_CTX_KEY', pageStore.captureEvent);
@@ -78,7 +76,7 @@
           <Text type="title3PrimaryExtraBold">
             {$i18n.t('FAVORITES_DESCRIPTION')}
           </Text>
-          <img src={`/images/${theme.media.favoritesIllustration}`} alt="favorites illustration" />
+          <img src={theme.media.illustrations.favorites} alt="favorites illustration" />
 
           <div class="no-results-description">
             <Text type="text1">

@@ -1,13 +1,12 @@
 <script lang="ts">
+  import { getThemeContext } from '$lib/theme';
   import { getContext, setContext, onMount } from 'svelte';
-  import { get } from 'svelte/store';
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
   import { InputText, Topbar, PageLoader, FormControl } from '@soliguide/design-system';
-  import pageStore from './index';
+  import { createSearchPageController } from './index';
   import { Steps, Focus } from './types';
   import { ROUTES_CTX_KEY, getGeolocation } from '$lib/client';
-  import { themeStore } from '$lib/theme';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import { GeolocationBlockedModal } from '$lib/components';
   import {
@@ -17,16 +16,19 @@
     CategorySuggestionList
   } from './components/index';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
-  import type { ThemeDefinition } from '$lib/theme/types';
   import type { LocationSuggestion } from '$lib/models/locationSuggestion';
   import { SupportedLanguagesCode } from '@soliguide/common';
-  import { CategoriesErrors, LocationErrors } from '$lib/services/types';
+  import { CategoriesErrors, LocationErrors, type CategoryService } from '$lib/services/types';
+  import { CATEGORY_SERVICE_CTX_KEY } from '$lib/services/categoryService';
   import { type CategorySearch, ALL_CATEGORIES } from '$lib/constants';
   import { getCategorySearchTranslationKey } from '$lib/utils/categoryTranslation';
 
+  const theme = getThemeContext();
+  const categoryService: CategoryService = getContext(CATEGORY_SERVICE_CTX_KEY);
+  const pageStore = createSearchPageController(categoryService);
+
   setContext('CAPTURE_FCTN_CTX_KEY', pageStore.captureEvent);
 
-  const theme: ThemeDefinition = get(themeStore.getTheme());
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
   const { url } = $page;

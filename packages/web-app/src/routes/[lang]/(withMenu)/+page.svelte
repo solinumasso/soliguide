@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { getThemeContext } from '$lib/theme';
   import { getContext, setContext, type ComponentType } from 'svelte';
   import { goto } from '$app/navigation';
   import { Text, Tile, PageLoader } from '@soliguide/design-system';
@@ -9,10 +10,7 @@
   import { searchParamsService } from '$lib/services';
   import { showToast } from '$lib/toast/toast.store';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
-  import type { ThemeDefinition } from '$lib/theme/types';
   import type { QuickSearchFilters } from './types';
-  import { get } from 'svelte/store';
-  import { themeStore } from '$lib/theme';
   import {
     Categories,
     getCategoryTranslationKey,
@@ -23,7 +21,7 @@
   import MoreHoriz from 'svelte-google-materialdesign-icons/More_horiz.svelte';
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
-  const theme: ThemeDefinition = get(themeStore.getTheme());
+  const theme = getThemeContext();
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
 
   setContext('CAPTURE_FCTN_CTX_KEY', pageStore.captureEvent);
@@ -174,7 +172,7 @@
       <span class="title">
         <Text as="h1" type="title3PrimaryExtraBold">{$i18n.t('HOME_TITLE')}</Text>
       </span>
-      <img src={`/images/${theme.media.homeIllustration}`} alt="Soliguide" />
+      <img src={theme.media.illustrations.home} alt="Soliguide" />
     </div>
     <div class="hello">
       <Text as="h2" type="title3PrimaryBold">{$i18n.t('HELLO')} 👋</Text>

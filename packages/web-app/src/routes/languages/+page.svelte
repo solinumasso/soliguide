@@ -1,21 +1,19 @@
 <script lang="ts">
+  import { getThemeContext } from '$lib/theme';
   import { getContext, setContext } from 'svelte';
   import { goto } from '$app/navigation';
   import { Button, Text } from '@soliguide/design-system';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
-  import { themeStore } from '$lib/theme/index';
   import { markLanguageAsSelected, ROUTES_CTX_KEY } from '$lib/client';
   import { getController } from './pageController';
   import LanguageSelector from './LanguageSelector.svelte';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
-  import type { ThemeDefinition } from '$lib/theme/types';
   import { page } from '$app/stores';
-  import { get } from 'svelte/store';
 
   const pageStore = getController();
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
-  const theme: ThemeDefinition = get(themeStore.getTheme());
+  const theme = getThemeContext();
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
 
   setContext('CAPTURE_FCTN_CTX_KEY', pageStore.captureEvent);
@@ -39,12 +37,12 @@
 </svelte:head>
 
 <section class="page-body">
-  <img src="/images/select_language.svg" alt="" />
+  <img src={theme.media.illustrations.languageSelection} alt="" />
   <Text type="title2PrimaryExtraBold" as="h1">
     {$i18n.t('MENU_SELECT_LANGUAGE')}
   </Text>
   <div class="subtitle">
-    <Text type="text2">{$i18n.t('AVAILABLE_IN_LANGUAGES')}</Text>
+    <Text type="text2">{$i18n.t('AVAILABLE_IN_LANGUAGES', { brandName: theme.brandName })}</Text>
   </div>
   <LanguageSelector
     options={$pageStore.availableLanguages}

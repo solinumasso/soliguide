@@ -1,4 +1,3 @@
-import { categoryService } from '$lib/services/categoryService';
 import {
   GeoTypes,
   calculateDistanceBetweenTwoPoints,
@@ -10,6 +9,7 @@ import {
   type ApiSearchResults,
   type CommonNewPlaceService
 } from '@soliguide/common';
+import type { CategoryService } from '$lib/services/types';
 import { sort } from '$lib/ts';
 import { sortServicesByRelevance } from '../utils';
 import {
@@ -88,7 +88,8 @@ const buildLightPlaceCard = (
 const buildSearchResultPlaceCard = (
   place: ApiPlace,
   locationParams: SearchLocationParams,
-  categorySearched: Categories | null
+  categorySearched: Categories | null,
+  categoryService: CategoryService
 ): SearchResultPlaceCard => {
   const allCategoriesByTheme = categoryService.getAllCategories();
 
@@ -170,10 +171,11 @@ const buildSearchResultWithParcours = (
   placesResult: ApiSearchResults,
   itineraryResult: ApiSearchResults,
   searchLocationParams: SearchLocationParams,
-  category: Categories | null
+  category: Categories | null,
+  categoryService: CategoryService
 ): SearchResult => {
   const placesResultItems = placesResult.places.map((place) =>
-    buildSearchResultPlaceCard(place, searchLocationParams, category)
+    buildSearchResultPlaceCard(place, searchLocationParams, category, categoryService)
   );
 
   // We extract itinerary crossing points and build a "place" for each one of them
@@ -183,7 +185,12 @@ const buildSearchResultWithParcours = (
       searchLocationParams
     );
     return extractedCrossingPoints.map((extractedCrossingPoint) =>
-      buildSearchResultPlaceCard(extractedCrossingPoint, searchLocationParams, category)
+      buildSearchResultPlaceCard(
+        extractedCrossingPoint,
+        searchLocationParams,
+        category,
+        categoryService
+      )
     );
   });
   const sortedPlaces = sortPlacesByDistance([...placesResultItems, ...itineraryResultItems]);
@@ -200,10 +207,11 @@ const buildSearchResultWithParcours = (
 const buildSearchResult = (
   placesResult: ApiSearchResults,
   searchLocationParams: SearchLocationParams,
-  category: Categories | null
+  category: Categories | null,
+  categoryService: CategoryService
 ): SearchResult => {
   const placesResultItems = placesResult.places.map((place) =>
-    buildSearchResultPlaceCard(place, searchLocationParams, category)
+    buildSearchResultPlaceCard(place, searchLocationParams, category, categoryService)
   );
 
   return {

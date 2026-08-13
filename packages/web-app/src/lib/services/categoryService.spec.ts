@@ -7,7 +7,7 @@ import {
   Themes,
   type FormattedSuggestion
 } from '@soliguide/common';
-import { getCategoryService } from './categoryService';
+import { getCategoryService, getCategoryServiceForTheme } from './categoryService';
 import { loadSuggestionsData } from './searchSuggestionsData';
 
 vi.mock('./searchSuggestionsData');
@@ -102,5 +102,53 @@ describe('Category Service', () => {
       );
       expect(result).toEqual([]);
     });
+  });
+});
+
+describe('getCategoryServiceForTheme', () => {
+  it('serves a taxonomy per theme', () => {
+    // Every theme shares the same roots; the per-theme overlay adds children
+    const frenchCourses = getCategoryServiceForTheme(Themes.SOLIGUIDE_FR).getChildrenCategories(
+      Categories.TRAINING_AND_JOBS
+    );
+    const spanishCourses = getCategoryServiceForTheme(Themes.SOLIGUIA_ES).getChildrenCategories(
+      Categories.TRAINING_AND_JOBS
+    );
+
+    expect(frenchCourses).toContain(Categories.FRENCH_COURSE);
+    expect(frenchCourses).not.toContain(Categories.CATALAN_COURSE);
+
+    expect(spanishCourses).toContain(Categories.CATALAN_COURSE);
+    expect(spanishCourses).toContain(Categories.SPANISH_COURSE);
+    expect(spanishCourses).not.toContain(Categories.FRENCH_COURSE);
+  });
+
+  it('reuses the same instance for a given theme', () => {
+    expect(getCategoryServiceForTheme(Themes.SOLIGUIA_AD)).toBe(
+      getCategoryServiceForTheme(Themes.SOLIGUIA_AD)
+    );
+  });
+
+  it('keeps each theme intact when several are interleaved', () => {
+    // One Node process serves every country, so asking for one theme must never
+    // change what another one answers
+    const frenchService = getCategoryServiceForTheme(Themes.SOLIGUIDE_FR);
+    const frenchCoursesBefore = frenchService.getChildrenCategories(Categories.TRAINING_AND_JOBS);
+
+    getCategoryServiceForTheme(Themes.SOLIGUIA_ES).getChildrenCategories(
+      Categories.TRAINING_AND_JOBS
+    );
+    getCategoryServiceForTheme(Themes.SOLIGUIA_AD).getChildrenCategories(
+      Categories.TRAINING_AND_JOBS
+    );
+
+    expect(frenchService.getChildrenCategories(Categories.TRAINING_AND_JOBS)).toEqual(
+      frenchCoursesBefore
+    );
+    expect(
+      getCategoryServiceForTheme(Themes.SOLIGUIDE_FR).getChildrenCategories(
+        Categories.TRAINING_AND_JOBS
+      )
+    ).toEqual(frenchCoursesBefore);
   });
 });

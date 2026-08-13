@@ -16,9 +16,14 @@ import {
   GeoTypes,
   PlaceOpeningStatus,
   PlaceStatus,
+  Themes,
   type ApiPlace
 } from '@soliguide/common';
 import type { SearchLocationParams, SearchResultPlaceCard } from './types';
+import { getCategoryServiceForTheme } from '$lib/services/categoryService';
+
+// The taxonomy is theme scoped: these specs exercise the French one
+const categoryService = getCategoryServiceForTheme(Themes.SOLIGUIDE_FR);
 
 // This location is in Paris and at less than 10km of localisations in samplePlace and parcours in sampleItinerary
 const sampleLocationParams: SearchLocationParams = {
@@ -36,7 +41,8 @@ describe('Search Result', () => {
       const result = buildSearchResult(
         { nbResults: 1, places: [samplePlace] },
         sampleLocationParams,
-        category
+        category,
+        categoryService
       );
       const [resultItem] = result.places;
       expect(resultItem).toStrictEqual(samplePlaceTransformed);
@@ -82,7 +88,8 @@ describe('Search Result', () => {
       const result = buildSearchResult(
         { nbResults: 1, places: [modifiedPlace] },
         sampleLocationParams,
-        category
+        category,
+        categoryService
       );
       const [resultItem] = result.places;
 
@@ -99,7 +106,8 @@ describe('Search Result', () => {
         const result = buildSearchResult(
           { nbResults: 1, places: [samplePlace] },
           { ...sampleLocationParams, geoType: geoTypeToSearch },
-          category
+          category,
+          categoryService
         );
         const [resultItem] = result.places;
         expect(resultItem.searchGeoType).toStrictEqual(geoTypeToSearch);
@@ -111,7 +119,8 @@ describe('Search Result', () => {
         const result = buildSearchResult(
           { nbResults: 1, places: [samplePlaceWithoutDistance] },
           sampleLocationParams,
-          category
+          category,
+          categoryService
         );
         const [resultItem] = result.places;
         expect(resultItem.distance).toBeGreaterThanOrEqual(0);
@@ -136,7 +145,8 @@ describe('Search Result', () => {
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
           sampleLocationParams,
-          category
+          category,
+          categoryService
         );
         const [resultItem] = result.places;
         expect(resultItem.address).toStrictEqual(modifiedPlaceResult.address);
@@ -162,7 +172,8 @@ describe('Search Result', () => {
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
           sampleLocationParams,
-          category
+          category,
+          categoryService
         );
         const [resultItem] = result.places;
         expect(resultItem.address).toStrictEqual(modifiedPlaceResult.address);
@@ -185,7 +196,8 @@ describe('Search Result', () => {
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
           sampleLocationParams,
-          category
+          category,
+          categoryService
         );
         const [resultItem] = result.places;
         expect(resultItem.address).toStrictEqual(modifiedPlaceResult.address);
@@ -210,7 +222,8 @@ describe('Search Result', () => {
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
           sampleLocationParams,
-          category
+          category,
+          categoryService
         );
         const [resultItem] = result.places;
         expect(resultItem.status).toStrictEqual(modifiedPlaceResult.status);
@@ -243,7 +256,8 @@ describe('Search Result', () => {
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
           sampleLocationParams,
-          category
+          category,
+          categoryService
         );
         const [resultItem] = result.places;
         expect(resultItem.status).toStrictEqual(modifiedPlaceResult.status);
@@ -275,7 +289,8 @@ describe('Search Result', () => {
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
           sampleLocationParams,
-          category
+          category,
+          categoryService
         );
         const [resultItem] = result.places;
         expect(resultItem.status).toStrictEqual(modifiedPlaceResult.status);
@@ -299,7 +314,8 @@ describe('Search Result', () => {
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
           sampleLocationParams,
-          category
+          category,
+          categoryService
         );
         const [resultItem] = result.places;
         expect(resultItem.status).toStrictEqual(modifiedPlaceResult.status);
@@ -333,7 +349,8 @@ describe('Search Result', () => {
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
           sampleLocationParams,
-          category
+          category,
+          categoryService
         );
         const [resultItem] = result.places;
         expect(resultItem.status).toStrictEqual(modifiedPlaceResult.status);
@@ -365,7 +382,8 @@ describe('Search Result', () => {
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
           sampleLocationParams,
-          category
+          category,
+          categoryService
         );
         const [resultItem] = result.places;
         expect(resultItem.todayInfo).toStrictEqual(modifiedPlaceResult.todayInfo);
@@ -399,7 +417,8 @@ describe('Search Result', () => {
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
           sampleLocationParams,
-          category
+          category,
+          categoryService
         );
         const [resultItem] = result.places;
         expect(resultItem.todayInfo).toStrictEqual(modifiedPlaceResult.todayInfo);
@@ -430,7 +449,8 @@ describe('Search Result', () => {
           { nbResults: 1, places: [modifiedPlace] },
 
           sampleLocationParams,
-          category
+          category,
+          categoryService
         );
         const [resultItem] = result.places;
         expect(resultItem.todayInfo).toStrictEqual(modifiedPlaceResult.todayInfo);
@@ -459,7 +479,8 @@ describe('Search Result', () => {
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
           sampleLocationParams,
-          category
+          category,
+          categoryService
         );
         const [resultItem] = result.places;
         expect(resultItem.todayInfo).toStrictEqual({});
@@ -489,7 +510,8 @@ describe('Search Result', () => {
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
           sampleLocationParams,
-          category
+          category,
+          categoryService
         );
         const [resultItem] = result.places;
         expect(resultItem.todayInfo).toStrictEqual({});
@@ -553,7 +575,8 @@ describe('Search Result', () => {
         const result = buildSearchResult(
           { nbResults: 1, places: [modifiedPlace] },
           sampleLocationParams,
-          category
+          category,
+          categoryService
         );
         const [resultItem] = result.places;
         expect(resultItem.sources).toStrictEqual(modifiedPlaceResult.sources);
@@ -567,7 +590,8 @@ describe('Search Result', () => {
         { nbResults: 0, places: [] },
         { nbResults: 1, places: [sampleItinerary] },
         sampleLocationParams,
-        category
+        category,
+        categoryService
       );
 
       expect(result.places.length).toBe(2);
@@ -579,7 +603,8 @@ describe('Search Result', () => {
         { nbResults: 0, places: [] },
         { nbResults: 1, places: [sampleItinerary] },
         sampleLocationParams,
-        category
+        category,
+        categoryService
       );
 
       expect(result.places[0].todayInfo).toStrictEqual(sampleItineraryTransformed[0].todayInfo);
@@ -591,7 +616,8 @@ describe('Search Result', () => {
         { nbResults: 0, places: [] },
         { nbResults: 1, places: [sampleItinerary] },
         sampleLocationParams,
-        category
+        category,
+        categoryService
       );
       expect(result.places[0].address).toContain(sampleItineraryTransformed[0].address);
       expect(result.places[1].address).toContain(sampleItineraryTransformed[1].address);
@@ -604,7 +630,8 @@ describe('Search Result', () => {
         { nbResults: 1, places: [samplePlace] },
         { nbResults: 1, places: [sampleItinerary] },
         sampleLocationParams,
-        category
+        category,
+        categoryService
       );
       expect(result.places.length).toBe(3);
     });
@@ -614,7 +641,8 @@ describe('Search Result', () => {
         { nbResults: 1, places: [samplePlace] },
         { nbResults: 1, places: [sampleItinerary] },
         sampleLocationParams,
-        category
+        category,
+        categoryService
       );
       const [place1, place2, place3] = result.places;
       expect(place2.distance).toBeGreaterThanOrEqual(place1.distance);
@@ -631,7 +659,8 @@ describe('Search Result', () => {
         { nbResults: 1, places: [] },
         { nbResults: 1, places: [sampleItineraryWithOnePointOutOfRange] },
         sampleLocationParams,
-        category
+        category,
+        categoryService
       );
 
       expect(result.places.length).toBe(2);

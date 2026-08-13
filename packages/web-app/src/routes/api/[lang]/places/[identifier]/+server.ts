@@ -1,6 +1,7 @@
 import { json, type RequestEvent } from '@sveltejs/kit';
 import getPlaceDetailsService from '$lib/server/services/placesService';
 import { getHeaders } from '$lib/server/services/headers';
+import { getCategoryServiceForTheme } from '$lib/services/categoryService';
 import type { PlaceDetailsParams } from '$lib/services/types';
 import type { Categories } from '@soliguide/common';
 
@@ -16,7 +17,9 @@ export const POST = async (requestEvent: RequestEvent): Promise<Response> => {
     await requestEvent.request.json();
   const headers = getHeaders(requestEvent);
 
-  const placeDetailService = getPlaceDetailsService();
+  const placeDetailService = getPlaceDetailsService(
+    getCategoryServiceForTheme(requestEvent.locals.theme.name)
+  );
   const result = await placeDetailService.placeDetails(
     {
       lang,

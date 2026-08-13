@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 import { ALL_SUPPORTED_LANGUAGES_NAME, SupportedLanguagesCode } from '@soliguide/common';
-import { EsCt, Fr, Gb, Es, Ir, Ge, Af, Ro, Ru, Ua, Xx } from 'svelte-circle-flags';
+import { EsCt, Fr, Gb, Es, Ir, Ge, Af, Pt, Ro, Ru, Ua, Xx } from 'svelte-circle-flags';
 import { posthogService } from '$lib/services/posthogService';
 import ArabicLanguage from './ArabicLanguage.svelte';
 import type { LanguageOption, LanguagePageController, PageState } from './types';
@@ -16,6 +16,7 @@ const flagsMap: Partial<Record<SupportedLanguagesCode, ComponentType<SvelteCompo
   [SupportedLanguagesCode.FA]: Ir,
   [SupportedLanguagesCode.KA]: Ge,
   [SupportedLanguagesCode.PS]: Af,
+  [SupportedLanguagesCode.PT]: Pt,
   [SupportedLanguagesCode.RO]: Ro,
   [SupportedLanguagesCode.RU]: Ru,
   [SupportedLanguagesCode.UK]: Ua

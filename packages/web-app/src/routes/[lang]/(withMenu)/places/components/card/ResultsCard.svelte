@@ -1,10 +1,9 @@
 <script lang="ts">
+  import { getThemeContext } from '$lib/theme';
   import { goto } from '$app/navigation';
   import { getContext } from 'svelte';
-  import { get } from 'svelte/store';
   import { getMapLink, ROUTES_CTX_KEY } from '$lib/client';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
-  import { themeStore } from '$lib/theme';
   import {
     Button,
     Card,
@@ -37,7 +36,6 @@
   import { favorites, toggleFavorite } from '$lib/client/favorites';
   import { notifyFavoriteChange } from '$lib/toast/toast.store';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
-  import type { ThemeDefinition } from '$lib/theme/types';
   import type { SearchResultPlaceCard } from '$lib/models/types';
   import { favoriteMatches } from '$lib/models/favorite';
   import type { PosthogCaptureFunction } from '$lib/services/types';
@@ -46,7 +44,7 @@
 
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
-  const theme: ThemeDefinition = get(themeStore.getTheme());
+  const theme = getThemeContext();
 
   export let place: SearchResultPlaceCard;
   export let id: string;
