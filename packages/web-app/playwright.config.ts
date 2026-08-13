@@ -11,7 +11,7 @@ const BASE_URL = `http://localhost:${PORT}`;
  */
 const THEME_HOSTNAMES = {
   'soliguide-fr': 'app.soliguide.fr',
-  'soliguia-es': 'app.soliguia.es',
+  'soliguia-es': 'app.soliguia.cat',
   'soliguia-ad': 'app.soliguia.ad'
 };
 
@@ -24,7 +24,7 @@ const config: PlaywrightTestConfig = {
       HOST_HEADER: 'x-forwarded-host',
       PROTOCOL_HEADER: 'x-forwarded-proto',
       PUBLIC_SOLIGUIDE_FR_HOSTNAMES: THEME_HOSTNAMES['soliguide-fr'],
-      PUBLIC_SOLIGUIA_ES_HOSTNAMES: `${THEME_HOSTNAMES['soliguia-es']},app.soliguia.cat`,
+      PUBLIC_SOLIGUIA_ES_HOSTNAMES: THEME_HOSTNAMES['soliguia-es'],
       PUBLIC_SOLIGUIA_AD_HOSTNAMES: THEME_HOSTNAMES['soliguia-ad']
     }
   },
