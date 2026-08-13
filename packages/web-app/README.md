@@ -122,18 +122,30 @@ No component, matcher or link table has to change.
 
 ### Deployment checklist
 
+Required:
+
 - Attach every country domain to the **same** application. There is one build and
   one deployment for all countries.
 - Set the `PUBLIC_*_HOSTNAMES` variables to the public hostnames of the
   environment.
-- Set `HOST_HEADER=x-forwarded-host` and `PROTOCOL_HEADER=x-forwarded-proto`.
-- **Leave `ORIGIN` unset.** `adapter-node` pins `url.origin` to it, and while the
-  theme itself reads the headers directly, a pinned origin breaks SvelteKit's own
-  URL handling.
 - On the API, set `WEBAPP_FR_URL`, `WEBAPP_ES_URL` and `WEBAPP_AD_URL` to the
   first hostname of each `PUBLIC_*_HOSTNAMES` list. The API derives the country
   of a request from its `Origin` header, and the web-app sends that canonical
   origin so alias hostnames resolve to the right country too.
+
+The theme itself needs nothing else: it reads `x-forwarded-host`, then `host`,
+straight from the request, never `event.url`. `Host` being mandatory in HTTP/1.1,
+resolution cannot be broken by an environment variable.
+
+Recommended, for `event.url` to be truthful, which `<link rel="canonical">` and
+`og:url` depend on:
+
+- **Do not set `ORIGIN`.** `adapter-node` pins `event.url` to it for every
+  request, so all three countries would advertise the same canonical URL.
+- Set `HOST_HEADER=x-forwarded-host`, otherwise `event.url` is built from the
+  `host` header, which may be the internal host behind the edge.
+- `PROTOCOL_HEADER=x-forwarded-proto` is pointless in production, where
+  `adapter-node` already assumes `https`.
 
 ## Build and preview
 
