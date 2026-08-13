@@ -1,6 +1,7 @@
 import {
   AutoCompleteType,
   CountryCodes,
+  getSupportedLanguagesByCountry,
   slugString,
   removeAccents,
   SUPPORTED_LANGUAGES_BY_COUNTRY,
@@ -10,7 +11,6 @@ import {
 } from "@soliguide/common";
 import { ensureDir, writeFile } from "fs-extra";
 import { logger } from "../general/logger";
-import { getLangsForCountry } from "./utils/getLangsForCountry";
 import { readFileSync } from "node:fs";
 import { join, relative } from "node:path";
 
@@ -38,7 +38,7 @@ class SearchSuggestionsService {
     ) as SoliguideCountries[];
 
     for (const country of countries) {
-      const langs = getLangsForCountry(country);
+      const langs = getSupportedLanguagesByCountry(country);
       this.suggestionsCache[country] = {};
 
       for (const lang of langs) {
@@ -157,7 +157,7 @@ class SearchSuggestionsService {
     ) as SoliguideCountries[];
 
     for (const country of countries) {
-      const langs = getLangsForCountry(country);
+      const langs = getSupportedLanguagesByCountry(country);
       for (const lang of langs) {
         const entries = this.readSourceFile(country, lang);
         all.push(
