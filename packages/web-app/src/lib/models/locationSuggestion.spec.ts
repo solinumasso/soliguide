@@ -1,6 +1,12 @@
 import { GeoTypes, type LocationAutoCompleteAddress } from '@soliguide/common';
 import { describe, expect, it } from 'vitest';
-import { getLabel, getLine1, getLine2 } from './locationSuggestion';
+import {
+  buildSuggestion,
+  getLabel,
+  getLine1,
+  getLine2,
+  mapSuggestions
+} from './locationSuggestion';
 
 const data: LocationAutoCompleteAddress = {
   city: 'city',
@@ -192,5 +198,77 @@ describe('Location search results', () => {
       const result = getLabel(data.geoType, line1, line2);
       expect(result).toBe(line1);
     });
+  });
+});
+
+/**
+ * Payloads copied verbatim from the location-api. A country result carries no
+ * `name`, which used to produce a suggestion with no text at all.
+ */
+describe('Results without a name, as returned by the location-api', () => {
+  const andorraCountry: LocationAutoCompleteAddress = {
+    label: 'Andorra',
+    coordinates: [1.5255804423331272, 42.50583018383308],
+    geoType: GeoTypes.COUNTRY,
+    geoValue: 'andorra',
+    country: 'ad',
+    slugs: { country: 'ad', pays: 'ad' }
+  } as unknown as LocationAutoCompleteAddress;
+
+  const franceCountry: LocationAutoCompleteAddress = {
+    label: 'France',
+    coordinates: [2.35, 48.85],
+    geoType: GeoTypes.COUNTRY,
+    geoValue: 'france',
+    country: 'fr',
+    slugs: { country: 'fr', pays: 'fr' }
+  } as unknown as LocationAutoCompleteAddress;
+
+  it.each([
+    ['Andorra', andorraCountry],
+    ['France', franceCountry]
+  ])('falls back to the label for the %s country result', (expectedLabel, countryResult) => {
+    expect(getLine1(countryResult)).toBe(expectedLabel);
+    expect(getLine2(countryResult)).toBe('');
+    expect(getLabel(countryResult.geoType, getLine1(countryResult), getLine2(countryResult))).toBe(
+      expectedLabel
+    );
+  });
+
+  it('keeps the country result selectable, with its coordinates', () => {
+    const suggestion = buildSuggestion(andorraCountry);
+
+    expect(suggestion).not.toBeNull();
+    expect(suggestion?.suggestionLabel).toBe('Andorra');
+    expect(suggestion?.suggestionLine1).toBe('Andorra');
+    expect(suggestion?.geoValue).toBe('andorra');
+    expect(suggestion?.geoType).toBe(GeoTypes.COUNTRY);
+    expect(suggestion?.coordinates).toEqual([1.5255804423331272, 42.50583018383308]);
+  });
+
+  it('omits the postal code of a city result instead of printing undefined', () => {
+    const cityWithoutPostalCode = {
+      label: 'Andorra la Vella',
+      name: 'Andorra la Vella',
+      coordinates: [1.5, 42.5],
+      geoType: GeoTypes.CITY,
+      geoValue: 'andorra-la-vella',
+      slugs: {}
+    } as unknown as LocationAutoCompleteAddress;
+
+    expect(getLine1(cityWithoutPostalCode)).toBe('Andorra la Vella');
+  });
+
+  it('drops a result that carries no text at all, rather than showing a blank row', () => {
+    const emptyResult = {
+      label: '',
+      coordinates: [1.5, 42.5],
+      geoType: GeoTypes.COUNTRY,
+      geoValue: 'nowhere',
+      slugs: {}
+    } as unknown as LocationAutoCompleteAddress;
+
+    expect(buildSuggestion(emptyResult)).toBeNull();
+    expect(mapSuggestions([emptyResult, andorraCountry])).toHaveLength(1);
   });
 });
