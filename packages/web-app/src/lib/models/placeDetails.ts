@@ -1,4 +1,4 @@
-import { categoryService } from '$lib/services/categoryService';
+import type { CategoryService } from '$lib/services/types';
 import { sortServicesByRelevance } from '$lib/utils';
 import {
   BasePlaceTempInfo,
@@ -307,7 +307,8 @@ const buildServiceTempClosure = (
 const buildServices = (
   services: CommonNewPlaceService[],
   categorySearched: Categories | null,
-  lang: SupportedLanguagesCode
+  lang: SupportedLanguagesCode,
+  categoryService: CategoryService
 ): Service[] => {
   const servicesToProcess = categorySearched
     ? sortServicesByRelevance(services, categorySearched, categoryService.getAllCategories())
@@ -379,6 +380,7 @@ const buildPlaceDetails = (
   placeResult: ApiPlace,
   categorySearched: Categories | null,
   lang: SupportedLanguagesCode,
+  categoryService: CategoryService,
   crossingPointIndex?: number
 ): PlaceDetails => {
   const status = computePlaceOpeningStatus(placeResult);
@@ -431,7 +433,7 @@ const buildPlaceDetails = (
       countryCode: phone.countryCode as CountryCodes
     })),
     placeType: placeResult.placeType,
-    services: buildServices(placeResult.services_all, categorySearched, lang),
+    services: buildServices(placeResult.services_all, categorySearched, lang, categoryService),
     sources: buildSources(placeResult.sources),
     status,
     thermalComfort: placeResult.modalities.thermalComfort,

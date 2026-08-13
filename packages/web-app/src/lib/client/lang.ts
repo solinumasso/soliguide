@@ -1,20 +1,22 @@
 // Helpers related to languages
-import { SUPPORTED_LANGUAGES, SupportedLanguagesCode } from '@soliguide/common';
+import type { SupportedLanguagesCode } from '@soliguide/common';
 
 import { getStorageItem, setStorageItem } from './storage';
 
 const STORAGE_KEY_LANGUAGE_CHOOSEN = 'lngSet';
 const STORAGE_KEY_CURRENT_LANGUAGE = 'i18nextLng';
 
-const WEB_APP_SUPPORTED_LANGUAGES: SupportedLanguagesCode[] = SUPPORTED_LANGUAGES.filter(
-  (lang) => lang !== SupportedLanguagesCode.PT
-);
-
 /**
- * lang is among supported languages
+ * lang is among the languages the current theme offers.
+ *
+ * The supported languages differ per country, so they are passed in from the
+ * resolved theme rather than read from a global list.
  */
-export const isLangValid = (lang: string | SupportedLanguagesCode): boolean => {
-  return WEB_APP_SUPPORTED_LANGUAGES.includes(lang as SupportedLanguagesCode);
+export const isLangValid = (
+  lang: string | SupportedLanguagesCode,
+  supportedLanguages: SupportedLanguagesCode[]
+): boolean => {
+  return supportedLanguages.includes(lang as SupportedLanguagesCode);
 };
 
 // Lang has been choosen

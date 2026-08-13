@@ -1,5 +1,5 @@
 import type { RequestOptionsFrontend } from '$lib/services/types';
-import type { SearchModalities } from '@soliguide/common';
+import type { SearchModalities, SoliguideCountries } from '@soliguide/common';
 
 export interface SearchOptions {
   page: number;
@@ -12,6 +12,12 @@ export interface SearchParams {
   coordinates: number[];
   type: string;
   distance: number;
+  /**
+   * Country the search is restricted to. Comes from the resolved theme, never
+   * from the client: without it the API falls back to France and a Spanish or
+   * Andorran search silently returns French places.
+   */
+  country: SoliguideCountries;
   options: SearchOptions;
   openToday?: boolean;
   modalities?: SearchModalities;

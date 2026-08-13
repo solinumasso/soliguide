@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { getThemeContext } from '$lib/theme';
   import { getContext } from 'svelte';
   import Email from 'svelte-google-materialdesign-icons/Mail.svelte';
   import Public from 'svelte-google-materialdesign-icons/Public.svelte';
@@ -7,13 +8,10 @@
   import { ListItem, Text } from '@soliguide/design-system';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import PlaceDetailsSection from './PlaceDetailsSection.svelte';
-  import { themeStore } from '$lib/theme';
-  import { parsePhoneNumber } from '@soliguide/common';
+  import { buildTelHref, parsePhoneNumber } from '@soliguide/common';
   import { getPlaceDetailsPageController } from '../pageController';
   import type { Phone as PhoneType } from '$lib/models/types';
   import type { I18nStore } from '$lib/client/types';
-  import type { ThemeDefinition } from '$lib/theme/types';
-  import { get } from 'svelte/store';
 
   export let phones: PhoneType[];
   export let website: string;
@@ -22,15 +20,24 @@
   export let email: string;
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
-  const theme: ThemeDefinition = get(themeStore.getTheme());
+  const theme = getThemeContext();
 
   const placeController = getPlaceDetailsPageController();
   const currentCountry = theme.country;
 
-  $: formattedPhones = phones?.map((phone) => ({
-    ...phone,
-    formattedNumber: parsePhoneNumber(phone, currentCountry)
-  }));
+  /**
+   * The displayed number is formatted for humans, while the `tel:` target has to
+   * be in E.164 form so that international numbers actually dial. Numbers that
+   * can be neither displayed nor dialed are dropped instead of rendering a row
+   * linking to `tel:null`.
+   */
+  $: dialablePhones = (phones ?? [])
+    .map((phone) => ({
+      label: phone.label,
+      displayNumber: parsePhoneNumber(phone, currentCountry),
+      telHref: buildTelHref(phone, currentCountry)
+    }))
+    .filter(({ displayNumber, telHref }) => displayNumber && telHref);
 </script>
 
 <PlaceDetailsSection>
@@ -38,18 +45,18 @@
     <Text type="title3PrimaryExtraBold">{$i18n.t('CONTACT_AND_INFO')}</Text>
 
     <div>
-      {#if phones?.length}
-        {#each formattedPhones as { label, formattedNumber }}
+      {#if dialablePhones.length}
+        {#each dialablePhones as { label, displayNumber, telHref }}
           <ListItem
             type="link"
             subTitle={label}
-            title={formattedNumber}
+            title={displayNumber}
             size="small"
             shape={email || website || facebook || instagram ? 'bordered' : 'default'}
-            href={`tel:${formattedNumber}`}
+            href={telHref}
             on:click={() => {
               placeController.captureEvent('call', {
-                isClickable: Boolean(formattedNumber)
+                isClickable: true
               });
             }}
           >
