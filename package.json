@@ -12,6 +12,9 @@
     "dev": "concurrently -k --names \"api,loc,front\" --prefix-colors \"cyan,magenta,green\" \"yarn workspace @soliguide/api watch\" \"yarn workspace @soliguide/location-api watch\" \"yarn workspace @soliguide/frontend start\"",
     "dev:es": "concurrently -k --names \"api,loc,front-es\" --prefix-colors \"cyan,magenta,green\" \"yarn workspace @soliguide/api watch\" \"yarn workspace @soliguide/location-api watch\" \"yarn workspace @soliguide/frontend start:es\"",
     "dev:ad": "concurrently -k --names \"api,loc,front-ad\" --prefix-colors \"cyan,magenta,green\" \"yarn workspace @soliguide/api watch\" \"yarn workspace @soliguide/location-api watch\" \"yarn workspace @soliguide/frontend start:ad\"",
+    "dev:web-app": "concurrently -k --names \"api,loc,web-app\" --prefix-colors \"cyan,magenta,green\" \"yarn workspace @soliguide/api watch\" \"yarn workspace @soliguide/location-api watch\" \"yarn workspace @soliguide/web-app dev:fr\"",
+    "dev:web-app:es": "concurrently -k --names \"api,loc,web-app-es\" --prefix-colors \"cyan,magenta,green\" \"yarn workspace @soliguide/api watch\" \"yarn workspace @soliguide/location-api watch\" \"yarn workspace @soliguide/web-app dev:es\"",
+    "dev:web-app:ad": "concurrently -k --names \"api,loc,web-app-ad\" --prefix-colors \"cyan,magenta,green\" \"yarn workspace @soliguide/api watch\" \"yarn workspace @soliguide/location-api watch\" \"yarn workspace @soliguide/web-app dev:ad\"",
     "prepare": "lefthook install"
   },
   "devDependencies": {
