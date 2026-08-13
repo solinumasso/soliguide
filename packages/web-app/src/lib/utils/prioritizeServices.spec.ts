@@ -246,3 +246,58 @@ describe('Prioritize the order of services based on a given category and theme',
     expect(result).toEqual(expected);
   });
 });
+
+describe('Services whose category is absent from the current theme', () => {
+  /**
+   * Each country has its own taxonomy, and a search radius can cross a border:
+   * an Andorran search returns French places whose services use FR only
+   * categories. Those must sort last, never break the search.
+   */
+  const andorranCategories = categoriesThemeAd;
+
+  const buildService = (category: string) =>
+    ({ category, description: '' }) as unknown as CommonNewPlaceService;
+
+  it('does not throw on a category the theme does not declare', () => {
+    expect(() =>
+      sortServicesByRelevance(
+        [buildService(Categories.FRENCH_COURSE)],
+        Categories.FOOD,
+        andorranCategories
+      )
+    ).not.toThrow();
+  });
+
+  it('keeps every service in the result', () => {
+    const services = [
+      buildService(Categories.FRENCH_COURSE),
+      buildService(Categories.FOOD_DISTRIBUTION)
+    ];
+
+    const result = sortServicesByRelevance(services, Categories.FOOD, andorranCategories);
+
+    expect(result).toHaveLength(2);
+  });
+
+  it('sorts the unknown category after the relevant one', () => {
+    const services = [
+      buildService(Categories.FRENCH_COURSE),
+      buildService(Categories.FOOD_DISTRIBUTION)
+    ];
+
+    const result = sortServicesByRelevance(services, Categories.FOOD, andorranCategories);
+
+    expect(result[0].category).toBe(Categories.FOOD_DISTRIBUTION);
+    expect(result[1].category).toBe(Categories.FRENCH_COURSE);
+  });
+
+  it('does not treat two unknown categories as siblings', () => {
+    const result = sortServicesByRelevance(
+      [buildService(Categories.FRENCH_COURSE)],
+      Categories.CITIZEN_HOUSING,
+      andorranCategories
+    );
+
+    expect(result).toHaveLength(1);
+  });
+});

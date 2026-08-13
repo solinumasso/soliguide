@@ -15,6 +15,11 @@ const CATEGORY_WEIGHTS = {
 
 /**
  * Find parent category of a given category
+ *
+ * Returns `null` when the category is not part of the current theme's graph.
+ * That is not an error: each country has its own taxonomy, and a search radius
+ * can legitimately return places from a neighbouring country whose services use
+ * categories the current theme does not declare.
  */
 const findImmediateParent = (
   category: Categories | null,
@@ -27,11 +32,8 @@ const findImmediateParent = (
   const parent = categoriesFromTheme.find((cat) =>
     cat.children.some((child) => child.id === category)
   );
-  if (!parent) {
-    throw new Error(`Category ${category} doesn't exist`);
-  }
 
-  return parent.id;
+  return parent?.id ?? null;
 };
 
 /**
@@ -49,6 +51,12 @@ const calculateAdditionalWeight = (
   const serviceParent = findImmediateParent(serviceCategory, allCategoriesByTheme);
   const targetParent = findImmediateParent(targetCategory, allCategoriesByTheme);
 
+  // A category the theme does not declare cannot be related to the searched one,
+  // so it sorts last instead of breaking the whole search
+  if (!serviceParent || !targetParent) {
+    return CATEGORY_WEIGHTS.DIFFERENT_FAMILY;
+  }
+
   if (serviceParent === targetParent) return CATEGORY_WEIGHTS.SAME_PARENT;
 
   // Look for grand parents
@@ -56,7 +64,7 @@ const calculateAdditionalWeight = (
   const targetGrandParent = findImmediateParent(targetParent, allCategoriesByTheme);
 
   // Same grand parents (only in Health case)
-  if (serviceCategory && serviceGrandParent === targetGrandParent)
+  if (serviceGrandParent && serviceGrandParent === targetGrandParent)
     return CATEGORY_WEIGHTS.SAME_GRANDPARENT;
 
   return CATEGORY_WEIGHTS.DIFFERENT_FAMILY;
