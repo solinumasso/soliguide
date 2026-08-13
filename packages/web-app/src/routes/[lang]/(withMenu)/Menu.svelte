@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { getThemeContext } from '$lib/theme';
   import { page } from '$app/stores';
   import { getContext, setContext } from 'svelte';
   import {
@@ -18,15 +19,12 @@
 
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
-  import type { ThemeDefinition } from '$lib/theme/types';
-  import { themeStore } from '$lib/theme/index';
   import pageStore from './index';
   import { zendeskService } from '$lib/services';
-  import { get } from 'svelte/store';
 
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
-  const theme: ThemeDefinition = get(themeStore.getTheme());
+  const theme = getThemeContext();
 
   setContext('CAPTURE_FCTN_CTX_KEY', pageStore.captureEvent);
 
@@ -38,7 +36,7 @@
       : $page.url.pathname;
 
   // Remove menu item if Chat is not available
-  const talkMenu = theme.chatWebsiteId
+  const talkMenu = theme.capabilities.chat
     ? [
         {
           icon: IconTalkOff,

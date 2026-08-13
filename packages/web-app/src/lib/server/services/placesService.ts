@@ -6,12 +6,16 @@ import { buildLookupResult } from '$lib/models/lookupResult';
 import { buildPlaceDetails } from '$lib/models/placeDetails';
 import type { RequestOptions, SearchParams } from './types';
 import type { PlaceDetails, SearchFavorisResult, SearchResult } from '$lib/models/types';
-import type { PlaceDetailsParams } from '$lib/services/types';
 import type { FavoriteItem } from '$lib/models/favorite';
+import type { CategoryService, PlaceDetailsParams } from '$lib/services/types';
 
 const apiUrl = env.API_URL;
 
-export default (fetcher = fetch) => {
+/**
+ * The category service is injected because the taxonomy depends on the country
+ * of the request: it can never be captured at module load time.
+ */
+export default (categoryService: CategoryService, fetcher = fetch) => {
   /**
    * Executes a search
    */
@@ -23,6 +27,7 @@ export default (fetcher = fetch) => {
       coordinates,
       type,
       distance,
+      country,
       openToday,
       modalities,
       options = { page: 1 }
@@ -42,7 +47,8 @@ export default (fetcher = fetch) => {
         geoValue: location,
         geoType: type,
         coordinates,
-        distance
+        distance,
+        country
       },
       openToday,
       modalities
@@ -80,7 +86,8 @@ export default (fetcher = fetch) => {
         coordinates,
         distance
       },
-      category as Categories | null
+      category as Categories | null,
+      categoryService
     );
   };
 
@@ -105,7 +112,13 @@ export default (fetcher = fetch) => {
       headers
     });
 
-    return buildPlaceDetails(placeResult, categorySearched, lang, crossingPointIndex);
+    return buildPlaceDetails(
+      placeResult,
+      categorySearched,
+      lang,
+      categoryService,
+      crossingPointIndex
+    );
   };
 
   /**

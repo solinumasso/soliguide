@@ -12,6 +12,7 @@ import fa from '@soliguide/common/dist/esm/translations/locales/fa.json';
 import fr from '@soliguide/common/dist/esm/translations/locales/fr.json';
 import ka from '@soliguide/common/dist/esm/translations/locales/ka.json';
 import ps from '@soliguide/common/dist/esm/translations/locales/ps.json';
+import pt from '@soliguide/common/dist/esm/translations/locales/pt.json';
 import ro from '@soliguide/common/dist/esm/translations/locales/ro.json';
 import ru from '@soliguide/common/dist/esm/translations/locales/ru.json';
 import uk from '@soliguide/common/dist/esm/translations/locales/uk.json';
@@ -28,6 +29,7 @@ const resources: Partial<Record<SupportedLanguagesCode, { translation: Record<st
     fr: { translation: fr },
     ka: { translation: ka },
     ps: { translation: ps },
+    pt: { translation: pt },
     ro: { translation: ro },
     ru: { translation: ru },
     uk: { translation: uk }

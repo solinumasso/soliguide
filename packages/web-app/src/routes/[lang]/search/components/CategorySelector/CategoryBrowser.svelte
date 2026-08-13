@@ -13,8 +13,8 @@
     type Categories
   } from '@soliguide/common';
   import type { I18nStore } from '$lib/client/types';
-  import type { PosthogCaptureFunction } from '$lib/services/types';
-  import { categoryService } from '$lib/services/categoryService';
+  import type { CategoryService, PosthogCaptureFunction } from '$lib/services/types';
+  import { CATEGORY_SERVICE_CTX_KEY } from '$lib/services/categoryService';
   import { ALL_CATEGORIES } from '$lib/constants';
 
   export let state: CategoryBrowserState = CategoryBrowserState.CLOSED;
@@ -22,6 +22,7 @@
   export let categories: Categories[] = [];
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
+  const categoryService: CategoryService = getContext(CATEGORY_SERVICE_CTX_KEY);
   const dispatch = createEventDispatcher();
   const pageStore = getCategoryBrowserController();
 
