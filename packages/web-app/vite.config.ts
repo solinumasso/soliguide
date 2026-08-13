@@ -26,6 +26,9 @@ export default defineConfig({
   server: {
     port: 5173,
     strictPort: true,
+    // Country themes are resolved from the hostname, so the dev server has to
+    // accept the local hostnames declared in PUBLIC_*_HOSTNAMES
+    allowedHosts: ['localhost', 'fr.localhost', 'es.localhost', 'ad.localhost'],
     fs: {
       allow: ['..']
     }

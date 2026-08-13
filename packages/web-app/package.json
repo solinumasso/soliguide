@@ -7,6 +7,9 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "vite dev",
+    "dev:fr": "vite dev --open http://localhost:5173/",
+    "dev:es": "vite dev --open http://es.localhost:5173/",
+    "dev:ad": "vite dev --open http://ad.localhost:5173/",
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
