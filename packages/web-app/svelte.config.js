@@ -9,7 +9,8 @@ const config = {
     // See https://kit.svelte.dev/docs/adapters for more information about adapters.
     adapter: adapter(),
     alias: {
-      '$suggestions-data': '../common/dist/esm/search-suggestions/data'
+      '$suggestions-data': '../common/dist/esm/search-suggestions/data',
+      '$locales': '../common/dist/esm/translations/locales'
     }
   },
   preprocess: [vitePreprocess()]
