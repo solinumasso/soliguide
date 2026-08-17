@@ -161,11 +161,7 @@ To create a production version and run it locally with `yarn start`.
 
 ## Test
 
-You can run integration tests (using Playwright) with `yarn test:integration`.
-
-You can run unit tests (using vitest) with `yarn test:unit`.
-
-Both tests are run when using `yarn test`.
+You can run unit tests (using vitest) with `yarn test:unit`, or `yarn test`.
 
 _Note: Unit tests run in watch mode when launched locally. This feature is disabled when running in the CI.
 You can run unit tests without watch mode by issuing this command : `yarn vitest run`._

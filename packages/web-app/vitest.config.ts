@@ -8,7 +8,6 @@ export default defineConfig({
       reporter: ['text', 'json', 'html', 'cobertura'],
       include: ['src/**/*']
     },
-    include: ['src/**/*.spec.ts'],
-    exclude: ['web-tests/**/*.spec.ts']
+    include: ['src/**/*.spec.ts']
   }
 });
