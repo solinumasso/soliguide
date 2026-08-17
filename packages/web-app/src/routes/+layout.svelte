@@ -13,7 +13,7 @@
     changeDesignSystemLocale
   } from '@soliguide/design-system';
   import '../assets/styles/main.scss';
-  import { I18N_CTX_KEY, getI18nStore } from '$lib/client/i18n';
+  import { I18N_CTX_KEY, getI18nStore, i18nReady } from '$lib/client/i18n';
   import {
     ROUTES_CTX_KEY,
     getRoutes,
@@ -87,14 +87,18 @@
   <link rel="canonical" href={$page.url.href} />
 </svelte:head>
 
-<ThemeContext>
-  <ZendeskIntegration>
-    <main>
-      <slot />
-    </main>
-    <ToastContainer />
-  </ZendeskIntegration>
-</ThemeContext>
+<!-- Catalogs are loaded on demand, so nothing renders until the initial language
+     is available, otherwise raw translation keys would flash on first paint -->
+{#await i18nReady then}
+  <ThemeContext>
+    <ZendeskIntegration>
+      <main>
+        <slot />
+      </main>
+      <ToastContainer />
+    </ZendeskIntegration>
+  </ThemeContext>
+{/await}
 
 <style lang="scss">
   main {
