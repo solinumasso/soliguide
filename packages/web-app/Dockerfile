@@ -31,13 +31,8 @@ COPY \
   ./packages/web-app/.prettierignore \
   ./packages/web-app/.prettierrc \
   ./packages/web-app/eslint.config.js \
-  ./packages/web-app/playwright.config.ts \
   ./packages/web-app/vitest.config.ts \
   /app/packages/web-app/
-COPY ./packages/web-app/web-tests /app/packages/web-app/web-tests
-
-# Install prerequisites of integration tests
-RUN yarn workspace @soliguide/web-app playwright install --with-deps
 
 # skipcq: DOK-DL3006
 FROM ${BASE_IMAGE} AS deploy

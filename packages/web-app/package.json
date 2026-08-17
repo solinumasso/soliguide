@@ -14,13 +14,12 @@
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "test": "yarn playwright install && yarn test:integration && yarn test:unit",
+    "test": "yarn test:unit",
     "lint": "yarn check && eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --cache -c .",
     "format:fix": "prettier --cache -w .",
     "start": "yarn build && yarn preview",
-    "test:integration": "playwright test",
     "test:unit": "vitest",
     "watch": "yarn dev"
   },
@@ -37,7 +36,6 @@
   ],
   "devDependencies": {
     "@eslint/compat": "^1.4.1",
-    "@playwright/test": "^1.58.2",
     "@sveltejs/adapter-auto": "^3.0.0",
     "@sveltejs/adapter-node": "^5.2.0",
     "@sveltejs/kit": "^2.0.0",

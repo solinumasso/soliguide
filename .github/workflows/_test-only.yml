@@ -325,11 +325,6 @@ jobs:
       - name: Unit tests
         run: yarn workspace @soliguide/web-app test:unit run --coverage
 
-      # - name: Integration tests
-      #   run: yarn workspace @soliguide/web-app test:integration
-      #   env:
-      #     PLAYWRIGHT_BROWSERS_PATH: /root/.cache/ms-playwright
-
       - name: Upload coverage
         uses: actions/upload-artifact@v7
         with:
