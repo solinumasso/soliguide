@@ -379,7 +379,7 @@ jobs:
           # same container. Keep these in sync with the PUBLIC_*_HOSTNAMES
           # environment variables of the "Web App" container.
           create_domain_if_not_exists "app.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
-          create_domain_if_not_exists "cat.app.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
+          create_domain_if_not_exists "es.app.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
           create_domain_if_not_exists "ad.app.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
 
           VALIDATION_DOMAIN=$(qovery container domain list \
@@ -413,7 +413,7 @@ jobs:
           api-key: ${{ secrets.GCORE_API_KEY }}
           present: true
           zone: soliguide.dev
-          subdomain: cat.app.${{ env.QOVERY_BASE_DOMAIN_NAME }}
+          subdomain: es.app.${{ env.QOVERY_BASE_DOMAIN_NAME }}
           target: ${{ steps.web-app_domain.outputs.validation_domain }}.
           type: CNAME
 
@@ -687,7 +687,7 @@ jobs:
             }
             if (deployWebApp) {
               urls.push(`🇫🇷 Web App FR: https://app.${baseDomain}`);
-              urls.push(`🇪🇸 Web App ES: https://cat.app.${baseDomain}`);
+              urls.push(`🇪🇸 Web App ES: https://es.app.${baseDomain}`);
               urls.push(`🇦🇩 Web App AD: https://ad.app.${baseDomain}`);
             }
             if (deployWidget) urls.push(`🔌 Widget: https://widget.${baseDomain}`);
