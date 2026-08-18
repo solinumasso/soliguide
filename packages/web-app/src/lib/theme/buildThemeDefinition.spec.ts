@@ -6,7 +6,7 @@ import { buildThemeDefinition, getHostnamesEnvKey } from './buildThemeDefinition
 
 const PUBLIC_ENV = {
   PUBLIC_SOLIGUIDE_FR_HOSTNAMES: 'app.soliguide.fr',
-  PUBLIC_SOLIGUIA_ES_HOSTNAMES: 'app.soliguia.es,app.soliguia.cat',
+  PUBLIC_SOLIGUIA_ES_HOSTNAMES: 'app.soliguia.es,es.app.demo.soliguide.dev',
   PUBLIC_SOLIGUIA_AD_HOSTNAMES: 'app.soliguia.ad'
 };
 
@@ -103,7 +103,7 @@ describe('buildThemeDefinition', () => {
   it('gives the Spanish theme both of its hostnames', () => {
     expect(buildTheme(Themes.SOLIGUIA_ES).hostnames).toEqual([
       'app.soliguia.es',
-      'app.soliguia.cat'
+      'es.app.demo.soliguide.dev'
     ]);
   });
 

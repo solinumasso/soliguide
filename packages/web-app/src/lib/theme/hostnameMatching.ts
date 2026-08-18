@@ -33,8 +33,8 @@ export const normalizeHostname = (value: string): string => {
 
 /**
  * Parses the comma-separated hostname list of a theme, as configured in the
- * environment: a theme can be served on several hostnames, for instance
- * `app.soliguia.es,app.soliguia.cat`.
+ * environment: a theme can be served on several hostnames, a production one
+ * and a staging one for instance.
  */
 export const parseHostnameList = (rawValue?: string): string[] =>
   (rawValue ?? '').split(HOSTNAME_SEPARATOR).map(normalizeHostname).filter(Boolean);
