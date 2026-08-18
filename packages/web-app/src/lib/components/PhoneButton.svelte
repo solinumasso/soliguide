@@ -4,7 +4,7 @@
   import type { Phone } from '$lib/models/types';
   import PhoneIcon from 'svelte-google-materialdesign-icons/Phone.svelte';
   import { Button, ButtonLink } from '@soliguide/design-system';
-  import { buildTelHref } from '@soliguide/common';
+  import { parsePhoneNumber } from '@soliguide/common';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import type { I18nStore } from '$lib/client/types';
 
@@ -17,17 +17,19 @@
 
   const dispatch = createEventDispatcher();
 
-  // A number the device cannot dial gets a disabled button rather than a dead link
-  $: callablePhone = phones.find((phone) => buildTelHref(phone, theme.country)) ?? null;
-  $: telHref = callablePhone ? buildTelHref(callablePhone, theme.country) : null;
+  // Same formatting as the Angular frontend, which uses parsePhoneNumber for both
+  // the displayed number and the call link. A number it cannot parse gets a
+  // disabled button rather than a dead link.
+  $: formattedNumber =
+    phones.map((phone) => parsePhoneNumber(phone, theme.country)).find(Boolean) ?? null;
 </script>
 
-{#if telHref}
+{#if formattedNumber}
   <ButtonLink
     icon
     size="small"
     {type}
-    href={telHref}
+    href={`tel:${formattedNumber}`}
     title={$i18n.t('TO_CALL')}
     on:click={(event) => {
       dispatch('click', event);

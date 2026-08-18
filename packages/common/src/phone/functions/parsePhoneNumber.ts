@@ -1,19 +1,11 @@
 import { CountryCodes } from "../../location";
 import { Phone } from "../interfaces";
-import { getPhoneCountryCode } from "./getPhoneCountryCode";
 
 import libPhoneNumber from "google-libphonenumber";
 const { PhoneNumberFormat, PhoneNumberUtil } = libPhoneNumber;
 
 export const phoneUtil = PhoneNumberUtil.getInstance();
 
-/**
- * Formats a phone number for display: NATIONAL form when it belongs to the
- * current country, INTERNATIONAL form otherwise.
- *
- * The returned value contains separators and must never be used in a `tel:`
- * href — use `buildTelHref` for that.
- */
 export const parsePhoneNumber = (
   phone: Phone,
   currentCountry: CountryCodes
@@ -26,16 +18,17 @@ export const parsePhoneNumber = (
     return null;
   }
 
-  const phoneCountryCode = getPhoneCountryCode(phone, currentCountry);
-
   try {
-    const phoneNumber = phoneUtil.parse(phone.phoneNumber, phoneCountryCode);
+    const phoneNumber = phoneUtil.parse(
+      phone.phoneNumber,
+      phone.countryCode.toLowerCase()
+    );
     if (!phoneUtil.isValidNumber(phoneNumber) || !phoneNumber) {
       return null;
     }
 
     const format =
-      phoneCountryCode !== currentCountry
+      phone.countryCode !== currentCountry
         ? PhoneNumberFormat.INTERNATIONAL
         : PhoneNumberFormat.NATIONAL;
     return phoneUtil.format(phoneNumber, format);
