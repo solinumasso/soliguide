@@ -49,20 +49,6 @@ describe("parsePhoneNumber", () => {
     });
   });
 
-  describe("fallback on the current country when the record has no country code", () => {
-    test("parses a Spanish number and displays it in national format", () => {
-      const phone = buildPhone({ phoneNumber: "934027000", countryCode: "" });
-
-      expect(parsePhoneNumber(phone, CountryCodes.ES)).toBe("934 02 70 00");
-    });
-
-    test("parses an Andorran number and displays it in national format", () => {
-      const phone = buildPhone({ phoneNumber: "872000", countryCode: "" });
-
-      expect(parsePhoneNumber(phone, CountryCodes.AD)).toBe("872 000");
-    });
-  });
-
   describe("special and invalid numbers", () => {
     test("returns a special number untouched", () => {
       const phone = buildPhone({

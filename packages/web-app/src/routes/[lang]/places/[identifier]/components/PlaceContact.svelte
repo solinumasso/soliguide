@@ -8,7 +8,7 @@
   import { ListItem, Text } from '@soliguide/design-system';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import PlaceDetailsSection from './PlaceDetailsSection.svelte';
-  import { buildTelHref, parsePhoneNumber } from '@soliguide/common';
+  import { parsePhoneNumber } from '@soliguide/common';
   import { getPlaceDetailsPageController } from '../pageController';
   import type { Phone as PhoneType } from '$lib/models/types';
   import type { I18nStore } from '$lib/client/types';
@@ -26,18 +26,16 @@
   const currentCountry = theme.country;
 
   /**
-   * The displayed number is formatted for humans, while the `tel:` target has to
-   * be in E.164 form so that international numbers actually dial. Numbers that
-   * can be neither displayed nor dialed are dropped instead of rendering a row
-   * linking to `tel:null`.
+   * Same formatting as the Angular frontend, which uses parsePhoneNumber for both
+   * the displayed number and the call link. A number it cannot parse is dropped
+   * rather than rendering a row linking to `tel:null`.
    */
   $: dialablePhones = (phones ?? [])
     .map((phone) => ({
       label: phone.label,
-      displayNumber: parsePhoneNumber(phone, currentCountry),
-      telHref: buildTelHref(phone, currentCountry)
+      displayNumber: parsePhoneNumber(phone, currentCountry)
     }))
-    .filter(({ displayNumber, telHref }) => displayNumber && telHref);
+    .filter(({ displayNumber }) => displayNumber);
 </script>
 
 <PlaceDetailsSection>
@@ -46,14 +44,14 @@
 
     <div>
       {#if dialablePhones.length}
-        {#each dialablePhones as { label, displayNumber, telHref }}
+        {#each dialablePhones as { label, displayNumber }}
           <ListItem
             type="link"
             subTitle={label}
             title={displayNumber}
             size="small"
             shape={email || website || facebook || instagram ? 'bordered' : 'default'}
-            href={telHref}
+            href={`tel:${displayNumber}`}
             on:click={() => {
               placeController.captureEvent('call', {
                 isClickable: true
