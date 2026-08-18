@@ -104,7 +104,7 @@ as the Clever Cloud edge sets it, no `/etc/hosts` entry is needed:
 yarn build
 HOST_HEADER=x-forwarded-host PROTOCOL_HEADER=x-forwarded-proto PORT=3000 node build
 
-curl -s -H 'X-Forwarded-Host: app.soliguia.cat' localhost:3000/languages | grep '<html'
+curl -s -H 'X-Forwarded-Host: app.soliguia.es' localhost:3000/languages | grep '<html'
 ```
 
 ### Adding a country

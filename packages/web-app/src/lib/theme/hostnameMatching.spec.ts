@@ -9,7 +9,7 @@ const buildTheme = (name: Themes, hostnames: string[]): ThemeDefinition =>
 
 const THEMES = [
   buildTheme(Themes.SOLIGUIDE_FR, ['app.soliguide.fr']),
-  buildTheme(Themes.SOLIGUIA_ES, ['app.soliguia.es', 'app.soliguia.cat']),
+  buildTheme(Themes.SOLIGUIA_ES, ['app.soliguia.es', 'es.app.demo.soliguide.dev']),
   buildTheme(Themes.SOLIGUIA_AD, ['app.soliguia.ad'])
 ];
 
@@ -45,16 +45,16 @@ describe('normalizeHostname', () => {
 
 describe('parseHostnameList', () => {
   it('parses several hostnames owned by one theme', () => {
-    expect(parseHostnameList('app.soliguia.es,app.soliguia.cat')).toEqual([
+    expect(parseHostnameList('app.soliguia.es,es.app.demo.soliguide.dev')).toEqual([
       'app.soliguia.es',
-      'app.soliguia.cat'
+      'es.app.demo.soliguide.dev'
     ]);
   });
 
   it('tolerates whitespace, empty entries and a trailing comma', () => {
-    expect(parseHostnameList(' app.soliguia.es , , app.soliguia.cat, ')).toEqual([
+    expect(parseHostnameList(' app.soliguia.es , , es.app.demo.soliguide.dev, ')).toEqual([
       'app.soliguia.es',
-      'app.soliguia.cat'
+      'es.app.demo.soliguide.dev'
     ]);
   });
 
@@ -73,7 +73,7 @@ describe('matchThemeByHostname', () => {
     ['an uppercase hostname', 'APP.SOLIGUIA.ES'],
     ['a hostname with a port', 'app.soliguia.es:8443'],
     ['a full origin', 'https://app.soliguia.es/'],
-    ['the alias hostname', 'app.soliguia.cat']
+    ['the alias hostname', 'es.app.demo.soliguide.dev']
   ])('resolves the Spanish theme from %s', (_label, hostname) => {
     expect(matchThemeByHostname(hostname, THEMES)?.name).toBe(Themes.SOLIGUIA_ES);
   });
