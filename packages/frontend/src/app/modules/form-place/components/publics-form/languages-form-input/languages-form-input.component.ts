@@ -5,6 +5,8 @@ import {
   ViewChild,
   OnDestroy,
   ChangeDetectorRef,
+  Output,
+  EventEmitter,
 } from "@angular/core";
 
 import { NgbTypeahead } from "@ng-bootstrap/ng-bootstrap";
@@ -27,6 +29,7 @@ export class LanguagesFormInputComponent implements OnInit, OnDestroy {
   public searchTerm = "";
 
   @Input() public languages: string[];
+  @Output() public readonly languagesChange = new EventEmitter<string[]>();
 
   // Search language part
   @ViewChild("languageSearch", { static: true })
@@ -56,26 +59,33 @@ export class LanguagesFormInputComponent implements OnInit, OnDestroy {
   }
 
   public addLanguage = (shortLang: string): void => {
-    // Does not exist, we add to the list
-    if (!this.languages.includes(shortLang)) {
-      this.languages.push(shortLang);
-    }
-    // If exists : we delete
-    else {
-      this.languages.splice(this.languages.indexOf(shortLang), 1);
-    }
+    // Already selected : we unselect it, otherwise we add it to the list
+    this.updateLanguages(
+      this.languages.includes(shortLang)
+        ? this.languages.filter((language) => language !== shortLang)
+        : [...this.languages, shortLang]
+    );
   };
+
+  /**
+   * The languages list is displayed by a child component reading `languages`
+   * through an @Input. Angular only refreshes an @Input when its reference
+   * changes, so every update must produce a new array instead of mutating
+   * the current one, and must be propagated to the parent place.
+   */
+  private updateLanguages(languages: string[]): void {
+    this.languages = languages;
+    this.languagesChange.emit(languages);
+  }
 
   // Search language functions
   public inputFormatter = (): string => "";
   // New methods for better UX
 
   public removeLanguage(shortLang: string): void {
-    const index = this.languages.indexOf(shortLang);
-    if (index !== -1) {
-      this.languages.splice(index, 1);
-      this.cdr.detectChanges();
-    }
+    this.updateLanguages(
+      this.languages.filter((language) => language !== shortLang)
+    );
   }
 
   public searchLanguage = (
