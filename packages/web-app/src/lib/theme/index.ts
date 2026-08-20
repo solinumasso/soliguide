@@ -12,6 +12,7 @@ export { matchThemeByHostname, normalizeHostname, parseHostnameList } from './ho
 export { buildLegalLinks } from './legalLinks';
 export { getDefaultTheme, resolveTheme } from './resolveTheme';
 export { getRequestHostname, resolveThemeFromRequest } from './resolveThemeFromRequest';
+export { isSeasonalThermalComfortVisible } from './thermalComfort';
 export type {
   ThemeBlueprint,
   ThemeCapabilities,

@@ -40,6 +40,7 @@ describe('buildThemeDefinition', () => {
       expect(theme.capabilities.practicalFiles).toBe(true);
       expect(theme.capabilities.becomeTranslator).toBe(true);
       expect(theme.capabilities.cookieManagement).toBe(true);
+      expect(theme.capabilities.thermalComfort).toBe(true);
       expect(theme.links.practicalFiles).toBe('https://support.soliguide.fr/hc/fr');
       expect(theme.links.becomeTranslator).toBe('https://airtable.com/shrZHYio1ZdnPl1Et');
     });
@@ -75,12 +76,13 @@ describe('buildThemeDefinition', () => {
       expect(theme.supportedLanguages).toContain(SupportedLanguagesCode.PT);
     });
 
-    it('has no practical files, no cookie management, no translator programme and no chat', () => {
+    it('turns off every optional feature', () => {
       expect(theme.capabilities).toEqual({
         practicalFiles: false,
         cookieManagement: false,
         becomeTranslator: false,
-        chat: false
+        chat: false,
+        thermalComfort: false
       });
       expect(theme.links.practicalFiles).toBeNull();
       expect(theme.links.becomeTranslator).toBeNull();

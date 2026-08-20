@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getThemeContext } from '$lib/theme';
+  import { getThemeContext, isSeasonalThermalComfortVisible } from '$lib/theme';
   import { InfoIcon, Text, Tag } from '@soliguide/design-system';
   import { PhoneButton, PlaceStatus, TodayInfo } from '$lib/components';
   import AcUnit from 'svelte-google-materialdesign-icons/Ac_unit.svelte';
@@ -16,8 +16,7 @@
     TempInfoStatus,
     type PlaceOpeningStatus,
     type ThermalComfortData,
-    isObjectEmpty,
-    shouldDisplayThermalComfort
+    isObjectEmpty
   } from '@soliguide/common';
 
   import type { I18nStore } from '$lib/client/types';
@@ -39,7 +38,7 @@
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
   const theme = getThemeContext();
 
-  $: shouldDisplayThermalComfortTag = shouldDisplayThermalComfort(theme.country);
+  $: shouldDisplayThermalComfortTag = isSeasonalThermalComfortVisible(theme);
 </script>
 
 <header class="card-header">

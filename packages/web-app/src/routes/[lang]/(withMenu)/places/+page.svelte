@@ -44,7 +44,11 @@
   const openToday = url.searchParams.get('openToday');
   const pmr = url.searchParams.get('pmr');
   const animal = url.searchParams.get('animal');
-  const airConditioned = url.searchParams.get('airConditioned');
+  // A filter the theme does not expose has no toggle to turn it off again, so
+  // its URL parameter is ignored rather than silently applied
+  const airConditioned = theme.capabilities.thermalComfort
+    ? url.searchParams.get('airConditioned')
+    : null;
 
   pageStore.init({
     location: url.searchParams.get('location') ?? '',

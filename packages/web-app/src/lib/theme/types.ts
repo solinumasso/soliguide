@@ -21,6 +21,12 @@ export interface ThemeCapabilities {
   becomeTranslator: boolean;
   /** Live chat with the support team. */
   chat: boolean;
+  /**
+   * Heatwave campaign: the seasonal emergency shortcuts on the home page, the
+   * air conditioning filter on the results page and the air conditioning tags.
+   * Only countries running the campaign expose them.
+   */
+  thermalComfort: boolean;
 }
 
 /** The organization operating a theme, shown in the settings screen. */
