@@ -10,7 +10,7 @@ const config = {
     adapter: adapter(),
     alias: {
       '$suggestions-data': '../common/dist/esm/search-suggestions/data',
-      '$locales': '../common/dist/esm/translations/locales'
+      $locales: '../common/dist/esm/translations/locales'
     }
   },
   preprocess: [vitePreprocess()]

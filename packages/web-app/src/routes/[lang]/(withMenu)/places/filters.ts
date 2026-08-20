@@ -1,5 +1,7 @@
 import type { SearchModalities } from '@soliguide/common';
 
+import type { ThemeCapabilities } from '$lib/theme';
+
 export const SEARCH_RESULT_FILTERS = [
   {
     name: 'openToday',
@@ -7,7 +9,8 @@ export const SEARCH_RESULT_FILTERS = [
   },
   {
     name: 'airConditioned',
-    translationKey: 'ACCESS_CONDITION_AIR_CONDITIONED'
+    translationKey: 'ACCESS_CONDITION_AIR_CONDITIONED',
+    requiredCapability: 'thermalComfort'
   },
   {
     name: 'pmr',
@@ -20,9 +23,26 @@ export const SEARCH_RESULT_FILTERS = [
 ] as const satisfies readonly {
   name: string;
   translationKey: string;
+  requiredCapability?: keyof ThemeCapabilities;
 }[];
 
-export type SearchResultFilter = (typeof SEARCH_RESULT_FILTERS)[number]['name'];
+export type SearchResultFilterDefinition = (typeof SEARCH_RESULT_FILTERS)[number];
+
+export type SearchResultFilter = SearchResultFilterDefinition['name'];
+
+/**
+ * The filters a theme exposes. A filter guarded by a capability disappears in
+ * the countries that do not have it, so opening a country never has to touch
+ * the results page.
+ */
+export const getAvailableSearchResultFilters = (
+  capabilities: ThemeCapabilities
+): readonly SearchResultFilterDefinition[] =>
+  SEARCH_RESULT_FILTERS.filter((filter) => {
+    const requiredCapability = 'requiredCapability' in filter ? filter.requiredCapability : null;
+
+    return requiredCapability === null || capabilities[requiredCapability];
+  });
 
 export interface SearchResultApiFilters {
   openToday?: boolean;

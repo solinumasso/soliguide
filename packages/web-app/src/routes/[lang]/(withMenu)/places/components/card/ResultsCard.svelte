@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getThemeContext } from '$lib/theme';
+  import { getThemeContext, isSeasonalThermalComfortVisible } from '$lib/theme';
   import { goto } from '$app/navigation';
   import { getContext } from 'svelte';
   import { getMapLink, ROUTES_CTX_KEY } from '$lib/client';
@@ -28,7 +28,6 @@
   import {
     GeoTypes,
     kmOrMeters,
-    shouldDisplayThermalComfort,
     TempInfoStatus,
     PlaceStatus as PlaceStatusEnum
   } from '@soliguide/common';
@@ -73,7 +72,7 @@
     favoriteMatches(favorite, place.id, place.crossingPointIndex)
   );
 
-  $: shouldDisplayThermalComfortTag = shouldDisplayThermalComfort(theme.country);
+  $: shouldDisplayThermalComfortTag = isSeasonalThermalComfortVisible(theme);
 </script>
 
 <Card>
