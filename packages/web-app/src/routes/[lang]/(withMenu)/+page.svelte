@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getThemeContext } from '$lib/theme';
+  import { getThemeContext, isSeasonalThermalComfortVisible } from '$lib/theme';
   import { getContext, setContext, type ComponentType } from 'svelte';
   import { goto } from '$app/navigation';
   import { Text, Tile, PageLoader } from '@soliguide/design-system';
@@ -11,12 +11,7 @@
   import { showToast } from '$lib/toast/toast.store';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import type { QuickSearchFilters } from './types';
-  import {
-    Categories,
-    getCategoryTranslationKey,
-    shouldDisplayThermalComfort,
-    SupportedLanguagesCode
-  } from '@soliguide/common';
+  import { Categories, getCategoryTranslationKey, SupportedLanguagesCode } from '@soliguide/common';
   import { CategoryIcon, HeatwaveEmergencyCard, GeolocationBlockedModal } from '$lib/components';
   import MoreHoriz from 'svelte-google-materialdesign-icons/More_horiz.svelte';
 
@@ -31,8 +26,9 @@
   // Remember the last quick-search so the modal's "retry" can re-run it.
   let lastQuickSearch: { category: Categories; filters: QuickSearchFilters } | null = null;
 
-  // The heatwave card groups seasonal 1-click searches; shown only for FR/ES during summer.
-  const shouldDisplayHeatwaveCard = shouldDisplayThermalComfort(theme.country);
+  // The heatwave card groups seasonal 1-click searches, so it is only shown
+  // during summer, and only in the countries running the heatwave campaign.
+  const shouldDisplayHeatwaveCard = isSeasonalThermalComfortVisible(theme);
 
   const goSearch = () => {
     pageStore.captureEvent('start-search');

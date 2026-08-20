@@ -21,7 +21,9 @@ describe('getCanonicalOrigin', () => {
       PUBLIC_SOLIGUIA_ES_HOSTNAMES: 'app.soliguia.es,es.app.demo.soliguide.dev'
     });
 
-    expect(getCanonicalOrigin(theme, 'https://es.app.demo.soliguide.dev')).toBe('https://app.soliguia.es');
+    expect(getCanonicalOrigin(theme, 'https://es.app.demo.soliguide.dev')).toBe(
+      'https://app.soliguia.es'
+    );
   });
 
   it('falls back to the incoming origin when no hostname is configured', () => {
