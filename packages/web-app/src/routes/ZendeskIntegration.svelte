@@ -54,7 +54,7 @@
 
 {#if showCookieModal}
   <CookieModal
-    cookiePolicyLink={$legalLinks[LegalPage.COOKIE_POLICY]}
+    cookiePolicyLink={legalLinks[LegalPage.COOKIE_POLICY]}
     zendeskChatbotLink={$routes.ROUTE_TALK}
     on:close={closeCookieModal}
   />
