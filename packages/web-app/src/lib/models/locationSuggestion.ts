@@ -1,6 +1,8 @@
 import { z } from 'zod';
 import { GeoTypes, LocationAutoCompleteAddress } from '@soliguide/common';
 
+import { getStreetFromAddress } from './address';
+
 export const LocationSuggestionSchema = z.object({
   // A suggestion without text would render as a blank row in the list
   suggestionLine1: z.string().min(1),
@@ -43,6 +45,11 @@ export const getLine1 = (data: LocationAutoCompleteAddress): string => {
 
   if (data.geoType === GeoTypes.CITY) {
     return data.postalCode ? `${displayName} (${data.postalCode})` : displayName;
+  }
+
+  // Spain and Andorra return the whole address here, France the street alone
+  if (data.geoType === GeoTypes.POSITION || data.geoType === GeoTypes.CITIES_GROUP) {
+    return getStreetFromAddress(displayName, data.postalCode);
   }
 
   return displayName;
