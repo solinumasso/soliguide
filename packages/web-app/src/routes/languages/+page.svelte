@@ -20,14 +20,21 @@
 
   pageStore.init(theme.supportedLanguages, theme.defaultLanguage);
 
-  const selectLanguage = (): void => {
+  /**
+   * Catalogs are loaded on demand, so `changeLanguage` only takes effect once its
+   * promise resolves: until then i18next still reports the previous language and
+   * `$routes` still points at it. Awaiting it before reading `$routes` is what
+   * keeps the URL, the document language and the rendered text on the same
+   * language.
+   */
+  const selectLanguage = async (): Promise<void> => {
     pageStore.captureEvent('validate-language', { newLanguage: $pageStore.selectedLanguage });
     if ($pageStore.canSubmit) {
-      $i18n.changeLanguage(String($pageStore.selectedLanguage));
+      await $i18n.changeLanguage(String($pageStore.selectedLanguage));
       markLanguageAsSelected();
 
       const fromPage = $page.url.searchParams.get('from');
-      goto(fromPage === 'more-options' ? $routes.ROUTE_MORE_OPTIONS : $routes.ROUTE_HOME);
+      await goto(fromPage === 'more-options' ? $routes.ROUTE_MORE_OPTIONS : $routes.ROUTE_HOME);
     }
   };
 </script>
