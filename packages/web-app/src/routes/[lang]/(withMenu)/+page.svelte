@@ -15,6 +15,13 @@
   import { CategoryIcon, HeatwaveEmergencyCard, GeolocationBlockedModal } from '$lib/components';
   import MoreHoriz from 'svelte-google-materialdesign-icons/More_horiz.svelte';
 
+  interface CategoryTile {
+    label: string;
+    iconCategory?: Categories;
+    iconComponent: ComponentType;
+    variant: 'primary' | 'secondary' | 'tertiary';
+  }
+
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
   const theme = getThemeContext();
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
@@ -100,12 +107,14 @@
     });
   };
 
-  const categoriesToDisplay: {
-    label: string;
-    iconCategory?: Categories;
-    iconComponent: ComponentType;
-    variant: 'primary' | 'secondary' | 'tertiary';
-  }[] = [
+  /**
+   * Reactive so that the labels follow the language: catalogs are loaded on
+   * demand, so the store re-emits after this page is mounted and a plain
+   * snapshot would keep the previous language.
+   */
+  let categoriesToDisplay: CategoryTile[] = [];
+
+  $: categoriesToDisplay = [
     {
       label: $i18n.t(getCategoryTranslationKey(Categories.FOOD)),
       iconCategory: Categories.FOOD,
