@@ -272,3 +272,71 @@ describe('Results without a name, as returned by the location-api', () => {
     expect(mapSuggestions([emptyResult, andorraCountry])).toHaveLength(1);
   });
 });
+
+// Real location-api payloads, checked against the table of the "Affichage des
+// adresses espagnoles et andorannes" ticket
+describe('Suggestions of a precise address, country by country', () => {
+  const buildPositionResult = (
+    overrides: Partial<LocationAutoCompleteAddress>
+  ): LocationAutoCompleteAddress => ({
+    city: '',
+    coordinates: [],
+    department: '',
+    geoType: GeoTypes.POSITION,
+    geoValue: 'geoValue',
+    label: '',
+    name: '',
+    postalCode: '',
+    region: '',
+    slugs: {},
+    ...overrides
+  });
+
+  it.each([
+    [
+      'France',
+      buildPositionResult({
+        name: '91 Rue de la Colombette',
+        label: '91 Rue de la Colombette, 31000 Toulouse',
+        postalCode: '31000',
+        city: 'Toulouse'
+      }),
+      '91 Rue de la Colombette',
+      '31000 Toulouse',
+      '91 Rue de la Colombette, 31000 Toulouse'
+    ],
+    [
+      'Spain',
+      buildPositionResult({
+        name: 'Carrer de Sancho de Ávila, 08018 Barcelona (Barcelona), Espanya',
+        label: 'Carrer de Sancho de Ávila, 08018 Barcelona (Barcelona), Espanya',
+        postalCode: '08018',
+        city: 'Barcelona'
+      }),
+      'Carrer de Sancho de Ávila',
+      '08018 Barcelona',
+      'Carrer de Sancho de Ávila, 08018 Barcelona'
+    ],
+    [
+      'Andorra',
+      buildPositionResult({
+        name: 'Plaça del Poble, AD500 Andorra la Vella, Andorra',
+        label: 'Plaça del Poble, AD500 Andorra la Vella, Andorra',
+        postalCode: 'AD500',
+        city: 'Andorra la Vella'
+      }),
+      'Plaça del Poble',
+      'AD500 Andorra la Vella',
+      'Plaça del Poble, AD500 Andorra la Vella'
+    ]
+  ])(
+    'splits a %s address into a street and a city line',
+    (_country, result, expectedLine1, expectedLine2, expectedLabel) => {
+      const suggestion = buildSuggestion(result);
+
+      expect(suggestion?.suggestionLine1).toBe(expectedLine1);
+      expect(suggestion?.suggestionLine2).toBe(expectedLine2);
+      expect(suggestion?.suggestionLabel).toBe(expectedLabel);
+    }
+  );
+});
