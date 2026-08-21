@@ -36,7 +36,7 @@
       : $page.url.pathname;
 
   // Remove menu item if Chat is not available
-  const talkMenu = theme.capabilities.chat
+  $: talkMenu = theme.capabilities.chat
     ? [
         {
           icon: IconTalkOff,
@@ -51,7 +51,12 @@
       ]
     : [];
 
-  const menuItems = [
+  /**
+   * Reactive so that the labels and the routes follow the language: catalogs are
+   * loaded on demand, so the store re-emits after this component is mounted and
+   * a plain snapshot would keep the previous language for the whole session.
+   */
+  $: menuItems = [
     {
       icon: IconHomeOff,
       iconActive: IconHomeOn,
