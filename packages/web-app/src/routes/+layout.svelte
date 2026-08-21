@@ -4,14 +4,10 @@
   import { afterNavigate } from '$app/navigation';
   import { browser } from '$app/environment';
   import { onMount, setContext } from 'svelte';
-  import { derived } from 'svelte/store';
+  import { derived, get } from 'svelte/store';
   import ZendeskIntegration from './ZendeskIntegration.svelte';
   import { posthogService } from '$lib/services/posthogService';
-  import {
-    ThemeContext,
-    getDesignSystemLocale,
-    changeDesignSystemLocale
-  } from '@soliguide/design-system';
+  import { ThemeContext } from '@soliguide/design-system';
   import '../assets/styles/main.scss';
   import { I18N_CTX_KEY, getI18nStore, i18nReady } from '$lib/client/i18n';
   import {
@@ -47,15 +43,26 @@
     $i18nStore.changeLanguage(String(theme.defaultLanguage));
   }
 
-  if ($page.params.lang) {
-    const langParam = $page.params.lang;
-    if (getDesignSystemLocale() !== langParam || $i18nStore.language !== langParam) {
-      $i18nStore.changeLanguage(langParam);
+  /**
+   * The URL owns the language, and this layout never remounts, so the sync has to
+   * happen on every navigation rather than once on the first render.
+   *
+   * The instance is read through `get` instead of `$i18nStore` on purpose: this
+   * must only re-run when the URL language changes, not on every catalog load,
+   * which would re-enter while a change is still pending.
+   *
+   * The design system follows through the `languageChanged` handler installed in
+   * `getI18nStore`, so it needs no separate sync here.
+   */
+  const syncLanguageWithUrl = (langParam: string | undefined): void => {
+    const i18nInstance = get(i18nStore);
+
+    if (langParam && i18nInstance.language !== langParam) {
+      i18nInstance.changeLanguage(langParam);
     }
-  } else if (getDesignSystemLocale() !== $i18nStore.language) {
-    // Sync design system lang
-    changeDesignSystemLocale($i18nStore.language);
-  }
+  };
+
+  $: syncLanguageWithUrl($page.params.lang);
 
   cookieConsent.set(getZDCookieConsent());
 
