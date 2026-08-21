@@ -112,7 +112,7 @@
    * demand, so the store re-emits after this page is mounted and a plain
    * snapshot would keep the previous language.
    */
-  let categoriesToDisplay: CategoryTile[] = [];
+  let categoriesToDisplay: CategoryTile[];
 
   $: categoriesToDisplay = [
     {
