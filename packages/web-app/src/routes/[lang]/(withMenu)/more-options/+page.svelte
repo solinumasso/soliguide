@@ -97,7 +97,7 @@
         shape="bordered"
         size="small"
         title={$i18n.t('COOKIE_POLICY')}
-        href={$legalLinks[LegalPage.COOKIE_POLICY]}
+        href={legalLinks[LegalPage.COOKIE_POLICY]}
         on:click={() => pageState.captureEvent('click-cookie-policy')}
       >
         <MenuBook variation="filled" slot="icon" size="16" />
@@ -107,7 +107,7 @@
         shape="bordered"
         size="small"
         title={$i18n.t('PRIVACY_POLICY')}
-        href={$legalLinks[LegalPage.PRIVACY_POLICY]}
+        href={legalLinks[LegalPage.PRIVACY_POLICY]}
         on:click={() => pageState.captureEvent('click-privacy-policy')}
       >
         <Https variation="filled" slot="icon" size="16" />
@@ -117,7 +117,7 @@
         shape="bordered"
         size="small"
         title={$i18n.t('DATA_PROTECTION_AGREEMENT')}
-        href={$legalLinks[LegalPage.DATA_PROCESSING_AGREEMENT]}
+        href={legalLinks[LegalPage.DATA_PROCESSING_AGREEMENT]}
         on:click={() => pageState.captureEvent('click-data-protection-agreement')}
       >
         <Gavel variation="filled" slot="icon" size="16" />
@@ -127,7 +127,7 @@
         shape="bordered"
         size="small"
         title={$i18n.t('LEGAL_NOTICE')}
-        href={$legalLinks[LegalPage.LEGAL_NOTICES]}
+        href={legalLinks[LegalPage.LEGAL_NOTICES]}
         on:click={() => pageState.captureEvent('click-legal-notice')}
       >
         <Security variation="filled" slot="icon" size="16" />
@@ -136,7 +136,7 @@
         type="externalLink"
         size="small"
         title={$i18n.t('GCU')}
-        href={$legalLinks[LegalPage.GCU]}
+        href={legalLinks[LegalPage.GCU]}
         on:click={() => pageState.captureEvent('click-terms-and-conditions')}
       >
         <Mouse variation="filled" slot="icon" size="16" />
@@ -173,7 +173,7 @@
 
 {#if $pageState.cookieModalOpen}
   <CookieModal
-    cookiePolicyLink={$legalLinks[LegalPage.COOKIE_POLICY]}
+    cookiePolicyLink={legalLinks[LegalPage.COOKIE_POLICY]}
     zendeskChatbotLink={$routes.ROUTE_TALK}
     on:close={pageState.closeCookieModal}
   />

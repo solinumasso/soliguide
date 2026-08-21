@@ -36,7 +36,7 @@
   const routesStore = derived(i18nStore, (i18n) => getRoutes(i18n.language));
 
   // Legal documents are published under a localized path on each website
-  const legalLinksStore = derived(i18nStore, (i18n) => buildLegalLinks(theme, i18n.language));
+  const legalLinks = buildLegalLinks(theme);
 
   // No lang selected, init with theme default
   if (!isLanguageSelected() && theme.defaultLanguage) {
@@ -67,7 +67,7 @@
   cookieConsent.set(getZDCookieConsent());
 
   setThemeContext(theme);
-  setLegalLinksContext(legalLinksStore);
+  setLegalLinksContext(legalLinks);
   setContext(CATEGORY_SERVICE_CTX_KEY, getCategoryServiceForTheme(theme.name));
   setContext(I18N_CTX_KEY, i18nStore);
   setContext(ROUTES_CTX_KEY, routesStore);

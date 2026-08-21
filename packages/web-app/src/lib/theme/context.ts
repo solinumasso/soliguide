@@ -1,5 +1,4 @@
 import { getContext, setContext } from 'svelte';
-import type { Readable } from 'svelte/store';
 
 import type { ThemeDefinition, ThemeLegalLinks } from './types';
 
@@ -17,10 +16,12 @@ export const setThemeContext = (theme: ThemeDefinition): void => {
 
 export const getThemeContext = (): ThemeDefinition => getContext(THEME_CTX_KEY);
 
-/** Legal links do change with the language, so they are exposed as a store. */
-export const setLegalLinksContext = (legalLinks: Readable<ThemeLegalLinks>): void => {
+/**
+ * Built from the theme's default language, so they are as constant as the theme
+ * itself and need no store either.
+ */
+export const setLegalLinksContext = (legalLinks: ThemeLegalLinks): void => {
   setContext(LEGAL_LINKS_CTX_KEY, legalLinks);
 };
 
-export const getLegalLinksContext = (): Readable<ThemeLegalLinks> =>
-  getContext(LEGAL_LINKS_CTX_KEY);
+export const getLegalLinksContext = (): ThemeLegalLinks => getContext(LEGAL_LINKS_CTX_KEY);

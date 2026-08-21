@@ -1,27 +1,21 @@
-import { getLegalPageUrl, LegalPage, type SupportedLanguagesCode } from '@soliguide/common';
+import { getLegalPageUrl, LegalPage } from '@soliguide/common';
 
 import type { ThemeDefinition, ThemeLegalLinks } from './types';
 
 /**
- * Absolute URLs of the legal documents of a theme, in the requested language.
+ * Absolute URLs of the legal documents of a theme, in the country's default
+ * language.
  *
- * These documents are hosted by the country's own website, which only publishes
- * them in the languages that website supports, so an unsupported language falls
- * back to the theme's default language rather than producing a dead link.
+ * Deliberately independent of the language the visitor selected: each country's
+ * website publishes these documents in one language only, and any other
+ * language segment falls back to the French Soliguide version. The default
+ * language is the only segment that always lands on the country's own document.
  */
-export const buildLegalLinks = (
-  theme: ThemeDefinition,
-  language: SupportedLanguagesCode | string
-): ThemeLegalLinks => {
-  const targetLanguage = theme.supportedLanguages.includes(language as SupportedLanguagesCode)
-    ? language
-    : theme.defaultLanguage;
-
-  return Object.values(LegalPage).reduce(
+export const buildLegalLinks = (theme: ThemeDefinition): ThemeLegalLinks =>
+  Object.values(LegalPage).reduce(
     (legalLinks, page) => ({
       ...legalLinks,
-      [page]: getLegalPageUrl(theme.name, page, targetLanguage)
+      [page]: getLegalPageUrl(theme.name, page, theme.defaultLanguage)
     }),
     {} as ThemeLegalLinks
   );
-};
