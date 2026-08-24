@@ -51,7 +51,7 @@ export class V20260426MongoContextProvider implements V20260426ContextProvider {
     for (const place of this.readPlaces(payload)) {
       for (const id of [place.lieu_id, place._id]) {
         if (id !== undefined && id !== null) {
-          ids.add(String(id));
+          ids.add(this.stringifyId(id));
         }
       }
     }
@@ -83,11 +83,26 @@ export class V20260426MongoContextProvider implements V20260426ContextProvider {
     for (const place of places) {
       for (const id of [place.lieu_id, place._id]) {
         if (id !== undefined && id !== null) {
-          legacyPlacesById[String(id)] = place;
+          legacyPlacesById[this.stringifyId(id)] = place;
         }
       }
     }
 
     return { legacyPlacesById };
+  }
+
+  private stringifyId(id: unknown): string {
+    if (typeof id === "object" && id !== null && "toHexString" in id) {
+      const toHexString = id.toHexString;
+      if (typeof toHexString === "function") {
+        return toHexString.call(id);
+      }
+    }
+
+    if (typeof id === "string" || typeof id === "number") {
+      return id.toString();
+    }
+
+    return JSON.stringify(id) ?? "";
   }
 }

@@ -1,8 +1,8 @@
 import { NestFastifyApplication } from "@nestjs/platform-fastify";
 import { apiReference } from "@scalar/nestjs-api-reference";
-import { readdir, readFile } from "fs/promises";
-import { join, resolve } from "path";
-import { cwd } from "process";
+import { readdir, readFile } from "node:fs/promises";
+import { join, resolve } from "node:path";
+import { cwd } from "node:process";
 
 const VERSION_DIRECTORY_NAME_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 
