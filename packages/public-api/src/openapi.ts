@@ -18,12 +18,12 @@ export async function setupOpenApi(app: NestFastifyApplication) {
   const fastify = app.getHttpAdapter().getInstance();
 
   for (const spec of versionedOpenApiSpecs) {
-    fastify.get(spec.url, async (_, reply) => {
+    fastify.get(spec.url, (_, reply) => {
       reply.type("application/json; charset=utf-8").send(spec.content);
     });
   }
 
-  fastify.get("/", async (_, reply) => {
+  fastify.get("/", (_, reply) => {
     reply.redirect("/api/docs", 302);
   });
 

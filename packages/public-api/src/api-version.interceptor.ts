@@ -16,6 +16,16 @@ import { DowngradePipeline, UpgradePipeline } from "./versioning-engine";
 const API_VERSION_HEADER = "x-api-version";
 const API_VERSION_QUERY_PARAM = "api-version";
 
+const VERSIONED_RESOURCES_METADATA = "public-api:versioned-resources";
+
+type VersionedResourcesMetadata = {
+  request?: string;
+  response?: string;
+};
+
+export const VersionedResources = (metadata: VersionedResourcesMetadata) =>
+  SetMetadata(VERSIONED_RESOURCES_METADATA, metadata);
+
 @Injectable()
 export class ApiVersionInterceptor implements NestInterceptor {
   constructor(
@@ -54,7 +64,7 @@ export class ApiVersionInterceptor implements NestInterceptor {
     }
 
     return next.handle().pipe(
-      mergeMap(async (payload) => {
+      mergeMap((payload) => {
         if (!resources.response || clientVersion === canonicalVersion) {
           return payload;
         }
@@ -93,13 +103,3 @@ export class ApiVersionInterceptor implements NestInterceptor {
       : undefined;
   }
 }
-
-export const VERSIONED_RESOURCES_METADATA = "public-api:versioned-resources";
-
-export interface VersionedResourcesMetadata {
-  request?: string;
-  response?: string;
-}
-
-export const VersionedResources = (metadata: VersionedResourcesMetadata) =>
-  SetMetadata(VERSIONED_RESOURCES_METADATA, metadata);
