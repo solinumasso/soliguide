@@ -84,11 +84,8 @@ export class SearchAuthGuard implements CanActivate {
       const allowedWebappHostnames = this.webappUrls()
         .map((url) => this.extractHostname(url))
         .filter(Boolean);
-      if (allowedWebappHostnames.includes(hostname)) {
-        return true;
-      }
 
-      return false;
+      return allowedWebappHostnames.includes(hostname);
     } catch {
       return false;
     }

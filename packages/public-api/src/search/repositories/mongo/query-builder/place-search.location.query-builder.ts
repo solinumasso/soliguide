@@ -10,6 +10,33 @@ import {
 import { SearchContext, SearchQueryBuilder } from "./search.query-builder";
 import { appendAndConditions } from "./utils";
 
+type GeoNearSearchLocation = SearchLocation & {
+  coordinates: [number, number];
+  distance?: number;
+  country?: CountryCodes | null;
+};
+
+export const DEFAULT_SEARCH_RADIUS_BY_GEO_TYPE: Record<string, number> = {
+  [GeoTypes.BOROUGH]: 20,
+  [GeoTypes.CITIES_GROUP]: 30,
+  [GeoTypes.CITY]: 20,
+  [GeoTypes.COUNTRY]: 500,
+  [GeoTypes.DEPARTMENT]: 80,
+  [GeoTypes.POSITION]: 10,
+  [GeoTypes.REGION]: 120,
+  [GeoTypes.UNKNOWN]: 20,
+};
+
+export const LOCATION_COUNTRY_BY_PLACE_TYPE: Record<PlaceType, string> = {
+  [PlaceType.PLACE]: "position.country",
+  [PlaceType.ITINERARY]: "parcours.position.country",
+};
+
+export const LOCATION_GEO_KEY_BY_PLACE_TYPE: Record<PlaceType, string> = {
+  [PlaceType.PLACE]: "position.location",
+  [PlaceType.ITINERARY]: "parcours.position.location",
+};
+
 @Injectable()
 export class LocationQueryBuilder implements SearchQueryBuilder {
   build(context: SearchContext): SearchContext {
@@ -385,30 +412,3 @@ export class LocationQueryBuilder implements SearchQueryBuilder {
     );
   }
 }
-
-type GeoNearSearchLocation = SearchLocation & {
-  coordinates: [number, number];
-  distance?: number;
-  country?: CountryCodes | null;
-};
-
-export const DEFAULT_SEARCH_RADIUS_BY_GEO_TYPE: Record<string, number> = {
-  [GeoTypes.BOROUGH]: 20,
-  [GeoTypes.CITIES_GROUP]: 30,
-  [GeoTypes.CITY]: 20,
-  [GeoTypes.COUNTRY]: 500,
-  [GeoTypes.DEPARTMENT]: 80,
-  [GeoTypes.POSITION]: 10,
-  [GeoTypes.REGION]: 120,
-  [GeoTypes.UNKNOWN]: 20,
-};
-
-export const LOCATION_COUNTRY_BY_PLACE_TYPE: Record<PlaceType, string> = {
-  [PlaceType.PLACE]: "position.country",
-  [PlaceType.ITINERARY]: "parcours.position.country",
-};
-
-export const LOCATION_GEO_KEY_BY_PLACE_TYPE: Record<PlaceType, string> = {
-  [PlaceType.PLACE]: "position.location",
-  [PlaceType.ITINERARY]: "parcours.position.location",
-};
