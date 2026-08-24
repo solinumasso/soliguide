@@ -402,7 +402,8 @@ export class LocationQueryBuilder implements SearchQueryBuilder {
       .toLowerCase()
       .trim()
       .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "");
+      .replace(/^-+/, "")
+      .replace(/-+$/, "");
   }
 
   private normalizeDepartmentSlug(value: string): string {

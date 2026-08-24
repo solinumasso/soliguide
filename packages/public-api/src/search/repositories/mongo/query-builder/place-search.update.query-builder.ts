@@ -8,7 +8,7 @@ export class UpdateQueryBuilder implements SearchQueryBuilder {
   build(context: SearchContext): SearchContext {
     const updatedAt = context.query.updatedAt;
 
-    if (!updatedAt || !updatedAt.value) {
+    if (!updatedAt?.value) {
       return context;
     }
 

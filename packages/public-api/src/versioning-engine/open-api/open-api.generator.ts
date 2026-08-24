@@ -529,15 +529,13 @@ type SwaggerOperationRef = {
 type JsonSchemaNode = Record<string, unknown>;
 export type OpenApiDocumentProvider = () => Promise<OpenAPIObject>;
 
-type GenerateVersionedOpenApiOptionsBase = {
+export type GenerateVersionedOpenApiOptions = {
   baseOpenApiDocument?: OpenAPIObject;
   getBaseOpenApiDocument?: OpenApiDocumentProvider;
   outputPath: string;
   version: string;
   versionRegistryByVersion: Record<string, VersionRegistry>;
 };
-export type GenerateVersionedOpenApiOptions =
-  GenerateVersionedOpenApiOptionsBase;
 
 const OPEN_API_JSON_SCHEMA_OPTIONS = {
   reused: "inline",

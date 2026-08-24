@@ -399,20 +399,26 @@ function rewriteSrcImportPathsInText(
   targetFilePath: string,
   packageRootDir: string
 ): string {
-  return sourceText.replace(
-    /(\bfrom\s+["']|^\s*import\s+["'])(src\/[^"']+)(["'])/gm,
-    (_, importPrefix: string, importPath: string, importSuffix: string) => {
-      const absoluteImportPath = resolve(packageRootDir, importPath);
-      const relativeImportPath = relative(
-        dirname(targetFilePath),
-        absoluteImportPath
-      ).replaceAll("\\", "/");
+  const rewriteImport = (
+    _: string,
+    importPrefix: string,
+    importPath: string,
+    importSuffix: string
+  ): string => {
+    const absoluteImportPath = resolve(packageRootDir, importPath);
+    const relativeImportPath = relative(
+      dirname(targetFilePath),
+      absoluteImportPath
+    ).replaceAll("\\", "/");
 
-      return `${importPrefix}${
-        relativeImportPath.startsWith(".")
-          ? relativeImportPath
-          : `./${relativeImportPath}`
-      }${importSuffix}`;
-    }
-  );
+    return `${importPrefix}${
+      relativeImportPath.startsWith(".")
+        ? relativeImportPath
+        : `./${relativeImportPath}`
+    }${importSuffix}`;
+  };
+
+  return sourceText
+    .replace(/(\bfrom\s+["'])(src\/[^"']+)(["'])/g, rewriteImport)
+    .replace(/(^\s*import\s+["'])(src\/[^"']+)(["'])/gm, rewriteImport);
 }

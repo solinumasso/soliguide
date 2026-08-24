@@ -5,11 +5,11 @@ export class SearchPaginationFactory {
   create(query: SearchQuery): SearchPagination {
     const hasOptions = Boolean(query.options);
 
-    const limit = hasOptions
-      ? typeof query.options?.limit === "number"
-        ? query.options.limit
-        : 20
-      : 100;
+    let limit = 100;
+    if (hasOptions) {
+      limit =
+        typeof query.options?.limit === "number" ? query.options.limit : 20;
+    }
 
     const page =
       hasOptions && typeof query.options?.page === "number"

@@ -1,10 +1,7 @@
 import type { AnyVersionChange, ChangeType } from "../dsl";
 
 export type JsonRecord = Record<string, unknown>;
-export type RuntimeTransform = (
-  payload: unknown,
-  context: unknown
-) => unknown | Promise<unknown>;
+export type RuntimeTransform = (payload: unknown, context: unknown) => unknown;
 
 export async function applyUpgradeChanges(
   payload: unknown,
@@ -456,12 +453,30 @@ function findLegacyRecord(
   legacyRecords: JsonRecord
 ): JsonRecord | undefined {
   for (const key of [targetRecord.lieu_id, targetRecord._id, targetRecord.id]) {
-    if (key !== undefined && isRecord(legacyRecords[String(key)])) {
-      return legacyRecords[String(key)] as JsonRecord;
+    const stringKey = getRecordId(key);
+    if (stringKey !== undefined && isRecord(legacyRecords[stringKey])) {
+      return legacyRecords[stringKey] as JsonRecord;
     }
   }
 
   return undefined;
+}
+
+function getRecordId(value: unknown): string | undefined {
+  if (value === undefined || value === null) {
+    return undefined;
+  }
+
+  if (typeof value === "object" && "toHexString" in value) {
+    const toHexString = value.toHexString;
+    if (typeof toHexString === "function") {
+      return toHexString.call(value);
+    }
+  }
+
+  return typeof value === "object"
+    ? JSON.stringify(value) ?? ""
+    : value.toString();
 }
 
 function capitalize(value: string): string {

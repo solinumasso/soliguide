@@ -166,7 +166,7 @@ export class SchemaDocument {
       throw new Error(`Invalid empty payloadPath for ${context}`);
     }
 
-    const fieldName = pathSegments[pathSegments.length - 1];
+    const fieldName = pathSegments.at(-1);
     const parentPathSegments = pathSegments.slice(0, -1);
     const parentObject = this.resolveObjectAtPath(parentPathSegments, context);
 
@@ -259,7 +259,7 @@ function findMainExportedSchemaDeclaration(
     .getVariableDeclarations()
     .filter((declaration) => {
       const variableStatement = declaration.getVariableStatement();
-      if (!variableStatement || !variableStatement.isExported()) {
+      if (!variableStatement?.isExported()) {
         return false;
       }
 

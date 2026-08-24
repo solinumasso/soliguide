@@ -7,8 +7,9 @@ import {
   PublicsGender,
   PublicsOther,
   WelcomedPublics,
+  Categories,
+  SoliguideCountries,
 } from "@soliguide/common";
-import { Categories, SoliguideCountries } from "@soliguide/common";
 
 import { CanonicalSearchRequest } from "../canonical-search-request";
 import { SearchLocation, SearchQuery } from "./search-query";

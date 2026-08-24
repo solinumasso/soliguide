@@ -158,12 +158,12 @@ function countIdentifierUsages(
 ): number {
   const sourceText = sourceFile.getFullText();
   const escapedIdentifier = escapeRegExp(identifier);
-  const usageRegex = new RegExp(`\\b${escapedIdentifier}\\b`, "g");
+  const usageRegex = new RegExp(String.raw`\b${escapedIdentifier}\b`, "g");
   const matches = sourceText.match(usageRegex);
 
   return matches?.length ?? 0;
 }
 
 function escapeRegExp(value: string): string {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return value.replace(String.raw({ raw: "[.*+?^${}()|[\\]\\\\]" }), "\\$&");
 }

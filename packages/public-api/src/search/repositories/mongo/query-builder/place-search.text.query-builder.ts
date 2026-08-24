@@ -7,7 +7,7 @@ import { appendAndConditions } from "./utils";
 @Injectable()
 export class TextQueryBuilder implements SearchQueryBuilder {
   build(context: SearchContext): SearchContext {
-    if (!context.query.word || !context.query.word.trim()) {
+    if (!context.query.word?.trim()) {
       return context;
     }
 
@@ -27,6 +27,10 @@ export class TextQueryBuilder implements SearchQueryBuilder {
   }
 
   private escapeRegex(value: string): string {
-    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const specialCharacters = new RegExp(
+      String.raw({ raw: "[.*+?^${}()|[\\]\\\\]" }),
+      "g"
+    );
+    return value.replace(specialCharacters, "\\$&");
   }
 }
