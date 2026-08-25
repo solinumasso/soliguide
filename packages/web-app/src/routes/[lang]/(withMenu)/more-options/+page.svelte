@@ -1,5 +1,12 @@
 <script lang="ts">
-  import { getLegalLinksContext, getThemeContext } from '$lib/theme';
+  import {
+    buildCountryVersions,
+    buildCountryVersionUrl,
+    getAllThemes,
+    getLegalLinksContext,
+    getThemeContext,
+    type CountryVersion
+  } from '$lib/theme';
   import { getContext } from 'svelte';
   import ScreenSearchDesktop from 'svelte-google-materialdesign-icons/Screen_search_desktop.svelte';
   import Transcribe from 'svelte-google-materialdesign-icons/Transcribe.svelte';
@@ -11,8 +18,9 @@
   import MenuBook from 'svelte-google-materialdesign-icons/Menu_book.svelte';
   import { LegalPage } from '@soliguide/common';
   import { CookieModal } from '$lib/components';
+  import { requestNativeCountrySwitch } from '$lib/services';
   import ColoredCard from './ColoredCard.svelte';
-  import { Text, BasicCard, ListItem } from '@soliguide/design-system';
+  import { Text, BasicCard, Button, ListItem } from '@soliguide/design-system';
   import { getPageController } from './pageController';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import { ROUTES_CTX_KEY } from '$lib/client/index';
@@ -41,6 +49,27 @@
     pageState.captureEvent('click-change-language');
     goto(`${$routes.ROUTE_LANGUAGES}?from=more-options`);
   };
+
+  const countryVersions = buildCountryVersions(theme, getAllThemes());
+
+  /**
+   * Each country is a separate deployment on its own hostname, so switching is a
+   * full page load and not a client side navigation.
+   *
+   * Inside the mobile application the native shell owns the country: it is asked
+   * to switch so that the choice is remembered and the user stays in the app.
+   * Everywhere else, and in application versions predating that bridge, the
+   * browser navigates to the country's home page.
+   */
+  const switchCountry = (countryVersion: CountryVersion) => {
+    pageState.captureEvent('click-change-country', { newCountry: countryVersion.country });
+
+    if (requestNativeCountrySwitch(countryVersion.theme)) {
+      return;
+    }
+
+    window.location.assign(buildCountryVersionUrl(countryVersion, new URL(window.location.href)));
+  };
 </script>
 
 <svelte:head>
@@ -64,6 +93,27 @@
         navigateToExternal(theme.links.practicalFiles);
       }}
     />
+  {/if}
+
+  {#if countryVersions.length}
+    <ColoredCard
+      cardType="secondary"
+      title={$i18n.t('COUNTRY_VERSIONS')}
+      description={$i18n.t('COUNTRY_VERSIONS_DESCRIPTION')}
+      imgUrl="/images/globe.svg"
+    >
+      <svelte:fragment slot="actions">
+        {#each countryVersions as countryVersion (countryVersion.theme)}
+          <Button
+            type="neutralOutlined"
+            size="xsmall"
+            on:click={() => switchCountry(countryVersion)}
+          >
+            {$i18n.t(countryVersion.nameKey)}
+          </Button>
+        {/each}
+      </svelte:fragment>
+    </ColoredCard>
   {/if}
 
   <BasicCard>

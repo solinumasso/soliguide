@@ -6,13 +6,15 @@ export {
   setLegalLinksContext,
   setThemeContext
 } from './context';
+export { buildCountryVersions, buildCountryVersionUrl, getCountryNameKey } from './countryVersions';
 export { getCanonicalOrigin } from './getCanonicalOrigin';
 export { getRequestLanguage } from './getRequestLanguage';
 export { matchThemeByHostname, normalizeHostname, parseHostnameList } from './hostnameMatching';
 export { buildLegalLinks } from './legalLinks';
-export { getDefaultTheme, resolveTheme } from './resolveTheme';
+export { getAllThemes, getDefaultTheme, resolveTheme } from './resolveTheme';
 export { getRequestHostname, resolveThemeFromRequest } from './resolveThemeFromRequest';
 export { isSeasonalThermalComfortVisible } from './thermalComfort';
+export type { CountryVersion } from './countryVersions';
 export type {
   ThemeBlueprint,
   ThemeCapabilities,
