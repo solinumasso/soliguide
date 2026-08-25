@@ -1,7 +1,12 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { Themes } from '@soliguide/common';
 
-import { canNativeShellSwitchCountry, requestNativeCountrySwitch } from './nativeShellService';
+import {
+  canNativeShellOpenSettings,
+  canNativeShellSwitchCountry,
+  requestNativeCountrySwitch,
+  requestNativeOpenSettings
+} from './nativeShellService';
 
 const postMessage = vi.fn();
 
@@ -53,6 +58,26 @@ describe('canNativeShellSwitchCountry', () => {
   });
 });
 
+describe('canNativeShellOpenSettings', () => {
+  it('is false on the plain web, where no API opens the device settings', () => {
+    installPlainBrowser();
+
+    expect(canNativeShellOpenSettings()).toBe(false);
+  });
+
+  it('is false in a shell that only declares the country switch', () => {
+    installNativeShell({ countrySwitch: true });
+
+    expect(canNativeShellOpenSettings()).toBe(false);
+  });
+
+  it('is true once the shell declares the capability', () => {
+    installNativeShell({ openSettings: true });
+
+    expect(canNativeShellOpenSettings()).toBe(true);
+  });
+});
+
 describe('requestNativeCountrySwitch', () => {
   it('hands the target country to the shell', () => {
     installNativeShell({ countrySwitch: true });
@@ -67,6 +92,22 @@ describe('requestNativeCountrySwitch', () => {
     installPlainBrowser();
 
     expect(requestNativeCountrySwitch(Themes.SOLIGUIA_AD)).toBe(false);
+    expect(postMessage).not.toHaveBeenCalled();
+  });
+});
+
+describe('requestNativeOpenSettings', () => {
+  it('asks the shell to open the application settings', () => {
+    installNativeShell({ openSettings: true });
+
+    expect(requestNativeOpenSettings()).toBe(true);
+    expect(postMessage).toHaveBeenCalledWith(JSON.stringify({ type: 'soliguide:open-settings' }));
+  });
+
+  it('posts nothing on the plain web, so the caller hides the offer', () => {
+    installPlainBrowser();
+
+    expect(requestNativeOpenSettings()).toBe(false);
     expect(postMessage).not.toHaveBeenCalled();
   });
 });
