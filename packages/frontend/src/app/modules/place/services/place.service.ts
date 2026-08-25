@@ -1,12 +1,10 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
 import { ApiPlace } from "@soliguide/common";
 
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-
-import { CurrentLanguageService } from "../../general/services/current-language.service";
 
 import { Place } from "../../../models/place/classes";
 
@@ -16,18 +14,16 @@ import { environment } from "../../../../environments/environment";
   providedIn: "root",
 })
 export class PlaceService {
-  constructor(
-    private readonly http: HttpClient,
-    private readonly currentLanguageService: CurrentLanguageService
-  ) {}
+  constructor(private readonly http: HttpClient) {}
 
-  public getPlace = (seoUrl: string): Observable<Place> => {
-    const apiURL = `${environment.apiUrl}/place/${seoUrl}/${this.currentLanguageService.currentLanguage}`;
-
+  public getPlace(placeId: string): Observable<Place> {
     return this.http
-      .get<ApiPlace>(apiURL)
+      .get<ApiPlace>(
+        `${environment.publicApiUrl}/places/${encodeURIComponent(placeId)}`,
+        { headers: new HttpHeaders({ "x-api-version": "2026-01-01" }) }
+      )
       .pipe(map((place: ApiPlace) => new Place(place, false)));
-  };
+  }
 
   // Structures modification button
   public canEditPlace = (seoUrl: string): Observable<boolean> => {
