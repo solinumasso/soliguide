@@ -23,6 +23,7 @@ type SearchRequestLocation = NonNullable<
 
 describe("SearchService", () => {
   const placesRepository: Mocked<PlacesRepository> = {
+    getByIdentifier: vi.fn().mockResolvedValue(undefined),
     search: vi.fn().mockResolvedValue({ nbResults: 0, places: [] }),
   } as unknown as Mocked<PlacesRepository>;
 
@@ -379,6 +380,47 @@ describe("SearchService", () => {
       limit: 20,
     });
   });
+
+  it("gets a public place by numeric lieu_id", async () => {
+    placesRepository.getByIdentifier.mockResolvedValueOnce({
+      lieu_id: 42,
+      status: PlaceStatus.ONLINE,
+      visibility: PlaceVisibility.ALL,
+    });
+
+    await expect(sut.getPlace("42", buildUserContext())).resolves.toEqual({
+      lieu_id: 42,
+      status: PlaceStatus.ONLINE,
+      visibility: PlaceVisibility.ALL,
+    });
+
+    expect(placesRepository.getByIdentifier).toHaveBeenCalledWith("42", {
+      status: PlaceStatus.ONLINE,
+      visibility: PlaceVisibility.ALL,
+    });
+  });
+
+  it("supports the frontend's existing SEO URL routes", async () => {
+    placesRepository.getByIdentifier.mockResolvedValueOnce({
+      lieu_id: 42,
+      status: PlaceStatus.ONLINE,
+      visibility: PlaceVisibility.ALL,
+    });
+
+    await sut.getPlace("food-bank-paris", buildUserContext());
+
+    expect(placesRepository.getByIdentifier).toHaveBeenCalledWith(
+      "food-bank-paris",
+      {
+        status: PlaceStatus.ONLINE,
+        visibility: PlaceVisibility.ALL,
+      }
+    );
+  });
+
+  it("returns undefined when the requested place is not publicly accessible", async () => {
+    await expect(sut.getPlace("42", buildUserContext())).resolves.toBeUndefined();
+  });
 });
 
 function buildRequest(
@@ -398,9 +440,17 @@ function buildRequest(
 function buildUserContext(
   overrides: Partial<SearchUserContext> = {}
 ): SearchUserContext {
+  const status = overrides.status ?? UserStatus.SIMPLE_USER;
+
   return {
     userId: "user-1",
-    status: UserStatus.SIMPLE_USER,
+    status,
+    placeAccess: {
+      status: PlaceStatus.ONLINE,
+      ...(status === UserStatus.PRO
+        ? {}
+        : { visibility: PlaceVisibility.ALL }),
+    },
     ...overrides,
   };
 }

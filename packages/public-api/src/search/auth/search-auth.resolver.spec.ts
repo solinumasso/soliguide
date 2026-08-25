@@ -1,6 +1,11 @@
 import { UnauthorizedException } from "@nestjs/common";
 import { UserModel } from "@soliguide/api";
-import { UserStatus, UserStatusNotLogged } from "@soliguide/common";
+import {
+  PlaceStatus,
+  PlaceVisibility,
+  UserStatus,
+  UserStatusNotLogged,
+} from "@soliguide/common";
 import { verify } from "jsonwebtoken";
 import { beforeEach, describe, expect, it, vi, type Mock } from "vitest";
 
@@ -31,6 +36,10 @@ describe("SearchAuthResolver", () => {
       user: {
         userId: "anonymous",
         status: UserStatusNotLogged.NOT_LOGGED,
+        placeAccess: {
+          status: PlaceStatus.ONLINE,
+          visibility: PlaceVisibility.ALL,
+        },
       },
       blocked: false,
     });
@@ -108,6 +117,10 @@ describe("SearchAuthResolver", () => {
       user: {
         userId: "66a0f6ec4ad86cb5706f4f24",
         status: UserStatus.API_USER,
+        placeAccess: {
+          status: PlaceStatus.ONLINE,
+          visibility: PlaceVisibility.ALL,
+        },
         areas: { fr: { departments: ["75"] } },
         categoriesLimitations: ["health"],
       },

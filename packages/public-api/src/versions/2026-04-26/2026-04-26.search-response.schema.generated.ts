@@ -811,7 +811,7 @@ const slugsSchema = z
   })
   .meta({ id: "SearchResponse_Slugs" });
 
-const v20260426SearchPlaceResponseSchema = z
+export const v20260426SearchPlaceResponseSchema = z
   .object({
     lieu_id: z
       .int()

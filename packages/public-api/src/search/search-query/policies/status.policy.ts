@@ -1,13 +1,11 @@
-import { PlaceStatus } from "@soliguide/common";
-
-import { SearchQueryPolicy } from "../search-query-policy";
+import { SearchPolicyContext, SearchQueryPolicy } from "../search-query-policy";
 import { SearchQuery } from "../search-query";
 
 export class OnlineStatusPolicy implements SearchQueryPolicy {
-  apply(query: SearchQuery): SearchQuery {
+  apply(query: SearchQuery, context: SearchPolicyContext): SearchQuery {
     return {
       ...query,
-      status: PlaceStatus.ONLINE,
+      status: context.placeAccess.status,
     };
   }
 }

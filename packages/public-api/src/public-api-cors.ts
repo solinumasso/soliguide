@@ -12,7 +12,7 @@ export function buildPublicApiCorsOptions(): CorsOptions {
       "x-api-version",
       "x-document-referrer",
     ],
-    methods: ["POST", "OPTIONS"],
+    methods: ["GET", "POST", "OPTIONS"],
     optionsSuccessStatus: 204,
     origin: (requestOrigin, callback) => {
       callback(null, isPublicApiCorsOriginAllowed(requestOrigin, env));

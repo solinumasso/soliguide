@@ -2,7 +2,7 @@ import { SearchQuery } from "./search-query";
 import { ApiUserCategoryLimitationsPolicy } from "./policies/api-user-category-limitations.policy";
 import { ApiUserLegacyMobilityCategoriesPolicy } from "./policies/api-user-legacy-mobility-categories.policy";
 import { ApiUserTerritoryRestrictionsPolicy } from "./policies/api-user-territory-restrictions.policy";
-import { AllVisibilityPolicy } from "./policies/visibility.policy";
+import { VisibilityPolicy } from "./policies/visibility.policy";
 import { DefaultCountryPolicy } from "./policies/default-country.policy";
 import { SingleCategoryPolicy } from "./policies/single-category.policy";
 import { ServiceFiltersDefaultPolicy } from "./policies/service-filters-default.policy";
@@ -35,7 +35,7 @@ export class SearchQueryPolicyPipeline {
       new DefaultCountryPolicy(),
       new OnlineStatusPolicy(),
       new ServiceFiltersDefaultPolicy(),
-      new AllVisibilityPolicy(),
+      new VisibilityPolicy(),
       new SingleCategoryPolicy(),
       new ApiUserLegacyMobilityCategoriesPolicy(),
       new ApiUserCategoryLimitationsPolicy(),
