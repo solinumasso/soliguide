@@ -81,6 +81,10 @@ export const PLACE_LANGUAGES_LIST: Languages = {
     name: "Bosniaque",
     nativeName: "bosanski jezik",
   },
+  buc: {
+    name: "Shibushi",
+    nativeName: "Kibushi",
+  },
   ca: {
     name: "Catalan; Valencien",
     nativeName: "Català",
