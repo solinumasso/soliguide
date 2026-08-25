@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.152.0](https://github.com/solinumasso/soliguide/compare/v4.151.0...v4.152.0) (2026-08-25)
+
+
+### Bug Fixes
+
+* **frontend:** remove seasonal wording from thermal comfort banner ([5f9bcb4](https://github.com/solinumasso/soliguide/commit/5f9bcb46d2fda6fc81b0370b0b39942ed0a372e7))
+
+
+### Features
+
+* add shibushi as a spoken language ([0f06153](https://github.com/solinumasso/soliguide/commit/0f06153caa11fd53fd2eaab8f53a4fa7d199aca2))
+* visualize in place editing page a added spoken language ([d6272f1](https://github.com/solinumasso/soliguide/commit/d6272f164b402b77a04ead03cc388c6ef64bc978))
+
+
+
+
+
 # [4.151.0](https://github.com/solinumasso/soliguide/compare/v4.150.0...v4.151.0) (2026-08-06)
 
 
