@@ -1,11 +1,4 @@
-import {
-  Body,
-  Controller,
-  Post,
-  UseGuards,
-  HttpCode,
-  UsePipes,
-} from "@nestjs/common";
+import { Body, Controller, Post, UseGuards, HttpCode } from "@nestjs/common";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 
 import { VersionedResources } from "../api-version.interceptor";
@@ -28,7 +21,6 @@ export class SearchController {
   @Post()
   @HttpCode(200)
   @UseGuards(SearchAuthGuard)
-  @UsePipes(new ZodValidationPipe(CanonicalZodRequestSchema))
   @ApiOperation({
     operationId: "search-places",
     summary: "Search places",
@@ -39,7 +31,8 @@ export class SearchController {
     response: "search-response",
   })
   async search(
-    @Body() dto: CanonicalSearchRequest,
+    @Body(new ZodValidationPipe(CanonicalZodRequestSchema))
+    dto: CanonicalSearchRequest,
     @User() user: SearchUserContext
   ): Promise<CanonicalSearchResponse> {
     return this.searchApplicationService.search(dto, user);

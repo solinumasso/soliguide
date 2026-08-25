@@ -29,7 +29,7 @@ describe("2026-04-26 runtime versioning", () => {
             ville: "Paris",
           },
           publics: { ukrainePrecisions: "Accueil legacy" },
-          services_all: [{ categorie: "food", jobsList: ["cook"] }],
+          services_all: [{ categorie: "food", jobsList: "cook" }],
           sourceLanguage: "fr",
         },
       },
@@ -197,7 +197,7 @@ describe("2026-04-26 runtime versioning", () => {
           publics: {
             accueil: 1,
             familialle: ["family"],
-            ukrainePrecisions: "Accueil possible",
+            ukrainePrecisions: "Accueil legacy",
           },
           seo_url: "org-paris",
           services_all: [
@@ -208,7 +208,7 @@ describe("2026-04-26 runtime versioning", () => {
                 dateDebut: "2026-05-01",
                 dateFin: "2026-05-02",
               },
-              jobsList: ["cook"],
+              jobsList: "cook",
               name: "Meal",
             },
           ],
