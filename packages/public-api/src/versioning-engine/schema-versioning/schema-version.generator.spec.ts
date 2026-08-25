@@ -1,13 +1,10 @@
-import { cp, mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
-import { join, resolve } from "node:path";
+import { join } from "node:path";
 
 import { afterEach, describe, expect, it } from "vitest";
 
 import { SchemaVersionGenerator } from "./schema-version.generator";
-
-const REAL_PACKAGE_ROOT = resolve(__dirname, "..", "..", "..");
-const REAL_VERSIONS_ROOT = resolve(REAL_PACKAGE_ROOT, "src", "versions");
 
 const temporaryDirectories: string[] = [];
 
@@ -103,7 +100,7 @@ describe("SchemaVersionGenerator", () => {
     );
   });
 
-  it("integration: generates 2026-04-17 from 2026-01-01 and applies concrete request/response changes", async () => {
+  it("integration: generates a fixture version and applies concrete request/response changes", async () => {
     const packageRootDir = await createIntegrationPackageRoot();
 
     await new SchemaVersionGenerator().generate({
@@ -133,13 +130,10 @@ describe("SchemaVersionGenerator", () => {
     expect(generatedRequestSchema).toContain("categories: z");
     expect(generatedRequestSchema).toContain(".min(1)");
     expect(generatedRequestSchema).toContain("acceptsPets");
-    expect(generatedRequestSchema).toContain("publics: publicsSchema");
-    expect(generatedRequestSchema).toContain("max(120)");
-
     const modalitiesBlock = extractBlock(
       generatedRequestSchema,
       "const modalitiesSchema = z",
-      "const publicsSchema = z"
+      "export const v20260417SearchRequestSchema"
     );
     expect(modalitiesBlock).not.toContain("animal:");
     expect(modalitiesBlock).toContain("acceptsPets:");
@@ -167,7 +161,7 @@ describe("SchemaVersionGenerator", () => {
       "const v20260417SearchPlaceResponseSchema = z",
       '.meta({ id: "v20260417SearchPlaceResponse" })'
     );
-    expect(placeResponseBlock).not.toContain("\n    _id:");
+    expect(placeResponseBlock).not.toContain("legacyId:");
 
     expect(generatedRequestSchema).not.toContain("2026-01-01.search-request");
     expect(generatedResponseSchema).not.toContain("2026-01-01.search-response");
@@ -357,9 +351,23 @@ async function createIntegrationPackageRoot(): Promise<string> {
 
   await mkdir(join(tempDirectoryPath, "src", "versions"), { recursive: true });
 
-  await cp(
-    resolve(REAL_PACKAGE_ROOT, "tsconfig.json"),
-    join(tempDirectoryPath, "tsconfig.json")
+  await writeFile(
+    join(tempDirectoryPath, "tsconfig.json"),
+    JSON.stringify(
+      {
+        compilerOptions: {
+          baseUrl: ".",
+          esModuleInterop: true,
+          module: "commonjs",
+          skipLibCheck: true,
+          strict: true,
+          target: "ES2021",
+        },
+      },
+      null,
+      2
+    ),
+    "utf-8"
   );
 
   await writeFile(
@@ -374,20 +382,104 @@ export const versionRegistry: Record<string, VersionRegistry> = {
     "utf-8"
   );
 
-  await cp(
-    join(REAL_VERSIONS_ROOT, "2026-01-01"),
-    join(tempDirectoryPath, "src/versions/2026-01-01"),
-    {
-      recursive: true,
-    }
+  await mkdir(join(tempDirectoryPath, "src/versions/2026-01-01"), {
+    recursive: true,
+  });
+  await mkdir(join(tempDirectoryPath, "src/versions/2026-04-17"), {
+    recursive: true,
+  });
+
+  await writeFile(
+    join(
+      tempDirectoryPath,
+      "src/versions/2026-01-01/2026-01-01.search-request.schema.generated.ts"
+    ),
+    `import { z } from "zod";
+
+const modalitiesSchema = z.object({
+  animal: z.boolean().nullable().optional(),
+});
+
+export const v20260101SearchRequestSchema = z.object({
+  categories: z.array(z.string()).nullable().optional(),
+  modalities: modalitiesSchema.nullable().optional(),
+});
+
+export type V20260101SearchRequest = z.infer<typeof v20260101SearchRequestSchema>;
+export default v20260101SearchRequestSchema;
+`,
+    "utf-8"
   );
 
-  await cp(
-    join(REAL_VERSIONS_ROOT, "2026-04-17"),
-    join(tempDirectoryPath, "src/versions/2026-04-17"),
-    {
-      recursive: true,
-    }
+  await writeFile(
+    join(
+      tempDirectoryPath,
+      "src/versions/2026-01-01/2026-01-01.search-response.schema.generated.ts"
+    ),
+    `import { z } from "zod";
+
+const v20260101SearchPlaceResponseSchema = z.object({
+  legacyId: z.string().nullable().optional(),
+  name: z.string().nullable().optional(),
+});
+
+export const v20260101SearchResponseSchema = z.object({
+  places: z.array(v20260101SearchPlaceResponseSchema),
+});
+
+export type V20260101SearchResponse = z.infer<typeof v20260101SearchResponseSchema>;
+export default v20260101SearchResponseSchema;
+`,
+    "utf-8"
+  );
+
+  await writeFile(
+    join(tempDirectoryPath, "src/versions/2026-01-01/open-api.registry.ts"),
+    `import { VersionRegistry } from "src/versioning-engine";
+import v20260101SearchRequestSchema from "./2026-01-01.search-request.schema.generated";
+import v20260101SearchResponseSchema from "./2026-01-01.search-response.schema.generated";
+
+export const versionRegistry: VersionRegistry = {
+  "search-places": {
+    openApi: {
+      requestSchema: v20260101SearchRequestSchema,
+      responses: { 200: v20260101SearchResponseSchema },
+    },
+  },
+};
+
+export default versionRegistry;
+`,
+    "utf-8"
+  );
+
+  await writeFile(
+    join(tempDirectoryPath, "src/versions/2026-04-17/2026-04-17.ts"),
+    `import { z } from "zod";
+import { defineVersion, remove, rename, replaceSchema, resource, schema } from "src/versioning-engine/dsl";
+
+export default defineVersion({
+  version: "2026-04-17",
+  baseVersion: "2026-01-01",
+  resources: [
+    resource("search-request", {
+      kind: "request",
+      changes: [
+        replaceSchema({
+          payloadPath: "categories",
+          schema: schema(z.array(z.string()).min(1).nullable().optional()),
+        }),
+        rename({ payloadPath: "modalities", from: "animal", to: "acceptsPets" }),
+      ],
+    }),
+    resource("search-response", {
+      kind: "response",
+      changes: [remove({ payloadPath: "places.legacyId" })],
+    }),
+  ],
+});
+`,
+    "utf-8"
   );
 
   return tempDirectoryPath;

@@ -14,15 +14,21 @@ const DSL_FILE_PATH = resolve(
   PACKAGE_ROOT,
   "src/versioning-engine/dsl"
 ).replaceAll("\\", "/");
-const SEARCH_REQUEST_SCHEMA_FILE_PATH = resolve(
-  PACKAGE_ROOT,
-  "src/versions/2026-01-01/2026-01-01.search-request.schema.generated"
-).replaceAll("\\", "/");
-const SEARCH_RESPONSE_TYPE_FILE_PATH = resolve(
-  PACKAGE_ROOT,
-  "src/versions/2026-01-01/2026-01-01.search-response.schema.generated"
-).replaceAll("\\", "/");
+const ZOD_FILE_PATH = resolve(PACKAGE_ROOT, "node_modules", "zod").replaceAll(
+  "\\",
+  "/"
+);
 const temporaryDirectories: string[] = [];
+
+const REQUEST_SCHEMA_FIXTURE = `
+import { z } from "${ZOD_FILE_PATH}";
+
+const searchRequestSchema = z.object({
+  modalities: z.object({ animal: z.boolean().optional() }).optional(),
+  openToday: z.boolean().optional(),
+  word: z.string().optional(),
+});
+`;
 
 afterEach(async () => {
   await Promise.all(
@@ -81,9 +87,15 @@ void invalidPath;
   it("accepts implicit array item traversal like places._id", async () => {
     const result = await runTypeCheck(`
 import type { SchemaPath } from "${SCHEMA_PATH_FILE_PATH}";
-import type { V20260101SearchResponse } from "${SEARCH_RESPONSE_TYPE_FILE_PATH}";
+import { z } from "${ZOD_FILE_PATH}";
 
-const path: SchemaPath<V20260101SearchResponse> = "places._id";
+const searchResponseSchema = z.object({
+  places: z.array(z.object({ _id: z.string() })).nullable(),
+});
+
+type SearchResponse = z.infer<typeof searchResponseSchema>;
+
+const path: SchemaPath<SearchResponse> = "places._id";
 void path;
 `);
 
@@ -93,7 +105,7 @@ void path;
   it("accepts rename authoring against generated schema types", async () => {
     const result = await runTypeCheck(`
 import { rename } from "${DSL_FILE_PATH}";
-import searchRequestSchema from "${SEARCH_REQUEST_SCHEMA_FILE_PATH}";
+${REQUEST_SCHEMA_FIXTURE}
 
 rename<typeof searchRequestSchema>({
   from: "animal",
@@ -109,7 +121,7 @@ rename<typeof searchRequestSchema>({
   it("accepts root object path for root scalar field renames", async () => {
     const result = await runTypeCheck(`
 import { rename } from "${DSL_FILE_PATH}";
-import searchRequestSchema from "${SEARCH_REQUEST_SCHEMA_FILE_PATH}";
+${REQUEST_SCHEMA_FIXTURE}
 
 rename<typeof searchRequestSchema>({
   from: "word",
@@ -131,7 +143,7 @@ rename<typeof searchRequestSchema>({
   it("rejects invalid root rename fields against generated schema types", async () => {
     const result = await runTypeCheck(`
 import { rename } from "${DSL_FILE_PATH}";
-import searchRequestSchema from "${SEARCH_REQUEST_SCHEMA_FILE_PATH}";
+${REQUEST_SCHEMA_FIXTURE}
 
 rename<typeof searchRequestSchema>({
   from: "unknownField",
@@ -147,15 +159,18 @@ rename<typeof searchRequestSchema>({
   it("accepts resource-scoped root object path", async () => {
     const result = await runTypeCheck(`
 import { resource } from "${DSL_FILE_PATH}";
-import searchRequestSchema from "${SEARCH_REQUEST_SCHEMA_FILE_PATH}";
+${REQUEST_SCHEMA_FIXTURE}
 
-resource<typeof searchRequestSchema>("search-request", ({ rename }) => [
-  rename({
-    from: "word",
-    payloadPath: "",
-    to: "searchText",
-  }),
-]);
+resource<typeof searchRequestSchema>("search-request", {
+  kind: "request",
+  changes: ({ rename }) => [
+    rename({
+      from: "word",
+      payloadPath: "",
+      to: "searchText",
+    }),
+  ],
+});
 `);
 
     expect(result.success).toBe(true);
@@ -165,7 +180,7 @@ resource<typeof searchRequestSchema>("search-request", ({ rename }) => [
   it("rejects invalid rename fields against generated schema types", async () => {
     const result = await runTypeCheck(`
 import { rename } from "${DSL_FILE_PATH}";
-import searchRequestSchema from "${SEARCH_REQUEST_SCHEMA_FILE_PATH}";
+${REQUEST_SCHEMA_FIXTURE}
 
 rename<typeof searchRequestSchema>({
   from: "unknownField",
@@ -181,7 +196,7 @@ rename<typeof searchRequestSchema>({
   it("rejects rename payload paths that do not target objects", async () => {
     const result = await runTypeCheck(`
 import { rename } from "${DSL_FILE_PATH}";
-import searchRequestSchema from "${SEARCH_REQUEST_SCHEMA_FILE_PATH}";
+${REQUEST_SCHEMA_FIXTURE}
 
 rename<typeof searchRequestSchema>({
   from: "animal",
@@ -197,15 +212,18 @@ rename<typeof searchRequestSchema>({
   it("accepts resource-scoped change helpers with one schema generic", async () => {
     const result = await runTypeCheck(`
 import { resource } from "${DSL_FILE_PATH}";
-import searchRequestSchema from "${SEARCH_REQUEST_SCHEMA_FILE_PATH}";
+${REQUEST_SCHEMA_FIXTURE}
 
-resource<typeof searchRequestSchema>("search-request", ({ rename }) => [
-  rename({
-    from: "animal",
-    payloadPath: "modalities",
-    to: "acceptsPets",
-  }),
-]);
+resource<typeof searchRequestSchema>("search-request", {
+  kind: "request",
+  changes: ({ rename }) => [
+    rename({
+      from: "animal",
+      payloadPath: "modalities",
+      to: "acceptsPets",
+    }),
+  ],
+});
 `);
 
     expect(result.success).toBe(true);
@@ -215,15 +233,18 @@ resource<typeof searchRequestSchema>("search-request", ({ rename }) => [
   it("rejects invalid resource-scoped rename fields", async () => {
     const result = await runTypeCheck(`
 import { resource } from "${DSL_FILE_PATH}";
-import searchRequestSchema from "${SEARCH_REQUEST_SCHEMA_FILE_PATH}";
+${REQUEST_SCHEMA_FIXTURE}
 
-resource<typeof searchRequestSchema>("search-request", ({ rename }) => [
-  rename({
-    from: "unknownField",
-    payloadPath: "modalities",
-    to: "acceptsPets",
-  }),
-]);
+resource<typeof searchRequestSchema>("search-request", {
+  kind: "request",
+  changes: ({ rename }) => [
+    rename({
+      from: "unknownField",
+      payloadPath: "modalities",
+      to: "acceptsPets",
+    }),
+  ],
+});
 `);
 
     expect(result.success).toBe(false);
