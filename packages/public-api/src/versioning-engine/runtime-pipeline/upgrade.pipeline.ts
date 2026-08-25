@@ -5,7 +5,7 @@ import type {
   VersionContextInput,
   VersionContextProvider,
   VersionContextProviderToken,
-  VersionedResourceDefinition,
+  RuntimeVersionedResourceDefinition,
 } from "../dsl";
 import { applyUpgradeChanges } from "./transformers";
 import { VersionPathResolver } from "./version-path.resolver";
@@ -66,7 +66,7 @@ export class UpgradePipeline {
   }
 
   private async getContext(
-    resource: VersionedResourceDefinition,
+    resource: RuntimeVersionedResourceDefinition,
     input: VersionContextInput
   ): Promise<unknown> {
     const token = resource.contextProvider;

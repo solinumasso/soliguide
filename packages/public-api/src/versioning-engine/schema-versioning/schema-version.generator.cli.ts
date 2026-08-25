@@ -44,17 +44,14 @@ Promise.resolve()
     return result;
   })
   .then((result) => {
-    // eslint-disable-next-line no-console
     console.log(
       `Generated schema version in ${result.outputVersionDirectoryPath} (${result.generatedFiles.length} files)`
     );
   })
   .catch((error: unknown) => {
     if (error instanceof Error) {
-      // eslint-disable-next-line no-console
       console.error(error.message);
     } else {
-      // eslint-disable-next-line no-console
       console.error(error);
     }
 

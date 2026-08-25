@@ -3,7 +3,7 @@ import { ModuleRef } from "@nestjs/core";
 
 import type {
   VersionContextProviderToken,
-  VersionedResourceDefinition,
+  RuntimeVersionedResourceDefinition,
 } from "../dsl";
 import { applyDowngradeChanges } from "./transformers";
 import { VersionPathResolver } from "./version-path.resolver";
@@ -60,7 +60,7 @@ export class DowngradePipeline {
   }
 
   private async getContext(
-    resource: VersionedResourceDefinition,
+    resource: RuntimeVersionedResourceDefinition,
     input: VersionContextInput
   ): Promise<unknown> {
     const token = resource.contextProvider;

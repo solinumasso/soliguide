@@ -2,6 +2,7 @@ export { SchemaPath, SchemaPathValue } from "./schema-path";
 export {
   add,
   AnyVersionChange,
+  RuntimeVersionChange,
   ChangeImpact,
   ChangeType,
   patch,
@@ -20,4 +21,5 @@ export {
   VersionContextProviderToken,
   VersionDefinition,
   VersionedResourceDefinition,
+  RuntimeVersionedResourceDefinition,
 } from "./version-definition";

@@ -6,7 +6,10 @@ type IsAny<T> = 0 extends 1 & T ? true : false;
 
 type SchemaAuthoringShape<T> = SchemaKnownShape<T>;
 
-type SchemaKnownShape<T> = T extends z.ZodObject<infer Shape, any>
+type SchemaKnownShape<T> = T extends z.ZodObject<
+  infer Shape,
+  z.core.$ZodObjectConfig
+>
   ? {
       [K in keyof Shape]: SchemaKnownShape<Shape[K]>;
     }
@@ -28,7 +31,7 @@ type SchemaKnownShape<T> = T extends z.ZodObject<infer Shape, any>
   ? SchemaKnownShape<InnerSchema>
   : T extends z.ZodUnion<infer Options>
   ? SchemaKnownShape<Options[number]>
-  : T extends z.ZodDiscriminatedUnion<infer Options, any>
+  : T extends z.ZodDiscriminatedUnion<infer Options, string>
   ? SchemaKnownShape<Options[number]>
   : T extends z.ZodIntersection<infer LeftSchema, infer RightSchema>
   ? SchemaKnownShape<LeftSchema> & SchemaKnownShape<RightSchema>

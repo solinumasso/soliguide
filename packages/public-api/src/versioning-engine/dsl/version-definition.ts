@@ -11,29 +11,35 @@ import {
   replaceSchema,
   ReplaceSchemaChangePayload,
   VersionChange,
-  isPatchGroupPayload,
-  ChangeType,
   RenameChangePayload,
+  RuntimeVersionChange,
 } from "./changes/version-change";
 
-type VersionRuntimeMapper<
+export type VersionRuntimeMapper<
   TInput = unknown,
   TContext = unknown,
   TOutput = unknown
 > = (input: TInput, context: TContext) => TOutput | Promise<TOutput>;
 
-export type VersionContextProviderToken = symbol;
+export type VersionContextProviderToken =
+  | symbol
+  | (new (...args: unknown[]) => VersionContextProvider);
 
-export interface VersionedResourceDefinition<TSchema = unknown> {
+export interface RuntimeVersionedResourceDefinition {
   resourceName: string;
   baseVersion?: string;
   kind?: ResourceKind;
   version?: string;
   description?: string;
   contextProvider?: VersionContextProviderToken;
+  changes: RuntimeVersionChange[];
+  upgradeRequest?: VersionRuntimeMapper;
+  downgradeResponse?: VersionRuntimeMapper;
+}
+
+export interface VersionedResourceDefinition<TSchema = unknown>
+  extends Omit<RuntimeVersionedResourceDefinition, "changes"> {
   changes: AnyVersionChange<TSchema>[];
-  upgradeRequest?: VersionRuntimeMapper<any, any, any>;
-  downgradeResponse?: VersionRuntimeMapper<any, any, any>;
 }
 
 export interface VersionContextProvider<TContext = unknown> {
@@ -51,7 +57,7 @@ export interface VersionDefinition {
   version: string;
   baseVersion: string;
   description?: string;
-  resources: VersionedResourceDefinition<any>[];
+  resources: RuntimeVersionedResourceDefinition[];
 }
 
 export type ResourceChangesFactory<
@@ -163,7 +169,7 @@ const VERSION_REGEX = /^\d{4}-\d{2}-\d{2}$/;
 
 export function assertChangesDoNotConflict(
   resourceName: string,
-  changes: ChangeWithPaths[]
+  changes: RuntimeVersionChange[]
 ): void {
   const consumedPaths = new Map<string, string>();
   const producedPaths = new Map<string, string>();
@@ -196,11 +202,13 @@ export function assertChangesDoNotConflict(
   }
 }
 
-function flattenChangeGroups(changes: ChangeWithPaths[]): ChangeWithPaths[] {
-  const flattenedChanges: ChangeWithPaths[] = [];
+function flattenChangeGroups(
+  changes: RuntimeVersionChange[]
+): RuntimeVersionChange[] {
+  const flattenedChanges: RuntimeVersionChange[] = [];
 
   for (const change of changes) {
-    if (isPatchGroupPayload(change.payload)) {
+    if (Array.isArray(change.payload.changes)) {
       flattenedChanges.push(...change.payload.changes);
       continue;
     }
@@ -211,24 +219,26 @@ function flattenChangeGroups(changes: ChangeWithPaths[]): ChangeWithPaths[] {
   return flattenedChanges;
 }
 
-function getConsumedPaths(change: ChangeWithPaths): string[] {
+function getConsumedPaths(change: RuntimeVersionChange): string[] {
   switch (change.type) {
     case "add":
       return [];
     case "remove":
       return [change.payload.payloadPath];
     case "rename":
-      return [joinPayloadPath(change.payload.payloadPath, change.payload.from)];
+      return change.payload.from
+        ? [joinPayloadPath(change.payload.payloadPath, change.payload.from)]
+        : [];
     case "replaceSchema":
       return [];
     case "patch": {
-      if (isPatchGroupPayload(change.payload)) {
+      if (Array.isArray(change.payload.changes)) {
         return [];
       }
 
       const action = change.payload.action;
 
-      if (action?.type === "insert") {
+      if (action?.type === "insert" && action.field) {
         return [joinPayloadPath(change.payload.payloadPath, action.field)];
       }
 
@@ -236,7 +246,10 @@ function getConsumedPaths(change: ChangeWithPaths): string[] {
         return [joinPayloadPath(change.payload.payloadPath, action.field)];
       }
 
-      if (change.payload.selector?.type === "field") {
+      if (
+        change.payload.selector?.type === "field" &&
+        change.payload.selector.field
+      ) {
         return [
           joinPayloadPath(
             change.payload.payloadPath,
@@ -252,22 +265,24 @@ function getConsumedPaths(change: ChangeWithPaths): string[] {
   }
 }
 
-function getProducedPaths(change: ChangeWithPaths): string[] {
+function getProducedPaths(change: RuntimeVersionChange): string[] {
   switch (change.type) {
     case "add":
-      return [
-        joinPayloadPath(change.payload.payloadPath, change.payload.field),
-      ];
+      return change.payload.field
+        ? [joinPayloadPath(change.payload.payloadPath, change.payload.field)]
+        : [];
     case "rename":
-      return [joinPayloadPath(change.payload.payloadPath, change.payload.to)];
+      return change.payload.to
+        ? [joinPayloadPath(change.payload.payloadPath, change.payload.to)]
+        : [];
     case "patch": {
-      if (isPatchGroupPayload(change.payload)) {
+      if (Array.isArray(change.payload.changes)) {
         return [];
       }
 
       const action = change.payload.action;
 
-      if (action?.type === "insert") {
+      if (action?.type === "insert" && action.field) {
         return [joinPayloadPath(change.payload.payloadPath, action.field)];
       }
 
@@ -277,12 +292,6 @@ function getProducedPaths(change: ChangeWithPaths): string[] {
       return [];
   }
 }
-
-type ChangeWithPaths = {
-  changeName?: string;
-  type: ChangeType;
-  payload: any;
-};
 
 function joinPayloadPath(payloadPath: string, fieldName: string): string {
   return payloadPath ? `${payloadPath}.${fieldName}` : fieldName;

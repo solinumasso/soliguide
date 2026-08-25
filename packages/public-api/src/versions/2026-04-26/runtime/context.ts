@@ -35,7 +35,6 @@ export type V20260426Context = {
   legacyPlacesById: Record<string, V20260426To20260101PlaceRestoreSnapshot>;
 };
 
-export interface V20260426ContextProvider
-  extends VersionContextProvider<V20260426Context> {}
+export type V20260426ContextProvider = VersionContextProvider<V20260426Context>;
 
 export const V20260426_CONTEXT_PROVIDER = Symbol("V20260426ContextProvider");

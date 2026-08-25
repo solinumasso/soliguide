@@ -1,8 +1,4 @@
-import {
-  ArgumentMetadata,
-  BadRequestException,
-  PipeTransform,
-} from "@nestjs/common";
+import { BadRequestException, PipeTransform } from "@nestjs/common";
 import { z, ZodType } from "zod";
 
 export class ZodValidationPipe<TSchema extends ZodType>
@@ -13,7 +9,7 @@ export class ZodValidationPipe<TSchema extends ZodType>
     private readonly errorMessage = "Validation failed"
   ) {}
 
-  transform(value: unknown, _metadata: ArgumentMetadata): z.infer<TSchema> {
+  transform(value: unknown): z.infer<TSchema> {
     const parsed = this.schema.safeParse(value);
 
     if (parsed.success) {
