@@ -46,6 +46,9 @@ const getThemeRegistry = (): ThemeDefinition[] => {
   return themeRegistry;
 };
 
+/** Every configured theme, in the order countries opened in. */
+export const getAllThemes = (): ThemeDefinition[] => getThemeRegistry();
+
 /** The theme served when a hostname is not mapped to any country. */
 export const getDefaultTheme = (): ThemeDefinition => {
   const defaultTheme = getThemeRegistry().find((theme) => theme.name === DEFAULT_THEME_NAME);

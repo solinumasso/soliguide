@@ -139,6 +139,7 @@ export interface PosthogProperties {
     type: GeoTypes;
     label: string;
   };
+  newCountry?: SoliguideCountries;
   newLanguage?: SupportedLanguagesCode | null;
   position?: { latitude: number; longitude: number };
   searchTerm?: string;

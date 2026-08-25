@@ -5,8 +5,9 @@
   export let cardType: types.BasicCardType = 'default';
   export let title = '';
   export let description = '';
-  export let actionName;
-  export let imgUrl;
+  /** Ignored when the `actions` slot is filled, which then owns the footer. */
+  export let actionName: string | null = null;
+  export let imgUrl: string;
 
   const dispatch = createEventDispatcher();
 </script>
@@ -23,9 +24,11 @@
       </div>
     </div>
     <div class="footer">
-      <Button type="neutralOutlined" size="xsmall" on:click={() => dispatch('action')}>
-        {actionName}
-      </Button>
+      <slot name="actions">
+        <Button type="neutralOutlined" size="xsmall" on:click={() => dispatch('action')}>
+          {actionName}
+        </Button>
+      </slot>
     </div>
   </div>
 </BasicCard>
@@ -55,6 +58,9 @@
   }
 
   .footer {
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacingSM);
   }
 </style>
