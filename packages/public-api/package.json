@@ -15,7 +15,7 @@
     "watch": "nest start --watch",
     "start:dev": "yarn watch",
     "start:debug": "nest start --debug 0.0.0.0:9229 --watch",
-    "start:prod": "node dist/main",
+    "start:prod": "node dist/src/main",
     "lint:fix": "eslint --cache ./src --fix",
     "lint": "eslint --cache ./src",
     "openapi:generate": "ts-node --transpile-only src/versioning-engine/open-api/open-api.generator.cli.ts",
