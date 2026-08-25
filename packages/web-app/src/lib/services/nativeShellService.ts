@@ -9,8 +9,9 @@ import type { Themes } from '@soliguide/common';
  * plain web behaviour.
  */
 
-/** Message the native shell listens to. Duplicated in `soliguide-webview`. */
+/** Messages the native shell listens to. Duplicated in `soliguide-webview`. */
 const CHANGE_COUNTRY_MESSAGE = 'soliguide:change-country';
+const OPEN_SETTINGS_MESSAGE = 'soliguide:open-settings';
 
 /**
  * Capabilities the native shell injects before the page loads.
@@ -21,6 +22,7 @@ const CHANGE_COUNTRY_MESSAGE = 'soliguide:change-country';
  */
 interface NativeShellCapabilities {
   countrySwitch?: boolean;
+  openSettings?: boolean;
 }
 
 interface NativeShellWindow {
@@ -31,17 +33,38 @@ interface NativeShellWindow {
 const getNativeShellWindow = (): NativeShellWindow | null =>
   typeof window === 'undefined' ? null : (window as unknown as NativeShellWindow);
 
-/** Whether the native shell can switch country itself, keeping the user in the app. */
-export const canNativeShellSwitchCountry = (): boolean => {
+/**
+ * Whether the shell both declares a capability and offers a way to reach it.
+ *
+ * Both halves matter: `ReactNativeWebView` alone only means "inside a webview",
+ * not "inside a version that answers this message".
+ */
+const hasNativeCapability = (capability: keyof NativeShellCapabilities): boolean => {
   const nativeWindow = getNativeShellWindow();
 
   return Boolean(
     // Double underscores are the convention for a global injected by a host
     // environment, and keep this apart from anything the web application owns.
     // eslint-disable-next-line no-underscore-dangle
-    nativeWindow?.__SOLIGUIDE_NATIVE__?.countrySwitch && nativeWindow.ReactNativeWebView
+    nativeWindow?.__SOLIGUIDE_NATIVE__?.[capability] && nativeWindow.ReactNativeWebView
   );
 };
+
+const postToNativeShell = (type: string, payload: Record<string, unknown> = {}): void => {
+  getNativeShellWindow()?.ReactNativeWebView?.postMessage(JSON.stringify({ type, ...payload }));
+};
+
+/** Whether the native shell can switch country itself, keeping the user in the app. */
+export const canNativeShellSwitchCountry = (): boolean => hasNativeCapability('countrySwitch');
+
+/**
+ * Whether the native shell can open the operating system settings of the
+ * application, which is where a denied location permission is granted back.
+ *
+ * Always false on the plain web: no browser API opens the settings of the device
+ * or of the browser itself, so there is nothing to offer there.
+ */
+export const canNativeShellOpenSettings = (): boolean => hasNativeCapability('openSettings');
 
 /**
  * Asks the native shell to switch to another country.
@@ -56,9 +79,25 @@ export const requestNativeCountrySwitch = (theme: Themes): boolean => {
     return false;
   }
 
-  getNativeShellWindow()?.ReactNativeWebView?.postMessage(
-    JSON.stringify({ type: CHANGE_COUNTRY_MESSAGE, theme })
-  );
+  postToNativeShell(CHANGE_COUNTRY_MESSAGE, { theme });
+
+  return true;
+};
+
+/**
+ * Asks the native shell to open the settings of the application.
+ *
+ * Used to recover from a denied location permission: the shell opens the screen
+ * where the permission can be granted, which no web API can reach. Returns
+ * `false` when there is no shell to ask, so the caller can hide the offer
+ * instead of showing a button that would do nothing.
+ */
+export const requestNativeOpenSettings = (): boolean => {
+  if (!canNativeShellOpenSettings()) {
+    return false;
+  }
+
+  postToNativeShell(OPEN_SETTINGS_MESSAGE);
 
   return true;
 };

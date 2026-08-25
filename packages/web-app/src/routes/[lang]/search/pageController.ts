@@ -48,7 +48,7 @@ const initialState: PageState = {
   loadingLocationSuggestions: false,
   loadingCategorySuggestions: false,
   loadingGeolocation: false,
-  showGeolocationBlockedModal: false
+  showGeolocationBlockedToast: false
 };
 
 /**
@@ -171,7 +171,7 @@ export const getSearchPageController = (
         ...oldValue,
         currentPositionError: null,
         locationSuggestionError: LocationErrors.NONE,
-        showGeolocationBlockedModal: false,
+        showGeolocationBlockedToast: false,
         loadingGeolocation: true
       })
     );
@@ -181,13 +181,13 @@ export const getSearchPageController = (
     const errorValue = getErrorValue(error);
     const msg = typeof errorValue === 'string' ? errorValue : (errorValue?.message ?? null);
 
-    // When the user has not authorized geolocation, show the recovery modal explaining how to
-    // enable it in the app settings, instead of a transient error message.
+    // When the user has not authorized geolocation, show the recovery toast, which
+    // offers a way into the application settings, instead of a transient error.
     if (msg === 'UNAUTHORIZED_LOCATION') {
       myPageStore.update(
         (oldValue): PageState => ({
           ...oldValue,
-          showGeolocationBlockedModal: true,
+          showGeolocationBlockedToast: true,
           selectedLocationSuggestion: null
         })
       );
@@ -235,13 +235,17 @@ export const getSearchPageController = (
   };
 
   /**
-   * Close the geolocation recovery modal
+   * Dismiss the toast reporting a failed geolocation attempt.
+   *
+   * Clears both failure states at once: they are two renderings of the same
+   * "the last attempt failed" moment and are never displayed together.
    */
-  const closeGeolocationBlockedModal = (): void => {
+  const dismissGeolocationError = (): void => {
     myPageStore.update(
       (oldValue): PageState => ({
         ...oldValue,
-        showGeolocationBlockedModal: false
+        showGeolocationBlockedToast: false,
+        currentPositionError: null
       })
     );
   };
@@ -551,6 +555,6 @@ export const getSearchPageController = (
     selectLocationSuggestion,
     subscribe: myPageStore.subscribe,
     useCurrentLocation,
-    closeGeolocationBlockedModal
+    dismissGeolocationError
   };
 };
