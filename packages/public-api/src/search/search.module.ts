@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 
 import { SearchController } from "./search.controller";
+import { PlaceController } from "./place.controller";
 import { SearchService } from "./search.service";
 import { PLACES_REPOSITORY } from "./repositories/places.repository";
 import { PlacesSearchQueryBuilder } from "./repositories/mongo/query-builder/search.query-builder";
@@ -10,7 +11,7 @@ import { SearchAuthResolver } from "./auth/search-auth.resolver";
 import { SearchAuthGuard } from "./auth/search-auth.guard";
 
 @Module({
-  controllers: [SearchController],
+  controllers: [SearchController, PlaceController],
   providers: [
     SearchService,
     SearchAuthResolver,

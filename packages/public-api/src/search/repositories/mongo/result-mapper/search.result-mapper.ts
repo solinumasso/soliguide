@@ -59,7 +59,7 @@ export class SearchResultMapper {
     };
   }
 
-  private mapPlace(place: MongoPlace): SearchPlace {
+  public mapPlace(place: MongoPlace): SearchPlace {
     const mappedPlace = this.compact({
       _id: this.normalizeId(place._id),
       lieu_id: place.lieu_id,

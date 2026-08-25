@@ -1,4 +1,5 @@
 import { PlaceModel } from "@soliguide/api";
+import { PlaceStatus, PlaceVisibility } from "@soliguide/common";
 import {
   beforeEach,
   describe,
@@ -18,6 +19,7 @@ import { SearchResultMapper } from "./result-mapper/search.result-mapper";
 vi.mock("@soliguide/api", () => ({
   PlaceModel: {
     aggregate: vi.fn(),
+    findOne: vi.fn(),
   },
   FIELDS_FOR_SEARCH: {
     API: "lieu_id name",
@@ -36,6 +38,31 @@ describe("PlacesMongoRepository", () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+  });
+
+  it("applies the supplied access query to an identifier lookup", async () => {
+    const place = { lieu_id: 42, name: "Food bank" };
+    const exec = vi.fn().mockResolvedValue(place);
+    const lean = vi.fn().mockReturnValue({ exec });
+    const mapPlace = vi
+      .spyOn(mapper, "mapPlace")
+      .mockReturnValue(place as never);
+    (PlaceModel.findOne as Mock).mockReturnValue({ lean });
+
+    await expect(
+      repository.getByIdentifier("42", {
+        status: PlaceStatus.ONLINE,
+        visibility: PlaceVisibility.ALL,
+      })
+    ).resolves.toEqual(place);
+
+    expect(PlaceModel.findOne).toHaveBeenCalledWith({
+      lieu_id: 42,
+      status: PlaceStatus.ONLINE,
+      visibility: PlaceVisibility.ALL,
+    });
+    expect(mapPlace).toHaveBeenCalledWith(place);
+    mapPlace.mockRestore();
   });
 
   it("executes both pipelines and maps result", async () => {

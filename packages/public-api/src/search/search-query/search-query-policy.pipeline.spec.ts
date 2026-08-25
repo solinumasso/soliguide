@@ -1,4 +1,10 @@
-import { Categories, PlaceType, UserStatus } from "@soliguide/common";
+import {
+  Categories,
+  PlaceStatus,
+  PlaceType,
+  PlaceVisibility,
+  UserStatus,
+} from "@soliguide/common";
 import { describe, expect, it } from "vitest";
 
 import { SearchQuery } from "./search-query";
@@ -17,6 +23,10 @@ describe("SearchQueryPolicyPipeline", () => {
 
     pipeline.apply({} as SearchQuery, {
       userStatus: UserStatus.SIMPLE_USER,
+      placeAccess: {
+        status: PlaceStatus.ONLINE,
+        visibility: PlaceVisibility.ALL,
+      },
     });
 
     expect(executionOrder).toEqual(["first", "second", "third"]);
@@ -32,6 +42,10 @@ describe("SearchQueryPolicyPipeline", () => {
       },
       {
         userStatus: UserStatus.API_USER,
+        placeAccess: {
+          status: PlaceStatus.ONLINE,
+          visibility: PlaceVisibility.ALL,
+        },
         categoriesLimitations: [Categories.DOMICILIATION],
       }
     );

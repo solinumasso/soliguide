@@ -7,7 +7,9 @@ import {
   SearchPagination,
 } from "../../repositories/places.repository";
 import { SearchQuery } from "../../search-query/search-query";
-import { SearchResult } from "../../search-result/search-result.type";
+import { PlaceAccessQuery } from "../../search-query/place-access.query";
+import { SearchPlace, SearchResult } from "../../search-result/search-result.type";
+import { MongoPlace } from "./place.mongo";
 import { PlacesSearchQueryBuilder } from "./query-builder/search.query-builder";
 import { SearchResultMapper } from "./result-mapper/search.result-mapper";
 
@@ -17,6 +19,25 @@ export class PlacesMongoRepository implements PlacesRepository {
     private readonly queryBuilder: PlacesSearchQueryBuilder,
     private readonly resultMapper: SearchResultMapper
   ) {}
+
+  async getByIdentifier(
+    identifier: string,
+    accessQuery: PlaceAccessQuery
+  ): Promise<SearchPlace | undefined> {
+    const identifierQuery = /^\d+$/.test(identifier)
+      ? { lieu_id: Number(identifier) }
+      : { seo_url: identifier };
+    const place = await PlaceModel.findOne({
+      ...identifierQuery,
+      ...accessQuery,
+    })
+      .lean()
+      .exec();
+
+    return place
+      ? this.resultMapper.mapPlace(place as unknown as MongoPlace)
+      : undefined;
+  }
 
   async search(
     query: SearchQuery,

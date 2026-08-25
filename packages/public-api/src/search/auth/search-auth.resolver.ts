@@ -6,13 +6,17 @@ import {
   OperationalAreas,
   UserStatus,
   UserStatusNotLogged,
+  PlaceStatus,
+  PlaceVisibility,
 } from "@soliguide/common";
 
+import { PlaceAccessQuery } from "../search-query/place-access.query";
 import { NonAdminUserStatus } from "../search-query/search-query";
 
 export type SearchUserContext = {
   userId: string;
   status: NonAdminUserStatus;
+  placeAccess: PlaceAccessQuery;
   categoriesLimitations?: Categories[];
   areas?: OperationalAreas;
 };
@@ -78,10 +82,13 @@ export class SearchAuthResolver {
       throw new UnauthorizedException({ message: "USER_NOT_VERIFIED" });
     }
 
+    const status = this.normalizeStatus(user.status);
+
     return {
       user: {
         userId: user._id.toString(),
-        status: this.normalizeStatus(user.status),
+        status,
+        placeAccess: this.buildPlaceAccessQuery(status),
         categoriesLimitations: user.categoriesLimitations,
         areas: user.areas,
       },
@@ -94,6 +101,9 @@ export class SearchAuthResolver {
       user: {
         userId: "anonymous",
         status: UserStatusNotLogged.NOT_LOGGED,
+        placeAccess: this.buildPlaceAccessQuery(
+          UserStatusNotLogged.NOT_LOGGED
+        ),
       },
       blocked: false,
     };
@@ -144,5 +154,16 @@ export class SearchAuthResolver {
     }
 
     return UserStatus.SIMPLE_USER;
+  }
+
+  private buildPlaceAccessQuery(
+    status: NonAdminUserStatus
+  ): PlaceAccessQuery {
+    return {
+      status: PlaceStatus.ONLINE,
+      ...(status === UserStatus.PRO
+        ? {}
+        : { visibility: PlaceVisibility.ALL }),
+    };
   }
 }

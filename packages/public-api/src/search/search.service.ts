@@ -1,6 +1,10 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { FIELDS_FOR_SEARCH } from "@soliguide/api";
-import { GeoTypes, PlaceType, UserStatus } from "@soliguide/common";
+import {
+  GeoTypes,
+  PlaceType,
+  UserStatus,
+} from "@soliguide/common";
 
 import {
   PLACES_REPOSITORY,
@@ -10,6 +14,7 @@ import { SearchQueryPolicyPipeline } from "./search-query/search-query-policy.pi
 import { SearchQueryFactory } from "./search-query/search-query.factory";
 import { SearchPaginationFactory } from "./search-query/search-pagination.factory";
 import { CanonicalSearchRequest } from "./canonical-search-request";
+import { CanonicalPlaceResponse } from "./canonical-place-response";
 import { CanonicalSearchResponse } from "./canonical-search-response";
 import { SearchPolicyContext } from "./search-query/search-query-policy";
 import { SearchUserContext } from "./auth/search-auth.resolver";
@@ -47,9 +52,17 @@ export class SearchService {
     return result as unknown as CanonicalSearchResponse;
   }
 
+  async getPlace(
+    identifier: string,
+    user: SearchUserContext
+  ): Promise<CanonicalPlaceResponse | undefined> {
+    return this.placesRepository.getByIdentifier(identifier, user.placeAccess);
+  }
+
   protected buildPolicyContext(user: SearchUserContext): SearchPolicyContext {
     return {
       userStatus: user.status,
+      placeAccess: user.placeAccess,
       categoriesLimitations: user.categoriesLimitations,
       areas: user.areas,
     };

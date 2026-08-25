@@ -1,5 +1,6 @@
 import { SearchQuery } from "../search-query/search-query";
-import { SearchResult } from "../search-result/search-result.type";
+import { PlaceAccessQuery } from "../search-query/place-access.query";
+import { SearchPlace, SearchResult } from "../search-result/search-result.type";
 
 export interface SearchPagination {
   page: number;
@@ -7,6 +8,10 @@ export interface SearchPagination {
 }
 
 export interface PlacesRepository {
+  getByIdentifier(
+    identifier: string,
+    accessQuery: PlaceAccessQuery
+  ): Promise<SearchPlace | undefined>;
   search(
     query: SearchQuery,
     pagination: SearchPagination

@@ -168,29 +168,32 @@ export const specialSupportContextSchema = schema(
     )
 );
 
+export const placeByTypeSchema = schema(
+  z
+    .discriminatedUnion("placeType", [
+      v20260426SearchPlaceResponseSchema
+        .omit({ waypoints: true })
+        .extend({
+          placeType: z.literal(PlaceType.PLACE),
+        })
+        .meta({ title: "FixedPosition" }),
+      v20260426SearchPlaceResponseSchema
+        .omit({ openingHours: true, position: true })
+        .extend({
+          placeType: z.literal(PlaceType.ITINERARY),
+        })
+        .meta({ title: "Itinerary" }),
+    ])
+    .meta({
+      discriminator: {
+        propertyName: "type",
+      },
+    })
+);
+
 export const searchPlacesByTypeSchema = schema(
-  z.array(
-    z
-      .discriminatedUnion("placeType", [
-        v20260426SearchPlaceResponseSchema
-          .omit({ waypoints: true })
-          .extend({
-            placeType: z.literal(PlaceType.PLACE),
-          })
-          .meta({ title: "FixedPosition" }),
-        v20260426SearchPlaceResponseSchema
-          .omit({ openingHours: true, position: true })
-          .extend({
-            placeType: z.literal(PlaceType.ITINERARY),
-          })
-          .meta({ title: "Itinerary" }),
-      ])
-      .meta({
-        discriminator: {
-          propertyName: "type",
-        },
-      })
-      .nullable()
-      .describe("List of place matching the request.")
-  )
+  z
+    .array(placeByTypeSchema)
+    .nullable()
+    .describe("List of place matching the request.")
 );
