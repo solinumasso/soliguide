@@ -6,7 +6,10 @@ ARG \
 FROM ${COMMON_IMAGE} AS api
 
 COPY ./packages/api/anonymization /app/packages/api/anonymization
-COPY ./packages/api/tsconfig.build.json ./packages/api/tsconfig.json /app/packages/api/
+COPY ./packages/api/tsconfig.build.json \
+  ./packages/api/tsconfig.json \
+  ./packages/api/migrate-mongo-config.ts \
+  /app/packages/api/
 COPY ./packages/api/resources /app/packages/api/resources
 COPY ./packages/api/src /app/packages/api/src
 
