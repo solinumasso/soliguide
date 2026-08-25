@@ -6,6 +6,9 @@ on:
       deploy_api:
         type: boolean
         default: true
+      deploy_public-api:
+        type: boolean
+        default: true
       deploy_frontend:
         type: boolean
         default: true
@@ -92,6 +95,9 @@ jobs:
 
           if [ "${{ inputs.deploy_api }}" = "true" ]; then
             copy_tag api "" ""
+          fi
+          if [ "${{ inputs.deploy_public-api }}" = "true" ]; then
+            copy_tag public-api "" ""
           fi
           if [ "${{ inputs.deploy_frontend }}" = "true" ]; then
             copy_tag frontend "" ""
@@ -269,6 +275,68 @@ jobs:
           zone: soliguide.dev
           subdomain: api.${{ env.QOVERY_BASE_DOMAIN_NAME }}
           target: ${{ steps.api_domain.outputs.validation_domain }}.
+          type: CNAME
+
+      - name: Update Public API
+        if: inputs.deploy_public-api && (steps.check_presence.outcome == 'success' || steps.env_ready.outcome == 'success')
+        env:
+          QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
+        run: |
+          qovery container update \
+            --organization "$QOVERY_ORGANIZATION_NAME" \
+            --project "$QOVERY_PROJECT_NAME" \
+            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+            --container "Public API" \
+            --tag "$SOLIGUIDE_TAG"
+
+      - name: Create the Public API custom domain in Qovery
+        if: inputs.deploy_public-api && (steps.check_presence.outcome == 'success' || steps.env_ready.outcome == 'success')
+        id: public-api_domain
+        env:
+          QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
+        run: |
+          create_domain_if_not_exists() {
+            local domain=$1
+            if ! qovery container domain list \
+              --organization "$QOVERY_ORGANIZATION_NAME" \
+              --project "$QOVERY_PROJECT_NAME" \
+              --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+              --container "Public API" \
+              --json | jq -e --arg domain "$domain" '.[] | select(.domain == $domain)' > /dev/null; then
+              echo "Creating domain: $domain"
+              qovery container domain create \
+                --organization "$QOVERY_ORGANIZATION_NAME" \
+                --project "$QOVERY_PROJECT_NAME" \
+                --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+                --container "Public API" \
+                --domain "$domain"
+            else
+              echo "Domain already exists: $domain"
+            fi
+          }
+
+          create_domain_if_not_exists "public-api.$QOVERY_BASE_DOMAIN_NAME.soliguide.dev"
+
+          VALIDATION_DOMAIN=$(qovery container domain list \
+            --organization "$QOVERY_ORGANIZATION_NAME" \
+            --project "$QOVERY_PROJECT_NAME" \
+            --environment "$QOVERY_NEW_ENVIRONMENT_NAME" \
+            --container "Public API" \
+            --json \
+            | jq -r '.[] | select(.type == "CUSTOM_DOMAIN") | .validation_domain')
+
+          echo "Validation domain: $VALIDATION_DOMAIN"
+          echo "validation_domain=$VALIDATION_DOMAIN" >> "$GITHUB_OUTPUT"
+
+      - name: Create DNS record for the Public API
+        if: steps.public-api_domain.outcome == 'success'
+        uses: solinumasso/gcore-dns-action@v1
+        with:
+          api-key: ${{ secrets.GCORE_API_KEY }}
+          present: true
+          zone: soliguide.dev
+          subdomain: public-api.${{ env.QOVERY_BASE_DOMAIN_NAME }}
+          target: ${{ steps.public-api_domain.outputs.validation_domain }}.
           type: CNAME
 
       - name: Update Location API
@@ -644,6 +712,7 @@ jobs:
           script: |
             const baseDomain = '${{ env.QOVERY_BASE_DOMAIN_NAME }}.soliguide.dev';
             const deployApi = '${{ inputs.deploy_api }}' === 'true';
+            const deployPublicApi = '${{ inputs.deploy_public-api }}' === 'true';
             const deployFrontend = '${{ inputs.deploy_frontend }}' === 'true';
             const deployWebApp = '${{ inputs.deploy_web-app }}' === 'true';
             const deployWidget = '${{ inputs.deploy_widget }}' === 'true';
@@ -659,6 +728,7 @@ jobs:
             if (deployWebApp) urls.push(`🌐 Web App: https://app.${baseDomain}`);
             if (deployWidget) urls.push(`🔌 Widget: https://widget.${baseDomain}`);
             if (deployApi) urls.push(`🔧 API: https://api.${baseDomain}`);
+            if (deployPublicApi) urls.push(`🔎 Public API: https://public-api.${baseDomain}`);
             if (deployLocationApi) urls.push(`📍 Location API: https://location-api.${baseDomain}`);
 
             // Créer le deployment
@@ -679,7 +749,7 @@ jobs:
               repo: context.repo.repo,
               deployment_id: deployment.id,
               state: 'success',
-              environment_url: deployFrontend ? `https://fr.${baseDomain}` : `https://api.${baseDomain}`,
+              environment_url: deployFrontend ? `https://fr.${baseDomain}` : deployApi ? `https://api.${baseDomain}` : `https://public-api.${baseDomain}`,
               description: `Qovery (${baseDomain})`,
               log_url: `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
             });
