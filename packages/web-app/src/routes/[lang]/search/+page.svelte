@@ -3,12 +3,12 @@
   import { getContext, setContext, onMount } from 'svelte';
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
-  import { InputText, Topbar, PageLoader, FormControl } from '@soliguide/design-system';
+  import { InputText, Toast, Topbar, PageLoader, FormControl } from '@soliguide/design-system';
   import { createSearchPageController } from './index';
   import { Steps, Focus } from './types';
   import { ROUTES_CTX_KEY, getGeolocation } from '$lib/client';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
-  import { GeolocationBlockedModal } from '$lib/components';
+  import { canNativeShellOpenSettings, requestNativeOpenSettings } from '$lib/services';
   import {
     CategorySelector,
     MyPositionTile,
@@ -23,6 +23,9 @@
   import { type CategorySearch, ALL_CATEGORIES } from '$lib/constants';
   import { getCategorySearchTranslationKey } from '$lib/utils/categoryTranslation';
 
+  /** The ticket asks for a 20 second toast, well above the component's own default. */
+  const GEOLOCATION_TOAST_DURATION = 20000;
+
   const theme = getThemeContext();
   const categoryService: CategoryService = getContext(CATEGORY_SERVICE_CTX_KEY);
   const pageStore = createSearchPageController(categoryService);
@@ -35,6 +38,20 @@
 
   const categoryParam = url.searchParams.get('category');
 
+  /**
+   * Only the mobile shell can open the settings of the application, so the offer
+   * is resolved on mount rather than at module scope, where there is no window.
+   */
+  let canOpenSettings = false;
+
+  const openApplicationSettings = () => {
+    pageStore.captureEvent('open-application-settings');
+    requestNativeOpenSettings();
+    // The message has done its job, and the user comes back from the settings to
+    // a screen that should not still be reporting the old failure.
+    pageStore.dismissGeolocationError();
+  };
+
   // Initialize the page store with the current user language, not the theme default
   pageStore.init(theme.country, $i18n.language as SupportedLanguagesCode, {
     geoValue: url.searchParams.get('location'),
@@ -45,6 +62,8 @@
   // Clean URL after init if category was ALL_CATEGORIES
   // This happens synchronously after init is called
   onMount(() => {
+    canOpenSettings = canNativeShellOpenSettings();
+
     if (categoryParam === ALL_CATEGORIES) {
       const newSearchParams = new URLSearchParams(url.searchParams);
       newSearchParams.delete('category');
@@ -169,8 +188,23 @@
       class:category-context={$pageStore.currentStep === Steps.STEP_CATEGORY}
     ></div>
 
-    {#if $pageStore.currentPositionError}
-      <span>Geoloc error: {$i18n.t($pageStore.currentPositionError)}</span>
+    {#if $pageStore.showGeolocationBlockedToast || $pageStore.currentPositionError}
+      <div class="geolocation-toast">
+        <Toast
+          block
+          variant="error"
+          description={$i18n.t(
+            $pageStore.showGeolocationBlockedToast
+              ? 'GEOLOCATION_BLOCKED_TOAST'
+              : String($pageStore.currentPositionError)
+          )}
+          loaderDuration={GEOLOCATION_TOAST_DURATION}
+          withButton={canOpenSettings && $pageStore.showGeolocationBlockedToast}
+          buttonLabel={$i18n.t('GEOLOCATION_OPEN_SETTINGS')}
+          buttonAction={openApplicationSettings}
+          on:close={pageStore.dismissGeolocationError}
+        />
+      </div>
     {/if}
 
     {#if $pageStore.currentStep === Steps.STEP_LOCATION}
@@ -196,16 +230,14 @@
       />
     {/if}
   </section>
-
-  <GeolocationBlockedModal
-    open={$pageStore.showGeolocationBlockedModal}
-    brandName={theme.brandName}
-    on:close={pageStore.closeGeolocationBlockedModal}
-    on:retry={() => pageStore.useCurrentLocation(getGeolocation)}
-  />
 </PageLoader>
 
 <style lang="scss">
+  .geolocation-toast {
+    display: flex;
+    margin-bottom: var(--spacingLG);
+  }
+
   section {
     --input-height: 52px;
 
