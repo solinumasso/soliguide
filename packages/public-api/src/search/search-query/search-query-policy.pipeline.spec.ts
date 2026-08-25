@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 
 import { SearchQuery } from "./search-query";
 import { SearchQueryPolicyPipeline } from "./search-query-policy.pipeline";
-import { SearchPolicyContext, SearchQueryPolicy } from "./search-query-policy";
+import { SearchQueryPolicy } from "./search-query-policy";
 
 describe("SearchQueryPolicyPipeline", () => {
   it("applies provided policies in declaration order", () => {
@@ -47,7 +47,7 @@ class TrackPolicy implements SearchQueryPolicy {
     private readonly executionOrder: string[]
   ) {}
 
-  apply(query: SearchQuery, _context: SearchPolicyContext): SearchQuery {
+  apply(query: SearchQuery): SearchQuery {
     this.executionOrder.push(this.name);
     return query;
   }

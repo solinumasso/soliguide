@@ -3,7 +3,7 @@ import { UserStatus, UserStatusNotLogged } from "@soliguide/common";
 import { beforeEach, describe, expect, it, vi, type Mocked } from "vitest";
 
 import { SearchAuthGuard } from "./search-auth.guard";
-import { SearchAuthResolver } from "./search-auth.resolver";
+import { SearchAuthResolver, SearchUserContext } from "./search-auth.resolver";
 
 describe("SearchAuthGuard", () => {
   const resolver: Mocked<SearchAuthResolver> = {
@@ -108,7 +108,13 @@ describe("SearchAuthGuard", () => {
   });
 });
 
-function buildContext(request: any): ExecutionContext {
+type SearchRequest = {
+  headers: Record<string, string>;
+  get: (headerName: string) => string | undefined;
+  searchUser?: SearchUserContext;
+};
+
+function buildContext(request: SearchRequest): ExecutionContext {
   return {
     switchToHttp: () => ({
       getRequest: () => request,
@@ -116,7 +122,7 @@ function buildContext(request: any): ExecutionContext {
   } as ExecutionContext;
 }
 
-function buildRequest(headers: Record<string, string> = {}) {
+function buildRequest(headers: Record<string, string> = {}): SearchRequest {
   const normalizedHeaders = Object.fromEntries(
     Object.entries(headers).map(([key, value]) => [key.toLowerCase(), value])
   );

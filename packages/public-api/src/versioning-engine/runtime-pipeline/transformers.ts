@@ -1,11 +1,11 @@
-import type { AnyVersionChange, ChangeType } from "../dsl";
+import type { RuntimeVersionChange } from "../dsl";
 
 export type JsonRecord = Record<string, unknown>;
 export type RuntimeTransform = (payload: unknown, context: unknown) => unknown;
 
 export async function applyUpgradeChanges(
   payload: unknown,
-  changes: AnyVersionChange[],
+  changes: RuntimeVersionChange[],
   context: unknown
 ): Promise<unknown> {
   let currentPayload = payload;
@@ -19,7 +19,7 @@ export async function applyUpgradeChanges(
 
 export async function applyDowngradeChanges(
   payload: unknown,
-  changes: AnyVersionChange[],
+  changes: RuntimeVersionChange[],
   context: unknown
 ): Promise<unknown> {
   let currentPayload = payload;
@@ -37,10 +37,10 @@ export async function applyDowngradeChanges(
 
 async function applyUpgradeChange(
   payload: unknown,
-  change: AnyVersionChange,
+  change: RuntimeVersionChange,
   context: unknown
 ): Promise<unknown> {
-  const runtime = change.payload as { upgrade?: RuntimeTransform };
+  const runtime = change.payload;
 
   if (typeof runtime.upgrade === "function") {
     return runtime.upgrade(payload, context);
@@ -55,10 +55,10 @@ async function applyUpgradeChange(
 
 async function applyDowngradeChange(
   payload: unknown,
-  change: AnyVersionChange,
+  change: RuntimeVersionChange,
   context: unknown
 ): Promise<unknown> {
-  const runtime = change.payload as { downgrade?: RuntimeTransform };
+  const runtime = change.payload;
 
   if (typeof runtime.downgrade === "function") {
     return runtime.downgrade(payload, context);
@@ -73,43 +73,40 @@ async function applyDowngradeChange(
 
 function applyDefaultChange(
   payload: unknown,
-  change: AnyVersionChange,
+  change: RuntimeVersionChange,
   direction: "upgrade" | "downgrade"
 ): unknown {
-  const payloadDefinition = change.payload as unknown as Record<
-    string,
-    unknown
-  >;
+  const payloadDefinition = change.payload;
 
-  switch (change.type as ChangeType) {
+  switch (change.type) {
     case "remove":
       return direction === "upgrade"
-        ? removePath(payload, payloadDefinition.payloadPath as string)
+        ? removePath(payload, payloadDefinition.payloadPath)
         : cloneJsonLike(payload);
     case "add":
       return direction === "downgrade"
         ? removeFieldAtPath(
             payload,
-            payloadDefinition.payloadPath as string,
-            payloadDefinition.field as string
+            payloadDefinition.payloadPath,
+            payloadDefinition.field ?? ""
           )
         : cloneJsonLike(payload);
     case "rename":
       return direction === "upgrade"
         ? renameFieldAtPath(
             payload,
-            payloadDefinition.payloadPath as string,
-            payloadDefinition.from as string,
-            payloadDefinition.to as string
+            payloadDefinition.payloadPath,
+            payloadDefinition.from ?? "",
+            payloadDefinition.to ?? ""
           )
         : renameFieldAtPath(
             payload,
-            payloadDefinition.payloadPath as string,
-            payloadDefinition.to as string,
-            payloadDefinition.from as string
+            payloadDefinition.payloadPath,
+            payloadDefinition.to ?? "",
+            payloadDefinition.from ?? ""
           );
     case "patch":
-      return applyDefaultPatchChange(payload, change, direction);
+      return applyDefaultPatchChange(payload, payloadDefinition, direction);
     default:
       return cloneJsonLike(payload);
   }
@@ -117,15 +114,9 @@ function applyDefaultChange(
 
 function applyDefaultPatchChange(
   payload: unknown,
-  change: AnyVersionChange<unknown>,
+  patchPayload: RuntimeVersionChange["payload"],
   direction: "upgrade" | "downgrade"
 ): unknown {
-  const patchPayload = change.payload as {
-    action?: { field?: string; type?: string };
-    payloadPath?: string;
-    selector?: { field?: string; type?: string };
-  };
-
   if (patchPayload.action?.type !== "remove" || direction !== "upgrade") {
     return cloneJsonLike(payload);
   }
@@ -133,7 +124,7 @@ function applyDefaultPatchChange(
   if (patchPayload.action.field) {
     return removeFieldAtPath(
       payload,
-      patchPayload.payloadPath ?? "",
+      patchPayload.payloadPath,
       patchPayload.action.field
     );
   }
@@ -141,12 +132,12 @@ function applyDefaultPatchChange(
   if (patchPayload.selector?.type === "field" && patchPayload.selector.field) {
     return removeFieldAtPath(
       payload,
-      patchPayload.payloadPath ?? "",
+      patchPayload.payloadPath,
       patchPayload.selector.field
     );
   }
 
-  return removePath(payload, patchPayload.payloadPath ?? "");
+  return removePath(payload, patchPayload.payloadPath);
 }
 
 function removePath(payload: unknown, payloadPath: string): unknown {
@@ -500,10 +491,12 @@ function cloneJsonLike<T>(value: T): T {
   ) as T;
 }
 
-function isPatchGroup(change: AnyVersionChange): change is AnyVersionChange & {
-  payload: { changes: AnyVersionChange[] };
+function isPatchGroup(
+  change: RuntimeVersionChange
+): change is RuntimeVersionChange & {
+  payload: { changes: RuntimeVersionChange[] };
 } {
-  return Array.isArray((change.payload as { changes?: unknown }).changes);
+  return Array.isArray(change.payload.changes);
 }
 
 function isRecord(value: unknown): value is JsonRecord {

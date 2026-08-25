@@ -210,10 +210,36 @@ export type AnyVersionChange<TSchema = unknown> = {
   [TType in ChangeType]: VersionChange<TSchema, TType>;
 }[ChangeType];
 
+/** Schema-erased representation used after a version definition is registered. */
+export type RuntimeVersionChange = {
+  [TType in ChangeType]: {
+    changeName?: string;
+    type: TType;
+    payload: RuntimeChangePayload;
+  };
+}[ChangeType];
+
+export type RuntimeChangePayload = ChangeMetadata &
+  ChangeRuntime & {
+    action?: { field?: string; type?: string };
+    changes?: RuntimeVersionChange[];
+    field?: string;
+    from?: string;
+    payloadPath: string;
+    schema?: SchemaExpression;
+    selector?: { field?: string; type?: string };
+    to?: string;
+  };
+
 export function isPatchGroupPayload(
-  payload: any
-): payload is PatchChangePayload<any> {
-  return Array.isArray(payload?.changes);
+  payload: unknown
+): payload is PatchChangePayload<unknown> {
+  return (
+    typeof payload === "object" &&
+    payload !== null &&
+    "changes" in payload &&
+    Array.isArray(payload.changes)
+  );
 }
 
 function assertPayloadPath({

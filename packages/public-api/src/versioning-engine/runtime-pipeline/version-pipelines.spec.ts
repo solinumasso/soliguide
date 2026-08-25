@@ -257,7 +257,7 @@ function createPipelines(definitions: VersionDefinition[]): {
   upgradePipeline: UpgradePipeline;
 };
 function createPipelines(
-  definitions = [
+  definitions: VersionDefinition[] = [
     defineVersion({
       baseVersion: "2026-01-01",
       resources: [
