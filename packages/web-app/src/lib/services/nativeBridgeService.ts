@@ -1,3 +1,5 @@
+import { get, writable } from 'svelte/store';
+
 import type { Themes } from '@soliguide/common';
 
 /**
@@ -39,7 +41,7 @@ interface NativeBridgeWindow {
  * It has to be captured rather than read on demand: the parameter only ever
  * appears on the very first url, and any client side navigation drops it.
  */
-let nativeAppVersion: number[] | null = null;
+const nativeAppVersion = writable<number[] | null>(null);
 
 const getNativeBridgeWindow = (): NativeBridgeWindow | null =>
   typeof window === 'undefined' ? null : (window as unknown as NativeBridgeWindow);
@@ -50,28 +52,19 @@ const getNativeBridgeWindow = (): NativeBridgeWindow | null =>
  * The value comes from the url and is therefore user supplied: a hand written
  * parameter must leave every capability off rather than unlock any of them.
  */
-const parseVersion = (version: string | null): number[] | null => {
-  if (!version || !/^\d+(\.\d+)*$/.test(version)) {
-    return null;
-  }
-
-  return version.split('.').map(Number);
-};
+const parseVersion = (version: string | null): number[] | null =>
+  version && /^\d+(?:\.\d+)*$/u.test(version) ? version.split('.').map(Number) : null;
 
 /** Compares number by number, treating a missing one as a zero: 3.2 is 3.2.0. */
 const isAtLeast = (version: number[], minimum: number[]): boolean => {
   const length = Math.max(version.length, minimum.length);
+  // Zero when every number matches, which still satisfies the minimum.
+  const firstDifference =
+    [...Array(length).keys()]
+      .map((index) => (version[index] ?? 0) - (minimum[index] ?? 0))
+      .find((difference) => difference !== 0) ?? 0;
 
-  for (let index = 0; index < length; index += 1) {
-    const current = version[index] ?? 0;
-    const required = minimum[index] ?? 0;
-
-    if (current !== required) {
-      return current > required;
-    }
-  }
-
-  return true;
+  return firstDifference >= 0;
 };
 
 /**
@@ -82,11 +75,11 @@ const isAtLeast = (version: number[], minimum: number[]): boolean => {
  */
 export const captureNativeAppVersion = (url: string): void => {
   try {
-    nativeAppVersion = parseVersion(new URL(url).searchParams.get(VERSION_PARAM));
+    nativeAppVersion.set(parseVersion(new URL(url).searchParams.get(VERSION_PARAM)));
   } catch {
-    // An url we cannot read simply means no native application. Never let this throw: it
-    // runs during the boot sequence, ahead of everything else.
-    nativeAppVersion = null;
+    // An url we cannot read simply means no native application. Never let this
+    // throw: it runs during the boot sequence, ahead of everything else.
+    nativeAppVersion.set(null);
   }
 };
 
@@ -108,11 +101,13 @@ export const isInsideNativeApp = (): boolean =>
  * "inside a version that answers this message".
  */
 const hasNativeCapability = (capability: NativeCapability): boolean => {
-  if (!isInsideNativeApp() || !nativeAppVersion) {
+  const version = get(nativeAppVersion);
+
+  if (!isInsideNativeApp() || !version) {
     return false;
   }
 
-  return isAtLeast(nativeAppVersion, parseVersion(MINIMUM_VERSIONS[capability]) as number[]);
+  return isAtLeast(version, parseVersion(MINIMUM_VERSIONS[capability]) ?? []);
 };
 
 const postToNativeApp = (type: string, payload: Record<string, unknown> = {}): void => {
