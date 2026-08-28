@@ -1,13 +1,17 @@
 <script lang="ts">
   import { getThemeContext, isSeasonalThermalComfortVisible } from '$lib/theme';
-  import { getContext, setContext, type ComponentType } from 'svelte';
+  import { getContext, onMount, setContext, type ComponentType } from 'svelte';
   import { goto } from '$app/navigation';
   import { Text, Tile, PageLoader } from '@soliguide/design-system';
   import { ROUTES_CTX_KEY, getGeolocation } from '$lib/client';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import SearchButtonInput from './SearchButtonInput.svelte';
   import pageStore from './index';
-  import { searchParamsService } from '$lib/services';
+  import {
+    canNativeAppOpenSettings,
+    requestNativeOpenSettings,
+    searchParamsService
+  } from '$lib/services';
   import { showToast } from '$lib/toast/toast.store';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import type { QuickSearchFilters } from './types';
@@ -83,6 +87,24 @@
     if (lastQuickSearch) {
       launchCategorySearch(lastQuickSearch.category, lastQuickSearch.filters);
     }
+  };
+
+  /**
+   * Only the native application can open its own settings, so the offer is
+   * resolved on mount rather than at module scope, where there is no window.
+   */
+  let canOpenSettings = false;
+
+  onMount(() => {
+    canOpenSettings = canNativeAppOpenSettings();
+  });
+
+  const openApplicationSettings = () => {
+    pageStore.captureEvent('open-application-settings');
+    requestNativeOpenSettings();
+    // The message has done its job, and the user comes back from the settings to
+    // a screen that should not still be reporting the old failure.
+    showGeolocationModal = false;
   };
 
   /**
@@ -224,8 +246,10 @@
   <GeolocationBlockedModal
     open={showGeolocationModal}
     brandName={theme.brandName}
+    {canOpenSettings}
     on:close={() => (showGeolocationModal = false)}
     on:retry={retryQuickSearch}
+    on:openSettings={openApplicationSettings}
   />
 </PageLoader>
 
