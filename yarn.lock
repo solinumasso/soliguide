@@ -22390,12 +22390,12 @@ __metadata:
   linkType: hard
 
 "libreoffice-convert@npm:^1.5.1":
-  version: 1.6.0
-  resolution: "libreoffice-convert@npm:1.6.0"
+  version: 1.8.2
+  resolution: "libreoffice-convert@npm:1.8.2"
   dependencies:
     async: "npm:^3.2.3"
     tmp: "npm:^0.2.1"
-  checksum: 10/7d6d108cc610bd31fbcad9416efe4d36fa98a848bd40572d0f1acad600c27d7c70f9dc7cc912ed75c837725c0578e7e52f0bb8c6d034605454a75df0f9fd9edd
+  checksum: 10/2a35544fe3100da598df97aa56085ca9ae0d18c315b68aa8bb47366b921001e412bbe1118dd5d8ac24e35aa91855963b352a89acc1e4c78c2b5cd7de3bdb68bf
   languageName: node
   linkType: hard
 
