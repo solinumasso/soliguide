@@ -12,14 +12,42 @@ import {
 
 const postMessage = vi.fn();
 
+/** Session storage of a single webview, kept across its document reloads. */
+const createSessionStorage = () => {
+  const entries = new Map<string, string>();
+
+  return {
+    getItem: (key: string) => entries.get(key) ?? null,
+    setItem: (key: string, value: string) => entries.set(key, value)
+  };
+};
+
 /** A webview, whatever version of the mobile application is around it. */
 const installWebview = () => {
-  vi.stubGlobal('window', { ReactNativeWebView: { postMessage } });
+  vi.stubGlobal('window', {
+    ReactNativeWebView: { postMessage },
+    sessionStorage: createSessionStorage()
+  });
+};
+
+/** A webview whose storage is unusable, as in a locked down browser engine. */
+const installWebviewWithoutStorage = () => {
+  vi.stubGlobal('window', {
+    ReactNativeWebView: { postMessage },
+    sessionStorage: {
+      getItem: () => {
+        throw new Error('Storage is not available');
+      },
+      setItem: () => {
+        throw new Error('Storage is not available');
+      }
+    }
+  });
 };
 
 /** A browser with no mobile application around it. */
 const installPlainBrowser = () => {
-  vi.stubGlobal('window', {});
+  vi.stubGlobal('window', { sessionStorage: createSessionStorage() });
 };
 
 /** Reproduces the url the mobile application loads, version parameter included. */
@@ -48,6 +76,40 @@ describe('captureNativeAppVersion', () => {
     openedWith('not-a-version');
 
     expect(canNativeAppSwitchCountry()).toBe(false);
+  });
+
+  it('survives a document reload that dropped the parameter', () => {
+    installWebview();
+    openedWith('3.1.5');
+
+    // The application redirects to the language picker, and the shell reloads
+    // the current url whenever it comes back to the foreground: both land on a
+    // new document, without the parameter.
+    captureNativeAppVersion('https://soliguide.fr/fr/languages');
+
+    expect(canNativeAppSwitchCountry()).toBe(true);
+  });
+
+  it('stays off in a browser that never carried the parameter', () => {
+    installPlainBrowser();
+    captureNativeAppVersion('https://soliguide.fr/fr/languages');
+
+    expect(canNativeAppSwitchCountry()).toBe(false);
+  });
+
+  it('does not remember a version it would refuse anyway', () => {
+    installWebview();
+    openedWith('not-a-version');
+    captureNativeAppVersion('https://soliguide.fr/fr/languages');
+
+    expect(canNativeAppSwitchCountry()).toBe(false);
+  });
+
+  it('still reads the parameter when the storage is unusable', () => {
+    installWebviewWithoutStorage();
+
+    expect(() => openedWith('3.1.5')).not.toThrow();
+    expect(canNativeAppSwitchCountry()).toBe(true);
   });
 
   it('ignores an unreadable url rather than throwing during the boot sequence', () => {

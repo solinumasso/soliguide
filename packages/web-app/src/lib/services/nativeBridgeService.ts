@@ -19,6 +19,15 @@ const OPEN_SETTINGS_MESSAGE = 'soliguide:open-settings';
 const VERSION_PARAM = 'version';
 
 /**
+ * Where the version is kept once read.
+ *
+ * The parameter is only ever on the url the application opened. Redirecting to
+ * the language picker, and the reload the shell runs whenever it comes back to
+ * the foreground, both land on a new document without it.
+ */
+const VERSION_STORAGE_KEY = 'soliguide:native-app-version';
+
+/**
  * First version of the mobile application answering each message.
  *
  * Older versions simply do not listen, which is how the web application knows
@@ -33,6 +42,7 @@ type NativeCapability = keyof typeof MINIMUM_VERSIONS;
 
 interface NativeBridgeWindow {
   ReactNativeWebView?: { postMessage: (message: string) => void };
+  sessionStorage?: Pick<Storage, 'getItem' | 'setItem'>;
 }
 
 /**
@@ -70,17 +80,46 @@ const isAtLeast = (version: number[], minimum: number[]): boolean => {
 /**
  * Reads the version the native application advertises, and remembers it.
  *
- * Called from `hooks.client.ts`, before the router runs: the first navigation
- * would otherwise take the parameter away with it.
+ * Called from `hooks.client.ts` on every document, before the router runs: the
+ * parameter reaches the very first url only, and is read back from the session
+ * on the ones that follow.
  */
-export const captureNativeAppVersion = (url: string): void => {
+const readVersionParam = (url: string): string | null => {
   try {
-    nativeAppVersion.set(parseVersion(new URL(url).searchParams.get(VERSION_PARAM)));
+    return new URL(url).searchParams.get(VERSION_PARAM);
   } catch {
-    // An url we cannot read simply means no native application. Never let this
-    // throw: it runs during the boot sequence, ahead of everything else.
-    nativeAppVersion.set(null);
+    // An url we cannot read simply means no native application.
+    return null;
   }
+};
+
+/** Both halves are guarded: a browser engine may forbid storage entirely. */
+const readStoredVersion = (): string | null => {
+  try {
+    return getNativeBridgeWindow()?.sessionStorage?.getItem(VERSION_STORAGE_KEY) ?? null;
+  } catch {
+    return null;
+  }
+};
+
+const storeVersion = (version: string): void => {
+  try {
+    getNativeBridgeWindow()?.sessionStorage?.setItem(VERSION_STORAGE_KEY, version);
+  } catch {
+    // Nothing to recover from: the next document simply reads no version, and
+    // every capability stays off rather than being wrongly offered.
+  }
+};
+
+export const captureNativeAppVersion = (url: string): void => {
+  const fromUrl = readVersionParam(url);
+
+  // Only a version we would accept is worth carrying to the next document.
+  if (fromUrl && parseVersion(fromUrl)) {
+    storeVersion(fromUrl);
+  }
+
+  nativeAppVersion.set(parseVersion(fromUrl ?? readStoredVersion()));
 };
 
 /**
