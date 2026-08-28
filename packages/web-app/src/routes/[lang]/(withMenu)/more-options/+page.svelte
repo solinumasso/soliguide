@@ -7,7 +7,7 @@
     getThemeContext,
     type CountryVersion
   } from '$lib/theme';
-  import { getContext } from 'svelte';
+  import { getContext, onMount } from 'svelte';
   import ScreenSearchDesktop from 'svelte-google-materialdesign-icons/Screen_search_desktop.svelte';
   import Transcribe from 'svelte-google-materialdesign-icons/Transcribe.svelte';
   import Cookie from 'svelte-google-materialdesign-icons/Cookie.svelte';
@@ -30,7 +30,6 @@
   import { ROUTES_CTX_KEY } from '$lib/client/index';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import { goto } from '$app/navigation';
-  import { onMount } from 'svelte';
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
   const theme = getThemeContext();
