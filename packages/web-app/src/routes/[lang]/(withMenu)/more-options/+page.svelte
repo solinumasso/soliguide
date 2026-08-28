@@ -18,7 +18,11 @@
   import MenuBook from 'svelte-google-materialdesign-icons/Menu_book.svelte';
   import { LegalPage } from '@soliguide/common';
   import { CookieModal } from '$lib/components';
-  import { requestNativeCountrySwitch } from '$lib/services';
+  import {
+    canNativeAppSwitchCountry,
+    isInsideNativeApp,
+    requestNativeCountrySwitch
+  } from '$lib/services';
   import ColoredCard from './ColoredCard.svelte';
   import { Text, BasicCard, Button, ListItem } from '@soliguide/design-system';
   import { getPageController } from './pageController';
@@ -26,6 +30,7 @@
   import { ROUTES_CTX_KEY } from '$lib/client/index';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import { goto } from '$app/navigation';
+  import { onMount } from 'svelte';
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
   const theme = getThemeContext();
@@ -53,13 +58,26 @@
   const countryVersions = buildCountryVersions(theme, getAllThemes());
 
   /**
+   * Offered everywhere the switch actually lands somewhere: in a browser, where
+   * it is a plain navigation, and in a mobile application recent enough to take
+   * it over. Hidden in older applications only, where that same navigation would
+   * throw the visitor out to the system browser.
+   *
+   * Resolved on mount rather than at module scope, where there is no window.
+   */
+  let canSwitchCountry = false;
+
+  onMount(() => {
+    canSwitchCountry = !isInsideNativeApp() || canNativeAppSwitchCountry();
+  });
+
+  /**
    * Each country is a separate deployment on its own hostname, so switching is a
    * full page load and not a client side navigation.
    *
-   * Inside the mobile application the native shell owns the country: it is asked
-   * to switch so that the choice is remembered and the user stays in the app.
-   * Everywhere else, and in application versions predating that bridge, the
-   * browser navigates to the country's home page.
+   * Inside the mobile application the native application owns the country: it is
+   * asked to switch so that the choice is remembered and the user stays in the
+   * app. In a browser, the page navigates to the country's home page itself.
    */
   const switchCountry = (countryVersion: CountryVersion) => {
     pageState.captureEvent('click-change-country', { newCountry: countryVersion.country });
@@ -95,7 +113,7 @@
     />
   {/if}
 
-  {#if countryVersions.length}
+  {#if canSwitchCountry && countryVersions.length}
     <ColoredCard
       cardType="secondary"
       title={$i18n.t('COUNTRY_VERSIONS')}
