@@ -8,7 +8,7 @@
   import { Steps, Focus } from './types';
   import { ROUTES_CTX_KEY, getGeolocation } from '$lib/client';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
-  import { canNativeShellOpenSettings, requestNativeOpenSettings } from '$lib/services';
+  import { canNativeAppOpenSettings, requestNativeOpenSettings } from '$lib/services';
   import {
     CategorySelector,
     MyPositionTile,
@@ -39,7 +39,7 @@
   const categoryParam = url.searchParams.get('category');
 
   /**
-   * Only the mobile shell can open the settings of the application, so the offer
+   * Only the native application can open its own settings, so the offer
    * is resolved on mount rather than at module scope, where there is no window.
    */
   let canOpenSettings = false;
@@ -62,7 +62,7 @@
   // Clean URL after init if category was ALL_CATEGORIES
   // This happens synchronously after init is called
   onMount(() => {
-    canOpenSettings = canNativeShellOpenSettings();
+    canOpenSettings = canNativeAppOpenSettings();
 
     if (categoryParam === ALL_CATEGORIES) {
       const newSearchParams = new URLSearchParams(url.searchParams);

@@ -3,11 +3,13 @@ import getLocationService from './locationService';
 import getSearchService from './placesService';
 
 export {
-  canNativeShellOpenSettings,
-  canNativeShellSwitchCountry,
+  canNativeAppOpenSettings,
+  canNativeAppSwitchCountry,
+  captureNativeAppVersion,
+  isInsideNativeApp,
   requestNativeCountrySwitch,
   requestNativeOpenSettings
-} from './nativeShellService';
+} from './nativeBridgeService';
 export { zendeskService } from './zendeskService';
 export { searchParamsService } from './searchParamsService';
 export const locationService = getLocationService(fetch);
