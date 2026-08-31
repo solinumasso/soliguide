@@ -36,6 +36,7 @@
     "@scalar/nestjs-api-reference": "^1.1.8",
     "@soliguide/api": "workspace:*",
     "@soliguide/common": "workspace:*",
+    "dotenv": "17.4.2",
     "helmet": "^7.2.0",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^8.16.3",
