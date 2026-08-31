@@ -53,4 +53,4 @@ EOF
 WORKDIR /app/packages/public-api
 USER node
 
-CMD ["node", "dist/src/main"]
+CMD ["node", "dist/main"]
