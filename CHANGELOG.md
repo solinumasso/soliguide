@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.153.0](https://github.com/solinumasso/soliguide/compare/v4.152.0...v4.153.0) (2026-09-01)
+
+
+### Bug Fixes
+
+* **frontend:** change webinar link for Soliguia ([c9b41bf](https://github.com/solinumasso/soliguide/commit/c9b41bfe3e728314168ee6d8fd45b1ddf78d9f72))
+* **frontend:** update broken support link in emergency housing banner ([8bd57cd](https://github.com/solinumasso/soliguide/commit/8bd57cd485a18be756aa6283371368fda6fcf383))
+
+
+### Features
+
+* **api:** activate setoffline cron ([fc12d91](https://github.com/solinumasso/soliguide/commit/fc12d916fbb8b1e3c5c06c6cbe109fbcf328dd6a))
+
+
+
+
+
 # [4.152.0](https://github.com/solinumasso/soliguide/compare/v4.151.0...v4.152.0) (2026-08-25)
 
 
