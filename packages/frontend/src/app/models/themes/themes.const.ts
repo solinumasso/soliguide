@@ -133,7 +133,7 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
     helpEnabled: true,
     helpShowPdfTutorials: false,
     helpWebinarUrl:
-      "https://us06web.zoom.us/webinar/register/WN_9FSiRDDZRT6VFLsHO-rhHw#/registration",
+      "https://us06web.zoom.us/webinar/register/4917854838990/WN_L1-21WjBTHGXT4Lk7jpX3g",
     helpContactEmail: "info@soliguia.cat",
     aboutSolinumLink: "https://landing.soliguia.cat/",
     becomeVolunteerEnabled: false,
@@ -167,7 +167,7 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
     helpEnabled: true,
     helpShowPdfTutorials: false,
     helpWebinarUrl:
-      "https://us06web.zoom.us/webinar/register/WN_9FSiRDDZRT6VFLsHO-rhHw#/registration",
+      "https://us06web.zoom.us/webinar/register/4917854838990/WN_L1-21WjBTHGXT4Lk7jpX3g",
     helpContactEmail: "info@soliguia.cat",
     aboutSolinumLink: "https://landing.soliguia.cat/",
     becomeVolunteerEnabled: false,
