@@ -77,7 +77,7 @@ export class ResultsInfoBannerComponent implements OnInit, OnDestroy {
 
     this.howToGetAccommodationLink = `${environment.praticalFilesLink}/${
       LANGUAGE_FOR_PRACTICAL_FILES[this.currentLang]
-    }/19895172153629`;
+    }/sections/19895172153629-Demander-un-h%C3%A9bergement`;
   }
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
