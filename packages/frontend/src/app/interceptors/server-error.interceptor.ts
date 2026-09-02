@@ -14,6 +14,9 @@ import { catchError, Observable, throwError } from "rxjs";
 import { AuthService } from "../modules/users/services/auth.service";
 
 import { TranslateService } from "@ngx-translate/core";
+import { environment } from "../../environments/environment";
+
+const AUTH_STATUS_ENDPOINT = `${environment.apiUrl}/users/me`;
 
 @Injectable({
   providedIn: "root",
@@ -47,6 +50,10 @@ export class ServerErrorInterceptor implements HttpInterceptor {
         if (returnedError instanceof HttpErrorResponse) {
           switch (returnedError.status) {
             case 401:
+              if (request.url === AUTH_STATUS_ENDPOINT) {
+                break;
+              }
+
               this.toastr.warning(
                 this.translateService.instant("EXPIRED_SESSION")
               );
