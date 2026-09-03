@@ -53,6 +53,26 @@ const themeHandle: Handle = ({ event, resolve }) => {
   });
 };
 
-export const handle = sequence(sentryHandle(), themeHandle);
+/**
+ * The document is the one response that must never be reused without asking.
+ *
+ * It names the hashed asset files, so a stale document keeps an old version of
+ * the application running. `no-cache` does not forbid storing it, it forces a
+ * revalidation before every reuse, which the ETag makes cheap.
+ *
+ * Assets are deliberately left alone: their name changes with their content, so
+ * caching them is both safe and worth it on a poor connection.
+ */
+const documentCacheHandle: Handle = async ({ event, resolve }) => {
+  const response = await resolve(event);
+
+  if (response.headers.get('content-type')?.startsWith('text/html')) {
+    response.headers.set('cache-control', 'no-cache');
+  }
+
+  return response;
+};
+
+export const handle = sequence(sentryHandle(), themeHandle, documentCacheHandle);
 
 export const handleError = handleErrorWithSentry();
