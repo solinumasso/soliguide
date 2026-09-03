@@ -14,6 +14,9 @@ on:
       deploy_api:
         type: boolean
         default: true
+      deploy_public-api:
+        type: boolean
+        default: true
       deploy_frontend:
         type: boolean
         default: true
@@ -55,6 +58,7 @@ jobs:
       tag: ${{ needs.compute_tag.outputs.tag }}
       registry: ${{ inputs.registry }}
       deploy_api: ${{ inputs.deploy_api }}
+      deploy_public-api: ${{ inputs.deploy_public-api }}
       deploy_frontend: ${{ inputs.deploy_frontend }}
       deploy_location-api: ${{ inputs.deploy_location-api }}
       deploy_web-app: ${{ inputs.deploy_web-app }}
@@ -122,6 +126,12 @@ jobs:
           git remote add clever-api-migrations git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.API_MIGRATIONS_APP_ID }}.git
           echo clever-api-migrations >>./remotes-to-deploy-to.txt
 
+      - name: Add public API to the list of apps to deploy
+        if: ${{ inputs.deploy_public-api }}
+        run: |
+          git remote add clever-public-api git+ssh://git@${{ env.CC_PUSH_HOST }}/${{ secrets.PUBLIC_API_APP_ID }}.git
+          echo clever-public-api >>./remotes-to-deploy-to.txt
+
       - name: Add frontend to the list of app to deploy
         if: ${{ inputs.deploy_frontend }}
         run: |
@@ -181,6 +191,7 @@ jobs:
           script: |
             const env = '${{ inputs.environment }}';
             const deployApi = '${{ inputs.deploy_api }}' === 'true';
+            const deployPublicApi = '${{ inputs.deploy_public-api }}' === 'true';
             const deployFrontend = '${{ inputs.deploy_frontend }}' === 'true';
             const deployWebApp = '${{ inputs.deploy_web-app }}' === 'true';
             const deployWidget = '${{ inputs.deploy_widget }}' === 'true';
@@ -208,6 +219,7 @@ jobs:
             if (deployWebApp) urls.push(`🌐 Web App: https://app.${baseDomain}`);
             if (deployWidget) urls.push(`🔌 Widget: https://widget.${baseDomain}`);
             if (deployApi) urls.push(`🔧 API: https://api.${baseDomain}`);
+            if (deployPublicApi) urls.push(`🔎 Public API: https://public-api.${baseDomain}`);
             if (deployLocationApi) urls.push(`📍 Location API: https://location-api.${baseDomain}`);
 
             // Créer le deployment

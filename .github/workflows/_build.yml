@@ -12,6 +12,9 @@ on:
       deploy_api:
         description: "Whether to deploy API"
         value: ${{ jobs.affected_packages.outputs.api_dependencies }}
+      deploy_public-api:
+        description: "Whether to deploy Public API"
+        value: ${{ contains(jobs.affected_packages.outputs.to_deploy, 'public-api') }}
       deploy_frontend:
         description: "Whether to deploy Frontend"
         value: ${{ jobs.affected_packages.outputs.frontend_dependencies }}
@@ -108,6 +111,23 @@ jobs:
         BASE_IMAGE=${{ fromJSON(needs.build-base.outputs.tags1)[0] }}
         COMMON_IMAGE=${{ fromJSON(needs.build-common.outputs.tags1)[0] }}
       build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_deploy, 'api') }}
+    needs:
+      - affected_packages
+      - build-base
+      - build-common
+
+  build-public-api:
+    name: Build Public API container image
+    if: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_build, 'public-api') }}
+    uses: ./.github/workflows/_build-container-image.yml
+    with:
+      image_name: ${{ github.repository }}/public-api
+      dockerfile: ./packages/public-api/Dockerfile
+      build_production: true
+      build_args: |
+        BASE_IMAGE=${{ fromJSON(needs.build-base.outputs.tags1)[0] }}
+        COMMON_IMAGE=${{ fromJSON(needs.build-common.outputs.tags1)[0] }}
+      build_target2: ${{ !startsWith(github.ref, 'refs/pull/') || contains(needs.affected_packages.outputs.to_deploy, 'public-api') }}
     needs:
       - affected_packages
       - build-base

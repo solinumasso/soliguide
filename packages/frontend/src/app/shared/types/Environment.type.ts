@@ -1,5 +1,6 @@
 export interface Environment {
   apiUrl: string;
+  publicApiUrl: string;
   locationApiUrl: string;
   googleMapsApiKey?: string;
   chatWebsiteId?: string;

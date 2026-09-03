@@ -37,6 +37,7 @@ const Configuration: UserConfig = {
         "chore",
         // Lerna package scopes (project names)
         "api",
+        "public-api",
         "location-api",
         "frontend",
         "widget",
