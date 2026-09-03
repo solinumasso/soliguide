@@ -1,14 +1,12 @@
 <script lang="ts">
+  import { getThemeContext } from '$lib/theme';
   import { goto } from '$app/navigation';
   import { Button, Text } from '@soliguide/design-system';
-  import { themeStore } from '$lib/theme';
   import { ROUTES_CTX_KEY } from '$lib/client';
   import { getContext } from 'svelte';
-  import { get } from 'svelte/store';
-  import type { ThemeDefinition } from '$lib/theme/types';
   import type { RoutingStore } from '$lib/client/types';
 
-  const theme: ThemeDefinition = get(themeStore.getTheme());
+  const theme = getThemeContext();
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
 
   const skip = (): void => {
@@ -22,7 +20,7 @@
 
 <section>
   <div class="onboarding-header">
-    <img src={`/images/${theme.media.logos.original}`} alt="onboarding illustration" />
+    <img src={theme.media.logos.original} alt="onboarding illustration" />
     <span class="title">
       <Text type="title1PrimaryExtraBold" as="h1">Le guide de la solidarité en ligne</Text>
     </span>

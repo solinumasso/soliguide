@@ -30,6 +30,10 @@ Quickest path — one command boots api + location-api + frontend in parallel (l
 yarn dev        # api + location-api + frontend FR
 yarn dev:es     # api + location-api + frontend ES
 yarn dev:ad     # api + location-api + frontend AD
+
+yarn dev:web-app       # api + location-api + web-app FR
+yarn dev:web-app:es    # api + location-api + web-app ES
+yarn dev:web-app:ad    # api + location-api + web-app AD
 ```
 
 Or start each service in its own terminal (only the ones you need):
@@ -47,8 +51,13 @@ yarn workspace @soliguide/frontend start:ad         # AD → http://localhost:42
 # Angular embeddable widget
 yarn workspace @soliguide/widget start              # → http://localhost:4201
 
-# SvelteKit public web-app
-yarn workspace @soliguide/web-app dev               # → http://localhost:5173
+# SvelteKit public web-app — one server serves all countries, the hostname
+# selects the theme (*.localhost resolves to 127.0.0.1, no /etc/hosts needed)
+yarn workspace @soliguide/web-app dev               # FR → http://localhost:5173
+                                                    # ES → http://es.localhost:5173
+                                                    # AD → http://ad.localhost:5173
+yarn workspace @soliguide/web-app dev:es            # same server, opens the ES hostname
+yarn workspace @soliguide/web-app dev:ad            # same server, opens the AD hostname
 
 # Svelte design-system playground
 yarn workspace @soliguide/design-system dev         # → http://localhost:5174
@@ -66,7 +75,7 @@ All local ports are harmonised so every front-end can run at the same time witho
 | Widget                | 4201 | `yarn workspace @soliguide/widget start`             |
 | Frontend ES           | 4210 | `yarn workspace @soliguide/frontend start:es`        |
 | Frontend AD           | 4220 | `yarn workspace @soliguide/frontend start:ad`        |
-| Web-app (SvelteKit)   | 5173 | `yarn workspace @soliguide/web-app dev`              |
+| Web-app (SvelteKit)   | 5173 | `yarn workspace @soliguide/web-app dev` (FR `localhost`, ES `es.localhost`, AD `ad.localhost`) |
 | Design-system         | 5174 | `yarn workspace @soliguide/design-system dev`        |
 | MongoDB               | 27017| `docker compose up -d`                               |
 | RabbitMQ (AMQP / UI)  | 5672 / 15672 | `docker compose up -d`                       |

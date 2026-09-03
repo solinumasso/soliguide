@@ -1,6 +1,7 @@
 import {
   AutoCompleteType,
   CountryCodes,
+  getSupportedLanguagesByCountry,
   slugString,
   removeAccents,
   SUPPORTED_LANGUAGES_BY_COUNTRY,
@@ -10,7 +11,6 @@ import {
 } from "@soliguide/common";
 import { ensureDir, writeFile } from "fs-extra";
 import { logger } from "../general/logger";
-import { getLangsForCountry } from "./utils/getLangsForCountry";
 import { readFileSync } from "node:fs";
 import { join, relative } from "node:path";
 
@@ -19,12 +19,16 @@ const SOURCE_ROOT = join(
   "../common/src/search-suggestions/data"
 );
 
+type SuggestionsByLanguage = {
+  [lang in SupportedLanguagesCode]?: FormattedSuggestion[];
+};
+
+type SuggestionsByCountry = {
+  [country in SoliguideCountries]?: SuggestionsByLanguage;
+};
+
 class SearchSuggestionsService {
-  private suggestionsCache: {
-    [country in SoliguideCountries]?: {
-      [lang in SupportedLanguagesCode]?: FormattedSuggestion[];
-    };
-  } = {};
+  private suggestionsCache: SuggestionsByCountry = {};
 
   // === Runtime (in-memory from resources/) ===
 
@@ -38,8 +42,10 @@ class SearchSuggestionsService {
     ) as SoliguideCountries[];
 
     for (const country of countries) {
-      const langs = getLangsForCountry(country);
-      this.suggestionsCache[country] = {};
+      const langs = getSupportedLanguagesByCountry(country);
+      // Built aside then published in one go, so the cache never holds a
+      // half-filled country and no non-null assertion is needed
+      const countrySuggestions: SuggestionsByLanguage = {};
 
       for (const lang of langs) {
         const data = this.loadFromJson(country, lang);
@@ -49,12 +55,14 @@ class SearchSuggestionsService {
           continue;
         }
 
-        this.suggestionsCache[country]![lang] = data;
+        countrySuggestions[lang] = data;
 
         logger.info(
           `✅ Loaded country=${country}, lang=${lang} with ${data.length} elements`
         );
       }
+
+      this.suggestionsCache[country] = countrySuggestions;
     }
   }
 
@@ -157,7 +165,7 @@ class SearchSuggestionsService {
     ) as SoliguideCountries[];
 
     for (const country of countries) {
-      const langs = getLangsForCountry(country);
+      const langs = getSupportedLanguagesByCountry(country);
       for (const lang of langs) {
         const entries = this.readSourceFile(country, lang);
         all.push(

@@ -9,9 +9,18 @@
 
   export let open = false;
   export let brandName = '';
+  /**
+   * Whether the native application can open its own settings.
+   *
+   * Retrying is pointless once the permission has been denied at the system
+   * level: the operating system will not ask again, and the search would fail
+   * the same way. The settings screen is the only way back, so it replaces the
+   * retry rather than sitting next to a button that cannot succeed.
+   */
+  export let canOpenSettings = false;
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
-  const dispatch = createEventDispatcher<{ retry: null; close: null }>();
+  const dispatch = createEventDispatcher<{ retry: null; openSettings: null; close: null }>();
 
   let dialogElement: HTMLDialogElement | null = null;
 
@@ -21,6 +30,7 @@
 
   const handleClose = () => dispatch('close');
   const handleRetry = () => dispatch('retry');
+  const handleOpenSettings = () => dispatch('openSettings');
 
   const handleBackdropClick = (event: MouseEvent) => {
     if (event.target === dialogElement) {
@@ -64,9 +74,15 @@
       </Text>
 
       <div class="actions">
-        <Button type="primaryFill" block on:click={handleRetry}>
-          {$i18n.t('TRY_AGAIN')}
-        </Button>
+        {#if canOpenSettings}
+          <Button type="primaryFill" block on:click={handleOpenSettings}>
+            {$i18n.t('GEOLOCATION_OPEN_SETTINGS')}
+          </Button>
+        {:else}
+          <Button type="primaryFill" block on:click={handleRetry}>
+            {$i18n.t('TRY_AGAIN')}
+          </Button>
+        {/if}
       </div>
     </div>
   </dialog>

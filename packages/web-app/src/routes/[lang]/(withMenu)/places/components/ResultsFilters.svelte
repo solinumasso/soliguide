@@ -12,11 +12,13 @@
   import { ToggleButton } from '@soliguide/design-system';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import type { I18nStore } from '$lib/client/types';
-  import { SEARCH_RESULT_FILTERS, type SearchResultFilter } from '../filters';
+  import { getAvailableSearchResultFilters, type SearchResultFilter } from '../filters';
+  import { getThemeContext } from '$lib/theme';
 
   export let selectedFilters: SearchResultFilter[] = [];
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
+  const theme = getThemeContext();
   const dispatch = createEventDispatcher<{ toggle: SearchResultFilter }>();
 
   const filterIcons: Record<SearchResultFilter, ComponentType<SvelteComponent>> = {
@@ -26,12 +28,14 @@
     airConditioned: AcUnit
   };
 
+  const availableFilters = getAvailableSearchResultFilters(theme.capabilities);
+
   const isSelected = (filter: SearchResultFilter): boolean => selectedFilters.includes(filter);
 </script>
 
 <nav class="results-filters" aria-label={$i18n.t('FILTERS_USED')}>
   <div class="filters-list">
-    {#each SEARCH_RESULT_FILTERS as filter}
+    {#each availableFilters as filter}
       {@const label = $i18n.t(filter.translationKey)}
       {@const selected = isSelected(filter.name)}
       <ToggleButton

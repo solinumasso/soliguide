@@ -18,6 +18,8 @@
   };
 
   export let variant: ToastVariant = 'info';
+  /** Fills the width of its container, for a toast anchored in the page flow. */
+  export let block = false;
   export let withIcon = true;
   export let description: string;
   export let dismissible = true;
@@ -36,7 +38,9 @@
 
   let toastClass: string;
   let iconVariant: InfoIconVariant;
-  $: toastClass = `toast toast-${variant}`;
+  $: toastClass = ['toast', `toast-${variant}`, block ? 'toast-block' : '']
+    .filter(Boolean)
+    .join(' ');
   $: iconVariant = variantToInfoIcon[variant];
 
   const close = () => {
@@ -147,6 +151,12 @@
     overflow: hidden;
     width: 350px;
     max-width: calc(100vw - 2 * var(--spacingSM));
+  }
+
+  // Anchored in the page flow rather than floating: the container owns the width.
+  .toast.toast-block {
+    width: 100%;
+    max-width: 100%;
   }
 
   .toast-column-container {

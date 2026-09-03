@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { getThemeContext, isSeasonalThermalComfortVisible } from '$lib/theme';
   import { InfoIcon, Text, Tag } from '@soliguide/design-system';
   import { PhoneButton, PlaceStatus, TodayInfo } from '$lib/components';
   import AcUnit from 'svelte-google-materialdesign-icons/Ac_unit.svelte';
@@ -15,16 +16,12 @@
     TempInfoStatus,
     type PlaceOpeningStatus,
     type ThermalComfortData,
-    isObjectEmpty,
-    shouldDisplayThermalComfort
+    isObjectEmpty
   } from '@soliguide/common';
 
   import type { I18nStore } from '$lib/client/types';
-  import type { ThemeDefinition } from '$lib/theme/types';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
-  import { themeStore } from '$lib/theme';
   import { getContext } from 'svelte';
-  import { get } from 'svelte/store';
 
   export let todayInfo: TodayInfoType = {};
   export let name: string;
@@ -39,9 +36,9 @@
 
   const placeController = getPlaceDetailsPageController();
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
-  const theme: ThemeDefinition = get(themeStore.getTheme());
+  const theme = getThemeContext();
 
-  $: shouldDisplayThermalComfortTag = shouldDisplayThermalComfort(theme.country);
+  $: shouldDisplayThermalComfortTag = isSeasonalThermalComfortVisible(theme);
 </script>
 
 <header class="card-header">

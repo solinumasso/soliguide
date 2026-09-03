@@ -1,5 +1,13 @@
 <script lang="ts">
-  import { getContext } from 'svelte';
+  import {
+    buildCountryVersions,
+    buildCountryVersionUrl,
+    getAllThemes,
+    getLegalLinksContext,
+    getThemeContext,
+    type CountryVersion
+  } from '$lib/theme';
+  import { getContext, onMount } from 'svelte';
   import ScreenSearchDesktop from 'svelte-google-materialdesign-icons/Screen_search_desktop.svelte';
   import Transcribe from 'svelte-google-materialdesign-icons/Transcribe.svelte';
   import Cookie from 'svelte-google-materialdesign-icons/Cookie.svelte';
@@ -8,48 +16,76 @@
   import Security from 'svelte-google-materialdesign-icons/Security.svelte';
   import Mouse from 'svelte-google-materialdesign-icons/Mouse.svelte';
   import MenuBook from 'svelte-google-materialdesign-icons/Menu_book.svelte';
+  import { LegalPage } from '@soliguide/common';
   import { CookieModal } from '$lib/components';
+  import {
+    canNativeAppSwitchCountry,
+    isInsideNativeApp,
+    requestNativeCountrySwitch
+  } from '$lib/services';
   import ColoredCard from './ColoredCard.svelte';
-  import { Text, BasicCard, ListItem } from '@soliguide/design-system';
+  import { Text, BasicCard, Button, ListItem } from '@soliguide/design-system';
   import { getPageController } from './pageController';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import { ROUTES_CTX_KEY } from '$lib/client/index';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
-  import type { ThemeDefinition } from '$lib/theme/types';
   import { goto } from '$app/navigation';
-  import { themeStore } from '$lib/theme';
-  import { get } from 'svelte/store';
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
-  const theme: ThemeDefinition = get(themeStore.getTheme());
+  const theme = getThemeContext();
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
-
-  const links = {
-    fichesPratiquesLink: theme.links.fichesPratiques,
-    solinumSiteLink: theme.links.solinumSite,
-    becomeTranslatorLink: theme.links.becomeTranslator,
-    cookiePolicyLink: theme.links.cookiePolicy,
-    privacyPolicyLink: theme.links.privacyPolicy,
-    dataProtectionAgreementLink: theme.links.dataProtectionAgreement,
-    legalNoticeLink: theme.links.legalNotice,
-    termsAndConditionsLink: theme.links.termsAndConditions
-  };
+  const legalLinks = getLegalLinksContext();
 
   const pageState = getPageController();
-  pageState.init(links);
 
   const openCookieDialog = () => {
-    console.log('Open cookie dialog');
     pageState.openCookieModal();
   };
 
-  const navigateToExternal = (url: string) => {
+  const navigateToExternal = (url: string | null) => {
+    if (!url) {
+      return;
+    }
     window.open(url, '_blank');
   };
 
   const changeLanguage = () => {
     pageState.captureEvent('click-change-language');
     goto(`${$routes.ROUTE_LANGUAGES}?from=more-options`);
+  };
+
+  const countryVersions = buildCountryVersions(theme, getAllThemes());
+
+  /**
+   * Offered everywhere the switch actually lands somewhere: in a browser, where
+   * it is a plain navigation, and in a mobile application recent enough to take
+   * it over. Hidden in older applications only, where that same navigation would
+   * throw the visitor out to the system browser.
+   *
+   * Resolved on mount rather than at module scope, where there is no window.
+   */
+  let canSwitchCountry = false;
+
+  onMount(() => {
+    canSwitchCountry = !isInsideNativeApp() || canNativeAppSwitchCountry();
+  });
+
+  /**
+   * Each country is a separate deployment on its own hostname, so switching is a
+   * full page load and not a client side navigation.
+   *
+   * Inside the mobile application the native application owns the country: it is
+   * asked to switch so that the choice is remembered and the user stays in the
+   * app. In a browser, the page navigates to the country's home page itself.
+   */
+  const switchCountry = (countryVersion: CountryVersion) => {
+    pageState.captureEvent('click-change-country', { newCountry: countryVersion.country });
+
+    if (requestNativeCountrySwitch(countryVersion.theme)) {
+      return;
+    }
+
+    window.location.assign(buildCountryVersionUrl(countryVersion, new URL(window.location.href)));
   };
 </script>
 
@@ -62,17 +98,40 @@
     <Text type="title2PrimaryExtraBold">{$i18n.t('MORE_OPTIONS_TITLE')}</Text>
   </div>
 
-  <ColoredCard
-    cardType="primary"
-    title={$i18n.t('FICHES_PRATIQUES')}
-    description={$i18n.t('FICHES_PRATIQUES_DESCRIPTION')}
-    actionName={$i18n.t('PLUS_INFOS')}
-    imgUrl="/images/paper.svg"
-    on:action={() => {
-      pageState.captureEvent('click-access-practical-files');
-      navigateToExternal($pageState.fichesPratiquesLink);
-    }}
-  />
+  {#if theme.links.practicalFiles}
+    <ColoredCard
+      cardType="primary"
+      title={$i18n.t('FICHES_PRATIQUES')}
+      description={$i18n.t('FICHES_PRATIQUES_DESCRIPTION')}
+      actionName={$i18n.t('PLUS_INFOS')}
+      imgUrl="/images/paper.svg"
+      on:action={() => {
+        pageState.captureEvent('click-access-practical-files');
+        navigateToExternal(theme.links.practicalFiles);
+      }}
+    />
+  {/if}
+
+  {#if canSwitchCountry && countryVersions.length}
+    <ColoredCard
+      cardType="secondary"
+      title={$i18n.t('COUNTRY_VERSIONS')}
+      description={$i18n.t('COUNTRY_VERSIONS_DESCRIPTION')}
+      imgUrl="/images/globe.svg"
+    >
+      <svelte:fragment slot="actions">
+        {#each countryVersions as countryVersion (countryVersion.theme)}
+          <Button
+            type="neutralOutlined"
+            size="xsmall"
+            on:click={() => switchCountry(countryVersion)}
+          >
+            {$i18n.t(countryVersion.nameKey)}
+          </Button>
+        {/each}
+      </svelte:fragment>
+    </ColoredCard>
+  {/if}
 
   <BasicCard>
     <Text type="text2Bold">{$i18n.t('SETTINGS')}</Text>
@@ -86,7 +145,7 @@
       >
         <Transcribe variation="filled" slot="icon" size="16" />
       </ListItem>
-      {#if theme.chatWebsiteId}
+      {#if theme.capabilities.cookieManagement}
         <ListItem
           type="actionFull"
           shape="bordered"
@@ -105,7 +164,7 @@
         shape="bordered"
         size="small"
         title={$i18n.t('COOKIE_POLICY')}
-        href={$pageState.cookiePolicyLink}
+        href={legalLinks[LegalPage.COOKIE_POLICY]}
         on:click={() => pageState.captureEvent('click-cookie-policy')}
       >
         <MenuBook variation="filled" slot="icon" size="16" />
@@ -115,7 +174,7 @@
         shape="bordered"
         size="small"
         title={$i18n.t('PRIVACY_POLICY')}
-        href={$pageState.privacyPolicyLink}
+        href={legalLinks[LegalPage.PRIVACY_POLICY]}
         on:click={() => pageState.captureEvent('click-privacy-policy')}
       >
         <Https variation="filled" slot="icon" size="16" />
@@ -125,7 +184,7 @@
         shape="bordered"
         size="small"
         title={$i18n.t('DATA_PROTECTION_AGREEMENT')}
-        href={$pageState.dataProtectionAgreementLink}
+        href={legalLinks[LegalPage.DATA_PROCESSING_AGREEMENT]}
         on:click={() => pageState.captureEvent('click-data-protection-agreement')}
       >
         <Gavel variation="filled" slot="icon" size="16" />
@@ -135,7 +194,7 @@
         shape="bordered"
         size="small"
         title={$i18n.t('LEGAL_NOTICE')}
-        href={$pageState.legalNoticeLink}
+        href={legalLinks[LegalPage.LEGAL_NOTICES]}
         on:click={() => pageState.captureEvent('click-legal-notice')}
       >
         <Security variation="filled" slot="icon" size="16" />
@@ -144,7 +203,7 @@
         type="externalLink"
         size="small"
         title={$i18n.t('GCU')}
-        href={$pageState.termsAndConditionsLink}
+        href={legalLinks[LegalPage.GCU]}
         on:click={() => pageState.captureEvent('click-terms-and-conditions')}
       >
         <Mouse variation="filled" slot="icon" size="16" />
@@ -156,30 +215,32 @@
     <div class="group">
       <ListItem
         type="externalLink"
-        shape="bordered"
+        shape={theme.links.becomeTranslator ? 'bordered' : 'default'}
         size="small"
-        title={$i18n.t('SEE_SOLINUM_SITE')}
-        href={$pageState.solinumSiteLink}
-        on:click={() => pageState.captureEvent('click-access-solinum')}
+        title={$i18n.t('SEE_ORGANIZATION_SITE', { organizationName: theme.organization.name })}
+        href={theme.links.organizationSite}
+        on:click={() => pageState.captureEvent('click-access-organization-site')}
       >
         <ScreenSearchDesktop variation="filled" slot="icon" size="16" />
       </ListItem>
-      <ListItem
-        type="externalLink"
-        size="small"
-        title={$i18n.t('BECOME_TRANSLATOR')}
-        href={$pageState.becomeTranslatorLink}
-        on:click={() => pageState.captureEvent('click-become-translator')}
-      >
-        <Transcribe variation="filled" slot="icon" size="16" />
-      </ListItem>
+      {#if theme.links.becomeTranslator}
+        <ListItem
+          type="externalLink"
+          size="small"
+          title={$i18n.t('BECOME_TRANSLATOR')}
+          href={theme.links.becomeTranslator}
+          on:click={() => pageState.captureEvent('click-become-translator')}
+        >
+          <Transcribe variation="filled" slot="icon" size="16" />
+        </ListItem>
+      {/if}
     </div>
   </BasicCard>
 </section>
 
 {#if $pageState.cookieModalOpen}
   <CookieModal
-    cookiePolicyLink={$pageState.cookiePolicyLink}
+    cookiePolicyLink={legalLinks[LegalPage.COOKIE_POLICY]}
     zendeskChatbotLink={$routes.ROUTE_TALK}
     on:close={pageState.closeCookieModal}
   />

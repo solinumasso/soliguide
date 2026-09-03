@@ -1,29 +1,33 @@
 <script lang="ts">
-  import { getContext, setContext, type ComponentType } from 'svelte';
+  import { getThemeContext, isSeasonalThermalComfortVisible } from '$lib/theme';
+  import { getContext, onMount, setContext, type ComponentType } from 'svelte';
   import { goto } from '$app/navigation';
   import { Text, Tile, PageLoader } from '@soliguide/design-system';
   import { ROUTES_CTX_KEY, getGeolocation } from '$lib/client';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import SearchButtonInput from './SearchButtonInput.svelte';
   import pageStore from './index';
-  import { searchParamsService } from '$lib/services';
+  import {
+    canNativeAppOpenSettings,
+    requestNativeOpenSettings,
+    searchParamsService
+  } from '$lib/services';
   import { showToast } from '$lib/toast/toast.store';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
-  import type { ThemeDefinition } from '$lib/theme/types';
   import type { QuickSearchFilters } from './types';
-  import { get } from 'svelte/store';
-  import { themeStore } from '$lib/theme';
-  import {
-    Categories,
-    getCategoryTranslationKey,
-    shouldDisplayThermalComfort,
-    SupportedLanguagesCode
-  } from '@soliguide/common';
+  import { Categories, getCategoryTranslationKey, SupportedLanguagesCode } from '@soliguide/common';
   import { CategoryIcon, HeatwaveEmergencyCard, GeolocationBlockedModal } from '$lib/components';
   import MoreHoriz from 'svelte-google-materialdesign-icons/More_horiz.svelte';
 
+  interface CategoryTile {
+    label: string;
+    iconCategory?: Categories;
+    iconComponent: ComponentType;
+    variant: 'primary' | 'secondary' | 'tertiary';
+  }
+
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
-  const theme: ThemeDefinition = get(themeStore.getTheme());
+  const theme = getThemeContext();
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
 
   setContext('CAPTURE_FCTN_CTX_KEY', pageStore.captureEvent);
@@ -33,8 +37,9 @@
   // Remember the last quick-search so the modal's "retry" can re-run it.
   let lastQuickSearch: { category: Categories; filters: QuickSearchFilters } | null = null;
 
-  // The heatwave card groups seasonal 1-click searches; shown only for FR/ES during summer.
-  const shouldDisplayHeatwaveCard = shouldDisplayThermalComfort(theme.country);
+  // The heatwave card groups seasonal 1-click searches, so it is only shown
+  // during summer, and only in the countries running the heatwave campaign.
+  const shouldDisplayHeatwaveCard = isSeasonalThermalComfortVisible(theme);
 
   const goSearch = () => {
     pageStore.captureEvent('start-search');
@@ -85,6 +90,24 @@
   };
 
   /**
+   * Only the native application can open its own settings, so the offer is
+   * resolved on mount rather than at module scope, where there is no window.
+   */
+  let canOpenSettings = false;
+
+  onMount(() => {
+    canOpenSettings = canNativeAppOpenSettings();
+  });
+
+  const openApplicationSettings = () => {
+    pageStore.captureEvent('open-application-settings');
+    requestNativeOpenSettings();
+    // The message has done its job, and the user comes back from the settings to
+    // a screen that should not still be reporting the old failure.
+    showGeolocationModal = false;
+  };
+
+  /**
    * Handle a click on a regular quick-search category tile (outside the emergency card).
    * Tracks the clicked category, then launches the search.
    */
@@ -106,12 +129,14 @@
     });
   };
 
-  const categoriesToDisplay: {
-    label: string;
-    iconCategory?: Categories;
-    iconComponent: ComponentType;
-    variant: 'primary' | 'secondary' | 'tertiary';
-  }[] = [
+  /**
+   * Reactive so that the labels follow the language: catalogs are loaded on
+   * demand, so the store re-emits after this page is mounted and a plain
+   * snapshot would keep the previous language.
+   */
+  let categoriesToDisplay: CategoryTile[];
+
+  $: categoriesToDisplay = [
     {
       label: $i18n.t(getCategoryTranslationKey(Categories.FOOD)),
       iconCategory: Categories.FOOD,
@@ -174,7 +199,7 @@
       <span class="title">
         <Text as="h1" type="title3PrimaryExtraBold">{$i18n.t('HOME_TITLE')}</Text>
       </span>
-      <img src={`/images/${theme.media.homeIllustration}`} alt="Soliguide" />
+      <img src={theme.media.illustrations.home} alt="Soliguide" />
     </div>
     <div class="hello">
       <Text as="h2" type="title3PrimaryBold">{$i18n.t('HELLO')} 👋</Text>
@@ -221,8 +246,10 @@
   <GeolocationBlockedModal
     open={showGeolocationModal}
     brandName={theme.brandName}
+    {canOpenSettings}
     on:close={() => (showGeolocationModal = false)}
     on:retry={retryQuickSearch}
+    on:openSettings={openApplicationSettings}
   />
 </PageLoader>
 

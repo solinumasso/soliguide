@@ -1,3 +1,4 @@
+import { LegalPage } from "@soliguide/common";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Subscription } from "rxjs";
 import { TranslateService } from "@ngx-translate/core";
@@ -66,7 +67,7 @@ export class CookieManagerService {
         {
           website: THEME_CONFIGURATION.websiteUrl,
           lang: this.translateService.currentLang,
-          cookiePolicyUrl: getPathFromTheme("cookie-policy"),
+          cookiePolicyUrl: getPathFromTheme(LegalPage.COOKIE_POLICY),
         }
       );
       config.text.banner.acceptAllButtonText = this.translateService.instant(
@@ -101,7 +102,7 @@ export class CookieManagerService {
         {
           website: THEME_CONFIGURATION.websiteUrl,
           lang: this.translateService.currentLang,
-          cookiePolicyUrl: getPathFromTheme("cookie-policy"),
+          cookiePolicyUrl: getPathFromTheme(LegalPage.COOKIE_POLICY),
         }
       );
 

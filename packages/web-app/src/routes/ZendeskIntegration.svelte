@@ -1,23 +1,23 @@
 <script lang="ts">
+  import { getLegalLinksContext, getThemeContext } from '$lib/theme';
   import { getContext } from 'svelte';
   import { ROUTES_CTX_KEY } from '$lib/client/index';
   import { zendeskService } from '$lib/services';
   import { beforeNavigate, goto } from '$app/navigation';
   import { COOKIE_CTX_KEY } from '$lib/client/cookie';
   import { CookieModal } from '$lib/components';
-  import { themeStore } from '$lib/theme';
-  import { get } from 'svelte/store';
-  import type { ThemeDefinition } from '$lib/theme/types';
   import type { CookieConsentStore, RoutingStore } from '$lib/client/types';
+  import { LegalPage } from '@soliguide/common';
 
-  const theme: ThemeDefinition = get(themeStore.getTheme());
+  const theme = getThemeContext();
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
   const cookieConsent: CookieConsentStore = getContext(COOKIE_CTX_KEY);
+  const legalLinks = getLegalLinksContext();
 
   let ready = false;
   let showCookieModal = false;
 
-  $: useChat = Boolean(theme.chatWebsiteId);
+  $: useChat = theme.capabilities.chat;
   $: scriptSrc = `https://static.zdassets.com/ekr/snippet.js?key=${theme.chatWebsiteId}`;
   $: showContent = (useChat && ready && $cookieConsent) || !$cookieConsent || !useChat;
 
@@ -54,7 +54,7 @@
 
 {#if showCookieModal}
   <CookieModal
-    cookiePolicyLink={theme.links.cookiePolicy}
+    cookiePolicyLink={legalLinks[LegalPage.COOKIE_POLICY]}
     zendeskChatbotLink={$routes.ROUTE_TALK}
     on:close={closeCookieModal}
   />

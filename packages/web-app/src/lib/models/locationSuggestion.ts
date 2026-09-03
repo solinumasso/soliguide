@@ -1,12 +1,15 @@
 import { z } from 'zod';
 import { GeoTypes, LocationAutoCompleteAddress } from '@soliguide/common';
 
+import { getStreetFromAddress } from './address';
+
 export const LocationSuggestionSchema = z.object({
-  suggestionLine1: z.string(),
+  // A suggestion without text would render as a blank row in the list
+  suggestionLine1: z.string().min(1),
   suggestionLine2: z.string(),
   geoValue: z.string(),
   geoType: z.nativeEnum(GeoTypes),
-  suggestionLabel: z.string(),
+  suggestionLabel: z.string().min(1),
   coordinates: z.array(z.number())
 });
 
@@ -21,21 +24,35 @@ export type LocationSuggestion = z.infer<typeof LocationSuggestionSchema>;
     geoType = 'region'      --> suggestionLine1 = {name}, suggestionLine2 = GEOTYPE_REGION
     geoType = 'country'     --> suggestionLine1 = {name}
     geoType = 'inconnu'     --> suggestionLine1 = {label}
+
+  `name` is optional in the location-api payload, `label` is not: wherever {name}
+  appears above, {label} is used as a fallback.
  */
 
 /**
  * Get the first line of the location-api result
+ *
+ * `label` is the only text field the location-api always fills in. A country
+ * result, the one that lets a visitor search a whole country, carries no `name`
+ * at all, so falling back to `label` is what keeps it from rendering blank.
  */
 export const getLine1 = (data: LocationAutoCompleteAddress): string => {
+  const displayName = data.name || data.label;
+
   if (data.geoType === GeoTypes.UNKNOWN) {
     return data.label;
   }
 
   if (data.geoType === GeoTypes.CITY) {
-    return `${data.name} (${data.postalCode})`;
+    return data.postalCode ? `${displayName} (${data.postalCode})` : displayName;
   }
 
-  return data.name ?? '';
+  // Spain and Andorra return the whole address here, France the street alone
+  if (data.geoType === GeoTypes.POSITION || data.geoType === GeoTypes.CITIES_GROUP) {
+    return getStreetFromAddress(displayName, data.postalCode);
+  }
+
+  return displayName;
 };
 
 /**

@@ -1,5 +1,10 @@
 import { Routes } from "@angular/router";
-import { Themes } from "@soliguide/common";
+import {
+  getLegalPagePath,
+  LEGAL_PAGE_SLUGS_BY_THEME,
+  LegalPage,
+  Themes,
+} from "@soliguide/common";
 import { LegalNoticesComponent } from "./components/legal-notices/legal-notices.component";
 import { LanguageGuard } from "../../guards/language.guard";
 import { PrivacyPolicyComponent } from "./components/privacy-policy/privacy-policy.component";
@@ -7,110 +12,93 @@ import { DataProcessingAgreementComponent } from "./components/data-processing-a
 import { CookiePolicyComponent } from "./components/cookie-policy/cookie-policy.component";
 import { GcuComponent } from "./components/gcu/gcu.component";
 import { THEME_CONFIGURATION } from "../../models";
-import { PathStaticPageType } from "./models";
 
-export const LOCAL_PATH_ROUTES_BY_THEME: PathStaticPageType = {
-  "legal-notices": {
-    [Themes.SOLIGUIDE_FR]: "mentions-legales",
-    [Themes.SOLIGUIA_AD]: "avis-legal",
-    [Themes.SOLIGUIA_ES]: "informacion-legal",
-  },
-  "privacy-policy": {
-    [Themes.SOLIGUIDE_FR]: "politique-confidentialite",
-    [Themes.SOLIGUIA_AD]: "politica-privacitat",
-    [Themes.SOLIGUIA_ES]: "politica-privacidad",
-  },
-  "data-processing-agreement": {
-    [Themes.SOLIGUIDE_FR]: "accord-protection-donnees",
-    [Themes.SOLIGUIA_AD]: "acord-proteccio-dades",
-    [Themes.SOLIGUIA_ES]: "acuerdo-proteccion-datos",
-  },
-  "cookie-policy": {
-    [Themes.SOLIGUIDE_FR]: "politique-cookies",
-    [Themes.SOLIGUIA_AD]: "politica-cookies",
-    [Themes.SOLIGUIA_ES]: "politica-cookies",
-  },
-  gcu: {
-    [Themes.SOLIGUIDE_FR]: "cgu",
-    [Themes.SOLIGUIA_AD]: "cgu",
-    [Themes.SOLIGUIA_ES]: "cgu",
-  },
-};
-
+/**
+ * Localized paths of the legal pages, language segment included.
+ *
+ * The slugs themselves live in `@soliguide/common`
+ * (`LEGAL_PAGE_SLUGS_BY_THEME`) so that the web-app can link to these same
+ * pages without duplicating the table.
+ */
 export function getLocalPathByTheme(theme: Themes, lang: string = ":lang") {
   return {
-    "legal-notices": `${lang}/${LOCAL_PATH_ROUTES_BY_THEME["legal-notices"][theme]}`,
-    "privacy-policy": `${lang}/${LOCAL_PATH_ROUTES_BY_THEME["privacy-policy"][theme]}`,
-    "data-processing-agreement": `${lang}/${LOCAL_PATH_ROUTES_BY_THEME["data-processing-agreement"][theme]}`,
-    "cookie-policy": `${lang}/${LOCAL_PATH_ROUTES_BY_THEME["cookie-policy"][theme]}`,
-    gcu: `${lang}/${LOCAL_PATH_ROUTES_BY_THEME["gcu"][theme]}`,
+    [LegalPage.LEGAL_NOTICES]: getLegalPagePath(
+      theme,
+      LegalPage.LEGAL_NOTICES,
+      lang
+    ),
+    [LegalPage.PRIVACY_POLICY]: getLegalPagePath(
+      theme,
+      LegalPage.PRIVACY_POLICY,
+      lang
+    ),
+    [LegalPage.DATA_PROCESSING_AGREEMENT]: getLegalPagePath(
+      theme,
+      LegalPage.DATA_PROCESSING_AGREEMENT,
+      lang
+    ),
+    [LegalPage.COOKIE_POLICY]: getLegalPagePath(
+      theme,
+      LegalPage.COOKIE_POLICY,
+      lang
+    ),
+    [LegalPage.GCU]: getLegalPagePath(theme, LegalPage.GCU, lang),
   };
 }
 
 export function getLocalRoutesByTheme(theme: Themes): Routes {
+  const localizedPaths = getLocalPathByTheme(theme);
+  const defaultLanguagePaths = getLocalPathByTheme(
+    theme,
+    THEME_CONFIGURATION.defaultLanguage
+  );
+
   return [
     {
-      path: getLocalPathByTheme(theme)["legal-notices"],
+      path: localizedPaths[LegalPage.LEGAL_NOTICES],
       component: LegalNoticesComponent,
       canActivate: [LanguageGuard],
     },
     {
-      path: getLocalPathByTheme(theme)["privacy-policy"],
+      path: localizedPaths[LegalPage.PRIVACY_POLICY],
       component: PrivacyPolicyComponent,
       canActivate: [LanguageGuard],
     },
     {
-      path: getLocalPathByTheme(theme)["data-processing-agreement"],
+      path: localizedPaths[LegalPage.DATA_PROCESSING_AGREEMENT],
       component: DataProcessingAgreementComponent,
       canActivate: [LanguageGuard],
     },
     {
-      path: getLocalPathByTheme(theme)["cookie-policy"],
+      path: localizedPaths[LegalPage.COOKIE_POLICY],
       component: CookiePolicyComponent,
       canActivate: [LanguageGuard],
     },
     {
-      path: getLocalPathByTheme(theme)["gcu"],
+      path: localizedPaths[LegalPage.GCU],
       component: GcuComponent,
       canActivate: [LanguageGuard],
     },
+    // Legacy paths without a language segment, redirected to the default language
     {
-      path: LOCAL_PATH_ROUTES_BY_THEME["legal-notices"][theme],
-      redirectTo: `${
-        getLocalPathByTheme(theme, THEME_CONFIGURATION.defaultLanguage)[
-          "legal-notices"
-        ]
-      }`,
+      path: LEGAL_PAGE_SLUGS_BY_THEME[LegalPage.LEGAL_NOTICES][theme],
+      redirectTo: defaultLanguagePaths[LegalPage.LEGAL_NOTICES],
     },
     {
-      path: "privacy-policy",
-      redirectTo: `${
-        getLocalPathByTheme(theme, THEME_CONFIGURATION.defaultLanguage)[
-          "privacy-policy"
-        ]
-      }`,
+      path: LegalPage.PRIVACY_POLICY,
+      redirectTo: defaultLanguagePaths[LegalPage.PRIVACY_POLICY],
     },
     {
-      path: "cookie-policy",
-      redirectTo: `${
-        getLocalPathByTheme(theme, THEME_CONFIGURATION.defaultLanguage)[
-          "cookie-policy"
-        ]
-      }`,
+      path: LegalPage.COOKIE_POLICY,
+      redirectTo: defaultLanguagePaths[LegalPage.COOKIE_POLICY],
     },
     {
-      path: "data-processing-agreement",
-      redirectTo: `${
-        getLocalPathByTheme(theme, THEME_CONFIGURATION.defaultLanguage)[
-          "data-processing-agreement"
-        ]
-      }`,
+      path: LegalPage.DATA_PROCESSING_AGREEMENT,
+      redirectTo: defaultLanguagePaths[LegalPage.DATA_PROCESSING_AGREEMENT],
     },
     {
-      path: "gcu",
-      redirectTo: `${
-        getLocalPathByTheme(theme, THEME_CONFIGURATION.defaultLanguage)["gcu"]
-      }`,
+      path: LegalPage.GCU,
+      redirectTo: defaultLanguagePaths[LegalPage.GCU],
     },
   ];
 }
