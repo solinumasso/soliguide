@@ -4,6 +4,8 @@ import "./instrument";
 import { connectToDatabase } from "./config/database/connection";
 
 import express, { NextFunction, Request, Response } from "express";
+
+import { errorHandler } from "./middleware/error-handler.middleware";
 import compression from "compression";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -220,6 +222,9 @@ _app.use((req: Request, res: Response) => {
     res.status(404).send({ message: `Route ${req.url} not found.` });
   }
 });
+
+// Must stay last: Express only treats a four-argument middleware as an error handler
+_app.use(errorHandler);
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
 (async () => {
