@@ -3,6 +3,7 @@ import { AnyDepartmentCode } from "../../location";
 import { Phone } from "../../phone";
 import { OperationalAreas } from "../../users";
 import { Relations } from "../types";
+import type { Registrations } from "../../registrations";
 
 export interface ApiOrganization {
   _id?: string;
@@ -39,6 +40,8 @@ export interface ApiOrganization {
     status: boolean;
   };
   website: string | null;
+  /** Official identifiers (SIRET only for now) */
+  registrations?: Registrations;
   places: any[];
   roles: any[];
   users: any[];

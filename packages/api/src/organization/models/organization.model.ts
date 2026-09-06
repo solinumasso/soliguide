@@ -1,7 +1,12 @@
-import { ApiOrganization, CampaignStatus, RELATIONS } from "@soliguide/common";
+import {
+  ApiOrganization,
+  CampaignStatus,
+  REGISTRATION_SCHEMES,
+  RELATIONS,
+} from "@soliguide/common";
 import mongoose, { model } from "mongoose";
 import { ModelWithId } from "../../_models";
-import { PhoneSchema } from "../../place/models";
+import { PhoneSchema, registrationsField } from "../../place/models";
 
 /**
  * @swagger
@@ -313,6 +318,8 @@ const OrganizationSchema = new mongoose.Schema<ModelWithId<ApiOrganization>>(
       default: false,
       type: Boolean,
     },
+    // Official identifiers (SIRET, RNA...) keyed by scheme
+    registrations: registrationsField(REGISTRATION_SCHEMES),
     relations: {
       default: [],
       type: [{ enum: RELATIONS, type: String }],
@@ -345,6 +352,13 @@ const OrganizationSchema = new mongoose.Schema<ModelWithId<ApiOrganization>>(
 );
 
 OrganizationSchema.index({ places: 1 }, { sparse: true });
+// One sparse index per official identifier scheme (non unique)
+for (const scheme of REGISTRATION_SCHEMES) {
+  OrganizationSchema.index(
+    { [`registrations.${scheme}.value`]: 1 },
+    { sparse: true }
+  );
+}
 
 export const OrganizationModel = model(
   "Organization",

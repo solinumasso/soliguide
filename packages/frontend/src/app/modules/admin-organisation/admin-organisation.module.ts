@@ -36,6 +36,8 @@ import { SharedModule } from "../shared/shared.module";
 
 import { UsersModule } from "../users/users.module";
 import { FormPhoneInputComponent } from "../shared/components/form-phone/form-phone-input.component";
+import { RegistrationsFormComponent } from "../shared/components/registrations-form/registrations-form.component";
+import { DisplayRegistrationsComponent } from "../shared/components/display-registrations/display-registrations.component";
 import { FormatInternationalPhoneNumberPipe } from "../shared";
 
 @NgModule({
@@ -71,6 +73,8 @@ import { FormatInternationalPhoneNumberPipe } from "../shared";
     UsersModule,
     FormatInternationalPhoneNumberPipe,
     FormPhoneInputComponent,
+    RegistrationsFormComponent,
+    DisplayRegistrationsComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

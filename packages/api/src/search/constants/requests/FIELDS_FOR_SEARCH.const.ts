@@ -1,7 +1,7 @@
 export const FIELDS_FOR_SEARCH: {
   [key: string]: string;
 } = {
-  API: "close createdAt description distance entity lieu_id modalities name newhours position.address position.additionalInformation position.city position.cityCode position.postalCode position.department position.departmentCode position.regionCode position.country position.timeZone position.adresse position.codePostal position.complementAdresse position.departement position.location position.pays position.region position.ville publics seo_url services_all status sources tempInfos updatedAt visibility country",
+  API: "close createdAt description distance entity lieu_id modalities name newhours position.address position.additionalInformation position.city position.cityCode position.postalCode position.department position.departmentCode position.regionCode position.country position.timeZone position.adresse position.codePostal position.complementAdresse position.departement position.location position.pays position.region position.ville publics registrations seo_url services_all status sources tempInfos updatedAt visibility country",
   EXPORT_PLACE: "-geoZones -parcours -photos -stepsDone",
   MANAGE_PARCOURS:
     "-geoZones -modalities -newhours -photos -position -publics -services_all -stepsDone",

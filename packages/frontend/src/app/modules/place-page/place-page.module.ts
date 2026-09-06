@@ -16,6 +16,7 @@ import { PlaceComponent } from "./components/place/place.component";
 import { PlaceModule } from "../place/place.module";
 import { DisplayTempBannerComponent } from "../place/standalone-components/display-temp-banner/display-temp-banner.component";
 import { DisplayHolidaysComponent } from "../place/standalone-components/display-holidays/display-holidays.component";
+import { DisplayRegistrationsComponent } from "../shared/components/display-registrations/display-registrations.component";
 import { CrowdsourceInfoCardComponent } from "../shared/components/crowdsource-info-card/crowdsource-info-card.component";
 
 @NgModule({
@@ -34,6 +35,7 @@ import { CrowdsourceInfoCardComponent } from "../shared/components/crowdsource-i
     TranslateModule,
     CampaignSharedModule,
     DisplayHorairesComponent,
+    DisplayRegistrationsComponent,
     DisplayTempBannerComponent,
     DisplayHolidaysComponent,
     CrowdsourceInfoCardComponent,

@@ -64,6 +64,11 @@
                 <b>{{ "FAX" | translate }} : </b>
                 {{ organisation.fax }}
               </li>
+              <li>
+                <app-display-registrations
+                  [registrations]="organisation.registrations"
+                ></app-display-registrations>
+              </li>
               <li *ngIf="organisation.facebook">
                 <b>{{ "FACEBOOK" | translate }} : </b>
                 <a

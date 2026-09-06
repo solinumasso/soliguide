@@ -190,6 +190,8 @@ export class InfosComponent implements OnInit, OnDestroy {
         website: [this.place.entity.website, [UrlValidator]],
       }),
       country: [THEME_CONFIGURATION.country],
+      // Official identifiers, written by <app-registrations-form>
+      registrations: [this.place.registrations ?? {}],
     });
     this.initialPlaceType = this.place.placeType ?? PlaceType.PLACE;
   }

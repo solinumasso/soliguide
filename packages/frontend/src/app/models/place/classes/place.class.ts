@@ -11,6 +11,7 @@ import {
   PlaceVisibility,
   Publics,
   CommonPlaceSource,
+  type Registrations,
   CommonNewPlaceService,
   PlaceOpeningStatus,
   SupportedLanguagesCode,
@@ -80,6 +81,8 @@ export class Place implements Partial<ApiPlace> {
   public disabled: boolean; // Frontend variable only: used for definitively closed and drafts
   public priority?: boolean;
   public sources?: PlaceSource[];
+  // Official identifiers (SIRET, RNA...) keyed by scheme
+  public registrations: Registrations = {};
   public country: SoliguideCountries;
   public openingTagStatus: PlaceOpeningStatus = PlaceOpeningStatus.UNKNOWN;
 
@@ -105,6 +108,7 @@ export class Place implements Partial<ApiPlace> {
     this.visibility = place?.visibility ?? PlaceVisibility.ALL;
     this.isOpenToday = place?.isOpenToday ?? true;
     this.country = place?.country;
+    this.registrations = place?.registrations ?? {};
 
     this.name = place?.name ?? null;
     this.organizations = place?.organizations ?? [];

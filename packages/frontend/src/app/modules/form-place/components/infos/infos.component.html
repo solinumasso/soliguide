@@ -113,6 +113,14 @@
               </p>
             </div>
 
+            <div class="col-12">
+              <app-registrations-form
+                [parentForm]="infosForm"
+                [registrations]="place.registrations"
+                [submitted]="submitted"
+              ></app-registrations-form>
+            </div>
+
             <div class="col-12 required">
               <label class="form-label mb-0" for="description">{{
                 "DESCRIPTION" | translate

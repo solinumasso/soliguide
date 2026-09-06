@@ -136,6 +136,13 @@
                 [submitted]="submitted"
               ></app-form-phone-input>
             </div>
+            <div class="col-12 my-2">
+              <app-registrations-form
+                [parentForm]="orgaForm"
+                [registrations]="organisation.registrations"
+                [submitted]="submitted"
+              ></app-registrations-form>
+            </div>
             <div class="col-md-6 my-2 col-12">
               <label class="form-label" for="facebook">
                 {{ "FACEBOOK_PAGE" | translate }}
