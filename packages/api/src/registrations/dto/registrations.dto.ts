@@ -1,15 +1,13 @@
 import { body } from "express-validator";
 
-import {
-  getRegistrationSchemesForCountry,
-  type SoliguideCountries,
-} from "@soliguide/common";
+import { getRegistrationSchemesForCountry } from "@soliguide/common";
 
 import type { ExpressRequest } from "../../_models";
 import { validateRegistrations } from "../functions";
 
+// `country` is validated by its own chain, but chains run independently: the helper must cope with any raw value
 const getAllowedSchemes = (req: ExpressRequest) =>
-  getRegistrationSchemesForCountry(req.body?.country as SoliguideCountries);
+  getRegistrationSchemesForCountry(req.body?.country);
 
 /**
  * Validates and normalizes the optional `registrations` field of a body.
