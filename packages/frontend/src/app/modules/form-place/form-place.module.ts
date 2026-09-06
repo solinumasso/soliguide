@@ -83,6 +83,7 @@ import { SearchMapComponent } from "../place/standalone-components/search-map/se
 import { FormatInternationalPhoneNumberPipe } from "../shared";
 import { FormIntlPhoneInputComponent } from "../shared/components/form-phone-input/form-intl-phone-input.component";
 import { FormPhoneInputComponent } from "../shared/components/form-phone/form-phone-input.component";
+import { RegistrationsFormComponent } from "../shared/components/registrations-form/registrations-form.component";
 import { LocationAutocompleteComponent } from "../shared/components/location-autocomplete/location-autocomplete.component";
 
 @NgModule({
@@ -159,6 +160,7 @@ import { LocationAutocompleteComponent } from "../shared/components/location-aut
     FormIntlPhoneInputComponent,
     FormatInternationalPhoneNumberPipe,
     FormPhoneInputComponent,
+    RegistrationsFormComponent,
     DisplayHorairesComponent,
   ],
 })

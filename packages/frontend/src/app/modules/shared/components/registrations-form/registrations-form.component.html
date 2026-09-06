@@ -1,0 +1,26 @@
+<fieldset
+  class="row"
+  [formGroup]="registrationsFormGroup"
+  *ngIf="registrationsFormGroup && schemes.length"
+>
+  <legend class="visually-hidden">{{ "REGISTRATIONS" | translate }}</legend>
+  <div class="mb-3 col-12 col-md-6" *ngFor="let scheme of schemes">
+    <label class="form-label" for="registration-{{ scheme }}">{{
+      "REGISTRATION_SCHEME_" + scheme | uppercase | translate
+    }}</label>
+    <input
+      type="text"
+      class="form-control"
+      id="registration-{{ scheme }}"
+      [formControlName]="scheme"
+      autocomplete="off"
+      maxlength="30"
+      [ngClass]="{
+        'is-valid': f[scheme].dirty && f[scheme].value
+      }"
+    />
+    <div class="input-description">
+      {{ "REGISTRATION_SCHEME_" + scheme + "_HELP" | uppercase | translate }}
+    </div>
+  </div>
+</fieldset>

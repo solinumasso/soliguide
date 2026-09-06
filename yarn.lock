@@ -9917,7 +9917,7 @@ __metadata:
     "@types/swagger-jsdoc": "npm:^6.0.4"
     "@types/swagger-ui-express": "npm:^4.1.8"
     "@types/uuid": "npm:^10.0.0"
-    "@types/validator": "npm:13.11.8"
+    "@types/validator": "npm:^13.15.10"
     "@typescript-eslint/eslint-plugin": "npm:^6.21.0"
     "@typescript-eslint/parser": "npm:^6.21.0"
     amqp-connection-manager: "npm:^4.1.14"
@@ -9978,6 +9978,7 @@ __metadata:
     rimraf: "npm:^6.1.3"
     rxjs: "npm:^7.8.2"
     slug: "npm:^9.1.0"
+    spain-id: "npm:^1.1.14"
     striptags: "npm:^3.2.0"
     supertest: "npm:^7.1.3"
     swagger-jsdoc: "npm:^6.2.8"
@@ -28974,6 +28975,13 @@ __metadata:
   version: 1.4.8
   resolution: "sourcemap-codec@npm:1.4.8"
   checksum: 10/6fc57a151e982b5c9468362690c6d062f3a0d4d8520beb68a82f319c79e7a4d7027eeb1e396de0ecc2cd19491e1d602b2d06fd444feac9b63dd43fea4c55a857
+  languageName: node
+  linkType: hard
+
+"spain-id@npm:^1.1.14":
+  version: 1.1.14
+  resolution: "spain-id@npm:1.1.14"
+  checksum: 10/3e3e659574d06bacfd305b67bdf75cb22d0dfbb5e1f03cd68d8e0fa21e5b47d7bf2bd3fd26a7c9ceb06edbf619aec9736fa8a3147257801be146d7c4315a5710
   languageName: node
   linkType: hard
 

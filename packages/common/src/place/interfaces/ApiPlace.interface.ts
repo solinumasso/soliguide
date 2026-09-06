@@ -12,6 +12,7 @@ import { Modalities } from "../../modalities";
 import { Publics } from "../../publics";
 import { CommonOpeningHours } from "../../hours";
 import { StructureType } from "../../structure-type";
+import type { Registrations } from "../../registrations";
 import { SupportedLanguagesCode } from "../../translations";
 import { PlaceStepsDone } from "./PlaceStepsDone.interface";
 import { PlaceSlugs } from "./PlaceSlugs.interface";
@@ -57,6 +58,9 @@ export interface ApiPlace {
   tempInfos: PlaceTempInfo;
 
   sources?: CommonPlaceSource[];
+
+  /** Official identifiers (SIRET, RNA...) keyed by scheme, all from the place's country */
+  registrations?: Registrations;
 
   /** @deprecated Crisis campaigns hardcodées. Nouveau modèle: collection `campaign_place_participations`. */
   campaigns?: any;

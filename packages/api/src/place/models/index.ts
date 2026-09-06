@@ -13,6 +13,7 @@ export * from "./place.model";
 export * from "./placeUpdateCampaign.model";
 export * from "./position.model";
 export * from "./publics.model";
+export * from "./registrations.model";
 export * from "./service.model";
 export * from "./source.model";
 export * from "./temp-info.model";

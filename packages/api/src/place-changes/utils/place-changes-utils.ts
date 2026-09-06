@@ -7,11 +7,29 @@ import {
   CommonNewPlaceService,
   CommonPlaceDocument,
   CampaignChangesSection,
+  Registrations,
 } from "@soliguide/common";
 
 import { ApiPlacePhoto } from "../../_models";
 import dot from "dot-object";
 import { isDeepStrictEqual } from "util";
+
+/**
+ * `registrations` only enters the history comparison when it holds something.
+ * The field was added without a data migration: an older document has no field at all,
+ * a freshly saved one has an empty map, and neither must count as a change.
+ * Also tolerates a Mongoose Map (non-lean document).
+ */
+export const getRegistrationsForHistory = (
+  registrations: ApiPlace["registrations"] | Map<string, unknown> | undefined
+): { registrations: Registrations } | Record<string, never> => {
+  const asObject: Registrations =
+    registrations instanceof Map
+      ? (Object.fromEntries(registrations) as Registrations)
+      : registrations ?? {};
+
+  return Object.keys(asObject).length ? { registrations: asObject } : {};
+};
 
 export const getGeneralInformation = (
   place: ApiPlace | null
@@ -19,11 +37,13 @@ export const getGeneralInformation = (
   entity: CommonPlaceEntity | null;
   name: string | null;
   description: string | null;
+  registrations?: Registrations;
 } => {
   return {
     entity: place?.entity ?? null,
     name: place?.name ?? null,
     description: place?.description ?? null,
+    ...getRegistrationsForHistory(place?.registrations),
   };
 };
 
