@@ -1,46 +1,36 @@
-import { ObjectId } from "bson";
-
 import { body } from "express-validator";
 
 import mongoose from "mongoose";
 
 import { CHECK_STRING_NULL } from "../../config/expressValidator.config";
 
+/**
+ * `isMongoId` replaces `ObjectId.isValid`, which also accepts any number and any
+ * twelve-character string. `bail()` keeps the conversion from running on a value the
+ * check refused: a BSON error raised inside a sanitizer escapes the chain, and
+ * express-validator answers 500 instead of 400.
+ *
+ * The optional variants are skipped only when the field is absent or null. An empty
+ * string is accepted and becomes null, which is how a client clears the reference;
+ * every other value is checked rather than copied into the validated body.
+ */
 export const validObjectIdDto = [
-  body("_id")
-    .exists()
-    .custom((value) => {
-      return ObjectId.isValid(value);
-    }),
+  body("_id").exists(CHECK_STRING_NULL).isString().bail().isMongoId(),
 ];
 
-export const parseObjectIdOptionalDto = [
-  body("_id")
-    .if(body("_id").exists(CHECK_STRING_NULL))
-    .custom((value) => {
-      if (!value) {
-        return true;
-      }
-      return ObjectId.isValid(value);
-    })
-    .customSanitizer((value) => {
-      if (value) {
-        return new mongoose.Types.ObjectId(value);
-      }
-      return null;
-    }),
-];
+const optionalObjectIdChain = (path: string) =>
+  body(path)
+    .optional({ values: "null" })
+    .isString()
+    .bail()
+    .custom((value: string) => value === "" || mongoose.isValidObjectId(value))
+    .bail()
+    .customSanitizer((value: string) =>
+      value === "" ? null : new mongoose.Types.ObjectId(value)
+    );
+
+export const parseObjectIdOptionalDto = [optionalObjectIdChain("_id")];
 
 export const parseServiceObjectIdDto = [
-  body("serviceObjectId")
-    .if(body("serviceObjectId").exists(CHECK_STRING_NULL))
-    .custom((value) => {
-      return ObjectId.isValid(value);
-    })
-    .customSanitizer((value) => {
-      if (value) {
-        return new mongoose.Types.ObjectId(value);
-      }
-      return null;
-    }),
+  optionalObjectIdChain("serviceObjectId"),
 ];
