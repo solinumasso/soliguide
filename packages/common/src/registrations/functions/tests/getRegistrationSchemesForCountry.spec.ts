@@ -34,6 +34,24 @@ describe("getRegistrationSchemesForCountry", () => {
     ]);
   });
 
+  it.each([
+    undefined,
+    null,
+    "",
+    "XX",
+    "constructor",
+    "__proto__",
+    "toString",
+    {},
+    ["FR"],
+  ])(
+    "should return no scheme for a value that is not a Soliguide country (%p)",
+    (country) => {
+      expect(getRegistrationSchemesForCountry(country)).toEqual([]);
+      expect(getRegistrationFormSchemesForCountry(country)).toEqual([]);
+    }
+  );
+
   it("should only propose SIRET in French forms, RNA staying accepted", () => {
     expect(getRegistrationFormSchemesForCountry(CountryCodes.FR)).toEqual([
       RegistrationScheme.SIRET,

@@ -65,6 +65,7 @@ export const baseEditOrganizationDto = [
 
 export const orgaDto = [
   ...baseEditOrganizationDto,
+  // `country` is required here: territoriesDto ends with countryDto
   ...territoriesDto,
   // Optional official identifiers, restricted to the schemes of `country`
   ...registrationsDto,
