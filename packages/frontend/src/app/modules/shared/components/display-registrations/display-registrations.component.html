@@ -1,0 +1,21 @@
+<ng-container *ngIf="displayedRegistrations.length">
+  <div class="registration" *ngFor="let registration of displayedRegistrations">
+    <b
+      >{{
+        "REGISTRATION_SCHEME_" + registration.scheme | uppercase | translate
+      }}
+      :
+    </b>
+    <a
+      *ngIf="registration.registryUrl; else plainValue"
+      [href]="registration.registryUrl"
+      target="_blank"
+      rel="noopener noreferrer"
+      [title]="'REGISTRATION_SEE_REGISTRY' | translate"
+      >{{ registration.value }}</a
+    >
+    <ng-template #plainValue>
+      <span>{{ registration.value }}</span>
+    </ng-template>
+  </div>
+</ng-container>

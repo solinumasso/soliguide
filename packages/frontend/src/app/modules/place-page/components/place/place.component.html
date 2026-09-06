@@ -109,6 +109,12 @@
               </ng-container>
             </div>
 
+            <!-- Official identifiers (SIRET, RNA...) -->
+            <app-display-registrations
+              class="d-block pb-3"
+              [registrations]="place.registrations"
+            ></app-display-registrations>
+
             <!-- Publics -->
             <app-display-publics-inline
               [publics]="place.publics"

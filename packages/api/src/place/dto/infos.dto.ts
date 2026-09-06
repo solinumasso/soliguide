@@ -5,6 +5,7 @@ import { PlaceType } from "@soliguide/common";
 import { entityDto } from "./entity.dto";
 
 import { countryDto, stringDto } from "../../_utils/dto";
+import { registrationsDto } from "../../registrations";
 
 export const infoDto = (auto = false) => [
   // Whether the place is automatically inserted
@@ -27,4 +28,6 @@ export const infoDto = (auto = false) => [
 
   ...countryDto,
   ...entityDto,
+  // Optional official identifiers (SIRET, RNA...), restricted to the schemes of `country`
+  ...registrationsDto,
 ];

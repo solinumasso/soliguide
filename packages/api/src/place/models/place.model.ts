@@ -8,6 +8,7 @@ import {
   PlaceUpdateCampaign,
   PlaceVisibility,
   Publics,
+  REGISTRATION_SCHEMES,
   SOLIGUIDE_COUNTRIES,
   STRUCTURE_TYPES,
   SUPPORTED_LANGUAGES,
@@ -19,6 +20,7 @@ import { GeoZoneSchema } from "./geoZone.model";
 import { ModalitiesSchema } from "./modalities.model";
 import { PlaceUpdateCampaignSchema } from "./placeUpdateCampaign.model";
 import { PublicsSchema } from "./publics.model";
+import { registrationsField } from "./registrations.model";
 
 import { TEMP_INFO } from "./default_values/TEMP_INFO.const";
 import { EntitySchema } from "./entity.model";
@@ -159,6 +161,9 @@ const PlaceSchema = new mongoose.Schema(
       type: Boolean,
     },
 
+    // Official identifiers (SIRET, RNA...) keyed by scheme
+    registrations: registrationsField(REGISTRATION_SCHEMES),
+
     publics: {
       default: new Publics(),
       type: PublicsSchema,
@@ -234,6 +239,11 @@ const PlaceSchema = new mongoose.Schema(
 );
 
 PlaceSchema.index({ createdAt: 1, updatedAt: 1 });
+
+// One sparse index per official identifier scheme (non unique: a head office SIRET is shared by its branches)
+for (const scheme of REGISTRATION_SCHEMES) {
+  PlaceSchema.index({ [`registrations.${scheme}.value`]: 1 }, { sparse: true });
+}
 
 // Index for setOfflineJob cron: finds ONLINE places not updated for 6 months
 PlaceSchema.index({ status: 1, updatedByUserAt: 1 });

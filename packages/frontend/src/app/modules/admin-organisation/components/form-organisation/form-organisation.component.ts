@@ -134,6 +134,8 @@ export class FormOrganisationComponent implements OnInit, OnDestroy {
         this.me.admin ? [Validators.required] : [],
       ],
       country: [this.countryCode],
+      // Official identifiers, written by <app-registrations-form>
+      registrations: [this.organisation.registrations ?? {}],
     });
   };
 

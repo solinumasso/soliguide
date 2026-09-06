@@ -36,6 +36,8 @@ import { SharedModule } from "../shared/shared.module";
 
 import { UsersModule } from "../users/users.module";
 import { FormPhoneInputComponent } from "../shared/components/form-phone/form-phone-input.component";
+import { RegistrationsFormComponent } from "../shared/components/registrations-form/registrations-form.component";
+import { DisplayRegistrationsComponent } from "../shared/components/display-registrations/display-registrations.component";
 import { FormatInternationalPhoneNumberPipe } from "../shared";
 import { CampaignHeatwaveLinkComponent } from "../campaign/components/campaign-heatwave-link/campaign-heatwave-link.component";
 
@@ -72,6 +74,8 @@ import { CampaignHeatwaveLinkComponent } from "../campaign/components/campaign-h
     UsersModule,
     FormatInternationalPhoneNumberPipe,
     FormPhoneInputComponent,
+    RegistrationsFormComponent,
+    DisplayRegistrationsComponent,
     CampaignHeatwaveLinkComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

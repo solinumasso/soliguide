@@ -6,6 +6,7 @@ import {
   AnyDepartmentCode,
   OperationalAreas,
   getTerritoriesFromAreas,
+  type Registrations,
 } from "@soliguide/common";
 import { CampaignsForOrga } from "./campaigns-for-orga.interface";
 import { Invitation } from "../../users/classes/invitation.class";
@@ -38,6 +39,8 @@ export class Organisation implements Partial<ApiOrganization> {
   };
   public priority: boolean;
   public relations: Relations[];
+  // Official identifiers (SIRET only for now)
+  public registrations: Registrations;
 
   public isCampaignActive: boolean;
   public areas: OperationalAreas;
@@ -87,6 +90,7 @@ export class Organisation implements Partial<ApiOrganization> {
     this.createdAt = organisation?.createdAt ?? new Date();
     this.lastLogin = organisation?.lastLogin ?? null;
     this.relations = organisation?.relations ?? [];
+    this.registrations = organisation?.registrations ?? {};
     if (populate) {
       this.invitations = this.invitations.filter(
         (invitation: Invitation) => invitation.pending

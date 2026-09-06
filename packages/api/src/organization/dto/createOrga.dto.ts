@@ -14,6 +14,7 @@ import {
   RELATIONS,
 } from "@soliguide/common";
 import { checkPhone } from "../../place/dto/phones.dto";
+import { registrationsDto } from "../../registrations";
 
 export const baseEditOrganizationDto = [
   body("name")
@@ -62,4 +63,9 @@ export const baseEditOrganizationDto = [
     }),
 ];
 
-export const orgaDto = [...baseEditOrganizationDto, ...territoriesDto];
+export const orgaDto = [
+  ...baseEditOrganizationDto,
+  ...territoriesDto,
+  // Optional official identifiers, restricted to the schemes of `country`
+  ...registrationsDto,
+];
