@@ -1,5 +1,5 @@
 import { body } from "express-validator";
-
+// pour lancer la ci
 import { territoriesDto, checkUrlFieldDto } from "../../_utils/dto";
 import { formatPhoneNumber } from "../../_utils/functions/formatPhoneNumber.functions";
 
