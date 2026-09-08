@@ -1,4 +1,5 @@
 import { ApiOrganization } from "@soliguide/common";
+import { getNextSequence } from "../../sequences";
 import mongoose, {
   ClientSession,
   FilterQuery,
@@ -142,15 +143,18 @@ export const updateOrga = (
     .exec();
 };
 
-export const getNextOrgaId = async (): Promise<number> => {
+const readHighestOrgaId = async (): Promise<number> => {
   const lastOrga = await OrganizationModel.findOne()
     .sort({ organization_id: -1 })
     .select("organization_id")
     .lean()
     .exec();
 
-  return lastOrga ? lastOrga.organization_id + 1 : 1;
+  return lastOrga?.organization_id ?? 0;
 };
+
+export const getNextOrgaId = (): Promise<number> =>
+  getNextSequence("organization_id", readHighestOrgaId);
 
 export const countOrgas = (
   query: FilterQuery<ApiOrganization>
