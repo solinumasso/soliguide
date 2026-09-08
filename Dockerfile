@@ -25,6 +25,7 @@ COPY packages/maintenance/package.json /app/packages/maintenance/
 COPY packages/taxonomy/package.json /app/packages/taxonomy/
 COPY packages/web-app/package.json /app/packages/web-app/
 COPY packages/widget/package.json /app/packages/widget/
+COPY packages/public-api/package.json /app/packages/public-api/
 
 RUN corepack enable
 

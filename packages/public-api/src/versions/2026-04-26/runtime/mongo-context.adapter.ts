@@ -1,0 +1,108 @@
+import { Injectable } from "@nestjs/common";
+
+import { PlaceModel } from "@soliguide/api";
+
+import type { VersionContextInput } from "../../../versioning-engine/dsl";
+import {
+  V20260426Context,
+  V20260426ContextProvider,
+  V20260426To20260101PlaceRestoreSnapshot,
+} from "./context";
+
+const MONGO_OBJECT_ID_PATTERN = /^[0-9a-fA-F]{24}$/;
+
+@Injectable()
+export class V20260426MongoContextProvider implements V20260426ContextProvider {
+  public async getContext(
+    input: VersionContextInput
+  ): Promise<V20260426Context> {
+    const ids = this.collectPlaceIds(input.payload);
+
+    if (ids.length === 0) {
+      return { legacyPlacesById: {} };
+    }
+
+    const numericIds = ids.map(Number).filter((id) => Number.isFinite(id));
+    const objectIds = ids.filter((id) => MONGO_OBJECT_ID_PATTERN.test(id));
+    const clauses = [];
+
+    if (numericIds.length) {
+      clauses.push({ lieu_id: { $in: numericIds } });
+    }
+
+    if (objectIds.length) {
+      clauses.push({ _id: { $in: objectIds } });
+    }
+
+    if (!clauses.length) {
+      return { legacyPlacesById: {} };
+    }
+
+    const places = await PlaceModel.find({ $or: clauses }).lean().exec();
+
+    return this.indexLegacyPlaces(
+      places as V20260426To20260101PlaceRestoreSnapshot[]
+    );
+  }
+
+  private collectPlaceIds(payload: unknown): string[] {
+    const ids = new Set<string>();
+
+    for (const place of this.readPlaces(payload)) {
+      for (const id of [place.lieu_id, place._id]) {
+        if (id !== undefined && id !== null) {
+          ids.add(this.stringifyId(id));
+        }
+      }
+    }
+
+    return [...ids];
+  }
+
+  private readPlaces(payload: unknown): Array<Record<string, unknown>> {
+    if (!this.isRecord(payload)) {
+      return [];
+    }
+
+    const places = payload.places;
+
+    return Array.isArray(places)
+      ? places.filter((item) => this.isRecord(item))
+      : [];
+  }
+
+  private isRecord(value: unknown): value is Record<string, unknown> {
+    return value !== null && typeof value === "object" && !Array.isArray(value);
+  }
+
+  private indexLegacyPlaces(
+    places: V20260426To20260101PlaceRestoreSnapshot[]
+  ): V20260426Context {
+    const legacyPlacesById: V20260426Context["legacyPlacesById"] = {};
+
+    for (const place of places) {
+      for (const id of [place.lieu_id, place._id]) {
+        if (id !== undefined && id !== null) {
+          legacyPlacesById[this.stringifyId(id)] = place;
+        }
+      }
+    }
+
+    return { legacyPlacesById };
+  }
+
+  private stringifyId(id: unknown): string {
+    if (typeof id === "object" && id !== null && "toHexString" in id) {
+      const toHexString = id.toHexString;
+      if (typeof toHexString === "function") {
+        return toHexString.call(id);
+      }
+    }
+
+    if (typeof id === "string" || typeof id === "number") {
+      return id.toString();
+    }
+
+    return JSON.stringify(id) ?? "";
+  }
+}

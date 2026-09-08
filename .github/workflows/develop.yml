@@ -31,6 +31,7 @@ jobs:
     # HEAD of develop, avoiding stale mutable `develop` tags cached by Qovery.
     with:
       deploy_api: true
+      deploy_public-api: true
       deploy_frontend: true
       deploy_location-api: true
       deploy_web-app: true

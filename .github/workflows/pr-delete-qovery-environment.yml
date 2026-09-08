@@ -60,6 +60,7 @@ jobs:
         subdomain:
           - ph
           - api
+          - public-api
           - fr
           - es
           - ad
