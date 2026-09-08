@@ -4,7 +4,7 @@ import { PlaceType } from "@soliguide/common";
 
 import { entityDto } from "./entity.dto";
 
-import { countryDto, richTextDto, stringDto } from "../../_utils/dto";
+import { countryDto, richTextDto } from "../../_utils/dto";
 
 export const infoDto = (auto = false) => [
   // Whether the place is automatically inserted
