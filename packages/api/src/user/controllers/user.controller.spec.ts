@@ -77,8 +77,18 @@ describe("UserController", () => {
   });
 
   afterAll(async () => {
-    await OrganizationController.removeOrganization(organization);
-    await UserAdminController.deleteUser(user);
-    mongoose.connection.close();
+    // The clean-up runs on the entities the tests managed to create, and the
+    // connection is closed whatever happens, otherwise a failure leaves the
+    // Jest worker hanging instead of reporting the failure.
+    try {
+      if (organization) {
+        await OrganizationController.removeOrganization(organization);
+      }
+      if (user) {
+        await UserAdminController.deleteUser(user);
+      }
+    } finally {
+      await mongoose.connection.close();
+    }
   });
 });
