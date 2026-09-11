@@ -2,5 +2,5 @@
 export * from "./formatPhoneNumber.functions";
 export * from "./territories.functions";
 export * from "./territory-search.functions";
-export * from "./html-tag-sanitizer";
+export * from "./text-parsers";
 export * from "./xml-control-chars";

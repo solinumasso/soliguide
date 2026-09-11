@@ -11,7 +11,7 @@ import { hoursDto } from "./hours.dto";
 import { modalitiesDto } from "./modalities.dto";
 import { publicsDto } from "./publics.dto";
 
-import { stringDto } from "../../_utils/dto";
+import { richTextDto, stringDto } from "../../_utils/dto";
 import { forceChangesDto } from "./forceChanges.dto";
 
 import { startAndEndDateDto } from "../../temp-info/dto/start-and-end-date.dto";
@@ -95,7 +95,7 @@ export const servicesDto = [
     "services_all.*.categorySpecificFields.wellnessActivityName"
   ),
 
-  stringDto("services_all.*.description", false, 4000),
+  richTextDto("services_all.*.description", false, 4000),
 
   // Opening hours
   body("services_all.*.differentHours").isBoolean(),

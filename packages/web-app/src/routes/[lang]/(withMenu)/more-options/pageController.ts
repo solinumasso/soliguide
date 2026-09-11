@@ -1,33 +1,18 @@
 import { posthogService } from '$lib/services/posthogService';
 import { type PosthogCaptureFunction } from '$lib/services/types';
 import { writable } from 'svelte/store';
-import type { PageController, PageLinks, PageState } from './types';
+import type { PageController, PageState } from './types';
 
-const initialLinks: PageLinks = {
-  fichesPratiquesLink: '#',
-  solinumSiteLink: '#',
-  becomeTranslatorLink: '#',
-  cookiePolicyLink: '#',
-  privacyPolicyLink: '#',
-  dataProtectionAgreementLink: '#',
-  legalNoticeLink: '#',
-  termsAndConditionsLink: '#'
-};
-
-/**
- * Avoid null values
- */
 const initialState: PageState = {
-  ...initialLinks,
   cookieModalOpen: false
 };
 
+/**
+ * The links displayed on this page come straight from the resolved theme and
+ * from the legal links store, so the controller only owns the modal state.
+ */
 export const getPageController = (): PageController => {
   const pageStore = writable(initialState);
-
-  const init = (links = initialLinks) => {
-    pageStore.set({ ...initialState, ...links });
-  };
 
   const openCookieModal = () => {
     pageStore.update((oldValue): PageState => ({ ...oldValue, cookieModalOpen: true }));
@@ -46,7 +31,6 @@ export const getPageController = (): PageController => {
 
   return {
     subscribe: pageStore.subscribe,
-    init,
     openCookieModal,
     closeCookieModal,
     captureEvent

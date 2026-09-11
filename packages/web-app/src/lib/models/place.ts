@@ -22,16 +22,25 @@ import {
 } from './types';
 import { displayCampaignInfo } from '$lib/utils';
 
+import { formatAddressOnOneLine } from './address';
+
 /**
  * Calculates the complete address to display
  */
 export const computeAddress = (position: CommonPlacePosition, onOrientation: boolean): string => {
   if (onOrientation) {
     return `${position.postalCode}, ${position.city}`;
-  } else if (position.additionalInformation) {
-    return `${position.address} - ${position.additionalInformation}`;
   }
-  return position.address;
+
+  // Places are stored with the full address label of their country, which for
+  // Spain and Andorra carries a province and a country nobody needs to read
+  const address = formatAddressOnOneLine(position.address, position.postalCode, position.city);
+
+  if (position.additionalInformation) {
+    return `${address} - ${position.additionalInformation}`;
+  }
+
+  return address;
 };
 
 /**

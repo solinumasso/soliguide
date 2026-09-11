@@ -1,37 +1,35 @@
 <script lang="ts">
+  import { getThemeContext } from '$lib/theme';
   import { createEventDispatcher, getContext } from 'svelte';
   import type { Phone } from '$lib/models/types';
   import PhoneIcon from 'svelte-google-materialdesign-icons/Phone.svelte';
-  import { get, writable } from 'svelte/store';
   import { Button, ButtonLink } from '@soliguide/design-system';
   import { parsePhoneNumber } from '@soliguide/common';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import type { I18nStore } from '$lib/client/types';
-  import type { ThemeDefinition } from '$lib/theme/types';
-  import { themeStore } from '$lib/theme';
 
   export let phones: Phone[] = [];
 
   export let type: 'primaryFill' | 'neutralOutlined' = 'primaryFill';
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
-  const theme: ThemeDefinition = get(themeStore.getTheme());
+  const theme = getThemeContext();
 
   const dispatch = createEventDispatcher();
 
-  const currentCountry = theme.country;
-  $: hasValidPhone = phones.length && phones[0].phoneNumber;
-  $: phoneHref = writable(
-    hasValidPhone ? `tel:${parsePhoneNumber(phones[0], currentCountry)}` : ''
-  );
+  // Same formatting as the Angular frontend, which uses parsePhoneNumber for both
+  // the displayed number and the call link. A number it cannot parse gets a
+  // disabled button rather than a dead link.
+  $: formattedNumber =
+    phones.map((phone) => parsePhoneNumber(phone, theme.country)).find(Boolean) ?? null;
 </script>
 
-{#if hasValidPhone}
+{#if formattedNumber}
   <ButtonLink
     icon
     size="small"
     {type}
-    href={$phoneHref}
+    href={`tel:${formattedNumber}`}
     title={$i18n.t('TO_CALL')}
     on:click={(event) => {
       dispatch('click', event);

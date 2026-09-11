@@ -1,11 +1,11 @@
 import {
   AutoCompleteType,
+  getSupportedLanguagesByCountry,
   SearchSuggestion,
   SUPPORTED_LANGUAGES_BY_COUNTRY,
   SoliguideCountries,
 } from "@soliguide/common";
 import Anthropic from "@anthropic-ai/sdk";
-import { getLangsForCountry } from "../utils/getLangsForCountry";
 import { LANGUAGE_NAMES } from "./constants";
 import { searchSuggestionsService } from "../search-suggestions.service";
 
@@ -29,7 +29,7 @@ export async function generateAutocompleteFiles(): Promise<void> {
   ) as SoliguideCountries[];
 
   for (const country of countries) {
-    const langs = getLangsForCountry(country);
+    const langs = getSupportedLanguagesByCountry(country);
     console.log(`\n🌍 Country: ${country} — Languages: ${langs.join(", ")}`);
 
     for (const lang of langs) {

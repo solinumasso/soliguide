@@ -11,8 +11,6 @@ import {
   type SoliguideCountries
 } from '@soliguide/common';
 import type { CategoryService } from './types';
-import { get } from 'svelte/store';
-import { themeStore } from '$lib/theme';
 import { loadSuggestionsData } from './searchSuggestionsData';
 
 type ParentToChildren = Record<Categories, Categories[]>;
@@ -125,6 +123,28 @@ export const getCategoryService = (currentThemeName: Themes): CategoryService =>
   };
 };
 
-const themeName = get(themeStore.getTheme()).name;
+/**
+ * Category services are immutable and keyed by theme, so caching them at module
+ * scope stays safe even though a single Node process serves several countries.
+ *
+ * They must never be built from a theme captured at import time: the theme is
+ * only known per request, and a module level snapshot would pin every country
+ * to the default taxonomy.
+ */
+const categoryServicesByTheme = new Map<Themes, CategoryService>();
 
-export const categoryService = getCategoryService(themeName);
+/** Context key under which the layout exposes the current theme's service. */
+export const CATEGORY_SERVICE_CTX_KEY = Symbol('categoryServiceContext');
+
+export const getCategoryServiceForTheme = (themeName: Themes): CategoryService => {
+  const cachedService = categoryServicesByTheme.get(themeName);
+
+  if (cachedService) {
+    return cachedService;
+  }
+
+  const categoryService = getCategoryService(themeName);
+  categoryServicesByTheme.set(themeName, categoryService);
+
+  return categoryService;
+};

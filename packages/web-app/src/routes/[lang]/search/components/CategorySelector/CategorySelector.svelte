@@ -1,13 +1,15 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher, getContext } from 'svelte';
 
   import { getCategorySelectorController } from './CategorySelectorController';
   import CategoryButton from './CategoryButton.svelte';
   import CategoryBrowser from './CategoryBrowser.svelte';
   import { CategoryBrowserState } from './types';
-  import { categoryService } from '$lib/services/categoryService';
+  import { CATEGORY_SERVICE_CTX_KEY } from '$lib/services/categoryService';
+  import type { CategoryService } from '$lib/services/types';
   import type { CategorySearch } from '$lib/constants';
 
+  const categoryService: CategoryService = getContext(CATEGORY_SERVICE_CTX_KEY);
   const pageStore = getCategorySelectorController(categoryService);
 
   const dispatch = createEventDispatcher();

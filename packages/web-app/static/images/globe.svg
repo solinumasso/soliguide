@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Soliguide: Useful information for those who need it
+
+SPDX-FileCopyrightText: © 2026 Solinum
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<svg width="53" height="54" viewBox="0 0 53 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Picto - globe" stroke="#F2705A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+<circle id="Sphere" cx="26.5" cy="27" r="20.5"/>
+<path id="Equator" d="M6 27H47"/>
+<path id="Tropics" d="M9.6 16.4H43.4M9.6 37.6H43.4" stroke-width="1.6" opacity="0.55"/>
+<path id="Meridian" d="M26.5 6.5C32.3 12.1 35.2 19 35.2 27C35.2 35 32.3 41.9 26.5 47.5C20.7 41.9 17.8 35 17.8 27C17.8 19 20.7 12.1 26.5 6.5Z"/>
+</g>
+</svg>

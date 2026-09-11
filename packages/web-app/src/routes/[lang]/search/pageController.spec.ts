@@ -148,6 +148,7 @@ const geolocFn = (): Promise<GeolocationPosition> =>
     toJSON: () => ''
   });
 const geolocFnError = () => Promise.reject(new Error('UNAUTHORIZED_LOCATION'));
+const geolocFnTimeout = () => Promise.reject(new Error('GEOLOCATION_TIMEOUT'));
 
 const createMockCategoryService = (): {
   service: CategoryService;
@@ -391,11 +392,11 @@ describe('Search page', () => {
       expect(get(pageState).currentPositionError).toBeNull();
     });
 
-    it('When geolocation is not authorized, no selection, we stay on page 1 and the modal opens', async () => {
+    it('When geolocation is not authorized, no selection, we stay on page 1 and the toast opens', async () => {
       await pageState.useCurrentLocation(geolocFnError);
       expect(get(pageState).selectedLocationSuggestion).toBeNull();
       expect(get(pageState).currentStep).toEqual(Steps.STEP_LOCATION);
-      expect(get(pageState).showGeolocationBlockedModal).toBeTruthy();
+      expect(get(pageState).showGeolocationBlockedToast).toBeTruthy();
       expect(get(pageState).currentPositionError).toBeNull();
     });
 
@@ -411,35 +412,42 @@ describe('Search page', () => {
     });
   });
 
-  describe('geolocation authorization modal', () => {
-    it('opens the recovery modal when geolocation is not authorized', async () => {
+  describe('geolocation authorization toast', () => {
+    it('opens the recovery toast when geolocation is not authorized', async () => {
       await pageState.useCurrentLocation(geolocFnError);
-      expect(get(pageState).showGeolocationBlockedModal).toBeTruthy();
+      expect(get(pageState).showGeolocationBlockedToast).toBeTruthy();
       expect(get(pageState).selectedLocationSuggestion).toBeNull();
       expect(get(pageState).currentPositionError).toBeNull();
     });
 
-    it('does not show the modal when geolocation succeeds', async () => {
+    it('does not show the toast when geolocation succeeds', async () => {
       feedWith([sampleSuggestions[0]]);
       await pageState.useCurrentLocation(geolocFn);
-      expect(get(pageState).showGeolocationBlockedModal).toBeFalsy();
+      expect(get(pageState).showGeolocationBlockedToast).toBeFalsy();
       expect(get(pageState).selectedLocationSuggestion).toEqual(sampleLocationSuggestion);
     });
 
-    it('closeGeolocationBlockedModal hides the modal', async () => {
+    it('dismissGeolocationError hides the toast', async () => {
       await pageState.useCurrentLocation(geolocFnError);
-      expect(get(pageState).showGeolocationBlockedModal).toBeTruthy();
-      pageState.closeGeolocationBlockedModal();
-      expect(get(pageState).showGeolocationBlockedModal).toBeFalsy();
+      expect(get(pageState).showGeolocationBlockedToast).toBeTruthy();
+      pageState.dismissGeolocationError();
+      expect(get(pageState).showGeolocationBlockedToast).toBeFalsy();
     });
 
-    it('retrying after the user authorized location succeeds and closes the modal', async () => {
+    it('dismissGeolocationError also clears a plain position error', async () => {
+      await pageState.useCurrentLocation(geolocFnTimeout);
+      expect(get(pageState).currentPositionError).toBe('GEOLOCATION_TIMEOUT');
+      pageState.dismissGeolocationError();
+      expect(get(pageState).currentPositionError).toBeNull();
+    });
+
+    it('retrying after the user authorized location succeeds and closes the toast', async () => {
       await pageState.useCurrentLocation(geolocFnError);
-      expect(get(pageState).showGeolocationBlockedModal).toBeTruthy();
+      expect(get(pageState).showGeolocationBlockedToast).toBeTruthy();
 
       feedWith([sampleSuggestions[0]]);
       await pageState.useCurrentLocation(geolocFn);
-      expect(get(pageState).showGeolocationBlockedModal).toBeFalsy();
+      expect(get(pageState).showGeolocationBlockedToast).toBeFalsy();
       expect(get(pageState).selectedLocationSuggestion).toEqual(sampleLocationSuggestion);
       expect(get(pageState).currentStep).toEqual(Steps.STEP_CATEGORY);
     });

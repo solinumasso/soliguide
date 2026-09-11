@@ -1,19 +1,17 @@
 <script lang="ts">
+  import { getThemeContext } from '$lib/theme';
   import { getContext, onMount, onDestroy } from 'svelte';
   import { goto, beforeNavigate, afterNavigate } from '$app/navigation';
   import { ROUTES_CTX_KEY } from '$lib/client';
   import { zendeskService } from '$lib/services';
   import { COOKIE_CTX_KEY } from '$lib/client/cookie';
-  import type { ThemeDefinition } from '$lib/theme/types';
   import type { CookieConsentStore, RoutingStore } from '$lib/client/types';
-  import { themeStore } from '$lib/theme/index';
-  import { get } from 'svelte/store';
 
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
   const cookieConsent: CookieConsentStore = getContext(COOKIE_CTX_KEY);
-  const theme: ThemeDefinition = get(themeStore.getTheme());
+  const theme = getThemeContext();
 
-  $: useChat = Boolean(theme.chatWebsiteId);
+  $: useChat = theme.capabilities.chat;
 
   let previousPage: string;
   let nextPage: string;

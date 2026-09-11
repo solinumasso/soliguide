@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { getThemeContext } from '$lib/theme';
   import { page } from '$app/stores';
   import { goto } from '$app/navigation';
   import { getContext, setContext } from 'svelte';
@@ -10,10 +11,7 @@
   import Card from './components/card/ResultsCard.svelte';
   import ResultsFilters from './components/ResultsFilters.svelte';
   import ResultsTopBar from './components/ResultsTopBar.svelte';
-  import { get } from 'svelte/store';
-  import { themeStore } from '$lib/theme';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
-  import type { ThemeDefinition } from '$lib/theme/types';
   import { getCategorySearchTranslationKey } from '$lib/utils/categoryTranslation';
   import { SEARCH_RESULT_FILTERS, type SearchResultFilter } from './filters';
 
@@ -21,7 +19,7 @@
 
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
-  const theme: ThemeDefinition = get(themeStore.getTheme());
+  const theme = getThemeContext();
 
   setContext('CAPTURE_FCTN_CTX_KEY', pageStore.captureEvent);
 
@@ -46,7 +44,11 @@
   const openToday = url.searchParams.get('openToday');
   const pmr = url.searchParams.get('pmr');
   const animal = url.searchParams.get('animal');
-  const airConditioned = url.searchParams.get('airConditioned');
+  // A filter the theme does not expose has no toggle to turn it off again, so
+  // its URL parameter is ignored rather than silently applied
+  const airConditioned = theme.capabilities.thermalComfort
+    ? url.searchParams.get('airConditioned')
+    : null;
 
   pageStore.init({
     location: url.searchParams.get('location') ?? '',
