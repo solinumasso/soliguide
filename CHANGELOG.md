@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.154.0](https://github.com/solinumasso/soliguide/compare/v4.153.0...v4.154.0) (2026-09-11)
+
+
+### Bug Fixes
+
+* **api:** parse and type every value the shared DTOs accept ([8f5fcae](https://github.com/solinumasso/soliguide/commit/8f5fcaea8c784a0387a404c40752f2b3711e656e))
+* **api:** update dependency multer from 2.1.1 to 2.3.0 [security] ([ebad0bd](https://github.com/solinumasso/soliguide/commit/ebad0bd0b91968bc2fdc232d3b615f55d1b05dfd))
+* **packages/taxonomy:** update dependency sharp from 0.34.5 to 0.35.4 [security] ([3fd68c6](https://github.com/solinumasso/soliguide/commit/3fd68c6ad99854ad8eb33424714fab391a1f6fdf))
+* **web-app:** always revalidate the document before reusing it ([187c08e](https://github.com/solinumasso/soliguide/commit/187c08ec6f1656f5740b589be3492e1eb3b4506b))
+* **web-app:** await the language change before navigating ([091606f](https://github.com/solinumasso/soliguide/commit/091606fa5039c58787211a31795cf721ec86050d))
+* **web-app:** build the legal links in the country default language ([c0f78ea](https://github.com/solinumasso/soliguide/commit/c0f78ea4c85289b7363b00fa2ad658a5fee51a05))
+* **web-app:** display Spanish and Andorran addresses without their administrative tail ([0e70fa5](https://github.com/solinumasso/soliguide/commit/0e70fa57ea9d386539b233691669f1d9406ada36))
+* **web-app:** keep the mobile application version across document reloads ([df9950f](https://github.com/solinumasso/soliguide/commit/df9950fcf56a245c661419338eba9899f0a00631))
+* **web-app:** recompute the home category tiles when the language changes ([5265313](https://github.com/solinumasso/soliguide/commit/5265313e34b508b52cd905cf33892b9c62834454))
+* **web-app:** recompute the menu items when the language changes ([303ec78](https://github.com/solinumasso/soliguide/commit/303ec78f502e992868b3017161da0bc426600e58))
+* **web-app:** stop dropping search results and blank location suggestions ([5bd4d6a](https://github.com/solinumasso/soliguide/commit/5bd4d6a40ac0e27ff299ca294cd18d4779aa3ca3))
+* **web-app:** sync the language with the URL on every navigation ([974c9aa](https://github.com/solinumasso/soliguide/commit/974c9aa56a3ed90610f77a4fd4c103b09cef9d4a))
+
+
+### Features
+
+* **api:** remove unused import ([c59df99](https://github.com/solinumasso/soliguide/commit/c59df997d1e83f4db19c4d779c34e1f81020da4c))
+* **common:** add shared theme, phone and language helpers ([99a5e8a](https://github.com/solinumasso/soliguide/commit/99a5e8a4065d28022a2129740122b5f35b2023bd))
+* **design-system:** add a block variant to the toast ([c7b1254](https://github.com/solinumasso/soliguide/commit/c7b12545621612912505da3177e55f713f4cdbc8))
+* **web-app:** adding new illustration for spain and andorra ([ecf764b](https://github.com/solinumasso/soliguide/commit/ecf764b30a80bea761cf382cc37532d188043a96))
+* **web-app:** detect the mobile application from the version in the url ([e507192](https://github.com/solinumasso/soliguide/commit/e5071926a6ab2b0f8b72a6fb3ba5c393c2c0d80d))
+* **web-app:** hide the heatwave features in Spain and Andorra ([8d0d283](https://github.com/solinumasso/soliguide/commit/8d0d283ccde7aa62a740fc8fa57423dfb7e5bc90))
+* **web-app:** let visitors switch to another country's application ([8fd724c](https://github.com/solinumasso/soliguide/commit/8fd724cf7527fe3c7368e5d53ac77c1046fd1072))
+* **web-app:** open the application settings from the geolocation modal ([a288689](https://github.com/solinumasso/soliguide/commit/a2886895062f9b2423447c50dda46970973d73ba))
+* **web-app:** resolve the country theme from the request hostname ([c800d2f](https://github.com/solinumasso/soliguide/commit/c800d2fd93fedd5402301574851245b8f1fdbbcc))
+* **web-app:** show a toast when geolocation is denied ([76cc94d](https://github.com/solinumasso/soliguide/commit/76cc94db57bdfc574c5db46fc5a8259c84df70a4))
+
+
+### Performance Improvements
+
+* **web-app:** load one translation catalog instead of all twelve ([7a784cd](https://github.com/solinumasso/soliguide/commit/7a784cd3aa0708d7a810a22898aeb40f5fc968c6))
+
+
+
+
+
 # [4.153.0](https://github.com/solinumasso/soliguide/compare/v4.152.0...v4.153.0) (2026-09-01)
 
 
