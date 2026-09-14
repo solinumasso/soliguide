@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.154.1](https://github.com/solinumasso/soliguide/compare/v4.154.0...v4.154.1) (2026-09-14)
+
+
+### Bug Fixes
+
+* **api:** accept the editor's markup in the modalities precisions ([7eec82a](https://github.com/solinumasso/soliguide/commit/7eec82a9ff04481eb4a4f3fd1b492edc334ff67a))
+* **api:** resolve search suggestions from __dirname instead of cwd ([e668d97](https://github.com/solinumasso/soliguide/commit/e668d97d760879799ce5f1fee1455c12e45a86e5))
+* **frontend:** send the CARTO api key with the basemap tiles ([37f11dd](https://github.com/solinumasso/soliguide/commit/37f11dda5ab48bd6c5da32e47237dce15c5a04fd))
+
+
+
+
+
 # [4.154.0](https://github.com/solinumasso/soliguide/compare/v4.153.0...v4.154.0) (2026-09-11)
 
 
