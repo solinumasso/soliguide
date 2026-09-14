@@ -96,6 +96,9 @@
           chatWebsiteId: '{{ env "SOLIGUIDE_CHAT_WEBSITE_ID" }}'.length
             ? '{{ env "SOLIGUIDE_CHAT_WEBSITE_ID" }}'
             : undefined,
+          cartoApiKey: '{{ env "SOLIGUIDE_CARTO_API_KEY" }}'.length
+            ? '{{ env "SOLIGUIDE_CARTO_API_KEY" }}'
+            : undefined,
           territoriesPresent: '{{ env "SOLIGUIDE_TERRITORIES_PRESENT" }}',
           territorialAnalysis: '{{ env "SOLIGUIDE_TERRITORIAL_ANALYSIS" }}'
             .length
