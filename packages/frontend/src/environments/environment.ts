@@ -4,6 +4,9 @@ export const environment: Environment = {
   apiUrl: "http://localhost:3001",
   locationApiUrl: "http://localhost:3000",
   googleMapsApiKey: "",
+  // Leave empty locally: CARTO serves watermarked tiles without a key, which is
+  // harmless in development. Set it here to work with clean tiles.
+  cartoApiKey: "",
   enableTracing: false,
   environment: "DEV",
   posthogUrl: "https://eu.posthog.com",

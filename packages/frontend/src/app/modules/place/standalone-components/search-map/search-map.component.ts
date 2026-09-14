@@ -10,6 +10,16 @@ import {
 
 import * as L from "leaflet";
 import { MarkerOptions } from "../../../../models/search-places";
+import { environment } from "../../../../../environments/environment";
+
+/**
+ * CARTO stopped serving its raster basemaps anonymously: a keyless request still
+ * answers 200 with a valid tile, but the image carries an "API KEY REQUIRED"
+ * watermark. The key is a free usage identifier, not a secret, and is injected at
+ * deploy time through SOLIGUIDE_CARTO_API_KEY.
+ */
+const CARTO_TILES_URL =
+  "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png";
 
 @Component({
   standalone: true,
@@ -61,7 +71,9 @@ export class SearchMapComponent implements AfterViewInit, OnChanges, OnInit {
     });
 
     this.layer = L.tileLayer(
-      "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+      environment.cartoApiKey
+        ? `${CARTO_TILES_URL}?key=${environment.cartoApiKey}`
+        : CARTO_TILES_URL,
       {
         attribution:
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',

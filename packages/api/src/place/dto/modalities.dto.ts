@@ -1,7 +1,7 @@
 import type { Modalities } from "@soliguide/common";
 import { body } from "express-validator";
 import mongoose from "mongoose";
-import { booleanDto, stringDto } from "../../_utils/dto";
+import { booleanDto, richTextDto, stringDto } from "../../_utils/dto";
 
 const checkedAndPrecisionsDto = (path: string) => [
   booleanDto(path + ".checked"),
@@ -15,7 +15,9 @@ export const modalitiesDto = (path = "") => [
   ...checkedAndPrecisionsDto(path + "modalities.inscription"),
   ...checkedAndPrecisionsDto(path + "modalities.orientation"),
 
-  stringDto(path + "modalities.other", false),
+  // Written in the rich-text editor of the modalities form, so it legitimately
+  // carries the formatting the editor produces
+  richTextDto(path + "modalities.other", false),
 
   body(path + "modalities.docs")
     .isArray()
