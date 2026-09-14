@@ -246,10 +246,11 @@ class SearchSuggestionsService {
     lang: SupportedLanguagesCode
   ): FormattedSuggestion[] {
     try {
+      // Resolved from __dirname, like the i18next locales: the deployed image
+      // only ships dist/, so process.cwd() would point outside of it
       const filePath = join(
-        process.cwd(),
-        "resources",
-        "search-suggestions",
+        __dirname,
+        "../../resources/search-suggestions",
         country,
         `${lang}.json`
       );
