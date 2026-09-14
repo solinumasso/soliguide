@@ -22,6 +22,7 @@ import { DEFAULT_SEARCH_OPTIONS } from "../../_utils/constants";
 import { hashPassword } from "../../_utils";
 import { getMongoId } from "../../_utils/functions/mongo";
 import { getUserRightsWithParams } from "./userRights.service";
+import { getNextSequence } from "../../sequences";
 
 import { mergeOperationalAreas } from "../utils";
 
@@ -80,22 +81,27 @@ export const getUserByCampaignUserUuidWithRights = async (
   return user;
 };
 
+const readHighestUserId = async (): Promise<number> => {
+  const lastUser = await UserModel.findOne()
+    .select("user_id")
+    .sort({ user_id: -1 })
+    .lean()
+    .exec();
+
+  return lastUser?.user_id ?? 0;
+};
+
+const getNextUserId = (): Promise<number> =>
+  getNextSequence("user_id", readHighestUserId);
+
 export const createUser = async (
   user: SignupUser & Pick<User, "status" | "verified" | "verifiedAt">,
   session?: ClientSession
 ): Promise<UserPopulateType | null> => {
-  // Get the new available ID
-  const lastUser = await UserModel.findOne()
-    .select("user_id")
-    .sort({ user_id: -1 })
-    .exec();
-
-  const user_id = lastUser ? lastUser.user_id + 1 : 0;
-
   const userToCreate = {
     ...user,
     password: await hashPassword(user.password),
-    user_id,
+    user_id: await getNextUserId(),
     createdAt: new Date(),
     updatedAt: new Date(),
   };

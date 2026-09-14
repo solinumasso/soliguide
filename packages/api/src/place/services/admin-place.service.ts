@@ -15,6 +15,7 @@ import { updateServicesAfterPatch, isPlaceOpenToday } from "../utils";
 import type { ModelWithId } from "../../_models";
 import { findTempInfoWithParams } from "../../temp-info/services/temp-info.service";
 import { getPlaceByParams } from "./place.service";
+import { getNextSequence } from "../../sequences";
 
 export const addNewPlace = async (
   place: Partial<ApiPlace>
@@ -38,10 +39,18 @@ export const addNewPlace = async (
   return newPlace as unknown as ModelWithId<ApiPlace>;
 };
 
-export const getNextPlaceId = async (): Promise<number> => {
-  const lastPlace = await PlaceModel.findOne().sort({ lieu_id: -1 }).exec();
-  return lastPlace ? lastPlace.lieu_id + 1 : 1;
+const readHighestPlaceId = async (): Promise<number> => {
+  const lastPlace = await PlaceModel.findOne()
+    .select("lieu_id")
+    .sort({ lieu_id: -1 })
+    .lean()
+    .exec();
+
+  return lastPlace?.lieu_id ?? 0;
 };
+
+export const getNextPlaceId = (): Promise<number> =>
+  getNextSequence("lieu_id", readHighestPlaceId);
 
 export const updatePlaceUpdatedAtByPlaceId = async (lieu_id: number) => {
   await PlaceModel.updateOne(
