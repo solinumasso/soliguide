@@ -1,6 +1,16 @@
 # Snippet for maintenance mode
 (maintenance) {
 	root * /srv
+	# The requested domain decides which language pair the page is rendered in:
+	# Catalan on the Andorran site, Spanish on the Spanish one, French elsewhere.
+	# Staging and demo environments prefix the domain with the country code.
+	map {host} {maintenance_country} {
+		~(^|\.)soliguia\.ad$ ad
+		~(^|\.)soliguia\.(cat|es)$ es
+		~^ad\. ad
+		~^es\. es
+		default fr
+	}
 	file_server
 	templates
 	rewrite * /maintenance.html
