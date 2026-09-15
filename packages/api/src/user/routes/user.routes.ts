@@ -218,10 +218,14 @@ router.post(
     try {
       const { mail, isAdminRequest } = req.bodyValidated;
 
-      if (isAdminRequest && !req.isAdmin) {
+      if (isAdminRequest && !req.isSuperAdmin) {
         captureMessage("Unauthorized admin password reset attempt", {
           level: "warning",
-          extra: { mail, isAdminRequest, hasAdminRights: req.isAdmin },
+          extra: {
+            mail,
+            isAdminRequest,
+            hasSuperAdminRights: req.isSuperAdmin,
+          },
         });
         return res.status(500).json({ message: "BAD_REQUEST" });
       }
