@@ -3,6 +3,7 @@ import {
   Categories,
   CommonPlacePosition,
   CountryCodes,
+  Modalities,
   PlaceClosedHolidays,
   PlaceOpeningStatus,
   PlaceStatus,
@@ -47,7 +48,7 @@ export const searchResultMock: SearchResult = {
       sources: [],
       status: PlaceOpeningStatus.OPEN,
       placeStatus: PlaceStatus.ONLINE,
-      thermalComfort: { heated: null, airConditioned: true },
+      modalities: new Modalities({ thermalComfort: { heated: null, airConditioned: true } }),
       todayInfo: { openingHours: [] },
       tempInfo: { hours: null, message: null, closure: null }
     },
@@ -82,7 +83,7 @@ export const searchResultMock: SearchResult = {
       sources: [],
       status: PlaceOpeningStatus.OPEN,
       placeStatus: PlaceStatus.ONLINE,
-      thermalComfort: { heated: null, airConditioned: false },
+      modalities: new Modalities({ thermalComfort: { heated: null, airConditioned: false } }),
       tempInfo: { hours: null, message: null, closure: null },
       todayInfo: {
         openingHours: [
@@ -117,7 +118,7 @@ export const searchResultMock: SearchResult = {
       sources: [],
       status: PlaceOpeningStatus.TEMPORARILY_CLOSED,
       placeStatus: PlaceStatus.ONLINE,
-      thermalComfort: { heated: null, airConditioned: null },
+      modalities: new Modalities({ thermalComfort: { heated: null, airConditioned: null } }),
       tempInfo: { hours: null, message: null, closure: null },
       todayInfo: {
         closingDays: {
@@ -153,7 +154,7 @@ export const searchResultMock: SearchResult = {
       sources: [],
       status: PlaceOpeningStatus.TEMPORARILY_CLOSED,
       placeStatus: PlaceStatus.ONLINE,
-      thermalComfort: { heated: null, airConditioned: null },
+      modalities: new Modalities({ thermalComfort: { heated: null, airConditioned: null } }),
       tempInfo: { hours: null, message: null, closure: null },
       todayInfo: {
         closingDays: { end: '2024-11-30T23:59:59.000Z', start: '2024-04-01T00:00:00.000Z' }
@@ -234,7 +235,7 @@ export const placeDetailsMock: PlaceDetails = {
   services: [],
   sources: [],
   status: PlaceOpeningStatus.OPEN,
-  thermalComfort: { heated: null, airConditioned: null },
+  modalities: new Modalities({ thermalComfort: { heated: null, airConditioned: null } }),
   todayInfo: {
     openingHours: [
       {

@@ -1,6 +1,7 @@
 import { writable, get } from 'svelte/store';
 
 import {
+  Modalities,
   PlaceOpeningStatus,
   PlaceType,
   TempInfoStatus,
@@ -62,7 +63,7 @@ const initialValue: PageState = {
     services: [],
     sources: [],
     status: PlaceOpeningStatus.OPEN,
-    thermalComfort: { heated: null, airConditioned: null },
+    modalities: new Modalities(),
     todayInfo: {},
     website: '',
     tempInfo: {} as PlaceDetailsTempInfo

@@ -1,9 +1,15 @@
 import type { Writable } from 'svelte/store';
 import type { SearchResult } from '$lib/models/types';
 import type { PosthogCaptureFunction, SearchParams } from '$lib/services/types';
-import type { SearchResultFilter } from './filters';
+import type { SearchResultFilter, SearchResultFilterDefinition } from './filters';
 
-// Similar to SearchPageParams (search page), but all url params are strings
+/**
+ * Similar to SearchPageParams (search page), but all url params are strings.
+ *
+ * The seven location and category parameters are always present; each selected
+ * filter adds one "true" entry named after the filter, hence the index
+ * signature — the set of filters depends on the country's emergency.
+ */
 export interface PageParams {
   lang: string;
   location: string;
@@ -12,10 +18,7 @@ export interface PageParams {
   type: string;
   label: string;
   category: string;
-  openToday?: string;
-  pmr?: string;
-  animal?: string;
-  airConditioned?: string;
+  [filterName: string]: string;
 }
 
 export interface PageState {
@@ -28,12 +31,20 @@ export interface PageState {
   hasMorePages: boolean;
   urlParams: PageParams | null;
   selectedFilters: SearchResultFilter[];
+  /**
+   * The filters this country exposes, captured at init so that updating them
+   * later needs neither the theme nor the Svelte context.
+   */
+  availableFilters: readonly SearchResultFilterDefinition[];
 }
 
 /** Exposes the state in readonly and functions to act on it */
 export interface GetSearchResultPageController {
   subscribe: Writable<PageState>['subscribe'];
-  init(urlParams: PageParams): Promise<void>;
+  init(
+    urlParams: PageParams,
+    availableFilters: readonly SearchResultFilterDefinition[]
+  ): Promise<void>;
   getNextResults(): Promise<void>;
   updateSearchFilters(selectedFilters: SearchResultFilter[]): Promise<void>;
   captureEvent: PosthogCaptureFunction;

@@ -23,8 +23,7 @@ export const THEME_BLUEPRINTS: Record<Themes, ThemeBlueprint> = {
       cookieManagement: true,
       becomeTranslator: true,
       // Chat temporarily hidden until September 2026
-      chat: false,
-      thermalComfort: true
+      chat: false
     },
     practicalFilesUrl: 'https://support.soliguide.fr/hc/fr',
     becomeTranslatorUrl: 'https://airtable.com/shrZHYio1ZdnPl1Et',
@@ -39,8 +38,7 @@ export const THEME_BLUEPRINTS: Record<Themes, ThemeBlueprint> = {
       practicalFiles: false,
       cookieManagement: false,
       becomeTranslator: false,
-      chat: false,
-      thermalComfort: false
+      chat: false
     },
     practicalFilesUrl: null,
     becomeTranslatorUrl: null,
@@ -55,8 +53,7 @@ export const THEME_BLUEPRINTS: Record<Themes, ThemeBlueprint> = {
       practicalFiles: false,
       cookieManagement: false,
       becomeTranslator: false,
-      chat: false,
-      thermalComfort: false
+      chat: false
     },
     practicalFilesUrl: null,
     becomeTranslatorUrl: null,

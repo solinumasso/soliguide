@@ -1,34 +1,15 @@
 <script lang="ts">
-  import AccessTime from 'svelte-google-materialdesign-icons/Access_time.svelte';
-  import AccessibleForward from 'svelte-google-materialdesign-icons/Accessible_forward.svelte';
-  import AcUnit from 'svelte-google-materialdesign-icons/Ac_unit.svelte';
-  import Pets from 'svelte-google-materialdesign-icons/Pets.svelte';
-  import {
-    createEventDispatcher,
-    getContext,
-    type ComponentType,
-    type SvelteComponent
-  } from 'svelte';
+  import { createEventDispatcher, getContext } from 'svelte';
   import { ToggleButton } from '@soliguide/design-system';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import type { I18nStore } from '$lib/client/types';
-  import { getAvailableSearchResultFilters, type SearchResultFilter } from '../filters';
-  import { getThemeContext } from '$lib/theme';
+  import type { SearchResultFilter, SearchResultFilterDefinition } from '../filters';
 
+  export let availableFilters: readonly SearchResultFilterDefinition[] = [];
   export let selectedFilters: SearchResultFilter[] = [];
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
-  const theme = getThemeContext();
   const dispatch = createEventDispatcher<{ toggle: SearchResultFilter }>();
-
-  const filterIcons: Record<SearchResultFilter, ComponentType<SvelteComponent>> = {
-    openToday: AccessTime,
-    pmr: AccessibleForward,
-    animal: Pets,
-    airConditioned: AcUnit
-  };
-
-  const availableFilters = getAvailableSearchResultFilters(theme.capabilities);
 
   const isSelected = (filter: SearchResultFilter): boolean => selectedFilters.includes(filter);
 </script>
@@ -41,7 +22,7 @@
       <ToggleButton
         size="xsmall"
         type="secondaryOutline"
-        icon={filterIcons[filter.name]}
+        icon={filter.icon}
         checked={selected}
         value={filter.name}
         aria-label={label}

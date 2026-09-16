@@ -4,12 +4,12 @@ import type {
   Categories,
   CommonPlacePosition,
   CountryCodes,
+  Modalities,
   PlaceClosedHolidays,
   PlaceStatus,
   PlaceOpeningStatus,
   PlaceType,
-  TempInfoStatus,
-  ThermalComfortData
+  TempInfoStatus
 } from '@soliguide/common';
 import type { types as DSTypes } from '@soliguide/design-system';
 
@@ -82,7 +82,7 @@ export interface LightPlaceCard {
   sources: Source[];
   status: PlaceOpeningStatus;
   placeStatus: PlaceStatus;
-  thermalComfort: ThermalComfortData;
+  modalities: Modalities;
   todayInfo: TodayInfo;
   tempInfo: SearchResultTempInfo;
 }
@@ -207,7 +207,7 @@ export interface PlaceDetails {
   services: Service[];
   sources: Source[];
   status: PlaceOpeningStatus;
-  thermalComfort: ThermalComfortData;
+  modalities: Modalities;
   todayInfo: TodayInfo;
   tempInfo: PlaceDetailsTempInfo;
   website: string;
