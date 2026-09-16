@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { getThemeContext, isSeasonalThermalComfortVisible } from '$lib/theme';
   import { goto } from '$app/navigation';
   import { getContext } from 'svelte';
   import { getMapLink, ROUTES_CTX_KEY } from '$lib/client';
@@ -12,16 +11,14 @@
     CardFooter,
     Text,
     ButtonLink,
-    Tag,
     InfoIcon,
     IconFavoriteOff,
     IconFavoriteOn,
     ToggleButton
   } from '@soliguide/design-system';
-  import AcUnit from 'svelte-google-materialdesign-icons/Ac_unit.svelte';
   import NearMe from 'svelte-google-materialdesign-icons/Near_me.svelte';
   import PinDrop from 'svelte-google-materialdesign-icons/Pin_drop.svelte';
-  import { TodayInfo, PlaceStatus } from '$lib/components';
+  import { TodayInfo, PlaceStatus, EmergencyPlaceTag } from '$lib/components';
   import PhoneButton from '$lib/components/PhoneButton.svelte';
   import ResultsCardServices from './ResultsCardServices.svelte';
   import DisplaySource from '$lib/components/DisplaySource.svelte';
@@ -43,7 +40,6 @@
 
   const routes: RoutingStore = getContext(ROUTES_CTX_KEY);
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
-  const theme = getThemeContext();
 
   export let place: SearchResultPlaceCard;
   export let id: string;
@@ -71,8 +67,6 @@
   $: isFavorite = $favorites.some((favorite) =>
     favoriteMatches(favorite, place.id, place.crossingPointIndex)
   );
-
-  $: shouldDisplayThermalComfortTag = isSeasonalThermalComfortVisible(theme);
 </script>
 
 <Card>
@@ -98,17 +92,7 @@
           <div class="card-infos-left">
             <div class="card-status-tags">
               <PlaceStatus openingStatus={place.status} placeStatus={place.placeStatus} />
-              {#if shouldDisplayThermalComfortTag && place.thermalComfort?.airConditioned === true}
-                <Tag variant="info">
-                  <AcUnit slot="icon" aria-hidden="true" />
-                  {$i18n.t('AIR_CONDITIONED_RIBBON')}
-                </Tag>
-              {:else if shouldDisplayThermalComfortTag && place.thermalComfort?.airConditioned === false}
-                <Tag variant="error">
-                  <AcUnit slot="icon" aria-hidden="true" />
-                  {$i18n.t('NOT_AIR_CONDITIONED_RIBBON')}
-                </Tag>
-              {/if}
+              <EmergencyPlaceTag modalities={place.modalities} />
             </div>
             <div>
               <TodayInfo todayInfo={place.todayInfo}>

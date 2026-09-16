@@ -1,8 +1,6 @@
 <script lang="ts">
-  import { getThemeContext, isSeasonalThermalComfortVisible } from '$lib/theme';
-  import { InfoIcon, Text, Tag } from '@soliguide/design-system';
-  import { PhoneButton, PlaceStatus, TodayInfo } from '$lib/components';
-  import AcUnit from 'svelte-google-materialdesign-icons/Ac_unit.svelte';
+  import { InfoIcon, Text } from '@soliguide/design-system';
+  import { PhoneButton, PlaceStatus, TodayInfo, EmergencyPlaceTag } from '$lib/components';
   import GoToButton from './GoToButton.svelte';
   import { getPlaceDetailsPageController } from '../pageController';
 
@@ -14,8 +12,8 @@
   } from '$lib/models/types';
   import {
     TempInfoStatus,
+    type Modalities,
     type PlaceOpeningStatus,
-    type ThermalComfortData,
     isObjectEmpty
   } from '@soliguide/common';
 
@@ -32,13 +30,10 @@
   export let onOrientation: boolean;
   export let tempInfo: PlaceDetailsTempInfo;
   export let campaignBanner: PlaceCampaignBannerMessage | null;
-  export let thermalComfort: ThermalComfortData;
+  export let modalities: Modalities;
 
   const placeController = getPlaceDetailsPageController();
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
-  const theme = getThemeContext();
-
-  $: shouldDisplayThermalComfortTag = isSeasonalThermalComfortVisible(theme);
 </script>
 
 <header class="card-header">
@@ -46,17 +41,7 @@
     <div class="tag-hours-container">
       <div class="status-tags">
         <PlaceStatus openingStatus={status} />
-        {#if shouldDisplayThermalComfortTag && thermalComfort?.airConditioned === true}
-          <Tag variant="info">
-            <AcUnit slot="icon" aria-hidden="true" />
-            {$i18n.t('AIR_CONDITIONED_RIBBON')}
-          </Tag>
-        {:else if shouldDisplayThermalComfortTag && thermalComfort?.airConditioned === false}
-          <Tag variant="error">
-            <AcUnit slot="icon" aria-hidden="true" />
-            {$i18n.t('NOT_AIR_CONDITIONED_RIBBON')}
-          </Tag>
-        {/if}
+        <EmergencyPlaceTag {modalities} />
       </div>
       {#if !isObjectEmpty(todayInfo)}
         <TodayInfo {todayInfo}>

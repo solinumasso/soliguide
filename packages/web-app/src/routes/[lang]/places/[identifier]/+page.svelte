@@ -148,7 +148,7 @@
     onOrientation={$pageStore.placeDetails.onOrientation}
     tempInfo={$pageStore.placeDetails.tempInfo}
     campaignBanner={$pageStore.placeDetails.campaignBanner}
-    thermalComfort={$pageStore.placeDetails.thermalComfort}
+    modalities={$pageStore.placeDetails.modalities}
   />
   <section class="sections">
     <div>

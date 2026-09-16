@@ -11,6 +11,31 @@ import getSearchService from '$lib/services/placesService';
 import { posthogService } from '$lib/services/posthogService';
 import type { GetSearchResultPageController } from './types';
 import type { PlaceDetails, SearchResult } from '$lib/models/types';
+import AcUnit from 'svelte-google-materialdesign-icons/Ac_unit.svelte';
+import { CountryCodes } from '@soliguide/common';
+import type { EmergencyDefinition } from '$lib/emergency';
+import { getAvailableSearchResultFilters } from './filters';
+
+/**
+ * The filters a country exposes are resolved by the page and handed to the
+ * controller. They are built from a fixture rather than from the declared
+ * configuration, so that switching the real emergency off never breaks this
+ * suite: turning one on or off must stay a one-file change.
+ */
+const EMERGENCY_WITH_FILTER: EmergencyDefinition = {
+  id: 'test-emergency',
+  active: true,
+  countries: [CountryCodes.FR],
+  filter: {
+    name: 'airConditioned',
+    translationKey: 'ACCESS_CONDITION_AIR_CONDITIONED',
+    icon: AcUnit,
+    modalities: { thermalComfort: { airConditioned: true } }
+  }
+};
+
+const FILTERS_WITH_EMERGENCY = getAvailableSearchResultFilters(EMERGENCY_WITH_FILTER);
+const FILTERS_WITHOUT_EMERGENCY = getAvailableSearchResultFilters(null);
 
 describe('ListPageController', () => {
   // skipcq: JS-0119
@@ -18,7 +43,7 @@ describe('ListPageController', () => {
 
   beforeEach(() => {
     pageState = getSearchResultPageController(fakePlacesService());
-    pageState.init(searchParamsMock);
+    pageState.init(searchParamsMock, FILTERS_WITH_EMERGENCY);
   });
 
   it('At initialization, i should have 4 search results', () => {
@@ -53,7 +78,7 @@ describe('ListPageController', () => {
 
   it('If i have an error from searchPlaces, i should have an error message', async () => {
     pageState = getSearchResultPageController(fakePlacesService('There is an error'));
-    pageState.init(searchParamsMock);
+    pageState.init(searchParamsMock, FILTERS_WITH_EMERGENCY);
     expect(get(pageState).searchError).toBeNull();
     await pageState.getNextResults();
     expect(get(pageState).searchError).toEqual('There is an error');
@@ -66,13 +91,16 @@ describe('ListPageController', () => {
       placeDetails: vi.fn<() => Promise<PlaceDetails>>()
     });
 
-    await pageState.init({
-      ...searchParamsMock,
-      openToday: 'true',
-      airConditioned: 'true',
-      pmr: 'true',
-      animal: 'true'
-    });
+    await pageState.init(
+      {
+        ...searchParamsMock,
+        openToday: 'true',
+        airConditioned: 'true',
+        pmr: 'true',
+        animal: 'true'
+      },
+      FILTERS_WITH_EMERGENCY
+    );
 
     expect(get(pageState).selectedFilters).toEqual([
       'openToday',
@@ -93,6 +121,30 @@ describe('ListPageController', () => {
     );
   });
 
+  /**
+   * The emergency filter used to be guarded by a theme capability read in the
+   * page. It is now the list of available filters that decides, which makes the
+   * behaviour testable at the controller level.
+   */
+  it('At initialization, a filter the country does not expose is ignored', async () => {
+    const searchPlaces = vi.fn().mockResolvedValue(searchResultMock);
+    pageState = getSearchResultPageController({
+      searchPlaces,
+      placeDetails: vi.fn<() => Promise<PlaceDetails>>()
+    });
+
+    await pageState.init(
+      { ...searchParamsMock, airConditioned: 'true', pmr: 'true' },
+      FILTERS_WITHOUT_EMERGENCY
+    );
+
+    expect(get(pageState).selectedFilters).toEqual(['pmr']);
+    expect(searchPlaces).toHaveBeenCalledWith(
+      expect.objectContaining({ modalities: { pmr: true } }),
+      { page: 1 }
+    );
+  });
+
   it('When filters are updated, it restarts search on the first page with new filters', async () => {
     const searchPlaces = vi.fn().mockResolvedValue(searchResultMock);
     pageState = getSearchResultPageController({
@@ -100,7 +152,7 @@ describe('ListPageController', () => {
       placeDetails: vi.fn<() => Promise<PlaceDetails>>()
     });
 
-    await pageState.init(searchParamsMock);
+    await pageState.init(searchParamsMock, FILTERS_WITH_EMERGENCY);
     searchPlaces.mockClear();
 
     await pageState.updateSearchFilters(['pmr']);
@@ -127,7 +179,10 @@ describe('ListPageController', () => {
       placeDetails: vi.fn<() => Promise<PlaceDetails>>()
     });
 
-    await pageState.init({ ...searchParamsMock, openToday: 'true', pmr: 'true' });
+    await pageState.init(
+      { ...searchParamsMock, openToday: 'true', pmr: 'true' },
+      FILTERS_WITH_EMERGENCY
+    );
     searchPlaces.mockClear();
 
     await pageState.updateSearchFilters([]);
@@ -170,7 +225,7 @@ describe('ListPageController', () => {
       placeDetails: vi.fn<() => Promise<PlaceDetails>>()
     });
 
-    await pageState.init(searchParamsMock);
+    await pageState.init(searchParamsMock, FILTERS_WITH_EMERGENCY);
 
     // The user clicks a first filter, then a second one before the first responds
     const firstFilterChange = pageState.updateSearchFilters(['openToday']);
@@ -199,7 +254,7 @@ describe('ListPageController', () => {
 
     it('If i have an error from searchPlaces, i still have my previous search results', async () => {
       feedWith(searchResultMock);
-      await pageState.init(searchParamsMock);
+      await pageState.init(searchParamsMock, FILTERS_WITH_EMERGENCY);
       expect(get(pageState).searchResult.places.length).toBe(4);
       setError('There is an error');
       await pageState.getNextResults();

@@ -76,7 +76,7 @@ describe('Search Result', () => {
       expect(resultItem.sources).toStrictEqual([]);
     });
 
-    it('Thermal comfort is correctly mapped', () => {
+    it('Modalities are carried over to the card, thermal comfort included', () => {
       const modifiedPlace: ApiPlace = {
         ...samplePlace,
         modalities: {
@@ -93,10 +93,11 @@ describe('Search Result', () => {
       );
       const [resultItem] = result.places;
 
-      expect(resultItem.thermalComfort).toStrictEqual({
+      expect(resultItem.modalities.thermalComfort).toStrictEqual({
         heated: null,
         airConditioned: false
       });
+      expect(resultItem.modalities).toBe(modifiedPlace.modalities);
     });
 
     describe('Computation of the distance', () => {

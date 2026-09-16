@@ -28,7 +28,7 @@ export const getHomePageController = (
     country: SoliguideCountries,
     lang: SupportedLanguagesCode,
     getGeolocation: () => Promise<GeolocationPosition>,
-    filters: QuickSearchFilters = {}
+    filters: QuickSearchFilters = []
   ): Promise<QuickSearchOutcome> => {
     try {
       // Triggers the native prompt when the permission has not been decided yet.
@@ -45,7 +45,7 @@ export const getHomePageController = (
 
       return {
         status: 'ready',
-        params: filters.airConditioned ? { ...params, airConditioned: 'true' } : params
+        params: { ...params, ...Object.fromEntries(filters.map((filter) => [filter, 'true'])) }
       };
     } catch (error: unknown) {
       const errorValue = getErrorValue(error);
