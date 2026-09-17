@@ -28,8 +28,6 @@ import {
   slugString,
   Categories,
   SearchResults,
-  shouldDisplayThermalComfort,
-  CountryCodes,
 } from "@soliguide/common";
 import type { FilterPillOption } from "../filter-pill-dropdown/filter-pill-dropdown.component";
 import type { PosthogProperties } from "@soliguide/common-angular";
@@ -48,7 +46,6 @@ import {
   type MarkerOptions,
   THEME_CONFIGURATION,
 } from "../../../../models";
-import { THERMAL_COMFORT_EMOJIS } from "../../../../models/place/constants";
 
 import {
   generateMarkerOptions,
@@ -107,17 +104,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   public showFilters: boolean;
 
   public readonly THEME_CONFIGURATION = THEME_CONFIGURATION;
-  public readonly thermalComfortEmojis = THERMAL_COMFORT_EMOJIS;
-
-  public get showThermalComfortFilter(): boolean {
-    // The air-conditioned search filter is restricted to France, while the
-    // rest of the thermal comfort feature (badge, form, place card) keeps its
-    // default country coverage handled by shouldDisplayThermalComfort.
-    return (
-      THEME_CONFIGURATION.country === CountryCodes.FR &&
-      shouldDisplayThermalComfort(THEME_CONFIGURATION.country)
-    );
-  }
   public languageOptions: FilterPillOption[] = [];
   @ViewChild("appFilters") public appFilters!: SearchFiltersComponent;
   private readonly destroy$ = new Subject<void>();
@@ -436,13 +422,6 @@ export class SearchComponent implements OnInit, OnDestroy {
       }
     }
 
-    // Air-conditioned filter (nested under modalities.thermalComfort)
-    if (queryParams.airConditioned) {
-      this.filters.airConditioned = true;
-      search.modalities.thermalComfort = { airConditioned: true };
-      parcoursSearch.modalities.thermalComfort = { airConditioned: true };
-    }
-
     // Languages
     if (queryParams.languages) {
       this.filters.languages = queryParams.languages;
@@ -458,7 +437,6 @@ export class SearchComponent implements OnInit, OnDestroy {
         key !== "parcoursPage" &&
         key !== "openToday" &&
         key !== "languages" &&
-        key !== "airConditioned" &&
         !SEARCH_PUBLICS_FILTERS.includes(key) &&
         !SEARCH_MODALITIES_FILTERS.includes(key)
       ) {
@@ -557,10 +535,6 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   public toggleOpen = (): void => {
     this.toggleQuickFilter("openToday");
-  };
-
-  public toggleAirConditioned = (): void => {
-    this.toggleQuickFilter("airConditioned");
   };
 
   public onLanguageChange = (value: string | null): void => {

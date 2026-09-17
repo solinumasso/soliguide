@@ -23,7 +23,6 @@ import { SharedModule } from "../shared/shared.module";
 import { FormatInternationalPhoneNumberPipe } from "../shared";
 import { DisplayHorairesComponent } from "../place/standalone-components/display-horaires/horaires.component";
 import { DisplayTempBannerComponent } from "../place/standalone-components/display-temp-banner/display-temp-banner.component";
-import { ThermalComfortStatusComponent } from "../shared/components/thermal-comfort-status/thermal-comfort-status.component";
 
 @NgModule({
   declarations: [
@@ -58,7 +57,6 @@ import { ThermalComfortStatusComponent } from "../shared/components/thermal-comf
     FormatInternationalPhoneNumberPipe,
     DisplayHorairesComponent,
     DisplayTempBannerComponent,
-    ThermalComfortStatusComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

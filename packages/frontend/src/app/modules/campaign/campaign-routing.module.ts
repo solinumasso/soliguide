@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
-import { CampaignClimateOrgaComponent } from "./components/campaign-climate-orga/campaign-climate-orga.component";
 import { CampaignFormPlaceComponent } from "./components/campaign-form-place/campaign-form-place.component";
 import { CampaignManagePlacesComponent } from "./components/campaign-manage-places/campaign-manage-places.component";
 
@@ -11,11 +10,6 @@ export const campaignRoutes: Routes = [
   {
     path: "",
     component: CampaignManagePlacesComponent,
-  },
-  {
-    path: "climate-summer/:campaignSlug/orga/:orgaObjectId",
-    canActivate: [AdminSoliguideGuard],
-    component: CampaignClimateOrgaComponent,
   },
   {
     path: "fiche/:lieu_id",

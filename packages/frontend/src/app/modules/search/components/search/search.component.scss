@@ -136,31 +136,6 @@ $countries: "es", "fr", "ad";
     border-color: #1f1f1f;
   }
 
-  &--climate {
-    border-color: rgba(13, 110, 253, 0.25);
-    background-color: rgba(13, 110, 253, 0.08);
-    color: #0a4fbf;
-  }
-
-  &--climate:hover {
-    background-color: rgba(13, 110, 253, 0.14);
-    border-color: rgba(13, 110, 253, 0.4);
-  }
-
-  &--climate:focus-visible {
-    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.35);
-  }
-
-  &--climate.filter-pill--active {
-    background-color: #0a4fbf;
-    border-color: #0a4fbf;
-    color: #ffffff;
-  }
-
-  &--climate.filter-pill--active:hover {
-    background-color: #093f96;
-    border-color: #093f96;
-  }
 }
 
 .filter-pill__icon {
