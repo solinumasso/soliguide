@@ -8,12 +8,6 @@
     offline: place.status === PlaceStatus.OFFLINE
   }"
 >
-  <app-thermal-comfort-status
-    #thermalComfortRibbon
-    class="place_result__thermal-comfort"
-    [thermalComfort]="place.modalities?.thermalComfort"
-    variant="ribbon"
-  ></app-thermal-comfort-status>
   <a
     [routerLink]="[routePrefix, 'fiche', place.seo_url]"
     (click)="captureEvent('click-place-title', {place, placeIndex })"
@@ -22,9 +16,6 @@
       [class.open-card-header]="
         place.status !== PlaceStatus.PERMANENTLY_CLOSED &&
         place.status !== PlaceStatus.DRAFT
-      "
-      [class.search-card-header--with-ribbon]="
-        thermalComfortRibbon.isRibbonVisible
       "
       class="card-header p-4 bg-gradient search-card-header"
     >

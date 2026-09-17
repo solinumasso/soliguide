@@ -28,7 +28,6 @@ import { FormatInternationalPhoneNumberPipe } from "../shared";
 import { SearchMapComponent } from "../place/standalone-components/search-map/search-map.component";
 import { DisplayTempBannerComponent } from "../place/standalone-components/display-temp-banner/display-temp-banner.component";
 import { DisplayHolidaysComponent } from "../place/standalone-components/display-holidays/display-holidays.component";
-import { ThermalComfortStatusComponent } from "../shared/components/thermal-comfort-status/thermal-comfort-status.component";
 import { FilterPillDropdownComponent } from "./components/filter-pill-dropdown/filter-pill-dropdown.component";
 
 @NgModule({
@@ -58,7 +57,6 @@ import { FilterPillDropdownComponent } from "./components/filter-pill-dropdown/f
     TranslateModule,
     DisplayTempBannerComponent,
     DisplayHolidaysComponent,
-    ThermalComfortStatusComponent,
     FilterPillDropdownComponent,
   ],
   providers: [SearchService],
