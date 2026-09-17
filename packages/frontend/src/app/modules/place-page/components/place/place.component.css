@@ -61,8 +61,3 @@ h2:not(.title-section) {
 .btn-group > .btn {
   margin-top: -1px;
 }
-
-.page-content--thermal-comfort-wrapper {
-  position: relative;
-  overflow: hidden;
-}
