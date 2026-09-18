@@ -63,8 +63,9 @@ export class User {
   public verified: boolean;
   public areas?: OperationalAreas;
 
-  // UUID stable non-exposé publiquement, remonté via `/users/me` pour construire
-  // les liens du parcours `campaign-temp-forms/*` depuis la barre de navigation.
+  // UUID stable non-exposé publiquement, remonté via `/users/me`. Servait à
+  // construire les liens du parcours canicule, retiré du frontend ; le champ
+  // reste porté par l'API et par le modèle.
   public campaignUserUuid: string | null;
 
   constructor(user?: Partial<UserForAuth>, light = false) {
