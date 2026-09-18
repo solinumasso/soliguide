@@ -2,10 +2,12 @@ import type { SoliguideCountries, SupportedLanguagesCode } from '@soliguide/comm
 import type { PlacesSearchParams, PosthogCaptureFunction } from '$lib/services/types';
 import type { CategorySearch } from '$lib/constants';
 
-/** Optional search filters that can be applied to a 1-click search */
-export interface QuickSearchFilters {
-  airConditioned?: boolean;
-}
+/**
+ * Names of the search result filters a 1-click search pre-applies. The home page
+ * never knows what they mean: they are carried to the results page as URL
+ * parameters and resolved there against the filters the country exposes.
+ */
+export type QuickSearchFilters = readonly string[];
 
 /**
  * Result of a 1-click search attempt:

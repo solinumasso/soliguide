@@ -35,8 +35,8 @@ export interface PlacesSearchParams {
   type: string;
   label: string;
   category: string;
-  /** Optional search filter, serialized as "true" when the air-conditioned filter is applied */
-  airConditioned?: string;
+  /** One "true" entry per search filter pre-applied by an emergency quick search */
+  [filterName: string]: string;
 }
 
 export interface SearchParamsService {
@@ -153,8 +153,9 @@ export interface PosthogProperties {
   placeId?: number;
   fromPlace?: number;
   clickedItem?: string;
+  /** Identifier of the emergency a quick search was launched from */
+  emergencyId?: string;
   isDisabled?: boolean;
-  isAirConditioned?: boolean;
   place?: DataForLogs;
   action?: string;
   geolocationPermissionState?: string;

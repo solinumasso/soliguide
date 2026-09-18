@@ -19,6 +19,7 @@
   } from '$lib/client';
   import { cookieConsent, COOKIE_CTX_KEY } from '$lib/client/cookie';
   import { buildLegalLinks, setLegalLinksContext, setThemeContext } from '$lib/theme';
+  import { getActiveEmergency, setEmergencyContext } from '$lib/emergency';
   import {
     CATEGORY_SERVICE_CTX_KEY,
     getCategoryServiceForTheme
@@ -67,6 +68,9 @@
   cookieConsent.set(getZDCookieConsent());
 
   setThemeContext(theme);
+  // Resolved here rather than in `+layout.server.ts`: the configuration holds
+  // Svelte components and functions, which are not serializable.
+  setEmergencyContext(getActiveEmergency(theme.country));
   setLegalLinksContext(legalLinks);
   setContext(CATEGORY_SERVICE_CTX_KEY, getCategoryServiceForTheme(theme.name));
   setContext(I18N_CTX_KEY, i18nStore);

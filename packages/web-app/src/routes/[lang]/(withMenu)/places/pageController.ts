@@ -3,7 +3,13 @@ import { writable, get } from 'svelte/store';
 import type { GetSearchResultPageController, PageParams, PageState } from './types';
 import type { PlacesService, PosthogCaptureFunction } from '$lib/services/types';
 import { getErrorValue } from '$lib/ts';
-import { buildSearchResultApiFilters, type SearchResultFilter } from './filters';
+import {
+  buildSearchResultApiFilters,
+  readSelectedFilters,
+  toFilterUrlParams,
+  type SearchResultFilter,
+  type SearchResultFilterDefinition
+} from './filters';
 
 const initialState: PageState = {
   isLoading: false,
@@ -22,7 +28,8 @@ const initialState: PageState = {
   searchError: null,
   hasMorePages: false,
   urlParams: null,
-  selectedFilters: []
+  selectedFilters: [],
+  availableFilters: []
 };
 
 export const getSearchResultPageController = (
@@ -114,14 +121,12 @@ export const getSearchResultPageController = (
   /**
    * Init the page with the url params from search page and the search result
    */
-  const init = async (urlParams: PageParams): Promise<void> => {
+  const init = async (
+    urlParams: PageParams,
+    availableFilters: readonly SearchResultFilterDefinition[]
+  ): Promise<void> => {
     const { location, category, lang, latitude, longitude, type, label } = urlParams;
-    const selectedFilters: SearchResultFilter[] = [
-      ...(urlParams.openToday === 'true' ? (['openToday'] as const) : []),
-      ...(urlParams.airConditioned === 'true' ? (['airConditioned'] as const) : []),
-      ...(urlParams.pmr === 'true' ? (['pmr'] as const) : []),
-      ...(urlParams.animal === 'true' ? (['animal'] as const) : [])
-    ];
+    const selectedFilters = readSelectedFilters(urlParams, availableFilters);
 
     if (location && category && lang && latitude && longitude && type && label) {
       myPageStore.set({
@@ -134,12 +139,13 @@ export const getSearchResultPageController = (
           latitude: Number(latitude),
           longitude: Number(longitude),
           type,
-          ...buildSearchResultApiFilters(selectedFilters),
+          ...buildSearchResultApiFilters(selectedFilters, availableFilters),
           options: { page: 0 }
         },
         adressLabel: label,
         urlParams,
-        selectedFilters
+        selectedFilters,
+        availableFilters
       });
 
       // Get data - put in store
@@ -149,7 +155,7 @@ export const getSearchResultPageController = (
 
   const updateSearchFilters = async (selectedFilters: SearchResultFilter[]): Promise<void> => {
     myPageStore.update((oldValue): PageState => {
-      const apiFilters = buildSearchResultApiFilters(selectedFilters);
+      const apiFilters = buildSearchResultApiFilters(selectedFilters, oldValue.availableFilters);
 
       const urlParams: PageParams | null = oldValue.urlParams
         ? {
@@ -160,10 +166,7 @@ export const getSearchResultPageController = (
             type: oldValue.urlParams.type,
             label: oldValue.urlParams.label,
             category: oldValue.urlParams.category,
-            ...(selectedFilters.includes('openToday') ? { openToday: 'true' } : {}),
-            ...(selectedFilters.includes('airConditioned') ? { airConditioned: 'true' } : {}),
-            ...(selectedFilters.includes('pmr') ? { pmr: 'true' } : {}),
-            ...(selectedFilters.includes('animal') ? { animal: 'true' } : {})
+            ...toFilterUrlParams(selectedFilters)
           }
         : null;
 

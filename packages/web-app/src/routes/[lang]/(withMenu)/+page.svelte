@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getThemeContext, isSeasonalThermalComfortVisible } from '$lib/theme';
+  import { getThemeContext } from '$lib/theme';
   import { getContext, onMount, setContext, type ComponentType } from 'svelte';
   import { goto } from '$app/navigation';
   import { Text, Tile, PageLoader } from '@soliguide/design-system';
@@ -16,7 +16,8 @@
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import type { QuickSearchFilters } from './types';
   import { Categories, getCategoryTranslationKey, SupportedLanguagesCode } from '@soliguide/common';
-  import { CategoryIcon, HeatwaveEmergencyCard, GeolocationBlockedModal } from '$lib/components';
+  import { CategoryIcon, EmergencyHighlightCard, GeolocationBlockedModal } from '$lib/components';
+  import { getEmergencyContext } from '$lib/emergency';
   import MoreHoriz from 'svelte-google-materialdesign-icons/More_horiz.svelte';
 
   interface CategoryTile {
@@ -37,9 +38,9 @@
   // Remember the last quick-search so the modal's "retry" can re-run it.
   let lastQuickSearch: { category: Categories; filters: QuickSearchFilters } | null = null;
 
-  // The heatwave card groups seasonal 1-click searches, so it is only shown
-  // during summer, and only in the countries running the heatwave campaign.
-  const shouldDisplayHeatwaveCard = isSeasonalThermalComfortVisible(theme);
+  // The highlight card, its wording, its icon and its 1-click searches all come
+  // from the emergency the country is running, if it is running one at all.
+  const emergency = getEmergencyContext();
 
   const goSearch = () => {
     pageStore.captureEvent('start-search');
@@ -50,7 +51,7 @@
    * Launch a search directly from a category tile.
    * Uses the user's position; if geolocation is not authorized, shows the recovery modal.
    */
-  const launchCategorySearch = async (category: Categories, filters: QuickSearchFilters = {}) => {
+  const launchCategorySearch = async (category: Categories, filters: QuickSearchFilters = []) => {
     if (isSearching) {
       return;
     }
@@ -117,16 +118,17 @@
   };
 
   /**
-   * Handle a click on a quick-search button inside the emergency (heatwave) card.
-   * Tracks the clicked category, then launches the search with the card's filters.
+   * Handle a click on a quick-search button inside the emergency highlight card.
+   * Tracks the clicked category, then launches the search with the button's filters.
    */
   const handleEmergencyQuickSearchClick = (
-    event: CustomEvent<{ category: Categories; airConditioned: boolean }>
+    event: CustomEvent<{ category: Categories; filters: string[] }>
   ) => {
-    pageStore.captureEvent('emergency-quick-search-clicked', { category: event.detail.category });
-    launchCategorySearch(event.detail.category, {
-      airConditioned: event.detail.airConditioned
+    pageStore.captureEvent('emergency-quick-search-clicked', {
+      category: event.detail.category,
+      emergencyId: emergency?.id
     });
+    launchCategorySearch(event.detail.category, event.detail.filters);
   };
 
   /**
@@ -208,9 +210,13 @@
       <Text type="title2PrimaryExtraBold">{$i18n.t('START_A_SEARCH')}</Text>
       <SearchButtonInput on:click={goSearch} />
     </div>
-    {#if shouldDisplayHeatwaveCard}
-      <div class="heatwave-block">
-        <HeatwaveEmergencyCard disabled={isSearching} on:search={handleEmergencyQuickSearchClick} />
+    {#if emergency?.highlight}
+      <div class="emergency-block">
+        <EmergencyHighlightCard
+          highlight={emergency.highlight}
+          disabled={isSearching}
+          on:search={handleEmergencyQuickSearchClick}
+        />
       </div>
     {/if}
     <div class="categories">
@@ -285,7 +291,7 @@
     margin-bottom: var(--spacing3XL);
   }
 
-  .heatwave-block {
+  .emergency-block {
     margin-bottom: var(--spacing3XL);
   }
 

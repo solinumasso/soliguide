@@ -13,7 +13,12 @@
   import ResultsTopBar from './components/ResultsTopBar.svelte';
   import type { I18nStore, RoutingStore } from '$lib/client/types';
   import { getCategorySearchTranslationKey } from '$lib/utils/categoryTranslation';
-  import { SEARCH_RESULT_FILTERS, type SearchResultFilter } from './filters';
+  import {
+    getAllSearchResultFilterNames,
+    getAvailableSearchResultFilters,
+    type SearchResultFilter
+  } from './filters';
+  import { getEmergencyContext } from '$lib/emergency';
 
   const { url } = $page;
 
@@ -30,9 +35,7 @@
       // Recover id of the last place visited
       const { hash } = $page.url;
       // Sync url params with store params
-      const searchParams = new URLSearchParams(
-        $pageStore.urlParams as unknown as Record<string, string>
-      ).toString();
+      const searchParams = new URLSearchParams($pageStore.urlParams).toString();
 
       goto(`${url.pathname}?${searchParams}${hash}`, { replaceState: true });
     } else {
@@ -41,28 +44,31 @@
     }
   }
 
-  const openToday = url.searchParams.get('openToday');
-  const pmr = url.searchParams.get('pmr');
-  const animal = url.searchParams.get('animal');
-  // A filter the theme does not expose has no toggle to turn it off again, so
-  // its URL parameter is ignored rather than silently applied
-  const airConditioned = theme.capabilities.thermalComfort
-    ? url.searchParams.get('airConditioned')
-    : null;
+  const availableFilters = getAvailableSearchResultFilters(getEmergencyContext());
 
-  pageStore.init({
-    location: url.searchParams.get('location') ?? '',
-    category: url.searchParams.get('category') ?? '',
-    lang: $page.params.lang ?? '',
-    latitude: url.searchParams.get('latitude') ?? '',
-    longitude: url.searchParams.get('longitude') ?? '',
-    type: url.searchParams.get('type') ?? '',
-    label: url.searchParams.get('label') ?? '',
-    ...(openToday === null ? {} : { openToday }),
-    ...(pmr === null ? {} : { pmr }),
-    ...(animal === null ? {} : { animal }),
-    ...(airConditioned === null ? {} : { airConditioned })
-  });
+  // A filter the country does not expose has no toggle to turn it off again, so
+  // its URL parameter is never read rather than silently applied
+  const selectedFilterParams = Object.fromEntries(
+    availableFilters.flatMap(({ name }) => {
+      const value = url.searchParams.get(name);
+
+      return value === null ? [] : [[name, value]];
+    })
+  );
+
+  pageStore.init(
+    {
+      location: url.searchParams.get('location') ?? '',
+      category: url.searchParams.get('category') ?? '',
+      lang: $page.params.lang ?? '',
+      latitude: url.searchParams.get('latitude') ?? '',
+      longitude: url.searchParams.get('longitude') ?? '',
+      type: url.searchParams.get('type') ?? '',
+      label: url.searchParams.get('label') ?? '',
+      ...selectedFilterParams
+    },
+    availableFilters
+  );
 
   const handleIntersection = () => {
     if ($pageStore.hasMorePages) {
@@ -78,9 +84,9 @@
       : [...$pageStore.selectedFilters, filter];
 
     const currentUrl = $page.url;
-    const filterNames = SEARCH_RESULT_FILTERS.map(({ name }) => name);
+    const filterNames = getAllSearchResultFilterNames();
     const currentSearchParams = Array.from(currentUrl.searchParams.entries()).filter(
-      ([name]) => !filterNames.includes(name as SearchResultFilter)
+      ([name]) => !filterNames.includes(name)
     );
     const selectedSearchParams = selectedFilters.map((selectedFilter) => [selectedFilter, 'true']);
     const searchParams = new URLSearchParams([...currentSearchParams, ...selectedSearchParams]);
@@ -142,6 +148,7 @@
     <PageLoader loading={$pageStore.initializing}>
       <div class="result-page-content">
         <ResultsFilters
+          {availableFilters}
           selectedFilters={$pageStore.selectedFilters}
           on:toggle={(event) => toggleFilter(event.detail)}
         />
