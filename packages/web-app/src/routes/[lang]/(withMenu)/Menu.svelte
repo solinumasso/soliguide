@@ -60,9 +60,9 @@
     {
       icon: IconHomeOff,
       iconActive: IconHomeOn,
-      label: $i18n.t('ACCUEIL'),
-      ariaLabel: $i18n.t('ACCUEIL'),
-      ariaLabelActive: `${$i18n.t('ACCUEIL')} ${$i18n.t('MENU_PAGE_ACTIVE')}`,
+      label: $i18n.t('MENU_HOME'),
+      ariaLabel: $i18n.t('MENU_HOME'),
+      ariaLabelActive: `${$i18n.t('MENU_HOME')} ${$i18n.t('MENU_PAGE_ACTIVE')}`,
       route: $routes.ROUTE_HOME,
       id: 'home'
     },
