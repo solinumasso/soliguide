@@ -1,5 +1,6 @@
 import {
   CountryCodes,
+  slugString,
   SoliguideCountries,
   SupportedLanguagesCode,
 } from "@soliguide/common";
@@ -33,9 +34,16 @@ function buildSynonymSearch(
   nosqlQuery: any,
   suggestion: FormattedSuggestion
 ): void {
-  const allTerms = [suggestion.label, ...suggestion.synonyms].filter(Boolean);
-  if (allTerms.length > 0) {
-    const regexTerms = allTerms.map((term) => createWordBoundaryRegex(term));
+  // Terms are matched against slugs.infos.name, which is built with slugString:
+  // they must go through the same normalisation or an accent or a hyphen in the
+  // suggestion makes the term unmatchable
+  const regexTerms = [suggestion.label, ...suggestion.synonyms]
+    .filter(Boolean)
+    .map((term) => slugString(term))
+    .filter(Boolean)
+    .map((term) => createWordBoundaryRegex(term));
+
+  if (regexTerms.length > 0) {
     nosqlQuery["slugs.infos.name"] = { $in: regexTerms };
   }
 }
