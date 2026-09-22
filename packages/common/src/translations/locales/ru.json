@@ -1368,6 +1368,7 @@
   "MEMBER_OF_THE_SOLIGUIDE_TEAM_CAN_UPDATE": "Будучи членом команды {{ brandName }}, вы можете напрямую вносить сезонные обновления в структуры и организации. Для этого зайдите сюда:",
   "MENU_FAVORITES": "Избранное",
   "MENU_FAVORITES_ARIA": "Ваши любимые структуры",
+  "MENU_HOME": "Приюты",
   "MENU_MORE_OPTIONS": "Более",
   "MENU_MORE_OPTIONS_ARIA": "Доступ к вашим настройкам",
   "MENU_PAGE_ACTIVE": "активная страница",

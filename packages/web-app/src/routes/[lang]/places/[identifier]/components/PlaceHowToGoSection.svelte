@@ -34,7 +34,7 @@
     <Text type="title3PrimaryExtraBold">{$i18n.t('HOW_TO_GO')}</Text>
 
     <div>
-      <ListItem type="actionRight" title="Adresse" subTitle={address}>
+      <ListItem type="actionRight" title={$i18n.t('ADDRESS')} subTitle={address}>
         <Copy on:click={copyText} size="16" slot="actionIcon" />
       </ListItem>
 

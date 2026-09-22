@@ -1368,6 +1368,7 @@
   "MEMBER_OF_THE_SOLIGUIDE_TEAM_CAN_UPDATE": "როგორც {{ brandName }} გუნდის წევრი, შეგიძლიათ პირდაპირ განახორციელოთ სტრუქტურებისა და ორგანიზაციების სეზონური განახლებები. ამისათვის გადადით აქ:",
   "MENU_FAVORITES": "რჩეულები",
   "MENU_FAVORITES_ARIA": "თქვენი საყვარელი სტრუქტურები",
+  "MENU_HOME": "მოგესალმებით",
   "MENU_MORE_OPTIONS": "მეტი",
   "MENU_MORE_OPTIONS_ARIA": "თქვენს პარამეტრებზე წვდომა",
   "MENU_PAGE_ACTIVE": "აქტიური გვერდი",
