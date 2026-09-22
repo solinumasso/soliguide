@@ -339,17 +339,15 @@ export const getSearchPageController = (
    */
   const getLocationInfoFromParam = async (
     locationLabel: string,
-    geoValue: string
+    geoValue: string,
+    country: SoliguideCountries
   ): Promise<{
     suggestions: LocationSuggestion[];
     selection: LocationSuggestion | null;
     error: LocationErrors;
   }> => {
     try {
-      const suggestions = await locationService.getLocationSuggestions(
-        get(myPageStore).country,
-        locationLabel
-      );
+      const suggestions = await locationService.getLocationSuggestions(country, locationLabel);
       const selection = suggestions.find((suggestion) => suggestion.geoValue === geoValue) ?? null;
       return { suggestions, selection, error: LocationErrors.NONE };
     } catch (error: unknown) {
@@ -401,8 +399,8 @@ export const getSearchPageController = (
     const shouldInitCategory = category && category !== ALL_CATEGORIES;
 
     if (geoValue && label && shouldInitCategory) {
-      myPageStore.set({ ...initialState, loading: true });
-      const locationInfo = await getLocationInfoFromParam(label, geoValue);
+      myPageStore.set({ ...initialState, country, lang, loading: true });
+      const locationInfo = await getLocationInfoFromParam(label, geoValue, country);
       const categoryInfo = await getCategoryInfoFromParam(category, country, lang);
 
       // Stay on step 1 if there is an error or an option needs to be selected
@@ -429,8 +427,8 @@ export const getSearchPageController = (
     } else if (geoValue && label && shouldIgnoreCategory) {
       // Special case: we have location but category is ALL_CATEGORIES
       // Initialize only the location, leave category empty
-      myPageStore.set({ ...initialState, loading: true });
-      const locationInfo = await getLocationInfoFromParam(label, geoValue);
+      myPageStore.set({ ...initialState, country, lang, loading: true });
+      const locationInfo = await getLocationInfoFromParam(label, geoValue, country);
 
       const step =
         locationInfo.error !== LocationErrors.NONE || !locationInfo.selection
