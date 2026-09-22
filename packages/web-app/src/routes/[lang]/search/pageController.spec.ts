@@ -10,12 +10,18 @@ import {
   SupportedLanguagesCode,
   LocationAutoCompleteAddress,
   AutoCompleteType,
-  type FormattedSuggestion
+  type FormattedSuggestion,
+  type SoliguideCountries
 } from '@soliguide/common';
 import { posthogService } from '$lib/services/posthogService';
 import type { LocationSuggestion } from '$lib/models/locationSuggestion';
 import { Steps, Focus, type SearchPageController } from './types';
-import { CategoriesErrors, LocationErrors, type CategoryService } from '$lib/services/types';
+import {
+  CategoriesErrors,
+  LocationErrors,
+  type CategoryService,
+  type LocationService
+} from '$lib/services/types';
 
 const sampleSuggestions: LocationAutoCompleteAddress[] = [
   {
@@ -849,6 +855,100 @@ describe('Search page', () => {
         expect(get(pageState).currentStep).toEqual(Steps.STEP_LOCATION);
       });
     });
+  });
+
+  /**
+   * Coming back from the results page reopens the tunnel with the location and the
+   * category already chosen. The country of the page has to reach the location
+   * service: searched in France, a Spanish location never matches its geoValue, and
+   * the user is sent back to the first step with French suggestions.
+   */
+  describe('When we come back from the results page of a country other than France', () => {
+    const barcelona: LocationSuggestion = {
+      suggestionLine1: 'Barcelona (08001)',
+      suggestionLine2: 'GEOTYPE_VILLE',
+      suggestionLabel: 'Barcelona (08001)',
+      geoValue: 'barcelona-08001',
+      geoType: GeoTypes.CITY,
+      coordinates: [2.1734, 41.3851]
+    };
+    const andorraLaVella: LocationSuggestion = {
+      suggestionLine1: 'Andorra la Vella (AD500)',
+      suggestionLine2: 'GEOTYPE_VILLE',
+      suggestionLabel: 'Andorra la Vella (AD500)',
+      geoValue: 'andorra-la-vella-ad500',
+      geoType: GeoTypes.CITY,
+      coordinates: [1.5218, 42.5063]
+    };
+
+    /**
+     * Answers like the location api does, one country at a time: asked for France,
+     * it returns French addresses only, none of which carries the awaited geoValue.
+     * It also records every country it was asked for, which is what the bug got wrong.
+     */
+    const createLocationServiceServing = (
+      servedCountry: SoliguideCountries,
+      suggestion: LocationSuggestion
+    ): { service: LocationService; getRequestedCountries: () => SoliguideCountries[] } => {
+      let requestedCountries: SoliguideCountries[] = [];
+
+      return {
+        service: {
+          getLocationSuggestions: (country: SoliguideCountries) => {
+            requestedCountries = [...requestedCountries, country];
+            return Promise.resolve(
+              country === servedCountry ? [suggestion] : sampleSuggestionsServiceResult
+            );
+          },
+          getLocationFromPosition: () => Promise.resolve(null)
+        },
+        getRequestedCountries: () => requestedCountries
+      };
+    };
+
+    const countryCases: [SoliguideCountries, LocationSuggestion][] = [
+      [CountryCodes.ES, barcelona],
+      [CountryCodes.AD, andorraLaVella]
+    ];
+
+    it.each(countryCases)(
+      'The location is searched in the country of the page (%s), not in France',
+      async (country, suggestion) => {
+        const { service, getRequestedCountries } = createLocationServiceServing(
+          country,
+          suggestion
+        );
+        const controller = getSearchPageController(service, categoryService);
+        feedWithCategoriesData(sampleCategorySuggestions);
+
+        await controller.init(country, SupportedLanguagesCode.ES, {
+          geoValue: suggestion.geoValue,
+          label: suggestion.suggestionLabel,
+          category: Categories.HEALTH
+        });
+
+        expect(getRequestedCountries()).toEqual([country]);
+      }
+    );
+
+    it.each(countryCases)(
+      'The location of the search is kept and only the category is left to change (%s)',
+      async (country, suggestion) => {
+        const { service } = createLocationServiceServing(country, suggestion);
+        const controller = getSearchPageController(service, categoryService);
+        feedWithCategoriesData(sampleCategorySuggestions);
+
+        await controller.init(country, SupportedLanguagesCode.ES, {
+          geoValue: suggestion.geoValue,
+          label: suggestion.suggestionLabel,
+          category: Categories.HEALTH
+        });
+
+        expect(get(controller).selectedLocationSuggestion).toEqual(suggestion);
+        expect(get(controller).locationLabel).toEqual(suggestion.suggestionLabel);
+        expect(get(controller).currentStep).toEqual(Steps.STEP_CATEGORY);
+      }
+    );
   });
 
   describe('Focus management', () => {
