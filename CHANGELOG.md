@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.156.0](https://github.com/solinumasso/soliguide/compare/v4.155.0...v4.156.0) (2026-09-23)
+
+
+### Features
+
+* **web-app:** desactivate climate emergency in web-app ([7eb36d8](https://github.com/solinumasso/soliguide/commit/7eb36d8ceca269ea5efdb4366b3dd570b3cb5516))
+
+
+
+
+
 # [4.155.0](https://github.com/solinumasso/soliguide/compare/v4.154.1...v4.155.0) (2026-09-23)
 
 
