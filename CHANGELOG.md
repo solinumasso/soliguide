@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.155.0](https://github.com/solinumasso/soliguide/compare/v4.154.1...v4.155.0) (2026-09-23)
+
+
+### Bug Fixes
+
+* **api:** slugify the search suggestion terms before matching place names ([25caa88](https://github.com/solinumasso/soliguide/commit/25caa88a49f7f1bfd6e06f730bff9e567785bb2d))
+* **common:** apply the Spanish and Catalan wording corrections ([f120d92](https://github.com/solinumasso/soliguide/commit/f120d92ede81605bb3fa69ee78b9c8345554e75d))
+* **common:** use cookies consistently in Catalan and Spanish ([980eb5c](https://github.com/solinumasso/soliguide/commit/980eb5cfef1cad98ad7fdc19c5a5e689a5386dbf))
+* **frontend:** apply the Catalan corrections to the legal pages ([390137f](https://github.com/solinumasso/soliguide/commit/390137fd15c24163e342bb175378951badacc77a))
+* **web-app:** resolve the search location in the country of the page ([2be03e0](https://github.com/solinumasso/soliguide/commit/2be03e0044d32751d1794033cfb779a6fd3ddef7))
+
+
+### Features
+
+* **frontend:** add the Catalan mobile app links to the Soliguia theme ([a2dce20](https://github.com/solinumasso/soliguide/commit/a2dce20f25210bfc7133e986669ec86da0eedba4))
+* **frontend:** remove the heatwave campaign ([adc0367](https://github.com/solinumasso/soliguide/commit/adc0367636b9ec0cbda0023276a13d3dadf9e7d9))
+* **maintenance:** localise the maintenance page per domain ([9a4c9a8](https://github.com/solinumasso/soliguide/commit/9a4c9a8dd2a5b9369a10c73bbb7b44f05677f0fc))
+* **web-app:** make emergencies configurable into 1 file in web-app ([f6ce4b4](https://github.com/solinumasso/soliguide/commit/f6ce4b4163d4830b84a36060f2c7d990ad06d2d7))
+
+
+
+
+
 ## [4.154.1](https://github.com/solinumasso/soliguide/compare/v4.154.0...v4.154.1) (2026-09-14)
 
 
