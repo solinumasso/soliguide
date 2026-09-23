@@ -12,7 +12,7 @@ const AIR_CONDITIONED_FILTER = 'airConditioned';
  */
 const HEATWAVE: EmergencyDefinition = {
   id: 'heatwave',
-  active: true,
+  active: false, // flip to true to run the emergency
   countries: [CountryCodes.FR],
 
   highlight: {
