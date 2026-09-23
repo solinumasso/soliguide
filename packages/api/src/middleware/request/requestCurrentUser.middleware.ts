@@ -1,4 +1,5 @@
 import { verify } from "jsonwebtoken";
+import type { JwtPayload } from "jsonwebtoken";
 import { NextFunction } from "express";
 import {
   SupportedLanguagesCode,
@@ -15,13 +16,33 @@ import {
   UserFactory,
 } from "../../_models";
 import { getUserByIdWithUserRights } from "../../user/services";
+import {
+  clearAuthCookie,
+  getAuthCookieToken,
+  getAuthTokenFromRequest,
+} from "../../user/utils";
+
+/** Returns the user id carried by a verified token, or null if the token is unusable. */
+const getUserIdFromToken = (
+  err: unknown,
+  decoded: JwtPayload | string | undefined
+): string | null => {
+  if (err || !decoded || typeof decoded === "string") {
+    return null;
+  }
+
+  return typeof decoded._id === "string" ? decoded._id : null;
+};
 
 export const getCurrentUser = (
   req: ExpressRequest,
   res: ExpressResponse,
   next: NextFunction
 ) => {
-  const token: string = req.headers.authorization?.slice(4) as string;
+  const token = getAuthTokenFromRequest(req);
+  // The cookie takes precedence in `getAuthTokenFromRequest`, so a session cookie
+  // being present means the token below came from it and not from a header.
+  const isSessionCookie = Boolean(getAuthCookieToken(req));
 
   const language = SupportedLanguagesCode.FR;
 
@@ -43,32 +64,40 @@ export const getCurrentUser = (
   return verify(
     token,
     CONFIG.JWT_SECRET,
-    { ignoreExpiration: true },
+    // A session cookie must expire: it is a real security boundary, and the browser
+    // drops the cookie at the same time anyway. Integration tokens passed in the
+    // Authorization header are handed out once to partners and never renewed
+    // (see `createDevToken`), so their expiry is ignored, as it was before the
+    // session moved to a cookie.
+    { ignoreExpiration: !isSessionCookie },
     async (err, decoded) => {
-      if (
-        err ||
-        !decoded ||
-        !Object.hasOwn(decoded as object, "_id") ||
-        !(decoded as { _id: unknown })._id ||
-        typeof (decoded as { _id: unknown })._id !== "string"
-      ) {
-        return res.status(401).json({ message: "INVALID_TOKEN" });
+      const userId = getUserIdFromToken(err, decoded);
+      const user = userId ? await getUserByIdWithUserRights(userId) : null;
+
+      if (user?.verified) {
+        // Logged user
+        user.type = UserTypeLogged.LOGGED;
+
+        req.user = UserFactory.createUser(user);
+
+        return next();
       }
 
-      const user = await getUserByIdWithUserRights(
-        (decoded as { _id: string })._id
-      );
+      // A session cookie is ambient state: the browser resends it on every request and
+      // the front-end cannot delete it, since it is httpOnly. Rejecting it would lock
+      // the visitor out of the public routes too, with no way to recover. Dropping the
+      // cookie and continuing anonymously self-heals the session instead.
+      if (isSessionCookie) {
+        clearAuthCookie(req, res);
 
-      if (!user?.verified) {
-        return res.status(401).json({ message: "USER_NOT_VERIFIED" });
+        return next();
       }
 
-      // Logged user
-      user.type = UserTypeLogged.LOGGED;
+      // A token in the Authorization header is a credential the caller chose to
+      // present, so it is told why it was refused.
+      const message = userId ? "USER_NOT_VERIFIED" : "INVALID_TOKEN";
 
-      req.user = UserFactory.createUser(user);
-
-      next();
+      return res.status(401).json({ message });
     }
   );
 };
@@ -161,19 +190,13 @@ export const getCurrentUserFromQueryToken = (
     CONFIG.JWT_SECRET,
     { ignoreExpiration: true },
     async (err, decoded) => {
-      if (
-        err ||
-        !decoded ||
-        !Object.hasOwn(decoded as object, "_id") ||
-        !(decoded as { _id: unknown })._id ||
-        typeof (decoded as { _id: unknown })._id !== "string"
-      ) {
+      const userId = getUserIdFromToken(err, decoded);
+
+      if (!userId) {
         return res.status(401).json({ message: "INVALID_TOKEN" });
       }
 
-      const user = await getUserByIdWithUserRights(
-        (decoded as { _id: string })._id
-      );
+      const user = await getUserByIdWithUserRights(userId);
 
       if (!user?.verified) {
         return res.status(401).json({ message: "USER_NOT_VERIFIED" });

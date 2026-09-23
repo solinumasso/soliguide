@@ -2,12 +2,18 @@ import { SupportedLanguagesCode, UserStatus } from "@soliguide/common";
 
 import { ACCOUNTS_FOR_TEST } from "../USERS_FOR_TEST.const";
 
-import { supertest, getExpectedStatus, addAuth } from "../endPointTester";
+import {
+  supertest,
+  getExpectedStatus,
+  addAuth,
+  getSetCookieHeader,
+} from "../endPointTester";
 import { TestAccounts, ExpectedStatus } from "../endPointTester.type";
 
 import { User } from "../../src/_models";
 
 import { UserModel } from "../../src/user/models/user.model";
+import { CONFIG } from "../../src/_models";
 
 const ALLOWED_USERS = [
   TestAccounts.USER_ADMIN_SOLIGUIDE,
@@ -249,4 +255,64 @@ test("❌ Nonexisting token", async () => {
     .then((response) => {
       expect(response.body.message).toStrictEqual("NOT_LOGGED");
     });
+});
+
+test("✅ Signin sets an httpOnly session cookie", async () => {
+  const response = await supertest()
+    .post("/users/signin")
+    .set("Origin", "https://soliguide.fr")
+    .send({
+      mail: ACCOUNTS_FOR_TEST[TestAccounts.USER_PRO_OWNER],
+      password: "soliguide",
+    })
+    .expect(200);
+
+  const cookies = getSetCookieHeader(response);
+
+  expect(cookies.length).toBeGreaterThan(0);
+  expect(cookies.join(";")).toContain(`${CONFIG.AUTH_COOKIE_NAME}=`);
+  expect(cookies.join(";")).toContain("HttpOnly");
+  expect(cookies.join(";")).toContain("SameSite=Lax");
+});
+
+test("✅ Cookie session authenticates without Authorization header", async () => {
+  const signinResponse = await supertest()
+    .post("/users/signin")
+    .set("Origin", "https://soliguide.fr")
+    .send({
+      mail: ACCOUNTS_FOR_TEST[TestAccounts.USER_PRO_OWNER],
+      password: "soliguide",
+    })
+    .expect(200);
+
+  const response = await supertest()
+    .get(baseUrl)
+    .set("Origin", "https://soliguide.fr")
+    .set("Cookie", getSetCookieHeader(signinResponse))
+    .expect(200);
+
+  expect(response.body.mail).toStrictEqual(
+    ACCOUNTS_FOR_TEST[TestAccounts.USER_PRO_OWNER]
+  );
+});
+
+test("✅ Logout clears the session cookie", async () => {
+  const signinResponse = await supertest()
+    .post("/users/signin")
+    .set("Origin", "https://soliguide.fr")
+    .send({
+      mail: ACCOUNTS_FOR_TEST[TestAccounts.USER_PRO_OWNER],
+      password: "soliguide",
+    })
+    .expect(200);
+
+  const response = await supertest()
+    .post("/users/logout")
+    .set("Origin", "https://soliguide.fr")
+    .set("Cookie", getSetCookieHeader(signinResponse))
+    .expect(204);
+
+  expect(getSetCookieHeader(response).join(";")).toContain(
+    `${CONFIG.AUTH_COOKIE_NAME}=;`
+  );
 });

@@ -16,9 +16,12 @@ import { AuthService } from "./auth.service";
 import { User } from "../classes";
 
 import { USER_PRO_MOCK } from "../../../../../mocks";
+import { globalConstants } from "../../../shared/functions";
 
 describe("AuthService", () => {
   beforeEach(() => {
+    globalConstants.removeItem("USER");
+
     TestBed.configureTestingModule({
       imports: [
         RouterModule.forRoot([]),
@@ -47,14 +50,6 @@ describe("AuthService", () => {
       user.translator = true;
       service.updateCurrentUser(user);
       expect(service.currentUserValue).toStrictEqual(user);
-
-      const token = "a";
-      service.updateCurrentUser(user, token);
-      expect(service?.currentUserValue?.token).toStrictEqual(token);
-
-      user.token = "b";
-      service.updateCurrentUser(user);
-      expect(service?.currentUserValue?.token).toStrictEqual("b");
     }
   ));
 
@@ -69,7 +64,6 @@ describe("AuthService", () => {
       });
 
       const user = new User(USER_PRO_MOCK);
-      user.token = "abc";
 
       service
         .login("unusedEmail", "unusedPassword")
@@ -86,7 +80,7 @@ describe("AuthService", () => {
       const user = new User(USER_PRO_MOCK);
       user.languages = [SupportedLanguagesCode.EN, SupportedLanguagesCode.AR];
 
-      jest.spyOn(http, "post").mockImplementation(() => {
+      jest.spyOn(http, "get").mockImplementation(() => {
         return new Observable((observer) => {
           observer.next(user);
           observer.complete();

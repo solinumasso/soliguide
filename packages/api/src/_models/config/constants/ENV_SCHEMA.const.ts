@@ -61,6 +61,14 @@ export const ENV_SCHEMA: JSONSchemaType<Config> = {
     JWT_SECRET: {
       type: "string",
     },
+    AUTH_COOKIE_NAME: {
+      type: "string",
+      default: "soliguide_session",
+    },
+    AUTH_COOKIE_MAX_AGE_DAYS: {
+      type: "number",
+      default: 60,
+    },
     CRON_ENABLED: {
       type: "boolean",
       default: false,

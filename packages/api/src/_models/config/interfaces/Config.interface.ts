@@ -13,6 +13,8 @@ export interface Config {
   FRONTEND_URL: string;
   SOLIGUIDE_LOCATION_API_URL: string;
   JWT_SECRET: string;
+  AUTH_COOKIE_NAME: string;
+  AUTH_COOKIE_MAX_AGE_DAYS: number;
   CRON_ENABLED: boolean;
 
   // Mongo

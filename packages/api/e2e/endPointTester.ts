@@ -19,6 +19,20 @@ const authTokens: AuthTokens = Object.values(TestAccounts).reduce(
 
 export const supertest = () => request(app);
 
+/**
+ * Supertest types `headers` as a map of strings, but `set-cookie` is an array of
+ * strings at runtime, one entry per cookie. Returns an empty array when the header
+ * is absent, so callers can always chain on the result.
+ */
+export const getSetCookieHeader = (response: request.Response): string[] => {
+  const headers = response.headers as unknown as Record<
+    string,
+    string[] | undefined
+  >;
+
+  return headers["set-cookie"] ?? [];
+};
+
 export const addAuth = async (client: request.Test, user: TestAccounts) => {
   await loginForTest(user);
   client.set("Authorization", `JWT ${authTokens[user]}`);

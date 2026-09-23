@@ -19,7 +19,7 @@ import {
   signupTranslatorDto,
 } from "../dto";
 
-import { sendUserForAuth } from "../utils";
+import { clearAuthCookie, sendUserForAuth, setAuthCookie } from "../utils";
 
 import {
   type ExpressRequest,
@@ -178,12 +178,19 @@ router.post(
         return res.status(401).json("USER_NOT_VERIFIED");
       }
 
+      setAuthCookie(req, res, tokenAndUser.token);
+
       return res.status(200).json(tokenAndUser);
     } catch (e) {
       return res.status(400).json({ message: e.message });
     }
   }
 );
+
+router.post("/logout", (req: ExpressRequest, res: ExpressResponse) => {
+  clearAuthCookie(req, res);
+  return res.status(204).send();
+});
 
 /**
  * @swagger
