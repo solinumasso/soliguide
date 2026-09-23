@@ -13,7 +13,6 @@ export { matchThemeByHostname, normalizeHostname, parseHostnameList } from './ho
 export { buildLegalLinks } from './legalLinks';
 export { getAllThemes, getDefaultTheme, resolveTheme } from './resolveTheme';
 export { getRequestHostname, resolveThemeFromRequest } from './resolveThemeFromRequest';
-export { isSeasonalThermalComfortVisible } from './thermalComfort';
 export type { CountryVersion } from './countryVersions';
 export type {
   ThemeBlueprint,

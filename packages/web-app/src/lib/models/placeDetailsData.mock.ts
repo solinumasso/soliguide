@@ -652,7 +652,7 @@ const samplePlaceTransformed: PlaceDetails = {
   ],
   sources: [],
   status: PlaceOpeningStatus.OPEN,
-  thermalComfort: { heated: null, airConditioned: null },
+  modalities: samplePlace.modalities,
   todayInfo: {
     openingHours: [
       {

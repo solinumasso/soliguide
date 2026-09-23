@@ -1,6 +1,6 @@
 import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { getPlaceDetailsPageController } from './pageController';
-import { PlaceOpeningStatus, PlaceType } from '@soliguide/common';
+import { Modalities, PlaceOpeningStatus, PlaceType } from '@soliguide/common';
 import { get } from 'svelte/store';
 import type { PlaceDetails, PlaceDetailsTempInfo } from '$lib/models/types';
 import type { PageController } from './types';
@@ -26,7 +26,7 @@ const defaultState: PlaceDetails = {
   services: [],
   sources: [],
   status: PlaceOpeningStatus.OPEN,
-  thermalComfort: { heated: null, airConditioned: null },
+  modalities: new Modalities(),
   todayInfo: {},
   tempInfo: {} as PlaceDetailsTempInfo,
   website: ''

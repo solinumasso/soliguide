@@ -22,51 +22,47 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   import { createEventDispatcher, getContext } from 'svelte';
   import { Categories, getCategoryTranslationKey } from '@soliguide/common';
   import { Text } from '@soliguide/design-system';
-  import AcUnit from 'svelte-google-materialdesign-icons/Ac_unit.svelte';
   import CategoryIcon from '$lib/components/CategoryIcon.svelte';
-  import thermalIcon from '../../assets/images/thermal_icon.png';
   import { I18N_CTX_KEY } from '$lib/client/i18n';
   import type { I18nStore } from '$lib/client/types';
+  import type { EmergencyHighlight } from '$lib/emergency';
 
+  export let highlight: EmergencyHighlight;
   export let disabled = false;
 
   const i18n: I18nStore = getContext(I18N_CTX_KEY);
   const dispatch = createEventDispatcher<{
-    search: { category: Categories; airConditioned: boolean };
+    search: { category: Categories; filters: string[] };
   }>();
-
-  // The four heatwave-related 1-click searches shown in the card
-  const quickSearches: { category: Categories; airConditioned: boolean }[] = [
-    { category: Categories.FOUNTAIN, airConditioned: false },
-    { category: Categories.SHOWER, airConditioned: false },
-    { category: Categories.DAY_HOSTING, airConditioned: true },
-    { category: Categories.LIBRARIES, airConditioned: true }
-  ];
 </script>
 
-<section class="heatwave-card">
-  <span class="snowflake" aria-hidden="true"><AcUnit size="190" /></span>
-  <div class="heatwave-header">
+<section class="emergency-card">
+  {#if highlight.backgroundIcon}
+    <span class="background-icon" aria-hidden="true">
+      <svelte:component this={highlight.backgroundIcon} size="190" />
+    </span>
+  {/if}
+  <div class="emergency-header">
     <span class="header-icon" aria-hidden="true">
-      <img src={thermalIcon} alt="" class="thermal-icon" />
+      <img src={highlight.iconUrl} alt="" class="header-image" />
     </span>
     <div class="header-text">
       <Text as="h2" type="title4PrimaryExtraBold" color="inverse">
-        {$i18n.t('HEATWAVE_EMERGENCY_TITLE')}
+        {$i18n.t(highlight.titleKey)}
       </Text>
       <Text type="caption1" color="inverse">
-        <span class="header-description">{$i18n.t('HEATWAVE_EMERGENCY_DESCRIPTION')}</span>
+        <span class="header-description">{$i18n.t(highlight.descriptionKey)}</span>
       </Text>
     </div>
   </div>
 
   <div class="quick-searches">
-    {#each quickSearches as { category, airConditioned }}
+    {#each highlight.quickSearches as { category, filters = [] }}
       <button
         type="button"
         class="quick-search-button"
         {disabled}
-        on:click={() => dispatch('search', { category, airConditioned })}
+        on:click={() => dispatch('search', { category, filters })}
       >
         <span class="button-icon" aria-hidden="true">
           <CategoryIcon categoryId={category} variation="filled" size={14} />
@@ -78,7 +74,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </section>
 
 <style lang="scss">
-  .heatwave-card {
+  .emergency-card {
     position: relative;
     overflow: hidden;
     display: flex;
@@ -90,7 +86,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     color: var(--color-textInverse);
   }
 
-  .snowflake {
+  .background-icon {
     position: absolute;
     top: -32px;
     right: -24px;
@@ -102,7 +98,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     z-index: 0;
   }
 
-  .heatwave-header {
+  .emergency-header {
     position: relative;
     z-index: 1;
     display: flex;
@@ -124,7 +120,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     background: var(--color-surfaceWhite);
   }
 
-  .thermal-icon {
+  .header-image {
     width: 28px;
     height: 28px;
     object-fit: contain;

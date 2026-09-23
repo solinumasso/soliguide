@@ -1368,6 +1368,7 @@
   "MEMBER_OF_THE_SOLIGUIDE_TEAM_CAN_UPDATE": "د {{ brandName }} ټیم د غړي په توګه، تاسو کولی شئ په مستقیم ډول جوړښتونو او سازمانونو ته موسمي تازه معلومات ورکړئ. د دې کولو لپاره، دلته لاړ شئ:",
   "MENU_FAVORITES": "د خوښې وړ",
   "MENU_FAVORITES_ARIA": "ستاسو د خوښې جوړښت",
+  "MENU_HOME": "کور",
   "MENU_MORE_OPTIONS": "نور",
   "MENU_MORE_OPTIONS_ARIA": "خپل ترتیبات ته لاسرسی ومومئ",
   "MENU_PAGE_ACTIVE": "فعاله پاڼه",

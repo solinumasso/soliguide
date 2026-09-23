@@ -1,9 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import {
-  shouldDisplayThermalComfort,
-  type Modalities,
-} from "@soliguide/common";
+import { type Modalities } from "@soliguide/common";
 import { CK_EDITOR_CONF, ModalitiesTypes } from "../../../../shared";
 import { THEME_CONFIGURATION } from "../../../../models";
 import { THERMAL_COMFORT_EMOJIS } from "../../../../models/place/constants";
@@ -24,9 +21,10 @@ export class ModalitiesFormComponent implements OnInit {
   public editor = ClassicEditor;
   public editorConfig = CK_EDITOR_CONF;
 
-  public get showThermalComfort(): boolean {
-    return shouldDisplayThermalComfort(THEME_CONFIGURATION.country);
-  }
+  // Thermal comfort is a permanent property of a place, not a campaign: a
+  // manager must be able to declare it in January as well as in July, and in
+  // every country. It used to be gated by shouldDisplayThermalComfort(), which
+  // restricted it to FR/ES during summer only.
 
   public ngOnInit(): void {
     if (typeof this.serviceIndex === "number") {

@@ -111,7 +111,7 @@ describe('Home page controller', () => {
       });
     });
 
-    it('adds the air-conditioned filter to the params when requested', async () => {
+    it('adds the requested quick search filters to the params', async () => {
       locationMock.setResult(positionSuggestion);
 
       const outcome = await pageState.buildQuickSearch(
@@ -119,7 +119,7 @@ describe('Home page controller', () => {
         CountryCodes.FR,
         SupportedLanguagesCode.FR,
         () => geolocPosition(45.764, 4.8357),
-        { airConditioned: true }
+        ['airConditioned']
       );
 
       expect(outcome.status).toEqual('ready');

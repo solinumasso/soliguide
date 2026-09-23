@@ -132,6 +132,12 @@ const THEMES: Record<Themes, ThemeConfiguration> = {
     defaultCoordinates: [2.1752361863470204, 41.38760428878576], // Barcelona
     defaultLanguage: SupportedLanguagesCode.CA,
     suggestedLanguages: [SupportedLanguagesCode.CA, SupportedLanguagesCode.ES],
+    mobileApp: {
+      androidLink:
+        "https://play.google.com/store/apps/details?id=com.soliguide.soliguide&hl=ca",
+      appleLink:
+        "https://apps.apple.com/es/app/soliguia/id1495949521?l=ca#?platform=iphone",
+    },
     helpEnabled: true,
     helpShowPdfTutorials: false,
     helpWebinarUrl:
