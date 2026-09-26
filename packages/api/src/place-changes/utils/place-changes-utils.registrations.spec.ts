@@ -19,7 +19,7 @@ const SIRET = {
 };
 
 describe("registrations in the place changes history", () => {
-  it("should omit registrations when the document has no field at all (no migration)", () => {
+  it("should omit registrations when the document has no field at all (history written before the migration)", () => {
     expect(getGeneralInformation(basePlace)).not.toHaveProperty(
       "registrations"
     );
