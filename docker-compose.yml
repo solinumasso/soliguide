@@ -1,6 +1,6 @@
 services:
   minio:
-    image: quay.io/minio/minio:latest
+    image: pgsty/minio
     entrypoint: sh
     command:
       [
