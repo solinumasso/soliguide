@@ -16,8 +16,8 @@ import { isDeepStrictEqual } from "util";
 
 /**
  * `registrations` only enters the history comparison when it holds something.
- * The field was added without a data migration: an older document has no field at all,
- * a freshly saved one has an empty map, and neither must count as a change.
+ * Existing documents get an empty map from a migration, but history entries written
+ * before it have no field at all: neither must count as a change.
  * Also tolerates a Mongoose Map (non-lean document).
  */
 export const getRegistrationsForHistory = (
