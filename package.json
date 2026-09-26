@@ -36,6 +36,10 @@
     "tsx": "^4.21.0",
     "typescript": "^5.4.5"
   },
+  "resolutions": {
+    "fastify": "^5.12.1",
+    "find-my-way": "^9.7.0"
+  },
   "workspaces": {
     "packages": [
       "packages/*"
