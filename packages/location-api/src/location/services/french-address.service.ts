@@ -18,7 +18,6 @@ import {
 import { ConfigService } from "@nestjs/config";
 import { AxiosError, AxiosResponse } from "axios";
 import { Feature, Point } from "geojson";
-import { join } from "path";
 import { catchError, firstValueFrom, map, retry } from "rxjs";
 import {
   FrenchApiPoiResponse,
@@ -41,6 +40,14 @@ export class FrenchAddressService {
     private readonly configService: ConfigService
   ) {}
 
+  // path.join would collapse "https://" into "https:/", which axios rejects
+  private buildApiUrl(path: string): string {
+    const baseUrl = this.configService
+      .get<string>("FRENCH_ADDRESS_API_URL")
+      .replace(/\/+$/, "");
+    return `${baseUrl}/${path}`;
+  }
+
   async searchForLocation(
     _country: CountryCodes,
     search: string,
@@ -60,10 +67,7 @@ export class FrenchAddressService {
       return [];
     }
 
-    const url = join(
-      this.configService.get<string>("FRENCH_ADDRESS_API_URL"),
-      "search"
-    );
+    const url = this.buildApiUrl("search");
 
     return await firstValueFrom(
       this.httpService.get<FrenchApiPoiResponse>(url, { params }).pipe(
@@ -84,10 +88,7 @@ export class FrenchAddressService {
     latitude: number,
     longitude: number
   ): Promise<LocationAutoCompleteAddress[]> {
-    const url = join(
-      this.configService.get<string>("FRENCH_ADDRESS_API_URL"),
-      "reverse/"
-    );
+    const url = this.buildApiUrl("reverse/");
 
     const params: FrenchAutocompleteParams = {
       lon: longitude,
